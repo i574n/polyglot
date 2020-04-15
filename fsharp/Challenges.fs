@@ -22,7 +22,8 @@ module Model =
         interface IChallenge with
             member this.Run () =
                 this.TestCases ()
-                |> Seq.map(fun (input, expected) ->
+                |> Seq.toArray
+                |> Array.Parallel.map (fun (input, expected) ->
                     let inputStr =
                         match box input with
                         | :? ICollection as input -> 
@@ -37,6 +38,7 @@ module Model =
                       Expected = expected.ToString ()
                       Result = result.ToString () }
                 )
+                |> Array.toSeq
 
 module Challenges =
     

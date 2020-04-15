@@ -24,7 +24,7 @@ namespace Polyglot.CSharp
 
         public IEnumerable<TestCaseResult> Run()
         {
-            foreach (var testCase in TestCases)
+            foreach (var testCase in TestCases.AsParallel())
             {
                 var (input, expected) = testCase;
 
