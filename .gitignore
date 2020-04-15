@@ -1,0 +1,9 @@
+### Local settings
+# IDE settings
+.idea/
+# User configurations
+*.user
+
+### .NET
+bin/
+obj/
