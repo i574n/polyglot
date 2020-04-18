@@ -42,6 +42,22 @@ module Model =
 
 module Challenges =
     
+    /// Empty2
+    module Empty2 =
+        let solution n =
+            n
+            
+        let testCases = seq {
+            0, 0
+            2, 2
+            5, 5
+        }
+        
+        type Challenge () =
+            inherit Model.Challenge<int, int> ()
+            override _.TestCases () = testCases
+            override _.Invoke input = solution input
+            
     /// Empty
     module Empty =
         let solution n =
@@ -107,8 +123,9 @@ module Challenges =
             
             
     let challenges : Model.IChallenge list = [
-        Empty.Challenge ()
-        ReturnLettersWithOddCount.Challenge ()
-        HasAnyPairCloseToEachother.Challenge ()
+        Empty2.Challenge ()
+//        Empty.Challenge ()
+//        ReturnLettersWithOddCount.Challenge ()
+//        HasAnyPairCloseToEachother.Challenge ()
     ]
 

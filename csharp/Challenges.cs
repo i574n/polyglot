@@ -6,6 +6,28 @@ using System.Text;
 // ReSharper disable MemberCanBePrivate.Global MemberCanBeMadeStatic.Global
 namespace Polyglot.CSharp
 {
+    /// Empty2
+    public class Empty2 : Challenge<int, int>
+    {
+        public int Solution(int n)
+        {
+            return n;
+        }
+
+        protected override IEnumerable<(int, int)> TestCases =>
+            new List<(int, int)>(new[]
+            {
+                (0, 0),
+                (2, 2),
+                (5, 5)
+            });
+
+        protected override int Invoke(int input)
+        {
+            return Solution(input);
+        }
+    }
+    
     /// Empty
     public class Empty : Challenge<int, int>
     {
@@ -97,9 +119,10 @@ namespace Polyglot.CSharp
         public IEnumerable<IChallenge> GetChallenges() =>
             new IChallenge[]
             {
-                new Empty(),
-                new ReturnLettersWithOddCount(),
-                new HasAnyPairCloseToEachother()
+                new Empty2(),
+                // new Empty(),
+                // new ReturnLettersWithOddCount(),
+                // new HasAnyPairCloseToEachother()
             };
     }
 }
