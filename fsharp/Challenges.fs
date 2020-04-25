@@ -42,21 +42,39 @@ module Model =
 
 module Challenges =
     
-    /// Empty2
-    module Empty2 =
-        let solution n =
-            n
+    /// Empty3
+    module Empty3 =
+        let solution a b =
+            a
             
         let testCases = seq {
-            0, 0
-            2, 2
-            5, 5
+            ("a", "a"), "a"
+            ("a", "a"), "a"
         }
         
         type Challenge () =
-            inherit Model.Challenge<int, int> ()
+            inherit Model.Challenge<string * string, string> ()
             override _.TestCases () = testCases
-            override _.Invoke input = solution input
+            override _.Invoke input =
+                let a, b = input
+                solution a b
+                
+    /// Empty2
+    module Empty2 =
+        let solution a b =
+            a
+            
+        let testCases = seq {
+            ("a", "a"), "a"
+            ("a", "a"), "a"
+        }
+        
+        type Challenge () =
+            inherit Model.Challenge<string * string, string> ()
+            override _.TestCases () = testCases
+            override _.Invoke input =
+                let a, b = input
+                solution a b
             
     /// Empty
     module Empty =
@@ -123,7 +141,8 @@ module Challenges =
             
             
     let challenges : Model.IChallenge list = [
-        Empty2.Challenge ()
+        Empty3.Challenge ()
+//        Empty2.Challenge ()
 //        Empty.Challenge ()
 //        ReturnLettersWithOddCount.Challenge ()
 //        HasAnyPairCloseToEachother.Challenge ()
