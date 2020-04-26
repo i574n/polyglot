@@ -2,6 +2,7 @@ namespace Polyglot.FSharp
 
 open System
 open System.Collections
+open System.Collections.Generic
 open System.Diagnostics
 open System.Linq
 open System.Text
@@ -57,7 +58,7 @@ module Model =
         let stopwatch = Stopwatch ()
         do stopwatch.Start ()
         
-        member _.PerformanceInvoke testName (fn: 'TInput -> 'T) (input: 'TInput) =
+        member _.PerformanceInvoke (fn: 'TInput -> 'T) (input: 'TInput) =
             let time1 = stopwatch.ElapsedMilliseconds
             
             let result = 
@@ -68,49 +69,56 @@ module Model =
                 |> Array.head
                     
             let time2 = stopwatch.ElapsedMilliseconds - time1
-            printfn "Test case %d. Time: %A" testName time2
             
-            result
+            result, time2
         
                 
 module PerformanceChallenges =
     /// UniqueLetters
     module UniqueLetters =
 (*
-Solution:
-Test case 1. Time: 1605L
-Test case 2. Time: 2016L
-Test case 3. Time: 2330L
-Test case 4. Time: 1641L
-Test case 5. Time: 1588L
-Test case 6. Time: 1541L
-Test case 7. Time: 1508L
-Solution:
-Test case 1. Time: 1830L
-Test case 2. Time: 2301L
-Test case 3. Time: 2540L
-Test case 4. Time: 1852L
-Test case 5. Time: 1779L
-Test case 6. Time: 1868L
-Test case 7. Time: 1592L
-Solution:
-Test case 1. Time: 2037L
-Test case 2. Time: 2667L
-Test case 3. Time: 2625L
-Test case 4. Time: 1846L
-Test case 5. Time: 2026L
-Test case 6. Time: 1837L
-Test case 7. Time: 1814L
-Solution:
-Test case 1. Time: 14876L
-Test case 2. Time: 13843L
-Test case 3. Time: 10535L
-Test case 4. Time: 7306L
-Test case 5. Time: 6997L
-Test case 6. Time: 7342L
-Test case 7. Time: 7269L
+Solution: abc
+Test case 1. A. Time: 1501L
+Test case 2. B. Time: 1912L
+Test case 3. C. Time: 2132L
+Test case 4. D. Time: 1542L
+Test case 5. E. Time: 1447L
+Test case 6. F. Time: 1494L
+Test case 7. G. Time: 1440L
+Test case 8. H. Time: 1250L
+
+Solution: accabb
+Test case 1. A. Time: 1937L
+Test case 2. B. Time: 2396L
+Test case 3. C. Time: 2468L
+Test case 4. D. Time: 1676L
+Test case 5. E. Time: 1786L
+Test case 6. F. Time: 1777L
+Test case 7. G. Time: 1609L
+Test case 8. H. Time: 1313L
+
+Solution: pprrqqpp
+Test case 1. A. Time: 2138L
+Test case 2. B. Time: 2734L
+Test case 3. C. Time: 2575L
+Test case 4. D. Time: 1918L
+Test case 5. E. Time: 1924L
+Test case 6. F. Time: 2127L
+Test case 7. G. Time: 1735L
+Test case 8. H. Time: 1431L
+
+Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb
+Test case 1. A. Time: 14175L
+Test case 2. B. Time: 11819L
+Test case 3. C. Time: 8308L
+Test case 4. D. Time: 5473L
+Test case 5. E. Time: 5723L
+Test case 6. F. Time: 5595L
+Test case 7. G. Time: 5904L
+Test case 8. H. Time: 2091L
 *)
-        let solutions = [|
+        let solutions = [
+            "A",
             fun input ->
                 input
                 |> Seq.toList
@@ -118,6 +126,7 @@ Test case 7. Time: 7269L
                 |> Seq.toArray
                 |> String
                 
+            "B",
             fun input ->
                 input
                 |> Seq.rev
@@ -126,6 +135,7 @@ Test case 7. Time: 7269L
                 |> Seq.toArray
                 |> String
                 
+            "C",
             fun input ->
                 input
                 |> Seq.rev
@@ -135,12 +145,14 @@ Test case 7. Time: 7269L
                 |> Seq.toArray
                 |> String
                 
+            "D",
             fun input ->
                 input
                 |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, Array.append acc [| x |]) (Set.ofList [], [||])
                 |> snd
                 |> String
                 
+            "E",
             fun input ->
                 input
                 |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.ofList [], [])
@@ -149,6 +161,7 @@ Test case 7. Time: 7269L
                 |> List.toArray
                 |> String
                 
+            "F",
             fun input ->
                 input
                 |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, acc @ [ x ]) (Set.ofList [], [])
@@ -156,6 +169,7 @@ Test case 7. Time: 7269L
                 |> List.toArray
                 |> String
                 
+            "G",
             fun input ->
                 input
                 |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.ofList [], [])
@@ -163,7 +177,14 @@ Test case 7. Time: 7269L
                 |> List.toArray
                 |> Array.rev
                 |> String
-        |]
+                
+            "H",
+            fun input ->
+                input
+                |> Seq.distinct
+                |> Seq.toArray
+                |> String
+        ]
             
         let testCases = seq {
             "abc", "abc"
@@ -176,10 +197,21 @@ Test case 7. Time: 7269L
             inherit Model.PerformanceChallenge<string, string> ()
             override _.TestCases () = testCases
             override this.Invoke input =
+                printfn "\nSolution: %s" input
+                
                 solutions
-                |> fun solutions -> printfn "Solution:"; solutions
-                |> Array.mapi (fun i solution -> this.PerformanceInvoke (i + 1) (fun x -> solution x) input)
-                |> Array.head
+                |> List.mapi (fun i (testName, solution) ->
+                    let fn x =
+                        solution x
+                    let result, time = this.PerformanceInvoke fn input
+                    printfn "Test case %d. %s. Time: %A" (i + 1) testName time
+                    result
+                )
+                |> function
+                    | [] | [ _ ] as x -> x
+                    | (head :: tail) as x when tail |> List.forall ((=) head) -> x
+                    | x -> failwithf "Challenge error: %A" x
+                |> List.head
 
 module Challenges =
     
