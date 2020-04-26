@@ -8,13 +8,14 @@ module Main =
     
     [<EntryPoint>]
     let main _ =
-        for challenge in challenges do
-            printfn ""
-            printfn "Test: %s" (challenge.GetType().DeclaringType.FullName.Split('+').[1])
+        let challenge = ChallengeList.performanceChallenge.Run ()
+        let resultList = challenge |> Seq.toList
+        do
+//        for challenge in ChallengeList.challenges do
+//            let resultList = challenge.ParallelRun () |> Seq.toList
             
-            let resultList =
-                challenge.Run ()
-                |> Seq.toList
+            printfn ""
+            printfn "Test: %s" (challenge.GetType().DeclaringType.FullName.Split('+') |> Array.tryItem 1 |> Option.defaultValue "Unknown")
                 
             let header = [
                 { Input = "Input"
