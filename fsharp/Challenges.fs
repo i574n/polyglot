@@ -78,44 +78,56 @@ module PerformanceChallenges =
     module UniqueLetters =
 (*
 Solution: abc
-Test case 1. A. Time: 1501L
-Test case 2. B. Time: 1912L
-Test case 3. C. Time: 2132L
-Test case 4. D. Time: 1542L
-Test case 5. E. Time: 1447L
-Test case 6. F. Time: 1494L
-Test case 7. G. Time: 1440L
-Test case 8. H. Time: 1250L
+Test case 1. A. Time: 1635L
+Test case 2. B. Time: 2036L
+Test case 3. C. Time: 2124L
+Test case 4. D. Time: 1512L
+Test case 5. E. Time: 1408L
+Test case 6. F. Time: 1501L
+Test case 7. G. Time: 1475L
+Test case 8. H. Time: 1460L
+Test case 9. I. Time: 1502L
+Test case 10. J. Time: 1298L
+Test case 11. K. Time: 1278L
 
 Solution: accabb
-Test case 1. A. Time: 1937L
-Test case 2. B. Time: 2396L
-Test case 3. C. Time: 2468L
-Test case 4. D. Time: 1676L
-Test case 5. E. Time: 1786L
-Test case 6. F. Time: 1777L
-Test case 7. G. Time: 1609L
-Test case 8. H. Time: 1313L
+Test case 1. A. Time: 1849L
+Test case 2. B. Time: 2175L
+Test case 3. C. Time: 2350L
+Test case 4. D. Time: 1749L
+Test case 5. E. Time: 1568L
+Test case 6. F. Time: 1674L
+Test case 7. G. Time: 1669L
+Test case 8. H. Time: 1709L
+Test case 9. I. Time: 1677L
+Test case 10. J. Time: 1463L
+Test case 11. K. Time: 1306L
 
 Solution: pprrqqpp
-Test case 1. A. Time: 2138L
-Test case 2. B. Time: 2734L
-Test case 3. C. Time: 2575L
-Test case 4. D. Time: 1918L
-Test case 5. E. Time: 1924L
-Test case 6. F. Time: 2127L
-Test case 7. G. Time: 1735L
-Test case 8. H. Time: 1431L
+Test case 1. A. Time: 1997L
+Test case 2. B. Time: 2554L
+Test case 3. C. Time: 2629L
+Test case 4. D. Time: 1774L
+Test case 5. E. Time: 1771L
+Test case 6. F. Time: 1783L
+Test case 7. G. Time: 1701L
+Test case 8. H. Time: 1900L
+Test case 9. I. Time: 1900L
+Test case 10. J. Time: 1649L
+Test case 11. K. Time: 1294L
 
 Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb
-Test case 1. A. Time: 14175L
-Test case 2. B. Time: 11819L
-Test case 3. C. Time: 8308L
-Test case 4. D. Time: 5473L
-Test case 5. E. Time: 5723L
-Test case 6. F. Time: 5595L
-Test case 7. G. Time: 5904L
-Test case 8. H. Time: 2091L
+Test case 1. A. Time: 13221L
+Test case 2. B. Time: 10843L
+Test case 3. C. Time: 7877L
+Test case 4. D. Time: 5281L
+Test case 5. E. Time: 4974L
+Test case 6. F. Time: 5766L
+Test case 7. G. Time: 5410L
+Test case 8. H. Time: 5366L
+Test case 9. I. Time: 5236L
+Test case 10. J. Time: 5022L
+Test case 11. K. Time: 1999L
 *)
         let solutions = [
             "A",
@@ -179,6 +191,45 @@ Test case 8. H. Time: 2091L
                 |> String
                 
             "H",
+            fun input ->
+                input
+                |> Seq.toList
+                |> fun list ->
+                    let rec loop set = function
+                        | head :: tail when Set.contains head set -> loop set tail
+                        | head :: tail -> (loop (set.Add head) tail) @ [ head ]
+                        | [] -> []
+                    loop (Set.ofList []) list
+                    |> List.rev
+                |> List.toArray
+                |> String
+                
+            "I",
+            fun input ->
+                input
+                |> Seq.toList
+                |> fun list ->
+                    let rec loop set = function
+                        | head :: tail when Set.contains head set -> loop set tail
+                        | head :: tail -> loop (set.Add head) tail |> Array.append [| head |]
+                        | [] -> [||]
+                    loop (Set.ofList []) list
+                |> String
+                
+            "J",
+            fun input ->
+                input
+                |> Seq.toList
+                |> fun list ->
+                    let rec loop set = function
+                        | head :: tail when Set.contains head set -> loop set tail
+                        | head :: tail -> head :: loop (set.Add head) tail
+                        | [] -> []
+                    loop (Set.ofList []) list
+                |> List.toArray
+                |> String
+                
+            "K",
             fun input ->
                 input
                 |> Seq.distinct
