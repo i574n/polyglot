@@ -151,7 +151,7 @@ Test case 11. K. Time: 1999L
             fun input ->
                 input
                 |> Seq.rev
-                |> fun list -> Seq.foldBack (fun x (set, acc) -> if Set.contains x set then set, acc else set.Add x, x :: acc) list (Set.ofList [], [])
+                |> fun list -> Seq.foldBack (fun x (set, acc) -> if Set.contains x set then set, acc else set.Add x, x :: acc) list (Set.empty, [])
                 |> snd
                 |> Seq.rev
                 |> Seq.toArray
@@ -160,14 +160,14 @@ Test case 11. K. Time: 1999L
             "D",
             fun input ->
                 input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, Array.append acc [| x |]) (Set.ofList [], [||])
+                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, Array.append acc [| x |]) (Set.empty, [||])
                 |> snd
                 |> String
                 
             "E",
             fun input ->
                 input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.ofList [], [])
+                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.empty, [])
                 |> snd
                 |> List.rev
                 |> List.toArray
@@ -176,7 +176,7 @@ Test case 11. K. Time: 1999L
             "F",
             fun input ->
                 input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, acc @ [ x ]) (Set.ofList [], [])
+                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, acc @ [ x ]) (Set.empty, [])
                 |> snd
                 |> List.toArray
                 |> String
@@ -184,7 +184,7 @@ Test case 11. K. Time: 1999L
             "G",
             fun input ->
                 input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.ofList [], [])
+                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.empty, [])
                 |> snd
                 |> List.toArray
                 |> Array.rev
@@ -199,7 +199,7 @@ Test case 11. K. Time: 1999L
                         | head :: tail when Set.contains head set -> loop set tail
                         | head :: tail -> (loop (set.Add head) tail) @ [ head ]
                         | [] -> []
-                    loop (Set.ofList []) list
+                    loop Set.empty list
                     |> List.rev
                 |> List.toArray
                 |> String
@@ -213,7 +213,7 @@ Test case 11. K. Time: 1999L
                         | head :: tail when Set.contains head set -> loop set tail
                         | head :: tail -> loop (set.Add head) tail |> Array.append [| head |]
                         | [] -> [||]
-                    loop (Set.ofList []) list
+                    loop Set.empty list
                 |> String
                 
             "J",
@@ -225,7 +225,7 @@ Test case 11. K. Time: 1999L
                         | head :: tail when Set.contains head set -> loop set tail
                         | head :: tail -> head :: loop (set.Add head) tail
                         | [] -> []
-                    loop (Set.ofList []) list
+                    loop Set.empty list
                 |> List.toArray
                 |> String
                 
