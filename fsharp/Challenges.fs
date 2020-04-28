@@ -74,7 +74,6 @@ module Model =
         
                 
 module PerformanceChallenges =
-    /// UniqueLetters
     module UniqueLetters =
 (*
 Solution: abc
@@ -264,9 +263,232 @@ Test case 11. K. Time: 1999L
                     | x -> failwithf "Challenge error: %A" x
                 |> List.head
 
+    
+    module RotateStrings =
+(*
+Solution: abc
+Test case 1. A. Time: 1769L
+Test case 2. B. Time: 1528L
+Test case 3. C. Time: 1541L
+Test case 4. CA. Time: 1867L
+Test case 5. CB. Time: 1727L
+Test case 6. D. Time: 1701L
+Test case 7. E. Time: 1440L
+Test case 8. F. Time: 1361L
+Test case 9. FA. Time: 1426L
+Test case 10. FB. Time: 2179L
+Test case 11. FC. Time: 3519L
+
+Solution: abcde
+Test case 1. A. Time: 2133L
+Test case 2. B. Time: 2091L
+Test case 3. C. Time: 2050L
+Test case 4. CA. Time: 2357L
+Test case 5. CB. Time: 2296L
+Test case 6. D. Time: 2563L
+Test case 7. E. Time: 2004L
+Test case 8. F. Time: 1812L
+Test case 9. FA. Time: 1961L
+Test case 10. FB. Time: 2602L
+Test case 11. FC. Time: 4054L
+
+Solution: abcdefghi
+Test case 1. A. Time: 3847L
+Test case 2. B. Time: 3188L
+Test case 3. C. Time: 3321L
+Test case 4. CA. Time: 3608L
+Test case 5. CB. Time: 3681L
+Test case 6. D. Time: 5328L
+Test case 7. E. Time: 3055L
+Test case 8. F. Time: 2593L
+Test case 9. FA. Time: 3545L
+Test case 10. FB. Time: 4038L
+Test case 11. FC. Time: 5239L
+
+Solution: abab
+Test case 1. A. Time: 2036L
+Test case 2. B. Time: 1863L
+Test case 3. C. Time: 1816L
+Test case 4. CA. Time: 2102L
+Test case 5. CB. Time: 2019L
+Test case 6. D. Time: 2163L
+Test case 7. E. Time: 1742L
+Test case 8. F. Time: 1591L
+Test case 9. FA. Time: 1746L
+Test case 10. FB. Time: 2404L
+Test case 11. FC. Time: 3805L
+
+Solution: aa
+Test case 1. A. Time: 1272L
+Test case 2. B. Time: 1338L
+Test case 3. C. Time: 1314L
+Test case 4. CA. Time: 1579L
+Test case 5. CB. Time: 1513L
+Test case 6. D. Time: 1313L
+Test case 7. E. Time: 1278L
+Test case 8. F. Time: 1179L
+Test case 9. FA. Time: 1201L
+Test case 10. FB. Time: 1937L
+Test case 11. FC. Time: 2949L
+
+Solution: z
+Test case 1. A. Time: 961L
+Test case 2. B. Time: 912L
+Test case 3. C. Time: 982L
+Test case 4. CA. Time: 1257L
+Test case 5. CB. Time: 1171L
+Test case 6. D. Time: 986L
+Test case 7. E. Time: 938L
+Test case 8. F. Time: 275L
+Test case 9. FA. Time: 243L
+Test case 10. FB. Time: 818L
+Test case 11. FC. Time: 1925L
+*)
+        let solutions = [
+            "A",
+            fun (input: string) ->
+                let resultList =
+                    List.fold (fun acc x ->
+                        let rotate (text: string) (letter: string) = text.Substring (1, input.Length - 1) + letter
+                        [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] @ acc
+                    ) [] (Seq.toList input)
+                    
+                List.foldBack (fun acc x -> x + acc + " ") resultList ""
+                |> fun x -> x.TrimEnd ()
+                
+            "B",
+            fun input ->
+                input
+                |> Seq.toList
+                |> List.fold (fun (acc: string list) letter ->
+                    let last =
+                        if acc.IsEmpty
+                        then input
+                        else acc.Head
+                        
+                    let item = last.[1 .. input.Length - 1] + string letter
+                        
+                    item :: acc
+                ) []
+                |> List.rev
+                |> String.concat " "
+                
+            "C",
+            fun input ->
+                input
+                |> Seq.toList
+                |> List.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
+                |> List.rev
+                |> List.skip 1
+                |> String.concat " "
+                
+            "CA",
+            fun input ->
+                input
+                |> Seq.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
+                |> Seq.rev
+                |> Seq.skip 1
+                |> String.concat " "
+                
+            "CB",
+            fun input ->
+                input
+                |> Seq.toArray
+                |> Array.fold (fun (acc: string[]) letter -> acc |> Array.append [| acc.[0].[ 1 .. input.Length - 1 ] + string letter |]) [| input |]
+                |> Array.rev
+                |> Array.skip 1
+                |> String.concat " "
+                
+            "D",
+            fun input ->
+                input
+                |> Seq.toList
+                |> fun list ->
+                    let rec loop (acc: char list list) = function
+                        | _ when acc.Length = list.Length -> acc
+                        | head :: tail ->
+                            let item = tail @ [ head ]
+                            loop (item :: acc) item
+                        | [] -> []
+                    loop [] list
+                |> List.rev
+                |> List.map (List.toArray >> String)
+                |> String.concat " "
+                
+            "E",
+            fun input ->
+                input
+                |> Seq.toList
+                |> fun list ->
+                    let rec loop (last: string) = function
+                        | head :: tail ->
+                            let item = last.[1 .. input.Length - 1] + string head
+                            item :: loop item tail
+                        | [] -> []
+                    loop input list
+                |> String.concat " "
+                
+            "F",
+            fun input ->
+                Array.singleton 0
+                |> Array.append [| 1 .. input.Length - 1 |]
+                |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
+                |> String.concat " "
+                
+            "FA",
+            fun input ->
+                List.singleton 0
+                |> List.append [ 1 .. input.Length - 1 ]
+                |> List.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
+                |> String.concat " "
+                
+            "FB",
+            fun input ->
+                Seq.singleton 0
+                |> Seq.append (seq { 1 .. input.Length - 1 })
+                |> Seq.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
+                |> String.concat " "
+                
+            "FC",
+            fun input ->
+                Array.singleton 0
+                |> Array.append [| 1 .. input.Length - 1 |]
+                |> Array.Parallel.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
+                |> String.concat " "
+        ]
+            
+        let testCases = seq {
+            "abc", "bca cab abc"
+            "abcde", "bcdea cdeab deabc eabcd abcde"
+            "abcdefghi", "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+            "abab", "baba abab baba abab"
+            "aa", "aa aa"
+            "z", "z"
+        }
+        
+        type Challenge () =
+            inherit Model.PerformanceChallenge<string, string> ()
+            override _.TestCases () = testCases
+            override this.Invoke input =
+                printfn "\nSolution: %s" input
+                
+                solutions
+                |> List.mapi (fun i (testName, solution) ->
+                    let fn x =
+                        solution x
+                    let result, time = this.PerformanceInvoke fn input
+                    printfn "Test case %d. %s. Time: %A" (i + 1) testName time
+                    result
+                )
+                |> function
+                    | [] | [ _ ] as x -> x
+                    | (head :: tail) as x when tail |> List.forall ((=) head) -> x
+                    | x -> failwithf "Challenge error: %A" x
+                |> List.head
+
+
 module Challenges =
     
-    /// Empty3
     module Empty3 =
         let solution a b =
             a
@@ -283,7 +505,7 @@ module Challenges =
                 let a, b = input
                 solution a b
                 
-    /// Empty2
+                
     module Empty2 =
         let solution a b =
             a
@@ -300,7 +522,7 @@ module Challenges =
                 let a, b = input
                 solution a b
             
-    /// Empty
+            
     module Empty =
         let solution n =
             n
@@ -317,7 +539,6 @@ module Challenges =
             override _.Invoke input = solution input
         
         
-    /// Return letters with odd count
     module ReturnLettersWithOddCount =
         let solution n =
             let mutable _builder = StringBuilder (new string('a', n))
@@ -340,7 +561,6 @@ module Challenges =
             override _.Invoke input = solution input
 
     
-    /// Has any pair that are close to eachother
     module HasAnyPairCloseToEachother =
         let solution (a: int[]) =
             let indices = Enumerable.Range(0, a.Length).ToArray ()
@@ -374,7 +594,8 @@ module ChallengeList =
     ]
 
     let performanceChallenge : Model.IChallenge =
-        PerformanceChallenges.UniqueLetters.Challenge () :> Model.IChallenge
+//        PerformanceChallenges.UniqueLetters.Challenge () :> Model.IChallenge
+        PerformanceChallenges.RotateStrings.Challenge () :> Model.IChallenge
 //        Empty2.Challenge ()
 //        Empty.Challenge ()
 //        ReturnLettersWithOddCount.Challenge ()
