@@ -8,14 +8,11 @@ module Main =
     
     [<EntryPoint>]
     let main _ =
-        let challenge = ChallengeList.performanceChallenge.Run ()
-        let resultList = challenge |> Seq.toList
-        do
-//        for challenge in ChallengeList.challenges do
-//            let resultList = challenge.ParallelRun () |> Seq.toList
+        for challenge in ChallengeList.challenges do
+            let resultList = challenge.Run () |> Seq.toList
             
             printfn ""
-            printfn "Test: %s" (challenge.GetType().DeclaringType.FullName.Split('+') |> Array.tryItem 1 |> Option.defaultValue "Unknown")
+            printfn "Test: %s" (challenge.GetType().DeclaringType.FullName.Split('+').[1])
                 
             let header = [
                 { Input = "Input"
@@ -56,7 +53,7 @@ module Main =
             
             for result in resultList do
                 Console.ForegroundColor <-
-                    if result.Expected.Trim() <> result.Result.Trim()
+                    if result.Expected.Trim () <> result.Result.Trim ()
                     then ConsoleColor.DarkRed
                     else ConsoleColor.DarkGreen
                     

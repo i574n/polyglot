@@ -2,7 +2,6 @@ namespace Polyglot.FSharp
 
 open System
 open System.Collections
-open System.Collections.Generic
 open System.Diagnostics
 open System.Linq
 open System.Text
@@ -11,17 +10,40 @@ module Model =
     type TestCaseResult =
         { Input: string
           Expected: string
-          Result: string }
+          Result: string
+          TimeList: int64 list }
     
     type IChallenge =
         abstract member Run: unit -> seq<TestCaseResult>
-        abstract member ParallelRun: unit -> seq<TestCaseResult>
         
     [<AbstractClass>]
-    type Challenge<'TInput, 'TExpected> () =
+    type Challenge<'TInput, 'TExpected when 'TExpected : equality> () =
+        let stopwatch = Stopwatch ()
+        do stopwatch.Start ()
         
-        abstract member TestCases: unit -> seq<'TInput * 'TExpected>
-        abstract member Invoke: 'TInput -> 'TExpected
+        let performanceInvoke (fn: unit -> 'T) =
+            let time1 = stopwatch.ElapsedMilliseconds
+            
+            let result = 
+                [| 0 .. 2000000 |]
+                |> Array.Parallel.map (fun _ ->
+                    fn ()
+                )
+                |> Array.head
+                    
+            let time2 = stopwatch.ElapsedMilliseconds - time1
+            
+            result, time2
+            
+            
+        abstract member Solutions: (string * ('TInput -> 'TExpected)) list
+        abstract member TestCases: seq<'TInput * 'TExpected>
+        interface IChallenge with
+            member this.Run () =
+                this.TestCases
+                |> Seq.toArray
+                |> (if this.Solutions.Length > 1 then Array.map else Array.Parallel.map) this.Process
+                |> Array.toSeq
         
         member this.Process (input, expected) =
             let inputStr =
@@ -32,49 +54,195 @@ module Model =
                     |> String.concat ","
                 | _ -> input.ToString ()
                 
-            let result = this.Invoke input
+            printfn "\nSolution: %s" inputStr
             
+            let results = 
+                this.Solutions
+                |> List.mapi (fun i (testName, solution) ->
+                    let result, time = performanceInvoke (fun () -> solution input)
+                    printfn "Test case %d. %s. Time: %A" (i + 1) testName time
+                    result, time
+                )
+                |> function
+                    | [] | [ _ ] as x -> x
+                    | (head :: tail) as x when tail |> List.forall ((=) head) -> x
+                    | x -> failwithf "Challenge error: %A" x
+                
             { Input = inputStr
               Expected = expected.ToString ()
-              Result = result.ToString () }
-        
-        interface IChallenge with
-            member this.Run () =
-                this.TestCases ()
-                |> Seq.toArray
-                |> Array.map this.Process
-                |> Array.toSeq
+              Result = results.Head.ToString ()
+              TimeList = results |> List.map snd }
                 
-            member this.ParallelRun () =
-                this.TestCases ()
-                |> Seq.toArray
-                |> Array.Parallel.map this.Process
-                |> Array.toSeq
                 
-    [<AbstractClass>]
-    type PerformanceChallenge<'TInput, 'TExpected> () =
-        inherit Challenge<'TInput, 'TExpected> ()
-        
-        let stopwatch = Stopwatch ()
-        do stopwatch.Start ()
-        
-        member _.PerformanceInvoke (fn: 'TInput -> 'T) (input: 'TInput) =
-            let time1 = stopwatch.ElapsedMilliseconds
+module Challenges =
+    module Empty3 =
+        type Challenge () =
+            inherit Model.Challenge<string * string, string> ()
             
-            let result = 
-                [| 0 .. 2000000 |]
-                |> Array.Parallel.map (fun _ ->
-                    fn input
-                )
-                |> Array.head
-                    
-            let time2 = stopwatch.ElapsedMilliseconds - time1
+            override _.Solutions = [
+                "A",
+                fun (a, _b) ->
+                    a
+            ]
             
-            result, time2
-        
+            override _.TestCases = seq {
+                ("a", "a"), "a"
+                ("a", "a"), "a"
+            }
+            
                 
-module PerformanceChallenges =
+                
+    module Empty2 =
+        type Challenge () =
+            inherit Model.Challenge<string * string, string> ()
+            
+            override _.Solutions = [
+                "A",
+                fun (a, _b) ->
+                    a
+            ]
+            
+            override _.TestCases = seq {
+                ("a", "a"), "a"
+                ("a", "a"), "a"
+            }
+            
+            
+    module Empty =
+        type Challenge () =
+            inherit Model.Challenge<int, int> ()
+            
+            override _.Solutions = [
+                "A",
+                fun n ->
+                    n
+            ]
+            
+            override _.TestCases = seq {
+                0, 0
+                2, 2
+                5, 5
+            }
+            
+        
     module UniqueLetters =
+        type Challenge () =
+            inherit Model.Challenge<string, string> ()
+            
+            override _.Solutions = [
+                "A",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> List.fold (fun acc x -> if List.contains x acc then acc else acc @ [ x ]) []
+                    |> Seq.toArray
+                    |> String
+                    
+                "B",
+                fun input ->
+                    input
+                    |> Seq.rev
+                    |> fun list -> Seq.foldBack (fun x acc -> if List.contains x acc then acc else x :: acc) list []
+                    |> Seq.rev
+                    |> Seq.toArray
+                    |> String
+                    
+                "C",
+                fun input ->
+                    input
+                    |> Seq.rev
+                    |> fun list -> Seq.foldBack (fun x (set, acc) -> if Set.contains x set then set, acc else set.Add x, x :: acc) list (Set.empty, [])
+                    |> snd
+                    |> Seq.rev
+                    |> Seq.toArray
+                    |> String
+                    
+                "D",
+                fun input ->
+                    input
+                    |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, Array.append acc [| x |]) (Set.empty, [||])
+                    |> snd
+                    |> String
+                    
+                "E",
+                fun input ->
+                    input
+                    |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.empty, [])
+                    |> snd
+                    |> List.rev
+                    |> List.toArray
+                    |> String
+                    
+                "F",
+                fun input ->
+                    input
+                    |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, acc @ [ x ]) (Set.empty, [])
+                    |> snd
+                    |> List.toArray
+                    |> String
+                    
+                "G",
+                fun input ->
+                    input
+                    |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.empty, [])
+                    |> snd
+                    |> List.toArray
+                    |> Array.rev
+                    |> String
+                    
+                "H",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> fun list ->
+                        let rec loop set = function
+                            | head :: tail when Set.contains head set -> loop set tail
+                            | head :: tail -> (loop (set.Add head) tail) @ [ head ]
+                            | [] -> []
+                        loop Set.empty list
+                        |> List.rev
+                    |> List.toArray
+                    |> String
+                    
+                "I",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> fun list ->
+                        let rec loop set = function
+                            | head :: tail when Set.contains head set -> loop set tail
+                            | head :: tail -> loop (set.Add head) tail |> Array.append [| head |]
+                            | [] -> [||]
+                        loop Set.empty list
+                    |> String
+                    
+                "J",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> fun list ->
+                        let rec loop set = function
+                            | head :: tail when Set.contains head set -> loop set tail
+                            | head :: tail -> head :: loop (set.Add head) tail
+                            | [] -> []
+                        loop Set.empty list
+                    |> List.toArray
+                    |> String
+                    
+                "K",
+                fun input ->
+                    input
+                    |> Seq.distinct
+                    |> Seq.toArray
+                    |> String
+            ]
+            
+            override _.TestCases = seq {
+                "abc", "abc"
+                "accabb", "acb"
+                "pprrqqpp", "prq"
+                "aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb", "acb"
+            }
 (*
 Solution: abc
 Test case 1. A. Time: 1635L
@@ -128,143 +296,133 @@ Test case 9. I. Time: 5236L
 Test case 10. J. Time: 5022L
 Test case 11. K. Time: 1999L
 *)
-        let solutions = [
-            "A",
-            fun input ->
-                input
-                |> Seq.toList
-                |> List.fold (fun acc x -> if List.contains x acc then acc else acc @ [ x ]) []
-                |> Seq.toArray
-                |> String
-                
-            "B",
-            fun input ->
-                input
-                |> Seq.rev
-                |> fun list -> Seq.foldBack (fun x acc -> if List.contains x acc then acc else x :: acc) list []
-                |> Seq.rev
-                |> Seq.toArray
-                |> String
-                
-            "C",
-            fun input ->
-                input
-                |> Seq.rev
-                |> fun list -> Seq.foldBack (fun x (set, acc) -> if Set.contains x set then set, acc else set.Add x, x :: acc) list (Set.empty, [])
-                |> snd
-                |> Seq.rev
-                |> Seq.toArray
-                |> String
-                
-            "D",
-            fun input ->
-                input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, Array.append acc [| x |]) (Set.empty, [||])
-                |> snd
-                |> String
-                
-            "E",
-            fun input ->
-                input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.empty, [])
-                |> snd
-                |> List.rev
-                |> List.toArray
-                |> String
-                
-            "F",
-            fun input ->
-                input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, acc @ [ x ]) (Set.empty, [])
-                |> snd
-                |> List.toArray
-                |> String
-                
-            "G",
-            fun input ->
-                input
-                |> Seq.fold (fun (set, acc) x -> if Set.contains x set then set, acc else set.Add x, x :: acc) (Set.empty, [])
-                |> snd
-                |> List.toArray
-                |> Array.rev
-                |> String
-                
-            "H",
-            fun input ->
-                input
-                |> Seq.toList
-                |> fun list ->
-                    let rec loop set = function
-                        | head :: tail when Set.contains head set -> loop set tail
-                        | head :: tail -> (loop (set.Add head) tail) @ [ head ]
-                        | [] -> []
-                    loop Set.empty list
-                    |> List.rev
-                |> List.toArray
-                |> String
-                
-            "I",
-            fun input ->
-                input
-                |> Seq.toList
-                |> fun list ->
-                    let rec loop set = function
-                        | head :: tail when Set.contains head set -> loop set tail
-                        | head :: tail -> loop (set.Add head) tail |> Array.append [| head |]
-                        | [] -> [||]
-                    loop Set.empty list
-                |> String
-                
-            "J",
-            fun input ->
-                input
-                |> Seq.toList
-                |> fun list ->
-                    let rec loop set = function
-                        | head :: tail when Set.contains head set -> loop set tail
-                        | head :: tail -> head :: loop (set.Add head) tail
-                        | [] -> []
-                    loop Set.empty list
-                |> List.toArray
-                |> String
-                
-            "K",
-            fun input ->
-                input
-                |> Seq.distinct
-                |> Seq.toArray
-                |> String
-        ]
-            
-        let testCases = seq {
-            "abc", "abc"
-            "accabb", "acb"
-            "pprrqqpp", "prq"
-            "aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb", "acb"
-        }
-        
-        type Challenge () =
-            inherit Model.PerformanceChallenge<string, string> ()
-            override _.TestCases () = testCases
-            override this.Invoke input =
-                printfn "\nSolution: %s" input
-                
-                solutions
-                |> List.mapi (fun i (testName, solution) ->
-                    let fn x =
-                        solution x
-                    let result, time = this.PerformanceInvoke fn input
-                    printfn "Test case %d. %s. Time: %A" (i + 1) testName time
-                    result
-                )
-                |> function
-                    | [] | [ _ ] as x -> x
-                    | (head :: tail) as x when tail |> List.forall ((=) head) -> x
-                    | x -> failwithf "Challenge error: %A" x
-                |> List.head
 
     
     module RotateStrings =
+        type Challenge () =
+            inherit Model.Challenge<string, string> ()
+            
+            override _.Solutions = [
+                "A",
+                fun (input: string) ->
+                    let resultList =
+                        List.fold (fun acc x ->
+                            let rotate (text: string) (letter: string) = text.Substring (1, input.Length - 1) + letter
+                            [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] @ acc
+                        ) [] (Seq.toList input)
+                        
+                    List.foldBack (fun acc x -> x + acc + " ") resultList ""
+                    |> fun x -> x.TrimEnd ()
+                    
+                "B",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> List.fold (fun (acc: string list) letter ->
+                        let last =
+                            if acc.IsEmpty
+                            then input
+                            else acc.Head
+                            
+                        let item = last.[1 .. input.Length - 1] + string letter
+                            
+                        item :: acc
+                    ) []
+                    |> List.rev
+                    |> String.concat " "
+                    
+                "C",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> List.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
+                    |> List.rev
+                    |> List.skip 1
+                    |> String.concat " "
+                    
+                "CA",
+                fun input ->
+                    input
+                    |> Seq.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
+                    |> Seq.rev
+                    |> Seq.skip 1
+                    |> String.concat " "
+                    
+                "CB",
+                fun input ->
+                    input
+                    |> Seq.toArray
+                    |> Array.fold (fun (acc: string[]) letter -> acc |> Array.append [| acc.[0].[ 1 .. input.Length - 1 ] + string letter |]) [| input |]
+                    |> Array.rev
+                    |> Array.skip 1
+                    |> String.concat " "
+                    
+                "D",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> fun list ->
+                        let rec loop (acc: char list list) = function
+                            | _ when acc.Length = list.Length -> acc
+                            | head :: tail ->
+                                let item = tail @ [ head ]
+                                loop (item :: acc) item
+                            | [] -> []
+                        loop [] list
+                    |> List.rev
+                    |> List.map (List.toArray >> String)
+                    |> String.concat " "
+                    
+                "E",
+                fun input ->
+                    input
+                    |> Seq.toList
+                    |> fun list ->
+                        let rec loop (last: string) = function
+                            | head :: tail ->
+                                let item = last.[1 .. input.Length - 1] + string head
+                                item :: loop item tail
+                            | [] -> []
+                        loop input list
+                    |> String.concat " "
+                    
+                "F",
+                fun input ->
+                    Array.singleton 0
+                    |> Array.append [| 1 .. input.Length - 1 |]
+                    |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
+                    |> String.concat " "
+                    
+                "FA",
+                fun input ->
+                    List.singleton 0
+                    |> List.append [ 1 .. input.Length - 1 ]
+                    |> List.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
+                    |> String.concat " "
+                    
+                "FB",
+                fun input ->
+                    Seq.singleton 0
+                    |> Seq.append (seq { 1 .. input.Length - 1 })
+                    |> Seq.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
+                    |> String.concat " "
+                    
+                "FC",
+                fun input ->
+                    Array.singleton 0
+                    |> Array.append [| 1 .. input.Length - 1 |]
+                    |> Array.Parallel.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
+                    |> String.concat " "
+            ]
+            
+            override _.TestCases = seq {
+                "abc", "bca cab abc"
+                "abcde", "bcdea cdeab deabc eabcd abcde"
+                "abcdefghi", "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+                "abab", "baba abab baba abab"
+                "aa", "aa aa"
+                "z", "z"
+            }
 (*
 Solution: abc
 Test case 1. A. Time: 1769L
@@ -344,260 +502,63 @@ Test case 9. FA. Time: 243L
 Test case 10. FB. Time: 818L
 Test case 11. FC. Time: 1925L
 *)
-        let solutions = [
-            "A",
-            fun (input: string) ->
-                let resultList =
-                    List.fold (fun acc x ->
-                        let rotate (text: string) (letter: string) = text.Substring (1, input.Length - 1) + letter
-                        [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] @ acc
-                    ) [] (Seq.toList input)
-                    
-                List.foldBack (fun acc x -> x + acc + " ") resultList ""
-                |> fun x -> x.TrimEnd ()
-                
-            "B",
-            fun input ->
-                input
-                |> Seq.toList
-                |> List.fold (fun (acc: string list) letter ->
-                    let last =
-                        if acc.IsEmpty
-                        then input
-                        else acc.Head
-                        
-                    let item = last.[1 .. input.Length - 1] + string letter
-                        
-                    item :: acc
-                ) []
-                |> List.rev
-                |> String.concat " "
-                
-            "C",
-            fun input ->
-                input
-                |> Seq.toList
-                |> List.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
-                |> List.rev
-                |> List.skip 1
-                |> String.concat " "
-                
-            "CA",
-            fun input ->
-                input
-                |> Seq.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
-                |> Seq.rev
-                |> Seq.skip 1
-                |> String.concat " "
-                
-            "CB",
-            fun input ->
-                input
-                |> Seq.toArray
-                |> Array.fold (fun (acc: string[]) letter -> acc |> Array.append [| acc.[0].[ 1 .. input.Length - 1 ] + string letter |]) [| input |]
-                |> Array.rev
-                |> Array.skip 1
-                |> String.concat " "
-                
-            "D",
-            fun input ->
-                input
-                |> Seq.toList
-                |> fun list ->
-                    let rec loop (acc: char list list) = function
-                        | _ when acc.Length = list.Length -> acc
-                        | head :: tail ->
-                            let item = tail @ [ head ]
-                            loop (item :: acc) item
-                        | [] -> []
-                    loop [] list
-                |> List.rev
-                |> List.map (List.toArray >> String)
-                |> String.concat " "
-                
-            "E",
-            fun input ->
-                input
-                |> Seq.toList
-                |> fun list ->
-                    let rec loop (last: string) = function
-                        | head :: tail ->
-                            let item = last.[1 .. input.Length - 1] + string head
-                            item :: loop item tail
-                        | [] -> []
-                    loop input list
-                |> String.concat " "
-                
-            "F",
-            fun input ->
-                Array.singleton 0
-                |> Array.append [| 1 .. input.Length - 1 |]
-                |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
-                |> String.concat " "
-                
-            "FA",
-            fun input ->
-                List.singleton 0
-                |> List.append [ 1 .. input.Length - 1 ]
-                |> List.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
-                |> String.concat " "
-                
-            "FB",
-            fun input ->
-                Seq.singleton 0
-                |> Seq.append (seq { 1 .. input.Length - 1 })
-                |> Seq.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
-                |> String.concat " "
-                
-            "FC",
-            fun input ->
-                Array.singleton 0
-                |> Array.append [| 1 .. input.Length - 1 |]
-                |> Array.Parallel.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ] )
-                |> String.concat " "
-        ]
-            
-        let testCases = seq {
-            "abc", "bca cab abc"
-            "abcde", "bcdea cdeab deabc eabcd abcde"
-            "abcdefghi", "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
-            "abab", "baba abab baba abab"
-            "aa", "aa aa"
-            "z", "z"
-        }
-        
-        type Challenge () =
-            inherit Model.PerformanceChallenge<string, string> ()
-            override _.TestCases () = testCases
-            override this.Invoke input =
-                printfn "\nSolution: %s" input
-                
-                solutions
-                |> List.mapi (fun i (testName, solution) ->
-                    let fn x =
-                        solution x
-                    let result, time = this.PerformanceInvoke fn input
-                    printfn "Test case %d. %s. Time: %A" (i + 1) testName time
-                    result
-                )
-                |> function
-                    | [] | [ _ ] as x -> x
-                    | (head :: tail) as x when tail |> List.forall ((=) head) -> x
-                    | x -> failwithf "Challenge error: %A" x
-                |> List.head
 
-
-module Challenges =
-    
-    module Empty3 =
-        let solution a b =
-            a
-            
-        let testCases = seq {
-            ("a", "a"), "a"
-            ("a", "a"), "a"
-        }
-        
-        type Challenge () =
-            inherit Model.Challenge<string * string, string> ()
-            override _.TestCases () = testCases
-            override _.Invoke input =
-                let a, b = input
-                solution a b
-                
-                
-    module Empty2 =
-        let solution a b =
-            a
-            
-        let testCases = seq {
-            ("a", "a"), "a"
-            ("a", "a"), "a"
-        }
-        
-        type Challenge () =
-            inherit Model.Challenge<string * string, string> ()
-            override _.TestCases () = testCases
-            override _.Invoke input =
-                let a, b = input
-                solution a b
-            
-            
-    module Empty =
-        let solution n =
-            n
-            
-        let testCases = seq {
-            0, 0
-            2, 2
-            5, 5
-        }
-        
-        type Challenge () =
-            inherit Model.Challenge<int, int> ()
-            override _.TestCases () = testCases
-            override _.Invoke input = solution input
-        
         
     module ReturnLettersWithOddCount =
-        let solution n =
-            let mutable _builder = StringBuilder (new string('a', n))
-            if n % 2 = 0 then
-                _builder.[0] <- 'b'
-                
-            _builder.ToString ()
-            
-        let testCases = seq {
-            1, "a"
-            2, "ba"
-            3, "aaa"
-            9, "aaaaaaaaa"
-            10, "baaaaaaaaa"
-        }
-        
         type Challenge () =
             inherit Model.Challenge<int, string> ()
-            override _.TestCases () = testCases
-            override _.Invoke input = solution input
+            
+            override _.Solutions = [
+                "A",
+                fun n ->
+                    let mutable _builder = StringBuilder (new string('a', n))
+                    if n % 2 = 0 then
+                        _builder.[0] <- 'b'
+                        
+                    _builder.ToString ()
+            ]
+            
+            override _.TestCases = seq {
+                1, "a"
+                2, "ba"
+                3, "aaa"
+                9, "aaaaaaaaa"
+                10, "baaaaaaaaa"
+            }
 
     
     module HasAnyPairCloseToEachother =
-        let solution (a: int[]) =
-            let indices = Enumerable.Range(0, a.Length).ToArray ()
-            System.Array.Sort (a, indices)
-            
-            indices
-            |> Array.take (a.Length - 1)
-            |> Array.exists (fun i -> a.[i + 1] - a.[i] = 1)
-        
-        let testCases = seq {
-            [| 0 |], false
-            [| 1; 2 |], true
-            [| 3; 5 |], false
-            [| 3; 4; 6 |], true
-            [| 2; 4; 6 |], false
-        }
-        
         type Challenge () =
             inherit Model.Challenge<int[], bool> ()
-            override _.TestCases () = testCases
-            override _.Invoke input = solution input
+            
+            override _.Solutions = [
+                "A",
+                fun (a: int[]) ->
+                    let indices = Enumerable.Range(0, a.Length).ToArray ()
+                    System.Array.Sort (a, indices)
+                    
+                    indices
+                    |> Array.take (a.Length - 1)
+                    |> Array.exists (fun i -> a.[i + 1] - a.[i] = 1)
+            ]
+            
+            override _.TestCases = seq {
+                [| 0 |], false
+                [| 1; 2 |], true
+                [| 3; 5 |], false
+                [| 3; 4; 6 |], true
+                [| 2; 4; 6 |], false
+            }
             
 module ChallengeList =
             
     let challenges : Model.IChallenge list = [
-        Challenges.Empty3.Challenge ()
-//        Empty2.Challenge ()
-//        Empty.Challenge ()
-//        ReturnLettersWithOddCount.Challenge ()
-//        HasAnyPairCloseToEachother.Challenge ()
+//        Challenges.Empty3.Challenge ()
+//        Challenges.Empty2.Challenge ()
+//        Challenges.Empty.Challenge ()
+//        Challenges.UniqueLetters.Challenge () :> Model.IChallenge
+        Challenges.RotateStrings.Challenge () :> Model.IChallenge
+//        Challenges.ReturnLettersWithOddCount.Challenge ()
+//        Challenges.HasAnyPairCloseToEachother.Challenge ()
     ]
-
-    let performanceChallenge : Model.IChallenge =
-//        PerformanceChallenges.UniqueLetters.Challenge () :> Model.IChallenge
-        PerformanceChallenges.RotateStrings.Challenge () :> Model.IChallenge
-//        Empty2.Challenge ()
-//        Empty.Challenge ()
-//        ReturnLettersWithOddCount.Challenge ()
-//        HasAnyPairCloseToEachother.Challenge ()
 
