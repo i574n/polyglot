@@ -298,6 +298,7 @@ Test case 11. K. Time: 1999L
 *)
 
     
+    // https://www.hackerrank.com/challenges/rotate-string/forum
     module RotateStrings =
         type Challenge () =
             inherit Model.Challenge<string, string> ()
