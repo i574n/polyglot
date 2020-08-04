@@ -23,7 +23,8 @@ module Model =
                     |> String.concat ","
                 | _ -> input.ToString ()
 
-            printfn "\nSolution: %s" inputStr
+            printfn ""
+            printfn "Solution: %s" inputStr
 
             let performanceInvoke (fn: unit -> 'T) =
                 GC.Collect ()
@@ -62,7 +63,9 @@ module Model =
               TimeList = resultsWithTime |> List.map snd }
 
         let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
-            printfn "\n\nTest: %s" testName
+            printfn ""
+            printfn ""
+            printfn "Test: %s" testName
             testCases
             |> Seq.map (run solutions)
 
@@ -79,6 +82,26 @@ module Challenges =
             ("a", "a"), "a"
         }
         let runAll () = Model.Challenge.runAll (nameof Empty3) solutions testCases
+(*
+Test: Empty3
+
+Solution: (a, a)
+Test case 1. A. Time: 91L
+
+Solution: (a, a)
+Test case 1. A. Time: 56L
+
+Input   Expected        Result  Best
+---     ---             ---     ---
+(a, a)  a               a       (1, 91)
+(a, a)  a               a       (1, 56)
+
+Averages
+Test case 1. Average Time: 73L
+
+Ranking
+Test case 1. Average Time: 73L
+*)
 
 
     module rec Empty2 =
@@ -92,6 +115,26 @@ module Challenges =
             ("a", "a"), "a"
         }
         let runAll () = Model.Challenge.runAll (nameof Empty2) solutions testCases
+(*
+Test: Empty2
+
+Solution: (a, a)
+Test case 1. A. Time: 59L
+
+Solution: (a, a)
+Test case 1. A. Time: 53L
+
+Input   Expected        Result  Best
+---     ---             ---     ---
+(a, a)  a               a       (1, 59)
+(a, a)  a               a       (1, 53)
+
+Averages
+Test case 1. Average Time: 56L
+
+Ranking
+Test case 1. Average Time: 56L
+*)
 
 
     module rec Empty =
@@ -106,6 +149,30 @@ module Challenges =
             5, 5
         }
         let runAll () = Model.Challenge.runAll (nameof Empty) solutions testCases
+(*
+Test: Empty
+
+Solution: 0
+Test case 1. A. Time: 61L
+
+Solution: 2
+Test case 1. A. Time: 62L
+
+Solution: 5
+Test case 1. A. Time: 70L
+
+Input   Expected        Result  Best
+---     ---             ---     ---
+0       0               0       (1, 61)
+2       2               2       (1, 62)
+5       5               5       (1, 70)
+
+Averages
+Test case 1. Average Time: 64L
+
+Ranking
+Test case 1. Average Time: 64L
+*)
 
 
     module rec UniqueLetters =
@@ -224,57 +291,92 @@ module Challenges =
         }
         let runAll () = Model.Challenge.runAll (nameof UniqueLetters) solutions testCases
 (*
+Test: UniqueLetters
+
 Solution: abc
-Test case 1. A. Time: 1635L
-Test case 2. B. Time: 2036L
-Test case 3. C. Time: 2124L
-Test case 4. D. Time: 1512L
-Test case 5. E. Time: 1408L
-Test case 6. F. Time: 1501L
-Test case 7. G. Time: 1475L
-Test case 8. H. Time: 1460L
-Test case 9. I. Time: 1502L
-Test case 10. J. Time: 1298L
-Test case 11. K. Time: 1278L
+Test case 1. A. Time: 1512L
+Test case 2. B. Time: 1947L
+Test case 3. C. Time: 2023L
+Test case 4. D. Time: 1358L
+Test case 5. E. Time: 1321L
+Test case 6. F. Time: 1346L
+Test case 7. G. Time: 1304L
+Test case 8. H. Time: 1383L
+Test case 9. I. Time: 1495L
+Test case 10. J. Time: 1245L
+Test case 11. K. Time: 1219L
 
 Solution: accabb
-Test case 1. A. Time: 1849L
-Test case 2. B. Time: 2175L
-Test case 3. C. Time: 2350L
-Test case 4. D. Time: 1749L
-Test case 5. E. Time: 1568L
-Test case 6. F. Time: 1674L
-Test case 7. G. Time: 1669L
-Test case 8. H. Time: 1709L
-Test case 9. I. Time: 1677L
-Test case 10. J. Time: 1463L
-Test case 11. K. Time: 1306L
+Test case 1. A. Time: 1648L
+Test case 2. B. Time: 2061L
+Test case 3. C. Time: 2413L
+Test case 4. D. Time: 1561L
+Test case 5. E. Time: 1593L
+Test case 6. F. Time: 1518L
+Test case 7. G. Time: 1415L
+Test case 8. H. Time: 1510L
+Test case 9. I. Time: 1445L
+Test case 10. J. Time: 1636L
+Test case 11. K. Time: 1317L
 
 Solution: pprrqqpp
-Test case 1. A. Time: 1997L
-Test case 2. B. Time: 2554L
-Test case 3. C. Time: 2629L
-Test case 4. D. Time: 1774L
-Test case 5. E. Time: 1771L
-Test case 6. F. Time: 1783L
-Test case 7. G. Time: 1701L
-Test case 8. H. Time: 1900L
-Test case 9. I. Time: 1900L
-Test case 10. J. Time: 1649L
-Test case 11. K. Time: 1294L
+Test case 1. A. Time: 2255L
+Test case 2. B. Time: 2408L
+Test case 3. C. Time: 2393L
+Test case 4. D. Time: 1675L
+Test case 5. E. Time: 1911L
+Test case 6. F. Time: 2126L
+Test case 7. G. Time: 1504L
+Test case 8. H. Time: 1715L
+Test case 9. I. Time: 1537L
+Test case 10. J. Time: 1522L
+Test case 11. K. Time: 1322L
 
 Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb
-Test case 1. A. Time: 13221L
-Test case 2. B. Time: 10843L
-Test case 3. C. Time: 7877L
-Test case 4. D. Time: 5281L
-Test case 5. E. Time: 4974L
-Test case 6. F. Time: 5766L
-Test case 7. G. Time: 5410L
-Test case 8. H. Time: 5366L
-Test case 9. I. Time: 5236L
-Test case 10. J. Time: 5022L
-Test case 11. K. Time: 1999L
+Test case 1. A. Time: 13073L
+Test case 2. B. Time: 11519L
+Test case 3. C. Time: 8373L
+Test case 4. D. Time: 5860L
+Test case 5. E. Time: 6490L
+Test case 6. F. Time: 6325L
+Test case 7. G. Time: 5799L
+Test case 8. H. Time: 7099L
+Test case 9. I. Time: 6133L
+Test case 10. J. Time: 5993L
+Test case 11. K. Time: 2040L
+
+Input                                                                           Expected        Result  Best
+---                                                                             ---             ---     ---
+abc                                                                             abc             abc     (11, 1219)
+accabb                                                                          acb             acb     (11, 1317)
+pprrqqpp                                                                        prq             prq     (11, 1322)
+aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb acb             acb     (11, 2040)
+
+Averages
+Test case 1. Average Time: 4622L
+Test case 2. Average Time: 4483L
+Test case 3. Average Time: 3800L
+Test case 4. Average Time: 2613L
+Test case 5. Average Time: 2828L
+Test case 6. Average Time: 2828L
+Test case 7. Average Time: 2505L
+Test case 8. Average Time: 2926L
+Test case 9. Average Time: 2652L
+Test case 10. Average Time: 2599L
+Test case 11. Average Time: 1474L
+
+Ranking
+Test case 1. Average Time: 4622L
+Test case 2. Average Time: 4483L
+Test case 3. Average Time: 3800L
+Test case 8. Average Time: 2926L
+Test case 5. Average Time: 2828L
+Test case 6. Average Time: 2828L
+Test case 9. Average Time: 2652L
+Test case 4. Average Time: 2613L
+Test case 10. Average Time: 2599L
+Test case 7. Average Time: 2505L
+Test case 11. Average Time: 1474L
 *)
 
 
@@ -402,83 +504,120 @@ Test case 11. K. Time: 1999L
         }
         let runAll () = Model.Challenge.runAll (nameof RotateStrings) solutions testCases
 (*
+Test: RotateStrings
+
 Solution: abc
-Test case 1. A. Time: 1769L
-Test case 2. B. Time: 1528L
-Test case 3. C. Time: 1541L
-Test case 4. CA. Time: 1867L
-Test case 5. CB. Time: 1727L
-Test case 6. D. Time: 1701L
-Test case 7. E. Time: 1440L
-Test case 8. F. Time: 1361L
-Test case 9. FA. Time: 1426L
-Test case 10. FB. Time: 2179L
-Test case 11. FC. Time: 3519L
+Test case 1. A. Time: 1842L
+Test case 2. B. Time: 1846L
+Test case 3. C. Time: 1936L
+Test case 4. CA. Time: 2224L
+Test case 5. CB. Time: 2329L
+Test case 6. D. Time: 2474L
+Test case 7. E. Time: 1664L
+Test case 8. F. Time: 1517L
+Test case 9. FA. Time: 1651L
+Test case 10. FB. Time: 3764L
+Test case 11. FC. Time: 5415L
 
 Solution: abcde
-Test case 1. A. Time: 2133L
-Test case 2. B. Time: 2091L
-Test case 3. C. Time: 2050L
-Test case 4. CA. Time: 2357L
-Test case 5. CB. Time: 2296L
-Test case 6. D. Time: 2563L
-Test case 7. E. Time: 2004L
-Test case 8. F. Time: 1812L
-Test case 9. FA. Time: 1961L
-Test case 10. FB. Time: 2602L
-Test case 11. FC. Time: 4054L
+Test case 1. A. Time: 3356L
+Test case 2. B. Time: 2592L
+Test case 3. C. Time: 2346L
+Test case 4. CA. Time: 2997L
+Test case 5. CB. Time: 3061L
+Test case 6. D. Time: 4051L
+Test case 7. E. Time: 1905L
+Test case 8. F. Time: 1771L
+Test case 9. FA. Time: 2175L
+Test case 10. FB. Time: 3275L
+Test case 11. FC. Time: 5266L
 
 Solution: abcdefghi
-Test case 1. A. Time: 3847L
-Test case 2. B. Time: 3188L
-Test case 3. C. Time: 3321L
-Test case 4. CA. Time: 3608L
-Test case 5. CB. Time: 3681L
-Test case 6. D. Time: 5328L
-Test case 7. E. Time: 3055L
-Test case 8. F. Time: 2593L
-Test case 9. FA. Time: 3545L
-Test case 10. FB. Time: 4038L
-Test case 11. FC. Time: 5239L
+Test case 1. A. Time: 4492L
+Test case 2. B. Time: 3526L
+Test case 3. C. Time: 3583L
+Test case 4. CA. Time: 3711L
+Test case 5. CB. Time: 4783L
+Test case 6. D. Time: 7557L
+Test case 7. E. Time: 3452L
+Test case 8. F. Time: 3050L
+Test case 9. FA. Time: 3275L
+Test case 10. FB. Time: 4635L
+Test case 11. FC. Time: 5616L
 
 Solution: abab
-Test case 1. A. Time: 2036L
-Test case 2. B. Time: 1863L
-Test case 3. C. Time: 1816L
-Test case 4. CA. Time: 2102L
-Test case 5. CB. Time: 2019L
-Test case 6. D. Time: 2163L
-Test case 7. E. Time: 1742L
-Test case 8. F. Time: 1591L
-Test case 9. FA. Time: 1746L
-Test case 10. FB. Time: 2404L
-Test case 11. FC. Time: 3805L
+Test case 1. A. Time: 2093L
+Test case 2. B. Time: 1843L
+Test case 3. C. Time: 1746L
+Test case 4. CA. Time: 2085L
+Test case 5. CB. Time: 2139L
+Test case 6. D. Time: 2095L
+Test case 7. E. Time: 1723L
+Test case 8. F. Time: 1558L
+Test case 9. FA. Time: 1620L
+Test case 10. FB. Time: 2319L
+Test case 11. FC. Time: 3918L
 
 Solution: aa
-Test case 1. A. Time: 1272L
-Test case 2. B. Time: 1338L
-Test case 3. C. Time: 1314L
-Test case 4. CA. Time: 1579L
-Test case 5. CB. Time: 1513L
-Test case 6. D. Time: 1313L
-Test case 7. E. Time: 1278L
-Test case 8. F. Time: 1179L
-Test case 9. FA. Time: 1201L
-Test case 10. FB. Time: 1937L
-Test case 11. FC. Time: 2949L
+Test case 1. A. Time: 1107L
+Test case 2. B. Time: 1241L
+Test case 3. C. Time: 1183L
+Test case 4. CA. Time: 1563L
+Test case 5. CB. Time: 1525L
+Test case 6. D. Time: 1591L
+Test case 7. E. Time: 1327L
+Test case 8. F. Time: 1151L
+Test case 9. FA. Time: 1180L
+Test case 10. FB. Time: 1733L
+Test case 11. FC. Time: 2817L
 
 Solution: z
-Test case 1. A. Time: 961L
-Test case 2. B. Time: 912L
-Test case 3. C. Time: 982L
-Test case 4. CA. Time: 1257L
-Test case 5. CB. Time: 1171L
-Test case 6. D. Time: 986L
-Test case 7. E. Time: 938L
-Test case 8. F. Time: 275L
-Test case 9. FA. Time: 243L
-Test case 10. FB. Time: 818L
-Test case 11. FC. Time: 1925L
+Test case 1. A. Time: 816L
+Test case 2. B. Time: 745L
+Test case 3. C. Time: 928L
+Test case 4. CA. Time: 1375L
+Test case 5. CB. Time: 1029L
+Test case 6. D. Time: 852L
+Test case 7. E. Time: 712L
+Test case 8. F. Time: 263L
+Test case 9. FA. Time: 232L
+Test case 10. FB. Time: 773L
+Test case 11. FC. Time: 1789L
+
+Input           Expected                                                                                        Result                                                                                          Best
+---             ---                                                                                             ---                                                                                             ---
+abc             bca cab abc                                                                                     bca cab abc                                                                                     (8, 1517)
+abcde           bcdea cdeab deabc eabcd abcde                                                                   bcdea cdeab deabc eabcd abcde                                                                   (8, 1771)
+abcdefghi       bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi       bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi       (8, 3050)
+abab            baba abab baba abab                                                                             baba abab baba abab                                                                             (8, 1558)
+aa              aa aa                                                                                           aa aa                                                                                           (1, 1107)
+z               z                                                                                               z                                                                                               (9, 232)
+
+Averages
+Test case 1. Average Time: 2284L
+Test case 2. Average Time: 1965L
+Test case 3. Average Time: 1953L
+Test case 4. Average Time: 2325L
+Test case 5. Average Time: 2477L
+Test case 6. Average Time: 3103L
+Test case 7. Average Time: 1797L
+Test case 8. Average Time: 1551L
+Test case 9. Average Time: 1688L
+Test case 10. Average Time: 2749L
+Test case 11. Average Time: 4136L
+
+Ranking
+Test case 11. Average Time: 4136L
+Test case 6. Average Time: 3103L
+Test case 10. Average Time: 2749L
+Test case 5. Average Time: 2477L
+Test case 4. Average Time: 2325L
+Test case 1. Average Time: 2284L
+Test case 2. Average Time: 1965L
+Test case 3. Average Time: 1953L
+Test case 7. Average Time: 1797L
+Test case 9. Average Time: 1688L
+Test case 8. Average Time: 1551L
 *)
 
 
@@ -500,6 +639,38 @@ Test case 11. FC. Time: 1925L
             10, "baaaaaaaaa"
         }
         let runAll () = Model.Challenge.runAll (nameof ReturnLettersWithOddCount) solutions testCases
+(*
+Test: ReturnLettersWithOddCount
+
+Solution: 1
+Test case 1. A. Time: 645L
+
+Solution: 2
+Test case 1. A. Time: 663L
+
+Solution: 3
+Test case 1. A. Time: 680L
+
+Solution: 9
+Test case 1. A. Time: 730L
+
+Solution: 10
+Test case 1. A. Time: 815L
+
+Input   Expected        Result          Best
+---     ---             ---             ---
+1       a               a               (1, 645)
+2       ba              ba              (1, 663)
+3       aaa             aaa             (1, 680)
+9       aaaaaaaaa       aaaaaaaaa       (1, 730)
+10      baaaaaaaaa      baaaaaaaaa      (1, 815)
+
+Averages
+Test case 1. Average Time: 706L
+
+Ranking
+Test case 1. Average Time: 706L
+*)
 
 
     module rec HasAnyPairCloseToEachother =
@@ -521,14 +692,46 @@ Test case 11. FC. Time: 1925L
             [| 2; 4; 6 |], false
         }
         let runAll () = Model.Challenge.runAll (nameof HasAnyPairCloseToEachother) solutions testCases
+(*
+Test: HasAnyPairCloseToEachother
+
+Solution: 0
+Test case 1. A. Time: 137L
+
+Solution: 1,2
+Test case 1. A. Time: 186L
+
+Solution: 3,5
+Test case 1. A. Time: 206L
+
+Solution: 3,4,6
+Test case 1. A. Time: 149L
+
+Solution: 2,4,6
+Test case 1. A. Time: 150L
+
+Input   Expected        Result  Best
+---     ---             ---     ---
+0       False           False   (1, 137)
+1,2     True            True    (1, 186)
+3,5     False           False   (1, 206)
+3,4,6   True            True    (1, 149)
+2,4,6   False           False   (1, 150)
+
+Averages
+Test case 1. Average Time: 165L
+
+Ranking
+Test case 1. Average Time: 165L
+*)
+
 
 module ChallengeList =
-
     let challenges = [
 //        Challenges.Empty3.runAll
 //        Challenges.Empty2.runAll
-//        Challenges.Empty.runAll
-        Challenges.UniqueLetters.runAll
+        Challenges.Empty.runAll
+//        Challenges.UniqueLetters.runAll
 //        Challenges.RotateStrings.runAll
 //        Challenges.ReturnLettersWithOddCount.runAll
 //        Challenges.HasAnyPairCloseToEachother.runAll

@@ -9,9 +9,9 @@ module Main =
     let main _ =
         ChallengeList.challenges
         |> List.iter (fun challenge ->
+            let resultList = challenge () |> Seq.toList
             let table =
                 let rows =
-                    let resultList = challenge () |> Seq.toList
                     resultList
                     |> List.map (fun result ->
                         let best =
@@ -79,6 +79,29 @@ module Main =
                 printfn "%s" (String.Join ("\t", row))
 
                 Console.ResetColor ()
+            )
+
+            let averages =
+                resultList
+                |> List.map (fun result -> result.TimeList |> List.map float)
+                |> List.transpose
+                |> List.map List.average
+                |> List.map int64
+                |> List.indexed
+
+            printfn ""
+            printfn "Averages"
+            averages
+            |> List.iter (fun (i, avg) ->
+                printfn "Test case %d. Average Time: %A" (i + 1) avg
+            )
+
+            printfn ""
+            printfn "Ranking"
+            averages
+            |> List.sortBy snd
+            |> List.iter (fun (i, avg) ->
+                printfn "Test case %d. Average Time: %A" (i + 1) avg
             )
         )
         0
