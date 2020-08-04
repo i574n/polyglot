@@ -26,6 +26,7 @@ module Model =
             printfn "\nSolution: %s" inputStr
 
             let performanceInvoke (fn: unit -> 'T) =
+                GC.Collect ()
                 let stopwatch = Stopwatch ()
                 stopwatch.Start ()
                 let time1 = stopwatch.ElapsedMilliseconds
@@ -41,34 +42,33 @@ module Model =
 
                 result, time2
 
-            let results =
+            let resultsWithTime =
                 solutions
                 |> List.mapi (fun i (testName, solution) ->
                     let result, time = performanceInvoke (fun () -> solution input)
                     printfn "Test case %d. %s. Time: %A" (i + 1) testName time
                     result, time
                 )
-                |> function
-                    | [] | [ _ ] as x -> x
-                    | (head :: tail) as x when tail |> List.forall ((=) head) -> x
-                    | x -> failwithf "Challenge error: %A" x
+
+
+            match resultsWithTime |> List.map fst with
+            | ([] | [ _ ]) -> ()
+            | (head :: tail) when tail |> List.forall ((=) head) -> ()
+            | results -> failwithf "Challenge error: %A" results
 
             { Input = inputStr
               Expected = expected.ToString ()
-              Result = results.Head.ToString ()
-              TimeList = results |> List.map snd }
+              Result = resultsWithTime |> Seq.map fst |> Seq.head |> fun x -> x.ToString ()
+              TimeList = resultsWithTime |> List.map snd }
 
-        let runAll (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
-            let a =
-                testCases
-                |> Seq.toArray
-                |> (if solutions.Length > 1 then Array.map else Array.Parallel.map) (run solutions)
-                |> Array.toSeq
-            a
+        let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
+            printfn "\n\nTest: %s" testName
+            testCases
+            |> Seq.map (run solutions)
 
 
 module Challenges =
-    module Empty3 =
+    module rec Empty3 =
         let solutions = [
             "A",
             fun (a, _b) ->
@@ -78,10 +78,10 @@ module Challenges =
             ("a", "a"), "a"
             ("a", "a"), "a"
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof Empty3) solutions testCases
 
 
-    module Empty2 =
+    module rec Empty2 =
         let solutions = [
             "A",
             fun (a, _b) ->
@@ -91,10 +91,10 @@ module Challenges =
             ("a", "a"), "a"
             ("a", "a"), "a"
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof Empty2) solutions testCases
 
 
-    module Empty =
+    module rec Empty =
         let solutions = [
             "A",
             fun n ->
@@ -105,10 +105,10 @@ module Challenges =
             2, 2
             5, 5
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof Empty) solutions testCases
 
 
-    module UniqueLetters =
+    module rec UniqueLetters =
         let solutions = [
             "A",
             fun input ->
@@ -222,7 +222,7 @@ module Challenges =
             "pprrqqpp", "prq"
             "aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb", "acb"
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof UniqueLetters) solutions testCases
 (*
 Solution: abc
 Test case 1. A. Time: 1635L
@@ -279,7 +279,7 @@ Test case 11. K. Time: 1999L
 
 
     // https://www.hackerrank.com/challenges/rotate-string/forum
-    module RotateStrings =
+    module rec RotateStrings =
         let solutions = [
             "A",
             fun (input: string) ->
@@ -400,7 +400,7 @@ Test case 11. K. Time: 1999L
             "aa", "aa aa"
             "z", "z"
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof RotateStrings) solutions testCases
 (*
 Solution: abc
 Test case 1. A. Time: 1769L
@@ -482,7 +482,7 @@ Test case 11. FC. Time: 1925L
 *)
 
 
-    module ReturnLettersWithOddCount =
+    module rec ReturnLettersWithOddCount =
         let solutions = [
             "A",
             fun n ->
@@ -499,10 +499,10 @@ Test case 11. FC. Time: 1925L
             9, "aaaaaaaaa"
             10, "baaaaaaaaa"
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof ReturnLettersWithOddCount) solutions testCases
 
 
-    module HasAnyPairCloseToEachother =
+    module rec HasAnyPairCloseToEachother =
         let solutions = [
             "A",
             fun (a: int[]) ->
@@ -520,15 +520,15 @@ Test case 11. FC. Time: 1925L
             [| 3; 4; 6 |], true
             [| 2; 4; 6 |], false
         }
-        let runAll () = Model.Challenge.runAll solutions testCases
+        let runAll () = Model.Challenge.runAll (nameof HasAnyPairCloseToEachother) solutions testCases
 
 module ChallengeList =
 
     let challenges = [
 //        Challenges.Empty3.runAll
 //        Challenges.Empty2.runAll
-        Challenges.Empty.runAll
-//        Challenges.UniqueLetters.runAll
+//        Challenges.Empty.runAll
+        Challenges.UniqueLetters.runAll
 //        Challenges.RotateStrings.runAll
 //        Challenges.ReturnLettersWithOddCount.runAll
 //        Challenges.HasAnyPairCloseToEachother.runAll

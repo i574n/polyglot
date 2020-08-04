@@ -4,65 +4,82 @@ open System
 
 module Main =
     open Model
-    open Challenges
 
     [<EntryPoint>]
     let main _ =
-        for challenge in ChallengeList.challenges do
-            let resultList = challenge () |> Seq.toList
+        ChallengeList.challenges
+        |> List.iter (fun challenge ->
+            let table =
+                let rows =
+                    let resultList = challenge () |> Seq.toList
+                    resultList
+                    |> List.map (fun result ->
+                        let best =
+                            result.TimeList
+                            |> List.mapi (fun i time ->
+                                i + 1, time
+                            )
+                            |> List.sortBy snd
+                            |> List.head
+                            |> fun x -> x.ToString ()
+                        let row =
+                            [ result.Input
+                              result.Expected
+                              result.Result
+                              best ]
+                        let color =
+                            match result.Expected = result.Result with
+                            | true -> Some ConsoleColor.DarkGreen
+                            | false -> Some ConsoleColor.DarkRed
+                        row, color
+                    )
+                let header =
+                    [ [ "Input"
+                        "Expected"
+                        "Result"
+                        "Best" ]
+                      [ "---"
+                        "---"
+                        "---"
+                        "---" ] ]
+                    |> List.map (fun row -> row, None)
+                header @ rows
+
+            let formattedTable =
+                let lengthMap =
+                    table
+                    |> List.map fst
+                    |> List.transpose
+                    |> List.map (fun column ->
+                        column
+                        |> List.map String.length
+                        |> List.sortDescending
+                        |> List.tryHead
+                        |> Option.defaultValue 0
+                    )
+                    |> List.indexed
+                    |> Map.ofList
+                table
+                |> List.map (fun (row, color) ->
+                    let newRow =
+                        row
+                        |> List.mapi (fun i cell ->
+                            cell.PadRight lengthMap.[i]
+                        )
+                    newRow, color
+                )
 
             printfn ""
-            printfn "Test: %s" (challenge.GetType().DeclaringType.FullName.Split('+').[1])
+            formattedTable
+            |> List.iter (fun (row, color) ->
+                match color with
+                | Some color -> Console.ForegroundColor <- color
+                | None -> Console.ResetColor ()
 
-            let header = [
-                { Input = "Input"
-                  Expected = "Expected"
-                  TimeList = []
-                  Result = "Result" }
-
-                { Input = "---"
-                  Expected = "---"
-                  TimeList = []
-                  Result = "---" }
-            ]
-
-            let getWidth fn =
-                resultList
-                |> List.append header
-                |> List.map fn
-                |> List.map String.length
-                |> List.sortDescending
-                |> List.tryHead
-                |> Option.defaultValue 0
-
-            let inputWidth = getWidth (fun x -> x.Input)
-            let expectedWidth = getWidth (fun x -> x.Expected)
-            let resultWidth = getWidth (fun x -> x.Result)
-
-            let padResult result =
-                { Input = result.Input.PadRight inputWidth
-                  Expected = result.Expected.PadRight expectedWidth
-                  TimeList = []
-                  Result = result.Result.PadRight resultWidth }
-
-            let header = header |> List.map padResult
-            let resultList = resultList |> List.map padResult
-
-            let printLine result =
-                printfn "%s\t%s\t%s" result.Input result.Expected result.Result
-
-            for result in header do
-                printLine result
-
-            for result in resultList do
-                Console.ForegroundColor <-
-                    match result.Expected.Trim (), result.Result.Trim () with
-                    | expected, result when expected = result -> ConsoleColor.DarkGreen
-                    | _ -> ConsoleColor.DarkRed
-
-                printLine result
+                printfn "%s" (String.Join ("\t", row))
 
                 Console.ResetColor ()
-
+            )
+        )
         0
 
