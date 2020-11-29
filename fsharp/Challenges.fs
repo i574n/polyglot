@@ -141,7 +141,7 @@ Test case 1. Average Time: 56L
         let solutions = [
             "A",
             fun n ->
-                n
+                n + 0
         ]
         let testCases = seq {
             0, 0

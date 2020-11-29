@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyglot.CSharp", "csharp\P
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Polyglot.FSharp", "fsharp\Polyglot.FSharp.fsproj", "{CBC1974F-2C5C-488C-91F4-6948121AF652}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Run Configurations", "Run Configurations", "{94A510E5-810B-4A68-B9FC-7266E5F303E2}"
+ProjectSection(SolutionItems) = preProject
+	.run\fsw Hopac.fsx.run.xml = .run\fsw Hopac.fsx.run.xml
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
