@@ -35,6 +35,7 @@ defmodule HelloWorld do
 end
 
 
+
 # Elixir / Lasagna
 
 # Introduction
@@ -170,6 +171,7 @@ end
 
 
 # Elixir / Pacman Rules
+
 # Introduction
 # Booleans
 # Elixir represents true and false values with the boolean type. There are only two values: true and false. These values can be bound to a variable:
@@ -254,6 +256,7 @@ end
 
 
 # Elixir / Log Level
+
 # Introduction
 # Atoms
 # Elixir's atom type represents a fixed constant. An atom's value is simply its own name. This gives us a type-safe way to interact with data. Atoms can be defined as follows:
@@ -323,15 +326,12 @@ defmodule LogLevel do
   def to_label(5, false), do: :fatal
   def to_label(_level, _legacy?), do: :unknown
 
-  def alert_recipient(level, legacy?) do
-    case {to_label(level, legacy?), legacy?} do
-      {:error, _} -> :ops
-      {:fatal, _} -> :ops
-      {:unknown, true} -> :dev1
-      {:unknown, false} -> :dev2
-      _ -> false
-    end
-  end
+  def alert_recipient(level, legacy?) when is_number(level), do: alert_recipient(to_label(level, legacy?), legacy?)
+  def alert_recipient(:error, _), do: :ops
+  def alert_recipient(:fatal, _), do: :ops
+  def alert_recipient(:unknown, true), do: :dev1
+  def alert_recipient(:unknown, false), do: :dev2
+  def alert_recipient(_, _), do: false
 end
 
 
@@ -480,7 +480,7 @@ defmodule Secrets do
   def secret_divide(secret) when secret != 0, do: &(div &1, secret)
   def secret_and(secret), do: &(&1 &&& secret)
   def secret_xor(secret), do: &(&1 ^^^ secret)
-  def secret_combine(f, g), do: fn x -> g.(f.(x)) end
+  def secret_combine(f, g), do: fn x -> x |> f.() |> g.() end
 end
 
 
@@ -1599,9 +1599,14 @@ defmodule Knapsack do
   def maximum_value([], _), do: 0
   def maximum_value([item | items], max_weight) when item.weight > max_weight, do: maximum_value(items, max_weight)
   def maximum_value([item | items], max_weight) do
-    [maximum_value(items, max_weight), maximum_value(items, max_weight - item.weight) + item.value] |> Enum.max()
+    [
+      maximum_value(items, max_weight),
+      maximum_value(items, max_weight - item.weight) + item.value
+    ]
+    |> Enum.max()
   end
 end
+
 
 
 # Elixir / City Office
@@ -1763,9 +1768,7 @@ defmodule Form do
   Such fields cannot be left empty because a malicious third party could fill them out with false data.
   """
   @spec blanks(non_neg_integer()) :: String.t()
-  def blanks(n) do
-    String.duplicate("X", n)
-  end
+  def blanks(n), do: String.duplicate("X", n)
 
   @doc """
   Splits the string into a list of uppercase letters.
@@ -1774,11 +1777,7 @@ defmodule Form do
   but instead require splitting the string into a predefined number of single-letter inputs.
   """
   @spec letters(String.t()) :: [String.t()]
-  def letters(word) do
-    word
-    |> String.upcase()
-    |> String.split("", trim: true)
-  end
+  def letters(word), do: word |> String.upcase() |> String.split("", trim: true)
 
   @doc """
   Checks if the value has no more than the maximum allowed number of letters.
@@ -1909,4 +1908,436 @@ defmodule Username do
   def sanitize([?ß | t]), do: 'ss' ++ sanitize(t)
   def sanitize([h | t]) when h in ?a..?z or h == ?_, do: [h | sanitize(t)]
   def sanitize([h | t]), do: sanitize(t)
+end
+
+
+
+# Elixir / RPG Character Sheet
+
+# Introduction
+# IO
+# Functions for handling input and output are provided by the IO module.
+
+# Output
+# To write a string to the standard output, use IO.puts. IO.puts always adds a new line at the end of the string. If you don't want that behavior, use IO.write instead. Both functions return the atom :ok if they succeed.
+
+# IO.puts("Hi!")
+# # > Hi!
+# # => :ok
+# IO.puts is useful for writing strings, but not much else. If you need a tool for debugging that will allow you to write any value to standard output, use IO.inspect instead. IO.inspect returns the value it was passed unchanged, so it can be inserted in any point in your code. It also accepts many options, for example :label, that will allow you to distinguish it from other IO.inspect calls.
+
+# Input
+# To read a line from the standard input, use IO.gets. IO.gets accepts one argument - a string that it will print as a prompt for the input. IO.gets doesn't add a new line after the prompt, include it yourself if you need it.
+
+# IO.gets("What's your name?\n")
+# # > What's your name?
+# # < Mary
+# # => "Mary\n"
+# Instructions
+# You and your friends love to play pen-and-paper role-playing games, but you noticed that it's difficult to get new people to join your group. They often struggle with character creation. They don't know where to start. To help new players out, you decided to write a small program that will guide them through the process.
+
+# Task 1
+# Welcome the new player
+
+# Implement the RPG.CharacterSheet.welcome/0 function. It should print a welcome message, and return :ok.
+
+# RPG.CharacterSheet.welcome()
+# # > Welcome! Let's fill out your character sheet together.
+# # => :ok
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Ask for the character's name
+
+# Implement the RPG.CharacterSheet.ask_name/0 function. It should print a question, wait for an answer, and return the answer without leading and trailing whitespace.
+
+# RPG.CharacterSheet.ask_name()
+# # > What is your character's name?
+# # < Mathilde
+# # => "Mathilde"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Ask for the character's class
+
+# Implement the RPG.CharacterSheet.ask_class/0 function. It should print a question, wait for an answer, and return the answer without leading and trailing whitespace.
+
+# RPG.CharacterSheet.ask_class()
+# # > What is your character's class?
+# # < healer
+# # => "healer"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Ask for the character's level
+
+# Implement the RPG.CharacterSheet.ask_level/0 function. It should print a question, wait for an answer, and return the answer as an integer.
+
+# RPG.CharacterSheet.ask_level()
+# # > What is your character's level?
+# # < 2
+# # => 2
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Combine previous steps into one
+
+# Implement the RPG.CharacterSheet.run/0 function. It should welcome the new player, ask for the character's name, class, and level, and return the character sheet as a map. It should also print the map with the label "Your character".
+
+# RPG.CharacterSheet.run()
+# # > Welcome! Let's fill out your character sheet together.
+# # > What is your character's name?
+# # < Mathilde
+# # > What is your character's class?
+# # < healer
+# # > What is your character's level?
+# # < 2
+# # > Your character: %{class: "healer", level: 2, name: "Mathilde"}
+# # => %{class: "healer", level: 2, name: "Mathilde"}
+
+
+defmodule RPG.CharacterSheet do
+  def welcome(), do: IO.puts("Welcome! Let's fill out your character sheet together.")
+  def ask_name(), do: IO.gets("What is your character's name?\n") |> String.trim()
+  def ask_class(), do: IO.gets("What is your character's class?\n") |> String.trim()
+  def ask_level(), do: IO.gets("What is your character's level?\n") |> String.trim() |> String.to_integer()
+  def run() do
+    welcome()
+    name = ask_name()
+    class = ask_class()
+    level = ask_level()
+
+    %{name: name, class: class, level: level}
+    |> IO.inspect(label: "Your character")
+  end
+end
+
+
+
+# Elixir / Name Badge
+
+# Introduction
+# Nil
+# Nil is an English word meaning "nothing" or "zero". In Elixir, nil is a special value that means an absence of a value.
+
+# # I do not have a favorite color
+# favorite_color = nil
+# In other programming languages, null or none values might play a similar role.
+
+# If
+# Besides cond, Elixir also provides the macro if/2 which is useful when you need to check for only one condition.
+
+# if/2 accepts a condition and two options. It returns the first option if the condition is truthy, and the second option if the condition is falsy.
+
+# age = 15
+
+# if age >= 16 do
+#   "You are allowed to drink beer in Germany."
+# else
+#   "No beer for you!"
+# end
+
+# # => "No beer for you!"
+# It is also possible to write an if expression on a single line. Note the comma after the condition.
+
+# if age > 16, do: "beer", else: "no beer"
+# This syntax is helpful for very short expressions, but should be avoided if the expression won't fit on a single line.
+
+# Truthy and falsy
+# In Elixir, all datatypes evaluate to a truthy or falsy value when they are encountered in a boolean context (like an if expression). All data is considered truthy except for false and nil. In particular, empty strings, the integer 0, and empty lists are all considered truthy in Elixir.
+
+# Instructions
+# In this exercise you'll be writing code to print name badges for factory employees. Employees have an ID, name, and department name. Employee badge labels are formatted as follows: "[id] - name - DEPARTMENT".
+
+# Task 1
+# Print a badge for an employee
+
+# Implement the NameBadge.print/3 function. It should take an id, name, and a department. It should return the badge label, with the department name in uppercase.
+
+# NameBadge.print(67, "Katherine Williams", "Strategic Communication")
+# # => "[67] - Katherine Williams - STRATEGIC COMMUNICATION"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Print a badge for a new employee
+
+# Due to a quirk in the computer system, new employees occasionally don't yet have an ID when they start working at the factory. As badges are required, they will receive a temporary badge without the ID prefix.
+
+# Extend the NameBadge.print/3 function. When the id is missing, it should print a badge without it.
+
+# NameBadge.print(nil, "Robert Johnson", "Procurement")
+# # => "Robert Johnson - PROCUREMENT"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Print a badge for the owner
+
+# Even the factory's owner has to wear a badge at all times. However, an owner does not have a department. In this case, the label should print "OWNER" instead of the department name.
+
+# Extend the NameBadge.print/3 function. When the department is missing, assume the badge belongs to the company owner.
+
+# NameBadge.print(204, "Rachel Miller", nil)
+# # => "[204] - Rachel Miller - OWNER"
+# Note that it is possible for the owner to also be a new employee.
+
+# NameBadge.print(nil, "Rachel Miller", nil)
+# # => "Rachel Miller - OWNER"
+
+
+defmodule NameBadge do
+  def print(id, name, nil), do: print(id, name, "Owner")
+  def print(nil, name, department), do: "#{name} - #{department |> String.upcase()}"
+  def print(id, name, department), do: "[#{id}] - #{print(nil, name, department)}"
+end
+
+
+
+# Elixir / Take-A-Number
+
+# Introduction
+# Processes
+# In Elixir, all code runs inside processes.
+
+# By default, a function will execute in the same process from which it was called. When you need to explicitly run a certain function in a new process, use spawn/1:
+
+# spawn(fn -> 2 + 2 end)
+# # => #PID<0.125.0>
+# spawn/1 creates a new process that executes the given function and returns a process identifier (PID). The new process will stay alive as long as the function executes, and then silently exit.
+
+# Elixir's processes should not be confused with operating system processes. Elixir's processes use much less memory and CPU. It's perfectly fine to have Elixir applications that run hundreds of Elixir processes.
+
+# Messages
+# Processes do not directly share information with one another. Processes send and receive messages to share data.
+
+# You can send a message to any process with send/2. The first argument to send/2 is the PID of the recipient, the second argument is the message.
+
+# A message can be of any type. Often it consists of atoms and tuples. If you want to get a response, you should include the PID of the sender somewhere in the message. You can get the PID of the current process with self().
+
+# send/2 does not check if the message was received by the recipient, nor if the recipient is still alive. The message ends up in the recipient's mailbox and it will only be read if and when the recipient explicitly asks to receive messages.
+
+# A message can be read from a mailbox using the receive/1 macro. It accepts a do block that can pattern match on the messages.
+
+# receive do
+#   {:ping, sender_pid} -> send(sender_pid, :pong)
+#   :do_nothing -> nil
+# end
+# receive/1 will take one message from the mailbox that matches any of the given patterns and execute the expression given for that pattern. If there are no messages in the mailbox, or none of messages in the mailbox match any of the patterns, receive/1 is going to wait for one.
+
+# Receive loop
+# If you want to receive more than one message, you need to call receive/1 recursively. It is a common pattern to implement a recursive function, for example named loop, that calls receive/1, does something with the message, and then calls itself to wait for more messages. If you need to carry some state from one receive/1 call to another, you can do it by passing an argument to that loop function.
+
+# PIDs
+# Process identifiers are their own data type. They function as mailbox addresses - if you have a process's PID, you can send a message to that process. PIDs are usually created indirectly, as a return value of functions that create new processes, like spawn.
+
+# Instructions
+# You are writing an embedded system for a Take-A-Number machine. It is a very simple model. It can give out consecutive numbers and report what was the last number given out.
+
+# Task 1
+# Start the machine
+
+# Implement the start/0 function. It should spawn a new process that has an initial state of 0 and is ready to receive messages. It should return the process's PID.
+
+# TakeANumber.start()
+# # => #PID<0.138.0>
+# Note that each time you run this code, the PID may be different.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Report the machine state
+
+# Modify the machine so that it can receive {:report_state, sender_pid} messages. It should send its current state (the last given out ticket number) to sender_pid and then wait for more messages.
+
+# machine_pid = TakeANumber.start()
+# send(machine_pid, {:report_state, self()})
+
+# receive do
+#   msg -> msg
+# end
+# # => 0
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Give out numbers
+
+# Modify the machine so that it can receive {:take_a_number, sender_pid} messages. It should increase its state by 1, send the new state to sender_pid, and then wait for more messages.
+
+# machine_pid = TakeANumber.start()
+# send(machine_pid, {:take_a_number, self()})
+
+# receive do
+#   msg -> msg
+# end
+# # => 1
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Stop the machine
+
+# Modify the machine so that it can receive a :stop message. It should stop waiting for more messages.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Ignore unexpected messages
+
+# Modify the machine so that when it receives an unexpected message, it ignores it and continues waiting for more messages.
+
+
+defmodule TakeANumber do
+  def start(), do: spawn(&loop/0)
+
+  defp loop(state \\ 0) do
+    receive do
+      {:report_state, sender_pid} -> send(sender_pid, state) |> loop()
+      {:take_a_number, sender_pid} -> send(sender_pid, state + 1) |> loop()
+      :stop -> nil
+      _ -> loop(state)
+    end
+  end
+end
+
+
+
+# Elixir / Wine Cellar
+
+# Introduction
+# Keyword Lists
+# Keyword lists are a key-value data structure.
+
+# [month: "April", year: 2018]
+# Keyword lists are lists of {key, value} tuples, and can also be written as such, but the shorter syntax is more widely used.
+
+# [month: "April"] == [{:month, "April"}]
+# # => true
+# Keys in a keyword list must be atoms, but the values can be anything. Each key can be used more than once. The key-value pairs in a keyword list are ordered.
+
+# You can work with keyword lists using the same approaches as for lists, or you can use the Keyword module.
+
+# Instructions
+# You are the manager of a fancy restaurant that has a sizable wine cellar. A lot of your customers are demanding wine enthusiasts. Finding the right bottle of wine for a particular customer is not an easy task.
+
+# As a tech-savvy restaurant owner, you decided to speed up the wine selection process by writing an app that will let guests filter your wines by their preferences.
+
+# Task 1
+# Explain wine colors
+
+# On the welcome screen of your app, you want to display a short explanation of each wine color.
+
+# Implement the WineCellar.explain_colors/0 function. It takes no arguments and returns a keyword list with wine colors as keys and explanations as values.
+
+# Color	Explanation
+# :white	Fermented without skin contact.
+# :red	Fermented with skin contact using dark-colored grapes.
+# :rose	Fermented with some skin contact, but not enough to qualify as a red wine.
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Get all wines of a given color
+
+# A bottle of wine is represented as a 3-tuple of grape variety, year, and country of origin. The wines are stored by wine color in a keyword list.
+
+# [
+#   white: {"Chardonnay", 2015, "Italy"},
+#   white: {"Pinot grigio", 2017, "Germany"},
+#   red: {"Pinot noir", 2016, "France"},
+#   rose: {"Dornfelder", 2018, "Germany"}
+# ]
+# Implement the WineCellar.filter/3 function. It should take a keyword list of wines, a color atom and a keyword list of options, with a default value of []. The function should return a list of wines of a given color.
+
+# WineCellar.filter(
+#   [
+#     white: {"Chardonnay", 2015, "Italy"},
+#     white: {"Pinot grigio", 2017, "Germany"},
+#     red: {"Pinot noir", 2016, "France"},
+#     rose: {"Dornfelder", 2018, "Germany"}
+#   ],
+#   :white
+# )
+# # => [
+# #      {"Chardonnay", 2015, "Italy"},
+# #      {"Pinot grigio", 2017, "Germany"}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Get all wines of a given color bottled in a given year
+
+# Extend the WineCellar.filter/3 function. When given a :year option, the function should return a list of wines of a given color from a given year.
+
+# Use the already-implemented WineCellar.filter_by_year/2 function. It takes a list of wines and a year as arguments and returns a list of wines from a given year.
+
+# WineCellar.filter(
+#   [
+#     white: {"Chardonnay", 2015, "Italy"},
+#     white: {"Pinot grigio", 2017, "Germany"},
+#     red: {"Pinot noir", 2016, "France"},
+#     rose: {"Dornfelder", 2018, "Germany"}
+#   ],
+#   :white,
+#   year: 2015
+# )
+# # => [
+# #      {"Chardonnay", 2015, "Italy"}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Get all wines of a given color bottled in a given country
+
+# Extend the WineCellar.filter/3 function. When given a :country option, the function should return a list of wines of a given color from a given country.
+
+# Use the already-implemented WineCellar.filter_by_country/2 function. It takes a list of wines and a country as arguments and returns a list of wines from a given country.
+
+# Make sure that the function works when given both the :year and the :country option, in any order.
+
+# WineCellar.filter(
+#   [
+#     white: {"Chardonnay", 2015, "Italy"},
+#     white: {"Pinot grigio", 2017, "Germany"},
+#     red: {"Pinot noir", 2016, "France"},
+#     rose: {"Dornfelder", 2018, "Germany"}
+#   ],
+#   :white,
+#   year: 2015,
+#   country: "Germany"
+# )
+# # => []
+
+
+defmodule WineCellar do
+  def explain_colors, do:
+    [
+      white: "Fermented without skin contact.",
+      red: "Fermented with skin contact using dark-colored grapes.",
+      rose: "Fermented with some skin contact, but not enough to qualify as a red wine."
+    ]
+
+  def filter(cellar, color, opts \\ []) do
+    Keyword.get_values(cellar, color)
+    |> filter_by_year(opts[:year])
+    |> filter_by_country(opts[:country])
+  end
+
+  defp filter_by_year(wines, nil), do: wines
+  defp filter_by_year([], _year), do: []
+  defp filter_by_year([{_, year, _} = wine | tail], year), do: [wine | filter_by_year(tail, year)]
+  defp filter_by_year([{_, _, _} | tail], year), do: filter_by_year(tail, year)
+  defp filter_by_country(wines, nil), do: wines
+  defp filter_by_country([], _country), do: []
+  defp filter_by_country([{_, _, country} = wine | tail], country), do: [wine | filter_by_country(tail, country)]
+  defp filter_by_country([{_, _, _} | tail], country), do: filter_by_country(tail, country)
 end
