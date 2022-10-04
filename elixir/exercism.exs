@@ -25,13 +25,7 @@
 
 
 defmodule HelloWorld do
-  @doc """
-  Simply returns "Hello, World!"
-  """
-  @spec hello :: String.t()
-  def hello do
-    "Hello, World!"
-  end
+  def hello(), do: "Hello, World!"
 end
 
 
@@ -474,13 +468,13 @@ end
 
 defmodule Secrets do
   use Bitwise, only_operators: true
-  def secret_add(secret), do: &(&1 + secret)
-  def secret_subtract(secret), do: &(&1 - secret)
-  def secret_multiply(secret), do: &(&1 * secret)
-  def secret_divide(secret) when secret != 0, do: &(div &1, secret)
-  def secret_and(secret), do: &(&1 &&& secret)
-  def secret_xor(secret), do: &(&1 ^^^ secret)
-  def secret_combine(f, g), do: fn x -> x |> f.() |> g.() end
+  def secret_add(secret), do: & &1 + secret
+  def secret_subtract(secret), do: & &1 - secret
+  def secret_multiply(secret), do: & &1 * secret
+  def secret_divide(secret) when secret != 0, do: & div &1, secret
+  def secret_and(secret), do: & &1 &&& secret
+  def secret_xor(secret), do: & &1 ^^^ secret
+  def secret_combine(f, g), do: & &1 |> f.() |> g.()
 end
 
 
@@ -2340,4 +2334,924 @@ defmodule WineCellar do
   defp filter_by_country([], _country), do: []
   defp filter_by_country([{_, _, country} = wine | tail], country), do: [wine | filter_by_country(tail, country)]
   defp filter_by_country([{_, _, _} | tail], country), do: filter_by_country(tail, country)
+end
+
+
+
+# Elixir / DNA Encoding
+
+# Introduction
+# Bitstrings
+# Working with binary data is an important concept in any language, and Elixir provides an elegant syntax to write, match, and construct binary data.
+
+# In Elixir, binary data is referred to as the bitstring type. The binary data type (not to be confused with binary data in general) is a specific form of a bitstring, which we will discuss in a later exercise.
+
+# Bitstring literals are defined using the bitstring special form <<>>. When defining a bitstring literal, it is defined in segments. Each segment has a value and type, separated by the :: operator. The type specifies how many bits will be used to encode the value. If the value of the segment overflows the capacity of the segment's type, it will be truncated from the left.
+
+# # This defines a bitstring with three segments of a single bit each
+# <<0::1, 1::1, 0::1>> == <<0::size(1), 1::size(1), 0::size(1)>>
+# # => true
+# <<0::1, 1::1, 0::1>> == <<2::size(3)>>
+# # => true
+# <<2::1>> == <<0::1>>
+# # => true because of value overflow
+# When writing binary integer literals, we can write them directly in base-2 notation by prefixing the literal with 0b.
+
+# value = 0b11111011011 = 2011
+# By default, bitstrings are displayed in chunks of 8 bits (a byte).
+
+# <<value::11>>
+# # => <<251, 3::size(3)>>
+# Constructing
+# We can combine bitstrings stored in variables using the special form:
+
+# first = <<0b110::3>>
+# second = <<0b001::3>>
+# combined = <<first::bitstring, second::bitstring>>
+# # => <<49::size(6)>>
+# Pattern matching
+# Pattern matching can also be done to obtain the value from within the special form:
+
+# <<value::4, rest::bitstring>> = <<0b01101001::8>>
+# value == 0b0110
+# # => true
+# Tail Call Recursion
+# When recursing through enumerables (lists, bitstrings, strings), there are often two concerns:
+
+# how much memory is required to store the trail of recursive function calls
+# how to build the solution efficiently
+# To deal with these concerns an accumulator may be used.
+
+# An accumulator is a variable that is passed along in addition to the data. It is used to pass the current state of the function's execution, from function call to function call, until the base case is reached. In the base case, the accumulator is used to return the final value of the recursive function call.
+
+# Accumulators should be initialized by the function's author, not the function's user. To achieve this, declare two functions - a public function that takes just the necessary data as arguments and initializes the accumulator, and a private function that also takes an accumulator. In Elixir, it is a common pattern to prefix the private function's name with do_.
+
+# # Count the length of a list without an accumulator
+# def count([]), do: 0
+# def count([_head | tail]), do: 1 + count(tail)
+
+# # Count the length of a list with an accumulator
+# def count(list), do: do_count(list, 0)
+
+# defp do_count([], count), do: count
+# defp do_count([_head | tail], count), do: do_count(tail, count + 1)
+# The usage of an accumulator allows us to turn recursive functions into tail-recursive functions. A function is tail-recursive if the last thing executed by the function is a call to itself.
+
+# Instructions
+# In your DNA research lab, you have been working through various ways to compress your research data to save storage space. One teammate suggests converting the DNA data to a binary representation:
+
+# Nucleic Acid	Code
+# a space	0000
+# A	0001
+# C	0010
+# G	0100
+# T	1000
+# You ponder this, as it will potentially halve the required data storage costs, but at the expense of human readability. You decide to write a module to encode and decode your data to benchmark your savings.
+
+# Task 1
+# Encode nucleic acid to binary value
+
+# Implement encode_nucleotide/1 to accept the code point for the nucleic acid and return the integer value of the encoded code.
+
+# DNA.encode_nucleotide(?A)
+# # => 0b0001
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Decode the binary value to the nucleic acid
+
+# Implement decode_nucleotide/1 to accept the integer value of the encoded code and return the code point for the nucleic acid.
+
+# DNA.decode_nucleotide(0b0001)
+# # => ?A
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Encode a DNA charlist
+
+# Implement encode/1 to accept a charlist representing nucleic acids and gaps and return a bitstring of the encoded data.
+
+# DNA.encode('AC GT')
+# # => <<18, 4, 8::size(4)>>
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Decode a DNA bitstring
+
+# Implement decode/1 to accept a bitstring representing nucleic acids and gaps and return the decoded data as a charlist.
+
+# DNA.decode(<<132, 2, 1::size(4)>>)
+# # => 'TG CA'
+
+
+defmodule DNA do
+  @code_point_map %{
+    ?\s => 0b0000,
+    ?A => 0b0001,
+    ?C => 0b0010,
+    ?G => 0b0100,
+    ?T => 0b1000
+  }
+  @encoded_code_point_map @code_point_map |> Map.new(fn {key, val} -> {val, key} end)
+
+  def encode_nucleotide(code_point), do: @code_point_map[code_point]
+  def decode_nucleotide(encoded_code), do: @encoded_code_point_map[encoded_code]
+
+  def encode([]), do: <<>>
+  def encode([head | tail]), do: <<encode_nucleotide(head)::4, encode(tail)::bitstring>>
+
+  def decode(<<>>), do: []
+  def decode(<<value::4, rest::bitstring>>), do: [decode_nucleotide(value) | decode(rest)]
+end
+
+
+
+# Elixir / Library Fees
+
+# Introduction
+# Dates and Time
+# Elixir's standard library offers 4 different modules for working with dates and time, each with its own struct.
+
+# The Date module. A Date struct can be created with the ~D sigil.
+
+# ~D[2021-01-01]
+# The Time module. A Time struct can be created with the ~T sigil.
+
+# ~T[12:00:00]
+# The NaiveDateTime module for datetimes without a timezone. A NaiveDateTime struct can be created with the ~N sigil.
+
+# ~N[2021-01-01 12:00:00]
+# The DateTime module for datetimes with a timezone. Using this module for timezones other than UTC requires an external dependency, a timezone database.
+
+# Comparisons
+# To compare dates or times to one another, look for a compare or diff function in the corresponding module. Comparison operators such as ==, >, and < seem to work, but they don't do a correct semantic comparison for those structs.
+
+# Instructions
+# Your librarian friend has asked you to extend her library software to automatically calculate late fees. Her current system stores the exact date and time of a book checkout as an ISO8601 datetime string. She runs a local library in a small town in Ghana, which uses the GMT timezone (UTC +0), doesn't use daylight saving time, and doesn't need to worry about other timezones.
+
+# Task 1
+# Parse the stored datetimes
+
+# Implement the LibraryFees.datetime_from_string/1 function. It should take an ISO8601 datetime string as an argument, and return a NaiveDateTime struct.
+
+# LibraryFees.datetime_from_string("2021-01-01T13:30:45Z")
+# # => ~N[2021-01-01 13:30:45]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Determine if a book was checked out before noon
+
+# If a book was checked out before noon, the reader has 28 days to return it. If it was checked out at or after noon, it's 29 days.
+
+# Implement the LibraryFees.before_noon?/1 function. It should take a NaiveDateTime struct and return a boolean.
+
+# LibraryFees.before_noon?(~N[2021-01-12 08:23:03])
+# # => true
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Calculate the return date
+
+# Based on the checkout datetime, calculate the return date.
+
+# Implement the LibraryFees.return_date/1 function. It should take a NaiveDateTime struct and return a Date struct, either 28 or 29 days later.
+
+# LibraryFees.return_date(~N[2020-11-28 15:55:33])
+# # => ~D[2020-12-27]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Determine how late the return of the book was
+
+# The library has a flat rate for late returns. To be able to calculate the fee, we need to know how many days after the return date the book was actually returned.
+
+# Implement the LibraryFees.days_late/2 function. It should take a Date struct - the planned return datetime, and a NaiveDateTime struct - the actual return datetime.
+
+# If the actual return date is on an earlier or the same day as the planned return datetime, the function should return 0. Otherwise, the function should return the difference between those two dates in days.
+
+# The library tracks both the date and time of the actual return of the book for statistical purposes, but doesn't use the time when calculating late fees.
+
+# LibraryFees.days_late(~D[2020-12-27], ~N[2021-01-03 09:23:36])
+# # => 7
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Determine if the book was returned on a Monday
+
+# The library has a special offer for returning books on Mondays.
+
+# Implement the LibraryFees.monday?/1 function. It should take a NaiveDateTime struct and return a boolean.
+
+# LibraryFees.monday?(~N[2021-01-03 13:30:45Z])
+# # => false
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 6
+# Calculate the late fee
+
+# Implement the LibraryFees.calculate_late_fee/3 function. It should take three arguments - two ISO8601 datetime strings, checkout datetime and actual return datetime, and the late fee for one day. It should return the total late fee according to how late the actual return of the book was.
+
+# Include the special Monday offer. If you return the book on Monday, your late fee is 50% off, rounded down.
+
+# # Sunday, 7 days late
+# LibraryFees.calculate_late_fee("2020-11-28T15:55:33Z", "2021-01-03T13:30:45Z", 100)
+# # => 700
+
+# # one day later, Monday, 8 days late
+# LibraryFees.calculate_late_fee("2020-11-28T15:55:33Z", "2021-01-04T09:02:11Z", 100)
+# # => 400
+
+
+defmodule LibraryFees do
+  def datetime_from_string(string), do: NaiveDateTime.from_iso8601!(string)
+  def before_noon?(datetime), do: datetime.hour < 12
+  def return_date(checkout_datetime) do
+    checkout_datetime |> Date.add(if before_noon?(checkout_datetime), do: 28, else: 29)
+  end
+  def days_late(planned_return_date, actual_return_datetime) do
+    actual_return_datetime |> Date.diff(planned_return_date) |> max(0)
+  end
+  def monday?(datetime), do: datetime |> Date.day_of_week() == 1
+  def calculate_late_fee(checkout_datetime, actual_return_datetime, late_fee_per_day) do
+    checkout_datetime = datetime_from_string(checkout_datetime)
+    actual_return_datetime = datetime_from_string(actual_return_datetime)
+    days_late = days_late(return_date(checkout_datetime), actual_return_datetime)
+    late_fee = days_late * late_fee_per_day
+    if monday?(actual_return_datetime), do: div(late_fee, 2), else: late_fee
+  end
+end
+
+
+
+# Elixir / Basketball Website
+
+# Introduction
+# Access Behaviour
+# Elixir uses code Behaviours to provide common generic interfaces while facilitating specific implementations for each module which implements it. One such common example is the Access Behaviour.
+
+# The Access Behaviour provides a common interface for retrieving data from a key-based data structure. The Access Behaviour is implemented for maps and keyword lists, but let's look at its use for maps to get a feel for it. Access Behaviour specifies that when you have a map, you may follow it with square brackets and then use the key to retrieve the value associated with that key.
+
+# # Suppose we have these two maps defined (note the difference in the key type)
+# my_map = %{key: "my value"}
+# your_map = %{"key" => "your value"}
+
+# # Obtain the value using the Access Behaviour
+# my_map[:key] == "my value"
+# your_map[:key] == nil
+# your_map["key"] == "your value"
+# If the key does not exist in the data structure, then nil is returned. This can be a source of unintended behavior, because it does not raise an error. Note that nil itself implements the Access Behaviour and always returns nil for any key.
+
+# Instructions
+# You are working with a web development team to maintain a website for a local basketball team. The web development team is less familiar with Elixir and is asking for a function to be able to extract data from a series of nested maps to facilitate rapid development.
+
+# Task 1
+# Extract data from a nested map structure
+
+# Implement the extract_from_path/2 function to take two arguments:
+
+# data: a nested map structure with data about the basketball team.
+# path: a string consisting of period-delimited keys to obtain the value associated with the last key.
+# If the value or the key does not exist at any point in the path, nil should be returned
+
+# data = %{
+#   "team_mascot" => %{
+#     "animal" => "bear",
+#     "actor" => %{
+#       "first_name" => "Noel"
+#     }
+#   }
+# }
+# BasketballWebsite.extract_from_path(data, "team_mascot.animal")
+# # => "bear"
+# BasketballWebsite.extract_from_path(data, "team_mascot.colors")
+# # => nil
+# Use the Access Behaviour when implementing this function.
+
+# Do not use any Map or Kernel module functions for working with the nested map data structure.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Refactor using included functions
+
+# Your coworker reviewing your code tells you about a Kernel module function which does something very similar to your implementation.
+
+# Implement get_in_path/2 to use this Kernel module function.
+
+# The arguments expected are the same as part 1.
+
+# BasketballWebsite.get_in_path(data, "team_mascot.actor.first_name")
+# # => "Noel"
+
+
+defmodule BasketballWebsite do
+  def extract_from_path(data, path), do: path |> String.split(".") |> Enum.reduce(data, & &2[&1])
+  def get_in_path(data, path), do: data |> get_in(path |> String.split("."))
+end
+
+
+
+# Elixir / Boutique Inventory
+
+# Introduction
+# Enum
+# Enum is a very useful module that provides a set of algorithms for working with enumerables. It offers sorting, filtering, grouping, counting, searching, finding min/max values, and much more.
+
+# In general, an enumerable is any data that can be iterated over, a collection. In Elixir, an enumerable is any data type that implements the Enumerable protocol. The most common of those are lists and maps.
+
+# Many Enum functions accept a function as an argument.
+
+# Enum.all?([1, 2, 3, 4, 5], fn x -> x > 3 end)
+# # => false
+# The most common Enum functions are map and reduce.
+
+# map/2
+# Enum.map/2 allows you to replace every element in an enumerable with another element. The second argument to Enum.map/2 is a function that accepts the original element and returns its replacement.
+
+# reduce/3
+# Enum.reduce/3 allows you to reduce the whole enumerable to a single value. To achieve this, a special variable called the accumulator is used. The accumulator carries the intermediate state of the reduction between iterations.
+
+# The second argument to Enum.reduce/3 is the initial value of the accumulator. The third argument is a function that accepts an element and an accumulator, and returns the new value for the accumulator.
+
+# Working with maps
+# When using maps with Enum functions, the map gets automatically converted to a list of 2 {key, value} tuples.
+
+# To transform it back to a map, use Enum.into/2. Enum.into/2 is a function that transforms an enumerable into a collectable - any data structure implementing the Collectable protocol. It can be thought of as the opposite of Enum.reduce/3.
+
+# Enum also has Enum.into/3. Enum.into/3 is a variation of Enum.into/2 that accepts a transformation function to be applied while transforming the enumerable into a collectable.
+
+# Mapping maps
+# Instead of using Enum.into/3 or Enum.map/2 plus Enum.into/1 to apply a transformation (mapping) to a map, we can also use a dedicated Map.new/2 function. It works exactly like Enum.into/3 in that it accepts an enumerable and a transformation function, but it always returns a new map instead of letting us choose a collectible.
+
+# Instructions
+# You are running an online fashion boutique. Your big annual sale is coming up, so you need to take stock of your inventory to make sure you're ready.
+
+# A single item in the inventory is represented by a map, and the whole inventory is a list of such maps.
+
+# %{
+#   name: "White Shirt",
+#   price: 40,
+#   quantity_by_size: %{s: 3, m: 7, l: 8, xl: 4}
+# }
+# Task 1
+# Sort items by price
+
+# Implement the sort_by_price/1 function. It should take the inventory and return it sorted by item price, ascending.
+
+# BoutiqueInventory.sort_by_price([
+#   %{price: 65, name: "Maxi Brown Dress", quantity_by_size: %{}},
+#   %{price: 50, name: "Red Short Skirt", quantity_by_size: %{}},
+#   %{price: 50, name: "Black Short Skirt", quantity_by_size: %{}},
+#   %{price: 20, name: "Bamboo Socks Cats", quantity_by_size: %{}}
+# ])
+# # => [
+# #      %{price: 20, name: "Bamboo Socks Cats", quantity_by_size: %{}},
+# #      %{price: 50, name: "Red Short Skirt", quantity_by_size: %{}},
+# #      %{price: 50, name: "Black Short Skirt", quantity_by_size: %{}},
+# #      %{price: 65, name: "Maxi Brown Dress", price: 65, quantity_by_size: %{}}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Find all items with missing prices
+
+# After sorting your inventory by price, you noticed that you must have made a mistake when you were taking stock and forgot to fill out prices for a few items.
+
+# Implement the with_missing_price/1 function. It should take the inventory and return a list of items that do not have prices.
+
+# BoutiqueInventory.with_missing_price([
+#   %{price: 40, name: "Black T-shirt", quantity_by_size: %{}},
+#   %{price: nil, name: "Denim Pants", quantity_by_size: %{}},
+#   %{price: nil, name: "Denim Skirt", quantity_by_size: %{}},
+#   %{price: 40, name: "Orange T-shirt", quantity_by_size: %{}}
+# ])
+# # => [
+# #      %{price: nil, name: "Denim Pants", quantity_by_size: %{}},
+# #      %{price: nil, name: "Denim Skirt", quantity_by_size: %{}}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Update item names
+
+# You noticed that some item names have a word that you don't like to use anymore. Now you need to update all the item names with that word.
+
+# Implement the update_names/3 function. It should take the inventory, the old word that you want to remove, and a new word that you want to use instead. It should return a list of items with updated names.
+
+# BoutiqueInventory.update_names(
+#   [
+#     %{price: 40, name: "Black T-shirt", quantity_by_size: %{}},
+#     %{price: 70, name: "Denim Pants", quantity_by_size: %{}},
+#     %{price: 65, name: "Denim Skirt", quantity_by_size: %{}},
+#     %{price: 40, name: "Orange T-shirt", quantity_by_size: %{}}
+#   ],
+#   "T-shirt",
+#   "Tee"
+# )
+# # => [
+# #      %{price: 40, name: "Black Tee", quantity_by_size: %{}},
+# #      %{price: 70, name: "Denim Pants", quantity_by_size: %{}},
+# #      %{price: 65, name: "Denim Skirt", quantity_by_size: %{}},
+# #      %{price: 40, name: "Orange Tee", quantity_by_size: %{}}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Increment the item's quantity
+
+# Some items were selling especially well, so you ordered more, in all sizes.
+
+# Implement the increase_quantity/2 function. It should take a single item and a number n, and return that item with the quantity for each size increased by n.
+
+# BoutiqueInventory.increase_quantity(
+#  %{
+#    name: "Polka Dot Skirt",
+#    price: 68,
+#    quantity_by_size: %{s: 3, m: 5, l: 3, xl: 4}
+#  },
+#  6
+# )
+# # => %{
+# #      name: "Polka Dot Skirt",
+# #      price: 68,
+# #      quantity_by_size: %{l: 9, m: 11, s: 9, xl: 10}
+# #    }
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Calculate the item's total quantity
+
+# To know how much space you need in your storage, you need to know how many of each item you have in total.
+
+# Implement the total_quantity/1 function. It should take a single item and return how many pieces you have in total, in any size.
+
+# BoutiqueInventory.total_quantity(%{
+#   name: "Red Shirt",
+#   price: 62,
+#   quantity_by_size: %{s: 3, m: 6, l: 5, xl: 2}
+# })
+# # => 16
+
+
+defmodule BoutiqueInventory do
+  def sort_by_price(inventory), do: inventory |> Enum.sort_by(& &1.price)
+  def with_missing_price(inventory), do: inventory |> Enum.filter(& is_nil(&1.price))
+
+  def update_names(inventory, old_word, new_word) do
+    inventory
+    |> Enum.map(fn item ->
+      %{item | name: String.replace(item.name, old_word, new_word)}
+    end)
+  end
+
+  def increase_quantity(item, count) do
+    %{item | quantity_by_size: item.quantity_by_size |> Map.new(fn {k, v} -> {k, v + count} end)}
+  end
+
+  def total_quantity(item) do
+    item.quantity_by_size
+    |> Enum.reduce(0, fn {_size, quantity}, acc -> acc + quantity end)
+  end
+end
+
+
+
+# Elixir / File Sniffer
+
+# Introduction
+# Binaries
+# Elixir provides an elegant syntax for working with binary data as we have seen with the <<>> special form provided for working with bitstrings.
+
+# The binary type is a specialization on the bitstring type. Where bitstrings could be of any length (any number of bits), binaries are where the number of bits can be evenly divided by 8. That is, when working with binaries, we often think of things in terms of bytes (8 bits). A byte can represent integer numbers from 0 to 255. It is common to work with byte values in hexadecimal, 0x00 - 0xFF.
+
+# Binary literals are defined using the bitstring special form <<>>. When defining a binary literal, we can use integer and string literals. Integer values greater than 255 will overflow and only the last 8 bits of the integer will be used. By default, the ::binary modifier is applied to the value. We can concatenate binaries with the <>/2 operator.
+
+# <<255>> == <<0xFF>>
+# <<256>> == <<0>> # Overflowing bits are truncated
+# <<2, 4, 6, 8, 10, 12, 14, 16>> == <<0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0E, 0x10>>
+# A null-byte is another name for <<0>>.
+
+# Pattern matching on binary data
+# Pattern matching is even extended to binaries, and we can pattern match on a portion of binary data much like we could for a list.
+
+# # Ignore the first 8 bytes, match and bind the remaining to `body`
+# <<_::binary-size(8), body::binary>>
+# Like with other types of pattern matching, we can use this in function signatures to match when selecting from multiple function clauses.
+
+# Instructions
+# You have been working on a project which allows users to upload files to the server to be shared with other users. You have been tasked with writing a function to verify that an upload matches its media type. You do some research and discover that the first few bytes of a file are generally unique to that file type, giving it a sort of signature.
+
+# Use the following table for reference:
+
+# File type	Common extension	Media type	binary 'signature'
+# ELF	"exe"	"application/octet-stream"	0x7F, 0x45, 0x4C, 0x46
+# BMP	"bmp"	"image/bmp"	0x42, 0x4D
+# PNG	"png"	"image/png"	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A
+# JPG	"jpg"	"image/jpg"	0xFF, 0xD8, 0xFF
+# GIF	"gif"	"image/gif"	0x47, 0x49, 0x46
+# Task 1
+# Given an extension, return the expected media type
+
+# Implement the type_from_extension/1 function. It should take a file extension (string) and return the media type (string) or nil if the extension does not match with the expected ones.
+
+# FileSniffer.type_from_extension("exe")
+# # => "application/octet-stream"
+
+# FileSniffer.type_from_extension("txt")
+# # => nil
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Given a binary file, return the expected media type
+
+# Implement the type_from_binary/1 function. It should take a file (binary) and return the media type (string) or nil if the extension does not match with the expected ones.
+
+# file = File.read!("application.exe")
+# FileSniffer.type_from_binary(file)
+# # => "application/octet-stream"
+
+# file = File.read!("example.txt")
+# FileSniffer.type_from_binary(file)
+# # => nil
+# Don't worry about reading the file as a binary. Assume that has been done for you and is provided by the tests as an argument.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Given an extension and a binary file, verify that the file matches the expected type
+
+# Implement the verify/2 function. It should take a file (binary) and extension (string) and return an :ok or :error tuple.
+
+# file = File.read!("application.exe")
+
+# FileSniffer.verify(file, "exe")
+# # => {:ok, "application/octet-stream"}
+
+# FileSniffer.verify(file, "png")
+# # => {:error, "Warning, file format and file extension do not match."}
+
+
+defmodule FileSniffer do
+  @types %{
+    "exe" => {"application/octet-stream", <<0x7F, 0x45, 0x4C, 0x46>>},
+    "png" => {"image/png", <<0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A>>},
+    "bmp" => {"image/bmp", <<0x42, 0x4D>>},
+    "gif" => {"image/gif", <<0x47, 0x49, 0x46>>},
+    "jpg" => {"image/jpg", <<0xFF, 0xD8, 0xFF>>}
+  }
+
+  def type_from_extension(extension), do: case @types[extension], do: ({type, _} -> type; _ -> nil)
+  def type_from_binary(binary) do
+    @types
+    |> Enum.find_value(fn {_extension, {type, signature}} ->
+      if String.starts_with?(binary, signature), do: type
+    end)
+  end
+  def verify(file, extension) do
+    case {type_from_extension(extension), type_from_binary(file)} do
+      {expected, expected} -> {:ok, expected}
+      {expected, actual} -> {:error, "Warning, file format and file extension do not match."}
+    end
+  end
+end
+
+
+
+# Elixir / Newsletter
+
+# Introduction
+# File
+# Functions for working with files are provided by the File module.
+
+# To read a whole file, use File.read/1. To write to a file, use File.write/2.
+
+# Every time a file is written to with File.write/2, a file descriptor is opened and a new Elixir process is spawned. For this reason, writing to a file in a loop using File.write/2 should be avoided.
+
+# Instead, a file can be opened using File.open/2. The second argument to File.open/2 is a list of modes, which allows you to specify if you want to open the file for reading or for writing.
+
+# File.open/2 returns a PID of a process that handles the file. To read and write to the file, use functions from the IO module and pass this PID as the IO device.
+
+# When you're finished working with the file, close it with File.close/1.
+
+# All the mentioned functions from the File module also have a ! variant that raises an error instead of returning an error tuple (e.g. File.read!/1). Use that variant if you don't intend to handle errors such as missing files or lack of permissions.
+
+# Instructions
+# You're a big model train enthusiast and have decided to share your passion with the world by starting a newsletter. You'll start by sending the first issue of your newsletter to your friends and acquaintances that share your hobby. You have a text file with a list of their email addresses.
+
+# Task 1
+# Read email addresses from a file
+
+# Implement the Newsletter.read_emails/1 function. It should take a file path. The file is a text file that contains email addresses separated by newlines. The function should return a list of the email addresses from the file.
+
+# Newsletter.read_emails("/home/my_user/documents/model_train_friends_emails.txt")
+# # => ["rick@example.com", "choochoo42@example.com", "anna@example.com"]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Open a log file for writing
+
+# Sending an email is a task that might fail for many unpredictable reasons, like a typo in the email address or temporary network issues. To ensure that you can retry sending the emails to all your friends without sending duplicates, you need to log the email addresses that already received the email. For this, you'll need a log file.
+
+# Implement the Newsletter.open_log/1 function. It should take a file path, open the file for writing, and return the PID of the process that handles the file.
+
+# Newsletter.open_log("/home/my_user/documents/newsletter_issue1_log.txt")
+# # => #PID<0.145.0>
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Log a sent email
+
+# Implement the Newsletter.log_sent_email/2 function. It should take a PID of the process that handles the file and a string with the email address. It should write the email address to the file, followed by a newline.
+
+# Newsletter.log_sent_email(pid, "joe@example.com")
+# # => :ok
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Close the log file
+
+# Implement the Newsletter.close_log/1 function. It should take a PID of the process that handles the file and close the file.
+
+# Newsletter.close_log(pid)
+# # => :ok
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Send the newsletter
+
+# Now that you have all of the building blocks of the email sending procedure, you need to combine them together in a single function.
+
+# Implement the Newsletter.send_newsletter/3 function. It should take a path of the file with email addresses, a path of a log file, and an anonymous function that sends an email to a given email address. It should read all the email addresses from the given file and attempt to send an email to every one of them. If the anonymous function that sends the email returns :ok, write the email address to the log file, followed by a new line. Make sure to do it as soon as the email is sent. Afterwards, close the log file.
+
+# Newsletter.send_newsletter(
+#   "model_train_friends_emails.txt",
+#   "newsletter_issue1_log.txt",
+#   fn email -> :ok end
+# )
+# # => :ok
+
+
+defmodule Newsletter do
+  def read_emails(path), do: path |> File.read!() |> String.split()
+  def open_log(path), do: File.open!(path, [:write])
+  def log_sent_email(pid, email), do: IO.puts(pid, email)
+  def close_log(pid), do: File.close(pid)
+  def send_newsletter(emails_path, log_path, send_fun) do
+    log = open_log(log_path)
+
+    read_emails(emails_path)
+    |> Enum.each(&(send_fun.(&1) == :ok and log_sent_email(log, &1)))
+
+    close_log(log)
+  end
+end
+
+
+
+# Elixir / Chessboard
+
+# Introduction
+# Ranges
+# Ranges represent a sequence of one or many consecutive integers. They are created by connecting two integers with ...
+
+# 1..5
+# Ranges can be ascending or descending. They are always inclusive of the first and last values.
+
+# A range implements the Enumerable protocol, which means functions in the Enum module can be used to work with ranges.
+
+# Instructions
+# As a chess enthusiast, you would like to write your own version of the game. Yes, there maybe plenty of implementations of chess available online already, but yours will be unique!
+
+# But before you can let your imagination run wild, you need to take care of the basics. Let's start by generating the board.
+
+# Each square of the chessboard is identified by a letter-number pair. The vertical columns of squares, called files, are labeled A through H. The horizontal rows of squares, called ranks, are numbered 1 to 8.
+
+# Task 1
+# Define the rank range
+
+# Implement the rank_range/0 function. It should return a range of integers, from 1 to 8.
+
+# Chessboard.rank_range()
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Define the file range
+
+# Implement the file_range/0 function. It should return a range of integers, from the code point of the uppercase letter A, to the code point of the uppercase letter H.
+
+# Chessboard.file_range()
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Transform the rank range into a list of ranks
+
+# Implement the ranks/0 function. It should return a list of integers, from 1 to 8. Do not write the list by hand, generate it from the range returned by the rank_range/0 function.
+
+# Chessboard.ranks()
+# # => [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Transform the file range into a list of files
+
+# Implement the files/0 function. It should return a list of letters (strings), from "A" to "H". Do not write the list by hand, generate it from the range returned by the file_range/0 function.
+
+# Chessboard.files()
+# # => ["A", "B", "C", "D", "E", "F", "G", "H"]
+
+
+defmodule Chessboard do
+  def rank_range(), do: 1..8
+  def file_range(), do: ?A..?H
+  def ranks(), do: rank_range() |> Enum.to_list()
+  def files(), do: file_range() |> Enum.map(& <<&1>>)
+end
+
+
+
+# Elixir / Remote Control Car
+
+# Introduction
+# Structs
+# Structs are an extension built on top of maps which provide compile-time checks and default values. A struct is named after the module it is defined in. To define a struct use the defstruct construct. The construct usually immediately follows after the module definition. defstruct accepts either a list of atoms (for nil default values) or a keyword list (for specified default values). The fields without defaults must precede the fields with default values.
+
+# defmodule Plane do
+#   defstruct [:engine, wings: 2]
+# end
+
+# plane = %Plane{}
+# # => %Plane{engine: nil, wings: 2}
+# Accessing fields and updating
+# Since structs are built on maps, we can use most map functions to get and manipulate values. The Access Behaviour is not implemented for structs. It is recommended to use the static access operator . to access struct fields instead.
+
+# get/fetch field values:
+
+# plane = %Plane{}
+# plane.engine
+# # => nil
+# Map.fetch(plane, :wings)
+# # => 2
+# update field values
+
+# plane = %Plane{}
+# %{plane | wings: 4}
+# # => %Plane{engine: nil, wings: 4}
+# Enforcing field value initialization
+# We can use the @enforce_keys module attribute with a list of the field keys to ensure that the values are initialized when the struct is created. If a key is not listed, its value will be nil as seen in the above example. If an enforced key is not initialized, an error is raised.
+
+# defmodule User do
+#   @enforce_keys [:username]
+#   defstruct [:username]
+# end
+
+# %User{}
+# # => (ArgumentError) the following keys must also be given when building struct User: [:username]
+# Instructions
+# In this exercise you'll be playing around with a remote controlled car, which you've finally saved enough money for to buy.
+
+# Cars start with full (100%) batteries. Each time you drive the car using the remote control, it covers 20 meters and drains one percent of the battery. The car's nickname is not known until it is created.
+
+# The remote controlled car has a fancy LED display that shows two bits of information:
+
+# The total distance it has driven, displayed as: "<METERS> meters".
+# The remaining battery charge, displayed as: "Battery at <PERCENTAGE>%".
+# If the battery is at 0%, you can't drive the car anymore and the battery display will show "Battery empty".
+
+# Task 1
+# Create a brand-new remote controlled car
+
+# Implement the RemoteControlCar.new/0 function to return a brand-new remote controlled car struct:
+
+# RemoteControlCar.new()
+# # => %RemoteControlCar{
+# #      battery_percentage: 100,
+# #      distance_driven_in_meters: 0,
+# #      nickname: "none"
+# #    }
+# The nickname is required by the struct, make sure that a value is initialized in the new function, but not in the struct.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Create a brand-new remote controlled car with a nickname
+
+# Implement the RemoteControlCar.new/1 function to return a brand-new remote controlled car struct with a provided nickname:
+
+# RemoteControlCar.new("Blue")
+# # => %RemoteControlCar{
+# #      battery_percentage: 100,
+# #      distance_driven_in_meters: 0,
+# #      nickname: "Blue"
+# #    }
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Display the distance
+
+# Implement the RemoteControlCar.display_distance/1 function to return the distance as displayed on the LED display:
+
+# car = RemoteControlCar.new()
+# RemoteControlCar.display_distance(car)
+# # => "0 meters"
+# Make sure the function only accepts a RemoteControlCar struct as the argument.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Display the battery percentage
+
+# Implement the RemoteControlCar.display_battery/1 function to return the battery percentage as displayed on the LED display:
+
+# car = RemoteControlCar.new()
+# RemoteControlCar.display_battery(car)
+# # => "Battery at 100%"
+# Make sure the function only accepts a RemoteControlCar struct as the argument. If the battery is at 0%, the battery display will show "Battery empty".
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Driving changes the battery and distance driven
+
+# Implement the RemoteControlCar.drive/1 function that:
+
+# updates the number of meters driven by 20
+# drains 1% of the battery
+# RemoteControlCar.new("Red")
+# |> RemoteControlCar.drive()
+# # => %RemoteControlCar{
+# #      battery_percentage: 99,
+# #      distance_driven_in_meters: 20,
+# #      nickname: "Red"
+# #    }
+
+# Make sure the function only accepts a RemoteControlCar struct as the argument.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 6
+# Account for driving with a dead battery
+
+# Update the RemoteControlCar.drive/1 function to not increase the distance driven nor decrease the battery percentage when the battery is drained (at 0%):
+
+# %RemoteControlCar{
+#   battery_percentage: 0,
+#   distance_driven_in_meters: 1980,
+#   nickname: "Red"
+# }
+# |> RemoteControlCar.drive()
+# # => %RemoteControlCar{
+# #      battery_percentage: 0,
+# #      distance_driven_in_meters: 1980,
+# #      nickname: "Red"
+# #    }
+
+
+defmodule RemoteControlCar do
+  @enforce_keys [:nickname]
+  defstruct [
+    :nickname,
+    battery_percentage: 100,
+    distance_driven_in_meters: 0
+  ]
+
+  @meters_per_drive_unit 20
+  @battery_percent_per_drive_unit 1
+
+  def new(nickname \\ "none"), do: %__MODULE__{nickname: nickname}
+  def display_distance(%__MODULE__{} = module), do: "#{module.distance_driven_in_meters} meters"
+  def display_battery(%__MODULE__{battery_percentage: 0}), do: "Battery empty"
+  def display_battery(%__MODULE__{} = module), do: "Battery at #{module.battery_percentage}%"
+  def drive(%__MODULE__{battery_percentage: 0} = module), do: module
+  def drive(%__MODULE__{} = module), do: %__MODULE__{ module |
+      battery_percentage: module.battery_percentage - @battery_percent_per_drive_unit,
+      distance_driven_in_meters: module.distance_driven_in_meters + @meters_per_drive_unit
+    }
 end
