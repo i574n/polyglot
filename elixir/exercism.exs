@@ -30,7 +30,7 @@ end
 
 
 
-# Elixir / Lasagna
+# Elixir / Lasagna {{Basics}}
 
 # Introduction
 # Basics
@@ -164,7 +164,7 @@ end
 
 
 
-# Elixir / Pacman Rules
+# Elixir / Pacman Rules {{Booleans}}
 
 # Introduction
 # Booleans
@@ -249,88 +249,118 @@ end
 
 
 
-# Elixir / Log Level
+# Elixir / Freelancer Rates {{Floating Point Numbers}} {{Integers}}
 
 # Introduction
-# Atoms
-# Elixir's atom type represents a fixed constant. An atom's value is simply its own name. This gives us a type-safe way to interact with data. Atoms can be defined as follows:
+# Integers
+# There are two different kinds of numbers in Elixir - integers and floats.
 
-# # All atoms are preceded with a ':' then follow with alphanumeric snake-cased characters
-# variable = :an_atom
-# Atoms are internally represented by an integer in a lookup table, which are set automatically. It is not possible to change this internal value.
+# Integers are whole numbers.
 
-# Cond
-# Often, we want to write code that can branch based on a condition. While there are many ways to do this in Elixir, one of the simplest ways is using cond/1.
+# integer = 3
+# # => 3
+# Floating Point Numbers
+# Floats are numbers with one or more digits behind the decimal separator. They use the 64-bit double precision floating-point format.
 
-# At its simplest, cond follows the first path that evaluates to true with one or more branches:
+# float = 3.45
+# # => 3.45
+# Working with numbers
+# In the Integer and Float modules you can find some useful functions for working with those types. Basic arithmetic operators are defined in the Kernel module.
 
-# cond do
-#   x > 10 -> :this_might_be_the_way
-#   y < 7 -> :or_that_might_be_the_way
-#   true -> :this_is_the_default_way
-# end
-# If no path evaluates to true, an error is raised by the runtime.
+# Conversion
+# Integers and floats can be mixed together in a single arithmetic expression. Using a float in an expression ensures the result will be a float too.
+
+# 2 * 3
+# # => 6
+
+# 2 * 3.0
+# # => 6.0
+# However, when doing division, the result will always be a float, even if only integers are used.
+
+# 6 / 2
+# # => 3.0
+# To convert a float to an integer, you can discard the decimal part with trunc/1.
 
 # Instructions
-# You are running a system that consists of a few applications producing many logs. You want to write a small program that will aggregate those logs and give them labels according to their severity level. All applications in your system use the same log codes, but some of the legacy applications don't support all the codes.
+# In this exercise you'll be writing code to help a freelancer communicate with a project manager by providing a few utilities to quickly calculate daily and monthly rates, optionally with a given discount.
 
-# Log code	Log label	Supported in legacy apps?
-# 0	trace	no
-# 1	debug	yes
-# 2	info	yes
-# 3	warning	yes
-# 4	error	yes
-# 5	fatal	no
-# ?	unknown	-
+# We first establish a few rules between the freelancer and the project manager:
+
+# The daily rate is 8 times the hourly rate.
+# A month has 22 billable days.
+# The freelancer is offering to apply a discount if the project manager chooses to let the freelancer bill per month, which can come in handy if there is a certain budget the project manager has to work with.
+
+# Discounts are modeled as fractional numbers representing percentage, for example 25.0 (25%).
+
 # Task 1
-# Return the logging code label
+# Calculate the daily rate given an hourly rate
 
-# Implement the LogLevel.to_label/2 function. It should take an integer code and a boolean flag telling you if the log comes from a legacy app, and return the label of a log line as an atom. Unknown log codes and codes unsupported in a legacy app should return an unknown label.
+# Implement a function to calculate the daily rate given an hourly rate:
 
-# LogLevel.to_label(0, false)
-# # => :trace
+# FreelancerRates.daily_rate(60)
+# # => 480.0
+# The returned daily rate should be a float.
 
-# LogLevel.to_label(0, true)
-# # => :unknown
 
 # Stuck? Reveal Hints
 # Opens in a modal
 # Task 2
-# Send an alert
+# Calculate a discounted price
 
-# Somebody has to be notified when unexpected things happen.
+# Implement a function to calculate the price after a discount.
 
-# Implement the LogLevel.alert_recipient/2 function to determine to whom the alert needs to be sent. The function should take an integer code and a boolean flag telling you if the log comes from a legacy app, and return the name of the recipient as an atom.
-
-# If the log label is error or fatal, send the alert to the ops team. If you receive a log with an unknown label from a legacy system, send the alert to the dev1 team, other unknown labels should be sent to the dev2 team. All other log labels can be safely ignored.
-
-# LogLevel.alert_recipient(-1, true)
-# # => :dev1
-
-# LogLevel.alert_recipient(0, false)
-# # => false
+# FreelancerRates.apply_discount(150, 10)
+# # => 135.0
+# The returned value should always be a float, not rounded in any way.
 
 
-defmodule LogLevel do
-  def to_label(0, false), do: :trace
-  def to_label(1, _), do: :debug
-  def to_label(2, _), do: :info
-  def to_label(3, _), do: :warning
-  def to_label(4, _), do: :error
-  def to_label(5, false), do: :fatal
-  def to_label(_level, _legacy?), do: :unknown
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Calculate the monthly rate, given an hourly rate and a discount
 
-  def alert_recipient(level, legacy?) when is_number(level), do: alert_recipient(to_label(level, legacy?), legacy?)
-  def alert_recipient(:error, _), do: :ops
-  def alert_recipient(:fatal, _), do: :ops
-  def alert_recipient(:unknown, true), do: :dev1
-  def alert_recipient(:unknown, false), do: :dev2
-  def alert_recipient(_, _), do: false
+# Implement a function to calculate the monthly rate, and apply a discount:
+
+# FreelancerRates.monthly_rate(77, 10.5)
+# # => 12130
+# The returned monthly rate should be rounded up (take the ceiling) to the nearest integer.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Calculate the number of workdays given a budget, hourly rate and discount
+
+# Implement a function that takes a budget, an hourly rate, and a discount, and calculates how many days of work that covers.
+
+# FreelancerRates.days_in_budget(20000, 80, 11.0)
+# # => 35.1
+# The returned number of days should be rounded down (take the floor) to one decimal place.
+
+
+defmodule FreelancerRates do
+  @daily_rate 8.0
+  @monthly_billable_days 22
+
+  def daily_rate(hourly_rate), do: hourly_rate * @daily_rate
+  def apply_discount(before_discount, discount), do: before_discount * (1 - discount / 100)
+
+  def monthly_rate(hourly_rate, discount) do
+    daily_rate(hourly_rate) * @monthly_billable_days
+    |> apply_discount(discount)
+    |> Float.ceil()
+    |> round()
+  end
+
+  def days_in_budget(budget, hourly_rate, discount) do
+    budget / apply_discount(daily_rate(hourly_rate), discount)
+    |> Float.floor(1)
+  end
 end
 
 
 
-# Elixir / Secrets
+# Elixir / Secrets {{Anonymous Functions}} {{Bit Manipulation}}
 
 # Introduction
 # Anonymous Functions
@@ -479,232 +509,88 @@ end
 
 
 
-# Elixir / Guessing Game
+# Elixir / Log Level {{Atoms}} {{Cond}}
 
 # Introduction
-# Multiple Clause Functions
-# Elixir facilitates Open-Close Principle practices by allowing functions to have multiple clauses, so instead of sprawling and hard-coded control-logic, pointed functions can be written to add/remove behavior easily.
+# Atoms
+# Elixir's atom type represents a fixed constant. An atom's value is simply its own name. This gives us a type-safe way to interact with data. Atoms can be defined as follows:
 
-# Elixir offers multiple function clauses and guards to write:
+# # All atoms are preceded with a ':' then follow with alphanumeric snake-cased characters
+# variable = :an_atom
+# Atoms are internally represented by an integer in a lookup table, which are set automatically. It is not possible to change this internal value.
 
-# def number(n) when n == 7 do
-#   "Awesome, that's my favorite"
+# Cond
+# Often, we want to write code that can branch based on a condition. While there are many ways to do this in Elixir, one of the simplest ways is using cond/1.
+
+# At its simplest, cond follows the first path that evaluates to true with one or more branches:
+
+# cond do
+#   x > 10 -> :this_might_be_the_way
+#   y < 7 -> :or_that_might_be_the_way
+#   true -> :this_is_the_default_way
 # end
-# def number(_n) do
-#   "That's not my favorite"
-# end
-# At run-time, Elixir will test, from top to bottom of the source file, which function clause to invoke.
+# If no path evaluates to true, an error is raised by the runtime.
 
-# Variables that are unused should be prefixed with an underscore.
-
-# Guards
-# Guards are used to prevent Elixir from invoking functions based on evaluation of the arguments by guard functions. Guards begin with the when keyword, followed by a boolean expression. Guard functions are special functions which:
-
-# Must be pure and not mutate any global states.
-# Must return strict true or false values.
-# A list of common guards can be found in the Elixir documentation. It includes type checks, basic arithmetic, comparisons, and strictly boolean operators.
-
-# Default Arguments
-# Functions may declare default values for one or more arguments. Let's consider this function:
-
-# def number(n \\ 13), do: "That's not my favorite"
-# When compiled, Elixir creates a function definition for number/0 (no arguments), and number/1 (one argument).
-
-# If more than one argument has default values, the default values will be applied to the function from left to right to fill in for missing arguments.
-
-# If the function has more than one clause, the default arguments should be defined in a function header (a function without a body) before the function clauses:
-
-# def number(n \\ 13)
-# def number(n) when n < 10, do: "Dream bigger!"
-# def number(n) when n > 100, do: "Not that big..."
 # Instructions
-# You are creating a trivial online game where a friend can guess a secret number. You want to give some feedback, but not give away the answer with a guess. You need to devise a function to provide different responses depending on how the guess relates to the secret number.
+# You are running a system that consists of a few applications producing many logs. You want to write a small program that will aggregate those logs and give them labels according to their severity level. All applications in your system use the same log codes, but some of the legacy applications don't support all the codes.
 
-# Condition	Response
-# When the guess matches the secret number	"Correct"
-# When the guess is one more or one less than the secret number	"So close"
-# When the guess is greater than the secret number	"Too high"
-# When the guess is less than the secret number	"Too low"
-# When a guess isn't made	"Make a guess"
-# All guesses and secret numbers are integer numbers.
-
+# Log code	Log label	Supported in legacy apps?
+# 0	trace	no
+# 1	debug	yes
+# 2	info	yes
+# 3	warning	yes
+# 4	error	yes
+# 5	fatal	no
+# ?	unknown	-
 # Task 1
-# Make the response when the guess matches the secret number
+# Return the logging code label
 
-# Implement the compare/2 function which takes two arguments, secret_number and guess, which are both integers.
+# Implement the LogLevel.to_label/2 function. It should take an integer code and a boolean flag telling you if the log comes from a legacy app, and return the label of a log line as an atom. Unknown log codes and codes unsupported in a legacy app should return an unknown label.
 
-# GuessingGame.compare(5, 5)
-# # => "Correct"
+# LogLevel.to_label(0, false)
+# # => :trace
+
+# LogLevel.to_label(0, true)
+# # => :unknown
 
 # Stuck? Reveal Hints
 # Opens in a modal
 # Task 2
-# Make the response when the guess is greater than the secret number
+# Send an alert
 
-# Modify the compare function to respond to guesses that are higher than the secret number.
+# Somebody has to be notified when unexpected things happen.
 
-# GuessingGame.compare(5, 8)
-# # => "Too high"
+# Implement the LogLevel.alert_recipient/2 function to determine to whom the alert needs to be sent. The function should take an integer code and a boolean flag telling you if the log comes from a legacy app, and return the name of the recipient as an atom.
 
-# Stuck? Reveal Hints
-# Opens in a modal
-# Task 3
-# Make the response when the guess is less than the secret number
+# If the log label is error or fatal, send the alert to the ops team. If you receive a log with an unknown label from a legacy system, send the alert to the dev1 team, other unknown labels should be sent to the dev2 team. All other log labels can be safely ignored.
 
-# Modify the compare function to respond to guesses that are lower than the secret number.
+# LogLevel.alert_recipient(-1, true)
+# # => :dev1
 
-# GuessingGame.compare(5, 2)
-# # => "Too low"
-
-# Stuck? Reveal Hints
-# Opens in a modal
-# Task 4
-# Make the responses when the guess is one more or one less than the secret number
-
-# Modify the compare function to respond to guesses that are close to the secret number.
-
-# GuessingGame.compare(5, 6)
-# # => "So close"
-# GuessingGame.compare(5, 4)
-# # => "So close"
-
-# Stuck? Reveal Hints
-# Opens in a modal
-# Task 5
-# Make the response when there is no guess
-
-# Modify the compare function to respond to a lack of guess.
-
-# GuessingGame.compare(5)
-# # => "Make a guess"
-
-# GuessingGame.compare(5, :no_guess)
-# # => "Make a guess"
+# LogLevel.alert_recipient(0, false)
+# # => false
 
 
-defmodule GuessingGame do
-  def compare(secret_number, guess) when guess == secret_number, do: "Correct"
-  def compare(secret_number, guess \\ :no_guess) when guess == :no_guess, do: "Make a guess"
-  def compare(secret_number, guess) when guess == secret_number - 1, do: "So close"
-  def compare(secret_number, guess) when guess == secret_number + 1, do: "So close"
-  def compare(secret_number, guess) when guess > secret_number, do: "Too high"
-  def compare(secret_number, guess) when guess < secret_number, do: "Too low"
+defmodule LogLevel do
+  def to_label(0, false), do: :trace
+  def to_label(1, _), do: :debug
+  def to_label(2, _), do: :info
+  def to_label(3, _), do: :warning
+  def to_label(4, _), do: :error
+  def to_label(5, false), do: :fatal
+  def to_label(_level, _legacy?), do: :unknown
+
+  def alert_recipient(level, legacy?) when is_number(level), do: alert_recipient(to_label(level, legacy?), legacy?)
+  def alert_recipient(:error, _), do: :ops
+  def alert_recipient(:fatal, _), do: :ops
+  def alert_recipient(:unknown, true), do: :dev1
+  def alert_recipient(:unknown, false), do: :dev2
+  def alert_recipient(_, _), do: false
 end
 
 
 
-# Elixir / Freelancer Rates
-
-# Introduction
-# Integers
-# There are two different kinds of numbers in Elixir - integers and floats.
-
-# Integers are whole numbers.
-
-# integer = 3
-# # => 3
-# Floating Point Numbers
-# Floats are numbers with one or more digits behind the decimal separator. They use the 64-bit double precision floating-point format.
-
-# float = 3.45
-# # => 3.45
-# Working with numbers
-# In the Integer and Float modules you can find some useful functions for working with those types. Basic arithmetic operators are defined in the Kernel module.
-
-# Conversion
-# Integers and floats can be mixed together in a single arithmetic expression. Using a float in an expression ensures the result will be a float too.
-
-# 2 * 3
-# # => 6
-
-# 2 * 3.0
-# # => 6.0
-# However, when doing division, the result will always be a float, even if only integers are used.
-
-# 6 / 2
-# # => 3.0
-# To convert a float to an integer, you can discard the decimal part with trunc/1.
-
-# Instructions
-# In this exercise you'll be writing code to help a freelancer communicate with a project manager by providing a few utilities to quickly calculate daily and monthly rates, optionally with a given discount.
-
-# We first establish a few rules between the freelancer and the project manager:
-
-# The daily rate is 8 times the hourly rate.
-# A month has 22 billable days.
-# The freelancer is offering to apply a discount if the project manager chooses to let the freelancer bill per month, which can come in handy if there is a certain budget the project manager has to work with.
-
-# Discounts are modeled as fractional numbers representing percentage, for example 25.0 (25%).
-
-# Task 1
-# Calculate the daily rate given an hourly rate
-
-# Implement a function to calculate the daily rate given an hourly rate:
-
-# FreelancerRates.daily_rate(60)
-# # => 480.0
-# The returned daily rate should be a float.
-
-
-# Stuck? Reveal Hints
-# Opens in a modal
-# Task 2
-# Calculate a discounted price
-
-# Implement a function to calculate the price after a discount.
-
-# FreelancerRates.apply_discount(150, 10)
-# # => 135.0
-# The returned value should always be a float, not rounded in any way.
-
-
-# Stuck? Reveal Hints
-# Opens in a modal
-# Task 3
-# Calculate the monthly rate, given an hourly rate and a discount
-
-# Implement a function to calculate the monthly rate, and apply a discount:
-
-# FreelancerRates.monthly_rate(77, 10.5)
-# # => 12130
-# The returned monthly rate should be rounded up (take the ceiling) to the nearest integer.
-
-
-# Stuck? Reveal Hints
-# Opens in a modal
-# Task 4
-# Calculate the number of workdays given a budget, hourly rate and discount
-
-# Implement a function that takes a budget, an hourly rate, and a discount, and calculates how many days of work that covers.
-
-# FreelancerRates.days_in_budget(20000, 80, 11.0)
-# # => 35.1
-# The returned number of days should be rounded down (take the floor) to one decimal place.
-
-
-defmodule FreelancerRates do
-  @daily_rate 8.0
-  @monthly_billable_days 22
-
-  def daily_rate(hourly_rate), do: hourly_rate * @daily_rate
-  def apply_discount(before_discount, discount), do: before_discount * (1 - discount / 100)
-
-  def monthly_rate(hourly_rate, discount) do
-    daily_rate(hourly_rate) * @monthly_billable_days
-    |> apply_discount(discount)
-    |> Float.ceil()
-    |> round()
-  end
-
-  def days_in_budget(budget, hourly_rate, discount) do
-    budget / apply_discount(daily_rate(hourly_rate), discount)
-    |> Float.floor(1)
-  end
-end
-
-
-
-# Elixir / Language List
+# Elixir / Language List {{Lists}}
 
 # Introduction
 # Lists
@@ -832,66 +718,121 @@ end
 
 
 
-# Elixir / Leap
+# Elixir / Guessing Game {{Default Arguments}} {{Guards}} {{Multiple Clause Functions}}
 
+# Introduction
+# Multiple Clause Functions
+# Elixir facilitates Open-Close Principle practices by allowing functions to have multiple clauses, so instead of sprawling and hard-coded control-logic, pointed functions can be written to add/remove behavior easily.
+
+# Elixir offers multiple function clauses and guards to write:
+
+# def number(n) when n == 7 do
+#   "Awesome, that's my favorite"
+# end
+# def number(_n) do
+#   "That's not my favorite"
+# end
+# At run-time, Elixir will test, from top to bottom of the source file, which function clause to invoke.
+
+# Variables that are unused should be prefixed with an underscore.
+
+# Guards
+# Guards are used to prevent Elixir from invoking functions based on evaluation of the arguments by guard functions. Guards begin with the when keyword, followed by a boolean expression. Guard functions are special functions which:
+
+# Must be pure and not mutate any global states.
+# Must return strict true or false values.
+# A list of common guards can be found in the Elixir documentation. It includes type checks, basic arithmetic, comparisons, and strictly boolean operators.
+
+# Default Arguments
+# Functions may declare default values for one or more arguments. Let's consider this function:
+
+# def number(n \\ 13), do: "That's not my favorite"
+# When compiled, Elixir creates a function definition for number/0 (no arguments), and number/1 (one argument).
+
+# If more than one argument has default values, the default values will be applied to the function from left to right to fill in for missing arguments.
+
+# If the function has more than one clause, the default arguments should be defined in a function header (a function without a body) before the function clauses:
+
+# def number(n \\ 13)
+# def number(n) when n < 10, do: "Dream bigger!"
+# def number(n) when n > 100, do: "Not that big..."
 # Instructions
-# Given a year, report if it is a leap year.
+# You are creating a trivial online game where a friend can guess a secret number. You want to give some feedback, but not give away the answer with a guess. You need to devise a function to provide different responses depending on how the guess relates to the secret number.
 
-# The tricky thing here is that a leap year in the Gregorian calendar occurs:
+# Condition	Response
+# When the guess matches the secret number	"Correct"
+# When the guess is one more or one less than the secret number	"So close"
+# When the guess is greater than the secret number	"Too high"
+# When the guess is less than the secret number	"Too low"
+# When a guess isn't made	"Make a guess"
+# All guesses and secret numbers are integer numbers.
 
-# on every year that is evenly divisible by 4
-#   except every year that is evenly divisible by 100
-#     unless the year is also evenly divisible by 400
-# For example, 1997 is not a leap year, but 1996 is. 1900 is not a leap year, but 2000 is.
+# Task 1
+# Make the response when the guess matches the secret number
 
-# Notes
-# Though our exercise adopts some very simple rules, there is more to learn!
+# Implement the compare/2 function which takes two arguments, secret_number and guess, which are both integers.
 
-# For a delightful, four minute explanation of the whole leap year phenomenon, go watch this youtube video.
+# GuessingGame.compare(5, 5)
+# # => "Correct"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Make the response when the guess is greater than the secret number
+
+# Modify the compare function to respond to guesses that are higher than the secret number.
+
+# GuessingGame.compare(5, 8)
+# # => "Too high"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Make the response when the guess is less than the secret number
+
+# Modify the compare function to respond to guesses that are lower than the secret number.
+
+# GuessingGame.compare(5, 2)
+# # => "Too low"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Make the responses when the guess is one more or one less than the secret number
+
+# Modify the compare function to respond to guesses that are close to the secret number.
+
+# GuessingGame.compare(5, 6)
+# # => "So close"
+# GuessingGame.compare(5, 4)
+# # => "So close"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Make the response when there is no guess
+
+# Modify the compare function to respond to a lack of guess.
+
+# GuessingGame.compare(5)
+# # => "Make a guess"
+
+# GuessingGame.compare(5, :no_guess)
+# # => "Make a guess"
 
 
-defmodule Year do
-  def leap_year?(year) when rem(year, 400) == 0, do: true
-  def leap_year?(year) when rem(year, 100) == 0, do: false
-  def leap_year?(year) when rem(year, 4) == 0, do: true
-  def leap_year?(_), do: false
+defmodule GuessingGame do
+  def compare(secret_number, guess) when guess == secret_number, do: "Correct"
+  def compare(secret_number, guess \\ :no_guess) when guess == :no_guess, do: "Make a guess"
+  def compare(secret_number, guess) when guess == secret_number - 1, do: "So close"
+  def compare(secret_number, guess) when guess == secret_number + 1, do: "So close"
+  def compare(secret_number, guess) when guess > secret_number, do: "Too high"
+  def compare(secret_number, guess) when guess < secret_number, do: "Too low"
 end
 
 
 
-# Elixir / Darts
-
-# Instructions
-# Write a function that returns the earned points in a single toss of a Darts game.
-
-# Darts is a game where players throw darts at a target.
-
-# In our particular instance of the game, the target rewards 4 different amounts of points, depending on where the dart lands:
-
-# If the dart lands outside the target, player earns no points (0 points).
-# If the dart lands in the outer circle of the target, player earns 1 point.
-# If the dart lands in the middle circle of the target, player earns 5 points.
-# If the dart lands in the inner circle of the target, player earns 10 points.
-# The outer circle has a radius of 10 units (this is equivalent to the total radius for the entire target), the middle circle a radius of 5 units, and the inner circle a radius of 1. Of course, they are all centered at the same point (that is, the circles are concentric) defined by the coordinates (0, 0).
-
-# Write a function that given a point in the target (defined by its Cartesian coordinates x and y, where x and y are real), returns the correct amount earned by a dart landing at that point.
-
-
-defmodule Darts do
-  def score({x, y}) do
-    r = :math.sqrt(x * x + y * y)
-    cond do
-      r > 10 -> 0
-      r > 5 -> 1
-      r > 1 -> 5
-      true -> 10
-    end
-  end
-end
-
-
-
-# Elixir / Kitchen Calculator
+# Elixir / Kitchen Calculator {{Pattern Matching}} {{Tuples}}
 
 # Introduction
 # Tuples
@@ -1018,77 +959,10 @@ end
 
 
 
-# Elixir  / Rational Numbers
-
-# Instructions
-# A rational number is defined as the quotient of two integers a and b, called the numerator and denominator, respectively, where b != 0.
-
-# Note
-# Note that mathematically, the denominator can't be zero. However in many implementations of rational numbers, you will find that the denominator is allowed to be zero with behaviour similar to positive or negative infinity in floating point numbers. In those cases, the denominator and numerator generally still can't both be zero at once.
-
-# The absolute value |r| of the rational number r = a/b is equal to |a|/|b|.
-
-# The sum of two rational numbers r₁ = a₁/b₁ and r₂ = a₂/b₂ is r₁ + r₂ = a₁/b₁ + a₂/b₂ = (a₁ * b₂ + a₂ * b₁) / (b₁ * b₂).
-
-# The difference of two rational numbers r₁ = a₁/b₁ and r₂ = a₂/b₂ is r₁ - r₂ = a₁/b₁ - a₂/b₂ = (a₁ * b₂ - a₂ * b₁) / (b₁ * b₂).
-
-# The product (multiplication) of two rational numbers r₁ = a₁/b₁ and r₂ = a₂/b₂ is r₁ * r₂ = (a₁ * a₂) / (b₁ * b₂).
-
-# Dividing a rational number r₁ = a₁/b₁ by another r₂ = a₂/b₂ is r₁ / r₂ = (a₁ * b₂) / (a₂ * b₁) if a₂ is not zero.
-
-# Exponentiation of a rational number r = a/b to a non-negative integer power n is r^n = (a^n)/(b^n).
-
-# Exponentiation of a rational number r = a/b to a negative integer power n is r^n = (b^m)/(a^m), where m = |n|.
-
-# Exponentiation of a rational number r = a/b to a real (floating-point) number x is the quotient (a^x)/(b^x), which is a real number.
-
-# Exponentiation of a real number x to a rational number r = a/b is x^(a/b) = root(x^a, b), where root(p, q) is the qth root of p.
-
-# Implement the following operations:
-
-# addition, subtraction, multiplication and division of two rational numbers,
-# absolute value, exponentiation of a given rational number to an integer power, exponentiation of a given rational number to a real (floating-point) power, exponentiation of a real number to a rational number.
-# Your implementation of rational numbers should always be reduced to lowest terms. For example, 4/4 should reduce to 1/1, 30/60 should reduce to 1/2, 12/8 should reduce to 3/2, etc. To reduce a rational number r = a/b, divide a and b by the greatest common divisor (gcd) of a and b. So, for example, gcd(12, 8) = 4, so r = 12/8 can be reduced to (12/4)/(8/4) = 3/2. The reduced form of a rational number should be in "standard form" (the denominator should always be a positive integer). If a denominator with a negative integer is present, multiply both numerator and denominator by -1 to ensure standard form is reached. For example, 3/-4 should be reduced to -3/4
-
-# Assume that the programming language you are using does not have an implementation of rational numbers.
-
-
-defmodule RationalNumbers do
-  @type rational :: {integer, integer}
-
-  @spec add(a :: rational, b :: rational) :: rational
-  def add({a1, b1}, {a2, b2}), do: {(a1 * b2) + (a2 * b1), b1 * b2} |> reduce()
-
-  @spec subtract(a :: rational, b :: rational) :: rational
-  def subtract({a1, b1}, {a2, b2}), do: {(a1 * b2) - (a2 * b1), b1 * b2} |> reduce()
-
-  @spec multiply(a :: rational, b :: rational) :: rational
-  def multiply({a1, b1}, {a2, b2}), do: {a1 * a2, b1 * b2} |> reduce()
-
-  @spec divide_by(num :: rational, den :: rational) :: rational
-  def divide_by({a1, b1}, {a2, b2}), do: {a1 * b2, a2 * b1} |> reduce()
-
-  @spec abs(a :: rational) :: rational
-  def abs({a, b}), do: {Kernel.abs(a), Kernel.abs(b)} |> reduce()
-
-  @spec pow_rational(a :: rational, n :: integer) :: rational
-  def pow_rational({a, b}, n) when n < 0, do: {b ** -n, a ** -n} |> reduce()
-  def pow_rational({a, b}, n), do: {a ** n, b ** n} |> reduce()
-
-  @spec pow_real(x :: integer, n :: rational) :: float
-  def pow_real(x, {a, b}), do: x ** (a / b)
-
-  @spec reduce(a :: rational) :: rational
-  def reduce({a, b}) when b < 0, do: reduce({-a, -b})
-  def reduce({a, b}) do
-    gcd = Integer.gcd(a, b)
-    {a / gcd, b / gcd}
-  end
-end
 
 
 
-# Elixir / High School Sweetheart
+# Elixir / High School Sweetheart {{Pipe Operator}} {{Strings}}
 
 # Introduction
 # Strings
@@ -1221,35 +1095,7 @@ end
 
 
 
-# Elixir / Two Fer
-
-# Instructions
-# Two-fer or 2-fer is short for two for one. One for you and one for me.
-
-# Given a name, return a string with the message:
-
-# One for name, one for me.
-# Where "name" is the given name.
-
-# However, if the name is missing, return the string:
-
-# One for you, one for me.
-# Here are some examples:
-
-# Name	String to return
-# Alice	One for Alice, one for me.
-# Bob	One for Bob, one for me.
-# One for you, one for me.
-# Zaphod	One for Zaphod, one for me.
-
-
-defmodule TwoFer do
-  def two_fer(name \\ "you") when is_binary(name), do: "One for #{name}, one for me."
-end
-
-
-
-# Elixir / Bird Count
+# Elixir / Bird Count {{Recursion}}
 
 # Introduction
 # Recursion
@@ -1339,81 +1185,7 @@ end
 
 
 
-# Elixir / Binary Search
-
-# Instructions
-# Implement a binary search algorithm.
-
-# Searching a sorted collection is a common task. A dictionary is a sorted list of word definitions. Given a word, one can find its definition. A telephone book is a sorted list of people's names, addresses, and telephone numbers. Knowing someone's name allows one to quickly find their telephone number and address.
-
-# If the list to be searched contains more than a few items (a dozen, say) a binary search will require far fewer comparisons than a linear search, but it imposes the requirement that the list be sorted.
-
-# In computer science, a binary search or half-interval search algorithm finds the position of a specified input value (the search "key") within an array sorted by key value.
-
-# In each step, the algorithm compares the search key value with the key value of the middle element of the array.
-
-# If the keys match, then a matching element has been found and its index, or position, is returned.
-
-# Otherwise, if the search key is less than the middle element's key, then the algorithm repeats its action on the sub-array to the left of the middle element or, if the search key is greater, on the sub-array to the right.
-
-# If the remaining array to be searched is empty, then the key cannot be found in the array and a special "not found" indication is returned.
-
-# A binary search halves the number of items to check with each iteration, so locating an item (or determining its absence) takes logarithmic time. A binary search is a dichotomic divide and conquer search algorithm.
-
-
-defmodule BinarySearch do
-  @spec search(tuple, integer) :: {:ok, integer} | :not_found
-  def search(tuple, key), do: search(tuple, key, 0, tuple_size(tuple) - 1)
-  defp search(_tuple, _key, left, right) when left > right, do: :not_found
-  defp search(tuple, key, left, right) do
-    mid = div(left + right, 2)
-    case elem(tuple, mid) do
-      ^key -> {:ok, mid}
-      value when value > key -> search(tuple, key, left, mid - 1)
-      value when value < key -> search(tuple, key, mid + 1, right)
-    end
-  end
-end
-
-
-
-# Elixir / Collatz Conjecture
-
-# Instructions
-# The Collatz Conjecture or 3x+1 problem can be summarized as follows:
-
-# Take any positive integer n. If n is even, divide n by 2 to get n / 2. If n is odd, multiply n by 3 and add 1 to get 3n + 1. Repeat the process indefinitely. The conjecture states that no matter which number you start with, you will always reach 1 eventually.
-
-# Given a number n, return the number of steps required to reach 1.
-
-# Examples
-# Starting with n = 12, the steps would be as follows:
-
-# 12
-# 6
-# 3
-# 10
-# 5
-# 16
-# 8
-# 4
-# 2
-# 1
-# Resulting in 9 steps. So for input n = 12, the return value would be 9.
-
-
-defmodule CollatzConjecture do
-  import Integer
-
-  @spec calc(input :: pos_integer()) :: non_neg_integer()
-  def calc(1), do: 0
-  def calc(input) when input > 0 and is_even(input), do: 1 + calc(div(input, 2))
-  def calc(input) when input > 0 and is_odd(input), do: 1 + calc(input * 3 + 1)
-end
-
-
-
-# Elixir / High Score
+# Elixir / High Score {{Maps}} {{Module Attributes As Constants}}
 
 # Introduction
 # Maps
@@ -1565,45 +1337,7 @@ end
 
 
 
-# Elixir / Knapsack
-
-# Instructions
-# In this exercise, let's try to solve a classic problem.
-
-# Bob is a thief. After months of careful planning, he finally manages to crack the security systems of a high-class apartment.
-
-# In front of him are many items, each with a value (v) and weight (w). Bob, of course, wants to maximize the total value he can get; he would gladly take all of the items if he could. However, to his horror, he realizes that the knapsack he carries with him can only hold so much weight (W).
-
-# Given a knapsack with a specific carrying capacity (W), help Bob determine the maximum value he can get from the items in the house. Note that Bob can take only one of each item.
-
-# All values given will be strictly positive. Items will be represented as a list of pairs, wi and vi, where the first element wi is the weight of the ith item and vi is the value for that item.
-
-# For example:
-
-# Items: [ { "weight": 5, "value": 10 }, { "weight": 4, "value": 40 }, { "weight": 6, "value": 30 }, { "weight": 4, "value": 50 } ]
-
-# Knapsack Limit: 10
-
-# For the above, the first item has weight 5 and value 10, the second item has weight 4 and value 40, and so on.
-
-# In this example, Bob should take the second and fourth item to maximize his value, which, in this case, is 90. He cannot get more than 90 as his knapsack has a weight limit of 10.
-
-
-defmodule Knapsack do
-  def maximum_value([], _), do: 0
-  def maximum_value([item | items], max_weight) when item.weight > max_weight, do: maximum_value(items, max_weight)
-  def maximum_value([item | items], max_weight) do
-    [
-      maximum_value(items, max_weight),
-      maximum_value(items, max_weight - item.weight) + item.value
-    ]
-    |> Enum.max()
-  end
-end
-
-
-
-# Elixir / City Office
+# Elixir / City Office {{Docs}} {{Typespecs}}
 
 # Introduction
 # Docs
@@ -1808,7 +1542,7 @@ end
 
 
 
-# Elixir / German Sysadmin
+# Elixir / German Sysadmin {{Case}} {{Charlists}}
 
 # Introduction
 # Charlists
@@ -1906,7 +1640,7 @@ end
 
 
 
-# Elixir / RPG Character Sheet
+# Elixir / RPG Character Sheet {{IO}}
 
 # Introduction
 # IO
@@ -2012,7 +1746,7 @@ end
 
 
 
-# Elixir / Name Badge
+# Elixir / Name Badge {{If}} {{Nil}}
 
 # Introduction
 # Nil
@@ -2092,7 +1826,7 @@ end
 
 
 
-# Elixir / Take-A-Number
+# Elixir / Take-A-Number {{PIDs}} {{Processes}}
 
 # Introduction
 # Processes
@@ -2203,7 +1937,7 @@ end
 
 
 
-# Elixir / Wine Cellar
+# Elixir / Wine Cellar {{Keyword Lists}}
 
 # Introduction
 # Keyword Lists
@@ -2338,7 +2072,7 @@ end
 
 
 
-# Elixir / DNA Encoding
+# Elixir / DNA Encoding {{Bitstrings}} {{Tail Call Recursion}}
 
 # Introduction
 # Bitstrings
@@ -2469,7 +2203,7 @@ end
 
 
 
-# Elixir / Library Fees
+# Elixir / Library Fees {{Dates and Time}}
 
 # Introduction
 # Dates and Time
@@ -2591,7 +2325,7 @@ end
 
 
 
-# Elixir / Basketball Website
+# Elixir / Basketball Website {{Access Behaviour}}
 
 # Introduction
 # Access Behaviour
@@ -2660,7 +2394,7 @@ end
 
 
 
-# Elixir / Boutique Inventory
+# Elixir / Boutique Inventory {{Enum}}
 
 # Introduction
 # Enum
@@ -2830,7 +2564,7 @@ end
 
 
 
-# Elixir / File Sniffer
+# Elixir / File Sniffer {{Binaries}}
 
 # Introduction
 # Binaries
@@ -2933,7 +2667,7 @@ end
 
 
 
-# Elixir / Newsletter
+# Elixir / Newsletter {{File}}
 
 # Introduction
 # File
@@ -3028,7 +2762,7 @@ end
 
 
 
-# Elixir / Chessboard
+# Elixir / Chessboard {{Ranges}}
 
 # Introduction
 # Ranges
@@ -3092,7 +2826,7 @@ end
 
 
 
-# Elixir / Remote Control Car
+# Elixir / Remote Control Car {{Structs}}
 
 # Introduction
 # Structs
@@ -3254,4 +2988,499 @@ defmodule RemoteControlCar do
       battery_percentage: module.battery_percentage - @battery_percent_per_drive_unit,
       distance_driven_in_meters: module.distance_driven_in_meters + @meters_per_drive_unit
     }
+end
+
+
+
+# Elixir / Boutique Suggestions {{List Comprehensions}}
+
+# Introduction
+# List Comprehensions
+# Comprehensions provide a facility for transforming Enumerables easily and declaratively.
+
+# To declare a very simple comprehension, we can use the for keyword followed by a generator and a do-block which creates the new values from the enumerated values.
+
+# for n <- [0, 1, 2, 3], do: n + 1
+# # => [1, 2, 3, 4]
+# Comprehensions can also have filters. Values that do not pass the filter are removed from the final list:
+
+# for n <- [0, 1, 2, 3], n > 1, do: n + 1
+# # => [3, 4]
+# We can declare more complicated comprehensions over several lines:
+
+# for {atom, number} <- [a: 1, b: 2, c: 3, d: 4],
+#     rem(number, 2) == 0 do
+#   atom
+# end
+# # => [:b, :d]
+# A cartesian product can be created using multiple generators. That means that each value generated by the first generator will be paired once with each value generated by the second generator:
+
+# for x <- [0, 1],
+#     y <- [0, 1] do
+#   {x, y}
+# end
+# # => [{0, 0}, {0, 1}, {1, 0}, {1, 1}]
+# Instructions
+# Your work at the online fashion boutique store continues. You come up with the idea for a website feature where an outfit is suggested to the user. While you want to give lots of suggestions, you don't want to give bad suggestions, so you decide to use a list comprehension since you can easily generate outfit combinations, then filter them by some criteria.
+
+# Clothing items are stored as a map:
+
+# %{
+#   item_name: "Descriptive Name",
+#   price: 99.00,
+#   base_color: "red"
+# }
+# Task 1
+# Suggest a combination
+
+# Implement get_combinations/3 to take a list of tops, a list of bottoms, and keyword list of options. For now, set options to default to an empty keyword list. The function should return the cartesian product of the lists.
+
+# tops = [
+#   %{item_name: "Dress shirt"},
+#   %{item_name: "Casual shirt"}
+# ]
+# bottoms = [
+#   %{item_name: "Jeans"},
+#   %{item_name: "Dress trousers"}
+# ]
+# BoutiqueSuggestions.get_combinations(tops, bottoms)
+# # => [
+# #      {%{item_name: "Dress shirt"}, %{item_name: "Jeans"}},
+# #      {%{item_name: "Dress shirt"}, %{item_name: "Dress trousers"}},
+# #      {%{item_name: "Casual shirt"}, %{item_name: "Jeans"}},
+# #      {%{item_name: "Casual shirt"}, %{item_name: "Dress trousers"}}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Filter out clashing outfits
+
+# Each piece of clothing has a :base_color field, use this field to filter out all combinations where the top and the bottom have the same base color.
+
+# tops = [
+#   %{item_name: "Dress shirt", base_color: "blue"},
+#   %{item_name: "Casual shirt", base_color: "black"}
+# ]
+# bottoms = [
+#   %{item_name: "Jeans", base_color: "blue"},
+#   %{item_name: "Dress trousers", base_color: "black"}
+# ]
+# BoutiqueSuggestions.get_combinations(tops, bottoms)
+# # => [
+# #      {%{item_name: "Dress shirt", base_color: "blue"},
+# #       %{item_name: "Dress trousers", base_color: "black"}},
+# #      {%{item_name: "Casual shirt", base_color: "black"},
+# #       %{item_name: "Jeans", base_color: "blue"}}
+# #    ]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Filter by combination price
+
+# Each piece of clothing has a :price field associated with it. While you want to give lots of suggestions, you want to be able to provide users an opportunity to select a price within their budget. From the keyword list of options, use :maximum_price to filter out combinations where the price of the top and bottom exceed the maximum price.
+
+# If no maximum_price is specified, the default should be 100.00
+
+# tops = [
+#   %{item_name: "Dress shirt", base_color: "blue", price: 35},
+#   %{item_name: "Casual shirt", base_color: "black", price: 20}
+# ]
+# bottoms = [
+#   %{item_name: "Jeans", base_color: "blue", price: 30},
+#   %{item_name: "Dress trousers", base_color: "black", price: 75}
+# ]
+# BoutiqueSuggestions.get_combinations(tops, bottoms, maximum_price: 50)
+# # => [
+# #      {%{item_name: "Casual shirt", base_color: "black", price: 20},
+# #       %{item_name: "Jeans", base_color: "blue", price: 30}}
+# #    ]
+
+
+defmodule BoutiqueSuggestions do
+  def get_combinations(tops, bottoms, options \\ [maximum_price: 100]) do
+    for top <- tops,
+        bottom <- bottoms,
+        top.base_color != bottom.base_color
+        && options[:maximum_price]
+        && top.price + bottom.price <= options[:maximum_price] do
+      {top, bottom}
+    end
+  end
+end
+
+
+
+# Elixir / Community Garden {{Agent}}
+
+# Introduction
+# Agent
+# The Agent module facilitates an abstraction for spawning processes and the receive-send loop. From here, we will call processes started using the Agent module 'agent processes'. An agent process might be chosen to represent a central shared state.
+
+# To start an agent process, Agent provides the start/2 function. The supplied function when start-ing the agent process returns the initial state of the process:
+
+# # Start an agent process with an initial value of an empty list
+# {:ok, agent_pid} = Agent.start(fn -> [] end)
+# Just like Map or List, Agent provides many functions for working with agent processes.
+
+# It is customary to organize and encapsulate all Agent-related functionality into a module for the domain being modeled.
+
+# Instructions
+# Your community association has asked you to implement a simple registry application to manage the community garden registrations. The Plot struct has already been provided for you.
+
+# Task 1
+# Open the garden
+
+# Implement the CommunityGarden.start/1 function, it should receive a optional keyword list of options to pass forward to the agent process. The garden's initial state should be initialized to represent an empty collection of plots. It should return an :ok tuple with the garden's pid.
+
+# {:ok, pid} = CommunityGarden.start()
+# # => {:ok, #PID<0.112.0>}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# List the registrations
+
+# Implement the CommunityGarden.list_registrations/1 function. It should receive the pid for the community garden. It should return a list of the stored plots that are registered.
+
+# CommunityGarden.list_registrations(pid)
+# # => []
+# At this point, we haven't added the ability to register a plot, so this list should be empty
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Register plots to a person
+
+# Implement the CommunityGarden.register/2 function. It should receive the pid for the community garden and a name to register the plot. It should return the Plot struct with the plot's id and person registered to when it is successful.
+
+# The ids should be incremental and unique. You can keep an id counter in the agent's state.
+
+# CommunityGarden.register(pid, "Emma Balan")
+# # => %Plot{plot_id: 1, registered_to: "Emma Balan"}
+# CommunityGarden.list_registrations(pid)
+# # => [%Plot{plot_id: 1, registered_to: "Emma Balan"}]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Release plots
+
+# Implement the CommunityGarden.release/2 function. It should receive the pid and id of the plot to be released. It should return :ok on success. When a plot is released, the id is not re-used, it is used as a unique identifier only.
+
+# CommunityGarden.release(pid, 1)
+# # => :ok
+# CommunityGarden.list_registrations(pid)
+# # => []
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Get a registered plot
+
+# Implement the CommunityGarden.get_registration/2 function. It should receive the pid and id of the plot to be checked. It should return the plot if it is registered, and :not_found if it is unregistered.
+
+# CommunityGarden.get_registration(pid, 1)
+# # => %Plot{plot_id: 1, registered_to: "Emma Balan"}
+# CommunityGarden.get_registration(pid, 7)
+# # => {:not_found, "plot is unregistered"}
+
+
+defmodule Plot do
+  @enforce_keys [:plot_id, :registered_to]
+  defstruct [:plot_id, :registered_to]
+end
+
+defmodule CommunityGarden do
+  defstruct [plots: %{}, next_id: 1]
+
+  def start(opts \\ []), do: Agent.start(fn -> %__MODULE__{} end)
+  def list_registrations(pid), do: pid |> Agent.get(& &1.plots |> Map.values())
+
+  def register(pid, register_to) do
+    pid
+    |> Agent.get_and_update(fn %__MODULE__{plots: plots, next_id: next_id} ->
+      plot = %Plot{plot_id: next_id, registered_to: register_to}
+      {plot, %__MODULE__{plots: plots |> Map.put(next_id, plot), next_id: next_id + 1}}
+    end)
+  end
+
+  def release(pid, id), do:
+    pid |> Agent.update(& %{&1 | plots: &1.plots |> Map.delete(id)})
+
+  def get_registration(pid, id), do:
+    pid
+    |> Agent.get(& &1.plots)
+    |> Map.get(id, {:not_found, "plot is unregistered"})
+end
+
+
+
+# Elixir / Two Fer {{Default Arguments}} {{Guards}}
+
+# Instructions
+# Two-fer or 2-fer is short for two for one. One for you and one for me.
+
+# Given a name, return a string with the message:
+
+# One for name, one for me.
+# Where "name" is the given name.
+
+# However, if the name is missing, return the string:
+
+# One for you, one for me.
+# Here are some examples:
+
+# Name	String to return
+# Alice	One for Alice, one for me.
+# Bob	One for Bob, one for me.
+# One for you, one for me.
+# Zaphod	One for Zaphod, one for me.
+
+
+defmodule TwoFer do
+  def two_fer(name \\ "you") when is_binary(name), do: "One for #{name}, one for me."
+end
+
+
+
+# Elixir / Collatz Conjecture {{Integers}} {{Guards}}
+
+# Instructions
+# The Collatz Conjecture or 3x+1 problem can be summarized as follows:
+
+# Take any positive integer n. If n is even, divide n by 2 to get n / 2. If n is odd, multiply n by 3 and add 1 to get 3n + 1. Repeat the process indefinitely. The conjecture states that no matter which number you start with, you will always reach 1 eventually.
+
+# Given a number n, return the number of steps required to reach 1.
+
+# Examples
+# Starting with n = 12, the steps would be as follows:
+
+# 12
+# 6
+# 3
+# 10
+# 5
+# 16
+# 8
+# 4
+# 2
+# 1
+# Resulting in 9 steps. So for input n = 12, the return value would be 9.
+
+
+defmodule CollatzConjecture do
+  import Integer
+
+  @spec calc(input :: pos_integer()) :: non_neg_integer()
+  def calc(1), do: 0
+  def calc(input) when input > 0 and is_even(input), do: 1 + calc(div(input, 2))
+  def calc(input) when input > 0 and is_odd(input), do: 1 + calc(input * 3 + 1)
+end
+
+
+
+# Elixir / Darts {{Cond}}
+
+# Instructions
+# Write a function that returns the earned points in a single toss of a Darts game.
+
+# Darts is a game where players throw darts at a target.
+
+# In our particular instance of the game, the target rewards 4 different amounts of points, depending on where the dart lands:
+
+# If the dart lands outside the target, player earns no points (0 points).
+# If the dart lands in the outer circle of the target, player earns 1 point.
+# If the dart lands in the middle circle of the target, player earns 5 points.
+# If the dart lands in the inner circle of the target, player earns 10 points.
+# The outer circle has a radius of 10 units (this is equivalent to the total radius for the entire target), the middle circle a radius of 5 units, and the inner circle a radius of 1. Of course, they are all centered at the same point (that is, the circles are concentric) defined by the coordinates (0, 0).
+
+# Write a function that given a point in the target (defined by its Cartesian coordinates x and y, where x and y are real), returns the correct amount earned by a dart landing at that point.
+
+
+defmodule Darts do
+  def score({x, y}) do
+    r = :math.sqrt(x * x + y * y)
+    cond do
+      r > 10 -> 0
+      r > 5 -> 1
+      r > 1 -> 5
+      true -> 10
+    end
+  end
+end
+
+
+
+# Elixir / Binary Search {{Cond}} {{Tuples}} {{Recursion}}
+
+# Instructions
+# Implement a binary search algorithm.
+
+# Searching a sorted collection is a common task. A dictionary is a sorted list of word definitions. Given a word, one can find its definition. A telephone book is a sorted list of people's names, addresses, and telephone numbers. Knowing someone's name allows one to quickly find their telephone number and address.
+
+# If the list to be searched contains more than a few items (a dozen, say) a binary search will require far fewer comparisons than a linear search, but it imposes the requirement that the list be sorted.
+
+# In computer science, a binary search or half-interval search algorithm finds the position of a specified input value (the search "key") within an array sorted by key value.
+
+# In each step, the algorithm compares the search key value with the key value of the middle element of the array.
+
+# If the keys match, then a matching element has been found and its index, or position, is returned.
+
+# Otherwise, if the search key is less than the middle element's key, then the algorithm repeats its action on the sub-array to the left of the middle element or, if the search key is greater, on the sub-array to the right.
+
+# If the remaining array to be searched is empty, then the key cannot be found in the array and a special "not found" indication is returned.
+
+# A binary search halves the number of items to check with each iteration, so locating an item (or determining its absence) takes logarithmic time. A binary search is a dichotomic divide and conquer search algorithm.
+
+
+defmodule BinarySearch do
+  @spec search(tuple, integer) :: {:ok, integer} | :not_found
+  def search(tuple, key), do: search(tuple, key, 0, tuple_size(tuple) - 1)
+  defp search(_tuple, _key, left, right) when left > right, do: :not_found
+  defp search(tuple, key, left, right) do
+    mid = div(left + right, 2)
+    case elem(tuple, mid) do
+      ^key -> {:ok, mid}
+      value when value > key -> search(tuple, key, left, mid - 1)
+      value when value < key -> search(tuple, key, mid + 1, right)
+    end
+  end
+end
+
+
+
+# Elixir / Leap {{Booleans}} {{Integers}} {{Guards}} {{Multiple Clause Functions}}
+
+# Instructions
+# Given a year, report if it is a leap year.
+
+# The tricky thing here is that a leap year in the Gregorian calendar occurs:
+
+# on every year that is evenly divisible by 4
+#   except every year that is evenly divisible by 100
+#     unless the year is also evenly divisible by 400
+# For example, 1997 is not a leap year, but 1996 is. 1900 is not a leap year, but 2000 is.
+
+# Notes
+# Though our exercise adopts some very simple rules, there is more to learn!
+
+# For a delightful, four minute explanation of the whole leap year phenomenon, go watch this youtube video.
+
+
+defmodule Year do
+  def leap_year?(year) when rem(year, 400) == 0, do: true
+  def leap_year?(year) when rem(year, 100) == 0, do: false
+  def leap_year?(year) when rem(year, 4) == 0, do: true
+  def leap_year?(_), do: false
+end
+
+
+
+# Elixir  / Rational Numbers {{Basics}}
+
+# Instructions
+# A rational number is defined as the quotient of two integers a and b, called the numerator and denominator, respectively, where b != 0.
+
+# Note
+# Note that mathematically, the denominator can't be zero. However in many implementations of rational numbers, you will find that the denominator is allowed to be zero with behaviour similar to positive or negative infinity in floating point numbers. In those cases, the denominator and numerator generally still can't both be zero at once.
+
+# The absolute value |r| of the rational number r = a/b is equal to |a|/|b|.
+
+# The sum of two rational numbers r₁ = a₁/b₁ and r₂ = a₂/b₂ is r₁ + r₂ = a₁/b₁ + a₂/b₂ = (a₁ * b₂ + a₂ * b₁) / (b₁ * b₂).
+
+# The difference of two rational numbers r₁ = a₁/b₁ and r₂ = a₂/b₂ is r₁ - r₂ = a₁/b₁ - a₂/b₂ = (a₁ * b₂ - a₂ * b₁) / (b₁ * b₂).
+
+# The product (multiplication) of two rational numbers r₁ = a₁/b₁ and r₂ = a₂/b₂ is r₁ * r₂ = (a₁ * a₂) / (b₁ * b₂).
+
+# Dividing a rational number r₁ = a₁/b₁ by another r₂ = a₂/b₂ is r₁ / r₂ = (a₁ * b₂) / (a₂ * b₁) if a₂ is not zero.
+
+# Exponentiation of a rational number r = a/b to a non-negative integer power n is r^n = (a^n)/(b^n).
+
+# Exponentiation of a rational number r = a/b to a negative integer power n is r^n = (b^m)/(a^m), where m = |n|.
+
+# Exponentiation of a rational number r = a/b to a real (floating-point) number x is the quotient (a^x)/(b^x), which is a real number.
+
+# Exponentiation of a real number x to a rational number r = a/b is x^(a/b) = root(x^a, b), where root(p, q) is the qth root of p.
+
+# Implement the following operations:
+
+# addition, subtraction, multiplication and division of two rational numbers,
+# absolute value, exponentiation of a given rational number to an integer power, exponentiation of a given rational number to a real (floating-point) power, exponentiation of a real number to a rational number.
+# Your implementation of rational numbers should always be reduced to lowest terms. For example, 4/4 should reduce to 1/1, 30/60 should reduce to 1/2, 12/8 should reduce to 3/2, etc. To reduce a rational number r = a/b, divide a and b by the greatest common divisor (gcd) of a and b. So, for example, gcd(12, 8) = 4, so r = 12/8 can be reduced to (12/4)/(8/4) = 3/2. The reduced form of a rational number should be in "standard form" (the denominator should always be a positive integer). If a denominator with a negative integer is present, multiply both numerator and denominator by -1 to ensure standard form is reached. For example, 3/-4 should be reduced to -3/4
+
+# Assume that the programming language you are using does not have an implementation of rational numbers.
+
+
+defmodule RationalNumbers do
+  @type rational :: {integer, integer}
+
+  @spec add(a :: rational, b :: rational) :: rational
+  def add({a1, b1}, {a2, b2}), do: {(a1 * b2) + (a2 * b1), b1 * b2} |> reduce()
+
+  @spec subtract(a :: rational, b :: rational) :: rational
+  def subtract({a1, b1}, {a2, b2}), do: {(a1 * b2) - (a2 * b1), b1 * b2} |> reduce()
+
+  @spec multiply(a :: rational, b :: rational) :: rational
+  def multiply({a1, b1}, {a2, b2}), do: {a1 * a2, b1 * b2} |> reduce()
+
+  @spec divide_by(num :: rational, den :: rational) :: rational
+  def divide_by({a1, b1}, {a2, b2}), do: {a1 * b2, a2 * b1} |> reduce()
+
+  @spec abs(a :: rational) :: rational
+  def abs({a, b}), do: {Kernel.abs(a), Kernel.abs(b)} |> reduce()
+
+  @spec pow_rational(a :: rational, n :: integer) :: rational
+  def pow_rational({a, b}, n) when n < 0, do: {b ** -n, a ** -n} |> reduce()
+  def pow_rational({a, b}, n), do: {a ** n, b ** n} |> reduce()
+
+  @spec pow_real(x :: integer, n :: rational) :: float
+  def pow_real(x, {a, b}), do: x ** (a / b)
+
+  @spec reduce(a :: rational) :: rational
+  def reduce({a, b}) when b < 0, do: reduce({-a, -b})
+  def reduce({a, b}) do
+    gcd = Integer.gcd(a, b)
+    {a / gcd, b / gcd}
+  end
+end
+
+
+
+# Elixir / Knapsack
+
+# Instructions
+# In this exercise, let's try to solve a classic problem.
+
+# Bob is a thief. After months of careful planning, he finally manages to crack the security systems of a high-class apartment.
+
+# In front of him are many items, each with a value (v) and weight (w). Bob, of course, wants to maximize the total value he can get; he would gladly take all of the items if he could. However, to his horror, he realizes that the knapsack he carries with him can only hold so much weight (W).
+
+# Given a knapsack with a specific carrying capacity (W), help Bob determine the maximum value he can get from the items in the house. Note that Bob can take only one of each item.
+
+# All values given will be strictly positive. Items will be represented as a list of pairs, wi and vi, where the first element wi is the weight of the ith item and vi is the value for that item.
+
+# For example:
+
+# Items: [ { "weight": 5, "value": 10 }, { "weight": 4, "value": 40 }, { "weight": 6, "value": 30 }, { "weight": 4, "value": 50 } ]
+
+# Knapsack Limit: 10
+
+# For the above, the first item has weight 5 and value 10, the second item has weight 4 and value 40, and so on.
+
+# In this example, Bob should take the second and fourth item to maximize his value, which, in this case, is 90. He cannot get more than 90 as his knapsack has a weight limit of 10.
+
+
+defmodule Knapsack do
+  def maximum_value([], _), do: 0
+  def maximum_value([item | items], max_weight) when item.weight > max_weight, do: maximum_value(items, max_weight)
+  def maximum_value([item | items], max_weight) do
+    [
+      maximum_value(items, max_weight),
+      maximum_value(items, max_weight - item.weight) + item.value
+    ]
+    |> Enum.max()
+  end
 end
