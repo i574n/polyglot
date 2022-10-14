@@ -3218,6 +3218,1038 @@ end
 
 
 
+# Elixir / Bread And Potions {{Protocols}}
+
+# Introduction
+# Protocols
+# Protocols are a mechanism to achieve polymorphism in Elixir when you want behavior to vary depending on the data type.
+
+# Protocols are defined using defprotocol and contain one or more function headers.
+
+# defprotocol Reversible do
+#   def reverse(term)
+# end
+# Protocols can be implemented using defimpl.
+
+# defimpl Reversible, for: List do
+#   def reverse(term) do
+#     Enum.reverse(term)
+#   end
+# end
+# A protocol can be implemented for any existing Elixir data type or for a struct.
+
+# When a protocol function is invoked, the appropriate implementation gets automatically chosen based on the type of the first argument.
+
+# Instructions
+# You're developing your own role-playing video game. In your game, there are characters and items. One of the many actions that you can do with an item is to make a character eat it.
+
+# Not all items are edible, and not all edible items have the same effects on the character. Some items, when eaten, turn into a different item (e.g. if you eat an apple, you are left with an apple core).
+
+# To allow for all that flexibility, you decided to create an Edible protocol that some of the items can implement.
+
+# Task 1
+# Define edibility
+
+# Create the RPG.Edible protocol. The protocol has one function - eat. The eat function accepts an item and a character and returns a by-product and a character.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Make loaves of bread edible
+
+# Implement the RPG.Edible protocol for the RPG.LoafOfBread item. When eaten, a loaf of bread gives the character 5 health points and has no by-product.
+
+# RPG.Edible.eat(%RPG.LoafOfBread{}, %RPG.Character{health: 31})
+# # => {nil, %RPG.Character{health: 36, mana: 0}}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Make mana potions edible
+
+# Implement the RPG.Edible protocol for the RPG.ManaPotion item. When eaten, a mana potion gives the character as many mana points as the potion's strength, and produces an empty bottle.
+
+# RPG.Edible.eat(%RPG.ManaPotion{strength: 13}, %RPG.Character{mana: 50})
+# # => {%RPG.EmptyBottle{}, %RPG.Character{health: 100, mana: 63}}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Make poisons edible
+
+# Implement the RPG.Edible protocol for the RPG.Poison item. When eaten, a poison takes away all the health points from the character, and produces an empty bottle.
+
+# RPG.Edible.eat(%RPG.Poison{}, %RPG.Character{health: 3000})
+# # => {%RPG.EmptyBottle{}, %RPG.Character{health: 0, mana: 0}}
+
+
+defmodule RPG do
+  defmodule Character, do: defstruct health: 100, mana: 0
+  defmodule LoafOfBread, do: defstruct []
+  defmodule ManaPotion, do: defstruct strength: 10
+  defmodule Poison, do: defstruct []
+  defmodule EmptyBottle, do: defstruct []
+  defprotocol Edible, do: def eat(item, character)
+  defimpl Edible, for: LoafOfBread do
+    def eat(_item, %Character{} = character), do: {nil, %{character | health: character.health + 5}}
+  end
+  defimpl Edible, for: ManaPotion do
+    def eat(item, %Character{} = character), do: {%EmptyBottle{}, %{character | mana: character.mana + item.strength}}
+  end
+  defimpl Edible, for: Poison do
+    def eat(_item, %Character{} = character), do: {%EmptyBottle{}, %{character | health: 0}}
+  end
+end
+
+
+
+# Elixir / Captain's Log {{Erlang Libraries}} {{Randomness}}
+
+# Introduction
+# Randomness
+# In Elixir, to choose a random element from an enumerable data structure (e.g. list, range), we use Enum.random. This function will pick a single element, with every element having equal probability of being picked.
+
+# Elixir does not have its own functions for picking a random float. To do that, we have to use Erlang directly.
+
+# Erlang Libraries
+# Elixir code runs in the BEAM virtual machine. BEAM is part of the Erlang Run-Time System. Being inspired by Erlang, and sharing its run environment, Elixir provides great interoperability with Erlang libraries. This means that Elixir developers can use Erlang libraries from within their Elixir code. In fact, writing Elixir libraries for functionality already provided by Erlang libraries is discouraged in the Elixir community.
+
+# As a result, certain functionality, like mathematical operations or timer functions, is only available in Elixir via Erlang.
+
+# Erlang's standard library is available for use in our Elixir code without any extra steps necessary.
+
+# Erlang functions can be called in the same way we call Elixir functions, with one small difference. Erlang module names are snake_case atoms. For example, to call the Erlang pi/0 function from the math module, one would write:
+
+# :math.pi()
+# # => 3.141592653589793
+# The most commonly used Erlang functions that do not have an Elixir equivalent are:
+
+# :timer.sleep/1 which suspends a process for the given amount of milliseconds.
+# :rand.uniform/0 which generates a random float x, where 0.0 <= x < 1.0.
+# :io_lib.format/2 which provides C-style string formatting (using control sequences). Using this function, we could for example print an integer in any base between 2 and 36 or format a float with desired precision. Note that this function, like many Erlang functions, returns a charlist.
+# The math module that provides mathematical functions such as sin/1, cos/1, log2/1, log10/1, pow/2, and more.
+# To discover Erlang's standard library, explore the STDLIB Reference Manual.
+
+# Instructions
+# Mary is a big fan of the TV series Star Trek: The Next Generation. She often plays pen-and-paper role playing games, where she and her friends pretend to be the crew of the Starship Enterprise. Mary's character is Captain Picard, which means she has to keep the captain's log. She loves the creative part of the game, but doesn't like to generate random data on the spot.
+
+# Help Mary by creating random generators for data commonly appearing in the captain's log.
+
+# Task 1
+# Generate a random planet
+
+# The Starship Enterprise encounters many planets in its travels. Planets in the Star Trek universe are split into categories based on their properties. For example, Earth is a class M planet. All possible planetary classes are: D, H, J, K, L, M, N, R, T, and Y.
+
+# Implement the random_planet_class/0 function. It should return one of the planetary classes at random.
+
+# CaptainsLog.random_planet_class()
+# # => "K"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Generate a random starship registry number
+
+# Enterprise (registry number NCC-1701) is not the only starship flying around! When it rendezvous with another starship, Mary needs to log the registry number of that starship.
+
+# Registry numbers start with the prefix "NCC-" and then use a number from 1000 to 9999 (inclusive).
+
+# Implement the random_ship_registry_number/0 function that returns a random starship registry number.
+
+# CaptainsLog.random_ship_registry_number()
+# # => "NCC-1947"
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Generate a random stardate
+
+# What's the use of a log if it doesn't include dates?
+
+# A stardate is a floating point number. The adventures of the Starship Enterprise from the first season of The Next Generation take place between the stardates 41000.0 and 42000.0. The "4" stands for the 24th century, the "1" for the first season.
+
+# Implement the function random_stardate/0 that returns a floating point number between 41000.0 (inclusive) and 42000.0 (exclusive).
+
+# CaptainsLog.random_stardate()
+# # => 41458.15721310934
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Format the stardate
+
+# In the captain's log, stardates are usually rounded to a single decimal place.
+
+# Implement the format_stardate/1 function that will take a floating point number and return a string with the number rounded to a single decimal place.
+
+# CaptainsLog.format_stardate(41458.15721310934)
+# # => "41458.2"
+
+
+defmodule CaptainsLog do
+  @planetary_classes ["D", "H", "J", "K", "L", "M", "N", "R", "T", "Y"]
+  @ship_range 1_000..9_999
+  @start 41_000.0
+  @finish 42_000.0
+  def random_planet_class(), do: @planetary_classes |> Enum.random()
+  def random_ship_registry_number(), do: "NCC-#{@ship_range |> Enum.random()}"
+  def random_stardate(), do: :random.uniform() * (@finish - @start) + @start
+  def format_stardate(stardate), do: :io_lib.format("~.1f", [stardate]) |> to_string()
+end
+
+
+
+# Elixir / Need For Speed {{Alias}} {{Import}}
+
+# Introduction
+# Alias
+# To share code between different Elixir modules within the same project, you need to reference the outside module by its full name. But what if that name is too long or confusing?
+
+# The special form alias allows you to shorten or change the name by which you reference an outside module. When used without any arguments, it trims down the module name to its last segment, e.g. MyApp.Logger.Settings becomes Settings. A custom name can be specified with the :as option.
+
+# Usually aliases are added at the beginning of the module definition.
+
+# defmodule Square do
+#   alias Integer, as: I
+
+#   def area(a), do: I.pow(a, 2)
+# end
+# Import
+# The special form import allows you to use functions from an outside module without using the module's name.
+
+# Importing a whole outside module might create conflicts with existing local functions. To avoid this, two options are available: :except and :only. Both expect a keyword list, where the key is the function name, and the value is the function's arity.
+
+# Usually imports are added at the beginning of the module definition.
+
+# defmodule Square do
+#   import Integer, only: [pow: 2]
+
+#   def area(a), do: pow(a, 2)
+# end
+# Instructions
+# That remote controlled car that you bought recently has turned into a whole new hobby. You have been organizing remote control car races.
+
+# You were almost finished writing a program that would allow to run race simulations when your cat jumped at your keyboard and deleted a few lines of code. Now your program doesn't compile anymore...
+
+# Task 1
+# Fix compilation error Race.__struct__/0 is undefined
+
+# Add an alias so that the module NeedForSpeed.Race can be referenced by the shorter name Race.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Fix compilation error Car.__struct__/0 is undefined
+
+# Add an alias so that the module NeedForSpeed.RemoteControlCar can be referenced by the shorter name Car.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Fix compilation error undefined function puts/1
+
+# The function puts/1 comes from the module IO. Import it to be able to use it without referencing the module.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Fix compilation error undefined function default_color/0
+
+# The functions default_color/0, red/0, cyan/0, and green/0 all come from the module IO.ANSI. You're planning to add support for other car colors, so you want to import the whole module. Unfortunately, the function color/1 from the module IO.ANSI conflicts with one of your local functions. Import the whole IO.ANSI module except that one function.
+
+
+defmodule NeedForSpeed.RemoteControlCar do
+  defstruct [
+    :nickname,
+    :color,
+    battery_percentage: 100,
+    distance_driven_in_meters: 0
+  ]
+
+  def new(color, nickname) when color in [:red, :blue, :green], do: %__MODULE__{nickname: nickname, color: color}
+  def display_distance(%__MODULE__{distance_driven_in_meters: d}), do: "#{d} meters"
+  def display_battery(%__MODULE__{battery_percentage: 0}), do: "Battery empty"
+  def display_battery(%__MODULE__{battery_percentage: b}), do: "Battery at #{b}%"
+end
+
+defmodule NeedForSpeed.Race do
+  defstruct [
+    :title,
+    :total_distance_in_meters,
+    cars: []
+  ]
+
+  def display_status(%__MODULE__{} = race) do
+    cond do
+      race.cars |> Enum.any?(& &1.distance_driven_in_meters >= race.total_distance_in_meters) -> "Finished"
+      race.cars |> Enum.any?(& &1.distance_driven_in_meters > 0) -> "In Progress"
+      true -> "Not Started"
+    end
+  end
+
+  def display_distance(%__MODULE__{total_distance_in_meters: d}), do: "#{d} meters"
+end
+
+defmodule NeedForSpeed do
+  alias NeedForSpeed.Race
+  alias NeedForSpeed.RemoteControlCar, as: Car
+  import IO
+  import IO.ANSI, except: [color: 1]
+
+  def print_race(%Race{} = race) do
+    puts("""
+    🏁 #{race.title} 🏁
+    Status: #{Race.display_status(race)}
+    Distance: #{Race.display_distance(race)}
+
+    Contestants:
+    """)
+
+    race.cars
+    |> Enum.sort_by(& -1 * &1.distance_driven_in_meters)
+    |> Enum.with_index()
+    |> Enum.each(fn {car, index} -> print_car(car, index + 1) end)
+  end
+
+  defp print_car(%Car{} = car, index) do
+    puts("""
+      #{index}. #{color(car)}#{car.nickname}#{default_color()}
+      Distance: #{Car.display_distance(car)}
+      Battery: #{Car.display_battery(car)}
+    """)
+  end
+
+  defp color(%Car{} = car) do
+    case car.color do
+      :red -> red()
+      :blue -> cyan()
+      :green -> green()
+    end
+  end
+end
+
+
+
+# Elixir / RPN Calculator {{Errors}} {{Try/Rescue}}
+
+# Introduction
+# Errors
+# Errors happen. In Elixir, while people often say to "let it crash", there are times when we need to rescue the function call to a known good state to fulfill a software contract. In some languages, errors are used as a method of control flow, but in Elixir, this pattern is discouraged. We can often recognize functions that may raise an error just by their name: functions that raise errors are to have ! at the end of their name. This is in comparison with functions that return {:ok, value} or :error. Look at these library examples:
+
+# Map.fetch(%{a: 1}, :b)
+# # => :error
+# Map.fetch!(%{a: 1}, :b)
+# # => raises KeyError
+# Try/Rescue
+# Elixir provides a construct for rescuing from errors using try .. rescue
+
+# try do                             #1
+#   raise RuntimeError, "error"      #2
+# rescue
+#   e in RuntimeError -> :error      #3
+# end
+# Let's examine this construct:
+
+# Line 1, the block is declared with try.
+# Line 2, the function call which may error is placed here, in this case we are calling raise/2.
+# Line 3, in the rescue section, we pattern match on the Module name of the error raised
+# on the left side of ->:
+# e is matched to the error struct.
+# in is a keyword.
+# RuntimeError is the error that we want to rescue.
+# If we wanted to rescue from all errors, we could use _ instead of the module name or omit the in keyword entirely.
+# on the right side:
+# the instructions to be executed if the error matches.
+# Error structs
+# Errors (sometimes also called "exceptions") that you rescue this way are structs. Rescuing errors in Elixir is done very rarely. Usually the rescued error is logged or sent to an external monitoring service, and then reraised. This means we usually don't care about the internal structure of the specific error struct.
+
+# In the Exceptions concept you will learn more about error structs, including how to define your own custom error.
+
+# Instructions
+# While working at Instruments of Texas, you are tasked to work on an experimental Reverse Polish Notation [RPN] calculator written in Elixir. Your team is having a problem with some operations raising errors and crashing the process. You have been tasked to write a function which wraps the operation function so that the errors can be handled more elegantly with idiomatic Elixir code.
+
+# Task 1
+# Warn the team
+
+# Implement the function calculate!/2 to call the operation function with the stack as the only argument. The operation function is defined elsewhere, but you know that it can either complete successfully or raise an error.
+
+# stack = []
+# operation = fn _ -> :ok end
+# RPNCalculator.calculate!(stack, operation)
+# # => :ok
+
+# stack = []
+# operation = fn _ -> raise ArgumentError, "An error occurred" end
+# RPNCalculator.calculate!(stack, operation)
+# # => ** (ArgumentError) An error occurred
+# Function names that end in ! are a warning to programmers that this function may raise an error
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Wrap the error
+
+# When doing more research you notice that many functions use atoms and tuples to indicate their success/failure. Implement calculate/2 using this strategy.
+
+# stack = []
+# operation = fn _ -> "operation completed" end
+# RPNCalculator.calculate(stack, operation)
+# # => {:ok, "operation completed"}
+
+# stack = []
+# operation = fn _ -> raise ArgumentError, "An error occurred" end
+# RPNCalculator.calculate(stack, operation)
+# # => :error
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Pass on the message
+
+# Some of the errors contain important information that your coworkers need to have to ensure the correct operation of the system. Implement calculate_verbose/2 to pass on the error message. The error is a struct that has a :message field.
+
+# stack = []
+# operation = fn _ -> "operation completed" end
+# RPNCalculator.calculate_verbose(stack, operation)
+# # => {:ok, "operation completed"}
+
+# stack = []
+# operation = fn _ -> raise ArgumentError, "An error occurred" end
+# RPNCalculator.calculate_verbose(stack, operation)
+# # => {:error, "An error occurred"}
+
+defmodule RPNCalculator do
+  def calculate!(stack, operation), do: operation.(stack)
+  def calculate(stack, operation) do
+    {:ok, calculate!(stack, operation)}
+  rescue
+    _ -> :error
+  end
+  def calculate_verbose(stack, operation) do
+    {:ok, calculate!(stack, operation)}
+  rescue
+    e -> {:error, e.message}
+  end
+end
+
+
+
+# Elixir / Stack Underflow {{Exceptions}}
+
+# Introduction
+# Exceptions
+# All errors in Elixir implement the Exception Behaviour. Just like the Access Behaviour, the Exception Behaviour defines callback functions that a module must implement to fulfill the software contract of the behaviour. Once an error is defined, it has the following properties:
+
+# The module's name defines the error's name.
+# The module defines an error-struct.
+# The struct will have a :message field.
+# The module can be be used with raise/1 and raise/2 to raise the intended error
+# The Exception Behaviour also specifies two callbacks: message/1 and exception/1. If unimplemented, default implementations will be used. message/1 transforms the error-struct to a readable message when called with raise. exception/1 allows additional context to be added to the message when it is called with raise/2
+
+# Defining an exception
+# To define an exception from an error module, we use the defexception macro:
+
+# # Defines a minimal error, with the name `MyError`
+# defmodule MyError do
+#   defexception message: "error"
+# end
+
+# # Defines an error with a customized exception/1 function
+# defmodule MyCustomizedError do
+#   defexception message: "custom error"
+
+#   @impl true
+#   def exception(value) do
+#     case value do
+#       [] ->
+#         %MyCustomizedError{}
+#       _ ->
+#         %MyCustomizedError{message: "Alert: " <> value}
+#     end
+#   end
+# end
+# Using exceptions
+# Defined errors may be used like a built in error using either raise/1 or raise/2.
+
+# raise/1 raises a specific error by its module name, or, if the argument is a string, it will raise a RuntimeError with the string as the message.
+# raise/2 raises a specific error by its module name, and accepts an attributes argument which is used to obtain the error with the appropriate message.
+# Instructions
+# While continuing your work at Instruments of Texas, there is progress being made on the Elixir implementation of the RPN calculator. Your team would like to be able to raise errors that are more specific than the generic errors provided by the standard library. You are doing some research, but you have decided to implement two new errors which implement the Exception Behaviour.
+
+# Task 1
+# Error for Division by Zero
+
+# Dividing a number by zero produces an undefined result, which the team decides is best represented by an error.
+
+# Implement the DivisionByZeroError module to have the error message: "division by zero occurred"
+
+# raise DivisionByZeroError
+# # => ** (DivisionByZeroError) division by zero occurred
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Error when encountering stack underflow
+
+# RPN calculators use a stack to keep track of numbers before they are added. The team represents this stack with a list of numbers (integer and floating-point), e.g.: [3, 4.0]. Each operation needs a specific number of numbers on the stack in order to perform its calculation. When there are not enough numbers on the stack, this is called a stack underflow error. Implement the StackUnderflowError exception which provides a default message, and optional extra context
+
+# raise StackUnderflowError
+# # => ** (StackUnderflowError) stack underflow occurred
+
+# raise StackUnderflowError, "when dividing"
+# # => ** (StackUnderflowError) stack underflow occurred, context: when dividing
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Write a dividing function
+
+# Implement the divide/1 function which takes a stack (list of numbers) and:
+
+# raises stack underflow when the stack does not contain enough numbers
+# raises division by zero when the divisor is 0 (note the stack of numbers is stored in the reverse order)
+# performs the division when no errors are raised
+# RPNCalculator.Exception.divide([])
+# # => ** (StackUnderflowError) stack underflow occurred, context: when dividing
+
+# RPNCalculator.Exception.divide([0, 100])
+# # => ** (DivisionByZeroError) division by zero occurred
+
+# RPNCalculator.Exception.divide([4, 16])
+# # => 4
+# Note the order of the list is reversed!
+
+
+defmodule RPNCalculator.Exception do
+  defmodule DivisionByZeroError, do: defexception message: "division by zero occurred"
+
+  defmodule StackUnderflowError do
+    @message "stack underflow occurred"
+    defexception message: @message
+
+    def exception([]), do: %__MODULE__{}
+    def exception(term), do: %__MODULE__{message: "#{@message}, context: #{term}"}
+  end
+
+  def divide([]), do: raise StackUnderflowError, "when dividing"
+  def divide([_]), do: raise StackUnderflowError, "when dividing"
+  def divide([0 | _]), do: raise DivisionByZeroError
+  def divide([divisor, dividend]), do: dividend / divisor
+end
+
+
+
+# Elixir / RPN Calculator Inspection {{Links}} {{Tasks}}
+
+# Introduction
+# Links
+# Elixir processes are isolated and don't share anything by default. When an unlinked child process crashes, its parent process is not affected.
+
+# This behavior can be changed by linking processes to one another. If two processes are linked, a failure in one process will be propagated to the other process. Links are bidirectional.
+
+# Processes can be spawned already linked to the calling process using spawn_link/1 which is an atomic operation, or they can be linked later with Process.link/1.
+
+# Linking processes can be useful when doing parallelized work when each chunk of work shouldn't be continued in case another chunk fails to finish.
+
+# Trapping exits
+# Linking can also be used for supervising processes. If a process traps exits, it will not crash when a process to which it's linked crashes. It will instead receive a message about the crash. This allows it to deal with the crash gracefully, for example by restarting the crashed process.
+
+# A process can be configured to trap exits by calling Process.flag(:trap_exit, true). Note that Process.flag/2 returns the old value of the flag, not the new one.
+
+# The message that will be sent to the process in case a linked process crashes will match the pattern {:EXIT, from, reason}, where from is a PID. If reason is anything other than the atom :normal, that means that the process crashed or was forcefully killed.
+
+# Tasks
+# Tasks are processes meant to execute one specific operation. They usually don't communicate with other processes, but they can return a result to the process that started the task.
+
+# Tasks are commonly used to parallelize work.
+
+# async/await
+# To start a task, use Task.async/1. It takes an anonymous function as an argument and executes it in a new process that is linked to the caller process. It returns a %Task{} struct.
+
+# To get the result of the execution, pass the %Task{} struct to Task.await/2. It will wait for the task to finish and return its result. The second argument is a timeout in milliseconds, defaulting to 5000.
+
+# Note that between starting the task and awaiting the task, the process that started the task is not blocked and might do other operations.
+
+# Any task started with Task.async/1 should be awaited because it will send a message to the calling process. Task.await/2 can be called for each task only once.
+
+# start/start_link
+# If you want to start a task for side-effects only, use Task.start/1 or Task.start_link/1. Task.start/1 will start a task that is not linked to the calling process, and Task.start_link/1 will start a task that is linked to the calling process. Both functions return a {:ok, pid} tuple.
+
+# Instructions
+# Your work at Instruments of Texas on an experimental RPN calculator continues. Your team has built a few prototypes that need to undergo a thorough inspection, to choose the best one that can be mass-produced.
+
+# You want to conduct two types of checks.
+
+# Firstly, a reliability check that will detect inputs for which the calculator under inspection either crashes or doesn't respond fast enough. To isolate failures, the calculations for each input need to be run in a separate process. Linking and trapping exits in the caller process can be used to detect if the calculation finished or crashed.
+
+# Secondly, a correctness check that will check if for a given input, the result returned by the calculator is as expected. Only calculators that already passed the reliability check will undergo a correctness check, so crashes are not a concern. However, the operations should be run concurrently to speed up the process, which makes it the perfect use case for asynchronous tasks.
+
+# Task 1
+# Start a reliability check for a single input
+
+# Implement the RPNCalculatorInspection.start_reliability_check/2 function. It should take 2 arguments, a function (the calculator), and an input for the calculator. It should return a map that contains the input and the PID of the spawned process.
+
+# The spawned process should call the given calculator function with the given input. The process should be linked to the caller process.
+
+# RPNCalculatorInspection.start_reliability_check(fn _ -> 0 end, "2 3 +")
+# # => %{input: "2 3 +", pid: #PID<0.169.0>}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Interpret the results of a reliability check
+
+# Implement the RPNCalculatorInspection.await_reliability_check_result/2 function. It should take two arguments. The first argument is a map with the input of the reliability check and the PID of the process running the reliability check for this input, as returned by RPNCalculatorInspection.start_reliability_check/2. The second argument is a map that serves as an accumulator for the results of reliability checks with different inputs.
+
+# The function should wait for an exit message.
+
+# If it receives an exit message ({:EXIT, from, reason}) with the reason :normal from the same process that runs the reliability check, it should return the results map with the value :ok added under the key input.
+
+# If it receives an exit message with a different reason from the same process that runs the reliability check, it should return the results map with the value :error added under the key input.
+
+# If it doesn't receive any messages matching those criteria in 100ms, it should return the results map with the value :timeout added under the key input.
+
+# # when an exit message is waiting for the process in its inbox
+# send(self(), {:EXIT, pid, :normal})
+
+# RPNCalculatorInspection.await_reliability_check_result(
+#   %{input: "5 7 -", pid: pid},
+#   %{}
+# )
+# # => %{"5 7 -" => :ok}
+
+# # when there are no messages in the process inbox
+# RPNCalculatorInspection.await_reliability_check_result(
+#   %{input: "3 2 *", pid: pid},
+#   %{"5 7 -" => :ok}
+# )
+# # => %{"5 7 -" => :ok, "3 2 *" => :timeout}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Run a concurrent reliability check for many inputs
+
+# Implement the RPNCalculatorInspection.reliability_check/2 function. It should take 2 arguments, a function (the calculator), and a list of inputs for the calculator.
+
+# For every input on the list, it should start the reliability check in a new linked process by using start_reliability_check/2. Then, for every process started this way, it should await its results by using await_reliability_check_result/2.
+
+# Before starting any processes, the function needs to flag the current process to trap exits, to be able to receive exit messages. Afterwards, it should reset this flag to its original value.
+
+# The function should return a map with the results of reliability checks of all the inputs.
+
+# fake_broken_calculator = fn input ->
+#   if String.ends_with?(input, "*"), do: raise "oops"
+# end
+
+# inputs = ["2 3 +", "10 3 *", "20 2 /"]
+
+# RPNCalculatorInspection.reliability_check(fake_broken_calculator, inputs)
+# # => %{
+# #       "2 3 +" => :ok,
+# #       "10 3 *" => :error,
+# #       "20 2 /" => :ok
+# #     }
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Run a concurrent correctness check for many inputs
+
+# Implement the RPNCalculatorInspection.correctness_check/2 function. It should take 2 arguments, a function (the calculator), and a list of inputs for the calculator.
+
+# For every input on the list, it should start an asynchronous task that will call the calculator with the given input. Then, for every task started this way, it should await its results for 100ms.
+
+# fast_cheating_calculator = fn input -> 14 end
+# inputs = ["13 1 +", "50 2 *", "1000 2 /"]
+# RPNCalculatorInspection.correctness_check(fast_cheating_calculator, inputs)
+# # => [14, 14, 14]
+
+
+defmodule RPNCalculatorInspection do
+  def start_reliability_check(calculator, input), do:
+    %{input: input, pid: fn -> input |> calculator.() end |> spawn_link()}
+
+  def await_reliability_check_result(%{pid: pid, input: input}, results) do
+    receive do
+      {:EXIT, ^pid, :normal} -> results |> Map.put(input, :ok)
+      {:EXIT, ^pid, reason} -> results |> Map.put(input, :error)
+    after
+      100 -> results |> Map.put(input, :timeout)
+    end
+  end
+
+  def reliability_check(calculator, inputs) do
+    trap_exit = :trap_exit |> Process.flag(true)
+    results =
+      inputs
+      |> Enum.map(& start_reliability_check(calculator, &1))
+      |> Enum.reduce(%{}, &await_reliability_check_result(&1, &2))
+    :trap_exit |> Process.flag(trap_exit)
+    results
+  end
+
+  def correctness_check(calculator, inputs) do
+    inputs
+    |> Enum.map(& fn -> &1 |> calculator.() end |> Task.async())
+    |> Enum.map(& &1 |> Task.await(100))
+  end
+end
+
+
+
+# Elixir / Lucas Numbers {{Streams}}
+
+# Introduction
+# Streams
+# All functions in the Enum module are eager. When performing multiple operations on enumerables with the Enum module, each operation is going to generate an intermediate result.
+
+# The Stream module is a lazy alternative to the eager Enum module. It offers many of the same functions as Enum, but instead of generating intermediate results, it builds a series of computations that are only executed once the stream is passed to a function from the Enum module.
+
+# Streams implement the Enumerable protocol and are composable -- you can chain them together to create more complex functionality.
+
+# Instructions
+# You are a huge fan of the Numberphile Youtube channel and you just saw a cool video about the Lucas Number Sequence. You want to create this sequence using Elixir.
+
+# While designing your function, you want to make use of lazy evaluation, so that you can generate as many numbers as you want, but only if you need to -- So you decide to use a stream:
+
+# Task 1
+# Generate the base cases
+
+# You know that the sequence has two starting numbers which don't follow the same rule. Write two base case clauses to return these numbers:
+
+# LucasNumbers.generate(1)
+# # => [2]
+
+# LucasNumbers.generate(2)
+# # => [2, 1]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Create the generalized case
+
+# For any sequence longer than 2, you know that you need to add the previous two numbers to get the next number and so on. Write the generalized case.
+
+# LucasNumbers.generate(3)
+# # => [2, 1, 3]
+
+# LucasNumbers.generate(4)
+# # => [2, 1, 3, 4]
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Catch bad arguments
+
+# Later, you find someone is using your function and having problems because they are using incorrect arguments. Add a guard clause to raise an error if a non-integer or an integer less than 1 is used to generate the sequence:
+
+# LucasNumbers.generate("Hello World")
+# # => ** (ArgumentError) count must be specified as an integer >= 1
+
+
+defmodule LucasNumbers do
+  @moduledoc """
+  Lucas numbers are an infinite sequence of numbers which build progressively
+  which hold a strong correlation to the golden ratio (φ or ϕ)
+
+  E.g.: 2, 1, 3, 4, 7, 11, 18, 29, ...
+  """
+  def generate(count) when is_integer(count) and count >= 1, do: lucas() |> Enum.take(count)
+  def generate(_), do: raise ArgumentError, "count must be specified as an integer >= 1"
+  defp lucas(), do: {2, 1} |> Stream.unfold(fn {x, y} -> {x, {y, x + y}} end)
+end
+
+
+
+# Elixir / New Passport {{With}}
+
+# Introduction
+# With
+# The special form with provides a way to focus on the "happy path" of a series of potentially failing steps and deal with the failures later.
+
+# with {:ok, id} <- get_id(username),
+#      {:ok, avatar} <- fetch_avatar(id),
+#      {:ok, image_type} <- check_valid_image_type(avatar) do
+#   {:ok, image_type, avatar}
+# else
+#   :not_found ->
+#     {:error, "invalid username"}
+
+#   {:error, "not an image"} ->
+#     {:error, "avatar associated to #{username} is not an image"}
+
+#   err ->
+#     err
+# end
+# At each step, if a clause matches, the chain will continue until the do block is executed. If one match fails, the chain stops and the non-matching clause is returned. You have the option of using an else block to catch failed matches and modify the return value.
+
+# Instructions
+# Your passport is about to expire, so you need to drop by the city office to renew it. You know from previous experience that your city office is not necessarily the easiest to deal with, so you decide to do your best to always "focus on the happy path".
+
+# You print out the form you need to get your new passport, fill it out, jump into your car, drive around the block, park and head to the office.
+
+# All the following tasks will require implementing and extending get_new_passport/3.
+
+# Task 1
+# Get into the building
+
+# It turns out that the building is only open in the afternoon, and not at the same time everyday.
+
+# Call the function enter_building/1 with the current time (given to you as first argument of get_new_passport/3). If the building is open, the function will return a tuple with :ok and a timestamp that you will need later, otherwise a tuple with :error and a message. For now, the happy path can return the :ok tuple.
+
+# If you get an :error tuple, use the else block to return it.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Go to the information desk and find which counter you should go to
+
+# The information desk is notorious for taking long coffee breaks. If you are lucky enough to find someone there, they will give you an instruction manual which will explain which counter you need to go to depending on your birth date.
+
+# Call the function find_counter_information/1 with the current time. You will get either a tuple with :ok and a manual, represented by an anonymous function, or a tuple with :coffee_break and more instructions. In your happy path where you receive the manual, apply it to your birthday (second argument of get_new_passport/3). It will return the number of the counter where you need to go. Return an :ok tuple with that counter number.
+
+# If you get a :coffee_break message, return a tuple with :retry and a NaiveDateTime pointing to 15 minutes after the current time. As before, if you get an :error tuple, return it.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Go to the counter and get your form stamped
+
+# For some reason, different counters require forms of different colors. Of course, you printed the first one you found on the website, so you focus on your happy path and hope for the best.
+
+# Call the function stamp_form/3 with the timestamp you received at the entrance, the counter and the form you brought (last argument of get_new_passport/3). You will get either a tuple with :ok and a checksum that will be used to verify your passport number or a tuple with :error and a message. Have your happy path return an :ok tuple with the checksum. If you get an :error tuple, return it.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Receive your new passport
+
+# Finally, you have all the documents you need.
+
+# Call get_new_passport_number/3 with the timestamp, the counter and the checksum you received earlier. You will receive a string with your final passport number, all that is left to do is to return that string in a tuple with :ok and go home.
+
+
+defmodule NewPassport do
+  @eighteen_years 18 * 365
+
+  defp enter_building(%NaiveDateTime{} = datetime) do
+    day = Date.day_of_week(datetime)
+    time = NaiveDateTime.to_time(datetime)
+
+    cond do
+      day <= 4 and time_between(time, ~T[13:00:00], ~T[15:30:00]) ->
+        {:ok, datetime |> DateTime.from_naive!("Etc/UTC") |> DateTime.to_unix()}
+
+      day == 5 and time_between(time, ~T[13:00:00], ~T[14:30:00]) ->
+        {:ok, datetime |> DateTime.from_naive!("Etc/UTC") |> DateTime.to_unix()}
+
+      true ->
+        {:error, "city office is closed"}
+    end
+  end
+
+  defp find_counter_information(%NaiveDateTime{} = datetime) do
+    if datetime |> NaiveDateTime.to_time() |> time_between(~T[14:00:00], ~T[14:20:00]) do
+      {:coffee_break, "information counter staff on coffee break, come back in 15 minutes"}
+    else
+      {:ok, fn %Date{} = birthday -> 1 + div(Date.diff(datetime, birthday), @eighteen_years) end}
+    end
+  end
+
+  defp stamp_form(timestamp, counter, :blue) when rem(counter, 2) == 1, do: {:ok, 3 * (timestamp + counter) + 1}
+  defp stamp_form(timestamp, counter, :red) when rem(counter, 2) == 0, do: {:ok, div(timestamp + counter, 2)}
+  defp stamp_form(_, _, _), do: {:error, "wrong form color"}
+  defp get_new_passport_number(timestamp, counter, checksum), do: "#{timestamp}-#{counter}-#{checksum}"
+  defp time_between(time, from, to), do: Time.compare(from, time) != :gt and Time.compare(to, time) == :gt
+
+  def get_new_passport(current_time, birthday, form) do
+    with {:ok, timestamp} <- enter_building(current_time),
+         {:ok, manual} <- find_counter_information(current_time),
+         counter = manual.(birthday),
+         {:ok, checksum} <- stamp_form(timestamp, counter, form),
+         new_passport_number <- get_new_passport_number(timestamp, counter, checksum) do
+      {:ok, new_passport_number}
+    else
+      {:coffee_break, _message} -> {:retry, current_time |> NaiveDateTime.add(15, :minute)}
+      error -> error
+    end
+  end
+end
+
+
+
+# Elixir / Top Secret {{AST}}
+
+# Introduction
+# AST
+# The Abstract Syntax Tree (AST), also called a quoted expression, is a way to represent code as data.
+
+# Each node in the AST is a three-element tuple.
+
+# # AST representation of:
+# # 2 + 3
+# {:+, [], [2, 3]}
+# The first element, an atom, is the operation. The second element, a keyword list, is the metadata. The third element is a list of arguments, which contains other nodes. Literal values such as integers, atoms, and strings are represented in the AST as themselves instead of three-element tuples.
+
+# Turning code into ASTs
+# Changing Elixir code to ASTs and ASTs back to code is part of the standard library. You can find functions for working with ASTs in the modules Code (e.g. to change a string with code to an AST) and Macro (e.g. to traverse the AST or change it to a string).
+
+# Note that all of the functions in the standard library use the name "quoted" to mean the AST (short for quoted expression).
+
+# The special form for turning code into an AST is called quote. It accepts a code block and returns its AST.
+
+# quote do
+#   2 + 3 - 1
+# end
+
+# # => {:-, [], [
+# #      {:+, [], [2, 3]},
+# #      1
+# #    ]}
+# Use cases
+# The ability to represent code as an AST is at the heart of metaprogramming in Elixir. Macros, which is a way to write Elixir code that produces Elixir code, work by returning ASTs as output.
+
+# Another use case for ASTs is static code analysis, like Exercism's own tool, the Analyzer, which you might already know as the little bot that leaves comments on your solutions.
+
+# Instructions
+# You're part of a task force fighting against corporate espionage. You have a secret informer at Shady Company X, which you suspect of stealing secrets from its competitors.
+
+# Your informer, Agent Ex, is an Elixir developer. She is encoding secret messages in her code.
+
+# To decode her secret messages:
+
+# Take all functions (public and private) in the order they're defined in.
+# For each function, take the first n characters from its name, where n is the function's arity.
+# Task 1
+# Turn code into data
+
+# Implement the TopSecret.to_ast/1 function. It should take a string with Elixir code and return its AST.
+
+# TopSecret.to_ast("div(4, 3)")
+# # => {:div, [line: 1], [4, 3]}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 2
+# Parse a single AST node
+
+# Implement the TopSecret.decode_secret_message_part/2 function. It should take an AST node and an accumulator for the secret message (a list). It should return a tuple with the AST node unchanged as the first element, and the accumulator as the second element.
+
+# If the operation of the AST node is defining a function (def or defp), prepend the function name (changed to a string) to the accumulator. If the operation is something else, return the accumulator unchanged.
+
+# ast_node = TopSecret.to_ast("defp cat(a, b, c), do: nil")
+# TopSecret.decode_secret_message_part(ast_node, ["day"])
+# # => {ast_node, ["cat", "day"]}
+
+# ast_node = TopSecret.to_ast("10 + 3")
+# TopSecret.decode_secret_message_part(ast_node, ["day"])
+# # => {ast_node, ["day"]}
+# This function doesn't need to do any recursive calls to check the whole AST, only the given node. We will traverse the whole AST with built-in tools in the last step.
+
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 3
+# Decode the secret message part from function definition
+
+# Extend the TopSecret.decode_secret_message_part/2 function. If the operation in the AST node is defining a function, don't return the whole function name. Instead, check the function's arity. Then, return only first n character from the name, where n is the arity.
+
+# ast_node = TopSecret.to_ast("defp cat(a, b), do: nil")
+# TopSecret.decode_secret_message_part(ast_node, ["day"])
+# # => {ast_node, ["ca", "day"]}
+
+# ast_node = TopSecret.to_ast("defp cat(), do: nil")
+# TopSecret.decode_secret_message_part(ast_node, ["day"])
+# # => {ast_node, ["", "day"]}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 4
+# Fix the decoding for functions with guards
+
+# Extend the TopSecret.decode_secret_message_part/2 function. Make sure the function's name and arity is correctly detected for function definitions that use guards.
+
+# ast_node = TopSecret.to_ast("defp cat(a, b) when is_nil(a), do: nil")
+# TopSecret.decode_secret_message_part(ast_node, ["day"])
+# # => {ast_node, ["ca", "day"]}
+
+# Stuck? Reveal Hints
+# Opens in a modal
+# Task 5
+# Decode the full secret message
+
+# Implement the TopSecret.decode_secret_message/1 function. It should take a string with Elixir code and return the secret message as a string decoded from all function definitions found in the code. Make sure to reuse functions defined in previous steps.
+
+# code = """
+# defmodule MyCalendar do
+#   def busy?(date, time) do
+#     Date.day_of_week(date) != 7 and
+#       time.hour in 10..16
+#   end
+
+#   def yesterday?(date) do
+#     Date.diff(Date.utc_today, date)
+#   end
+# end
+# """
+
+# TopSecret.decode_secret_message(code)
+# # => "buy"
+
+
+
+# Decode the full secret message
+
+# FAILED
+# Test 13
+# test decode_secret_message/1 decodes a secret message from a single function definition
+
+# CODE RUN
+# code =
+#   "defmodule Notebook do\n  def note(notebook, text) do\n    add_to_notebook(notebook, text, append: true)\n  end\nend\n"
+
+# secret_message = "no"
+# assert TopSecret.decode_secret_message(code) == secret_message
+# TEST FAILURE
+#   1) test decode_secret_message/1 decodes a secret message from a single function definition (TopSecretTest)
+#      test/top_secret_test.exs:212
+#      Assertion with == failed
+#      code:  assert TopSecret.decode_secret_message(code) == secret_message
+#      left:  ""
+#      right: "no"
+#      stacktrace:
+#        test/top_secret_test.exs:222: (test)
+# %{ast: {:defmodule, [line: 1], [{:__aliases__, [line: 1], [:Notebook]}, [do: {:def, [line: 2], [{:note, [line: 2], [{:notebook, [line: 2], nil}, {:text, [line: 2], nil}]}, [do: {:add_to_notebook, [line: 3], [{:notebook, [line: 3], nil}, {:text, [line: 3], nil}, [append: true]]}]]}]]}}
+
+defmodule TopSecret do
+  def to_ast(string), do: Code.string_to_quoted!(string)
+  def decode_function_name(name, nil), do: ""
+  def decode_function_name(name, body), do: "#{name}" |> String.slice(0, length(body))
+  def decode_secret_message_part({_, _, [{:when, _, [{name, _, body} | _]} | _]} = ast, acc), do:
+    {ast, [decode_function_name(name, body) | acc]}
+  def decode_secret_message_part({op, _, [{name, _, body} | _]} = ast, acc) when op in [:def, :defp], do:
+    {ast, [decode_function_name(name, body) | acc]}
+  def decode_secret_message_part(ast, acc), do: {ast, acc}
+  def decode_secret_message(code), do:
+    code
+    |> to_ast()
+    |> Macro.prewalk([], &decode_secret_message_part/2)
+    |> elem(1)
+    |> Enum.reverse()
+    |> Enum.join()
+end
+
+
+
 # Elixir / Two Fer {{Default Arguments}} {{Guards}}
 
 # Instructions
@@ -3475,12 +4507,12 @@ end
 
 defmodule Knapsack do
   def maximum_value([], _), do: 0
-  def maximum_value([item | items], max_weight) when item.weight > max_weight, do: maximum_value(items, max_weight)
-  def maximum_value([item | items], max_weight) do
+  def maximum_value([item | items], max_weight) when item.weight > max_weight, do:
+    maximum_value(items, max_weight)
+  def maximum_value([item | items], max_weight), do:
     [
       maximum_value(items, max_weight),
       maximum_value(items, max_weight - item.weight) + item.value
     ]
     |> Enum.max()
-  end
 end
