@@ -8,7 +8,7 @@ pub mod hello_world {
         "Hello, World!"
     }
     #[test]
-    fn test_hello_world() {
+    fn tests() {
         assert_eq!("Hello, World!", hello());
     }
 }
@@ -145,6 +145,14 @@ pub mod lucians_luscious_lasagna {
     pub fn elapsed_time_in_minutes(number_of_layers: i32, actual_minutes_in_oven: i32) -> i32 {
         preparation_time_in_minutes(number_of_layers) + actual_minutes_in_oven
     }
+    #[test]
+    fn tests() {
+        assert_eq!(expected_minutes_in_oven(), 40);
+        assert_eq!(remaining_minutes_in_oven(30), 10);
+        assert_eq!(preparation_time_in_minutes(2), 4);
+        assert_eq!(elapsed_time_in_minutes(3, 20), 26);
+        assert_eq!(elapsed_time_in_minutes(1, 60), 62);
+    }
 }
 
 mod assembly_line {
@@ -218,6 +226,23 @@ mod assembly_line {
     pub fn working_items_per_minute(speed: u8) -> u32 {
         production_rate_per_hour(speed) as u32 / 60
     }
+    #[test]
+    fn tests() {
+        assert_eq!(production_rate_per_hour(0), 0.0);
+        assert_eq!(production_rate_per_hour(1), 221.0);
+        assert_eq!(production_rate_per_hour(4), 884.0);
+        assert_eq!(production_rate_per_hour(5), 994.5);
+        assert_eq!(production_rate_per_hour(8), 1591.2);
+        assert_eq!(production_rate_per_hour(9), 1531.53);
+        assert_eq!(production_rate_per_hour(10), 1701.7);
+        assert_eq!(working_items_per_minute(0), 0);
+        assert_eq!(working_items_per_minute(1), 3);
+        assert_eq!(working_items_per_minute(4), 14);
+        assert_eq!(working_items_per_minute(5), 16);
+        assert_eq!(working_items_per_minute(8), 26);
+        assert_eq!(working_items_per_minute(9), 25);
+        assert_eq!(working_items_per_minute(10), 28);
+    }
 }
 
 pub mod semi_structured_logs {
@@ -282,8 +307,24 @@ pub mod semi_structured_logs {
     pub fn error(message: &str) -> String {
         log(LogLevel::Error, message)
     }
+    #[test]
+    fn tests() {
+        assert_eq!(
+            log(LogLevel::Info, "Timezone changed"),
+            "[INFO]: Timezone changed"
+        );
+        assert_eq!(
+            log(LogLevel::Warning, "Out of memory"),
+            "[WARNING]: Out of memory"
+        );
+        assert_eq!(
+            log(LogLevel::Error, "Stack overflow"),
+            "[ERROR]: Stack overflow"
+        );
+        assert_eq!(info("Timezone changed"), "[INFO]: Timezone changed");
+        assert_eq!(warn("Out of memory"), "[WARNING]: Out of memory");
+        assert_eq!(error("Stack overflow"), "[ERROR]: Stack overflow");
+    }
 }
-
-pub mod resistor_color {}
 
 fn main() {}
