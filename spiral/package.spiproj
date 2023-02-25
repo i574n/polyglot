@@ -1,0 +1,14 @@
+packages:
+    |core-
+modules:
+    real_util*
+    util-
+    console_fsx
+    rust/
+        util
+    proxy/
+        proxy
+    cli/
+        spi_fsx_build
+        post_fsx_rs_build
+        cli

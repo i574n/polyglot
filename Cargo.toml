@@ -1,0 +1,24 @@
+[package]
+name = "polyglot"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+
+[dev-dependencies]
+
+[build-dependencies]
+proxy = { path = "./spiral/proxy" }
+cli = { path = "./spiral/cli" }
+
+[lib]
+path = "./spiral/cli/main.rs"
+
+
+
+[workspace]
+
+members = [
+    "spiral/proxy",
+    "spiral/cli",
+]

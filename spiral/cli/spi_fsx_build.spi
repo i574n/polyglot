@@ -1,0 +1,131 @@
+open rust.util
+
+
+union supervisor_req =
+    | ProjectFileOpen : { spiproj_path : path_buf; spiproj_text : std_string }
+    | BuildFile : { spi_path : path_buf; backend : std_string }
+
+inl get_req_json = function
+    | ProjectFileOpen { spiproj_path spiproj_text } =>
+        (spiproj_path, spiproj_text),
+        "{" +\
+            "\"ProjectFileOpen\": {" +\
+                "\"uri\": $0," +\
+                "\"spiprojText\": $1" +\
+            "}" +\
+        "}"
+    | BuildFile { spi_path backend } =>
+        (spi_path, backend),
+        "{" +\
+            "\"BuildFile\": {" +\
+                "\"uri\": $0," +\
+                "\"backend\": $1" +\
+            "}" +\
+        "}"
+
+inl zmq_request (msg : std_string) : std_string =
+    inl get_locals () = ;[!>"> zmq_request ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "fcfb1b"
+
+    inl host = "localhost"
+    inl port : i32 = 13805
+    log Debug ;[
+        !>"host"; !>host
+        !>"port"; !>port
+        !>"msg len"; !>(msg |> len)
+    ]
+
+    inl ctx : any = emit_expr () "zmq::Context::new()"
+    inl sock : any = emit_expr ctx "$0.socket(zmq::REQ).unwrap()"
+    inl endpoint : string = $"$\"tcp://{!host}:{!port}\""
+
+    emit_expr (sock, endpoint) "$0.connect(&$1).unwrap()"
+    emit_expr (sock, msg) $"$\"$0.send($1.as_str(), 0).unwrap()\""
+    inl result : std_string = emit_expr sock "$0.recv_string(0).unwrap().unwrap()"
+
+    emit_expr (sock, endpoint) "$0.disconnect(&$1).unwrap()"
+
+    log Debug ;[!>"result len"; !>(result |> len)]
+
+    result
+
+inl spiproj_open (spiproj_path : path_buf) (spiproj_text : std_string) : () =
+    inl get_locals () = ;[!>"> spiproj_open ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "e36a62"
+
+    log Debug ;[
+        !>"spiproj_path"; !>(spiproj_path |> path_display)
+        !>"spiproj_text len"; !>(spiproj_text |> len)
+    ]
+
+    inl args, req_json = ProjectFileOpen { spiproj_path spiproj_text } |> get_req_json
+    inl json = serialize args req_json
+
+    log Debug ;[!>"json len="; !>(json |> len)]
+
+    zmq_request json |> ignore
+
+inl spi_build_file (spi_path : path_buf) (backend : string) : () =
+    inl get_locals () = ;[!>"> spi_build_file ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "98d5ef"
+
+    log Debug ;[
+        !>"spi_path"; !>(spi_path |> path_display)
+        !>"backend"; !>backend
+    ]
+
+    inl args, req_json = BuildFile { spi_path; backend = backend |> to_std_string } |> get_req_json
+    inl json = serialize args req_json
+
+    log Debug ;[!>"json len"; !>(json |> len)]
+
+    zmq_request json |> ignore
+
+inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
+    inl get_locals () = ;[!>"> spi_to_fsx ()"]
+    inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "de884c"
+
+    log Debug ;[
+        !>"pwd"; !>(env_current_dir () |> path_canonicalize |> path_display)
+        !>"spi_path"; !>(spi_path |> path_display)
+        !>"new_fsx_path"; !>(new_fsx_path |> format)
+    ]
+
+    inl src_path = spi_path |> path_parent
+    log Debug ;[!>"src_path"; !>(src_path |> path_display)]
+
+    inl spiproj_path =
+        src_path
+        |> path_ancestors
+        |> take $"unativeint 10"
+        |> map (path_join "package.spiproj")
+        |> find path_exists
+        |> (~!!)
+    log Debug ;[!>"spiproj_path"; !>(spiproj_path |> path_display)]
+
+    inl fsx_path =
+        spi_path
+        |> path_to_str
+        |> (~!!)
+        |> string_replace ".spir" ".spi"
+        |> string_replace ".spi" ".fsx"
+        |> to_path_buf
+        |> path_canonicalize
+    log Debug ;[!>"fsx_path"; !>(fsx_path |> path_display)]
+
+    (!!(fs_write fsx_path "") : unit') |> ignore
+    log Debug ;[!>"> fs_write fsx_path \"\"; ok"]
+
+    spiproj_open spiproj_path !!(fs_read_to_string spiproj_path)
+    log Debug ;[!>"> spiproj_open; ok"]
+
+    spi_build_file spi_path "Fsharp"
+    log Debug ;[!>"> spi_build_file; ok"]
+
+    inl new_fsx = wait_file_change fsx_path
+    log Debug ;[!>"new_fsx len"; !>(new_fsx |> len)]
+
+    (!!(fs_write (new_fsx_path |> unwrap_or fsx_path) new_fsx) : unit') |> ignore
+    log Debug ;[!>"> fs_write new_fsx_path; ok"]
+
+    new_fsx

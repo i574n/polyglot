@@ -1,0 +1,33 @@
+name: spiral
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+          include-prerelease: true
+
+      - uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: nightly
+
+      - run: dotnet tool restore
+      - run: dotnet paket restore
+
+      - run: pwsh init.ps1
+
+      - run: cd spiral/cli && pwsh build.ps1

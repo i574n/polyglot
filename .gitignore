@@ -1,12 +1,14 @@
-### Local settings
-# IDE settings
-.idea/
-# User configurations
-*.user
-
-### .NET
+.vscode
+playwright-report/
+playwright-videos/
+test-results/
+node_modules/
+dist/
+deps/
 bin/
 obj/
-
-### Rust
 target/
+dist_extension/
+tmp/
+paket-files/
+.paket/
