@@ -16,6 +16,8 @@ type Dyn<'T> = class end
 type EmitType<'T> = class end
 [<Erase; Emit("mut $0")>]
 type Mut<'T> = class end
+[<Erase; Emit("RangeInclusive<$0>")>]
+type RangeInclusive<'T> = class end
 [<Erase; Emit("&$0")>]
 type Ref<'T> = class end
 [<Erase; Emit("&'static $0")>]
@@ -24,6 +26,8 @@ type StaticRef<'T> = class end
 type Str = class end
 [<Erase; Emit("($0, $1)")>]
 type Tuple<'A, 'B> = class end
+[<Erase; Emit("u16")>]
+type U16 = class end
 [<Erase; Emit("Vec<$0>")>]
 type Vec<'T> = class end
 
@@ -50,6 +54,12 @@ module std =
         [<Erase; Emit("_")>]
         type Iterator<'T> = class end
 
+    module net =
+        [<Erase; Emit("std::net::SocketAddr")>]
+        type SocketAddr = class end
+        [<Erase; Emit("std::net::TcpListener")>]
+        type TcpListener = class end
+
     module path =
         [<Erase; Emit("std::path::Ancestors")>]
         type Ancestors = class end
@@ -59,6 +69,10 @@ module std =
         type PathBuf = class end
         [<Erase; Emit("std::path::StripPrefixError")>]
         type StripPrefixError = class end
+
+    module process =
+        [<Erase; Emit("std::process::Child")>]
+        type Child = class end
 
     module rc =
         [<Erase; Emit("std::rc::Rc<$0>")>]

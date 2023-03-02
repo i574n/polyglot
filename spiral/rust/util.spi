@@ -11,10 +11,12 @@ nominal box t = $"Types.Box<`t>"
 nominal dyn' t = $"Types.Dyn<`t>"
 nominal emit_type t = $"Types.EmitType<`t>"
 nominal mut' t = $"Types.Mut<`t>"
+nominal range_inclusive t = $"Types.RangeInclusive<`t>"
 nominal ref' t = $"Types.Ref<`t>"
 nominal static_ref' t = $"Types.StaticRef<`t>"
 nominal str = $"Types.Str"
 nominal tuple' a b = $"Types.Tuple<`a, `b>"
+nominal u16' = $"Types.U16"
 nominal vec t = $"Types.Vec<`t>"
 
 nominal cell_ref t = $"Types.std.cell.CellRef<`t>"
@@ -28,10 +30,15 @@ type io_error = $"Types.std.io.Error"
 
 nominal iterator t = $"Types.std.iter.Iterator<`t>"
 
+nominal socket_addr = $"Types.std.net.SocketAddr"
+nominal tcp_listener = $"Types.std.net.TcpListener"
+
 type ancestors = $"Types.std.path.Ancestors"
 nominal path = $"Types.std.path.Path"
 nominal path_buf = $"Types.std.path.PathBuf"
 type strip_prefix_error = $"Types.std.path.StripPrefixError"
+
+type process_child = $"Types.std.process.Child"
 
 nominal rc t = $"Types.std.rc.Rc<`t>"
 
@@ -246,9 +253,12 @@ inl console_log' (args : a i32 std_string) : () =
     inl args : js_value = args |> to_any |> js_value_from_obj
     emit_expr args "web_sys::console::log(&js_sys::Array::from(&$0))"
 
+inl try_into forall t u. (x : t) : u =
+    emit_expr () $"\"!x.try_into().unwrap()\""
 
 inl len forall t. (x : t) : i32 =
-    emit_expr x "($0).len().try_into().unwrap()"
+    inl len : any = emit_expr () $"\"!x.len()\""
+    len |> try_into
 
 // inl new_string (str : static_ref' str) : string =
     // emit_expr str "fable_library_rust::String_::string($0)"
@@ -366,6 +376,30 @@ inl get_clap_one (arg : string) (matches : arc clap_arg_matches) : std_string =
         // |> to_ref'
     )
 
+
+
+inl new_socket_addr (port : u16') : socket_addr =
+    inl port = join port
+    emit_expr () $"\"std::net::SocketAddr::from(([0, 0, 0, 0], !port))\""
+
+inl bind_tcp_listener (addr : socket_addr) : result' tcp_listener io_error =
+    emit_expr () $"\"std::net::TcpListener::bind(!addr)\""
+
+inl is_ok forall t u. (result : result' t u) : bool =
+    emit_expr () $"\"!result.is_ok()\""
+
+let rec get_available_port (port : u16') : u16' =
+    inl addr = new_socket_addr port
+    inl listener = bind_tcp_listener addr
+    if is_ok listener
+    then port
+    else
+        inl port = join port
+        inl port = emit_expr () $"\"!port + 1\""
+        get_available_port port
+
+
+
 // inl serialize args json : std_string =
 //     emit_expr args ("serde_json::json!(" +\ json +\ ")")
 
@@ -375,8 +409,8 @@ inl get_clap_one (arg : string) (matches : arc clap_arg_matches) : std_string =
 //         | array _ => serialize `t obj "****$0"
 //         | _ => serialize `t obj "*$0"
 
-inl serialize args json : std_string =
-    emit_expr args ("serde_json::json!(" +\ json +\ ").to_string()")
+inl serialize json : std_string =
+    emit_expr () ("serde_json::json!(" +\ json +\ ").to_string()")
 
 
 inl hex_to_u8 (hex : string) : u8 =
@@ -1125,7 +1159,7 @@ inl wait_file_change (fsx_path : path_buf) : string =
                         inl lines : std_string = !!(fsx_path |> fs_read_to_string)
                         Some (lines |> to_string'''')
                     else
-                        sleep 25
+                        sleep 60
                         None
             None
 
