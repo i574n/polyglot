@@ -194,7 +194,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     block_on
         ($"\"async move {\"" +\
         $"\"     loop {\"" +\
-        $"\"         let result = std::net::TcpStream::connect_timeout(&!addr, std::time::Duration::from_secs(5));\"" +\
+        $"\"         let result = std::net::TcpStream::connect(&!addr);\"" +\
         $"\"         println!!(\\\"connect_timeout: {:?}\\\", result);\"" +\
         $"\"         if result.is_ok() {\"" +\
         $"\"             tokio::time::sleep(std::time::Duration::from_secs(1)).await;\"" +\

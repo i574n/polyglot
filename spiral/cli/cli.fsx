@@ -3380,7 +3380,7 @@ and closure0 () () : int32 =
             let v329 : string = "async move {"
             let v330 : string = "     loop {"
             let v331 : string = v329 + v330
-            let v332 : string = "         let result = std::net::TcpStream::connect_timeout(&v328, std::time::Duration::from_secs(5));"
+            let v332 : string = "         let result = std::net::TcpStream::connect(&v328);"
             let v333 : string = v331 + v332
             let v334 : string = "         println!(\"connect_timeout: {:?}\", result);"
             let v335 : string = v333 + v334
