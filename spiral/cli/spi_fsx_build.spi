@@ -7,6 +7,7 @@ union supervisor_req =
     | Ping : bool
     | ProjectFileOpen : { spiproj_path : path_buf; spiproj_text : std_string }
 
+
 inl get_req_json = function
     | BuildFile { spi_path backend } =>
         "{" +\
@@ -59,6 +60,7 @@ inl zmq_request (host : string) (port : u16') (msg : std_string) : std_string =
 
     result
 
+
 inl spi_open host port (spi_path : path_buf) (spi_text : std_string) : () =
     inl get_locals () = ;[!>"> spi_open ()"]
     inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "e36a62"
@@ -74,6 +76,7 @@ inl spi_open host port (spi_path : path_buf) (spi_text : std_string) : () =
     log Debug ;[!>"json_len"; !>(json |> len)]
 
     zmq_request host port json |> ignore
+
 
 inl spiproj_open host port (spiproj_path : path_buf) (spiproj_text : std_string) : () =
     inl get_locals () = ;[!>"> spiproj_open ()"]
@@ -91,6 +94,7 @@ inl spiproj_open host port (spiproj_path : path_buf) (spiproj_text : std_string)
 
     zmq_request host port json |> ignore
 
+
 inl ping host port : () =
     inl get_locals () = ;[!>"> ping ()"]
     inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "e36a62"
@@ -101,6 +105,7 @@ inl ping host port : () =
     log Debug ;[!>"json_len"; !>(json |> len)]
 
     zmq_request host port json |> ignore
+
 
 inl spi_build_file host port (spi_path : path_buf) (backend : string) : () =
     inl get_locals () = ;[!>"> spi_build_file ()"]
@@ -117,6 +122,7 @@ inl spi_build_file host port (spi_path : path_buf) (backend : string) : () =
     log Debug ;[!>"json_len"; !>(json |> len)]
 
     zmq_request host port json |> ignore
+
 
 inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string =
     inl get_locals () = ;[!>"> spi_to_fsx ()"]
@@ -154,13 +160,12 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     log Debug ;[!>"> fs_write fsx_path \"\"; ok"]
 
 
-    inl host = "localhost"
+    inl host = "127.0.0.1"
 
     inl port : u16' = 13805i32 |> try_into
     // inl port : u16' = port |> get_available_port
 
     log Debug ;[!>"port"; !>port]
-
 
     inl path = "../The-Spiral-Language/The Spiral Language 2/bin/Release/net7.0/Spiral.dll" |> raw_string_literal
     inl command = "dotnet" |> raw_string_literal
@@ -173,11 +178,8 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     inl command : any = emit_expr () $"\"!command.stderr(std::process::Stdio::inherit())\""
     inl process : result' process_child io_error = emit_expr () $"\"!command.spawn()\""
     inl process : process_child = emit_expr () $"\"!process.unwrap()\""
-    inl process = process // |> new_rc
-    // emit_expr () $"\"let mut !process = !process\""
 
     log Debug ;[!>"process"; !>(process |> format)]
-
 
     inl addr = new_socket_addr port
     // inl port2 = emit_expr () $"\"!port + 10\""
@@ -203,6 +205,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         $"\"             tokio::time::sleep(std::time::Duration::from_millis(60)).await;\"" +\
         $"\"         }\"" +\
         $"\"     }\"" +\
+        $"\" }\"")
         // $"\"     let listener = std::net::TcpListener::bind(&!addr2).unwrap();\"" +\
         // $"\"     let (stream, _) = listener.accept().unwrap();\"" +\
         // $"\"     let stream = tokio::net::TcpStream::from_std(stream).unwrap();\"" +\
@@ -234,7 +237,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         // $"\"             break;\"" +\
         // $"\"         }\"" +\
         // $"\"     }\"" +\
-        $"\" }\"")
+        // $"\" }\"")
 
 
     // inl port = port2
@@ -278,33 +281,6 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
 
     inl output : any = emit_expr () $"\"!process.wait_with_output().unwrap()\""
     log Debug ;[!>"output"; !>(output |> format)]
-
-
-
-    // inl output : any = emit_expr () $"\"&mut !process.stdout\""
-    // inl output : any = emit_expr () $"\"!output.take().unwrap()\""
-    // log Debug ;[!>"stderr_output"; !>(output |> format)]
-
-    // inl reader : any = emit_expr () $"\"std::io::BufReader::new(!output)\""
-    // inl lines : any = emit_expr () $"\"!reader.buffer().to_vec()\""
-
-    // log Debug ;[!>"stdout_lines"; !>(lines |> format)]
-
-
-    // inl output : any = emit_expr () $"\"&mut !process.stderr\""
-    // inl output : any = emit_expr () $"\"!output.take().unwrap()\""
-    // log Debug ;[!>"stderr_output"; !>(output |> format)]
-
-    // inl reader : any = emit_expr () $"\"std::io::BufReader::new(!output)\""
-    // inl lines : any = emit_expr () $"\"!reader.buffer().to_vec()\""
-
-    // log Debug ;[!>"stderr_lines"; !>(lines |> format)]
-
-
-
-    // emit_expr () $"\"!process.kill().unwrap()\""
-
-
 
 
     (!!(fs_write (new_fsx_path |> unwrap_or fsx_path) new_fsx) : unit') |> ignore

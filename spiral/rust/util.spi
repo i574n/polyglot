@@ -1144,7 +1144,7 @@ inl wait_file_change (fsx_path : path_buf) : string =
     ]
 
     inl new_fsx =
-        range 0i32 50
+        range 0i32 20
         |> am.fold
             fun new_fsx i =>
                 match new_fsx with

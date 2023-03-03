@@ -3442,7 +3442,7 @@ and closure0 () () : int32 =
             let v394 : int64 = Fable.Core.Rust.emitExpr v393 v6
             let v395 : string = "host"
             let v396 : Types.EmitType<Types.std.string.String> = method5(v395)
-            let v397 : string = "localhost"
+            let v397 : string = "127.0.0.1"
             let v398 : Types.EmitType<Types.std.string.String> = method5(v397)
             let v399 : Types.EmitType<Types.std.string.String> = method5(v292)
             let v400 : Types.EmitType<Types.std.string.String> = method34(v291)
@@ -3933,7 +3933,7 @@ and closure0 () () : int32 =
             let v871 : Types.EmitType<Types.std.string.String> = method44(v865)
             let v872 : (Types.EmitType<Types.std.string.String> []) = [|v866; v868; v870; v871|]
             method45(v863, v872)
-            let v873 : (int32 []) = [| 0..50 |]
+            let v873 : (int32 []) = [| 0..20 |]
             let v874 : int32 = v873.Length
             let v875 : US0 = US0_0
             let v876 : Mut1 = {l0 = 0; l1 = v875} : Mut1

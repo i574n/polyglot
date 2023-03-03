@@ -2499,7 +2499,7 @@ pub mod Cli {
                                                             let v395: string = string("host");
                                                             let v396: std::string::String =
                                                                 Cli::method5(v395.clone());
-                                                            let v397: string = string("localhost");
+                                                            let v397: string = string("127.0.0.1");
                                                             let v398: std::string::String =
                                                                 Cli::method5(v397.clone());
                                                             let v399: std::string::String =
@@ -3387,7 +3387,7 @@ pub mod Cli {
                                                                                                                                                                                                                                                         Array<i32> =
                                                                                                                                                                                                                                                     toArray(rangeNumeric(0i32,
                                                                                                                                                                                                                                                                          1i32,
-                                                                                                                                                                                                                                                                         50i32).clone());
+                                                                                                                                                                                                                                                                         20i32).clone());
                                                                                                                                                                                                                                                 let v874:
                                                                                                                                                                                                                                                         i32 =
                                                                                                                                                                                                                                                     v873.len()
