@@ -1,4 +1,4 @@
-name: spiral
+name: gh-pages
 on:
   push:
     branches: [main]
@@ -30,3 +30,27 @@ jobs:
       - run: pwsh init.ps1
 
       - run: cd spiral/cli && pwsh build.ps1
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: gh-pages
+          path: dist
+          retention-days: 30
+
+  push:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: gh-pages
+          path: gh-pages
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: gh-pages
