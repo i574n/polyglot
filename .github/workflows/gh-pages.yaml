@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: gh-pages
-          path: dist
+          path: .
           retention-days: 30
 
   push:
