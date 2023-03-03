@@ -32,40 +32,40 @@ jobs:
       - run: cd spiral/cli && pwsh build.ps1
 
       - run: |
-        rsync -av \
-          --exclude 'The-Spiral-Language' \
-          --exclude 'fable_modules' \
-          --exclude 'target' \
-          --exclude '.elixir_ls' \
-          --exclude 'paket-files' \
-          --exclude 'bin' \
-          --exclude 'obj' \
-          --include '*.md' \
-          --include '*.editorconfig' \
-          --include '*.gitignore' \
-          --include '*.toml' \
-          --include '*.ps1' \
-          --include '*.dependencies' \
-          --include '*.references' \
-          --include '*.sln' \
-          --include '*.json' \
-          --include '*.yaml' \
-          --include '*.nix' \
-          --include '*.cs' \
-          --include '*.csproj' \
-          --include '*.exs' \
-          --include '*.fs' \
-          --include '*.fsx' \
-          --include '*.fsproj' \
-          --include '*.rs' \
-          --include '*.spi' \
-          --include '*.spir' \
-          --include '*.spiproj' \
-          --include '*/' \
-          --exclude '*' \
-          --prune-empty-dirs \
-          ./ \
-          ./dist/
+          rsync -av \
+            --exclude 'The-Spiral-Language' \
+            --exclude 'fable_modules' \
+            --exclude 'target' \
+            --exclude '.elixir_ls' \
+            --exclude 'paket-files' \
+            --exclude 'bin' \
+            --exclude 'obj' \
+            --include '*.md' \
+            --include '*.editorconfig' \
+            --include '*.gitignore' \
+            --include '*.toml' \
+            --include '*.ps1' \
+            --include '*.dependencies' \
+            --include '*.references' \
+            --include '*.sln' \
+            --include '*.json' \
+            --include '*.yaml' \
+            --include '*.nix' \
+            --include '*.cs' \
+            --include '*.csproj' \
+            --include '*.exs' \
+            --include '*.fs' \
+            --include '*.fsx' \
+            --include '*.fsproj' \
+            --include '*.rs' \
+            --include '*.spi' \
+            --include '*.spir' \
+            --include '*.spiproj' \
+            --include '*/' \
+            --exclude '*' \
+            --prune-empty-dirs \
+            ./ \
+            ./dist/
 
       - uses: actions/upload-artifact@v2
         with:
