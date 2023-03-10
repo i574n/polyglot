@@ -1,0 +1,4 @@
+inl (~!\) x = rust.(~!\) x
+inl (~!\\) x = rust.(~!\\) x
+inl (~#) x = rust.(~#) x
+inl (~##) x = rust.(~##) x

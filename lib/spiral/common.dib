@@ -1,0 +1,332 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# common
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## types
+
+#!spiral
+
+nominal any = $"obj"
+nominal disposable = $"System.IDisposable"
+nominal exn = $"exn"
+nominal guid = $"System.Guid"
+nominal unativeint = $"unativeint"
+
+let array x = x
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
+
+#!markdown
+
+## prototype
+
+#!spiral
+
+prototype (~:>) r : forall t. t -> r
+prototype append t : t -> t -> t
+prototype of_string t : string -> t
+prototype to_string t : t -> string
+
+#!markdown
+
+## null
+
+#!spiral
+
+inl null forall t. () : t =
+    $"null |> unbox<`t>"
+
+#!spiral
+
+inl i64 forall t. (x : t) : i64 =
+    $"int64 !x"
+
+#!markdown
+
+## pair
+
+#!spiral
+
+type pair a b = $"(`a * `b)"
+
+inl pair x y =
+    x, y
+
+#!spiral
+
+// // test
+
+pair 1i32 2i32
+|> _equal (1, 2)
+
+#!markdown
+
+## new_pair
+
+#!spiral
+
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $"!a, !b"
+
+#!markdown
+
+## from_pair
+
+#!spiral
+
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $"let (a, b) = !pair"
+    $"a", $"b"
+
+#!spiral
+
+// // test
+
+new_pair "a" 1i32
+|> from_pair
+|> _equal ("a", 1i32)
+
+#!spiral
+
+// // test
+
+new_pair "a" (new_pair 1i32 "b")
+|> from_pair
+
+#!markdown
+
+## log_level_type
+
+#!spiral
+
+union log_level_type =
+    | Verbose
+    | Debug
+    | Info
+    | Warning
+    | Critical
+
+instance to_string log_level_type = function
+    | Verbose => "Verbose"
+    | Debug => "Debug"
+    | Info => "Info"
+    | Warning => "Warning"
+    | Critical => "Critical"
+
+instance of_string log_level_type = function
+    | "Verbose" => Verbose
+    | "Debug" => Debug
+    | "Info" => Info
+    | "Warning" => Warning
+    | "Critical" => Critical
+
+#!markdown
+
+## to_any
+
+#!spiral
+
+inl to_any forall t. (obj : t) : any =
+    $"!obj"
+
+instance (~:>) any = to_any
+
+#!markdown
+
+## (/@)
+
+#!spiral
+
+inl (/@) a b =
+    b |> append a
+
+#!markdown
+
+## unbox
+
+#!spiral
+
+inl unbox forall t u. (x : t) : u =
+    $"!x |> unbox<`u>"
+
+#!markdown
+
+## (/+)
+
+#!spiral
+
+inl (/+) forall t. (a : t) (b : t) : t =
+    $"!a + !b"
+
+#!markdown
+
+## (||>)
+
+#!spiral
+
+inl (||>) (arg1, arg2) fn =
+    arg2 |> fn arg1
+
+#!spiral
+
+// // test
+
+(3i32, 2i32)
+||> fun a b => a - b
+|> _equal 1
+
+#!markdown
+
+## flip
+
+#!spiral
+
+inl flip fn a b =
+    fn b a
+
+#!spiral
+
+// // test
+
+(1i32, 2i32)
+||> flip pair
+|> _equal (2, 1)
+
+#!markdown
+
+## join_body
+
+#!spiral
+
+inl join_body body acc x =
+    if var_is x |> not
+    then body acc x
+    else
+        inl acc = dyn acc
+        join body acc x
+
+#!spiral
+
+// // test
+
+inl rec fold_list f s = function
+    | Cons (x, x') => fold_list f (f s x) x'
+    | Nil => s
+
+#!spiral
+
+// // test
+
+[5i32; 4; join 3; 2; 1]
+|> fold_list (+) 0
+|> _equal 15
+
+#!spiral
+
+// // test
+
+[5i32; 4; join 3; 2; 1]
+|> fold_list (join_body (+)) 0
+|> _equal 15
+
+#!markdown
+
+## join_body_unit
+
+#!spiral
+
+inl join_body_unit body d x =
+    if var_is d |> not
+    then body x
+    else
+        inl x = dyn x
+        join body x
+
+#!spiral
+
+// // test
+
+[5i32; 4; join 3; 2; 1]
+|> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
+|> _equal 15
+
+#!markdown
+
+## run_target
+
+#!spiral
+
+union target_runtime =
+    | Native
+    | Wasm
+
+union target =
+    | Rust : target_runtime
+    | Fsharp
+
+inl run_target forall t. (fn : target -> (() -> t)) : t =
+    $"let mutable result = None"
+    $"#if FABLE_COMPILER_RUST"
+    $"#if \!WASM"
+    fn (Rust Native) () |> fun x => $"!x"
+    $"#else"
+    fn (Rust Wasm) () |> fun x => $"!x"
+    $"#endif"
+    $"#else"
+    fn Fsharp () |> fun x => $"!x"
+    $"#endif"
+    $"|> fun x -> result <- Some x"
+    $"result |> Option.get"
+
+#!spiral
+
+// // test
+
+run_target function
+    | Fsharp => fun () => $"1uy"
+    | Rust (Native) => fun () => $"2uy"
+    | Rust (Wasm) => fun () => $"3uy"
+|> _equal 1u8
+
+#!spiral
+
+// // test
+// // rust=
+
+run_target function
+    | Fsharp => fun () => $"1uy"
+    | Rust (Native) => fun () => $"2uy"
+    | Rust (Wasm) => fun () => $"3uy"
+|> (=) 2u8
+|> _equal true
+
+#!markdown
+
+## nameof
+
+#!spiral
+
+inl nameof x : string =
+    $"nameof !x"
+
+#!markdown
+
+## get_environment_variable
+
+#!spiral
+
+inl get_environment_variable (var : string) : string =
+    $"System.Environment.GetEnvironmentVariable !var"

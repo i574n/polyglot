@@ -1,0 +1,502 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# seq
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## seq
+
+#!spiral
+
+type seq dim el = dim -> option el
+
+#!markdown
+
+## try_item
+
+#!spiral
+
+inl try_item n s =
+    n |> s
+
+#!markdown
+
+## from_list
+
+#!spiral
+
+inl from_list list =
+    fun n =>
+        list
+        |> listm'.try_item n
+
+#!spiral
+
+// // test
+
+listm.init 10i32 print_and_return
+|> from_list
+|> try_item 5i32
+|> _equal (Some 5i32)
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map fn
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> map ((*) 2)
+|> try_item 5i32
+|> _equal (Some 10i32)
+
+#!markdown
+
+## mapi
+
+#!spiral
+
+inl mapi fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map (fn n)
+
+#!spiral
+
+// // test
+
+listm.init 10i32 print_and_return
+|> from_list
+|> mapi fun i x => i + x
+|> try_item 5i32
+|> _equal (Some 10i32)
+
+#!markdown
+
+## choose
+
+#!spiral
+
+inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq dim u =
+    fun n =>
+        inl rec body fn s i i' =
+            match i |> s with
+            | None => None
+            | Some x =>
+                match x |> fn with
+                | Some x when n = i' => Some x
+                | Some _ => loop (i + 1) (i' + 1)
+                | _ => loop (i + 1) i'
+        and inl loop i i' =
+            if n |> var_is |> not
+            then body fn s i i'
+            else
+                inl fn = join fn
+                inl s = join s
+                join body fn s i i'
+        loop 0 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 print_and_return
+|> from_list
+|> choose (fun x => if x % 2 = 0 then Some x else None)
+|> try_item 1i32
+|> _equal (Some 2i32)
+
+#!markdown
+
+## indexed
+
+#!spiral
+
+inl indexed s =
+    s
+    |> mapi fun i x =>
+        i, x
+
+#!spiral
+
+// // test
+
+listm.init 10i32 ((*) 2)
+|> from_list
+|> indexed
+|> try_item 5i32
+|> _equal (Some (5i32, 10i32))
+
+#!markdown
+
+## zip
+
+#!spiral
+
+inl zip n seq1 seq2 =
+    seq1 n, seq2 n
+
+#!spiral
+
+// // test
+
+((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
+||> zip 5i32
+|> _equal (Some 5, Some 10)
+
+#!markdown
+
+## zip_with
+
+#!spiral
+
+inl zip_with fn seq1 seq2 =
+    fun n =>
+        fn (seq1 n) (seq2 n)
+
+#!spiral
+
+// // test
+
+((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
+||> zip_with (optionm'.choose (+))
+|> try_item 2i32
+|> _equal (Some 6)
+
+#!markdown
+
+## fold
+
+#!spiral
+
+inl fold fn init seq =
+    inl rec loop acc n =
+        match seq n with
+        | Some x => loop (fn acc x) (n + 1)
+        | None => acc
+    loop init 0
+
+inl fold_ fn init seq =
+    let rec loop acc n =
+        match seq n with
+        | Some x => loop (fn acc x) (n + 1)
+        | None => acc
+    loop init 0
+
+#!markdown
+
+## sum
+
+#!spiral
+
+inl sum seq =
+    seq |> fold (+) 0
+
+inl sum_ seq =
+    seq |> fold_ (+) 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> fun f (n : i32) => f n
+|> sum
+|> _equal 45
+
+#!markdown
+
+## to_list
+
+#!spiral
+
+inl to_list seq =
+    seq
+    |> fold (fun acc x => x :: acc) []
+    |> listm.rev
+
+inl to_list_ seq =
+    seq
+    |> fold_ (fun acc x => x :: acc) []
+    |> listm.rev
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> fun f (n : i32) => f n
+|> to_list
+|> _equal (listm.init 10i32 id)
+
+#!markdown
+
+## from_array
+
+#!spiral
+
+inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
+    fun n =>
+        if n >= length array
+        then None
+        else index array n |> Some
+
+#!spiral
+
+// // test
+
+a ;[ 1; 2; 3 ]
+|> from_array
+|> try_item 1i32
+|> _equal (Some 2i32)
+
+#!markdown
+
+## to_array
+
+#!spiral
+
+inl to_array seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+inl to_array_ seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold_ fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> fun (x : i32 -> _) => x
+|> to_array
+|> _equal (a ;[ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] : _ i32 _)
+
+#!markdown
+
+## take_while
+
+#!spiral
+
+inl take_while cond seq =
+    inl rec loop acc i =
+        match seq i with
+        | Some st when cond st i => loop (st :: acc) (i + 1)
+        | _ => acc |> listm.rev
+    loop [] 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> take_while (fun n (_ : i32) => n < 5)
+|> listm'.sum
+|> _equal 10
+
+#!spiral
+
+// // test
+
+stream.new_finite_stream print_and_return 10i32
+|> flip stream.try_item
+|> take_while (fun n (_ : i32) => n < 5)
+|> listm'.sum
+|> _equal 10
+
+#!markdown
+
+## take_while_
+
+#!spiral
+
+inl take_while_ cond seq =
+    let rec loop acc i =
+        match seq i with
+        | Some st when cond st i => loop (st :: acc) (i + 1)
+        | _ => acc |> listm.rev
+    loop [] 0
+
+#!spiral
+
+// // test
+
+stream.new_infinite_stream_ print_and_return
+|> flip stream.try_item
+|> take_while_ (fun n (_ : i32) => n < 5i32)
+|> listm'.sum
+|> _equal 10
+
+#!spiral
+
+// // test
+
+stream.new_infinite_stream_ print_and_return
+|> stream.memoize
+|> fun list =>
+    inl list = list ()
+    fun n =>
+        list |> stream.try_item n
+|> take_while_ (fun n (_ : i32) => n < 5i32)
+|> listm'.sum
+|> _equal 10
+
+#!spiral
+
+// // test
+
+stream.new_finite_stream print_and_return 10i32
+|> stream.memoize
+|> fun list =>
+    inl list = list ()
+    fun n =>
+        list |> stream.try_item n
+|> take_while_ (fun n (_ : i32) => n < 5)
+|> listm'.sum
+|> _equal 10
+
+#!markdown
+
+## memoize
+
+#!spiral
+
+inl memoize seq =
+    inl state = mut []
+    fun n =>
+        match *state |> listm'.try_find (fun (n', _) => n' = n) with
+        | Some (_, v) => v
+        | None =>
+            inl new_state = seq n
+            state <- (n, new_state) :: *state
+            new_state
+
+inl memoize_ seq =
+    inl state = mut []
+    fun n =>
+        match *state |> listm'.try_find_ (fun (n', _) => n' = n) with
+        | Some (_, v) => v
+        | None =>
+            inl new_state = seq n
+            state <- (n, new_state) :: *state
+            new_state
+
+#!spiral
+
+// // test
+
+inl seq =
+    fun n =>
+        n |> print_and_return |> Some
+    |> memoize_
+
+seq
+|> take_while_ (fun n (_ : i32) => n < 5)
+|> listm'.sum
+|> _equal 10
+
+seq
+|> take_while_ (fun n _ => n < 5)
+|> listm'.sum
+|> _equal 10
+
+#!markdown
+
+## iterate
+
+#!spiral
+
+inl iterate f x0 num_steps =
+    inl rec loop x n =
+        if n <= 0
+        then x
+        else loop (f x) (n - 1)
+    loop x0 num_steps
+
+#!spiral
+
+// // test
+
+10i32 |> iterate ((*) 2) 1i32
+|> _equal 1024
+
+#!spiral
+
+inl iterate_ f x0 num_steps =
+    let rec loop x n =
+        if n <= 0
+        then x
+        else loop (f x) (n - 1)
+    loop x0 num_steps
+
+#!spiral
+
+// // test
+
+10i32 |> iterate_ ((*) 2) 1i32
+|> _equal 1024
+
+#!spiral
+
+inl iterate' f x0 num_steps =
+    listm.init num_steps id
+    |> listm.fold (fun x _ => f x) x0
+
+#!spiral
+
+// // test
+
+10i32 |> iterate' ((*) 2) 1i32
+|> _equal 1024
+
+#!markdown
+
+## find_last
+
+#!spiral
+
+inl find_last forall item result. fold_fn fn target : option result =
+    fold_fn (fun (item : item) (result : option result) =>
+        match result with
+        | None => fn item
+        | result => result
+    ) target (None : option result)
+
+inl array_find_last forall item result. (fn : item -> option result) (target : a i32 item) : option result =
+    find_last am.foldBack fn target
+
+inl list_find_last forall item result. (fn : item -> option result) (target : list item) : option result =
+    find_last listm.foldBack fn target

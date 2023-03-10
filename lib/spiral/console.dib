@@ -1,0 +1,41 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# console
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## write_line
+
+#!spiral
+
+inl write_line obj : () =
+    $"System.Console.WriteLine !obj"
+
+#!spiral
+
+inl write_line_ ~obj : () =
+    $"System.Console.WriteLine !obj"
+
+#!spiral
+
+nominal console_color = $"System.ConsoleColor"
+
+inl reset_color () : () =
+    run_target function
+        | Fsharp => fun () => $"System.Console.ResetColor ()"
+        | _ => fun () => ()
+
+inl set_foreground_color (color : console_color) : () =
+    run_target function
+        | Fsharp => fun () => $"System.Console.ForegroundColor <- !color"
+        | _ => fun () => ()

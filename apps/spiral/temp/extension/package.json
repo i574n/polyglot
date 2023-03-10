@@ -1,0 +1,15 @@
+{
+  "name": "polyglot",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "outdated-pre": "npm-check-updates --target greatest"
+  },
+  "dependencies": {
+    "buffer": "~6.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.40.0",
+    "@types/chrome": "~0.0.259",
+    "npm-check-updates": "~16.14"
+  }
+}

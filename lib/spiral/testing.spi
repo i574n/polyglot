@@ -1,0 +1,34 @@
+// // # testing
+
+inl __expect fn log b a =
+    if log
+    then $"$\"__expect / actual: %A{!a} / expected: %A{!b}\""
+    else "__expect"
+    |> assert (fn a b)
+
+inl __almost_equal log b a = __expect (fun a b => abs (b - a) < 0.00000001) log b a
+inl _almost_equal b a = __almost_equal true b a
+
+inl __equal log b a = __expect (=) log b a
+inl _equal b a = __equal true b a
+
+inl __is_greater_than log b a = __expect (>) log b a
+inl _is_greater_than b a = __is_greater_than true b a
+
+inl __is_greater_than_or_equal log b a = __expect (>=) log b a
+inl _is_greater_than_or_equal b a = __is_greater_than_or_equal true b a
+
+inl __is_less_than log b a = __expect (<) log b a
+inl _is_less_than b a = __is_less_than true b a
+
+inl __is_less_than_or_equal log b a = __expect (<=) log b a
+inl _is_less_than_or_equal b a = __is_less_than_or_equal true b a
+
+inl _throws (fn : () -> ()) : option string =
+    inl none = None : option string
+    inl some (s : string) = Some s
+    $"try !fn (); !none with ex -> !some ex.Message"
+
+inl print_and_return x =
+    $"printfn $\"print_and_return / x: {!x}\""
+    x

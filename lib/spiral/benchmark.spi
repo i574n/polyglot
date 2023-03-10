@@ -1,0 +1,239 @@
+// // ## benchmark (Polyglot)
+
+inl (/@) x = listm'.(/@) x
+
+inl gc_collect () =
+    run_target function
+        | Fsharp => fun () => $"System.GC.Collect ()"
+        | _ => fun () => ()
+        
+inl printfn x =
+    console.write_line x
+
+nominal stopwatch = $"System.Diagnostics.Stopwatch"
+
+inl stopwatch () : stopwatch =
+    $"`stopwatch" ()
+
+inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
+    $"!stopwatch.ElapsedMilliseconds"
+
+inl stopwatch_start (stopwatch : stopwatch) : () =
+    $"!stopwatch.Start ()"
+
+// // ## test_case_result
+
+type test_case_result =
+    {
+        Input : string
+        Expected : string
+        Result : string
+        TimeList : a u64 i64
+    }
+
+// // ## run
+
+inl run forall input expected.
+    count
+    (solutions : list (string * (input -> expected)))
+    ((input, expected) : (input * expected))
+    : test_case_result
+    =
+    inl input_str = input |> sm'.format_debug
+
+    printfn ""
+    printfn ($"$\"Solution: {!input_str}  \"" : string)
+
+    inl performance_invoke (fn : () -> expected) =
+        gc_collect ()
+        inl stopwatch = stopwatch ()
+        stopwatch |> stopwatch_start
+        inl time1 = stopwatch |> stopwatch_elapsed_milliseconds
+        inl result : expected =
+            am'.init_series 0 count 1i32
+            |> am'.parallel_map fun _n => fn ()
+            |> am'.last
+        inl time2 = (stopwatch |> stopwatch_elapsed_milliseconds) - time1
+        result, time2
+
+    inl results_with_time : a u64 _ =
+        solutions
+        |> listm'.indexed
+        |> listm.toArray
+        |> am.map fun ((i : i32), (test_name, solution)) =>
+            inl result, time = performance_invoke fun () => solution input
+            printfn ($"$\"Test case {!i + 1}. {!test_name}. Time: {!time}  \"" : string)
+            result, time
+
+    match results_with_time |> am.map fst with
+    | array when length array <= 1 => ()
+    | array when array |> am.forall' ((=) (index array 0)) => ()
+    | results => failwith ($"$\"Challenge error: {!results}\"" : string)
+
+    {
+        Input = input_str
+        Expected = expected |> sm'.format_debug
+        Result = results_with_time |> am.map fst |> fun array => index array 0 |> sm'.format_debug
+        TimeList = results_with_time |> am.map snd
+    }
+
+// // ## run_all
+
+inl run_all forall input expected.
+    test_name
+    count
+    (solutions : list (string * (input -> expected)))
+    test_cases
+    =
+    printfn ""
+    printfn ""
+    printfn ($"$\"Test: {!test_name}\"" : string)
+    test_cases
+    |> listm.toArray
+    |> am.map (run count solutions)
+
+// // ## sort_result_list
+
+inl sort_result_list results =
+    inl table =
+        inl rows =
+            results
+            |> am.map fun (result : test_case_result) =>
+                inl best =
+                    result.TimeList
+                    |> am'.indexed
+                    |> am.map fun (i, time) =>
+                        i + 1i64, time
+                    |> am'.sort_by snd
+                    |> fun array => index array 0i32
+                    |> sm'.format_debug
+                inl row =
+                    [
+                        result.Input
+                        result.Expected
+                        result.Result
+                        best
+                    ]
+                inl color : option console.console_color =
+                    open console
+                    match result.Expected = result.Result with
+                    | true => Some $"`console_color.DarkGreen"
+                    | false => Some $"`console_color.DarkRed"
+                row, color
+
+        inl header =
+            [
+                [
+                    "Input"
+                    "Expected"
+                    "Result"
+                    "Best"
+                ]
+                [
+                    "---"
+                    "---"
+                    "---"
+                    "---"
+                ]
+            ]
+            |> listm.map fun row => row, None
+            |> listm.toArray
+        rows |> am.append header
+
+    inl formattedTable =
+        inl lengthMap : mapm.map i32 i64 =
+            table
+            |> am.map (fst >> listm.toArray)
+            |> am'.transpose
+            |> am.map fun column =>
+                column
+                |> am.map sm.length
+                |> am'.sort_descending
+                |> am'.try_item 0i32
+                |> optionm'.default_value 0i64
+            |> am'.indexed
+            |> fun (x : a i32 _) => x
+            |> mapm.of_array
+        table
+        |> am.map fun (row, color) =>
+            inl newRow =
+                row
+                |> listm'.indexed
+                |> listm.map fun (i, cell) =>
+                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv)
+                |> listm.toArray
+            newRow, color
+
+    printfn ""
+    formattedTable
+    |> am.iter fun ((row : a i32 string), color) =>
+        match color with
+        | Some color => color |> console.set_foreground_color
+        | None => console.reset_color ()
+
+        printfn (row |> sm'.join' "\t| ")
+
+        console.reset_color ()
+
+    inl averages : a u64 _ =
+        results
+        |> am.map fun result =>
+            result.TimeList
+            |> am.map ($"float" : i64 -> f64)
+        |> am'.transpose
+        |> am.map am'.average
+        |> am.map ($"int64" : f64 -> i64)
+        |> am'.indexed
+
+    printfn ""
+    printfn "Average Ranking  "
+    averages
+    |> am'.sort_by snd
+    |> am.iter fun ((i : i32), avg) =>
+        printfn ($"$\"Test case %d{!i + 1}. Average Time: %A{!avg}  \"" : string)
+
+// // ## empty2Tests
+
+// // Test: Empty2
+// //
+// // Solution: (a, a)
+// // Test case 1. A. Time: 59L
+// //
+// // Solution: (a, a)
+// // Test case 1. A. Time: 53L
+// //
+// // Input   | Expected        | Result  | Best
+// // ---     | ---             | ---     | ---
+// // (a, a)  | a               | a       | (1, 59)
+// // (a, a)  | a               | a       | (1, 53)
+// //
+// // Averages
+// // Test case 1. Average Time: 56L
+// //
+// // Ranking
+// // Test case 1. Average Time: 56L
+
+// // ## emptyTests
+
+// // Test: Empty
+// //
+// // Solution: 0
+// // Test case 1. A. Time: 61L
+// //
+// // Solution: 2
+// // Test case 1. A. Time: 62L
+// //
+// // Solution: 5
+// // Test case 1. A. Time: 70L
+// //
+// // Input   | Expected        | Result  | Best
+// // ---     | ---             | ---     | ---
+// // 0       | 0               | 0       | (1, 61)
+// // 2       | 2               | 2       | (1, 62)
+// // 5       | 5               | 5       | (1, 70)
+// //
+// // Averages
+// // Test case 1. Average Time: 64L
+// //
+// // Ranking
+// // Test case 1. Average Time: 64L

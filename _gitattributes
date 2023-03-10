@@ -1,0 +1,8 @@
+* text=auto eol=lf
+
+yarn.lock merge=ours
+package-lock.json merge=ours
+paket.lock merge=ours
+
+*.dib.ipynb linguist-generated
+*.dib.html linguist-generated

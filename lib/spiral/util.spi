@@ -1,0 +1,18 @@
+// // # util
+
+// // ## ski
+
+union rec ski =
+    | I
+    | K
+    | S
+    | App : ski * ski
+
+inl rec eval ski =
+    match ski with
+    | App (App (K, x), y) => eval x
+    | App (App (App (S, x), y), z) => eval (App (App (x, z), App (y, z)))
+    | App (I, x) => eval x
+    | App (K, x) => App (K, eval x)
+    | App (f, x) => eval (App (eval f, x))
+    | _ => ski

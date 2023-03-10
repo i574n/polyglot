@@ -1,0 +1,295 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# Builder (Polyglot)
+
+#!fsharp
+
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
+#!fsharp
+
+#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.1.5/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+
+#!fsharp
+
+#!import ../../lib/fsharp/Common.fs
+#!import ../../lib/fsharp/CommonFSharp.fs
+#!import ../../lib/fsharp/Async.fs
+#!import ../../lib/fsharp/AsyncSeq.fs
+#!import ../../lib/fsharp/Networking.fs
+#!import ../../lib/fsharp/Runtime.fs
+#!import ../../lib/fsharp/FileSystem.fs
+
+#!fsharp
+
+open Common
+open FileSystem.Operators
+
+#!markdown
+
+## buildProject
+
+#!fsharp
+
+let inline buildProject runtime outputDir path = async {
+    let fullPath = path |> System.IO.Path.GetFullPath
+    let fileDir = fullPath |> System.IO.Path.GetDirectoryName
+    let extension = fullPath |> System.IO.Path.GetExtension
+
+    let getLocals () = $"fullPath: {fullPath} / {getLocals ()}"
+    trace Debug (fun () -> "buildProject") getLocals
+
+    match extension with
+    | ".fsproj" -> ()
+    | _ -> failwith "Invalid project file"
+
+    let runtimes =
+        runtime
+        |> Option.map List.singleton
+        |> Option.defaultValue [ "linux-x64"; "win-x64" ]
+    
+    let outputDir = outputDir |> Option.defaultValue "dist"
+
+    return!
+        runtimes
+        |> List.map (fun runtime -> async {
+            let! exitCode, _result =
+                Runtime.executeWithOptionsAsync
+                    {
+                        Command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
+                        CancellationToken = None
+                        OnLine = None
+                        WorkingDirectory = Some fileDir
+                    }
+
+            return exitCode
+        })
+        |> Async.Sequential
+        |> Async.map Array.sum
+}
+
+#!markdown
+
+## persistCodeProject
+
+#!fsharp
+
+let inline persistCodeProject packages modules name code = async {
+    let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
+    trace Debug (fun () -> "persistCodeProject") getLocals
+
+    let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+
+    let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
+    System.IO.Directory.CreateDirectory targetDir |> ignore
+
+    let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
+    do! code |> FileSystem.writeAllTextExists filePath
+
+    let modulesCode =
+        modules
+        |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
+        |> String.concat "\n        "
+
+    let fsprojPath = targetDir </> $"{name}.fsproj"
+    let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>preview</LangVersion>
+        <RollForward>Major</RollForward>
+        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+        <PublishAot>false</PublishAot>
+        <PublishTrimmed>false</PublishTrimmed>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <Version>0.0.1-alpha.1</Version>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        {modulesCode}
+        <Compile Include="{filePath}" />
+    </ItemGroup>
+
+    <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
+</Project>
+"""
+    do! fsprojCode |> FileSystem.writeAllTextExists fsprojPath
+
+    let paketReferencesPath = targetDir </> "paket.references"
+    let paketReferencesCode =
+        "FSharp.Core" :: packages
+        |> String.concat "\n"
+    do! paketReferencesCode |> FileSystem.writeAllTextExists paketReferencesPath
+
+    return fsprojPath
+}
+
+#!markdown
+
+## buildCode
+
+#!fsharp
+
+let inline buildCode runtime packages modules outputDir name code = async {
+    let! fsprojPath = code |> persistCodeProject packages modules name
+    return! fsprojPath |> buildProject runtime outputDir
+}
+
+#!fsharp
+
+//// test
+
+"1 + 1"
+|> buildCode None [] [] None "test1"
+|> Async.runWithTimeout 60000
+|> _equal (Some 0)
+
+#!fsharp
+
+//// test
+
+"1 + a"
+|> buildCode None [] [] None "test2"
+|> Async.runWithTimeout 60000
+|> _equal (Some 2)
+
+#!markdown
+
+## readFile
+
+#!fsharp
+
+let inline readFile path = async {
+    let! code = path |> FileSystem.readAllTextAsync
+
+    let code = System.Text.RegularExpressions.Regex.Replace (
+        code,
+        @"( *)(let\s+main\s+.*?\s*=)",
+        fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
+    )
+
+    let codeTrim = code |> String.trimEnd [||]
+    return
+        if codeTrim |> String.endsWith "\n()"
+        then codeTrim |> String.substring 0 ((codeTrim |> String.length) - 2)
+        else code
+}
+
+#!markdown
+
+## buildFile
+
+#!fsharp
+
+let inline buildFile runtime packages modules path = async {
+    let fullPath = path |> System.IO.Path.GetFullPath
+    let dir = fullPath |> System.IO.Path.GetDirectoryName
+    let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
+    let! code = fullPath |> readFile
+    return! code |> buildCode runtime packages modules (dir </> "dist" |> Some) name
+}
+
+#!markdown
+
+## persistFile
+
+#!fsharp
+
+let inline persistFile packages modules path = async {
+    let fullPath = path |> System.IO.Path.GetFullPath
+    let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
+    let! code = fullPath |> readFile
+    return! code |> persistCodeProject packages modules name
+}
+
+#!markdown
+
+## Arguments
+
+#!fsharp
+
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce>] Path of path : string
+    | [<Argu.ArguAttributes.Unique>] Packages of packages : string list
+    | [<Argu.ArguAttributes.Unique>] Modules of modules : string list
+    | [<Argu.ArguAttributes.Unique>] Runtime of runtime : string
+    | [<Argu.ArguAttributes.Unique>] Persist_Only
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Path _ -> nameof Path
+            | Packages _ -> nameof Packages
+            | Modules _ -> nameof Modules
+            | Runtime _ -> nameof Runtime
+            | Persist_Only -> nameof Persist_Only
+
+#!fsharp
+
+//// test
+
+Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
+
+#!markdown
+
+## main
+
+#!fsharp
+
+let main args =
+    let argsMap = args |> Runtime.parseArgsMap<Arguments>
+
+    let path =
+        match argsMap.[nameof Arguments.Path] with
+        | [ Arguments.Path path ] -> Some path
+        | _ -> None
+        |> Option.get
+
+    let packages =
+        match argsMap |> Map.tryFind (nameof Arguments.Packages) with
+        | Some [ Arguments.Packages packages ] -> packages
+        | _ -> []
+
+    let modules =
+        match argsMap |> Map.tryFind (nameof Arguments.Modules) with
+        | Some [ Arguments.Modules modules ] -> modules
+        | _ -> []
+
+    let runtime =
+        match argsMap |> Map.tryFind (nameof Arguments.Runtime) with
+        | Some [ Arguments.Runtime runtime ] -> Some runtime
+        | _ -> None
+
+    let persistOnly = argsMap |> Map.containsKey (nameof Arguments.Persist_Only)
+
+    if persistOnly
+    then path |> persistFile packages modules |> Async.map (fun _ -> 0)
+    else path |> buildFile runtime packages modules
+    |> Async.runWithTimeout 60000
+    |> function
+        | Some exitCode -> exitCode
+        | None -> 1
+
+#!fsharp
+
+//// test
+
+let args =
+    System.Environment.GetEnvironmentVariable "ARGS"
+    |> Runtime.splitArgs
+    |> Seq.toArray
+
+match args with
+| [||] -> 0
+| args -> if main args = 0 then 0 else failwith "main failed"

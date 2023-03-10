@@ -1,0 +1,76 @@
+open rust_operators
+
+nominal result' t u = $"Result<`t, `u>"
+
+inl from_option_error error opt =
+    match opt with
+    | Some x => Ok x
+    | None => Error error
+
+inl from_option opt =
+    opt |> from_option_error "Option does not have a value."
+
+inl flatten_option forall t u. (x : option (result (option t) u)) : result (option t) u =
+    match x with
+    | Some (Error x) => Error x
+    | Some (Ok (Some x)) => Ok (Some x)
+    | _ => Ok None
+
+inl flatten forall t u. (x : result (result t u) u) : result t u =
+    match x with
+    | Ok x => x
+    | Error x => Error x
+
+inl get forall t e. (source : result t e) : t =
+    match source with
+    | Ok x => x
+    | Error x => failwith $'$"Result value was Error: {!x}"'
+
+inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
+    match source with
+    | Ok x => x |> fn |> Ok
+    | Error x => Error x
+
+inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
+    match source with
+    | Ok x => Ok x
+    | Error x => x |> fn |> Error
+
+inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
+    inl fn = join fn
+    inl source = join source
+    !\($'"!source.map(|x| !fn(x))"')
+
+inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
+    inl fn = join fn
+    !\($'"!source.map_err(|x| !fn(x))"')
+
+inl unbox forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    $"match !x with Ok x -> !ok x | Error x -> !error x"
+
+inl box forall t u. (x : result t u) : result' t u =
+    match x with
+    | Ok x => $"Ok !x"
+    | Error err => $"Error !err"
+
+inl try forall t u. (x : result t u) : t =
+    !\($'"!x?"')
+
+inl try' forall t u. (x : result' t u) : t =
+    !\($'"!x?"')
+
+inl unwrap' forall t u. (x : result' t u) : t =
+    !\($'"!x.unwrap()"')
+
+inl expect forall t u. (error : rust.ref' rust.str) (x : result' t u) : t =
+    !\($'"!x.expect(&!error)"')
+
+inl ok' forall t. (x : result' t _) : optionm'.option' t =
+    !\($'"!x.ok()"')
+
+inl ok forall t. (x : result t _) : option t =
+    match x with
+    | Ok x => Some x
+    | Error _ => None

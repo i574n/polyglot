@@ -1,0 +1,27 @@
+packages:
+    |core-
+modules:
+    testing
+    rust
+    rust_operators
+    optionm'
+    optionm'_operators
+    resultm
+    date_time
+    common-
+    am'
+    listm'
+    mapm
+    sm'
+    console
+    math
+    async
+    networking
+    benchmark
+    stream
+    seq
+    util
+    physics
+    leptos
+    store
+    state_core

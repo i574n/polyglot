@@ -1,0 +1,312 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# Networking (Polyglot)
+
+#!fsharp
+
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
+#!fsharp
+
+#r @"../../../../../../../.nuget/packages/argu/6.1.5/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+
+#!fsharp
+
+#!import ../../lib/fsharp/Common.fs
+#!import ../../lib/fsharp/CommonFSharp.fs
+#!import ../../lib/fsharp/Async.fs
+#!import ../../lib/fsharp/Runtime.fs
+
+#!fsharp
+
+open Common
+
+#!markdown
+
+## testPortOpen
+
+#!fsharp
+
+let inline testPortOpen port = async {
+    let! ct = Async.CancellationToken
+    use client = new System.Net.Sockets.TcpClient ()
+    try
+        do! client.ConnectAsync ("127.0.0.1", port, ct) |> Async.awaitValueTaskUnit
+        return true
+    with ex ->
+        trace Verbose (fun () -> $"testPortOpen / ex: {ex |> printException}") getLocals
+        return false
+}
+
+#!fsharp
+
+//// test
+
+testPortOpen 65536
+|> Async.runWithTimeout 120
+|> _equal (Some false)
+
+#!fsharp
+
+let inline testPortOpenTimeout timeout port = async {
+    let! result =
+        testPortOpen port
+        |> Async.runWithTimeoutAsync timeout
+    return
+        match result with
+        | None -> false
+        | Some result -> result
+}
+
+#!fsharp
+
+//// test
+
+testPortOpenTimeout 120 65535
+|> Async.RunSynchronously
+|> _equal false
+
+#!markdown
+
+## waitForPortAccess
+
+#!fsharp
+
+let inline waitForPortAccess timeout status port =
+    let rec loop retry = async {
+        let! isPortOpen =
+            match timeout with
+            | None -> testPortOpen port
+            | Some timeout -> testPortOpenTimeout timeout port
+        if isPortOpen = status
+        then return retry
+        else
+            if retry % 100 = 0 then
+                let getLocals () = $"port: {port} / retry: {retry} / {getLocals ()}"
+                trace Verbose (fun () -> "waitForPortAccess") getLocals
+            do! Async.Sleep 10
+            return! loop (retry + 1)
+    }
+    loop 0
+
+#!fsharp
+
+//// test
+
+let port = 5555
+
+let inline lockPort () = async {
+    trace Debug (fun () -> "_1") getLocals
+    do! Async.Sleep 5000
+    use listener = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    trace Debug (fun () -> "_2") getLocals
+    listener.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 2000
+    trace Debug (fun () -> "_4") getLocals
+    listener.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! child = lockPort () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 1
+    trace Debug (fun () -> "3") getLocals
+    let! retries1 = waitForPortAccess None true port
+    trace Debug (fun () -> "4") getLocals
+    let! retries2 = waitForPortAccess None false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
+    return retries1, retries2
+}
+|> Async.runWithTimeout 20000
+|> function
+    | Some (retries1, retries2) ->
+        retries1
+        |> _isBetween
+            (if Runtime.isWindows () then 2 else 2)
+            (if Runtime.isWindows () then 5 else 1500)
+
+        retries2
+        |> _isBetween
+            (if Runtime.isWindows () then 80 else 80)
+            (if Runtime.isWindows () then 150 else 600)
+
+        true
+    | _ -> false
+|> _equal true
+
+#!fsharp
+
+//// test
+
+let port = 5555
+
+let inline lockPort () = async {
+    trace Debug (fun () -> "_1") getLocals
+    do! Async.Sleep 500
+    use listener = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    trace Debug (fun () -> "_2") getLocals
+    listener.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 200
+    trace Debug (fun () -> "_4") getLocals
+    listener.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! child = lockPort () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 1
+    trace Debug (fun () -> "3") getLocals
+    let! retries1 = waitForPortAccess (Some 60) true port
+    trace Debug (fun () -> "4") getLocals
+    let! retries2 = waitForPortAccess (Some 60) false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
+    return retries1, retries2
+}
+|> Async.runWithTimeout 2000
+|> function
+    | Some (retries1, retries2) ->
+        retries1
+        |> _isBetween
+            (if Runtime.isWindows () then 4 else 2)
+            (if Runtime.isWindows () then 15 else 150)
+
+        retries2
+        |> _isBetween
+            (if Runtime.isWindows () then 5 else 0)
+            (if Runtime.isWindows () then 20 else 60)
+
+        true
+    | _ -> false
+|> _equal true
+
+#!markdown
+
+## getAvailablePort
+
+#!fsharp
+
+let inline getAvailablePort timeout initialPort =
+    let rec loop port = async {
+        let! isPortOpen =
+            match timeout with
+            | None -> testPortOpen port
+            | Some timeout -> testPortOpenTimeout timeout port
+        if not isPortOpen
+        then return port
+        else return! loop (port + 1)
+    }
+    loop initialPort
+
+#!fsharp
+
+//// test
+
+let port = 5555
+
+let inline lockPorts () = async {
+    trace Debug (fun () -> "_1") getLocals
+    use listener1 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    use listener2 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
+    trace Debug (fun () -> "_2") getLocals
+    listener1.Start ()
+    listener2.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 4000
+    trace Debug (fun () -> "_4") getLocals
+    listener1.Stop ()
+    listener2.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! child = lockPorts () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 240
+    trace Debug (fun () -> "3") getLocals
+    let! availablePort = getAvailablePort None port
+    trace Debug (fun () -> "4") getLocals
+    let! retries = waitForPortAccess None false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
+    return availablePort, retries
+}
+|> Async.runWithTimeout 15000
+|> function
+    | Some (availablePort, retries) ->
+        availablePort |> _equal (port + 2)
+
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 150 else 1200)
+
+        true
+    | _ -> false
+|> _equal true
+
+#!fsharp
+
+//// test
+
+let port = 5555
+
+let inline lockPorts () = async {
+    trace Debug (fun () -> "_1") getLocals
+    use listener1 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    use listener2 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
+    trace Debug (fun () -> "_2") getLocals
+    listener1.Start ()
+    listener2.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 400
+    trace Debug (fun () -> "_4") getLocals
+    listener1.Stop ()
+    listener2.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! child = lockPorts () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 240
+    trace Debug (fun () -> "3") getLocals
+    let! availablePort = getAvailablePort (Some 60) port
+    trace Debug (fun () -> "4") getLocals
+    let! retries = waitForPortAccess (Some 60) false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
+    return availablePort, retries
+}
+|> Async.runWithTimeout 1500
+|> function
+    | Some (availablePort, retries) ->
+        availablePort |> _equal (port + 2)
+
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 2 else 1)
+            (if Runtime.isWindows () then 10 else 120)
+
+        true
+    | _ -> false
+|> _equal true

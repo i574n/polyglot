@@ -1,0 +1,18 @@
+[package]
+name = "chat_contract"
+version = "0.0.1"
+edition = "2021"
+workspace = "../../../"
+description = ""
+repository.workspace = true
+license-file.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+borsh = "~1.3"
+multibase = "~0.9"
+near-sdk = "~5.0.0-alpha.2"
+sha2 = "~0.10"
+unsigned-varint = "~0.8"

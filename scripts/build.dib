@@ -1,0 +1,60 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[]}}
+
+#!pwsh
+
+. ./nbs_header.ps1
+. ./core.ps1
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/builder/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/parser/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../lib/fsharp/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/spiral/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/plot/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../lib/spiral/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/chat/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/spiral/temp/extension/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/perf/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/dir-tree-html/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/ipfs/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/outdated.ps1" } | Invoke-Block

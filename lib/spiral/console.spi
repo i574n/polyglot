@@ -1,0 +1,21 @@
+// // # console
+
+// // ## write_line
+
+inl write_line obj : () =
+    $"System.Console.WriteLine !obj"
+
+inl write_line_ ~obj : () =
+    $"System.Console.WriteLine !obj"
+
+nominal console_color = $"System.ConsoleColor"
+
+inl reset_color () : () =
+    run_target function
+        | Fsharp => fun () => $"System.Console.ResetColor ()"
+        | _ => fun () => ()
+
+inl set_foreground_color (color : console_color) : () =
+    run_target function
+        | Fsharp => fun () => $"System.Console.ForegroundColor <- !color"
+        | _ => fun () => ()

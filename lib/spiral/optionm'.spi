@@ -1,0 +1,76 @@
+// // # optionm
+
+open rust_operators
+
+// // ## default_value
+
+inl default_value d =
+    optionm.defaultWith d
+
+// // ## (/??)
+
+inl (/??) a b =
+    a |> default_value b
+
+// // ## default_with
+
+inl default_with fn =
+    function Some x => x | None => fn ()
+
+// // ## choose
+
+inl choose fn a b =
+    match a, b with
+    | Some x, Some y => fn x y |> Some
+    | _ => None
+
+// // ## iter
+
+inl iter fn = function
+    | Some x => fn x
+    | None => ()
+
+// // ## option'
+
+nominal option' t = $"`t option"
+
+inl unbox forall t. (x : option' t) : option t =
+    inl some x : option t = Some x
+    inl none : option t = None
+    $"!x |> Option.map !some |> Option.defaultValue !none"
+
+inl box forall t. (x : option t) : option' t =
+    match x with
+    | Some x => $"Some !x"
+    | None => $"None"
+
+// // ## map
+
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    inl x = join x
+    inl fn = join fn
+    !\($'"!x.map(|x| !fn(x))"')
+
+// // ## flatten
+
+inl flatten x =
+    match x with
+    | Some (Some x) => Some x
+    | _ => None
+
+// // ## unwrap
+
+inl unwrap forall t. (x : option' t) : t =
+    !\($'"!x.unwrap()"')
+
+// // ## unwrap_or
+
+inl unwrap_or forall t. (def : t) (x : option' t) : t =
+    !\($'"!x.unwrap_or(!def)"')
+
+// // ## rc_upgrade
+
+inl rc_upgrade forall t. (x : rust.weak_rc t) : option (rust.rc t) =
+    inl x = join x
+    !\($'"std::rc::Weak::upgrade(&!x)"')
+    |> unbox

@@ -1,0 +1,188 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# optionm
+
+#!spiral
+
+// // test
+
+open testing
+
+#!spiral
+
+open rust_operators
+
+#!markdown
+
+## default_value
+
+#!spiral
+
+inl default_value d =
+    optionm.defaultWith d
+
+#!spiral
+
+// // test
+
+None
+|> default_value 3i32
+|> _equal 3i32
+
+#!markdown
+
+## (/??)
+
+#!spiral
+
+inl (/??) a b =
+    a |> default_value b
+
+#!spiral
+
+// // test
+
+None /?? 3i32
+|> _equal 3i32
+
+#!markdown
+
+## default_with
+
+#!spiral
+
+inl default_with fn =
+    function Some x => x | None => fn ()
+
+#!spiral
+
+// // test
+
+None
+|> default_with (fun () => 3i32)
+|> _equal 3i32
+
+#!markdown
+
+## choose
+
+#!spiral
+
+inl choose fn a b =
+    match a, b with
+    | Some x, Some y => fn x y |> Some
+    | _ => None
+
+#!spiral
+
+// // test
+
+(Some 2i32, Some 3)
+||> choose (+)
+|> _equal (Some 5)
+
+#!markdown
+
+## iter
+
+#!spiral
+
+inl iter fn = function
+    | Some x => fn x
+    | None => ()
+
+#!spiral
+
+// // test
+
+inl n = mut 1i32
+inl fn =
+    fun n' =>
+        n <- *n + n'
+Some 1i32 |> iter fn
+None |> iter fn
+*n
+|> _equal 2i32
+
+#!markdown
+
+## option'
+
+#!spiral
+
+nominal option' t = $"`t option"
+
+inl unbox forall t. (x : option' t) : option t =
+    inl some x : option t = Some x
+    inl none : option t = None
+    $"!x |> Option.map !some |> Option.defaultValue !none"
+
+inl box forall t. (x : option t) : option' t =
+    match x with
+    | Some x => $"Some !x"
+    | None => $"None"
+
+#!spiral
+
+// // test
+
+inl x = Some 3i32
+inl y : option i32 = None
+inl x' = x |> box |> unbox
+inl y' = y |> box |> unbox
+(x', y') |> _equal (x, y)
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    inl x = join x
+    inl fn = join fn
+    !\($'"!x.map(|x| !fn(x))"')
+
+#!markdown
+
+## flatten
+
+#!spiral
+
+inl flatten x =
+    match x with
+    | Some (Some x) => Some x
+    | _ => None
+
+#!markdown
+
+## unwrap
+
+#!spiral
+
+inl unwrap forall t. (x : option' t) : t =
+    !\($'"!x.unwrap()"')
+
+#!markdown
+
+## unwrap_or
+
+#!spiral
+
+inl unwrap_or forall t. (def : t) (x : option' t) : t =
+    !\($'"!x.unwrap_or(!def)"')
+
+#!markdown
+
+## rc_upgrade
+
+#!spiral
+
+inl rc_upgrade forall t. (x : rust.weak_rc t) : option (rust.rc t) =
+    inl x = join x
+    !\($'"std::rc::Weak::upgrade(&!x)"')
+    |> unbox

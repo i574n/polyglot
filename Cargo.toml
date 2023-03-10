@@ -1,24 +1,36 @@
+cargo-features = ["profile-rustflags"]
+
 [package]
 name = "polyglot"
 version = "0.0.1"
 edition = "2021"
+
+[workspace]
+
+[workspace.package]
+repository = "https://github.com/i574n/polyglot"
+license-file = "../LICENSE"
 
 [dependencies]
 
 [dev-dependencies]
 
 [build-dependencies]
-proxy = { path = "./spiral/proxy" }
-cli = { path = "./spiral/cli" }
+chat_contract = { path = "./apps/chat/contract" }
+chat_contract_tests = { path = "./apps/chat/contract/tests" }
+exercism = { path = "./examples/rust/exercism" }
+extension = { path = "./apps/spiral/temp/extension" }
+plot = { path = "./apps/plot" }
+test = { path = "./apps/spiral/temp/test" }
 
 [lib]
-path = "./spiral/cli/main.rs"
+path = "./apps/spiral/temp/test/test.rs"
 
-
-
-[workspace]
-
-members = [
-    "spiral/proxy",
-    "spiral/cli",
-]
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+rustflags = ["-C", "link-arg=-s"]

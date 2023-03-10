@@ -1,0 +1,207 @@
+// // # seq
+
+// // ## seq
+
+type seq dim el = dim -> option el
+
+// // ## try_item
+
+inl try_item n s =
+    n |> s
+
+// // ## from_list
+
+inl from_list list =
+    fun n =>
+        list
+        |> listm'.try_item n
+
+// // ## map
+
+inl map fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map fn
+
+// // ## mapi
+
+inl mapi fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map (fn n)
+
+// // ## choose
+
+inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq dim u =
+    fun n =>
+        inl rec body fn s i i' =
+            match i |> s with
+            | None => None
+            | Some x =>
+                match x |> fn with
+                | Some x when n = i' => Some x
+                | Some _ => loop (i + 1) (i' + 1)
+                | _ => loop (i + 1) i'
+        and inl loop i i' =
+            if n |> var_is |> not
+            then body fn s i i'
+            else
+                inl fn = join fn
+                inl s = join s
+                join body fn s i i'
+        loop 0 0
+
+// // ## indexed
+
+inl indexed s =
+    s
+    |> mapi fun i x =>
+        i, x
+
+// // ## zip
+
+inl zip n seq1 seq2 =
+    seq1 n, seq2 n
+
+// // ## zip_with
+
+inl zip_with fn seq1 seq2 =
+    fun n =>
+        fn (seq1 n) (seq2 n)
+
+// // ## fold
+
+inl fold fn init seq =
+    inl rec loop acc n =
+        match seq n with
+        | Some x => loop (fn acc x) (n + 1)
+        | None => acc
+    loop init 0
+
+inl fold_ fn init seq =
+    let rec loop acc n =
+        match seq n with
+        | Some x => loop (fn acc x) (n + 1)
+        | None => acc
+    loop init 0
+
+// // ## sum
+
+inl sum seq =
+    seq |> fold (+) 0
+
+inl sum_ seq =
+    seq |> fold_ (+) 0
+
+// // ## to_list
+
+inl to_list seq =
+    seq
+    |> fold (fun acc x => x :: acc) []
+    |> listm.rev
+
+inl to_list_ seq =
+    seq
+    |> fold_ (fun acc x => x :: acc) []
+    |> listm.rev
+
+// // ## from_array
+
+inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
+    fun n =>
+        if n >= length array
+        then None
+        else index array n |> Some
+
+// // ## to_array
+
+inl to_array seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+inl to_array_ seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold_ fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+// // ## take_while
+
+inl take_while cond seq =
+    inl rec loop acc i =
+        match seq i with
+        | Some st when cond st i => loop (st :: acc) (i + 1)
+        | _ => acc |> listm.rev
+    loop [] 0
+
+// // ## take_while_
+
+inl take_while_ cond seq =
+    let rec loop acc i =
+        match seq i with
+        | Some st when cond st i => loop (st :: acc) (i + 1)
+        | _ => acc |> listm.rev
+    loop [] 0
+
+// // ## memoize
+
+inl memoize seq =
+    inl state = mut []
+    fun n =>
+        match *state |> listm'.try_find (fun (n', _) => n' = n) with
+        | Some (_, v) => v
+        | None =>
+            inl new_state = seq n
+            state <- (n, new_state) :: *state
+            new_state
+
+inl memoize_ seq =
+    inl state = mut []
+    fun n =>
+        match *state |> listm'.try_find_ (fun (n', _) => n' = n) with
+        | Some (_, v) => v
+        | None =>
+            inl new_state = seq n
+            state <- (n, new_state) :: *state
+            new_state
+
+// // ## iterate
+
+inl iterate f x0 num_steps =
+    inl rec loop x n =
+        if n <= 0
+        then x
+        else loop (f x) (n - 1)
+    loop x0 num_steps
+
+inl iterate_ f x0 num_steps =
+    let rec loop x n =
+        if n <= 0
+        then x
+        else loop (f x) (n - 1)
+    loop x0 num_steps
+
+inl iterate' f x0 num_steps =
+    listm.init num_steps id
+    |> listm.fold (fun x _ => f x) x0
+
+// // ## find_last
+
+inl find_last forall item result. fold_fn fn target : option result =
+    fold_fn (fun (item : item) (result : option result) =>
+        match result with
+        | None => fn item
+        | result => result
+    ) target (None : option result)
+
+inl array_find_last forall item result. (fn : item -> option result) (target : a i32 item) : option result =
+    find_last am.foldBack fn target
+
+inl list_find_last forall item result. (fn : item -> option result) (target : list item) : option result =
+    find_last listm.foldBack fn target

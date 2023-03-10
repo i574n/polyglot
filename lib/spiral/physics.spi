@@ -1,0 +1,430 @@
+// // # physics
+
+inl (/@) x = listm'.(/@) x
+
+// // ## init_series
+
+// // ## velocity_cf
+
+type mass = f64
+type time = f64
+type position = f64
+type velocity = f64
+type force = f64
+
+type velocity_cf = mass -> velocity -> list force -> (time -> velocity)
+
+inl velocity_cf m v0 fs =
+    inl f_net = fs |> listm'.sum
+    inl a0 = f_net / m
+    inl v t = v0 + a0 * t
+    v
+
+// // ## derivative
+
+type derivative = (f64 -> f64) -> f64 -> f64
+
+inl derivative dt : derivative =
+    fun x t =>
+        (x (t + dt / 2) - x (t - dt / 2)) / dt
+
+// // ## integration
+
+type integration = (f64 -> f64) -> f64 -> f64 -> f64
+
+inl integral dt : integration =
+    fun f a b =>
+        inl rec loop t y =
+            if t < b
+            then loop (t + dt) (y + f t * dt)
+            else t, y
+        loop (a + dt / 2) 0
+        |> snd
+
+inl integral' dt : integration =
+    fun f a b =>
+        listm'.init_series (a + dt / 2) (b - dt / 2) dt
+        |> listm.map (f >> (*) dt)
+        |> listm'.sum
+
+inl integral'' dt : integration =
+    fun f a b =>
+        am'.init_series (a + dt / 2) (b - dt / 2) dt
+        |> am.map (f >> (*) dt)
+        |> am'.sum
+
+// // ## anti_derivative
+
+inl anti_derivative dt v0 a t =
+    v0 + integral' dt a 0 t
+
+// // ## velocity_ft
+
+type velocity_ft = mass -> velocity -> list (time -> force) -> (time -> velocity)
+
+inl velocity_ft dt : velocity_ft =
+    fun m v0 fs =>
+        inl f_net t = fs |> listm.map (fun f => f t) |> listm'.sum
+        inl a t = f_net t / m
+        anti_derivative dt v0 a
+
+// // ## position_ft
+
+type position_ft = mass -> position -> velocity -> list (time -> force) -> (time -> position)
+
+inl position_ft dt : position_ft =
+    fun m x0 v0 fs =>
+        velocity_ft dt m v0 fs
+        |> anti_derivative dt x0
+
+// // ## velocity_fv
+
+inl newton_second_v m fs v0 =
+    fs |> listm.map (fun f => f v0) |> listm'.sum |> fun x => x / m
+
+inl update_velocity dt m fs v0 =
+    v0 + newton_second_v m fs v0 * dt
+
+inl velocity_fv dt m v0 fs t =
+    stream.iterate (update_velocity dt m fs) v0
+    |> stream.try_item (t / dt |> math.round |> abs)
+    |> optionm'.default_value 0
+
+inl f_air drag rho area v =
+    -drag * rho * area * abs v * v / 2
+
+// // ## velocity_ftv
+
+inl newton_second_tv m fs (t, v0) =
+    inl f_net = fs |> listm.map (fun f => f (t, v0)) |> listm'.sum
+    inl acc = f_net / m
+    1, acc
+
+inl update_tv dt m fs (t, v0) =
+    inl dtdt, dvdt = newton_second_tv m fs (t, v0)
+    t + dtdt * dt, v0 + dvdt * dt
+
+inl velocity_ftv dt m tv0 fs t =
+    stream.iterate (join update_tv dt m fs) tv0
+    |> stream.try_item (t / dt |> math.round |> abs)
+    |> optionm.map snd
+    |> optionm'.default_value 0
+
+// // ## velocity_ftxv
+
+nominal state_1d = time * position * velocity
+nominal rrr = f64 * f64 * f64
+
+inl newton_second_1d m fs (state_1d (t, x0, v0)) =
+    inl f_net = fs |> listm.map (fun f => f (state_1d (t, x0, v0))) |> listm'.sum
+    inl acc = f_net / m
+    rrr (1f64, v0, acc)
+
+inl euler_1d dt deriv (state_1d (t0, x0, v0) as t) =
+    inl (rrr (_, _, dvdt)) = deriv t
+    inl t1 = t0 + dt
+    inl x1 = x0 + v0 * dt
+    inl v1 = v0 + dvdt * dt
+    state_1d (t1, x1, v1)
+
+inl update_txv dt m fs =
+    newton_second_1d m fs |> euler_1d dt
+
+inl states_txv dt m txv0 fs =
+    seq.iterate_ (update_txv dt m fs) txv0
+
+inl velocity_1d sts t =
+    inl (state_1d (t0, _, _)) = sts 0
+    inl (state_1d (t1, _, _)) = sts 1
+    inl dt = t1 - t0
+    inl num_steps = t / dt |> math.round |> abs
+    inl (state_1d (_, _, v0)) = sts num_steps
+    v0
+
+inl velocity_ftxv dt m txv0 fs =
+    states_txv dt m txv0 fs |> velocity_1d
+
+inl position_1d sts t =
+    inl (state_1d (t0, _, _)) = sts 0
+    inl (state_1d (t1, _, _)) = sts 1
+    inl dt = t1 - t0
+    inl num_steps = t / dt |> math.round |> abs
+    inl (state_1d (_, x0, _)) = sts num_steps
+    x0
+
+inl position_ftxv dt m txv0 fs =
+    states_txv dt m txv0 fs |> position_1d
+
+inl spring_force k (state_1d (_, x0, _)) =
+    -k * x0
+
+// // ## shift
+
+type update_function s = s -> s
+
+type differential_equation s ds = s -> ds
+
+type numerical_method s ds = differential_equation s ds -> update_function s
+
+
+inl solver method =
+    method >> seq.iterate
+inl solver' method =
+    method >> seq.iterate'
+inl solver_ method =
+    method >> seq.iterate_
+
+
+inl euler_cromer_1d dt deriv (state_1d (t0, x0, v0) as t) =
+    inl (rrr (_, _, dvdt)) = deriv t
+    inl t1 = t0 + dt
+    inl v1 = v0 + dvdt * dt
+    inl x1 = x0 + v1 * dt
+    state_1d (t1, x1, v1)
+
+inl update_txv_ec dt m fs =
+    euler_cromer_1d dt (newton_second_1d m fs)
+
+prototype (+++) ds : ds -> ds -> ds
+prototype scale ds : f64 -> ds -> ds
+
+instance (+++) rrr = fun (rrr (dtdt0, dxdt0, dvdt0)) (rrr (dtdt1, dxdt1, dvdt1)) =>
+    rrr (dtdt0 + dtdt1, dxdt0 + dxdt1, dvdt0 + dvdt1)
+
+instance scale rrr = fun w (rrr (dtdt0, dxdt0, dvdt0)) =>
+    rrr (w * dtdt0, w * dxdt0, w * dvdt0)
+
+prototype shift s : forall ds. f64 -> ds -> s -> s
+
+instance shift state_1d = fun dt ds (state_1d (t, x, v)) =>
+    inl dtdt, dxdt, dvdt =
+        real
+            match ds with
+            | rrr x => x
+            | state_1d x => x
+    state_1d (t + dtdt * dt, x + dxdt * dt, v + dvdt * dt)
+
+inl euler dt deriv st0 =
+    shift dt (deriv st0) st0
+
+inl runge_kutta_4 dt deriv st0 =
+    inl m0 = deriv st0
+    inl m1 = deriv (shift (dt / 2) m0 st0)
+    inl m2 = deriv (shift (dt / 2) m1 st0)
+    inl m3 = deriv (shift dt m2 st0)
+    shift (dt / 6) (m0 +++ m1 +++ m1 +++ m2 +++ m2 +++ m3) st0
+
+inl exponential (_, x0, v0) =
+    1f64, v0, x0
+
+inl of_state_1d (state_1d (t, x, v)) =
+    t, x, v
+
+// // ## vec
+
+type vec =
+    {
+        x : f64
+        y : f64
+        z : f64
+    }
+
+inl vec x y z : vec =
+    { x y z }
+
+// // ### consts
+
+inl i_hat () = vec 1 0 0
+inl j_hat () = vec 0 1 0
+inl k_hat () = vec 0 0 1
+inl zero_vec () = vec 0 0 0
+
+// // ### ^+^
+
+inl (^+^) (a : vec) (b : vec) =
+    vec (a.x + b.x) (a.y + b.y) (a.z + b.z)
+
+// // ### sum_vec
+
+inl sum_vec vs =
+    vs |> listm.fold (^+^) (zero_vec ())
+
+// // ### *^
+
+inl (*^) c { x y z } =
+    vec (c * x) (c * y) (c * z)
+
+// // ### ^*
+
+inl (^*) v c =
+    (*^) c v
+
+// // ### ^/
+
+inl (^/) { x y z } c =
+    vec (x / c) (y / c) (z / c)
+
+// // ### negate_vec
+
+inl negate_vec v =
+    v ^* -1
+
+// // ### ^-^
+
+inl (^-^) a b =
+    a ^+^ (negate_vec b)
+
+// // ### <.>
+
+inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
+    ax * bx + ay * by + az * bz
+
+// // ### \>\<
+
+inl (><) (a : vec) (b : vec) =
+    vec
+        (a.y * b.z - a.z * b.y)
+        (a.z * b.x - a.x * b.z)
+        (a.x * b.y - a.y * b.x)
+
+// // ### magnitude
+
+inl magnitude v =
+    v <.> v |> sqrt
+
+// // ### v1
+
+inl v1 t =
+    2 *^ (t ** 2 *^ i_hat () ^+^ 3 *^ (t ** 3 *^ j_hat () ^+^ t ** 4 *^ k_hat ()))
+
+// // ### vec_derivative
+
+type vec_derivative = (f64 -> vec) -> f64 -> vec
+
+inl vec_derivative dt : vec_derivative =
+    fun v t =>
+        (v (t + dt / 2) ^-^ v (t - dt / 2)) ^/ dt
+
+// // ## states_ps
+
+nominal particle_state =
+    {
+        mass : f64
+        charge : f64
+        time : f64
+        pos_vec : vec
+        velocity : vec
+    }
+
+inl default_particle_state () : particle_state =
+    particle_state {
+        mass = 1
+        charge = 0
+        time = 0
+        pos_vec = zero_vec ()
+        velocity = zero_vec ()
+    }
+
+type one_body_force = particle_state -> vec
+
+nominal d_particle_state =
+    {
+        dmdt : f64
+        dqdt : f64
+        dtdt : f64
+        drdt : vec
+        dvdt : vec
+    }
+
+inl newton_second_ps (fs : list one_body_force) (st : particle_state) : d_particle_state =
+    inl f_net = fs |> listm.map (fun f => f st) |> sum_vec
+    d_particle_state {
+        dmdt = 0
+        dqdt = 0
+        dtdt = 1
+        drdt = st.velocity
+        dvdt = f_net ^/ st.mass
+    }
+
+inl earth_surface_gravity (st : particle_state) =
+    inl g = 9.80665
+    -st.mass * g *^ k_hat ()
+
+inl air_resistance drag rho area (st : particle_state) =
+    -0.5 * drag * rho * area * magnitude st.velocity *^ st.velocity
+
+inl euler_cromer_ps dt (deriv : particle_state -> d_particle_state) (particle_state st) =
+    inl dst : d_particle_state = deriv (particle_state st)
+    inl v' = st.velocity ^+^ dst.dvdt ^* dt
+    particle_state { st with
+        time = st.time + dt
+        pos_vec = st.pos_vec ^+^ v' ^* dt
+        velocity = st.velocity ^+^ dst.dvdt ^* dt
+    }
+
+instance (+++) d_particle_state = fun (dps : d_particle_state) (dps' : d_particle_state) =>
+    d_particle_state {
+        dmdt = dps.dmdt + dps'.dmdt
+        dqdt = dps.dqdt + dps'.dqdt
+        dtdt = dps.dtdt + dps'.dtdt
+        drdt = dps.drdt ^+^ dps'.drdt
+        dvdt = dps.dvdt ^+^ dps'.dvdt
+    }
+
+instance scale d_particle_state = fun w (dps : d_particle_state) =>
+    d_particle_state {
+        dmdt = w * dps.dmdt
+        dqdt = w * dps.dqdt
+        dtdt = w * dps.dtdt
+        drdt = w *^ dps.drdt
+        dvdt = w *^ dps.dvdt
+    }
+
+instance shift particle_state = fun dt dps (particle_state st) =>
+    inl (d_particle_state dps) =
+        real
+            match dps with
+            | d_particle_state _ => dps
+    particle_state { st with
+        time = st.time + dps.dtdt * dt
+        pos_vec = st.pos_vec ^+^ dps.drdt ^* dt
+        velocity = st.velocity ^+^ dps.dvdt ^* dt
+    }
+
+inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
+    newton_second_ps >> method >> seq.iterate_
+
+inl z_ge0 sts =
+    sts
+    |> seq.take_while_ (fun (particle_state st) _ => st.pos_vec.z >= 0)
+
+inl trajectory sts =
+    sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
+
+// // ## relativity_ps
+
+inl relativity_ps fs (st : particle_state) =
+    inl f_net = fs |> listm.map (fun f => f st) |> sum_vec
+    inl c = 299792458
+    inl u = st.velocity ^/ c
+    inl acc = sqrt (1 - (u <.> u)) *^ (f_net ^-^ (f_net <.> u) *^ u) ^/ st.mass
+    d_particle_state {
+        dmdt = 0
+        dqdt = 0
+        dtdt = 1
+        drdt = st.velocity
+        dvdt = acc
+    }
+
+inl uniform_lorentz_force v_e v_b (st : particle_state) =
+    st.charge *^ (v_e ^+^ st.velocity >< v_b)
+
+// // ### system kinetic energy versus time 1
+
+// // ### wave 1
+
+// // ### system kinetic energy versus time 2
+
+// // ### wave 2
+
+// // ## end

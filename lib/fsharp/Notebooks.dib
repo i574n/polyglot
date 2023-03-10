@@ -1,0 +1,9 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!fsharp
+
+//// test
+
+Formatter.ListExpansionLimit <- 100

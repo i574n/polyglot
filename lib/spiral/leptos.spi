@@ -1,0 +1,675 @@
+open rust_operators
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::For\")>] type leptos_For = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Show\")>] type leptos_Show = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>] type leptos_Memo<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>] type leptos_ReadSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Signal<$0>\")>] type leptos_Signal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::A\")>] type leptos_html_A = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::AnyElement\")>] type leptos_html_AnyElement = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Details\")>] type leptos_html_Details = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dd\")>] type leptos_html_Dd = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dl\")>] type leptos_html_Dl = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dt\")>] type leptos_html_Dt = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Nav\")>] type leptos_html_Nav = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>] type leptos_html_Option = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Span\")>] type leptos_html_Span = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::helpers::IntervalHandle\")>] type leptos_dom_IntervalHandle = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>] type leptos_dom_Transparent = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Svg\")>] type leptos_svg_Svg = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Route\")>] type leptos_router_Route = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::RouteDefinition\")>] type leptos_router_RouteDefinition = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Router\")>] type leptos_router_Router = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Routes\")>] type leptos_router_Routes = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Location\")>] type leptos_router_Location = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NavigateOptions\")>] type leptos_router_NavigateOptions = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>] type leptos_router_Url = class end"
+
+nominal a' = $"leptos_html_A"
+nominal event = $"leptos_ev_Event"
+nominal mouse_event = $"leptos_ev_MouseEvent"
+nominal button = $"leptos_html_Button"
+nominal details = $"leptos_html_Details"
+nominal dd = $"leptos_html_Dd"
+nominal div = $"leptos_html_Div"
+nominal dl = $"leptos_html_Dl"
+nominal dt = $"leptos_html_Dt"
+nominal input = $"leptos_html_Input"
+nominal label = $"leptos_html_Label"
+nominal nav = $"leptos_html_Nav"
+nominal option' = $"leptos_html_Option"
+nominal pre = $"leptos_html_Pre"
+nominal select = $"leptos_html_Select"
+nominal span = $"leptos_html_Span"
+nominal svg = $"leptos_svg_Svg"
+nominal action t u = $"leptos_Action<`t, `u>"
+nominal for = $"leptos_For"
+nominal show = $"leptos_Show"
+nominal fragment = $"leptos_Fragment"
+nominal interval_handle = $"leptos_dom_IntervalHandle"
+nominal text = $"leptos_dom_Text"
+nominal transparent = $"leptos_dom_Transparent"
+nominal route = $"leptos_router_Route"
+nominal route_definition = $"leptos_router_RouteDefinition"
+nominal router = $"leptos_router_Router"
+nominal routes = $"leptos_router_Routes"
+nominal html_element t = $"leptos_HtmlElement<`t>"
+nominal into_view = $"leptos_IntoView"
+nominal location = $"leptos_router_Location"
+nominal navigate_options = $"leptos_router_NavigateOptions"
+nominal url = $"leptos_router_Url"
+nominal memo t = $"leptos_Memo<`t>"
+nominal rw_signal t = $"leptos_RwSignal<`t>"
+nominal signal t = $"leptos_Signal<`t>"
+nominal read_signal t = $"leptos_ReadSignal<`t>"
+nominal write_signal t = $"leptos_WriteSignal<`t>"
+nominal resource t u = $"leptos_Resource<`t, `u>"
+nominal view = $"leptos_View"
+
+prototype signal_get signal t : signal t -> t
+prototype signal_get_untracked signal t : signal t -> t
+prototype signal_update signal t : (t -> t) -> signal t -> ()
+prototype signal_set signal t : t -> signal t -> ()
+
+inl log_string (text : string) =
+    !\\((), $'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
+
+inl log (text : string) =
+    inl text = join text
+    (!\($'@@$"leptos::logging::log\!(""{{}}"", !text)"') : ())
+
+inl log_debug (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"') : ()
+
+inl log_pretty (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"') : ()
+
+inl mount_to_body (view_fn : () -> rust.impl into_view) =
+    !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
+
+inl views_to_fragment (views : array_base view) : fragment =
+    inl views = views |> am'.to_vec
+    !\($'"leptos::Fragment::new(!views)"')
+
+inl element_to_view (view : html_element _) : view =
+    inl view = join view
+    !\($'"leptos::IntoView::into_view(!view)"')
+
+inl view_to_fragment (view : view) : fragment =
+    !\($'"leptos::Fragment::new(vec\![!view])"')
+
+inl element_to_fragment (view : html_element _) : fragment =
+    view
+    |> element_to_view
+    |> view_to_fragment
+
+instance (~:>) fragment = fun x =>
+    real
+        typecase t with
+        | array_base view => views_to_fragment x
+        | array_base (html_element ~el) =>
+            inl x = a `i32 `(html_element el) x
+            inl x = am'.map_vec `i32 `(html_element el) `view (element_to_view `el) x
+            inl (a x) = x
+            views_to_fragment x
+        | _ => x
+
+instance (~:>) view = fun x =>
+    real
+        typecase t with
+        | html_element _ => element_to_view x
+        | _ => x
+
+inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
+    $"!view |> unbox"
+
+inl view_trait_to_route_definition (view : rust.impl into_view) : route_definition =
+    $"!view |> unbox"
+
+inl to_element_view (view : html_element _) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_view_trait (view : view) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_fragment_unbox view : fragment =
+    $"!view |> unbox"
+
+inl from_fragment_unbox (fragment : fragment) =
+    $"!fragment |> unbox"
+
+inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
+    !\($'"leptos::view\! { {!macro} }"')
+
+inl macro_to_view_trait (macro : string) : rust.impl into_view =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl macro_to_fragment (macro : string) : fragment =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl new_transparent x : transparent =
+    !\($'"leptos::leptos_dom::Transparent::new(!x)"')
+
+inl fragment_to_view (fragment : fragment) : view =
+    !\($'"leptos::IntoView::into_view(!fragment)"')
+
+inl closure_to_view (closure : rust.func0 view) : view =
+    inl closure = join closure
+    !\($'"leptos::IntoView::into_view(move || !closure())"')
+
+inl batch (fn : rust.func0 ()) : () =
+    inl fn = join fn
+    !\($'"leptos::batch(move || !fn())"')
+
+inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
+    inl closure = join closure
+    !\($'"leptos::IntoView::into_view(move || !closure())"')
+    |> view_to_fragment
+
+inl array_to_view (view : a _ view) : view =
+    inl view = join view
+    !\($'"leptos::CollectView::collect_view(!view.to_vec())"')
+
+inl vec_to_fragment (view : rust.vec view) : fragment =
+    !\($'"leptos::Fragment::new(!view)"')
+
+inl to_fragment x : fragment =
+    $"!x |> unbox"
+
+inl text_to_view (text : text) : view =
+    !\($'"leptos::IntoView::into_view(!text)"')
+
+inl text_to_fragment (text : text) : fragment =
+    text
+    |> text_to_view
+    |> view_to_fragment
+
+inl macro_to_view (macro : string) : view =
+    !\($'"leptos::IntoView::into_view(leptos::view\! { " + !macro + " })"')
+
+inl transparent_to_view (transparent : transparent) : view =
+    !\($'"leptos::IntoView::into_view(!transparent)"')
+
+inl transparent_to_fragment (transparent : transparent) : fragment =
+    transparent
+    |> transparent_to_view
+    |> view_to_fragment
+
+inl macro_to_element (view : string) : html_element _ =
+    view |> macro_to_view_trait |> view_trait_to_element
+
+inl transparents_fragment (items : array_base transparent) : fragment =
+    inl transparent_to_view x =
+        inl x = join x
+        x |> transparent_to_view
+    inl transparent_to_view = join transparent_to_view
+    inl items = items |> am'.to_vec
+    !\($'"!items.iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
+
+inl views_to_view (items : array_base view) : view =
+    inl items = join items
+    items
+    // |> fun x => a (join x) : a u64 _
+    |> fun x => a x : a u64 _
+    |> array_to_view
+
+inl new_text (text : string) : text =
+    inl text = join text
+    inl text = text |> sm'.to_std_string
+    !\($'"leptos::html::text(!text)"')
+
+inl text_view (text : string) : view =
+    text
+    |> new_text
+    |> text_to_view
+
+inl text_fragment (text : string) : fragment =
+    text
+    |> text_view
+    |> view_to_fragment
+
+inl provide_meta_context () =
+    !\($'"leptos_meta::provide_meta_context()"') : ()
+
+inl provide_context forall t. (x : t) =
+    !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
+
+inl create_signal forall t. (value : t) : read_signal t * write_signal t =
+    inl value = join value
+    !\($'$"leptos::create_signal(!value)"')
+
+inl create_rw_signal forall t. (value : t) : rw_signal t =
+    inl value = join value
+    !\($'$"leptos::create_rw_signal(!value)"')
+
+inl read_only forall t. (value : rw_signal t) : read_signal t =
+    inl value = join value
+    !\($'$"leptos::RwSignal::read_only(&!value)"')
+
+inl write_only forall t. (value : rw_signal t) : write_signal t =
+    inl value = join value
+    !\($'$"leptos::RwSignal::write_only(&!value)"')
+
+inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
+    real
+        typecase t with
+        | signal => ()
+        | rw_signal => ()
+        | read_signal => ()
+        | write_signal => ()
+        | memo => ()
+        | _ => error_type `(()) ("invalid signal", ``(t u))
+
+inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalGet::get(&!signal)"')
+
+instance signal_get signal = signal_get'
+instance signal_get rw_signal = signal_get'
+instance signal_get read_signal = signal_get'
+instance signal_get memo = signal_get'
+
+inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
+    inl fn = join fn
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'"leptos::SignalUpdate::update(&!signal, |x| { *x = !fn(x.clone()) })"') : ()
+
+instance signal_update rw_signal = signal_update'
+instance signal_update write_signal = signal_update'
+
+inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
+
+instance signal_get_untracked rw_signal = signal_get_untracked'
+instance signal_get_untracked read_signal = signal_get_untracked'
+instance signal_get_untracked memo = signal_get_untracked'
+
+inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
+    inl value = join value
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
+
+instance signal_set rw_signal = signal_set'
+instance signal_set write_signal = signal_set'
+
+inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+    inl source = join source
+    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
+
+inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+    inl source = join source
+    !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
+
+inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
+    inl action_fn = join action_fn
+    !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn(value.clone()))"')
+
+inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
+    inl value = join value
+    !\($'"leptos::Action::dispatch(&!action, !value)"')
+
+inl use_context forall t. () : optionm'.option' t =
+    !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
+
+inl resource_loading forall t u. (resource : resource t u) : signal bool =
+    inl resource = join resource
+    !\($'$"leptos::Resource::loading(&!resource)"')
+
+inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
+    inl resource = join resource
+    !\($'$"leptos::SignalGet::get(&!resource)"')
+
+inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
+    inl resource = join resource
+    inl fn = join fn
+    !\($'$"leptos::SignalWith::with(&!resource, |x| !fn(x.clone()))"')
+
+inl create_effect (fn : () -> ()) : () =
+    inl fn = join fn
+    !\($'"leptos::create_effect(move |_| { !fn() })"')
+
+inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
+    inl fn = join fn
+    !\($'"leptos::create_effect(move |x| { !fn(x) })"')
+
+inl interval_handle_clear (interval_handle : interval_handle) =
+    inl interval_handle = join interval_handle
+    !\($'$"leptos::leptos_dom::helpers::IntervalHandle::clear(&!interval_handle)"') : ()
+
+inl set_interval_with_handle
+    (fn : () -> ())
+    (interval_millis : rust.duration)
+    : resultm.result' interval_handle rust.js_value
+    =
+    inl fn = join fn
+    !\($'$"leptos::set_interval_with_handle(move || !fn(), !interval_millis)"')
+
+inl create_memo forall t. (fn : () -> t) : memo t =
+    inl fn = join fn
+    !\($'"leptos::create_memo(move |_| { !fn() })"')
+
+let window () : rust.window =
+    !\($'"leptos::leptos_dom::window()"')
+
+inl memo_get forall t. (memo : memo t) : t =
+    inl memo = join memo
+    !\($'$"!memo()"')
+
+inl bool_prop (prop : string) (fn : () -> bool) : string =
+    inl fn = join fn
+    $'"" + !prop + "={move || !fn()}"'
+
+inl concat_props props =
+    ("", props)
+    ||> listm.fold fun acc (x : string) =>
+        $'" " + !x + !acc + ""'
+
+inl move_to_fragment fn =
+    rust.move fn
+    |> closure_to_fragment
+
+inl tag_raw tag props children =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
+    inl children : () -> fragment = join children
+    $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
+
+inl tag_element tag props children : html_element _ =
+    inl children = join children
+    tag_raw tag props children
+    |> macro_to_element
+
+inl tag_closed_raw tag props =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    $'"<" + !tag + " " + !props + " />"'
+
+inl tag_closed tag props : html_element _ =
+    tag_closed_raw tag props
+    |> macro_to_element
+
+inl a' props children : _ a' =
+    tag_element "a" props children
+
+inl div props children : _ div =
+    tag_element "div" props children
+
+inl for props : view =
+    tag_closed_raw "leptos::For" props
+    |> macro_to_view
+
+inl for forall t u. (array : array_base t) (key_fn : t -> u) (children' : t -> fragment) : view =
+    inl array = join array
+    inl key_fn = join key_fn
+    inl children' = join children'
+    for [
+        $'"each=move || !array.to_vec()"'
+        $'"key=move |x| !key_fn(x.to_owned())"'
+        $'"let:x"'
+        $'"children=move |x| !children'(x)"'
+    ]
+
+inl show props : view =
+    tag_closed_raw "leptos::Show" props
+    |> macro_to_view
+
+inl show (when_fn : () -> bool) (fallback : () -> view) (children : () -> fragment) : view =
+    inl when_fn = join when_fn
+    inl when_fn = join when_fn
+    inl fallback = join fallback
+    inl children = join children
+    show [
+        $'"when=move || !when_fn()"'
+        $'"fallback=move || !fallback()"'
+        $'"children=std::rc::Rc::new(move || !children())"'
+    ]
+
+inl label props children : _ label =
+    tag_element "label" props children
+
+inl nav props children : _ nav =
+    tag_element "nav" props children
+
+inl option' props children : _ option' =
+    tag_element "option" props children
+
+inl option' select children : _ option' =
+    inl select : () -> bool = join select
+    option' [
+        $'"select=!select()"'
+
+    ] fun () =>
+        children |> new_text |> text_to_fragment
+
+inl pre props children : _ pre =
+    tag_element "pre" props children
+
+inl select props children : _ select =
+    tag_element "select" props children
+
+inl span props children : _ span =
+    tag_element "span" props children
+
+inl use_location () : location =
+    !\($'"leptos_router::use_location()"')
+
+inl use_navigate () : string -> () =
+    inl navigate : rust.arc (rust.dyn' (rust.action_fn2 (rust.ref' rust.str) navigate_options)) =
+        !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
+    fun url =>
+        inl url = url |> sm'.as_str
+        !\($'"!navigate(!url, Default::default())"')
+
+inl location_hash (location : location) : memo rust.std_string =
+    inl location = join location
+    !\($'"!location.hash"')
+
+inl location_pathname (location : location) : memo rust.std_string =
+    inl location = join location
+    !\($'"!location.pathname"')
+
+inl location_search (location : location) : memo rust.std_string =
+    inl location = join location
+    !\($'"!location.search"')
+
+inl url_try_from (s : rust.ref' rust.str) : resultm.result' url rust.std_string =
+    inl s = join s
+    !\($'"leptos_router::Url::try_from(!s)"')
+
+inl url_pathname (url : url) : rust.std_string =
+    !\($'"!url.pathname"')
+
+inl use_url () : string =
+    inl location = use_location ()
+
+    inl url_pathname = location |> location_pathname |> memo_get |> sm'.from_std_string
+    inl url_search = location |> location_search |> memo_get |> sm'.from_std_string
+    inl url_search =
+        if url_search = ""
+        then ""
+        else $'$"?{!url_search}"'
+    $"!url_pathname + !url_search"
+
+inl route path view children : view =
+    inl path = join path
+    inl path = path |> sm'.to_std_string
+    inl view : () -> fragment = join view
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Route" [
+        $'"path=!path"'
+        $'"view=move || !view()"'
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+inl router children : view =
+    inl children = join children
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Router" [
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+inl routes children : view =
+    inl children = join children
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Routes" [
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+inl input props : _ input =
+    tag_closed "input" props
+
+inl x_red_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" height=\\\"100%\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"text-red-700\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M6 18L18 6M6 6l12 12\\\" /></svg>"'
+    |> macro_to_element
+
+inl inbox_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z\\\"/></svg>"'
+    |> macro_to_element
+
+inl loading_svg () : _ svg =
+    $'"<svg version=\\\"1.1\\\" id=\\\"Layer_1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" xmlns:xlink=\\\"http://www.w3.org/1999/xlink\\\" x=\\\"0px\\\" y=\\\"0px\\\" width=\\\"24px\\\" height=\\\"30px\\\" viewBox=\\\"0 0 24 30\\\" style=\\\"enable-background:new 0 0 50 50;\\\" xml:space=\\\"preserve\\\"><rect x=\\\"0\\\" y=\\\"10\\\" width=\\\"4\\\" height=\\\"10\\\" fill=\\\"#333\\\" opacity=\\\"0.2\\\"><animate attributeName=\\\"opacity\\\" attributeType=\\\"XML\\\" values=\\\"0.2; 1; .2\\\" begin=\\\"0s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"height\\\" attributeType=\\\"XML\\\" values=\\\"10; 20; 10\\\" begin=\\\"0s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"y\\\" attributeType=\\\"XML\\\" values=\\\"10; 5; 10\\\" begin=\\\"0s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /></rect><rect x=\\\"8\\\" y=\\\"10\\\" width=\\\"4\\\" height=\\\"10\\\" fill=\\\"#333\\\"  opacity=\\\"0.2\\\"><animate attributeName=\\\"opacity\\\" attributeType=\\\"XML\\\" values=\\\"0.2; 1; .2\\\" begin=\\\"0.15s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"height\\\" attributeType=\\\"XML\\\" values=\\\"10; 20; 10\\\" begin=\\\"0.15s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"y\\\" attributeType=\\\"XML\\\" values=\\\"10; 5; 10\\\" begin=\\\"0.15s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /></rect><rect x=\\\"16\\\" y=\\\"10\\\" width=\\\"4\\\" height=\\\"10\\\" fill=\\\"#333\\\"  opacity=\\\"0.2\\\"><animate attributeName=\\\"opacity\\\" attributeType=\\\"XML\\\" values=\\\"0.2; 1; .2\\\" begin=\\\"0.3s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"height\\\" attributeType=\\\"XML\\\" values=\\\"10; 20; 10\\\" begin=\\\"0.3s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"y\\\" attributeType=\\\"XML\\\" values=\\\"10; 5; 10\\\" begin=\\\"0.3s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /></rect></svg>"'
+    |> macro_to_element
+
+inl settings_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z\\\"/><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\\\"/></svg>"'
+    |> macro_to_element
+
+inl arrow_down_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg>"'
+    |> macro_to_element
+
+inl accordion title open' children : _ details =
+    inl title = title |> sm'.to_std_string
+    inl open' : bool = open'
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
+    inl children : () -> fragment = join children
+    inl arrow_down_svg = arrow_down_svg ()
+    $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open=!open'><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\">{!arrow_down_svg}</span></summary><div class=\\\"[display:flex] [flex:1] [flex-direction:column]\\\">{!children()}</div></details>"'
+    |> macro_to_element
+
+inl divider children : _ span =
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
+    inl children : () -> fragment = join children
+    $'"<span class=\\\"flex items-center pb-[6px]\\\"><span class=\\\"pr-[15px] [font-size:14px]\\\">{!children()}</span><span class=\\\"h-px flex-1 bg-gray-300\\\"></span></span>"'
+    |> macro_to_element
+
+inl input forall t. getter setter : _ input =
+    inl getter : () -> t = join getter
+    inl setter : t -> () = join setter
+    input [
+        $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\""'
+        $'"prop:value=move || !getter()"'
+        $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
+    ]
+
+inl toggle (id : string) on_change get_value : _ label =
+    inl id = id |> sm'.to_std_string
+
+    inl on_change (event : event) =
+        rust.move fun () =>
+            on_change event
+        |> batch
+    inl on_change = join on_change
+
+    inl get_value : () -> bool = join get_value
+
+    $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-400 peer-checked:bg-white text-gray-200 transition-all peer-checked:start-6 peer-checked:text-gray-400\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-200 transition peer-checked:bg-gray-300\\\"></span></label>"'
+    |> macro_to_element
+
+inl dd children : _ dd =
+    tag_element "dd" [
+        $'"class=\\\"[overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
+    ] children
+
+inl dl children : _ dl =
+    tag_element "dl" [
+        $'"class=\\\"flex flex-1\\\""'
+    ] children
+
+inl dt children : _ dt =
+    tag_element "dt" [
+        $'"class=\\\"[font-size:11px] text-gray-400\\\""'
+    ] children
+
+inl grid_pair_padding_class () =
+    "pt-[9px] pr-[10px] pb-[9px] pl-[10px]"
+
+inl grid_pair { padding cols class } left right : _ div =
+    inl class : string = class
+    inl padding = padding |> optionm'.default_value (grid_pair_padding_class ())
+    inl cols_class = cols |> optionm'.default_value "sm:grid-cols-[150px_repeat(2,minmax(0,1fr))]"
+    inl left : () -> fragment = join left
+    inl right : () -> fragment = join right
+    inl class : string = $'"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] " + !cols_class + " " + !padding + " " + !class + ""'
+
+    div [
+        $'"class=\\\"" + !class + "\\\""'
+    ] fun () =>
+        :>(;[
+            dt left
+            |> element_to_view
+
+            dd right
+            |> element_to_view
+        ])
+
+inl tab_link href icon label select : _ a' =
+    inl href = href |> sm'.to_std_string
+    inl select = join select
+    inl select_class () : rust.static_ref' rust.str =
+        if select ()
+        then ##"border-grey-200 text-grey-900"
+        else ##"border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+    inl select = join select
+    inl select_class = join select_class
+    a' [
+        $'"href=!href"'
+        $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium \\\".to_owned() + !select_class()}"'
+        $'"aria-current={move || if !select() { \\\"page\\\" } else { \\\"\\\" }}"'
+    ] fun () =>
+        :>(;[
+            icon |> element_to_view
+            label |> text_view
+        ])
+
+inl text_block_pre (class : string) text =
+    pre [
+        $'"class=\\\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty] " + !class + "\\\""'
+    ] fun () =>
+        text
+        |> text_fragment
+
+inl set_inner_html (html : string) (el : rust.html_element) =
+    inl html = html |> sm'.as_str
+    inl el = join el
+    !\($'"!el.set_inner_html(!html)"')

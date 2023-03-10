@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "Fable": {
+      "version": "4.2.1",
+      "commands": [
+        "fable"
+      ]
+    },
+    "paket": {
+      "version": "8.0.0-alpha002",
+      "commands": [
+        "paket"
+      ]
+    },
+    "microsoft.dotnet-interactive": {
+      "version": "1.0.450903",
+      "commands": [
+        "dotnet-interactive"
+      ]
+    },
+    "dotnet-repl": {
+      "version": "0.1.204",
+      "commands": [
+        "dotnet-repl"
+      ]
+    }
+  }
+}

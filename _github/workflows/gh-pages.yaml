@@ -1,0 +1,86 @@
+name: gh-pages
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    timeout-minutes: 240
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8
+
+      - uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: nightly
+          components: clippy rust-src rustfmt
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget2-${{ hashFiles('**/paket.lock') }}
+          restore-keys: ${{ runner.os }}-nuget2-
+
+      - uses: actions/cache@v3
+        with:
+            path: |
+                ~/.cargo/bin/
+                ~/.cargo/registry/index/
+                ~/.cargo/registry/cache/
+                ~/.cargo/git/db/
+                target/
+            key: ${{ runner.os }}-cargo2-${{ hashFiles('**/Cargo.lock') }}
+            restore-keys: ${{ runner.os }}-cargo2-
+
+      - run: pwsh scripts/init.ps1
+
+      - run: pwsh scripts/build.ps1
+
+      - run: pwsh scripts/publish.ps1
+
+      - run: pwsh dist/scripts/publish-bin.ps1
+        env:
+            NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gh-pages
+          path: dist
+          retention-days: 30
+
+  push:
+    needs: build
+    timeout-minutes: 180
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: gh-pages
+          path: gh-pages
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: gh-pages

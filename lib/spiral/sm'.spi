@@ -1,0 +1,141 @@
+open rust_operators
+
+inl include_str (path : string) : rust.ref' rust.str =
+    !\($'"include_str\!(\\\"" + !path + "\\\")"')
+
+inl contains (value : string) (input : string) : bool =
+    $"!input.Contains !value"
+
+inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
+    $"!str.Substring (!start, !len)"
+
+inl as_str (s : string) : rust.ref' rust.str =
+    inl s = join s
+    !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')
+
+inl from_std_string (str : rust.std_string) : string =
+    inl str = join str
+    !\($'"fable_library_rust::String_::fromString(!str)"')
+
+inl ref_to_std_string (str : rust.ref' rust.str) : rust.std_string =
+    !\($'"String::from(!str)"')
+
+inl to_std_string (s : string) : rust.std_string =
+    inl s = join s
+    s |> as_str |> ref_to_std_string
+
+inl as_str_std (s : rust.std_string) : rust.ref' rust.str =
+    inl s = join s
+    !\($'"!s.as_str()"')
+
+inl into_boxed_str (s : rust.std_string) : rust.box rust.str =
+    !\($'"!s.into_boxed_str()"')
+
+inl format' x : rust.std_string =
+    !\\(x, $'@@$"format\!(""{{}}"", $0)"')
+
+inl format_debug x : string =
+    $"$\"%A{!x}\""
+
+inl format_debug' x : rust.std_string =
+    !\\(x, $'@@$"format\!(""{{:?}}"", $0)"')
+
+inl format_pretty' x : rust.std_string =
+    !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+
+inl obj_to_string x : string =
+    $"!x.ToString ()"
+
+instance to_string any =
+    obj_to_string
+
+instance to_string result t u = fun x =>
+    real
+        open rust
+        typecase (t * u) with
+        | string * string =>
+            match x with
+            | Ok x => x
+            | Error x => $'"Error: " + !x + ""' : string
+        | std_string * std_string =>
+            match x with
+            | Ok x => from_std_string x
+            | Error x => $'"Error: " + string !x + ""' : string
+        | _ => obj_to_string `u x
+
+inl serialize forall t. (x : t) : resultm.result' rust.std_string rust.json_error =
+    !\($'"serde_json::to_string(&!x)"')
+
+inl deserialize forall t. (json : string) : resultm.result' t rust.std_string =
+    inl json = json |> as_str
+    !\($'"serde_json::from_str(&!json)"')
+    |> resultm.map_error' fun (x : rust.json_error) => x |> format'
+
+inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
+    inl x = x |> am'.to_vec
+    !\($'"!x.as_slice()"')
+
+inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t rust.std_string =
+    inl data = data |> as_slice
+    !\($'"let mut !data = !data"')
+    inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
+    result
+    |> resultm.map_error' fun (x : rust.borsh_io_error) => x |> format'
+
+inl deserialize_vec (value : rust.json_value) : resultm.result' (rust.vec u8) rust.std_string =
+    inl value = join value
+    !\($'"serde_json::from_value(!value)"')
+    |> resultm.map_error' fun (x : rust.json_error) => x |> format'
+
+inl wasm_from_value (value : rust.js_value) : resultm.result' (optionm'.option' rust.json_value) rust.std_string =
+    inl value = join value
+    !\($'"serde_wasm_bindgen::from_value(!value)"')
+    |> resultm.map_error' fun (x : rust.serde_wasm_bindgen_error) => x |> format'
+
+inl encode_uri_component (s : rust.std_string) : rust.js_string =
+    !\($'"js_sys::encode_uri_component(&!s)"')
+
+inl strip_prefix (prefix : char) (s : rust.std_string) : optionm'.option' (rust.ref' rust.str) =
+    inl s = join s
+    !\($'"!s.strip_prefix(!prefix)"')
+
+inl starts_with (value : rust.std_string) (s : rust.std_string) : bool =
+    inl s = join s
+    !\($'"!s.starts_with(&!value)"')
+
+inl base64_decode (s : rust.std_string) : result rust.std_string rust.std_string =
+    fun () =>
+        inl s = join s
+        inl bytes : resultm.result' (rust.vec u8) rust.base64_decode_error =
+            !\($'"base64::Engine::decode(&base64::engine::general_purpose::STANDARD, !s)"')
+        inl bytes =
+            bytes
+            |> resultm.map_error' format'
+            |> resultm.try'
+        inl result : resultm.result' rust.std_string rust.utf8_error =
+            !\($'"std::str::from_utf8(&!bytes).map(String::from)"')
+        result
+        |> resultm.map_error' format'
+    |> fun x =>
+        join x ()
+        |> resultm.unbox
+
+inl concat (a : string) (b : a _ _) : string =
+    $"!b |> String.concat !a"
+
+inl join' (concat : string) (s : a _ string) : string =
+    $"System.String.Join (!concat, !s)"
+
+inl pad_right (pad : i32) (s : string) : string =
+    $"!s.PadRight !pad"
+
+inl replace (old_value : string) (new_value : string) (input : string) : string =
+    $"!input.Replace (!old_value, !new_value)"
+
+inl ellipsis forall t {int; number}. (max : t) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> substring 0 max |> fun x => $'!x + "..."'
+
+open rust
+instance to_string std_string = from_std_string

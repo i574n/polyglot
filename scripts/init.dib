@@ -1,0 +1,96 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!pwsh
+
+. ./nbs_header.ps1
+. ./core.ps1
+
+#!pwsh
+
+# rustup +nightly component add clippy rust-src rustfmt
+
+#!pwsh
+
+# rustup +nightly target add wasm32-unknown-unknown
+
+#!pwsh
+
+rustup update
+
+#!pwsh
+
+{ cargo +nightly install cargo-outdated } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+{ cargo +nightly install wasm-pack } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+{ cargo +nightly install trunk } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+{ cargo +nightly install --git https://github.com/bram209/leptosfmt.git } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+npm install -g pnpm
+
+#!pwsh
+
+npm install -g esbuild
+
+#!pwsh
+
+npm install -g @chialab/rna
+
+#!pwsh
+
+npm install -g @chialab/rna-bundler
+
+#!pwsh
+
+npm install -g @playwright/test@1.40.0
+
+#!pwsh
+
+npx -y playwright@1.40.0 install
+
+#!pwsh
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+#!pwsh
+
+{ Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+{ Set-PSRepository -Name PSGallery -InstallationPolicy Trusted } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+{ Install-Module -Name PSToml -Scope CurrentUser -WhatIf } | Invoke-Block -OnError Continue
+
+#!pwsh
+
+{ pnpm -C .. install --frozen-lockfile } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/dep_spiral.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/dep_spiral_extension.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/dep_fable.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/dep_hyperui.ps1" } | Invoke-Block

@@ -1,0 +1,12 @@
+inl app () =
+    "test" |> console.write_line
+    0i32
+
+inl main () =
+    print_static "<test>"
+
+    app
+    |> dyn
+    |> ignore
+
+    print_static "</test>"

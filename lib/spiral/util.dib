@@ -1,0 +1,89 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# util
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## ski
+
+#!spiral
+
+union rec ski =
+    | I
+    | K
+    | S
+    | App : ski * ski
+
+inl rec eval ski =
+    match ski with
+    | App (App (K, x), y) => eval x
+    | App (App (App (S, x), y), z) => eval (App (App (x, z), App (y, z)))
+    | App (I, x) => eval x
+    | App (K, x) => App (K, eval x)
+    | App (f, x) => eval (App (eval f, x))
+    | _ => ski
+
+#!spiral
+
+// // test
+
+eval I
+|> _equal I
+
+eval (App (I, I))
+|> _equal I
+
+eval (App (I, App (I, I)))
+|> _equal I
+
+eval (App (App (I, I), I))
+|> _equal I
+
+eval (App (App (App (I, I), I), I))
+|> _equal I
+
+eval K
+|> _equal K
+
+eval (App (K, I))
+|> _equal (App (K, I))
+
+eval (App (K, K))
+|> _equal (App (K, K))
+
+eval (App (App (K, I), K))
+|> _equal I
+
+eval (App (App (K, K), I))
+|> _equal K
+
+eval (App (App (App (App (K, K), I), S), K))
+|> _equal S
+
+eval S
+|> _equal S
+
+eval (App (App (App (S, I), I), I))
+|> _equal I
+
+eval (App (App (App (S, K), K), I))
+|> _equal I
+
+eval (App (App (App (S, K), I), (App (App (K, I), S))))
+|> _equal I
+
+eval (App (App (K, S), App (I, App (App (App (S, K), S), I))))
+|> _equal S
+
+eval (App (App (App (S, K), I), K))
+|> _equal K
