@@ -24,9 +24,6 @@ jobs:
         with:
           rust-version: nightly
 
-      - run: dotnet tool restore
-      - run: dotnet paket restore
-
       - run: pwsh init.ps1
 
       - run: cd spiral/cli && pwsh build.ps1
