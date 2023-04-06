@@ -12,4 +12,6 @@ rustup component add rustfmt
 dotnet tool restore
 dotnet paket restore
 
+# echo 'set -gx PATH $HOME/.cargo/bin $PATH' >> ~/.config/fish/config.fish
+
 . spiral/language.ps1
