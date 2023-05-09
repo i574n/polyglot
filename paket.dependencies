@@ -1,8 +1,12 @@
-version 7.0
-framework: net7.0
+version 6.0
+framework: net6.0
 storage: none
 source https://api.nuget.org/v3/index.json
 
 nuget FSharp.Core >= 7.0 prerelease
 
 nuget Fable.Core ~> 4.0 prerelease
+
+nuget FsCheck ~> 2.0
+nuget Expecto prerelease
+nuget Expecto.FsCheck >= 9.0.4 prerelease

@@ -1,6 +1,15 @@
 STORAGE: NONE
-RESTRICTION: == net7.0
+RESTRICTION: == net6.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Fable.Core (4.0.0-theta-007)
-    FSharp.Core (7.0.300-beta.23114.3)
+    Expecto (9.0.4)
+      FSharp.Core (>= 4.6)
+      Mono.Cecil (>= 0.11.3)
+    Expecto.FsCheck (9.0.4)
+      Expecto (>= 9.0.4)
+      FsCheck (>= 2.14.3)
+    Fable.Core (4.0)
+    FsCheck (2.16.5)
+      FSharp.Core (>= 4.2.3)
+    FSharp.Core (7.0.300-beta.23176.1)
+    Mono.Cecil (0.11.5)

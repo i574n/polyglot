@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>preview</LangVersion>
+        <RollForward>Major</RollForward>
+        <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+        <Version>0.0.1-alpha.1</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Challenges.fs" />
+        <Compile Include="Main.fs" />
+        <None Include="Hopac.fsx" />
+    </ItemGroup>
+
+    <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

@@ -7,7 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "repo", "repo", "{AC1CE2EB-7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyglot.CSharp", "csharp\Polyglot.CSharp.csproj", "{F4903D92-F7F9-4059-8CDE-935F2FD09506}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Polyglot.FSharp", "fsharp\Polyglot.FSharp.fsproj", "{CBC1974F-2C5C-488C-91F4-6948121AF652}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "dice", "fsharp\dice\dice.fsproj", "{CBC1974F-2C5C-488C-91F4-6948121AF652}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279787}") = "perf", "fsharp\perf\perf.fsproj", "{CBC1974F-2C5C-488C-91F4-6948121AF653}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Run Configurations", "Run Configurations", "{94A510E5-810B-4A68-B9FC-7266E5F303E2}"
 ProjectSection(SolutionItems) = preProject
@@ -28,5 +29,9 @@ Global
 		{CBC1974F-2C5C-488C-91F4-6948121AF652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBC1974F-2C5C-488C-91F4-6948121AF652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBC1974F-2C5C-488C-91F4-6948121AF652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBC1974F-2C5C-488C-91F4-6948121AF653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC1974F-2C5C-488C-91F4-6948121AF653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC1974F-2C5C-488C-91F4-6948121AF653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC1974F-2C5C-488C-91F4-6948121AF653}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

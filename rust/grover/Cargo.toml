@@ -1,13 +1,15 @@
 [package]
-name = "exercism"
+name = "grover"
 version = "0.0.1"
 edition = "2021"
 workspace = "../../"
 
 
 [dependencies]
-
+qoqo = "~0.8"
+qoqo_calculator = "~0.8"
+rand = "~0.8"
 
 [[bin]]
-name = "exercism"
+name = "grover"
 path = "./src/main.rs"

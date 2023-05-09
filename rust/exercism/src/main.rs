@@ -1,6 +1,5 @@
 #![allow(unused)]
 
-mod old;
 mod tests;
 
 pub mod hello_world {
@@ -327,4 +326,8 @@ pub mod semi_structured_logs {
     }
 }
 
-fn main() {}
+// mod tmp;
+
+fn main() {
+    // tmp::main();
+}
