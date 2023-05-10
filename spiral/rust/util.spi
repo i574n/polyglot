@@ -91,20 +91,40 @@ nominal html_input_element = $"Types.web_sys.HtmlInputElement"
 nominal html_style_element = $"Types.web_sys.HtmlStyleElement"
 
 
-
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.Rust.emitExpr !args !code"
 
-inl deref forall t u. (x : t) : ref' u =
-    emit_expr x "core::ops::Deref::deref($0)"
+inl deref_array forall t. (x : ref' (array t)) : vec t =
+    // emit_expr x "core::ops::Deref::deref($0)"
+    emit_expr () $"\"***core::ops::Deref::deref(!x)\""
 
-// inl deref_ref forall t. (x : ref' t) : t =
-//     inl x = join x
-//     emit_expr () $"\"!x.to_string()\""
+inl deref_to forall t u. (x : ref' t) : ref' u =
+    // emit_expr x "core::ops::Deref::deref($0)"
+    emit_expr () $"\"core::ops::Deref::deref(!x)\""
 
-inl to_string_ref forall t. (x : ref' t) : t =
-    inl x = join x
-    emit_expr () $"\"!x.to_string()\""
+// inl deref forall t u. (x : t) : ref' u =
+inl deref forall t. (x : ref' t) : ref' t =
+    deref_to x
+    // emit_expr x "core::ops::Deref::deref($0)"
+    // emit_expr () $"\"core::ops::Deref::deref(!x)\""
+
+inl deref_emit forall t. (x : ref' t) : t =
+    emit_expr () $"\"*!x\""
+
+inl deref_emit_static forall t. (x : static_ref' t) : t =
+    emit_expr () $"\"*!x\""
+
+inl deref_emit_raw forall t. (x : ref' t) : t =
+    emit_expr () $"\"!x\""
+
+inl deref_emit_raw_arg forall t. (x : ref' t) : t =
+    emit_expr x $"\"$0\""
+
+inl deref_unbox forall t. (x : ref' t) : t =
+    $"!x |> unbox"
+
+// inl deref_unbox forall t. (x : t) : t =
+//     emit_expr () $"\"*!x\""
 
 inl deref_rc forall t. (x : rc t) : t =
     emit_expr () $"\"*!x\""
@@ -115,26 +135,166 @@ inl arc_clone forall t. (x : arc t) : arc t =
 inl unbox' forall t u. (x : t) : u =
     join $"!x |> unbox<`u>"
 
-inl deref' forall t. (x : ref' t) : t =
-    emit_expr x "**$0"
+inl unbox'' forall t u. (x : t) : u =
+    $"!x |> unbox<`u>"
 
-inl deref' forall t. (x : ref' t) : t =
-    emit_expr x "**$0"
+// inl deref' forall t. (x : ref' t) : t =
+//     emit_expr x "**$0"
 
-inl deref'' forall t. (x : ref' t) : ref' t =
-    emit_expr x "&***$0"
+// inl deref' forall t. (x : ref' t) : t =
+//     emit_expr x "**$0"
 
-inl deref''' forall t. (x : t) : t =
-    emit_expr x "**$0"
+// inl deref'' forall t. (x : ref' t) : ref' t =
+//     emit_expr x "&***$0"
 
-inl to_std_string (str : string) : std_string =
-    emit_expr str "($0).to_string()"
+// inl deref''' forall t. (x : t) : t =
+//     emit_expr x "**$0"
 
-inl to_std_string' (str : string) : std_string =
-    emit_expr str "std::string::String::from($0.to_string())"
+inl into forall t u. (x : t) : u =
+    emit_expr () $"\"!x.into()\""
 
-inl as_ref forall t u. (x : t) : ref' u =
-    emit_expr x "($0).as_ref()"
+// inl to_string forall t. (x : t) : string =
+inl to_string (str : std_string) : string =
+    // inl y : std_string = emit_expr () $"\"!x.to_string()\""
+    // y |> into
+    inl str = join str
+    emit_expr () $"\"fable_library_rust::String_::fromString(!str)\""
+
+inl new_string (str : ref' str) : string =
+    // inl str = join str
+    emit_expr () $"\"fable_library_rust::String_::string(!str)\""
+
+inl string_slice (str : string) : ref' str =
+    inl str = join str
+    // // emit_expr () $"\"!str.to_string()\""
+    // // emit_expr () $"\"alloc::string::to_string(!str)\""
+    // emit_expr str "($0).to_string()"
+    // emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
+    emit_expr str $"\"fable_library_rust::String_::LrcStr::as_str($0)\""
+
+
+inl to_std_string (str : ref' str) : std_string =
+    // inl str = join str
+    // // emit_expr () $"\"!str.to_string()\""
+    // // emit_expr () $"\"alloc::string::to_string(!str)\""
+    // emit_expr str "($0).to_string()"
+    // emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
+    // emit_expr str $"\"String::from($0)\""
+    emit_expr () $"\"String::from(!str)\""
+
+// inl to_std_string' (str : string) : std_string =
+//     emit_expr str "std::string::String::from($0.to_string())"
+
+// // inl deref_ref forall t. (x : ref' t) : t =
+// //     inl x = join x
+// //     emit_expr () $"\"!x.to_string()\""
+
+// inl to_string_ref forall t. (x : ref' t) : t =
+//     // inl x = join x
+//     emit_expr () $"\"!x.to_string()\""
+
+
+// inl to_string'' (x : ref' str) : string =
+//     x |> to_any |> to_string'''
+
+// inl to_string'''' (x : std_string) : string =
+//     x |> to_any |> to_string'''
+
+
+inl as_str (s : string) : ref' str =
+    inl s = join s
+    emit_expr () $"\"!s.as_str()\""
+
+inl raw_string_literal (s : string) : ref' str =
+    // emit_expr () $"$\"r#\\\"{!s}\\\"#\""
+    emit_expr () $"\"r#\\\"\" + !s + \"\\\"#\""
+
+inl (~#) (s : string) : ref' str =
+    raw_string_literal s
+
+
+inl as_ref forall (t : * -> *) u. (x : t u) : t (ref' u) =
+    // emit_expr x "$0.as_ref()"
+    inl x = join x
+    emit_expr () $"\"!x.as_ref()\""
+
+inl to_ref_emit forall t. (x : t) : ref' t =
+    emit_expr () $"\"&!x\""
+
+inl rec to_ref_emit_arg forall t. (x : t) : ref' t =
+    real
+        inl result : ref' t =
+            typecase t with
+            | array _ =>
+                emit_expr `t `(ref' t) x ($"\"$0\"" : string)
+            | _ -> _ =>
+                inl result = emit_expr `t `(ref' t) x ($"\"$0\"" : string)
+                inl result : ref' (ref' t) = to_ref_emit_arg `(ref' t) result
+                inl result : ref' t = deref_unbox `(ref' t) result
+                result
+            | _ =>
+                emit_expr `t `(ref' t) x ($"\"$0\"" : string)
+        result
+
+
+
+
+
+inl emit_rust forall t. (x : t) : t =
+    emit_expr x $"\"!x\""
+
+inl emit_str forall t. (x : t) : string =
+    $"$\"{!x}\""
+
+inl emit_raw forall t. (x : t) : t =
+    $"!x"
+
+inl to_ref_unbox forall t. (x : t) : ref' t =
+    $"!x |> unbox"
+
+
+// inl new_box forall t. (x : t) : box t =
+let new_box forall t. (x : t) : box t =
+    // inl x = join x
+    emit_expr () $"\"Box::new(!x)\""
+
+
+inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
+    emit_expr () $"\"Box::leak(!x)\""
+
+inl into_boxed_str (x : std_string) : ref' string =
+    emit_expr () $"\"!x.into_boxed_str()\""
+
+inl deref_fn forall t u. (f : t -> u) : t -> u =
+    // inl f = f |> to_ref_emit_arg
+    // inl f = f |> new_box |> box_leak
+    // inl f = f |> to_ref_unbox
+    // inl f = f |> deref_emit_raw_arg
+    // inl f : ref' (t -> u) = f |> unbox' |> deref
+    // inl f : t -> u = f |> unbox'
+    // inl f = f |> deref
+    // inl f = f |> to_any
+    // inl f = f |> deref_emit_raw
+    // inl f = f |> deref_emit_raw_arg
+    f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 type log_item = emit_type std_string
 
@@ -155,9 +315,10 @@ inl format forall t. (x : t) : std_string =
             | colored_string => format' `t x false
             | log_item => format' `t x false
             | array _ =>
-                inl x : ref' any = deref `t `any x
-                inl x : ref' any = deref'' `any x
-                inl x : ref' any = deref'' `any x
+                // inl x = join x
+                inl x : ref' t = to_ref_emit_arg `t x
+                inl x : ref' t = deref `t x
+                inl x : any = to_any `(ref' t) x
                 format' `any x true
             | _ => format' `t x true
         result
@@ -169,36 +330,67 @@ let (~!>) forall t. (x : t) : log_item =
         real_unbox `std_string `log_item str
 
 
-inl to_ref forall t. (x : t) : ref' t = $"!x |> unbox"
+inl to_ref_unbox forall t. (x : t) : ref' t =
+    $"!x |> unbox"
 
-inl to_static_ref forall t. (x : ref' t) : static_ref' t = $"!x |> unbox"
+inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
+    $"!x |> unbox"
 
-inl to_ref' forall t. (x : t) : ref' t =
-    emit_expr x "&$0"
+// inl to_ref' forall t. (x : t) : ref' t =
+//     emit_expr x "&$0"
 
-inl to_ref'' forall t. (x : t) : ref' t =
-    emit_expr () $"\"&!x\""
 
 
 // inl unwrap' x = emit_expr x "$0.unwrap()"
-inl unwrap x = emit_expr () $"\"!x.unwrap()\""
-inl unwrap_ref x = emit_expr x "$0.unwrap()"
-inl unwrap_as_ref forall t u. (x : t) : u = emit_expr x "*(($0).as_ref()).unwrap()"
+inl unwrap forall t u. (x : t) : u =
+    emit_expr () $"\"!x.unwrap()\""
+
+// inl unwrap_ref x =
+//     emit_expr x "$0.unwrap()"
+
+// inl unwrap_as_ref forall t u. (x : t) : u =
+//     emit_expr x "*(($0).as_ref()).unwrap()"
+
+// inl unwrap_as_ref' forall t u. (x : t) : ref' u =
+//     emit_expr () $"\"!x.as_ref().unwrap()\""
+
 // inl unwrap_as_ref' forall t u. (x : t) : ref' u = emit_expr () $"\"*((!x).as_ref()).unwrap()\""
-inl unwrap_as_ref' forall t u. (x : t) : ref' u = emit_expr () $"\"!x.as_ref().unwrap()\""
+
 // inl unwrap_or' forall t. (a : t) (b : option' t) : t =
 //     $"!b |> Option.defaultValue !a"
 inl unwrap_or forall t. (a : t) (b : option' t) : t =
     emit_expr () $"\"!b.unwrap_or(!a)\""
 // inl unwrap_or_else forall t. (a : () -> t) (b : option' t) : t =
 //     $"!b |> Option.defaultWith !a"
-inl option_map forall t u. (f : t -> u) (x : option' t) : option' u =
-    emit_expr () $"\"!x.map(!f)\""
 
-instance (~!!) path_buf = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-instance (~!!) ref' t' = unwrap_ref
-instance (~!!) file = unwrap_ref
-instance (~!!) mutex t' = unwrap_ref
+
+prototype to_path_buf t : t -> path_buf
+
+// instance to_path_buf str = fun x => emit_expr x "$0.to_path_buf()"
+
+inl to_path_buf' forall t. (path : t) : path_buf =
+    // inl to_path_buf'' (path : std_string) : path_buf =
+    // emit_expr path "std::path::PathBuf::from($0)"
+    inl path = join path
+    emit_expr () $"\"std::path::PathBuf::from(!path)\""
+
+instance to_path_buf static_ref' t = fun x => to_path_buf' x
+instance to_path_buf ref' t = fun x => to_path_buf' x
+instance to_path_buf std_string = fun x => to_path_buf' x
+
+
+
+instance (~!!) path_buf =
+    fun (x : t) =>
+        // emit_expr x "($0).as_ref().unwrap()"
+        // x |> as_ref |> unwrap
+        real
+            typecase t with
+            | ref' _ => unwrap `t `path_buf x
+            | _ => unwrap `t `path_buf x
+instance (~!!) ref' t' = unwrap
+instance (~!!) file = unwrap
+instance (~!!) mutex t' = unwrap
 instance (~!!) emit_type t' = fun (x : t) =>
     real
         // typecase t with
@@ -209,14 +401,14 @@ instance (~!!) emit_type t' = fun (x : t) =>
             inl x : std_string = format `t x
             real_unbox `std_string `(emit_type t') x
 instance (~!!) result' t' e' = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_path_buf()"
-instance (~!!) static_ref' t' = unwrap_ref
+instance (~!!) static_ref' t' = unwrap
 // instance (~!!) std_string = fun (x : t) => emit_expr x "($0).as_ref().unwrap().to_string()"
 instance (~!!) std_string = fun (x : t) =>
     real
         typecase t with
         | result' _ _ => emit_expr `t `std_string x "($0).as_ref().unwrap().to_string()"
         | _ => emit_expr `t `std_string x "($0).as_ref().to_string()"
-inl unwrap_ignore forall t. (x : t) : () = unwrap_as_ref x
+inl unwrap_ignore forall t. (x : t) : () = unwrap x
 instance (~!!) unit' = unwrap_ignore >> fun _ => unit'
 
 
@@ -229,27 +421,9 @@ inl js_value_from_obj (obj : any) : js_value =
 inl console_log (str : string) : () =
     emit_expr (str |> js_value_from_str) "web_sys::console::log_1(&$0)"
 
-inl raw_string_literal (s : string) : ref' str =
-    emit_expr () $"$\"r#\\\"{!s}\\\"#\""
-
-inl as_str (s : string) : ref' str =
-    inl s = join s
-    emit_expr () $"\"!s.as_str()\""
-
-inl as_str' (s : ref' str) : std_string =
-    emit_expr s "std::string::String::from(*$0)"
-
-inl to_string''' forall t. (x : t) : string =
-    emit_expr x "fable_library_rust::String_::fromStr($0)"
-
-inl to_string'' (x : ref' str) : string =
-    x |> to_any |> to_string'''
-
-inl to_string'''' (x : std_string) : string =
-    x |> to_any |> to_string'''
-
 inl console_log' (args : a i32 std_string) : () =
-    inl args : ref' (vec any) = args |> deref
+    inl args = args |> to_ref_unbox
+    inl args : ref' (vec any) = args |> deref_to
     inl args : js_value = args |> to_any |> js_value_from_obj
     emit_expr args "web_sys::console::log(&js_sys::Array::from(&$0))"
 
@@ -263,6 +437,9 @@ inl len forall t. (x : t) : i32 =
 // inl new_string (str : static_ref' str) : string =
     // emit_expr str "fable_library_rust::String_::string($0)"
 
+// inl as_str' (s : ref' str) : std_string =
+//     emit_expr s "std::string::String::from(*$0)"
+
 
 inl substring' (start : i32) (len : i32) (str : string) : string =
     $"!str.Substring (!start, !len)"
@@ -274,19 +451,26 @@ inl substring (start : i32) (end : i32) (str : string) : string =
     (emit_expr
         (str |> as_str, start |> unativeint, end |> unativeint)
         "&$0[$1..$2]" : ref' str)
-    |> to_string''
+    |> new_string
 
-inl string_replace (old : string) (new : string) (s : ref' str) : ref' str =
-    emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
-
-inl string_replace' (old : string) (new : string) (s : std_string) : std_string =
-    inl old = old |> to_std_string
-    inl new = new |> to_std_string
-    inl s = join s
-    emit_expr () $"\"!s.replace(&!old, &!new)\""
+inl string_replace (old : string) (new : string) (s : string) : string =
+    // emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
+    inl old = old |> string_slice |> to_std_string
+    inl new = new |> string_slice |> to_std_string
+    inl s = s |> string_slice |> to_std_string
+    // inl s = join s
+    inl y : std_string = emit_expr () $"\"!s.replace(&!old, &!new)\""
+    y |> to_string
 
 inl string_contains (search : string) (s : string) : bool =
-    emit_expr (search |> to_ref, s |> to_ref) "($1).contains(&*$0)"
+    // emit_expr
+    //     (search |> to_ref, s |> to_ref)
+    //     "($1).contains(&*$0)"
+    inl search = search |> string_slice |> to_std_string
+    // inl s = join s
+    emit_expr
+        ()
+        $"\"!s.contains(&!search)\""
 
 inl new_regex_builder (regex : ref' str) : regex_builder =
     emit_expr regex "regex::RegexBuilder::new($0)"
@@ -303,7 +487,7 @@ inl regex_replace_all regex replacement text =
     |> new_regex_builder
     |> regex_build
     |> regex_replace_all' text replacement
-    |> to_string''''
+    |> to_string
 
 inl to_owned forall t. (x : t) : t =
     emit_expr () $"\"!x.to_owned()\""
@@ -337,49 +521,16 @@ inl add_clap_subcommand (subcommand : clap_command) (command : clap_command) : c
 inl new_rc forall t. (x : t) : rc t =
     emit_expr () $"\"std::rc::Rc::new(!x)\""
 
-inl new_box forall t. (x : t) : box t =
-    emit_expr () $"\"Box::new(!x)\""
-
 inl new_rc' forall t. (x : ref' t) : rc t =
     emit_expr () $"\"std::rc::Rc::new(*!x)\""
 
 inl new_arc forall t. (x : t) : arc t =
-    inl x = join x
+    // inl x = join x
     emit_expr () $"\"std::sync::Arc::new(!x)\""
-
-inl get_clap_matches (command : clap_command) : arc clap_arg_matches =
-    inl matches : clap_arg_matches = emit_expr () $"\"!command.get_matches()\""
-    matches |> new_arc
-
-inl matches_subcommand (matches : arc clap_arg_matches) : option' (ref' str * arc clap_arg_matches) =
-    emit_expr () $"\"!matches.subcommand().map(|(name, matches)| (name, std::sync::Arc::new(matches.clone())))\""
-    // emit_expr () $"\"!matches.subcommand()\""
-
-inl get_expect_text (str : string) : ref' str =
-    emit_expr () $"\"!str.expect(!str)\""
-
-inl get_clap_one' (arg : string) (matches : arc clap_arg_matches) : option' (ref' std_string) =
-    inl arg = arg |> as_str
-    emit_expr () $"\"!matches.get_one::<String>(!arg)\""
-
-inl get_clap_one (arg : string) (matches : arc clap_arg_matches) : std_string =
-    matches
-    |> get_clap_one' arg
-    |> option_map (fun x =>
-        x
-        |> to_string_ref
-        |> string_replace' ($"\"--\" + !arg + \"=\"") ""
-    )
-    |> unwrap_or (
-        ("get_clap_one: " +\ arg)
-        |> to_std_string
-        // |> to_ref'
-    )
-
 
 
 inl new_socket_addr (port : u16') : socket_addr =
-    inl port = join port
+    // inl port = join port
     emit_expr () $"\"std::net::SocketAddr::from(([0, 0, 0, 0], !port))\""
 
 inl bind_tcp_listener (addr : socket_addr) : result' tcp_listener io_error =
@@ -394,7 +545,7 @@ let rec get_available_port (port : u16') : u16' =
     if is_ok listener
     then port
     else
-        inl port = join port
+        // inl port = join port
         inl port = emit_expr () $"\"!port + 1\""
         get_available_port port
 
@@ -513,7 +664,7 @@ inl new_log
                 inl locals = !>(;[
                     !>"timestamp"; !>timestamp
                     !>"run_id"; !>run_id
-                    !>"log_level"; !>(log_level |> to_string)
+                    !>"log_level"; !>(log_level |> format)
                 ])
 
                 inl ext_locals = !!(ext_locals_fn ()) |> clean_log
@@ -584,67 +735,149 @@ inl append_parent'' forall t. (parent : any) (element : t) : () =
     emit_expr (parent, element) "$0.append_child(&$1).unwrap()"
 
 
+
+inl option_map forall t u. (f : t -> u) (x : option' t) : option' u =
+    inl f = f |> deref_fn
+    // inl f = join f
+    // inl f = f |> to_ref_unbox
+    // inl f = f |> to_ref_unbox
+    // inl f = f |> deref
+    // emit_expr f $"\"!x.map($0)\""
+    inl x = join x
+    // emit_expr () $"\"!x.map(!f)\""
+    emit_expr f $"\"!x.map(&*$0)\""
+
 inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
-    emit_expr (f |> to_ref, iter) "$1.into_iter().map($0)"
+    // emit_expr (f |> to_ref_unbox, iter) "$1.into_iter().map($0)"
+    // inl f = join to_ref f
+    // emit_expr f $"\"!iter.into_iter().map($0)\""
+    // inl f = join f
+    // inl f = new_box f
+    // inl iter = join iter
 
-inl find forall t. (f : ref' t -> bool) (iter : iterator t) : option' t =
-    emit_expr (f |> to_ref, iter) "$1.into_iter().find($0)"
+    // inl f = join f
+    // inl f = f |> to_ref_unbox
+    // inl f = to_ref_raw f
+    // inl f = f |> deref
+    // emit_expr (iter, f) $"\"$0.into_iter().map($1)\""
+    inl f = f |> deref_fn
+    emit_expr () $"\"!iter.into_iter().map(!f)\""
 
-inl take forall t. (x : unativeint) iter : iterator (ref' t) =
-    emit_expr (x, iter) "$1.take($0)"
+inl find forall t. (f : t -> bool) (iter : iterator t) : option' t =
+    // emit_expr (f |> to_ref, iter) "$1.into_iter().find($0)"
+    // inl f = join to_ref f
+    // emit_expr f $"\"!iter.into_iter().find($0)\""
+    // inl f = new_box f
+    // inl iter = join iter
+
+    // inl f = join f
+    // inl f = f |> to_ref_unbox
+    // inl f = f |> deref
+    // emit_expr f $"\"!iter.into_iter().find($0)\""
+    inl f = f |> deref_fn
+    emit_expr () $"\"!iter.into_iter().find(!f)\""
+
+inl take forall t. (x : unativeint) iter : iterator t =
+    // emit_expr (x, iter) "$1.take($0)"
+    emit_expr () $"\"!iter.take(!x)\""
 
 
-prototype to_path_buf t : t -> path_buf
+inl get_expect_text (str : string) : ref' str =
+    emit_expr () $"\"!str.expect(!str)\""
 
-// instance to_path_buf str = fun x => emit_expr x "$0.to_path_buf()"
+inl get_clap_matches (command : clap_command) : arc clap_arg_matches =
+    inl matches : clap_arg_matches =
+        emit_expr () $"\"!command.get_matches()\""
+    matches |> new_arc
 
-inl to_path_buf' path : path_buf = emit_expr path "std::path::PathBuf::from($0)"
+inl matches_subcommand (matches : arc clap_arg_matches) : option' (ref' str * arc clap_arg_matches) =
+    emit_expr () $"\"!matches.subcommand().map(|(name, matches)| (name, std::sync::Arc::new(matches.clone())))\""
+    // emit_expr () $"\"!matches.subcommand()\""
 
-instance to_path_buf static_ref' t = to_path_buf'
-instance to_path_buf ref' t = to_path_buf'
+inl get_clap_one' (arg : string) (matches : arc clap_arg_matches) : option' (static_ref' std_string) =
+    inl arg = arg |> as_str
+    emit_expr () $"\"!matches.get_one::<String>(!arg)\""
 
-inl path_ancestors (x : path_buf) : ref' ancestors =
-    emit_expr x "$0.ancestors()"
+inl get_clap_one (arg : string) (matches : arc clap_arg_matches) : string =
+    matches
+    |> get_clap_one' arg
+    |> option_map (fun x =>
+        inl x = join x
+        x
+        |> deref_emit_static
+        |> to_string
+        |> string_replace ($"\"--\" + !arg + \"=\"") ""
+    )
+    |> unwrap_or (
+        ("get_clap_one: " +\ arg)
+        // |> to_std_string
+        // |> to_ref'
+    )
 
+
+inl path_ancestors (x : path_buf) : ancestors =
+    // emit_expr x "$0.ancestors()"
+    emit_expr () $"\"!x.ancestors()\""
+
+// inl path_join (s : string) (p : ref' path) : path_buf =
 inl path_join (s : string) (p : ref' path) : path_buf =
-    emit_expr (s, p) "$1.join($0.as_str())"
+    // emit_expr (s, p) "$1.join($0.as_str())"
+    // inl s = to_ref s
+    inl s = s |> as_str
+    inl p = join p
+    emit_expr () $"\"!p.join(!s)\""
 
-inl path_exists (p : ref' path_buf) : bool =
-    emit_expr p "std::path::Path::exists($0)"
+inl path_exists (p : path_buf) : bool =
+    // emit_expr p "std::path::Path::exists($0)"
+    inl p = join p
+    emit_expr () $"\"!p.exists()\""
 
 inl path_to_str (x : path_buf) : option' (ref' str) =
-    emit_expr x "($0).to_str()"
+    // emit_expr x "($0).to_str()"
+    emit_expr () $"\"!x.to_str()\""
 
 inl env_current_dir () : path_buf =
     !!(emit_expr () "std::env::current_dir()" : result' path_buf io_error)
 
 inl path_canonicalize (path : path_buf) : path_buf =
-    !!(emit_expr path "($0).canonicalize()" : result' path_buf io_error)
+    // !!(emit_expr path "($0).canonicalize()" : result' path_buf io_error)
+    inl path = join path
+    !!(emit_expr () $"\"!path.canonicalize()\"" : result' path_buf io_error)
 
 inl path_parent' (path : path_buf) : ref' path =
-    !!(emit_expr path "($0).parent()" : option' (ref' path))
+    // !!(emit_expr path "($0).parent()" : option' (ref' path))
+    inl path = join path
+    !!(emit_expr () $"\"!path.parent()\"" : option' (ref' path))
 
 inl path_parent (path : path_buf) : path_buf =
     path |> path_parent' |> to_path_buf
 
 inl path_display (path : path_buf) : string =
-    // emit_expr path "fable_library_rust::String_::fromStr(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
-    emit_expr path "fable_library_rust::String_::fromStr(&format!(\"{}\", $0.display()))"
+    // emit_expr path "fable_library_rust::String_::fromString(Box::leak(format!(\"{:?}\", ($0).strip_prefix(\"\").unwrap().display()).into_boxed_str()))"
+    inl x : std_string = emit_expr () $"\"format!!(\\\"{}\\\", !path.display())\""
+    x |> to_string
 
 inl path_strip_prefix (path : static_ref' str) (base : path_buf) : static_ref' path =
-    !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
+    // !!(emit_expr (path, base) "($1).strip_prefix($0)" : result' (static_ref' path) strip_prefix_error)
+    !!(emit_expr () $"\"!base.strip_prefix(!path)\"" : result' (static_ref' path) strip_prefix_error)
 
 
 inl fs_write (path_buf : path_buf) (s : string) : result' unit' io_error =
-    emit_expr (path_buf, s) "std::fs::write($0, $1.as_str())"
+    // emit_expr (path_buf, s) "std::fs::write($0, $1.as_str())"
+    inl s = s |> as_str
+    emit_expr () $"\"std::fs::write(!path_buf, !s)\""
 
 inl fs_read_to_string (path_buf : path_buf) : result' std_string io_error =
-    emit_expr path_buf "std::fs::read_to_string($0)"
+    // emit_expr path_buf "std::fs::read_to_string($0)"
+    emit_expr () $"\"std::fs::read_to_string(!path_buf)\""
 
 
 
 inl sleep (ms : u64) : () =
-    emit_expr ms "std::thread::sleep(std::time::Duration::from_millis(*$0))"
+    // emit_expr ms "std::thread::sleep(std::time::Duration::from_millis(*$0))"
+    inl ms = join ms
+    emit_expr () $"\"std::thread::sleep(std::time::Duration::from_millis(!ms))\""
+
 
 inl range forall t {number}. (a : t) (b : t) : a i32 t = $"[| !a..!b |]"
 
@@ -663,11 +896,11 @@ inl as_bytes (x : std_string) : any =
 inl to_vec forall t. (x : t) : vec t =
     emit_expr () $"\"!x.to_vec()\""
 
-inl none' forall t. =
-    $"None |> unbox" : option' t
+inl none' forall t. : option' t =
+    $"None |> unbox"
 
-// inl some' forall t. (x : t) : option' t =
-//     new_option' ($"Some !x" : t)
+inl some' forall t. (x : t) : option' t =
+    $"Some !x"
 
 inl is_none forall t. (x : option' t) : bool =
     emit_expr () $"\"!x.is_none()\""
@@ -712,11 +945,6 @@ inl condvar_notify_one (x : mutex condvar) : any =
     emit_expr () $"\"!x.notify_one()\""
 
 
-inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
-    emit_expr () $"\"Box::leak(!x)\""
-
-inl into_boxed_str (x : std_string) : ref' string =
-    emit_expr () $"\"!x.into_boxed_str()\""
 
 
 inl new_tuple forall a b. (a : a) (b : b) : tuple' a b =
@@ -729,7 +957,7 @@ inl new_ref_cell forall t. (x : t) : ref_cell t =
 
 
 inl new_mutex forall t. (x : t) : mutex t =
-    inl x = join x
+    // inl x = join x
     emit_expr () $"\"async_std::sync::Mutex::new(!x)\""
 
 inl new_mutex' forall t. (x : t) : mutex' t =
@@ -748,13 +976,15 @@ inl block_on forall t. (fn : future t) : () =
     emit_expr () $"\"async_std::task::block_on(!fn)\""
 
 inl http_request_get (url : string) : request =
-    inl url = url |> to_std_string
-    emit_expr url "ehttp::Request::get($0)"
+    inl url = url |> string_slice |> to_std_string
+    // emit_expr url "ehttp::Request::get($0)"
+    emit_expr () $"\"ehttp::Request::get(!url)\""
 
 inl http_request_post (url : string) (body : string) : request =
-    inl url = url |> to_std_string
-    inl body = body |> to_std_string |> as_bytes |> to_vec
-    emit_expr (url, body) "ehttp::Request::post($0, $1)"
+    inl url = url |> string_slice |> to_std_string
+    inl body = body |> string_slice |> to_std_string |> as_bytes |> to_vec
+    // emit_expr (url, body) "ehttp::Request::post($0, $1)"
+    emit_expr () $"\"ehttp::Request::post(!url, !body)\""
 
 inl http_fetch (request : request) (on_done : box any) : () =
     emit_expr () $"\"ehttp::fetch(!request, !on_done)\""
@@ -839,7 +1069,7 @@ inl set_attr forall t. (key : string) (value : string) (builder : dombuilder t) 
 
 inl prop_signal forall t v. (key : string) (value : mutable_signal v) (builder : dombuilder t) : dombuilder t =
     inl key = key |> raw_string_literal
-    inl value = join value
+    // inl value = join value
     emit_expr () $"\"!builder.prop_signal(!key, !value)\""
 
 inl get_dom_body () : html_element =
@@ -883,13 +1113,16 @@ inl new_mutable_signal forall t. (x : t) : mutable_signal t =
 
 
 inl new_html forall t. (tag : string) : dombuilder t =
-    emit_expr (tag |> raw_string_literal) $"\"dominator::DomBuilder::new_html($0)\""
+    // emit_expr (tag |> raw_string_literal) $"\"dominator::DomBuilder::new_html($0)\""
+    inl tag = tag |> raw_string_literal
+    emit_expr () $"\"dominator::DomBuilder::new_html(!tag)\""
 
 inl new_input () : dombuilder html_input_element = new_html "input"
 inl new_el tag : dombuilder html_element = new_html tag
 
 inl set_neq forall t. (value : t) (mutable : rc (mutable t)) : () =
-    emit_expr mutable $"\"*$0.set_neq(!value)\""
+    // emit_expr mutable $"\"*$0.set_neq(!value)\""
+    emit_expr () $"\"*!mutable.set_neq(!value)\""
 
 inl append_css_rule
     (rule : string)
@@ -1067,7 +1300,7 @@ inl get_local_storage_value (key : string) (local_storage : any) : option string
     inl value =
         if is_none get_result
         then None
-        else Some ((get_result |> unwrap : std_string) |> to_string''')
+        else Some ((get_result |> unwrap : std_string) |> to_string)
 
     log Debug ;[
         !>"key"; !>key
@@ -1086,13 +1319,15 @@ inl delete_local_storage_value (key : string) (local_storage : any) : () =
 
 
 inl db_open (name : string) : open_db_request =
-    inl name = name |> to_std_string
+    inl name = name |> string_slice |> to_std_string
     emit_expr () $"\"indexed_db_futures::IdbDatabase::open_u32(&!name, 1).unwrap()\""
 
 
 
 inl for_each forall a. (fn : a -> result' bool io_error) (reader : ref_cell _) : result' () io_error =
-    emit_expr (reader, join fn) $"\"($0).borrow_mut().for_each(move |x| $1(x.to_vec()))\""
+    // emit_expr (reader, join fn) $"\"($0).borrow_mut().for_each(move |x| $1(x.to_vec()))\""
+    inl fn = join fn
+    emit_expr () $"\"!reader.borrow_mut().for_each(move |x| !fn(x.to_vec()))\""
 
 inl read_lines (path : path_buf) : list string =
     inl get_locals () = ;[!>"> read_lines ()"]
@@ -1101,10 +1336,12 @@ inl read_lines (path : path_buf) : list string =
     inl path_clean = path |> path_canonicalize
     log Debug ;[!>"path_clean"; !>(path_clean |> path_display)]
 
-    inl file : result' file io_error = emit_expr path_clean "std::fs::File::open($0)"
-    inl file : ref' file = !!file
+    // inl file : result' file io_error = emit_expr path_clean "std::fs::File::open($0)"
+    inl file : result' file io_error = emit_expr () $"\"std::fs::File::open(!path_clean)\""
+    inl file : file = !!file
 
-    inl reader : ref_cell (linereader (ref' file)) = emit_expr file "std::cell::RefCell::new(linereader::LineReader::new($0))"
+    // inl reader : ref_cell (linereader (ref' file)) = emit_expr file "std::cell::RefCell::new(linereader::LineReader::new($0))"
+    inl reader : ref_cell (linereader file) = emit_expr () $"\"std::cell::RefCell::new(linereader::LineReader::new(!file))\""
     log Debug ;[!>"reader"; !>(reader |> format)]
 
     inl lines_list : mut (list std_string) = mut Nil
@@ -1120,7 +1357,7 @@ inl read_lines (path : path_buf) : list string =
     inl lines =
         *lines_list
         |> listm.rev
-        |> listm.map to_string''''
+        |> listm.map to_string
 
     log Debug ;[!>"lines len"; !>(lines |> listm.length : i32)]
 
@@ -1135,7 +1372,8 @@ inl wait_file_change (fsx_path : path_buf) : string =
     inl get_locals () = ;[!>"> wait_file_change ()"]
     inl log = new_log UnknownRustTarget (fun () => Debug) get_locals "387957"
 
-    inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
+    // inl get_last_modified () : systemtime = emit_expr fsx_path "std::fs::metadata($0).unwrap().modified().unwrap()"
+    inl get_last_modified () : systemtime = emit_expr () $"\"std::fs::metadata(!fsx_path).unwrap().modified().unwrap()\""
     inl start = get_last_modified ()
 
     log Debug ;[
@@ -1155,9 +1393,10 @@ inl wait_file_change (fsx_path : path_buf) : string =
                         !>"i"; !>i
                         !>"last_modified"; !>last_modified
                     ]
-                    if emit_expr (last_modified, start) "$0 > $1" then
+                    // if emit_expr (last_modified, start) "$0 > $1" then
+                    if emit_expr () $"\"!last_modified > !start\"" then
                         inl lines : std_string = !!(fsx_path |> fs_read_to_string)
-                        Some (lines |> to_string'''')
+                        Some (lines |> to_string)
                     else
                         sleep 60
                         None

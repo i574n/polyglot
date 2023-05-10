@@ -1,6 +1,15 @@
 Set-Location $PSScriptRoot
 git clone https://github.com/i574n/Fable.git
 
+# git --git-dir=Fable/.git --work-tree=Fable remote add fable https://github.com/fable-compiler/Fable.git
+# git --git-dir=Fable/.git --work-tree=Fable fetch fable
+# git --git-dir=Fable/.git --work-tree=Fable merge fable/main
+
+# sudo add-apt-repository universe
+# sudo apt-get install apt-transport-https
+# sudo apt-get update
+# sudo apt-get install dotnet-sdk-6.0
+
 dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj"
 
 function Get-LastSortedItem {

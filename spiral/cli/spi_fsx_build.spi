@@ -116,7 +116,7 @@ inl spi_build_file host port (spi_path : path_buf) (backend : string) : () =
         !>"backend"; !>backend
     ]
 
-    inl req_json = get_req_json <| BuildFile { spi_path; backend = backend |> to_std_string }
+    inl req_json = get_req_json <| BuildFile { spi_path; backend = backend |> string_slice |> to_std_string }
     inl json = serialize req_json
 
     log Debug ;[!>"json_len"; !>(json |> len)]
@@ -149,9 +149,12 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     inl fsx_path =
         spi_path
         |> path_to_str
-        |> (~!!)
+        |> ((~!!) : _ -> ref' str)
+        |> new_string
         |> string_replace ".spir" ".spi"
         |> string_replace ".spi" ".fsx"
+        |> string_slice
+        |> to_std_string
         |> to_path_buf
         |> path_canonicalize
     log Debug ;[!>"fsx_path"; !>(fsx_path |> path_display)]
@@ -172,7 +175,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     inl command : any = emit_expr () $"\"std::process::Command::new(!command)\""
     emit_expr () $"\"let mut !command = !command\""
     inl command : any = emit_expr () $"\"!command.arg(!path)\""
-    inl port_arg = "port=" +\ (port |> to_string') |> to_std_string
+    inl port_arg = "port=" +\ (port |> to_string') |> string_slice |> to_std_string
     inl command : any = emit_expr () $"\"!command.arg(!port_arg)\""
     inl command : any = emit_expr () $"\"!command.stdout(std::process::Stdio::inherit())\""
     inl command : any = emit_expr () $"\"!command.stderr(std::process::Stdio::inherit())\""
