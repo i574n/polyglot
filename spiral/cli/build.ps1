@@ -21,4 +21,4 @@ cargo fmt
 
 cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
 
-. "$PSScriptRoot/../../target/release/cli.exe" | Tee-Object cli.md
+. "$PSScriptRoot/../../target/release/cli" | Tee-Object cli.md
