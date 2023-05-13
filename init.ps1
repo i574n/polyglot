@@ -16,7 +16,6 @@ dotnet paket restore
 
 # echo 'set -gx PATH $HOME/.cargo/bin $PATH' >> ~/.config/fish/config.fish
 
-. spiral/language.ps1
-. spiral/extension.ps1
-
-. spiral/fable.ps1
+. "$PSScriptRoot/spiral/language.ps1"
+. "$PSScriptRoot/spiral/extension.ps1"
+. "$PSScriptRoot/spiral/fable.ps1"

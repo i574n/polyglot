@@ -1,4 +1,5 @@
 Set-Location $PSScriptRoot
+
 git clone https://github.com/i574n/Fable.git
 
 # git --git-dir=Fable/.git --work-tree=Fable remote add fable https://github.com/fable-compiler/Fable.git
