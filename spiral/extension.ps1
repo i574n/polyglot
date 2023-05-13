@@ -1,4 +1,4 @@
-$path = ~/.vscode/extensions
+$path = "$HOME/.vscode/extensions"
 if (!(Test-Path $path)) {
     $path = "$env:scoop/persist/vscode/data/extensions"
 }

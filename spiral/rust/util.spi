@@ -108,6 +108,9 @@ inl deref forall t. (x : ref' t) : ref' t =
     // emit_expr x "core::ops::Deref::deref($0)"
     // emit_expr () $"\"core::ops::Deref::deref(!x)\""
 
+// inl deref_ref forall t. (x : ref' t) : t =
+//     emit_expr x $"\"core::ops::Deref::deref($0)\""
+
 inl deref_emit forall t. (x : ref' t) : t =
     emit_expr () $"\"*!x\""
 
@@ -115,6 +118,14 @@ inl deref_emit_static forall t. (x : static_ref' t) : t =
     emit_expr () $"\"*!x\""
 
 inl deref_emit_raw forall t. (x : ref' t) : t =
+    emit_expr () $"\"!x\""
+
+inl deref_emit_join forall t. (x : ref' t) : t =
+    inl x = join x
+    emit_expr () $"\"*!x\""
+
+inl deref_emit_raw_join forall t. (x : ref' t) : t =
+    inl x = join x
     emit_expr () $"\"!x\""
 
 inl deref_emit_raw_arg forall t. (x : ref' t) : t =
@@ -159,6 +170,7 @@ inl to_string (str : std_string) : string =
     // y |> into
     inl str = join str
     emit_expr () $"\"fable_library_rust::String_::fromString(!str)\""
+    // emit_expr () $"\"!str.to_string().into()\""
 
 inl new_string (str : ref' str) : string =
     // inl str = join str
@@ -178,9 +190,9 @@ inl to_std_string (str : ref' str) : std_string =
     // // emit_expr () $"\"!str.to_string()\""
     // // emit_expr () $"\"alloc::string::to_string(!str)\""
     // emit_expr str "($0).to_string()"
-    // emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
-    // emit_expr str $"\"String::from($0)\""
-    emit_expr () $"\"String::from(!str)\""
+    emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
+    // emit_expr str $"\"String::from(*$0)\""
+    // emit_expr () $"\"String::from(!str)\""
 
 // inl to_std_string' (str : string) : std_string =
 //     emit_expr str "std::string::String::from($0.to_string())"
@@ -276,6 +288,7 @@ inl deref_fn forall t u. (f : t -> u) : t -> u =
     // inl f = f |> to_any
     // inl f = f |> deref_emit_raw
     // inl f = f |> deref_emit_raw_arg
+    // inl f = fun x => f x
     f
 
 
@@ -759,9 +772,9 @@ inl map forall t u. (f : t -> u) (iter : iterator t) : iterator u =
     // inl f = f |> to_ref_unbox
     // inl f = to_ref_raw f
     // inl f = f |> deref
-    // emit_expr (iter, f) $"\"$0.into_iter().map($1)\""
-    inl f = f |> deref_fn
-    emit_expr () $"\"!iter.into_iter().map(!f)\""
+    emit_expr (iter, f) $"\"$0.into_iter().map($1)\""
+    // inl f = f |> deref_fn
+    // emit_expr () $"\"!iter.into_iter().map(!f)\""
 
 inl find forall t. (f : t -> bool) (iter : iterator t) : option' t =
     // emit_expr (f |> to_ref, iter) "$1.into_iter().find($0)"
@@ -773,9 +786,9 @@ inl find forall t. (f : t -> bool) (iter : iterator t) : option' t =
     // inl f = join f
     // inl f = f |> to_ref_unbox
     // inl f = f |> deref
-    // emit_expr f $"\"!iter.into_iter().find($0)\""
-    inl f = f |> deref_fn
-    emit_expr () $"\"!iter.into_iter().find(!f)\""
+    emit_expr f $"\"!iter.into_iter().find($0)\""
+    // inl f = f |> deref_fn
+    // emit_expr () $"\"!iter.into_iter().find(!f)\""
 
 inl take forall t. (x : unativeint) iter : iterator t =
     // emit_expr (x, iter) "$1.take($0)"

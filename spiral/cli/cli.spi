@@ -32,16 +32,16 @@ inl app () =
     // inl sub_matches'' = sub_matches |> arc_clone
     // inl sub_matches''' = sub_matches |> arc_clone
 
-    match name |> new_string with
-    | "PostFsxRsBuild" =>
-        inl rs_path = sub_matches |> get_clap_one "rs-path" |> string_slice |> to_std_string |> to_path_buf |> path_canonicalize
-        post_fsx_rs_build rs_path
-    | "SpiFsxBuild" =>
-        inl spi_path = sub_matches |> get_clap_one "spi-path" |> string_slice |> to_std_string |> to_path_buf |> path_canonicalize
-        inl fsx_path = sub_matches |> get_clap_one' "fsx-path" |> option_map to_path_buf
-        inl fsx = spi_to_fsx spi_path fsx_path
-        log Debug ;[!>"fsx.len"; !>(fsx |> sm.length : i32)]
-    | _ => ()
+    // match name |> new_string with
+    // | "PostFsxRsBuild" =>
+    //     inl rs_path = sub_matches |> get_clap_one "rs-path" |> string_slice |> to_std_string |> to_path_buf |> path_canonicalize
+    //     post_fsx_rs_build rs_path
+    // | "SpiFsxBuild" =>
+    //     inl spi_path = sub_matches |> get_clap_one "spi-path" |> string_slice |> to_std_string |> to_path_buf |> path_canonicalize
+    //     inl fsx_path = sub_matches |> get_clap_one' "fsx-path" |> option_map to_path_buf
+    //     inl fsx = spi_to_fsx spi_path fsx_path
+    //     log Debug ;[!>"fsx.len"; !>(fsx |> sm.length : i32)]
+    // | _ => ()
 
     log Debug ;[!>"cli end"; !>"???"]
 
@@ -51,7 +51,7 @@ inl app () =
 inl main () =
     print_static "<cli>"
 
-    inl app () =
+    inl test1 () =
         inl str : ref' str = #"test1"
 
         inl str : std_string = str |> to_std_string
@@ -62,18 +62,9 @@ inl main () =
         |> format
         |> console_fsx.write_line
 
-        inl str : ref' str = #"test2"
-        inl str : std_string = str |> to_std_string
-        inl str : ref' std_string = str |> to_ref_emit_arg
-        inl x : option' (ref' std_string) = some' str
-        // inl x : option' (ref' string) = x |> option_map (fun x =>
-        //     x |> deref_unbox |> to_string |> to_ref_emit_arg)
-
-        x
-        |> format
-        |> console_fsx.write_line
-
-        0i32
+    inl app () =
+        test1 ()
+        app ()
 
     app
     |> dyn
