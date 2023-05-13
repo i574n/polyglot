@@ -14,15 +14,19 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8
 
       - uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: nightly
+          components:
+            - clippy
+            - rustfmt
+            - rust-src
 
       - run: pwsh init.ps1
 
@@ -64,7 +68,7 @@ jobs:
             ./ \
             ./dist/
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: gh-pages
           path: dist

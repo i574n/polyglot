@@ -7,6 +7,8 @@
 rustup +nightly component add rust-src
 rustup component add rustfmt
 
+rustup update
+
 # cargo install wasm-pack
 
 dotnet tool restore
@@ -15,3 +17,6 @@ dotnet paket restore
 # echo 'set -gx PATH $HOME/.cargo/bin $PATH' >> ~/.config/fish/config.fish
 
 . spiral/language.ps1
+. spiral/extension.ps1
+
+. spiral/fable.ps1

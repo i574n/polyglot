@@ -64,7 +64,8 @@ inl main () =
 
     inl app () =
         test1 ()
-        app ()
+        // app ()
+        -1i32
 
     app
     |> dyn

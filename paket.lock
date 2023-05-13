@@ -11,5 +11,5 @@ NUGET
     Fable.Core (4.0)
     FsCheck (2.16.5)
       FSharp.Core (>= 4.2.3)
-    FSharp.Core (7.0.300-beta.23176.1)
+    FSharp.Core (7.0.300-beta.23261.1)
     Mono.Cecil (0.11.5)

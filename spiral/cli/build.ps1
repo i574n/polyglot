@@ -20,3 +20,5 @@ dotnet fable `
 cargo fmt
 
 cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
+
+. "$PSScriptRoot/../../target/release/cli.exe" | Tee-Object cli.md
