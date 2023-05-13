@@ -23,10 +23,7 @@ jobs:
       - uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: nightly
-          components:
-            - clippy
-            - rustfmt
-            - rust-src
+          components: rustfmt, clippy, rust-src
 
       - run: pwsh init.ps1
 
