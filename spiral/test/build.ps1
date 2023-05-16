@@ -19,6 +19,8 @@ dotnet fable `
 
 cargo fmt
 
+cargo test --release | Tee-Object test.test.out
+
 cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
 
 . "$PSScriptRoot/../../target/release/test" | Tee-Object test.out

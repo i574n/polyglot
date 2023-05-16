@@ -1,0 +1,8 @@
+
+running 3 tests
+test test_parse_number ... ok
+test prop_parse_format_idempotent ... ok
+test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.47s
+

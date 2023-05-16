@@ -10,8 +10,6 @@
 #![allow(unused_variables)]
 pub mod Test {
     use super::*;
-
-
 }
 #[path = "../rust/Types.rs"]
 mod module_cd193dc2;

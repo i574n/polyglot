@@ -2,17 +2,15 @@
 
 mod test;
 
-
-
+use nom::{
+    bytes::complete::{escaped, tag, take_till, take_while1},
+    character::complete::{alphanumeric1, char, digit1, one_of},
+    combinator::opt,
+    IResult,
+};
+use proptest::arbitrary::{any, Arbitrary};
 use proptest::prelude::*;
-use proptest::arbitrary::{Arbitrary, any};
-use proptest::string::{string_regex};
-use nom::{IResult, bytes::complete::{escaped, tag, take_till, take_while1}, character::complete::{alphanumeric1, char, digit1, one_of}, combinator::opt};
-
-
-
-
-
+use proptest::string::string_regex;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 enum Item {
@@ -77,13 +75,6 @@ proptest! {
     }
 }
 
-
-
-
-
-
-
-
 #[derive(Debug, PartialEq, Clone)]
 pub enum SpiralToken {
     Identifier(String),
@@ -98,9 +89,13 @@ impl Arbitrary for SpiralToken {
     type Strategy = BoxedStrategy<Self>;
 
     fn arbitrary_with(_args: Self::Parameters) -> Self::Strategy {
-        let identifier_strategy = string_regex("[a-zA-Z][a-zA-Z0-9]*").unwrap().prop_map(|s| SpiralToken::Identifier(s));
+        let identifier_strategy = string_regex("[a-zA-Z][a-zA-Z0-9]*")
+            .unwrap()
+            .prop_map(|s| SpiralToken::Identifier(s));
         let integer_strategy = any::<i64>().prop_map(|n| SpiralToken::Integer(n));
-        let string_strategy = string_regex("[ -~]*").unwrap().prop_map(|s| SpiralToken::StringLiteral(s.replace("\"", "").replace("\\", "")));
+        let string_strategy = string_regex("[ -~]*")
+            .unwrap()
+            .prop_map(|s| SpiralToken::StringLiteral(s.replace("\"", "").replace("\\", "")));
         let operator_strategy = prop_oneof![
             Just("+"),
             Just("-"),
@@ -111,7 +106,9 @@ impl Arbitrary for SpiralToken {
             Just(")")
         ]
         .prop_map(|s| SpiralToken::Operator(s.to_string()));
-        let comment_strategy = string_regex("[ -~]*").unwrap().prop_map(|s| SpiralToken::Comment(s));
+        let comment_strategy = string_regex("[ -~]*")
+            .unwrap()
+            .prop_map(|s| SpiralToken::Comment(s));
 
         prop_oneof![
             identifier_strategy,
@@ -123,7 +120,6 @@ impl Arbitrary for SpiralToken {
         .boxed()
     }
 }
-
 
 fn parse_comment(input: &str) -> IResult<&str, SpiralToken> {
     let (input, _) = tag("//")(input)?;
@@ -149,7 +145,10 @@ fn parse_string(input: &str) -> IResult<&str, SpiralToken> {
 fn parse_identifier(input: &str) -> IResult<&str, SpiralToken> {
     let (input, id) = alphanumeric1(input)?;
     if id.chars().all(|c| c.is_digit(10)) {
-        Err(nom::Err::Error(nom::error::Error::new(input, nom::error::ErrorKind::AlphaNumeric)))
+        Err(nom::Err::Error(nom::error::Error::new(
+            input,
+            nom::error::ErrorKind::AlphaNumeric,
+        )))
     } else {
         Ok((input, SpiralToken::Identifier(id.to_string())))
     }
@@ -162,7 +161,6 @@ fn parse_integer(input: &str) -> IResult<&str, SpiralToken> {
     let number = if negative.is_some() { -number } else { number };
     Ok((input, SpiralToken::Integer(number)))
 }
-
 
 fn parse_operator(input: &str) -> IResult<&str, SpiralToken> {
     let (input, op) = one_of("=+-*/()")(input)?;
@@ -189,46 +187,44 @@ fn format_token(token: &SpiralToken) -> String {
     }
 }
 
+use log::info;
+
+fn init() {
+    let _ = env_logger::builder().try_init();
+}
+
 proptest! {
     #[test]
     fn prop_parse_format_idempotent(s in any::<SpiralToken>()) {
+        init();
+        info!("input={:?}", s);
+
         let formatted = format_token(&s);
         let (_, parsed) = parse_token(&formatted).unwrap();
         prop_assert_eq!(s, parsed);
     }
 }
 
+fn parse_expression(input: &str) -> IResult<&str, SpiralToken> {
+    let (input, number) = digit1(input)?;
 
+    match number.parse::<i64>() {
+        Ok(n) => Ok((input, SpiralToken::Integer(n))),
+        Err(_) => Err(nom::Err::Error(nom::error::Error::new(
+            input,
+            nom::error::ErrorKind::Digit,
+        ))),
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#[test]
+fn test_parse_number() {
+    assert_eq!(parse_expression("42"), Ok(("", SpiralToken::Integer(42))));
+    assert_eq!(
+        parse_expression("1 + 2"),
+        Ok((" + 2", SpiralToken::Integer(1)))
+    );
+}
 
 pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let app = cli::Cli::v0;
