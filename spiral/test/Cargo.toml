@@ -5,6 +5,7 @@ edition = "2021"
 workspace = "../../"
 
 [dependencies]
+thiserror = "~1.0"
 proptest = "~1.1"
 nom = "~7.1"
 

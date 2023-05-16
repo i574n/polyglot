@@ -6,6 +6,13 @@ mod test;
 
 use proptest::prelude::*;
 use proptest::arbitrary::{Arbitrary, any};
+use proptest::string::{string_regex};
+use nom::{IResult, bytes::complete::{escaped, tag, take_till, take_while1}, character::complete::{alphanumeric1, char, digit1, one_of}, combinator::opt};
+
+
+
+
+
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 enum Item {
@@ -73,12 +80,9 @@ proptest! {
 
 
 
-// extern crate nom;
-// extern crate proptest;
-// use proptest::prelude::*;
 
-use proptest::string::{string_regex};
-use nom::{IResult, bytes::complete::{escaped, tag, take_till}, character::complete::{alphanumeric1, char, digit1, none_of, one_of}, combinator::opt};
+
+
 
 #[derive(Debug, PartialEq, Clone)]
 pub enum SpiralToken {
@@ -89,15 +93,14 @@ pub enum SpiralToken {
     Comment(String),
 }
 
-
 impl Arbitrary for SpiralToken {
     type Parameters = ();
     type Strategy = BoxedStrategy<Self>;
 
     fn arbitrary_with(_args: Self::Parameters) -> Self::Strategy {
-        let identifier_strategy = string_regex("[a-zA-Z0-9]*").unwrap().prop_map(|s| SpiralToken::Identifier(s));
+        let identifier_strategy = string_regex("[a-zA-Z][a-zA-Z0-9]*").unwrap().prop_map(|s| SpiralToken::Identifier(s));
         let integer_strategy = any::<i64>().prop_map(|n| SpiralToken::Integer(n));
-        let string_strategy = string_regex("[ -~]*").unwrap().prop_map(|s| SpiralToken::StringLiteral(s.replace("\"", "")));
+        let string_strategy = string_regex("[ -~]*").unwrap().prop_map(|s| SpiralToken::StringLiteral(s.replace("\"", "").replace("\\", "")));
         let operator_strategy = prop_oneof![
             Just("+"),
             Just("-"),
@@ -130,12 +133,15 @@ fn parse_comment(input: &str) -> IResult<&str, SpiralToken> {
 
 fn parse_string(input: &str) -> IResult<&str, SpiralToken> {
     let (input, _) = char('\"')(input)?;
-    let (input, str_lit) = escaped(
-        none_of("\\\""),
+    let (input, str_lit) = opt(escaped(
+        take_while1(|c: char| c != '\\' && c != '\"'),
         '\\',
         one_of("\"\\"),
-    )(input)?;
-    let str_lit = str_lit.replace("\\\\", "\\").replace("\\\"", "\"");
+    ))(input)?;
+    let str_lit = match str_lit {
+        Some(s) => s.replace("\\\"", "\"").replace("\\\\", "\\"),
+        None => "".to_string(),
+    };
     let (input, _) = char('\"')(input)?;
     Ok((input, SpiralToken::StringLiteral(str_lit)))
 }
@@ -151,11 +157,12 @@ fn parse_identifier(input: &str) -> IResult<&str, SpiralToken> {
 
 fn parse_integer(input: &str) -> IResult<&str, SpiralToken> {
     let (input, negative) = opt(char('-'))(input)?;
-    let (input, num) = digit1(input)?;
-    let num : i64 = num.parse().unwrap();
-    let num = if negative.is_some() { -num } else { num };
-    Ok((input, SpiralToken::Integer(num)))
+    let (input, digits) = digit1(input)?;
+    let number = digits.parse::<i64>().unwrap();
+    let number = if negative.is_some() { -number } else { number };
+    Ok((input, SpiralToken::Integer(number)))
 }
+
 
 fn parse_operator(input: &str) -> IResult<&str, SpiralToken> {
     let (input, op) = one_of("=+-*/()")(input)?;
@@ -192,23 +199,14 @@ proptest! {
 }
 
 
-// ---- prop_parse_format_idempotent stdout ----
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"v%Og6`=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"%Og6`=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"Og6`=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"g6`=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"6`=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"`=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"=\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"\\\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"\"", code: OneOf })', spiral\test\./main.rs:189:51
-// thread 'prop_parse_format_idempotent' panicked at 'Test failed: called `Result::unwrap()` on an `Err` value: Error(Error { input: "\"\"", code: OneOf }); minimal failing input: s = StringLiteral("")
-//         successes: 0
-//         local rejects: 0
-//         global rejects: 0
-// ', spiral\test\./main.rs:185:1
+
+
+
+
+
+
+
+
 
 
 
