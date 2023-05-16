@@ -187,16 +187,21 @@ fn format_token(token: &SpiralToken) -> String {
     }
 }
 
-use log::info;
+use tracing::{info, Level};
+use tracing_subscriber::FmtSubscriber;
 
 fn init() {
-    let _ = env_logger::builder().try_init();
+    let subscriber = FmtSubscriber::builder()
+        .with_max_level(Level::TRACE)
+        .finish();
+    tracing::subscriber::set_global_default(subscriber).unwrap_or(());
 }
 
 proptest! {
     #[test]
     fn prop_parse_format_idempotent(s in any::<SpiralToken>()) {
         init();
+
         info!("input={:?}", s);
 
         let formatted = format_token(&s);
@@ -229,6 +234,8 @@ fn test_parse_number() {
 pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let app = cli::Cli::v0;
     // let app = app()();
+    init();
+
     let app = "app";
     println!("app={}", app);
     Ok(())
