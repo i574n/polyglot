@@ -27,9 +27,9 @@ jobs:
 
       - run: pwsh init.ps1
 
-      - run: cd spiral/test && pwsh build.ps1
-
       - run: cd spiral/cli && pwsh build.ps1
+
+      - run: cd spiral/test && pwsh build.ps1
 
       - run: |
           rsync -av \
