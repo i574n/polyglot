@@ -8,7 +8,7 @@ dotnet fable `
 # cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
 
 
-# . "$PSScriptRoot/../../target/release/cli" SpiFsxBuild -- --spi-path="$PSScriptRoot/cli.spi"
+# . "$PSScriptRoot/../../target/release/cli" SpiFsxBuild -- --spi-path="$PSScriptRoot/test.spi"
 
 # dotnet fable `
 #     "$PSScriptRoot" `
@@ -21,4 +21,4 @@ cargo fmt
 
 cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
 
-. "$PSScriptRoot/../../target/release/cli" | Tee-Object cli.out
+. "$PSScriptRoot/../../target/release/test" | Tee-Object test.out

@@ -1,0 +1,13 @@
+[package]
+name = "test"
+version = "0.0.1"
+edition = "2021"
+workspace = "../../"
+
+[dependencies]
+proptest = "~1.1"
+nom = "~7.1"
+
+[[bin]]
+name = "test"
+path = "./main.rs"
