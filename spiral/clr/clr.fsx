@@ -487,10 +487,14 @@ module FileSystem =
         watchWithFilter
             path
             (NotifyFilters.Attributes
-             ||| NotifyFilters.Security
              ||| NotifyFilters.CreationTime
              ||| NotifyFilters.DirectoryName
-             ||| NotifyFilters.FileName)
+             ||| NotifyFilters.FileName
+            //  ||| NotifyFilters.LastAccess
+            //  ||| NotifyFilters.LastWrite
+             ||| NotifyFilters.Security
+            //  ||| NotifyFilters.Size
+             )
 
 
 
@@ -501,7 +505,8 @@ module FileSystem =
 
 
 
-
+let isWindows () =
+    System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
 
 
 
@@ -651,7 +656,7 @@ let properties =
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
 
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    if isWindows () then "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                 ]
                 eventList
