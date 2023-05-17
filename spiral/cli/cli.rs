@@ -27,8 +27,8 @@ pub mod Cli {
         fable_library_rust::String_::fromString(v1)
     }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
-        let v1: string = string("r#\"test1\"#");
-        let v2: &str = r#"test1"#;
+        let v1: string = string("r#\"cli\"#");
+        let v2: &str = r#"cli"#;
         let v6: Option<std::string::String> =
             Cli::method0(Some(String::from(core::ops::Deref::deref(&v2))));
         let v9: Option<string> = v6.map(&*Func1::new(move |v: std::string::String| {

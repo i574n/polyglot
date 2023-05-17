@@ -560,12 +560,12 @@ let properties =
             let run () =
                 async {
                     let! child = watch () |> Async.StartChild
-                    do! Async.Sleep 70
+                    do! Async.Sleep 150
                     do! write path |> Async.AwaitTask
                     do! child
                 }
 
-            run () |> Async.runWithTimeout 5000
+            run () |> Async.runWithTimeout 2000
 
             disposable.Dispose ()
             Directory.Delete (path, true)
@@ -608,6 +608,7 @@ let properties =
             let eventMap, eventList = testEvents write
 
             Expecto.Expect.sequenceEqual
+                eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
@@ -618,17 +619,16 @@ let properties =
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Created
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
                 ]
-                eventList
                 ""
 
             Expecto.Expect.sequenceEqual
+                eventMap
                 ([
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     ]
                     |> Map.ofList)
-                eventMap
                 ""
         }
 
@@ -650,25 +650,25 @@ let properties =
             let eventMap, eventList = testEvents write
 
             Expecto.Expect.sequenceEqual
+                eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
 
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    if isWindows () then "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                 ]
-                eventList
                 ""
 
             Expecto.Expect.sequenceEqual
+                eventMap
                 ([
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     ]
                     |> Map.ofList)
-                eventMap
                 ""
         }
 
@@ -690,6 +690,7 @@ let properties =
             let eventMap, eventList = testEvents write
 
             Expecto.Expect.sequenceEqual
+                eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
@@ -700,10 +701,10 @@ let properties =
                     "file_2.txt", nameof FileSystem.FileSystemChangeType.Renamed
                     "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                 ]
-                eventList
                 ""
 
             Expecto.Expect.sequenceEqual
+                eventMap
                 ([
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
@@ -711,7 +712,6 @@ let properties =
                     "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     ]
                     |> Map.ofList)
-                eventMap
                 ""
         }
 
