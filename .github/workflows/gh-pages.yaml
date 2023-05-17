@@ -31,6 +31,10 @@ jobs:
 
       - run: cd spiral/test && pwsh build.ps1
 
+      - run: cd fsharp/dice && pwsh run.ps1
+
+      - run: cd fsharp/perf && pwsh run.ps1
+
       - run: |
           rsync -av \
             --exclude 'The-Spiral-Language' \

@@ -1,1 +1,1 @@
-dotnet run -c Release
+dotnet run -c Release | Tee-Object dice.out

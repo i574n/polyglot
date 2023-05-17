@@ -1,2 +1,2 @@
-dotnet run -c Debug
-dotnet run -c Release
+dotnet run -c Debug | Tee-Object perf.Debug.out
+dotnet run -c Release | Tee-Object perf.Release.out

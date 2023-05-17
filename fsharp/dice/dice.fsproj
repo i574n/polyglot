@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
         <Version>0.0.1-alpha.1</Version>
+        <OutputType>Exe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
