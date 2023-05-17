@@ -611,12 +611,18 @@ let properties =
                 eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
+                    if isWindows () |> not then
+                        "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
 
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
+                    if isWindows () |> not then
+                        "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
 
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Created
+                    if isWindows () |> not then
+                        "file3.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
                 ]
                 ""
@@ -693,7 +699,11 @@ let properties =
                 eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
+                    // if isWindows () |> not then
+                        // "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
+                    // if isWindows () |> not then
+                        // "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
 
                     "file_1.txt", nameof FileSystem.FileSystemChangeType.Renamed
                     "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
@@ -747,4 +757,4 @@ let properties =
     ]
 
 Logger.init ()
-Expecto.Tests.runTestsWithCLIArgs [] [||] properties |> ignore
+Expecto.Tests.runTestsWithCLIArgs [] [||] properties
