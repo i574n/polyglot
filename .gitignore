@@ -5,6 +5,7 @@ test-results/
 node_modules/
 dist/
 deps/
+artifacts/
 bin/
 obj/
 target/

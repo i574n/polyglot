@@ -52,7 +52,7 @@ inl main () =
     print_static "<cli>"
 
     inl test1 () =
-        inl str : ref' str = #"test1"
+        inl str : ref' str = #"cli"
 
         inl str : std_string = str |> to_std_string
         inl x : option' std_string = some' str

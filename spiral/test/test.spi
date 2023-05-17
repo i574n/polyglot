@@ -1,0 +1,26 @@
+
+
+inl app () =
+
+
+    0i32
+
+
+inl main () =
+    print_static "<test>"
+
+    inl test1 () =
+
+        "test"
+        |> console_fsx.write_line
+
+    inl app () =
+        test1 ()
+        // app ()
+        -1i32
+
+    app
+    |> dyn
+    |> ignore
+
+    print_static "</test>"

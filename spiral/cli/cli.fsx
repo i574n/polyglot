@@ -8,7 +8,7 @@ and closure1 () (v0 : Types.std.string.String) : string =
     let v3 : string = Fable.Core.Rust.emitExpr () v2
     v3
 and closure0 () () : int32 =
-    let v0 : string = "test1"
+    let v0 : string = "cli"
     let v1 : string = "r#\"" + v0 + "\"#"
     let v2 : Types.Ref<Types.Str> = Fable.Core.Rust.emitExpr () v1
     let v3 : string = "String::from(core::ops::Deref::deref($0))"

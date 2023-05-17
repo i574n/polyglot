@@ -1,14 +1,14 @@
 Set-Location $PSScriptRoot
 
-$path = "$HOME/.vscode/extensions"
-if (!(Test-Path $path)) {
-    $path = "$env:scoop/persist/vscode/data/extensions"
+$extensionsPath = "$HOME/.vscode/extensions"
+if (!(Test-Path $extensionsPath)) {
+    $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
 }
 
-$extension = Get-ChildItem -Path $path -Filter "*spiral-lang*" -Recurse | Select-Object -Last 1
+$extension = Get-ChildItem -Path $extensionsPath -Filter "*spiral-lang*" -Recurse | Select-Object -Last 1
 
-$path = $extension.FullName
-Write-Output "Copying compiler to $path"
+$extensionPath = $extension.FullName
+Write-Output "Copying compiler to $extensionPath"
 
-Remove-Item -Recurse -Force "$path/compiler"
-Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/bin/Release/net7.0/" "$path/compiler"
+Remove-Item -Recurse -Force "$extensionPath/compiler"
+Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionPath/compiler"

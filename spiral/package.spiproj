@@ -6,6 +6,8 @@ modules:
     console_fsx
     rust/
         util
+    test/
+        test
     proxy/
         proxy
     cli/
