@@ -1,4 +1,5 @@
 Set-Location $PSScriptRoot
+. ../core.ps1
 
 git clone https://github.com/i574n/Fable.git
 
@@ -11,19 +12,12 @@ git clone https://github.com/i574n/Fable.git
 # sudo apt-get update
 # sudo apt-get install dotnet-sdk-6.0
 
-dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj"
-
-function Get-LastSortedItem {
-    param (
-        [Parameter(Mandatory)] [string]$Path,
-        [Parameter(Mandatory)] [string]$Filter
-    )
-    (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object FullName)[-1]
-}
-
+Invoke-Call -ScriptBlock {
+    dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj"
+} -ErrorAction Stop
 
 $path = "$HOME/.nuget/packages/fable"
-$fableTools = Get-LastSortedItem -Path $path -Filter "tools"
+$fableTools =  Get-LastSortedItem -Path $path -Filter "tools"
 $netVersion = Get-LastSortedItem -Path $fableTools.FullName -Filter "any"
 
 Write-Output "Fable tool path: $netVersion"

@@ -1,4 +1,5 @@
 Set-Location $PSScriptRoot
+. ../core.ps1
 
 $extensionsPath = "$HOME/.vscode/extensions"
 if (!(Test-Path $extensionsPath)) {

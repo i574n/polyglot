@@ -35,6 +35,8 @@ jobs:
 
       - run: cd fsharp/perf && pwsh run.ps1
 
+      - run: cd spiral/clr && pwsh build.ps1
+
       - run: |
           rsync -av \
             --exclude 'The-Spiral-Language' \

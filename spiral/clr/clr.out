@@ -1,0 +1,13 @@
+[18:35:40 INF] 1. Logger.init 
+[37m[[37m18:35:40 [37mINF[37m] [37mEXPECTO? Running tests...[37m [37m<[37mExpecto[37m>[37m
+[0m[1000D[?25h[18:35:41 DBG] 3. FileSystem.ensureTempSessionDirectory tempFolder=C:\Users\i574n\AppData\Local\Temp\clr\63819945-3411-2516-741c-4af1100cbb95 result.Exists=True 
+[0m[1000D[?25h[18:35:41 DBG] 2. FileSystem.ensureTempSessionDirectory tempFolder=C:\Users\i574n\AppData\Local\Temp\clr\63819945-3411-2515-9641-dad4a708c9a1 result.Exists=True 
+[0m[1000D[?25h[18:35:41 DBG] 4. FileSystem.ensureTempSessionDirectory tempFolder=C:\Users\i574n\AppData\Local\Temp\clr\63819945-3411-2511-1846-a9bcf13e7a27 result.Exists=True 
+[0m[1000D[?25hAsync timeout reached (5000)Async timeout reached (5000)Async timeout reached (5000)
+[0m[1000D[?25h
+[0m[1000D[?25h
+[0m[1000D[?25h[18:35:46 DBG] 7. Disposing watch stream fullPath=C:\Users\i574n\AppData\Local\Temp\clr\63819945-3411-2515-9641-dad4a708c9a1 
+[0m[1000D[?25h[18:35:46 DBG] 5. Disposing watch stream fullPath=C:\Users\i574n\AppData\Local\Temp\clr\63819945-3411-2516-741c-4af1100cbb95 
+[0m[1000D[?25h[18:35:46 DBG] 6. Disposing watch stream fullPath=C:\Users\i574n\AppData\Local\Temp\clr\63819945-3411-2511-1846-a9bcf13e7a27 
+[0m[1000D[?25h[37m[[37m18:35:46 [37mINF[37m] [37mEXPECTO! [36m4[37m tests run in [32m00:00:05.4740049[37m for [36mFsCheck samples[37m ΓÇô [36m4[37m passed, [36m0[37m ignored, [36m0[37m failed, [36m0[37m errored. [36mSuccess![37m [37m<[37mExpecto[37m>[37m
+[0m
