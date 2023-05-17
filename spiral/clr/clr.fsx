@@ -756,5 +756,7 @@ let properties =
         //             System.IO.File.Delete(path)
     ]
 
-Logger.init ()
-Expecto.Tests.runTestsWithCLIArgs [] [||] properties
+[<EntryPoint>]
+let main _ =
+    Logger.init ()
+    Expecto.Tests.runTestsWithCLIArgs [] [||] properties
