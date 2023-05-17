@@ -27,8 +27,7 @@ jobs:
 
       - run: pwsh init.ps1
 
-      - continue-on-error: false
-        run: cd spiral/clr && pwsh build.ps1
+      - run: cd spiral/clr && pwsh build.ps1
 
       - run: cd spiral/cli && pwsh build.ps1
 
