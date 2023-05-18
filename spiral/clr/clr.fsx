@@ -367,6 +367,10 @@ open System.Reflection
 open FSharp.Control
 
 
+let isWindows () =
+    System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+
+
 module FileSystem =
     [<RequireQualifiedAccess>]
     type FileSystemChangeType =
@@ -400,6 +404,9 @@ module FileSystem =
             | Deleted _ -> FileSystemChangeType.Deleted
             | Renamed _ -> FileSystemChangeType.Renamed
 
+
+
+
     let watchWithFilter path filter =
         let fullPath = Path.GetFullPath path
         let getLocals () = $"fullPath={fullPath} {getLocals ()}"
@@ -417,25 +424,31 @@ module FileSystem =
         let changedStream =
             AsyncSeq.subscribeEvent
                 watcher.Changed
-                (fun event -> FileSystemChange.Changed (getEventPath event.FullPath))
+                (fun event -> [ FileSystemChange.Changed (getEventPath event.FullPath) ])
 
         let deletedStream =
             AsyncSeq.subscribeEvent
                 watcher.Deleted
-                (fun event -> FileSystemChange.Deleted (getEventPath event.FullPath))
+                (fun event -> [ FileSystemChange.Deleted (getEventPath event.FullPath) ])
 
-        let createdStream =
+        let createdStream : AsyncSeq<int64 * FileSystemChange list> =
             AsyncSeq.subscribeEvent
                 watcher.Created
-                (fun event -> FileSystemChange.Created (getEventPath event.FullPath))
+                (fun event ->
+                    let path = getEventPath event.FullPath
+                    [
+                        FileSystemChange.Created path
+                        if isWindows () then
+                            FileSystemChange.Changed path
+                    ])
 
         let renamedStream =
             AsyncSeq.subscribeEvent
                 watcher.Renamed
-                (fun event -> FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath))
+                (fun event -> [ FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath) ])
 
         let errorStream =
-            AsyncSeq.subscribeEvent watcher.Error (fun event -> FileSystemChange.Error (event.GetException ()))
+            AsyncSeq.subscribeEvent watcher.Error (fun event -> [ FileSystemChange.Error (event.GetException ()) ])
 
         let stream =
             [
@@ -446,6 +459,8 @@ module FileSystem =
                 errorStream
             ]
             |> AsyncSeq.mergeAll
+            |> AsyncSeq.map (fun (n, events) -> events |> List.map (fun event -> n, event))
+            |> AsyncSeq.concatSeq
 
         let disposable =
             Object.newDisposable
@@ -502,11 +517,6 @@ module FileSystem =
 
 
 
-
-
-
-let isWindows () =
-    System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
 
 
 
@@ -611,18 +621,15 @@ let properties =
                 eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
-                    if isWindows () |> not then
-                        "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
 
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    if isWindows () |> not then
-                        "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
 
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Created
-                    if isWindows () |> not then
-                        "file3.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file3.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
                 ]
                 ""
@@ -699,11 +706,9 @@ let properties =
                 eventList
                 [
                     "file1.txt", nameof FileSystem.FileSystemChangeType.Created
-                    // if isWindows () |> not then
-                        // "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    // if isWindows () |> not then
-                        // "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
 
                     "file_1.txt", nameof FileSystem.FileSystemChangeType.Renamed
                     "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
