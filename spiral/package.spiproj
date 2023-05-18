@@ -8,6 +8,8 @@ modules:
         util
     test/
         test
+    clr/
+        clr
     proxy/
         proxy
     cli/
