@@ -459,7 +459,15 @@ module FileSystem =
                 errorStream
             ]
             |> AsyncSeq.mergeAll
-            |> AsyncSeq.map (fun (n, events) -> events |> List.map (fun event -> n, event))
+            |> AsyncSeq.map (fun (n, events) ->
+                events
+                |> List.fold
+                    (fun (i, events) event ->
+                        i + 1L,
+                        (n + i, event) :: events)
+                    (0L, [])
+                |> snd
+            )
             |> AsyncSeq.concatSeq
 
         let disposable =
@@ -721,8 +729,8 @@ let properties =
             Expecto.Expect.sequenceEqual
                 eventMap
                 ([
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Created
+                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
                     "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
                     ]
