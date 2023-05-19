@@ -22,8 +22,6 @@ NUGET
     Microsoft.Win32.SystemEvents (7.0)
     Mono.Cecil (0.11.5)
     Serilog (2.12)
-    Serilog.Sinks.Console (4.1.1-dev-00910)
-      Serilog (>= 2.10)
     Serilog.Sinks.SpectreConsole (0.3.3)
       FSharp.Core (>= 6.0.5)
       Serilog (>= 2.10)

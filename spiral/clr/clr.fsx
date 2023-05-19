@@ -1,9 +1,306 @@
-let rec closure0 () () : int32 =
-    let v0 : string = "clr"
-    System.Console.WriteLine v0
-    -1
-let v0 : (unit -> int32) = closure0()
-()
+namespace clr
+
+// let rec closure0 () () : int32 =
+//     let v0 : string = "clr"
+//     System.Console.WriteLine v0
+//     -1
+// let v0 : (unit -> int32) = closure0()
+// ()
+
+
+module Core =
+
+
+    [<AutoOpen>]
+    module CoreMagic =
+        type TicksGuid = System.Guid
+
+
+    module Guid =
+        let inline ticksFromGuid (ticksGuid: TicksGuid) =
+            let ticks = string ticksGuid
+            int64 $"{ticks.[0..7]}{ticks.[9..12]}{ticks.[14..17]}{ticks.[19..20]}"
+
+        let inline newGuidFromTicks (ticks: int64) =
+            let guid = System.Guid.NewGuid () |> string
+            let ticks = string ticks
+            TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
+
+        let inline newTicksGuid () = newGuidFromTicks System.DateTime.Now.Ticks
+
+//     let inline (|Valid|Invalid|) (str: string) =
+//         match Guid.TryParse str with
+//         | true, guid -> Valid guid
+//         | _ -> Invalid
+
+
+[<AutoOpen>]
+module CoreMagic =
+    let inline getLocals () = ""
+
+
+[<AutoOpen>]
+module Operators =
+    let inline (</>) a b = System.IO.Path.Combine (a, b)
+
+
+module Object =
+    let inline newDisposable fn =
+        { new System.IDisposable with
+            member _.Dispose () = fn ()
+        }
+
+
+module Logger =
+    let mutable count = 0
+    let logError fn getLocals =
+        if true then
+            count <- count + 1
+            Serilog.Log.Error $"{fn ()} {getLocals ()}"
+
+    let logWarning fn getLocals =
+        if true then
+            count <- count + 1
+            Serilog.Log.Warning $"{count}. {fn ()} {getLocals ()}"
+
+    let logInfo fn getLocals =
+        if true then
+            count <- count + 1
+            Serilog.Log.Information $"{count}. {fn ()} {getLocals ()}"
+
+    let logDebug fn getLocals =
+        if true then
+            count <- count + 1
+            Serilog.Log.Debug $"{count}. {fn ()} {getLocals ()}"
+
+    let logTrace fn getLocals =
+        if true then
+            count <- count + 1
+            Serilog.Log.Verbose $"{count}. {fn ()} {getLocals ()}"
+
+    let seq x =
+        let items = x |> Seq.map string |> String.concat ","
+        $"[{items}]"
+
+    let init () =
+        let conf =
+            Serilog.LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .MinimumLevel.Verbose()
+        let conf =
+            Serilog.Sinks.SpectreConsole.SpectreConsoleSinkExtensions.SpectreConsole (
+                conf.WriteTo,
+                "{Timestamp:HH:mm:ss} [{Level:u4}] {Message:lj}{NewLine}{Exception}",
+                minLevel = Serilog.Events.LogEventLevel.Verbose
+            )
+
+        Serilog.Log.Logger <- conf.CreateLogger ()
+
+        logInfo (fun () -> "Logger.init") getLocals
+
+module OS =
+    let isWindows () =
+        System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+
+
+module AsyncSeq =
+    let subscribeEvent (event: IEvent<'H, 'A>) map =
+        let x = System.Reactive.Linq.Observable.FromEventPattern<'H, 'A>(event.AddHandler, event.RemoveHandler)
+        System.Reactive.Linq.Observable.Select (x, fun event -> System.DateTime.Now.Ticks, (map event.EventArgs))
+        |> FSharp.Control.AsyncSeq.ofObservableBuffered
+
+
+module FileSystem =
+    [<RequireQualifiedAccess>]
+    type FileSystemChangeType =
+        | Error
+        | Changed
+        | Created
+        | Deleted
+        | Renamed
+
+    type FileSystemChange =
+        | Error of exn: exn
+        | Changed of path: string
+        | Created of path: string
+        | Deleted of path: string
+        | Renamed of oldPath: string * path: string
+
+
+    let watchWithFilter path filter =
+        let fullPath = System.IO.Path.GetFullPath path
+        let getLocals () = $"fullPath={fullPath} {getLocals ()}"
+
+        let watcher =
+            new System.IO.FileSystemWatcher (
+                Path = fullPath,
+                NotifyFilter = filter,
+                EnableRaisingEvents = true,
+                IncludeSubdirectories = true
+            )
+
+        let getEventPath (path: string) = path.Trim().Replace (fullPath, "")
+
+        let changedStream =
+            AsyncSeq.subscribeEvent
+                watcher.Changed
+                (fun event -> [ FileSystemChange.Changed (getEventPath event.FullPath) ])
+
+        let deletedStream =
+            AsyncSeq.subscribeEvent
+                watcher.Deleted
+                (fun event -> [ FileSystemChange.Deleted (getEventPath event.FullPath) ])
+
+        let createdStream : FSharp.Control.AsyncSeq<int64 * FileSystemChange list> =
+            AsyncSeq.subscribeEvent
+                watcher.Created
+                (fun event ->
+                    let path = getEventPath event.FullPath
+                    [
+                        FileSystemChange.Created path
+                        if OS.isWindows () then
+                            FileSystemChange.Changed path
+                    ])
+
+        let renamedStream =
+            AsyncSeq.subscribeEvent
+                watcher.Renamed
+                (fun event -> [ FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath) ])
+
+        let errorStream =
+            AsyncSeq.subscribeEvent watcher.Error (fun event -> [ FileSystemChange.Error (event.GetException ()) ])
+
+        let stream =
+            [
+                changedStream
+                deletedStream
+                createdStream
+                renamedStream
+                errorStream
+            ]
+            |> FSharp.Control.AsyncSeq.mergeAll
+            |> FSharp.Control.AsyncSeq.map (fun (n, events) ->
+                events
+                |> List.fold
+                    (fun (i, events) event ->
+                        i + 1L,
+                        (n + i, event) :: events)
+                    (0L, [])
+                |> snd
+                |> List.rev
+            )
+            |> FSharp.Control.AsyncSeq.concatSeq
+
+        let disposable =
+            Object.newDisposable
+                (fun () ->
+                    Logger.logDebug (fun () -> "Disposing watch stream") getLocals
+                    watcher.EnableRaisingEvents <- false
+                    watcher.Dispose ())
+
+        stream, disposable
+
+    let watch path =
+        watchWithFilter
+            path
+            (System.IO.NotifyFilters.Attributes
+             ||| System.IO.NotifyFilters.CreationTime
+             ||| System.IO.NotifyFilters.DirectoryName
+             ||| System.IO.NotifyFilters.FileName
+            //  ||| System.IO.NotifyFilters.LastAccess
+            //  ||| System.IO.NotifyFilters.LastWrite
+             ||| System.IO.NotifyFilters.Security
+            //  ||| System.IO.NotifyFilters.Size
+             )
+
+    let createNewGuidTempDirectory () =
+        let tempFolder =
+            System.IO.Path.GetTempPath ()
+            </> System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+            </> string (Core.Guid.newTicksGuid ())
+
+        let result = System.IO.Directory.CreateDirectory tempFolder
+
+        let getLocals () =
+            $"tempFolder={tempFolder} result.Exists={result.Exists} {getLocals ()}"
+
+        Logger.logDebug (fun () -> "FileSystem.createNewGuidTempDirectory") getLocals
+
+        tempFolder
+
+
+
+// // open System
+// open System.IO
+// // open System.Threading.Tasks
+// open FSharp.Control
+// open System.Reactive.Linq
+
+
+module Async =
+//     let startAsTask ct fn : Task =
+//         upcast Async.StartAsTask (fn, cancellationToken = ct)
+
+//     let map fn op =
+//         async {
+//             let! x = op
+//             let value = fn x
+//             return value
+//         }
+
+    let runWithTimeout timeout fn =
+        try
+            Async.RunSynchronously (fn, timeout)
+        with
+        | :? System.TimeoutException -> printfn $"Async timeout reached ({timeout})"
+        | e -> raise e
+
+//     let initAsyncSeq op = AsyncSeq.initAsync 1L (fun _ -> op)
+
+
+// module Task =
+//     let ignore (t: Task<unit []>) =
+//         task {
+//             let! _tasks = t
+//             ()
+//         }
+
+
+// module Old =
+
+
+//     module FileSystem =
+//         open FileSystem
+//         type FileSystemChange with
+//             static member inline Path event =
+//                 match event with
+//                 | Error _ -> None, None
+//                 | Changed path -> None, Some path
+//                 | Created path -> None, Some path
+//                 | Deleted path -> None, Some path
+//                 | Renamed (oldPath, path) -> Some oldPath, Some path
+
+//             static member inline Type event =
+//                 match event with
+//                 | Error _ -> FileSystemChangeType.Error
+//                 | Changed _ -> FileSystemChangeType.Changed
+//                 | Created _ -> FileSystemChangeType.Created
+//                 | Deleted _ -> FileSystemChangeType.Deleted
+//                 | Renamed _ -> FileSystemChangeType.Renamed
+
+
+
+        // let rec private waitForStream path =
+        //     async {
+        //         try
+        //             return new FileStream (path, FileMode.Open, FileAccess.Write)
+        //         with
+        //         | _ ->
+        //             let getLocals () = $"path={path} {getLocals ()}"
+        //             Logger.logWarning (fun () -> "Error opening file for writing. Waiting...") getLocals
+        //             do! Async.Sleep (TimeSpan.FromSeconds 1.)
+        //             return! waitForStream path
+        //     }
 
 
 
@@ -12,12 +309,6 @@ let v0 : (unit -> int32) = closure0()
 // open System.Collections.Generic
 // open Microsoft.FSharp.Reflection
 
-
-[<AutoOpen>]
-module CoreMagic =
-    type TicksGuid = System.Guid
-
-    let inline getLocals () = ""
 
 
 // module DateTime =
@@ -38,25 +329,6 @@ module CoreMagic =
 //     let inline memoizeLazy fn =
 //         let result = lazy (fn ())
 //         fun () -> result.Value
-
-
-module Guid =
-    let inline ticksFromGuid (ticksGuid: TicksGuid) =
-        let ticks = string ticksGuid
-        int64 $"{ticks.[0..7]}{ticks.[9..12]}{ticks.[14..17]}{ticks.[19..20]}"
-
-    let inline newGuidFromTicks (ticks: int64) =
-        let guid = System.Guid.NewGuid () |> string
-        let ticks = string ticks
-        TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
-
-    let inline newTicksGuid () = newGuidFromTicks System.DateTime.Now.Ticks
-
-//     let inline (|Valid|Invalid|) (str: string) =
-//         match Guid.TryParse str with
-//         | true, guid -> Valid guid
-//         | _ -> Invalid
-
 
 
 
@@ -144,13 +416,8 @@ module Guid =
 //         | _ -> None
 
 
-module Object =
-//     let inline compare<'T> (a: 'T) (b: 'T) = (unbox a) = (unbox b)
-
-    let inline newDisposable fn =
-        { new System.IDisposable with
-            member _.Dispose () = fn ()
-        }
+// module Object =
+// //     let inline compare<'T> (a: 'T) (b: 'T) = (unbox a) = (unbox b)
 
 
 // module Option =
@@ -258,519 +525,3 @@ module Object =
 //             )
 
 //         parser.ParseCommandLine args
-
-
-// open System
-open System.IO
-// open System.Threading.Tasks
-open FSharp.Control
-open System.Reactive.Linq
-
-
-
-[<AutoOpen>]
-module Operators =
-    let inline (</>) a b = System.IO.Path.Combine (a, b)
-
-module Async =
-//     let startAsTask ct fn : Task =
-//         upcast Async.StartAsTask (fn, cancellationToken = ct)
-
-//     let map fn op =
-//         async {
-//             let! x = op
-//             let value = fn x
-//             return value
-//         }
-
-    let runWithTimeout timeout fn =
-        try
-            Async.RunSynchronously (fn, timeout)
-        with
-        | :? System.TimeoutException -> printfn $"Async timeout reached ({timeout})"
-        | e -> raise e
-
-//     let initAsyncSeq op = AsyncSeq.initAsync 1L (fun _ -> op)
-
-
-// module Task =
-//     let ignore (t: Task<unit []>) =
-//         task {
-//             let! _tasks = t
-//             ()
-//         }
-
-
-module AsyncSeq =
-    let subscribeEvent (event: IEvent<'H, 'A>) map =
-        System.Reactive.Linq.Observable.FromEventPattern<'H, 'A>(event.AddHandler, event.RemoveHandler).Select (fun event -> System.DateTime.Now.Ticks, (map event.EventArgs))
-        |> FSharp.Control.AsyncSeq.ofObservableBuffered
-
-
-
-// open Serilog
-// open Serilog.Events
-// open Serilog.Sinks.SpectreConsole
-
-
-module Logger =
-    let mutable count = 0
-    let logError fn getLocals =
-        if true then
-            count <- count + 1
-            Serilog.Log.Error $"{fn ()} {getLocals ()}"
-
-    let logWarning fn getLocals =
-        if true then
-            count <- count + 1
-            Serilog.Log.Warning $"{count}. {fn ()} {getLocals ()}"
-
-    let logInfo fn getLocals =
-        if true then
-            count <- count + 1
-            Serilog.Log.Information $"{count}. {fn ()} {getLocals ()}"
-
-    let logDebug fn getLocals =
-        if true then
-            count <- count + 1
-            Serilog.Log.Debug $"{count}. {fn ()} {getLocals ()}"
-
-    let logTrace fn getLocals =
-        if true then
-            count <- count + 1
-            Serilog.Log.Verbose $"{count}. {fn ()} {getLocals ()}"
-
-    let seq x =
-        let items = x |> Seq.map string |> String.concat ","
-        $"[{items}]"
-
-    let init () =
-        let conf =
-            Serilog.LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .MinimumLevel.Verbose()
-        let conf =
-            Serilog.ConsoleLoggerConfigurationExtensions.Console conf.WriteTo
-        let conf =
-            Serilog.Sinks.SpectreConsole.SpectreConsoleSinkExtensions.SpectreConsole (
-                conf.WriteTo,
-                "{Timestamp:HH:mm:ss} [{Level:u4}] {Message:lj}{NewLine}{Exception}",
-                minLevel = Serilog.Events.LogEventLevel.Verbose
-            )
-
-        Serilog.Log.Logger <- conf.CreateLogger ()
-
-        logInfo (fun () -> "Logger.init") getLocals
-
-// open System
-// open System.IO
-// open System.Reflection
-// open FSharp.Control
-
-
-let isWindows () =
-    System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
-
-
-module FileSystem =
-    [<RequireQualifiedAccess>]
-    type FileSystemChangeType =
-        | Error
-        | Changed
-        | Created
-        | Deleted
-        | Renamed
-
-    type FileSystemChange =
-        | Error of exn: exn
-        | Changed of path: string
-        | Created of path: string
-        | Deleted of path: string
-        | Renamed of oldPath: string * path: string
-
-    // type FileSystemChange with
-    //     static member inline Path event =
-    //         match event with
-    //         | Error _ -> None, None
-    //         | Changed path -> None, Some path
-    //         | Created path -> None, Some path
-    //         | Deleted path -> None, Some path
-    //         | Renamed (oldPath, path) -> Some oldPath, Some path
-
-    //     static member inline Type event =
-    //         match event with
-    //         | Error _ -> FileSystemChangeType.Error
-    //         | Changed _ -> FileSystemChangeType.Changed
-    //         | Created _ -> FileSystemChangeType.Created
-    //         | Deleted _ -> FileSystemChangeType.Deleted
-    //         | Renamed _ -> FileSystemChangeType.Renamed
-
-
-
-
-    let watchWithFilter path filter =
-        let fullPath = System.IO.Path.GetFullPath path
-        let getLocals () = $"fullPath={fullPath} {getLocals ()}"
-
-        let watcher =
-            new FileSystemWatcher (
-                Path = fullPath,
-                NotifyFilter = filter,
-                EnableRaisingEvents = true,
-                IncludeSubdirectories = true
-            )
-
-        let getEventPath (path: string) = path.Trim().Replace (fullPath, "")
-
-        let changedStream =
-            AsyncSeq.subscribeEvent
-                watcher.Changed
-                (fun event -> [ FileSystemChange.Changed (getEventPath event.FullPath) ])
-
-        let deletedStream =
-            AsyncSeq.subscribeEvent
-                watcher.Deleted
-                (fun event -> [ FileSystemChange.Deleted (getEventPath event.FullPath) ])
-
-        let createdStream : AsyncSeq<int64 * FileSystemChange list> =
-            AsyncSeq.subscribeEvent
-                watcher.Created
-                (fun event ->
-                    let path = getEventPath event.FullPath
-                    [
-                        FileSystemChange.Created path
-                        if isWindows () then
-                            FileSystemChange.Changed path
-                    ])
-
-        let renamedStream =
-            AsyncSeq.subscribeEvent
-                watcher.Renamed
-                (fun event -> [ FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath) ])
-
-        let errorStream =
-            AsyncSeq.subscribeEvent watcher.Error (fun event -> [ FileSystemChange.Error (event.GetException ()) ])
-
-        let stream =
-            [
-                changedStream
-                deletedStream
-                createdStream
-                renamedStream
-                errorStream
-            ]
-            |> FSharp.Control.AsyncSeq.mergeAll
-            |> FSharp.Control.AsyncSeq.map (fun (n, events) ->
-                events
-                |> List.fold
-                    (fun (i, events) event ->
-                        i + 1L,
-                        (n + i, event) :: events)
-                    (0L, [])
-                |> snd
-            )
-            |> FSharp.Control.AsyncSeq.concatSeq
-
-        let disposable =
-            Object.newDisposable
-                (fun () ->
-                    Logger.logDebug (fun () -> "Disposing watch stream") getLocals
-                    watcher.EnableRaisingEvents <- false
-                    watcher.Dispose ())
-
-        stream, disposable
-
-    // let rec private waitForStream path =
-    //     async {
-    //         try
-    //             return new FileStream (path, FileMode.Open, FileAccess.Write)
-    //         with
-    //         | _ ->
-    //             let getLocals () = $"path={path} {getLocals ()}"
-    //             Logger.logWarning (fun () -> "Error opening file for writing. Waiting...") getLocals
-    //             do! Async.Sleep (TimeSpan.FromSeconds 1.)
-    //             return! waitForStream path
-    //     }
-
-    let ensureTempSessionDirectory () =
-        let tempFolder =
-            Path.GetTempPath ()
-            </> System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-            </> string (Guid.newTicksGuid ())
-
-        let result = Directory.CreateDirectory tempFolder
-
-        let getLocals () =
-            $"tempFolder={tempFolder} result.Exists={result.Exists} {getLocals ()}"
-
-        Logger.logDebug (fun () -> "FileSystem.ensureTempSessionDirectory") getLocals
-
-        tempFolder
-
-    let watch path =
-        watchWithFilter
-            path
-            (System.IO.NotifyFilters.Attributes
-             ||| System.IO.NotifyFilters.CreationTime
-             ||| System.IO.NotifyFilters.DirectoryName
-             ||| System.IO.NotifyFilters.FileName
-            //  ||| System.IO.NotifyFilters.LastAccess
-            //  ||| System.IO.NotifyFilters.LastWrite
-             ||| System.IO.NotifyFilters.Security
-            //  ||| System.IO.NotifyFilters.Size
-             )
-
-
-
-
-
-
-
-
-
-
-let config n = { Expecto.FsCheckConfig.defaultConfig with maxTest = n }
-
-
-let sortEvent event =
-    match event with
-    | FileSystem.FileSystemChange.Error _ -> 0
-    | FileSystem.FileSystemChange.Created _ -> 1
-    | FileSystem.FileSystemChange.Changed _ -> 2
-    | FileSystem.FileSystemChange.Renamed (_oldPath, _) -> 3
-    | FileSystem.FileSystemChange.Deleted _ -> 4
-
-let formatEvents events =
-    events
-    |> Seq.toList
-    |> List.sortBy (snd >> sortEvent)
-    |> List.choose
-        (fun (ticks, event) ->
-            match event with
-            | FileSystem.FileSystemChange.Error _ -> None
-            | FileSystem.FileSystemChange.Changed path -> Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Changed)
-            | FileSystem.FileSystemChange.Created path -> Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Created)
-            | FileSystem.FileSystemChange.Deleted path -> Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Deleted)
-            | FileSystem.FileSystemChange.Renamed (_oldPath, path) -> Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Renamed))
-    |> List.sortBy (fun (_, path, _) -> path)
-    |> List.distinctBy (fun (_, path, event) -> path, event)
-
-
-let properties =
-    Expecto.Tests.testList "FsCheck samples" [
-        Expecto.Tests.test "TicksGuid" {
-            let ticksGuid = Guid.newTicksGuid ()
-            let ticks = ticksGuid |> Guid.ticksFromGuid
-            let newTicksGuid = ticks |> Guid.newGuidFromTicks
-            let newTicks = newTicksGuid |> Guid.ticksFromGuid
-            Expecto.Expect.equal newTicks ticks ""
-        }
-
-        let testEvents write =
-            let path = FileSystem.ensureTempSessionDirectory ()
-            let stream, disposable = FileSystem.watch path
-
-            let events = System.Collections.Concurrent.ConcurrentBag ()
-
-            let watch () =
-                stream
-                |> FSharp.Control.AsyncSeq.iterAsync (fun event -> async { events.Add event })
-
-            let run () =
-                async {
-                    let! child = watch () |> Async.StartChild
-                    do! Async.Sleep 150
-                    do! write path |> Async.AwaitTask
-                    do! child
-                }
-
-            run () |> Async.runWithTimeout 2000
-
-            disposable.Dispose ()
-            System.IO.Directory.Delete (path, true)
-
-            let events = formatEvents events
-
-            let eventMap =
-                events
-                |> List.map (fun (ticks, path, event) -> path, (event, ticks))
-                |> List.groupBy fst
-                |> List.map
-                    (fun (path, events) ->
-                        let event, _ticks =
-                            events
-                            |> List.map snd
-                            |> List.sortByDescending snd
-                            |> List.head
-
-                        path, event)
-                |> Map.ofList
-
-            let eventList =
-                events
-                |> List.map (fun (_ticks, path, event) -> path, event)
-
-            eventMap, eventList
-
-        Expecto.Tests.test "create and delete" {
-            let write path =
-                task {
-                    let n = 3
-
-                    for i = 1 to n do
-                        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
-
-                    for i = 1 to n do
-                        System.IO.File.Delete (path </> $"file{i}.txt")
-                }
-
-            let eventMap, eventList = testEvents write
-
-            Expecto.Expect.sequenceEqual
-                eventList
-                [
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
-
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
-
-                    "file3.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file3.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                ]
-                ""
-
-            Expecto.Expect.sequenceEqual
-                eventMap
-                ([
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    ]
-                    |> Map.ofList)
-                ""
-        }
-
-        Expecto.Tests.test "change" {
-            let write path =
-                task {
-                    let n = 2
-
-                    for i = 1 to n do
-                        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
-
-                    for i = 1 to n do
-                        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "")
-
-                    for i = 1 to n do
-                        System.IO.File.Delete (path </> $"file{i}.txt")
-                }
-
-            let eventMap, eventList = testEvents write
-
-            Expecto.Expect.sequenceEqual
-                eventList
-                [
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
-
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                ]
-                ""
-
-            Expecto.Expect.sequenceEqual
-                eventMap
-                ([
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    ]
-                    |> Map.ofList)
-                ""
-        }
-
-        Expecto.Tests.test "rename" {
-            let write path =
-                task {
-                    let n = 2
-
-                    for i = 1 to n do
-                        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
-
-                    for i = 1 to n do
-                        System.IO.File.Move (path </> $"file{i}.txt", path </> $"file_{i}.txt")
-
-                    for i = 1 to n do
-                        System.IO.File.Delete (path </> $"file_{i}.txt")
-                }
-
-            let eventMap, eventList = testEvents write
-
-            Expecto.Expect.sequenceEqual
-                eventList
-                [
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Created
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
-
-                    "file_1.txt", nameof FileSystem.FileSystemChangeType.Renamed
-                    "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
-
-                    "file_2.txt", nameof FileSystem.FileSystemChangeType.Renamed
-                    "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                ]
-                ""
-
-            Expecto.Expect.sequenceEqual
-                eventMap
-                ([
-                    "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
-                    "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
-                    ]
-                    |> Map.ofList)
-                ""
-        }
-
-
-
-        // runTest "Read and write consistency" 100 <|
-        //     fun (FsCheck.NonEmptyString str) ->
-        //         let path = System.IO.Path.GetTempFileName()
-        //         try
-        //             System.IO.File.WriteAllText(path, str)
-        //             let str' = System.IO.File.ReadAllText(path)
-        //             Expecto.Expect.equal str' str "Read and write should be consistent"
-        //         finally
-        //             System.IO.File.Delete(path)
-
-        // runTest "At least one concurrent write should succeed" 100 <|
-        //     fun (FsCheck.NonEmptyString str1, FsCheck.NonEmptyString str2) ->
-        //         let writeToFile path content =
-        //             try
-        //                 System.IO.File.WriteAllText(path, content)
-        //                 true
-        //             with
-        //             | _ -> false
-        //         let path = System.IO.Path.GetTempFileName()
-        //         try
-        //             let task1 = System.Threading.Tasks.Task.Run(fun () -> writeToFile path str1)
-        //             let task2 = System.Threading.Tasks.Task.Run(fun () -> writeToFile path str2)
-        //             let results = System.Threading.Tasks.Task.WhenAll([task1; task2]).Result
-        //             let successCount = results |> Array.sumBy (function true -> 1 | false -> 0)
-        //             Expecto.Expect.isGreaterThan successCount 0 "At least one write should succeed"
-        //         finally
-        //             System.IO.File.Delete(path)
-    ]
-
-[<EntryPoint>]
-let main _ =
-    Logger.init ()
-    Expecto.Tests.runTestsWithCLIArgs [] [||] properties

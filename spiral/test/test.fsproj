@@ -8,6 +8,7 @@
         <OutputType>Exe</OutputType>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)/../clr/clr.fsx" />
         <Compile Include="$(MSBuildThisFileDirectory)test.fsx" />
     </ItemGroup>
     <Import Project="..\..\.paket\Paket.Restore.targets" />

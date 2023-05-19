@@ -7,5 +7,4 @@ Expecto.FsCheck
 Argu
 FSharp.Control.AsyncSeq
 Serilog.Sinks.SpectreConsole
-Serilog.Sinks.Console
 System.Reactive.Linq

@@ -14,5 +14,4 @@ nuget Expecto.FsCheck ~> 9.0 prerelease
 nuget Argu ~> 6.1
 nuget FSharp.Control.AsyncSeq ~> 3.2
 nuget Serilog.Sinks.SpectreConsole ~> 0.3
-nuget Serilog.Sinks.Console ~> 4.1 prerelease
 nuget System.Reactive.Linq ~> 6.0 prerelease
