@@ -10,7 +10,7 @@ if (!(Test-Path $extensionsPath)) {
     } else {
         curl -fsSL https://code-server.dev/install.sh | sh
         cd "./The-Spiral-Language/VS Code Plugin"
-        npx vsce package
+        npx @vscode/vsce package
         code-server --install-extension spiral-lang-vscode-2.3.10.vsix
 
         $extensionsPath = "$HOME/.local/share/code-server/extensions"
