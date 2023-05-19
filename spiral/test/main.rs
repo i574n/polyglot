@@ -236,7 +236,7 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let app = app()();
     init();
 
-    let app = "app";
+    let app = "test";
     println!("app={}", app);
     Ok(())
 }

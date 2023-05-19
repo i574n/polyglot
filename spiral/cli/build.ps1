@@ -1,9 +1,10 @@
+Set-Location $PSScriptRoot
+. ../../core.ps1
+
 dotnet fable `
-    "$PSScriptRoot" `
     --optimize `
     --lang rs `
     --extension .rs `
-    --outDir "$PSScriptRoot"
 
 # cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
 
@@ -19,6 +20,6 @@ dotnet fable `
 
 cargo fmt
 
-cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
+cargo build --release
 
 . "$PSScriptRoot/../../target/release/cli" | Tee-Object cli.out
