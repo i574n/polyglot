@@ -1,9 +1,20 @@
 Set-Location $PSScriptRoot
 . ../core.ps1
 
+
 $extensionsPath = "$HOME/.vscode/extensions"
+
 if (!(Test-Path $extensionsPath)) {
-    $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
+    if ((Get-WmiObject -Class Win32_OperatingSystem).Name -like "*Windows*") {
+        $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
+    } else {
+        curl -fsSL https://code-server.dev/install.sh | sh
+        cd "./The-Spiral-Language/VS Code Plugin"
+        npx vsce package
+        code-server --install-extension spiral-lang-vscode-2.3.10.vsix
+
+        $extensionsPath = "$HOME/.local/share/code-server/extensions"
+    }
 }
 
 if ((Test-Path $extensionsPath)) {
@@ -14,8 +25,4 @@ if ((Test-Path $extensionsPath)) {
 
     Remove-Item -Recurse -Force "$extensionPath/compiler"
     Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionPath/compiler"
-} else {
-    curl -fsSL https://code-server.dev/install.sh | sh
-    code-server --install-extension mrakgr.spiral-lang-vscode-2.3.10.vsix
-    code-server --install-extension ms-toolsai.jupyter-2023.4.1011241018-win32-x64.vsix
 }
