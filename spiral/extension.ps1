@@ -5,7 +5,7 @@ Set-Location $PSScriptRoot
 $extensionsPath = "$HOME/.vscode/extensions"
 
 if (!(Test-Path $extensionsPath)) {
-    if ((Get-WmiObject -Class Win32_OperatingSystem).Name -like "*Windows*") {
+    if ((pwsh -c '[System.Environment]::OSVersion.VersionString') -like "*Windows*") {
         $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
     } else {
         curl -fsSL https://code-server.dev/install.sh | sh
