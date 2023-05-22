@@ -1,6 +1,9 @@
 namespace Polyglot.FSharp
 
 
+open FsCheck
+// open Expecto
+
 open Expecto
 // open Expecto.ExpectoFsCheck
 // open FsCheck
@@ -287,6 +290,70 @@ module Main =
         |> List.sortBy fst
         |> List.map snd
 
+
+
+
+
+
+
+    type Complexity = Simple | Moderate | Complex
+    type Duration = Short | Medium | Long
+
+    type Dice = D1 of int | D2 of int
+
+    type Task =
+        | Task of Complexity * Duration * Task
+        | NoTask
+
+    let durationOfFocus (d1: int) (d2: int) =
+        match d1 + d2 with
+        | sum when sum <= 4 -> Short
+        | sum when sum <= 8 -> Medium
+        | _ -> Long
+
+    let complexityOfTask (d1: int) (d2: int) =
+        match d1 * d2 with
+        | product when product <= 12 -> Simple
+        | product when product <= 24 -> Moderate
+        | _ -> Complex
+
+    let rec generateTaskList d1 d2 previousTask =
+        match d1, d2 with
+        | d1, d2 when d1 > 0 && d2 > 0 ->
+            let complexity = complexityOfTask d1 d2
+            let duration = durationOfFocus d1 d2
+            let newTask = Task (complexity, duration, previousTask)
+            generateTaskList (d1 - 1) (d2 - 1) newTask
+        | _, _ -> previousTask
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     let properties =
         testList "FsCheck samples" [
             let sistemaDivinacao (interpretacoes: Interpretacao list, caracteristica: Caracteristica) =
@@ -321,12 +388,72 @@ module Main =
                             = sistemaDivinacao (List.sort modifiedInput, caracteristica)
                     else sistemaDivinacao (List.sort input, caracteristica)
                             <> sistemaDivinacao (List.sort modifiedInput, caracteristica)
+
+
+
+
+
+
+
+
+            let focusDurationProperty =
+                Prop.forAll (Arb.fromGen (Gen.map2 (fun d1 d2 -> (d1, d2)) (Gen.choose (1, 6)) (Gen.choose (1, 6)))) <| fun (d1, d2) ->
+                    let expected =
+                        match d1 + d2 with
+                        | sum when sum <= 4 -> Short
+                        | sum when sum <= 8 -> Medium
+                        | _ -> Long
+                    let actual = durationOfFocus d1 d2
+                    expected = actual
+
+            let taskComplexityProperty =
+                Prop.forAll (Arb.fromGen (Gen.map2 (fun d1 d2 -> (d1, d2)) (Gen.choose (1, 6)) (Gen.choose (1, 6)))) <| fun (d1, d2) ->
+                    let expected =
+                        match d1 * d2 with
+                        | product when product <= 12 -> Simple
+                        | product when product <= 24 -> Moderate
+                        | _ -> Complex
+                    let actual = complexityOfTask d1 d2
+                    expected = actual
+
+            let taskListLengthProperty =
+                Prop.forAll (Arb.fromGen (Gen.map2 (fun d1 d2 -> (d1, d2)) (Gen.choose (1, 6)) (Gen.choose (1, 6)))) <| fun (d1, d2) ->
+                    let taskList = generateTaskList d1 d2 NoTask
+                    let rec taskListLength taskList =
+                        match taskList with
+                        | Task (_, _, nextTask) -> 1 + taskListLength nextTask
+                        | NoTask -> 0
+                    let actual = taskListLength taskList
+                    let expected = min d1 d2
+                    expected = actual
+
+
+            testProperty "Duration of focus should be calculated correctly" focusDurationProperty
+            testProperty "Task complexity should be calculated correctly" taskComplexityProperty
+            testProperty "Task list should have the correct length" taskListLengthProperty
+
+
+
         ]
-
-
 
     [<EntryPoint>]
     let main _ =
+
+        let dice1 = 6
+        let dice2 = 6
+
+        let taskList = generateTaskList dice1 dice2 NoTask
+
+        let rec printTaskList taskList =
+            match taskList with
+            | Task (complexity, duration, nextTask) ->
+                printfn "Complexidade: %A, Duração: %A" complexity duration
+                printTaskList nextTask
+            | NoTask -> ()
+
+        printTaskList taskList
+
+
         // Console.WriteLine("--------------------------(-6):");
         // // Check.One({ Config.Quick with replay = Some <| Random.StdGen (1145655947,296144285) }, fun x -> abs x >= 0)
         // Console.WriteLine("--------------------------(-5):");

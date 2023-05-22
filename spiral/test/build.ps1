@@ -22,7 +22,7 @@ Set-Location $PSScriptRoot
 
 cargo fmt --
 
-$env:RUST_LOG="info"; cargo test --release | Tee-Object test.test.out
+$env:RUST_LOG="info"; cargo test --release | Tee-Object test.test.ans
 
 cargo build --release
 

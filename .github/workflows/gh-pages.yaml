@@ -43,6 +43,7 @@ jobs:
             --include '*.gitignore' \
             --include '*.toml' \
             --include '*.out' \
+            --include '*.ans' \
             --include '*.log' \
             --include '*.ps1' \
             --include '*.dependencies' \
