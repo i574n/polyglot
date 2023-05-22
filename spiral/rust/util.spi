@@ -460,11 +460,11 @@ inl substring' (start : i32) (len : i32) (str : string) : string =
 inl unativeint forall t{int}. (n : t) : unativeint =
     $"unativeint !n"
 
-inl substring (start : i32) (end : i32) (str : string) : string =
-    (emit_expr
-        (str |> as_str, start |> unativeint, end |> unativeint)
-        "&$0[$1..$2]" : ref' str)
-    |> new_string
+// inl substring (start : i32) (end : i32) (str : string) : string =
+//     (emit_expr
+//         (str |> as_str, start |> unativeint, end |> unativeint)
+//         "&$0[$1..$2]" : ref' str)
+//     |> new_string
 
 inl string_replace (old : string) (new : string) (s : string) : string =
     // emit_expr (old |> to_ref, new |> to_ref, s) "&$2.replace(&*$0, &$1)"
@@ -585,9 +585,9 @@ inl color_name (name : string) (str : emit_type std_string) : std_string =
     |> format
 
 inl truecolor (color_hex : string) (str : emit_type std_string) : std_string =
-    inl r = color_hex |> substring 0 2 |> hex_to_u8
-    inl g = color_hex |> substring 2 4 |> hex_to_u8
-    inl b = color_hex |> substring 4 6 |> hex_to_u8
+    inl r = color_hex |> substring' 0 2 |> hex_to_u8
+    inl g = color_hex |> substring' 2 4 |> hex_to_u8
+    inl b = color_hex |> substring' 4 6 |> hex_to_u8
     (emit_expr (str, r, g, b) "colored::Colorize::truecolor(&*$0.to_string(), $1, $2, $3)" : colored_string)
     |> format
 
@@ -807,9 +807,29 @@ inl matches_subcommand (matches : arc clap_arg_matches) : option' (ref' str * ar
     emit_expr () $"\"!matches.subcommand().map(|(name, matches)| (name, std::sync::Arc::new(matches.clone())))\""
     // emit_expr () $"\"!matches.subcommand()\""
 
+inl get_clap_one''' (arg : string) (matches : ref' clap_arg_matches) : option' (static_ref' std_string) =
+    inl arg = arg |> as_str
+    emit_expr () $"\"!matches.get_one::<String>(!arg)\""
+
 inl get_clap_one' (arg : string) (matches : arc clap_arg_matches) : option' (static_ref' std_string) =
     inl arg = arg |> as_str
     emit_expr () $"\"!matches.get_one::<String>(!arg)\""
+
+inl get_clap_one'' (arg : string) (matches : ref' clap_arg_matches) : string =
+    matches
+    |> get_clap_one''' arg
+    |> option_map (fun x =>
+        inl x = join x
+        x
+        |> deref_emit_static
+        |> to_string
+        |> string_replace ($"\"--\" + !arg + \"=\"") ""
+    )
+    |> unwrap_or (
+        ("get_clap_one: " +\ arg)
+        // |> to_std_string
+        // |> to_ref'
+    )
 
 inl get_clap_one (arg : string) (matches : arc clap_arg_matches) : string =
     matches
