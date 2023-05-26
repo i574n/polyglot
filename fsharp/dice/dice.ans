@@ -1,9 +1,9 @@
-Complexidade: Simple, Dura├º├úo: Short    
-Complexidade: Simple, Dura├º├úo: Short    
-Complexidade: Simple, Dura├º├úo: Medium   
-Complexidade: Moderate, Dura├º├úo: Medium 
-Complexidade: Complex, Dura├º├úo: Long    
-Complexidade: Complex, Dura├º├úo: Long    
-[37m[[37m12:10:16 [37mINF[37m] [37mEXPECTO? Running tests...[37m [37m<[37mExpecto[37m>[37m
-[0m[1000D[?25h[37m[[37m12:10:21 [37mINF[37m] [37mEXPECTO! [36m7[37m tests run in [32m00:00:05.0184271[37m for [36mFsCheck samples[37m ΓÇô [36m7[37m passed, [36m0[37m ignored, [36m0[37m failed, [36m0[37m errored. [36mSuccess![37m [37m<[37mExpecto[37m>[37m
+Complexidade: Simple, Duração: Short    
+Complexidade: Simple, Duração: Short    
+Complexidade: Simple, Duração: Medium   
+Complexidade: Moderate, Duração: Medium 
+Complexidade: Complex, Duração: Long    
+Complexidade: Complex, Duração: Long    
+[37m[[37m17:42:11 [37mINF[37m] [37mEXPECTO? Running tests...[37m [37m<[37mExpecto[37m>[37m
+[0m[1000D[?25h[37m[[37m17:42:20 [37mINF[37m] [37mEXPECTO! [36m7[37m tests run in [32m00:00:09.2880655[37m for [36mFsCheck samples[37m – [36m7[37m passed, [36m0[37m ignored, [36m0[37m failed, [36m0[37m errored. [36mSuccess![37m [37m<[37mExpecto[37m>[37m
 [0m

@@ -9,11 +9,12 @@ if (!(Test-Path $extensionsPath)) {
         $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
     } else {
         curl -fsSL https://code-server.dev/install.sh | sh
-        cd "./The-Spiral-Language/VS Code Plugin"
+        Set-Location "./The-Spiral-Language/VS Code Plugin"
         npx @vscode/vsce package
         code-server --install-extension spiral-lang-vscode-2.3.10.vsix
 
         $extensionsPath = "$HOME/.local/share/code-server/extensions"
+        Set-Location $PSScriptRoot
     }
 }
 
@@ -23,6 +24,8 @@ if ((Test-Path $extensionsPath)) {
     $extensionPath = $extension.FullName
     Write-Output "Copying compiler to $extensionPath"
 
-    Remove-Item -Recurse -Force "$extensionPath/compiler"
+    if ((Test-Path "$extensionPath/compiler")) {
+        Remove-Item -Recurse -Force "$extensionPath/compiler"
+    }
     Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionPath/compiler"
 }
