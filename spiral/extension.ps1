@@ -9,7 +9,7 @@ if (!(Test-Path $extensionsPath)) {
     if ($IsWindows) {
         $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
     } else {
-        curl -fsSL https://code-server.dev/install.sh | sh
+        $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
         Set-Location "./The-Spiral-Language/VS Code Plugin"
         npx @vscode/vsce package
         code-server --install-extension spiral-lang-vscode-2.3.10.vsix
