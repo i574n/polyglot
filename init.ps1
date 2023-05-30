@@ -1,3 +1,4 @@
+$ErrorActionPreference = "Stop"
 . ./core.ps1
 
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -17,6 +18,17 @@ dotnet tool restore
 dotnet paket restore
 
 # echo 'set -gx PATH $HOME/.cargo/bin $PATH' >> ~/.config/fish/config.fish
+
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+# Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Scope CurrentUser
+Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser
+
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
+Install-Module -Name PSToml -Scope CurrentUser
+
 
 . "$PSScriptRoot/spiral/language.ps1"
 . "$PSScriptRoot/spiral/extension.ps1"

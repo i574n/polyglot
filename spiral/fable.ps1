@@ -1,4 +1,5 @@
 Set-Location $PSScriptRoot
+$ErrorActionPreference = "Stop"
 . ../core.ps1
 
 git clone https://github.com/i574n/Fable.git
