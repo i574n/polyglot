@@ -32,6 +32,7 @@ jobs:
       - run: |
           rsync -av \
             --exclude 'The-Spiral-Language' \
+            --exclude 'Fable' \
             --exclude 'fable_modules' \
             --exclude 'target' \
             --exclude '.elixir_ls' \
