@@ -3,57 +3,42 @@ $ErrorActionPreference = "Stop"
 . ../core.ps1
 
 
+$extensionSrcPath = "./The-Spiral-Language/VS Code Plugin"
+
+$json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
+$extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
+$vsixName = $json.name + "-" + $json.version + ".vsix"
+$vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
+
+if ((Test-Path "$extensionSrcPath/compiler")) {
+    Remove-Item -Recurse -Force "$extensionSrcPath/compiler"
+}
+
+Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
+
+Set-Location $extensionSrcPath
+npm install
+npx tsc --build
+npx @vscode/vsce package
+Set-Location $PSScriptRoot
+
+
 $extensionsPath = "$HOME/.vscode/extensions"
 
-if (!(Test-Path $extensionsPath)) {
-    if ($IsWindows) {
+if ($IsLinux) {
+    $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
+    code-server --install-extension $vsixPath
+    $extensionsPath = "$HOME/.local/share/code-server/extensions"
+} else {
+    if (!(Test-Path $extensionsPath)) {
         $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
-    } else {
-        $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
-        Set-Location "./The-Spiral-Language/VS Code Plugin"
-        npx @vscode/vsce package
-        code-server --install-extension spiral-lang-vscode-2.3.10.vsix
-
-        $extensionsPath = "$HOME/.local/share/code-server/extensions"
-        Set-Location $PSScriptRoot
     }
 }
 
 if ((Test-Path $extensionsPath)) {
-    $extension = Get-ChildItem -Path $extensionsPath -Filter "*spiral-lang*" -Recurse | Sort-Object @{Expression={([version]($_.Name -replace '^\D*')).Major}; Descending=$true},
-    @{Expression={([version]($_.Name -replace '^\D*')).Minor}; Descending=$true},
-    @{Expression={([version]($_.Name -replace '^\D*')).Build}; Descending=$true},
-    @{Expression={([version]($_.Name -replace '^\D*')).Revision}; Descending=$true} | Select-Object -First 1
-
-    $extensionPath = $extension.FullName
+    $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
     Write-Output "Copying compiler to $extensionPath"
 
-    $tomlPath = Join-Path -Path $PSScriptRoot -ChildPath "extension.toml"
-    if (!(Test-Path $tomlPath)) {
-        New-Item -ItemType File -Path $tomlPath -Force | Out-Null
-    }
-
-    $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
-    if ($null -eq $tomlContent.extension) {
-        $tomlContent.extension = @{}
-    }
-    $tomlContent.extension.path = $extensionPath
-
-    $tomlContent | ConvertTo-Toml | Set-Content -Path $tomlPath
-
-    if ((Test-Path "$extensionPath/compiler")) {
-        Remove-Item -Recurse -Force "$extensionPath/compiler"
-    }
-    Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionPath/compiler"
-
-
-
-    Set-Location "./The-Spiral-Language/VS Code Plugin"
-    npm install
-    npx tsc --build
-    npx @vscode/vsce package
-
-    $vsixPath = $extension.Name.Substring($extension.Name.IndexOf(".") + 1) + ".vsix"
     Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
         $destPath = Join-Path -Path $extensionPath -ChildPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
@@ -65,5 +50,16 @@ if ((Test-Path $extensionsPath)) {
         }
 
         Move-Item -Path $_.FullName -Destination $destPath -Force
+    }
+
+    Update-Toml -tomlPath "$PSScriptRoot/extension.toml" -ContentModifier {
+        param($tomlContent)
+
+        if ($null -eq $tomlContent.extension) {
+            $tomlContent.extension = @{}
+        }
+        $tomlContent.extension.path = $extensionPath
+
+        return $tomlContent
     }
 }

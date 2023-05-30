@@ -16,3 +16,23 @@ function Get-LastSortedItem {
     )
     (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object FullName)[-1]
 }
+
+function Update-Toml {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string] $tomlPath,
+
+        [Parameter(Mandatory=$true)]
+        [scriptblock] $ContentModifier
+    )
+
+    if (!(Test-Path $tomlPath)) {
+        New-Item -ItemType File -Path $tomlPath -Force | Out-Null
+    }
+
+    $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
+
+    $tomlContent = &$ContentModifier $tomlContent
+
+    $tomlContent | ConvertTo-Toml | Set-Content -Path $tomlPath
+}
