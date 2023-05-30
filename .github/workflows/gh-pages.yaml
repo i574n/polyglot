@@ -30,6 +30,8 @@ jobs:
       - run: pwsh build.ps1
 
       - run: |
+          pwsh -Command "Get-ChildItem -Filter '*.gitignore' -Recurse | ForEach-Object { Rename-Item -Path \$_.FullName -NewName 'gitignore' }"
+
           rsync -av \
             --exclude 'The-Spiral-Language' \
             --exclude 'Fable' \
@@ -41,7 +43,7 @@ jobs:
             --exclude 'obj' \
             --include '*.md' \
             --include '*.editorconfig' \
-            --include '*.gitignore' \
+            --include 'gitignore' \
             --include '*.toml' \
             --include '*.out' \
             --include '*.ans' \
