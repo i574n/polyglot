@@ -30,7 +30,7 @@ jobs:
       - run: pwsh build.ps1
 
       - run: |
-          pwsh -Command 'Get-ChildItem -Filter "*.gitignore" -Recurse | ForEach-Object { Rename-Item -Path $_.FullName -NewName "dist.gitignore" }'
+          find . -name '.gitignore' -exec bash -c 'mv $0 ${0/.gitignore/_.gitignore}' {} \;
 
           rsync -av \
             --exclude 'The-Spiral-Language' \
