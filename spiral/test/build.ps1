@@ -133,18 +133,40 @@ echo 2
 #     }
 #     Start-Sleep -Milliseconds 100
 # }
-while ($true) {
+$counter = 0
+while ($counter -lt 100) {
     if (-not (Test-Path $jsonPath)) {
         break
     }
-    Start-Sleep -Milliseconds 100
+    Start-Sleep -Milliseconds 50
+    $counter++
+}
+if (Test-Path $jsonPath) {
+    exit 1
 }
 
 
 
 echo 3
 
-Start-Sleep -Milliseconds 500
+Start-Sleep -Milliseconds 1500
+
+# $obj = @{
+#     Ping = $true
+# }
+# $req = "Ping"
+# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# New-Item -ItemType File -Path $jsonPath -Force | Out-Null
+# $obj | ConvertTo-Json -Compress > $jsonPath
+# $counter = 0
+# while ($counter -lt 100) {
+#     if (-not (Test-Path $jsonPath)) {
+#         break
+#     }
+#     Start-Sleep -Milliseconds 100
+#     $counter++
+# }
+
 
 
 
@@ -171,8 +193,6 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 # $obj = @{
 #     Ping = $true
 # }
-
-
 # $req = "Ping"
 # $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
@@ -185,15 +205,52 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 
 echo 4
 
-while ($true) {
+$counter = 0
+while ($counter -lt 100) {
     if (-not (Test-Path $jsonPath)) {
         break
     }
-    Start-Sleep -Milliseconds 100
+    Start-Sleep -Milliseconds 50
+    $counter++
+}
+if (Test-Path $jsonPath) {
+    & $MyInvocation.MyCommand.Path
+    exit $LASTEXITCODE
 }
 
+
+
+
+
+
+
+
+# Start-Sleep -Milliseconds 500
+
+
+
+
+
+$obj = @{
+    Ping = $true
+}
+$req = "Ping"
+$jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+New-Item -ItemType File -Path $jsonPath -Force | Out-Null
+$obj | ConvertTo-Json -Compress > $jsonPath
+$counter = 0
+while ($counter -lt 100) {
+    if (-not (Test-Path $jsonPath)) {
+        break
+    }
+    Start-Sleep -Milliseconds 50
+    $counter++
+}
+
+
+
 echo 5
-Start-Sleep -Milliseconds 2000
+Start-Sleep -Milliseconds 1000
 
 
 
@@ -308,19 +365,27 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 # $output = (Start-Process -FilePath PowerShell -ArgumentList "-NoProfile", "-Command", "& { $command }" -PassThru -Wait -WindowStyle Hidden).StandardOutput.ReadToEnd()
 
 
-# Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 1000
 
 
 echo 7
 
-while ($true) {
+$counter = 0
+while ($counter -lt 100) {
     if (-not (Test-Path $jsonPath)) {
         break
     }
-    Start-Sleep -Milliseconds 100
+    Start-Sleep -Milliseconds 50
+    $counter++
+}
+if (Test-Path $jsonPath) {
+    & $MyInvocation.MyCommand.Path
+    exit $LASTEXITCODE
 }
 
 echo 8
+
+Start-Sleep -Milliseconds 1000
 # Start-Sleep -Milliseconds 1000
 
 
@@ -348,7 +413,7 @@ echo 9
 # Start-Sleep -Milliseconds 1000
 
 
-Start-Sleep -Milliseconds 500
+# Start-Sleep -Milliseconds 1000
 
 $obj = @{
     Exit = $true
@@ -382,7 +447,7 @@ echo 10
 # $process.Close()
 # $process.WaitForExit()
 
-Start-Sleep -Milliseconds 500
+# Start-Sleep -Milliseconds 500
 
 $output = $process.StandardOutput.ReadToEnd()
 
