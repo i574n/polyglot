@@ -7,9 +7,12 @@ $ErrorActionPreference = "Stop"
 
 # rustup +nightly target add wasm32-unknown-unknown
 # rustup +nightly target add wasm32-wasi
+
+rustup update nightly
+
 rustup +nightly component add clippy rust-src rustfmt
 
-rustup update
+rustup update nightly
 
 $cargoCommand = 'cargo +nightly install wasm-pack --keep-going -Z unstable-options';
 if ($env:CI) { Invoke-Expression "$cargoCommand | Out-Null" } else { Invoke-Expression $cargoCommand }
