@@ -468,6 +468,14 @@ name = "exercism"
 version = "0.0.1"
 
 [[package]]
+name = "extension"
+version = "0.0.1"
+dependencies = [
+ "wasm-bindgen",
+ "web-sys",
+]
+
+[[package]]
 name = "fable_library_rust"
 version = "0.1.0"
 dependencies = [
@@ -1430,6 +1438,7 @@ version = "0.0.1"
 dependencies = [
  "cli",
  "exercism",
+ "extension",
  "grover",
  "proxy",
  "test",

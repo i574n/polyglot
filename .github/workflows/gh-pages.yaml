@@ -66,6 +66,10 @@ jobs:
             --include '*.spi' \
             --include '*.spir' \
             --include '*.spiproj' \
+            --include '*.ts' \
+            --include '*.js' \
+            --include '*.wasm' \
+            --include '*.html' \
             --include '*/' \
             --exclude '*' \
             --prune-empty-dirs \

@@ -12,7 +12,9 @@ rustup component add rustfmt
 
 rustup update
 
-# cargo install wasm-pack
+cargo install wasm-pack
+
+npm install -g esbuild
 
 dotnet tool restore
 dotnet paket restore

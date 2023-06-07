@@ -1,3 +1,8 @@
+Set-Location $PSScriptRoot
+$ErrorActionPreference = "Stop"
+
+
+. "$PSScriptRoot/spiral/extension/build.ps1"
 . "$PSScriptRoot/spiral/clr/build.ps1"
 # . "$PSScriptRoot/spiral/cli/build.ps1"
 . "$PSScriptRoot/spiral/test/build.ps1"
