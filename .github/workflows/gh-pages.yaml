@@ -25,9 +25,9 @@ jobs:
           rust-version: nightly
           components: clippy rust-src rustfmt
 
-      - uses: baptiste0928/cargo-install@v2
+      - uses: taiki-e/cache-cargo-install-action@v1
         with:
-          crate: wasm-pack
+          tool: wasm-pack
 
       - run: pwsh init.ps1
 
