@@ -29,6 +29,13 @@ jobs:
         with:
           tool: wasm-pack
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/paket.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - run: pwsh init.ps1
 
       - run: pwsh build.ps1
