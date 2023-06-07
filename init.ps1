@@ -11,7 +11,9 @@ rustup +nightly component add clippy rust-src rustfmt
 
 rustup update
 
-cargo +nightly install wasm-pack --keep-going -Z unstable-options
+try {
+    cargo +nightly install wasm-pack --keep-going -Z unstable-options
+} catch {}
 
 npm install -g esbuild
 
