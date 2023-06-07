@@ -142,6 +142,8 @@ while ($counter -lt 100) {
     $counter++
 }
 if (Test-Path $jsonPath) {
+    $process.Kill()
+    Write-Output $process.StandardOutput.ReadToEnd()
     exit 1
 }
 
@@ -214,6 +216,8 @@ while ($counter -lt 100) {
     $counter++
 }
 if (Test-Path $jsonPath) {
+    $process.Kill()
+    Write-Output $process.StandardOutput.ReadToEnd()
     & $MyInvocation.MyCommand.Path
     exit $LASTEXITCODE
 }
@@ -379,6 +383,8 @@ while ($counter -lt 100) {
     $counter++
 }
 if (Test-Path $jsonPath) {
+    $process.Kill()
+    Write-Output $process.StandardOutput.ReadToEnd()
     & $MyInvocation.MyCommand.Path
     exit $LASTEXITCODE
 }
@@ -449,7 +455,7 @@ echo 10
 
 # Start-Sleep -Milliseconds 500
 
-$output = $process.StandardOutput.ReadToEnd()
+Write-Output $process.StandardOutput.ReadToEnd()
 
 
 # Start-Sleep -Milliseconds 500
@@ -459,7 +465,7 @@ $output = $process.StandardOutput.ReadToEnd()
 # Stop-Process -Id $process.Id
 
 
-Write-Output $output
+# Write-Output $output
 
 # dotnet fable `
 #     "$PSScriptRoot" `

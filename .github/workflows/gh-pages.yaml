@@ -23,7 +23,11 @@ jobs:
       - uses: ATiltedTree/setup-rust@v1
         with:
           rust-version: nightly
-          components: rustfmt clippy rust-src
+          components: clippy rust-src rustfmt
+
+      - uses: baptiste0928/cargo-install@v2
+        with:
+          crate: wasm-pack
 
       - run: pwsh init.ps1
 
@@ -41,6 +45,7 @@ jobs:
             --exclude 'paket-files' \
             --exclude 'bin' \
             --exclude 'obj' \
+            --exclude 'pkg' \
             --include '*.md' \
             --include '*.editorconfig' \
             --include '*.gitignore' \
