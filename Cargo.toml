@@ -12,8 +12,8 @@ exercism = { path = "./rust/exercism" }
 grover = { path = "./rust/grover" }
 extension = { path = "./spiral/extension" }
 test = { path = "./spiral/test" }
-proxy = { path = "./spiral/proxy" }
-cli = { path = "./spiral/cli" }
+# proxy = { path = "./spiral/proxy" }
+# cli = { path = "./spiral/cli" }
 
 [lib]
 path = "./spiral/cli/main.rs"
@@ -27,6 +27,6 @@ members = [
     "rust/grover",
     "spiral/extension",
     "spiral/test",
-    "spiral/proxy",
-    "spiral/cli",
+    # "spiral/proxy",
+    # "spiral/cli",
 ]

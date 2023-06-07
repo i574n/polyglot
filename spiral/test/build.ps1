@@ -250,7 +250,7 @@ while ($counter -lt 100) {
 
 
 echo 5
-Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 2000
 
 
 
@@ -365,7 +365,7 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 # $output = (Start-Process -FilePath PowerShell -ArgumentList "-NoProfile", "-Command", "& { $command }" -PassThru -Wait -WindowStyle Hidden).StandardOutput.ReadToEnd()
 
 
-Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 500
 
 
 echo 7
