@@ -1,0 +1,5 @@
+[PostEntity]
+Id = "post2"
+UserId = "user1"
+Content = "This is my first tweet."
+Status = "Active"

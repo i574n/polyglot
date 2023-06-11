@@ -1,0 +1,3 @@
+[DeleteEntity]
+EntityType = "PostEntity"
+Id = "post1"

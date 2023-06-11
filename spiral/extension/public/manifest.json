@@ -1,14 +1,18 @@
 {
   "name": "polyglot",
   "version": "0.0.1",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "polyglot",
-  "permissions": ["storage", "activeTab", "notifications", "*://*/*"],
-  "content_security_policy": "default-src * 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: filesystem:; script-src-elem * 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: filesystem:; connect-src * 'unsafe-inline'; img-src * data: 'unsafe-inline'; frame-src *; object-src 'self'",
-  "background": {
-    "scripts": ["service_worker.js"]
+  "permissions": ["storage", "activeTab", "notifications", "offscreen"],
+  "host_permissions": ["*://*/*"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';",
+    "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-eval' 'wasm-unsafe-eval'; child-src 'self';"
   },
-  "browser_action": {
+  "background": {
+    "service_worker": "service_worker.js"
+  },
+  "action": {
     "default_popup": "popup.html"
   },
   "content_scripts": [
@@ -17,5 +21,10 @@
       "js": ["content_script.js"]
     }
   ],
-  "web_accessible_resources": ["web_accessible_resources.js", "*.wasm"]
+  "web_accessible_resources": [
+    {
+      "resources": ["web_accessible_resources.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

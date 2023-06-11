@@ -1,0 +1,3 @@
+[FollowingListEntity]
+UserId = "user2"
+Following = ["user3"]

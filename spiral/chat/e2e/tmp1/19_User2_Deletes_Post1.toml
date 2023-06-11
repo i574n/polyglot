@@ -1,0 +1,4 @@
+[deletePost1]
+operation = "Delete"
+entityType = "PostEntity"
+data.Id = "post1"

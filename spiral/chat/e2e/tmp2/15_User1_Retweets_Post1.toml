@@ -1,0 +1,5 @@
+[RetweetEntity]
+Id = "retweet1"
+UserId = "user1"
+PostId = "post1"
+Comment = "Great tweet, Bob!"

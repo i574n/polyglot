@@ -1,0 +1,7 @@
+[UserEntity]
+Id = "user2"
+Name = "Bob"
+Handle = "@bob"
+Bio = "Hello, Alice!"
+AvatarUrl = "http://example.com/avatar2.jpg"
+IsVerified = false

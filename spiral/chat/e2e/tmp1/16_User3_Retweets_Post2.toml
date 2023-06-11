@@ -1,0 +1,7 @@
+[retweetPost]
+operation = "Add"
+entityType = "RetweetEntity"
+data.Id = "retweet2"
+data.UserId = "user3"
+data.PostId = "post2"
+data.Comment = "Great tweet, Alice!"

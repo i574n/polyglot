@@ -1,0 +1,5 @@
+[followUser]
+operation = "Add"
+entityType = "FollowingListEntity"
+data.UserId = "user1"
+data.Following = ["user2"]

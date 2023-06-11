@@ -1,0 +1,9 @@
+[addUser2]
+operation = "Add"
+entityType = "UserEntity"
+data.Id = "user2"
+data.Name = "Bob"
+data.Handle = "@bob"
+data.Bio = "Hello, Alice!"
+data.AvatarUrl = "http://example.com/avatar2.jpg"
+data.IsVerified = false

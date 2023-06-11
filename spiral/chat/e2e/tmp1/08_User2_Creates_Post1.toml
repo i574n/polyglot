@@ -1,0 +1,7 @@
+[addPost]
+operation = "Add"
+entityType = "PostEntity"
+data.Id = "post1"
+data.UserId = "user2"
+data.Content = "This is my first tweet."
+data.Status = "Active"
