@@ -1,4 +1,4 @@
-import * as extension from "./pkg/extension_bg.wasm.js";
+import * as extension from "./pkg/extension_bg_dist.wasm.js";
 
 const isExtension = typeof chrome.runtime !== 'undefined';
 

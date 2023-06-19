@@ -1,3 +1,4 @@
+Set-Location $PSScriptRoot
 $ErrorActionPreference = "Stop"
 . ./core.ps1
 

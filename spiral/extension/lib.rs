@@ -9,7 +9,7 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn app(window: &Window) -> Result<(), JsValue> {
+pub fn app(window: Window) -> Result<(), JsValue> {
     let document = window.document().unwrap();
     let closure = Closure::wrap(
         Box::new(move || {

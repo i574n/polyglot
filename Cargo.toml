@@ -9,7 +9,6 @@ edition = "2021"
 
 [build-dependencies]
 exercism = { path = "./rust/exercism" }
-grover = { path = "./rust/grover" }
 extension = { path = "./spiral/extension" }
 test = { path = "./spiral/test" }
 # proxy = { path = "./spiral/proxy" }
@@ -24,7 +23,6 @@ path = "./spiral/cli/main.rs"
 
 members = [
     "rust/exercism",
-    "rust/grover",
     "spiral/extension",
     "spiral/test",
     # "spiral/proxy",
