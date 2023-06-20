@@ -2,7 +2,7 @@ Set-Location $PSScriptRoot
 $ErrorActionPreference = "Stop"
 . ../../core.ps1
 
-wasm-pack build --dev --no-pack --target web # --reference-types # --weak-refs --no-typescript
+wasm-pack build --dev --target web --reference-types # --weak-refs --no-typescript
 
 $wasmJsPath = "./pkg/extension_bg_dist.wasm.js"
 wasm2js -O4 pkg/extension_bg.wasm --output $wasmJsPath
