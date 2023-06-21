@@ -34,5 +34,5 @@ function Update-Toml {
 
     $tomlContent = &$ContentModifier $tomlContent
 
-    $tomlContent | ConvertTo-Toml | Set-Content -Path $tomlPath
+    $tomlContent | ConvertTo-Toml -Depth 3 | Set-Content -Path $tomlPath
 }

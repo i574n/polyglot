@@ -6,10 +6,13 @@ $ErrorActionPreference = "Stop"
 $tomlPath = Join-Path -Path $PSScriptRoot -ChildPath "../extension.toml"
 $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
 
-$logPath = Join-Path -Path $tomlContent.extension.path -ChildPath "compiler/log/supervisor"
+$logPath = $tomlContent.extension.paths | ForEach-Object {
+    Join-Path -Path $_ -ChildPath "compiler/log/supervisor"
+#} | Where-Object {
+#    Test-Path $_
+} | Select-Object -First 1
 
-
-
+Write-Output "logPath: $logPath"
 
 # $process = Start-Process -FilePath dotnet -ArgumentList "$dllPath port=$port" -RedirectStandardOutput $outputFile -RedirectStandardError $errorFile -PassThru -NoNewWindow
 
@@ -40,7 +43,7 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 echo 1
 
 
-$dllPath = Join-Path -Path $tomlContent.extension.path -ChildPath "compiler/Spiral.dll"
+$dllPath = Join-Path -Path $logPath -ChildPath "../../../compiler/Spiral.dll"
 $port = 13805
 
 

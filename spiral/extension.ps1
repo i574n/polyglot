@@ -23,34 +23,53 @@ npx @vscode/vsce package
 Set-Location $PSScriptRoot
 
 
-$extensionsPath = "$HOME/.vscode/extensions"
+$extensionsPath = @()
+
+$extensionsPathHome = "$HOME/.vscode/extensions"
+
+if (Test-Path $extensionsPathHome) {
+    $extensionsPath += $extensionsPathHome
+}
 
 if ($IsLinux) {
     $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
     code-server --install-extension $vsixPath
-    $extensionsPath = "$HOME/.local/share/code-server/extensions"
+    $extensionsPath += "$HOME/.local/share/code-server/extensions"
 } else {
-    if (!(Test-Path $extensionsPath)) {
-        $extensionsPath = "$env:scoop/persist/vscode/data/extensions"
+    $extensionsPathScoop = "$env:scoop/persist/vscode/data/extensions"
+    if (Test-Path $extensionsPathScoop) {
+        $extensionsPath += $extensionsPathScoop
+    }
+    $extensionsPathScoop = "$env:scoop/persist/vscode-insiders/data/extensions"
+    if (Test-Path $extensionsPathScoop) {
+        $extensionsPath += $extensionsPathScoop
     }
 }
 
-if ((Test-Path $extensionsPath)) {
+foreach ($extensionsPath in $extensionsPath) {
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
     Write-Output "Copying compiler to $extensionPath"
+
+    Remove-Item -Path $extensionPath -Recurse -Force -ErrorAction SilentlyContinue
 
     Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
         $destPath = Join-Path -Path $extensionPath -ChildPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
 
         if (Test-Path -Path $destPath) {
-            [System.IO.File]::Delete($destPath)
+            try {
+                [System.IO.File]::Delete($destPath)
+            } catch {
+                Write-Output "Failed to delete $destPath"
+            }
         } else {
             New-Item -Path $destPath -Force | Out-Null
         }
 
-        Move-Item -Path $_.FullName -Destination $destPath -Force
+        Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction SilentlyContinue
     }
+
+    Remove-Item -Path "$extensionPath/dist" -Recurse -Force
 
     Update-Toml -tomlPath "$PSScriptRoot/extension.toml" -ContentModifier {
         param($tomlContent)
@@ -58,7 +77,14 @@ if ((Test-Path $extensionsPath)) {
         if ($null -eq $tomlContent.extension) {
             $tomlContent.extension = @{}
         }
-        $tomlContent.extension.path = $extensionPath
+
+        if ($null -eq $tomlContent.extension.paths) {
+            $tomlContent.extension.paths = @()
+        }
+
+        if (($tomlContent.extension.paths | Where-Object { $_ -eq $extensionPath }).Length -eq 0) {
+            $tomlContent.extension.paths += $extensionPath
+        }
 
         return $tomlContent
     }
