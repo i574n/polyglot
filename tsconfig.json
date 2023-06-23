@@ -3,16 +3,11 @@
     "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
     "strict": true,
-    "esModuleInterop": true,
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "paths": {
-      "~/*": ["*"]
-    }
+    "noImplicitAny": true
   },
   "include": ["**/*"],
   "exclude": ["dist", "pkg", "node_modules"]
