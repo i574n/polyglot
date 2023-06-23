@@ -1,5 +1,5 @@
 import * as playwright from "@playwright/test"
-import path from "path"
+import * as path from "path"
 
 export const test = playwright.test.extend<{
   context: playwright.BrowserContext
@@ -8,6 +8,9 @@ export const test = playwright.test.extend<{
   context: async ({}, use) => {
     const pathToExtension = path.join(__dirname, "../dist")
     const context = await playwright.chromium.launchPersistentContext("", {
+      recordVideo: {
+        dir: path.join(__dirname, "../test-results/videos"),
+      },
       headless: false,
       args: [`--headless=new`, `--disable-extensions-except=${pathToExtension}`, `--load-extension=${pathToExtension}`],
     })

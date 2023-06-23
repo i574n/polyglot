@@ -11,7 +11,7 @@ cargo +nightly install wasm-pack
 npm install -g pnpm
 npm install -g esbuild
 
-npx playwright install
+npx playwright install chrome
 
 dotnet tool restore
 dotnet paket restore
