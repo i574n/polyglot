@@ -82,6 +82,8 @@ jobs:
             --include '*.ts' \
             --include '*.js' \
             --include '*.wasm' \
+            --include '*.webm' \
+            --include '*.zip' \
             --include '*.html' \
             --include '*/' \
             --exclude '*' \
