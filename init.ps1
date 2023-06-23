@@ -11,7 +11,7 @@ cargo +nightly install wasm-pack
 npm install -g pnpm
 npm install -g esbuild
 
-npx playwright install chrome
+npx playwright install
 
 dotnet tool restore
 dotnet paket restore
@@ -24,6 +24,6 @@ Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 Install-Module -Name PSToml -Scope CurrentUser
 
 
-. "$PSScriptRoot/spiral/language.ps1"
-. "$PSScriptRoot/spiral/extension.ps1"
-. "$PSScriptRoot/spiral/fable.ps1"
+{ . "$PSScriptRoot/spiral/language.ps1" } | Invoke-Block
+{ . "$PSScriptRoot/spiral/extension.ps1" } | Invoke-Block
+{ . "$PSScriptRoot/spiral/fable.ps1" } | Invoke-Block
