@@ -8,7 +8,7 @@ rustup update
 
 cargo +nightly install wasm-pack
 
-
+npm install -g pnpm
 npm install -g esbuild
 
 
