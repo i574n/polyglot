@@ -1,0 +1,6 @@
+{
+  "name": "polyglot",
+  "devDependencies": {
+    "@types/chrome": "~0.0.237"
+  }
+}

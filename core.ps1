@@ -1,29 +1,30 @@
-function Invoke-Call {
+function Invoke-Block {
     param (
-        [scriptblock]$ScriptBlock,
-        [string]$ErrorAction = $ErrorActionPreference
+        [string] $OnError = $ErrorActionPreference,
+        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
     )
     & @ScriptBlock
-    if (($lastexitcode -ne 0) -and $ErrorAction -eq "Stop") {
-        exit $lastexitcode
+    if ($lastexitcode -ne 0) {
+        Write-Output "# Invoke-Block / $$lastexitcode: $lastexitcode / $$OnError: $OnError / $$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
+
+        if ($OnError -eq "Stop") {
+            exit $lastexitcode
+        }
     }
 }
 
 function Get-LastSortedItem {
     param (
-        [Parameter(Mandatory)] [string]$Path,
-        [Parameter(Mandatory)] [string]$Filter
+        [Parameter(Mandatory)] [string] $Path,
+        [Parameter(Mandatory)] [string] $Filter
     )
     (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object FullName)[-1]
 }
 
 function Update-Toml {
     param (
-        [Parameter(Mandatory=$true)]
-        [string] $tomlPath,
-
-        [Parameter(Mandatory=$true)]
-        [scriptblock] $ContentModifier
+        [Parameter(Mandatory)] [string] $tomlPath,
+        [Parameter(Mandatory)] [scriptblock] $ContentModifier
     )
 
     if (!(Test-Path $tomlPath)) {

@@ -10,7 +10,6 @@ cargo +nightly install wasm-pack
 
 
 npm install -g esbuild
-npm install -g binaryen
 
 
 dotnet tool restore

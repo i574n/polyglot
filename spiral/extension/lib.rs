@@ -9,18 +9,42 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn app(window: Window) -> Result<(), JsValue> {
+pub fn app(window: &Window) -> Result<(), JsValue> {
     let document = window.document().unwrap();
     let closure = Closure::wrap(
         Box::new(move || {
             let inputs = document.get_elements_by_tag_name("input");
-            log(&format!("inputs.length()={}", inputs.length()));
-            for i in 0..inputs.length() {
-                let input = inputs.item(i).unwrap().dyn_into::<HtmlInputElement>().unwrap();
+            log(&format!("inputs.length(): {}", inputs.length()));
+
+            let valid_inputs = (0..inputs.length())
+                .filter_map(|i| {
+                    let input = inputs.item(i).unwrap().dyn_into::<HtmlInputElement>().unwrap();
+                    match input.type_().as_str() {
+                        | "password"
+                        | "checkbox"
+                        | "number"
+                        | "hidden"
+                        | "submit"
+                        | "file"
+                        | "radio"
+                        | "color"
+                        | "email"
+                        | "range" => None,
+                        _ => Some(input),
+                    }
+                })
+                .collect::<Vec<HtmlInputElement>>();
+
+            log(&format!("valid_inputs.len(): {}", valid_inputs.len()));
+
+            for i in 0..valid_inputs.len() {
+                let input = &valid_inputs[i];
                 let cursor_position = input.selection_start().unwrap().unwrap_or(0);
                 let value = input.value().to_uppercase();
                 input.set_value(&value);
-                input.set_selection_range(cursor_position, cursor_position).unwrap();
+                input.set_selection_range(cursor_position, cursor_position).unwrap_or_else(|x| {
+                    log(&format!("set_selection_range error: {:?}", x));
+                });
             }
         }) as Box<dyn FnMut()>
     );
