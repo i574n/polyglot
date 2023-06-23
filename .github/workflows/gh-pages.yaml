@@ -47,6 +47,7 @@ jobs:
             --exclude 'The-Spiral-Language' \
             --exclude 'Fable' \
             --exclude 'fable_modules' \
+            --exclude 'node_modules' \
             --exclude 'target' \
             --exclude '.elixir_ls' \
             --exclude 'paket-files' \
