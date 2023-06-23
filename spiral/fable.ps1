@@ -2,6 +2,7 @@ Set-Location $PSScriptRoot
 $ErrorActionPreference = "Stop"
 . ../core.ps1
 
+
 git clone https://github.com/i574n/Fable.git
 
 # git --git-dir=Fable/.git --work-tree=Fable remote add fable https://github.com/fable-compiler/Fable.git
@@ -13,9 +14,7 @@ git clone https://github.com/i574n/Fable.git
 # sudo apt-get update
 # sudo apt-get install dotnet-sdk-6.0
 
-Invoke-Call -ScriptBlock {
-    dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj"
-} -ErrorAction Stop
+{ dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj" } | Invoke-Block
 
 $path = "$HOME/.nuget/packages/fable"
 $fableTools =  Get-LastSortedItem -Path $path -Filter "tools"
