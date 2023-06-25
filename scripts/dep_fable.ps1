@@ -4,7 +4,9 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Set-Location "$ScriptDir/../deps"
+$depsPath = "../deps"
+if (!(Test-Path $depsPath)) { New-Item -ItemType Directory -Path $depsPath }
+Set-Location $depsPath
 git clone https://github.com/i574n/Fable.git
 Set-Location $ScriptDir
 
