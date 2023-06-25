@@ -1,6 +1,6 @@
 Set-Location $PSScriptRoot
 $ErrorActionPreference = "Stop"
-. ../../core.ps1
+. ../../scripts/core.ps1
 
 
 { pnpm install --frozen-lockfile } | Invoke-Block

@@ -3,22 +3,22 @@
 Test: Empty
 
 Solution: 0
-Test case 1. A. Time: 86L
+Test case 1. A. Time: 63L
 
 Solution: 2
-Test case 1. A. Time: 54L
+Test case 1. A. Time: 50L
 
 Solution: 5
-Test case 1. A. Time: 53L
+Test case 1. A. Time: 70L
 
 Input	Expected	Result	Best   
 ---  	---     	---   	---    
-0    	0       	0     	(1, 86)
-2    	2       	2     	(1, 54)
-5    	5       	5     	(1, 53)
+0    	0       	0     	(1, 63)
+2    	2       	2     	(1, 50)
+5    	5       	5     	(1, 70)
 
 Averages
-Test case 1. Average Time: 64L
+Test case 1. Average Time: 61L
 
 Ranking
-Test case 1. Average Time: 64L
+Test case 1. Average Time: 61L

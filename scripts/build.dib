@@ -16,24 +16,24 @@ $ErrorActionPreference = "Stop"
 
 #!pwsh
 
-{ . "$ScriptDir/spiral/clr/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../spiral/clr/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/spiral/test/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../spiral/test/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/spiral/extension/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../spiral/extension/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-# { . "$ScriptDir/spiral/cli/build.ps1" } | Invoke-Block
+# { . "$ScriptDir/../spiral/cli/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/fsharp/dice/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../fsharp/dice/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/fsharp/perf/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../fsharp/perf/build.ps1" } | Invoke-Block

@@ -1,10 +1,10 @@
 $ScriptDir = $PSScriptRoot
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../core.ps1
+. ../scripts/core.ps1
 
 
-$spiralPath = "../ext/The-Spiral-Language"
+$spiralPath = "../deps/The-Spiral-Language"
 
 $extensionSrcPath = "$spiralPath/VS Code Plugin"
 

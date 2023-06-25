@@ -1,6 +1,7 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../../core.ps1
+. ../../scripts/core.ps1
 
 
 
@@ -18,7 +19,7 @@ $ErrorActionPreference = "Stop"
 
 
 
-$tomlPath = Join-Path -Path $PSScriptRoot -ChildPath "../extension.toml"
+$tomlPath = Join-Path -Path $ScriptDir -ChildPath "../extension.toml"
 $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
 
 $logPath = $tomlContent.extension.paths | ForEach-Object {
@@ -88,7 +89,7 @@ $process.Start() | Out-Null
 
 
 
-# $baseSpiprojPath = Join-Path -Path $PSScriptRoot -ChildPath "../The-Spiral-Language/VS Code Plugin/core/package.spiproj"
+# $baseSpiprojPath = Join-Path -Path $ScriptDir -ChildPath "../The-Spiral-Language/VS Code Plugin/core/package.spiproj"
 # $baseSpiprojPath = (Get-Item -Path $baseSpiprojPath).FullName
 # $baseSpiprojText = Get-Content $baseSpiprojPath -Raw
 
@@ -113,7 +114,7 @@ $process.Start() | Out-Null
 
 
 
-# $spiprojPath = Join-Path -Path $PSScriptRoot -ChildPath "../package.spiproj"
+# $spiprojPath = Join-Path -Path $ScriptDir -ChildPath "../package.spiproj"
 # $spiprojPath = (Get-Item -Path $spiprojPath).FullName
 # $spiprojText = Get-Content $spiprojPath -Raw
 # $obj = @{
@@ -191,7 +192,7 @@ Start-Sleep -Milliseconds 1500
 
 
 
-$spiPath =  Join-Path -Path $PSScriptRoot -ChildPath "test.spi"
+$spiPath =  Join-Path -Path $ScriptDir -ChildPath "test.spi"
 $spiText = Get-Content $spiPath -Raw
 $obj = @{
     FileOpen = @{
@@ -322,7 +323,7 @@ echo 6
 
 
 
-$spiPath =  Join-Path -Path $PSScriptRoot -ChildPath "test.spi"
+$spiPath =  Join-Path -Path $ScriptDir -ChildPath "test.spi"
 $obj = @{
     BuildFile = @{
         uri = "file:///$($spiPath.Replace('\', '/').TrimStart('/'))"

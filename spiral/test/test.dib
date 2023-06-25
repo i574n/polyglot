@@ -12,7 +12,7 @@ $ScriptDir =
             [Environment]::CurrentDirectory
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../../core.ps1
+. ../../scripts/core.ps1
 
 #!pwsh
 

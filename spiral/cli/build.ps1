@@ -1,26 +1,24 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../../core.ps1
+. ../../scripts/core.ps1
 
-dotnet fable `
-    --optimize `
-    --lang rs `
-    --extension .rs `
+dotnet fable --optimize --lang rs --extension .rs
 
-# cargo build --release --manifest-path "$PSScriptRoot/Cargo.toml"
+# cargo build --release --manifest-path "$ScriptDir/Cargo.toml"
 
 
-# . "$PSScriptRoot/../../target/release/cli" SpiFsxBuild -- --spi-path="$PSScriptRoot/cli.spi"
+# . "$ScriptDir/../../target/release/cli" SpiFsxBuild -- --spi-path="$PSScriptRoot/cli.spi"
 
 # dotnet fable `
-#     "$PSScriptRoot" `
+#     "$ScriptDir" `
 #     --optimize `
 #     --lang rs `
 #     --extension .rs `
-#     --outDir "$PSScriptRoot"
+#     --outDir "$ScriptDir"
 
 cargo fmt
 
 cargo build --release
 
-. "$PSScriptRoot/../../target/release/cli" | Tee-Object cli.out
+. "$ScriptDir/../../target/release/cli" | Tee-Object cli.out

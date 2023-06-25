@@ -1,6 +1,7 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../../core.ps1
+. ../../scripts/core.ps1
 
 
 { dotnet run -c Release | Tee-Object clr.out } | Invoke-Block
