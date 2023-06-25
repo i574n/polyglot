@@ -85,6 +85,8 @@ jobs:
             --include '*.webm' \
             --include '*.zip' \
             --include '*.html' \
+            --include '*.ipynb' \
+            --include '*.dib' \
             --include '*/' \
             --exclude '*' \
             --prune-empty-dirs \

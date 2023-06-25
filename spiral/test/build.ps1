@@ -3,6 +3,23 @@ $ErrorActionPreference = "Stop"
 
 
 
+
+
+dotnet repl --run test.dib --output-path test.repl.ipynb --exit-after-run
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $tomlPath = Join-Path -Path $PSScriptRoot -ChildPath "../extension.toml"
 $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
 

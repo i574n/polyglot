@@ -13,6 +13,12 @@
       "commands": [
         "paket"
       ]
+    },
+    "dotnet-repl": {
+      "version": "0.1.204",
+      "commands": [
+        "dotnet-repl"
+      ]
     }
   }
 }
