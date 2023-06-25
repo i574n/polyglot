@@ -1,5 +1,0 @@
-[PostEntity]
-Id = "post1"
-UserId = "user2"
-Content = "This is my first tweet."
-Status = "Active"

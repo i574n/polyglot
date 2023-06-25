@@ -1,4 +1,0 @@
-[deleteUser3]
-operation = "Delete"
-entityType = "UserEntity"
-data.Id = "user3"

@@ -1,7 +1,0 @@
-[UserEntity]
-Id = "user3"
-Name = "Charlie"
-Handle = "@charlie"
-Bio = "Hello, everyone!"
-AvatarUrl = "http://example.com/avatar3.jpg"
-IsVerified = true

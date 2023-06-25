@@ -1,9 +1,0 @@
-[addUser1]
-operation = "Add"
-entityType = "UserEntity"
-data.Id = "user1"
-data.Name = "Alice"
-data.Handle = "@alice"
-data.Bio = "Hello, world!"
-data.AvatarUrl = "http://example.com/avatar1.jpg"
-data.IsVerified = true

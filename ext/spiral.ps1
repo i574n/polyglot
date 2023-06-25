@@ -1,6 +1,8 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../core.ps1
+
 
 git clone https://github.com/i574n/The-Spiral-Language.git
 

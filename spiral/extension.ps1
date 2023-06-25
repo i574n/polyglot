@@ -1,9 +1,12 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../core.ps1
 
 
-$extensionSrcPath = "./The-Spiral-Language/VS Code Plugin"
+$spiralPath = "../ext/The-Spiral-Language"
+
+$extensionSrcPath = "$spiralPath/VS Code Plugin"
 
 $json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
 $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
@@ -14,13 +17,13 @@ if ((Test-Path "$extensionSrcPath/compiler")) {
     Remove-Item -Recurse -Force "$extensionSrcPath/compiler"
 }
 
-Copy-Item -Recurse "./The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
+Copy-Item -Recurse "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
 
 Set-Location $extensionSrcPath
 npm install
 npx tsc --build
 npx @vscode/vsce package
-Set-Location $PSScriptRoot
+Set-Location $ScriptDir
 
 
 $extensionsPath = @()
@@ -71,7 +74,7 @@ foreach ($extensionsPath in $extensionsPath) {
 
     Remove-Item -Path "$extensionPath/dist" -Recurse -Force
 
-    Update-Toml -tomlPath "$PSScriptRoot/extension.toml" -ContentModifier {
+    Update-Toml -tomlPath "$ScriptDir/extension.toml" -ContentModifier {
         param($tomlContent)
 
         if ($null -eq $tomlContent.extension) {

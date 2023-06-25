@@ -1,9 +1,0 @@
-[updateUser1Profile]
-operation = "Update"
-entityType = "UserEntity"
-data.Id = "user1"
-data.Name = "Alice"
-data.Handle = "@alice"
-data.Bio = "Hello, world! I love cats."
-data.AvatarUrl = "http://example.com/avatar1_new.jpg"
-data.IsVerified = true

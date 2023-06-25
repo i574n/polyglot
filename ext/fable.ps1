@@ -1,4 +1,5 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../core.ps1
 
@@ -14,12 +15,13 @@ git clone https://github.com/i574n/Fable.git
 # sudo apt-get update
 # sudo apt-get install dotnet-sdk-6.0
 
-{ dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj" } | Invoke-Block
-
 $path = "$HOME/.nuget/packages/fable"
-$fableTools =  Get-LastSortedItem -Path $path -Filter "tools"
-$netVersion = Get-LastSortedItem -Path $fableTools.FullName -Filter "any"
+$tools =  Get-LastSortedItem -Path $path -Filter "tools"
+$netVersion = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
-Write-Output "Fable tool path: $netVersion"
+Write-Output "Tool path: $netVersion"
+
+
+{ dotnet build -c Release "./Fable/src/Fable.Transforms/Fable.Transforms.fsproj" } | Invoke-Block
 
 Copy-Item -Recurse -Force "./Fable/src/Fable.Transforms/bin/Release/netstandard2.0/**" $netVersion

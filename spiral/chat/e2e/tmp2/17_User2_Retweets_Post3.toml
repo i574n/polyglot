@@ -1,5 +1,0 @@
-[RetweetEntity]
-Id = "retweet3"
-UserId = "user2"
-PostId = "post3"
-Comment = "Great tweet, Charlie!"

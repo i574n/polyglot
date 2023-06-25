@@ -1,5 +1,0 @@
-[followUser]
-operation = "Add"
-entityType = "FollowingListEntity"
-data.UserId = "user3"
-data.Following = ["user1"]

@@ -1,7 +1,0 @@
-[retweetPost]
-operation = "Add"
-entityType = "RetweetEntity"
-data.Id = "retweet1"
-data.UserId = "user1"
-data.PostId = "post1"
-data.Comment = "Great tweet, Bob!"

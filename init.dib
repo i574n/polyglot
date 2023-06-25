@@ -51,7 +51,11 @@ Install-Module -Name PSToml -Scope CurrentUser
 
 #!pwsh
 
-{ . "$ScriptDir/spiral/language.ps1" } | Invoke-Block
+{ . "$ScriptDir/ext/dotnet-repl.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/ext/spiral.ps1" } | Invoke-Block
 
 #!pwsh
 
@@ -59,4 +63,4 @@ Install-Module -Name PSToml -Scope CurrentUser
 
 #!pwsh
 
-{ . "$ScriptDir/spiral/fable.ps1" } | Invoke-Block
+{ . "$ScriptDir/ext/fable.ps1" } | Invoke-Block
