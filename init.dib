@@ -1,0 +1,11 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"name":"pwsh"}]}}
+
+#!pwsh
+
+rustup +nightly component add clippy rust-src rustfmt
+
+#!pwsh
+
+rustup update

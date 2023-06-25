@@ -1,11 +1,12 @@
 Set-Location $PSScriptRoot
 $ErrorActionPreference = "Stop"
+. ../../core.ps1
 
 
 
 
 
-dotnet repl --run test.dib --output-path test.repl.ipynb --exit-after-run
+{ dotnet repl --run test.dib --output-path test.repl.ipynb --exit-after-run } | Invoke-Block
 
 
 

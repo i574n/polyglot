@@ -3,8 +3,13 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-rustup +nightly component add clippy rust-src rustfmt
-rustup update
+dotnet tool restore
+dotnet paket restore
+
+{ dotnet repl --run init.dib --output-path init.repl.ipynb --exit-after-run } | Invoke-Block
+
+
+
 
 cargo +nightly install wasm-pack
 
@@ -12,9 +17,6 @@ npm install -g pnpm
 npm install -g esbuild
 
 npx playwright install
-
-dotnet tool restore
-dotnet paket restore
 
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
