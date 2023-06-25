@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Set-Location "../deps"
+Set-Location "$ScriptDir/../deps"
 git clone https://github.com/i574n/Fable.git
 Set-Location $ScriptDir
 
