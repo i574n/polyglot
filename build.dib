@@ -15,15 +15,15 @@ $ErrorActionPreference = "Stop"
 
 #!pwsh
 
+{ . "$ScriptDir/spiral/test/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/spiral/extension/build.ps1" } | Invoke-Block
 
 #!pwsh
 
 # { . "$ScriptDir/spiral/cli/build.ps1" } | Invoke-Block
-
-#!pwsh
-
-{ . "$ScriptDir/spiral/test/build.ps1" } | Invoke-Block
 
 #!pwsh
 
