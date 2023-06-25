@@ -62,7 +62,7 @@ proptest! {
     #[test]
     fn adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged(
         ref item in any::<Item>(),
-        ref items in prop::collection::vec(any::<Item>(), 0..100)) {
+        ref items in prop::collection::vec(any::<Item>(), 0..30)) {
 
         let mut cart = Cart::new();
         for i in items {

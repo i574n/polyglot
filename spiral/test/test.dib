@@ -4,7 +4,12 @@
 
 #!pwsh
 
-$ScriptDir = [Environment]::CurrentDirectory
+$ScriptDir = 
+    [Environment]::CommandLine -match '--working-dir\s(\S+)' ? 
+        $Matches[1] :
+        [Environment]::CommandLine -match '--run\s(\S+)' -and ($Matches[1] -split '' -contains '\', '/') ?
+            (Split-Path -Path $Matches[1] -Parent) :
+            [Environment]::CurrentDirectory
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../core.ps1
