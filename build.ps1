@@ -1,11 +1,7 @@
-Set-Location $PSScriptRoot
+$ScriptDir = $PSScriptRoot
+Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-{ . "$PSScriptRoot/spiral/clr/build.ps1" } | Invoke-Block
-{ . "$PSScriptRoot/spiral/extension/build.ps1" } | Invoke-Block
-# { . "$PSScriptRoot/spiral/cli/build.ps1" } | Invoke-Block
-{ . "$PSScriptRoot/spiral/test/build.ps1" } | Invoke-Block
-{ . "$PSScriptRoot/fsharp/dice/build.ps1" } | Invoke-Block
-{ . "$PSScriptRoot/fsharp/perf/build.ps1" } | Invoke-Block
+{ dotnet repl --run build.dib --output-path build.repl.ipynb --exit-after-run } | Invoke-Block

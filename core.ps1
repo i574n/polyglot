@@ -5,10 +5,15 @@ function Invoke-Block {
     )
     & @ScriptBlock
     if ($lastexitcode -ne 0) {
-        Write-Output "# Invoke-Block / $$lastexitcode: $lastexitcode / $$OnError: $OnError / $$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
+        $msg = "# Invoke-Block / `$lastexitcode: $lastexitcode / `$OnError: $OnError / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
 
         if ($OnError -eq "Stop") {
-            exit $lastexitcode
+            if ($host.Name -match "Interactive") {
+                [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
+            } else {
+                Write-Output $msg
+                exit $lastexitcode
+            }
         }
     }
 }

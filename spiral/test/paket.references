@@ -1,10 +1,1 @@
 FSharp.Core
-
-FsCheck
-Expecto
-Expecto.FsCheck
-
-Argu
-FSharp.Control.AsyncSeq
-Serilog.Sinks.SpectreConsole
-System.Reactive.Linq

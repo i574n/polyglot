@@ -1,0 +1,34 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+
+#!pwsh
+
+$ScriptDir = [Environment]::CurrentDirectory
+Set-Location $ScriptDir
+$ErrorActionPreference = "Stop"
+. ./core.ps1
+
+#!pwsh
+
+{ . "$ScriptDir/spiral/clr/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/spiral/extension/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+# { . "$ScriptDir/spiral/cli/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/spiral/test/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/fsharp/dice/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/fsharp/perf/build.ps1" } | Invoke-Block

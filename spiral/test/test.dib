@@ -1,7 +1,31 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[{"aliases":[],"name":"fsharp"}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"name":"fsharp"}]}}
 
-#!fsharp
+#!pwsh
 
-1 + 1
+$ScriptDir = [Environment]::CurrentDirectory
+Set-Location $ScriptDir
+$ErrorActionPreference = "Stop"
+. ../../core.ps1
+
+#!pwsh
+
+dotnet fable --optimize --lang rs --extension .rs
+
+#!pwsh
+
+cargo fmt --
+
+#!pwsh
+
+cargo build --release
+
+#!pwsh
+
+$env:RUST_LOG="info"
+{ cargo test --release | Tee-Object test.test.ans } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../../target/release/test$(if ($IsWindows) { '.exe' } else { '' })" | Tee-Object test.out } | Invoke-Block

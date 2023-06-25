@@ -1,6 +1,13 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"pwsh","items":[{"aliases":[],"name":"pwsh"}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+
+#!pwsh
+
+$ScriptDir = [Environment]::CurrentDirectory
+Set-Location $ScriptDir
+$ErrorActionPreference = "Stop"
+. ./core.ps1
 
 #!pwsh
 
@@ -9,3 +16,47 @@ rustup +nightly component add clippy rust-src rustfmt
 #!pwsh
 
 rustup update
+
+#!pwsh
+
+cargo +nightly install wasm-pack
+
+#!pwsh
+
+npm install -g pnpm
+
+#!pwsh
+
+npm install -g esbuild
+
+#!pwsh
+
+npx playwright install
+
+#!pwsh
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+#!pwsh
+
+Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser
+
+#!pwsh
+
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
+#!pwsh
+
+Install-Module -Name PSToml -Scope CurrentUser
+
+#!pwsh
+
+{ . "$ScriptDir/spiral/language.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/spiral/extension.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/spiral/fable.ps1" } | Invoke-Block
