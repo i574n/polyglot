@@ -4,8 +4,8 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Get-ChildItem -Path .. -Recurse -File | Where-Object { $_.Name -eq '.gitignore' } | ForEach-Object {
-    Rename-Item -Path $_.FullName -NewName ('_' + $_.Name)
+Get-ChildItem -Path .. -Recurse -File -Force | Where-Object { $_.Name -ieq '.gitignore' } | ForEach-Object {
+    Rename-Item -Path $_.FullName -NewName '_.gitignore'
 }
 
 rsync -av `
