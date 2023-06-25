@@ -7,4 +7,5 @@ $ErrorActionPreference = "Stop"
 dotnet tool restore
 dotnet paket restore
 
-{ dotnet repl --run init.dib --output-path init.repl.ipynb --exit-after-run } | Invoke-Block
+{ . "$ScriptDir/ext/dotnet-repl.ps1" } | Invoke-Block
+{ dotnet repl --run "$ScriptDir/init.dib" --output-path "$ScriptDir/init.repl.ipynb" --exit-after-run } | Invoke-Block

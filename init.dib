@@ -51,10 +51,6 @@ Install-Module -Name PSToml -Scope CurrentUser
 
 #!pwsh
 
-{ . "$ScriptDir/ext/dotnet-repl.ps1" } | Invoke-Block
-
-#!pwsh
-
 { . "$ScriptDir/ext/spiral.ps1" } | Invoke-Block
 
 #!pwsh
