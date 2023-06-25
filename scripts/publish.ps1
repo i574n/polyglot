@@ -4,7 +4,7 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Get-ChildItem -Path .. -Include '.gitignore' -Recurse -File | ForEach-Object {
+Get-ChildItem -Path .. -Recurse -File | Where-Object { $_.Name -eq '.gitignore' } | ForEach-Object {
     Rename-Item -Path $_.FullName -NewName ('_' + $_.Name)
 }
 
