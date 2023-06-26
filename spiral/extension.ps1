@@ -13,9 +13,7 @@ $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
 $vsixName = $json.name + "-" + $json.version + ".vsix"
 $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
-if ((Test-Path "$extensionSrcPath/compiler")) {
-    Remove-Item -Recurse -Force "$extensionSrcPath/compiler"
-}
+Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction SilentlyContinue
 
 Copy-Item -Recurse "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
 
@@ -53,7 +51,7 @@ foreach ($extensionsPath in $extensionsPath) {
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
     Write-Output "Copying compiler to $extensionPath"
 
-    Remove-Item -Path $extensionPath -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item $extensionPath -Recurse -Force -ErrorAction SilentlyContinue
 
     Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
@@ -72,7 +70,7 @@ foreach ($extensionsPath in $extensionsPath) {
         Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction SilentlyContinue
     }
 
-    Remove-Item -Path "$extensionPath/dist" -Recurse -Force
+    Remove-Item "$extensionPath/dist" -Recurse -Force
 
     Update-Toml -tomlPath "$ScriptDir/extension.toml" -ContentModifier {
         param($tomlContent)

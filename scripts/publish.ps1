@@ -4,57 +4,57 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Remove-Item -Path ../dist -Recurse -Force
+Remove-Item ../dist -Recurse -Force -ErrorAction SilentlyContinue
 
 rsync -av `
-    --exclude '.git' `
     --exclude '.elixir_ls' `
+    --exclude '.git' `
     --exclude '.history' `
     --exclude '.paket' `
     --exclude '.vscode' `
+    --exclude 'bin' `
     --exclude 'deps' `
     --exclude 'fable_modules' `
     --exclude 'node_modules' `
-    --exclude 'target' `
-    --exclude 'paket-files' `
-    --exclude 'bin' `
     --exclude 'obj' `
+    --exclude 'paket-files' `
     --exclude 'pkg' `
+    --exclude 'target' `
 `
     --include 'LICENSE' `
-    --include '*.md' `
-    --include '*.editorconfig' `
-    --include '*.gitignore' `
-    --include '*.toml' `
-    --include '*.out' `
     --include '*.ans' `
-    --include '*.log' `
-    --include '*.ps1' `
-    --include '*.dependencies' `
-    --include '*.references' `
-    --include '*.sln' `
-    --include '*.json' `
-    --include '*.yaml' `
-    --include '*.yml' `
-    --include '*.nix' `
     --include '*.cs' `
     --include '*.csproj' `
+    --include '*.dependencies' `
+    --include '*.dib' `
+    --include '*.editorconfig' `
     --include '*.exs' `
     --include '*.fs' `
-    --include '*.fsx' `
     --include '*.fsproj' `
-    --include '*.rs' `
-    --include '*.spi' `
-    --include '*.spir' `
-    --include '*.spiproj' `
-    --include '*.ts' `
-    --include '*.js' `
-    --include '*.wasm' `
-    --include '*.webm' `
-    --include '*.zip' `
+    --include '*.fsx' `
+    --include '*.gitignore' `
     --include '*.html' `
     --include '*.ipynb' `
-    --include '*.dib' `
+    --include '*.js' `
+    --include '*.json' `
+    --include '*.log' `
+    --include '*.md' `
+    --include '*.nix' `
+    --include '*.out' `
+    --include '*.ps1' `
+    --include '*.references' `
+    --include '*.rs' `
+    --include '*.sln' `
+    --include '*.spi' `
+    --include '*.spiproj' `
+    --include '*.spir' `
+    --include '*.toml' `
+    --include '*.ts' `
+    --include '*.wasm' `
+    --include '*.webm' `
+    --include '*.yaml' `
+    --include '*.yml' `
+    --include '*.zip' `
 `
     --include '*/' `
     --exclude '*' `
