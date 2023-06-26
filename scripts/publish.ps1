@@ -4,20 +4,24 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Get-ChildItem -Path .. -Recurse -File -Force | Where-Object { $_.Name -ieq '.gitignore' } | ForEach-Object {
-    Rename-Item -Path $_.FullName -NewName '_.gitignore'
-}
+Remove-Item -Path ../dist -Recurse -Force
 
 rsync -av `
+    --exclude '.git' `
+    --exclude '.elixir_ls' `
+    --exclude '.history' `
+    --exclude '.paket' `
+    --exclude '.vscode' `
     --exclude 'deps' `
     --exclude 'fable_modules' `
     --exclude 'node_modules' `
     --exclude 'target' `
-    --exclude '.elixir_ls' `
     --exclude 'paket-files' `
     --exclude 'bin' `
     --exclude 'obj' `
     --exclude 'pkg' `
+`
+    --include 'LICENSE' `
     --include '*.md' `
     --include '*.editorconfig' `
     --include '*.gitignore' `
@@ -51,8 +55,13 @@ rsync -av `
     --include '*.html' `
     --include '*.ipynb' `
     --include '*.dib' `
+`
     --include '*/' `
     --exclude '*' `
     --prune-empty-dirs `
     ../ `
     ../dist/
+
+Get-ChildItem -Path ../dist -Recurse -File -Force | Where-Object { $_.Name -ieq '.gitignore' } | ForEach-Object {
+    Rename-Item -Path $_.FullName -NewName '_.gitignore'
+}
