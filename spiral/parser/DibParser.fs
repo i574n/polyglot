@@ -1,25 +1,24 @@
 open FParsec
 
-
 type Block =
     {
         magic : string
         content : string
     }
 
-let magicMarker = pstring "#!"
+let magicMarker : Parser<string, unit> = pstring "#!"
 
 let magicCommand =
     magicMarker
     >>. manyTill anyChar newline
-    |>> (String.Concat >> fun s -> s.Trim ())
+    |>> (String.Concat >> String.trim)
 
 let content =
     (newline >>. magicMarker) <|> (eof >>. preturn "")
     |> attempt
     |> lookAhead
     |> manyTill anyChar
-    |>> (String.Concat >> fun s -> s.Trim ())
+    |>> (String.Concat >> String.trim)
 
 let block =
     pipe2
@@ -35,14 +34,17 @@ let blocks =
     skipMany newline
     >>. sepEndBy block (skipMany1 newline)
 
-
 let formatBlock kernel (block : Block) =
     match kernel, block with
     | _, { magic = "markdown"; content = content } ->
         content.Split [| '\n' |]
-        |> Array.map (fun line -> $"// {line.Trim ()}")
+        |> Array.map (fun line -> line.Trim ())
+        |> Array.map (function
+            | "" -> "//"
+            | line -> $"// {line}"
+        )
         |> String.concat "\n"
-    | "fsharp", { magic = "fsharp"; content = content } when 
+    | "fsharp", { magic = "fsharp"; content = content } when
         (content.StartsWith "//// test"
         || content.StartsWith "//// ignore")
         |> not ->
@@ -79,11 +81,3 @@ let writeDibCode kernel file =
         | "fsharp" -> file.Replace (".dib", ".fs")
         | _ -> failwith "Unknown kernel"
     File.WriteAllText (outputFileName, output)
-
-let escapeCell (input : string) =
-    input.Split [| '\n' |]
-    |> Array.map (fun line ->
-        if line.StartsWith "\\#!"
-        then System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
-        else line)
-    |> String.concat "\n"

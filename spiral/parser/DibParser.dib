@@ -1,16 +1,20 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp"}}
+
+#!fsharp
+
+#!import Testing.dib
 
 #!fsharp
 
 #r "nuget:FParsec"
-#r "nuget:Expecto"
 
 #!fsharp
 
 open FParsec
 
+#!fsharp
 
 type Block =
     {
@@ -18,19 +22,106 @@ type Block =
         content : string
     }
 
-let magicMarker = pstring "#!"
+#!fsharp
+
+let magicMarker : Parser<string, unit> = pstring "#!"
+
+#!fsharp
+
+//// test
+
+let input = "#!magic"
+let result = run magicMarker input
+result |> _equal (
+    Success ("#!", (), Position ("", 2, 1, 3))
+)
+
+#!fsharp
+
+//// test
+
+let input = "##!magic"
+let result = run magicMarker input
+result |> _equal (
+    Failure (
+        $"Error in Ln: 1 Col: 1{nl}##!magic{nl}^{nl}Expecting: '#!'{nl}",
+        ParserError (
+            Position ("", 0, 1, 1),
+            (),
+            ErrorMessageList (ExpectedString "#!")
+        ),
+        ()
+    )
+)
+
+#!fsharp
 
 let magicCommand =
     magicMarker
     >>. manyTill anyChar newline
-    |>> (String.Concat >> fun s -> s.Trim ())
+    |>> (String.Concat >> String.trim)
+
+#!fsharp
+
+//// test
+
+let input = """#!magic
+
+a"""
+let result = run magicCommand input
+result |> _equal (
+    Success ("magic", (), Position ("", 8, 2, 1))
+)
+
+#!fsharp
+
+//// test
+
+let input = """ #!magic
+
+a"""
+let result = run magicCommand input
+result |> _equal (
+    Failure (
+        $"Error in Ln: 1 Col: 1{nl} #!magic{nl}^{nl}Expecting: '#!'{nl}",
+        ParserError (
+            Position ("", 0, 1, 1),
+            (),
+            ErrorMessageList (ExpectedString "#!")
+        ),
+        ()
+    )
+)
+
+#!fsharp
 
 let content =
     (newline >>. magicMarker) <|> (eof >>. preturn "")
     |> attempt
     |> lookAhead
     |> manyTill anyChar
-    |>> (String.Concat >> fun s -> s.Trim ())
+    |>> (String.Concat >> String.trim)
+
+#!fsharp
+
+//// test
+
+let input = """#!magic
+
+
+a
+
+
+"""
+let result = run content input
+result |> _equal (
+    Success ("""#!magic
+
+
+a""", (), Position ("", 14, 7, 1))
+)
+
+#!fsharp
 
 let block =
     pipe2
@@ -42,18 +133,71 @@ let block =
                 content = content
             })
 
+#!fsharp
+
+//// test
+
+let input = """#!magic
+
+
+a
+
+
+"""
+let result = run block input
+result |> _equal (
+    Success (
+        { magic = "magic"; content = "a" },
+        (),
+        Position ("", 14, 7, 1)
+    )
+)
+
+#!fsharp
+
 let blocks =
     skipMany newline
     >>. sepEndBy block (skipMany1 newline)
 
+#!fsharp
+
+//// test
+
+let input =
+    """#!magic1
+
+a
+
+\#!magic2
+
+b
+
+""" |> escapeCell
+let result = run blocks input
+result |> _equal (
+    Success (
+        [
+            { magic = "magic1"; content = "a" }
+            { magic = "magic2"; content = "b" }
+        ],
+        (),
+        Position ("", 26, 9, 1)
+    )
+)
+
+#!fsharp
 
 let formatBlock kernel (block : Block) =
     match kernel, block with
     | _, { magic = "markdown"; content = content } ->
         content.Split [| '\n' |]
-        |> Array.map (fun line -> $"// {line.Trim ()}")
+        |> Array.map (fun line -> line.Trim ())
+        |> Array.map (function
+            | "" -> "//"
+            | line -> $"// {line}"
+        )
         |> String.concat "\n"
-    | "fsharp", { magic = "fsharp"; content = content } when 
+    | "fsharp", { magic = "fsharp"; content = content } when
         (content.StartsWith "//// test"
         || content.StartsWith "//// ignore")
         |> not ->
@@ -62,16 +206,92 @@ let formatBlock kernel (block : Block) =
             |> String.concat "\n"
     | _ -> ""
 
+#!fsharp
+
+//// test
+
+let input =
+    """#!markdown
+
+
+a
+
+b
+
+
+\#!markdown
+
+
+c
+
+
+\#!fsharp
+
+
+let a = 1""" |> escapeCell
+let result =
+    match run block input with
+    | Success (block, _, _) ->
+        formatBlock "fsharp" block
+    | Failure (msg, _, _) ->
+        failwith msg
+result |> _equal """// a
+//
+// b"""
+
+#!fsharp
+
 let formatBlocks kernel blocks =
     blocks
     |> List.map (formatBlock kernel)
     |> List.filter (fun s -> s <> "")
     |> String.concat "\n\n"
 
+#!fsharp
+
+//// test
+
+let input =
+    """#!markdown
+
+
+a
+
+b
+
+
+\#!markdown
+
+
+c
+
+
+\#!fsharp
+
+
+let a = 1""" |> escapeCell
+let result =
+    match run blocks input with
+    | Success (blocks, _, _) ->
+        formatBlocks "fsharp" blocks
+    | Failure (msg, _, _) ->
+        failwith msg
+result |> _equal """// a
+//
+// b
+
+// c
+
+let a = 1"""
+
+#!fsharp
+
 let run input =
     match run blocks input with
     | Success (result, _, _) -> Result.Ok result
     | Failure (errorMsg, _, _) -> Result.Error errorMsg
+
+#!fsharp
 
 let parseDibCode kernel file =
     let input = File.ReadAllText file
@@ -81,6 +301,8 @@ let parseDibCode kernel file =
         |> List.filter (fun block -> block.magic = kernel || block.magic = "markdown")
         |> formatBlocks kernel
     | Result.Error msg -> failwith msg
+
+#!fsharp
 
 let writeDibCode kernel file =
     printfn $"Parsing {file}"
@@ -93,30 +315,12 @@ let writeDibCode kernel file =
 
 #!fsharp
 
-let escapeCell (input : string) =
-    input.Split [| '\n' |]
-    |> Array.map (fun line ->
-        if line.StartsWith "\\#!"
-        then System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
-        else line)
-    |> String.concat "\n"
-
-#!fsharp
-
-//// ignore
-
-let _equal expected actual =
-    "" |> Expecto.Expect.equal actual expected
-    printfn $"{actual}"
-
-#!fsharp
-
 //// ignore
 
 let example1 =
     """#!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"name":"fsharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[{"aliases":[],"name":"fsharp"},{"aliases":[],"name":"fsharp"}]}}
 
 \#!fsharp
 
@@ -145,17 +349,17 @@ type Position =
 
 printfn $"{example1}"
 
-let blocks =
+let blocks1 =
     run example1
     |> Result.toOption
     |> Option.get
-blocks
+blocks1
 
 #!fsharp
 
 //// test
 
-blocks
+blocks1
 |> (formatBlocks "fsharp")
 |> _equal """##r "nuget:Expecto"
 
@@ -175,7 +379,7 @@ type Position =
 
 //// test
 
-blocks
+blocks1
 |> (formatBlocks "markdown")
 |> _equal """// ## ParserLibrary
 

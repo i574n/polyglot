@@ -24,13 +24,6 @@ type InputState =
         position : Position
     }
 
-let currentLine inputState =
-    let linePos = inputState.position.line
-    if linePos < inputState.lines.Length then
-        inputState.lines.[linePos]
-    else
-        "end of file"
-
 let fromStr str =
     if String.IsNullOrEmpty str then
         { lines = [||]; position = initialPos }
@@ -38,6 +31,13 @@ let fromStr str =
         let separators = [| "\r\n"; "\n" |]
         let lines = str.Split (separators, StringSplitOptions.None)
         { lines = lines; position = initialPos }
+
+let currentLine inputState =
+    let linePos = inputState.position.line
+    if linePos < inputState.lines.Length then
+        inputState.lines.[linePos]
+    else
+        "end of file"
 
 let nextChar input =
     let linePos = input.position.line
@@ -163,12 +163,12 @@ let mapP f =
 
 let (<!>) = mapP
 
-let (|>>) x f = mapP f x
+let (|>>) x f = f <!> x
 
 let applyP fP xP =
-    fP >>= 
+    fP >>=
         fun f ->
-            xP >>= 
+            xP >>=
                 fun x ->
                     returnP (f x)
 
@@ -178,9 +178,9 @@ let lift2 f xP yP =
     returnP f <*> xP <*> yP
 
 let andThen p1 p2 =
-    p1 >>= 
+    p1 >>=
         fun p1Result ->
-            p2 >>= 
+            p2 >>=
                 fun p2Result ->
                     returnP (p1Result, p2Result)
     <?> $"{getLabel p1} andThen {getLabel p2}"

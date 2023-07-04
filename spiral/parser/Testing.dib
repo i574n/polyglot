@@ -1,0 +1,36 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp"}}
+
+#!fsharp
+
+#!import Core.dib
+
+#!fsharp
+
+#r "nuget:Expecto"
+
+#!fsharp
+
+//// ignore
+
+type AssertExceptionFormatter (ex) =
+    member _.Text =
+        ex.ToString()
+            .Replace("[32m", "<span style=\"color: green;\">")
+            .Replace("[36m", "</span>")
+            .Replace("[31m", "<span style=\"color: red;\">")
+            .Replace("\n", "<br/>")
+
+
+Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter) -> x.Text), "text/html")
+
+#!fsharp
+
+let _equal expected actual =
+    printfn $"{actual.ToDisplayString ()}"
+    try
+        "Testing._equal" |> Expecto.Expect.equal actual expected
+    with :? Expecto.AssertException as ex ->
+        AssertExceptionFormatter(ex).Display() |> ignore
+        failwith (ex.GetType().FullName)

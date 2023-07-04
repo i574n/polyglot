@@ -1,10 +1,10 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"name":"fsharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp"}}
 
 #!fsharp
 
-#r "nuget:Expecto"
+#!import Testing.dib
 
 #!markdown
 
@@ -50,15 +50,6 @@ type InputState =
 
 #!fsharp
 
-let currentLine inputState =
-    let linePos = inputState.position.line
-    if linePos < inputState.lines.Length then
-        inputState.lines.[linePos]
-    else
-        "end of file"
-
-#!fsharp
-
 let fromStr str =
     if String.IsNullOrEmpty str then
         { lines = [||]; position = initialPos }
@@ -66,6 +57,33 @@ let fromStr str =
         let separators = [| "\r\n"; "\n" |]
         let lines = str.Split (separators, StringSplitOptions.None)
         { lines = lines; position = initialPos }
+
+#!fsharp
+
+//// test
+
+fromStr "" |> _equal {
+    lines = [||]
+    position = { line = 0; column = 0 }
+}
+
+#!fsharp
+
+//// test
+
+fromStr "Hello \n World" |> _equal {
+    lines = [| "Hello "; " World" |]
+    position = { line = 0; column = 0 }
+}
+
+#!fsharp
+
+let currentLine inputState =
+    let linePos = inputState.position.line
+    if linePos < inputState.lines.Length then
+        inputState.lines.[linePos]
+    else
+        "end of file"
 
 #!fsharp
 
@@ -87,6 +105,30 @@ let nextChar input =
             let newPos = incrLine input.position
             let newState = { input with position = newPos }
             newState, Some char
+
+#!fsharp
+
+//// test
+
+let newInput, charOpt = fromStr "Hello World" |> nextChar
+
+newInput |> _equal {
+    lines = [| "Hello World" |]
+    position = { line = 0; column = 1 }
+}
+charOpt |> _equal (Some 'H')
+
+#!fsharp
+
+//// test
+
+let newInput, charOpt = fromStr "Hello\n\nWorld" |> nextChar
+
+newInput |> _equal {
+    lines = [| "Hello"; ""; "World" |]
+    position = { line = 0; column = 1 }
+}
+charOpt |> _equal (Some 'H')
 
 #!markdown
 
@@ -132,15 +174,12 @@ let printResult result =
 
 //// ignore
 
-let _equal expected actual =
-    "" |> Expecto.Expect.equal actual expected
-
-let expect (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
+let parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
     match actual, expected with
     | Success (_actual, _), Success _expected ->
         printResult actual
         _actual |> _equal _expected
-    | Failure (l1, e1, p1), Failure (l2, e2, p2) when l1 = l2 && e1 = e2 && p1 = p2 -> 
+    | Failure (l1, e1, p1), Failure (l2, e2, p2) when l1 = l2 && e1 = e2 && p1 = p2 ->
         printResult actual
     | _ ->
         printfn $"Actual: {actual}"
@@ -208,6 +247,40 @@ let satisfy predicate label =
 
 #!fsharp
 
+//// test
+
+let input = fromStr "Hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+runOnInput parser input |> _equal (
+    Success (
+        'H',
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 1 }
+        }
+    )
+)
+
+#!fsharp
+
+//// test
+
+let input = fromStr "World"
+let parser = satisfy (fun c -> c = 'H') "H"
+runOnInput parser input |> _equal (
+    Failure (
+        "H",
+        "Unexpected 'W'",
+        {
+            currentLine = "World"
+            line = 0
+            column = 0
+        }
+    )
+)
+
+#!fsharp
+
 let bindP f p =
     let label = "unknown"
     let innerFn input =
@@ -227,12 +300,64 @@ let (>>=) p f = bindP f p
 
 #!fsharp
 
+//// test
+
+let input = fromStr "Hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = parser >>= fun c -> satisfy (fun c -> c = 'e') "e"
+runOnInput parser2 input |> _equal (
+    Success (
+        'e',
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 2 }
+        }
+    )
+)
+
+#!fsharp
+
+//// test
+
+let input = fromStr "World"
+let parser = satisfy (fun c -> c = 'W') "W"
+let parser2 = parser >>= fun c -> satisfy (fun c -> c = 'e') "e"
+runOnInput parser2 input |> _equal (
+    Failure (
+        "e",
+        "Unexpected 'o'",
+        {
+            currentLine = "World"
+            line = 0
+            column = 1
+        }
+    )
+)
+
+#!fsharp
+
 let returnP x =
     let label = $"%A{x}"
     let innerFn input =
         Success (x, input)
     
     { parseFn = innerFn; label = label }
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = returnP "Hello"
+runOnInput parser input |> _equal (
+    Success (
+        "Hello",
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 0 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -245,14 +370,31 @@ let (<!>) = mapP
 
 #!fsharp
 
-let (|>>) x f = mapP f x
+let (|>>) x f = f <!> x
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = parser |>> fun c -> c.ToString()
+runOnInput parser2 input |> _equal (
+    Success (
+        "H",
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 1 }
+        }
+    )
+)
 
 #!fsharp
 
 let applyP fP xP =
-    fP >>= 
+    fP >>=
         fun f ->
-            xP >>= 
+            xP >>=
                 fun x ->
                     returnP (f x)
 
@@ -267,10 +409,28 @@ let lift2 f xP yP =
 
 #!fsharp
 
+//// test
+
+let input = fromStr "Hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = satisfy (fun c -> c = 'e') "e"
+let parser3 = lift2 (fun c1 c2 -> c1.ToString () + c2.ToString ()) parser parser2
+runOnInput parser3 input |> _equal (
+    Success (
+        "He",
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 2 }
+        }
+    )
+)
+
+#!fsharp
+
 let andThen p1 p2 =
-    p1 >>= 
+    p1 >>=
         fun p1Result ->
-            p2 >>= 
+            p2 >>=
                 fun p2Result ->
                     returnP (p1Result, p2Result)
     <?> $"{getLabel p1} andThen {getLabel p2}"
@@ -278,6 +438,24 @@ let andThen p1 p2 =
 #!fsharp
 
 let (.>>.) = andThen
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = satisfy (fun c -> c = 'e') "e"
+let parser3 = parser .>>. parser2
+runOnInput parser3 input |> _equal (
+    Success (
+        ('H', 'e'),
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 2 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -298,8 +476,46 @@ let (<|>) = orElse
 
 #!fsharp
 
+//// test
+
+let input = fromStr "hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = satisfy (fun c -> c = 'h') "h"
+let parser3 = parser <|> parser2
+runOnInput parser3 input |> _equal (
+    Success (
+        'h',
+        {
+            lines = [| "hello" |]
+            position = { line = 0; column = 1 }
+        }
+    )
+)
+
+#!fsharp
+
 let choice listOfParsers =
     listOfParsers |> List.reduce (<|>)
+
+#!fsharp
+
+//// test
+
+let input = fromStr "hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = satisfy (fun c -> c = 'h') "h"
+let parser3 = choice [parser; parser2]
+runOnInput parser3 input |> _equal (
+    Success (
+        'h',
+        {
+            lines = [| "hello" |]
+            position = { line = 0; column = 1 }
+        }
+    )
+)
+
+#!fsharp
 
 let rec sequence parserList =
     let cons head tail = head :: tail
@@ -309,6 +525,24 @@ let rec sequence parserList =
     match parserList with
     | [] -> returnP []
     | head :: tail -> consP head (sequence tail)
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = satisfy (fun c -> c = 'e') "e"
+let parser3 = sequence [parser; parser2]
+runOnInput parser3 input |> _equal (
+    Success (
+        ['H'; 'e'],
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 2 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -333,6 +567,23 @@ let many parser =
 
 #!fsharp
 
+//// test
+
+let input = fromStr "hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = many parser
+runOnInput parser2 input |> _equal (
+    Success (
+        [],
+        {
+            lines = [| "hello" |]
+            position = { line = 0; column = 0 }
+        }
+    )
+)
+
+#!fsharp
+
 let many1 p =
     p >>=
         fun head ->
@@ -343,11 +594,47 @@ let many1 p =
 
 #!fsharp
 
+//// test
+
+let input = fromStr "hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = many1 parser
+runOnInput parser2 input |> _equal (
+    Failure (
+        "many1 H",
+        "Unexpected 'h'",
+        {
+            currentLine = "hello"
+            line = 0
+            column = 0
+        }
+    )
+)
+
+#!fsharp
+
 let opt p =
     let some = p |>> Some
     let none = returnP None
     (some <|> none)
     <?> $"opt {getLabel p}"
+
+#!fsharp
+
+//// test
+
+let input = fromStr "hello"
+let parser = satisfy (fun c -> c = 'H') "H"
+let parser2 = opt parser
+runOnInput parser2 input |> _equal (
+    Success (
+        None,
+        {
+            lines = [| "hello" |]
+            position = { line = 0; column = 0 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -368,6 +655,26 @@ let between p1 p2 p3 =
 
 #!fsharp
 
+//// test
+
+let input = fromStr "[Hello]"
+let parser =
+    between
+        (satisfy (fun c -> c = '[') "[")
+        (many (satisfy (fun c -> ['a'..'z'] @ ['A'..'Z'] |> List.contains c) "letter"))
+        (satisfy (fun c -> c = ']') "]")
+runOnInput parser input |> _equal (
+    Success (
+        ['H'; 'e'; 'l'; 'l'; 'o'],
+        {
+            lines = [| "[Hello]" |]
+            position = { line = 0; column = 7 }
+        }
+    )
+)
+
+#!fsharp
+
 let sepBy1 p sep =
     let sepThenP = sep >>. p
     p .>>. many sepThenP
@@ -377,6 +684,22 @@ let sepBy1 p sep =
 
 let sepBy p sep =
     sepBy1 p sep <|> returnP []
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello,World"
+let parser = sepBy (many (satisfy (fun c -> c <> ',') "not comma")) (satisfy (fun c -> c = ',') "comma")
+runOnInput parser input |> _equal (
+    Success (
+        [['H'; 'e'; 'l'; 'l'; 'o']; ['W'; 'o'; 'r'; 'l'; 'd'; '\n']],
+        {
+            lines = [| "Hello,World" |]
+            position = { line = 1; column = 0 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -391,6 +714,22 @@ let anyOf listOfChars =
     |> List.map pchar
     |> choice
     <?> $"anyOf %A{listOfChars}"
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = anyOf ['H'; 'e'; 'l'; 'o'] |> many
+runOnInput parser input |> _equal (
+    Success (
+        ['H'; 'e'; 'l'; 'l'; 'o'],
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 5 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -411,6 +750,22 @@ let manyChars1 cp =
 
 #!fsharp
 
+//// test
+
+let input = fromStr "Hello"
+let parser = manyChars1 (anyOf ['H'; 'e'; 'l'; 'o'])
+runOnInput parser input |> _equal (
+    Success (
+        "Hello",
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 5 }
+        }
+    )
+)
+
+#!fsharp
+
 let pstring str =
     str
     |> List.ofSeq
@@ -418,6 +773,22 @@ let pstring str =
     |> sequence
     |> mapP charListToStr
     <?> str
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = pstring "Hello"
+runOnInput parser input |> _equal (
+    Success (
+        "Hello",
+        {
+            lines = [| "Hello" |]
+            position = { line = 0; column = 5 }
+        }
+    )
+)
 
 #!fsharp
 
@@ -434,8 +805,42 @@ let spaces1 = many1 whitespaceChar
 
 #!fsharp
 
+//// test
+
+let input = fromStr "  Hello"
+let parser = spaces1 .>>. pstring "Hello"
+runOnInput parser input |> _equal (
+    Success (
+        ([' '; ' '], "Hello"),
+        {
+            lines = [| "  Hello" |]
+            position = { line = 0; column = 7 }
+        }
+    )
+)
+
+#!fsharp
+
 let digitChar =
     satisfy Char.IsDigit "digit"
+
+#!fsharp
+
+//// test
+
+let input = fromStr "Hello"
+let parser = digitChar
+runOnInput parser input |> _equal (
+    Failure (
+        "digit",
+        "Unexpected 'H'",
+        {
+            currentLine = "Hello"
+            line = 0
+            column = 0
+        }
+    )
+)
 
 #!fsharp
 
@@ -454,6 +859,21 @@ let pint =
 
 #!fsharp
 
+//// test
+
+run pint "-123"
+|> _equal (
+    Success (
+        -123,
+        {
+            lines = [| "-123" |]
+            position = { line = 0; column = 4 }
+        }
+    )
+)
+
+#!fsharp
+
 let pfloat =
     let resultToFloat (((sign, digits1), point), digits2) =
         let fl = float $"{digits1}.{digits2}"
@@ -466,6 +886,21 @@ let pfloat =
     opt (pchar '-') .>>. digits .>>. pchar '.' .>>. digits
     |> mapP resultToFloat
     <?> "float"
+
+#!fsharp
+
+//// test
+
+run pfloat "-123.45"
+|> _equal (
+    Success (
+        -123.45,
+        {
+            lines = [| "-123.45" |]
+            position = { line = 0; column = 7 }
+        }
+    )
+)
 
 #!fsharp
 

@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"name":"fsharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp"}}
 
 #!fsharp
 
@@ -79,14 +79,14 @@ jValueRef <|
 //// test
 
 run jValue "null"
-|> expect (Success JNull)
+|> parserEqual (Success JNull)
 
 #!fsharp
 
 //// test
 
 run jNull "nulp"
-|> expect (
+|> parserEqual (
     Failure (
         "null",
         "Unexpected 'p'",
@@ -127,21 +127,21 @@ jValueRef <|
 //// test
 
 run jBool "true"
-|> expect (Success (JBool true))
+|> parserEqual (Success (JBool true))
 
 #!fsharp
 
 //// test
 
 run jBool "false"
-|> expect (Success (JBool false))
+|> parserEqual (Success (JBool false))
 
 #!fsharp
 
 //// test
 
 run jBool "truX"
-|> expect (
+|> parserEqual (
     Failure (
         "bool",
         "Unexpected 't'",
@@ -163,14 +163,14 @@ let jUnescapedChar =
 //// test
 
 run jUnescapedChar "a"
-|> expect (Success 'a')
+|> parserEqual (Success 'a')
 
 #!fsharp
 
 //// test
 
 run jUnescapedChar "\\"
-|> expect (
+|> parserEqual (
     Failure (
         "char",
         "Unexpected '\\'",
@@ -206,35 +206,35 @@ let jEscapedChar =
 //// test
 
 run jEscapedChar "\\\\"
-|> expect (Success '\\')
+|> parserEqual (Success '\\')
 
 #!fsharp
 
 //// test
 
 run jEscapedChar "\\t"
-|> expect (Success '\t')
+|> parserEqual (Success '\t')
 
 #!fsharp
 
 //// test
 
 run jEscapedChar @"\\"
-|> expect (Success '\\')
+|> parserEqual (Success '\\')
 
 #!fsharp
 
 //// test
 
 run jEscapedChar @"\n"
-|> expect (Success '\n')
+|> parserEqual (Success '\n')
 
 #!fsharp
 
 //// test
 
 run jEscapedChar "a"
-|> expect (
+|> parserEqual (
     Failure (
         "escaped char",
         "Unexpected 'a'",
@@ -266,7 +266,7 @@ let jUnicodeChar =
 //// test
 
 run jUnicodeChar "\\u263A"
-|> expect (Success '☺')
+|> parserEqual (Success '☺')
 
 #!markdown
 
@@ -304,35 +304,35 @@ jValueRef <|
 //// test
 
 run jString "\"\""
-|> expect (Success (JString ""))
+|> parserEqual (Success (JString ""))
 
 #!fsharp
 
 //// test
 
 run jString "\"a\""
-|> expect (Success (JString "a"))
+|> parserEqual (Success (JString "a"))
 
 #!fsharp
 
 //// test
 
 run jString "\"ab\""
-|> expect (Success (JString "ab"))
+|> parserEqual (Success (JString "ab"))
 
 #!fsharp
 
 //// test
 
 run jString "\"ab\\tde\""
-|> expect (Success (JString "ab\tde"))
+|> parserEqual (Success (JString "ab\tde"))
 
 #!fsharp
 
 //// test
 
 run jString "\"ab\\u263Ade\""
-|> expect (Success (JString "ab☺de"))
+|> parserEqual (Success (JString "ab☺de"))
 
 #!markdown
 
@@ -413,35 +413,35 @@ jValueRef <|
 //// test
 
 run jNumber "123"
-|> expect (Success (JNumber 123.0))
+|> parserEqual (Success (JNumber 123.0))
 
 #!fsharp
 
 //// test
 
 run jNumber "-123"
-|> expect (Success (JNumber -123.0))
+|> parserEqual (Success (JNumber -123.0))
 
 #!fsharp
 
 //// test
 
 run jNumber "123.4"
-|> expect (Success (JNumber 123.4))
+|> parserEqual (Success (JNumber 123.4))
 
 #!fsharp
 
 //// test
 
 run jNumber "-123."
-|> expect (Success (JNumber -123.0))
+|> parserEqual (Success (JNumber -123.0))
 
 #!fsharp
 
 //// test
 
 run jNumber "00.1"
-|> expect (Success (JNumber 0.0))
+|> parserEqual (Success (JNumber 0.0))
 
 #!fsharp
 
@@ -454,21 +454,21 @@ let jNumber_ = jNumber .>> spaces1
 //// test
 
 run jNumber_ "123"
-|> expect (Success (JNumber 123.0))
+|> parserEqual (Success (JNumber 123.0))
 
 #!fsharp
 
 //// test
 
 run jNumber_ "-123"
-|> expect (Success (JNumber -123.0))
+|> parserEqual (Success (JNumber -123.0))
 
 #!fsharp
 
 //// test
 
 run jNumber_ "-123."
-|> expect (
+|> parserEqual (
     Failure (
         "number andThen many1 whitespace",
         "Unexpected '.'",
@@ -481,14 +481,14 @@ run jNumber_ "-123."
 //// test
 
 run jNumber_ "123.4"
-|> expect (Success (JNumber 123.4))
+|> parserEqual (Success (JNumber 123.4))
 
 #!fsharp
 
 //// test
 
 run jNumber_ "00.4"
-|> expect (
+|> parserEqual (
     Failure (
         "number andThen many1 whitespace",
         "Unexpected '0'",
@@ -501,21 +501,21 @@ run jNumber_ "00.4"
 //// test
 
 run jNumber_ "123e4"
-|> expect (Success (JNumber 1230000.0))
+|> parserEqual (Success (JNumber 1230000.0))
 
 #!fsharp
 
 //// test
 
 run jNumber_ "123.4e5"
-|> expect (Success (JNumber 12340000.0))
+|> parserEqual (Success (JNumber 12340000.0))
 
 #!fsharp
 
 //// test
 
 run jNumber_ "123.4e-5"
-|> expect (Success (JNumber 0.001234))
+|> parserEqual (Success (JNumber 0.001234))
 
 #!markdown
 
@@ -554,14 +554,14 @@ jValueRef <|
 //// test
 
 run jArray "[ 1, 2 ]"
-|> expect (Success (JArray [JNumber 1.0; JNumber 2.0]))
+|> parserEqual (Success (JArray [JNumber 1.0; JNumber 2.0]))
 
 #!fsharp
 
 //// test
 
 run jArray "[ 1, 2, ]"
-|> expect (
+|> parserEqual (
     Failure (
         "array",
         "Unexpected ','",
@@ -609,7 +609,7 @@ jValueRef <|
 //// test
 
 run jObject """{ "a":1, "b"  :  2 }"""
-|> expect (
+|> parserEqual (
     Success (
         JObject (
             Map.ofList [
@@ -625,7 +625,7 @@ run jObject """{ "a":1, "b"  :  2 }"""
 //// test
 
 run jObject """{ "a":1, "b"  :  2, }"""
-|> expect (
+|> parserEqual (
     Failure (
         "object",
         "Unexpected ','",
@@ -650,7 +650,7 @@ let example1 = """{
     "emptyObject" : {}
 }"""
 run jValue example1
-|> expect (
+|> parserEqual (
     Success (
         JObject (
             Map.ofList [
@@ -675,7 +675,7 @@ run jValue example1
 
 //// test
 
-let example2= """{"widget": {
+let example2 = """{"widget": {
     "debug": "on",
     "window": {
         "title": "Sample Konfabulator Widget",
@@ -703,7 +703,7 @@ let example2= """{"widget": {
 }}"""
 
 run jValue example2
-|> expect (
+|> parserEqual (
     Success (
         JObject (
             Map.ofList [
@@ -780,7 +780,7 @@ let example3 = """{
   ]
 }"""
 run jValue example3
-|> expect (
+|> parserEqual (
     Success (
         JObject (
             Map.ofList [

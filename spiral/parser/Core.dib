@@ -1,0 +1,29 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp"}}
+
+#!fsharp
+
+let nl = Environment.NewLine
+
+#!fsharp
+
+//// ignore
+
+Formatter.ListExpansionLimit <- 100
+
+#!fsharp
+
+let escapeCell (input : string) =
+    input.Split [| '\n' |]
+    |> Array.map (fun line ->
+        if line.StartsWith "\\#!"
+        then System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
+        else line)
+    |> String.concat "\n"
+
+#!fsharp
+
+module String =
+    let trim (input : string) =
+        input.Trim ()
