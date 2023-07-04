@@ -1,18 +1,4 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
-
-#!fsharp
-
 let nl = Environment.NewLine
-
-#!fsharp
-
-//// ignore
-
-Formatter.ListExpansionLimit <- 100
-
-#!fsharp
 
 let escapeCell (input : string) =
     input.Split [| '\n' |]
@@ -21,8 +7,6 @@ let escapeCell (input : string) =
         | line -> line
     )
     |> String.concat "\n"
-
-#!fsharp
 
 module String =
     let trim (input : string) =

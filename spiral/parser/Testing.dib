@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp"}}
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
 #!fsharp
 
@@ -26,6 +26,8 @@ type AssertExceptionFormatter (ex) =
 Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter) -> x.Text), "text/html")
 
 #!fsharp
+
+//// ignore
 
 let _equal expected actual =
     printfn $"{actual.ToDisplayString ()}"
