@@ -5,6 +5,7 @@
 #!fsharp
 
 #r "nuget:FParsec"
+#r "nuget:Expecto"
 
 #!fsharp
 
@@ -46,13 +47,13 @@ let blocks =
     >>. sepEndBy block (skipMany1 newline)
 
 
-let formatBlock (block : Block) =
-    match block with
-    | { magic = "markdown"; content = content } ->
+let formatBlock kernel (block : Block) =
+    match kernel, block with
+    | _, { magic = "markdown"; content = content } ->
         content.Split [| '\n' |]
         |> Array.map (fun line -> $"// {line.Trim ()}")
         |> String.concat "\n"
-    | { magic = "fsharp"; content = content } when
+    | "fsharp", { magic = "fsharp"; content = content } when 
         (content.StartsWith "//// test"
         || content.StartsWith "//// ignore")
         |> not ->
@@ -61,9 +62,9 @@ let formatBlock (block : Block) =
             |> String.concat "\n"
     | _ -> ""
 
-let formatBlocks blocks =
+let formatBlocks kernel blocks =
     blocks
-    |> List.map formatBlock
+    |> List.map (formatBlock kernel)
     |> List.filter (fun s -> s <> "")
     |> String.concat "\n\n"
 
@@ -78,10 +79,11 @@ let parseDibCode kernel file =
     | Result.Ok blocks ->
         blocks
         |> List.filter (fun block -> block.magic = kernel || block.magic = "markdown")
-        |> formatBlocks
+        |> formatBlocks kernel
     | Result.Error msg -> failwith msg
 
 let writeDibCode kernel file =
+    printfn $"Parsing {file}"
     let output = parseDibCode kernel file
     let outputFileName =
         match kernel with
@@ -91,24 +93,100 @@ let writeDibCode kernel file =
 
 #!fsharp
 
-// __SOURCE_DIRECTORY__ with parser.dib
-let dibPath = System.IO.Path.Combine(__SOURCE_DIRECTORY__, "parser.dib")
-dibPath
+let escapeCell (input : string) =
+    input.Split [| '\n' |]
+    |> Array.map (fun line ->
+        if line.StartsWith "\\#!"
+        then System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
+        else line)
+    |> String.concat "\n"
 
 #!fsharp
 
-let dib = parseDibCode "fsharp" dibPath
-dib
+//// ignore
+
+let _equal expected actual =
+    "" |> Expecto.Expect.equal actual expected
+    printfn $"{actual}"
 
 #!fsharp
 
-writeDibCode "fsharp" dibPath
+//// ignore
+
+let example1 =
+    """#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"name":"fsharp"}]}}
+
+\#!fsharp
+
+##r "nuget:Expecto"
+
+\#!markdown
+
+## ParserLibrary
+
+\#!fsharp
+
+open System
+
+\#!markdown
+
+### TextInput
+
+\#!fsharp
+
+type Position =
+    {
+        line : int
+        column : int
+    }"""
+    |> escapeCell
+
+printfn $"{example1}"
+
+let blocks =
+    run example1
+    |> Result.toOption
+    |> Option.get
+blocks
 
 #!fsharp
 
-let dibContent = System.IO.File.ReadAllText dibPath
+//// test
+
+blocks
+|> (formatBlocks "fsharp")
+|> _equal """##r "nuget:Expecto"
+
+// ## ParserLibrary
+
+open System
+
+// ### TextInput
+
+type Position =
+    {
+        line : int
+        column : int
+    }"""
 
 #!fsharp
 
-let blocks = run dibContent
-blocks //|> formatBlocks
+//// test
+
+blocks
+|> (formatBlocks "markdown")
+|> _equal """// ## ParserLibrary
+
+// ### TextInput"""
+
+#!fsharp
+
+//// ignore
+
+match Environment.GetEnvironmentVariable "OUTPUT" with
+| "" | null -> ()
+| path when System.IO.File.Exists path -> path |> writeDibCode "fsharp"
+| path when path.Contains ";" -> path.Split [| ';' |] |> Array.iter (writeDibCode "fsharp")
+| _ -> System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), "DibParser.dib") |> writeDibCode "fsharp"

@@ -1,24 +1,8 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"name":"fsharp"}]}}
-
-#!fsharp
-
-#r "nuget:Expecto"
-
-#!markdown
-
-## Parser
-
-#!fsharp
+// ## Parser
 
 open System
 
-#!markdown
-
-### TextInput
-
-#!fsharp
+// ### TextInput
 
 type Position =
     {
@@ -26,29 +10,19 @@ type Position =
         column : int
     }
 
-#!fsharp
-
 let initialPos = { line = 0; column = 0 }
-
-#!fsharp
 
 let incrCol (pos : Position) =
     { pos with column = pos.column + 1 }
 
-#!fsharp
-
 let incrLine pos =
     { line = pos.line + 1; column = 0 }
-
-#!fsharp
 
 type InputState =
     {
         lines : string[]
         position : Position
     }
-
-#!fsharp
 
 let currentLine inputState =
     let linePos = inputState.position.line
@@ -57,8 +31,6 @@ let currentLine inputState =
     else
         "end of file"
 
-#!fsharp
-
 let fromStr str =
     if String.IsNullOrEmpty str then
         { lines = [||]; position = initialPos }
@@ -66,8 +38,6 @@ let fromStr str =
         let separators = [| "\r\n"; "\n" |]
         let lines = str.Split (separators, StringSplitOptions.None)
         { lines = lines; position = initialPos }
-
-#!fsharp
 
 let nextChar input =
     let linePos = input.position.line
@@ -88,11 +58,7 @@ let nextChar input =
             let newState = { input with position = newPos }
             newState, Some char
 
-#!markdown
-
-### Parser
-
-#!fsharp
+// ### Parser
 
 type Input = InputState
 type ParserLabel = string
@@ -115,8 +81,6 @@ type Parser<'a> =
         label : ParserLabel
     }
 
-#!fsharp
-
 let printResult result =
     match result with
     | Success (value, input) ->
@@ -128,37 +92,11 @@ let printResult result =
         let failureCaret = $"{' '.ToString().PadLeft colPos}^{error}"
         printfn $"Line:%i{linePos} Col:%i{colPos} Error parsing %s{label}\n%s{errorLine}\n%s{failureCaret}"
 
-#!fsharp
-
-//// ignore
-
-let _equal expected actual =
-    "" |> Expecto.Expect.equal actual expected
-
-let expect (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
-    match actual, expected with
-    | Success (_actual, _), Success _expected ->
-        printResult actual
-        _actual |> _equal _expected
-    | Failure (l1, e1, p1), Failure (l2, e2, p2) when l1 = l2 && e1 = e2 && p1 = p2 -> 
-        printResult actual
-    | _ ->
-        printfn $"Actual: {actual}"
-        printfn $"Expected: {expected}"
-        failwith "Parse failed"
-    actual
-
-#!fsharp
-
 let runOnInput parser input =
     parser.parseFn input
 
-#!fsharp
-
 let run parser inputStr =
     runOnInput parser (fromStr inputStr)
-
-#!fsharp
 
 let parserPositionFromInputState (inputState : Input) =
     {
@@ -167,12 +105,8 @@ let parserPositionFromInputState (inputState : Input) =
         column = inputState.position.column
     }
 
-#!fsharp
-
 let getLabel parser =
     parser.label
-
-#!fsharp
 
 let setLabel parser newLabel =
     let newInnerFn input =
@@ -182,11 +116,7 @@ let setLabel parser newLabel =
 
     { parseFn = newInnerFn; label = newLabel }
 
-#!fsharp
-
 let (<?>) = setLabel
-
-#!fsharp
 
 let satisfy predicate label =
     let innerFn input =
@@ -206,8 +136,6 @@ let satisfy predicate label =
 
     { parseFn = innerFn; label = label }
 
-#!fsharp
-
 let bindP f p =
     let label = "unknown"
     let innerFn input =
@@ -221,11 +149,7 @@ let bindP f p =
 
     { parseFn = innerFn; label = label }
 
-#!fsharp
-
 let (>>=) p f = bindP f p
-
-#!fsharp
 
 let returnP x =
     let label = $"%A{x}"
@@ -234,20 +158,12 @@ let returnP x =
     
     { parseFn = innerFn; label = label }
 
-#!fsharp
-
 let mapP f =
     bindP (f >> returnP)
 
-#!fsharp
-
 let (<!>) = mapP
 
-#!fsharp
-
 let (|>>) x f = mapP f x
-
-#!fsharp
 
 let applyP fP xP =
     fP >>= 
@@ -256,16 +172,10 @@ let applyP fP xP =
                 fun x ->
                     returnP (f x)
 
-#!fsharp
-
 let (<*>) = applyP
-
-#!fsharp
 
 let lift2 f xP yP =
     returnP f <*> xP <*> yP
-
-#!fsharp
 
 let andThen p1 p2 =
     p1 >>= 
@@ -275,11 +185,7 @@ let andThen p1 p2 =
                     returnP (p1Result, p2Result)
     <?> $"{getLabel p1} andThen {getLabel p2}"
 
-#!fsharp
-
 let (.>>.) = andThen
-
-#!fsharp
 
 let orElse p1 p2 =
     let label = $"{getLabel p1} orElse {getLabel p2}"
@@ -292,11 +198,7 @@ let orElse p1 p2 =
 
     { parseFn = innerFn; label = label }
 
-#!fsharp
-
 let (<|>) = orElse
-
-#!fsharp
 
 let choice listOfParsers =
     listOfParsers |> List.reduce (<|>)
@@ -310,8 +212,6 @@ let rec sequence parserList =
     | [] -> returnP []
     | head :: tail -> consP head (sequence tail)
 
-#!fsharp
-
 let rec parseZeroOrMore parser input =
     let firstResult = runOnInput parser input
     match firstResult with
@@ -323,15 +223,11 @@ let rec parseZeroOrMore parser input =
         let values = firstValue :: subsequentValues
         values, remainingInput
 
-#!fsharp
-
 let many parser =
     let label = $"many {getLabel parser}"
     let innerFn input =
         Success (parseZeroOrMore parser input)
     { parseFn = innerFn; label = label }
-
-#!fsharp
 
 let many1 p =
     p >>=
@@ -341,50 +237,34 @@ let many1 p =
                     returnP (head :: tail)
     <?> $"many1 {getLabel p}"
 
-#!fsharp
-
 let opt p =
     let some = p |>> Some
     let none = returnP None
     (some <|> none)
     <?> $"opt {getLabel p}"
 
-#!fsharp
-
 let (.>>) p1 p2 =
     p1 .>>. p2
     |> mapP fst
-
-#!fsharp
 
 let (>>.) p1 p2 =
     p1 .>>. p2
     |> mapP snd
 
-#!fsharp
-
 let between p1 p2 p3 =
     p1 >>. p2 .>> p3
-
-#!fsharp
 
 let sepBy1 p sep =
     let sepThenP = sep >>. p
     p .>>. many sepThenP
     |>> fun (p, pList) -> p :: pList
 
-#!fsharp
-
 let sepBy p sep =
     sepBy1 p sep <|> returnP []
-
-#!fsharp
 
 let pchar charToMatch =
     let predicate ch = ch = charToMatch
     satisfy predicate $"%c{charToMatch}"
-
-#!fsharp
 
 let anyOf listOfChars =
     listOfChars
@@ -392,24 +272,16 @@ let anyOf listOfChars =
     |> choice
     <?> $"anyOf %A{listOfChars}"
 
-#!fsharp
-
 let charListToStr charList =
     charList |> List.toArray |> String
-
-#!fsharp
 
 let manyChars cp =
     many cp
     |>> charListToStr
 
-#!fsharp
-
 let manyChars1 cp =
     many1 cp
     |>> charListToStr
-
-#!fsharp
 
 let pstring str =
     str
@@ -419,25 +291,15 @@ let pstring str =
     |> mapP charListToStr
     <?> str
 
-#!fsharp
-
 let whitespaceChar =
     satisfy Char.IsWhiteSpace "whitespace"
 
-#!fsharp
-
 let spaces = many whitespaceChar
-
-#!fsharp
 
 let spaces1 = many1 whitespaceChar
 
-#!fsharp
-
 let digitChar =
     satisfy Char.IsDigit "digit"
-
-#!fsharp
 
 let pint =
     let resultToInt (sign, digits) =
@@ -452,8 +314,6 @@ let pint =
     |> mapP resultToInt
     <?> "integer"
 
-#!fsharp
-
 let pfloat =
     let resultToFloat (((sign, digits1), point), digits2) =
         let fl = float $"{digits1}.{digits2}"
@@ -466,8 +326,6 @@ let pfloat =
     opt (pchar '-') .>>. digits .>>. pchar '.' .>>. digits
     |> mapP resultToFloat
     <?> "float"
-
-#!fsharp
 
 let createParserForwardedToRef<'a> () =
     let dummyParser : Parser<'a> =
@@ -482,8 +340,6 @@ let createParserForwardedToRef<'a> () =
     let wrapperParser = { parseFn = innerFn; label = "unknown" }
     
     wrapperParser, (fun v -> parserRef <- v)
-
-#!fsharp
 
 let (>>%) p x =
     p

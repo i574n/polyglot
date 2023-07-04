@@ -1,18 +1,42 @@
 function Invoke-Block {
     param (
         [string] $OnError = $ErrorActionPreference,
+        [Hashtable] $EnvironmentVariables,
         [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
     )
+    $originalEnvironmentVariables = @{}
+    if ($EnvironmentVariables) {
+        foreach ($var in $EnvironmentVariables.Keys) {
+            if (Test-Path "Env:$var") {
+                $originalEnvironmentVariables[$var] = (Get-Item "Env:$var").Value
+            }
+            Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
+        }
+    }
+
     & @ScriptBlock
-    if ($lastexitcode -ne 0) {
-        $msg = "# Invoke-Block / `$lastexitcode: $lastexitcode / `$OnError: $OnError / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
+
+    $exitcode = $lastexitcode
+
+    if ($EnvironmentVariables) {
+        foreach ($var in $EnvironmentVariables.Keys) {
+            if ($null -eq $originalEnvironmentVariables[$var]) {
+                Remove-Item "Env:$var"
+            } else {
+                Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
+            }
+        }
+    }
+
+    if ($exitcode -ne 0) {
+        $msg = "# Invoke-Block / `$lastexitcode: $exitcode / `$OnError: $OnError / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
 
         if ($OnError -eq "Stop") {
             if ($host.Name -match "Interactive") {
                 [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
             } else {
                 Write-Output $msg
-                exit $lastexitcode
+                exit $exitcode
             }
         }
     }
