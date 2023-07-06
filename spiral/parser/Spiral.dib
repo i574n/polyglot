@@ -1,0 +1,38 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!fsharp
+
+#!import Core.dib
+
+#!fsharp
+
+$"a{nl}b"
+
+#!spiral
+
+let nl2 = System.Environment.NewLine
+
+let a () =
+    $"a{nl2}b"
+
+a ()
+
+#!spiral
+
+type ticks = i64
+nominal any = $"obj"
+nominal exn = $"exn"
+nominal guid = $"System.Guid"
+nominal date_time = $"System.DateTime"
+nominal disposable = $"System.IDisposable"
+nominal async t = $"Async<`t>"
+
+
+union log_level_type =
+    | Verbose
+    | Debug
+    | Info
+    | Warn
+    | Error

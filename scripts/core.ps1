@@ -66,3 +66,20 @@ function Update-Toml {
 
     $tomlContent | ConvertTo-Toml -Depth 3 | Set-Content -Path $tomlPath
 }
+
+function Update-Json {
+    param (
+        [Parameter(Mandatory)] [string] $jsonPath,
+        [Parameter(Mandatory)] [scriptblock] $ContentModifier
+    )
+
+    if (!(Test-Path $jsonPath)) {
+        New-Item -ItemType File -Path $jsonPath -Force | Out-Null
+    }
+
+    $jsonContent = Get-Content $jsonPath | ConvertFrom-Json
+
+    $jsonContent = &$ContentModifier $jsonContent
+
+    $jsonContent | ConvertTo-Json -Depth 10 | Set-Content -Path $jsonPath
+}

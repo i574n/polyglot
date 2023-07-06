@@ -4,21 +4,17 @@ $ErrorActionPreference = "Stop"
 . ../scripts/core.ps1
 
 
-$spiralPath = "../deps/The-Spiral-Language"
+$interactivePath = "../deps/dotnet-interactive"
 
-$extensionSrcPath = "$spiralPath/VS Code Plugin"
+$extensionSrcPath = "$interactivePath/src/polyglot-notebooks-vscode-insiders"
 
 $json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
 $vsixName = $json.name + "-" + $json.version + ".vsix"
 $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
-Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction SilentlyContinue
-
-Copy-Item -Recurse "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
-
 Set-Location $extensionSrcPath
 npm install
-npx tsc --build
+npm run compile
 npx @vscode/vsce package
 Set-Location $ScriptDir
 
@@ -47,9 +43,18 @@ if ($IsLinux) {
 }
 
 foreach ($extensionsPath in $extensionsPath) {
-    $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
+    $version = Get-ChildItem -Path $extensionsPath -Filter "$($json.publisher).$($json.name)-*" | Sort-Object -Property Name -Descending | Select-Object -First 1 | ForEach-Object { $_.Name.Substring("$($json.publisher).$($json.name)-".Length) }
+
+    if ($null -eq $version) {
+        Write-Output "Skipping copying extension to $extensionsPath"
+        continue
+    }
+
+    $extensionDestDir = $json.publisher + "." + $json.name + "-" + $version
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
     Write-Output "Copying extension to $extensionPath"
+
+    $currentJson = Get-Content (Join-Path -Path $extensionPath -ChildPath "package.json") | ConvertFrom-Json
 
     Remove-Item $extensionPath -Recurse -Force -ErrorAction SilentlyContinue
 
@@ -72,21 +77,13 @@ foreach ($extensionsPath in $extensionsPath) {
 
     Remove-Item "$extensionPath/dist" -Recurse -Force
 
-    Update-Toml -tomlPath "$ScriptDir/extension.toml" -ContentModifier {
-        param($tomlContent)
-
-        if ($null -eq $tomlContent.extension) {
-            $tomlContent.extension = @{}
+    Update-Json -jsonPath "$extensionPath/package.json" -ContentModifier {
+        param($jsonContent)
+        $jsonContent.version = $version
+        if (-not $jsonContent.__metadata) {
+            $jsonContent | Add-Member -NotePropertyName "__metadata" -NotePropertyValue @{}
         }
-
-        if ($null -eq $tomlContent.extension.paths) {
-            $tomlContent.extension.paths = @()
-        }
-
-        if (($tomlContent.extension.paths | Where-Object { $_ -eq $extensionPath }).Length -eq 0) {
-            $tomlContent.extension.paths += $extensionPath
-        }
-
-        return $tomlContent
+        $jsonContent.__metadata = $currentJson.__metadata
+        return $jsonContent
     }
 }

@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 
 
 Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
-git clone https://github.com/i574n/dotnet-repl.git
+git clone --recurse-submodules https://github.com/i574n/dotnet-repl.git
 Set-Location $ScriptDir
 
 $path = "$HOME/.nuget/packages/dotnet-repl"
