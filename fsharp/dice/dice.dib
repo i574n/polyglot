@@ -94,7 +94,7 @@ inverseTransformSamplingRollN 0
 let inverseTransformSamplingRoll2 log max =
     let rec numDice n =
         if log then printfn $"numDice / n: {n} / max: {max} / pown: {pown 6 n}"
-        if pown 6 n >= max
+        if pown 6 n > max
         then n
         else numDice (n + 1)
 
@@ -105,7 +105,7 @@ let inverseTransformSamplingRoll2 log max =
             acc
         else
             let roll = rollD6 ()
-            let value = roll * (pown 6 (power - 1))
+            let value = (roll - 1) * (pown 6 power)
             if log then printfn $"rollAcc / acc: {acc} / power: {power} / roll: {roll} / value: {value}"
             rollAcc (acc + value) (power - 1)
 
@@ -113,7 +113,7 @@ let inverseTransformSamplingRoll2 log max =
         let result = rollAcc 0 power
         if log then printfn $"rollMax / power: {power} / result: {result}"
         if result < max
-        then result
+        then result + 1
         else rollMax power
 
     rollMax ((numDice 1) - 1)
@@ -132,7 +132,29 @@ let inverseTransformSamplingRoll2 log max =
 
 //// ignore
 
-inverseTransformSamplingRoll2 true 10
+inverseTransformSamplingRoll2 true 2000
+
+#!fsharp
+
+//// ignore
+
+let max = 10
+let n = 30
+let even = (n / max) |> int
+
+let rec inverseTransformSamplingRoll2N current =
+    let roll = rollMax inverseTransformSamplingRoll2 max n
+    if roll |> List.forall ((=) even)
+    then current
+    else inverseTransformSamplingRoll2N (current + 1)
+
+inverseTransformSamplingRoll2N 0
+
+#!fsharp
+
+//// ignore
+
+[1..100] |> List.map (fun _ -> inverseTransformSamplingRoll2N 0) |> List.map float |> List.average
 
 #!markdown
 
@@ -221,7 +243,7 @@ let rejectionSamplingRoll2 log max =
             acc
         else
             let roll = rollD6 ()
-            let value = roll * (pown 6 (power - 1))
+            let value = (roll - 1) * (pown 6 power)
             if log then printfn $"rollAcc / acc: {acc} / power: {power} / roll: {roll} / value: {value}"
             rollAcc (acc + value) (power - 1)
 
@@ -249,3 +271,35 @@ let rejectionSamplingRoll2 log max =
 //// ignore
 
 rejectionSamplingRoll2 true 10
+
+#!fsharp
+
+//// ignore
+
+[1..100]
+|> List.map (fun _ -> rejectionSamplingRoll2 false 10)
+|> List.groupBy id
+|> List.map (fun (k, v) -> k, v.Length)
+|> List.sortBy fst
+
+#!fsharp
+
+//// ignore
+
+let max = 10
+let n = 30
+let even = (n / max) |> int
+
+let rec rejectionSamplingRoll2N current =
+    let roll = rollMax rejectionSamplingRoll2 max n
+    if roll |> List.forall ((=) even)
+    then current
+    else rejectionSamplingRoll2N (current + 1)
+
+rejectionSamplingRoll2N 0
+
+#!fsharp
+
+//// ignore
+
+[1..100] |> List.map (fun _ -> rejectionSamplingRoll2N 0) |> List.map float |> List.average
