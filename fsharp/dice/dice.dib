@@ -12,61 +12,137 @@ let rollD6 () = random.Next (1, 7)
 
 #!fsharp
 
+let generateRoll log max rollGenerator =
+    let rec rollAcc power acc =
+        if power < 0
+        then
+            if log then printfn $"rollAcc / acc: {acc} / power: {power}"
+            Some(acc)
+        else
+            match rollGenerator() with
+            | None -> None
+            | Some roll ->
+                let value = (roll - 1) * (pown 6 power)
+                if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+                rollAcc (power - 1) (acc + value)
+
+    let rec rollMax power =
+        match rollAcc power 0 with
+        | Some result when result >= 1 && result <= max ->
+            if log then printfn $"rollMax / power: {power} / result: {result}"
+            Some result
+        | _ -> rollMax power
+
+    rollMax (numDices log max)
+
+let progressiveRoll log max =
+    generateRoll log max (fun () -> Some(rollD6()))
+
+let fixedRoll log max (rolls : int list) : int option =
+    let rollGenerator =
+        let rollsRef = ref rolls
+        fun () ->
+            match !rollsRef with
+            | [] -> None
+            | roll :: tail ->
+                rollsRef := tail
+                Some roll
+    generateRoll log max rollGenerator
+
+#!fsharp
+
+let rec rollAcc log power acc rollFn rolls =
+    match rolls with
+    | [] when power >= 0 -> None
+    | [] -> Some acc
+    | roll :: tail when power < 0 ->
+        if log then printfn $"rollAcc / acc: {acc} / power: {power}"
+        Some acc
+    | roll :: tail ->
+        let value = roll * (pown 6 power)
+        if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+        rollAcc log (power - 1) (acc + value) rollFn tail
+
+let progressiveRoll log max =
+    let rec rollMax power =
+        let result = rollAcc log power 0 rollD6 [0..power]
+        if log then printfn $"rollMax / power: {power} / result: {result}"
+        match result with
+        | Some r when r >= 1 && r <= max -> Some r
+        | _ -> rollMax power
+
+    rollMax ((numDices log max) - 1)
+
+let fixedRoll log max (rolls : int list) : int option =
+    let power = (numDices log max) - 1
+    let result = rollAcc log power 0 (fun _ -> 0) rolls
+    match result with
+    | Some r when r >= 1 && r <= max -> Some r
+    | _ -> None
+
+#!fsharp
+
+//// ignore
+
+progressiveRoll true 2000
+
+#!fsharp
+
+let rec numDices log max =
+    let rec numDices' n =
+        if log then printfn $"numDices / n: {n} / max: {max} / pown: {pown 6 n}"
+        if pown 6 n >= max
+        then n
+        else numDices' (n + 1)
+    numDices' 0
+
+#!fsharp
+
+let progressiveRoll log max =
+    let rec rollAcc power acc =
+        if power < 0
+        then
+            if log then printfn $"rollAcc / acc: {acc} / power: {power}"
+            acc
+        else
+            let roll = rollD6 ()
+            let value = (roll - 1) * (pown 6 power)
+            if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+            rollAcc (power - 1) (acc + value)
+
+    let rec rollMax power =
+        let result = rollAcc power 0
+        if log then printfn $"rollMax / power: {power} / result: {result}"
+        if result >= 1 && result <= max
+        then result
+        else rollMax power
+
+    rollMax ((numDices log max) - 1)
+
+#!fsharp
+
+//// ignore
+
+progressiveRoll true 2000
+
+#!fsharp
+
+//// ignore
+
+[1..100]
+|> List.map (fun _ -> progressiveRoll false 10)
+|> List.groupBy id
+|> List.map (fun (k, v) -> k, v.Length)
+|> List.sortBy fst
+
+#!fsharp
+
 let rollMax fn max n =
     [1..n]
     |> List.map (fun _ -> fn false max)
     |> List.groupBy id
     |> List.map (fun (_, v) -> v.Length)
 
-#!markdown
-
-### Inverse Transform Sampling
-
-#!fsharp
-
-let inverseTransformSamplingRoll log max =
-    let rec numDice n =
-        if log then printfn $"numDice / n: {n} / max: {max} / pown: {pown 6 n}"
-        if pown 6 n >= max
-        then n
-        else numDice (n + 1)
-
-    let rec rollAcc acc power =
-        if power < 0
-        then
-            if log then printfn $"rollAcc / acc: {acc} / power: {power}"
-            acc
-        else
-            let roll = rollD6 () - 1
-            let value = roll * (pown 6 power)
-            if log then printfn $"rollAcc / acc: {acc} / power: {power} / roll: {roll} / value: {value}"
-            rollAcc (acc + value) (power - 1)
-
-    let rec rollMax power =
-        let result = rollAcc 0 power
-        if log then printfn $"rollMax / power: {power} / result: {result}"
-        if result < max
-        then result + 1
-        else rollMax power
-
-    rollMax ((numDice 1) - 1)
-
-#!fsharp
-
-//// ignore
-
-inverseTransformSamplingRoll true 2000
-
-#!fsharp
-
-//// ignore
-
-[1..100]
-|> List.map (fun _ -> inverseTransformSamplingRoll false 10)
-|> List.groupBy id
-|> List.map (fun (k, v) -> k, v.Length)
-|> List.sortBy fst
-
 #!fsharp
 
 //// ignore
@@ -75,231 +151,99 @@ let max = 10
 let n = 30
 let even = (n / max) |> int
 
-let rec inverseTransformSamplingRollN current =
-    let roll = rollMax inverseTransformSamplingRoll max n
+let rec rollN current =
+    let roll = rollMax progressiveRoll max n
     if roll |> List.forall ((=) even)
     then current
-    else inverseTransformSamplingRollN (current + 1)
+    else rollN (current + 1)
 
-inverseTransformSamplingRollN 0
+rollN 0
 
 #!fsharp
 
 //// ignore
 
-[1..100] |> List.map (fun _ -> inverseTransformSamplingRollN 0) |> List.map float |> List.average
+[1..100] |> List.map (fun _ -> rollN 0) |> List.map float |> List.average
 
 #!fsharp
 
-let inverseTransformSamplingRoll2 log max =
-    let rec numDice n =
-        if log then printfn $"numDice / n: {n} / max: {max} / pown: {pown 6 n}"
-        if pown 6 n > max
-        then n
-        else numDice (n + 1)
+let max = 2000
+let dices = numDices true max
+dices
 
-    let rec rollAcc acc power =
-        if power < 0
-        then
-            if log then printfn $"rollAcc / acc: {acc} / power: {power}"
-            acc
-        else
-            let roll = rollD6 ()
+#!fsharp
+
+let rec rollAcc log rollFn power acc =
+    if power < 0
+    then
+        if log then printfn $"rollAcc / acc: {acc} / power: {power}"
+        Some acc
+    else
+        match rollFn () with
+        | None -> None
+        | Some roll ->
             let value = (roll - 1) * (pown 6 power)
-            if log then printfn $"rollAcc / acc: {acc} / power: {power} / roll: {roll} / value: {value}"
-            rollAcc (acc + value) (power - 1)
+            if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+            rollAcc log rollFn (power - 1) (acc + value)
 
+let progressiveRoll log max =
     let rec rollMax power =
-        let result = rollAcc 0 power
-        if log then printfn $"rollMax / power: {power} / result: {result}"
-        if result < max
-        then result + 1
-        else rollMax power
+        match rollAcc log (fun () -> Some (rollD6 ())) power 0 with
+        | None -> failwith "Invalid roll"
+        | Some result ->
+            if log then printfn $"rollMax / power: {power} / result: {result}"
+            if result >= 1 && result <= max
+            then result
+            else rollMax power
 
-    rollMax ((numDice 1) - 1)
+    rollMax ((numDices log max) - 1)
 
-#!fsharp
+let fixedRoll log max rolls =
+    let rec rollMax power rolls =
+        let mutable rolls = rolls
+        let rollFn () =
+            match rolls with
+            | [] -> None
+            | roll :: tail ->
+                rolls <- tail
+                printfn $"  rollFn / roll: {roll} / power: {power}"
+                Some roll
+        match rollAcc log rollFn power 0 with
+        | None -> None
+        | Some result when result >= 1 && result <= max -> Some result
+        | _ -> rollMax power rolls
 
-//// ignore
-
-[1..100]
-|> List.map (fun _ -> inverseTransformSamplingRoll2 false 10)
-|> List.groupBy id
-|> List.map (fun (k, v) -> k, v.Length)
-|> List.sortBy fst
-
-#!fsharp
-
-//// ignore
-
-inverseTransformSamplingRoll2 true 2000
-
-#!fsharp
-
-//// ignore
-
-let max = 10
-let n = 30
-let even = (n / max) |> int
-
-let rec inverseTransformSamplingRoll2N current =
-    let roll = rollMax inverseTransformSamplingRoll2 max n
-    if roll |> List.forall ((=) even)
-    then current
-    else inverseTransformSamplingRoll2N (current + 1)
-
-inverseTransformSamplingRoll2N 0
+    rollMax (List.length rolls - 1) rolls
 
 #!fsharp
 
-//// ignore
-
-[1..100] |> List.map (fun _ -> inverseTransformSamplingRoll2N 0) |> List.map float |> List.average
-
-#!markdown
-
-### Rejection Sampling Roll
+fixedRoll true 2000 [1; 5; 4; 4; 5]
 
 #!fsharp
 
-let rejectionSamplingRoll log max =
-    let rec numDice n =
-        if log then printfn $"numDice / n: {n} / max: {max} / pown: {pown 6 n}"
-        if pown 6 n > max
-        then n
-        else numDice (n + 1)
-
-    let rec rollAcc acc power =
-        if power < 0
-        then
-            if log then printfn $"rollAcc / acc: {acc} / power: {power}"
-            acc
-        else
-            let roll = rollD6 () - 1
-            let value = roll * (pown 6 power)
-            if log then printfn $"rollAcc / acc: {acc} / power: {power} / roll: {roll} / value: {value}"
-            rollAcc (acc + value) (power - 1)
-
-    let rec rollMax power =
-        let result = rollAcc 0 power
-        if log then printfn $"rollMax / power: {power} / result: {result}"
-        if result >= 1 && result <= max
-        then result
-        else rollMax power
-
-    rollMax ((numDice 1) - 1)
+fixedRoll true 2000 [2; 2; 6; 4; 5]
 
 #!fsharp
 
-//// ignore
-
-rejectionSamplingRoll true 2000
+fixedRoll true 2000 [4; 1; 1; 2; 3]
 
 #!fsharp
 
-//// ignore
+let fixedRoll log max rolls =
+    let rec rollAcc power acc rolls =
+        match rolls with
+        | [] when power < 0 -> Some acc
+        | [] -> None
+        | roll :: tail ->
+            if power < 0
+            then
+                if log then printfn $"rollAcc / acc: {acc} / power: {power}"
+                Some acc
+            else
+                let value = (roll - 1) * (pown 6 power)
+                if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+                rollAcc (power - 1) (acc + value) tail
 
-[1..100]
-|> List.map (fun _ -> rejectionSamplingRoll false 10)
-|> List.groupBy id
-|> List.map (fun (k, v) -> k, v.Length)
-|> List.sortBy fst
-
-#!fsharp
-
-//// ignore
-
-let max = 10
-let n = 30
-let even = (n / max) |> int
-
-let rec rejectionSamplingRollN current =
-    let roll = rollMax rejectionSamplingRoll max n
-    if roll |> List.forall ((=) even)
-    then current
-    else rejectionSamplingRollN (current + 1)
-
-rejectionSamplingRollN 0
-
-#!fsharp
-
-//// ignore
-
-[1..100] |> List.map (fun _ -> rejectionSamplingRollN 0) |> List.map float |> List.average
-
-#!fsharp
-
-let rejectionSamplingRoll2 log max =
-    let rec numDice n =
-        if log then printfn $"numDice / n: {n} / max: {max} / pown: {pown 6 n}"
-        if pown 6 n > max
-        then n
-        else numDice (n + 1)
-
-    let rec rollAcc acc power =
-        if power < 0
-        then
-            if log then printfn $"rollAcc / acc: {acc} / power: {power}"
-            acc
-        else
-            let roll = rollD6 ()
-            let value = (roll - 1) * (pown 6 power)
-            if log then printfn $"rollAcc / acc: {acc} / power: {power} / roll: {roll} / value: {value}"
-            rollAcc (acc + value) (power - 1)
-
-    let rec rollMax power =
-        let result = rollAcc 0 power
-        if log then printfn $"rollMax / power: {power} / result: {result}"
-        if result >= 1 && result <= max
-        then result
-        else rollMax power
-
-    rollMax ((numDice 1) - 1)
-
-#!fsharp
-
-//// ignore
-
-[1..100]
-|> List.map (fun _ -> rejectionSamplingRoll2 false 10)
-|> List.groupBy id
-|> List.map (fun (k, v) -> k, v.Length)
-|> List.sortBy fst
-
-#!fsharp
-
-//// ignore
-
-rejectionSamplingRoll2 true 10
-
-#!fsharp
-
-//// ignore
-
-[1..100]
-|> List.map (fun _ -> rejectionSamplingRoll2 false 10)
-|> List.groupBy id
-|> List.map (fun (k, v) -> k, v.Length)
-|> List.sortBy fst
-
-#!fsharp
-
-//// ignore
-
-let max = 10
-let n = 30
-let even = (n / max) |> int
-
-let rec rejectionSamplingRoll2N current =
-    let roll = rollMax rejectionSamplingRoll2 max n
-    if roll |> List.forall ((=) even)
-    then current
-    else rejectionSamplingRoll2N (current + 1)
-
-rejectionSamplingRoll2N 0
-
-#!fsharp
-
-//// ignore
-
-[1..100] |> List.map (fun _ -> rejectionSamplingRoll2N 0) |> List.map float |> List.average
+    match rollAcc (List.length rolls - 1) 0 rolls with
+    | Some r when r >= 1 && r <= max -> Some r
+    | _ -> None
