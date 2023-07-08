@@ -12,13 +12,13 @@ let rollD6 () = random.Next (1, 7)
 
 #!fsharp
 
-let rec numDices log max =
-    let rec numDices' n =
-        if log then printfn $"numDices / n: {n} / max: {max} / pown: {pown 6 n}"
-        if pown 6 n >= max
+let numDices log max =
+    let rec numDices' n p =
+        if log then printfn $"numDices / n: {n} / max: {max} / p: {p}"
+        if p >= max
         then n
-        else numDices' (n + 1)
-    numDices' 0
+        else numDices' (n + 1) (p * 6)
+    numDices' 0 1
 
 #!fsharp
 
@@ -43,11 +43,14 @@ let fixedRoll log max rolls =
 
 let progressiveRoll log max =
     let rec rollMax power =
-        let rolls = List.init (power + 1) (fun _ -> rollD6 ())
-        match rollAcc log rolls power 0 with
-        | Some (result, _) when result >= 1 && result <= max -> result
-        | _ -> rollMax power
-
+        let rec loop rolls size =
+            if size < power + 1
+            then loop (rollD6 () :: rolls) (size + 1)
+            else
+                match rollAcc log rolls power 0 with
+                | Some (result, _) when result >= 1 && result <= max -> result
+                | _ -> loop (rollD6 () :: rolls) (size + 1)
+        loop [] 0
     rollMax ((numDices log max) - 1)
 
 #!fsharp
