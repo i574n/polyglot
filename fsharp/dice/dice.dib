@@ -22,37 +22,43 @@ let numDices log max =
 
 #!fsharp
 
-let rec rollAcc log rolls power acc coeff =
+let pow6 = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
+pow6
+
+#!fsharp
+
+let rec rollAcc log rolls power acc =
     match rolls with
     | _ when power < 0 ->
         if log then printfn $"rollAcc / power: {power} / acc: {acc}"
         Some (acc, rolls)
     | [] -> None
     | roll :: rest when roll > 1 ->
+        let coeff = pow6 |> Seq.item power
         let value = (roll - 1) * coeff
         if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
-        rollAcc log rest (power - 1) (acc + value) (coeff / 6)
+        rollAcc log rest (power - 1) (acc + value)
     | roll :: rest ->
         if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll}"
-        rollAcc log rest (power - 1) acc (coeff / 6)
+        rollAcc log rest (power - 1) acc
 
 let fixedRoll log max rolls =
     let rec rollMax power =
-        match rollAcc log rolls power 0 (pown 6 power) with
+        match rollAcc log rolls power 0 with
         | Some (result, _) when result >= 1 && result <= max -> Some result
         | _ -> None
 
     rollMax (List.length rolls - 1)
 
-let progressiveRoll log max =
+let progressiveRoll log reroll max =
     let rec rollMax power =
-        let coeff = pown 6 power
         let rec loop rolls size =
             if size < power + 1
             then loop (rollD6 () :: rolls) (size + 1)
             else
-                match rollAcc log rolls power 0 coeff with
+                match rollAcc log rolls power 0 with
                 | Some (result, _) when result >= 1 && result <= max -> result
+                | _ when reroll -> loop (List.init power (fun _ -> rollD6 ())) power
                 | _ -> loop (rollD6 () :: rolls) (size + 1)
         loop [] 0
     rollMax ((numDices log max) - 1)
@@ -61,14 +67,14 @@ let progressiveRoll log max =
 
 //// ignore
 
-progressiveRoll true 2000
+progressiveRoll true false 2000
 
 #!fsharp
 
 //// ignore
 
 [1..100]
-|> List.map (fun _ -> progressiveRoll false 10)
+|> List.map (fun _ -> progressiveRoll false true 10)
 |> List.groupBy id
 |> List.map (fun (k, v) -> k, v.Length)
 |> List.sortBy fst
@@ -77,7 +83,7 @@ progressiveRoll true 2000
 
 let rollMax fn max n =
     [1..n]
-    |> List.map (fun _ -> fn false max)
+    |> List.map (fun _ -> fn max)
     |> List.groupBy id
     |> List.map (fun (_, v) -> v.Length)
 
@@ -90,7 +96,7 @@ let n = 30
 let even = (n / max) |> int
 
 let rec rollN current =
-    let roll = rollMax progressiveRoll max n
+    let roll = rollMax (progressiveRoll false true) max n
     if roll |> List.forall ((=) even)
     then current
     else rollN (current + 1)
@@ -101,7 +107,14 @@ rollN 0
 
 //// ignore
 
-[1..100] |> List.map (fun _ -> rollN 0) |> List.map float |> List.average
+[1..100]
+|> List.map (fun i ->
+    let roll = rollN 0
+    printfn $"i: {i} / roll: {roll}"
+    roll
+)
+|> List.map float
+|> List.average
 
 #!fsharp
 
