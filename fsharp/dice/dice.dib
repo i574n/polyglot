@@ -22,20 +22,23 @@ let numDices log max =
 
 #!fsharp
 
-let rec rollAcc log rolls power acc =
-    match rolls, power with
-    | _, power when power < 0 ->
+let rec rollAcc log rolls power acc coeff =
+    match rolls with
+    | _ when power < 0 ->
         if log then printfn $"rollAcc / power: {power} / acc: {acc}"
         Some (acc, rolls)
-    | [], _ -> None
-    | roll :: rest, _ ->
-        let value = (roll - 1) * (pown 6 power)
+    | [] -> None
+    | roll :: rest when roll > 1 ->
+        let value = (roll - 1) * coeff
         if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
-        rollAcc log rest (power - 1) (acc + value)
+        rollAcc log rest (power - 1) (acc + value) (coeff / 6)
+    | roll :: rest ->
+        if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll}"
+        rollAcc log rest (power - 1) acc (coeff / 6)
 
 let fixedRoll log max rolls =
     let rec rollMax power =
-        match rollAcc log rolls power 0 with
+        match rollAcc log rolls power 0 (pown 6 power) with
         | Some (result, _) when result >= 1 && result <= max -> Some result
         | _ -> None
 
@@ -43,11 +46,12 @@ let fixedRoll log max rolls =
 
 let progressiveRoll log max =
     let rec rollMax power =
+        let coeff = pown 6 power
         let rec loop rolls size =
             if size < power + 1
             then loop (rollD6 () :: rolls) (size + 1)
             else
-                match rollAcc log rolls power 0 with
+                match rollAcc log rolls power 0 coeff with
                 | Some (result, _) when result >= 1 && result <= max -> result
                 | _ -> loop (rollD6 () :: rolls) (size + 1)
         loop [] 0
