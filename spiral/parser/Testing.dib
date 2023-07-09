@@ -34,5 +34,5 @@ let _equal expected actual =
     try
         "Testing._equal" |> Expecto.Expect.equal actual expected
     with :? Expecto.AssertException as ex ->
-        AssertExceptionFormatter(ex).Display() |> ignore
+        AssertExceptionFormatter(ex).Display () |> ignore
         failwith (ex.GetType().FullName)
