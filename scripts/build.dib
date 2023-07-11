@@ -9,7 +9,7 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../spiral/parser/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../apps/parser/build.ps1" } | Invoke-Block
 
 #!pwsh
 

@@ -1,7 +1,7 @@
 clr / tests / printfn
-[37m[[37m18:52:46 [37mINF[37m] [37mEXPECTO? Running tests...[37m [37m<[37mExpecto[37m>[37m
+[37m[[37m01:14:22 [37mINF[37m] [37mEXPECTO? Running tests...[37m [37m<[37mExpecto[37m>[37m
 [0m[1000D[?25hAsync timeout reached (2000)
 [0m[1000D[?25hAsync timeout reached (2000)
 [0m[1000D[?25hAsync timeout reached (2000)
-[0m[1000D[?25h[37m[[37m18:52:48 [37mINF[37m] [37mEXPECTO! [36m4[37m tests run in [32m00:00:02.2503274[37m for [36mFsCheck samples[37m – [36m4[37m passed, [36m0[37m ignored, [36m0[37m failed, [36m0[37m errored. [36mSuccess![37m [37m<[37mExpecto[37m>[37m
+[0m[1000D[?25h[37m[[37m01:14:24 [37mINF[37m] [37mEXPECTO! [36m4[37m tests run in [32m00:00:02.2274368[37m for [36mFsCheck samples[37m – [36m4[37m passed, [36m0[37m ignored, [36m0[37m failed, [36m0[37m errored. [36mSuccess![37m [37m<[37mExpecto[37m>[37m
 [0m
