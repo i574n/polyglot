@@ -6,4 +6,4 @@ $ErrorActionPreference = "Stop"
 
 { dotnet repl --run Parser.dib --output-path Parser.repl.ipynb --exit-after-run } | Invoke-Block
 { dotnet repl --run JsonParser.dib --output-path JsonParser.repl.ipynb --exit-after-run } | Invoke-Block
-{ dotnet repl --run DibParser.dib --output-path DibParser.repl.ipynb --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "OUTPUT" = "Core.dib;Parser.dib;JsonParser.dib;DibParser.dib" }
+{ dotnet repl --run DibParser.dib --output-path DibParser.repl.ipynb --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "OUTPUT" = "../../nbs/Core.dib;Parser.dib;JsonParser.dib;DibParser.dib" }

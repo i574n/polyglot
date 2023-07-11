@@ -8,7 +8,7 @@ let nl = Environment.NewLine
 
 #!fsharp
 
-//// ignore
+//// test
 
 Formatter.ListExpansionLimit <- 100
 

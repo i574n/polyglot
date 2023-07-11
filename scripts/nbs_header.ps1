@@ -1,9 +1,3 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
-
-#!pwsh
-
 $ScriptDir =
     [Environment]::CommandLine -match '--working-dir\s+(\S+)' ?
         $Matches[1] :

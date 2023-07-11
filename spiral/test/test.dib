@@ -4,7 +4,7 @@
 
 #!pwsh
 
-#!import ../../scripts/header.dib
+. ../../scripts/nbs_header.ps1
 . ../../scripts/core.ps1
 
 #!pwsh

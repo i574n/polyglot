@@ -4,7 +4,8 @@
 
 #!fsharp
 
-#!import Testing.dib
+#!import ../../nbs/Core.dib
+#!import ../../nbs/Testing.dib
 
 #!fsharp
 
@@ -246,6 +247,7 @@ let formatBlocks kernel blocks =
     |> List.map (formatBlock kernel)
     |> List.filter (fun s -> s <> "")
     |> String.concat "\n\n"
+    |> fun s -> s + "\n"
 
 #!fsharp
 
@@ -282,7 +284,8 @@ result |> _equal """// a
 
 // c
 
-let a = 1"""
+let a = 1
+"""
 
 #!fsharp
 
@@ -315,7 +318,7 @@ let writeDibCode kernel file =
 
 #!fsharp
 
-//// ignore
+//// test
 
 let example1 =
     """#!meta
@@ -373,7 +376,8 @@ type Position =
     {
         line : int
         column : int
-    }"""
+    }
+"""
 
 #!fsharp
 
@@ -383,11 +387,12 @@ blocks1
 |> (formatBlocks "markdown")
 |> _equal """// ## ParserLibrary
 
-// ### TextInput"""
+// ### TextInput
+"""
 
 #!fsharp
 
-//// ignore
+//// test
 
 match Environment.GetEnvironmentVariable "OUTPUT" with
 | "" | null -> ()

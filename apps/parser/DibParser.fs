@@ -58,6 +58,7 @@ let formatBlocks kernel blocks =
     |> List.map (formatBlock kernel)
     |> List.filter (fun s -> s <> "")
     |> String.concat "\n\n"
+    |> fun s -> s + "\n"
 
 let run input =
     match run blocks input with

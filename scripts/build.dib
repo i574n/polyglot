@@ -4,7 +4,7 @@
 
 #!pwsh
 
-#!import header.dib
+. ./nbs_header.ps1
 . ./core.ps1
 
 #!pwsh
@@ -29,8 +29,8 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../fsharp/dice/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../apps/dice/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../fsharp/perf/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../apps/perf/build.ps1" } | Invoke-Block

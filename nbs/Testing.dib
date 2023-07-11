@@ -1,10 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
-
-#!fsharp
-
-#!import Core.dib
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
 
 #!fsharp
 
@@ -12,7 +8,7 @@
 
 #!fsharp
 
-//// ignore
+//// test
 
 type AssertExceptionFormatter (ex) =
     member _.Text =
@@ -27,12 +23,15 @@ Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter
 
 #!fsharp
 
-//// ignore
+//// test
 
-let _equal expected actual =
-    printfn $"{actual.ToDisplayString ()}"
+let __equal log expected actual =
+    if log then printfn $"{actual.ToDisplayString ()}"
     try
         "Testing._equal" |> Expecto.Expect.equal actual expected
     with :? Expecto.AssertException as ex ->
         AssertExceptionFormatter(ex).Display () |> ignore
         failwith (ex.GetType().FullName)
+
+let _equal expected actual =
+    __equal true expected actual

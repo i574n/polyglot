@@ -4,7 +4,7 @@
 
 #!pwsh
 
-#!import header.dib
+. ./nbs_header.ps1
 . ./core.ps1
 
 #!pwsh

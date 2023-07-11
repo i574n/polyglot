@@ -4,7 +4,7 @@
 
 #!fsharp
 
-#!import Testing.dib
+#!import ../../nbs/Testing.dib
 
 #!markdown
 
@@ -172,7 +172,7 @@ let printResult result =
 
 #!fsharp
 
-//// ignore
+//// test
 
 let parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
     match actual, expected with
