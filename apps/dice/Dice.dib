@@ -1,0 +1,215 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+
+#!fsharp
+
+#!import ../../nbs/Testing.dib
+
+#!fsharp
+
+let pow6 = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
+
+#!fsharp
+
+//// test
+
+pow6
+|> Seq.take 8
+|> Seq.toList
+|> _equal [ 1; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+
+#!fsharp
+
+let rec rollAcc log rolls power acc =
+    match rolls with
+    | _ when power < 0 ->
+        if log then printfn $"rollAcc / power: {power} / acc: {acc}"
+        Some (acc + 1, rolls)
+    | [] -> None
+    | roll :: rest when roll > 1 ->
+        let coeff = pow6 |> Seq.item power
+        let value = (roll - 1) * coeff
+        if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+        rollAcc log rest (power - 1) (acc + value)
+    | roll :: rest ->
+        if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll}"
+        rollAcc log rest (power - 1) acc
+
+#!fsharp
+
+//// test
+
+rollAcc true [6; 5; 4; 3; 2] 0 1000
+|> _equal (Some (1006, [5; 4; 3; 2]))
+
+#!fsharp
+
+//// test
+
+rollAcc true [6; 5; 4; 3; 2] 1 1000
+|> _equal (Some (1035, [4; 3; 2]))
+
+#!fsharp
+
+//// test
+
+rollAcc true [6; 5; 4; 3; 2] 2 1000
+|> _equal (Some (1208, [3; 2]))
+
+#!fsharp
+
+let fixedRoll log max rolls =
+    let rec rollMax power =
+        match rollAcc log rolls power 0 with
+        | Some (result, _) when result >= 1 && result <= max -> Some result
+        | _ -> None
+
+    rollMax (List.length rolls - 1)
+
+#!fsharp
+
+//// test
+
+fixedRoll true 2000 [1; 5; 4; 4; 5]
+|> _equal (Some 995)
+
+#!fsharp
+
+//// test
+
+fixedRoll true 2000 [2; 2; 6; 4; 5]
+|> _equal (Some 1715)
+
+#!fsharp
+
+//// test
+
+fixedRoll true 2000 [4; 1; 1; 2; 3]
+|> _equal None
+
+#!fsharp
+
+let numDices log max =
+    let rec numDices' n p =
+        if log then printfn $"numDices / max: {max} / n: {n} / p: {p}"
+        if p >= max
+        then n
+        else numDices' (n + 1) (p * 6)
+    if max = 1
+    then 1
+    else numDices' 0 1
+
+#!fsharp
+
+//// test
+
+numDices true 36
+|> _equal 2
+
+#!fsharp
+
+//// test
+
+numDices true 7777
+|> _equal 6
+
+#!fsharp
+
+let private random = Random ()
+let rollD6 () = random.Next (1, 7)
+
+#!fsharp
+
+let progressiveRoll log reroll max =
+    let rec rollMax power =
+        let rec loop rolls size =
+            if size < power + 1
+            then loop (rollD6 () :: rolls) (size + 1)
+            else
+                match rollAcc log rolls power 0 with
+                | Some (result, _) when result <= max -> result
+                | _ when reroll -> loop (List.init power (fun _ -> rollD6 ())) power
+                | _ -> loop (rollD6 () :: rolls) (size + 1)
+        loop [] 0
+    rollMax ((numDices log max) - 1)
+
+#!fsharp
+
+//// test
+
+progressiveRoll false false 1
+|> _equal 1
+
+#!fsharp
+
+//// ignore
+
+progressiveRoll true false 2000
+
+#!fsharp
+
+//// ignore
+
+progressiveRoll true true 2000
+
+#!fsharp
+
+//// ignore
+
+[1..1000]
+|> List.map (fun _ -> progressiveRoll false false 10)
+|> List.groupBy id
+|> List.map (fun (k, v) -> k, v.Length)
+|> List.sortBy fst
+
+#!fsharp
+
+//// test
+
+[1..100]
+|> List.iter (fun n ->
+    [0..1]
+    |> List.iter (fun reroll ->
+        [1..3000]
+        |> List.map (fun _ -> progressiveRoll false (reroll = 1) n)
+        |> List.groupBy id
+        |> List.length
+        |> __equal false n
+    )
+)
+
+#!fsharp
+
+//// ignore
+
+let rollMax fn max n =
+    [1..n]
+    |> List.map (fun _ -> fn max)
+    |> List.groupBy id
+    |> List.map (fun (_, v) -> v.Length)
+
+let max = 10
+let n = 30
+let even = (n / max) |> int
+
+let rec rollN current =
+    let roll = rollMax (progressiveRoll false true) max n
+    if roll |> List.forall ((=) even)
+    then current
+    else rollN (current + 1)
+
+rollN 0
+
+#!fsharp
+
+//// ignore
+
+// [1..100]
+// |> List.map (fun i ->
+//     let roll = rollN 0
+//     printfn $"i: {i} / roll: {roll}"
+//     roll
+// )
+// |> List.map float
+// |> List.average
