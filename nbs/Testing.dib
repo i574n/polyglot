@@ -8,7 +8,7 @@
 
 #!fsharp
 
-#!import nbs/Notebooks.dib
+#!import ../nbs/Notebooks.dib
 
 #!fsharp
 

@@ -15,8 +15,4 @@ paket-files/
 .paket/
 .history/
 
-nbs/nbs
-scripts/nbs
-apps/dice/nbs
-apps/parser/nbs
-apps/spiral/nbs
+apps/nbs

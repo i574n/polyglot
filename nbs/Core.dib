@@ -4,7 +4,7 @@
 
 #!fsharp
 
-#!import nbs/Testing.dib
+#!import ../nbs/Testing.dib
 
 #!fsharp
 

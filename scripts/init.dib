@@ -29,6 +29,10 @@ npm install -g esbuild
 
 #!pwsh
 
+npm install -g @playwright/test
+
+#!pwsh
+
 npx -y playwright install
 
 #!pwsh

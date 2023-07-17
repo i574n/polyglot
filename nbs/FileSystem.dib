@@ -4,11 +4,11 @@
 
 #!fsharp
 
-#!import nbs/Core.dib
+#!import ../nbs/Core.dib
 
 #!fsharp
 
-#!import nbs/Async.dib
+#!import ../nbs/Async.dib
 
 #!fsharp
 

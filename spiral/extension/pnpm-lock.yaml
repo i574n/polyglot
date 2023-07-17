@@ -6,11 +6,11 @@ settings:
 
 devDependencies:
   '@playwright/test':
-    specifier: ~1.36.0-alpha-jun-9-2023
-    version: 1.36.0-alpha-jun-9-2023
+    specifier: ~1.37.0-alpha-jul-9-2023
+    version: 1.37.0-alpha-jul-9-2023
   '@types/chrome':
-    specifier: ~0.0.237
-    version: 0.0.237
+    specifier: ~0.0.241
+    version: 0.0.241
   npm-check-updates:
     specifier: ~16.10
     version: 16.10.0
@@ -121,13 +121,13 @@ packages:
     dev: true
     optional: true
 
-  /@playwright/test@1.36.0-alpha-jun-9-2023:
-    resolution: {integrity: sha512-4IKLAeLJLR5Hq3XIKKUIVZJlgN1ZpybJcmCR+6BMdkJePni6cDGAM2m97i/d7FyKd4r2rijJAZU2muFHvhECqw==}
+  /@playwright/test@1.37.0-alpha-jul-9-2023:
+    resolution: {integrity: sha512-/OtVX4hT1x7X/0iZtuzbLuArO2g2L6qe0yMN6Wbqc4glB3Ad5aGJs4HkZGtrrOCJVugmJFOizvYdWXdHJM2xxA==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
       '@types/node': 20.3.1
-      playwright-core: 1.36.0-alpha-jun-9-2023
+      playwright-core: 1.37.0-alpha-jul-9-2023
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -199,8 +199,8 @@ packages:
       minimatch: 9.0.1
     dev: true
 
-  /@types/chrome@0.0.237:
-    resolution: {integrity: sha512-krsRmyfMlck5r+H1EapsrrucDRq6iRm0NAi5fapr93CgnpVMDdK+h2+z4x79GegdW7BNH9Vb//gkptORwwwVIQ==}
+  /@types/chrome@0.0.241:
+    resolution: {integrity: sha512-3WxC2D8zhyDnCU1GxyznoyUulLH6ReLWUWQm5LSM7S1rvV9w+k8TUNbWrFavk6zz2E1ws05lNawnSa7rK5kY8Q==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.11
@@ -1521,8 +1521,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /playwright-core@1.36.0-alpha-jun-9-2023:
-    resolution: {integrity: sha512-v5kw6/yjuKz2SS2+R6ZngCRGvrz9v0bBNhYuJB5hb5ui4dR/t38NjgEGeMe+q3i579EamIhOZfNSRuT8dfXxCQ==}
+  /playwright-core@1.37.0-alpha-jul-9-2023:
+    resolution: {integrity: sha512-/XGaUzUi42LvYzS5iUR09lufbyC++uAq07DMxVzumdQJTqqoukpEeOxHnlHyVrJX0xIK+6RpxUE7zsgbgN4DEw==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
