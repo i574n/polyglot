@@ -8,9 +8,27 @@ function EnsureSymbolicLink([string]$Path, [string] $Target) {
     $Path =  [IO.Path]::GetFullPath((Join-Path $ScriptDir $Path))
     $Target = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Target))
 
+    if (Test-Path $Path) {
+        $attr = (Get-Item $Path).Attributes
+        if ($null -ne $attr -and (-not ($attr -band [IO.FileAttributes]::Directory))) {
+            Write-Output "Removing file: $Path ($attr)"
+            Remove-Item $Path
+        }
+    }
+
     if (-Not (Test-Path $Path)) {
         Write-Output "Creating symlink: $Path -> $Target"
-        New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue | Out-Null
+        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
+        if ($null -eq $result) {
+            if ($IsLinux) {
+                Write-Output "Creating symlink (Linux): $Path -> $Target"
+                ln -s "$Target" "$Path"
+                if ($lastexitcode -eq 0) {
+                    return
+                }
+            }
+            Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
+        }
     } else {
         Write-Output "Symlink already exists: $Path -> $Target"
     }
