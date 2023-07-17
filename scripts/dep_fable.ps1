@@ -10,11 +10,14 @@ Set-Location $ScriptDir
 
 $path = "$HOME/.nuget/packages/fable"
 $tools =  Get-LastSortedItem -Path $path -Filter "tools"
-$netVersion = Get-LastSortedItem -Path $tools.FullName -Filter "any"
+$toolVersionPath = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
-Write-Output "Tool path: $netVersion"
+Write-Output "Tool path: $toolVersionPath"
 
+{ dotnet build -c Release "../deps/Fable/src/Fable.Cli/Fable.Cli.fsproj" } | Invoke-Block
 
-{ dotnet build -c Release "../deps/Fable/src/Fable.Transforms/Fable.Transforms.fsproj" } | Invoke-Block
+$releasePath = "../deps/Fable/src/Fable.Cli/bin/Release"
+$dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
+$dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
-Copy-Item -Recurse -Force "../deps/Fable/src/Fable.Transforms/bin/Release/netstandard2.0/**" $netVersion
+Copy-Item -Recurse -Force "../deps/Fable/src/Fable.Cli/bin/Release/$dotnetVersion/**" $toolVersionPath
