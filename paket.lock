@@ -1,23 +1,23 @@
 STORAGE: NONE
-RESTRICTION: == net7.0
+RESTRICTION: == net8.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
     Argu (6.1.1)
       FSharp.Core (>= 4.3.2)
       System.Configuration.ConfigurationManager (>= 4.4)
-    Expecto (9.0.4)
-      FSharp.Core (>= 4.6)
-      Mono.Cecil (>= 0.11.3)
-    Expecto.FsCheck (9.0.4)
-      Expecto (>= 9.0.4)
-      FsCheck (>= 2.14.3)
+    Expecto (10.1)
+      FSharp.Core (>= 7.0.200)
+      Mono.Cecil (>= 0.11.4 < 1.0)
+    Expecto.FsCheck (10.1.0-fscheck3)
+      Expecto (>= 10.1)
+      FsCheck (>= 3.0.0-beta2)
     Fable.Core (4.0)
-    FsCheck (2.16.5)
-      FSharp.Core (>= 4.2.3)
+    FsCheck (3.0.0-beta2)
+      FSharp.Core (>= 4.5)
     FSharp.Control.AsyncSeq (3.2.1)
       FSharp.Core (>= 4.7.2)
       Microsoft.Bcl.AsyncInterfaces (>= 5.0)
-    FSharp.Core (7.0.400-beta.23281.1)
+    FSharp.Core (7.0.300)
     Microsoft.Bcl.AsyncInterfaces (7.0)
     Microsoft.Win32.SystemEvents (7.0)
     Mono.Cecil (0.11.5)

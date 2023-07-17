@@ -2,6 +2,7 @@ namespace Polyglot.FSharp
 
 
 open FsCheck
+open FsCheck.FSharp
 // open Expecto
 
 open Expecto

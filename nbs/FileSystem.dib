@@ -1,0 +1,374 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+
+#!fsharp
+
+#!import nbs/Core.dib
+
+#!fsharp
+
+#!import nbs/Async.dib
+
+#!fsharp
+
+let createTempDirectoryName () =
+    let root =
+        match System.Reflection.Assembly.GetEntryAssembly().GetName().Name with
+        | assemblyName -> assemblyName
+
+    System.IO.Path.GetTempPath ()
+    </> $"!{root}"
+    </> string (newGuidFromDateTime System.DateTime.Now)
+
+let createTempDirectory () =
+    let tempFolder = createTempDirectoryName ()
+    let result = System.IO.Directory.CreateDirectory tempFolder
+    
+    let getLocals () =
+        $"tempFolder: {tempFolder} / result: {({|
+            Exists = result.Exists
+            CreationTime = result.CreationTime
+        |})} {getLocals ()}"
+
+    log Debug (fun () -> "createTempDirectory") getLocals
+
+    tempFolder
+
+#!fsharp
+
+//// test
+
+createTempDirectoryName ()
+
+#!fsharp
+
+//// ignore
+
+let tempDirectory = createTempDirectory ()
+tempDirectory
+
+#!fsharp
+
+module FileSystem =
+    [<RequireQualifiedAccess>]
+    type FileSystemChangeType =
+        | Error
+        | Changed
+        | Created
+        | Deleted
+        | Renamed
+
+    [<RequireQualifiedAccess>]
+    type FileSystemChange =
+        | Error of exn: exn
+        | Changed of path: string
+        | Created of path: string
+        | Deleted of path: string
+        | Renamed of oldPath: string * path: string
+
+
+    let watchWithFilter path filter =
+        let fullPath = System.IO.Path.GetFullPath path
+        let getLocals () = $"fullPath: {fullPath} {getLocals ()}"
+
+        let watcher =
+            new System.IO.FileSystemWatcher (
+                Path = fullPath,
+                NotifyFilter = filter,
+                EnableRaisingEvents = true,
+                IncludeSubdirectories = true
+            )
+
+        let getEventPath (path : string) = path.Trim().Replace (fullPath, "")
+
+        let ticks () = System.DateTime.UtcNow.Ticks
+
+        let changedStream =
+            AsyncSeq.subscribeEvent
+                watcher.Changed
+                (fun event -> ticks (), [ FileSystemChange.Changed (getEventPath event.FullPath) ])
+
+        let deletedStream =
+            AsyncSeq.subscribeEvent
+                watcher.Deleted
+                (fun event -> ticks (), [ FileSystemChange.Deleted (getEventPath event.FullPath) ])
+
+        let createdStream =
+            AsyncSeq.subscribeEvent
+                watcher.Created
+                (fun event ->
+                    let path = getEventPath event.FullPath
+                    ticks (), [
+                        FileSystemChange.Created path
+                        if OS.isWindows () then
+                            FileSystemChange.Changed path
+                    ])
+
+        let renamedStream =
+            AsyncSeq.subscribeEvent
+                watcher.Renamed
+                (fun event -> ticks (), [ FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath) ])
+
+        let errorStream =
+            AsyncSeq.subscribeEvent
+                watcher.Error
+                (fun event -> ticks (), [ FileSystemChange.Error (event.GetException ()) ])
+
+        let stream =
+            [
+                changedStream
+                deletedStream
+                createdStream
+                renamedStream
+                errorStream
+            ]
+            |> FSharp.Control.AsyncSeq.mergeAll
+            |> FSharp.Control.AsyncSeq.map (fun (n, events) ->
+                events
+                |> List.fold
+                    (fun (i, events) event ->
+                        i + 1L,
+                        (n + i, event) :: events)
+                    (0L, [])
+                |> snd
+                |> List.rev
+            )
+            |> FSharp.Control.AsyncSeq.concatSeq
+
+        let disposable =
+            Object.newDisposable (fun () ->
+                log Debug (fun () -> "Disposing watch stream") getLocals
+                watcher.EnableRaisingEvents <- false
+                watcher.Dispose ()
+            )
+
+        stream, disposable
+
+    let watch path =
+        watchWithFilter
+            path
+            (System.IO.NotifyFilters.Attributes
+            ||| System.IO.NotifyFilters.CreationTime
+            ||| System.IO.NotifyFilters.DirectoryName
+            ||| System.IO.NotifyFilters.FileName
+            //  ||| System.IO.NotifyFilters.LastAccess
+            //  ||| System.IO.NotifyFilters.LastWrite
+            ||| System.IO.NotifyFilters.Security
+            //  ||| System.IO.NotifyFilters.Size
+            )
+
+#!fsharp
+
+//// test
+
+let sortEvent event =
+    match event with
+    | FileSystem.FileSystemChange.Error _ -> 0
+    | FileSystem.FileSystemChange.Created _ -> 1
+    | FileSystem.FileSystemChange.Changed _ -> 2
+    | FileSystem.FileSystemChange.Renamed (_oldPath, _) -> 3
+    | FileSystem.FileSystemChange.Deleted _ -> 4
+
+let formatEvents events =
+    events
+    |> Seq.toList
+    |> List.sortBy (snd >> sortEvent)
+    |> List.choose (fun (ticks, event) ->
+        match event with
+        | FileSystem.FileSystemChange.Error _ ->
+            None
+        | FileSystem.FileSystemChange.Changed path ->
+            Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Changed)
+        | FileSystem.FileSystemChange.Created path ->
+            Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Created)
+        | FileSystem.FileSystemChange.Deleted path ->
+            Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Deleted)
+        | FileSystem.FileSystemChange.Renamed (_oldPath, path) ->
+            Some (ticks, System.IO.Path.GetFileName path, nameof FileSystem.FileSystemChangeType.Renamed)
+    )
+    |> List.sortBy (fun (_, path, _) -> path)
+    |> List.distinctBy (fun (_, path, event) -> path, event)
+
+let testEvents write =
+    let path = createTempDirectory ()
+    let stream, disposable = FileSystem.watch path
+
+    let events = System.Collections.Concurrent.ConcurrentBag ()
+
+    let watch () =
+        stream
+        |> FSharp.Control.AsyncSeq.iterAsync (fun event -> async { events.Add event })
+
+    let run = async {
+        let! child = watch () |> Async.StartChild
+        do! Async.Sleep 150
+        do! write path |> Async.AwaitTask
+        do! child
+    }
+
+    run
+    |> Async.runWithTimeout 2000
+    |> ignore
+
+    disposable.Dispose ()
+    System.IO.Directory.Delete (path, true)
+
+    let events = formatEvents events
+
+    let eventMap =
+        events
+        |> List.map (fun (ticks, path, event) -> path, (event, ticks))
+        |> List.groupBy fst
+        |> List.map (fun (path, events) ->
+            let event, _ticks =
+                events
+                |> List.map snd
+                |> List.sortByDescending snd
+                |> List.head
+
+            path, event
+        )
+        |> Map.ofList
+
+    let eventList =
+        events
+        |> List.map (fun (_ticks, path, event) -> path, event)
+
+    eventMap, eventList
+
+#!fsharp
+
+//// test
+
+/// create and delete
+
+let write path = task {
+    let n = 3
+
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
+
+    for i = 1 to n do
+        System.IO.File.Delete (path </> $"file{i}.txt")
+}
+
+let eventMap, eventList = testEvents write
+
+Expecto.Expect.sequenceEqual
+    eventList
+    [
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
+
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
+
+        "file3.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file3.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
+    ]
+    ""
+
+Expecto.Expect.sequenceEqual
+    eventMap
+    ([
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
+        "file3.txt", nameof FileSystem.FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList)
+    ""
+
+#!fsharp
+
+//// test
+
+/// change
+
+let write path = task {
+    let n = 2
+
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
+
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "")
+
+    for i = 1 to n do
+        System.IO.File.Delete (path </> $"file{i}.txt")
+}
+
+let eventMap, eventList = testEvents write
+
+Expecto.Expect.sequenceEqual
+    eventList
+    [
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
+
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
+    ]
+    ""
+
+Expecto.Expect.sequenceEqual
+    eventMap
+    ([
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Deleted
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList)
+    ""
+
+#!fsharp
+
+//// test
+
+/// rename
+
+let write path = task {
+    let n = 2
+
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
+
+    for i = 1 to n do
+        System.IO.File.Move (path </> $"file{i}.txt", path </> $"file_{i}.txt")
+
+    for i = 1 to n do
+        System.IO.File.Delete (path </> $"file_{i}.txt")
+}
+
+let eventMap, eventList = testEvents write
+
+Expecto.Expect.sequenceEqual
+    eventList
+    [
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Created
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+
+        "file_1.txt", nameof FileSystem.FileSystemChangeType.Renamed
+        "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
+
+        "file_2.txt", nameof FileSystem.FileSystemChangeType.Renamed
+        "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
+    ]
+    ""
+
+Expecto.Expect.sequenceEqual
+    eventMap
+    ([
+        "file1.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystem.FileSystemChangeType.Changed
+        "file_1.txt", nameof FileSystem.FileSystemChangeType.Deleted
+        "file_2.txt", nameof FileSystem.FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList)
+    ""

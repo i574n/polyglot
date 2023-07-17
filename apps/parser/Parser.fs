@@ -1,6 +1,6 @@
 // ## Parser
 
-open System
+// open System
 
 // ### TextInput
 

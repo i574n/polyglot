@@ -4,8 +4,29 @@
 
 #!fsharp
 
-#!import ../../nbs/Core.dib
-#!import ../../nbs/Testing.dib
+#!import nbs/Core.dib
+
+#!fsharp
+
+//// test
+
+let escapeCell (input : string) =
+    input.Split [| '\n' |]
+    |> Array.map (function
+        | line when line.StartsWith "\\#!" -> System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
+        | line -> line
+    )
+    |> String.concat "\n"
+
+#!fsharp
+
+//// test
+
+$"a{nl}\\#!magic{nl}b{nl}"
+|> escapeCell
+|> _equal (
+    $"a{nl}#!magic{nl}b{nl}"
+)
 
 #!fsharp
 
@@ -271,7 +292,8 @@ c
 \#!fsharp
 
 
-let a = 1""" |> escapeCell
+let a = 1"""
+    |> escapeCell
 let result =
     match run blocks input with
     | Success (blocks, _, _) ->

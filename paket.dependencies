@@ -1,16 +1,16 @@
-version 7.0
-framework: net7.0
+version 8.0
+framework: net8.0
 storage: none
 source https://api.nuget.org/v3/index.json
 
 
-nuget FSharp.Core >= 7.0 prerelease
+nuget FSharp.Core >= 7.0
 
 nuget Fable.Core ~> 4.0 prerelease
 
-nuget FsCheck ~> 2.0
-nuget Expecto ~> 9.0 prerelease
-nuget Expecto.FsCheck ~> 9.0 prerelease
+nuget FsCheck ~> 3.0 prerelease
+nuget Expecto ~> 10.1
+nuget Expecto.FsCheck ~> 10.1.0-fscheck3
 
 nuget Argu ~> 6.1
 nuget FSharp.Control.AsyncSeq ~> 3.2

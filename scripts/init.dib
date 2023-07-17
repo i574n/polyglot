@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
 #!pwsh
 
@@ -29,7 +29,7 @@ npm install -g esbuild
 
 #!pwsh
 
-npx playwright install
+npx -y playwright install
 
 #!pwsh
 

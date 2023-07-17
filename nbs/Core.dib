@@ -4,26 +4,270 @@
 
 #!fsharp
 
+#!import nbs/Testing.dib
+
+#!fsharp
+
 let nl = Environment.NewLine
-
-#!fsharp
-
-//// test
-
-Formatter.ListExpansionLimit <- 100
-
-#!fsharp
-
-let escapeCell (input : string) =
-    input.Split [| '\n' |]
-    |> Array.map (function
-        | line when line.StartsWith "\\#!" -> System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
-        | line -> line
-    )
-    |> String.concat "\n"
 
 #!fsharp
 
 module String =
     let trim (input : string) =
         input.Trim ()
+
+#!fsharp
+
+type TicksGuid = System.Guid
+type DateTimeGuid = System.Guid
+
+#!fsharp
+
+//// test
+
+let testGuid = Guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
+
+#!fsharp
+
+let inline dateTimeGuidFromDateTime (guid: Guid) (dateTime: DateTime) =
+    let guid = guid |> string
+    let prefix = dateTime.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    DateTimeGuid $"{prefix}{guid.[prefix.Length..]}"
+
+#!fsharp
+
+//// test
+
+dateTimeGuidFromDateTime testGuid DateTime.MinValue
+|> _equal (DateTimeGuid "00010101-0000-0000-0000-0a9876543210")
+
+#!fsharp
+
+//// test
+
+dateTimeGuidFromDateTime testGuid DateTime.MaxValue
+|> _equal (DateTimeGuid $"99991231-2359-5999-9999-9{(testGuid |> string).[^10..]}")
+
+#!fsharp
+
+//// test
+
+dateTimeGuidFromDateTime testGuid DateTime.UnixEpoch
+|> _equal (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).[^10..]}")
+
+#!fsharp
+
+let inline dateTimeFromGuid (dateTimeGuid: DateTimeGuid) =
+    let dateTimeGuid = dateTimeGuid |> string
+    System.DateTime.ParseExact (dateTimeGuid.[..24].Replace ("-", ""), "yyyyMMddHHmmssfffffff", null)
+
+#!fsharp
+
+//// test
+
+dateTimeFromGuid (DateTimeGuid "00010101-0000-0000-0000-0a9876543210")
+|> _equal DateTime.MinValue
+
+#!fsharp
+
+//// test
+
+dateTimeFromGuid (DateTimeGuid $"99991231-2359-5999-9999-9{(testGuid |> string).[^10..]}")
+|> _equal DateTime.MaxValue
+
+#!fsharp
+
+//// test
+
+dateTimeFromGuid (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).[^10..]}")
+|> _equal DateTime.UnixEpoch
+
+#!fsharp
+
+let inline ticksGuidFromTicks (guid: Guid) (ticks: int64) =
+    let guid = guid |> string
+    let ticks = (ticks |> string).PadLeft (18, '0')
+    TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
+
+#!fsharp
+
+//// test
+
+ticksGuidFromTicks testGuid 0L
+|> _equal (TicksGuid "00000000-0000-0000-00dc-ba9876543210")
+
+#!fsharp
+
+//// test
+
+ticksGuidFromTicks testGuid 999999999999999999L
+|> _equal (TicksGuid $"99999999-9999-9999-99dc-b{(testGuid |> string).[^10..]}")
+
+#!fsharp
+
+let inline ticksFromGuid (ticksGuid: DateTimeGuid) =
+    let ticks = ticksGuid |> string
+    int64 $"{ticks.[0..7]}{ticks.[9..12]}{ticks.[14..17]}{ticks.[19..20]}"
+
+#!fsharp
+
+//// test
+
+ticksFromGuid (TicksGuid "00000000-0000-0000-00dc-ba9876543210")
+|> _equal 0L
+
+#!fsharp
+
+//// test
+
+ticksFromGuid (TicksGuid $"99999999-9999-9999-99{(testGuid |> string).[^14..]}")
+|> _equal 999999999999999999L
+
+#!fsharp
+
+let inline newGuidFromDateTime (dateTime: DateTime) =
+    let guid = System.Guid.NewGuid ()
+    dateTimeGuidFromDateTime guid dateTime
+
+#!fsharp
+
+//// test
+
+newGuidFromDateTime System.DateTime.UtcNow
+|> dateTimeFromGuid
+|> fun dateTime -> (dateTime - System.DateTime.UtcNow).TotalSeconds |> int
+|> _equal 0
+
+#!fsharp
+
+let inline newGuidFromTicks (ticks: int64) =
+    let guid = System.Guid.NewGuid ()
+    ticksGuidFromTicks guid ticks
+
+#!fsharp
+
+//// test
+
+newGuidFromTicks System.DateTime.UtcNow.Ticks
+|> ticksFromGuid
+|> fun ticks -> (ticks - System.DateTime.UtcNow.Ticks) / 100000L
+|> _equal 0L
+
+#!fsharp
+
+let inline (</>) a b = System.IO.Path.Combine (a, b)
+
+#!fsharp
+
+type LogLevel =
+    | Verbose
+    | Debug
+    | Info
+    | Warn
+    | Error
+
+let inline getLocals () = ""
+
+let mutable logEnabled = true
+let mutable logCount = 0
+let mutable logLevel = Verbose
+
+
+let log level fn getLocals =
+    if logEnabled && level >= logLevel then
+        logCount <- logCount + 1
+        let time = System.DateTime.Now.ToString "HH:mm:ss"
+        System.Console.WriteLine ($"{time} #{logCount} [{level}] {fn ()} / {getLocals ()}".TrimEnd [| ' '; '/' |])
+
+let withLog enabled fn =
+    let oldLogEnabled = logEnabled
+    try
+        logEnabled <- enabled
+        fn ()
+    finally
+        logEnabled <- oldLogEnabled
+
+let withLogEnabled fn =
+    withLog true fn
+
+let withLogDisabled fn =
+    withLog false fn
+
+let withLogLevel level fn =
+    let oldLogLevel = logLevel
+    try
+        logLevel <- level
+        fn ()
+    finally
+        logLevel <- oldLogLevel
+
+#!fsharp
+
+//// test
+
+log Debug (fun () -> "test") getLocals
+
+#!fsharp
+
+module OS =
+    let isWindows () =
+        System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+
+#!fsharp
+
+//// test
+
+OS.isWindows ()
+
+#!fsharp
+
+module Object =
+    let inline newDisposable fn =
+        { new System.IDisposable with
+            member _.Dispose () = fn ()
+        }
+
+#!fsharp
+
+//// test
+
+let mutable newDisposableTest = 0
+Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+|> fun x -> x.Dispose ()
+newDisposableTest |> _equal 1
+
+#!fsharp
+
+//// test
+
+let mutable newDisposableTest = 0
+fun () -> task {
+    use x = Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    ()
+}
+|> fun x -> x () |> Async.AwaitTask |> Async.RunSynchronously
+newDisposableTest |> _equal 1
+
+#!fsharp
+
+//// test
+
+let mutable newDisposableTest = 0
+async {
+    use x = Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    ()
+}
+|> Async.RunSynchronously
+newDisposableTest |> _equal 1
+
+#!fsharp
+
+//// test
+
+let mutable newDisposableTest = 0
+async {
+    let x = Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    ()
+}
+|> Async.RunSynchronously
+newDisposableTest |> _equal 0

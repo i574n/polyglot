@@ -1,10 +1,10 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
 #!fsharp
 
-#!import ../../nbs/Testing.dib
+#!import nbs/Core.dib
 
 #!fsharp
 

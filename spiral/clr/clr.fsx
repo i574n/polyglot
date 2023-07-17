@@ -119,6 +119,7 @@ module FileSystem =
         | Deleted
         | Renamed
 
+    [<RequireQualifiedAccess>]
     type FileSystemChange =
         | Error of exn: exn
         | Changed of path: string
