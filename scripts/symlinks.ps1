@@ -18,15 +18,14 @@ function EnsureSymbolicLink([string]$Path, [string] $Target) {
 
     if (-Not (Test-Path $Path)) {
         Write-Output "Creating symlink: $Path -> $Target"
-        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
-        if ($null -eq $result) {
+        $result =
             if ($IsLinux) {
-                Write-Output "Creating symlink (Linux): $Path -> $Target"
                 ln -s "$Target" "$Path"
-                if ($lastexitcode -eq 0) {
-                    return
-                }
+                $lastexitcode -eq 0
+            } else {
+                $null -ne (New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue)
             }
+        if (-not $result) {
             Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
         }
     } else {
