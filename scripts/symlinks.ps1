@@ -8,6 +8,11 @@ function EnsureSymbolicLink([string]$Path, [string] $Target) {
     $Path =  [IO.Path]::GetFullPath((Join-Path $ScriptDir $Path))
     $Target = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Target))
 
+    if (-Not (Test-Path (Split-Path $Path))) {
+        Write-Output "Parent directory does not exist: $Path"
+        return
+    }
+
     if (Test-Path $Path) {
         $attr = (Get-Item $Path).Attributes
         if ($null -ne $attr -and (-not ($attr -band [IO.FileAttributes]::Directory))) {
@@ -18,14 +23,8 @@ function EnsureSymbolicLink([string]$Path, [string] $Target) {
 
     if (-Not (Test-Path $Path)) {
         Write-Output "Creating symlink: $Path -> $Target"
-        $result =
-            if ($IsLinux) {
-                ln -s "$Target" "$Path"
-                $lastexitcode -eq 0
-            } else {
-                $null -ne (New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue)
-            }
-        if (-not $result) {
+        $result =New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
+        if ($null -eq $result) {
             Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
         }
     } else {
