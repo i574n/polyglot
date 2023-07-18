@@ -111,3 +111,15 @@ function EnsureSymbolicLink([string]$Path, [string] $Target) {
         Write-Output "Symlink already exists: $Path -> $Target"
     }
 }
+
+function Search-Command {
+    param (
+        [string] $CommandName
+    )
+    try {
+        return (Get-Command $CommandName).Source
+    }
+    catch {
+        return $null
+    }
+}
