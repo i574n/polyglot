@@ -13,7 +13,7 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../spiral/clr/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../nbs/build.ps1" } | Invoke-Block
 
 #!pwsh
 

@@ -1,37 +1,49 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+
+#!markdown
+
+# Async (Polyglot)
 
 #!fsharp
 
-#!import ../nbs/Core.dib
+#!import ../nbs/Common.dib
 
 #!fsharp
 
 #r "nuget:FSharp.Control.AsyncSeq"
-#r "nuget:System.Reactive.Linq"
+#r "nuget:System.Reactive,5.0.0"
+#r "nuget:System.Reactive.Linq,6.0.0-preview.1"
 
 #!fsharp
 
-module Async =
-    let runWithTimeout timeout fn =
-        try
-            Async.RunSynchronously (fn, timeout) |> Some
-        with
-        | :? System.TimeoutException as ex ->
-            let info = ex
+#!import ../nbs/Common.fs
 
-            let getLocals () = $"timeout: {timeout} / exception: {ex.Message} / {getLocals ()}"
-            log Debug (fun () -> "runWithTimeout") getLocals
-            None
-        | e -> raise e
+#!fsharp
+
+open Common
+
+#!fsharp
+
+let runWithTimeout timeout fn =
+    try
+        Async.RunSynchronously (fn, timeout) |> Some
+    with
+    | :? System.TimeoutException as ex ->
+        let info = ex
+
+        let getLocals () = $"timeout: {timeout} / exception: {ex.Message} / {getLocals ()}"
+        trace Debug (fun () -> "runWithTimeout") getLocals
+        None
+    | e -> raise e
 
 #!fsharp
 
 //// test
 
 Async.Sleep 50
-|> Async.runWithTimeout 10
+|> runWithTimeout 10
 |> _equal None
 
 #!fsharp
@@ -39,7 +51,7 @@ Async.Sleep 50
 //// test
 
 Async.Sleep 10
-|> Async.runWithTimeout 50
+|> runWithTimeout 50
 |> _equal (Some ())
 
 #!fsharp
@@ -114,7 +126,7 @@ async {
     do! child
     testEvent.AddCall "3"
 }
-|> Async.runWithTimeout 100
+|> runWithTimeout 100
 |> _equal None
 
 testEvent.Calls
@@ -139,7 +151,7 @@ async {
     do! child
     testEvent.AddCall "4"
 }
-|> Async.runWithTimeout 100
+|> runWithTimeout 100
 |> _equal None
 
 testEvent.Calls
@@ -169,7 +181,7 @@ async {
     do! child
     testEvent.AddCall "5"
 }
-|> Async.runWithTimeout 100
+|> runWithTimeout 100
 |> _equal None
 
 testEvent.Calls

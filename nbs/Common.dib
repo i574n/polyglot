@@ -2,13 +2,17 @@
 
 {"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
+#!markdown
+
+# Common (Polyglot)
+
 #!fsharp
 
 #!import ../nbs/Testing.dib
 
 #!fsharp
 
-let nl = Environment.NewLine
+let nl = System.Environment.NewLine
 
 #!fsharp
 
@@ -29,7 +33,7 @@ let testGuid = Guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
 
 #!fsharp
 
-let inline dateTimeGuidFromDateTime (guid: Guid) (dateTime: DateTime) =
+let inline dateTimeGuidFromDateTime (guid: System.Guid) (dateTime: System.DateTime) =
     let guid = guid |> string
     let prefix = dateTime.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
     DateTimeGuid $"{prefix}{guid.[prefix.Length..]}"
@@ -84,7 +88,7 @@ dateTimeFromGuid (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).
 
 #!fsharp
 
-let inline ticksGuidFromTicks (guid: Guid) (ticks: int64) =
+let inline ticksGuidFromTicks (guid: System.Guid) (ticks: int64) =
     let guid = guid |> string
     let ticks = (ticks |> string).PadLeft (18, '0')
     TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
@@ -125,7 +129,7 @@ ticksFromGuid (TicksGuid $"99999999-9999-9999-99{(testGuid |> string).[^14..]}")
 
 #!fsharp
 
-let inline newGuidFromDateTime (dateTime: DateTime) =
+let inline newGuidFromDateTime (dateTime: System.DateTime) =
     let guid = System.Guid.NewGuid ()
     dateTimeGuidFromDateTime guid dateTime
 
@@ -159,7 +163,7 @@ let inline (</>) a b = System.IO.Path.Combine (a, b)
 
 #!fsharp
 
-type LogLevel =
+type TraceLevel =
     | Verbose
     | Debug
     | Info
@@ -168,44 +172,44 @@ type LogLevel =
 
 let inline getLocals () = ""
 
-let mutable logEnabled = true
-let mutable logCount = 0
-let mutable logLevel = Verbose
+let mutable traceEnabled = true
+let mutable traceCount = 0
+let mutable traceLevel = Verbose
 
 
-let log level fn getLocals =
-    if logEnabled && level >= logLevel then
-        logCount <- logCount + 1
+let trace level fn getLocals =
+    if traceEnabled && level >= traceLevel then
+        traceCount <- traceCount + 1
         let time = System.DateTime.Now.ToString "HH:mm:ss"
-        System.Console.WriteLine ($"{time} #{logCount} [{level}] {fn ()} / {getLocals ()}".TrimEnd [| ' '; '/' |])
+        System.Console.WriteLine ($"{time} #{traceCount} [{level}] {fn ()} / {getLocals ()}".TrimEnd [| ' '; '/' |])
 
-let withLog enabled fn =
-    let oldLogEnabled = logEnabled
+let withTrace enabled fn =
+    let oldTraceEnabled = traceEnabled
     try
-        logEnabled <- enabled
+        traceEnabled <- enabled
         fn ()
     finally
-        logEnabled <- oldLogEnabled
+        traceEnabled <- oldTraceEnabled
 
-let withLogEnabled fn =
-    withLog true fn
+let withTraceEnabled fn =
+    withTrace true fn
 
-let withLogDisabled fn =
-    withLog false fn
+let withTraceDisabled fn =
+    withTrace false fn
 
-let withLogLevel level fn =
-    let oldLogLevel = logLevel
+let withTraceLevel level fn =
+    let oldTraceLevel = traceLevel
     try
-        logLevel <- level
+        traceLevel <- level
         fn ()
     finally
-        logLevel <- oldLogLevel
+        traceLevel <- oldTraceLevel
 
 #!fsharp
 
 //// test
 
-log Debug (fun () -> "test") getLocals
+trace Debug (fun () -> "test") getLocals
 
 #!fsharp
 

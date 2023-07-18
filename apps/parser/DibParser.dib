@@ -4,7 +4,7 @@
 
 #!fsharp
 
-#!import ../nbs/Core.dib
+#!import ../nbs/Common.dib
 
 #!fsharp
 
@@ -13,7 +13,8 @@
 let escapeCell (input : string) =
     input.Split [| '\n' |]
     |> Array.map (function
-        | line when line.StartsWith "\\#!" -> System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#!", "#!")
+        | line when line.StartsWith "\\#!" || line.StartsWith "\\#r" ->
+            System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#", "#")
         | line -> line
     )
     |> String.concat "\n"
@@ -213,18 +214,20 @@ let formatBlock kernel (block : Block) =
     match kernel, block with
     | _, { magic = "markdown"; content = content } ->
         content.Split [| '\n' |]
-        |> Array.map (fun line -> line.Trim ())
+        |> Array.map (fun line -> line.TrimEnd ())
+        |> Array.filter (fun line -> line.EndsWith " (test)" |> not)
         |> Array.map (function
             | "" -> "//"
-            | line -> $"// {line}"
+            | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", "$&// ")
         )
         |> String.concat "\n"
-    | "fsharp", { magic = "fsharp"; content = content } when
-        (content.StartsWith "//// test"
-        || content.StartsWith "//// ignore")
-        |> not ->
+    | "fsharp", { magic = "fsharp"; content = content } ->
+        let trimmedContent = content.Trim ()
+        if trimmedContent.StartsWith "//// test" || trimmedContent.StartsWith "//// ignore"
+        then ""
+        else
             content.Split [| '\n' |]
-            |> Array.filter (fun line -> line.StartsWith "#r" |> not)
+            |> Array.filter (fun line -> line.TrimStart().StartsWith "#r" |> not)
             |> String.concat "\n"
     | _ -> ""
 
@@ -238,7 +241,9 @@ let input =
 
 a
 
-b
+    b
+
+c
 
 
 \#!markdown
@@ -259,7 +264,9 @@ let result =
         failwith msg
 result |> _equal """// a
 //
-// b"""
+    // b
+//
+// c"""
 
 #!fsharp
 
@@ -292,7 +299,25 @@ c
 \#!fsharp
 
 
-let a = 1"""
+let a = 1
+
+\#!markdown
+
+d (test)
+
+\#!fsharp
+
+//// test
+
+let a = 2
+
+\#!markdown
+
+e
+
+\#!fsharp
+
+let a = 3"""
     |> escapeCell
 let result =
     match run blocks input with
@@ -307,24 +332,72 @@ result |> _equal """// a
 // c
 
 let a = 1
+
+// e
+
+let a = 3
 """
 
 #!fsharp
 
-let run input =
+let parse kernel input =
     match run blocks input with
-    | Success (result, _, _) -> Result.Ok result
+    | Success (blocks, _, _) ->
+        let indentBlock (block : Block) =
+            { block with
+                content =
+                    block.content.Split [| '\n' |]
+                    |> Array.map (fun line ->
+                        if line.TrimEnd () = ""
+                        then ""
+                        else $"    {line}"
+                    )
+                    |> String.concat "\n"
+            }
+
+        let blocks = blocks |> List.filter (fun block -> block.magic = kernel || block.magic = "markdown")
+        
+        match blocks with
+        | { magic = "markdown"; content = content } :: _
+            when kernel = "fsharp"
+            && content.StartsWith "# "
+            && content.EndsWith ")"
+            ->
+            let moduleName, namespaceName =
+                System.Text.RegularExpressions.Regex.Match (content, @"# (.*) \((.*)\)$")
+                |> fun m -> m.Groups.[1].Value, m.Groups.[2].Value
+
+            let moduleBlock =
+                { 
+                    magic = "fsharp"
+                    content =
+                        $"""#if !INTERACTIVE
+namespace {namespaceName}
+#endif
+
+module {moduleName} ="""
+                }
+            blocks
+            |> List.indexed
+            |> List.fold
+                (fun blocks (index, block) ->
+                    match index with
+                    | 0 -> block :: blocks
+                    | 1 -> indentBlock block :: moduleBlock :: blocks
+                    | _ -> indentBlock block :: blocks
+                )
+                []
+            |> List.rev
+        | _ -> blocks
+        |> Result.Ok
     | Failure (errorMsg, _, _) -> Result.Error errorMsg
 
 #!fsharp
 
 let parseDibCode kernel file =
     let input = File.ReadAllText file
-    match run input with
-    | Result.Ok blocks ->
-        blocks
-        |> List.filter (fun block -> block.magic = kernel || block.magic = "markdown")
-        |> formatBlocks kernel
+    match parse kernel input with
+    | Result.Ok blocks -> blocks |> formatBlocks kernel
     | Result.Error msg -> failwith msg
 
 #!fsharp
@@ -347,9 +420,17 @@ let example1 =
 
 {"kernelInfo":{"defaultKernelName":"fsharp","items":[{"aliases":[],"name":"fsharp"},{"aliases":[],"name":"fsharp"}]}}
 
+\#!markdown
+
+# TestModule (TestNamespace)
+
 \#!fsharp
 
-##r "nuget:Expecto"
+\#!import file.dib
+
+\#!fsharp
+
+\#r "nuget:Expecto"
 
 \#!markdown
 
@@ -358,6 +439,16 @@ let example1 =
 \#!fsharp
 
 open System
+
+\#!markdown
+
+## x (test)
+
+\#!fsharp
+
+//// ignore
+
+let x = 1
 
 \#!markdown
 
@@ -372,10 +463,8 @@ type Position =
     }"""
     |> escapeCell
 
-printfn $"{example1}"
-
 let blocks1 =
-    run example1
+    parse "fsharp" example1
     |> Result.toOption
     |> Option.get
 blocks1
@@ -386,19 +475,25 @@ blocks1
 
 blocks1
 |> (formatBlocks "fsharp")
-|> _equal """##r "nuget:Expecto"
+|> _equal """// # TestModule (TestNamespace)
 
-// ## ParserLibrary
+#if !INTERACTIVE
+namespace TestNamespace
+#endif
 
-open System
+module TestModule =
 
-// ### TextInput
+    // ## ParserLibrary
 
-type Position =
-    {
-        line : int
-        column : int
-    }
+    open System
+
+    // ### TextInput
+
+    type Position =
+        {
+            line : int
+            column : int
+        }
 """
 
 #!fsharp
@@ -407,9 +502,11 @@ type Position =
 
 blocks1
 |> (formatBlocks "markdown")
-|> _equal """// ## ParserLibrary
+|> _equal """// # TestModule (TestNamespace)
 
-// ### TextInput
+    // ## ParserLibrary
+
+    // ### TextInput
 """
 
 #!fsharp

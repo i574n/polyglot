@@ -38,18 +38,20 @@ let formatBlock kernel (block : Block) =
     match kernel, block with
     | _, { magic = "markdown"; content = content } ->
         content.Split [| '\n' |]
-        |> Array.map (fun line -> line.Trim ())
+        |> Array.map (fun line -> line.TrimEnd ())
+        |> Array.filter (fun line -> line.EndsWith " (test)" |> not)
         |> Array.map (function
             | "" -> "//"
-            | line -> $"// {line}"
+            | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", "$&// ")
         )
         |> String.concat "\n"
-    | "fsharp", { magic = "fsharp"; content = content } when
-        (content.StartsWith "//// test"
-        || content.StartsWith "//// ignore")
-        |> not ->
+    | "fsharp", { magic = "fsharp"; content = content } ->
+        let trimmedContent = content.Trim ()
+        if trimmedContent.StartsWith "//// test" || trimmedContent.StartsWith "//// ignore"
+        then ""
+        else
             content.Split [| '\n' |]
-            |> Array.filter (fun line -> line.StartsWith "#r" |> not)
+            |> Array.filter (fun line -> line.TrimStart().StartsWith "#r" |> not)
             |> String.concat "\n"
     | _ -> ""
 
@@ -60,18 +62,62 @@ let formatBlocks kernel blocks =
     |> String.concat "\n\n"
     |> fun s -> s + "\n"
 
-let run input =
+let parse kernel input =
     match run blocks input with
-    | Success (result, _, _) -> Result.Ok result
+    | Success (blocks, _, _) ->
+        let indentBlock (block : Block) =
+            { block with
+                content =
+                    block.content.Split [| '\n' |]
+                    |> Array.map (fun line ->
+                        if line.TrimEnd () = ""
+                        then ""
+                        else $"    {line}"
+                    )
+                    |> String.concat "\n"
+            }
+
+        let blocks = blocks |> List.filter (fun block -> block.magic = kernel || block.magic = "markdown")
+        
+        match blocks with
+        | { magic = "markdown"; content = content } :: _
+            when kernel = "fsharp"
+            && content.StartsWith "# "
+            && content.EndsWith ")"
+            ->
+            let moduleName, namespaceName =
+                System.Text.RegularExpressions.Regex.Match (content, @"# (.*) \((.*)\)$")
+                |> fun m -> m.Groups.[1].Value, m.Groups.[2].Value
+
+            let moduleBlock =
+                { 
+                    magic = "fsharp"
+                    content =
+                        $"""#if !INTERACTIVE
+namespace {namespaceName}
+#endif
+
+module {moduleName} ="""
+                }
+            blocks
+            |> List.indexed
+            |> List.fold
+                (fun blocks (index, block) ->
+                    match index with
+                    | 0 -> block :: blocks
+                    | 1 -> indentBlock block :: moduleBlock :: blocks
+                    | _ -> indentBlock block :: blocks
+                )
+                []
+            |> List.rev
+        | _ -> blocks
+        |> Result.Ok
     | Failure (errorMsg, _, _) -> Result.Error errorMsg
 
 let parseDibCode kernel file =
     let input = File.ReadAllText file
-    match run input with
-    | Result.Ok blocks ->
-        blocks
-        |> List.filter (fun block -> block.magic = kernel || block.magic = "markdown")
-        |> formatBlocks kernel
+    match parse kernel input with
+    | Result.Ok blocks -> blocks |> formatBlocks kernel
     | Result.Error msg -> failwith msg
 
 let writeDibCode kernel file =

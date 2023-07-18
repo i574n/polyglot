@@ -22,13 +22,13 @@ $ErrorActionPreference = "Stop"
 $tomlPath = Join-Path -Path $ScriptDir -ChildPath "../extension.toml"
 $tomlContent = Get-Content $tomlPath | ConvertFrom-Toml
 
-$logPath = $tomlContent.extension.paths | ForEach-Object {
-    Join-Path -Path $_ -ChildPath "compiler/log/supervisor"
+$commandsPath = $tomlContent.extension.paths | ForEach-Object {
+    Join-Path -Path $_ -ChildPath "compiler/supervisor/commands"
 #} | Where-Object {
 #    Test-Path $_
-} | Select-Object -First 1
+} | Select-Object -Last 1
 
-Write-Output "logPath: $logPath"
+Write-Output "commandsPath: $commandsPath"
 
 # $process = Start-Process -FilePath dotnet -ArgumentList "$dllPath port=$port" -RedirectStandardOutput $outputFile -RedirectStandardError $errorFile -PassThru -NoNewWindow
 
@@ -42,15 +42,15 @@ Write-Output "logPath: $logPath"
 
 
 
-# if (!(Test-Path $logPath)) {
-#     New-Item -ItemType Directory -Path $logPath -Force | Out-Null
+# if (!(Test-Path $commandsPath)) {
+#     New-Item -ItemType Directory -Path $commandsPath -Force | Out-Null
 # }
 
 $obj = @{
     Ping = $true
 }
 $req = "Ping"
-$jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+$jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -59,7 +59,7 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 echo 1
 
 
-$dllPath = Join-Path -Path $logPath -ChildPath "../../../compiler/Spiral.dll"
+$dllPath = Join-Path -Path $commandsPath -ChildPath "../../Spiral.dll"
 $port = 13805
 
 
@@ -101,7 +101,7 @@ $process.Start() | Out-Null
 # }
 
 # $req = "ProjectFileOpen"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -125,7 +125,7 @@ $process.Start() | Out-Null
 # }
 
 # $req = "ProjectFileOpen"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -142,7 +142,7 @@ echo 2
 #     Ping = $true
 # }
 # $req = "Ping"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 # # Start-Sleep -Milliseconds 1000
@@ -176,7 +176,7 @@ Start-Sleep -Milliseconds 1500
 #     Ping = $true
 # }
 # $req = "Ping"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 # $counter = 0
@@ -203,7 +203,7 @@ $obj = @{
 
 
 $req = "FileOpen"
-$jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+$jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -215,7 +215,7 @@ $obj | ConvertTo-Json -Compress > $jsonPath
 #     Ping = $true
 # }
 # $req = "Ping"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -258,7 +258,7 @@ $obj = @{
     Ping = $true
 }
 $req = "Ping"
-$jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+$jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 $obj | ConvertTo-Json -Compress > $jsonPath
 $counter = 0
@@ -282,7 +282,7 @@ Start-Sleep -Milliseconds 2000
 #     Ping = $true
 # }
 # $req = "Ping"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 # Start-Sleep -Milliseconds 1000
@@ -312,7 +312,7 @@ Start-Sleep -Milliseconds 2000
 
 
 # $req = "Ping"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -332,7 +332,7 @@ $obj = @{
 }
 
 $req = "BuildFile"
-$jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+$jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 $obj | ConvertTo-Json -Compress > $jsonPath
 
@@ -421,7 +421,7 @@ Start-Sleep -Milliseconds 1000
 #     Ping = $true
 # }
 # $req = "Ping"
-# $jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+# $jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 # New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 # $obj | ConvertTo-Json -Compress > $jsonPath
 # Start-Sleep -Milliseconds 1000
@@ -444,7 +444,7 @@ $obj = @{
     Exit = $true
 }
 $req = "Exit"
-$jsonPath = "$logPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
+$jsonPath = "$commandsPath/$(Get-Date -Format 'yyyy_MM_dd_HH_mm_ss_fff')_$req.json"
 New-Item -ItemType File -Path $jsonPath -Force | Out-Null
 $obj | ConvertTo-Json -Compress > $jsonPath
 

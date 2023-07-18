@@ -29,13 +29,34 @@ Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter
 
 //// test
 
-let __equal log expected actual =
+let inline __expect fn log expected actual =
     if log then printfn $"{actual.ToDisplayString ()}"
     try
-        "Testing._equal" |> Expecto.Expect.equal actual expected
+        "Testing.__expect" |> fn actual expected
     with :? Expecto.AssertException as ex ->
         AssertExceptionFormatter(ex).Display () |> ignore
         failwith (ex.GetType().FullName)
 
-let _equal expected actual =
-    __equal true expected actual
+let __equal log expected actual = __expect Expecto.Expect.equal log expected actual
+let _equal expected actual = __equal true expected actual
+
+let __sequenceEqual log expected actual = __expect Expecto.Expect.sequenceEqual log expected actual
+let _sequenceEqual expected actual = __sequenceEqual true expected actual
+
+let __isGreaterThan log expected actual = __expect Expecto.Expect.isGreaterThan log expected actual
+let _isGreaterThan expected actual = __isGreaterThan true expected actual
+
+let __isLessThan log expected actual = __expect Expecto.Expect.isLessThan log expected actual
+let _isLessThan expected actual = __isLessThan true expected actual
+
+let __isGreaterThanOrEqual log expected actual = __expect Expecto.Expect.isGreaterThanOrEqual log expected actual
+let _isGreaterThanOrEqual expected actual = __isGreaterThanOrEqual true expected actual
+
+let __isLessThanOrEqual log expected actual = __expect Expecto.Expect.isLessThanOrEqual log expected actual
+let _isLessThanOrEqual expected actual = __isLessThanOrEqual true expected actual
+
+let __contains log expected actual = __expect Expecto.Expect.contains log expected actual
+let _contains expected actual = __contains true expected actual
+
+let __throwsC log expected actual = __expect Expecto.Expect.throwsC log expected actual
+let _throwsC expected actual = __throwsC true expected actual
