@@ -17,6 +17,10 @@ rustup update
 
 #!pwsh
 
+cargo +nightly install cargo-outdated
+
+#!pwsh
+
 cargo +nightly install wasm-pack
 
 #!pwsh

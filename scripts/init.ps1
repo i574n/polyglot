@@ -13,6 +13,7 @@ if (!(Search-Command "rustup")) {
         $rustupScriptPath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup.sh"
         Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath
         /bin/sh $rustupScriptPath -y
+        $env:PATH = "~/.cargo/bin:$env:PATH"
     }
 }
 
