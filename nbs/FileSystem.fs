@@ -47,13 +47,13 @@ module FileSystem =
     [<RequireQualifiedAccess>]
     type FileSystemChange =
         | Error of exn: exn
-        | Changed of path: string
-        | Created of path: string
+        | Changed of path: string * content: string option
+        | Created of path: string * content: string option
         | Deleted of path: string
-        | Renamed of oldPath: string * path: string
+        | Renamed of oldPath: string * (string * string option)
 
 
-    let watchWithFilter filter path =
+    let watchWithFilter filter shouldReadContent path =
         let fullPath = System.IO.Path.GetFullPath path
         let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
 
@@ -69,31 +69,56 @@ module FileSystem =
 
         let ticks () = System.DateTime.UtcNow.Ticks
 
+        let readContent fullPath =
+            if not shouldReadContent
+            then None
+            else
+                try
+                    System.Threading.Thread.Sleep 1
+                    System.IO.File.ReadAllText fullPath |> Some
+                with ex ->
+                    trace Error (fun () -> $"Failed to read file content: {ex.Message}") getLocals
+                    None
+
         let changedStream =
             AsyncSeq.subscribeEvent
                 watcher.Changed
-                (fun event -> ticks (), [ FileSystemChange.Changed (getEventPath event.FullPath) ])
+                (fun event ->
+                    ticks (),
+                    [ FileSystemChange.Changed (getEventPath event.FullPath, readContent event.FullPath) ]
+                )
 
         let deletedStream =
             AsyncSeq.subscribeEvent
                 watcher.Deleted
-                (fun event -> ticks (), [ FileSystemChange.Deleted (getEventPath event.FullPath) ])
+                (fun event ->
+                    ticks (),
+                    [ FileSystemChange.Deleted (getEventPath event.FullPath) ]
+                )
 
         let createdStream =
             AsyncSeq.subscribeEvent
                 watcher.Created
                 (fun event ->
                     let path = getEventPath event.FullPath
+                    let content = readContent event.FullPath
                     ticks (), [
-                        FileSystemChange.Created path
+                        FileSystemChange.Created (path, content)
                         if OS.isWindows () then
-                            FileSystemChange.Changed path
+                            FileSystemChange.Changed (path, content)
                     ])
 
         let renamedStream =
             AsyncSeq.subscribeEvent
                 watcher.Renamed
-                (fun event -> ticks (), [ FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath) ])
+                (fun event ->
+                    ticks (), [
+                        FileSystemChange.Renamed (
+                            getEventPath event.OldFullPath,
+                            (getEventPath event.FullPath, readContent event.FullPath)
+                        )
+                    ]
+                )
 
         let errorStream =
             AsyncSeq.subscribeEvent

@@ -38,7 +38,7 @@ let createTempDirectoryName () =
 let createTempDirectory () =
     let tempFolder = createTempDirectoryName ()
     let result = System.IO.Directory.CreateDirectory tempFolder
-    
+
     let getLocals () =
         $"tempFolder: {tempFolder} / result: {({|
             Exists = result.Exists
@@ -72,13 +72,13 @@ type FileSystemChangeType =
 [<RequireQualifiedAccess>]
 type FileSystemChange =
     | Error of exn: exn
-    | Changed of path: string
-    | Created of path: string
+    | Changed of path: string * content: string option
+    | Created of path: string * content: string option
     | Deleted of path: string
-    | Renamed of oldPath: string * path: string
+    | Renamed of oldPath: string * (string * string option)
 
 
-let watchWithFilter filter path =
+let watchWithFilter filter shouldReadContent path =
     let fullPath = System.IO.Path.GetFullPath path
     let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
 
@@ -94,31 +94,56 @@ let watchWithFilter filter path =
 
     let ticks () = System.DateTime.UtcNow.Ticks
 
+    let readContent fullPath =
+        if not shouldReadContent
+        then None
+        else
+            try
+                System.Threading.Thread.Sleep 1
+                System.IO.File.ReadAllText fullPath |> Some
+            with ex ->
+                trace Error (fun () -> $"Failed to read file content: {ex.Message}") getLocals
+                None
+
     let changedStream =
         AsyncSeq.subscribeEvent
             watcher.Changed
-            (fun event -> ticks (), [ FileSystemChange.Changed (getEventPath event.FullPath) ])
+            (fun event ->
+                ticks (),
+                [ FileSystemChange.Changed (getEventPath event.FullPath, readContent event.FullPath) ]
+            )
 
     let deletedStream =
         AsyncSeq.subscribeEvent
             watcher.Deleted
-            (fun event -> ticks (), [ FileSystemChange.Deleted (getEventPath event.FullPath) ])
+            (fun event ->
+                ticks (),
+                [ FileSystemChange.Deleted (getEventPath event.FullPath) ]
+            )
 
     let createdStream =
         AsyncSeq.subscribeEvent
             watcher.Created
             (fun event ->
                 let path = getEventPath event.FullPath
+                let content = readContent event.FullPath
                 ticks (), [
-                    FileSystemChange.Created path
+                    FileSystemChange.Created (path, content)
                     if OS.isWindows () then
-                        FileSystemChange.Changed path
+                        FileSystemChange.Changed (path, content)
                 ])
 
     let renamedStream =
         AsyncSeq.subscribeEvent
             watcher.Renamed
-            (fun event -> ticks (), [ FileSystemChange.Renamed (getEventPath event.OldFullPath, getEventPath event.FullPath) ])
+            (fun event ->
+                ticks (), [
+                    FileSystemChange.Renamed (
+                        getEventPath event.OldFullPath,
+                        (getEventPath event.FullPath, readContent event.FullPath)
+                    )
+                ]
+            )
 
     let errorStream =
         AsyncSeq.subscribeEvent
@@ -176,9 +201,9 @@ let watch path =
 
 //// test
 
-let testEventsRaw (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable) write =
-    let path = createTempDirectory ()
-    let stream, disposable = watchFn path
+let testEventsRaw (watchFn : bool -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable) write =
+    let tempDirectory = createTempDirectory ()
+    let stream, disposable = watchFn true tempDirectory
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
 
@@ -189,7 +214,7 @@ let testEventsRaw (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSyste
     let run = async {
         let! child = iter () |> Async.StartChild
         do! Async.Sleep 150
-        do! write path |> Async.AwaitTask
+        do! write tempDirectory |> Async.AwaitTask
         do! child
     }
 
@@ -199,7 +224,7 @@ let testEventsRaw (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSyste
         |> ignore
     finally
         disposable.Dispose ()
-        System.IO.Directory.Delete (path, true)
+        System.IO.Directory.Delete (tempDirectory, true)
 
     let eventsLog =
         events
@@ -219,6 +244,24 @@ let testEventsRaw (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSyste
     |> Seq.toList
     |> List.sortBy fst
     |> List.map snd
+    |> List.fold
+        (fun (map, acc) event ->
+            match event with
+            | FileSystemChange.Created (path, content) ->
+                (map |> Map.add path None), event :: acc
+            | FileSystemChange.Changed (path, Some content) ->
+                if map.ContainsKey path && map.[path] = Some content
+                then map, acc
+                else (map |> Map.add path (Some content)), event :: acc
+            | FileSystemChange.Deleted path ->
+                (map |> Map.remove path), event :: acc
+            | FileSystemChange.Renamed (oldPath, (newPath, content)) ->
+                (map |> Map.remove oldPath |> Map.remove newPath), event :: acc
+            | _ -> map, event :: acc
+        )
+        (Map.empty, [])
+    |> snd
+    |> List.rev
 
 #!fsharp
 
@@ -228,16 +271,24 @@ let write path = task {
     let n = 2
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}")
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"a{i}")
+
+    do! Async.Sleep 30
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "")
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"b{i}")
+
+    do! Async.Sleep 30
 
     for i = 1 to n do
         System.IO.File.Move (path </> $"file{i}.txt", path </> $"file_{i}.txt")
 
+    do! Async.Sleep 30
+
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{i}")
+        do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"c{i}")
+
+    do! Async.Sleep 30
 
     for i = 1 to n do
         System.IO.File.Delete (path </> $"file_{i}.txt")
@@ -247,19 +298,19 @@ let events = testEventsRaw watch write
 
 events
 |> _sequenceEqual [
-    FileSystemChange.Created "file1.txt"
-    FileSystemChange.Changed "file1.txt"
-    FileSystemChange.Created "file2.txt"
-    FileSystemChange.Changed "file2.txt"
+    FileSystemChange.Created ("file1.txt", Some "a1")
+    FileSystemChange.Changed ("file1.txt", Some "a1")
+    FileSystemChange.Created ("file2.txt", Some "a2")
+    FileSystemChange.Changed ("file2.txt", Some "a2")
 
-    FileSystemChange.Changed "file1.txt"
-    FileSystemChange.Changed "file2.txt"
+    FileSystemChange.Changed ("file1.txt", Some "b1")
+    FileSystemChange.Changed ("file2.txt", Some "b2")
 
-    FileSystemChange.Renamed ("file1.txt", "file_1.txt")
-    FileSystemChange.Renamed ("file2.txt", "file_2.txt")
+    FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+    FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "b2"))
 
-    FileSystemChange.Changed "file_1.txt"
-    FileSystemChange.Changed "file_2.txt"
+    FileSystemChange.Changed ("file_1.txt", Some "c1")
+    FileSystemChange.Changed ("file_2.txt", Some "c2")
 
     FileSystemChange.Deleted "file_1.txt"
     FileSystemChange.Deleted "file_2.txt"
@@ -267,7 +318,7 @@ events
 
 #!markdown
 
-### testEventsSorted (old) (test)
+### testEventsSorted (test)
 
 #!fsharp
 
@@ -289,13 +340,13 @@ let formatEvents events =
         match event with
         | FileSystemChange.Error _ ->
             None
-        | FileSystemChange.Changed path ->
+        | FileSystemChange.Changed (path, _) ->
             Some (ticks, System.IO.Path.GetFileName path, nameof FileSystemChangeType.Changed)
-        | FileSystemChange.Created path ->
+        | FileSystemChange.Created (path, _) ->
             Some (ticks, System.IO.Path.GetFileName path, nameof FileSystemChangeType.Created)
         | FileSystemChange.Deleted path ->
             Some (ticks, System.IO.Path.GetFileName path, nameof FileSystemChangeType.Deleted)
-        | FileSystemChange.Renamed (_oldPath, path) ->
+        | FileSystemChange.Renamed (_oldPath, (path, _)) ->
             Some (ticks, System.IO.Path.GetFileName path, nameof FileSystemChangeType.Renamed)
     )
     |> List.sortBy (fun (_, path, _) -> path)
@@ -367,7 +418,7 @@ let write path = task {
         System.IO.File.Delete (path </> $"file{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted watch write
+let eventMap, eventList = testEventsSorted (watch false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
@@ -413,7 +464,7 @@ let write path = task {
         System.IO.File.Delete (path </> $"file{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted watch write
+let eventMap, eventList = testEventsSorted (watch false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
@@ -454,7 +505,7 @@ let write path = task {
         System.IO.File.Delete (path </> $"file_{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted watch write
+let eventMap, eventList = testEventsSorted (watch false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
@@ -506,7 +557,7 @@ let write path = task {
         System.IO.File.Delete (path </> $"file_{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted watch write
+let eventMap, eventList = testEventsSorted (watch false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
