@@ -64,7 +64,7 @@ createTempDirectoryName ()
 let rec waitForFileAccess path = async {
     let rec loop retry = async {
         try
-            use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite)
+            use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite, System.IO.FileShare.None)
             ()
         with ex ->
             if retry % 100 = 0 then
@@ -526,10 +526,6 @@ events
     FileSystemChange.Deleted "file_2.txt"
 ]
 
-#!markdown
-
-### testEventsSorted (test)
-
 #!fsharp
 
 //// test
@@ -543,12 +539,12 @@ let write path = async {
             |> List.map (fun i -> String.replicate 1_000_000 (string i))
 
         for i = 1 to n do
-            do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"a{contents.[i - 1]}") |> Async.AwaitTask
+            do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
 
         do! Async.Sleep 30
 
         for i = 1 to n do
-            do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"b{contents.[i - 1]}") |> Async.AwaitTask
+            do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
 
         do! Async.Sleep 30
 
@@ -558,7 +554,7 @@ let write path = async {
         do! Async.Sleep 30
 
         for i = 1 to n do
-            do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"c{contents.[i - 1]}") |> Async.AwaitTask
+            do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
 
         do! Async.Sleep 30
 
@@ -585,23 +581,27 @@ let events =
 
 events
 |> _sequenceEqual [
-    FileSystemChange.Created ("file1.txt", Some "a1")
-    FileSystemChange.Changed ("file1.txt", Some "a1")
-    FileSystemChange.Created ("file2.txt", Some "a2")
-    FileSystemChange.Changed ("file2.txt", Some "a2")
+    FileSystemChange.Created ("file1.txt", Some "1a")
+    FileSystemChange.Changed ("file1.txt", Some "1a")
+    FileSystemChange.Created ("file2.txt", Some "2a")
+    FileSystemChange.Changed ("file2.txt", Some "2a")
 
-    FileSystemChange.Changed ("file1.txt", Some "b1")
-    FileSystemChange.Changed ("file2.txt", Some "b2")
+    FileSystemChange.Changed ("file1.txt", Some "1b")
+    FileSystemChange.Changed ("file2.txt", Some "2b")
 
-    FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-    FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+    FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "1b"))
+    FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "2b"))
 
-    FileSystemChange.Changed ("file_1.txt", Some "c1")
-    FileSystemChange.Changed ("file_2.txt", Some "c2")
+    FileSystemChange.Changed ("file_1.txt", Some "1c")
+    FileSystemChange.Changed ("file_2.txt", Some "2c")
 
     FileSystemChange.Deleted "file_1.txt"
     FileSystemChange.Deleted "file_2.txt"
 ]
+
+#!markdown
+
+### testEventsSorted (test)
 
 #!fsharp
 

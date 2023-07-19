@@ -6,6 +6,8 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
 git clone --recurse-submodules https://github.com/i574n/Fable.git
+Set-Location Fable
+git pull
 Set-Location $ScriptDir
 
 $path = "$HOME/.nuget/packages/fable"
