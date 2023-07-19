@@ -39,7 +39,7 @@ module FileSystem =
     let rec waitForFileAccess path = async {
         let rec loop retry = async {
             try
-                use _ = new System.IO.FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+                use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite)
                 ()
             with ex ->
                 if retry % 100 = 0 then
@@ -91,7 +91,7 @@ module FileSystem =
                 System.IO.File.Move (oldPath, newPath)
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    let getLocals () = $"oldPath: {oldPath} / newPath: {newPath} / message: {ex.Message} / {getLocals ()}"
                     trace Warn (fun () -> nameof moveFileAsync) getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
