@@ -64,7 +64,7 @@ createTempDirectoryName ()
 let rec waitForFileAccess path = async {
     let rec loop retry = async {
         try
-            use _ = new FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+            use _ = new System.IO.FileStream (path, FileMode.Open, FileAccess.ReadWrite)
             ()
         with ex ->
             if retry % 100 = 0 then
@@ -85,7 +85,7 @@ let path = tempFolder </> "test.txt"
 
 let lockFile () = async {
     trace Debug (fun () -> "_1") getLocals
-    use stream = new FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+    use stream = new System.IO.FileStream (path, FileMode.Open, FileAccess.ReadWrite)
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals
@@ -144,7 +144,7 @@ let path = tempFolder </> "test"
 let lockDirectory () = async {
     trace Debug (fun () -> "_1") getLocals
     System.IO.File.WriteAllText (path </> "test.txt", "")
-    use _ = new FileStream (path </> "test.txt", FileMode.Open, FileAccess.ReadWrite)
+    use _ = new System.IO.FileStream (path </> "test.txt", FileMode.Open, FileAccess.ReadWrite)
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals
@@ -193,7 +193,7 @@ let path = tempFolder </> "test.txt"
 
 let lockFile () = async {
     trace Debug (fun () -> "_1") getLocals
-    use _ = new FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+    use _ = new System.IO.FileStream (path, FileMode.Open, FileAccess.ReadWrite)
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals
@@ -243,7 +243,7 @@ let newPath = tempFolder </> "test2.txt"
 
 let lockFile () = async {
     trace Debug (fun () -> "_1") getLocals
-    use _ = new FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+    use _ = new System.IO.FileStream (path, FileMode.Open, FileAccess.ReadWrite)
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals

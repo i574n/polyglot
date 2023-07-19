@@ -39,7 +39,7 @@ module FileSystem =
     let rec waitForFileAccess path = async {
         let rec loop retry = async {
             try
-                use _ = new FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+                use _ = new System.IO.FileStream (path, FileMode.Open, FileAccess.ReadWrite)
                 ()
             with ex ->
                 if retry % 100 = 0 then
