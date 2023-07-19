@@ -34,6 +34,71 @@ module FileSystem =
 
         tempFolder
 
+    // ## WaitForFileAccess
+
+    let rec waitForFileAccess path = async {
+        let rec loop retry = async {
+            try
+                use _ = new FileStream (path, FileMode.Open, FileAccess.ReadWrite)
+                ()
+            with ex ->
+                if retry % 100 = 0 then
+                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    trace Warn (fun () -> nameof waitForFileAccess) getLocals
+                do! Async.Sleep 1
+                return! loop (retry + 1)
+        }
+        return! loop 0
+    }
+
+    // ## DeleteDirectoryAsync
+
+    let rec deleteDirectoryAsync path = async {
+        let rec loop retry = async {
+            try
+                System.IO.Directory.Delete (path, true)
+            with ex ->
+                if retry % 100 = 0 then
+                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    trace Warn (fun () -> nameof deleteDirectoryAsync) getLocals
+                do! Async.Sleep 1
+                return! loop (retry + 1)
+        }
+        return! loop 0
+    }
+
+    // ## DeleteFileAsync
+
+    let rec deleteFileAsync path = async {
+        let rec loop retry = async {
+            try
+                System.IO.File.Delete path
+            with ex ->
+                if retry % 100 = 0 then
+                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    trace Warn (fun () -> nameof deleteFileAsync) getLocals
+                do! Async.Sleep 1
+                return! loop (retry + 1)
+        }
+        return! loop 0
+    }
+
+    // ## MoveFileAsync
+
+    let rec moveFileAsync newPath oldPath = async {
+        let rec loop retry = async {
+            try
+                System.IO.File.Move (oldPath, newPath)
+            with ex ->
+                if retry % 100 = 0 then
+                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    trace Warn (fun () -> nameof moveFileAsync) getLocals
+                do! Async.Sleep 1
+                return! loop (retry + 1)
+        }
+        return! loop 0
+    }
+
     // ## FileSystemWatcher
 
     [<RequireQualifiedAccess>]
@@ -74,7 +139,7 @@ module FileSystem =
             then None
             else
                 try
-                    System.Threading.Thread.Sleep 1
+                    waitForFileAccess fullPath |> Async.runWithTimeout 30000 |> ignore
                     System.IO.File.ReadAllText fullPath |> Some
                 with ex ->
                     trace Error (fun () -> $"Failed to read file content: {ex.Message}") getLocals
