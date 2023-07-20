@@ -483,25 +483,27 @@ let write path = async {
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"a{i}") |> Async.AwaitTask
 
-    do! Async.Sleep 30
+    do! Async.Sleep 50
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"b{i}") |> Async.AwaitTask
 
-    do! Async.Sleep 30
+    do! Async.Sleep 50
 
     for i = 1 to n do
         do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
 
-    do! Async.Sleep 30
+    do! Async.Sleep 50
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"c{i}") |> Async.AwaitTask
 
-    do! Async.Sleep 30
+    do! Async.Sleep 50
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt")
+
+    do! Async.Sleep 50
 }
 
 let events = testEventsRaw watch write
@@ -533,35 +535,34 @@ events
 let write path = async {
     let n = 2
 
-    try
-        let contents =
-            [1..n]
-            |> List.map (fun i -> String.replicate 1_000_000 (string i))
+    let contents =
+        [1..n]
+        |> List.map (string >> String.replicate 1_000_000)
 
-        for i = 1 to n do
-            do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
 
-        do! Async.Sleep 30
+    do! Async.Sleep 100
 
-        for i = 1 to n do
-            do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
 
-        do! Async.Sleep 30
+    do! Async.Sleep 100
 
-        for i = 1 to n do
-            do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
+    for i = 1 to n do
+        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
 
-        do! Async.Sleep 30
+    do! Async.Sleep 100
 
-        for i = 1 to n do
-            do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
+    for i = 1 to n do
+        do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
 
-        do! Async.Sleep 30
+    do! Async.Sleep 100
 
-        for i = 1 to n do
-            do! deleteFileAsync (path </> $"file_{i}.txt")
-    with ex ->
-        trace Error (fun () -> $"write: {ex.Message}") getLocals
+    for i = 1 to n do
+        do! deleteFileAsync (path </> $"file_{i}.txt")
+
+    do! Async.Sleep 100
 }
 
 let events =
