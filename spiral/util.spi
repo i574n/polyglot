@@ -99,8 +99,8 @@ inl union_list_get forall union_type union_key_type value_type.
 
 inl (/@) a b = b |> append a
 inl (/??) a b = a |> optionm.defaultWith b
-inl (/.) props key = props |> union_list_get key
-inl (+\) forall t. (a : t) (b : t) : t = $"!a + !b"
+// inl (/.) props key = props |> union_list_get key
+inl (/+) forall t. (a : t) (b : t) : t = $"!a + !b"
 inl (||>) (items, init) fn = items |> fn init
 
 let rec pad (count : i32) (n : string) : string =

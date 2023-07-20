@@ -518,11 +518,11 @@ inl new_clap_command (name : string) : clap_command =
     inl name = name |> raw_string_literal
     emit_expr
         ()
-        ($"\"clap::Command::new(!name)\"" +\
-            ".version(env!(\"CARGO_PKG_VERSION\"))" +\
-            ".propagate_version(true)" +\
-            ".subcommand_required(false)" +\
-            ".about(\"command about\")" +\
+        ($"\"clap::Command::new(!name)\"" /+
+            ".version(env!(\"CARGO_PKG_VERSION\"))" /+
+            ".propagate_version(true)" /+
+            ".subcommand_required(false)" /+
+            ".about(\"command about\")" /+
             ".arg_required_else_help(true)")
 
 inl add_clap_arg (arg : clap_arg) (command : clap_command) : clap_command =
@@ -565,7 +565,7 @@ let rec get_available_port (port : u16') : u16' =
 
 
 // inl serialize args json : std_string =
-//     emit_expr args ("serde_json::json!(" +\ json +\ ")")
+//     emit_expr args ("serde_json::json!(" /+ json /+ ")")
 
 // inl json_stringify forall t. (obj : t) : std_string =
 //     real
@@ -574,7 +574,7 @@ let rec get_available_port (port : u16') : u16' =
 //         | _ => serialize `t obj "*$0"
 
 inl serialize json : std_string =
-    emit_expr () ("serde_json::json!(" +\ json +\ ").to_string()")
+    emit_expr () ("serde_json::json!(" /+ json /+ ").to_string()")
 
 
 inl hex_to_u8 (hex : string) : u8 =
@@ -690,7 +690,7 @@ inl new_log
                     inl args = args |> to_string'
                     inl locals = locals |> to_string'
                     console_log' (a ;[
-                        !!(ext_locals +\ " %c" +\ args +\ " %c" +\ locals)
+                        !!(ext_locals /+ " %c" /+ args /+ " %c" /+ locals)
                         !!($"$\"color: #{!color};\"" : string)
                         !!"color: #385779;"
                     ])
@@ -717,7 +717,7 @@ inl get_body (document : any) : any = emit_expr document "$0.body().unwrap()"
 inl get_head (document : any) : any = emit_expr document "$0.head().unwrap()"
 
 inl unchecked_into (t : string) (v : any) : any =
-    emit_expr () ($"\"wasm_bindgen::JsCast::unchecked_into::<\"" +\ t +\ $"\">(!v)\"")
+    emit_expr () ($"\"wasm_bindgen::JsCast::unchecked_into::<\"" /+ t /+ $"\">(!v)\"")
 
 inl unchecked_into' forall t u. (x : t) : u =
     emit_expr () $"\"wasm_bindgen::JsCast::unchecked_into(!x)\""
@@ -826,7 +826,7 @@ inl get_clap_one'' (arg : string) (matches : ref' clap_arg_matches) : string =
         |> string_replace ($"\"--\" + !arg + \"=\"") ""
     )
     |> unwrap_or (
-        ("get_clap_one: " +\ arg)
+        ("get_clap_one: " /+ arg)
         // |> to_std_string
         // |> to_ref'
     )
@@ -842,7 +842,7 @@ inl get_clap_one (arg : string) (matches : arc clap_arg_matches) : string =
         |> string_replace ($"\"--\" + !arg + \"=\"") ""
     )
     |> unwrap_or (
-        ("get_clap_one: " +\ arg)
+        ("get_clap_one: " /+ arg)
         // |> to_std_string
         // |> to_ref'
     )
@@ -1033,15 +1033,15 @@ inl fetch' request (fn : ref_cell (arc (mutex (option' response))) -> ()) =
     inl on_done : any =
         emit_expr
             ()
-            ($"\"move |x: ehttp::Result<ehttp::Response>| {\"" +\
-            $"\"  let r = x.clone().unwrap();\"" +\
-            $"\"  *!response.borrow_mut().try_lock().unwrap() = Some(r);\"" +\
-            $"\"  async_std::task::block_on(async move {\"" +\
-            $"\"    let (lock, cvar) = &*!pair2;\"" +\
-            $"\"    let mut started = lock.lock().await;\"" +\
-            $"\"    *started = true;\"" +\
-            $"\"    cvar.notify_one();\"" +\
-            $"\"  });\"" +\
+            ($"\"move |x: ehttp::Result<ehttp::Response>| {\"" /+
+            $"\"  let r = x.clone().unwrap();\"" /+
+            $"\"  *!response.borrow_mut().try_lock().unwrap() = Some(r);\"" /+
+            $"\"  async_std::task::block_on(async move {\"" /+
+            $"\"    let (lock, cvar) = &*!pair2;\"" /+
+            $"\"    let mut started = lock.lock().await;\"" /+
+            $"\"    *started = true;\"" /+
+            $"\"    cvar.notify_one();\"" /+
+            $"\"  });\"" /+
             "}")
     inl on_done : box any = on_done |> new_box
     http_fetch request on_done
@@ -1049,13 +1049,13 @@ inl fetch' request (fn : ref_cell (arc (mutex (option' response))) -> ()) =
     inl fn : future any =
         emit_expr
             ()
-            ("async move {" +\
-            $"\"  let (lock, cvar) = &*!pair;\"" +\
-            $"\"  let mut started = lock.lock().await;\"" +\
-            $"\"  while !!*started {\"" +\
-            $"\"    started = cvar.wait(started).await;\"" +\
-            $"\"  }\"" +\
-            $"\"  !fn(!response');\"" +\
+            ("async move {" /+
+            $"\"  let (lock, cvar) = &*!pair;\"" /+
+            $"\"  let mut started = lock.lock().await;\"" /+
+            $"\"  while !!*started {\"" /+
+            $"\"    started = cvar.wait(started).await;\"" /+
+            $"\"  }\"" /+
+            $"\"  !fn(!response');\"" /+
             "}")
 
     block_on fn
@@ -1073,9 +1073,9 @@ inl new_class (props : list (string * string)) : any =
             fun acc (k, v) =>
                 inl k = k |> raw_string_literal
                 inl v = v |> raw_string_literal
-                acc +\ $"\" .style(!k, !v) \""
+                acc /+ $"\" .style(!k, !v) \""
             ""
-    emit_expr () ($"\"dominator::class!! {\"" +\ text +\ "}")
+    emit_expr () ($"\"dominator::class!! {\"" /+ text /+ "}")
 
 inl set_class forall t. (class : any) (builder : dombuilder t) : dombuilder t =
     emit_expr () $"\"!builder.class(&*!class)\""
@@ -1120,10 +1120,10 @@ inl list_join forall t. (items : list t) : any =
                     match i with
                     | 0 => $"\"!x\""
                     | _ => $"\", !x\""
-                i + 1, acc +\ x
+                i + 1, acc /+ x
             (0i32, "")
         |> snd
-    emit_expr () ($"\"[\"" +\ text +\ "]")
+    emit_expr () ($"\"[\"" /+ text /+ "]")
 
 inl to_mut forall t. (x : t) : t =
     emit_expr () $"\"let mut !x = !x\""
@@ -1173,11 +1173,11 @@ inl append_css_rule
     inl styles_text =
         (styles, "")
         ||> listm.fold fun acc (k, v) =>
-            k +\ $"\": \"" +\ v +\ $"\";\"" +\ acc
+            k /+ $"\": \"" /+ v /+ $"\";\"" /+ acc
 
     inl rule_text : string =
-        rule +\ $"\" {\"" +\
-        $"\"  \"" +\ styles_text +\ $"\" \"" +\
+        rule /+ $"\" {\"" /+
+        $"\"  \"" /+ styles_text /+ $"\" \"" /+
         $"\"}\""
     inl rule_text = rule_text |> raw_string_literal
     inl idx : any = emit_expr () $"\"!sheet.insert_rule(!rule_text).unwrap()\""
@@ -1200,31 +1200,31 @@ inl with_node forall t e.
     inl events_text =
         (events, "")
         ||> listm.fold fun acc event =>
-            $"\".event(dominator::clone!!(\"" +\
-            $"\"  !event => move |e: \"" +\ event_type +\ $"\"| {\"" +\
-            $"\"    let t = e.target(); \"" +\
-            $"\"    let t = t.unwrap(); \"" +\
-            $"\"    let t = wasm_bindgen::JsCast::dyn_into(t).unwrap(); \"" +\
-            $"\"    let el = t; \"" +\
+            $"\".event(dominator::clone!!(\"" /+
+            $"\"  !event => move |e: \"" /+ event_type /+ $"\"| {\"" /+
+            $"\"    let t = e.target(); \"" /+
+            $"\"    let t = t.unwrap(); \"" /+
+            $"\"    let t = wasm_bindgen::JsCast::dyn_into(t).unwrap(); \"" /+
+            $"\"    let el = t; \"" /+
 
-            // $"\"    let el = &element; \"" +\
-            // $"\"    let el = (*el).clone(); \"" +\
-            // $"\"    let el = wasm_bindgen::JsCast::dyn_into(el); \"" +\
-            // $"\"    let el = el.unwrap(); \"" +\
+            // $"\"    let el = &element; \"" /+
+            // $"\"    let el = (*el).clone(); \"" /+
+            // $"\"    let el = wasm_bindgen::JsCast::dyn_into(el); \"" /+
+            // $"\"    let el = el.unwrap(); \"" /+
 
-            $"\"    let el = std::rc::Rc::new(el); \"" +\
-            $"\"    !event(el); \"" +\
-            $"\"  }\"" +\
-            $"\"))\"" +\
+            $"\"    let el = std::rc::Rc::new(el); \"" /+
+            $"\"    !event(el); \"" /+
+            $"\"  }\"" /+
+            $"\"))\"" /+
             acc
 
     emit_expr
         ()
-        ($"\"dominator::with_node!!(\"" +\
-        $"\"   !builder,\"" +\
-        $"\"   element => {\"" +\
-        $"\"      \"" +\ events_text +\ $"\" \"" +\
-        $"\"   }\"" +\
+        ($"\"dominator::with_node!!(\"" /+
+        $"\"   !builder,\"" /+
+        $"\"   element => {\"" /+
+        $"\"      \"" /+ events_text /+ $"\" \"" /+
+        $"\"   }\"" /+
         $"\")\"")
 
 inl with_on_change forall t.
@@ -1236,12 +1236,12 @@ inl with_on_change forall t.
     |> with_node $"\"dominator::events::Input\"" fun (element : rc html_input_element) =>
         emit_expr
             ()
-            ($"\"\"" +\
-            $"\"let value0 = !element;\"" +\
-            $"\"let value0 = value0.value();\"" +\
-            $"\"let value0 = value0.into_boxed_str();\"" +\
-            $"\"let value0 = Box::leak(value0);\"" +\
-            $"\"!event(value0);\"" +\
+            ($"\"\"" /+
+            $"\"let value0 = !element;\"" /+
+            $"\"let value0 = value0.value();\"" /+
+            $"\"let value0 = value0.into_boxed_str();\"" /+
+            $"\"let value0 = Box::leak(value0);\"" /+
+            $"\"!event(value0);\"" /+
             $"\"()\"")
 
 
@@ -1259,51 +1259,51 @@ inl with_load_event forall t.
     |> with_node $"\"dominator::events::Load\"" fun (element : rc html_iframe_element) =>
         emit_expr
             element
-            ($"\"\"" +\
-            $"\"let value0 = &$0;\"" +\
-            $"\"let dom = value0;\"" +\
-            $"\"let value0_ = (*value0).clone(); \"" +\
+            ($"\"\"" /+
+            $"\"let value0 = &$0;\"" /+
+            $"\"let dom = value0;\"" /+
+            $"\"let value0_ = (*value0).clone(); \"" /+
 
-            $"\"let value0 = value0_.content_document();\"" +\
-            $"\"let value0 = value0.unwrap_or(\"" +\
-            $"\"    value0_\"" +\
-            $"\"      .content_window()\"" +\
-            $"\"      .unwrap()\"" +\
-            $"\"      .document()\"" +\
-            $"\"      .unwrap()\"" +\
-            $"\");\"" +\
-            $"\"let value0 = value0.location();\"" +\
-            $"\"let value0 = value0.unwrap();\"" +\
-            $"\"let value0 = value0.href();\"" +\
-            $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" +\
+            $"\"let value0 = value0_.content_document();\"" /+
+            $"\"let value0 = value0.unwrap_or(\"" /+
+            $"\"    value0_\"" /+
+            $"\"      .content_window()\"" /+
+            $"\"      .unwrap()\"" /+
+            $"\"      .document()\"" /+
+            $"\"      .unwrap()\"" /+
+            $"\");\"" /+
+            $"\"let value0 = value0.location();\"" /+
+            $"\"let value0 = value0.unwrap();\"" /+
+            $"\"let value0 = value0.href();\"" /+
+            $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" /+
 
-            // $"\"let value0 = value0.as_string();\"" +\
-            // $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" +\
+            // $"\"let value0 = value0.as_string();\"" /+
+            // $"\"let value0 = value0.unwrap_or(std::string::String::new());\"" /+
 
-            $"\"let value0 = value0.into_boxed_str();\"" +\
-            $"\"let value0 = Box::leak(value0);\"" +\
-            $"\"!log'(value0);\"" +\
-            $"\"if value0 !!= \\\"\\\" {\"" +\
-            $"\"  !event(value0);\"" +\
-            $"\"}\"" +\
-            // $"\"let closure = move |_event : web_sys::Event| {\"" +\
-            // $"\"  let value0 = value0.node_value();\"" +\
-            // $"\"  let value0 = value0.unwrap();\"" +\
-            // $"\"  let value0 = value0.into_boxed_str();\"" +\
-            // $"\"  let value0 = Box::leak(value0);\"" +\
-            // $"\"  !event(value0);\"" +\
-            // $"\"};\"" +\
-            // $"\"let closure = Box::new(closure);\"" +\
-            // // $"\"let closure = wasm_bindgen::closure::Closure::wrap(closure);\"" +\
-            // $"\"let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);\"" +\
-            // $"\"let closure = closure.as_ref();\"" +\
-            // $"\"let closure = wasm_bindgen::JsCast::unchecked_ref(closure);\"" +\
-            // //  $"\"let dom = <dominator::Dom as Into<web_sys::HtmlIFrameElement>>::into(!dom);\"" +\
-            // // $"\"let dom : web_sys::HtmlIFrameElement = !dom;\"" +\
-            // // $"\"let dom = &$0;\"" +\
-            // // $"\"let dom = (*dom).clone(); \"" +\
-            // $"\"let ev = dom.add_event_listener_with_callback(\\\"load\\\", closure);\"" +\
-            // $"\"ev.unwrap();\"" +\
+            $"\"let value0 = value0.into_boxed_str();\"" /+
+            $"\"let value0 = Box::leak(value0);\"" /+
+            $"\"!log'(value0);\"" /+
+            $"\"if value0 !!= \\\"\\\" {\"" /+
+            $"\"  !event(value0);\"" /+
+            $"\"}\"" /+
+            // $"\"let closure = move |_event : web_sys::Event| {\"" /+
+            // $"\"  let value0 = value0.node_value();\"" /+
+            // $"\"  let value0 = value0.unwrap();\"" /+
+            // $"\"  let value0 = value0.into_boxed_str();\"" /+
+            // $"\"  let value0 = Box::leak(value0);\"" /+
+            // $"\"  !event(value0);\"" /+
+            // $"\"};\"" /+
+            // $"\"let closure = Box::new(closure);\"" /+
+            // // $"\"let closure = wasm_bindgen::closure::Closure::wrap(closure);\"" /+
+            // $"\"let closure : wasm_bindgen::closure::Closure<dyn Fn(web_sys::Event) -> ()> = wasm_bindgen::closure::Closure::new(closure);\"" /+
+            // $"\"let closure = closure.as_ref();\"" /+
+            // $"\"let closure = wasm_bindgen::JsCast::unchecked_ref(closure);\"" /+
+            // //  $"\"let dom = <dominator::Dom as Into<web_sys::HtmlIFrameElement>>::into(!dom);\"" /+
+            // // $"\"let dom : web_sys::HtmlIFrameElement = !dom;\"" /+
+            // // $"\"let dom = &$0;\"" /+
+            // // $"\"let dom = (*dom).clone(); \"" /+
+            // $"\"let ev = dom.add_event_listener_with_callback(\\\"load\\\", closure);\"" /+
+            // $"\"ev.unwrap();\"" /+
             $"\"()\"")
 
 inl get_local_storage (window : any) : any =

@@ -8,6 +8,8 @@ module Async =
 
     open Common
 
+    // ## runWithTimeout
+
     let runWithTimeout timeout fn =
         try
             Async.RunSynchronously (fn, timeout) |> Some
@@ -19,9 +21,3 @@ module Async =
             trace Debug (fun () -> "runWithTimeout") getLocals
             None
         | e -> raise e
-
-    module AsyncSeq =
-        let subscribeEvent (event: IEvent<'H, 'A>) map =
-            let x = System.Reactive.Linq.Observable.FromEventPattern<'H, 'A>(event.AddHandler, event.RemoveHandler)
-            System.Reactive.Linq.Observable.Select (x, fun event -> map event.EventArgs)
-            |> FSharp.Control.AsyncSeq.ofObservableBuffered

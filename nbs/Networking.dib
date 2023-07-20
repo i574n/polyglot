@@ -1,0 +1,147 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# Networking (Polyglot)
+
+#!fsharp
+
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+#!import ../nbs/Async.fs
+
+#!fsharp
+
+open Common
+
+#!markdown
+
+## testPortOpen
+
+#!fsharp
+
+let testPortOpen port = async {
+    use client = new System.Net.Sockets.TcpClient ()
+    try
+        do! client.ConnectAsync ("127.0.0.1", port) |> Async.AwaitTask
+        return true
+    with ex ->
+        trace Warn (fun () -> $"testPortOpen / message: {ex.Message}") getLocals
+        return false
+}
+
+#!fsharp
+
+//// test
+
+testPortOpen 65536
+|> Async.RunSynchronously
+|> _equal false
+
+#!markdown
+
+## waitForPortAccess
+
+#!fsharp
+
+let waitForPortAccess status port =
+    let rec loop retry = async {
+        let! isPortOpen = testPortOpen port
+        if isPortOpen = status
+        then return retry
+        else
+            if retry % 100 = 0 then
+                let getLocals () = $"port: {port} / retry: {retry} / {getLocals ()}"
+                trace Warn (fun () -> "waitForPortAccess") getLocals
+            do! Async.Sleep 1
+            return! loop (retry + 1)
+    }
+    loop 0
+
+#!fsharp
+
+//// test
+
+let port = 5000
+
+let lockPort () = async {
+    trace Debug (fun () -> "_1") getLocals
+    do! Async.Sleep 5000
+    let listener = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    trace Debug (fun () -> "_2") getLocals
+    listener.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 2000
+    trace Debug (fun () -> "_4") getLocals
+    listener.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! _ = lockPort () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 1
+    trace Debug (fun () -> "3") getLocals
+    let! retries = waitForPortAccess true port
+    retries |> _isGreaterThanOrEqual 2
+    let! retries = waitForPortAccess false port
+    retries |> _isGreaterThanOrEqual 100
+}
+|> Async.runWithTimeout 15000
+|> _equal (Some ())
+
+#!markdown
+
+## getAvailablePort
+
+#!fsharp
+
+let getAvailablePort initialPort =
+    let rec loop port = async {
+        let! isPortOpen = testPortOpen port
+        if not isPortOpen
+        then return port
+        else return! loop (port + 1)
+    }
+    loop initialPort
+
+#!fsharp
+
+//// test
+
+let port = 5000
+
+let lockPorts () = async {
+    trace Debug (fun () -> "_1") getLocals
+    let listener1 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    let listener2 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
+    trace Debug (fun () -> "_2") getLocals
+    listener1.Start ()
+    listener2.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 4000
+    trace Debug (fun () -> "_4") getLocals
+    listener1.Stop ()
+    listener2.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! _ = lockPorts () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 1
+    trace Debug (fun () -> "3") getLocals
+    let! availablePort = getAvailablePort port
+    availablePort |> _equal (port + 2)
+    let! retries = waitForPortAccess false port
+    retries |> _isGreaterThanOrEqual 100
+}
+|> Async.runWithTimeout 10000
+|> _equal (Some ())

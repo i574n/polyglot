@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
 #!markdown
 
@@ -8,21 +8,27 @@
 
 #!fsharp
 
-#!import ../nbs/Async.dib
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#r "nuget:FSharp.Control.AsyncSeq"
+#r "nuget:System.Reactive,5.0.0"
+#r "nuget:System.Reactive.Linq,6.0.0-preview.1"
 
 #!fsharp
 
 #!import ../nbs/Common.fs
 #!import ../nbs/Async.fs
+#!import ../nbs/AsyncSeq.fs
 
 #!fsharp
 
 open Common
-open Async
 
 #!markdown
 
-## TempDirectory
+## createTempDirectoryName
 
 #!fsharp
 
@@ -34,6 +40,19 @@ let createTempDirectoryName () =
     System.IO.Path.GetTempPath ()
     </> $"!{root}"
     </> string (newGuidFromDateTime System.DateTime.Now)
+
+#!fsharp
+
+//// test
+
+createTempDirectoryName ()
+|> _contains System.IO.Path.DirectorySeparatorChar
+
+#!markdown
+
+## createTempDirectory
+
+#!fsharp
 
 let createTempDirectory () =
     let tempFolder = createTempDirectoryName ()
@@ -53,28 +72,35 @@ let createTempDirectory () =
 
 //// test
 
-createTempDirectoryName ()
+let tempDirectory = createTempDirectory ()
+
+Directory.Exists tempDirectory
+|> _equal true
 
 #!markdown
 
-## WaitForFileAccess
+## waitForFileAccess
 
 #!fsharp
 
-let rec waitForFileAccess path = async {
+let waitForFileAccess path =
     let rec loop retry = async {
         try
-            use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite, System.IO.FileShare.None)
-            ()
+            use _ = new System.IO.FileStream (
+                path,
+                System.IO.FileMode.Open,
+                System.IO.FileAccess.ReadWrite,
+                System.IO.FileShare.None
+            )
+            return retry
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
-                trace Warn (fun () -> nameof waitForFileAccess) getLocals
+                trace Warn (fun () -> "waitForFileAccess") getLocals
             do! Async.Sleep 1
             return! loop (retry + 1)
     }
-    return! loop 0
-}
+    loop 0
 
 #!fsharp
 
@@ -105,34 +131,32 @@ async {
     trace Debug (fun () -> "3") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "4") getLocals
-    do! waitForFileAccess path
-    trace Debug (fun () -> "5") getLocals
+    let! retries = waitForFileAccess path
+    retries |> _isGreaterThan 100
     let text = File.ReadAllText path
-    trace Debug (fun () -> $"text: {text}") getLocals
-    return text
+    text |> _equal "1"
 }
 |> Async.runWithTimeout 3000
-|> _equal (Some "1")
+|> _equal (Some ())
 
 #!markdown
 
-## DeleteDirectoryAsync
+## deleteDirectoryAsync
 
 #!fsharp
 
-let rec deleteDirectoryAsync path = async {
+let deleteDirectoryAsync path =
     let rec loop retry = async {
         try
             System.IO.Directory.Delete (path, true)
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
-                trace Warn (fun () -> nameof deleteDirectoryAsync) getLocals
+                trace Warn (fun () -> "deleteDirectoryAsync") getLocals
             do! Async.Sleep 1
             return! loop (retry + 1)
     }
-    return! loop 0
-}
+    loop 0
 
 #!fsharp
 
@@ -166,23 +190,22 @@ async {
 
 #!markdown
 
-## DeleteFileAsync
+## deleteFileAsync
 
 #!fsharp
 
-let rec deleteFileAsync path = async {
+let deleteFileAsync path =
     let rec loop retry = async {
         try
             System.IO.File.Delete path
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
-                trace Warn (fun () -> nameof deleteFileAsync) getLocals
+                trace Warn (fun () -> "deleteFileAsync") getLocals
             do! Async.Sleep 1
             return! loop (retry + 1)
     }
-    return! loop 0
-}
+    loop 0
 
 #!fsharp
 
@@ -215,23 +238,23 @@ async {
 
 #!markdown
 
-## MoveFileAsync
+## moveFileAsync
 
 #!fsharp
 
-let rec moveFileAsync newPath oldPath = async {
+let moveFileAsync newPath oldPath =
     let rec loop retry = async {
         try
             System.IO.File.Move (oldPath, newPath)
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"oldPath: {oldPath} / newPath: {newPath} / message: {ex.Message} / {getLocals ()}"
-                trace Warn (fun () -> nameof moveFileAsync) getLocals
+                let getLocals () =
+                    $"oldPath: {oldPath} / newPath: {newPath} / message: {ex.Message} / {getLocals ()}"
+                trace Warn (fun () -> "moveFileAsync") getLocals
             do! Async.Sleep 1
             return! loop (retry + 1)
     }
-    return! loop 0
-}
+    loop 0
 
 #!fsharp
 
@@ -266,7 +289,7 @@ async {
 
 #!markdown
 
-## FileSystemWatcher
+## watch
 
 #!fsharp
 
@@ -299,9 +322,11 @@ let watchWithFilter filter shouldReadContent path =
             IncludeSubdirectories = true
         )
 
-    let getEventPath (path : string) = path.Trim().Replace(fullPath, "").TrimStart [| '/'; '\\' |]
+    let getEventPath (path : string) =
+        path.Trim().Replace(fullPath, "").TrimStart [| '/'; '\\' |]
 
-    let ticks () = System.DateTime.UtcNow.Ticks
+    let ticks () =
+        System.DateTime.UtcNow.Ticks
 
     let readContent fullPath =
         if not shouldReadContent
@@ -311,7 +336,7 @@ let watchWithFilter filter shouldReadContent path =
                 waitForFileAccess fullPath |> Async.runWithTimeout 30000 |> ignore
                 System.IO.File.ReadAllText fullPath |> Some
             with ex ->
-                trace Error (fun () -> $"Failed to read file content: {ex.Message}") getLocals
+                trace Error (fun () -> $"watchWithFilter / readContent / message: {ex.Message}") getLocals
                 None
 
     let changedStream =
@@ -382,7 +407,7 @@ let watchWithFilter filter shouldReadContent path =
 
     let disposable =
         Object.newDisposable (fun () ->
-            trace Debug (fun () -> "Disposing watch stream") getLocals
+            trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
             watcher.EnableRaisingEvents <- false
             watcher.Dispose ()
         )
@@ -410,7 +435,10 @@ let watch path =
 
 //// test
 
-let testEventsRaw (watchFn : bool -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable) write =
+let testEventsRaw
+    (watchFn : bool -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
+    write
+    =
     let tempDirectory = createTempDirectory ()
     let stream, disposable = watchFn true tempDirectory
 
@@ -439,7 +467,9 @@ let testEventsRaw (watchFn : bool -> string -> FSharp.Control.AsyncSeq<int64 * F
         |> Seq.toList
         |> List.sortBy fst
         |> List.fold
-            (fun (prev, acc) (ticks, event) -> ticks, (ticks, (if prev = 0L then 0L else ticks - prev), event) :: acc)
+            (fun (prev, acc) (ticks, event) ->
+                ticks, (ticks, (if prev = 0L then 0L else ticks - prev), event) :: acc
+            )
             (0L, [])
         |> snd
         |> List.rev
@@ -472,6 +502,10 @@ let testEventsRaw (watchFn : bool -> string -> FSharp.Control.AsyncSeq<int64 * F
         (Map.empty, [])
     |> snd
     |> List.rev
+
+#!markdown
+
+#### fast (test)
 
 #!fsharp
 
@@ -527,6 +561,10 @@ events
     FileSystemChange.Deleted "file_1.txt"
     FileSystemChange.Deleted "file_2.txt"
 ]
+
+#!markdown
+
+#### slow (test)
 
 #!fsharp
 

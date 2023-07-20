@@ -7,9 +7,8 @@ namespace Polyglot
 module FileSystem =
 
     open Common
-    open Async
 
-    // ## TempDirectory
+    // ## createTempDirectoryName
 
     let createTempDirectoryName () =
         let root =
@@ -19,6 +18,8 @@ module FileSystem =
         System.IO.Path.GetTempPath ()
         </> $"!{root}"
         </> string (newGuidFromDateTime System.DateTime.Now)
+
+    // ## createTempDirectory
 
     let createTempDirectory () =
         let tempFolder = createTempDirectoryName ()
@@ -34,72 +35,74 @@ module FileSystem =
 
         tempFolder
 
-    // ## WaitForFileAccess
+    // ## waitForFileAccess
 
-    let rec waitForFileAccess path = async {
+    let waitForFileAccess path =
         let rec loop retry = async {
             try
-                use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite, System.IO.FileShare.None)
-                ()
+                use _ = new System.IO.FileStream (
+                    path,
+                    System.IO.FileMode.Open,
+                    System.IO.FileAccess.ReadWrite,
+                    System.IO.FileShare.None
+                )
+                return retry
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
-                    trace Warn (fun () -> nameof waitForFileAccess) getLocals
+                    trace Warn (fun () -> "waitForFileAccess") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
         }
-        return! loop 0
-    }
+        loop 0
 
-    // ## DeleteDirectoryAsync
+    // ## deleteDirectoryAsync
 
-    let rec deleteDirectoryAsync path = async {
+    let deleteDirectoryAsync path =
         let rec loop retry = async {
             try
                 System.IO.Directory.Delete (path, true)
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
-                    trace Warn (fun () -> nameof deleteDirectoryAsync) getLocals
+                    trace Warn (fun () -> "deleteDirectoryAsync") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
         }
-        return! loop 0
-    }
+        loop 0
 
-    // ## DeleteFileAsync
+    // ## deleteFileAsync
 
-    let rec deleteFileAsync path = async {
+    let deleteFileAsync path =
         let rec loop retry = async {
             try
                 System.IO.File.Delete path
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
-                    trace Warn (fun () -> nameof deleteFileAsync) getLocals
+                    trace Warn (fun () -> "deleteFileAsync") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
         }
-        return! loop 0
-    }
+        loop 0
 
-    // ## MoveFileAsync
+    // ## moveFileAsync
 
-    let rec moveFileAsync newPath oldPath = async {
+    let moveFileAsync newPath oldPath =
         let rec loop retry = async {
             try
                 System.IO.File.Move (oldPath, newPath)
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"oldPath: {oldPath} / newPath: {newPath} / message: {ex.Message} / {getLocals ()}"
-                    trace Warn (fun () -> nameof moveFileAsync) getLocals
+                    let getLocals () =
+                        $"oldPath: {oldPath} / newPath: {newPath} / message: {ex.Message} / {getLocals ()}"
+                    trace Warn (fun () -> "moveFileAsync") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
         }
-        return! loop 0
-    }
+        loop 0
 
-    // ## FileSystemWatcher
+    // ## watch
 
     [<RequireQualifiedAccess>]
     type FileSystemChangeType =
@@ -130,9 +133,11 @@ module FileSystem =
                 IncludeSubdirectories = true
             )
 
-        let getEventPath (path : string) = path.Trim().Replace(fullPath, "").TrimStart [| '/'; '\\' |]
+        let getEventPath (path : string) =
+            path.Trim().Replace(fullPath, "").TrimStart [| '/'; '\\' |]
 
-        let ticks () = System.DateTime.UtcNow.Ticks
+        let ticks () =
+            System.DateTime.UtcNow.Ticks
 
         let readContent fullPath =
             if not shouldReadContent
@@ -142,7 +147,7 @@ module FileSystem =
                     waitForFileAccess fullPath |> Async.runWithTimeout 30000 |> ignore
                     System.IO.File.ReadAllText fullPath |> Some
                 with ex ->
-                    trace Error (fun () -> $"Failed to read file content: {ex.Message}") getLocals
+                    trace Error (fun () -> $"watchWithFilter / readContent / message: {ex.Message}") getLocals
                     None
 
         let changedStream =
@@ -213,7 +218,7 @@ module FileSystem =
 
         let disposable =
             Object.newDisposable (fun () ->
-                trace Debug (fun () -> "Disposing watch stream") getLocals
+                trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
                 watcher.EnableRaisingEvents <- false
                 watcher.Dispose ()
             )
