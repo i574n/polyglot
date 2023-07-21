@@ -100,7 +100,7 @@ async {
     do! child
     testEvent.AddCall "3"
 }
-|> Async.runWithTimeout 200
+|> Async.runWithTimeout 300
 |> _equal None
 
 testEvent.Calls
@@ -125,7 +125,7 @@ async {
     do! child
     testEvent.AddCall "4"
 }
-|> Async.runWithTimeout 200
+|> Async.runWithTimeout 300
 |> _equal None
 
 testEvent.Calls
@@ -155,7 +155,7 @@ async {
     do! child
     testEvent.AddCall "5"
 }
-|> Async.runWithTimeout 200
+|> Async.runWithTimeout 300
 |> _equal None
 
 testEvent.Calls

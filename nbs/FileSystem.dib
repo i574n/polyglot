@@ -484,7 +484,9 @@ let testEventsRaw
         |> List.rev
         |> List.map (fun (diff, n, event) ->
             let text = $"{n} / {diff} / {event}"
-            text.Substring (0, min 100 text.Length)
+            if text |> String.length <= 100
+            then text
+            else text |> String.substring 0 (text |> String.length)
         )
         |> String.concat "\n"
     let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
