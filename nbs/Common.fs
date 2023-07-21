@@ -15,33 +15,45 @@ module Common =
     type TicksGuid = System.Guid
     type DateTimeGuid = System.Guid
 
+    // ## dateTimeGuidFromDateTime
+
     let inline dateTimeGuidFromDateTime (guid: System.Guid) (dateTime: System.DateTime) =
         let guid = guid |> string
         let prefix = dateTime.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
         DateTimeGuid $"{prefix}{guid.[prefix.Length..]}"
 
+    // ## dateTimeFromGuid
+
     let inline dateTimeFromGuid (dateTimeGuid: DateTimeGuid) =
         let dateTimeGuid = dateTimeGuid |> string
         System.DateTime.ParseExact (dateTimeGuid.[..24].Replace ("-", ""), "yyyyMMddHHmmssfffffff", null)
+
+    // ## ticksGuidFromTicks
 
     let inline ticksGuidFromTicks (guid: System.Guid) (ticks: int64) =
         let guid = guid |> string
         let ticks = (ticks |> string).PadLeft (18, '0')
         TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
 
+    // ## ticksFromGuid
+
     let inline ticksFromGuid (ticksGuid: DateTimeGuid) =
         let ticks = ticksGuid |> string
         int64 $"{ticks.[0..7]}{ticks.[9..12]}{ticks.[14..17]}{ticks.[19..20]}"
+
+    // ## newGuidFromDateTime
 
     let inline newGuidFromDateTime (dateTime: System.DateTime) =
         let guid = System.Guid.NewGuid ()
         dateTimeGuidFromDateTime guid dateTime
 
+    // ## newGuidFromTicks
+
     let inline newGuidFromTicks (ticks: int64) =
         let guid = System.Guid.NewGuid ()
         ticksGuidFromTicks guid ticks
 
-    let inline (</>) a b = System.IO.Path.Combine (a, b)
+    // ## trace
 
     type TraceLevel =
         | Verbose
@@ -85,12 +97,9 @@ module Common =
         finally
             traceLevel <- oldTraceLevel
 
-    module OS =
-        let isWindows () =
-            System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+    // ## newDisposable
 
-    module Object =
-        let inline newDisposable fn =
-            { new System.IDisposable with
-                member _.Dispose () = fn ()
-            }
+    let inline newDisposable fn =
+        { new System.IDisposable with
+            member _.Dispose () = fn ()
+        }

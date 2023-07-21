@@ -31,6 +31,10 @@ type DateTimeGuid = System.Guid
 
 let testGuid = Guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
 
+#!markdown
+
+## dateTimeGuidFromDateTime
+
 #!fsharp
 
 let inline dateTimeGuidFromDateTime (guid: System.Guid) (dateTime: System.DateTime) =
@@ -59,6 +63,10 @@ dateTimeGuidFromDateTime testGuid DateTime.MaxValue
 dateTimeGuidFromDateTime testGuid DateTime.UnixEpoch
 |> _equal (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).[^10..]}")
 
+#!markdown
+
+## dateTimeFromGuid
+
 #!fsharp
 
 let inline dateTimeFromGuid (dateTimeGuid: DateTimeGuid) =
@@ -86,6 +94,10 @@ dateTimeFromGuid (DateTimeGuid $"99991231-2359-5999-9999-9{(testGuid |> string).
 dateTimeFromGuid (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).[^10..]}")
 |> _equal DateTime.UnixEpoch
 
+#!markdown
+
+## ticksGuidFromTicks
+
 #!fsharp
 
 let inline ticksGuidFromTicks (guid: System.Guid) (ticks: int64) =
@@ -107,6 +119,10 @@ ticksGuidFromTicks testGuid 0L
 ticksGuidFromTicks testGuid 999999999999999999L
 |> _equal (TicksGuid $"99999999-9999-9999-99dc-b{(testGuid |> string).[^10..]}")
 
+#!markdown
+
+## ticksFromGuid
+
 #!fsharp
 
 let inline ticksFromGuid (ticksGuid: DateTimeGuid) =
@@ -127,6 +143,10 @@ ticksFromGuid (TicksGuid "00000000-0000-0000-00dc-ba9876543210")
 ticksFromGuid (TicksGuid $"99999999-9999-9999-99{(testGuid |> string).[^14..]}")
 |> _equal 999999999999999999L
 
+#!markdown
+
+## newGuidFromDateTime
+
 #!fsharp
 
 let inline newGuidFromDateTime (dateTime: System.DateTime) =
@@ -141,6 +161,10 @@ newGuidFromDateTime System.DateTime.UtcNow
 |> dateTimeFromGuid
 |> fun dateTime -> (dateTime - System.DateTime.UtcNow).TotalSeconds |> int
 |> _equal 0
+
+#!markdown
+
+## newGuidFromTicks
 
 #!fsharp
 
@@ -157,9 +181,9 @@ newGuidFromTicks System.DateTime.UtcNow.Ticks
 |> fun ticks -> (ticks - System.DateTime.UtcNow.Ticks) / 100000L
 |> _equal 0L
 
-#!fsharp
+#!markdown
 
-let inline (</>) a b = System.IO.Path.Combine (a, b)
+## trace
 
 #!fsharp
 
@@ -211,32 +235,23 @@ let withTraceLevel level fn =
 
 trace Debug (fun () -> "test") getLocals
 
-#!fsharp
+#!markdown
 
-module OS =
-    let isWindows () =
-        System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+## newDisposable
 
 #!fsharp
 
-//// test
-
-OS.isWindows ()
-
-#!fsharp
-
-module Object =
-    let inline newDisposable fn =
-        { new System.IDisposable with
-            member _.Dispose () = fn ()
-        }
+let inline newDisposable fn =
+    { new System.IDisposable with
+        member _.Dispose () = fn ()
+    }
 
 #!fsharp
 
 //// test
 
 let mutable newDisposableTest = 0
-Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
 |> fun x -> x.Dispose ()
 newDisposableTest |> _equal 1
 
@@ -246,7 +261,7 @@ newDisposableTest |> _equal 1
 
 let mutable newDisposableTest = 0
 fun () -> task {
-    use x = Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
     ()
 }
 |> fun x -> x () |> Async.AwaitTask |> Async.RunSynchronously
@@ -258,7 +273,7 @@ newDisposableTest |> _equal 1
 
 let mutable newDisposableTest = 0
 async {
-    use x = Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
     ()
 }
 |> Async.RunSynchronously
@@ -270,7 +285,7 @@ newDisposableTest |> _equal 1
 
 let mutable newDisposableTest = 0
 async {
-    let x = Object.newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    let x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
     ()
 }
 |> Async.RunSynchronously

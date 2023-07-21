@@ -58,5 +58,14 @@ let _isLessThanOrEqual expected actual = __isLessThanOrEqual true expected actua
 let __contains log expected actual = __expect Expecto.Expect.contains log expected actual
 let _contains expected actual = __contains true expected actual
 
+let __stringContains log expected actual = __expect Expecto.Expect.stringContains log expected actual
+let _stringContains expected actual = __stringContains true expected actual
+
+let __stringStarts log expected actual = __expect Expecto.Expect.stringStarts log expected actual
+let _stringStarts expected actual = __stringStarts true expected actual
+
+let __stringEnds log expected actual = __expect Expecto.Expect.stringEnds log expected actual
+let _stringEnds expected actual = __stringEnds true expected actual
+
 let __throwsC log expected actual = __expect Expecto.Expect.throwsC log expected actual
 let _throwsC expected actual = __throwsC true expected actual

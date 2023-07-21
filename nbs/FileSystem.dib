@@ -21,10 +21,19 @@
 #!import ../nbs/Common.fs
 #!import ../nbs/Async.fs
 #!import ../nbs/AsyncSeq.fs
+#!import ../nbs/Runtime.fs
 
 #!fsharp
 
 open Common
+
+#!markdown
+
+## Operators
+
+#!fsharp
+
+let inline (</>) a b = System.IO.Path.Combine (a, b)
 
 #!markdown
 
@@ -289,7 +298,7 @@ async {
 
 #!markdown
 
-## watch
+## watchDirectory
 
 #!fsharp
 
@@ -310,7 +319,7 @@ type FileSystemChange =
     | Renamed of oldPath: string * (string * string option)
 
 
-let watchWithFilter filter shouldReadContent path =
+let watchDirectoryWithFilter filter shouldReadContent path =
     let fullPath = System.IO.Path.GetFullPath path
     let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
 
@@ -363,7 +372,7 @@ let watchWithFilter filter shouldReadContent path =
                 let content = readContent event.FullPath
                 ticks (), [
                     FileSystemChange.Created (path, content)
-                    if OS.isWindows () then
+                    if Runtime.isWindows () then
                         FileSystemChange.Changed (path, content)
                 ])
 
@@ -406,7 +415,7 @@ let watchWithFilter filter shouldReadContent path =
         |> FSharp.Control.AsyncSeq.concatSeq
 
     let disposable =
-        Object.newDisposable (fun () ->
+        newDisposable (fun () ->
             trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
             watcher.EnableRaisingEvents <- false
             watcher.Dispose ()
@@ -414,8 +423,8 @@ let watchWithFilter filter shouldReadContent path =
 
     stream, disposable
 
-let watch path =
-    watchWithFilter
+let watchDirectory path =
+    watchDirectoryWithFilter
         (System.IO.NotifyFilters.Attributes
         ||| System.IO.NotifyFilters.CreationTime
         ||| System.IO.NotifyFilters.DirectoryName
@@ -540,7 +549,7 @@ let write path = async {
     do! Async.Sleep 50
 }
 
-let events = testEventsRaw watch write
+let events = testEventsRaw watchDirectory write
 
 events
 |> _sequenceEqual [
@@ -604,7 +613,7 @@ let write path = async {
 }
 
 let events =
-    testEventsRaw watch write
+    testEventsRaw watchDirectory write
     |> List.map (function
         | FileSystemChange.Changed (path, Some content) ->
             FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
@@ -740,7 +749,7 @@ let write path = async {
         do! deleteFileAsync (path </> $"file{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted (watch false) write
+let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
@@ -786,7 +795,7 @@ let write path = async {
         do! deleteFileAsync (path </> $"file{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted (watch false) write
+let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
@@ -827,7 +836,7 @@ let write path = async {
         do! deleteFileAsync (path </> $"file_{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted (watch false) write
+let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created
@@ -879,7 +888,7 @@ let write path = async {
         do! deleteFileAsync (path </> $"file_{i}.txt")
 }
 
-let eventMap, eventList = testEventsSorted (watch false) write
+let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
 [
     "file1.txt", nameof FileSystemChangeType.Created

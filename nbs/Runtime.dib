@@ -1,0 +1,188 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# Runtime (Polyglot)
+
+#!fsharp
+
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#r "nuget:FSharp.Control.AsyncSeq"
+#r "nuget:System.Reactive,5.0.0"
+#r "nuget:System.Reactive.Linq,6.0.0-preview.1"
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+#!import ../nbs/Async.fs
+#!import ../nbs/AsyncSeq.fs
+#!import ../nbs/Runtime.fs
+#!import ../nbs/FileSystem.fs
+
+#!fsharp
+
+open Common
+
+#!fsharp
+
+//// test
+
+open FileSystem
+
+#!markdown
+
+## isWindows
+
+#!fsharp
+
+let isWindows () =
+    System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+
+#!fsharp
+
+//// test
+
+isWindows ()
+
+#!markdown
+
+## splitCommand
+
+#!fsharp
+
+type private CommandParseStep =
+    | Start
+    | Path of quoted: bool
+    | Arguments
+
+let splitCommand (command: string) =
+    let rec loop (path, args) chars step =
+        match chars, step with
+        | ('"' | '\'') :: tail, _ when path = "" -> loop (path, args) tail (Path true)
+        | ('"' | '\'') :: tail, Path true -> loop (path, args) tail (Path false)
+        | ' ' :: tail, Path true -> loop ($"{path} ", args) tail (Path true)
+        | ' ' :: tail, (Start | Path _) -> loop (path, args) tail Arguments
+        | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
+        | char :: tail, _ -> loop ($"{path}{char}", args) tail step
+        | _, _ -> path, args
+    let path, args = loop ("", "") (command |> Seq.toList) Start
+    let workingDirectory, fileName =
+        if path.StartsWith "./" || path.Contains "/" || path.Contains "\\"
+        then System.IO.Path.GetDirectoryName path, System.IO.Path.GetFileName path
+        else ".", path
+    workingDirectory.Replace ("\\", "/"), fileName, args
+
+#!fsharp
+
+//// test
+
+splitCommand ""
+|> _equal (".", "", "")
+
+splitCommand "/a/b/c"
+|> _equal ("/a/b", "c", "")
+
+splitCommand "cat file.txt"
+|> _equal (".", "cat", "file.txt")
+
+splitCommand @"..\..\file.exe file1.txt file2.txt"
+|> _equal ("../..", "file.exe", "file1.txt file2.txt")
+
+splitCommand @"c:\dir\file.exe ""file1.txt file2.txt"""
+|> _equal (@"c:/dir", "file.exe", @"""file1.txt file2.txt""")
+
+splitCommand @"""..\..\dir name\file.exe"" ""file 1.txt"" file2.txt"
+|> _equal ("../../dir name", "file.exe", @"""file 1.txt"" file2.txt")
+
+splitCommand @"""..\..\file 1.exe"" -c \\""echo 1\\"""
+|> _equal ("../..", "file 1.exe", @"-c \\""echo 1\\""")
+
+splitCommand @"..\..\file 1.exe -c \\""echo 1\\"""
+|> _equal ("../..", "file", @"1.exe -c \\""echo 1\\""")
+
+#!markdown
+
+## executeAsync
+
+#!fsharp
+
+let executeAsync (command : string) = async {
+    let workingDirectory, fileName, arguments = command |> splitCommand
+    let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
+    
+    let startInfo = System.Diagnostics.ProcessStartInfo (
+        WorkingDirectory = workingDirectory,
+        FileName = fileName,
+        Arguments = arguments,
+        RedirectStandardOutput = true,
+        RedirectStandardError = true,
+        UseShellExecute = false,
+        CreateNoWindow = true
+    )
+
+    use proc = new System.Diagnostics.Process (StartInfo = startInfo)
+    let result = System.Collections.Concurrent.ConcurrentStack<string> ()
+
+    let event error (e: System.Diagnostics.DataReceivedEventArgs) =
+        if e.Data <> null then
+            trace
+                (if error then Error else Debug)
+                (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
+                getLocals
+
+            result.Push
+                $"{
+                    if error then '['.ToString() else System.String.Empty
+                }{
+                    e.Data
+                }{
+                    if error then ']'.ToString() else System.String.Empty
+                }"
+
+    proc.OutputDataReceived.Add (event false)
+    proc.ErrorDataReceived.Add (event true)
+
+    trace Debug (fun () -> $"executeAsync") getLocals
+
+    if proc.Start () |> not
+    then failwith $"executeAsync / proc.Start() error"
+
+    proc.BeginErrorReadLine ()
+    proc.BeginOutputReadLine ()
+
+    do! proc.WaitForExitAsync () |> Async.AwaitTask
+
+    let result = result |> Seq.rev |> String.concat System.Environment.NewLine
+
+    trace Debug (fun () -> $"executeAsync / proc.ExitCode: {proc.ExitCode} / result.Length: {result.Length}") getLocals
+
+    return proc.ExitCode, result
+}
+
+#!fsharp
+
+//// test
+
+let tempFolder = FileSystem.createTempDirectory ()
+let path = tempFolder </> "test.txt"
+
+let command = @$"pwsh -c ""Get-Content {path}"""
+
+async {
+    let! exitCode, result = executeAsync command
+    exitCode |> _equal 1
+    result |> _stringContains "not exist"
+
+    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+
+    let! exitCode, result = executeAsync command
+    exitCode |> _equal 0
+    result |> _equal "0"
+}
+|> Async.runWithTimeout 3000
+|> _equal (Some ())

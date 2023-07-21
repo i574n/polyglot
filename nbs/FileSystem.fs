@@ -8,6 +8,10 @@ module FileSystem =
 
     open Common
 
+    // ## Operators
+
+    let inline (</>) a b = System.IO.Path.Combine (a, b)
+
     // ## createTempDirectoryName
 
     let createTempDirectoryName () =
@@ -102,7 +106,7 @@ module FileSystem =
         }
         loop 0
 
-    // ## watch
+    // ## watchDirectory
 
     [<RequireQualifiedAccess>]
     type FileSystemChangeType =
@@ -121,7 +125,7 @@ module FileSystem =
         | Renamed of oldPath: string * (string * string option)
 
 
-    let watchWithFilter filter shouldReadContent path =
+    let watchDirectoryWithFilter filter shouldReadContent path =
         let fullPath = System.IO.Path.GetFullPath path
         let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
 
@@ -174,7 +178,7 @@ module FileSystem =
                     let content = readContent event.FullPath
                     ticks (), [
                         FileSystemChange.Created (path, content)
-                        if OS.isWindows () then
+                        if Runtime.isWindows () then
                             FileSystemChange.Changed (path, content)
                     ])
 
@@ -217,7 +221,7 @@ module FileSystem =
             |> FSharp.Control.AsyncSeq.concatSeq
 
         let disposable =
-            Object.newDisposable (fun () ->
+            newDisposable (fun () ->
                 trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
                 watcher.EnableRaisingEvents <- false
                 watcher.Dispose ()
@@ -225,8 +229,8 @@ module FileSystem =
 
         stream, disposable
 
-    let watch path =
-        watchWithFilter
+    let watchDirectory path =
+        watchDirectoryWithFilter
             (System.IO.NotifyFilters.Attributes
             ||| System.IO.NotifyFilters.CreationTime
             ||| System.IO.NotifyFilters.DirectoryName

@@ -60,7 +60,7 @@ type TestEvent () as self =
             member _.Subscribe observer =
                 self.AddCall "IObservable.Subscribe"
                 let disposable = self.Event.Publish.Subscribe observer
-                Object.newDisposable (fun () ->
+                newDisposable (fun () ->
                     self.AddCall "IObservable.Dispose"
                     disposable.Dispose ()
                 )
