@@ -321,7 +321,7 @@ module Parser =
         <?> "float"
 
     let createParserForwardedToRef<'a> () =
-        let mutable parserRef =
+        let mutable parserRef : Parser<'a> =
             {
                 label = "unknown"
                 parseFn = fun _ -> failwith "unfixed forwarded parser"

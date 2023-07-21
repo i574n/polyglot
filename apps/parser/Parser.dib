@@ -879,7 +879,7 @@ run pfloat "-123.45"
 #!fsharp
 
 let createParserForwardedToRef<'a> () =
-    let mutable parserRef =
+    let mutable parserRef : Parser<'a> =
         {
             label = "unknown"
             parseFn = fun _ -> failwith "unfixed forwarded parser"

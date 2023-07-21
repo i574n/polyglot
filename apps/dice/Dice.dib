@@ -2,9 +2,25 @@
 
 {"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
+#!markdown
+
+# Dice (Polyglot)
+
 #!fsharp
 
-#!import ../nbs/Common.dib
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+
+#!fsharp
+
+open Common
+
+#!markdown
+
+## pow6
 
 #!fsharp
 
@@ -18,6 +34,10 @@ pow6
 |> Seq.take 8
 |> Seq.toList
 |> _equal [ 1; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+
+#!markdown
+
+## rollAcc
 
 #!fsharp
 
@@ -57,6 +77,10 @@ rollAcc true [6; 5; 4; 3; 2] 1 1000
 rollAcc true [6; 5; 4; 3; 2] 2 1000
 |> _equal (Some (1208, [3; 2]))
 
+#!markdown
+
+## fixedRoll
+
 #!fsharp
 
 let fixedRoll log max rolls =
@@ -88,6 +112,10 @@ fixedRoll true 2000 [2; 2; 6; 4; 5]
 fixedRoll true 2000 [4; 1; 1; 2; 3]
 |> _equal None
 
+#!markdown
+
+## numDices
+
 #!fsharp
 
 let numDices log max =
@@ -113,6 +141,10 @@ numDices true 36
 
 numDices true 7777
 |> _equal 6
+
+#!markdown
+
+## progressiveRoll
 
 #!fsharp
 
