@@ -29,13 +29,13 @@ module Runtime =
             | ' ' :: tail, (Start | Path _) -> loop (path, args) tail Arguments
             | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
             | char :: tail, _ -> loop ($"{path}{char}", args) tail step
-            | _, _ -> path, args
+            | _, _ -> path.Replace ("\\", "/"), args
         let path, args = loop ("", "") (command |> Seq.toList) Start
         let workingDirectory, fileName =
-            if path.StartsWith "./" || path.Contains "/" || path.Contains "\\"
+            if path.StartsWith "./" || path.Contains "/"
             then System.IO.Path.GetDirectoryName path, System.IO.Path.GetFileName path
             else ".", path
-        workingDirectory.Replace ("\\", "/"), fileName, args
+        workingDirectory, fileName, args
 
     // ## executeAsync
 
