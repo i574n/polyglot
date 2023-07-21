@@ -138,7 +138,7 @@ module FileSystem =
             )
 
         let getEventPath (path : string) =
-            path.Trim().Replace(fullPath, "").TrimStart [| '/'; '\\' |]
+            path |> String.trim |> String.replace fullPath "" |> String.trimStart [| '/'; '\\' |]
 
         let ticks () =
             System.DateTime.UtcNow.Ticks

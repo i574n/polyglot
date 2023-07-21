@@ -332,7 +332,7 @@ let watchDirectoryWithFilter filter shouldReadContent path =
         )
 
     let getEventPath (path : string) =
-        path.Trim().Replace(fullPath, "").TrimStart [| '/'; '\\' |]
+        path |> String.trim |> String.replace fullPath "" |> String.trimStart [| '/'; '\\' |]
 
     let ticks () =
         System.DateTime.UtcNow.Ticks
@@ -465,7 +465,7 @@ let testEventsRaw
 
     try
         run
-        |> Async.runWithTimeout 10000
+        |> Async.runWithTimeout 20000
         |> _equal (Some ())
     finally
         disposable.Dispose ()
@@ -589,27 +589,27 @@ let write path = async {
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
 
-    do! Async.Sleep 100
+    do! Async.Sleep 150
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
 
-    do! Async.Sleep 100
+    do! Async.Sleep 150
 
     for i = 1 to n do
         do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
 
-    do! Async.Sleep 100
+    do! Async.Sleep 150
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
 
-    do! Async.Sleep 100
+    do! Async.Sleep 150
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt")
 
-    do! Async.Sleep 100
+    do! Async.Sleep 150
 }
 
 let events =

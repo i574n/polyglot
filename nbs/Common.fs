@@ -29,6 +29,9 @@ module Common =
         let startsWith (value : string) (input : string) =
             input.StartsWith value
 
+        let substring startIndex length (input : string) =
+            input.Substring (startIndex, length)
+
         let trim (input : string) =
             input.Trim ()
 
