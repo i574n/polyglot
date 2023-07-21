@@ -1,4 +1,4 @@
-// # Networking (Polyglot)
+/// # Networking (Polyglot)
 
 #if !INTERACTIVE
 namespace Polyglot
@@ -8,7 +8,7 @@ module Networking =
 
     open Common
 
-    // ## testPortOpen
+    /// ## testPortOpen
 
     let testPortOpen port = async {
         use client = new System.Net.Sockets.TcpClient ()
@@ -20,7 +20,7 @@ module Networking =
             return false
     }
 
-    // ## waitForPortAccess
+    /// ## waitForPortAccess
 
     let waitForPortAccess status port =
         let rec loop retry = async {
@@ -36,7 +36,7 @@ module Networking =
         }
         loop 0
 
-    // ## getAvailablePort
+    /// ## getAvailablePort
 
     let getAvailablePort initialPort =
         let rec loop port = async {

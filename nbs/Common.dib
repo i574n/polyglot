@@ -16,9 +16,37 @@ let nl = System.Environment.NewLine
 
 #!fsharp
 
+let cons head tail = head :: tail
+
+#!fsharp
+
 module String =
+    let endsWith (value : string) (input : string) =
+        input.EndsWith value
+
+    let padLeft totalWidth paddingChar (input : string) =
+        input.PadLeft (totalWidth, paddingChar)
+
+    let replace (oldValue : string) (newValue : string) (input : string) =
+        input.Replace (oldValue, newValue)
+
+    let split separator (input : string) =
+        input.Split separator
+
+    let splitString (separator : string array) (input : string) =
+        input.Split (separator, System.StringSplitOptions.None)
+
+    let startsWith (value : string) (input : string) =
+        input.StartsWith value
+
     let trim (input : string) =
         input.Trim ()
+    
+    let trimEnd (trimChars : char array) (input : string) =
+        input.TrimEnd trimChars
+
+    let trimStart (trimChars : char array) (input : string) =
+        input.TrimStart trimChars
 
 #!fsharp
 
@@ -71,7 +99,7 @@ dateTimeGuidFromDateTime testGuid DateTime.UnixEpoch
 
 let inline dateTimeFromGuid (dateTimeGuid: DateTimeGuid) =
     let dateTimeGuid = dateTimeGuid |> string
-    System.DateTime.ParseExact (dateTimeGuid.[..24].Replace ("-", ""), "yyyyMMddHHmmssfffffff", null)
+    System.DateTime.ParseExact (dateTimeGuid.[..24] |> String.replace "-" "", "yyyyMMddHHmmssfffffff", null)
 
 #!fsharp
 
@@ -102,7 +130,7 @@ dateTimeFromGuid (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).
 
 let inline ticksGuidFromTicks (guid: System.Guid) (ticks: int64) =
     let guid = guid |> string
-    let ticks = (ticks |> string).PadLeft (18, '0')
+    let ticks = ticks |> string |> String.padLeft 18 '0'
     TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
 
 #!fsharp
@@ -205,7 +233,9 @@ let trace level fn getLocals =
     if traceEnabled && level >= traceLevel then
         traceCount <- traceCount + 1
         let time = System.DateTime.Now.ToString "HH:mm:ss"
-        System.Console.WriteLine ($"{time} #{traceCount} [{level}] {fn ()} / {getLocals ()}".TrimEnd [| ' '; '/' |])
+        $"{time} #{traceCount} [{level}] {fn ()} / {getLocals ()}"
+        |> String.trimEnd [| ' '; '/' |]
+        |> System.Console.WriteLine
 
 let withTrace enabled fn =
     let oldTraceEnabled = traceEnabled

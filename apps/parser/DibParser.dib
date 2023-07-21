@@ -2,18 +2,40 @@
 
 {"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
+#!markdown
+
+# DibParser (Polyglot)
+
 #!fsharp
 
-#!import ../nbs/Common.dib
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#r "nuget:FParsec"
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+
+#!fsharp
+
+open Common
+open FParsec
+
+#!markdown
+
+## escapeCell (test)
 
 #!fsharp
 
 //// test
 
-let escapeCell (input : string) =
-    input.Split [| '\n' |]
+let escapeCell input =
+    input
+    |> String.split [| '\n' |]
     |> Array.map (function
-        | line when line.StartsWith "\\#!" || line.StartsWith "\\#r" ->
+        | line when line |> String.startsWith "\\#!" || line |> String.startsWith "\\#r" ->
             System.Text.RegularExpressions.Regex.Replace (line, "^\\\\#", "#")
         | line -> line
     )
@@ -31,19 +53,15 @@ $"a{nl}\\#!magic{nl}b{nl}"
 
 #!fsharp
 
-#r "nuget:FParsec"
-
-#!fsharp
-
-open FParsec
-
-#!fsharp
-
 type Block =
     {
         magic : string
         content : string
     }
+
+#!markdown
+
+## magicMarker
 
 #!fsharp
 
@@ -53,9 +71,9 @@ let magicMarker : Parser<string, unit> = pstring "#!"
 
 //// test
 
-let input = "#!magic"
-let result = run magicMarker input
-result |> _equal (
+"#!magic"
+|> run magicMarker
+|> _equal (
     Success ("#!", (), Position ("", 2, 1, 3))
 )
 
@@ -63,9 +81,9 @@ result |> _equal (
 
 //// test
 
-let input = "##!magic"
-let result = run magicMarker input
-result |> _equal (
+"##!magic"
+|> run magicMarker
+|> _equal (
     Failure (
         $"Error in Ln: 1 Col: 1{nl}##!magic{nl}^{nl}Expecting: '#!'{nl}",
         ParserError (
@@ -76,6 +94,10 @@ result |> _equal (
         ()
     )
 )
+
+#!markdown
+
+## magicCommand
 
 #!fsharp
 
@@ -88,11 +110,11 @@ let magicCommand =
 
 //// test
 
-let input = """#!magic
+"""#!magic
 
 a"""
-let result = run magicCommand input
-result |> _equal (
+|> run magicCommand
+|> _equal (
     Success ("magic", (), Position ("", 8, 2, 1))
 )
 
@@ -100,11 +122,11 @@ result |> _equal (
 
 //// test
 
-let input = """ #!magic
+""" #!magic
 
 a"""
-let result = run magicCommand input
-result |> _equal (
+|> run magicCommand
+|> _equal (
     Failure (
         $"Error in Ln: 1 Col: 1{nl} #!magic{nl}^{nl}Expecting: '#!'{nl}",
         ParserError (
@@ -129,15 +151,15 @@ let content =
 
 //// test
 
-let input = """#!magic
+"""#!magic
 
 
 a
 
 
 """
-let result = run content input
-result |> _equal (
+|> run content
+|> _equal (
     Success ("""#!magic
 
 
@@ -160,15 +182,15 @@ let block =
 
 //// test
 
-let input = """#!magic
+"""#!magic
 
 
 a
 
 
 """
-let result = run block input
-result |> _equal (
+|> run block
+|> _equal (
     Success (
         { magic = "magic"; content = "a" },
         (),
@@ -186,8 +208,8 @@ let blocks =
 
 //// test
 
-let input =
-    """#!magic1
+
+"""#!magic1
 
 a
 
@@ -195,9 +217,10 @@ a
 
 b
 
-""" |> escapeCell
-let result = run blocks input
-result |> _equal (
+"""
+|> escapeCell
+|> run blocks
+|> _equal (
     Success (
         [
             { magic = "magic1"; content = "a" }
@@ -213,21 +236,23 @@ result |> _equal (
 let formatBlock kernel (block : Block) =
     match kernel, block with
     | _, { magic = "markdown"; content = content } ->
-        content.Split [| '\n' |]
-        |> Array.map (fun line -> line.TrimEnd ())
-        |> Array.filter (fun line -> line.EndsWith " (test)" |> not)
+        content
+        |> String.split [| '\n' |]
+        |> Array.map (String.trimEnd [||])
+        |> Array.filter (String.endsWith " (test)" >> not)
         |> Array.map (function
-            | "" -> "//"
-            | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", "$&// ")
+            | "" -> "///"
+            | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", "$&/// ")
         )
         |> String.concat "\n"
     | "fsharp", { magic = "fsharp"; content = content } ->
-        let trimmedContent = content.Trim ()
-        if trimmedContent.StartsWith "//// test" || trimmedContent.StartsWith "//// ignore"
+        let trimmedContent = content |> String.trim
+        if trimmedContent |> String.startsWith "//// test" || trimmedContent |> String.startsWith "//// ignore"
         then ""
         else
-            content.Split [| '\n' |]
-            |> Array.filter (fun line -> line.TrimStart().StartsWith "#r" |> not)
+            content
+            |> String.split [| '\n' |]
+            |> Array.filter (String.trimStart [||] >> String.startsWith "#r" >> not)
             |> String.concat "\n"
     | _ -> ""
 
@@ -235,8 +260,7 @@ let formatBlock kernel (block : Block) =
 
 //// test
 
-let input =
-    """#!markdown
+"""#!markdown
 
 
 a
@@ -255,25 +279,24 @@ c
 \#!fsharp
 
 
-let a = 1""" |> escapeCell
-let result =
-    match run block input with
-    | Success (block, _, _) ->
-        formatBlock "fsharp" block
-    | Failure (msg, _, _) ->
-        failwith msg
-result |> _equal """// a
-//
-    // b
-//
-// c"""
+let a = 1"""
+|> escapeCell
+|> run block
+|> function
+    | Success (block, _, _) -> formatBlock "fsharp" block
+    | Failure (msg, _, _) -> failwith msg
+|> _equal """/// a
+///
+    /// b
+///
+/// c"""
 
 #!fsharp
 
 let formatBlocks kernel blocks =
     blocks
     |> List.map (formatBlock kernel)
-    |> List.filter (fun s -> s <> "")
+    |> List.filter ((<>) "")
     |> String.concat "\n\n"
     |> fun s -> s + "\n"
 
@@ -281,8 +304,7 @@ let formatBlocks kernel blocks =
 
 //// test
 
-let input =
-    """#!markdown
+"""#!markdown
 
 
 a
@@ -318,22 +340,20 @@ e
 \#!fsharp
 
 let a = 3"""
-    |> escapeCell
-let result =
-    match run blocks input with
-    | Success (blocks, _, _) ->
-        formatBlocks "fsharp" blocks
-    | Failure (msg, _, _) ->
-        failwith msg
-result |> _equal """// a
-//
-// b
+|> escapeCell
+|> run blocks
+|> function
+    | Success (blocks, _, _) -> formatBlocks "fsharp" blocks
+    | Failure (msg, _, _) -> failwith msg
+|> _equal """/// a
+///
+/// b
 
-// c
+/// c
 
 let a = 1
 
-// e
+/// e
 
 let a = 3
 """
@@ -346,9 +366,10 @@ let parse kernel input =
         let indentBlock (block : Block) =
             { block with
                 content =
-                    block.content.Split [| '\n' |]
+                    block.content
+                    |> String.split [| '\n' |]
                     |> Array.map (fun line ->
-                        if line.TrimEnd () = ""
+                        if line |> String.trimEnd [||] = ""
                         then ""
                         else $"    {line}"
                     )
@@ -360,15 +381,15 @@ let parse kernel input =
         match blocks with
         | { magic = "markdown"; content = content } :: _
             when kernel = "fsharp"
-            && content.StartsWith "# "
-            && content.EndsWith ")"
+            && content |> String.startsWith "# "
+            && content |> String.endsWith ")"
             ->
             let moduleName, namespaceName =
                 System.Text.RegularExpressions.Regex.Match (content, @"# (.*) \((.*)\)$")
                 |> fun m -> m.Groups.[1].Value, m.Groups.[2].Value
 
             let moduleBlock =
-                { 
+                {
                     magic = "fsharp"
                     content =
                         $"""#if !INTERACTIVE
@@ -377,6 +398,7 @@ namespace {namespaceName}
 
 module {moduleName} ="""
                 }
+
             blocks
             |> List.indexed
             |> List.fold
@@ -407,7 +429,7 @@ let writeDibCode kernel file =
     let output = parseDibCode kernel file
     let outputFileName =
         match kernel with
-        | "fsharp" -> file.Replace (".dib", ".fs")
+        | "fsharp" -> file |> String.replace ".dib" ".fs"
         | _ -> failwith "Unknown kernel"
     File.WriteAllText (outputFileName, output)
 
@@ -464,9 +486,11 @@ type Position =
     |> escapeCell
 
 let blocks1 =
-    parse "fsharp" example1
+    example1
+    |> parse "fsharp"
     |> Result.toOption
     |> Option.get
+
 blocks1
 
 #!fsharp
@@ -475,7 +499,7 @@ blocks1
 
 blocks1
 |> (formatBlocks "fsharp")
-|> _equal """// # TestModule (TestNamespace)
+|> _equal """/// # TestModule (TestNamespace)
 
 #if !INTERACTIVE
 namespace TestNamespace
@@ -483,11 +507,11 @@ namespace TestNamespace
 
 module TestModule =
 
-    // ## ParserLibrary
+    /// ## ParserLibrary
 
     open System
 
-    // ### TextInput
+    /// ### TextInput
 
     type Position =
         {
@@ -502,11 +526,11 @@ module TestModule =
 
 blocks1
 |> (formatBlocks "markdown")
-|> _equal """// # TestModule (TestNamespace)
+|> _equal """/// # TestModule (TestNamespace)
 
-    // ## ParserLibrary
+    /// ## ParserLibrary
 
-    // ### TextInput
+    /// ### TextInput
 """
 
 #!fsharp
@@ -516,5 +540,5 @@ blocks1
 match Environment.GetEnvironmentVariable "OUTPUT" with
 | "" | null -> ()
 | path when System.IO.File.Exists path -> path |> writeDibCode "fsharp"
-| path when path.Contains ";" -> path.Split [| ';' |] |> Array.iter (writeDibCode "fsharp")
+| path when path.Contains ";" -> path |> String.split [| ';' |] |> Array.iter (writeDibCode "fsharp")
 | _ -> System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), "DibParser.dib") |> writeDibCode "fsharp"

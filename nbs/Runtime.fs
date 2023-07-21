@@ -1,4 +1,4 @@
-// # Runtime (Polyglot)
+/// # Runtime (Polyglot)
 
 #if !INTERACTIVE
 namespace Polyglot
@@ -8,12 +8,12 @@ module Runtime =
 
     open Common
 
-    // ## isWindows
+    /// ## isWindows
 
     let isWindows () =
         System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
 
-    // ## splitCommand
+    /// ## splitCommand
 
     type private CommandParseStep =
         | Start
@@ -29,15 +29,15 @@ module Runtime =
             | ' ' :: tail, (Start | Path _) -> loop (path, args) tail Arguments
             | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
             | char :: tail, _ -> loop ($"{path}{char}", args) tail step
-            | _, _ -> path.Replace ("\\", "/"), args
+            | _, _ -> path |> String.replace @"\" "/", args
         let path, args = loop ("", "") (command |> Seq.toList) Start
         let workingDirectory, fileName =
             if path.StartsWith "./" || path.Contains "/"
-            then System.IO.Path.GetDirectoryName path, System.IO.Path.GetFileName path
+            then path |> System.IO.Path.GetDirectoryName |> String.replace @"\" "/", System.IO.Path.GetFileName path
             else ".", path
         workingDirectory, fileName, args
 
-    // ## executeAsync
+    /// ## executeAsync
 
     let executeAsync (command : string) = async {
         let workingDirectory, fileName, arguments = command |> splitCommand

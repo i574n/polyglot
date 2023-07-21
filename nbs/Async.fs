@@ -1,4 +1,4 @@
-// # Async (Polyglot)
+/// # Async (Polyglot)
 
 #if !INTERACTIVE
 namespace Polyglot
@@ -8,16 +8,32 @@ module Async =
 
     open Common
 
-    // ## runWithTimeout
+    /// ## runWithTimeout
 
-    let runWithTimeout timeout fn =
-        try
-            Async.RunSynchronously (fn, timeout) |> Some
-        with
-        | :? System.TimeoutException as ex ->
-            let info = ex
+    let runWithTimeout (timeout : int) fn =
+        let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
-            let getLocals () = $"timeout: {timeout} / exception: {ex.Message} / {getLocals ()}"
-            trace Debug (fun () -> "runWithTimeout") getLocals
-            None
-        | e -> raise e
+        let timeoutTask = async {
+            do! Async.Sleep timeout
+            return None, getLocals
+        }
+
+        let task = async {
+            try
+                return Async.RunSynchronously (fn, timeout) |> Some, getLocals
+            with
+            | :? System.TimeoutException as ex ->
+                let getLocals () = $"exception: {ex.Message} / {getLocals ()}"
+                return None, getLocals
+            | e -> return raise e
+        }
+
+        [| timeoutTask; task |]
+        |> Array.map Async.StartAsTask
+        |> System.Threading.Tasks.Task.WhenAny
+        |> fun task ->
+            match task.Result.Result with
+            | None, getLocals ->
+                trace Debug (fun () -> "runWithTimeout") getLocals
+                None
+            | result, _ -> result

@@ -2,17 +2,21 @@
 
 {"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
-#!fsharp
-
-#!import ../nbs/Common.dib
-
 #!markdown
 
-## Parser
+# Parser (Polyglot)
 
 #!fsharp
 
-// open System
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+
+#!fsharp
+
+open Common
 
 #!markdown
 
@@ -51,12 +55,13 @@ type InputState =
 #!fsharp
 
 let fromStr str =
-    if String.IsNullOrEmpty str then
-        { lines = [||]; position = initialPos }
-    else
-        let separators = [| "\r\n"; "\n" |]
-        let lines = str.Split (separators, StringSplitOptions.None)
-        { lines = lines; position = initialPos }
+    {
+        lines =
+            if str |> String.IsNullOrEmpty
+            then [||]
+            else str |> String.splitString [| "\r\n"; "\n" |]
+        position = initialPos
+    }
 
 #!fsharp
 
@@ -80,10 +85,9 @@ fromStr "Hello \n World" |> _equal {
 
 let currentLine inputState =
     let linePos = inputState.position.line
-    if linePos < inputState.lines.Length then
-        inputState.lines.[linePos]
-    else
-        "end of file"
+    if linePos < inputState.lines.Length
+    then inputState.lines.[linePos]
+    else "end of file"
 
 #!fsharp
 
@@ -91,8 +95,8 @@ let nextChar input =
     let linePos = input.position.line
     let colPos = input.position.column
 
-    if linePos >= input.lines.Length then
-        input, None
+    if linePos >= input.lines.Length
+    then input, None
     else
         let currentLine = currentLine input
         if colPos < currentLine.Length then
@@ -153,8 +157,8 @@ type ParseResult<'a> =
 
 type Parser<'a> =
     {
-        parseFn : Input -> ParseResult<'a * Input>
         label : ParserLabel
+        parseFn : Input -> ParseResult<'a * Input>
     }
 
 #!fsharp
@@ -167,25 +171,8 @@ let printResult result =
         let errorLine = parserPos.currentLine
         let colPos = parserPos.column
         let linePos = parserPos.line
-        let failureCaret = $"{' '.ToString().PadLeft colPos}^{error}"
+        let failureCaret = $"{' ' |> string |> String.replicate colPos}^{error}"
         printfn $"Line:%i{linePos} Col:%i{colPos} Error parsing %s{label}\n%s{errorLine}\n%s{failureCaret}"
-
-#!fsharp
-
-//// test
-
-let parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
-    match actual, expected with
-    | Success (_actual, _), Success _expected ->
-        printResult actual
-        _actual |> _equal _expected
-    | Failure (l1, e1, p1), Failure (l2, e2, p2) when l1 = l2 && e1 = e2 && p1 = p2 ->
-        printResult actual
-    | _ ->
-        printfn $"Actual: {actual}"
-        printfn $"Expected: {expected}"
-        failwith "Parse failed"
-    actual
 
 #!fsharp
 
@@ -214,12 +201,13 @@ let getLabel parser =
 #!fsharp
 
 let setLabel parser newLabel =
-    let newInnerFn input =
-        match parser.parseFn input with
-        | Success s -> Success s
-        | Failure (oldLabel, err, pos) -> Failure (newLabel, err, pos)
-
-    { parseFn = newInnerFn; label = newLabel }
+    {
+        label = newLabel
+        parseFn = fun input ->
+            match parser.parseFn input with
+            | Success s -> Success s
+            | Failure (oldLabel, err, pos) -> Failure (newLabel, err, pos)
+    }
 
 #!fsharp
 
@@ -228,22 +216,23 @@ let (<?>) = setLabel
 #!fsharp
 
 let satisfy predicate label =
-    let innerFn input =
-        let remainingInput, charOpt = nextChar input
-        match charOpt with
-        | None ->
-            let err = "No more input"
-            let pos = parserPositionFromInputState input
-            Failure (label, err, pos)
-        | Some first ->
-            if predicate first then
-                Success (first, remainingInput)
-            else
-                let err = $"Unexpected '%c{first}'"
+    {
+        label = label
+        parseFn = fun input ->
+            let remainingInput, charOpt = nextChar input
+            match charOpt with
+            | None ->
+                let err = "No more input"
                 let pos = parserPositionFromInputState input
                 Failure (label, err, pos)
-
-    { parseFn = innerFn; label = label }
+            | Some first ->
+                if predicate first
+                then Success (first, remainingInput)
+                else
+                    let err = $"Unexpected '%c{first}'"
+                    let pos = parserPositionFromInputState input
+                    Failure (label, err, pos)
+    }
 
 #!fsharp
 
@@ -282,17 +271,13 @@ runOnInput parser input |> _equal (
 #!fsharp
 
 let bindP f p =
-    let label = "unknown"
-    let innerFn input =
-        let result1 = runOnInput p input
-        match result1 with
-        | Failure (label, err, pos) ->
-            Failure (label, err, pos)
-        | Success (value1, remainingInput) ->
-            let p2 = f value1
-            runOnInput p2 remainingInput
-
-    { parseFn = innerFn; label = label }
+    {
+        label = "unknown"
+        parseFn = fun input ->
+            match runOnInput p input with
+            | Failure (label, err, pos) -> Failure (label, err, pos)
+            | Success (value1, remainingInput) -> runOnInput (f value1) remainingInput
+    }
 
 #!fsharp
 
@@ -337,11 +322,10 @@ runOnInput parser2 input |> _equal (
 #!fsharp
 
 let returnP x =
-    let label = $"%A{x}"
-    let innerFn input =
-        Success (x, input)
-    
-    { parseFn = innerFn; label = label }
+    {
+        label = $"%A{x}"
+        parseFn = fun input -> Success (x, input)
+    }
 
 #!fsharp
 
@@ -378,7 +362,7 @@ let (|>>) x f = f <!> x
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
-let parser2 = parser |>> fun c -> c.ToString()
+let parser2 = parser |>> string
 runOnInput parser2 input |> _equal (
     Success (
         "H",
@@ -414,7 +398,7 @@ let lift2 f xP yP =
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'e') "e"
-let parser3 = lift2 (fun c1 c2 -> c1.ToString () + c2.ToString ()) parser parser2
+let parser3 = lift2 (fun c1 c2 -> string c1 + string c2) parser parser2
 runOnInput parser3 input |> _equal (
     Success (
         "He",
@@ -460,15 +444,13 @@ runOnInput parser3 input |> _equal (
 #!fsharp
 
 let orElse p1 p2 =
-    let label = $"{getLabel p1} orElse {getLabel p2}"
-    let innerFn input =
-        let result1 = runOnInput p1 input
-
-        match result1 with
-        | Success result -> result1
-        | Failure _ -> runOnInput p2 input
-
-    { parseFn = innerFn; label = label }
+    {
+        label = $"{getLabel p1} orElse {getLabel p2}"
+        parseFn = fun input ->
+            match runOnInput p1 input with
+            | Success _ as result -> result
+            | Failure _ -> runOnInput p2 input
+    }
 
 #!fsharp
 
@@ -504,7 +486,7 @@ let choice listOfParsers =
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'h') "h"
-let parser3 = choice [parser; parser2]
+let parser3 = choice [ parser; parser2 ]
 runOnInput parser3 input |> _equal (
     Success (
         'h',
@@ -518,13 +500,9 @@ runOnInput parser3 input |> _equal (
 #!fsharp
 
 let rec sequence parserList =
-    let cons head tail = head :: tail
-
-    let consP = lift2 cons
-
     match parserList with
     | [] -> returnP []
-    | head :: tail -> consP head (sequence tail)
+    | head :: tail -> (lift2 cons) head (sequence tail)
 
 #!fsharp
 
@@ -533,10 +511,10 @@ let rec sequence parserList =
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'e') "e"
-let parser3 = sequence [parser; parser2]
+let parser3 = sequence [ parser; parser2 ]
 runOnInput parser3 input |> _equal (
     Success (
-        ['H'; 'e'],
+        [ 'H'; 'e' ],
         {
             lines = [| "Hello" |]
             position = { line = 0; column = 2 }
@@ -547,23 +525,20 @@ runOnInput parser3 input |> _equal (
 #!fsharp
 
 let rec parseZeroOrMore parser input =
-    let firstResult = runOnInput parser input
-    match firstResult with
+    match runOnInput parser input with
     | Failure (_, _, _) ->
         [], input
     | Success (firstValue, inputAfterFirstParse) ->
-        let (subsequentValues, remainingInput) =
-            parseZeroOrMore parser inputAfterFirstParse
-        let values = firstValue :: subsequentValues
-        values, remainingInput
+        let subsequentValues, remainingInput = parseZeroOrMore parser inputAfterFirstParse
+        firstValue :: subsequentValues, remainingInput
 
 #!fsharp
 
 let many parser =
-    let label = $"many {getLabel parser}"
-    let innerFn input =
-        Success (parseZeroOrMore parser input)
-    { parseFn = innerFn; label = label }
+    {
+        label = $"many {getLabel parser}"
+        parseFn = fun input -> Success (parseZeroOrMore parser input)
+    }
 
 #!fsharp
 
@@ -661,11 +636,11 @@ let input = fromStr "[Hello]"
 let parser =
     between
         (satisfy (fun c -> c = '[') "[")
-        (many (satisfy (fun c -> ['a'..'z'] @ ['A'..'Z'] |> List.contains c) "letter"))
+        (many (satisfy (fun c -> [ 'a' .. 'z' ] @ [ 'A' .. 'Z' ] |> List.contains c) "letter"))
         (satisfy (fun c -> c = ']') "]")
 runOnInput parser input |> _equal (
     Success (
-        ['H'; 'e'; 'l'; 'l'; 'o'],
+        [ 'H'; 'e'; 'l'; 'l'; 'o' ],
         {
             lines = [| "[Hello]" |]
             position = { line = 0; column = 7 }
@@ -693,7 +668,7 @@ let input = fromStr "Hello,World"
 let parser = sepBy (many (satisfy (fun c -> c <> ',') "not comma")) (satisfy (fun c -> c = ',') "comma")
 runOnInput parser input |> _equal (
     Success (
-        [['H'; 'e'; 'l'; 'l'; 'o']; ['W'; 'o'; 'r'; 'l'; 'd'; '\n']],
+        [ [ 'H'; 'e'; 'l'; 'l'; 'o' ]; [ 'W'; 'o'; 'r'; 'l'; 'd'; '\n' ] ],
         {
             lines = [| "Hello,World" |]
             position = { line = 1; column = 0 }
@@ -704,8 +679,7 @@ runOnInput parser input |> _equal (
 #!fsharp
 
 let pchar charToMatch =
-    let predicate ch = ch = charToMatch
-    satisfy predicate $"%c{charToMatch}"
+    satisfy ((=) charToMatch) $"%c{charToMatch}"
 
 #!fsharp
 
@@ -720,10 +694,10 @@ let anyOf listOfChars =
 //// test
 
 let input = fromStr "Hello"
-let parser = anyOf ['H'; 'e'; 'l'; 'o'] |> many
+let parser = anyOf [ 'H'; 'e'; 'l'; 'o' ] |> many
 runOnInput parser input |> _equal (
     Success (
-        ['H'; 'e'; 'l'; 'l'; 'o'],
+        [ 'H'; 'e'; 'l'; 'l'; 'o' ],
         {
             lines = [| "Hello" |]
             position = { line = 0; column = 5 }
@@ -753,7 +727,7 @@ let manyChars1 cp =
 //// test
 
 let input = fromStr "Hello"
-let parser = manyChars1 (anyOf ['H'; 'e'; 'l'; 'o'])
+let parser = manyChars1 (anyOf [ 'H'; 'e'; 'l'; 'o' ])
 runOnInput parser input |> _equal (
     Success (
         "Hello",
@@ -811,7 +785,7 @@ let input = fromStr "  Hello"
 let parser = spaces1 .>>. pstring "Hello"
 runOnInput parser input |> _equal (
     Success (
-        ([' '; ' '], "Hello"),
+        ([ ' '; ' ' ], "Hello"),
         {
             lines = [| "  Hello" |]
             position = { line = 0; column = 7 }
@@ -905,17 +879,17 @@ run pfloat "-123.45"
 #!fsharp
 
 let createParserForwardedToRef<'a> () =
-    let dummyParser : Parser<'a> =
-        let innerFn _ = failwith "unfixed forwarded parser"
-        { parseFn = innerFn; label = "unknown" }
+    let mutable parserRef =
+        {
+            label = "unknown"
+            parseFn = fun _ -> failwith "unfixed forwarded parser"
+        }
 
-    let mutable parserRef = dummyParser
+    let wrapperParser =
+        { parserRef with
+            parseFn = fun input -> runOnInput parserRef input
+        }
 
-    let innerFn input =
-        runOnInput parserRef input
-
-    let wrapperParser = { parseFn = innerFn; label = "unknown" }
-    
     wrapperParser, (fun v -> parserRef <- v)
 
 #!fsharp

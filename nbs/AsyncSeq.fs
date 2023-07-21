@@ -1,4 +1,4 @@
-// # AsyncSeq (Polyglot)
+/// # AsyncSeq (Polyglot)
 
 #if !INTERACTIVE
 namespace Polyglot
@@ -8,7 +8,7 @@ module AsyncSeq =
 
     open Common
 
-    // ## subscribeEvent
+    /// ## subscribeEvent
 
     let subscribeEvent (event: IEvent<'H, 'A>) map =
         let observable = System.Reactive.Linq.Observable.FromEventPattern<'H, 'A>(event.AddHandler, event.RemoveHandler)

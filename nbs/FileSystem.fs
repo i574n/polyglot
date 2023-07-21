@@ -1,4 +1,4 @@
-// # FileSystem (Polyglot)
+/// # FileSystem (Polyglot)
 
 #if !INTERACTIVE
 namespace Polyglot
@@ -8,11 +8,11 @@ module FileSystem =
 
     open Common
 
-    // ## Operators
+    /// ## Operators
 
     let inline (</>) a b = System.IO.Path.Combine (a, b)
 
-    // ## createTempDirectoryName
+    /// ## createTempDirectoryName
 
     let createTempDirectoryName () =
         let root =
@@ -23,7 +23,7 @@ module FileSystem =
         </> $"!{root}"
         </> string (newGuidFromDateTime System.DateTime.Now)
 
-    // ## createTempDirectory
+    /// ## createTempDirectory
 
     let createTempDirectory () =
         let tempFolder = createTempDirectoryName ()
@@ -39,7 +39,7 @@ module FileSystem =
 
         tempFolder
 
-    // ## waitForFileAccess
+    /// ## waitForFileAccess
 
     let waitForFileAccess path =
         let rec loop retry = async {
@@ -60,7 +60,7 @@ module FileSystem =
         }
         loop 0
 
-    // ## deleteDirectoryAsync
+    /// ## deleteDirectoryAsync
 
     let deleteDirectoryAsync path =
         let rec loop retry = async {
@@ -75,7 +75,7 @@ module FileSystem =
         }
         loop 0
 
-    // ## deleteFileAsync
+    /// ## deleteFileAsync
 
     let deleteFileAsync path =
         let rec loop retry = async {
@@ -90,7 +90,7 @@ module FileSystem =
         }
         loop 0
 
-    // ## moveFileAsync
+    /// ## moveFileAsync
 
     let moveFileAsync newPath oldPath =
         let rec loop retry = async {
@@ -106,7 +106,7 @@ module FileSystem =
         }
         loop 0
 
-    // ## watchDirectory
+    /// ## watchDirectory
 
     [<RequireQualifiedAccess>]
     type FileSystemChangeType =

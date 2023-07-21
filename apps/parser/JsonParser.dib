@@ -2,9 +2,23 @@
 
 {"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
 
+#!markdown
+
+# JsonParser (Polyglot)
+
 #!fsharp
 
-#!import Parser.dib
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+#!import Parser.fs
+
+#!fsharp
+
+open Common
+open Parser
 
 #!markdown
 
@@ -34,6 +48,23 @@ The JSON spec is available at [json.org](http://www.json.org/). I'll paraphase i
 * Whitespace can be inserted between any pair of tokens.
 
 *)
+
+#!fsharp
+
+//// test
+
+let parserEqual (expected : ParseResult<'a>) (actual : ParseResult<'a * Input>) =
+    match actual, expected with
+    | Success (_actual, _), Success _expected ->
+        printResult actual
+        _actual |> _equal _expected
+    | Failure (l1, e1, p1), Failure (l2, e2, p2) when l1 = l2 && e1 = e2 && p1 = p2 ->
+        printResult actual
+    | _ ->
+        printfn $"Actual: {actual}"
+        printfn $"Expected: {expected}"
+        failwith "Parse failed"
+    actual
 
 #!markdown
 
@@ -554,7 +585,7 @@ jValueRef <|
 //// test
 
 run jArray "[ 1, 2 ]"
-|> parserEqual (Success (JArray [JNumber 1.0; JNumber 2.0]))
+|> parserEqual (Success (JArray [ JNumber 1.0; JNumber 2.0 ]))
 
 #!fsharp
 
@@ -663,7 +694,7 @@ run jValue example1
                         "day", JNumber 25.0
                     ]
                 )
-                "favouriteColors", JArray [JString "blue"; JString "green"]
+                "favouriteColors", JArray [ JString "blue"; JString "green" ]
                 "emptyArray", JArray []
                 "emptyObject", JObject Map.empty
             ]
@@ -799,8 +830,8 @@ run jValue example3
                 "emptyArray", JArray []
                 "emptyObject", JObject Map.empty
                 "nestedArrays", JArray [
-                    JArray [JNumber 1.0; JNumber 2.0; JNumber 3.0]
-                    JArray [JNumber 4.0; JNumber 5.0; JNumber 6.0]
+                    JArray [ JNumber 1.0; JNumber 2.0; JNumber 3.0 ]
+                    JArray [ JNumber 4.0; JNumber 5.0; JNumber 6.0 ]
                 ]
                 "object", JObject (
                     Map.ofList [
@@ -817,8 +848,8 @@ run jValue example3
                     ]
                 )
                 "nestedObjects", JArray [
-                  JObject (Map.ofList ["name", JString "Alice"; "age", JNumber 25.0])
-                  JObject (Map.ofList ["name", JString "Bob"; "age", JNumber 30.0])
+                  JObject (Map.ofList [ "name", JString "Alice"; "age", JNumber 25.0 ])
+                  JObject (Map.ofList [ "name", JString "Bob"; "age", JNumber 30.0 ])
                 ]
             ]
         )
