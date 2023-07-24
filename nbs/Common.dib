@@ -323,3 +323,22 @@ async {
 }
 |> Async.RunSynchronously
 newDisposableTest |> _equal 0
+
+#!markdown
+
+## printException
+
+#!fsharp
+
+let printException (ex : System.Exception) =
+    $"{ex.GetType ()}: {ex.Message}"
+
+#!fsharp
+
+//// test
+
+fun () -> failwith "test"
+|> _throwsC (fun ex _ ->
+    printException ex
+    |> _equal "System.Exception: test"
+)

@@ -1,5 +1,3 @@
-/// # DibParser (Polyglot)
-
 #if !INTERACTIVE
 namespace Polyglot
 #endif
@@ -121,7 +119,7 @@ module DibParser =
                 |> List.fold
                     (fun blocks (index, block) ->
                         match index with
-                        | 0 -> block :: blocks
+                        | 0 -> blocks
                         | 1 -> indentBlock block :: moduleBlock :: blocks
                         | _ -> indentBlock block :: blocks
                     )

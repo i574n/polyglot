@@ -1,5 +1,3 @@
-/// # Common (Polyglot)
-
 #if !INTERACTIVE
 namespace Polyglot
 #endif
@@ -134,3 +132,8 @@ module Common =
         { new System.IDisposable with
             member _.Dispose () = fn ()
         }
+
+    /// ## printException
+
+    let printException (ex : System.Exception) =
+        $"{ex.GetType ()}: {ex.Message}"

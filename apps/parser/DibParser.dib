@@ -404,7 +404,7 @@ module {moduleName} ="""
             |> List.fold
                 (fun blocks (index, block) ->
                     match index with
-                    | 0 -> block :: blocks
+                    | 0 -> blocks
                     | 1 -> indentBlock block :: moduleBlock :: blocks
                     | _ -> indentBlock block :: blocks
                 )
@@ -485,23 +485,16 @@ type Position =
     }"""
     |> escapeCell
 
-let blocks1 =
-    example1
-    |> parse "fsharp"
-    |> Result.toOption
-    |> Option.get
-
-blocks1
-
 #!fsharp
 
 //// test
 
-blocks1
+example1
+|> parse "fsharp"
+|> Result.toOption
+|> Option.get
 |> (formatBlocks "fsharp")
-|> _equal """/// # TestModule (TestNamespace)
-
-#if !INTERACTIVE
+|> _equal """#if !INTERACTIVE
 namespace TestNamespace
 #endif
 
@@ -524,13 +517,16 @@ module TestModule =
 
 //// test
 
-blocks1
+example1
+|> parse "markdown"
+|> Result.toOption
+|> Option.get
 |> (formatBlocks "markdown")
 |> _equal """/// # TestModule (TestNamespace)
 
-    /// ## ParserLibrary
+/// ## ParserLibrary
 
-    /// ### TextInput
+/// ### TextInput
 """
 
 #!fsharp

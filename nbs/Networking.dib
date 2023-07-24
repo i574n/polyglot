@@ -26,12 +26,13 @@ open Common
 #!fsharp
 
 let testPortOpen port = async {
+    let! ct = Async.CancellationToken
     use client = new System.Net.Sockets.TcpClient ()
     try
-        do! client.ConnectAsync ("127.0.0.1", port) |> Async.AwaitTask
+        do! client.ConnectAsync ("127.0.0.1", port, ct) |> Async.awaitValueTaskUnit
         return true
     with ex ->
-        trace Warn (fun () -> $"testPortOpen / message: {ex.Message}") getLocals
+        trace Verbose (fun () -> $"testPortOpen / ex: {ex |> printException}") getLocals
         return false
 }
 
@@ -40,6 +41,26 @@ let testPortOpen port = async {
 //// test
 
 testPortOpen 65536
+|> Async.runWithTimeout 60
+|> _equal (Some false)
+
+#!fsharp
+
+let testPortOpenTimeout timeout port = async {
+    let! result =
+        testPortOpen port
+        |> Async.runWithTimeoutAsync timeout
+    return
+        match result with
+        | None -> false
+        | Some result -> result
+}
+
+#!fsharp
+
+//// test
+
+testPortOpenTimeout 60 65535
 |> Async.RunSynchronously
 |> _equal false
 
@@ -49,9 +70,12 @@ testPortOpen 65536
 
 #!fsharp
 
-let waitForPortAccess status port =
+let waitForPortAccess timeout status port =
     let rec loop retry = async {
-        let! isPortOpen = testPortOpen port
+        let! isPortOpen =
+            match timeout with
+            | None -> testPortOpen port
+            | Some timeout -> testPortOpenTimeout timeout port
         if isPortOpen = status
         then return retry
         else
@@ -88,13 +112,56 @@ async {
     trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "3") getLocals
-    let! retries = waitForPortAccess true port
-    retries |> _isGreaterThanOrEqual 2
-    let! retries = waitForPortAccess false port
-    retries |> _isGreaterThanOrEqual 100
+    let! retries1 = waitForPortAccess None true port
+    let! retries2 = waitForPortAccess None false port
+    return retries1, retries2
 }
-|> Async.runWithTimeout 15000
-|> _equal (Some ())
+|> Async.runWithTimeout 20000
+|> function
+    | Some (retries1, retries2) ->
+        retries1 |> _isGreaterThanOrEqual 2
+        retries2 |> _isGreaterThanOrEqual 100
+        true
+    | _ -> false
+|> _equal true
+
+#!fsharp
+
+//// test
+
+let port = 5000
+
+let lockPort () = async {
+    trace Debug (fun () -> "_1") getLocals
+    do! Async.Sleep 500
+    let listener = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    trace Debug (fun () -> "_2") getLocals
+    listener.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 200
+    trace Debug (fun () -> "_4") getLocals
+    listener.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! _ = lockPort () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 1
+    trace Debug (fun () -> "3") getLocals
+    let! retries1 = waitForPortAccess (Some 60) true port
+    let! retries2 = waitForPortAccess (Some 60) false port
+    return retries1, retries2
+}
+|> Async.runWithTimeout 2000
+|> function
+    | Some (retries1, retries2) ->
+        retries1 |> _isGreaterThanOrEqual 2
+        retries2 |> _isGreaterThanOrEqual 10
+        true
+    | _ -> false
+|> _equal true
 
 #!markdown
 
@@ -102,9 +169,12 @@ async {
 
 #!fsharp
 
-let getAvailablePort initialPort =
+let getAvailablePort timeout initialPort =
     let rec loop port = async {
-        let! isPortOpen = testPortOpen port
+        let! isPortOpen =
+            match timeout with
+            | None -> testPortOpen port
+            | Some timeout -> testPortOpenTimeout timeout port
         if not isPortOpen
         then return port
         else return! loop (port + 1)
@@ -138,10 +208,55 @@ async {
     trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "3") getLocals
-    let! availablePort = getAvailablePort port
-    availablePort |> _equal (port + 2)
-    let! retries = waitForPortAccess false port
-    retries |> _isGreaterThanOrEqual 100
+    let! availablePort = getAvailablePort None port
+    let! retries = waitForPortAccess None false port
+    return availablePort, retries
 }
-|> Async.runWithTimeout 10000
-|> _equal (Some ())
+|> Async.runWithTimeout 15000
+|> function
+    | Some (availablePort, retries) ->
+        availablePort |> _equal (port + 2)
+        retries |> _isGreaterThanOrEqual 100
+        true
+    | _ -> false
+|> _equal true
+
+#!fsharp
+
+//// test
+
+let port = 5000
+
+let lockPorts () = async {
+    trace Debug (fun () -> "_1") getLocals
+    let listener1 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    let listener2 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
+    trace Debug (fun () -> "_2") getLocals
+    listener1.Start ()
+    listener2.Start ()
+    trace Debug (fun () -> "_3") getLocals
+    do! Async.Sleep 400
+    trace Debug (fun () -> "_4") getLocals
+    listener1.Stop ()
+    listener2.Stop ()
+    trace Debug (fun () -> "_5") getLocals
+}
+
+async {
+    trace Debug (fun () -> "1") getLocals
+    let! _ = lockPorts () |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 1
+    trace Debug (fun () -> "3") getLocals
+    let! availablePort = getAvailablePort (Some 60) port
+    let! retries = waitForPortAccess (Some 60) false port
+    return availablePort, retries
+}
+|> Async.runWithTimeout 1500
+|> function
+    | Some (availablePort, retries) ->
+        availablePort |> _equal (port + 2)
+        retries |> _isGreaterThanOrEqual 10
+        true
+    | _ -> false
+|> _equal true

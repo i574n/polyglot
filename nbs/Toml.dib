@@ -1,0 +1,50 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# Toml (Polyglot)
+
+#!fsharp
+
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#r "nuget:Tomlyn"
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+
+#!fsharp
+
+open Common
+
+#!fsharp
+
+let (/./) (table: Tomlyn.Model.TomlTable) (key: string) : Tomlyn.Model.TomlTable =
+    table.[key] :?> Tomlyn.Model.TomlTable
+
+let (/../) (table: Tomlyn.Model.TomlTable) (key: string) : 'T seq =
+    table.[key] :?> Tomlyn.Model.TomlArray |> Seq.cast<'T>
+
+#!fsharp
+
+//// test
+
+let tomlContent =
+    """
+[extension]
+paths = ["/a", "/b"]
+"""
+
+let toml = Tomlyn.Toml.Parse tomlContent
+let tomlModel = Tomlyn.Toml.ToModel toml
+
+let paths : string seq = tomlModel /./ "extension" /../ "paths"
+
+paths
+|> Seq.toList
+|> _equal ["/a"; "/b"]

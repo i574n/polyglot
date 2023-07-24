@@ -1,5 +1,3 @@
-/// # JsonParser (Polyglot)
-
 #if !INTERACTIVE
 namespace Polyglot
 #endif

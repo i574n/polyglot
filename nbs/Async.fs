@@ -1,5 +1,3 @@
-/// # Async (Polyglot)
-
 #if !INTERACTIVE
 namespace Polyglot
 #endif
@@ -8,9 +6,56 @@ module Async =
 
     open Common
 
-    /// ## runWithTimeout
+    /// ## choice
 
-    let runWithTimeout (timeout : int) fn =
+    let choice asyncs = async {
+        let e = Event<_> ()
+        let cts = new System.Threading.CancellationTokenSource ()
+        let fn =
+            asyncs
+            |> Seq.map (fun a -> async {
+                let! x = a
+                e.Trigger x
+            })
+            |> Async.Parallel
+            |> Async.Ignore
+        Async.Start (fn, cts.Token)
+        let! result = Async.AwaitEvent e.Publish
+        cts.Cancel ()
+        return result
+    }
+
+    /// ## map
+
+    let map fn a = async {
+        let! x = a
+        return fn x
+    }
+
+    /// ## runWithTimeoutAsync
+
+    let runWithTimeoutAsync (timeout : int) fn =
+        let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+
+        let timeoutTask = async {
+            do! Async.Sleep timeout
+            trace Debug (fun () -> "runWithTimeoutAsync") getLocals
+            return None
+        }
+
+        let task = fn |> map Some
+
+        [ timeoutTask; task ]
+        |> choice
+
+    let runWithTimeout timeout fn =
+        fn
+        |> runWithTimeoutAsync timeout
+        |> Async.RunSynchronously
+
+    /// ## runWithTimeoutStrict
+
+    let runWithTimeoutStrict (timeout : int) fn =
         let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
         let timeoutTask = async {
@@ -25,15 +70,37 @@ module Async =
             | :? System.TimeoutException as ex ->
                 let getLocals () = $"exception: {ex.Message} / {getLocals ()}"
                 return None, getLocals
-            | e -> return raise e
+            | e ->
+                trace Error (fun () -> "runWithTimeoutStrict") getLocals
+                return raise e
         }
 
-        [| timeoutTask; task |]
-        |> Array.map Async.StartAsTask
-        |> System.Threading.Tasks.Task.WhenAny
-        |> fun task ->
-            match task.Result.Result with
-            | None, getLocals ->
-                trace Debug (fun () -> "runWithTimeout") getLocals
-                None
-            | result, _ -> result
+        try
+            [| timeoutTask; task |]
+            |> Array.map Async.StartAsTask
+            |> System.Threading.Tasks.Task.WhenAny
+            |> fun task ->
+                match task.Result.Result with
+                | None, getLocals ->
+                    trace Debug (fun () -> "runWithTimeoutStrict") getLocals
+                    None
+                | result, _ -> result
+        with
+        | :? System.AggregateException as ex when
+            ex.InnerExceptions
+            |> Seq.exists (function | :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
+            ->
+            let getLocals () = $"exception: {ex.Message} / {getLocals ()}"
+            trace Warn (fun () -> "runWithTimeoutStrict") getLocals
+            None
+        | ex ->
+            trace Error (fun () -> "runWithTimeoutStrict") getLocals
+            raise ex
+
+    /// ## awaitValueTask
+
+    let awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
+        task.AsTask () |> Async.AwaitTask
+
+    let awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
+        task.AsTask () |> Async.AwaitTask
