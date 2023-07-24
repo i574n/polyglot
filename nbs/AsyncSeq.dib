@@ -70,15 +70,15 @@ type TestEvent () as self =
         subscribeEvent
             self.EventInterface
             (fun args ->
-                let result = args.GetException().Message
+                let result = args.GetException () |> printException
                 self.AddCall $"TestEvent.Subscribe({result})"
                 result
             )
 
     member _.Iter subscription =
         subscription
-        |> FSharp.Control.AsyncSeq.iteriAsync (fun i message -> async {
-            self.AddCall $"TestEvent.Iter({i}:{message})"
+        |> FSharp.Control.AsyncSeq.iteriAsync (fun i error -> async {
+            self.AddCall $"TestEvent.Iter({i}: {error})"
         })
 
     member _.WaitCall text = async {
@@ -144,8 +144,8 @@ async {
     testEvent.AddCall "2"
     use _ = testEvent.EventInterface.Subscribe (fun args ->
         async {
-            do! testEvent.WaitCall "TestEvent.Iter(0:error)"
-            testEvent.AddCall $"testEvent.EventInterface.Subscribe({args.GetException().Message})"
+            do! testEvent.WaitCall "TestEvent.Iter(0: System.Exception: error)"
+            testEvent.AddCall $"testEvent.EventInterface.Subscribe({args.GetException () |> printException})"
         }
         |> Async.RunSynchronously
     )
@@ -165,9 +165,9 @@ testEvent.Calls
     "2"
     "IObservable.Subscribe"
     "3"
-    "TestEvent.Subscribe(error)"
-    "TestEvent.Iter(0:error)"
-    "testEvent.EventInterface.Subscribe(error)"
+    "TestEvent.Subscribe(System.Exception: error)"
+    "TestEvent.Iter(0: System.Exception: error)"
+    "testEvent.EventInterface.Subscribe(System.Exception: error)"
     "4"
     "RemoveHandler"
     "IObservable.Dispose"

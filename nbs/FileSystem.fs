@@ -51,7 +51,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "waitForFileAccess") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
@@ -66,7 +66,7 @@ module FileSystem =
                 System.IO.Directory.Delete (path, true)
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "deleteDirectoryAsync") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
@@ -81,7 +81,7 @@ module FileSystem =
                 System.IO.File.Delete path
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / message: {ex.Message} / {getLocals ()}"
+                    let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "deleteFileAsync") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
@@ -97,7 +97,7 @@ module FileSystem =
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () =
-                        $"oldPath: {oldPath} / newPath: {newPath} / message: {ex.Message} / {getLocals ()}"
+                        $"oldPath: {oldPath} / newPath: {newPath} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "moveFileAsync") getLocals
                 do! Async.Sleep 1
                 return! loop (retry + 1)
@@ -149,7 +149,7 @@ module FileSystem =
                     waitForFileAccess fullPath |> Async.runWithTimeout 30000 |> ignore
                     System.IO.File.ReadAllText fullPath |> Some
                 with ex ->
-                    trace Error (fun () -> $"watchWithFilter / readContent / message: {ex.Message}") getLocals
+                    trace Error (fun () -> $"watchWithFilter / readContent / ex: {ex |> printException}") getLocals
                     None
 
         let changedStream =

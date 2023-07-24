@@ -68,7 +68,7 @@ module Async =
                 return Async.RunSynchronously (fn, timeout) |> Some, getLocals
             with
             | :? System.TimeoutException as ex ->
-                let getLocals () = $"exception: {ex.Message} / {getLocals ()}"
+                let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
                 return None, getLocals
             | e ->
                 trace Error (fun () -> "runWithTimeoutStrict") getLocals
@@ -88,9 +88,9 @@ module Async =
         with
         | :? System.AggregateException as ex when
             ex.InnerExceptions
-            |> Seq.exists (function | :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
+            |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let getLocals () = $"exception: {ex.Message} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
             trace Warn (fun () -> "runWithTimeoutStrict") getLocals
             None
         | ex ->
