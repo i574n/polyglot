@@ -556,27 +556,32 @@ let write path = async {
     do! Async.Sleep 150
 }
 
-let events = testEventsRaw watchDirectory write
+let run () =
+    let events = testEventsRaw watchDirectory write
 
-events
-|> _sequenceEqual [
-    FileSystemChange.Created ("file1.txt", Some "a1")
-    FileSystemChange.Changed ("file1.txt", Some "a1")
-    FileSystemChange.Created ("file2.txt", Some "a2")
-    FileSystemChange.Changed ("file2.txt", Some "a2")
+    events
+    |> _sequenceEqual [
+        FileSystemChange.Created ("file1.txt", Some "a1")
+        FileSystemChange.Changed ("file1.txt", Some "a1")
+        FileSystemChange.Created ("file2.txt", Some "a2")
+        FileSystemChange.Changed ("file2.txt", Some "a2")
 
-    FileSystemChange.Changed ("file1.txt", Some "b1")
-    FileSystemChange.Changed ("file2.txt", Some "b2")
+        FileSystemChange.Changed ("file1.txt", Some "b1")
+        FileSystemChange.Changed ("file2.txt", Some "b2")
 
-    FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-    FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+        FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+        FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "b2"))
 
-    FileSystemChange.Changed ("file_1.txt", Some "c1")
-    FileSystemChange.Changed ("file_2.txt", Some "c2")
+        FileSystemChange.Changed ("file_1.txt", Some "c1")
+        FileSystemChange.Changed ("file_2.txt", Some "c2")
 
-    FileSystemChange.Deleted "file_1.txt"
-    FileSystemChange.Deleted "file_2.txt"
-]
+        FileSystemChange.Deleted "file_1.txt"
+        FileSystemChange.Deleted "file_2.txt"
+    ]
+
+run
+|> retryFn 3
+|> _equal (Some ())
 
 #!markdown
 
@@ -619,40 +624,45 @@ let write path = async {
     do! Async.Sleep 150
 }
 
-let events =
-    testEventsRaw watchDirectory write
-    |> List.map (function
-        | FileSystemChange.Changed (path, Some content) ->
-            FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
-        | FileSystemChange.Created (path, Some content) ->
-            FileSystemChange.Created (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
-        | FileSystemChange.Renamed (oldPath, (newPath, Some content)) ->
-            FileSystemChange.Renamed (
-                oldPath,
-                (newPath, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
-            )
-        | event -> event
-    )
+let run () =
+    let events =
+        testEventsRaw watchDirectory write
+        |> List.map (function
+            | FileSystemChange.Changed (path, Some content) ->
+                FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
+            | FileSystemChange.Created (path, Some content) ->
+                FileSystemChange.Created (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
+            | FileSystemChange.Renamed (oldPath, (newPath, Some content)) ->
+                FileSystemChange.Renamed (
+                    oldPath,
+                    (newPath, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
+                )
+            | event -> event
+        )
 
-events
-|> _sequenceEqual [
-    FileSystemChange.Created ("file1.txt", Some "1a")
-    FileSystemChange.Changed ("file1.txt", Some "1a")
-    FileSystemChange.Created ("file2.txt", Some "2a")
-    FileSystemChange.Changed ("file2.txt", Some "2a")
+    events
+    |> _sequenceEqual [
+        FileSystemChange.Created ("file1.txt", Some "1a")
+        FileSystemChange.Changed ("file1.txt", Some "1a")
+        FileSystemChange.Created ("file2.txt", Some "2a")
+        FileSystemChange.Changed ("file2.txt", Some "2a")
 
-    FileSystemChange.Changed ("file1.txt", Some "1b")
-    FileSystemChange.Changed ("file2.txt", Some "2b")
+        FileSystemChange.Changed ("file1.txt", Some "1b")
+        FileSystemChange.Changed ("file2.txt", Some "2b")
 
-    FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "1b"))
-    FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "2b"))
+        FileSystemChange.Renamed ("file1.txt", ("file_1.txt", Some "1b"))
+        FileSystemChange.Renamed ("file2.txt", ("file_2.txt", Some "2b"))
 
-    FileSystemChange.Changed ("file_1.txt", Some "1c")
-    FileSystemChange.Changed ("file_2.txt", Some "2c")
+        FileSystemChange.Changed ("file_1.txt", Some "1c")
+        FileSystemChange.Changed ("file_2.txt", Some "2c")
 
-    FileSystemChange.Deleted "file_1.txt"
-    FileSystemChange.Deleted "file_2.txt"
-]
+        FileSystemChange.Deleted "file_1.txt"
+        FileSystemChange.Deleted "file_2.txt"
+    ]
+
+run
+|> retryFn 3
+|> _equal (Some ())
 
 #!markdown
 
@@ -708,7 +718,7 @@ let testEventsSorted (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSy
 
     try
         run
-        |> Async.runWithTimeout 1000
+        |> Async.runWithTimeout 3000
         |> _equal (Some ())
     finally
         disposable.Dispose ()

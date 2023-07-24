@@ -137,3 +137,18 @@ module Common =
 
     let printException (ex : System.Exception) =
         $"{ex.GetType ()}: {ex.Message}"
+
+    /// ## retryFn
+
+    let retryFn retries fn =
+        let rec loop retry =
+            try
+                if retry < retries
+                then fn () |> Some
+                else None
+            with ex ->
+                let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+                trace Warn (fun () -> "retryFn") getLocals
+                System.Threading.Thread.Sleep 1
+                loop (retry + 1)
+        loop 0

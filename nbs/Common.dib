@@ -342,3 +342,55 @@ fun () -> failwith "test"
     printException ex
     |> _equal "System.Exception: test"
 )
+
+#!markdown
+
+## retryFn
+
+#!fsharp
+
+let retryFn retries fn =
+    let rec loop retry =
+        try
+            if retry < retries
+            then fn () |> Some
+            else None
+        with ex ->
+            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            trace Warn (fun () -> "retryFn") getLocals
+            System.Threading.Thread.Sleep 1
+            loop (retry + 1)
+    loop 0
+
+#!fsharp
+
+//// test
+
+let mutable retryFnTest = 0
+fun () ->
+    retryFnTest <- retryFnTest + 1
+    retryFnTest
+|> retryFn 3
+|> _equal (Some 1)
+
+#!fsharp
+
+//// test
+
+fun () -> failwith "test"
+|> retryFn 3
+|> _equal None
+
+#!fsharp
+
+//// test
+
+let mutable retryFnTest = 0
+fun () ->
+    if retryFnTest >= 2
+    then retryFnTest
+    else
+        retryFnTest <- retryFnTest + 1
+        failwith "test"
+|> retryFn 3
+|> _equal (Some 2)
