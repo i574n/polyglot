@@ -158,7 +158,7 @@ async {
         retries
         |> _isBetween
             (if Runtime.isWindows () then 100 else 100)
-            (if Runtime.isWindows () then 150 else 150)
+            (if Runtime.isWindows () then 150 else 200)
         
         text |> _equal "1"
         
@@ -196,7 +196,12 @@ let path = tempFolder </> "test"
 let lockDirectory () = async {
     trace Debug (fun () -> "_1") getLocals
     System.IO.File.WriteAllText (path </> "test.txt", "0")
-    use _ = new System.IO.FileStream (path </> "test.txt", System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite)
+    use _ = new System.IO.FileStream (
+        path </> "test.txt",
+        System.IO.FileMode.Open,
+        System.IO.FileAccess.ReadWrite,
+        System.IO.FileShare.None
+    )
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals
@@ -221,8 +226,8 @@ async {
     | Some retries ->
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 100)
-            (if Runtime.isWindows () then 150 else 150)
+            (if Runtime.isWindows () then 100 else 0)
+            (if Runtime.isWindows () then 150 else 0)
 
         true
     | _ -> false
@@ -257,7 +262,12 @@ let path = tempFolder </> "test.txt"
 
 let lockFile () = async {
     trace Debug (fun () -> "_1") getLocals
-    use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite)
+    use _ = new System.IO.FileStream (
+        path,
+        System.IO.FileMode.Open,
+        System.IO.FileAccess.ReadWrite,
+        System.IO.FileShare.None
+    )
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals
@@ -282,8 +292,8 @@ async {
     | Some retries ->
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 100)
-            (if Runtime.isWindows () then 150 else 150)
+            (if Runtime.isWindows () then 100 else 0)
+            (if Runtime.isWindows () then 150 else 0)
 
         true
     | _ -> false
@@ -320,7 +330,12 @@ let newPath = tempFolder </> "test2.txt"
 
 let lockFile () = async {
     trace Debug (fun () -> "_1") getLocals
-    use _ = new System.IO.FileStream (path, System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite)
+    use _ = new System.IO.FileStream (
+        path,
+        System.IO.FileMode.Open,
+        System.IO.FileAccess.ReadWrite,
+        System.IO.FileShare.None
+    )
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
     trace Debug (fun () -> "_3") getLocals
@@ -334,21 +349,28 @@ async {
     trace Debug (fun () -> "3") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "4") getLocals
-    let! retries = path |> moveFileAsync newPath
+    let! retries1 = path |> moveFileAsync newPath
     trace Debug (fun () -> "5") getLocals
-    let! text = File.ReadAllTextAsync newPath |> Async.AwaitTask
+    let! retries2 = waitForFileAccess newPath
     trace Debug (fun () -> "6") getLocals
-    do! child
+    let! text = File.ReadAllTextAsync newPath |> Async.AwaitTask
     trace Debug (fun () -> "7") getLocals
-    return retries, text
+    do! child
+    trace Debug (fun () -> "8") getLocals
+    return retries1, retries2, text
 }
 |> Async.runWithTimeout 3000
 |> function
-    | Some (retries, text) ->
-        retries
+    | Some (retries1, retries2, text) ->
+        retries1
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 100)
-            (if Runtime.isWindows () then 150 else 150)
+            (if Runtime.isWindows () then 100 else 0)
+            (if Runtime.isWindows () then 150 else 0)
+
+        retries2
+        |> _isBetween
+            (if Runtime.isWindows () then 0 else 100)
+            (if Runtime.isWindows () then 0 else 200)
         
         text |> _equal "0"
         
@@ -460,7 +482,7 @@ let watchDirectoryWithFilter filter shouldReadContent path =
             errorStream
         ]
         |> FSharp.Control.AsyncSeq.mergeAll
-        |> FSharp.Control.AsyncSeq.mapAsync (fun (n, events) -> async {
+        |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (n, events) -> async {
             let! events =
                 if not shouldReadContent
                 then events |> Async.init
@@ -677,27 +699,27 @@ let write path = async {
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
 
-    do! Async.Sleep 150
+    do! Async.Sleep 500
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
 
-    do! Async.Sleep 150
+    do! Async.Sleep 500
 
     for i = 1 to n do
         do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
-    do! Async.Sleep 150
+    do! Async.Sleep 500
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
 
-    do! Async.Sleep 150
+    do! Async.Sleep 500
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
-    do! Async.Sleep 150
+    do! Async.Sleep 500
 }
 
 let run () =

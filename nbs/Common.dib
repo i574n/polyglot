@@ -356,7 +356,7 @@ let retryFn retries fn =
             then fn () |> Some
             else None
         with ex ->
-            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
             trace Warn (fun () -> "retryFn") getLocals
             System.Threading.Thread.Sleep 1
             loop (retry + 1)
