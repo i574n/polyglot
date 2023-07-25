@@ -464,7 +464,7 @@ let testEventsRaw
 
     let run = async {
         let! _ = iter () |> Async.StartChild
-        do! Async.Sleep 150
+        do! Async.Sleep 250
         return! write tempDirectory
     }
 

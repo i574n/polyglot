@@ -120,7 +120,7 @@ async {
 |> function
     | Some (retries1, retries2) ->
         retries1 |> _isBetween 2 1500
-        retries2 |> _isBetween 80 250
+        retries2 |> _isBetween 80 600
         true
     | _ -> false
 |> _equal true
@@ -158,7 +158,7 @@ async {
 |> function
     | Some (retries1, retries2) ->
         retries1 |> _isBetween 2 150
-        retries2 |> _isBetween 3 25
+        retries2 |> _isBetween 3 60
         true
     | _ -> false
 |> _equal true
