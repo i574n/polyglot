@@ -53,7 +53,7 @@ module FileSystem =
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "waitForFileAccess") getLocals
-                do! Async.Sleep 1
+                do! Async.Sleep 10
                 return! loop (retry + 1)
         }
         loop 0
@@ -68,7 +68,7 @@ module FileSystem =
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "deleteDirectoryAsync") getLocals
-                do! Async.Sleep 1
+                do! Async.Sleep 10
                 return! loop (retry + 1)
         }
         loop 0
@@ -83,7 +83,7 @@ module FileSystem =
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "deleteFileAsync") getLocals
-                do! Async.Sleep 1
+                do! Async.Sleep 10
                 return! loop (retry + 1)
         }
         loop 0
@@ -99,7 +99,7 @@ module FileSystem =
                     let getLocals () =
                         $"oldPath: {oldPath} / newPath: {newPath} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warn (fun () -> "moveFileAsync") getLocals
-                do! Async.Sleep 1
+                do! Async.Sleep 10
                 return! loop (retry + 1)
         }
         loop 0
@@ -204,7 +204,7 @@ module FileSystem =
                 errorStream
             ]
             |> FSharp.Control.AsyncSeq.mergeAll
-            |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (n, events) -> async {
+            |> FSharp.Control.AsyncSeq.mapAsync (fun (n, events) -> async {
                 let! events =
                     if not shouldReadContent
                     then events |> Async.init
