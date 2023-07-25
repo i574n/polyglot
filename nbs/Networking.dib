@@ -181,7 +181,7 @@ async {
 
         retries2
         |> _isBetween
-            (if Runtime.isWindows () then 5 else 3)
+            (if Runtime.isWindows () then 5 else 2)
             (if Runtime.isWindows () then 20 else 60)
 
         true
