@@ -12,9 +12,13 @@
 
 #!fsharp
 
-#r "nuget:FSharp.Control.AsyncSeq"
-#r "nuget:System.Reactive,5.0.0"
-#r "nuget:System.Reactive.Linq,6.0.0-preview.1"
+// #r "nuget:FSharp.Control.AsyncSeq,3.2.1"
+// #r "nuget:System.Reactive,5.0.0"
+// #r "nuget:System.Reactive.Linq,6.0.0-preview.1"
+
+#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive/5.0.0/lib/net5.0/System.Reactive.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 
 #!fsharp
 
@@ -126,7 +130,7 @@ let lockFile () = async {
     trace Debug (fun () -> "_3") getLocals
     stream.Seek (0L, SeekOrigin.Begin) |> ignore
     trace Debug (fun () -> "_4") getLocals
-    stream.WriteByte (49uy) |> ignore
+    stream.WriteByte 49uy
     trace Debug (fun () -> "_5") getLocals
     stream.Flush ()
     trace Debug (fun () -> "_6") getLocals
@@ -136,19 +140,28 @@ async {
     trace Debug (fun () -> "1") getLocals
     do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
     trace Debug (fun () -> "2") getLocals
-    let! _ = lockFile () |> Async.StartChild
+    let! child = lockFile () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "4") getLocals
     let! retries = waitForFileAccess path
-    let text = File.ReadAllText path
+    trace Debug (fun () -> "5") getLocals
+    let! text = File.ReadAllTextAsync path |> Async.AwaitTask
+    trace Debug (fun () -> "6") getLocals
+    do! child
+    trace Debug (fun () -> "7") getLocals
     return retries, text
 }
 |> Async.runWithTimeout 3000
 |> function
     | Some (retries, text) ->
-        retries |> _isGreaterThan 100
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 150 else 150)
+        
         text |> _equal "1"
+        
         true
     | _ -> false
 |> _equal true
@@ -163,6 +176,7 @@ let deleteDirectoryAsync path =
     let rec loop retry = async {
         try
             System.IO.Directory.Delete (path, true)
+            return retry
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
@@ -181,7 +195,7 @@ let path = tempFolder </> "test"
 
 let lockDirectory () = async {
     trace Debug (fun () -> "_1") getLocals
-    System.IO.File.WriteAllText (path </> "test.txt", "")
+    System.IO.File.WriteAllText (path </> "test.txt", "0")
     use _ = new System.IO.FileStream (path </> "test.txt", System.IO.FileMode.Open, System.IO.FileAccess.ReadWrite)
     trace Debug (fun () -> "_2") getLocals
     do! Async.Sleep 2000
@@ -192,15 +206,27 @@ async {
     trace Debug (fun () -> "1") getLocals
     Directory.CreateDirectory path |> ignore
     trace Debug (fun () -> "2") getLocals
-    let! _ = lockDirectory () |> Async.StartChild
+    let! child = lockDirectory () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "4") getLocals
-    do! deleteDirectoryAsync path
+    let! retries = deleteDirectoryAsync path
     trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
+    return retries
 }
 |> Async.runWithTimeout 3000
-|> _equal (Some ())
+|> function
+    | Some retries ->
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 150 else 150)
+
+        true
+    | _ -> false
+|> _equal true
 
 #!markdown
 
@@ -212,6 +238,7 @@ let deleteFileAsync path =
     let rec loop retry = async {
         try
             System.IO.File.Delete path
+            return retry
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
@@ -240,15 +267,27 @@ async {
     trace Debug (fun () -> "1") getLocals
     do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
     trace Debug (fun () -> "2") getLocals
-    let! _ = lockFile () |> Async.StartChild
+    let! child = lockFile () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "4") getLocals
-    do! deleteFileAsync path
+    let! retries = deleteFileAsync path
     trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
+    return retries
 }
 |> Async.runWithTimeout 3000
-|> _equal (Some ())
+|> function
+    | Some retries ->
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 150 else 150)
+
+        true
+    | _ -> false
+|> _equal true
 
 #!markdown
 
@@ -260,6 +299,7 @@ let moveFileAsync newPath oldPath =
     let rec loop retry = async {
         try
             System.IO.File.Move (oldPath, newPath)
+            return retry
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () =
@@ -290,16 +330,31 @@ async {
     trace Debug (fun () -> "1") getLocals
     do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
     trace Debug (fun () -> "2") getLocals
-    let! _ = lockFile () |> Async.StartChild
+    let! child = lockFile () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "4") getLocals
-    do! path |> moveFileAsync newPath
+    let! retries = path |> moveFileAsync newPath
     trace Debug (fun () -> "5") getLocals
-    return File.ReadAllText newPath
+    let! text = File.ReadAllTextAsync newPath |> Async.AwaitTask
+    trace Debug (fun () -> "6") getLocals
+    do! child
+    trace Debug (fun () -> "7") getLocals
+    return retries, text
 }
 |> Async.runWithTimeout 3000
-|> _equal (Some "0")
+|> function
+    | Some (retries, text) ->
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 150 else 150)
+        
+        text |> _equal "0"
+        
+        true
+    | _ -> false
+|> _equal true
 
 #!markdown
 
@@ -389,8 +444,8 @@ let watchDirectoryWithFilter filter shouldReadContent path =
 
     let readContent fullPath = async {
         try
-            let! _ = waitForFileAccess fullPath |> Async.runWithTimeoutAsync 30000
-            return System.IO.File.ReadAllText fullPath |> Some
+            do! waitForFileAccess fullPath |> Async.runWithTimeoutAsync 30000 |> Async.Ignore
+            return! System.IO.File.ReadAllTextAsync fullPath |> Async.AwaitTask |> Async.map Some
         with ex ->
             trace Error (fun () -> $"watchWithFilter / readContent / ex: {ex |> printException}") getLocals
             return None
@@ -411,25 +466,20 @@ let watchDirectoryWithFilter filter shouldReadContent path =
                 then events |> Async.init
                 else 
                     events
-                    |> List.map (fun event ->
+                    |> List.map (fun event -> async {
                         match event with
                         | FileSystemChange.Changed (path, _) ->
-                            async {
-                                let! content = fullPath </> path |> readContent
-                                return FileSystemChange.Changed (path, content)
-                            }
+                            let! content = fullPath </> path |> readContent
+                            return FileSystemChange.Changed (path, content)
                         | FileSystemChange.Created (path, _) ->
-                            async {
-                                let! content = fullPath </> path |> readContent
-                                return FileSystemChange.Created (path, content)
-                            }
+                            do! Async.Sleep 1
+                            let! content = fullPath </> path |> readContent
+                            return FileSystemChange.Created (path, content)
                         | FileSystemChange.Renamed (oldPath, (newPath, _)) ->
-                            async {
-                                let! content = fullPath </> newPath |> readContent
-                                return FileSystemChange.Renamed (oldPath, (newPath, content))
-                            }
-                        | _ -> event |> Async.init
-                    )
+                            let! content = fullPath </> newPath |> readContent
+                            return FileSystemChange.Renamed (oldPath, (newPath, content))
+                        | _ -> return event
+                    })
                     |> Async.Parallel
                     |> Async.map Array.toList
 
@@ -500,7 +550,7 @@ let testEventsRaw
         |> _equal (Some ())
     finally
         disposable.Dispose ()
-        deleteDirectoryAsync tempDirectory |> Async.RunSynchronously
+        deleteDirectoryAsync tempDirectory |> Async.Ignore |> Async.RunSynchronously
 
     let eventsLog =
         events
@@ -559,27 +609,27 @@ let write path = async {
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"a{i}") |> Async.AwaitTask
 
-    do! Async.Sleep 150
+    do! Async.Sleep 250
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"b{i}") |> Async.AwaitTask
 
-    do! Async.Sleep 150
+    do! Async.Sleep 250
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
+        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
-    do! Async.Sleep 150
+    do! Async.Sleep 250
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"c{i}") |> Async.AwaitTask
 
-    do! Async.Sleep 150
+    do! Async.Sleep 250
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt")
+        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
-    do! Async.Sleep 150
+    do! Async.Sleep 250
 }
 
 let run () =
@@ -635,7 +685,7 @@ let write path = async {
     do! Async.Sleep 150
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
+        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 150
 
@@ -645,7 +695,7 @@ let write path = async {
     do! Async.Sleep 150
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt")
+        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 150
 }
@@ -748,7 +798,7 @@ let testEventsSorted (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSy
         |> _equal (Some ())
     finally
         disposable.Dispose ()
-        deleteDirectoryAsync path |> Async.RunSynchronously
+        deleteDirectoryAsync path |> Async.Ignore |> Async.RunSynchronously
 
     let events = formatEvents events
 
@@ -788,7 +838,7 @@ let write path = async {
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}") |> Async.AwaitTask
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file{i}.txt")
+        do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
     
     do! Async.Sleep 150
 }
@@ -836,7 +886,7 @@ let write path = async {
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "") |> Async.AwaitTask
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file{i}.txt")
+        do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
     
     do! Async.Sleep 150
 }
@@ -876,10 +926,10 @@ let write path = async {
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}") |> Async.AwaitTask
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
+        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt")
+        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
     
     do! Async.Sleep 150
 }
@@ -927,13 +977,13 @@ let write path = async {
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "") |> Async.AwaitTask
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt")
+        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{i}") |> Async.AwaitTask
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt")
+        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
     
     do! Async.Sleep 150
 }

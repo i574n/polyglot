@@ -14,6 +14,7 @@
 
 #!import ../nbs/Common.fs
 #!import ../nbs/Async.fs
+#!import ../nbs/Runtime.fs
 
 #!fsharp
 
@@ -108,19 +109,31 @@ let lockPort () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    let! _ = lockPort () |> Async.StartChild
+    let! child = lockPort () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "3") getLocals
     let! retries1 = waitForPortAccess None true port
+    trace Debug (fun () -> "4") getLocals
     let! retries2 = waitForPortAccess None false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
     return retries1, retries2
 }
 |> Async.runWithTimeout 20000
 |> function
     | Some (retries1, retries2) ->
-        retries1 |> _isBetween 2 1500
-        retries2 |> _isBetween 80 600
+        retries1
+        |> _isBetween
+            (if Runtime.isWindows () then 2 else 2)
+            (if Runtime.isWindows () then 5 else 1500)
+
+        retries2
+        |> _isBetween
+            (if Runtime.isWindows () then 80 else 80)
+            (if Runtime.isWindows () then 150 else 600)
+
         true
     | _ -> false
 |> _equal true
@@ -146,19 +159,31 @@ let lockPort () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    let! _ = lockPort () |> Async.StartChild
+    let! child = lockPort () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 1
     trace Debug (fun () -> "3") getLocals
     let! retries1 = waitForPortAccess (Some 60) true port
+    trace Debug (fun () -> "4") getLocals
     let! retries2 = waitForPortAccess (Some 60) false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
     return retries1, retries2
 }
 |> Async.runWithTimeout 2000
 |> function
     | Some (retries1, retries2) ->
-        retries1 |> _isBetween 2 150
-        retries2 |> _isBetween 3 60
+        retries1
+        |> _isBetween
+            (if Runtime.isWindows () then 4 else 2)
+            (if Runtime.isWindows () then 15 else 150)
+
+        retries2
+        |> _isBetween
+            (if Runtime.isWindows () then 5 else 3)
+            (if Runtime.isWindows () then 20 else 60)
+
         true
     | _ -> false
 |> _equal true
@@ -204,19 +229,28 @@ let lockPorts () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    let! _ = lockPorts () |> Async.StartChild
+    let! child = lockPorts () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 60
     trace Debug (fun () -> "3") getLocals
     let! availablePort = getAvailablePort None port
+    trace Debug (fun () -> "4") getLocals
     let! retries = waitForPortAccess None false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
     return availablePort, retries
 }
 |> Async.runWithTimeout 15000
 |> function
     | Some (availablePort, retries) ->
         availablePort |> _equal (port + 2)
-        retries |> _isBetween 100 1200
+
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 150 else 1200)
+
         true
     | _ -> false
 |> _equal true
@@ -244,19 +278,28 @@ let lockPorts () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    let! _ = lockPorts () |> Async.StartChild
+    let! child = lockPorts () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 20
     trace Debug (fun () -> "3") getLocals
     let! availablePort = getAvailablePort (Some 60) port
+    trace Debug (fun () -> "4") getLocals
     let! retries = waitForPortAccess (Some 60) false port
+    trace Debug (fun () -> "5") getLocals
+    do! child
+    trace Debug (fun () -> "6") getLocals
     return availablePort, retries
 }
 |> Async.runWithTimeout 1500
 |> function
     | Some (availablePort, retries) ->
         availablePort |> _equal (port + 2)
-        retries |> _isBetween 10 120
+
+        retries
+        |> _isBetween
+            (if Runtime.isWindows () then 10 else 10)
+            (if Runtime.isWindows () then 30 else 120)
+
         true
     | _ -> false
 |> _equal true

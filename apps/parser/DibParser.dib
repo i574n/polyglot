@@ -12,7 +12,9 @@
 
 #!fsharp
 
-#r "nuget:FParsec"
+//#r "nuget:FParsec,2.0.0-beta2"
+#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"
+#r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"
 
 #!fsharp
 
@@ -416,25 +418,6 @@ module {moduleName} ="""
 
 #!fsharp
 
-let parseDibCode kernel file =
-    let input = File.ReadAllText file
-    match parse kernel input with
-    | Result.Ok blocks -> blocks |> formatBlocks kernel
-    | Result.Error msg -> failwith msg
-
-#!fsharp
-
-let writeDibCode kernel file =
-    printfn $"Parsing {file}"
-    let output = parseDibCode kernel file
-    let outputFileName =
-        match kernel with
-        | "fsharp" -> file |> String.replace ".dib" ".fs"
-        | _ -> failwith "Unknown kernel"
-    File.WriteAllText (outputFileName, output)
-
-#!fsharp
-
 //// test
 
 let example1 =
@@ -531,10 +514,38 @@ example1
 
 #!fsharp
 
+let parseDibCode kernel file = async {
+    let! input = File.ReadAllTextAsync file |> Async.AwaitTask
+    match parse kernel input with
+    | Result.Ok blocks -> return blocks |> formatBlocks kernel
+    | Result.Error msg -> return failwith msg
+}
+
+#!fsharp
+
+let writeDibCode kernel file = async {
+    printfn $"Parsing {file}"
+    let! output = parseDibCode kernel file
+    let outputFileName =
+        match kernel with
+        | "fsharp" -> file |> String.replace ".dib" ".fs"
+        | _ -> failwith "Unknown kernel"
+    do! File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
+}
+
+#!fsharp
+
 //// test
 
-match Environment.GetEnvironmentVariable "OUTPUT" with
-| "" | null -> ()
-| path when System.IO.File.Exists path -> path |> writeDibCode "fsharp"
-| path when path.Contains ";" -> path |> String.split [| ';' |] |> Array.iter (writeDibCode "fsharp")
-| _ -> System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), "DibParser.dib") |> writeDibCode "fsharp"
+let paths =
+    match Environment.GetEnvironmentVariable "INPUT" with
+    | "" | null -> [||]
+    | path when System.IO.File.Exists path -> [| path |]
+    | path when path.Contains ";" -> path |> String.split [| ';' |]
+    | _ -> [| System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), "DibParser.dib") |]
+
+paths
+|> Array.map (writeDibCode "fsharp")
+|> Async.Parallel
+|> Async.Ignore
+|> Async.RunSynchronously

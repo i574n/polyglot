@@ -3,6 +3,8 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../scripts/core.ps1
 
+
+{ dotnet repl --run Deps.dib --exit-after-run } | Invoke-Block
 { dotnet repl --run ../apps/parser/DibParser.dib --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "OUTPUT" = "Async.dib;AsyncSeq.dib;Common.dib;FileSystem.dib;Networking.dib;Runtime.dib;Toml.dib" }
 { dotnet repl --run Async.dib --output-path Async.repl.ipynb --exit-after-run } | Invoke-Block
 { dotnet repl --run AsyncSeq.dib --output-path AsyncSeq.repl.ipynb --exit-after-run } | Invoke-Block

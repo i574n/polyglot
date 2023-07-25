@@ -12,9 +12,13 @@
 
 #!fsharp
 
-#r "nuget:FSharp.Control.AsyncSeq"
-#r "nuget:System.Reactive,5.0.0"
-#r "nuget:System.Reactive.Linq,6.0.0-preview.1"
+// #r "nuget:FSharp.Control.AsyncSeq,3.2.1"
+// #r "nuget:System.Reactive,5.0.0"
+// #r "nuget:System.Reactive.Linq,6.0.0-preview.1"
+
+#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive/5.0.0/lib/net5.0/System.Reactive.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 
 #!fsharp
 

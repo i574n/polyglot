@@ -4,7 +4,8 @@
 
 #!fsharp
 
-#r "nuget:Expecto"
+// #r "nuget:Expecto,10.1.0"
+#r @"../../../../../../../.nuget/packages/expecto/10.1.0/lib/net6.0/Expecto.dll"
 
 #!fsharp
 
