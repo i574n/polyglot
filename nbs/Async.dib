@@ -170,3 +170,21 @@ let awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
 
 let awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
     task.AsTask () |> Async.AwaitTask
+
+#!markdown
+
+## init
+
+#!fsharp
+
+let init x = async {
+    return x
+}
+
+#!fsharp
+
+//// test
+
+init 1
+|> Async.RunSynchronously
+|> _equal 1

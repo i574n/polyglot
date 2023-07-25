@@ -104,3 +104,9 @@ module Async =
 
     let awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
         task.AsTask () |> Async.AwaitTask
+
+    /// ## init
+
+    let init x = async {
+        return x
+    }

@@ -141,23 +141,12 @@ module FileSystem =
         let ticks () =
             System.DateTime.UtcNow.Ticks
 
-        let readContent fullPath =
-            if not shouldReadContent
-            then None
-            else
-                try
-                    waitForFileAccess fullPath |> Async.runWithTimeout 30000 |> ignore
-                    System.IO.File.ReadAllText fullPath |> Some
-                with ex ->
-                    trace Error (fun () -> $"watchWithFilter / readContent / ex: {ex |> printException}") getLocals
-                    None
-
         let changedStream =
             AsyncSeq.subscribeEvent
                 watcher.Changed
                 (fun event ->
                     ticks (),
-                    [ FileSystemChange.Changed (getEventPath event.FullPath, readContent event.FullPath) ]
+                    [ FileSystemChange.Changed (getEventPath event.FullPath, None) ]
                 )
 
         let deletedStream =
@@ -173,11 +162,10 @@ module FileSystem =
                 watcher.Created
                 (fun event ->
                     let path = getEventPath event.FullPath
-                    let content = readContent event.FullPath
                     ticks (), [
-                        FileSystemChange.Created (path, content)
+                        FileSystemChange.Created (path, None)
                         if Runtime.isWindows () then
-                            FileSystemChange.Changed (path, content)
+                            FileSystemChange.Changed (path, None)
                     ])
 
         let renamedStream =
@@ -187,7 +175,7 @@ module FileSystem =
                     ticks (), [
                         FileSystemChange.Renamed (
                             getEventPath event.OldFullPath,
-                            (getEventPath event.FullPath, readContent event.FullPath)
+                            (getEventPath event.FullPath, None)
                         )
                     ]
                 )
@@ -196,6 +184,16 @@ module FileSystem =
             AsyncSeq.subscribeEvent
                 watcher.Error
                 (fun event -> ticks (), [ FileSystemChange.Error (event.GetException ()) ])
+
+
+        let readContent fullPath = async {
+            try
+                let! _ = waitForFileAccess fullPath |> Async.runWithTimeoutAsync 30000
+                return System.IO.File.ReadAllText fullPath |> Some
+            with ex ->
+                trace Error (fun () -> $"watchWithFilter / readContent / ex: {ex |> printException}") getLocals
+                return None
+        }
 
         let stream =
             [
@@ -206,16 +204,44 @@ module FileSystem =
                 errorStream
             ]
             |> FSharp.Control.AsyncSeq.mergeAll
-            |> FSharp.Control.AsyncSeq.map (fun (n, events) ->
-                events
-                |> List.fold
-                    (fun (i, events) event ->
-                        i + 1L,
-                        (n + i, event) :: events)
-                    (0L, [])
-                |> snd
-                |> List.rev
-            )
+            |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (n, events) -> async {
+                let! events =
+                    if not shouldReadContent
+                    then events |> Async.init
+                    else 
+                        events
+                        |> List.map (fun event ->
+                            match event with
+                            | FileSystemChange.Changed (path, _) ->
+                                async {
+                                    let! content = fullPath </> path |> readContent
+                                    return FileSystemChange.Changed (path, content)
+                                }
+                            | FileSystemChange.Created (path, _) ->
+                                async {
+                                    let! content = fullPath </> path |> readContent
+                                    return FileSystemChange.Created (path, content)
+                                }
+                            | FileSystemChange.Renamed (oldPath, (newPath, _)) ->
+                                async {
+                                    let! content = fullPath </> newPath |> readContent
+                                    return FileSystemChange.Renamed (oldPath, (newPath, content))
+                                }
+                            | _ -> event |> Async.init
+                        )
+                        |> Async.Parallel
+                        |> Async.map Array.toList
+
+                return
+                    events
+                    |> List.fold
+                        (fun (i, events) event ->
+                            i + 1L,
+                            (n + i, event) :: events)
+                        (0L, [])
+                    |> snd
+                    |> List.rev
+            })
             |> FSharp.Control.AsyncSeq.concatSeq
 
         let disposable =
