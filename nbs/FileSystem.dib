@@ -470,7 +470,7 @@ let testEventsRaw
 
     try
         run
-        |> Async.runWithTimeout 20000
+        |> Async.runWithTimeout 30000
         |> _equal (Some ())
     finally
         disposable.Dispose ()

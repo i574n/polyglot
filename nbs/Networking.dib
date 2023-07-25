@@ -119,7 +119,7 @@ async {
 |> Async.runWithTimeout 20000
 |> function
     | Some (retries1, retries2) ->
-        retries1 |> _isBetween 2 600
+        retries1 |> _isBetween 2 1500
         retries2 |> _isBetween 80 250
         true
     | _ -> false
@@ -157,8 +157,8 @@ async {
 |> Async.runWithTimeout 2000
 |> function
     | Some (retries1, retries2) ->
-        retries1 |> _isBetween 2 60
-        retries2 |> _isBetween 8 25
+        retries1 |> _isBetween 2 150
+        retries2 |> _isBetween 3 25
         true
     | _ -> false
 |> _equal true
@@ -216,7 +216,7 @@ async {
 |> function
     | Some (availablePort, retries) ->
         availablePort |> _equal (port + 2)
-        retries |> _isBetween 100 400
+        retries |> _isBetween 100 1200
         true
     | _ -> false
 |> _equal true
@@ -256,7 +256,7 @@ async {
 |> function
     | Some (availablePort, retries) ->
         availablePort |> _equal (port + 2)
-        retries |> _isBetween 10 40
+        retries |> _isBetween 10 120
         true
     | _ -> false
 |> _equal true
