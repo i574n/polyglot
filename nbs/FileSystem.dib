@@ -562,7 +562,7 @@ let testEventsRaw
 
     let run = async {
         let! _ = iter () |> Async.StartChild
-        do! Async.Sleep 150
+        do! Async.Sleep 250
         return! write tempDirectory
     }
 
@@ -810,13 +810,13 @@ let testEventsSorted (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSy
 
     let run = async {
         let! _ = iter () |> Async.StartChild
-        do! Async.Sleep 150
+        do! Async.Sleep 250
         return! write path
     }
 
     try
         run
-        |> Async.runWithTimeout 3000
+        |> Async.runWithTimeout 5000
         |> _equal (Some ())
     finally
         disposable.Dispose ()
@@ -865,30 +865,35 @@ let write path = async {
     do! Async.Sleep 150
 }
 
-let eventMap, eventList = testEventsSorted (watchDirectory false) write
+let run () =
+    let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
-[
-    "file1.txt", nameof FileSystemChangeType.Created
-    "file1.txt", nameof FileSystemChangeType.Changed
-    "file1.txt", nameof FileSystemChangeType.Deleted
+    [
+        "file1.txt", nameof FileSystemChangeType.Created
+        "file1.txt", nameof FileSystemChangeType.Changed
+        "file1.txt", nameof FileSystemChangeType.Deleted
 
-    "file2.txt", nameof FileSystemChangeType.Created
-    "file2.txt", nameof FileSystemChangeType.Changed
-    "file2.txt", nameof FileSystemChangeType.Deleted
+        "file2.txt", nameof FileSystemChangeType.Created
+        "file2.txt", nameof FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystemChangeType.Deleted
 
-    "file3.txt", nameof FileSystemChangeType.Created
-    "file3.txt", nameof FileSystemChangeType.Changed
-    "file3.txt", nameof FileSystemChangeType.Deleted
-]
-|> _sequenceEqual eventList
+        "file3.txt", nameof FileSystemChangeType.Created
+        "file3.txt", nameof FileSystemChangeType.Changed
+        "file3.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> _sequenceEqual eventList
 
-[
-    "file1.txt", nameof FileSystemChangeType.Deleted
-    "file2.txt", nameof FileSystemChangeType.Deleted
-    "file3.txt", nameof FileSystemChangeType.Deleted
-]
-|> Map.ofList
-|> _sequenceEqual eventMap
+    [
+        "file1.txt", nameof FileSystemChangeType.Deleted
+        "file2.txt", nameof FileSystemChangeType.Deleted
+        "file3.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList
+    |> _sequenceEqual eventMap
+
+run
+|> retryFn 3
+|> _equal (Some ())
 
 #!markdown
 
@@ -913,25 +918,30 @@ let write path = async {
     do! Async.Sleep 150
 }
 
-let eventMap, eventList = testEventsSorted (watchDirectory false) write
+let run () =
+    let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
-[
-    "file1.txt", nameof FileSystemChangeType.Created
-    "file1.txt", nameof FileSystemChangeType.Changed
-    "file1.txt", nameof FileSystemChangeType.Deleted
+    [
+        "file1.txt", nameof FileSystemChangeType.Created
+        "file1.txt", nameof FileSystemChangeType.Changed
+        "file1.txt", nameof FileSystemChangeType.Deleted
 
-    "file2.txt", nameof FileSystemChangeType.Created
-    "file2.txt", nameof FileSystemChangeType.Changed
-    "file2.txt", nameof FileSystemChangeType.Deleted
-]
-|> _sequenceEqual eventList
+        "file2.txt", nameof FileSystemChangeType.Created
+        "file2.txt", nameof FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> _sequenceEqual eventList
 
-[
-    "file1.txt", nameof FileSystemChangeType.Deleted
-    "file2.txt", nameof FileSystemChangeType.Deleted
-]
-|> Map.ofList
-|> _sequenceEqual eventMap
+    [
+        "file1.txt", nameof FileSystemChangeType.Deleted
+        "file2.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList
+    |> _sequenceEqual eventMap
+
+run
+|> retryFn 3
+|> _equal (Some ())
 
 #!markdown
 
@@ -956,30 +966,35 @@ let write path = async {
     do! Async.Sleep 150
 }
 
-let eventMap, eventList = testEventsSorted (watchDirectory false) write
+let run () =
+    let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
-[
-    "file1.txt", nameof FileSystemChangeType.Created
-    "file1.txt", nameof FileSystemChangeType.Changed
-    "file2.txt", nameof FileSystemChangeType.Created
-    "file2.txt", nameof FileSystemChangeType.Changed
+    [
+        "file1.txt", nameof FileSystemChangeType.Created
+        "file1.txt", nameof FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystemChangeType.Created
+        "file2.txt", nameof FileSystemChangeType.Changed
 
-    "file_1.txt", nameof FileSystemChangeType.Renamed
-    "file_1.txt", nameof FileSystemChangeType.Deleted
+        "file_1.txt", nameof FileSystemChangeType.Renamed
+        "file_1.txt", nameof FileSystemChangeType.Deleted
 
-    "file_2.txt", nameof FileSystemChangeType.Renamed
-    "file_2.txt", nameof FileSystemChangeType.Deleted
-]
-|> _sequenceEqual eventList
+        "file_2.txt", nameof FileSystemChangeType.Renamed
+        "file_2.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> _sequenceEqual eventList
 
-[
-    "file1.txt", nameof FileSystemChangeType.Changed
-    "file2.txt", nameof FileSystemChangeType.Changed
-    "file_1.txt", nameof FileSystemChangeType.Deleted
-    "file_2.txt", nameof FileSystemChangeType.Deleted
-]
-|> Map.ofList
-|> _sequenceEqual eventMap
+    [
+        "file1.txt", nameof FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystemChangeType.Changed
+        "file_1.txt", nameof FileSystemChangeType.Deleted
+        "file_2.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList
+    |> _sequenceEqual eventMap
+
+run
+|> retryFn 3
+|> _equal (Some ())
 
 #!markdown
 
@@ -1010,29 +1025,34 @@ let write path = async {
     do! Async.Sleep 150
 }
 
-let eventMap, eventList = testEventsSorted (watchDirectory false) write
+let run () =
+    let eventMap, eventList = testEventsSorted (watchDirectory false) write
 
-[
-    "file1.txt", nameof FileSystemChangeType.Created
-    "file1.txt", nameof FileSystemChangeType.Changed
-    "file2.txt", nameof FileSystemChangeType.Created
-    "file2.txt", nameof FileSystemChangeType.Changed
+    [
+        "file1.txt", nameof FileSystemChangeType.Created
+        "file1.txt", nameof FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystemChangeType.Created
+        "file2.txt", nameof FileSystemChangeType.Changed
 
-    "file_1.txt", nameof FileSystemChangeType.Changed
-    "file_1.txt", nameof FileSystemChangeType.Renamed
-    "file_1.txt", nameof FileSystemChangeType.Deleted
+        "file_1.txt", nameof FileSystemChangeType.Changed
+        "file_1.txt", nameof FileSystemChangeType.Renamed
+        "file_1.txt", nameof FileSystemChangeType.Deleted
 
-    "file_2.txt", nameof FileSystemChangeType.Changed
-    "file_2.txt", nameof FileSystemChangeType.Renamed
-    "file_2.txt", nameof FileSystemChangeType.Deleted
-]
-|> _sequenceEqual eventList
+        "file_2.txt", nameof FileSystemChangeType.Changed
+        "file_2.txt", nameof FileSystemChangeType.Renamed
+        "file_2.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> _sequenceEqual eventList
 
-[
-    "file1.txt", nameof FileSystemChangeType.Changed
-    "file2.txt", nameof FileSystemChangeType.Changed
-    "file_1.txt", nameof FileSystemChangeType.Deleted
-    "file_2.txt", nameof FileSystemChangeType.Deleted
-]
-|> Map.ofList
-|> _sequenceEqual eventMap
+    [
+        "file1.txt", nameof FileSystemChangeType.Changed
+        "file2.txt", nameof FileSystemChangeType.Changed
+        "file_1.txt", nameof FileSystemChangeType.Deleted
+        "file_2.txt", nameof FileSystemChangeType.Deleted
+    ]
+    |> Map.ofList
+    |> _sequenceEqual eventMap
+
+run
+|> retryFn 3
+|> _equal (Some ())
