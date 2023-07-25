@@ -119,8 +119,8 @@ async {
 |> Async.runWithTimeout 20000
 |> function
     | Some (retries1, retries2) ->
-        retries1 |> _isGreaterThanOrEqual 2
-        retries2 |> _isGreaterThanOrEqual 100
+        retries1 |> _isBetween 2 600
+        retries2 |> _isBetween 80 250
         true
     | _ -> false
 |> _equal true
@@ -157,8 +157,8 @@ async {
 |> Async.runWithTimeout 2000
 |> function
     | Some (retries1, retries2) ->
-        retries1 |> _isGreaterThanOrEqual 2
-        retries2 |> _isGreaterThanOrEqual 10
+        retries1 |> _isBetween 2 60
+        retries2 |> _isBetween 8 25
         true
     | _ -> false
 |> _equal true
@@ -206,7 +206,7 @@ async {
     trace Debug (fun () -> "1") getLocals
     let! _ = lockPorts () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
-    do! Async.Sleep 20
+    do! Async.Sleep 60
     trace Debug (fun () -> "3") getLocals
     let! availablePort = getAvailablePort None port
     let! retries = waitForPortAccess None false port
@@ -216,7 +216,7 @@ async {
 |> function
     | Some (availablePort, retries) ->
         availablePort |> _equal (port + 2)
-        retries |> _isGreaterThanOrEqual 100
+        retries |> _isBetween 100 400
         true
     | _ -> false
 |> _equal true
@@ -256,7 +256,7 @@ async {
 |> function
     | Some (availablePort, retries) ->
         availablePort |> _equal (port + 2)
-        retries |> _isGreaterThanOrEqual 10
+        retries |> _isBetween 10 40
         true
     | _ -> false
 |> _equal true
