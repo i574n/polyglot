@@ -510,7 +510,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
             |> List.rev
         )
         |> FSharp.Control.AsyncSeq.concatSeq
-        |> FSharp.Control.AsyncSeq.mapAsync (fun (t, event) -> async {
+        |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (t, event) -> async {
             match shouldReadContent, event with
             | true, FileSystemChange.Changed (path, _) ->
                 let! content = fullPath </> path |> readContent
@@ -535,14 +535,14 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
 
 let inline watchDirectory path =
     watchDirectoryWithFilter
-        (System.IO.NotifyFilters.Attributes
-        ||| System.IO.NotifyFilters.CreationTime
-        ||| System.IO.NotifyFilters.DirectoryName
-        ||| System.IO.NotifyFilters.FileName
-        //  ||| System.IO.NotifyFilters.LastAccess
-        //  ||| System.IO.NotifyFilters.LastWrite
-        ||| System.IO.NotifyFilters.Security
-        //  ||| System.IO.NotifyFilters.Size
+        (System.IO.NotifyFilters.FileName
+        // ||| System.IO.NotifyFilters.DirectoryName
+        // ||| System.IO.NotifyFilters.Attributes
+        //// ||| System.IO.NotifyFilters.Size
+        ||| System.IO.NotifyFilters.LastWrite
+        //// ||| System.IO.NotifyFilters.LastAccess
+        // ||| System.IO.NotifyFilters.CreationTime
+        // ||| System.IO.NotifyFilters.Security
         )
         path
 
@@ -596,7 +596,7 @@ let inline testEventsRaw
             let text = $"{n} / {diff} / {event}"
             if text |> String.length <= 100
             then text
-            else text |> String.substring 0 100
+            else text |> String.substring 0 100 |> String.replace "\n" ""
         )
         |> String.concat "\n"
     let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
@@ -607,24 +607,16 @@ let inline testEventsRaw
     |> List.sortBy fst
     |> List.map snd
     |> List.fold
-        (fun (map, acc) event ->
+        (fun acc event ->
             match acc, event with
-            | FileSystemChange.Changed _ as lastEvent :: acc, FileSystemChange.Changed (path, Some content) ->
-                let inMap = map |> Map.containsKey path
-                if inMap && map.[path] = content
-                then map, lastEvent :: acc
-                elif inMap && content |> String.startsWith map.[path]
-                then (map |> Map.add path content), event :: acc
-                else (map |> Map.add path content), event :: lastEvent :: acc
-            | acc, FileSystemChange.Created (path, _)
-            | acc, FileSystemChange.Deleted path ->
-                (map |> Map.remove path), event :: acc
-            | acc, FileSystemChange.Renamed (oldPath, (newPath, content)) ->
-                (map |> Map.remove oldPath |> Map.remove newPath), event :: acc
-            | _ -> map, event :: acc
+            | FileSystemChange.Changed (lastPath, Some lastContent) as lastEvent :: acc,
+                FileSystemChange.Changed (path, Some content)
+                when lastPath = path && content |> String.startsWith lastContent
+                ->
+                event :: acc
+            | _ -> event :: acc
         )
-        (Map.empty, [])
-    |> snd
+        []
     |> List.rev
 
 #!markdown
@@ -709,27 +701,27 @@ let inline write path = async {
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
 
-    do! Async.Sleep 500
+    do! Async.Sleep 1500
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
 
-    do! Async.Sleep 500
+    do! Async.Sleep 1500
 
     for i = 1 to n do
         do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
-    do! Async.Sleep 500
+    do! Async.Sleep 1500
 
     for i = 1 to n do
         do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
 
-    do! Async.Sleep 500
+    do! Async.Sleep 1500
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
-    do! Async.Sleep 500
+    do! Async.Sleep 1500
 }
 
 let inline run () =

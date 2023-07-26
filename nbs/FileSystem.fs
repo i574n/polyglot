@@ -234,7 +234,7 @@ module FileSystem =
                 |> List.rev
             )
             |> FSharp.Control.AsyncSeq.concatSeq
-            |> FSharp.Control.AsyncSeq.mapAsync (fun (t, event) -> async {
+            |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (t, event) -> async {
                 match shouldReadContent, event with
                 | true, FileSystemChange.Changed (path, _) ->
                     let! content = fullPath </> path |> readContent
@@ -259,13 +259,13 @@ module FileSystem =
 
     let inline watchDirectory path =
         watchDirectoryWithFilter
-            (System.IO.NotifyFilters.Attributes
-            ||| System.IO.NotifyFilters.CreationTime
-            ||| System.IO.NotifyFilters.DirectoryName
-            ||| System.IO.NotifyFilters.FileName
-            //  ||| System.IO.NotifyFilters.LastAccess
-            //  ||| System.IO.NotifyFilters.LastWrite
-            ||| System.IO.NotifyFilters.Security
-            //  ||| System.IO.NotifyFilters.Size
+            (System.IO.NotifyFilters.FileName
+            // ||| System.IO.NotifyFilters.DirectoryName
+            // ||| System.IO.NotifyFilters.Attributes
+            //// ||| System.IO.NotifyFilters.Size
+            ||| System.IO.NotifyFilters.LastWrite
+            //// ||| System.IO.NotifyFilters.LastAccess
+            // ||| System.IO.NotifyFilters.CreationTime
+            // ||| System.IO.NotifyFilters.Security
             )
             path
