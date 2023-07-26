@@ -24,7 +24,7 @@ open Common
 
 #!fsharp
 
-let choice asyncs = async {
+let inline choice asyncs = async {
     let e = Event<_> ()
     let cts = new System.Threading.CancellationTokenSource ()
     let fn =
@@ -47,7 +47,7 @@ let choice asyncs = async {
 
 #!fsharp
 
-let map fn a = async {
+let inline map fn a = async {
     let! x = a
     return fn x
 }
@@ -58,7 +58,7 @@ let map fn a = async {
 
 #!fsharp
 
-let runWithTimeoutAsync (timeout : int) fn =
+let inline runWithTimeoutAsync (timeout : int) fn =
     let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
     let timeoutTask = async {
@@ -74,7 +74,7 @@ let runWithTimeoutAsync (timeout : int) fn =
 
 #!fsharp
 
-let runWithTimeout timeout fn =
+let inline runWithTimeout timeout fn =
     fn
     |> runWithTimeoutAsync timeout
     |> Async.RunSynchronously
@@ -101,7 +101,7 @@ Async.Sleep 10
 
 #!fsharp
 
-let runWithTimeoutStrict (timeout : int) fn =
+let inline runWithTimeoutStrict (timeout : int) fn =
     let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
     let timeoutTask = async {
@@ -165,10 +165,10 @@ Async.Sleep 10
 
 #!fsharp
 
-let awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
+let inline awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
     task.AsTask () |> Async.AwaitTask
 
-let awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
+let inline awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
     task.AsTask () |> Async.AwaitTask
 
 #!markdown
@@ -177,7 +177,7 @@ let awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
 
 #!fsharp
 
-let init x = async {
+let inline init x = async {
     return x
 }
 

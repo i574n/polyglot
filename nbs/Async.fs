@@ -8,7 +8,7 @@ module Async =
 
     /// ## choice
 
-    let choice asyncs = async {
+    let inline choice asyncs = async {
         let e = Event<_> ()
         let cts = new System.Threading.CancellationTokenSource ()
         let fn =
@@ -27,14 +27,14 @@ module Async =
 
     /// ## map
 
-    let map fn a = async {
+    let inline map fn a = async {
         let! x = a
         return fn x
     }
 
     /// ## runWithTimeoutAsync
 
-    let runWithTimeoutAsync (timeout : int) fn =
+    let inline runWithTimeoutAsync (timeout : int) fn =
         let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
         let timeoutTask = async {
@@ -48,14 +48,14 @@ module Async =
         [ timeoutTask; task ]
         |> choice
 
-    let runWithTimeout timeout fn =
+    let inline runWithTimeout timeout fn =
         fn
         |> runWithTimeoutAsync timeout
         |> Async.RunSynchronously
 
     /// ## runWithTimeoutStrict
 
-    let runWithTimeoutStrict (timeout : int) fn =
+    let inline runWithTimeoutStrict (timeout : int) fn =
         let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
         let timeoutTask = async {
@@ -99,14 +99,14 @@ module Async =
 
     /// ## awaitValueTask
 
-    let awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
+    let inline awaitValueTaskUnit (task : System.Threading.Tasks.ValueTask) =
         task.AsTask () |> Async.AwaitTask
 
-    let awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
+    let inline awaitValueTask (task : System.Threading.Tasks.ValueTask<_>) =
         task.AsTask () |> Async.AwaitTask
 
     /// ## init
 
-    let init x = async {
+    let inline init x = async {
         return x
     }

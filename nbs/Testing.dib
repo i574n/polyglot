@@ -4,7 +4,6 @@
 
 #!fsharp
 
-// #r "nuget:Expecto,10.1.0"
 #r @"../../../../../../../.nuget/packages/expecto/10.1.0/lib/net6.0/Expecto.dll"
 
 #!fsharp
@@ -21,7 +20,7 @@ type AssertExceptionFormatter (ex) =
             .Replace("[32m", "<span style=\"color: green;\">")
             .Replace("[36m", "</span>")
             .Replace("[31m", "<span style=\"color: red;\">")
-            .Replace("\n", "<br/>")
+            .Replace("\n", "<br/>\n")
 
 
 Formatter.Register<AssertExceptionFormatter> ((fun (x : AssertExceptionFormatter) -> x.Text), "text/html")
@@ -38,44 +37,44 @@ let inline __expect fn log expected actual =
         AssertExceptionFormatter(ex).Display () |> ignore
         failwith (ex.GetType().FullName)
 
-let __contains log expected actual = __expect Expecto.Expect.contains log expected actual
-let _contains expected actual = __contains true expected actual
+let inline __contains log expected actual = __expect Expecto.Expect.contains log expected actual
+let inline _contains expected actual = __contains true expected actual
 
-let __equal log expected actual = __expect Expecto.Expect.equal log expected actual
-let _equal expected actual = __equal true expected actual
+let inline __equal log expected actual = __expect Expecto.Expect.equal log expected actual
+let inline _equal expected actual = __equal true expected actual
 
-let __isGreaterThan log expected actual = __expect Expecto.Expect.isGreaterThan log expected actual
-let _isGreaterThan expected actual = __isGreaterThan true expected actual
+let inline __isGreaterThan log expected actual = __expect Expecto.Expect.isGreaterThan log expected actual
+let inline _isGreaterThan expected actual = __isGreaterThan true expected actual
 
-let __isGreaterThanOrEqual log expected actual = __expect Expecto.Expect.isGreaterThanOrEqual log expected actual
-let _isGreaterThanOrEqual expected actual = __isGreaterThanOrEqual true expected actual
+let inline __isGreaterThanOrEqual log expected actual = __expect Expecto.Expect.isGreaterThanOrEqual log expected actual
+let inline _isGreaterThanOrEqual expected actual = __isGreaterThanOrEqual true expected actual
 
-let __isLessThan log expected actual = __expect Expecto.Expect.isLessThan log expected actual
-let _isLessThan expected actual = __isLessThan true expected actual
+let inline __isLessThan log expected actual = __expect Expecto.Expect.isLessThan log expected actual
+let inline _isLessThan expected actual = __isLessThan true expected actual
 
-let __isLessThanOrEqual log expected actual = __expect Expecto.Expect.isLessThanOrEqual log expected actual
-let _isLessThanOrEqual expected actual = __isLessThanOrEqual true expected actual
+let inline __isLessThanOrEqual log expected actual = __expect Expecto.Expect.isLessThanOrEqual log expected actual
+let inline _isLessThanOrEqual expected actual = __isLessThanOrEqual true expected actual
 
-let __sequenceEqual log expected actual = __expect Expecto.Expect.sequenceEqual log expected actual
-let _sequenceEqual expected actual = __sequenceEqual true expected actual
+let inline __sequenceEqual log expected actual = __expect Expecto.Expect.sequenceEqual log expected actual
+let inline _sequenceEqual expected actual = __sequenceEqual true expected actual
 
-let __stringContains log expected actual = __expect Expecto.Expect.stringContains log expected actual
-let _stringContains expected actual = __stringContains true expected actual
+let inline __stringContains log expected actual = __expect Expecto.Expect.stringContains log expected actual
+let inline _stringContains expected actual = __stringContains true expected actual
 
-let __stringEnds log expected actual = __expect Expecto.Expect.stringEnds log expected actual
-let _stringEnds expected actual = __stringEnds true expected actual
+let inline __stringEnds log expected actual = __expect Expecto.Expect.stringEnds log expected actual
+let inline _stringEnds expected actual = __stringEnds true expected actual
 
-let __stringStarts log expected actual = __expect Expecto.Expect.stringStarts log expected actual
-let _stringStarts expected actual = __stringStarts true expected actual
+let inline __stringStarts log expected actual = __expect Expecto.Expect.stringStarts log expected actual
+let inline _stringStarts expected actual = __stringStarts true expected actual
 
-let __throwsC log expected actual = __expect Expecto.Expect.throwsC log expected actual
-let _throwsC expected actual = __throwsC true expected actual
+let inline __throwsC log expected actual = __expect Expecto.Expect.throwsC log expected actual
+let inline _throwsC expected actual = __throwsC true expected actual
 
 #!fsharp
 
-let __isBetween log a b actual =
-    let isBetween actual (a, b) _ =
+let inline __isBetween log a b actual =
+    let inline isBetween actual (a, b) _ =
         __isGreaterThanOrEqual log a actual
         __isLessThanOrEqual log b actual
     __expect isBetween log (a, b) actual
-let _isBetween a b actual = __isBetween true a b actual
+let inline _isBetween a b actual = __isBetween true a b actual

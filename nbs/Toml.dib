@@ -12,8 +12,6 @@
 
 #!fsharp
 
-// #r "nuget:Tomlyn,0.16.2"
-
 #r @"../../../../../../../.nuget/packages/tomlyn/0.16.2/lib/net6.0/Tomlyn.dll"
 
 #!fsharp
@@ -26,10 +24,10 @@ open Common
 
 #!fsharp
 
-let (/./) (table: Tomlyn.Model.TomlTable) (key: string) : Tomlyn.Model.TomlTable =
+let inline (/./) (table: Tomlyn.Model.TomlTable) (key: string) : Tomlyn.Model.TomlTable =
     table.[key] :?> Tomlyn.Model.TomlTable
 
-let (/../) (table: Tomlyn.Model.TomlTable) (key: string) : 'T seq =
+let inline (/../) (table: Tomlyn.Model.TomlTable) (key: string) : 'T seq =
     table.[key] :?> Tomlyn.Model.TomlArray |> Seq.cast<'T>
 
 #!fsharp

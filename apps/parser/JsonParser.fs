@@ -96,7 +96,7 @@ module JsonParser =
         let hexdigit = anyOf (['0'..'9'] @ ['A'..'F'] @ ['a'..'f'])
         let fourHexDigits = hexdigit .>>. hexdigit .>>. hexdigit .>>. hexdigit
 
-        let convertToChar (((h1, h2), h3), h4) =
+        let inline convertToChar (((h1, h2), h3), h4) =
             let str = $"%c{h1}%c{h2}%c{h3}%c{h4}"
             Int32.Parse (str, Globalization.NumberStyles.HexNumber) |> char
 
@@ -145,12 +145,12 @@ module JsonParser =
 
         let exponentPart = e >>. optPlusMinus .>>. manyChars1 digit
 
-        let (|>?) opt f =
+        let inline (|>?) opt f =
             match opt with
             | None -> ""
             | Some x -> f x
 
-        let convertToJNumber (((optSign, intPart), fractionPart), expPart) =
+        let inline convertToJNumber (((optSign, intPart), fractionPart), expPart) =
             let signStr =
                 optSign
                 |>? string

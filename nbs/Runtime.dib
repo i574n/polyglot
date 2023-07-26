@@ -12,10 +12,6 @@
 
 #!fsharp
 
-// #r "nuget:FSharp.Control.AsyncSeq,3.2.1"
-// #r "nuget:System.Reactive,5.0.0"
-// #r "nuget:System.Reactive.Linq,6.0.0-preview.1"
-
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/5.0.0/lib/net5.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
@@ -44,7 +40,7 @@ open FileSystem
 
 #!fsharp
 
-let isWindows () =
+let inline isWindows () =
     System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
 
 #!fsharp
@@ -115,7 +111,7 @@ splitCommand @"..\..\file 1.exe -c \\""echo 1\\"""
 
 #!fsharp
 
-let executeAsync (command : string) = async {
+let inline executeAsync (command : string) = async {
     let workingDirectory, fileName, arguments = command |> splitCommand
     let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
     
@@ -132,7 +128,7 @@ let executeAsync (command : string) = async {
     use proc = new System.Diagnostics.Process (StartInfo = startInfo)
     let result = System.Collections.Concurrent.ConcurrentStack<string> ()
 
-    let event error (e: System.Diagnostics.DataReceivedEventArgs) =
+    let inline event error (e: System.Diagnostics.DataReceivedEventArgs) =
         if e.Data <> null then
             trace
                 (if error then Error else Debug)

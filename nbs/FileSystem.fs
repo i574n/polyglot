@@ -12,7 +12,7 @@ module FileSystem =
 
     /// ## createTempDirectoryName
 
-    let createTempDirectoryName () =
+    let inline createTempDirectoryName () =
         let root =
             match System.Reflection.Assembly.GetEntryAssembly().GetName().Name with
             | assemblyName -> assemblyName
@@ -23,7 +23,7 @@ module FileSystem =
 
     /// ## createTempDirectory
 
-    let createTempDirectory () =
+    let inline createTempDirectory () =
         let tempFolder = createTempDirectoryName ()
         let result = System.IO.Directory.CreateDirectory tempFolder
 
@@ -39,14 +39,18 @@ module FileSystem =
 
     /// ## waitForFileAccess
 
-    let waitForFileAccess path =
+    let inline waitForFileAccess access path =
+        let fileAccess, fileShare =
+            access
+            |> Option.defaultValue (System.IO.FileAccess.ReadWrite, System.IO.FileShare.Read)
+
         let rec loop retry = async {
             try
                 use _ = new System.IO.FileStream (
                     path,
                     System.IO.FileMode.Open,
-                    System.IO.FileAccess.ReadWrite,
-                    System.IO.FileShare.None
+                    fileAccess,
+                    fileShare
                 )
                 return retry
             with ex ->
@@ -60,10 +64,11 @@ module FileSystem =
 
     /// ## deleteDirectoryAsync
 
-    let deleteDirectoryAsync path =
+    let inline deleteDirectoryAsync path =
         let rec loop retry = async {
             try
                 System.IO.Directory.Delete (path, true)
+                return retry
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
@@ -75,10 +80,11 @@ module FileSystem =
 
     /// ## deleteFileAsync
 
-    let deleteFileAsync path =
+    let inline deleteFileAsync path =
         let rec loop retry = async {
             try
                 System.IO.File.Delete path
+                return retry
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
@@ -90,10 +96,11 @@ module FileSystem =
 
     /// ## moveFileAsync
 
-    let moveFileAsync newPath oldPath =
+    let inline moveFileAsync newPath oldPath =
         let rec loop retry = async {
             try
                 System.IO.File.Move (oldPath, newPath)
+                return retry
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () =
@@ -123,7 +130,7 @@ module FileSystem =
         | Renamed of oldPath: string * (string * string option)
 
 
-    let watchDirectoryWithFilter filter shouldReadContent path =
+    let inline watchDirectoryWithFilter filter shouldReadContent path =
         let fullPath = System.IO.Path.GetFullPath path
         let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
 
@@ -135,10 +142,10 @@ module FileSystem =
                 IncludeSubdirectories = true
             )
 
-        let getEventPath (path : string) =
+        let inline getEventPath (path : string) =
             path |> String.trim |> String.replace fullPath "" |> String.trimStart [| '/'; '\\' |]
 
-        let ticks () =
+        let inline ticks () =
             System.DateTime.UtcNow.Ticks
 
         let changedStream =
@@ -185,15 +192,27 @@ module FileSystem =
                 watcher.Error
                 (fun event -> ticks (), [ FileSystemChange.Error (event.GetException ()) ])
 
-
-        let readContent fullPath = async {
-            try
-                let! _ = waitForFileAccess fullPath |> Async.runWithTimeoutAsync 30000
-                return System.IO.File.ReadAllText fullPath |> Some
-            with ex ->
-                trace Error (fun () -> $"watchWithFilter / readContent / ex: {ex |> printException}") getLocals
-                return None
-        }
+        let inline readContent fullPath =
+            let rec loop retry = async {
+                try
+                    if retry > 0
+                    then do!
+                        fullPath
+                        |> waitForFileAccess (Some (
+                            System.IO.FileAccess.Read,
+                            System.IO.FileShare.Read
+                        ))
+                        |> Async.runWithTimeoutAsync 10000
+                        |> Async.Ignore
+                    return! System.IO.File.ReadAllTextAsync fullPath |> Async.AwaitTask |> Async.map Some
+                with ex ->
+                    let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
+                    trace Error (fun () -> $"watchWithFilter / readContent") getLocals
+                    if retry = 0
+                    then return! loop (retry + 1)
+                    else return None
+            }
+            loop 0
 
         let stream =
             [
@@ -204,45 +223,30 @@ module FileSystem =
                 errorStream
             ]
             |> FSharp.Control.AsyncSeq.mergeAll
-            |> FSharp.Control.AsyncSeq.mapAsync (fun (n, events) -> async {
-                let! events =
-                    if not shouldReadContent
-                    then events |> Async.init
-                    else 
-                        events
-                        |> List.map (fun event ->
-                            match event with
-                            | FileSystemChange.Changed (path, _) ->
-                                async {
-                                    let! content = fullPath </> path |> readContent
-                                    return FileSystemChange.Changed (path, content)
-                                }
-                            | FileSystemChange.Created (path, _) ->
-                                async {
-                                    let! content = fullPath </> path |> readContent
-                                    return FileSystemChange.Created (path, content)
-                                }
-                            | FileSystemChange.Renamed (oldPath, (newPath, _)) ->
-                                async {
-                                    let! content = fullPath </> newPath |> readContent
-                                    return FileSystemChange.Renamed (oldPath, (newPath, content))
-                                }
-                            | _ -> event |> Async.init
-                        )
-                        |> Async.Parallel
-                        |> Async.map Array.toList
-
-                return
-                    events
-                    |> List.fold
-                        (fun (i, events) event ->
-                            i + 1L,
-                            (n + i, event) :: events)
-                        (0L, [])
-                    |> snd
-                    |> List.rev
-            })
+            |> FSharp.Control.AsyncSeq.map (fun (t, events) ->
+                events
+                |> List.fold
+                    (fun (i, events) event ->
+                        i + 1L,
+                        (t + i, event) :: events)
+                    (0L, [])
+                |> snd
+                |> List.rev
+            )
             |> FSharp.Control.AsyncSeq.concatSeq
+            |> FSharp.Control.AsyncSeq.mapAsync (fun (t, event) -> async {
+                match shouldReadContent, event with
+                | true, FileSystemChange.Changed (path, _) ->
+                    let! content = fullPath </> path |> readContent
+                    return t, FileSystemChange.Changed (path, content)
+                | true, FileSystemChange.Created (path, _) ->
+                    let! content = fullPath </> path |> readContent
+                    return t, FileSystemChange.Created (path, content)
+                | true, FileSystemChange.Renamed (oldPath, (newPath, _)) ->
+                    let! content = fullPath </> newPath |> readContent
+                    return t, FileSystemChange.Renamed (oldPath, (newPath, content))
+                | _ -> return t, event
+            })
 
         let disposable =
             newDisposable (fun () ->
@@ -253,7 +257,7 @@ module FileSystem =
 
         stream, disposable
 
-    let watchDirectory path =
+    let inline watchDirectory path =
         watchDirectoryWithFilter
             (System.IO.NotifyFilters.Attributes
             ||| System.IO.NotifyFilters.CreationTime

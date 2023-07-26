@@ -6,37 +6,37 @@ module Common =
 
     let nl = System.Environment.NewLine
 
-    let cons head tail = head :: tail
+    let inline cons head tail = head :: tail
 
     module String =
-        let endsWith (value : string) (input : string) =
+        let inline endsWith (value : string) (input : string) =
             input.EndsWith value
 
-        let padLeft totalWidth paddingChar (input : string) =
+        let inline padLeft totalWidth paddingChar (input : string) =
             input.PadLeft (totalWidth, paddingChar)
 
-        let replace (oldValue : string) (newValue : string) (input : string) =
+        let inline replace (oldValue : string) (newValue : string) (input : string) =
             input.Replace (oldValue, newValue)
 
-        let split separator (input : string) =
+        let inline split separator (input : string) =
             input.Split separator
 
-        let splitString (separator : string array) (input : string) =
+        let inline splitString (separator : string array) (input : string) =
             input.Split (separator, System.StringSplitOptions.None)
 
-        let startsWith (value : string) (input : string) =
+        let inline startsWith (value : string) (input : string) =
             input.StartsWith value
 
-        let substring startIndex length (input : string) =
+        let inline substring startIndex length (input : string) =
             input.Substring (startIndex, length)
 
-        let trim (input : string) =
+        let inline trim (input : string) =
             input.Trim ()
 
-        let trimEnd (trimChars : char array) (input : string) =
+        let inline trimEnd (trimChars : char array) (input : string) =
             input.TrimEnd trimChars
 
-        let trimStart (trimChars : char array) (input : string) =
+        let inline trimStart (trimChars : char array) (input : string) =
             input.TrimStart trimChars
 
     type TicksGuid = System.Guid
@@ -96,7 +96,7 @@ module Common =
     let mutable traceLevel = Verbose
 
 
-    let trace level fn getLocals =
+    let inline trace level fn getLocals =
         if traceEnabled && level >= traceLevel then
             traceCount <- traceCount + 1
             let time = System.DateTime.Now.ToString "HH:mm:ss"
@@ -104,7 +104,7 @@ module Common =
             |> String.trimEnd [| ' '; '/' |]
             |> System.Console.WriteLine
 
-    let withTrace enabled fn =
+    let inline withTrace enabled fn =
         let oldTraceEnabled = traceEnabled
         try
             traceEnabled <- enabled
@@ -112,13 +112,13 @@ module Common =
         finally
             traceEnabled <- oldTraceEnabled
 
-    let withTraceEnabled fn =
+    let inline withTraceEnabled fn =
         withTrace true fn
 
-    let withTraceDisabled fn =
+    let inline withTraceDisabled fn =
         withTrace false fn
 
-    let withTraceLevel level fn =
+    let inline withTraceLevel level fn =
         let oldTraceLevel = traceLevel
         try
             traceLevel <- level
@@ -135,19 +135,19 @@ module Common =
 
     /// ## printException
 
-    let printException (ex : System.Exception) =
+    let inline printException (ex : System.Exception) =
         $"{ex.GetType ()}: {ex.Message}"
 
     /// ## retryFn
 
-    let retryFn retries fn =
+    let inline retryFn retries fn =
         let rec loop retry =
             try
                 if retry < retries
                 then fn () |> Some
                 else None
             with ex ->
-                let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
                 trace Warn (fun () -> "retryFn") getLocals
                 System.Threading.Thread.Sleep 1
                 loop (retry + 1)

@@ -12,7 +12,6 @@
 
 #!fsharp
 
-//#r "nuget:FParsec,2.0.0-beta2"
 #r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"
 #r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"
 
@@ -33,7 +32,7 @@ open FParsec
 
 //// test
 
-let escapeCell input =
+let inline escapeCell input =
     input
     |> String.split [| '\n' |]
     |> Array.map (function
@@ -235,7 +234,7 @@ b
 
 #!fsharp
 
-let formatBlock kernel (block : Block) =
+let inline formatBlock kernel (block : Block) =
     match kernel, block with
     | _, { magic = "markdown"; content = content } ->
         content
@@ -295,7 +294,7 @@ let a = 1"""
 
 #!fsharp
 
-let formatBlocks kernel blocks =
+let inline formatBlocks kernel blocks =
     blocks
     |> List.map (formatBlock kernel)
     |> List.filter ((<>) "")
@@ -362,10 +361,10 @@ let a = 3
 
 #!fsharp
 
-let parse kernel input =
+let inline parse kernel input =
     match run blocks input with
     | Success (blocks, _, _) ->
-        let indentBlock (block : Block) =
+        let inline indentBlock (block : Block) =
             { block with
                 content =
                     block.content
@@ -514,7 +513,9 @@ example1
 
 #!fsharp
 
-let parseDibCode kernel file = async {
+let inline parseDibCode kernel file = async {
+    let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
+    trace Debug (fun () -> "parseDibCode") getLocals
     let! input = File.ReadAllTextAsync file |> Async.AwaitTask
     match parse kernel input with
     | Result.Ok blocks -> return blocks |> formatBlocks kernel
@@ -523,8 +524,9 @@ let parseDibCode kernel file = async {
 
 #!fsharp
 
-let writeDibCode kernel file = async {
-    printfn $"Parsing {file}"
+let inline writeDibCode kernel file = async {
+    let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
+    trace Debug (fun () -> "writeDibCode") getLocals
     let! output = parseDibCode kernel file
     let outputFileName =
         match kernel with
@@ -538,7 +540,7 @@ let writeDibCode kernel file = async {
 //// test
 
 let paths =
-    match Environment.GetEnvironmentVariable "INPUT" with
+    match Environment.GetEnvironmentVariable "OUTPUT" with
     | "" | null -> [||]
     | path when System.IO.File.Exists path -> [| path |]
     | path when path.Contains ";" -> path |> String.split [| ';' |]

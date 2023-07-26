@@ -45,7 +45,7 @@ module DibParser =
         skipMany newline
         >>. sepEndBy block (skipMany1 newline)
 
-    let formatBlock kernel (block : Block) =
+    let inline formatBlock kernel (block : Block) =
         match kernel, block with
         | _, { magic = "markdown"; content = content } ->
             content
@@ -68,17 +68,17 @@ module DibParser =
                 |> String.concat "\n"
         | _ -> ""
 
-    let formatBlocks kernel blocks =
+    let inline formatBlocks kernel blocks =
         blocks
         |> List.map (formatBlock kernel)
         |> List.filter ((<>) "")
         |> String.concat "\n\n"
         |> fun s -> s + "\n"
 
-    let parse kernel input =
+    let inline parse kernel input =
         match run blocks input with
         | Success (blocks, _, _) ->
-            let indentBlock (block : Block) =
+            let inline indentBlock (block : Block) =
                 { block with
                     content =
                         block.content
@@ -129,17 +129,22 @@ module DibParser =
             |> Result.Ok
         | Failure (errorMsg, _, _) -> Result.Error errorMsg
 
-    let parseDibCode kernel file =
-        let input = File.ReadAllText file
+    let inline parseDibCode kernel file = async {
+        let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
+        trace Debug (fun () -> "parseDibCode") getLocals
+        let! input = File.ReadAllTextAsync file |> Async.AwaitTask
         match parse kernel input with
-        | Result.Ok blocks -> blocks |> formatBlocks kernel
-        | Result.Error msg -> failwith msg
+        | Result.Ok blocks -> return blocks |> formatBlocks kernel
+        | Result.Error msg -> return failwith msg
+    }
 
-    let writeDibCode kernel file =
-        printfn $"Parsing {file}"
-        let output = parseDibCode kernel file
+    let inline writeDibCode kernel file = async {
+        let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
+        trace Debug (fun () -> "writeDibCode") getLocals
+        let! output = parseDibCode kernel file
         let outputFileName =
             match kernel with
             | "fsharp" -> file |> String.replace ".dib" ".fs"
             | _ -> failwith "Unknown kernel"
-        File.WriteAllText (outputFileName, output)
+        do! File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
+    }

@@ -8,7 +8,7 @@ module Networking =
 
     /// ## testPortOpen
 
-    let testPortOpen port = async {
+    let inline testPortOpen port = async {
         let! ct = Async.CancellationToken
         use client = new System.Net.Sockets.TcpClient ()
         try
@@ -19,7 +19,7 @@ module Networking =
             return false
     }
 
-    let testPortOpenTimeout timeout port = async {
+    let inline testPortOpenTimeout timeout port = async {
         let! result =
             testPortOpen port
             |> Async.runWithTimeoutAsync timeout
@@ -31,7 +31,7 @@ module Networking =
 
     /// ## waitForPortAccess
 
-    let waitForPortAccess timeout status port =
+    let inline waitForPortAccess timeout status port =
         let rec loop retry = async {
             let! isPortOpen =
                 match timeout with
@@ -50,7 +50,7 @@ module Networking =
 
     /// ## getAvailablePort
 
-    let getAvailablePort timeout initialPort =
+    let inline getAvailablePort timeout initialPort =
         let rec loop port = async {
             let! isPortOpen =
                 match timeout with

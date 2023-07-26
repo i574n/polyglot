@@ -8,7 +8,7 @@ module Runtime =
 
     /// ## isWindows
 
-    let isWindows () =
+    let inline isWindows () =
         System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
 
     /// ## splitCommand
@@ -37,7 +37,7 @@ module Runtime =
 
     /// ## executeAsync
 
-    let executeAsync (command : string) = async {
+    let inline executeAsync (command : string) = async {
         let workingDirectory, fileName, arguments = command |> splitCommand
         let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
 
@@ -54,7 +54,7 @@ module Runtime =
         use proc = new System.Diagnostics.Process (StartInfo = startInfo)
         let result = System.Collections.Concurrent.ConcurrentStack<string> ()
 
-        let event error (e: System.Diagnostics.DataReceivedEventArgs) =
+        let inline event error (e: System.Diagnostics.DataReceivedEventArgs) =
             if e.Data <> null then
                 trace
                     (if error then Error else Debug)

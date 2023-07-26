@@ -26,7 +26,7 @@ open Common
 
 #!fsharp
 
-let testPortOpen port = async {
+let inline testPortOpen port = async {
     let! ct = Async.CancellationToken
     use client = new System.Net.Sockets.TcpClient ()
     try
@@ -47,7 +47,7 @@ testPortOpen 65536
 
 #!fsharp
 
-let testPortOpenTimeout timeout port = async {
+let inline testPortOpenTimeout timeout port = async {
     let! result =
         testPortOpen port
         |> Async.runWithTimeoutAsync timeout
@@ -71,7 +71,7 @@ testPortOpenTimeout 60 65535
 
 #!fsharp
 
-let waitForPortAccess timeout status port =
+let inline waitForPortAccess timeout status port =
     let rec loop retry = async {
         let! isPortOpen =
             match timeout with
@@ -94,7 +94,7 @@ let waitForPortAccess timeout status port =
 
 let port = 5000
 
-let lockPort () = async {
+let inline lockPort () = async {
     trace Debug (fun () -> "_1") getLocals
     do! Async.Sleep 5000
     let listener = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
@@ -144,7 +144,7 @@ async {
 
 let port = 5000
 
-let lockPort () = async {
+let inline lockPort () = async {
     trace Debug (fun () -> "_1") getLocals
     do! Async.Sleep 500
     let listener = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
@@ -194,7 +194,7 @@ async {
 
 #!fsharp
 
-let getAvailablePort timeout initialPort =
+let inline getAvailablePort timeout initialPort =
     let rec loop port = async {
         let! isPortOpen =
             match timeout with
@@ -212,7 +212,7 @@ let getAvailablePort timeout initialPort =
 
 let port = 5000
 
-let lockPorts () = async {
+let inline lockPorts () = async {
     trace Debug (fun () -> "_1") getLocals
     let listener1 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
     let listener2 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
@@ -261,7 +261,7 @@ async {
 
 let port = 5000
 
-let lockPorts () = async {
+let inline lockPorts () = async {
     trace Debug (fun () -> "_1") getLocals
     let listener1 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
     let listener2 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
