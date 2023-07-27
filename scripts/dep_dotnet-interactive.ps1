@@ -11,7 +11,7 @@ git pull
 Set-Location $ScriptDir
 
 $path = "$HOME/.nuget/packages/microsoft.dotnet-interactive"
-$tools =  Get-LastSortedItem -Path $path -Filter "tools"
+$tools = Get-LastSortedItem -Path $path -Filter "tools"
 $netVersion = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
 Write-Output "Tool path: $netVersion"

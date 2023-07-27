@@ -55,6 +55,14 @@ Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
 Install-Module -Name PSToml -Scope CurrentUser
 
+#!fsharp
+
+#r "nuget:NetMQ,4.0.1.12"
+
+#!pwsh
+
+{ . "$ScriptDir/dep_netmq.ps1" } | Invoke-Block
+
 #!pwsh
 
 { . "$ScriptDir/dep_spiral.ps1" } | Invoke-Block
