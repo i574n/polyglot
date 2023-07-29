@@ -17,6 +17,10 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../apps/spiral/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/../spiral/test/build.ps1" } | Invoke-Block
 
 #!pwsh

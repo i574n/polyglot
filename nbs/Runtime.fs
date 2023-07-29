@@ -37,7 +37,7 @@ module Runtime =
 
     /// ## executeAsync
 
-    let inline executeAsync (command : string) = async {
+    let inline executeWithCancellationAsync (ct : System.Threading.CancellationToken) command = async {
         let workingDirectory, fileName, arguments = command |> splitCommand
         let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
 
@@ -52,7 +52,7 @@ module Runtime =
         )
 
         use proc = new System.Diagnostics.Process (StartInfo = startInfo)
-        let result = System.Collections.Concurrent.ConcurrentStack<string> ()
+        let output = System.Collections.Concurrent.ConcurrentStack<string> ()
 
         let inline event error (e: System.Diagnostics.DataReceivedEventArgs) =
             if e.Data <> null then
@@ -61,7 +61,7 @@ module Runtime =
                     (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
                     getLocals
 
-                result.Push
+                output.Push
                     $"{
                         if error then '['.ToString() else System.String.Empty
                     }{
@@ -81,11 +81,28 @@ module Runtime =
         proc.BeginErrorReadLine ()
         proc.BeginOutputReadLine ()
 
-        do! proc.WaitForExitAsync () |> Async.AwaitTask
+        use reg = ct.Register (fun _ ->
+            if not proc.HasExited then proc.Kill ()
+        )
 
-        let result = result |> Seq.rev |> String.concat System.Environment.NewLine
+        let! exitCode = async {
+            try
+                do! proc.WaitForExitAsync ct |> Async.AwaitTask
+                return proc.ExitCode
+            with :? System.Threading.Tasks.TaskCanceledException as ex ->
+                trace Warn (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> printException}") getLocals
+                ex |> printException |> output.Push
+                return System.Int32.MinValue
+        }
 
-        trace Debug (fun () -> $"executeAsync / proc.ExitCode: {proc.ExitCode} / result.Length: {result.Length}") getLocals
+        let output = output |> Seq.rev |> String.concat System.Environment.NewLine
 
-        return proc.ExitCode, result
+        trace Debug (fun () -> $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}") getLocals
+
+        return exitCode, output
+    }
+
+    let inline executeAsync command = async {
+        let! ct = Async.CancellationToken
+        return! command |> executeWithCancellationAsync ct
     }

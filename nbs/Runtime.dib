@@ -111,7 +111,7 @@ splitCommand @"..\..\file 1.exe -c \\""echo 1\\"""
 
 #!fsharp
 
-let inline executeAsync (command : string) = async {
+let inline executeWithCancellationAsync (ct : System.Threading.CancellationToken) command = async {
     let workingDirectory, fileName, arguments = command |> splitCommand
     let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
     
@@ -126,7 +126,7 @@ let inline executeAsync (command : string) = async {
     )
 
     use proc = new System.Diagnostics.Process (StartInfo = startInfo)
-    let result = System.Collections.Concurrent.ConcurrentStack<string> ()
+    let output = System.Collections.Concurrent.ConcurrentStack<string> ()
 
     let inline event error (e: System.Diagnostics.DataReceivedEventArgs) =
         if e.Data <> null then
@@ -135,7 +135,7 @@ let inline executeAsync (command : string) = async {
                 (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
                 getLocals
 
-            result.Push
+            output.Push
                 $"{
                     if error then '['.ToString() else System.String.Empty
                 }{
@@ -155,13 +155,30 @@ let inline executeAsync (command : string) = async {
     proc.BeginErrorReadLine ()
     proc.BeginOutputReadLine ()
 
-    do! proc.WaitForExitAsync () |> Async.AwaitTask
+    use reg = ct.Register (fun _ ->
+        if not proc.HasExited then proc.Kill ()
+    )
 
-    let result = result |> Seq.rev |> String.concat System.Environment.NewLine
+    let! exitCode = async {
+        try
+            do! proc.WaitForExitAsync ct |> Async.AwaitTask
+            return proc.ExitCode
+        with :? System.Threading.Tasks.TaskCanceledException as ex ->
+            trace Warn (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> printException}") getLocals
+            ex |> printException |> output.Push
+            return System.Int32.MinValue
+    }
 
-    trace Debug (fun () -> $"executeAsync / proc.ExitCode: {proc.ExitCode} / result.Length: {result.Length}") getLocals
+    let output = output |> Seq.rev |> String.concat System.Environment.NewLine
 
-    return proc.ExitCode, result
+    trace Debug (fun () -> $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}") getLocals
+
+    return exitCode, output
+}
+
+let inline executeAsync command = async {
+    let! ct = Async.CancellationToken
+    return! command |> executeWithCancellationAsync ct
 }
 
 #!fsharp
@@ -180,9 +197,48 @@ async {
 
     do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
 
-    let! exitCode, result = executeAsync command
-    exitCode |> _equal 0
-    result |> _equal "0"
+    return! executeAsync command
+    
 }
 |> Async.runWithTimeout 10000
-|> _equal (Some ())
+|> function
+    | Some (exitCode, output) ->
+        exitCode |> _equal 0
+        output |> _equal "0"
+
+        true
+    | _ -> false
+|> _equal true
+
+#!fsharp
+
+//// test
+
+let tempFolder = FileSystem.createTempDirectory ()
+let path = tempFolder </> "test.txt"
+
+let command = @$"pwsh -c ""Get-Content {path}"""
+
+async {
+    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+    let cts = new System.Threading.CancellationTokenSource ()
+    trace Debug (fun () -> $"1") getLocals
+    let! result = command |> executeWithCancellationAsync cts.Token |> Async.StartChild
+    trace Debug (fun () -> $"2") getLocals
+    do! Async.Sleep 100
+    trace Debug (fun () -> $"3") getLocals
+    cts.Cancel ()
+    trace Debug (fun () -> $"4") getLocals
+    let! exitCode, output = result
+    trace Debug (fun () -> $"5") getLocals
+    return exitCode, output
+}
+|> Async.runWithTimeout 10000
+|> function
+    | Some (exitCode, output) ->
+        exitCode |> _equal -2147483648
+        output |> _equal "System.Threading.Tasks.TaskCanceledException: A task was canceled."
+
+        true
+    | _ -> false
+|> _equal true
