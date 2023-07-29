@@ -79,53 +79,57 @@ let inline compile code = async {
 
     let stream, disposable = FileSystem.watchDirectory true tempDir
 
-    let e = Event<_> ()
-
-    let! _ =
+    let fsxStream =
         stream
-        |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun event -> async {
-            // trace Debug (fun () -> $"event: {event}") getLocals
-            match event with
-            | _ticks, FileSystemChange.Changed ("main.fsx", Some content) ->
-                e.Trigger content
-                disposable.Dispose ()
-            | _ -> ()
-        })
-        |> Async.StartChild
+        |> FSharp.Control.AsyncSeq.choose (function
+            | _, FileSystemChange.Changed ("main.fsx", Some content) -> Some content
+            | _ -> None
+        )
 
     let port = 13805
 
-    let! _ =
-        async {
-            let! availablePort = Networking.getAvailablePort (Some 60) port
-            if availablePort = port then
-                let compilerPath =
-                    "../../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
-                    |> Path.GetFullPath
+    let! ct = Async.CancellationToken
+    let compiler = MailboxProcessor.Start (fun inbox -> async {
+        let! availablePort = Networking.getAvailablePort (Some 60) port
+        if availablePort = port then
+            let compilerPath =
+                "../../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
+                |> Path.GetFullPath
 
-                let dllPath = compilerPath </> "Spiral.dll"
-                // let commandsPath = compilerPath </> "compiler/supervisor/commands"
+            let dllPath = compilerPath </> "Spiral.dll"
+            // let commandsPath = compilerPath </> "compiler/supervisor/commands"
 
-                let! exitCode, result = Runtime.executeAsync $@"dotnet ""{dllPath}"" port={port}"
-                trace Debug (fun () -> $"startSupervisor / exitCode: {exitCode} / result: {result}") getLocals
-        }
-        |> Async.StartChild
+            let! exitCode, result =
+                Runtime.executeWithOptionsAsync
+                    {
+                        Command = $@"dotnet ""{dllPath}"" port={port}"
+                        CancellationToken = None
+                        OnLine = Some <| fun { Line = line } -> async {
+                            if line |> String.contains $"Server bound to: tcp://*:{port}"
+                            then inbox.Post ()
+                        }
+                    }
+            trace Debug (fun () -> $"startSupervisor / exitCode: {exitCode} / result: {result}") getLocals
+    }, ct)
+
+    do! compiler.Receive ()
 
     let inline getFileUri path =
         $"file:///{path}"
 
     let mainPath = tempDir </> "main.spi"
 
-    let! mainText = mainPath |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
-
-    let fileOpenObj = {| FileOpen = {| uri = mainPath |> getFileUri; spiText = mainText |} |}
+    let fileOpenObj = {| FileOpen = {| uri = mainPath |> getFileUri; spiText = code |} |}
     let! fileOpenResult = fileOpenObj |> sendObj port
 
     let buildFileObj = {| BuildFile = {| uri = mainPath |> getFileUri; backend = "Fsharp" |} |}
     let! buildFileResult = buildFileObj |> sendObj port
 
-    let! content = Async.AwaitEvent e.Publish
-    return content |> String.replace "\r\n" "\n"
+    let! content = fsxStream |> FSharp.Control.AsyncSeq.tryFirst
+
+    disposable.Dispose ()
+
+    return content |> Option.defaultValue "" |> String.replace "\r\n" "\n"
 }
 
 #!fsharp
@@ -142,7 +146,7 @@ inl main () =
     |> ignore
 """
 |> compile
-|> Async.runWithTimeout 6000
+|> Async.runWithTimeout 8000
 |> _equal (Some """let rec closure0 () () : int32 =
     0
 let v0 : (unit -> int32) = closure0()
@@ -167,7 +171,7 @@ inl main () =
     |> ignore
 """
 |> compile
-|> Async.runWithTimeout 6000
+|> Async.runWithTimeout 8000
 |> _equal (Some """let rec closure0 () () : int32 =
     let v0 : string = "error"
     System.Console.WriteLine v0

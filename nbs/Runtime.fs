@@ -30,15 +30,29 @@ module Runtime =
             | _, _ -> path |> String.replace @"\" "/", args
         let path, args = loop ("", "") (command |> Seq.toList) Start
         let workingDirectory, fileName =
-            if path.StartsWith "./" || path.Contains "/"
+            if path |> String.startsWith "./" || path |> String.contains "/"
             then path |> System.IO.Path.GetDirectoryName |> String.replace @"\" "/", System.IO.Path.GetFileName path
             else ".", path
         workingDirectory, fileName, args
 
     /// ## executeAsync
 
-    let inline executeWithCancellationAsync (ct : System.Threading.CancellationToken) command = async {
-        let workingDirectory, fileName, arguments = command |> splitCommand
+    type ExecutionLine =
+        {
+            ProcessId : int
+            Line : string
+            Error : bool
+        }
+
+    type ExecutionOptions =
+        {
+            Command : string
+            CancellationToken : System.Threading.CancellationToken option
+            OnLine : (ExecutionLine -> Async<unit>) option
+        }
+
+    let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
+        let workingDirectory, fileName, arguments = options.Command |> splitCommand
         let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
 
         let startInfo = System.Diagnostics.ProcessStartInfo (
@@ -54,8 +68,19 @@ module Runtime =
         use proc = new System.Diagnostics.Process (StartInfo = startInfo)
         let output = System.Collections.Concurrent.ConcurrentStack<string> ()
 
-        let inline event error (e: System.Diagnostics.DataReceivedEventArgs) =
+        let inline event error (e: System.Diagnostics.DataReceivedEventArgs) = async {
             if e.Data <> null then
+                match options.OnLine with
+                | Some onLine ->
+                    do!
+                        onLine
+                            {
+                                ProcessId = proc.Id
+                                Line = e.Data
+                                Error = error
+                            }
+                | None -> ()
+
                 trace
                     (if error then Error else Debug)
                     (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
@@ -69,9 +94,10 @@ module Runtime =
                     }{
                         if error then ']'.ToString() else System.String.Empty
                     }"
+        }
 
-        proc.OutputDataReceived.Add (event false)
-        proc.ErrorDataReceived.Add (event true)
+        proc.OutputDataReceived.Add (event false >> Async.StartImmediate)
+        proc.ErrorDataReceived.Add (event true >> Async.StartImmediate)
 
         trace Debug (fun () -> $"executeAsync") getLocals
 
@@ -80,6 +106,11 @@ module Runtime =
 
         proc.BeginErrorReadLine ()
         proc.BeginOutputReadLine ()
+
+        let! ct =
+            options.CancellationToken
+            |> Option.map Async.init
+            |> Option.defaultValue Async.CancellationToken
 
         use reg = ct.Register (fun _ ->
             if not proc.HasExited then proc.Kill ()
@@ -102,7 +133,10 @@ module Runtime =
         return exitCode, output
     }
 
-    let inline executeAsync command = async {
-        let! ct = Async.CancellationToken
-        return! command |> executeWithCancellationAsync ct
-    }
+    let inline executeAsync command =
+        executeWithOptionsAsync
+            {
+                Command = command
+                CancellationToken = None
+                OnLine = None
+            }

@@ -9,6 +9,9 @@ module Common =
     let inline cons head tail = head :: tail
 
     module String =
+        let inline contains (value : string) (input : string) =
+            input.Contains value
+
         let inline endsWith (value : string) (input : string) =
             input.EndsWith value
 

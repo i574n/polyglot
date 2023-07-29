@@ -543,7 +543,7 @@ let paths =
     match Environment.GetEnvironmentVariable "OUTPUT" with
     | "" | null -> [||]
     | path when System.IO.File.Exists path -> [| path |]
-    | path when path.Contains ";" -> path |> String.split [| ';' |]
+    | path when path |> String.contains ";" -> path |> String.split [| ';' |]
     | _ -> [| System.IO.Path.Combine (System.IO.Directory.GetCurrentDirectory (), "DibParser.dib") |]
 
 paths
