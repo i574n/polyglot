@@ -26,15 +26,21 @@ Set-Location $ScriptDir
 $extensionsPath = @()
 
 $extensionsPathHome = "$HOME/.vscode/extensions"
+if (Test-Path $extensionsPathHome) {
+    $extensionsPath += $extensionsPathHome
+}
 
+$extensionsPathHome = "$HOME/.vscode-remote/extensions"
 if (Test-Path $extensionsPathHome) {
     $extensionsPath += $extensionsPathHome
 }
 
 if ($IsLinux) {
-    $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
-    code-server --install-extension $vsixPath
-    $extensionsPath += "$HOME/.local/share/code-server/extensions"
+    if ($extensionsPath.Length -eq 0) {
+        $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
+        code-server --install-extension $vsixPath
+        $extensionsPath += "$HOME/.local/share/code-server/extensions"
+    }
 } else {
     $extensionsPathScoop = "$env:scoop/persist/vscode/data/extensions"
     if (Test-Path $extensionsPathScoop) {

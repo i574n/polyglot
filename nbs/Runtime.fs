@@ -84,7 +84,7 @@ module Runtime =
                 trace
                     (if error then Error else Debug)
                     (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
-                    getLocals
+                    Common.getLocals
 
                 output.Push
                     $"{

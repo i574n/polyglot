@@ -35,31 +35,25 @@ module Supervisor =
     let inline compile code = async {
         let tempDir = FileSystem.createTempDirectory ()
 
-        let inline writeCode fileName code =
-            let filePath = tempDir </> fileName
-            System.IO.File.WriteAllText (filePath, code)
-
-        code
-        |> writeCode "main.spi"
-
-        "packages:\n    |core-\nmodules:\n    main"
-        |> writeCode "package.spiproj"
-
         let stream, disposable = FileSystem.watchDirectory true tempDir
 
-        let fsxStream =
-            stream
-            |> FSharp.Control.AsyncSeq.choose (function
-                | _, FileSystemChange.Changed ("main.fsx", Some content) -> Some content
-                | _ -> None
-            )
+        let mainPath = tempDir </> "main.spi"
+        let spiprojPath = tempDir </> "package.spiproj"
+
+        let inline writeCode path code =
+            System.IO.File.WriteAllTextAsync (path, code) |> Async.AwaitTask
+
+        do! code |> writeCode mainPath
+        do! "packages:\n    |core-\nmodules:\n    main" |> writeCode spiprojPath
 
         let port = 13805
 
         let! ct = Async.CancellationToken
         let compiler = MailboxProcessor.Start (fun inbox -> async {
             let! availablePort = Networking.getAvailablePort (Some 60) port
-            if availablePort = port then
+            if availablePort <> port
+            then inbox.Post ()
+            else
                 let compilerPath =
                     "../../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
                     |> Path.GetFullPath
@@ -83,9 +77,8 @@ module Supervisor =
         do! compiler.Receive ()
 
         let inline getFileUri path =
-            $"file:///{path}"
+            $"file:///{path |> String.trimStart [| '/' |]}"
 
-        let mainPath = tempDir </> "main.spi"
 
         let fileOpenObj = {| FileOpen = {| uri = mainPath |> getFileUri; spiText = code |} |}
         let! fileOpenResult = fileOpenObj |> sendObj port
@@ -93,9 +86,15 @@ module Supervisor =
         let buildFileObj = {| BuildFile = {| uri = mainPath |> getFileUri; backend = "Fsharp" |} |}
         let! buildFileResult = buildFileObj |> sendObj port
 
-        let! content = fsxStream |> FSharp.Control.AsyncSeq.tryFirst
+        let! fsxContent =
+            stream
+            |> FSharp.Control.AsyncSeq.choose (function
+                | _, FileSystemChange.Changed ("main.fsx", Some content) -> Some content
+                | _ -> None
+            )
+            |> FSharp.Control.AsyncSeq.tryFirst
 
         disposable.Dispose ()
 
-        return content |> Option.defaultValue "" |> String.replace "\r\n" "\n"
+        return fsxContent |> Option.defaultValue "" |> String.replace "\r\n" "\n"
     }

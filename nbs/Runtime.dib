@@ -158,7 +158,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
             trace
                 (if error then Error else Debug)
                 (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
-                getLocals
+                Common.getLocals
 
             output.Push
                 $"{
