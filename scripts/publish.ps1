@@ -32,6 +32,7 @@ rsync -av `
     --include '*.fs' `
     --include '*.fsproj' `
     --include '*.fsx' `
+    --include '*.gitattributes' `
     --include '*.gitignore' `
     --include '*.html' `
     --include '*.ipynb' `

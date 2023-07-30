@@ -3,6 +3,7 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
+
 dotnet fable --optimize --lang rs --extension .rs
 
 # cargo build --release --manifest-path "$ScriptDir/Cargo.toml"
@@ -21,4 +22,4 @@ cargo fmt
 
 cargo build --release
 
-. "$ScriptDir/../../target/release/cli" | Tee-Object cli.out
+{ . "$ScriptDir/../../target/release/cli" } | Invoke-Block

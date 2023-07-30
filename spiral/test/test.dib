@@ -22,8 +22,8 @@ cargo build --release
 #!pwsh
 
 $env:RUST_LOG="info"
-{ cargo test --release | Tee-Object test.test.ans } | Invoke-Block
+{ cargo test --release } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../../target/release/test$(if ($IsWindows) { '.exe' } else { '' })" | Tee-Object test.out } | Invoke-Block
+{ . "$ScriptDir/../../target/release/test$(if ($IsWindows) { '.exe' } else { '' })" } | Invoke-Block
