@@ -4,4 +4,6 @@ yarn.lock merge=ours
 package-lock.json merge=ours
 paket.lock merge=ours
 
-**/*.repl.ipynb linguist-generated
+*.repl.ipynb linguist-generated=true -diff
+/*/**/*.repl.ipynb linguist-generated=true
+**/*.repl.ipynb linguist-generated=true
