@@ -111,9 +111,9 @@ let magicCommand =
 
 //// test
 
-"""#!magic
+"#!magic
 
-a"""
+a"
 |> run magicCommand
 |> _equal (
     Success ("magic", (), Position ("", 8, 2, 1))
@@ -123,9 +123,9 @@ a"""
 
 //// test
 
-""" #!magic
+" #!magic
 
-a"""
+a"
 |> run magicCommand
 |> _equal (
     Failure (
@@ -152,19 +152,19 @@ let content =
 
 //// test
 
-"""#!magic
+"#!magic
 
 
 a
 
 
-"""
+"
 |> run content
 |> _equal (
-    Success ("""#!magic
+    Success ("#!magic
 
 
-a""", (), Position ("", 14, 7, 1))
+a", (), Position ("", 14, 7, 1))
 )
 
 #!fsharp
@@ -183,13 +183,13 @@ let block =
 
 //// test
 
-"""#!magic
+"#!magic
 
 
 a
 
 
-"""
+"
 |> run block
 |> _equal (
     Success (
@@ -210,7 +210,7 @@ let blocks =
 //// test
 
 
-"""#!magic1
+"#!magic1
 
 a
 
@@ -218,7 +218,7 @@ a
 
 b
 
-"""
+"
 |> escapeCell
 |> run blocks
 |> _equal (
@@ -261,7 +261,7 @@ let inline formatBlock kernel (block : Block) =
 
 //// test
 
-"""#!markdown
+"#!markdown
 
 
 a
@@ -280,17 +280,17 @@ c
 \#!fsharp
 
 
-let a = 1"""
+let a = 1"
 |> escapeCell
 |> run block
 |> function
     | Success (block, _, _) -> formatBlock "fsharp" block
     | Failure (msg, _, _) -> failwith msg
-|> _equal """/// a
+|> _equal "/// a
 ///
     /// b
 ///
-/// c"""
+/// c"
 
 #!fsharp
 
@@ -305,7 +305,7 @@ let inline formatBlocks kernel blocks =
 
 //// test
 
-"""#!markdown
+"#!markdown
 
 
 a
@@ -340,13 +340,13 @@ e
 
 \#!fsharp
 
-let a = 3"""
+let a = 3"
 |> escapeCell
 |> run blocks
 |> function
     | Success (blocks, _, _) -> formatBlocks "fsharp" blocks
     | Failure (msg, _, _) -> failwith msg
-|> _equal """/// a
+|> _equal "/// a
 ///
 /// b
 
@@ -357,7 +357,7 @@ let a = 1
 /// e
 
 let a = 3
-"""
+"
 
 #!fsharp
 
@@ -369,11 +369,31 @@ let inline parse kernel input =
                 content =
                     block.content
                     |> String.split [| '\n' |]
-                    |> Array.map (fun line ->
-                        if line |> String.trimEnd [||] = ""
-                        then ""
-                        else $"    {line}"
-                    )
+                    |> Array.fold
+                        (fun (lines, isMultiline) line ->
+                            let trimmedLine = line |> String.trim
+                            if trimmedLine = ""
+                            then "" :: lines, isMultiline
+                            else
+                                let inline singleQuoteLine () =
+                                    trimmedLine |> Seq.sumBy ((=) '"' >> System.Convert.ToInt32) = 1
+                                    && trimmedLine |> String.contains @"'""'" |> not
+                                    && trimmedLine |> String.endsWith "{" |> not
+                                    && trimmedLine |> String.endsWith "{|" |> not
+                                    && trimmedLine |> String.startsWith "}" |> not
+                                    && trimmedLine |> String.startsWith "|}" |> not
+
+                                match isMultiline, trimmedLine |> String.splitString [| $"{q}{q}{q}" |] with
+                                | false, [| _; _ |] -> $"    {line}" :: lines, true
+                                | true, [| _; _ |] -> line :: lines, false
+                                | false, _ when singleQuoteLine () -> $"    {line}" :: lines, true
+                                | false, _ -> $"    {line}" :: lines, false
+                                | true, _ when singleQuoteLine () -> line :: lines, false
+                                | true, _ -> line :: lines, true
+                        )
+                        ([], false)
+                    |> fst
+                    |> List.rev
                     |> String.concat "\n"
             }
 
@@ -393,11 +413,11 @@ let inline parse kernel input =
                 {
                     magic = "fsharp"
                     content =
-                        $"""#if !INTERACTIVE
+                        $"#if !INTERACTIVE
 namespace {namespaceName}
 #endif
 
-module {moduleName} ="""
+module {moduleName} ="
                 }
 
             blocks
@@ -420,9 +440,9 @@ module {moduleName} ="""
 //// test
 
 let example1 =
-    """#!meta
+    $"""#!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[{"aliases":[],"name":"fsharp"},{"aliases":[],"name":"fsharp"}]}}
+{{"kernelInfo":{{"defaultKernelName":"fsharp","items":[{{"aliases":[],"name":"fsharp"}},{{"aliases":[],"name":"fsharp"}}]}}}}
 
 \#!markdown
 
@@ -460,11 +480,42 @@ let x = 1
 
 \#!fsharp
 
+let str1 = "abc
+def"
+
+let str2 =
+    "abc\
+def"
+
+let str3 =
+    $"1{{
+        1
+    }}1"
+
+let str4 =
+    $"1{{({{|
+        a = 1
+    |}}).a}}1"
+
+let x =
+    match '"' with
+    | '"' -> true
+    | _ -> false
+
+let long1 = {q}{q}{q}a{q}{q}{q}
+
+let long2 =
+    {q}{q}{q}
+a
+{q}{q}{q}
+
+\#!fsharp
+
 type Position =
-    {
+    {{
         line : int
         column : int
-    }"""
+    }}"""
     |> escapeCell
 
 #!fsharp
@@ -476,7 +527,7 @@ example1
 |> Result.toOption
 |> Option.get
 |> (formatBlocks "fsharp")
-|> _equal """#if !INTERACTIVE
+|> _equal $"""#if !INTERACTIVE
 namespace TestNamespace
 #endif
 
@@ -488,11 +539,40 @@ module TestModule =
 
     /// ### TextInput
 
+    let str1 = "abc
+def"
+
+    let str2 =
+        "abc\
+def"
+
+    let str3 =
+        $"1{{
+            1
+        }}1"
+
+    let str4 =
+        $"1{{({{|
+            a = 1
+        |}}).a}}1"
+
+    let x =
+        match '"' with
+        | '"' -> true
+        | _ -> false
+
+    let long1 = {q}{q}{q}a{q}{q}{q}
+
+    let long2 =
+        {q}{q}{q}
+a
+{q}{q}{q}
+
     type Position =
-        {
+        {{
             line : int
             column : int
-        }
+        }}
 """
 
 #!fsharp
@@ -504,12 +584,12 @@ example1
 |> Result.toOption
 |> Option.get
 |> (formatBlocks "markdown")
-|> _equal """/// # TestModule (TestNamespace)
+|> _equal "/// # TestModule (TestNamespace)
 
 /// ## ParserLibrary
 
 /// ### TextInput
-"""
+"
 
 #!fsharp
 

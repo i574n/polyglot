@@ -83,11 +83,31 @@ module DibParser =
                     content =
                         block.content
                         |> String.split [| '\n' |]
-                        |> Array.map (fun line ->
-                            if line |> String.trimEnd [||] = ""
-                            then ""
-                            else $"    {line}"
-                        )
+                        |> Array.fold
+                            (fun (lines, isMultiline) line ->
+                                let trimmedLine = line |> String.trim
+                                if trimmedLine = ""
+                                then "" :: lines, isMultiline
+                                else
+                                    let inline singleQuoteLine () =
+                                        trimmedLine |> Seq.sumBy ((=) '"' >> System.Convert.ToInt32) = 1
+                                        && trimmedLine |> String.contains @"'""'" |> not
+                                        && trimmedLine |> String.endsWith "{" |> not
+                                        && trimmedLine |> String.endsWith "{|" |> not
+                                        && trimmedLine |> String.startsWith "}" |> not
+                                        && trimmedLine |> String.startsWith "|}" |> not
+
+                                    match isMultiline, trimmedLine |> String.splitString [| $"{q}{q}{q}" |] with
+                                    | false, [| _; _ |] -> $"    {line}" :: lines, true
+                                    | true, [| _; _ |] -> line :: lines, false
+                                    | false, _ when singleQuoteLine () -> $"    {line}" :: lines, true
+                                    | false, _ -> $"    {line}" :: lines, false
+                                    | true, _ when singleQuoteLine () -> line :: lines, false
+                                    | true, _ -> line :: lines, true
+                            )
+                            ([], false)
+                        |> fst
+                        |> List.rev
                         |> String.concat "\n"
                 }
 
@@ -107,11 +127,11 @@ module DibParser =
                     {
                         magic = "fsharp"
                         content =
-                            $"""#if !INTERACTIVE
-    namespace {namespaceName}
-    #endif
+                            $"#if !INTERACTIVE
+namespace {namespaceName}
+#endif
 
-    module {moduleName} ="""
+module {moduleName} ="
                     }
 
                 blocks

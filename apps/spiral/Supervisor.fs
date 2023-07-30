@@ -44,7 +44,10 @@ module Supervisor =
             System.IO.File.WriteAllTextAsync (path, code) |> Async.AwaitTask
 
         do! code |> writeCode mainPath
-        do! "packages:\n    |core-\nmodules:\n    main" |> writeCode spiprojPath
+        do! "packages:
+    |core-
+modules:
+    main" |> writeCode spiprojPath
 
         let port = 13805
 

@@ -13,6 +13,7 @@
 #!fsharp
 
 let nl = System.Environment.NewLine
+let q = @""""
 
 #!fsharp
 

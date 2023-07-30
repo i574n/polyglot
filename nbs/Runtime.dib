@@ -90,11 +90,11 @@ splitCommand "/a/b/c"
 splitCommand "cat file.txt"
 |> _equal (".", "cat", "file.txt")
 
-splitCommand @"..\..\file.exe file1.txt file2.txt"
+splitCommand """..\..\file.exe file1.txt file2.txt"""
 |> _equal ("../..", "file.exe", "file1.txt file2.txt")
 
 splitCommand @"c:\dir\file.exe ""file1.txt file2.txt"""
-|> _equal (@"c:/dir", "file.exe", @"""file1.txt file2.txt""")
+|> _equal ("c:/dir", "file.exe", @"""file1.txt file2.txt""")
 
 splitCommand @"""..\..\dir name\file.exe"" ""file 1.txt"" file2.txt"
 |> _equal ("../../dir name", "file.exe", @"""file 1.txt"" file2.txt")
@@ -256,7 +256,7 @@ let command = @$"pwsh -c ""Get-Content {path}"""
 async {
     do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
     let cts = new System.Threading.CancellationTokenSource ()
-    trace Debug (fun () -> $"1") getLocals
+    trace Debug (fun () -> "1") getLocals
     let! result =
         executeWithOptionsAsync
             {
@@ -265,13 +265,13 @@ async {
                 OnLine = None
             }
         |> Async.StartChild
-    trace Debug (fun () -> $"2") getLocals
+    trace Debug (fun () -> "2") getLocals
     do! Async.Sleep 100
-    trace Debug (fun () -> $"3") getLocals
+    trace Debug (fun () -> "3") getLocals
     cts.Cancel ()
-    trace Debug (fun () -> $"4") getLocals
+    trace Debug (fun () -> "4") getLocals
     let! exitCode, output = result
-    trace Debug (fun () -> $"5") getLocals
+    trace Debug (fun () -> "5") getLocals
     return exitCode, output
 }
 |> Async.runWithTimeout 10000

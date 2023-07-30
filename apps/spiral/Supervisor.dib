@@ -76,7 +76,10 @@ let inline compile code = async {
         System.IO.File.WriteAllTextAsync (path, code) |> Async.AwaitTask
 
     do! code |> writeCode mainPath
-    do! "packages:\n    |core-\nmodules:\n    main" |> writeCode spiprojPath
+    do! "packages:
+    |core-
+modules:
+    main" |> writeCode spiprojPath
 
     let port = 13805
 
@@ -136,21 +139,21 @@ let inline compile code = async {
 //// test
 
 
-"""inl app () =
+"inl app () =
     0i32
 
 inl main () =
     app
     |> dyn
     |> ignore
-"""
+"
 |> compile
 |> Async.runWithTimeout 8000
-|> _equal (Some """let rec closure0 () () : int32 =
+|> _equal (Some "let rec closure0 () () : int32 =
     0
 let v0 : (unit -> int32) = closure0()
 ()
-""")
+")
 
 #!fsharp
 

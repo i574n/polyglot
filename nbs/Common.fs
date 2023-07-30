@@ -5,6 +5,7 @@ namespace Polyglot
 module Common =
 
     let nl = System.Environment.NewLine
+    let q = @""""
 
     let inline cons head tail = head :: tail
 

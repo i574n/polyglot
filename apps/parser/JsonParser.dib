@@ -660,7 +660,7 @@ run jObject """{ "a":1, "b"  :  2, }"""
     Failure (
         "object",
         "Unexpected ','",
-        { currentLine = "{ \"a\":1, \"b\"  :  2, }"; line = 0; column = 18 }
+        { currentLine = """{ "a":1, "b"  :  2, }"""; line = 0; column = 18 }
     )
 )
 
