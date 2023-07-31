@@ -69,6 +69,7 @@ modules:
                         {
                             Command = $@"dotnet ""{dllPath}"" port={port}"
                             CancellationToken = None
+                            WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
                                 if line |> String.contains $"Server bound to: tcp://*:{port}"
                                 then inbox.Post ()

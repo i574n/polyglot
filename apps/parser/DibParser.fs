@@ -22,14 +22,14 @@ module DibParser =
     let magicCommand =
         magicMarker
         >>. manyTill anyChar newline
-        |>> (String.Concat >> String.trim)
+        |>> (System.String.Concat >> String.trim)
 
     let content =
         (newline >>. magicMarker) <|> (eof >>. preturn "")
         |> attempt
         |> lookAhead
         |> manyTill anyChar
-        |>> (String.Concat >> String.trim)
+        |>> (System.String.Concat >> String.trim)
 
     let block =
         pipe2
@@ -152,7 +152,7 @@ module {moduleName} ="
     let inline parseDibCode kernel file = async {
         let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
         trace Debug (fun () -> "parseDibCode") getLocals
-        let! input = File.ReadAllTextAsync file |> Async.AwaitTask
+        let! input = System.IO.File.ReadAllTextAsync file |> Async.AwaitTask
         match parse kernel input with
         | Result.Ok blocks -> return blocks |> formatBlocks kernel
         | Result.Error msg -> return failwith msg
@@ -166,5 +166,22 @@ module {moduleName} ="
             match kernel with
             | "fsharp" -> file |> String.replace ".dib" ".fs"
             | _ -> failwith "Unknown kernel"
-        do! File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
+        do! System.IO.File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
     }
+
+    [<EntryPoint>]
+    let main args =
+        let paths =
+            match args |> Array.tryHead |> Option.defaultValue "" with
+            | "" | null -> [||]
+            | path when System.IO.File.Exists path -> [| path |]
+            | path when path |> String.contains ";" -> path |> String.split [| ';' |]
+            | _ -> [||]
+
+        paths
+        |> Array.map (writeDibCode "fsharp")
+        |> Async.Parallel
+        |> Async.Ignore
+        |> Async.RunSynchronously
+
+        0

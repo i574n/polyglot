@@ -4,12 +4,4 @@
 
 #!fsharp
 
-#r "nuget:Expecto,10.1.0"
-
-#r "nuget:FSharp.Control.AsyncSeq,3.2.1"
 #r "nuget:System.Reactive,5.0.0"
-#r "nuget:System.Reactive.Linq,6.0.1-preview.1"
-
-#r "nuget:FParsec,2.0.0-beta2"
-
-#r "nuget:Tomlyn,0.16.2"

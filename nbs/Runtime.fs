@@ -11,6 +11,13 @@ module Runtime =
     let inline isWindows () =
         System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
 
+    /// ## getExecutableSuffix
+
+    let inline getExecutableSuffix () =
+        if isWindows ()
+        then ".exe"
+        else ""
+
     /// ## splitCommand
 
     type private CommandParseStep =
@@ -28,12 +35,7 @@ module Runtime =
             | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
             | char :: tail, _ -> loop ($"{path}{char}", args) tail step
             | _, _ -> path |> String.replace @"\" "/", args
-        let path, args = loop ("", "") (command |> Seq.toList) Start
-        let workingDirectory, fileName =
-            if path |> String.startsWith "./" || path |> String.contains "/"
-            then path |> System.IO.Path.GetDirectoryName |> String.replace @"\" "/", System.IO.Path.GetFileName path
-            else ".", path
-        workingDirectory, fileName, args
+        loop ("", "") (command |> Seq.toList) Start
 
     /// ## executeAsync
 
@@ -47,13 +49,15 @@ module Runtime =
     type ExecutionOptions =
         {
             Command : string
+            WorkingDirectory : string option
             CancellationToken : System.Threading.CancellationToken option
             OnLine : (ExecutionLine -> Async<unit>) option
         }
 
     let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
-        let workingDirectory, fileName, arguments = options.Command |> splitCommand
-        let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
+        let fileName, arguments = options.Command |> splitCommand
+        let workingDirectory = options.WorkingDirectory |> Option.defaultValue ""
+        let getLocals () = $"options: {options} / {getLocals ()}"
 
         let startInfo = System.Diagnostics.ProcessStartInfo (
             WorkingDirectory = workingDirectory,
@@ -139,4 +143,5 @@ module Runtime =
                 Command = command
                 CancellationToken = None
                 OnLine = None
+                WorkingDirectory = None
             }

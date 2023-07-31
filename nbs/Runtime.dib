@@ -51,6 +51,23 @@ isWindows ()
 
 #!markdown
 
+## getExecutableSuffix
+
+#!fsharp
+
+let inline getExecutableSuffix () =
+    if isWindows ()
+    then ".exe"
+    else ""
+
+#!fsharp
+
+//// test
+
+getExecutableSuffix ()
+
+#!markdown
+
 ## splitCommand
 
 #!fsharp
@@ -70,40 +87,35 @@ let splitCommand (command: string) =
         | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
         | char :: tail, _ -> loop ($"{path}{char}", args) tail step
         | _, _ -> path |> String.replace @"\" "/", args
-    let path, args = loop ("", "") (command |> Seq.toList) Start
-    let workingDirectory, fileName =
-        if path |> String.startsWith "./" || path |> String.contains "/"
-        then path |> System.IO.Path.GetDirectoryName |> String.replace @"\" "/", System.IO.Path.GetFileName path
-        else ".", path
-    workingDirectory, fileName, args
+    loop ("", "") (command |> Seq.toList) Start
 
 #!fsharp
 
 //// test
 
 splitCommand ""
-|> _equal (".", "", "")
+|> _equal ("", "")
 
 splitCommand "/a/b/c"
-|> _equal ("/a/b", "c", "")
+|> _equal ("/a/b/c", "")
 
 splitCommand "cat file.txt"
-|> _equal (".", "cat", "file.txt")
+|> _equal ("cat", "file.txt")
 
 splitCommand """..\..\file.exe file1.txt file2.txt"""
-|> _equal ("../..", "file.exe", "file1.txt file2.txt")
+|> _equal ("../../file.exe", "file1.txt file2.txt")
 
 splitCommand @"c:\dir\file.exe ""file1.txt file2.txt"""
-|> _equal ("c:/dir", "file.exe", @"""file1.txt file2.txt""")
+|> _equal ("c:/dir/file.exe", @"""file1.txt file2.txt""")
 
 splitCommand @"""..\..\dir name\file.exe"" ""file 1.txt"" file2.txt"
-|> _equal ("../../dir name", "file.exe", @"""file 1.txt"" file2.txt")
+|> _equal ("../../dir name/file.exe", @"""file 1.txt"" file2.txt")
 
 splitCommand @"""..\..\file 1.exe"" -c \\""echo 1\\"""
-|> _equal ("../..", "file 1.exe", @"-c \\""echo 1\\""")
+|> _equal ("../../file 1.exe", @"-c \\""echo 1\\""")
 
 splitCommand @"..\..\file 1.exe -c \\""echo 1\\"""
-|> _equal ("../..", "file", @"1.exe -c \\""echo 1\\""")
+|> _equal ("../../file", @"1.exe -c \\""echo 1\\""")
 
 #!markdown
 
@@ -121,13 +133,15 @@ type ExecutionLine =
 type ExecutionOptions =
     {
         Command : string
+        WorkingDirectory : string option
         CancellationToken : System.Threading.CancellationToken option
         OnLine : (ExecutionLine -> Async<unit>) option
     }
 
 let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
-    let workingDirectory, fileName, arguments = options.Command |> splitCommand
-    let getLocals () = $"workingDirectory: {workingDirectory} / fileName: {fileName} / arguments: {arguments} / {getLocals ()}"
+    let fileName, arguments = options.Command |> splitCommand
+    let workingDirectory = options.WorkingDirectory |> Option.defaultValue ""
+    let getLocals () = $"options: {options} / {getLocals ()}"
     
     let startInfo = System.Diagnostics.ProcessStartInfo (
         WorkingDirectory = workingDirectory,
@@ -213,6 +227,7 @@ let inline executeAsync command =
             Command = command
             CancellationToken = None
             OnLine = None
+            WorkingDirectory = None
         }
 
 #!fsharp
@@ -220,18 +235,24 @@ let inline executeAsync command =
 //// test
 
 let tempFolder = FileSystem.createTempDirectory ()
-let path = tempFolder </> "test.txt"
-
-let command = @$"pwsh -c ""Get-Content {path}"""
+let fileName = "test.txt"
+let path = tempFolder </> fileName
 
 async {
-    let! exitCode, result = executeAsync command
+    let! exitCode, result = executeAsync @$"pwsh -c ""Get-Content {path}"""
     exitCode |> _equal 1
     result |> _stringContains "not exist"
 
     do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
 
-    return! executeAsync command
+    return!
+        executeWithOptionsAsync
+            {
+                Command = @$"pwsh -c ""Get-Content {fileName}"""
+                CancellationToken = None
+                OnLine = None
+                WorkingDirectory = Some tempFolder
+            }
     
 }
 |> Async.runWithTimeout 10000
@@ -263,6 +284,7 @@ async {
                 Command = command
                 CancellationToken = Some cts.Token
                 OnLine = None
+                WorkingDirectory = None
             }
         |> Async.StartChild
     trace Debug (fun () -> "2") getLocals

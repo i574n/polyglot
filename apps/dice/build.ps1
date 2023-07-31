@@ -7,4 +7,4 @@ $ErrorActionPreference = "Stop"
 { dotnet run -c Release } | Invoke-Block
 
 { dotnet repl --run Dice.dib --output-path Dice.repl.ipynb --exit-after-run } | Invoke-Block
-{ dotnet repl --run ../parser/DibParser.dib --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "OUTPUT" = "Dice.dib" }
+{ . "../parser/target/bin/Release/net8.0/DibParser$(if ($IsWindows) { '.exe' } else { '' })" "Dice.dib" } | Invoke-Block

@@ -131,7 +131,7 @@ module FileSystem =
 
 
     let inline watchDirectoryWithFilter filter shouldReadContent path =
-        let fullPath = System.IO.Path.GetFullPath path
+        let fullPath = path |> System.IO.Path.GetFullPath
         let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
 
         let watcher =
