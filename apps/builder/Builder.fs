@@ -55,9 +55,11 @@ module Builder =
 
         let paketReferencesCode = $"FSharp.Core
 
-System.Reactive.Linq
-FSharp.Control.AsyncSeq
+Argu
 FParsec
+FSharp.Control.AsyncSeq
+System.CommandLine
+System.Reactive.Linq
 "
 
         do! System.IO.File.WriteAllTextAsync (targetPath </> "paket.references", paketReferencesCode) |> Async.AwaitTask
@@ -76,17 +78,25 @@ FParsec
         return exitCode
     }
 
+    [<RequireQualifiedAccess>]
+    type Arguments =
+        | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+            Paths of paths : string list
+
+        interface Argu.IArgParserTemplate with
+            member s.Usage =
+                match s with
+                | Paths _ -> nameof Arguments.Paths
+
     [<EntryPoint>]
     let main args =
         let paths =
-            match args |> Array.tryHead |> Option.defaultValue "" with
-            | "" | null -> [||]
-            | path when System.IO.File.Exists path -> [| path |]
-            | path when path |> String.contains ";" -> path |> String.split [| ';' |]
-            | _ -> [||]
+            match args |> Runtime.parseArgs<Arguments> with
+            | [ Arguments.Paths paths ] -> paths
+            | _ -> []
 
         paths
-        |> Array.map build
+        |> List.map build
         |> Async.Parallel
         |> Async.RunSynchronously
         |> Array.sum

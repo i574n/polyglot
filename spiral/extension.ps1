@@ -1,4 +1,6 @@
-$ScriptDir = $PSScriptRoot
+param(
+    $ScriptDir = $PSScriptRoot
+)
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../scripts/core.ps1
@@ -14,7 +16,7 @@ $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
 Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction SilentlyContinue
 
-Copy-Item -Recurse "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
+Copy-Item -Recurse -Force "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
 
 Set-Location $extensionSrcPath
 npm install
@@ -63,7 +65,7 @@ foreach ($extensionsPath in $extensionsPath) {
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
         $destPath = Join-Path -Path $extensionPath -ChildPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
 
-        if (Test-Path -Path $destPath) {
+        if (Test-Path $destPath) {
             try {
                 [System.IO.File]::Delete($destPath)
             } catch {

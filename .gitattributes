@@ -5,3 +5,4 @@ package-lock.json merge=ours
 paket.lock merge=ours
 
 *.repl.ipynb linguist-generated
+**/**.repl.ipynb linguist-generated

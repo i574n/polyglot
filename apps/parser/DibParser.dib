@@ -12,12 +12,20 @@
 
 #!fsharp
 
+#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive/5.0.0/lib/net5.0/System.Reactive.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
 #r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsec.dll"
 #r @"../../../../../../../.nuget/packages/fparsec/2.0.0-beta2/lib/netstandard2.1/FParsecCS.dll"
 
 #!fsharp
 
 #!import ../nbs/Common.fs
+#!import ../nbs/Async.fs
+#!import ../nbs/AsyncSeq.fs
+#!import ../nbs/Runtime.fs
 
 #!fsharp
 
@@ -617,17 +625,27 @@ let inline writeDibCode kernel file = async {
 
 #!fsharp
 
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+        Paths of paths : string list
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Paths _ -> nameof Arguments.Paths
+
+#!fsharp
+
 [<EntryPoint>]
 let main args =
     let paths =
-        match args |> Array.tryHead |> Option.defaultValue "" with
-        | "" | null -> [||]
-        | path when System.IO.File.Exists path -> [| path |]
-        | path when path |> String.contains ";" -> path |> String.split [| ';' |]
-        | _ -> [||]
+        match args |> Runtime.parseArgs<Arguments> with
+        | [ Arguments.Paths paths ] -> paths
+        | _ -> []
 
     paths
-    |> Array.map (writeDibCode "fsharp")
+    |> List.map (writeDibCode "fsharp")
     |> Async.Parallel
     |> Async.Ignore
     |> Async.RunSynchronously
@@ -638,4 +656,11 @@ let main args =
 
 //// test
 
-main [| System.Environment.GetEnvironmentVariable "OUTPUT" |]
+let args =
+    System.Environment.GetEnvironmentVariable "ARGS"
+    |> Runtime.splitArgs
+    |> Seq.toArray
+
+match args with
+| [||] -> 0
+| args -> main args

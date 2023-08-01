@@ -145,3 +145,27 @@ module Runtime =
                 OnLine = None
                 WorkingDirectory = None
             }
+
+    /// ## splitArgs
+
+    let inline splitArgs commandLine =
+        commandLine
+        |> System.CommandLine.Parsing.CommandLineStringSplitter.Instance.Split
+
+    /// ## parseArgs
+
+    let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
+        let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+        let errorHandler : Argu.IExiter =
+            if assemblyName = "Microsoft.DotNet.Interactive.App"
+            then Argu.ExceptionExiter ()
+            else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
+
+        let parser =
+            Argu.ArgumentParser.Create<'T> (
+                programName = $"{assemblyName}{getExecutableSuffix ()}",
+                errorHandler = errorHandler
+            )
+
+        let parseResults = parser.ParseCommandLine args
+        parseResults.GetAllResults ()

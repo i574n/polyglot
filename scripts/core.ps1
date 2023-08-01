@@ -123,3 +123,11 @@ function Search-Command {
         return $null
     }
 }
+
+function GetExecutableSuffix {
+    if ($IsWindows) {
+        return ".exe"
+    } else {
+        return ""
+    }
+}

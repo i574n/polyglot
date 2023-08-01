@@ -15,6 +15,8 @@
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/5.0.0/lib/net5.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
 
 #!fsharp
 
@@ -305,3 +307,61 @@ async {
         true
     | _ -> false
 |> _equal true
+
+#!markdown
+
+## splitArgs
+
+#!fsharp
+
+let inline splitArgs commandLine =
+    commandLine
+    |> System.CommandLine.Parsing.CommandLineStringSplitter.Instance.Split
+
+#!fsharp
+
+//// test
+
+"""a b "c d" e"""
+|> splitArgs
+|> Seq.toList
+|> _equal ["a"; "b"; "c d"; "e"]
+
+#!markdown
+
+## parseArgs
+
+#!fsharp
+
+let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
+    let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let errorHandler : Argu.IExiter =
+        if assemblyName = "Microsoft.DotNet.Interactive.App"
+        then Argu.ExceptionExiter ()
+        else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
+
+    let parser =
+        Argu.ArgumentParser.Create<'T> (
+            programName = $"{assemblyName}{getExecutableSuffix ()}",
+            errorHandler = errorHandler
+        )
+
+    let parseResults = parser.ParseCommandLine args
+    parseResults.GetAllResults ()
+
+#!fsharp
+
+//// test
+
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+        Paths of paths : string list
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Paths _ -> nameof Arguments.Paths
+
+parseArgs<Arguments> [| "a b"; "c" |]
+|> _equal [ Arguments.Paths [ "a b"; "c" ] ]

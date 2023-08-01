@@ -169,17 +169,25 @@ module {moduleName} ="
         do! System.IO.File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
     }
 
+    [<RequireQualifiedAccess>]
+    type Arguments =
+        | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+            Paths of paths : string list
+
+        interface Argu.IArgParserTemplate with
+            member s.Usage =
+                match s with
+                | Paths _ -> nameof Arguments.Paths
+
     [<EntryPoint>]
     let main args =
         let paths =
-            match args |> Array.tryHead |> Option.defaultValue "" with
-            | "" | null -> [||]
-            | path when System.IO.File.Exists path -> [| path |]
-            | path when path |> String.contains ";" -> path |> String.split [| ';' |]
-            | _ -> [||]
+            match args |> Runtime.parseArgs<Arguments> with
+            | [ Arguments.Paths paths ] -> paths
+            | _ -> []
 
         paths
-        |> Array.map (writeDibCode "fsharp")
+        |> List.map (writeDibCode "fsharp")
         |> Async.Parallel
         |> Async.Ignore
         |> Async.RunSynchronously

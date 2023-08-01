@@ -57,10 +57,6 @@ Install-Module -Name PSToml -Scope CurrentUser
 
 #!pwsh
 
-# { . "$ScriptDir/dep_netmq.ps1" } | Invoke-Block
-
-#!pwsh
-
 { . "$ScriptDir/dep_spiral.ps1" } | Invoke-Block
 
 #!pwsh

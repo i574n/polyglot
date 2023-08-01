@@ -4,6 +4,7 @@ storage: none
 source https://api.nuget.org/v3/index.json
 
 
+nuget Argu ~> 6.1
 nuget Expecto ~> 10.1
 nuget Expecto.FsCheck ~> 10.1.0-fscheck3
 nuget Fable.Core ~> 4.0 prerelease
@@ -12,5 +13,6 @@ nuget FsCheck ~> 3.0 prerelease
 nuget FSharp.Control.AsyncSeq ~> 3.2
 nuget FSharp.Core >= 7.0 prerelease
 nuget NetMQ ~> 4.0
+nuget System.CommandLine ~> 2.0 prerelease
 nuget System.Reactive.Linq ~> 6.0 prerelease
 nuget Tomlyn ~> 0.16

@@ -26,4 +26,4 @@ $env:RUST_LOG="info"
 
 #!pwsh
 
-{ . "$ScriptDir/../../target/release/test$(if ($IsWindows) { '.exe' } else { '' })" } | Invoke-Block
+{ . $ScriptDir/../../target/release/test$(GetExecutableSuffix) } | Invoke-Block

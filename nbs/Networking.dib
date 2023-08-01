@@ -12,6 +12,11 @@
 
 #!fsharp
 
+#r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+
+#!fsharp
+
 #!import ../nbs/Common.fs
 #!import ../nbs/Async.fs
 #!import ../nbs/Runtime.fs

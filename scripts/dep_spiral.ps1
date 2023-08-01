@@ -1,4 +1,6 @@
-$ScriptDir = $PSScriptRoot
+param(
+    $ScriptDir = $PSScriptRoot
+)
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ./core.ps1
@@ -11,4 +13,4 @@ git pull
 Set-Location $ScriptDir
 
 { dotnet build -c Release "../deps/The-Spiral-Language/The Spiral Language 2/The Spiral Language 2.fsproj" } | Invoke-Block
-Copy-Item -Recurse "../deps/The-Spiral-Language/VS Code Plugin/core/" "../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/core"
+Copy-Item -Recurse -Force "../deps/The-Spiral-Language/VS Code Plugin/core/" "../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/core"
