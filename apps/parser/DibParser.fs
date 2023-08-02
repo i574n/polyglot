@@ -7,12 +7,6 @@ module DibParser =
     open Common
     open FParsec
 
-    type Block =
-        {
-            magic : string
-            content : string
-        }
-
     /// ## magicMarker
 
     let magicMarker : Parser<string, unit> = pstring "#!"
@@ -24,12 +18,24 @@ module DibParser =
         >>. manyTill anyChar newline
         |>> (System.String.Concat >> String.trim)
 
+    /// ## content
+
     let content =
         (newline >>. magicMarker) <|> (eof >>. preturn "")
         |> attempt
         |> lookAhead
         |> manyTill anyChar
         |>> (System.String.Concat >> String.trim)
+
+    /// ## Block
+
+    type Block =
+        {
+            magic : string
+            content : string
+        }
+
+    /// ## block
 
     let block =
         pipe2
@@ -41,9 +47,13 @@ module DibParser =
                     content = content
                 })
 
+    /// ## blocks
+
     let blocks =
         skipMany newline
         >>. sepEndBy block (skipMany1 newline)
+
+    /// ## formatBlock
 
     let inline formatBlock kernel (block : Block) =
         match kernel, block with
@@ -68,12 +78,16 @@ module DibParser =
                 |> String.concat "\n"
         | _ -> ""
 
+    /// ## formatBlocks
+
     let inline formatBlocks kernel blocks =
         blocks
         |> List.map (formatBlock kernel)
         |> List.filter ((<>) "")
         |> String.concat "\n\n"
         |> fun s -> s + "\n"
+
+    /// ## parse
 
     let inline parse kernel input =
         match run blocks input with
@@ -149,6 +163,8 @@ module {moduleName} ="
             |> Result.Ok
         | Failure (errorMsg, _, _) -> Result.Error errorMsg
 
+    /// ## parseDibCode
+
     let inline parseDibCode kernel file = async {
         let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
         trace Debug (fun () -> "parseDibCode") getLocals
@@ -157,6 +173,8 @@ module {moduleName} ="
         | Result.Ok blocks -> return blocks |> formatBlocks kernel
         | Result.Error msg -> return failwith msg
     }
+
+    /// ## writeDibCode
 
     let inline writeDibCode kernel file = async {
         let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
@@ -169,6 +187,8 @@ module {moduleName} ="
         do! System.IO.File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
     }
 
+    /// ## Arguments
+
     [<RequireQualifiedAccess>]
     type Arguments =
         | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
@@ -179,10 +199,14 @@ module {moduleName} ="
                 match s with
                 | Paths _ -> nameof Arguments.Paths
 
+    /// ## main
+
     [<EntryPoint>]
     let main args =
+        let argsMap = args |> Runtime.parseArgsMap<Arguments>
+
         let paths =
-            match args |> Runtime.parseArgs<Arguments> with
+            match argsMap.[nameof Arguments.Paths] with
             | [ Arguments.Paths paths ] -> paths
             | _ -> []
 
@@ -190,6 +214,7 @@ module {moduleName} ="
         |> List.map (writeDibCode "fsharp")
         |> Async.Parallel
         |> Async.Ignore
-        |> Async.RunSynchronously
-
-        0
+        |> Async.runWithTimeout 30000
+        |> function
+            | Some () -> 0
+            | None -> 1

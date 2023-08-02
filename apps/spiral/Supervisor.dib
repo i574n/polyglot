@@ -34,6 +34,10 @@
 open Common
 open FileSystem
 
+#!markdown
+
+## sendJson
+
 #!fsharp
 
 let inline sendJson (port : int) (json : string) = async {
@@ -57,42 +61,46 @@ let inline sendJson (port : int) (json : string) = async {
         return false
 }
 
+#!markdown
+
+## sendObj
+
 #!fsharp
 
 let inline sendObj port obj =
     let json = System.Text.Json.JsonSerializer.Serialize obj
     sendJson port json
 
+#!markdown
+
+## compile
+
 #!fsharp
 
-let inline compile code = async {
-    let tempDir = FileSystem.createTempDirectory ()
+let inline compileFile timeout filePath = async {
+    let fullPath = filePath |> System.IO.Path.GetFullPath
+    let fileDir = fullPath |> System.IO.Path.GetDirectoryName
+    let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
+    let! code = fullPath |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
 
-    let stream, disposable = FileSystem.watchDirectory true tempDir
+    let stream, disposable = FileSystem.watchDirectory true fileDir
 
-    let mainPath = tempDir </> "main.spi"
-    let spiprojPath = tempDir </> "package.spiproj"
-
-    let inline writeCode path code =
-        System.IO.File.WriteAllTextAsync (path, code) |> Async.AwaitTask
-
-    do! code |> writeCode mainPath
-    do! "packages:
-    |core-
-modules:
-    main" |> writeCode spiprojPath
-
-    let port = 13805
+    let port =
+        if fileDir |> String.startsWith (System.IO.Path.GetTempPath ())
+        then 13807
+        else 13805
 
     let! ct = Async.CancellationToken
     let compiler = MailboxProcessor.Start (fun inbox -> async {
         let! availablePort = Networking.getAvailablePort (Some 60) port
-        if availablePort <> port
-        then inbox.Post ()
+        if availablePort <> port then
+            let pingObj = {| Ping = true |}
+            let! pingResult = pingObj |> sendObj port
+            inbox.Post ()
         else
             let compilerPath =
                 "../../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
-                |> Path.GetFullPath
+                |> System.IO.Path.GetFullPath
 
             let dllPath = compilerPath </> "Spiral.dll"
             // let commandsPath = compilerPath </> "compiler/supervisor/commands"
@@ -113,33 +121,64 @@ modules:
 
     do! compiler.Receive ()
 
+    let! fsxContentChild =
+        stream
+        |> FSharp.Control.AsyncSeq.choose (function
+            | _, FileSystemChange.Changed (path, Some content) when path = $"{fileName}.fsx" -> Some content
+            | _ -> None
+        )
+        |> FSharp.Control.AsyncSeq.tryFirst
+        |> Async.runWithTimeoutAsync timeout
+        |> Async.StartChild
+
     let inline getFileUri path =
         $"file:///{path |> String.trimStart [| '/' |]}"
 
 
-    let fileOpenObj = {| FileOpen = {| uri = mainPath |> getFileUri; spiText = code |} |}
+    let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
     let! fileOpenResult = fileOpenObj |> sendObj port
 
-    let buildFileObj = {| BuildFile = {| uri = mainPath |> getFileUri; backend = "Fsharp" |} |}
+    let buildFileObj = {| BuildFile = {| uri = fullPath |> getFileUri; backend = "Fsharp" |} |}
     let! buildFileResult = buildFileObj |> sendObj port
 
-    let! fsxContent =
-        stream
-        |> FSharp.Control.AsyncSeq.choose (function
-            | _, FileSystemChange.Changed ("main.fsx", Some content) -> Some content
-            | _ -> None
-        )
-        |> FSharp.Control.AsyncSeq.tryFirst
+    let! fsxContent = fsxContentChild
 
     disposable.Dispose ()
 
-    return fsxContent |> Option.defaultValue "" |> String.replace "\r\n" "\n"
+    return fsxContent |> Option.flatten |> Option.map (String.replace "\r\n" "\n")
+}
+
+#!fsharp
+
+let inline compileCode timeout code = async {
+    let tempDir = FileSystem.createTempDirectory ()
+
+    let mainPath = tempDir </> "main.spi"
+    do! System.IO.File.WriteAllTextAsync (mainPath, code) |> Async.AwaitTask
+
+    let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+
+    let spiprojPath = tempDir </> "package.spiproj"
+    let spiprojCode =
+        $"""packageDir: {repositoryRoot </> "spiral"}
+packages:
+    |core-
+    fsharp
+modules:
+    main
+"""
+    do! System.IO.File.WriteAllTextAsync (spiprojPath, spiprojCode) |> Async.AwaitTask
+
+    let! result = mainPath |> compileFile timeout
+
+    do! tempDir |> FileSystem.deleteDirectoryAsync |> Async.Ignore
+
+    return result
 }
 
 #!fsharp
 
 //// test
-
 
 "inl app () =
     0i32
@@ -149,8 +188,9 @@ inl main () =
     |> dyn
     |> ignore
 "
-|> compile
+|> compileCode 8000
 |> Async.runWithTimeout 8000
+|> Option.flatten
 |> _equal (Some "let rec closure0 () () : int32 =
     0
 let v0 : (unit -> int32) = closure0()
@@ -161,12 +201,8 @@ let v0 : (unit -> int32) = closure0()
 
 //// test
 
-
-"""inl write_line ~obj : () =
-    $"System.Console.WriteLine !obj"
-
-inl app () =
-    write_line "error"
+"""inl app () =
+    fsharp.console.write_line "error"
     1i32
 
 inl main () =
@@ -174,8 +210,9 @@ inl main () =
     |> dyn
     |> ignore
 """
-|> compile
+|> compileCode 8000
 |> Async.runWithTimeout 8000
+|> Option.flatten
 |> _equal (Some """let rec closure0 () () : int32 =
     let v0 : string = "error"
     System.Console.WriteLine v0
@@ -183,3 +220,66 @@ inl main () =
 let v0 : (unit -> int32) = closure0()
 ()
 """)
+
+#!markdown
+
+## Arguments
+
+#!fsharp
+
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.Mandatory>] BuildFile of string * string
+    | Timeout of int
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | BuildFile _ -> nameof Arguments.BuildFile
+            | Timeout _ -> nameof Arguments.Timeout
+
+#!markdown
+
+## main
+
+#!fsharp
+
+[<EntryPoint>]
+let main args =
+    let argsMap = args |> Runtime.parseArgsMap<Arguments>
+
+    let inputPath, outputPath =
+        match argsMap.[nameof Arguments.BuildFile] with
+        | [ Arguments.BuildFile (inputPath, outputPath) ] -> Some (inputPath, outputPath)
+        | _ -> None
+        |> Option.get
+
+    let timeout =
+        match argsMap |> Map.tryFind (nameof Arguments.Timeout) with
+        | Some [ Arguments.Timeout timeout ] -> timeout
+        | _ -> 30000
+
+    async {
+        let! outputCode = inputPath |> compileFile timeout
+        match outputCode with
+        | Some outputCode ->
+            do! System.IO.File.WriteAllTextAsync (outputPath, outputCode) |> Async.AwaitTask
+            return 0
+        | None ->
+            return 1
+    }
+    |> Async.runWithTimeout timeout
+    |> Option.defaultValue 1
+
+#!fsharp
+
+//// test
+
+let args =
+    System.Environment.GetEnvironmentVariable "ARGS"
+    |> Runtime.splitArgs
+    |> Seq.toArray
+
+match args with
+| [||] -> 0
+| args -> if main args = 0 then 0 else failwith "main failed"

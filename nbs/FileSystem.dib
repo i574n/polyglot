@@ -90,6 +90,61 @@ Directory.Exists tempDirectory
 
 #!markdown
 
+## getSourceDirectory
+
+#!fsharp
+
+let getSourceDirectory () =
+    __SOURCE_DIRECTORY__
+
+#!fsharp
+
+//// test
+
+getSourceDirectory ()
+|> System.IO.DirectoryInfo
+|> fun dir -> dir.Name
+|> _equal "nbs"
+
+#!markdown
+
+## findParent
+
+#!fsharp
+
+let inline findParent name isFile rootDir =
+    let rec loop dir =
+        if dir </> name |> (if isFile then System.IO.File.Exists else System.IO.Directory.Exists)
+        then dir
+        else
+            dir
+            |> System.IO.Directory.GetParent
+            |> fun parent ->
+                if parent = null
+                then failwith $"""No parent for {if isFile then "file" else "dir"} '{name}' at '{rootDir}'"""
+                else parent.FullName |> loop
+    loop rootDir
+
+#!fsharp
+
+//// test
+
+getSourceDirectory () |> findParent ".paket" false
+|> System.IO.DirectoryInfo
+|> fun dir -> dir.Name
+|> _equal "polyglot"
+
+#!fsharp
+
+//// test
+
+getSourceDirectory () |> findParent "paket.dependencies" true
+|> System.IO.DirectoryInfo
+|> fun dir -> dir.Name
+|> _equal "polyglot"
+
+#!markdown
+
 ## waitForFileAccess
 
 #!fsharp

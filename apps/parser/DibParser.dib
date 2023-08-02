@@ -60,14 +60,6 @@ $"a{nl}\\#!magic{nl}b{nl}"
     $"a{nl}#!magic{nl}b{nl}"
 )
 
-#!fsharp
-
-type Block =
-    {
-        magic : string
-        content : string
-    }
-
 #!markdown
 
 ## magicMarker
@@ -147,6 +139,10 @@ a"
     )
 )
 
+#!markdown
+
+## content
+
 #!fsharp
 
 let content =
@@ -174,6 +170,22 @@ a
 
 a", (), Position ("", 14, 7, 1))
 )
+
+#!markdown
+
+## Block
+
+#!fsharp
+
+type Block =
+    {
+        magic : string
+        content : string
+    }
+
+#!markdown
+
+## block
 
 #!fsharp
 
@@ -207,6 +219,10 @@ a
     )
 )
 
+#!markdown
+
+## blocks
+
 #!fsharp
 
 let blocks =
@@ -239,6 +255,10 @@ b
         Position ("", 26, 9, 1)
     )
 )
+
+#!markdown
+
+## formatBlock
 
 #!fsharp
 
@@ -299,6 +319,10 @@ let a = 1"
     /// b
 ///
 /// c"
+
+#!markdown
+
+## formatBlocks
 
 #!fsharp
 
@@ -366,6 +390,10 @@ let a = 1
 
 let a = 3
 "
+
+#!markdown
+
+## parse
 
 #!fsharp
 
@@ -599,6 +627,10 @@ example1
 /// ### TextInput
 "
 
+#!markdown
+
+## parseDibCode
+
 #!fsharp
 
 let inline parseDibCode kernel file = async {
@@ -609,6 +641,10 @@ let inline parseDibCode kernel file = async {
     | Result.Ok blocks -> return blocks |> formatBlocks kernel
     | Result.Error msg -> return failwith msg
 }
+
+#!markdown
+
+## writeDibCode
 
 #!fsharp
 
@@ -623,6 +659,10 @@ let inline writeDibCode kernel file = async {
     do! System.IO.File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
 }
 
+#!markdown
+
+## Arguments
+
 #!fsharp
 
 [<RequireQualifiedAccess>]
@@ -635,12 +675,18 @@ type Arguments =
             match s with
             | Paths _ -> nameof Arguments.Paths
 
+#!markdown
+
+## main
+
 #!fsharp
 
 [<EntryPoint>]
 let main args =
+    let argsMap = args |> Runtime.parseArgsMap<Arguments>
+
     let paths =
-        match args |> Runtime.parseArgs<Arguments> with
+        match argsMap.[nameof Arguments.Paths] with
         | [ Arguments.Paths paths ] -> paths
         | _ -> []
 
@@ -648,9 +694,10 @@ let main args =
     |> List.map (writeDibCode "fsharp")
     |> Async.Parallel
     |> Async.Ignore
-    |> Async.RunSynchronously
-
-    0
+    |> Async.runWithTimeout 30000
+    |> function
+        | Some () -> 0
+        | None -> 1
 
 #!fsharp
 
@@ -663,4 +710,4 @@ let args =
 
 match args with
 | [||] -> 0
-| args -> main args
+| args -> if main args = 0 then 0 else failwith "main failed"

@@ -37,6 +37,26 @@ module FileSystem =
 
         tempFolder
 
+    /// ## getSourceDirectory
+
+    let getSourceDirectory () =
+        __SOURCE_DIRECTORY__
+
+    /// ## findParent
+
+    let inline findParent name isFile rootDir =
+        let rec loop dir =
+            if dir </> name |> (if isFile then System.IO.File.Exists else System.IO.Directory.Exists)
+            then dir
+            else
+                dir
+                |> System.IO.Directory.GetParent
+                |> fun parent ->
+                    if parent = null
+                    then failwith $"""No parent for {if isFile then "file" else "dir"} '{name}' at '{rootDir}'"""
+                    else parent.FullName |> loop
+        loop rootDir
+
     /// ## waitForFileAccess
 
     let inline waitForFileAccess access path =

@@ -79,22 +79,4 @@ foreach ($extensionsPath in $extensionsPath) {
     }
 
     Remove-Item "$extensionPath/dist" -Recurse -Force
-
-    Update-Toml -tomlPath "$ScriptDir/extension.toml" -ContentModifier {
-        param($tomlContent)
-
-        if ($null -eq $tomlContent.extension) {
-            $tomlContent.extension = @{}
-        }
-
-        if ($null -eq $tomlContent.extension.paths) {
-            $tomlContent.extension.paths = @()
-        }
-
-        if (($tomlContent.extension.paths | Where-Object { $_ -eq $extensionPath }).Length -eq 0) {
-            $tomlContent.extension.paths += $extensionPath
-        }
-
-        return $tomlContent
-    }
 }

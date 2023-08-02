@@ -3,6 +3,8 @@ packages:
 modules:
     real_util*
     util-
+    fsharp/
+        console
     console_fsx
     rust/
         util

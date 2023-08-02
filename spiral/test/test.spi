@@ -1,23 +1,9 @@
-
-
 inl app () =
-
-
+    "test" |> fsharp.console.write_line
     0i32
-
 
 inl main () =
     print_static "<test>"
-
-    inl test1 () =
-
-        "test"
-        |> console_fsx.write_line
-
-    inl app () =
-        test1 ()
-        // app ()
-        -1i32
 
     app
     |> dyn

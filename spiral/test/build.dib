@@ -9,6 +9,10 @@
 
 #!pwsh
 
+{ . ../../apps/spiral/target/bin/Release/net8.0/Supervisor$(GetExecutableSuffix) --buildfile test.spi test.fsx --timeout 5000 } | Invoke-Block
+
+#!pwsh
+
 dotnet fable --optimize --lang rs --extension .rs
 
 #!pwsh

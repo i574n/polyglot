@@ -336,7 +336,7 @@ let inline splitArgs commandLine =
 let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
     let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     let errorHandler : Argu.IExiter =
-        if assemblyName = "Microsoft.DotNet.Interactive.App"
+        if ["Microsoft.DotNet.Interactive.App"; "dotnet-repl"] |> List.contains assemblyName
         then Argu.ExceptionExiter ()
         else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
 
@@ -346,8 +346,7 @@ let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
             errorHandler = errorHandler
         )
 
-    let parseResults = parser.ParseCommandLine args
-    parseResults.GetAllResults ()
+    parser.ParseCommandLine args
 
 #!fsharp
 
@@ -363,5 +362,54 @@ type Arguments =
             match s with
             | Paths _ -> nameof Arguments.Paths
 
-parseArgs<Arguments> [| "a b"; "c" |]
+#!fsharp
+
+//// test
+
+fun () -> parseArgs<Arguments> [||] |> ignore
+|> _throwsC (fun ex _ ->
+    printException ex
+    |> _stringContains "Argu.ArguParseException: ERROR: missing parameter '<paths>...'."
+)
+
+#!fsharp
+
+let inline parseAllArgs<'T when 'T :> Argu.IArgParserTemplate> args =
+    args
+    |> parseArgs<'T>
+    |> fun results -> results.GetAllResults ()
+
+#!fsharp
+
+//// test
+
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+        Paths of paths : string list
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Paths _ -> nameof Arguments.Paths
+
+parseAllArgs<Arguments> [| "a b"; "c" |]
 |> _equal [ Arguments.Paths [ "a b"; "c" ] ]
+
+#!fsharp
+
+let inline parseArgsMap<'T when 'T :> Argu.IArgParserTemplate> args =
+    args
+    |> parseAllArgs<'T>
+    |> List.groupBy getUnionCaseName
+    |> Map.ofList
+
+#!fsharp
+
+//// test
+
+parseArgsMap<Arguments> [| "a b"; "c" |]
+|> _equal (
+    [ nameof Arguments.Paths, [ Arguments.Paths [ "a b"; "c" ] ] ]
+    |> Map.ofList
+)

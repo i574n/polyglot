@@ -7,28 +7,21 @@ module Builder =
     open Common
     open FileSystem
 
-    let build path = async {
-        let fullPath = path |> System.IO.Path.GetFullPath
-        let dir = fullPath |> System.IO.Path.GetDirectoryName
-        let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
-        let extension = fullPath |> System.IO.Path.GetExtension
+    /// ## buildCode
 
-        let getLocals () = $"dir: {dir} / fileName: {fileName} / extension: {extension} / {getLocals ()}"
+    let buildCode path name code = async {
+        let getLocals () = $"path: {path} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
         trace Debug (fun () -> "build") getLocals
 
-        let targetPath =
-            dir </> "target"
+        let targetPath = path </> "target"
+        System.IO.Directory.CreateDirectory targetPath |> ignore
 
-        let fsprojPath =
-            targetPath </> $"{fileName}.fsproj"
+        let filePath = targetPath </> $"{name}.fs" |> System.IO.Path.GetFullPath
+        do! System.IO.File.WriteAllTextAsync (filePath, code) |> Async.AwaitTask
 
-        let repoRoot =
-            let rec loop dir =
-                if dir </> ".paket" |> System.IO.Directory.Exists
-                then dir
-                else dir |> System.IO.Directory.GetParent |> fun x -> x.FullName |> loop
-            loop dir
+        let repositoryRoot = path |> FileSystem.findParent ".paket" false
 
+        let fsprojPath = targetPath </> $"{name}.fsproj"
         let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
@@ -40,31 +33,30 @@ module Builder =
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="{repoRoot}/nbs/Common.fs" />
-        <Compile Include="{repoRoot}/nbs/Async.fs" />
-        <Compile Include="{repoRoot}/nbs/AsyncSeq.fs" />
-        <Compile Include="{repoRoot}/nbs/Runtime.fs" />
-        <Compile Include="{repoRoot}/nbs/FileSystem.fs" />
-        <Compile Include="{fullPath}" />
+        <Compile Include="{repositoryRoot}/nbs/Common.fs" />
+        <Compile Include="{repositoryRoot}/nbs/Async.fs" />
+        <Compile Include="{repositoryRoot}/nbs/AsyncSeq.fs" />
+        <Compile Include="{repositoryRoot}/nbs/Networking.fs" />
+        <Compile Include="{repositoryRoot}/nbs/Runtime.fs" />
+        <Compile Include="{repositoryRoot}/nbs/FileSystem.fs" />
+        <Compile Include="{filePath}" />
     </ItemGroup>
 
-    <Import Project="{repoRoot}/.paket/Paket.Restore.targets" />
+    <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
-        System.IO.Directory.CreateDirectory targetPath |> ignore
+        do! System.IO.File.WriteAllTextAsync (fsprojPath, fsprojCode) |> Async.AwaitTask
 
         let paketReferencesCode = $"FSharp.Core
 
 Argu
 FParsec
 FSharp.Control.AsyncSeq
+NetMQ
 System.CommandLine
 System.Reactive.Linq
 "
-
         do! System.IO.File.WriteAllTextAsync (targetPath </> "paket.references", paketReferencesCode) |> Async.AwaitTask
-
-        do! System.IO.File.WriteAllTextAsync (fsprojPath, fsprojCode) |> Async.AwaitTask
 
         let! exitCode, _result =
             Runtime.executeWithOptionsAsync
@@ -78,6 +70,17 @@ System.Reactive.Linq
         return exitCode
     }
 
+    let buildFile path = async {
+        let fullPath = path |> System.IO.Path.GetFullPath
+        let dir = fullPath |> System.IO.Path.GetDirectoryName
+        let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
+        let! code = fullPath |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
+
+        return! code |> buildCode dir fileName
+    }
+
+    /// ## Arguments
+
     [<RequireQualifiedAccess>]
     type Arguments =
         | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
@@ -88,15 +91,21 @@ System.Reactive.Linq
                 match s with
                 | Paths _ -> nameof Arguments.Paths
 
+    /// ## main
+
     [<EntryPoint>]
     let main args =
+        let argsMap = args |> Runtime.parseArgsMap<Arguments>
+
         let paths =
-            match args |> Runtime.parseArgs<Arguments> with
+            match argsMap.[nameof Arguments.Paths] with
             | [ Arguments.Paths paths ] -> paths
             | _ -> []
 
         paths
-        |> List.map build
+        |> List.map buildFile
         |> Async.Parallel
-        |> Async.RunSynchronously
-        |> Array.sum
+        |> Async.runWithTimeout 30000
+        |> function
+            | Some results -> results |> Array.sum
+            | None -> 1

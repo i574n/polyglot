@@ -156,3 +156,9 @@ module Common =
                 System.Threading.Thread.Sleep 1
                 loop (retry + 1)
         loop 0
+
+    /// ## getUnionCaseName
+
+    let getUnionCaseName (x: 'T) =
+        match FSharp.Reflection.FSharpValue.GetUnionFields(x, typeof<'T>) with
+        | case, _ -> case.Name

@@ -16,7 +16,7 @@ pub mod Test {
     use fable_library_rust::String_::string;
     pub fn closure0(unitVar: (), unitVar_1: ()) -> i32 {
         println!("{0}", string("test"),);
-        -1_i32
+        0_i32
     }
     pub fn v0() -> Func0<i32> {
         static v0: MutCell<Option<Func0<i32>>> = MutCell::new(None);

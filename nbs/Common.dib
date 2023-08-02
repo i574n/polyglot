@@ -398,3 +398,21 @@ fun () ->
         failwith "test"
 |> retryFn 3
 |> _equal (Some 2)
+
+#!markdown
+
+## getUnionCaseName
+
+#!fsharp
+
+let getUnionCaseName (x: 'T) =
+    match FSharp.Reflection.FSharpValue.GetUnionFields(x, typeof<'T>) with
+    | case, _ -> case.Name
+
+#!fsharp
+
+//// test
+
+TraceLevel.Error
+|> getUnionCaseName
+|> _equal (nameof TraceLevel.Error)
