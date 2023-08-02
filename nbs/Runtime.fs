@@ -8,8 +8,11 @@ module Runtime =
 
     /// ## isWindows
 
-    let inline isWindows () =
-        System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform System.Runtime.InteropServices.OSPlatform.Windows
+    let isWindows =
+        fun () ->
+            System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
+                System.Runtime.InteropServices.OSPlatform.Windows
+        |> memoize
 
     /// ## getExecutableSuffix
 
@@ -57,7 +60,8 @@ module Runtime =
     let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
         let fileName, arguments = options.Command |> splitCommand
         let workingDirectory = options.WorkingDirectory |> Option.defaultValue ""
-        let getLocals () = $"options: {options} / {getLocals ()}"
+
+        trace Debug (fun () -> $"executeAsync / options: {options}") getLocals
 
         let startInfo = System.Diagnostics.ProcessStartInfo (
             WorkingDirectory = workingDirectory,
@@ -87,7 +91,7 @@ module Runtime =
 
                 trace
                     (if error then Error else Debug)
-                    (fun () -> $"{if error then 'E' else ' '}{proc.Id}: {e.Data}")
+                    (fun () -> $"> {e.Data}")
                     Common.getLocals
 
                 output.Push
@@ -103,10 +107,8 @@ module Runtime =
         proc.OutputDataReceived.Add (event false >> Async.StartImmediate)
         proc.ErrorDataReceived.Add (event true >> Async.StartImmediate)
 
-        trace Debug (fun () -> $"executeAsync") getLocals
-
         if proc.Start () |> not
-        then failwith $"executeAsync / proc.Start() error"
+        then failwith $"executeAsync / proc.Start () error"
 
         proc.BeginErrorReadLine ()
         proc.BeginOutputReadLine ()
@@ -132,7 +134,9 @@ module Runtime =
 
         let output = output |> Seq.rev |> String.concat System.Environment.NewLine
 
-        trace Debug (fun () -> $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}") getLocals
+        trace Debug (fun () ->
+            $"executeAsync / exitCode: {exitCode} / proc.Id: {proc.Id} / output.Length: {output.Length}"
+        ) getLocals
 
         return exitCode, output
     }

@@ -84,6 +84,12 @@ module Common =
         let guid = System.Guid.NewGuid ()
         ticksGuidFromTicks guid ticks
 
+    /// ## memoize
+
+    let inline memoize fn =
+        let result = lazy fn ()
+        fun () -> result.Value
+
     /// ## trace
 
     type TraceLevel =
@@ -99,11 +105,23 @@ module Common =
     let mutable traceCount = 0
     let mutable traceLevel = Verbose
 
+    let private replStart =
+        fun () ->
+            if System.Reflection.Assembly.GetEntryAssembly().GetName().Name = "dotnet-repl"
+            then Some System.DateTime.Now
+            else None
+        |> memoize
 
-    let inline trace level fn getLocals =
+    let trace level fn getLocals =
         if traceEnabled && level >= traceLevel then
             traceCount <- traceCount + 1
-            let time = System.DateTime.Now.ToString "HH:mm:ss"
+            let time =
+                match replStart () with
+                | Some dateTime ->
+                    let t = System.DateTime.Now - dateTime
+                    System.DateTime (1, 1, 1, t.Hours, t.Minutes, t.Seconds, t.Milliseconds, t.Microseconds)
+                | None -> System.DateTime.Now
+                |> fun dateTime -> dateTime.ToString "HH:mm:ss"
             $"{time} #{traceCount} [{level}] {fn ()} / {getLocals ()}"
             |> String.trimEnd [| ' '; '/' |]
             |> System.Console.WriteLine

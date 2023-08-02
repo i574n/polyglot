@@ -8,14 +8,13 @@ module FileSystem =
 
     /// ## Operators
 
-    let inline (</>) a b = System.IO.Path.Combine (a, b)
+    let inline (</>) a b =
+        System.IO.Path.Combine (a, b)
 
     /// ## createTempDirectoryName
 
     let inline createTempDirectoryName () =
-        let root =
-            match System.Reflection.Assembly.GetEntryAssembly().GetName().Name with
-            | assemblyName -> assemblyName
+        let root = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
 
         System.IO.Path.GetTempPath ()
         </> $"!{root}"
@@ -39,8 +38,9 @@ module FileSystem =
 
     /// ## getSourceDirectory
 
-    let getSourceDirectory () =
-        __SOURCE_DIRECTORY__
+    let getSourceDirectory =
+        fun () -> __SOURCE_DIRECTORY__
+        |> memoize
 
     /// ## findParent
 
@@ -51,10 +51,9 @@ module FileSystem =
             else
                 dir
                 |> System.IO.Directory.GetParent
-                |> fun parent ->
-                    if parent = null
-                    then failwith $"""No parent for {if isFile then "file" else "dir"} '{name}' at '{rootDir}'"""
-                    else parent.FullName |> loop
+                |> function
+                    | null -> failwith $"""No parent for {if isFile then "file" else "dir"} '{name}' at '{rootDir}'"""
+                    | parent -> parent.FullName |> loop
         loop rootDir
 
     /// ## waitForFileAccess
