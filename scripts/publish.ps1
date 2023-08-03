@@ -28,6 +28,7 @@ rsync -av `
     --include '*.cs' `
     --include '*.csproj' `
     --include '*.dependencies' `
+    --include '*.dart' `
     --include '*.dib' `
     --include '*.editorconfig' `
     --include '*.exs' `
@@ -44,7 +45,9 @@ rsync -av `
     --include '*.md' `
     --include '*.nix' `
     --include '*.out' `
+    --include '*.php' `
     --include '*.ps1' `
+    --include '*.py' `
     --include '*.references' `
     --include '*.rs' `
     --include '*.sln' `
