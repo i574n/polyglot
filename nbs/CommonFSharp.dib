@@ -1,0 +1,37 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# CommonFSharp (Polyglot)
+
+#!fsharp
+
+#!import ../nbs/Testing.dib
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+
+#!fsharp
+
+open Common
+
+#!markdown
+
+## getUnionCaseName
+
+#!fsharp
+
+let getUnionCaseName (x: 'T) =
+    match Reflection.FSharpValue.GetUnionFields(x, typeof<'T>) with
+    | case, _ -> case.Name
+
+#!fsharp
+
+//// test
+
+TraceLevel.Error
+|> getUnionCaseName
+|> _equal (nameof TraceLevel.Error)

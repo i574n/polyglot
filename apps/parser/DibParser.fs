@@ -112,12 +112,26 @@ module DibParser =
                                         && trimmedLine |> String.startsWith "|}" |> not
 
                                     match isMultiline, trimmedLine |> String.splitString [| $"{q}{q}{q}" |] with
-                                    | false, [| _; _ |] -> $"    {line}" :: lines, true
-                                    | true, [| _; _ |] -> line :: lines, false
-                                    | false, _ when singleQuoteLine () -> $"    {line}" :: lines, true
-                                    | false, _ -> $"    {line}" :: lines, false
-                                    | true, _ when singleQuoteLine () -> line :: lines, false
-                                    | true, _ -> line :: lines, true
+                                    | false, [| _; _ |] ->
+                                        $"    {line}" :: lines, true
+
+                                    | true, [| _; _ |] ->
+                                        line :: lines, false
+
+                                    | false, _ when singleQuoteLine () ->
+                                        $"    {line}" :: lines, true
+
+                                    | false, _ when line |> String.startsWith "#" && block.magic = "fsharp" ->
+                                        line :: lines, false
+
+                                    | false, _ ->
+                                        $"    {line}" :: lines, false
+
+                                    | true, _ when singleQuoteLine () ->
+                                        line :: lines, false
+
+                                    | true, _ ->
+                                        line :: lines, true
                             )
                             ([], false)
                         |> fst

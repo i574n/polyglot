@@ -13,4 +13,4 @@ if (!$fast) {
 
 { . ../parser/target/bin/Release/net8.0/DibParser$(GetExecutableSuffix) Supervisor.dib } | Invoke-Block
 
-{ . ../builder/target/bin/Release/net8.0/Builder$(GetExecutableSuffix) Supervisor.fs } | Invoke-Block
+{ . ../builder/target/bin/Release/net8.0/Builder$(GetExecutableSuffix) Supervisor.fs --packages Argu FSharp.Control.AsyncSeq NetMQ System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Networking.fs nbs/Runtime.fs nbs/FileSystem.fs } | Invoke-Block

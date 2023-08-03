@@ -35,8 +35,8 @@ module Builder =
 
     /// ## buildCode
 
-    let buildCode path name code = async {
-        let getLocals () = $"path: {path} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
+    let buildCode packages modules path name code = async {
+        let getLocals () = $"packages: {packages} / modules: {modules} / path: {path} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
         trace Debug (fun () -> "buildCode") getLocals
 
         let targetPath = path </> "target"
@@ -46,6 +46,11 @@ module Builder =
         do! code |> FileSystem.writeAllTextAsync filePath
 
         let repositoryRoot = path |> FileSystem.findParent ".paket" false
+
+        let modulesCode =
+            modules
+            |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
+            |> String.concat "\n        "
 
         let fsprojPath = targetPath </> $"{name}.fsproj"
         let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
@@ -59,12 +64,7 @@ module Builder =
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="{repositoryRoot}/nbs/Common.fs" />
-        <Compile Include="{repositoryRoot}/nbs/Async.fs" />
-        <Compile Include="{repositoryRoot}/nbs/AsyncSeq.fs" />
-        <Compile Include="{repositoryRoot}/nbs/Networking.fs" />
-        <Compile Include="{repositoryRoot}/nbs/Runtime.fs" />
-        <Compile Include="{repositoryRoot}/nbs/FileSystem.fs" />
+        {modulesCode}
         <Compile Include="{filePath}" />
     </ItemGroup>
 
@@ -73,15 +73,10 @@ module Builder =
 """
         do! fsprojCode |> FileSystem.writeAllTextAsync fsprojPath
 
-        let paketReferencesCode = $"FSharp.Core
+        let paketReferencesCode =
+            "FSharp.Core" :: packages
+            |> String.concat "\n"
 
-Argu
-FParsec
-FSharp.Control.AsyncSeq
-NetMQ
-System.CommandLine
-System.Reactive.Linq
-"
         do! paketReferencesCode |> FileSystem.writeAllTextAsync (targetPath </> "paket.references")
 
         return! fsprojPath |> buildProject
@@ -89,26 +84,29 @@ System.Reactive.Linq
 
     /// ## buildFile
 
-    let buildFile path = async {
+    let buildFile packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let dir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
         let! code = fullPath |> FileSystem.readAllTextAsync
 
-        return! code |> buildCode dir fileName
+        return! code |> buildCode packages modules dir fileName
     }
 
     /// ## Arguments
 
     [<RequireQualifiedAccess>]
     type Arguments =
-        | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
-            Paths of paths : string list
+        | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce>] Path of path : string
+        | [<Argu.ArguAttributes.Unique>] Packages of packages : string list
+        | [<Argu.ArguAttributes.Unique>] Modules of modules : string list
 
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
-                | Paths _ -> nameof Arguments.Paths
+                | Path _ -> nameof Arguments.Path
+                | Packages _ -> nameof Arguments.Packages
+                | Modules _ -> nameof Arguments.Modules
 
     /// ## main
 
@@ -116,15 +114,25 @@ System.Reactive.Linq
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 
-        let paths =
-            match argsMap.[nameof Arguments.Paths] with
-            | [ Arguments.Paths paths ] -> paths
+        let path =
+            match argsMap.[nameof Arguments.Path] with
+            | [ Arguments.Path path ] -> Some path
+            | _ -> None
+            |> Option.get
+
+        let packages =
+            match argsMap |> Map.tryFind (nameof Arguments.Packages) with
+            | Some [ Arguments.Packages packages ] -> packages
             | _ -> []
 
-        paths
-        |> List.map buildFile
-        |> Async.Parallel
+        let modules =
+            match argsMap |> Map.tryFind (nameof Arguments.Modules) with
+            | Some [ Arguments.Modules modules ] -> modules
+            | _ -> []
+
+        path
+        |> buildFile packages modules
         |> Async.runWithTimeout 30000
         |> function
-            | Some results -> results |> Array.sum
+            | Some exitCode -> exitCode
             | None -> 1

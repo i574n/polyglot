@@ -181,5 +181,5 @@ module Runtime =
     let inline parseArgsMap<'T when 'T :> Argu.IArgParserTemplate> args =
         args
         |> parseAllArgs<'T>
-        |> List.groupBy getUnionCaseName
+        |> List.groupBy CommonFSharp.getUnionCaseName
         |> Map.ofList

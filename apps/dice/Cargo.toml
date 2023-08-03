@@ -1,0 +1,14 @@
+[package]
+name = "dice"
+version = "0.0.1"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+fable_library_rust = { path = "target/fable_modules/fable-library-rust" }
+rand = "~0.8"
+
+[[bin]]
+name = "dice"
+path = "./Dice.rs"

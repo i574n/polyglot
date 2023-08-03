@@ -106,11 +106,15 @@ module Common =
     let mutable traceLevel = Verbose
 
     let private replStart =
+#if INTERACTIVE
         fun () ->
             if System.Reflection.Assembly.GetEntryAssembly().GetName().Name = "dotnet-repl"
             then Some System.DateTime.Now
             else None
         |> memoize
+#else
+            fun () -> None : System.DateTime option
+#endif
 
     let trace level fn getLocals =
         if traceEnabled && level >= traceLevel then
@@ -122,7 +126,7 @@ module Common =
                     System.DateTime (1, 1, 1, t.Hours, t.Minutes, t.Seconds, t.Milliseconds, t.Microseconds)
                 | None -> System.DateTime.Now
                 |> fun dateTime -> dateTime.ToString "HH:mm:ss"
-            $"{time} #{traceCount} [{level}] {fn ()} / {getLocals ()}"
+            $"{time} #{traceCount} [{level}] %s{fn ()} / %s{getLocals ()}"
             |> String.trimEnd [| ' '; '/' |]
             |> System.Console.WriteLine
 
@@ -174,9 +178,3 @@ module Common =
                 System.Threading.Thread.Sleep 1
                 loop (retry + 1)
         loop 0
-
-    /// ## getUnionCaseName
-
-    let getUnionCaseName (x: 'T) =
-        match FSharp.Reflection.FSharpValue.GetUnionFields(x, typeof<'T>) with
-        | case, _ -> case.Name

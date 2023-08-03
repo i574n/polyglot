@@ -21,6 +21,7 @@
 #!fsharp
 
 #!import ../nbs/Common.fs
+#!import ../nbs/CommonFSharp.fs
 #!import ../nbs/Async.fs
 #!import ../nbs/AsyncSeq.fs
 #!import ../nbs/Runtime.fs
