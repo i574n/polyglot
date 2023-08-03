@@ -25,7 +25,7 @@ inl post_fsx_rs_build (rs_path : path_buf) =
         |> snd
         |> listm.rev
 
-    inl text = lines |> listm.fold (+\) ""
+    inl text = lines |> listm.fold (/+) ""
 
     log Debug ;[!>"text_len"; !>(text |> len)]
 

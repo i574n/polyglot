@@ -51,7 +51,7 @@ module Dice =
 
     /// ## progressiveRoll
 
-    let private random = Random ()
+    let private random = System.Random ()
     let rollD6 () = random.Next (1, 7)
 
     let progressiveRoll log reroll max =

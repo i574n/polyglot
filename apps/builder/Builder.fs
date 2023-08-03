@@ -7,17 +7,43 @@ module Builder =
     open Common
     open FileSystem
 
+    /// ## buildProject
+
+    let buildProject path = async {
+        let fullPath = path |> System.IO.Path.GetFullPath
+        let fileDir = fullPath |> System.IO.Path.GetDirectoryName
+        let extension = fullPath |> System.IO.Path.GetExtension
+
+        let getLocals () = $"fullPath: {fullPath} / {getLocals ()}"
+        trace Debug (fun () -> "buildProject") getLocals
+
+        match extension with
+        | ".fsproj" -> ()
+        | _ -> failwith "Invalid project file"
+
+        let! exitCode, _result =
+            Runtime.executeWithOptionsAsync
+                {
+                    Command = "dotnet build -c Release"
+                    CancellationToken = None
+                    OnLine = None
+                    WorkingDirectory = Some fileDir
+                }
+
+        return exitCode
+    }
+
     /// ## buildCode
 
     let buildCode path name code = async {
         let getLocals () = $"path: {path} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
-        trace Debug (fun () -> "build") getLocals
+        trace Debug (fun () -> "buildCode") getLocals
 
         let targetPath = path </> "target"
         System.IO.Directory.CreateDirectory targetPath |> ignore
 
         let filePath = targetPath </> $"{name}.fs" |> System.IO.Path.GetFullPath
-        do! System.IO.File.WriteAllTextAsync (filePath, code) |> Async.AwaitTask
+        do! code |> FileSystem.writeAllTextAsync filePath
 
         let repositoryRoot = path |> FileSystem.findParent ".paket" false
 
@@ -45,7 +71,7 @@ module Builder =
     <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
-        do! System.IO.File.WriteAllTextAsync (fsprojPath, fsprojCode) |> Async.AwaitTask
+        do! fsprojCode |> FileSystem.writeAllTextAsync fsprojPath
 
         let paketReferencesCode = $"FSharp.Core
 
@@ -56,25 +82,18 @@ NetMQ
 System.CommandLine
 System.Reactive.Linq
 "
-        do! System.IO.File.WriteAllTextAsync (targetPath </> "paket.references", paketReferencesCode) |> Async.AwaitTask
+        do! paketReferencesCode |> FileSystem.writeAllTextAsync (targetPath </> "paket.references")
 
-        let! exitCode, _result =
-            Runtime.executeWithOptionsAsync
-                {
-                    Command = "dotnet build -c Release"
-                    CancellationToken = None
-                    OnLine = None
-                    WorkingDirectory = Some targetPath
-                }
-
-        return exitCode
+        return! fsprojPath |> buildProject
     }
+
+    /// ## buildFile
 
     let buildFile path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let dir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
-        let! code = fullPath |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
+        let! code = fullPath |> FileSystem.readAllTextAsync
 
         return! code |> buildCode dir fileName
     }

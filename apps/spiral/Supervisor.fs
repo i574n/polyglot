@@ -38,11 +38,11 @@ module Supervisor =
 
     /// ## compile
 
-    let inline compileFile timeout filePath = async {
-        let fullPath = filePath |> System.IO.Path.GetFullPath
+    let inline compileFile timeout path = async {
+        let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
-        let! code = fullPath |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
+        let! code = fullPath |> FileSystem.readAllTextAsync
 
         let stream, disposable = FileSystem.watchDirectory true fileDir
 
@@ -113,7 +113,7 @@ module Supervisor =
         let tempDir = FileSystem.createTempDirectory ()
 
         let mainPath = tempDir </> "main.spi"
-        do! System.IO.File.WriteAllTextAsync (mainPath, code) |> Async.AwaitTask
+        do! code |> FileSystem.writeAllTextAsync mainPath
 
         let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
@@ -126,7 +126,7 @@ packages:
 modules:
     main
 """
-        do! System.IO.File.WriteAllTextAsync (spiprojPath, spiprojCode) |> Async.AwaitTask
+        do! spiprojCode |> FileSystem.writeAllTextAsync spiprojPath
 
         let! result = mainPath |> compileFile timeout
 
@@ -169,7 +169,7 @@ modules:
             let! outputCode = inputPath |> compileFile timeout
             match outputCode with
             | Some outputCode ->
-                do! System.IO.File.WriteAllTextAsync (outputPath, outputCode) |> Async.AwaitTask
+                do! outputCode |> FileSystem.writeAllTextAsync outputPath
                 return 0
             | None ->
                 return 1

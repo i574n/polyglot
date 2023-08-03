@@ -56,6 +56,16 @@ module FileSystem =
                     | parent -> parent.FullName |> loop
         loop rootDir
 
+    /// ## writeAllTextAsync
+
+    let inline writeAllTextAsync path contents =
+        System.IO.File.WriteAllTextAsync (path, contents) |> Async.AwaitTask
+
+    /// ## readAllTextAsync
+
+    let inline readAllTextAsync path =
+        System.IO.File.ReadAllTextAsync path |> Async.AwaitTask
+
     /// ## waitForFileAccess
 
     let inline waitForFileAccess access path =
@@ -223,7 +233,7 @@ module FileSystem =
                         ))
                         |> Async.runWithTimeoutAsync 10000
                         |> Async.Ignore
-                    return! System.IO.File.ReadAllTextAsync fullPath |> Async.AwaitTask |> Async.map Some
+                    return! fullPath |> readAllTextAsync |> Async.map Some
                 with ex ->
                     let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
                     trace Error (fun () -> $"watchWithFilter / readContent") getLocals

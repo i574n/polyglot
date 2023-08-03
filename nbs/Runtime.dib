@@ -249,7 +249,7 @@ async {
     exitCode |> _equal 1
     result |> _stringContains "not exist"
 
-    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+    do! "0" |> FileSystem.writeAllTextAsync path
 
     return!
         executeWithOptionsAsync
@@ -281,7 +281,7 @@ let path = tempFolder </> "test.txt"
 let command = @$"pwsh -c ""Get-Content {path}"""
 
 async {
-    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+    do! "0" |> FileSystem.writeAllTextAsync path
     let cts = new System.Threading.CancellationTokenSource ()
     trace Debug (fun () -> "1") getLocals
     let! result =

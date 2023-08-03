@@ -10,29 +10,29 @@ union supervisor_req =
 
 inl get_req_json = function
     | BuildFile { spi_path backend } =>
-        "{" +\
-            "\"BuildFile\": {" +\
-                $"\"\\\"uri\\\": \\\"file://\\\".to_owned() + !spi_path.to_str().unwrap(),\"" +\
-                $"\"\\\"backend\\\": !backend\"" +\
-            "}" +\
+        "{" /+
+            "\"BuildFile\": {" /+
+                $"\"\\\"uri\\\": \\\"file://\\\".to_owned() + !spi_path.to_str().unwrap(),\"" /+
+                $"\"\\\"backend\\\": !backend\"" /+
+            "}" /+
         "}"
     | FileOpen { spi_path spi_text } =>
-        "{" +\
-            "\"FileOpen\": {" +\
-                $"\"\\\"spiText\\\": !spi_text,\"" +\
-                $"\"\\\"uri\\\": \\\"file://\\\".to_owned() + !spi_path.to_str().unwrap()\"" +\
-            "}" +\
+        "{" /+
+            "\"FileOpen\": {" /+
+                $"\"\\\"spiText\\\": !spi_text,\"" /+
+                $"\"\\\"uri\\\": \\\"file://\\\".to_owned() + !spi_path.to_str().unwrap()\"" /+
+            "}" /+
         "}"
     | Ping ping =>
-        "{" +\
-            $"\"\\\"Ping\\\": !ping\"" +\
+        "{" /+
+            $"\"\\\"Ping\\\": !ping\"" /+
         "}"
     | ProjectFileOpen { spiproj_path spiproj_text } =>
-        "{" +\
-            "\"ProjectFileOpen\": {" +\
-                $"\"\\\"spiprojText\\\": !spiproj_text,\"" +\
-                $"\"\\\"uri\\\": \\\"file://\\\".to_owned() + !spiproj_path.to_str().unwrap()\"" +\
-            "}" +\
+        "{" /+
+            "\"ProjectFileOpen\": {" /+
+                $"\"\\\"spiprojText\\\": !spiproj_text,\"" /+
+                $"\"\\\"uri\\\": \\\"file://\\\".to_owned() + !spiproj_path.to_str().unwrap()\"" /+
+            "}" /+
         "}"
 
 
@@ -175,7 +175,7 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
     inl command : any = emit_expr () $"\"std::process::Command::new(!command)\""
     emit_expr () $"\"let mut !command = !command\""
     inl command : any = emit_expr () $"\"!command.arg(!path)\""
-    inl port_arg = "port=" +\ (port |> to_string') |> string_slice |> to_std_string
+    inl port_arg = "port=" /+ (port |> to_string') |> string_slice |> to_std_string
     inl command : any = emit_expr () $"\"!command.arg(!port_arg)\""
     inl command : any = emit_expr () $"\"!command.stdout(std::process::Stdio::inherit())\""
     inl command : any = emit_expr () $"\"!command.stderr(std::process::Stdio::inherit())\""
@@ -194,52 +194,52 @@ inl spi_to_fsx (spi_path : path_buf) (new_fsx_path : option' path_buf) : string 
         inl rt : any = emit_expr () $"\"!rt.enable_all()\""
         inl rt : any = emit_expr () $"\"!rt.build()\""
         inl rt : any = emit_expr () $"\"!rt.unwrap()\""
-        emit_expr () ($"\"!rt.block_on(\"" +\ code +\ $"\")\"")
+        emit_expr () ($"\"!rt.block_on(\"" /+ code /+ $"\")\"")
 
     block_on
-        ($"\"async move {\"" +\
-        $"\"     loop {\"" +\
-        $"\"         let result = std::net::TcpStream::connect(&!addr);\"" +\
-        $"\"         println!!(\\\"connect_timeout: {:?}\\\", result);\"" +\
-        $"\"         if result.is_ok() {\"" +\
-        $"\"             tokio::time::sleep(std::time::Duration::from_secs(1)).await;\"" +\
-        $"\"             break;\"" +\
-        $"\"         } else {\"" +\
-        $"\"             tokio::time::sleep(std::time::Duration::from_millis(60)).await;\"" +\
-        $"\"         }\"" +\
-        $"\"     }\"" +\
+        ($"\"async move {\"" /+
+        $"\"     loop {\"" /+
+        $"\"         let result = std::net::TcpStream::connect(&!addr);\"" /+
+        $"\"         println!!(\\\"connect_timeout: {:?}\\\", result);\"" /+
+        $"\"         if result.is_ok() {\"" /+
+        $"\"             tokio::time::sleep(std::time::Duration::from_secs(1)).await;\"" /+
+        $"\"             break;\"" /+
+        $"\"         } else {\"" /+
+        $"\"             tokio::time::sleep(std::time::Duration::from_millis(60)).await;\"" /+
+        $"\"         }\"" /+
+        $"\"     }\"" /+
         $"\" }\"")
-        // $"\"     let listener = std::net::TcpListener::bind(&!addr2).unwrap();\"" +\
-        // $"\"     let (stream, _) = listener.accept().unwrap();\"" +\
-        // $"\"     let stream = tokio::net::TcpStream::from_std(stream).unwrap();\"" +\
-        // $"\"     println!!(\\\"stream: {:?}\\\", stream);\"" +\
-        // $"\"     let child_stream = std::net::TcpStream::connect(&!addr).unwrap();\"" +\
-        // $"\"     let child_stream = tokio::net::TcpStream::from_std(child_stream).unwrap();\"" +\
-        // $"\"     child_stream.set_nodelay(true).unwrap();\"" +\
-        // $"\"     println!!(\\\"child_stream: {:?}\\\", child_stream);\"" +\
-        // $"\"     let (mut reader, writer) = tokio::io::split(stream);\"" +\
-        // $"\"     let (child_reader, mut child_writer) = tokio::io::split(child_stream);\"" +\
-        // $"\"     let mut buf = [0u8; 1024];\"" +\
-        // $"\"     loop {\"" +\
-        // $"\"         let read = tokio::io::AsyncReadExt::read(&mut reader, &mut buf);\"" +\
-        // $"\"         println!!(\\\"read: {:?}\\\", read);\"" +\
-        // $"\"         let read = read.await;\"" +\
-        // $"\"         println!!(\\\"read: {:?}\\\", read);\"" +\
-        // $"\"         if read.is_err() {\"" +\
-        // $"\"             break;\"" +\
-        // $"\"         }\"" +\
-        // $"\"         let read = read.unwrap();\"" +\
-        // $"\"         if read == 0 {\"" +\
-        // $"\"             break;\"" +\
-        // $"\"         }\"" +\
-        // $"\"         let write = tokio::io::AsyncWriteExt::write(&mut child_writer, &buf[..read]);\"" +\
-        // $"\"         println!!(\\\"write: {:?}\\\", write);\"" +\
-        // $"\"         let write = write.await;\"" +\
-        // $"\"         println!!(\\\"write: {:?}\\\", write);\"" +\
-        // $"\"         if write.is_err() {\"" +\
-        // $"\"             break;\"" +\
-        // $"\"         }\"" +\
-        // $"\"     }\"" +\
+        // $"\"     let listener = std::net::TcpListener::bind(&!addr2).unwrap();\"" /+
+        // $"\"     let (stream, _) = listener.accept().unwrap();\"" /+
+        // $"\"     let stream = tokio::net::TcpStream::from_std(stream).unwrap();\"" /+
+        // $"\"     println!!(\\\"stream: {:?}\\\", stream);\"" /+
+        // $"\"     let child_stream = std::net::TcpStream::connect(&!addr).unwrap();\"" /+
+        // $"\"     let child_stream = tokio::net::TcpStream::from_std(child_stream).unwrap();\"" /+
+        // $"\"     child_stream.set_nodelay(true).unwrap();\"" /+
+        // $"\"     println!!(\\\"child_stream: {:?}\\\", child_stream);\"" /+
+        // $"\"     let (mut reader, writer) = tokio::io::split(stream);\"" /+
+        // $"\"     let (child_reader, mut child_writer) = tokio::io::split(child_stream);\"" /+
+        // $"\"     let mut buf = [0u8; 1024];\"" /+
+        // $"\"     loop {\"" /+
+        // $"\"         let read = tokio::io::AsyncReadExt::read(&mut reader, &mut buf);\"" /+
+        // $"\"         println!!(\\\"read: {:?}\\\", read);\"" /+
+        // $"\"         let read = read.await;\"" /+
+        // $"\"         println!!(\\\"read: {:?}\\\", read);\"" /+
+        // $"\"         if read.is_err() {\"" /+
+        // $"\"             break;\"" /+
+        // $"\"         }\"" /+
+        // $"\"         let read = read.unwrap();\"" /+
+        // $"\"         if read == 0 {\"" /+
+        // $"\"             break;\"" /+
+        // $"\"         }\"" /+
+        // $"\"         let write = tokio::io::AsyncWriteExt::write(&mut child_writer, &buf[..read]);\"" /+
+        // $"\"         println!!(\\\"write: {:?}\\\", write);\"" /+
+        // $"\"         let write = write.await;\"" /+
+        // $"\"         println!!(\\\"write: {:?}\\\", write);\"" /+
+        // $"\"         if write.is_err() {\"" /+
+        // $"\"             break;\"" /+
+        // $"\"         }\"" /+
+        // $"\"     }\"" /+
         // $"\" }\"")
 
 

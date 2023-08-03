@@ -144,6 +144,24 @@ getSourceDirectory () |> findParent "paket.dependencies" true
 
 #!markdown
 
+## writeAllTextAsync
+
+#!fsharp
+
+let inline writeAllTextAsync path contents =
+    System.IO.File.WriteAllTextAsync (path, contents) |> Async.AwaitTask
+
+#!markdown
+
+## readAllTextAsync
+
+#!fsharp
+
+let inline readAllTextAsync path =
+    System.IO.File.ReadAllTextAsync path |> Async.AwaitTask
+
+#!markdown
+
 ## waitForFileAccess
 
 #!fsharp
@@ -199,7 +217,7 @@ let inline lockFile () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+    do! "0" |> writeAllTextAsync path
     trace Debug (fun () -> "2") getLocals
     let! child = lockFile () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
@@ -207,7 +225,7 @@ async {
     trace Debug (fun () -> "4") getLocals
     let! retries = path |> waitForFileAccess None
     trace Debug (fun () -> "5") getLocals
-    let! text = File.ReadAllTextAsync path |> Async.AwaitTask
+    let! text = path |> readAllTextAsync
     trace Debug (fun () -> "6") getLocals
     do! child
     trace Debug (fun () -> "7") getLocals
@@ -336,7 +354,7 @@ let inline lockFile () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+    do! "0" |> writeAllTextAsync path
     trace Debug (fun () -> "2") getLocals
     let! child = lockFile () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
@@ -404,7 +422,7 @@ let inline lockFile () = async {
 
 async {
     trace Debug (fun () -> "1") getLocals
-    do! File.WriteAllTextAsync (path, "0") |> Async.AwaitTask
+    do! "0" |> writeAllTextAsync path
     trace Debug (fun () -> "2") getLocals
     let! child = lockFile () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
@@ -414,7 +432,7 @@ async {
     trace Debug (fun () -> "5") getLocals
     let! retries2 = newPath |> waitForFileAccess None
     trace Debug (fun () -> "6") getLocals
-    let! text = File.ReadAllTextAsync newPath |> Async.AwaitTask
+    let! text = newPath |> readAllTextAsync
     trace Debug (fun () -> "7") getLocals
     do! child
     trace Debug (fun () -> "8") getLocals
@@ -536,7 +554,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
                     ))
                     |> Async.runWithTimeoutAsync 10000
                     |> Async.Ignore
-                return! System.IO.File.ReadAllTextAsync fullPath |> Async.AwaitTask |> Async.map Some
+                return! fullPath |> readAllTextAsync |> Async.map Some
             with ex ->
                 let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
                 trace Error (fun () -> $"watchWithFilter / readContent") getLocals
@@ -687,12 +705,12 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"a{i}") |> Async.AwaitTask
+        do! $"a{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     do! Async.Sleep 250
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"b{i}") |> Async.AwaitTask
+        do! $"b{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     do! Async.Sleep 250
 
@@ -702,7 +720,7 @@ let inline write path = async {
     do! Async.Sleep 250
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"c{i}") |> Async.AwaitTask
+        do! $"c{i}" |> writeAllTextAsync (path </> $"file_{i}.txt")
 
     do! Async.Sleep 250
 
@@ -755,12 +773,12 @@ let inline write path = async {
         |> List.map (string >> String.replicate 1_000_000)
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}a") |> Async.AwaitTask
+        do! $"{contents.[i - 1]}a" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     do! Async.Sleep 1500
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{contents.[i - 1]}b") |> Async.AwaitTask
+        do! $"{contents.[i - 1]}b" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     do! Async.Sleep 1500
 
@@ -770,7 +788,7 @@ let inline write path = async {
     do! Async.Sleep 1500
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{contents.[i - 1]}c") |> Async.AwaitTask
+        do! $"{contents.[i - 1]}c" |> writeAllTextAsync (path </> $"file_{i}.txt")
 
     do! Async.Sleep 1500
 
@@ -918,7 +936,7 @@ let inline write path = async {
     let n = 3
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}") |> Async.AwaitTask
+        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
@@ -968,10 +986,10 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}") |> Async.AwaitTask
+        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "") |> Async.AwaitTask
+        do! "" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
@@ -1016,7 +1034,7 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}") |> Async.AwaitTask
+        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     for i = 1 to n do
         do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
@@ -1069,16 +1087,16 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", $"{i}") |> Async.AwaitTask
+        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file{i}.txt", "") |> Async.AwaitTask
+        do! "" |> writeAllTextAsync (path </> $"file{i}.txt")
 
     for i = 1 to n do
         do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
 
     for i = 1 to n do
-        do! System.IO.File.WriteAllTextAsync (path </> $"file_{i}.txt", $"{i}") |> Async.AwaitTask
+        do! $"{i}" |> writeAllTextAsync (path </> $"file_{i}.txt")
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore

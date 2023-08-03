@@ -168,7 +168,7 @@ module {moduleName} ="
     let inline parseDibCode kernel file = async {
         let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
         trace Debug (fun () -> "parseDibCode") getLocals
-        let! input = System.IO.File.ReadAllTextAsync file |> Async.AwaitTask
+        let! input = file |> FileSystem.readAllTextAsync
         match parse kernel input with
         | Result.Ok blocks -> return blocks |> formatBlocks kernel
         | Result.Error msg -> return failwith msg
@@ -176,15 +176,15 @@ module {moduleName} ="
 
     /// ## writeDibCode
 
-    let inline writeDibCode kernel file = async {
-        let getLocals () = $"kernel: {kernel} / file: {file} / {getLocals ()}"
+    let inline writeDibCode kernel path = async {
+        let getLocals () = $"kernel: {kernel} / path: {path} / {getLocals ()}"
         trace Debug (fun () -> "writeDibCode") getLocals
-        let! output = parseDibCode kernel file
-        let outputFileName =
+        let! output = parseDibCode kernel path
+        let outputPath =
             match kernel with
-            | "fsharp" -> file |> String.replace ".dib" ".fs"
+            | "fsharp" -> path |> String.replace ".dib" ".fs"
             | _ -> failwith "Unknown kernel"
-        do! System.IO.File.WriteAllTextAsync (outputFileName, output) |> Async.AwaitTask
+        do! output |> FileSystem.writeAllTextAsync outputPath
     }
 
     /// ## Arguments

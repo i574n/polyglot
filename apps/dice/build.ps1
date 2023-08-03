@@ -14,3 +14,5 @@ if (!$fast) {
 }
 
 { . ../parser/target/bin/Release/net8.0/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block
+
+{ . ../builder/target/bin/Release/net8.0/Builder$(GetExecutableSuffix) Dice.fs } | Invoke-Block
