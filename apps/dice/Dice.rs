@@ -8,10 +8,14 @@
 #![allow(unused_macros)]
 #![allow(unused_parens)]
 #![allow(unused_variables)]
+use fable_library_rust::NativeArray_::array_from;
+use fable_library_rust::String_::fromString;
 pub mod Polyglot {
     use super::*;
     pub mod Dice {
         use super::*;
+        use crate::module_394e13d8::Polyglot::Common;
+        use crate::module_394e13d8::Polyglot::Common::TraceLevel;
         use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::List_::cons;
         use fable_library_rust::List_::empty;
@@ -19,9 +23,13 @@ pub mod Polyglot {
         use fable_library_rust::List_::initialize;
         use fable_library_rust::List_::isEmpty;
         use fable_library_rust::List_::length;
+        use fable_library_rust::List_::ofArray;
         use fable_library_rust::List_::tail;
         use fable_library_rust::List_::List;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::NativeArray_::Array;
         use fable_library_rust::Native_::Any;
+        use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::Func2;
         use fable_library_rust::Native_::LrcPtr;
@@ -30,8 +38,8 @@ pub mod Polyglot {
         use fable_library_rust::Seq_::cache;
         use fable_library_rust::Seq_::item;
         use fable_library_rust::Seq_::unfold;
+        use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-
         pub fn pow6() -> LrcPtr<dyn IEnumerable_1<i32>> {
             static pow6: MutCell<Option<LrcPtr<dyn IEnumerable_1<i32>>>> = MutCell::new(None);
             pow6.get_or_init(|| {
@@ -170,12 +178,8 @@ pub mod Polyglot {
                 numDices_(0_i32, 1_i32)
             }
         }
-        fn random() -> LrcPtr<i32> {
-            static random: MutCell<Option<LrcPtr<i32>>> = MutCell::new(None);
-            random.get_or_init(|| ())
-        }
         pub fn rollD6() -> i32 {
-            randomNext(1_i32, 7_i32)
+            rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)
         }
         pub fn progressiveRoll(log: bool, reroll: bool, max: i32) -> i32 {
             let power: i32 = Polyglot::Dice::numDices(log, max) - 1_i32;
@@ -245,8 +249,28 @@ pub mod Polyglot {
             });
             r#loop(empty::<i32>(), 0_i32)
         }
+        pub fn main(args: Array<string>) -> i32 {
+            let result: Option<i32> = Polyglot::Dice::fixedRoll(
+                true,
+                2000_i32,
+                ofArray(new_array(&[1_i32, 5_i32, 4_i32, 4_i32, 5_i32])),
+            );
+            Common::trace(
+                LrcPtr::new(TraceLevel::Debug),
+                Func0::new({
+                    let result = result.clone();
+                    move || sprintf!("main / result: {}", &result)
+                }),
+                Func0::new(move || string("")),
+            );
+            0_i32
+        }
     }
 }
 #[path = "../../nbs/Common.rs"]
 mod module_394e13d8;
 pub use module_394e13d8::*;
+pub fn main() {
+    let args = std::env::args().skip(1).map(fromString).collect();
+    Polyglot::Dice::main(array_from(args));
+}

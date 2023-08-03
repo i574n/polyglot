@@ -29,7 +29,7 @@ function Invoke-Block {
     }
 
     if ($exitcode -ne 0) {
-        $msg = "# Invoke-Block / `$lastexitcode: $exitcode / `$OnError: $OnError / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
+        $msg = "# Invoke-Block / `$exitcode: $exitcode / `$OnError: $OnError / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
 
         if ($OnError -eq "Stop") {
             if ($host.Name -match "Interactive") {

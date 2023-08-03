@@ -51,8 +51,16 @@ module Dice =
 
     /// ## progressiveRoll
 
+#if FABLE_COMPILER_RUST
+    let rollD6 () : int =
+        Fable.Core.Rust.emitExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
+#else
     let private random = System.Random ()
-    let rollD6 () = random.Next (1, 7)
+    let rollD6 () =
+        random.Next (1, 7)
+#endif
+
+    /// ## progressiveRoll
 
     let progressiveRoll log reroll max =
         let rec rollMax power =
@@ -66,3 +74,11 @@ module Dice =
                     | _ -> loop (rollD6 () :: rolls) (size + 1)
             loop [] 0
         rollMax ((numDices log max) - 1)
+
+    /// ## main
+
+    [<EntryPoint>]
+    let main args =
+        let result = fixedRoll true 2000 [1; 5; 4; 4; 5]
+        trace Debug (fun () -> $"main / result: {result}") getLocals
+        0
