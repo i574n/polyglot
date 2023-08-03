@@ -285,7 +285,7 @@ async {
     trace Debug (fun () -> "1") getLocals
     let! child = lockPorts () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
-    do! Async.Sleep 20
+    do! Async.Sleep 60
     trace Debug (fun () -> "3") getLocals
     let! availablePort = getAvailablePort (Some 60) port
     trace Debug (fun () -> "4") getLocals
