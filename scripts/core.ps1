@@ -17,10 +17,10 @@ function Invoke-Block {
         [switch]$Linux = $false,
         [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
     )
-    if ($Linux) {
+    if ($Linux -and $IsWindows) {
         $envVars = ""
         if ($EnvironmentVariables) {
-            $envVars = $EnvironmentVariables.Keys | ForEach-Object { if ($EnvironmentVariables[$_]) { "$_=$($EnvironmentVariables[$_])" } } | ForEach-Object { "$_ " }
+            $envVars = $EnvironmentVariables.Keys | ForEach-Object { "$_=$($EnvironmentVariables[$_])" } | ForEach-Object { "$_ " }
         }
 
         Invoke-Expression "Invoke-Linux { $envVars $ScriptBlock }"
