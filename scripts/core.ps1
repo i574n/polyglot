@@ -1,10 +1,9 @@
 function Invoke-Linux {
     param (
-        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock,
-        $Distro = "nixos"
+        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
     )
     if ($IsWindows) {
-        Invoke-Expression "wsl -d $Distro $($ScriptBlock.ToString().Trim())"
+        Invoke-Expression "wsl $($ScriptBlock.ToString().Trim())"
     } else {
         & @ScriptBlock
     }

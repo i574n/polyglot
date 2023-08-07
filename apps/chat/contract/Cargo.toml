@@ -4,6 +4,7 @@ cargo-features = ["profile-rustflags"]
 name = "chat"
 version = "0.0.1"
 edition = "2021"
+rust-version = "1.69.0"
 
 [workspace]
 
