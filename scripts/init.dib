@@ -9,7 +9,11 @@
 
 #!pwsh
 
-rustup +nightly component add clippy rust-src rustfmt
+# rustup +nightly component add clippy rust-src rustfmt
+
+#!pwsh
+
+# rustup +nightly target add wasm32-unknown-unknown
 
 #!pwsh
 

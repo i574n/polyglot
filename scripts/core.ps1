@@ -1,29 +1,55 @@
+function Invoke-Linux {
+    param (
+        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock,
+        $Distro = "nixos"
+    )
+    if ($IsWindows) {
+        Invoke-Expression "wsl -d $Distro $($ScriptBlock.ToString().Trim())"
+    } else {
+        & @ScriptBlock
+    }
+}
+
 function Invoke-Block {
     param (
         [string] $OnError = $ErrorActionPreference,
         [Hashtable] $EnvironmentVariables,
+        [switch]$Linux = $false,
         [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
     )
-    $originalEnvironmentVariables = @{}
-    if ($EnvironmentVariables) {
-        foreach ($var in $EnvironmentVariables.Keys) {
-            if (Test-Path "Env:$var") {
-                $originalEnvironmentVariables[$var] = (Get-Item "Env:$var").Value
-            }
-            Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
+    if ($Linux) {
+        $envVars = ""
+        if ($EnvironmentVariables) {
+            $envVars = $EnvironmentVariables.Keys | ForEach-Object { "$_=$($EnvironmentVariables[$_])" } | ForEach-Object { "$_ " }
         }
-    }
 
-    & @ScriptBlock
+        Invoke-Expression "Invoke-Linux { $envVars $ScriptBlock }"
 
-    $exitcode = $lastexitcode
+        $exitcode = $lastexitcode
+    } else {
+        $originalEnvironmentVariables = @{}
+        if ($EnvironmentVariables) {
+            foreach ($var in $EnvironmentVariables.Keys) {
+                if (Test-Path "Env:$var") {
+                    $originalEnvironmentVariables[$var] = (Get-Item "Env:$var").Value
+                }
+                Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
+            }
+        }
 
-    if ($EnvironmentVariables) {
-        foreach ($var in $EnvironmentVariables.Keys) {
-            if ($null -eq $originalEnvironmentVariables[$var]) {
-                Remove-Item "Env:$var"
-            } else {
-                Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
+        & @ScriptBlock
+
+        $exitcode = $lastexitcode
+
+        if ($EnvironmentVariables) {
+            foreach ($var in $EnvironmentVariables.Keys) {
+                if ($null -eq $originalEnvironmentVariables[$var]) {
+                    if (Test-Path "Env:$var") {
+                        Remove-Item "Env:$var"
+                    }
+                } else {
+                    Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
+                }
             }
         }
     }

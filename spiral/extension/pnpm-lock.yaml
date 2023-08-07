@@ -9,8 +9,8 @@ devDependencies:
     specifier: ~1.37.0-alpha-jul-9-2023
     version: 1.37.0-alpha-jul-9-2023
   '@types/chrome':
-    specifier: ~0.0.242
-    version: 0.0.242
+    specifier: ~0.0.243
+    version: 0.0.243
   npm-check-updates:
     specifier: ~16.10
     version: 16.10.0
@@ -199,8 +199,8 @@ packages:
       minimatch: 9.0.1
     dev: true
 
-  /@types/chrome@0.0.242:
-    resolution: {integrity: sha512-SeMXBSfcAGX9ezTz7Pro7n/AiNdIH3cetkdbM+Kfg3zD24jmbnm0IAEIxzx8ccqrnJenLCfD7fR+4WIYAbeQHw==}
+  /@types/chrome@0.0.243:
+    resolution: {integrity: sha512-4PHv0kxxxpZFHWPBiJJ9TWH8kbx0567j1b2djnhpJjpiSGNI7UKkz7dSEECBtQ0B3N5nQTMwSB/5IopkWGAbEA==}
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.11

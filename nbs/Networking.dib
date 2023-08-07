@@ -48,7 +48,7 @@ let inline testPortOpen port = async {
 //// test
 
 testPortOpen 65536
-|> Async.runWithTimeout 60
+|> Async.runWithTimeout 120
 |> _equal (Some false)
 
 #!fsharp
@@ -67,7 +67,7 @@ let inline testPortOpenTimeout timeout port = async {
 
 //// test
 
-testPortOpenTimeout 60 65535
+testPortOpenTimeout 120 65535
 |> Async.RunSynchronously
 |> _equal false
 
