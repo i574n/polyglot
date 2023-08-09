@@ -9,11 +9,11 @@ $ErrorActionPreference = "Stop"
 if (!(Search-Command "rustup")) {
     if ($IsWindows) {
         $rustupExePath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup-init.exe"
-        Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile $rustupExePath
+        Invoke-WebRequest -Uri "https://win.rustup.rs/x86_64" -OutFile $rustupExePath -ErrorAction Stop
         Start-Process -FilePath $rustupExePath -Wait
     } else {
         $rustupScriptPath = Join-Path -Path ([System.IO.Path]::GetTempPath()) -ChildPath "rustup.sh"
-        Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath
+        Invoke-WebRequest -Uri "https://sh.rustup.rs" -OutFile $rustupScriptPath -ErrorAction Stop
         /bin/sh $rustupScriptPath -y
         $env:PATH = "~/.cargo/bin:$env:PATH"
     }

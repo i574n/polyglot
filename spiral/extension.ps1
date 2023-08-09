@@ -37,13 +37,7 @@ if (Test-Path $extensionsPathHome) {
     $extensionsPath += $extensionsPathHome
 }
 
-if ($IsLinux) {
-    if ($extensionsPath.Length -eq 0) {
-        $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
-        code-server --install-extension $vsixPath
-        $extensionsPath += "$HOME/.local/share/code-server/extensions"
-    }
-} else {
+if ($IsWindows -and $env:scoop) {
     $extensionsPathScoop = "$env:scoop/persist/vscode/data/extensions"
     if (Test-Path $extensionsPathScoop) {
         $extensionsPath += $extensionsPathScoop

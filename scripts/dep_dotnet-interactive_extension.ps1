@@ -30,7 +30,7 @@ if (Test-Path $extensionsPathHome) {
 }
 
 if ($IsLinux) {
-    $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -UseBasicParsing -ErrorAction Stop).Content | sh
+    $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -ErrorAction Stop).Content | sh
     code-server --install-extension $vsixPath
     $extensionsPath += "$HOME/.local/share/code-server/extensions"
 } else {
