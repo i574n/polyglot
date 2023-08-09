@@ -6,25 +6,6 @@ $ErrorActionPreference = "Stop"
 . ../scripts/core.ps1
 
 
-$spiralPath = "../deps/The-Spiral-Language"
-
-$extensionSrcPath = "$spiralPath/VS Code Plugin"
-
-$json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
-$vsixName = $json.name + "-" + $json.version + ".vsix"
-$vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
-
-Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction SilentlyContinue
-
-Copy-Item -Recurse -Force "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
-
-Set-Location $extensionSrcPath
-npm install
-npx tsc --build
-npx @vscode/vsce package
-Set-Location $ScriptDir
-
-
 $extensionsPath = @()
 
 $extensionsPathHome = "$HOME/.vscode/extensions"
@@ -47,6 +28,27 @@ if ($IsWindows -and $env:scoop) {
         $extensionsPath += $extensionsPathScoop
     }
 }
+
+$spiralPath = "../deps/The-Spiral-Language"
+
+$extensionSrcPath = "$spiralPath/VS Code Plugin"
+
+$json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
+$vsixName = $json.name + "-" + $json.version + ".vsix"
+$vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
+
+Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction SilentlyContinue
+
+Copy-Item -Recurse -Force "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
+
+Set-Location $extensionSrcPath
+npm install
+npx tsc --build
+npx @vscode/vsce package
+Set-Location $ScriptDir
+
+$Error | Format-List -Force
+Write-Output "LASTEXITCODE: $LASTEXITCODE"
 
 foreach ($extensionsPath in $extensionsPath) {
     $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
