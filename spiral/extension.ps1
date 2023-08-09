@@ -38,7 +38,7 @@ if ($extensionsPath.Count -gt 0) {
     $vsixName = $json.name + "-" + $json.version + ".vsix"
     $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
-    Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction Ignore
 
     Copy-Item -Recurse -Force "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
 
@@ -49,15 +49,12 @@ if ($extensionsPath.Count -gt 0) {
     Set-Location $ScriptDir
 }
 
-$Error | Format-List -Force
-Write-Output "LASTEXITCODE: $LASTEXITCODE"
-
 foreach ($extensionsPath in $extensionsPath) {
     $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
     Write-Output "Copying extension to $extensionPath"
 
-    Remove-Item $extensionPath -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item $extensionPath -Recurse -Force -ErrorAction Ignore
 
     Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {

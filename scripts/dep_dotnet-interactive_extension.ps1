@@ -29,11 +29,7 @@ if (Test-Path $extensionsPathHome) {
     $extensionsPath += $extensionsPathHome
 }
 
-if ($IsLinux) {
-    $(Invoke-WebRequest -Uri "https://code-server.dev/install.sh" -ErrorAction Stop).Content | sh
-    code-server --install-extension $vsixPath
-    $extensionsPath += "$HOME/.local/share/code-server/extensions"
-} else {
+if ($IsWindows -and $env:scoop) {
     $extensionsPathScoop = "$env:scoop/persist/vscode/data/extensions"
     if (Test-Path $extensionsPathScoop) {
         $extensionsPath += $extensionsPathScoop
@@ -58,7 +54,7 @@ foreach ($extensionsPath in $extensionsPath) {
 
     $currentJson = Get-Content (Join-Path -Path $extensionPath -ChildPath "package.json") | ConvertFrom-Json
 
-    Remove-Item $extensionPath -Recurse -Force -ErrorAction SilentlyContinue
+    Remove-Item $extensionPath -Recurse -Force -ErrorAction Ignore
 
     Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
@@ -74,7 +70,7 @@ foreach ($extensionsPath in $extensionsPath) {
             New-Item -Path $destPath -Force | Out-Null
         }
 
-        Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction SilentlyContinue
+        Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction Ignore
     }
 
     Remove-Item "$extensionPath/dist" -Recurse -Force

@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 . ./core.ps1
 
 
-Remove-Item ../dist -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item ../dist -Recurse -Force -ErrorAction Ignore
 
 rsync -av `
     --exclude '.elixir_ls' `
