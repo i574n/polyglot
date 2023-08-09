@@ -1,6 +1,6 @@
 import { item, unfold, cache } from "./fable_modules/fable-library-ts/Seq.js";
 import { int32 } from "./fable_modules/fable-library-ts/Int32.js";
-import { value as value_1, Option } from "./fable_modules/fable-library-ts/Option.js";
+import { defaultArg, value as value_1, Option } from "./fable_modules/fable-library-ts/Option.js";
 import { toConsole } from "./fable_modules/fable-library-ts/String.js";
 import { ofArray, empty, initialize, cons, length, tail, head, isEmpty, FSharpList } from "./fable_modules/fable-library-ts/List.js";
 import { nonSeeded } from "./fable_modules/fable-library-ts/Random.js";
@@ -172,7 +172,7 @@ export function progressiveRoll(log: boolean, reroll: boolean, max: int32): int3
 
 (function (args: string[]): int32 {
     const result: Option<int32> = fixedRoll(true, 2000, ofArray([1, 5, 4, 4, 5]));
-    trace(TraceLevel_Debug(), (): string => (`main / result: ${result}`), (): string => "");
+    trace(TraceLevel_Debug(), (): string => (`main / result: ${defaultArg(result, -1)}`), (): string => "");
     return 0;
 })(typeof process === 'object' ? process.argv.slice(2) : []);
 

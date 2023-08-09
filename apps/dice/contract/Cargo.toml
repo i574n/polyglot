@@ -1,0 +1,27 @@
+cargo-features = ["profile-rustflags"]
+
+[package]
+name = "dice_contract"
+version = "0.0.1"
+edition = "2021"
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+near-sdk = "~4.1"
+dice = { package = "dice", path = "..", default-features = false, features = ["chain"] }
+
+[features]
+chain = []
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+rustflags = ["-C", "link-arg=-s"]

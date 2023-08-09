@@ -18,7 +18,7 @@
 #r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
 #r @"../../../../../../../.nuget/packages/asyncio/0.1.69/lib/netstandard2.0/AsyncIO.dll"
-#r @"../../../../../../../.nuget/packages/netmq/4.0.1.12/lib/netstandard2.1/NetMQ.dll"
+#r @"../../../../../../../.nuget/packages/netmq/4.0.1.13/lib/netstandard2.1/NetMQ.dll"
 
 #!fsharp
 

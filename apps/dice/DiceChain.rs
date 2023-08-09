@@ -180,7 +180,7 @@ pub mod Polyglot {
             }
         }
         pub fn rollD6() -> i32 {
-            rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)
+            1
         }
         pub fn progressiveRoll(log: bool, reroll: bool, max: i32) -> i32 {
             let power: i32 = Polyglot::Dice::numDices(log, max) - 1_i32;
@@ -268,7 +268,7 @@ pub mod Polyglot {
         }
     }
 }
-#[path = "../../nbs/Common.rs"]
+#[path = "../../nbs/CommonChain.rs"]
 mod module_394e13d8;
 pub use module_394e13d8::*;
 pub fn main() {

@@ -2,6 +2,7 @@ import sys
 from typing import (Tuple, Optional, Any, Callable)
 from nbs.common import (trace, TraceLevel)
 from fable_modules.fable_library.list import (FSharpList, is_empty, head, tail, length, cons, initialize, empty, of_array)
+from fable_modules.fable_library.option import default_arg
 from fable_modules.fable_library.seq import (cache, unfold, item)
 from fable_modules.fable_library.string_ import to_console
 from fable_modules.fable_library.types import Array
@@ -165,7 +166,7 @@ def progressive_roll(log: bool, reroll: bool, max: int) -> int:
 def main(args: Array[str]) -> int:
     result: Optional[int] = fixed_roll(True, 2000, of_array([1, 5, 4, 4, 5]))
     def _arrow5(__unit: None=None, args: Any=args) -> str:
-        return ("main / result: " + str(result)) + ""
+        return ("main / result: " + str(default_arg(result, -1))) + ""
 
     def _arrow6(__unit: None=None, args: Any=args) -> str:
         return ""

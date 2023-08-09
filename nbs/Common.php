@@ -1,8 +1,11 @@
 <?php
 namespace Polyglot\Common;
 
+require_once(__FABLE_LIBRARY__.'/BigInt.php');
+require_once(__FABLE_LIBRARY__.'/Date.php');
 require_once(__FABLE_LIBRARY__.'/FSharp.Core.php');
 require_once(__FABLE_LIBRARY__.'/String.php');
+require_once(__FABLE_LIBRARY__.'/TimeSpan.php');
 require_once(__FABLE_LIBRARY__.'/Util.php');
 
 use \FSharpUnion;
@@ -120,8 +123,15 @@ function replStart($unitVar) {
 function trace($level, $fn, $getLocals) {
     if ($GLOBALS['traceEnabled'] ? \Util\compare($level, $GLOBALS['traceLevel']) >= 0 : false) {
         $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
-        $trimChars = [ ' ', '/' ];
-        $arg = \String\trimEnd(NULL, $trimChars);
+        $trimChars_2 = [ ' ', '/' ];
+        $arg_2 = \String\trimEnd(\String\trimStart(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ (function ($matchValue) {         if (is_null($matchValue)) {
+            return \Date\now();
+        } else {
+            $replStart_1 = $matchValue;
+            $t = \TimeSpan\fromTicks(\BigInt\toInt64(\BigInt\op_Subtraction(\Date\getTicks(\Date\now()), $replStart_1)));
+            return \Date\create(1, 1, 1, $t->\TimeSpan\hours(), $t->\TimeSpan\minutes(), $t->\TimeSpan\seconds(), $t->\TimeSpan\milliseconds(), $t->\TimeSpan\microseconds());
+        }
+ })(replStart(NULL))->\Date\toString('HH:mm:ss'), $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ])), [  ]), $trimChars_2);
         return $console->log;
     } else {
         return NULL;

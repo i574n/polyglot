@@ -5,6 +5,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
+. ../../scripts/chain.ps1
 
 
 if (!$fast) {
@@ -43,4 +44,24 @@ if (!$fast) {
     Copy-Item -Force target/dart/Dice.dart Dice.dart
 }
 
+{ dotnet fable target/Dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define CHAIN } | Invoke-Block
+
+Copy-Item -Force target/rs/nbs/Common.rs ../../nbs/CommonChain.rs
+
+(Get-Content target/rs/Dice.rs) `
+    -replace "../../../nbs", "../../nbs" `
+    -replace "/Common.rs", "/CommonChain.rs" `
+    | Set-Content DiceChain.rs
+
 cargo fmt --
+
+if (!$fast) {
+    { cargo run --release } | Invoke-Block
+}
+
+{ cargo build --release --target wasm32-unknown-unknown --manifest-path contract/Cargo.toml --features chain } | Invoke-Block
+Copy-Item -Force contract/target/wasm32-unknown-unknown/release/dice_contract.wasm contract/res/dice.wasm
+
+$nearSandboxExe = DownloadNearSandbox
+
+{ cargo run --release --manifest-path tests/Cargo.toml } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }

@@ -6,9 +6,16 @@ edition = "2021"
 [workspace]
 
 [dependencies]
-fable_library_rust = { path = "target/rs/fable_modules/fable-library-rust" }
-rand = "~0.8"
+fable_library_rust = { path = "target/rs/fable_modules/fable-library-rust", optional = true, default-features = false, features = [] }
+rand = { version = "~0.8", optional = true }
+
+[features]
+chain = ["dep:fable_library_rust"]
+default = ["fable_library_rust/default", "dep:rand"]
 
 [[bin]]
 name = "dice"
-path = "./Dice.rs"
+path = "Dice.rs"
+
+[lib]
+path = "DiceChain.rs"

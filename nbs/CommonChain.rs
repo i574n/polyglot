@@ -2,7 +2,6 @@ pub mod Polyglot {
     use super::*;
     pub mod Common {
         use super::*;
-        use fable_library_rust::DateTime_::DateTime;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
         use fable_library_rust::NativeArray_::Array;
@@ -15,7 +14,6 @@ pub mod Polyglot {
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::trimEndChars;
         use fable_library_rust::String_::trimStartChars;
-        use fable_library_rust::TimeSpan_::TimeSpan;
         pub fn nl() -> string {
             static nl: MutCell<Option<string>> = MutCell::new(None);
             nl.get_or_init(|| string("\n"))
@@ -70,42 +68,13 @@ pub mod Polyglot {
             } {
                 Polyglot::Common::traceCount().set(Polyglot::Common::traceCount().get() + 1_i32);
                 {
-                    let arg_2: string = {
+                    let arg: string = {
                         let trimChars_2: Array<char> = new_array(&[' ', '/']);
                         trimEndChars(
                             trimStartChars(
                                 sprintf!(
                                     "{} #{} [{:?}] {} / {}",
-                                    &{
-                                        let dateTime: DateTime = {
-                                            let matchValue: Option<i64> =
-                                                Polyglot::Common::replStart();
-                                            match &matchValue {
-                                                None => DateTime::now(),
-                                                Some(matchValue_0_0) => {
-                                                    let replStart_1: i64 = matchValue_0_0.clone();
-                                                    let t: TimeSpan = TimeSpan::new_ticks(
-                                                        {
-                                                            let copyOfStruct: DateTime =
-                                                                DateTime::now();
-                                                            copyOfStruct.ticks()
-                                                        } - replStart_1,
-                                                    );
-                                                    DateTime::new_ymdhms_micro(
-                                                        1_i32,
-                                                        1_i32,
-                                                        1_i32,
-                                                        t.hours(),
-                                                        t.minutes(),
-                                                        t.seconds(),
-                                                        t.milliseconds(),
-                                                        t.microseconds(),
-                                                    )
-                                                }
-                                            }
-                                        };
-                                        dateTime.toString(string("hh:mm:ss"))
-                                    },
+                                    &string(""),
                                     &Polyglot::Common::traceCount().get(),
                                     &level,
                                     &r#fn(),
@@ -116,7 +85,7 @@ pub mod Polyglot {
                             trimChars_2,
                         )
                     };
-                    println!("{0}", arg_2,)
+                    println!("{0}", arg,)
                 }
             };
         }

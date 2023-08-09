@@ -53,7 +53,11 @@ module Dice =
 
 #if FABLE_COMPILER_RUST
     let rollD6 () : int =
+#if CHAIN
+        Fable.Core.Rust.emitExpr () "1"
+#else
         Fable.Core.Rust.emitExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
+#endif
 #else
     let private random = System.Random ()
     let rollD6 () =
@@ -80,5 +84,5 @@ module Dice =
     [<EntryPoint>]
     let main args =
         let result = fixedRoll true 2000 [1; 5; 4; 4; 5]
-        trace Debug (fun () -> $"main / result: {result}") getLocals
+        trace Debug (fun () -> $"main / result: {result |> Option.defaultValue -1}") getLocals
         0

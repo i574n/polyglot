@@ -3,9 +3,10 @@ import { union_type, TypeInfo } from "../fable_modules/fable-library-ts/Reflecti
 import { compare, createAtom } from "../fable_modules/fable-library-ts/Util.js";
 import { int32 } from "../fable_modules/fable-library-ts/Int32.js";
 import { value, Option } from "../fable_modules/fable-library-ts/Option.js";
-import { trimEnd } from "../fable_modules/fable-library-ts/String.js";
-import { create, op_Subtraction, now, toString } from "../fable_modules/fable-library-ts/Date.js";
-import { microseconds, milliseconds, seconds, minutes, hours } from "../fable_modules/fable-library-ts/TimeSpan.js";
+import { op_Subtraction, toInt64, int64 } from "../fable_modules/fable-library-ts/BigInt.js";
+import { interpolate, toText, trimStart, trimEnd } from "../fable_modules/fable-library-ts/String.js";
+import { create, getTicks, now, toString } from "../fable_modules/fable-library-ts/Date.js";
+import { microseconds, milliseconds, seconds, minutes, hours, fromTicks } from "../fable_modules/fable-library-ts/TimeSpan.js";
 
 export const nl = "\n";
 
@@ -65,18 +66,18 @@ export let traceCount = createAtom<int32>(0);
 
 export let traceLevel = createAtom<TraceLevel_$union>(TraceLevel_Verbose());
 
-function replStart(): Option<Date> {
+function replStart(): Option<int64> {
     return void 0;
 }
 
 export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (() => string)): void {
-    let matchValue: Option<Date>, dateTime: Date, t: number;
+    let matchValue: Option<int64>, replStart_1: int64, t: number;
     if (traceEnabled() && (compare(level, traceLevel()) >= 0)) {
         traceCount(traceCount() + 1);
-        let arg: string;
-        const trimChars: string[] = [" ", "/"];
-        arg = trimEnd(`${toString((matchValue = replStart(), (matchValue == null) ? now() : ((dateTime = value(matchValue), (t = op_Subtraction(now(), dateTime), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t)))))), "HH:mm:ss")} #${traceCount()} [${level}] ${fn()} / ${getLocals()}`, ...trimChars);
-        console.log(arg);
+        let arg_2: string;
+        const trimChars_2: string[] = [" ", "/"];
+        arg_2 = trimEnd(trimStart(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [toString((matchValue = replStart(), (matchValue == null) ? now() : ((replStart_1 = value(matchValue), (t = fromTicks(toInt64(op_Subtraction(getTicks(now()), replStart_1))), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t)))))), "HH:mm:ss"), traceCount(), level, fn(), getLocals()]))), ...trimChars_2);
+        console.log(arg_2);
     }
 }
 

@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
 import './nbs/Common.dart' as common;
 import './fable_modules/fable_library/List.dart' as list;
+import './fable_modules/fable_library/Option.dart' as option_1;
 import './fable_modules/fable_library/Random.dart' as random_1;
 import './fable_modules/fable_library/Seq.dart' as seq;
 import './fable_modules/fable_library/String.dart' as string;
@@ -139,7 +140,7 @@ int progressiveRoll(bool log, bool reroll, int max) {
 
 int main(List<String> args) {
     final types.Some<int>? result = fixedRoll(true, 2000, list.ofArray(const [1, 5, 4, 4, 5]));
-    common.trace(const common.TraceLevel(/* Debug */ 1), () => 'main / result: $result', () => '');
+    common.trace(const common.TraceLevel(/* Debug */ 1), () => 'main / result: ${option_1.defaultValue(-1, result)}', () => '');
     return 0;
 }
 
