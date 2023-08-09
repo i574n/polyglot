@@ -5,7 +5,7 @@
     "outdated-pre": "npm-check-updates --target greatest"
   },
   "devDependencies": {
-    "@playwright/test": "1.37.0-alpha-aug-8-2023",
+    "@playwright/test": "1.37.0-alpha-jul-9-2023",
     "@types/chrome": "~0.0.243",
     "npm-check-updates": "~16.10"
   }
