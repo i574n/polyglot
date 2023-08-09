@@ -16,6 +16,8 @@ function Invoke-Block {
         [switch]$Linux = $false,
         [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
     )
+    $Error.Clear()
+
     if ($Linux -and $IsWindows) {
         $envVars = ""
         if ($EnvironmentVariables) {
@@ -53,15 +55,15 @@ function Invoke-Block {
         }
     }
 
-    if ($exitcode -ne 0) {
-        $msg = "# Invoke-Block / `$exitcode: $exitcode / `$OnError: $OnError / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
+    if ($exitcode -ne 0 -or $Error.Count -gt 0) {
+        $msg = "# Invoke-Block / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
 
         if ($OnError -eq "Stop") {
             if ($host.Name -match "Interactive") {
                 [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
             } else {
                 Write-Output $msg
-                exit $exitcode
+                exit ($exitcode, $Error.Count | Measure-Object -Maximum).Maximum
             }
         }
     }

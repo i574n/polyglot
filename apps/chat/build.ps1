@@ -18,9 +18,25 @@ if (!(Test-Path $nearSandboxExe)) {
     } else {
         "https://bafybeictjqjc3sbppcslzezn64h7acnrmt3oskdyjxgcrawlu6pujvin3i.ipfs.dweb.link"
     }
-    Invoke-WebRequest $url -OutFile $nearSandboxZip
 
-    { Expand-Archive -Force $nearSandboxZip "tests/target" } | Invoke-Block
+    $retryCount = 0
+    while ($retryCount -lt 3) {
+        $Error.Clear()
+
+        Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction Stop
+        Expand-Archive -Force $nearSandboxZip "tests/target" -ErrorAction Stop
+
+        if ($Error.Count -eq 0) {
+            break
+        }
+
+        $retryCount++
+        Write-Output "Retrying download of $url"
+    }
+    if ($Error.Count -gt 0) {
+        throw "Failed to download $url"
+    }
+
     { chmod +x $nearSandboxExe } | Invoke-Block -Linux
 }
 

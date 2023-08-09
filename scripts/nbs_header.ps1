@@ -6,3 +6,5 @@ $ScriptDir =
             [Environment]::CurrentDirectory
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
+
+$ProgressPreference = "SilentlyContinue"
