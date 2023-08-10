@@ -31,9 +31,10 @@ impl State {
     }
 
     pub fn claim_alias(&mut self, alias: String) {
+        let account_id = env::signer_account_id();
         let timestamp = env::block_timestamp();
 
-        log!(format!("claim_alias / alias: {alias:#?} / timestamp: {timestamp:#?}"));
+        log!(format!("claim_alias / alias: {alias:#?} / account_id: {account_id:#?} / timestamp: {timestamp:#?}"));
 
         if !Self::is_valid_alias(&alias) {
             env::panic_str("Invalid alias");

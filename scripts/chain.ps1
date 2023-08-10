@@ -24,17 +24,17 @@ function DownloadNearSandbox {
             $Error.Clear()
 
             Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction Stop
-            Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction Stop
+            Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
 
             if ($Error.Count -eq 0) {
                 break
             }
 
             $retryCount++
-            Write-Output "Retrying download of $url"
+            Write-Output "Retrying download of $url ($Error)"
         }
         if ($Error.Count -gt 0) {
-            throw "Failed to download $url"
+            throw "Failed to download $url ($Error)"
         }
 
         { chmod +x $path } | Invoke-Block -Linux
