@@ -1,7 +1,7 @@
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
+use near_sdk::store::UnorderedMap;
 use near_sdk::{env, log, near_bindgen, AccountId, PanicOnDefault};
 use std::collections::HashMap;
-use near_sdk::store::UnorderedMap;
 
 #[near_bindgen]
 #[derive(PanicOnDefault, BorshDeserialize, BorshSerialize)]
@@ -30,12 +30,10 @@ impl State {
             && alias.chars().all(|c| c.is_alphanumeric() || c == '-')
     }
 
-    #[payable]
     pub fn claim_alias(&mut self, alias: String) {
-        let account_id = env::signer_account_id();
         let timestamp = env::block_timestamp();
 
-        log!(format!("claim_alias / alias: {alias:#?} / account_id: {account_id:#?} / timestamp: {timestamp:#?}"));
+        log!(format!("claim_alias / alias: {alias:#?} / timestamp: {timestamp:#?}"));
 
         if !Self::is_valid_alias(&alias) {
             env::panic_str("Invalid alias");
@@ -79,22 +77,6 @@ impl State {
         self.alias_map.insert(alias, new_alias_account_map);
     }
 
-    pub fn get_env_data() -> (u64, u64) {
-        let block_timestamp = env::block_timestamp();
-        let epoch_height = env::epoch_height();
-
-        let storage_usage = env::storage_usage();
-
-        log!(format!("get_env_data / block_timestamp: {block_timestamp:#?} / epoch_height: {epoch_height:#?} // storage_usage: {storage_usage:#?}"));
-
-        (block_timestamp, epoch_height)
-    }
-
-    #[result_serializer(borsh)]
-    pub fn get_env_data_borsh() -> (u64, u64) {
-        Self::get_env_data()
-    }
-
     pub fn get_account_info(&self, account_id: AccountId) -> Option<(String, (u64, u32))> {
         log!(format!("get_account_info / account_id: {account_id:#?}"));
 
@@ -103,14 +85,6 @@ impl State {
                 .get(alias)
                 .map(|accounts| (alias.clone(), *accounts.get(&account_id).unwrap()))
         })
-    }
-
-    #[result_serializer(borsh)]
-    pub fn get_account_info_borsh(
-        &self,
-        #[serializer(borsh)] account_id: AccountId,
-    ) -> Option<(String, (u64, u32))> {
-        self.get_account_info(account_id)
     }
 
     pub fn get_alias_map(&self, alias: String) -> Option<HashMap<AccountId, (u64, u32)>> {

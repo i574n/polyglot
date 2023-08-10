@@ -1,3 +1,4 @@
+use borsh::BorshSerialize;
 use serde_json::json;
 
 // const GAS_PRICE_IN_NEAR: f64 = 0.0001;
@@ -46,27 +47,47 @@ async fn main() -> anyhow::Result<()> {
     println!("\n\nnew: {result:#?}");
     print_usd(result);
 
-    // get_env_data(contract)
-    let result: (u64, u64) = contract.view("get_env_data").await?.json()?;
-    println!("\n\nget_env_data(contract): {result:#?}");
-
-    // fixed_roll(contract, '')
+    // roll_within_bounds(contract, '')
     let result = contract
-        .call("fixed_roll")
+        .call("roll_within_bounds")
         .args_json(json!({
             "max": 2000,
             "rolls": [1_i32, 5_i32, 4_i32, 4_i32, 5_i32]
         }))
         .transact()
         .await?;
-    println!("\n\nfixed_roll(contract, ''): {result:#?}");
+    println!("\n\nroll_within_bounds(contract, ''): {result:#?}");
     print_usd(result.clone());
     match result.into_result() {
         Ok(result) => {
             assert_eq!(result.json().ok(), Some(995_i32));
         }
-        Err(err) => {
-            panic!("Expected Some(result). {err:#?}");
+        Err(_) => {
+            panic!("Expected Some(ExecutionResult<Value>)");
+        }
+    }
+
+    // roll_within_bounds_borsh(contract, '')
+    let result = contract
+        .call("roll_within_bounds_borsh")
+        .args((|| {
+            let mut args = Vec::new();
+            2000_i32.serialize(&mut args).unwrap();
+            vec![2, 2, 6, 4, 5].serialize(&mut args).unwrap();
+            args
+        })())
+        .transact()
+        .await?;
+    println!("\n\nroll_within_bounds_borsh(contract, ''): {result:#?}");
+    print_usd(result.clone());
+    match result.into_result() {
+        Ok(result) => {
+            let n = result.borsh::<Option<i32>>().ok();
+            println!("n: {n:#?}");
+            assert_eq!(n, Some(Some(1715_i32)));
+        }
+        Err(_) => {
+            panic!("Expected Some(ExecutionResult<Value>)");
         }
     }
 
@@ -81,13 +102,16 @@ async fn main() -> anyhow::Result<()> {
     println!("\n\ngenerate_random_number(contract, ''): {result:#?}");
     print_usd(result.clone());
     match result.into_result() {
-        Ok(result) => {
-            let r: Option<u64> = result.json().ok();
-            println!("r: {r:#?}");
-            // assert_eq!(r, Some(995_i32));
-        }
-        Err(err) => {
-            panic!("Expected Some(result). {err:#?}");
+        Ok(result) => match result.json::<u64>().ok() {
+            Some(n) => {
+                println!("n: {n:#?}");
+            }
+            None => {
+                panic!("Expected Some(u64)");
+            }
+        },
+        Err(_) => {
+            panic!("Expected Some(ExecutionResult<Value>)");
         }
     }
 

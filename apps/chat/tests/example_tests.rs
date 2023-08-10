@@ -48,10 +48,6 @@ async fn main() -> anyhow::Result<()> {
     println!("\n\nnew: {result:#?}");
     print_usd(result);
 
-    // get_env_data(contract)
-    let result: (u64, u64) = contract.view("get_env_data").await?.json()?;
-    println!("\n\nget_env_data(contract): {result:#?}");
-
     // claim_alias(contract, '')
     let result = contract
         .call("claim_alias")
@@ -136,13 +132,6 @@ async fn main() -> anyhow::Result<()> {
     let account2 = worker.dev_create_account().await?;
     println!("\n\ndev_create_account(account2): {account2:#?}");
 
-    // get_env_data_borsh(account1)
-    let result: (u64, u64) = account1
-        .view(contract_id, "get_env_data_borsh")
-        .await?
-        .borsh()?;
-    println!("\n\nget_env_data_borsh(account1): {result:#?}");
-
     // claim_alias(account2, alias2)
     let result = account2
         .call(contract_id, "claim_alias")
@@ -154,13 +143,15 @@ async fn main() -> anyhow::Result<()> {
     println!("\n\nclaim_alias(alias2): {result:#?}");
     print_usd(result);
 
-    // get_account_info_borsh(account2)
+    // get_account_info(account2)
     let result: Option<(String, (u64, u32))> = account2
-        .view(contract_id, "get_account_info_borsh")
-        .args_borsh(account2.id())
+        .view(contract_id, "get_account_info")
+        .args_json(json!({
+            "account_id": account2.id(),
+        }))
         .await?
-        .borsh()?;
-    println!("\n\nget_account_info_borsh(account2): {result:#?}");
+        .json()?;
+    println!("\n\nget_account_info(account2): {result:#?}");
     match result {
         Some((alias, (_, index))) => {
             assert_eq!(alias, "alias2");
@@ -171,15 +162,13 @@ async fn main() -> anyhow::Result<()> {
         }
     }
 
-    // get_alias_map(alias2)
+    // get_alias_map_borsh(alias2)
     let result: Option<HashMap<AccountId, (u64, u32)>> = account2
-        .view(contract_id, "get_alias_map")
-        .args_json(json!({
-            "alias": "alias2",
-        }))
+        .view(contract_id, "get_alias_map_borsh")
+        .args_borsh("alias2")
         .await?
-        .json()?;
-    println!("\n\nget_alias_map(alias2): {result:#?}");
+        .borsh()?;
+    println!("\n\nget_alias_map_borsh(alias2): {result:#?}");
     match result {
         Some(map) => match map.iter().collect::<Vec<_>>().as_slice() {
             [(account1_id, (_, index1))] => {
@@ -194,10 +183,6 @@ async fn main() -> anyhow::Result<()> {
             panic!("Expected Some(map)");
         }
     }
-
-    // get_env_data(account2)
-    let result: (u64, u64) = account2.view(contract_id, "get_env_data").await?.json()?;
-    println!("\n\nget_env_data(account2): {result:#?}");
 
     // claim_alias(account2, alias1)
     let result = account2
@@ -280,10 +265,6 @@ async fn main() -> anyhow::Result<()> {
         }
     }
 
-    // get_env_data(account1)
-    let result: (u64, u64) = account1.view(contract_id, "get_env_data").await?.json()?;
-    println!("\n\nget_env_data(account1): {result:#?}");
-
     // claim_alias(account1, alias2)
     let result = account1
         .call(contract_id, "claim_alias")
@@ -361,10 +342,6 @@ async fn main() -> anyhow::Result<()> {
             panic!("Expected Some(map)");
         }
     }
-
-    // get_env_data(account1)
-    let result: (u64, u64) = account1.view(contract_id, "get_env_data").await?.json()?;
-    println!("\n\nget_env_data(account1): {result:#?}");
 
     // claim_alias(account1, alias1)
     let result = account1
