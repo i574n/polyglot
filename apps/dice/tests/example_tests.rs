@@ -70,5 +70,26 @@ async fn main() -> anyhow::Result<()> {
         }
     }
 
+    // generate_random_number(contract, '')
+    let result = contract
+        .call("generate_random_number")
+        .args_json(json!({
+            "max": 2000,
+        }))
+        .transact()
+        .await?;
+    println!("\n\ngenerate_random_number(contract, ''): {result:#?}");
+    print_usd(result.clone());
+    match result.into_result() {
+        Ok(result) => {
+            let r: Option<u64> = result.json().ok();
+            println!("r: {r:#?}");
+            // assert_eq!(r, Some(995_i32));
+        }
+        Err(err) => {
+            panic!("Expected Some(result). {err:#?}");
+        }
+    }
+
     Ok(())
 }

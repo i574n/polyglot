@@ -6,7 +6,7 @@ edition = "2021"
 [workspace]
 
 [dependencies]
-fable_library_rust = { path = "target/rs/fable_modules/fable-library-rust", optional = true, default-features = false, features = [] }
+fable_library_rust = { path = "target/rs/fable_modules/fable-library-rust", optional = true, default-features = false }
 rand = { version = "~0.8", optional = true }
 
 [features]

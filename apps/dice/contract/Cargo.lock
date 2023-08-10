@@ -327,6 +327,7 @@ name = "dice_contract"
 version = "0.0.1"
 dependencies = [
  "dice",
+ "fable_library_rust",
  "near-sdk",
 ]
 

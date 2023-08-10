@@ -25,6 +25,7 @@ pub mod Polyglot {
         use fable_library_rust::List_::length;
         use fable_library_rust::List_::ofArray;
         use fable_library_rust::List_::tail;
+        use fable_library_rust::List_::tryItem;
         use fable_library_rust::List_::List;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::Array;
@@ -36,54 +37,74 @@ pub mod Polyglot {
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Option_::defaultValue;
         use fable_library_rust::Option_::getValue;
+        use fable_library_rust::Option_::iterate;
         use fable_library_rust::Seq_::cache;
-        use fable_library_rust::Seq_::item;
+        use fable_library_rust::Seq_::item as item_1;
+        use fable_library_rust::Seq_::map;
         use fable_library_rust::Seq_::unfold;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        pub fn pow6() -> LrcPtr<dyn IEnumerable_1<i32>> {
-            static pow6: MutCell<Option<LrcPtr<dyn IEnumerable_1<i32>>>> = MutCell::new(None);
-            pow6.get_or_init(|| {
+        pub fn sixthPowerSequence() -> LrcPtr<dyn IEnumerable_1<i32>> {
+            static sixthPowerSequence: MutCell<Option<LrcPtr<dyn IEnumerable_1<i32>>>> =
+                MutCell::new(None);
+            sixthPowerSequence.get_or_init(|| {
                 cache(unfold(
                     Func1::new(move |state: i32| Some(LrcPtr::new((state, state * 6_i32)))),
                     1_i32,
                 ))
             })
         }
-        pub fn rollAcc(
-            log: bool,
+        pub fn accumulateDiceRolls(
+            log: Option<Func1<string, ()>>,
             rolls: List<i32>,
             power: i32,
             acc: i32,
         ) -> Option<LrcPtr<(i32, List<i32>)>> {
-            let log: MutCell<bool> = MutCell::new(log);
+            let log = MutCell::new(log.clone());
             let rolls: MutCell<List<i32>> = MutCell::new(rolls.clone());
             let power: MutCell<i32> = MutCell::new(power);
             let acc: MutCell<i32> = MutCell::new(acc);
-            '_rollAcc: loop {
-                break '_rollAcc (if power.get() < 0_i32 {
-                    if log.get() {
-                        println!("rollAcc / power: {} / acc: {}", &power.get(), &acc.get(),);
-                    }
+            '_accumulateDiceRolls: loop {
+                break '_accumulateDiceRolls (if power.get() < 0_i32 {
+                    iterate(
+                        {
+                            let arg: string = sprintf!(
+                                "accumulateDiceRolls / power: {} / acc: {}",
+                                &power.get(),
+                                &acc.get()
+                            );
+                            Func1::new({
+                                let arg = arg.clone();
+                                move |func: Func1<string, ()>| func(arg.clone())
+                            })
+                        },
+                        log.get(),
+                    );
                     Some(LrcPtr::new((acc.get() + 1_i32, rolls.get())))
                 } else {
                     if !isEmpty(rolls.get()) {
                         if head(rolls.get()) > 1_i32 {
                             let rest_1: List<i32> = tail(rolls.get());
                             let roll_1: i32 = head(rolls.get());
-                            let value: i32 =
-                                (roll_1 - 1_i32) * item(power.get(), Polyglot::Dice::pow6());
-                            if log.get() {
-                                println!(
-                                    "rollAcc / power: {} / acc: {} / roll: {} / value: {}",
-                                    &power.get(),
-                                    &acc.get(),
-                                    &roll_1,
-                                    &value,
-                                );
-                            }
+                            let value: i32 = (roll_1 - 1_i32)
+                                * item_1(power.get(), Polyglot::Dice::sixthPowerSequence());
+                            iterate(
+                                {
+                                    let arg_1: string =
+                                                     sprintf!("accumulateDiceRolls / power: {} / acc: {} / roll: {} / value: {}",
+                                                              &power.get(),
+                                                              &acc.get(),
+                                                              &roll_1,
+                                                              &value);
+                                    Func1::new({
+                                        let arg_1 = arg_1.clone();
+                                        move |func_1: Func1<string, ()>| func_1(arg_1.clone())
+                                    })
+                                },
+                                log.get(),
+                            );
                             {
-                                let log_temp: bool = log.get();
+                                let log_temp = log.get();
                                 let rolls_temp: List<i32> = rest_1.clone();
                                 let power_temp: i32 = power.get() - 1_i32;
                                 let acc_temp: i32 = acc.get() + value;
@@ -91,21 +112,28 @@ pub mod Polyglot {
                                 rolls.set(rolls_temp);
                                 power.set(power_temp);
                                 acc.set(acc_temp);
-                                continue '_rollAcc;
+                                continue '_accumulateDiceRolls;
                             }
                         } else {
                             let rest_2: List<i32> = tail(rolls.get());
                             let roll_2: i32 = head(rolls.get());
-                            if log.get() {
-                                println!(
-                                    "rollAcc / power: {} / acc: {} / roll: {}",
-                                    &power.get(),
-                                    &acc.get(),
-                                    &roll_2,
-                                );
-                            }
+                            iterate(
+                                {
+                                    let arg_2: string = sprintf!(
+                                        "accumulateDiceRolls / power: {} / acc: {} / roll: {}",
+                                        &power.get(),
+                                        &acc.get(),
+                                        &roll_2
+                                    );
+                                    Func1::new({
+                                        let arg_2 = arg_2.clone();
+                                        move |func_2: Func1<string, ()>| func_2(arg_2.clone())
+                                    })
+                                },
+                                log.get(),
+                            );
                             {
-                                let log_temp: bool = log.get();
+                                let log_temp = log.get();
                                 let rolls_temp: List<i32> = rest_2.clone();
                                 let power_temp: i32 = power.get() - 1_i32;
                                 let acc_temp: i32 = acc.get();
@@ -113,7 +141,7 @@ pub mod Polyglot {
                                 rolls.set(rolls_temp);
                                 power.set(power_temp);
                                 acc.set(acc_temp);
-                                continue '_rollAcc;
+                                continue '_accumulateDiceRolls;
                             }
                         }
                     } else {
@@ -122,9 +150,17 @@ pub mod Polyglot {
                 });
             }
         }
-        pub fn fixedRoll(log: bool, max: i32, rolls: List<i32>) -> Option<i32> {
-            let matchValue: Option<LrcPtr<(i32, List<i32>)>> =
-                Polyglot::Dice::rollAcc(log, rolls.clone(), length(rolls) - 1_i32, 0_i32);
+        pub fn rollWithinBounds(
+            log: Option<Func1<string, ()>>,
+            max: i32,
+            rolls: List<i32>,
+        ) -> Option<i32> {
+            let matchValue: Option<LrcPtr<(i32, List<i32>)>> = Polyglot::Dice::accumulateDiceRolls(
+                log,
+                rolls.clone(),
+                length(rolls) - 1_i32,
+                0_i32,
+            );
             if matchValue.is_some() {
                 if {
                     let result: i32 = (getValue(matchValue.clone())).0.clone();
@@ -143,65 +179,111 @@ pub mod Polyglot {
                 None::<i32>
             }
         }
-        pub fn numDices(log: bool, max: i32) -> i32 {
-            let numDices_ = Func2::new({
-                let log = log.clone();
-                let max = max.clone();
-                move |n: i32, p: i32| {
-                    let n: MutCell<i32> = MutCell::new(n);
-                    let p: MutCell<i32> = MutCell::new(p);
-                    '_numDices_: loop {
-                        break '_numDices_ ({
-                            if log {
-                                println!(
-                                    "numDices / max: {} / n: {} / p: {}",
-                                    &max,
-                                    &n.get(),
-                                    &p.get(),
-                                );
-                            }
-                            if p.get() >= max {
-                                n.get()
-                            } else {
+        pub fn rotateNumber(max: i32, n: i32) -> i32 {
+            (n - 1_i32 + max) % max + 1_i32
+        }
+        pub fn rotateNumbers(
+            max: i32,
+            items: LrcPtr<dyn IEnumerable_1<i32>>,
+        ) -> LrcPtr<dyn IEnumerable_1<i32>> {
+            map(
+                Func1::new({
+                    let max = max.clone();
+                    move |n: i32| Polyglot::Dice::rotateNumber(max, n)
+                }),
+                items,
+            )
+        }
+        pub fn createSequentialRoller<a: Clone + 'static>(list: List<a>) -> Func0<a> {
+            let currentIndex: LrcPtr<MutCell<i32>> = LrcPtr::new(MutCell::new(0_i32));
+            Func0::new({
+                let currentIndex = currentIndex.clone();
+                let list = list.clone();
+                move || {
+                    let matchValue: Option<a> = tryItem(currentIndex.get(), list.clone());
+                    match &matchValue {
+                        None => panic!("{}", string("createSequentialRoller / End of list"),),
+                        Some(matchValue_0_0) => {
+                            let item: a = matchValue_0_0.clone();
+                            currentIndex.set(currentIndex.get() + 1_i32);
+                            item
+                        }
+                    }
+                }
+            })
+        }
+        pub fn rollProgressively(
+            log: Option<Func1<string, ()>>,
+            roll: Func0<i32>,
+            reroll: bool,
+            max: i32,
+        ) -> i32 {
+            let power: i32 = {
+                let max_1: i32 = max;
+                let r#loop = Func2::new({
+                    let log = log.clone();
+                    let max_1 = max_1.clone();
+                    move |n: i32, p: i32| {
+                        let n: MutCell<i32> = MutCell::new(n);
+                        let p: MutCell<i32> = MutCell::new(p);
+                        '_loop: loop {
+                            break '_loop (if p.get() < max_1 {
                                 let n_temp: i32 = n.get() + 1_i32;
                                 let p_temp: i32 = p.get() * 6_i32;
                                 n.set(n_temp);
                                 p.set(p_temp);
-                                continue '_numDices_;
-                            }
-                        });
+                                continue '_loop;
+                            } else {
+                                iterate(
+                                    {
+                                        let arg: string = sprintf!(
+                                            "calculateDiceCount / max: {} / n: {} / p: {}",
+                                            &max_1,
+                                            &n.get(),
+                                            &p.get()
+                                        );
+                                        Func1::new({
+                                            let arg = arg.clone();
+                                            move |func: Func1<string, ()>| func(arg.clone())
+                                        })
+                                    },
+                                    log.clone(),
+                                );
+                                n.get()
+                            });
+                        }
                     }
+                });
+                if max_1 == 1_i32 {
+                    1_i32
+                } else {
+                    r#loop(0_i32, 1_i32)
                 }
-            });
-            if max == 1_i32 {
-                1_i32
-            } else {
-                numDices_(0_i32, 1_i32)
-            }
-        }
-        pub fn rollD6() -> i32 {
-            1
-        }
-        pub fn progressiveRoll(log: bool, reroll: bool, max: i32) -> i32 {
-            let power: i32 = Polyglot::Dice::numDices(log, max) - 1_i32;
-            let r#loop = Func2::new({
+            } - 1_i32;
+            let loop_1 = Func2::new({
                 let log = log.clone();
                 let max = max.clone();
                 let power = power.clone();
                 let reroll = reroll.clone();
+                let roll = roll.clone();
                 move |rolls: List<i32>, size: i32| {
                     let rolls: MutCell<List<i32>> = MutCell::new(rolls.clone());
                     let size: MutCell<i32> = MutCell::new(size);
-                    '_loop: loop {
-                        break '_loop (if size.get() < power + 1_i32 {
-                            let rolls_temp: List<i32> = cons(Polyglot::Dice::rollD6(), rolls.get());
+                    '_loop_1: loop {
+                        break '_loop_1 (if size.get() < power + 1_i32 {
+                            let rolls_temp: List<i32> = cons(roll(), rolls.get());
                             let size_temp: i32 = size.get() + 1_i32;
                             rolls.set(rolls_temp);
                             size.set(size_temp);
-                            continue '_loop;
+                            continue '_loop_1;
                         } else {
                             let matchValue: Option<LrcPtr<(i32, List<i32>)>> =
-                                Polyglot::Dice::rollAcc(log, rolls.get(), power, 0_i32);
+                                Polyglot::Dice::accumulateDiceRolls(
+                                    log.clone(),
+                                    rolls.get(),
+                                    power,
+                                    0_i32,
+                                );
                             if matchValue.is_some() {
                                 if (getValue(matchValue.clone())).0.clone() <= max {
                                     let result_1: i32 = (getValue(matchValue.clone())).0.clone();
@@ -210,49 +292,61 @@ pub mod Polyglot {
                                     if reroll {
                                         let rolls_temp: List<i32> = initialize(
                                             power,
-                                            Func1::new(move |_arg: i32| Polyglot::Dice::rollD6()),
+                                            Func1::new({
+                                                let roll = roll.clone();
+                                                move |_arg: i32| roll()
+                                            }),
                                         );
                                         let size_temp: i32 = power;
                                         rolls.set(rolls_temp);
                                         size.set(size_temp);
-                                        continue '_loop;
+                                        continue '_loop_1;
                                     } else {
-                                        let rolls_temp: List<i32> =
-                                            cons(Polyglot::Dice::rollD6(), rolls.get());
+                                        let rolls_temp: List<i32> = cons(roll(), rolls.get());
                                         let size_temp: i32 = size.get() + 1_i32;
                                         rolls.set(rolls_temp);
                                         size.set(size_temp);
-                                        continue '_loop;
+                                        continue '_loop_1;
                                     }
                                 }
                             } else {
                                 if reroll {
                                     let rolls_temp: List<i32> = initialize(
                                         power,
-                                        Func1::new(move |_arg: i32| Polyglot::Dice::rollD6()),
+                                        Func1::new({
+                                            let roll = roll.clone();
+                                            move |_arg: i32| roll()
+                                        }),
                                     );
                                     let size_temp: i32 = power;
                                     rolls.set(rolls_temp);
                                     size.set(size_temp);
-                                    continue '_loop;
+                                    continue '_loop_1;
                                 } else {
-                                    let rolls_temp: List<i32> =
-                                        cons(Polyglot::Dice::rollD6(), rolls.get());
+                                    let rolls_temp: List<i32> = cons(roll(), rolls.get());
                                     let size_temp: i32 = size.get() + 1_i32;
                                     rolls.set(rolls_temp);
                                     size.set(size_temp);
-                                    continue '_loop;
+                                    continue '_loop_1;
                                 }
                             }
                         });
                     }
                 }
             });
-            r#loop(empty::<i32>(), 0_i32)
+            loop_1(empty::<i32>(), 0_i32)
         }
         pub fn main(args: Array<string>) -> i32 {
-            let result: Option<i32> = Polyglot::Dice::fixedRoll(
-                true,
+            let result: Option<i32> = Polyglot::Dice::rollWithinBounds(
+                Some({
+                    fn clo(a0: string) {
+                        println!("{}", a0);
+                    }
+                    Func1::new({
+                        let clo = clo.clone();
+                        move |arg: string| clo(arg)
+                    })
+                }),
                 2000_i32,
                 ofArray(new_array(&[1_i32, 5_i32, 4_i32, 4_i32, 5_i32])),
             );

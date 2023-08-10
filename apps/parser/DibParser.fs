@@ -127,6 +127,9 @@ module DibParser =
                                     | false, _ ->
                                         $"    {line}" :: lines, false
 
+                                    | true, _ when singleQuoteLine () && line |> String.startsWith "    " ->
+                                        $"    {line}" :: lines, false
+
                                     | true, _ when singleQuoteLine () ->
                                         line :: lines, false
 

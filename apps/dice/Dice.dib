@@ -20,191 +20,253 @@ open Common
 
 #!markdown
 
-## pow6
+## sixthPowerSequence
 
 #!fsharp
 
-let pow6 = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
+let sixthPowerSequence = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
 
 #!fsharp
 
 //// test
 
-pow6
+sixthPowerSequence
 |> Seq.take 8
 |> Seq.toList
 |> _equal [ 1; 6; 36; 216; 1296; 7776; 46656; 279936 ]
 
 #!markdown
 
-## rollAcc
+## accumulateDiceRolls
 
 #!fsharp
 
-let rec rollAcc log rolls power acc =
+let rec accumulateDiceRolls log rolls power acc =
     match rolls with
     | _ when power < 0 ->
-        if log then printfn $"rollAcc / power: {power} / acc: {acc}"
+        log |> Option.iter ((|>) $"accumulateDiceRolls / power: {power} / acc: {acc}")
         Some (acc + 1, rolls)
     | [] -> None
     | roll :: rest when roll > 1 ->
-        let coeff = pow6 |> Seq.item power
+        let coeff = sixthPowerSequence |> Seq.item power
         let value = (roll - 1) * coeff
-        if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
-        rollAcc log rest (power - 1) (acc + value)
+        log |> Option.iter ((|>) $"accumulateDiceRolls / \
+            power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+        )
+        accumulateDiceRolls log rest (power - 1) (acc + value)
     | roll :: rest ->
-        if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll}"
-        rollAcc log rest (power - 1) acc
+        log |> Option.iter ((|>) $"accumulateDiceRolls / power: {power} / acc: {acc} / roll: {roll}")
+        accumulateDiceRolls log rest (power - 1) acc
 
 #!fsharp
 
 //// test
 
-rollAcc true [6; 5; 4; 3; 2] 0 1000
+accumulateDiceRolls (Some (printfn "%s")) [6; 5; 4; 3; 2] 0 1000
 |> _equal (Some (1006, [5; 4; 3; 2]))
 
 #!fsharp
 
 //// test
 
-rollAcc true [6; 5; 4; 3; 2] 1 1000
+accumulateDiceRolls (Some (printfn "%s")) [6; 5; 4; 3; 2] 1 1000
 |> _equal (Some (1035, [4; 3; 2]))
 
 #!fsharp
 
 //// test
 
-rollAcc true [6; 5; 4; 3; 2] 2 1000
+accumulateDiceRolls (Some (printfn "%s")) [6; 5; 4; 3; 2] 2 1000
 |> _equal (Some (1208, [3; 2]))
 
 #!markdown
 
-## fixedRoll
+## rollWithinBounds
 
 #!fsharp
 
-let fixedRoll log max rolls =
-    let rec rollMax power =
-        match rollAcc log rolls power 0 with
-        | Some (result, _) when result >= 1 && result <= max -> Some result
-        | _ -> None
-
-    rollMax (List.length rolls - 1)
+let rollWithinBounds log max rolls =
+    let power = List.length rolls - 1
+    match accumulateDiceRolls log rolls power 0 with
+    | Some (result, _) when result >= 1 && result <= max -> Some result
+    | _ -> None
 
 #!fsharp
 
 //// test
 
-fixedRoll true 2000 [1; 5; 4; 4; 5]
+rollWithinBounds (Some (printfn "%s")) 2000 [1; 5; 4; 4; 5]
 |> _equal (Some 995)
 
 #!fsharp
 
 //// test
 
-fixedRoll true 2000 [2; 2; 6; 4; 5]
+rollWithinBounds (Some (printfn "%s")) 2000 [2; 2; 6; 4; 5]
 |> _equal (Some 1715)
 
 #!fsharp
 
 //// test
 
-fixedRoll true 2000 [4; 1; 1; 2; 3]
+rollWithinBounds (Some (printfn "%s")) 2000 [4; 1; 1; 2; 3]
 |> _equal None
 
 #!markdown
 
-## numDices
+## calculateDiceCount
 
 #!fsharp
 
-let numDices log max =
-    let rec numDices' n p =
-        if log then printfn $"numDices / max: {max} / n: {n} / p: {p}"
-        if p >= max
-        then n
-        else numDices' (n + 1) (p * 6)
+let inline calculateDiceCount log max =
+    let rec loop n p =
+        if p < max
+        then loop (n + 1) (p * 6)
+        else
+            log |> Option.iter ((|>) $"calculateDiceCount / max: {max} / n: {n} / p: {p}")
+            n
     if max = 1
     then 1
-    else numDices' 0 1
+    else loop 0 1
 
 #!fsharp
 
 //// test
 
-numDices true 36
+calculateDiceCount (Some (printfn "%s")) 36
 |> _equal 2
 
 #!fsharp
 
 //// test
 
-numDices true 7777
+calculateDiceCount (Some (printfn "%s")) 7777
 |> _equal 6
 
 #!markdown
 
-## progressiveRoll
+## rollDice
 
 #!fsharp
 
 #if FABLE_COMPILER_RUST
-let rollD6 () : int =
-#if CHAIN
-    Fable.Core.Rust.emitExpr () "1"
-#else
+#if !CHAIN
+let rollDice () : int =
     Fable.Core.Rust.emitExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
 #endif
 #else
 let private random = System.Random ()
-let rollD6 () =
+let rollDice () =
     random.Next (1, 7)
 #endif
 
 #!markdown
 
-## progressiveRoll
+## rotateNumber
 
 #!fsharp
 
-let progressiveRoll log reroll max =
-    let rec rollMax power =
-        let rec loop rolls size =
-            if size < power + 1
-            then loop (rollD6 () :: rolls) (size + 1)
-            else
-                match rollAcc log rolls power 0 with
-                | Some (result, _) when result <= max -> result
-                | _ when reroll -> loop (List.init power (fun _ -> rollD6 ())) power
-                | _ -> loop (rollD6 () :: rolls) (size + 1)
-        loop [] 0
-    rollMax ((numDices log max) - 1)
+let rotateNumber max n =
+    (n - 1 + max) % max + 1
+
+#!markdown
+
+## rotateNumbers
+
+#!fsharp
+
+let rotateNumbers max items =
+    items |> Seq.map (rotateNumber max)
 
 #!fsharp
 
 //// test
 
-progressiveRoll false false 1
+[-1 .. 14]
+|> rotateNumbers 6
+|> Seq.toList
+|> _equal [ 5; 6; 1; 2; 3; 4; 5; 6; 1; 2; 3; 4; 5; 6; 1; 2 ]
+
+#!markdown
+
+## createSequentialRoller
+
+#!fsharp
+
+let createSequentialRoller list =
+    let mutable currentIndex = 0
+    fun () ->
+        match list |> List.tryItem currentIndex with
+        | Some item ->
+            currentIndex <- currentIndex + 1
+            item
+        | None ->
+            failwith "createSequentialRoller / End of list"
+
+#!markdown
+
+## rollProgressively
+
+#!fsharp
+
+let rollProgressively log roll reroll max =
+    let power = (calculateDiceCount log max) - 1
+    let rec loop rolls size =
+        if size < power + 1
+        then loop (roll () :: rolls) (size + 1)
+        else
+            match accumulateDiceRolls log rolls power 0 with
+            | Some (result, _) when result <= max -> result
+            | _ when reroll -> loop (List.init power (fun _ -> roll ())) power
+            | _ -> loop (roll () :: rolls) (size + 1)
+    loop [] 0
+
+#!fsharp
+
+//// test
+
+rollProgressively None rollDice false 1
 |> _equal 1
 
 #!fsharp
 
-//// ignore
+//// test
 
-progressiveRoll true false 2000
+let sequentialRoll = createSequentialRoller [5; 4; 4; 5; 1]
+
+rollProgressively (Some (printfn "%s")) sequentialRoll false 2000
+|> _equal 995
+
+#!fsharp
+
+//// test
+
+let sequentialRoll = createSequentialRoller [5; 4; 4; 5; 2]
+
+fun () -> rollProgressively (Some (printfn "%s")) sequentialRoll false 2000 |> ignore
+|> _throwsC (fun ex _ ->
+    printException ex
+    |> _equal "System.Exception: createSequentialRoller / End of list"
+)
 
 #!fsharp
 
 //// ignore
 
-progressiveRoll true true 2000
+rollProgressively (Some (printfn "%s")) rollDice false 2000
+
+#!fsharp
+
+//// ignore
+
+rollProgressively (Some (printfn "%s")) rollDice true 2000
 
 #!fsharp
 
 //// ignore
 
 [1..1000]
-|> List.map (fun _ -> progressiveRoll false false 10)
+|> List.map (fun _ -> rollProgressively None rollDice false 10)
 |> List.groupBy id
 |> List.map (fun (k, v) -> k, v.Length)
 |> List.sortBy fst
@@ -217,8 +279,8 @@ progressiveRoll true true 2000
 |> List.iter (fun n ->
     [0..1]
     |> List.iter (fun reroll ->
-        [1..3000]
-        |> List.map (fun _ -> progressiveRoll false (reroll = 1) n)
+        [1..3500]
+        |> List.map (fun _ -> rollProgressively None rollDice (reroll = 1) n)
         |> List.groupBy id
         |> List.length
         |> __equal false n
@@ -229,7 +291,7 @@ progressiveRoll true true 2000
 
 //// ignore
 
-let rollMax fn max n =
+let inline rollMax fn max n =
     [1..n]
     |> List.map (fun _ -> fn max)
     |> List.groupBy id
@@ -240,7 +302,7 @@ let n = 30
 let even = (n / max) |> int
 
 let rec rollN current =
-    let roll = rollMax (progressiveRoll false true) max n
+    let roll = rollMax (rollProgressively None rollDice true) max n
     if roll |> List.forall ((=) even)
     then current
     else rollN (current + 1)
@@ -268,6 +330,6 @@ rollN 0
 
 [<EntryPoint>]
 let main args =
-    let result = fixedRoll true 2000 [1; 5; 4; 4; 5]
+    let result = rollWithinBounds (Some (printfn "%s")) 2000 [1; 5; 4; 4; 5]
     trace Debug (fun () -> $"main / result: {result |> Option.defaultValue -1}") getLocals
     0

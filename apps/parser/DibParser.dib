@@ -437,6 +437,9 @@ let inline parse kernel input =
                                 | false, _ ->
                                     $"    {line}" :: lines, false
 
+                                | true, _ when singleQuoteLine () && line |> String.startsWith "    " ->
+                                    $"    {line}" :: lines, false
+
                                 | true, _ when singleQuoteLine () ->
                                     line :: lines, false
 
@@ -549,6 +552,10 @@ let str4 =
         a = 1
     |}}).a}}1"
 
+let str5 =
+    "abc \
+        def"
+
 let x =
     match '"' with
     | '"' -> true
@@ -611,6 +618,10 @@ def"
         $"1{{({{|
             a = 1
         |}}).a}}1"
+
+    let str5 =
+        "abc \
+            def"
 
     let x =
         match '"' with

@@ -6,83 +6,103 @@ module Dice =
 
     open Common
 
-    /// ## pow6
+    /// ## sixthPowerSequence
 
-    let pow6 = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
+    let sixthPowerSequence = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
 
-    /// ## rollAcc
+    /// ## accumulateDiceRolls
 
-    let rec rollAcc log rolls power acc =
+    let rec accumulateDiceRolls log rolls power acc =
         match rolls with
         | _ when power < 0 ->
-            if log then printfn $"rollAcc / power: {power} / acc: {acc}"
+            log |> Option.iter ((|>) $"accumulateDiceRolls / power: {power} / acc: {acc}")
             Some (acc + 1, rolls)
         | [] -> None
         | roll :: rest when roll > 1 ->
-            let coeff = pow6 |> Seq.item power
+            let coeff = sixthPowerSequence |> Seq.item power
             let value = (roll - 1) * coeff
-            if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll} / value: {value}"
-            rollAcc log rest (power - 1) (acc + value)
+            log |> Option.iter ((|>) $"accumulateDiceRolls / \
+                power: {power} / acc: {acc} / roll: {roll} / value: {value}"
+            )
+            accumulateDiceRolls log rest (power - 1) (acc + value)
         | roll :: rest ->
-            if log then printfn $"rollAcc / power: {power} / acc: {acc} / roll: {roll}"
-            rollAcc log rest (power - 1) acc
+            log |> Option.iter ((|>) $"accumulateDiceRolls / power: {power} / acc: {acc} / roll: {roll}")
+            accumulateDiceRolls log rest (power - 1) acc
 
-    /// ## fixedRoll
+    /// ## rollWithinBounds
 
-    let fixedRoll log max rolls =
-        let rec rollMax power =
-            match rollAcc log rolls power 0 with
-            | Some (result, _) when result >= 1 && result <= max -> Some result
-            | _ -> None
+    let rollWithinBounds log max rolls =
+        let power = List.length rolls - 1
+        match accumulateDiceRolls log rolls power 0 with
+        | Some (result, _) when result >= 1 && result <= max -> Some result
+        | _ -> None
 
-        rollMax (List.length rolls - 1)
+    /// ## calculateDiceCount
 
-    /// ## numDices
-
-    let numDices log max =
-        let rec numDices' n p =
-            if log then printfn $"numDices / max: {max} / n: {n} / p: {p}"
-            if p >= max
-            then n
-            else numDices' (n + 1) (p * 6)
+    let inline calculateDiceCount log max =
+        let rec loop n p =
+            if p < max
+            then loop (n + 1) (p * 6)
+            else
+                log |> Option.iter ((|>) $"calculateDiceCount / max: {max} / n: {n} / p: {p}")
+                n
         if max = 1
         then 1
-        else numDices' 0 1
+        else loop 0 1
 
-    /// ## progressiveRoll
+    /// ## rollDice
 
 #if FABLE_COMPILER_RUST
-    let rollD6 () : int =
-#if CHAIN
-        Fable.Core.Rust.emitExpr () "1"
-#else
+#if !CHAIN
+    let rollDice () : int =
         Fable.Core.Rust.emitExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
 #endif
 #else
     let private random = System.Random ()
-    let rollD6 () =
+    let rollDice () =
         random.Next (1, 7)
 #endif
 
-    /// ## progressiveRoll
+    /// ## rotateNumber
 
-    let progressiveRoll log reroll max =
-        let rec rollMax power =
-            let rec loop rolls size =
-                if size < power + 1
-                then loop (rollD6 () :: rolls) (size + 1)
-                else
-                    match rollAcc log rolls power 0 with
-                    | Some (result, _) when result <= max -> result
-                    | _ when reroll -> loop (List.init power (fun _ -> rollD6 ())) power
-                    | _ -> loop (rollD6 () :: rolls) (size + 1)
-            loop [] 0
-        rollMax ((numDices log max) - 1)
+    let rotateNumber max n =
+        (n - 1 + max) % max + 1
+
+    /// ## rotateNumbers
+
+    let rotateNumbers max items =
+        items |> Seq.map (rotateNumber max)
+
+    /// ## createSequentialRoller
+
+    let createSequentialRoller list =
+        let mutable currentIndex = 0
+        fun () ->
+            match list |> List.tryItem currentIndex with
+            | Some item ->
+                currentIndex <- currentIndex + 1
+                item
+            | None ->
+                failwith "createSequentialRoller / End of list"
+
+    /// ## rollProgressively
+
+    let rollProgressively log roll reroll max =
+        let power = (calculateDiceCount log max) - 1
+        let rec loop rolls size =
+            if size < power + 1
+            then loop (roll () :: rolls) (size + 1)
+            else
+                match accumulateDiceRolls log rolls power 0 with
+                | Some (result, _) when result <= max -> result
+                | _ when reroll -> loop (List.init power (fun _ -> roll ())) power
+                | _ -> loop (roll () :: rolls) (size + 1)
+        loop [] 0
 
     /// ## main
 
     [<EntryPoint>]
     let main args =
-        let result = fixedRoll true 2000 [1; 5; 4; 4; 5]
+        let result = rollWithinBounds (Some (printfn "%s")) 2000 [1; 5; 4; 4; 5]
         trace Debug (fun () -> $"main / result: {result |> Option.defaultValue -1}") getLocals
         0
