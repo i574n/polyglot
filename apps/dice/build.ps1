@@ -59,8 +59,7 @@ if (!$fast) {
     { cargo run --release } | Invoke-Block
 }
 
-{ cargo build --release --target wasm32-unknown-unknown --manifest-path contract/Cargo.toml --features chain } | Invoke-Block
-Copy-Item -Force contract/target/wasm32-unknown-unknown/release/dice_contract.wasm contract/res/dice.wasm
+{ pwsh ./contract/build.ps1 -fast 1 } | Invoke-Block
 
 $nearSandboxExe = DownloadNearSandbox
 

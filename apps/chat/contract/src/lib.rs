@@ -30,6 +30,39 @@ impl State {
             && alias.chars().all(|c| c.is_alphanumeric() || c == '-')
     }
 
+    pub fn generate_cid(&self, content: Vec<u8>) -> String {
+        fn encode_u64(value: u64) -> Vec<u8> {
+            let mut buffer = unsigned_varint::encode::u64_buffer();
+            unsigned_varint::encode::u64(value, &mut buffer).to_vec()
+        }
+
+        fn sha256_hash(content: &[u8]) -> Vec<u8> {
+            let mut hasher: sha2::Sha256 = sha2::Digest::new();
+            sha2::Digest::update(&mut hasher, content);
+            sha2::Digest::finalize(hasher).to_vec()
+        }
+
+        let version: u8 = 1;
+        let codec_raw: u64 = 0x55;
+
+        let codec_bytes = encode_u64(codec_raw);
+        let hash_result = sha256_hash(&content);
+        let multihash = std::iter::once(0x12)
+            .chain(std::iter::once(32))
+            .chain(hash_result.into_iter())
+            .collect();
+        let cid_bytes = [vec![version], codec_bytes, multihash].concat();
+        multibase::encode(multibase::Base::Base32Lower, &cid_bytes)
+    }
+
+    #[result_serializer(borsh)]
+    pub fn generate_cid_borsh(
+        &self,
+        #[serializer(borsh)] content: Vec<u8>,
+    ) -> String {
+        self.generate_cid(content)
+    }
+
     pub fn claim_alias(&mut self, alias: String) {
         let account_id = env::signer_account_id();
         let timestamp = env::block_timestamp();

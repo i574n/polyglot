@@ -63,6 +63,15 @@ async fn main() -> anyhow::Result<()> {
     let account1 = worker.dev_create_account().await?;
     println!("\n\ndev_create_account(account1): {account1:#?}");
 
+    // generate_cid_borsh(account1)
+    let result = account1
+        .view(contract_id, "generate_cid_borsh")
+        .args_borsh(vec![] as Vec<u8>)
+        .await?;
+    println!("\n\ngenerate_cid_borsh(account1): {result:#?}");
+    let result : String = result.borsh()?;
+    assert_eq!(result, "bafkreihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku");
+
     // claim_alias(account1, alias1)
     let result = account1
         .call(contract_id, "claim_alias")

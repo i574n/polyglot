@@ -13,6 +13,10 @@ crate-type = ["cdylib"]
 [dependencies]
 near-sdk = "~4.1"
 
+sha2 = "~0.10"
+multibase = "~0.9"
+unsigned-varint = "~0.7"
+
 [profile.release]
 codegen-units = 1
 opt-level = "z"

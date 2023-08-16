@@ -7,8 +7,7 @@ $ErrorActionPreference = "Stop"
 . ../../scripts/chain.ps1
 
 
-{ cargo build --release --target wasm32-unknown-unknown --manifest-path contract/Cargo.toml } | Invoke-Block
-Copy-Item -Force contract/target/wasm32-unknown-unknown/release/chat.wasm contract/res/chat.wasm
+{ pwsh ./contract/build.ps1 -fast 1 } | Invoke-Block
 
 $nearSandboxExe = DownloadNearSandbox
 
