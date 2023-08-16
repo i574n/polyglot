@@ -16,7 +16,7 @@ export default {
     {
       command: "cd dist && npx serve",
       url: baseURL,
-      timeout: 30 * 1000,
+      timeout: 40 * 1000,
       reuseExistingServer: false, // !process.env.CI,
     },
   ],

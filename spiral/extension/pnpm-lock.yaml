@@ -6,14 +6,14 @@ settings:
 
 devDependencies:
   '@playwright/test':
-    specifier: 1.37.0-alpha-jul-9-2023
-    version: 1.37.0-alpha-jul-9-2023
+    specifier: 1.38.0-beta-1691778350000
+    version: 1.38.0-beta-1691778350000
   '@types/chrome':
     specifier: ~0.0.243
     version: 0.0.243
   npm-check-updates:
-    specifier: ~16.10
-    version: 16.10.18
+    specifier: ~16.11
+    version: 16.11.0
 
 packages:
 
@@ -121,13 +121,13 @@ packages:
     dev: true
     optional: true
 
-  /@playwright/test@1.37.0-alpha-jul-9-2023:
-    resolution: {integrity: sha512-/OtVX4hT1x7X/0iZtuzbLuArO2g2L6qe0yMN6Wbqc4glB3Ad5aGJs4HkZGtrrOCJVugmJFOizvYdWXdHJM2xxA==}
+  /@playwright/test@1.38.0-beta-1691778350000:
+    resolution: {integrity: sha512-dd3ZN66Qba1Q78A1fu4HjGBdC6SU5/mCc7eV+1HvAkObASNRsVKvPF8sZJxSyTSo6iTrIqZyOgc4rETfR6C2oQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
       '@types/node': 20.4.9
-      playwright-core: 1.37.0-alpha-jul-9-2023
+      playwright-core: 1.38.0-beta-1691778350000
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -1277,8 +1277,8 @@ packages:
       npm-normalize-package-bin: 3.0.1
     dev: true
 
-  /npm-check-updates@16.10.18:
-    resolution: {integrity: sha512-dmfhCMX7+UNrBeftBGb1rMX4Qi6+FOI5cuu1VkLeE4LIazbiEYsdgTG+GQywYry+BR9R3EfOXITYPfgRhcdznw==}
+  /npm-check-updates@16.11.0:
+    resolution: {integrity: sha512-crSZfYn2TAN8/ifzSOZCrdj8qTGDTlXOIjQ2DJm7rWOA4Gts9wthjKhGalVZXd2YHj2v4tT1J2AAHWJMEQ/cBg==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:
@@ -1490,8 +1490,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /playwright-core@1.37.0-alpha-jul-9-2023:
-    resolution: {integrity: sha512-/XGaUzUi42LvYzS5iUR09lufbyC++uAq07DMxVzumdQJTqqoukpEeOxHnlHyVrJX0xIK+6RpxUE7zsgbgN4DEw==}
+  /playwright-core@1.38.0-beta-1691778350000:
+    resolution: {integrity: sha512-UWy/3HB9lqDRiRYpdONCogdmbBvR1lXcKaGHi5xba79VKQgxbTKW8Cff4vCLy6xj5LMJFEojh3PTlDOggtgrFQ==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
