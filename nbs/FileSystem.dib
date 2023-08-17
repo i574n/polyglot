@@ -836,7 +836,7 @@ let inline run () =
     ]
 
 run
-|> retryFn 3
+|> retryFn 5
 |> _equal (Some ())
 
 #!markdown

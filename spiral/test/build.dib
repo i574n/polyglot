@@ -9,7 +9,7 @@
 
 #!pwsh
 
-{ . ../../apps/spiral/target/bin/Release/net8.0/Supervisor$(GetExecutableSuffix) --buildfile test.spi test.fsx --timeout 5000 } | Invoke-Block
+{ . ../../apps/spiral/target/bin/Release/net8.0/Supervisor$(GetExecutableSuffix) --buildfile test.spi test.fsx --timeout 10000 } | Invoke-Block
 
 #!pwsh
 

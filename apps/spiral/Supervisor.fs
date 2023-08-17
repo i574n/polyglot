@@ -59,8 +59,10 @@ module Supervisor =
                 let! pingResult = pingObj |> sendObj port
                 inbox.Post ()
             else
+                let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+
                 let compilerPath =
-                    "../../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
+                    repositoryRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
                     |> System.IO.Path.GetFullPath
 
                 let dllPath = compilerPath </> "Spiral.dll"
@@ -150,7 +152,6 @@ modules:
 
     /// ## main
 
-    [<EntryPoint>]
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 

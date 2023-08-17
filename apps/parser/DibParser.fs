@@ -218,7 +218,6 @@ module {moduleName} ="
 
     /// ## main
 
-    [<EntryPoint>]
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 

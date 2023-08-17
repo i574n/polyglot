@@ -101,7 +101,6 @@ module Dice =
 
     /// ## main
 
-    [<EntryPoint>]
     let main args =
         let result = rollWithinBounds (Some (printfn "%s")) 2000 [1; 5; 4; 4; 5]
         trace Debug (fun () -> $"main / result: {result |> Option.defaultValue -1}") getLocals

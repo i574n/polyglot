@@ -74,7 +74,7 @@ function Get-LastSortedItem {
         [Parameter(Mandatory)] [string] $Path,
         [Parameter(Mandatory)] [string] $Filter
     )
-    (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object FullName)[-1]
+    (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object { [regex]::Replace($_.FullName, '\d+', { $args[0].Value.PadLeft(20) }) })[-1]
 }
 
 function Update-Toml {

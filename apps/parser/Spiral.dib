@@ -4,7 +4,7 @@
 
 #!fsharp
 
-#!import ../nbs/Common.dib
+#!import ../nbs/Common.fs
 
 #!fsharp
 

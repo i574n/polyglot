@@ -90,6 +90,12 @@ module Builder =
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
         let! code = fullPath |> FileSystem.readAllTextAsync
 
+        let code = System.Text.RegularExpressions.Regex.Replace (
+            code,
+            @"( *)(let\s+main\s+.*?\s*=)",
+            fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
+        )
+
         return! code |> buildCode packages modules dir fileName
     }
 
@@ -110,7 +116,6 @@ module Builder =
 
     /// ## main
 
-    [<EntryPoint>]
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 
