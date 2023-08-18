@@ -78,13 +78,14 @@ let inline sendObj port obj =
 
 #!fsharp
 
-let inline compileFile timeout path = async {
+let inline compileFile timeout cancellationToken path = async {
     let fullPath = path |> System.IO.Path.GetFullPath
     let fileDir = fullPath |> System.IO.Path.GetDirectoryName
     let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
     let! code = fullPath |> FileSystem.readAllTextAsync
 
     let stream, disposable = FileSystem.watchDirectory true fileDir
+    use _ = disposable
 
     let port =
         if fileDir |> String.startsWith (System.IO.Path.GetTempPath ())
@@ -92,7 +93,10 @@ let inline compileFile timeout path = async {
         then 13807
         else 13805
 
-    let! ct = Async.CancellationToken
+    let! ct =
+        cancellationToken
+        |> Option.defaultValue System.Threading.CancellationToken.None
+        |> Async.mergeCancellationTokenWithDefaultAsync
     let compiler = MailboxProcessor.Start (fun inbox -> async {
         let! availablePort = Networking.getAvailablePort (Some 60) port
         if availablePort <> port then
@@ -113,7 +117,7 @@ let inline compileFile timeout path = async {
                 Runtime.executeWithOptionsAsync
                     {
                         Command = $@"dotnet ""{dllPath}"" port={port}"
-                        CancellationToken = None
+                        CancellationToken = Some ct
                         WorkingDirectory = None
                         OnLine = Some <| fun { Line = line } -> async {
                             if line |> String.contains $"Server bound to: tcp://*:{port}"
@@ -147,14 +151,12 @@ let inline compileFile timeout path = async {
 
     let! fsxContent = fsxContentChild
 
-    disposable.Dispose ()
-
     return fsxContent |> Option.flatten |> Option.map (String.replace "\r\n" "\n")
 }
 
 #!fsharp
 
-let inline compileCode timeout code = async {
+let inline compileCode timeout cancellationToken code = async {
     let tempDir = FileSystem.createTempDirectory ()
 
     let mainPath = tempDir </> "main.spi"
@@ -173,7 +175,7 @@ modules:
 """
     do! spiprojCode |> FileSystem.writeAllTextAsync spiprojPath
 
-    let! result = mainPath |> compileFile timeout
+    let! result = mainPath |> compileFile timeout cancellationToken
 
     do! tempDir |> FileSystem.deleteDirectoryAsync |> Async.Ignore
 
@@ -192,7 +194,7 @@ inl main () =
     |> dyn
     |> ignore
 "
-|> compileCode 8000
+|> compileCode 8000 None
 |> Async.runWithTimeout 8000
 |> Option.flatten
 |> _equal (Some "let rec closure0 () () : int32 =
@@ -214,7 +216,7 @@ inl main () =
     |> dyn
     |> ignore
 """
-|> compileCode 8000
+|> compileCode 8000 None
 |> Async.runWithTimeout 8000
 |> Option.flatten
 |> _equal (Some """let rec closure0 () () : int32 =
@@ -263,7 +265,7 @@ let main args =
         | _ -> 30000
 
     async {
-        let! outputCode = inputPath |> compileFile timeout
+        let! outputCode = inputPath |> compileFile timeout None
         match outputCode with
         | Some outputCode ->
             do! outputCode |> FileSystem.writeAllTextAsync outputPath

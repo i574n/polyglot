@@ -115,8 +115,8 @@ module Runtime =
 
         let! ct =
             options.CancellationToken
-            |> Option.map Async.init
-            |> Option.defaultValue Async.CancellationToken
+            |> Option.defaultValue System.Threading.CancellationToken.None
+            |> Async.mergeCancellationTokenWithDefaultAsync
 
         use reg = ct.Register (fun _ ->
             if not proc.HasExited then proc.Kill ()

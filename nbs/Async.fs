@@ -10,7 +10,7 @@ module Async =
 
     let inline choice asyncs = async {
         let e = Event<_> ()
-        let cts = new System.Threading.CancellationTokenSource ()
+        use cts = new System.Threading.CancellationTokenSource ()
         let fn =
             asyncs
             |> Seq.map (fun a -> async {
@@ -124,4 +124,13 @@ module Async =
 
     let inline init x = async {
         return x
+    }
+
+    /// ## mergeCancellationTokenWithDefaultAsync
+
+    let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.CancellationToken) = async {
+        let! ct = Async.CancellationToken
+        let dct = Async.DefaultCancellationToken
+        let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
+        return cts.Token
     }

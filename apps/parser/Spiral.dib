@@ -16,8 +16,8 @@ $"a{nl}b"
 
 #!spiral
 
-inl main () : i32 =
-    1 + 1
+inl main () =
+    1i32 + 1
 
 #!spiral
 
@@ -47,5 +47,3 @@ union log_level_type =
     | Info
     | Warn
     | Error
-    
-let main () = ()

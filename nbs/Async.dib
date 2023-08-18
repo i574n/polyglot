@@ -26,7 +26,7 @@ open Common
 
 let inline choice asyncs = async {
     let e = Event<_> ()
-    let cts = new System.Threading.CancellationTokenSource ()
+    use cts = new System.Threading.CancellationTokenSource ()
     let fn =
         asyncs
         |> Seq.map (fun a -> async {
@@ -203,3 +203,16 @@ let inline init x = async {
 init 1
 |> Async.RunSynchronously
 |> _equal 1
+
+#!markdown
+
+## mergeCancellationTokenWithDefaultAsync
+
+#!fsharp
+
+let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.CancellationToken) = async {
+    let! ct = Async.CancellationToken
+    let dct = Async.DefaultCancellationToken
+    let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
+    return cts.Token
+}
