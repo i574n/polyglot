@@ -48,6 +48,7 @@ module Supervisor =
 
         let port =
             if fileDir |> String.startsWith (System.IO.Path.GetTempPath ())
+                && fileDir |> String.contains "Microsoft.DotNet.Interactive.App" |> not
             then 13807
             else 13805
 

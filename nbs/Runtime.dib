@@ -329,8 +329,8 @@ let inline splitArgs commandLine =
 
 """a b "c d" e"""
 |> splitArgs
-|> Seq.toList
-|> _equal ["a"; "b"; "c d"; "e"]
+|> Seq.toArray
+|> _equal [| "a"; "b"; "c d"; "e" |]
 
 #!markdown
 

@@ -23,7 +23,7 @@ function DownloadNearSandbox {
         while ($retryCount -lt 3) {
             $Error.Clear()
 
-            Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction Stop
+            Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
             Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
 
             if ($Error.Count -eq 0) {

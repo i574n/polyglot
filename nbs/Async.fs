@@ -43,7 +43,22 @@ module Async =
             return None
         }
 
-        let task = fn |> map Some
+        let task = async {
+            try
+                let! result = fn
+                return Some result
+            with
+            | :? System.AggregateException as ex when
+                ex.InnerExceptions
+                |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
+                ->
+                let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+                trace Warn (fun () -> "runWithTimeoutAsync") getLocals
+                return None
+            | ex ->
+                trace Error (fun () -> "runWithTimeoutAsync") getLocals
+                return raise ex
+        }
 
         [ timeoutTask; task ]
         |> choice
