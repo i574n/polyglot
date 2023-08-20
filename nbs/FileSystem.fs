@@ -85,7 +85,7 @@ module FileSystem =
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
-                    trace Warn (fun () -> "waitForFileAccess") getLocals
+                    trace Debug (fun () -> "waitForFileAccess") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
         }
@@ -236,7 +236,7 @@ module FileSystem =
                     return! fullPath |> readAllTextAsync |> Async.map Some
                 with ex ->
                     let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
-                    trace Error (fun () -> $"watchWithFilter / readContent") getLocals
+                    trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
                     if retry = 0
                     then return! loop (retry + 1)
                     else return None

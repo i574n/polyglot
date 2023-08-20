@@ -27,6 +27,19 @@ inl main () = ()
 
 #!spiral
 
+inl a () = 1i32
+
+#!spiral
+
+inl b () = a () + 1i32
+
+#!spiral
+
+inl main () =
+    1i32 + b ()
+
+#!spiral
+
 inl main () =
     1 + 1
 

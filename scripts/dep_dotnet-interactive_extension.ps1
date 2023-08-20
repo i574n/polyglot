@@ -78,6 +78,7 @@ foreach ($extensionsPath in $extensionsPath) {
     Update-Json -jsonPath "$extensionPath/package.json" -ContentModifier {
         param($jsonContent)
         $jsonContent.version = $version
+        $jsonContent.contributes.configuration.properties."dotnet-interactive.requiredInteractiveToolVersion".default = $currentJson.contributes.configuration.properties."dotnet-interactive.requiredInteractiveToolVersion".default
         if (-not $jsonContent.__metadata) {
             $jsonContent | Add-Member -NotePropertyName "__metadata" -NotePropertyValue @{}
         }
