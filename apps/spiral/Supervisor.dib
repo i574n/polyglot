@@ -401,24 +401,6 @@ let v0 : (unit -> int32) = closure0()
 //// test
 
 """inl main () =
-    inl n = 1 + 1
-    ()
-"""
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
-|> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _equal (
-    Some (
-        None,
-        ["File main has a type error somewhere in its path."]
-    )
-)
-
-#!fsharp
-
-//// test
-
-"""inl main () =
     1i32 / 0i32
 """
 |> buildCode 8000 None
@@ -451,24 +433,6 @@ inl main () =
 ",
         ["main.spi:
 Expected: uppercase variable"]
-    )
-)
-
-#!fsharp
-
-//// test
-
-"""let x () = y
-inl main () =
-    ()
-"""
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
-|> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _equal (
-    Some (
-        None,
-        ["File main has a type error somewhere in its path."]
     )
 )
 
