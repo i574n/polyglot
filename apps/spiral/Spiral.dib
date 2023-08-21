@@ -1,0 +1,115 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+## ???
+
+#!spiral
+
+// // test
+
+inl _is_less_than_or_equal b a =
+    assert (b <= a) $"$\"_is_less_than_or_equal / actual: {!a} / expected: {!b}\""
+
+inl _is_less_than b a =
+    assert (b < a) $"$\"_is_less_than / actual: {!a} / expected: {!b}\""
+
+inl _almost_equal b a =
+    assert (abs (b - a) < 0.00000001) $"$\"_almost_equal / actual: {!a} / expected: {!b}\""
+
+#!spiral
+
+inl pi () =
+    $"System.Math.PI" : f64
+
+#!spiral
+
+// // test
+
+2 * 2 / 0.4f64
+|> sqrt
+|> _almost_equal 3.1622776601683795
+
+#!spiral
+
+// // test
+
+2f64 / 3
+|> _almost_equal 0.6666666666666666
+
+#!spiral
+
+// // test
+
+2f64
+|> log
+|> _almost_equal 0.6931471805599453
+
+#!spiral
+
+// // test
+
+pi ()
+|> _almost_equal 3.141592653589793
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()

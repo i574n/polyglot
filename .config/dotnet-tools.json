@@ -14,6 +14,12 @@
         "paket"
       ]
     },
+    "microsoft.dotnet-interactive": {
+      "version": "1.0.440301",
+      "commands": [
+        "dotnet-interactive"
+      ]
+    },
     "dotnet-repl": {
       "version": "0.1.204",
       "commands": [

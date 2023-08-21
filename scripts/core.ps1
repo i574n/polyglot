@@ -145,8 +145,7 @@ function Search-Command {
     )
     try {
         return (Get-Command $CommandName).Source
-    }
-    catch {
+    } catch {
         return $null
     }
 }

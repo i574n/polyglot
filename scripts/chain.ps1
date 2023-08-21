@@ -23,14 +23,20 @@ function DownloadNearSandbox {
         while ($retryCount -lt 3) {
             $Error.Clear()
 
-            Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
-            Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
+            try {
+                Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
+                Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
+            } catch {
+                Write-Output "Failed to download $url ($Error)"
+            }
 
             if ($Error.Count -eq 0) {
                 break
             }
 
             $retryCount++
+            Remove-Item $nearSandboxZip -Force -ErrorAction Ignore
+            Remove-Item $path -Force -ErrorAction Ignore
             Write-Output "Retrying download of $url ($Error)"
         }
         if ($Error.Count -gt 0) {
