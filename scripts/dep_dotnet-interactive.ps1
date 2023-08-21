@@ -22,6 +22,7 @@ Write-Output "Tool path: $netVersion"
 # { sudo pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block
 # { pwsh ../deps/dotnet-interactive/eng/build.ps1 -build -restore } | Invoke-Block
 
+{ Start-Process "npm" "install" -Wait -NoNewWindow -WorkingDirectory "../deps/dotnet-interactive/src/polyglot-notebooks" } | Invoke-Block
 { Start-Process "npm" "install" -Wait -NoNewWindow -WorkingDirectory "../deps/dotnet-interactive/src/polyglot-notebooks-browser" } | Invoke-Block
 { npm run --prefix "../deps/dotnet-interactive/src/polyglot-notebooks-browser" rollup } | Invoke-Block
 
