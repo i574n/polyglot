@@ -59,7 +59,7 @@ module Supervisor =
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
             let! availablePort = Networking.getAvailablePort (Some 60) port
-            if availablePort <> port then
+            if port = 13805 && availablePort <> port then
                 let pingObj = {| Ping = true |}
                 let! pingResult = pingObj |> sendObj port
                 inbox.Post ()
@@ -76,11 +76,11 @@ module Supervisor =
                 let! exitCode, result =
                     Runtime.executeWithOptionsAsync
                         {
-                            Command = $@"dotnet ""{dllPath}"" port={port}"
+                            Command = $@"dotnet ""{dllPath}"" port={availablePort}"
                             CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
-                                if line |> String.contains $"Server bound to: tcp://*:{port}"
+                                if line |> String.contains $"Server bound to: tcp://*:{availablePort}"
                                 then inbox.Post ()
                             }
                         }
