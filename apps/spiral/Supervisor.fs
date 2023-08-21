@@ -209,7 +209,7 @@ module Supervisor =
                 | _ -> false
             )
             |> FSharp.Control.AsyncSeq.map (fun (fsxContent, errors, _) ->
-                fsxContent, errors |> List.distinctBy fst
+                fsxContent, errors |> List.distinct
             )
             |> FSharp.Control.AsyncSeq.tryLast
             |> Async.runWithTimeoutAsync timeout

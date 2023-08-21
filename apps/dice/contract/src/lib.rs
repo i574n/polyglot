@@ -9,7 +9,7 @@ pub struct State {
     seeds: Vector<u8>,
 }
 
-const MAX_SEEDS: usize = 500;
+const MAX_SEEDS: usize = 100;
 
 #[near_bindgen]
 impl State {
@@ -27,7 +27,7 @@ impl State {
         let seed_excess_len = (self.seeds.len() as i32) - MAX_SEEDS as i32;
         if seed_excess_len > 0 {
             let seed_excess: Vec<_> = self.seeds.drain(0..seed_excess_len as u32).collect();
-            log!(format!("contribute_seed / seed_excess: {seed_excess:#?}"));
+            log!(format!("contribute_seed / seed_excess: {seed_excess:?}"));
         }
     }
 
@@ -66,9 +66,10 @@ impl State {
         let rolls = dice::Polyglot::Dice::rotateNumbers(6, hash_seq);
         let rolls_list = fable_library_rust::List_::ofSeq(rolls);
 
+        let signer_account_id_log = signer_account_id.as_str();
         let rolls_list_log: Vec<i32> = rolls_list.clone().into();
 
-        log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id:#?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_vec: {hash_vec:?} / rolls_list: {rolls_list_log:?}"));
+        log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_vec: {hash_vec:?} / rolls_list: {rolls_list_log:?}"));
 
         let sequential_roll = dice::Polyglot::Dice::createSequentialRoller(rolls_list);
         let result = dice::Polyglot::Dice::rollProgressively(

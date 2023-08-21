@@ -16,12 +16,57 @@ $"a{nl}b"
 
 #!spiral
 
+/// 3
+// test
+inl main () =
+    1i32
+
+#!spiral
+
+/// 3
+// test
+11111111i32
+// a
+// b
+
+#!spiral
+
+//// trace
+
+#!spiral
+
+// test
+/// 3
+// test
+inl main () =
+    [
+        111111111i32
+        3333333i32
+        
+        111112i32
+    ]
+
+#!spiral
+
 inl main () =
     1i32 + 1
 
 #!spiral
 
-1 + 1
+inl main () =
+    ""
+
+#!spiral
+
+// test
+
+
+
+
+
+
+
+let x = 1 + 1
 
 inl main () = ()
 
@@ -45,6 +90,27 @@ inl main () =
 
 #!spiral
 
+// test
+inl main () =
+    1i32 / 0i32
+
+#!spiral
+
+/// test
+inl main ()
+    ()
+
+#!spiral
+
+union a =
+    | B
+    | c
+
+inl main () =
+    ()
+
+#!spiral
+
 type ticks = i64
 nominal any = $"obj"
 nominal exn = $"exn"
@@ -60,3 +126,92 @@ union log_level_type =
     | Info
     | Warn
     | Error
+
+#!spiral
+
+inl main () =
+    Verbose, Debug
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+inl _is_less_than_or_equal b a =
+    assert (b <= a) $"\"_is_less_than_or_equal / actual: !a / expected: !b\""
+
+inl _is_less_than b a =
+    assert (b < a) $"\"_is_less_than / actual: !a / expected: !b\""
+
+inl _almost_equal b a =
+    assert (abs (b - a) < 0.00000001f32) $"\"_almost_equal / actual: !a / expected: !b\""
+
+#!spiral
+
+// // test
+
+2 * 2 / 0.4f32
+|> sqrt
+|> _almost_equal 3.1622777
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
+
+#!spiral
+
+// // test
+()
