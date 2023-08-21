@@ -269,6 +269,7 @@ module FileSystem =
                     let! content = fullPath </> path |> readContent
                     return t, FileSystemChange.Changed (path, content)
                 | true, FileSystemChange.Created (path, _) ->
+                    do! Async.Sleep 1
                     let! content = fullPath </> path |> readContent
                     return t, FileSystemChange.Created (path, content)
                 | true, FileSystemChange.Renamed (oldPath, (newPath, _)) ->

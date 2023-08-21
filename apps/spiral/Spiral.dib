@@ -117,12 +117,20 @@ pi () / 2
 #!spiral
 
 // // test
-()
+
+inl e () =
+    exp 1f64
+
+inl square x =
+    x ** 2
 
 #!spiral
 
 // // test
-()
+
+e ()
+|> square
+|> _almost_equal 7.3890560989306495
 
 #!spiral
 
