@@ -21,6 +21,9 @@ Write-Output "Tool path: $netVersion"
 
 # { sudo pwsh ../deps/dotnet-interactive/src/ensure-symlinks.ps1 } | Invoke-Block
 # { pwsh ../deps/dotnet-interactive/eng/build.ps1 -build -restore } | Invoke-Block
+
+{ npm run --prefix "../deps/dotnet-interactive/src/polyglot-notebooks-browser" rollup } | Invoke-Block
+
 { dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block
 
 Copy-Item -Recurse -Force "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net7.0/**" $netVersion
