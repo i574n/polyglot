@@ -62,7 +62,7 @@ module Supervisor =
             if port = 13805 && availablePort <> port then
                 let pingObj = {| Ping = true |}
                 let! pingResult = pingObj |> sendObj port
-                inbox.Post ()
+                inbox.Post port
             else
                 let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
@@ -81,17 +81,17 @@ module Supervisor =
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
                                 if line |> String.contains $"Server bound to: tcp://*:{availablePort}"
-                                then inbox.Post ()
+                                then inbox.Post availablePort
                             }
                         }
                 trace Debug (fun () -> $"startSupervisor / exitCode: {exitCode} / result: {result}") getLocals
         }, ct)
 
-        do! compiler.Receive ()
+        let! serverPort = compiler.Receive ()
 
         let request = new NetMQ.Sockets.SubscriberSocket ()
         request.SubscribeToAnyTopic ()
-        request.Connect $"tcp://127.0.0.1:{port + 1}"
+        request.Connect $"tcp://127.0.0.1:{serverPort + 1}"
 
         let rec loop i = async {
             let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
@@ -103,7 +103,7 @@ module Supervisor =
                 |> FSharp.Json.Json.deserialize<ClientErrorsRes>
         }
 
-        return loop |> FSharp.Control.AsyncSeq.initInfiniteAsync, (request :> System.IDisposable)
+        return serverPort, loop |> FSharp.Control.AsyncSeq.initInfiniteAsync, (request :> System.IDisposable)
     }
 
     /// ## getFileUri
@@ -133,7 +133,7 @@ module Supervisor =
             then 13807
             else 13805
 
-        let! errors, disposable = awaitCompiler port cancellationToken
+        let! serverPort, errors, disposable = awaitCompiler port cancellationToken
         use _ = disposable
 
         let fsxContentSeq =
@@ -216,10 +216,10 @@ module Supervisor =
             |> Async.StartChild
 
         let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
-        let! fileOpenResult = fileOpenObj |> sendObj port
+        let! fileOpenResult = fileOpenObj |> sendObj serverPort
 
         let buildFileObj = {| BuildFile = {| uri = fullPath |> getFileUri; backend = "Fsharp" |} |}
-        let! buildFileResult = buildFileObj |> sendObj port
+        let! buildFileResult = buildFileObj |> sendObj serverPort
 
         return!
             outputChild
@@ -275,10 +275,11 @@ modules:
             then 13807
             else 13805
 
-        let! outputs = awaitCompiler port cancellationToken
+        let! serverPort, outputs, disposable = awaitCompiler port cancellationToken
+        use _ = disposable
 
         let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
-        let! fileOpenResult = fileOpenObj |> sendObj port
+        let! fileOpenResult = fileOpenObj |> sendObj serverPort
 
         let fileTokenRangeObj =
             {|
@@ -292,7 +293,7 @@ modules:
                             |]
                     |}
             |}
-        let! fileTokenRangeResult = fileTokenRangeObj |> sendObj port
+        let! fileTokenRangeResult = fileTokenRangeObj |> sendObj serverPort
 
         return fileTokenRangeResult |> Option.map FSharp.Json.Json.deserialize<int array>
     }
