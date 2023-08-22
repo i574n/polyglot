@@ -135,6 +135,14 @@ e ()
 #!spiral
 
 // // test
+
+inl x : a i32 f64 = am.init 101 (conv >> (*) 0.1)
+inl y = x |> am.map cos
+x, y
+
+#!spiral
+
+// // test
 ()
 
 #!spiral
