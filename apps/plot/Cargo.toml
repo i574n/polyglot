@@ -1,0 +1,14 @@
+[package]
+name = "plot"
+version = "0.0.1"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
+plotters = { git = "https://github.com/plotters-rs/plotters.git", default_features = false, features = ["svg_backend", "line_series", "point_series"] }
+
+[[bin]]
+name = "plot"
+path = "plot.rs"
