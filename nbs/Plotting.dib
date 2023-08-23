@@ -1,0 +1,84 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!fsharp
+
+#!import ../nbs/Notebooks.dib
+
+#!fsharp
+
+#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+#r @"../../../../../../../.nuget/packages/asyncio/0.1.69/lib/netstandard2.0/AsyncIO.dll"
+#r @"../../../../../../../.nuget/packages/netmq/4.0.1.13/lib/netstandard2.1/NetMQ.dll"
+#r @"../../../../../../../.nuget/packages/fsharp.json/0.4.1/lib/netstandard2.0/FSharp.Json.dll"
+
+#!fsharp
+
+#!import ../nbs/Common.fs
+#!import ../nbs/CommonFSharp.fs
+#!import ../nbs/Async.fs
+#!import ../nbs/AsyncSeq.fs
+#!import ../nbs/Networking.fs
+#!import ../nbs/Runtime.fs
+#!import ../nbs/FileSystem.fs
+
+#!fsharp
+
+open Common
+open FileSystem
+
+#!fsharp
+
+let hashText (input : string) =
+    use sha256 = System.Security.Cryptography.SHA256.Create ()
+    input
+    |> Encoding.UTF8.GetBytes
+    |> sha256.ComputeHash
+    |> Array.map (fun b -> b.ToString "x2")
+    |> String.concat ""
+
+#!fsharp
+
+let tmpSpiralPath = Path.GetTempPath () </> "!dotnet-interactive-spiral"
+let linePlotsDataPath = tmpSpiralPath </> "line-plots-data"
+let linePlotsSvgPath = tmpSpiralPath </> "line-plots-svg"
+
+[tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath]
+|> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
+
+Formatter.Register<struct (float array * struct (string * float array) array)> (
+    (fun struct (x, ys) ->
+        let json = (x, ys) |> FSharp.Json.Json.serialize
+        async {
+            let hashHex = json |> hashText
+            let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"
+
+            if System.IO.File.Exists svgPath |> not then
+                do! json |> writeAllTextAsync (linePlotsDataPath </> hashHex)
+
+                let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+
+                let plotExePath = repositoryRoot </> $"apps/plot/target/release/plot{Runtime.getExecutableSuffix ()}"
+                let! exitCode, result =
+                    Runtime.executeWithOptionsAsync
+                        {
+                            Command = plotExePath
+                            CancellationToken = None
+                            WorkingDirectory = None
+                            OnLine = None
+                        }
+                    |> Async.withTraceLevel Info
+                if exitCode <> 0 then
+                    return failwith $"plot failed with exit code {exitCode} and output {result}"
+            return! svgPath |> readAllTextAsync
+        }
+        |> Async.runWithTimeoutStrict 10000
+        |> Option.defaultValue json
+    ),
+    "text/html"
+)

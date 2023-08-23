@@ -216,3 +216,18 @@ let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.Canc
     let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
     return cts.Token
 }
+
+#!markdown
+
+## withTraceLevel
+
+#!fsharp
+
+let inline withTraceLevel level fn = async {
+    let oldTraceLevel = traceLevel
+    try
+        traceLevel <- level
+        return! fn
+    finally
+        traceLevel <- oldTraceLevel
+}

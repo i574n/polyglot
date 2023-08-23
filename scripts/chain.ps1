@@ -20,15 +20,14 @@ function DownloadNearSandbox {
         }
 
         $retryCount = 0
-        while ($retryCount -lt 3) {
+        while ($retryCount -lt 5) {
+            if ($retryCount -gt 0) {
+                Write-Host "Retrying download of $url ($Error)"
+            }
             $Error.Clear()
 
-            try {
-                Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
-                Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
-            } catch {
-                Write-Output "Failed to download $url ($Error)"
-            }
+            Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
+            Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
 
             if ($Error.Count -eq 0) {
                 break
@@ -37,10 +36,10 @@ function DownloadNearSandbox {
             $retryCount++
             Remove-Item $nearSandboxZip -Force -ErrorAction Ignore
             Remove-Item $path -Force -ErrorAction Ignore
-            Write-Output "Retrying download of $url ($Error)"
         }
         if ($Error.Count -gt 0) {
             throw "Failed to download $url ($Error)"
+            exit 1
         }
 
         { chmod +x $path } | Invoke-Block -Linux

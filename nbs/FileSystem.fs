@@ -266,6 +266,7 @@ module FileSystem =
             |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (t, event) -> async {
                 match shouldReadContent, event with
                 | true, FileSystemChange.Changed (path, _) ->
+                    do! Async.Sleep 1
                     let! content = fullPath </> path |> readContent
                     return t, FileSystemChange.Changed (path, content)
                 | true, FileSystemChange.Created (path, _) ->
