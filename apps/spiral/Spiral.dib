@@ -65,21 +65,7 @@ type position_fn = time -> position
 type velocity_fn = time -> velocity
 
 type derivative = (f64 -> f64) -> f64 -> f64
-
-inl derivative dt : derivative =
-    fun x t =>
-        (x (t + dt / 2) - x (t - dt / 2)) / dt
-
 type integration = (f64 -> f64) -> f64 -> f64 -> f64
-
-inl integral dt : integration =
-    fun f a b =>
-        inl total = conv ((b - a) / dt)
-        inl items : a i32 f64 =
-            am.init total (fun i => a + dt / 2 + conv i * dt)
-            |> am.map (f >> (*) dt)
-        items
-        |> am.fold (+) 0
 
 #!spiral
 
@@ -152,7 +138,7 @@ pi () / 2 |> cos
 
 5f64
 |> sqrt
-|> fun n => n ** 2
+|> square
 |> _almost_equal 5
 
 #!spiral
@@ -168,7 +154,7 @@ e () |> square
 
 inl x = init_series -3 3 0.01
 inl y = x |> am.map square
-x, ;[("square", y)]
+x, ;["square", y]
 
 #!spiral
 
@@ -178,6 +164,12 @@ inl x = init_series -10 10 0.1
 inl y_sin = x |> am.map sin
 inl y_cos = x |> am.map cos
 x, ;["sin", y_sin; "cos", y_cos]
+
+#!spiral
+
+inl derivative dt : derivative =
+    fun x t =>
+        (x (t + dt / 2) - x (t - dt / 2)) / dt
 
 #!spiral
 
@@ -206,9 +198,35 @@ derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
 
 #!spiral
 
+inl integral dt : integration =
+    fun f a b =>
+        inl rec loop t y =
+            if t < b
+            then loop (t + dt) (y + f t * dt)
+            else t, y
+        loop (a + dt / 2) 0
+        |> snd
+
+#!spiral
+
 // // test
 
-integral 0.01 (fun x => x ** 2) 0 1
+integral 0.01 square 0 1
+|> _almost_equal 0.33332500000000004
+
+#!spiral
+
+inl integral' dt : integration =
+    fun f a b =>
+        init_series (a + dt / 2) (b - dt / 2) dt
+        |> am.map (f >> (*) dt)
+        |> am.fold (+) 0
+
+#!spiral
+
+// // test
+
+integral' 0.01 square 0 1
 |> _almost_equal 0.33332500000000004
 
 #!spiral
