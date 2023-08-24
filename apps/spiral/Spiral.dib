@@ -57,18 +57,6 @@ inl square x =
 
 #!spiral
 
-type time = f64
-type time_interval = f64
-type position = f64
-type velocity = f64
-type position_fn = time -> position
-type velocity_fn = time -> velocity
-
-type derivative = (f64 -> f64) -> f64 -> f64
-type integration = (f64 -> f64) -> f64 -> f64 -> f64
-
-#!spiral
-
 // // test
 
 2 * 2 / 0.4f64 |> sqrt
@@ -167,6 +155,8 @@ x, ;["sin", y_sin; "cos", y_cos]
 
 #!spiral
 
+type derivative = (f64 -> f64) -> f64 -> f64
+
 inl derivative dt : derivative =
     fun x t =>
         (x (t + dt / 2) - x (t - dt / 2)) / dt
@@ -197,6 +187,8 @@ derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
 |> _almost_equal -1
 
 #!spiral
+
+type integration = (f64 -> f64) -> f64 -> f64 -> f64
 
 inl integral dt : integration =
     fun f a b =>
@@ -231,25 +223,185 @@ integral' 0.01 square 0 1
 
 #!spiral
 
-// // test
-()
+type vec =
+    {
+        x : f64
+        y : f64
+        z : f64
+    }
+
+inl vec x y z : vec =
+    { x y z }
 
 #!spiral
 
 // // test
-()
+
+vec 1 2 3 .z
+|> _equal 3
+
+#!spiral
+
+inl (^+^) (a : vec) (b : vec) =
+    vec (a.x + b.x) (a.y + b.y) (a.z + b.z)
 
 #!spiral
 
 // // test
-()
+
+vec 1 2 3 ^+^ vec 4 5 6
+|> _equal (vec 5 7 9)
+
+#!spiral
+
+inl (*^) c { x y z } =
+    vec (c * x) (c * y) (c * z)
 
 #!spiral
 
 // // test
-()
+
+5 *^ vec 1 2 3
+|> _equal (vec 5 10 15)
+
+#!spiral
+
+inl (^*) v c =
+    (*^) c v
 
 #!spiral
 
 // // test
+
+vec 1 2 3 ^* 5
+|> _equal (vec 5 10 15)
+
+#!spiral
+
+inl (^/) { x y z } c =
+    vec (x / c) (y / c) (z / c)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 ^/ 5
+|> _equal (vec 0.2 0.4 0.6)
+
+#!spiral
+
+inl negate_vec v =
+    v ^* -1
+
+#!spiral
+
+// // test
+
+vec 1 2 3
+|> negate_vec
+|> _equal (vec -1 -2 -3)
+
+#!spiral
+
+inl (^-^) a b =
+    a ^+^ (negate_vec b)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 ^-^ vec 4 5 6
+|> _equal (vec -3 -3 -3)
+
+#!spiral
+
+inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
+    ax * bx + ay * by + az * bz
+
+#!spiral
+
+// // test
+
+vec 1 2 3 <.> vec 4 5 6
+|> _equal 32
+
+#!spiral
+
+inl (><) (a : vec) (b : vec) =
+    vec
+        (a.y * b.z - a.z * b.y)
+        (a.z * b.x - a.x * b.z)
+        (a.x * b.y - a.y * b.x)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 >< vec 4 5 6
+|> _equal (vec -3 6 -3)
+
+#!spiral
+
+inl i_hat () = vec 1 0 0
+inl j_hat () = vec 0 1 0
+inl k_hat () = vec 0 0 1
+inl zero_vec () = vec 0 0 0
+
+#!spiral
+
+inl sum_vec vs =
+    vs |> listm.fold (^+^) (zero_vec ())
+
+#!spiral
+
+// // test
+
+[vec 1 2 3; vec 4 5 6]
+|> sum_vec
+|> _equal (vec 5 7 9)
+
+#!spiral
+
+inl magnitude v =
+    v <.> v |> sqrt
+
+#!spiral
+
+// // test
+
+vec 1 2 3
+|> magnitude
+|> _almost_equal 3.7416573867739413
+
+#!spiral
+
+inl v1 t =
+    2 *^ (t ** 2 *^ i_hat () ^+^ 3 *^ (t ** 3 *^ j_hat () ^+^ t ** 4 *^ k_hat ()))
+
+#!spiral
+
+// // test
+
+v1 1
+|> _equal (vec 2 6 6)
+
+#!spiral
+
+type vec_derivative = (f64 -> vec) -> f64 -> vec
+
+inl vec_derivative dt : vec_derivative =
+    fun v t =>
+        (v (t + dt / 2) ^-^ v (t - dt / 2)) ^/ dt
+
+#!spiral
+
+// // test
+
+vec_derivative 0.01 v1 3 .x
+|> _almost_equal (derivative 0.01 (v1 >> fun v => v.x) 3)
+
+#!spiral
+
+// // test
+
 ()
