@@ -1,0 +1,407 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+## Physics (Polyglot)
+
+#!fsharp
+
+#!import ../nbs/Plotting.dib
+
+#!spiral
+
+// // test
+
+inl _almost_equal b a =
+    assert (abs (b - a) < 0.00000001) $"$\"_almost_equal / actual: {!a} / expected: {!b}\""
+
+inl _equal b a =
+    assert (a = b) $"$\"_equal / actual: {!a} / expected: {!b}\""
+
+inl _is_less_than b a =
+    assert (b < a) $"$\"_is_less_than / actual: {!a} / expected: {!b}\""
+
+inl _is_less_than_or_equal b a =
+    assert (b <= a) $"$\"_is_less_than_or_equal / actual: {!a} / expected: {!b}\""
+
+#!spiral
+
+inl init_series start end inc =
+    inl total = conv ((end - start) / inc) + 1
+    am.init total (conv >> (*) inc >> (+) start) : a i32 f64
+
+#!spiral
+
+inl atan2 (y : f64) (x : f64) =
+    $"System.Math.Atan2 (!y, !x)" : f64
+
+inl cos (d : f64) =
+    $"System.Math.Cos !d" : f64
+
+inl e () =
+    exp 1f64
+
+inl log_base (new_base : f64) (a : f64) =
+    $"System.Math.Log (!a, !new_base)" : f64
+
+inl pi () =
+    $"System.Math.PI" : f64
+
+inl sin (d : f64) =
+    $"System.Math.Sin !d" : f64
+
+inl square x =
+    x ** 2
+
+#!spiral
+
+// // test
+
+2 * 2 / 0.4f64 |> sqrt
+|> _almost_equal 3.1622776601683795
+
+#!spiral
+
+// // test
+
+2f64 / 3
+|> _almost_equal 0.6666666666666666
+
+#!spiral
+
+// // test
+
+2f64 |> log
+|> _almost_equal 0.6931471805599453
+
+#!spiral
+
+// // test
+
+pi ()
+|> _almost_equal 3.141592653589793
+
+#!spiral
+
+// // test
+
+pi () |> cos
+|> _equal -1
+
+#!spiral
+
+// // test
+
+pi ()
+|> cos
+|> fun n => n / 2
+|> _almost_equal -0.5
+
+#!spiral
+
+// // test
+
+pi () / 2 |> cos
+|> _almost_equal 0.00000000000000006123233995736766
+
+#!spiral
+
+// // test
+
+100 |> log_base 10
+|> _equal 2
+
+#!spiral
+
+// // test
+
+0 |> atan2 1
+|> _equal 1.5707963267948966
+
+#!spiral
+
+// // test
+
+5f64
+|> sqrt
+|> square
+|> _almost_equal 5
+
+#!spiral
+
+// // test
+
+e () |> square
+|> _almost_equal 7.3890560989306495
+
+#!spiral
+
+// // test
+
+inl x = init_series -3 3 0.01
+inl y = x |> am.map square
+"square", "x", x, "y", ;["square", y]
+
+#!spiral
+
+// // test
+
+inl x = init_series -10 10 0.1
+inl y_sin = x |> am.map sin
+inl y_cos = x |> am.map cos
+"sin cos", "x", x, "y", ;["sin", y_sin; "cos", y_cos]
+
+#!spiral
+
+type derivative = (f64 -> f64) -> f64 -> f64
+
+inl derivative dt : derivative =
+    fun x t =>
+        (x (t + dt / 2) - x (t - dt / 2)) / dt
+
+#!spiral
+
+// // test
+
+derivative 1 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal 0.25
+
+derivative 0.001 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal 0.0000002499998827953931
+
+derivative 0.000001 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal 0.000000000001000088900582341
+
+derivative 0.000000001 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal 0.00000008274037099909037
+
+derivative 0.000000000001 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal 0.00008890058234101161
+
+derivative 0.000000000000001 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal -0.0007992778373592246
+
+derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
+|> _almost_equal -1
+
+#!spiral
+
+type integration = (f64 -> f64) -> f64 -> f64 -> f64
+
+inl integral dt : integration =
+    fun f a b =>
+        inl rec loop t y =
+            if t < b
+            then loop (t + dt) (y + f t * dt)
+            else t, y
+        loop (a + dt / 2) 0
+        |> snd
+
+#!spiral
+
+// // test
+
+integral 0.01 square 0 1
+|> _almost_equal 0.33332500000000004
+
+#!spiral
+
+inl integral' dt : integration =
+    fun f a b =>
+        init_series (a + dt / 2) (b - dt / 2) dt
+        |> am.map (f >> (*) dt)
+        |> am.fold (+) 0
+
+#!spiral
+
+// // test
+
+integral' 0.01 square 0 1
+|> _almost_equal 0.33332500000000004
+
+#!spiral
+
+type vec =
+    {
+        x : f64
+        y : f64
+        z : f64
+    }
+
+inl vec x y z : vec =
+    { x y z }
+
+#!spiral
+
+// // test
+
+vec 1 2 3 .z
+|> _equal 3
+
+#!spiral
+
+inl (^+^) (a : vec) (b : vec) =
+    vec (a.x + b.x) (a.y + b.y) (a.z + b.z)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 ^+^ vec 4 5 6
+|> _equal (vec 5 7 9)
+
+#!spiral
+
+inl (*^) c { x y z } =
+    vec (c * x) (c * y) (c * z)
+
+#!spiral
+
+// // test
+
+5 *^ vec 1 2 3
+|> _equal (vec 5 10 15)
+
+#!spiral
+
+inl (^*) v c =
+    (*^) c v
+
+#!spiral
+
+// // test
+
+vec 1 2 3 ^* 5
+|> _equal (vec 5 10 15)
+
+#!spiral
+
+inl (^/) { x y z } c =
+    vec (x / c) (y / c) (z / c)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 ^/ 5
+|> _equal (vec 0.2 0.4 0.6)
+
+#!spiral
+
+inl negate_vec v =
+    v ^* -1
+
+#!spiral
+
+// // test
+
+vec 1 2 3
+|> negate_vec
+|> _equal (vec -1 -2 -3)
+
+#!spiral
+
+inl (^-^) a b =
+    a ^+^ (negate_vec b)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 ^-^ vec 4 5 6
+|> _equal (vec -3 -3 -3)
+
+#!spiral
+
+inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
+    ax * bx + ay * by + az * bz
+
+#!spiral
+
+// // test
+
+vec 1 2 3 <.> vec 4 5 6
+|> _equal 32
+
+#!spiral
+
+inl (><) (a : vec) (b : vec) =
+    vec
+        (a.y * b.z - a.z * b.y)
+        (a.z * b.x - a.x * b.z)
+        (a.x * b.y - a.y * b.x)
+
+#!spiral
+
+// // test
+
+vec 1 2 3 >< vec 4 5 6
+|> _equal (vec -3 6 -3)
+
+#!spiral
+
+inl i_hat () = vec 1 0 0
+inl j_hat () = vec 0 1 0
+inl k_hat () = vec 0 0 1
+inl zero_vec () = vec 0 0 0
+
+#!spiral
+
+inl sum_vec vs =
+    vs |> listm.fold (^+^) (zero_vec ())
+
+#!spiral
+
+// // test
+
+[vec 1 2 3; vec 4 5 6]
+|> sum_vec
+|> _equal (vec 5 7 9)
+
+#!spiral
+
+inl magnitude v =
+    v <.> v |> sqrt
+
+#!spiral
+
+// // test
+
+vec 1 2 3
+|> magnitude
+|> _almost_equal 3.7416573867739413
+
+#!spiral
+
+inl v1 t =
+    2 *^ (t ** 2 *^ i_hat () ^+^ 3 *^ (t ** 3 *^ j_hat () ^+^ t ** 4 *^ k_hat ()))
+
+#!spiral
+
+// // test
+
+v1 1
+|> _equal (vec 2 6 6)
+
+#!spiral
+
+type vec_derivative = (f64 -> vec) -> f64 -> vec
+
+inl vec_derivative dt : vec_derivative =
+    fun v t =>
+        (v (t + dt / 2) ^-^ v (t - dt / 2)) ^/ dt
+
+#!spiral
+
+// // test
+
+vec_derivative 0.01 v1 3 .x
+|> _almost_equal (derivative 0.01 (v1 >> fun v => v.x) 3)
+
+#!spiral
+
+// // test
+
+()

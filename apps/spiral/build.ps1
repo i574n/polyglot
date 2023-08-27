@@ -17,4 +17,6 @@ if (!$fast) {
 
 if (!$fast) {
     { dotnet repl --run Spiral.dib --output-path Spiral.repl.ipynb --exit-after-run } | Invoke-Block
+    { dotnet repl --run Physics.dib --output-path Physics.repl.ipynb --exit-after-run } | Invoke-Block
+    { dotnet repl --run Tasks.dib --output-path Tasks.repl.ipynb --exit-after-run } | Invoke-Block
 }

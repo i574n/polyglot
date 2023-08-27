@@ -51,9 +51,9 @@ let linePlotsSvgPath = tmpSpiralPath </> "line-plots-svg"
 [tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath]
 |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
-Formatter.Register<struct (float array * struct (string * float array) array)> (
-    (fun struct (x, ys) ->
-        let json = (x, ys) |> FSharp.Json.Json.serialize
+Formatter.Register<struct (string * string * float array * string * struct (string * float array) array)> (
+    (fun struct (caption, x_desc, x, y_desc, ys) ->
+        let json = (caption, (x_desc, x), (y_desc, ys)) |> FSharp.Json.Json.serialize
         async {
             let hashHex = json |> hashText
             let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"
