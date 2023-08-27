@@ -248,7 +248,8 @@ modules:
         do! spiprojCode |> FileSystem.writeAllTextAsync spiprojPath
 
         let disposable = newDisposable (fun () ->
-            tempDir |> FileSystem.deleteDirectoryAsync |> Async.Ignore |> Async.RunSynchronously
+            ()
+            // tempDir |> FileSystem.deleteDirectoryAsync |> Async.Ignore |> Async.RunSynchronously
         )
 
         return mainPath, disposable

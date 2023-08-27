@@ -149,7 +149,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
     let workingDirectory = options.WorkingDirectory |> Option.defaultValue ""
 
     trace Debug (fun () -> $"executeAsync / options: {options}") getLocals
-    
+
     let startInfo = System.Diagnostics.ProcessStartInfo (
         WorkingDirectory = workingDirectory,
         FileName = fileName,
@@ -177,7 +177,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
             | None -> ()
 
             trace
-                (if error then Error else Debug)
+                Debug
                 (fun () -> $"> {e.Data}")
                 Common.getLocals
 
@@ -219,7 +219,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
             return System.Int32.MinValue
     }
 
-    let output = output |> Seq.rev |> String.concat System.Environment.NewLine
+    let output = output |> Seq.rev |> String.concat "\n"
 
     trace Debug (fun () ->
         $"executeAsync / exitCode: {exitCode} / proc.Id: {proc.Id} / output.Length: {output.Length}"
@@ -260,7 +260,7 @@ async {
                 OnLine = None
                 WorkingDirectory = Some tempFolder
             }
-    
+
 }
 |> Async.runWithTimeout 10000
 |> function

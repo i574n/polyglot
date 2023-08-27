@@ -56,15 +56,33 @@ module FileSystem =
                     | parent -> parent.FullName |> loop
         loop rootDir
 
+    /// ## readAllTextAsync
+
+    let inline readAllTextAsync path =
+        path |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
+
+    /// ## fileExistsContent
+
+    let inline fileExistsContent path content = async {
+        if path |> System.IO.File.Exists |> not
+        then return false
+        else
+            let! existingContent = path |> readAllTextAsync
+            return content = existingContent
+    }
+
     /// ## writeAllTextAsync
 
     let inline writeAllTextAsync path contents =
         System.IO.File.WriteAllTextAsync (path, contents) |> Async.AwaitTask
 
-    /// ## readAllTextAsync
+    /// ## writeAllTextExists
 
-    let inline readAllTextAsync path =
-        System.IO.File.ReadAllTextAsync path |> Async.AwaitTask
+    let inline writeAllTextExists path contents = async {
+        let! exists = contents |> fileExistsContent path
+        if not exists
+        then do! contents |> writeAllTextAsync path
+    }
 
     /// ## waitForFileAccess
 

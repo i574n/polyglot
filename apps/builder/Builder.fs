@@ -9,7 +9,7 @@ module Builder =
 
     /// ## buildProject
 
-    let buildProject path = async {
+    let inline buildProject path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let extension = fullPath |> System.IO.Path.GetExtension
@@ -33,19 +33,19 @@ module Builder =
         return exitCode
     }
 
-    /// ## buildCode
+    /// ## persistCodeProject
 
-    let buildCode packages modules path name code = async {
+    let inline persistCodeProject packages modules path name code = async {
         let getLocals () = $"packages: {packages} / modules: {modules} / path: {path} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
-        trace Debug (fun () -> "buildCode") getLocals
+        trace Debug (fun () -> "persistCodeProject") getLocals
 
         let targetPath = path </> "target"
         System.IO.Directory.CreateDirectory targetPath |> ignore
 
         let filePath = targetPath </> $"{name}.fs" |> System.IO.Path.GetFullPath
-        do! code |> FileSystem.writeAllTextAsync filePath
+        do! code |> FileSystem.writeAllTextExists filePath
 
-        let repositoryRoot = path |> FileSystem.findParent ".paket" false
+        let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
         let modulesCode =
             modules
@@ -71,20 +71,27 @@ module Builder =
     <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
-        do! fsprojCode |> FileSystem.writeAllTextAsync fsprojPath
+        do! fsprojCode |> FileSystem.writeAllTextExists fsprojPath
 
+        let paketReferencesPath = targetPath </> "paket.references"
         let paketReferencesCode =
             "FSharp.Core" :: packages
             |> String.concat "\n"
+        do! paketReferencesCode |> FileSystem.writeAllTextExists paketReferencesPath
 
-        do! paketReferencesCode |> FileSystem.writeAllTextAsync (targetPath </> "paket.references")
+        return fsprojPath
+    }
 
+    /// ## buildCode
+
+    let inline buildCode packages modules path name code = async {
+        let! fsprojPath = persistCodeProject packages modules path name code
         return! fsprojPath |> buildProject
     }
 
     /// ## buildFile
 
-    let buildFile packages modules path = async {
+    let inline buildFile packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let dir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension

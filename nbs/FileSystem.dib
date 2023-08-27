@@ -145,6 +145,29 @@ getSourceDirectory () |> findParent "paket.dependencies" true
 
 #!markdown
 
+## readAllTextAsync
+
+#!fsharp
+
+let inline readAllTextAsync path =
+    path |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
+
+#!markdown
+
+## fileExistsContent
+
+#!fsharp
+
+let inline fileExistsContent path content = async {
+    if path |> System.IO.File.Exists |> not
+    then return false
+    else
+        let! existingContent = path |> readAllTextAsync
+        return content = existingContent
+}
+
+#!markdown
+
 ## writeAllTextAsync
 
 #!fsharp
@@ -154,12 +177,15 @@ let inline writeAllTextAsync path contents =
 
 #!markdown
 
-## readAllTextAsync
+## writeAllTextExists
 
 #!fsharp
 
-let inline readAllTextAsync path =
-    System.IO.File.ReadAllTextAsync path |> Async.AwaitTask
+let inline writeAllTextExists path contents = async {
+    let! exists = contents |> fileExistsContent path
+    if not exists
+    then do! contents |> writeAllTextAsync path
+}
 
 #!markdown
 

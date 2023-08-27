@@ -21,6 +21,7 @@
 
 #!import ../nbs/Common.fs
 #!import ../nbs/CommonFSharp.fs
+#!import ../nbs/Crypto.fs
 #!import ../nbs/Async.fs
 #!import ../nbs/AsyncSeq.fs
 #!import ../nbs/Networking.fs
@@ -31,16 +32,6 @@
 
 open Common
 open FileSystem
-
-#!fsharp
-
-let hashText (input : string) =
-    use sha256 = System.Security.Cryptography.SHA256.Create ()
-    input
-    |> Encoding.UTF8.GetBytes
-    |> sha256.ComputeHash
-    |> Array.map (fun b -> b.ToString "x2")
-    |> String.concat ""
 
 #!fsharp
 
@@ -55,7 +46,7 @@ Formatter.Register<struct (string * string * float array * string * struct (stri
     (fun struct (caption, x_desc, x, y_desc, ys) ->
         let json = (caption, (x_desc, x), (y_desc, ys)) |> FSharp.Json.Json.serialize
         async {
-            let hashHex = json |> hashText
+            let hashHex = json |> Crypto.hashText
             let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"
 
             if System.IO.File.Exists svgPath |> not then

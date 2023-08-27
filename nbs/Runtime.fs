@@ -90,7 +90,7 @@ module Runtime =
                 | None -> ()
 
                 trace
-                    (if error then Error else Debug)
+                    Debug
                     (fun () -> $"> {e.Data}")
                     Common.getLocals
 
@@ -132,7 +132,7 @@ module Runtime =
                 return System.Int32.MinValue
         }
 
-        let output = output |> Seq.rev |> String.concat System.Environment.NewLine
+        let output = output |> Seq.rev |> String.concat "\n"
 
         trace Debug (fun () ->
             $"executeAsync / exitCode: {exitCode} / proc.Id: {proc.Id} / output.Length: {output.Length}"
