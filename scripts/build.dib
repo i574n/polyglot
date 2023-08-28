@@ -25,6 +25,10 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../apps/dir-tree-html/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/../apps/spiral/build.ps1" } | Invoke-Block
 
 #!pwsh

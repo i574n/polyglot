@@ -64,6 +64,7 @@ rsync -av `
 `
     --include '*/' `
     --exclude '*' `
+    --no-links `
     --prune-empty-dirs `
     ../ `
     ../dist/
@@ -71,3 +72,5 @@ rsync -av `
 Get-ChildItem -Path ../dist -Recurse -File -Force | Where-Object { $_.Name -ieq '.gitignore' } | ForEach-Object {
     Rename-Item -Path $_.FullName -NewName '_.gitignore'
 }
+
+{ . ../apps/dir-tree-html/target/bin/Release/net8.0/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block
