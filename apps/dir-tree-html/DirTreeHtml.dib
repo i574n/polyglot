@@ -52,7 +52,7 @@ let rec scanDirectory isRoot (basePath : string) (path : string) =
 let rec generateHtml fsNode =
     match fsNode with
     | File (fileName, relativePath) ->
-        $"""<li><span>📄 <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a></span></li>"""
+        $"""<li><span>&#128196; <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a></span></li>"""
     | Folder (folderName, relativePath, children) ->
         let childrenHtml = children |> List.map generateHtml |> String.concat "\n"
         $"""<li><span>📁 <a href="{relativePath}">{folderName}</a></span><ul>{childrenHtml}</ul></li>"""
@@ -61,7 +61,16 @@ let rec generateHtml fsNode =
 
 let generateHtmlForFileSystem root =
     let rootHtml = root |> generateHtml
-    $"<ul>{rootHtml}</ul>"
+    $"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <ul>{rootHtml}</ul>
+</body>
+</html>
+"""
 
 #!fsharp
 
@@ -73,7 +82,16 @@ let html =
     |> generateHtmlForFileSystem
 
 html
-|> _equal """<ul><li><span>📁 <a href="workflows">workflows</a></span><ul><li><span>📄 <a href="workflows/gh-pages.yaml">gh-pages.yaml</a></span></li></ul></li></ul>"""
+|> _equal """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <ul><li><span>📁 <a href="workflows">workflows</a></span><ul><li><span>&#128196; <a href="workflows/gh-pages.yaml">gh-pages.yaml</a></span></li></ul></li></ul>
+</body>
+</html>
+"""
 
 html |> Microsoft.DotNet.Interactive.Formatting.Html.ToHtmlContent
 

@@ -26,7 +26,7 @@ module DirTreeHtml =
     let rec generateHtml fsNode =
         match fsNode with
         | File (fileName, relativePath) ->
-            $"""<li><span>📄 <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a></span></li>"""
+            $"""<li><span>&#128196; <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a></span></li>"""
         | Folder (folderName, relativePath, children) ->
             let childrenHtml = children |> List.map generateHtml |> String.concat "\n"
             $"""<li><span>📁 <a href="{relativePath}">{folderName}</a></span><ul>{childrenHtml}</ul></li>"""
@@ -35,7 +35,16 @@ module DirTreeHtml =
 
     let generateHtmlForFileSystem root =
         let rootHtml = root |> generateHtml
-        $"<ul>{rootHtml}</ul>"
+        $"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <ul>{rootHtml}</ul>
+</body>
+</html>
+"""
 
     /// ## Arguments
 

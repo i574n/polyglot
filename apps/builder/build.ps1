@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
 
-$dibParserExe = "../parser/target/bin/Release/net8.0/DibParser$(GetExecutableSuffix)"
+$dibParserExe = "../parser/target/dist/DibParser$(GetExecutableSuffix)"
 if ($fast -and (Test-Path $dibParserExe)) {
     { . $dibParserExe Builder.dib } | Invoke-Block
 } else {

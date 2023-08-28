@@ -21,7 +21,13 @@ rsync -av `
     --exclude 'obj' `
     --exclude 'paket-files' `
     --exclude 'pkg' `
-    --exclude 'target' `
+`
+    --include 'target/' `
+    --include 'target/dist/' `
+    --include 'target/dist/*.exe' `
+    --exclude 'target/dist/*.*' `
+    --include 'target/dist/*' `
+    --exclude 'target/*' `
 `
     --include 'LICENSE' `
     --include '*.ans' `
@@ -69,8 +75,8 @@ rsync -av `
     ../ `
     ../dist/
 
-Get-ChildItem -Path ../dist -Recurse -File -Force | Where-Object { $_.Name -ieq '.gitignore' } | ForEach-Object {
-    Rename-Item -Path $_.FullName -NewName '_.gitignore'
+Get-ChildItem -Path ../dist -Recurse -File -Force | Where-Object { $_.Name.StartsWith(".") } | ForEach-Object {
+    Rename-Item -Path $_.FullName -NewName "_$($_.Name)"
 }
 
-{ . ../apps/dir-tree-html/target/bin/Release/net8.0/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block
+{ . ../apps/dir-tree-html/target/dist/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block

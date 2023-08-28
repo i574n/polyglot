@@ -14,9 +14,9 @@ if (!$fast) {
     { dotnet repl --run Dice.dib --output-path Dice.repl.ipynb --exit-after-run } | Invoke-Block
 }
 
-{ . ../parser/target/bin/Release/net8.0/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block
+{ . ../parser/target/dist/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block
 
-{ . ../builder/target/bin/Release/net8.0/Builder$(GetExecutableSuffix) Dice.fs --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
+{ . ../builder/target/dist/Builder$(GetExecutableSuffix) Dice.fs --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
 
 { dotnet fable target/Dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs } | Invoke-Block
 if (!$fast) {

@@ -20,4 +20,4 @@ if (!$fast) {
     { dotnet repl --run Toml.dib --output-path Toml.repl.ipynb --exit-after-run } | Invoke-Block
 }
 
-{ . ../apps/parser/target/bin/Release/net8.0/DibParser$(GetExecutableSuffix) Async.dib AsyncSeq.dib Common.dib CommonFSharp.dib Crypto.dib FileSystem.dib Networking.dib Runtime.dib Toml.dib } | Invoke-Block
+{ . ../apps/parser/target/dist/DibParser$(GetExecutableSuffix) Async.dib AsyncSeq.dib Common.dib CommonFSharp.dib Crypto.dib FileSystem.dib Networking.dib Runtime.dib Toml.dib } | Invoke-Block

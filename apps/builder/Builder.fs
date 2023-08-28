@@ -24,7 +24,7 @@ module Builder =
         let! exitCode, _result =
             Runtime.executeWithOptionsAsync
                 {
-                    Command = "dotnet build -c Release"
+                    Command = "dotnet publish -c release -o dist"
                     CancellationToken = None
                     OnLine = None
                     WorkingDirectory = Some fileDir
@@ -59,6 +59,10 @@ module Builder =
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+        <PublishAot>false</PublishAot>
+        <PublishTrimmed>false</PublishTrimmed>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
         <Version>0.0.1-alpha.1</Version>
         <OutputType>Exe</OutputType>
     </PropertyGroup>
