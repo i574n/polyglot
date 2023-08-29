@@ -33,7 +33,7 @@ function Invoke-Block {
 
         Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
 
-        $exitcode = $lastexitcode
+        $exitcode = $lastexitcode ?? 0
     } else {
         $originalEnvironmentVariables = @{}
         if ($EnvironmentVariables) {
@@ -47,7 +47,7 @@ function Invoke-Block {
 
         & @ScriptBlock
 
-        $exitcode = $lastexitcode
+        $exitcode = $lastexitcode ?? 0
 
         if ($EnvironmentVariables) {
             foreach ($var in $EnvironmentVariables.Keys) {

@@ -30,5 +30,8 @@ if ($module.Matches.Count -gt 0) {
 
 if (!$fast) {
     { pnpm -C e2e install --frozen-lockfile } | Invoke-Block
-    { pnpm -C e2e test:e2e } | Invoke-Block
+
+    Set-Location e2e
+    { pnpm test:e2e } | Invoke-Block
+    Set-Location ..
 }
