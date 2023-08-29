@@ -8,12 +8,9 @@ devDependencies:
   '@playwright/test':
     specifier: 1.38.0-beta-1691778350000
     version: 1.38.0-beta-1691778350000
-  '@types/chrome':
-    specifier: ~0.0.244
-    version: 0.0.244
   npm-check-updates:
-    specifier: ~16.13.2
-    version: 16.13.2
+    specifier: ~16.13
+    version: 16.13.0
 
 packages:
 
@@ -214,27 +211,6 @@ packages:
     dependencies:
       '@tufjs/canonical-json': 1.0.0
       minimatch: 9.0.3
-    dev: true
-
-  /@types/chrome@0.0.244:
-    resolution: {integrity: sha512-pC8kBWuUqGhG6S5d3E44a2f1TA2XHX/sXfCIrrDpA4K65Ozzw3mYQjuvMOTdSUCx4HjJhp4zuZh6fKOH3UdA1g==}
-    dependencies:
-      '@types/filesystem': 0.0.32
-      '@types/har-format': 1.2.12
-    dev: true
-
-  /@types/filesystem@0.0.32:
-    resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
-    dependencies:
-      '@types/filewriter': 0.0.29
-    dev: true
-
-  /@types/filewriter@0.0.29:
-    resolution: {integrity: sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==}
-    dev: true
-
-  /@types/har-format@1.2.12:
-    resolution: {integrity: sha512-P20p/YBrqUBmzD6KhIQ8EiY4/RRzlekL4eCvfQnulFPfjmiGxKIoyCeI7qam5I7oKH3P8EU4ptEi0EfyGoLysw==}
     dev: true
 
   /@types/http-cache-semantics@4.0.1:
@@ -1288,8 +1264,8 @@ packages:
       npm-normalize-package-bin: 3.0.1
     dev: true
 
-  /npm-check-updates@16.13.2:
-    resolution: {integrity: sha512-0pQI+k1y0JVwenB2gBc69tXFYfkckSVrNrlcn7TIrZfis4LnfdzakY/LYzZKt/lx37edN2isk3d2Zw4csptu/w==}
+  /npm-check-updates@16.13.0:
+    resolution: {integrity: sha512-zTJCqov2+KpCLM7lOOxXLFiqKg8RLt10dempIbE9EfKCzoN1yqSrDcBCpU6uOmlSRy3IIGm1rK+piCrn+uulJw==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:

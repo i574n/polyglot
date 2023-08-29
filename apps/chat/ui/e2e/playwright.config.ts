@@ -7,7 +7,7 @@ const baseURL = `http://localhost:${PORT}`
 
 export default {
   timeout: 20 * 1000,
-  testDir: path.join(__dirname, "e2e"),
+  testDir: path.join(__dirname, 'tests'),
   retries: process.env.CI ? 1 : 0,
   outputDir: "test-results/",
   fullyParallel: true,
@@ -15,7 +15,7 @@ export default {
 
   webServer: [
     {
-      command: "cd dist && npx serve",
+      command: "cd ../dist/rna && npx serve",
       url: baseURL,
       timeout: 40 * 1000,
       reuseExistingServer: false, // !process.env.CI,

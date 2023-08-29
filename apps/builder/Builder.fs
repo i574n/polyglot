@@ -21,16 +21,25 @@ module Builder =
         | ".fsproj" -> ()
         | _ -> failwith "Invalid project file"
 
-        let! exitCode, _result =
+        let! exitCode1, _result =
             Runtime.executeWithOptionsAsync
                 {
-                    Command = "dotnet publish -c release -o dist"
+                    Command = "dotnet publish -c release -o dist -r linux-x64"
                     CancellationToken = None
                     OnLine = None
                     WorkingDirectory = Some fileDir
                 }
 
-        return exitCode
+        let! exitCode2, _result =
+            Runtime.executeWithOptionsAsync
+                {
+                    Command = "dotnet publish -c release -o dist -r win-x64"
+                    CancellationToken = None
+                    OnLine = None
+                    WorkingDirectory = Some fileDir
+                }
+
+        return exitCode1 + exitCode2
     }
 
     /// ## persistCodeProject

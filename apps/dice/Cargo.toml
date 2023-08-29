@@ -10,7 +10,7 @@ fable_library_rust = { path = "target/rs/fable_modules/fable-library-rust", opti
 rand = { version = "~0.8", optional = true }
 
 [features]
-chain = ["dep:fable_library_rust"]
+chain = ["fable_library_rust"]
 default = ["fable_library_rust/default", "dep:rand"]
 
 [[bin]]

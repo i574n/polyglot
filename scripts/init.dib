@@ -29,11 +29,23 @@ cargo +nightly install wasm-pack
 
 #!pwsh
 
+cargo +nightly install trunk
+
+#!pwsh
+
 npm install -g pnpm
 
 #!pwsh
 
 npm install -g esbuild
+
+#!pwsh
+
+npm install -g @chialab/rna
+
+#!pwsh
+
+npm install -g @chialab/rna-bundler
 
 #!pwsh
 
@@ -74,3 +86,7 @@ Install-Module -Name PSToml -Scope CurrentUser
 #!pwsh
 
 { . "$ScriptDir/dep_fable.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/dep_hyperui.ps1" } | Invoke-Block

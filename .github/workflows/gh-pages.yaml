@@ -53,6 +53,7 @@ jobs:
 
   push:
     needs: build
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions:
       contents: write

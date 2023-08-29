@@ -32,6 +32,7 @@ rsync -av `
     --include 'LICENSE' `
     --include '*.ans' `
     --include '*.cs' `
+    --include '*.css' `
     --include '*.csproj' `
     --include '*.dependencies' `
     --include '*.dart' `
@@ -44,6 +45,7 @@ rsync -av `
     --include '*.gitattributes' `
     --include '*.gitignore' `
     --include '*.html' `
+    --include '*.ico' `
     --include '*.ipynb' `
     --include '*.js' `
     --include '*.json' `
@@ -75,7 +77,7 @@ rsync -av `
     ../ `
     ../dist/
 
-Get-ChildItem -Path ../dist -Recurse -File -Force | Where-Object { $_.Name.StartsWith(".") } | ForEach-Object {
+Get-ChildItem -Path ../dist -Recurse -Force | Where-Object { $_.Name.StartsWith(".") } | ForEach-Object {
     Rename-Item -Path $_.FullName -NewName "_$($_.Name)"
 }
 

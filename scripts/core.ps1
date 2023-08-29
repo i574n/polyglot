@@ -1,9 +1,15 @@
 function Invoke-Linux {
     param (
-        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
+        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock,
+        [string] $Distro = ""
     )
     if ($IsWindows) {
-        Invoke-Expression "wsl $($ScriptBlock.ToString().Trim())"
+        if ($Distro -ne "") {
+            $Distro = " -d $Distro"
+        } else {
+            $Distro = ""
+        }
+        Invoke-Expression "wsl$Distro $($ScriptBlock.ToString().Trim())"
     } else {
         & @ScriptBlock
     }
@@ -11,10 +17,11 @@ function Invoke-Linux {
 
 function Invoke-Block {
     param (
+        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock,
         [string] $OnError = $ErrorActionPreference,
         [Hashtable] $EnvironmentVariables,
-        [switch]$Linux = $false,
-        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock
+        [switch] $Linux = $false,
+        [string] $Distro = ""
     )
     $Error.Clear()
 
@@ -24,7 +31,7 @@ function Invoke-Block {
             $envVars = $EnvironmentVariables.Keys | ForEach-Object { "$_=$($EnvironmentVariables[$_])" } | ForEach-Object { "$_ " }
         }
 
-        Invoke-Expression "Invoke-Linux { $envVars $ScriptBlock }"
+        Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
 
         $exitcode = $lastexitcode
     } else {

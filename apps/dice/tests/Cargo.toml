@@ -7,9 +7,9 @@ edition = "2021"
 
 [dependencies]
 anyhow = "~1.0"
-borsh = { version = "~1.0.0-alpha.1" }
+borsh = { version = "~1.0.0-alpha.3" }
 serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
-tokio = { version = "~1.28", features = ["full"] }
+tokio = { version = "~1.32", features = ["full"] }
 # workspaces = { git = "https://github.com/near/workspaces-rs", features = ["unstable"] }
 # workspaces = { path = "../../../../workspaces-rs/workspaces", features = ["unstable"] }
 workspaces = { version = "~0.7", features = ["unstable"] }
