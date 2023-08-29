@@ -1,9 +1,11 @@
 param(
+    $fast,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
+
 
 Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 
@@ -26,5 +28,7 @@ if ($module.Matches.Count -gt 0) {
     $html -replace ' *<link rel="modulepreload" href="([^"]+)">', "" | Set-Content $path
 }
 
-{ pnpm -C e2e install --frozen-lockfile } | Invoke-Block
-{ pnpm -C e2e test:e2e } | Invoke-Block
+if (!$fast) {
+    { pnpm -C e2e install --frozen-lockfile } | Invoke-Block
+    { pnpm -C e2e test:e2e } | Invoke-Block
+}
