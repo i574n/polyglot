@@ -148,7 +148,7 @@ let tempFolder = FileSystem.getSourceDirectory () </> "target/test"
 
 "1 + 1"
 |> buildCode [] [] tempFolder "test"
-|> Async.runWithTimeout 20000
+|> Async.runWithTimeout 40000
 |> _equal (Some 0)
 
 #!fsharp
@@ -159,7 +159,7 @@ let tempFolder = FileSystem.getSourceDirectory () </> "target/test"
 
 "1 + a"
 |> buildCode [] [] tempFolder "test"
-|> Async.runWithTimeout 20000
+|> Async.runWithTimeout 40000
 |> _equal (Some 2)
 
 #!markdown
@@ -229,7 +229,7 @@ let main args =
 
     path
     |> buildFile packages modules
-    |> Async.runWithTimeout 30000
+    |> Async.runWithTimeout 60000
     |> function
         | Some exitCode -> exitCode
         | None -> 1

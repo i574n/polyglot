@@ -157,7 +157,7 @@ module Builder =
 
         path
         |> buildFile packages modules
-        |> Async.runWithTimeout 30000
+        |> Async.runWithTimeout 60000
         |> function
             | Some exitCode -> exitCode
             | None -> 1
