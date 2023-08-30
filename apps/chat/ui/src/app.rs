@@ -9,7 +9,14 @@ pub fn App() -> impl IntoView {
     view! {
         <Router>
             <Routes>
-                <Route path="" view= move || view! { <Home/> }/>
+                <Route path="" view= move || view! { <div><Home/><span style="display: none">1</span></div> }/>
+                <Route path="/" view= move || view! { <div><Home/><span style="display: none">2</span></div> }/>
+                <Route path="#" view= move || view! { <div><Home/><span style="display: none">3</span></div> }/>
+                <Route path="?" view= move || view! { <div><Home/><span style="display: none">4</span></div> }/>
+                <Route path="/*" view= move || view! { <div><Home/><span style="display: none">5</span></div> }/>
+                <Route path="***" view= move || view! { <div><Home/><span style="display: none">6</span></div> }/>
+                <Route path="**" view= move || view! { <div><Home/><span style="display: none">7</span></div> }/>
+                <Route path="*" view= move || view! { <div><Home/><span style="display: none">8</span></div> }/>
             </Routes>
         </Router>
     }

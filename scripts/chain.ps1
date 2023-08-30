@@ -22,7 +22,7 @@ function DownloadNearSandbox {
         $retryCount = 0
         while ($retryCount -lt 5) {
             if ($retryCount -gt 0) {
-                Write-Host "Retrying download of $url ($Error)"
+                Write-Host "Retrying download of $url - $retryCount ($Error)"
             }
             $Error.Clear()
 

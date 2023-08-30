@@ -65,6 +65,8 @@ jobs:
           name: gh-pages
           path: gh-pages
 
+      - run: pwsh gh-pages/scripts/publish-fleek.ps1
+
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
