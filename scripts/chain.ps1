@@ -26,8 +26,12 @@ function DownloadNearSandbox {
             }
             $Error.Clear()
 
-            Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
-            Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
+            try {
+                Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
+                Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
+            } catch {
+                Write-Host "Exception: $($_.Exception.Message)"
+            }
 
             if ($Error.Count -eq 0) {
                 break
