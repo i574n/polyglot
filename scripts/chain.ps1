@@ -29,10 +29,11 @@ function DownloadNearSandbox {
             Write-Host "## 2"
 
             try {
-                Invoke-WebRequest $url -OutFile $nearSandboxZip -ErrorAction SilentlyContinue
-                Expand-Archive -Force $nearSandboxZip (Split-Path $path) -ErrorAction SilentlyContinue
+                Invoke-WebRequest $url -OutFile $nearSandboxZip
+                $output = Expand-Archive -Force $nearSandboxZip (Split-Path $path) -PassThru
+                Write-Host "Output: $output / length: $($output.Length)"
             } catch {
-                Write-Host "Exception: $($_.Exception.Message)"
+                Write-Host "Exception: '$_' / Error: '$Error'"
             }
             Write-Host "## 3"
 
@@ -47,6 +48,7 @@ function DownloadNearSandbox {
             $retryCount++
         }
         Write-Host "## 5"
+        Write-Host "$path Length: $((Get-Item $path).Length)"
         if ($Error.Count -gt 0) {
             throw "Failed to download $url ($Error)"
             exit 1
