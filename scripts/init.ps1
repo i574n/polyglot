@@ -39,8 +39,6 @@ if (!(Search-DotnetSdk "8")) {
 dotnet tool restore
 dotnet paket restore
 
-{ pnpm -C .. install --frozen-lockfile } | Invoke-Block
-
 { . $ScriptDir/symlinks.ps1 } | Invoke-Block
 { . $ScriptDir/dep_dotnet-interactive.ps1 } | Invoke-Block
 { . $ScriptDir/dep_dotnet-repl.ps1 } | Invoke-Block

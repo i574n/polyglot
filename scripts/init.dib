@@ -73,6 +73,10 @@ Install-Module -Name PSToml -Scope CurrentUser
 
 #!pwsh
 
+{ pnpm -C .. install --frozen-lockfile } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/dep_netmq.ps1" } | Invoke-Block
 
 #!pwsh
