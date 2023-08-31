@@ -1,0 +1,17 @@
+{
+  "name": "ipfs",
+  "type": "module",
+  "scripts": {
+    "outdated-pre": "npm-check-updates --target greatest",
+    "start": "tsx index.ts"
+  },
+  "dependencies": {
+    "nft.storage": "~7.1"
+  },
+  "devDependencies": {
+    "@types/node": "~20.5",
+    "npm-check-updates": "~16.13",
+    "typescript": "~5.2",
+    "tsx": "~3.12"
+  }
+}

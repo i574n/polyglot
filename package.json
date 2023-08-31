@@ -1,0 +1,11 @@
+{
+  "name": "polyglot",
+  "scripts": {
+    "outdated-pre": "npm-check-updates --target greatest"
+  },
+  "devDependencies": {
+    "@types/node": "~20.5",
+    "npm-check-updates": "~16.13",
+    "typescript": "~5.2"
+  }
+}

@@ -5,10 +5,6 @@ Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 
 
-dotnet paket outdated --include-prereleases
-
-cargo outdated -w
-
 function CheckToml {
     param (
         [string] $toml
@@ -17,6 +13,21 @@ function CheckToml {
     Write-Output "`n$toml"
     cargo outdated -w -m $toml
 }
+
+function CheckJson {
+    param (
+        [string] $json
+    )
+    $json = [IO.Path]::GetFullPath("$ScriptDir/$json")
+    Write-Output "`n$json"
+    pnpm -C $json outdated-pre
+}
+
+
+dotnet paket outdated --include-prereleases
+
+cargo outdated -w
+
 CheckToml "../apps/chat/contract/Cargo.toml"
 CheckToml "../apps/chat/tests/Cargo.toml"
 CheckToml "../apps/chat/ui/Cargo.toml"
@@ -25,4 +36,6 @@ CheckToml "../apps/dice/contract/Cargo.toml"
 CheckToml "../apps/dice/tests/Cargo.toml"
 CheckToml "../apps/plot/Cargo.toml"
 
-pnpm -C ../spiral/extension outdated-pre
+CheckJson "../spiral/extension"
+CheckJson "../apps/ipfs"
+CheckJson ".."

@@ -3,12 +3,15 @@ param(
 )
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
+. ./core.ps1
 
-
-npm i -g @fleekxyz/cli@dev
 
 Set-Location ..
 
+if ((Split-Path -Leaf (Get-Location)) -ne "dist") {
+    throw "Invalid location: $(Get-Location)"
+    exit 1
+}
 
 $files = @(
     Get-ChildItem -Path . -Recurse -File -Force `
@@ -19,15 +22,7 @@ $files = @(
     | Select-Object FullName, DirectoryName, Name
 )
 
-$files | ForEach-Object {
-    Write-Output "`npath: $($_.FullName)"
-
-    Remove-Item $_.FullName -Force
-}
-
-exit 0
-
-# $files | ForEach-Object -ThrottleLimit 1 -Parallel {
+# $files | ForEach-Object -ThrottleLimit 4 -Parallel {
 $files | ForEach-Object {
     Write-Output "`npath: $($_.FullName)"
 
@@ -38,20 +33,40 @@ $files | ForEach-Object {
         }
         $Error.Clear()
 
-        $output = fleek ipfs add $_.FullName
-        $hash = $output `
-        | Select-String -Pattern "https://\S+/(\S+)$" `
+        $output = pnpm -C ../apps/ipfs start $_.FullName
+        $status = $output `
+        | Select-String -Pattern "status: '(\w+)'" `
         | ForEach-Object { $_.Matches.Groups[1].Value }
 
-        if (!$hash) {
-            $Error.Add("Hash error: $output") | Out-Null
+        if ($status -ne "pinned") {
+            $Error.Add("Invalid status: $output") | Out-Null
             $retryCount++
             continue
         }
 
-        Write-Output "hash: '$hash'"
+        $cid = $output `
+        | Select-String -Pattern "cid: '(\w+)'" `
+        | ForEach-Object { $_.Matches.Groups[1].Value } `
+        | Select-Object -First 1
 
-        $hash | Set-Content "$($_.DirectoryName)/$($_.Name).hash"
+        Write-Output "$($_.Name) - cid: '$cid'"
+
+        $hash = $cid
+
+        # $output = fleek ipfs add $_.FullName
+        # $hash = $output `
+        # | Select-String -Pattern "https://\S+/(\S+)$" `
+        # | ForEach-Object { $_.Matches.Groups[1].Value }
+
+        # if (!$hash) {
+        #     $Error.Add("Hash error: $output") | Out-Null
+        #     $retryCount++
+        #     continue
+        # }
+
+        # Write-Output "hash: '$hash'"
+
+        # $hash | Set-Content "$($_.DirectoryName)/$($_.Name).hash"
 
         $dwebUrl = "https://dweb.link/ipfs/$hash"
         # cf-ipfs.com
@@ -79,17 +94,19 @@ $files | ForEach-Object {
             continue
         }
 
-        $cid = $response.Headers["X-Ipfs-Roots"]
+        $dwebCid = $response.Headers["X-Ipfs-Roots"]
 
-        Write-Output "cid: '$cid'"
+        Write-Output "$($_.Name) - dwebCid: '$dwebCid'"
 
-        $cid | Set-Content "$($_.DirectoryName)/$($_.Name).cid"
+        $dwebCid | Set-Content "$($_.DirectoryName)/$($_.Name).cid"
         Remove-Item $_.FullName -Force
 
         break
     }
-    if ($Error.Count -gt 0) {
-        throw "Failed to upload ($Error)"
-        exit 1
-    }
 }
+if ($Error.Count -gt 0) {
+    throw "Failed to upload ($Error)"
+    exit 1
+}
+
+{ . ../apps/dir-tree-html/target/dist/DirTreeHtml$(GetExecutableSuffix) --dir . --html index.html } | Invoke-Block

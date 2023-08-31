@@ -57,4 +57,8 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../apps/ipfs/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/outdated.ps1" } | Invoke-Block
