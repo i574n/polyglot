@@ -46,6 +46,8 @@ jobs:
       - run: pwsh scripts/publish.ps1
 
       - run: pwsh dist/scripts/publish-fleek.ps1
+        env:
+            NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
 
       - uses: actions/upload-artifact@v3
         with:
