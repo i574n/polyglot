@@ -10,7 +10,7 @@ Set-Location ..
 
 $dir = Split-Path -Leaf (Get-Location)
 if ($dir -ne "dist" -and $dir -ne "gh-pages") {
-    throw "Invalid location (<> dist && <> gh-pages): $(Get-Location)"
+    throw "Invalid location (dir <> dist && dir <> gh-pages): $(Get-Location)"
     exit 1
 }
 
