@@ -8,8 +8,9 @@ $ErrorActionPreference = "Stop"
 
 Set-Location ..
 
-if ((Split-Path -Leaf (Get-Location)) -ne "dist") {
-    throw "Invalid location: $(Get-Location)"
+$dir = Split-Path -Leaf (Get-Location)
+if ($dir -ne "dist" -and $dir -ne "gh-pages") {
+    throw "Invalid location (<> dist && <> gh-pages): $(Get-Location)"
     exit 1
 }
 
