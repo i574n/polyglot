@@ -4,44 +4,83 @@ namespace Polyglot
 
 module DirTreeHtml =
 
+    open FileSystem
+
     type FileSystemNode =
-        | File of string * string
+        | File of string * string * int64
         | Folder of string * string * FileSystemNode list
         | Root of FileSystemNode list
 
     let rec scanDirectory isRoot (basePath : string) (path : string) =
         let relativePath = path.Replace(basePath, "").Replace("\\", "/").TrimStart '/'
-        let folderName = System.IO.Path.GetFileName path
-        let subDirectories = System.IO.Directory.GetDirectories path |> Array.toList
-        let files = System.IO.Directory.GetFiles path |> Array.toList
 
-        let subDirectoryNodes = subDirectories |> List.map (scanDirectory false basePath)
-        let fileNodes = files |> List.map (fun f -> File (System.IO.Path.GetFileName f, relativePath))
+        let directories =
+            path
+            |> System.IO.Directory.GetDirectories
+            |> Array.toList
+            |> List.sort
+            |> List.map (scanDirectory false basePath)
+        let files =
+            path
+            |> System.IO.Directory.GetFiles
+            |> Array.toList
+            |> List.sort
+            |> List.map (fun f -> File (System.IO.Path.GetFileName f, relativePath, System.IO.FileInfo(f).Length))
 
-        let children = subDirectoryNodes @ fileNodes
+        let children = directories @ files
         if isRoot
         then Root children
-        else Folder (folderName, relativePath, children)
+        else Folder (path |> System.IO.Path.GetFileName, relativePath, children)
 
     let rec generateHtml fsNode =
         match fsNode with
-        | File (fileName, relativePath) ->
-            $"""<li><span>&#128196; <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a></span></li>"""
+        | File (fileName, relativePath, size) ->
+            let size =
+                match float size with
+                | size when size > 1024.0 * 1024.0 -> $"%.2f{size / 1024.0 / 1024.0} MB"
+                | size when size > 1024.0 -> $"%.2f{size / 1024.0} KB"
+                | size -> $"%.2f{size} B"
+            $"""
+<div class="file">&#128196;
+  <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a>
+  <span>&nbsp;({size})</span>
+</div>
+"""
         | Folder (folderName, relativePath, children) ->
-            let childrenHtml = children |> List.map generateHtml |> String.concat "\n"
-            $"""<li><span>📁 <a href="{relativePath}">{folderName}</a></span><ul>{childrenHtml}</ul></li>"""
+            $"""
+<details open>
+  <summary>
+    <span>&#128194; <a href="{relativePath}">{folderName}</a></span>
+  </summary>
+  <div class="children">{children |> List.map generateHtml |> String.concat "\n"}</div>
+</details>"""
         | Root children ->
-            children |> List.map generateHtml |> String.concat "\n"
+            $"""<div>{children |> List.map generateHtml |> String.concat "\n"}</div>"""
 
     let generateHtmlForFileSystem root =
-        let rootHtml = root |> generateHtml
         $"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <style>
+.file {{
+    display: flex;
+}}
+.file > span {{
+    display: none;
+}}
+.file:hover > span {{
+    display: block;
+}}
+.children {{
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+}}
+  </style>
 </head>
 <body>
-  <ul>{rootHtml}</ul>
+  {root |> generateHtml}
 </body>
 </html>
 """

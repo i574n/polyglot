@@ -9,7 +9,7 @@ module Builder =
 
     /// ## buildProject
 
-    let inline buildProject path = async {
+    let inline buildProject runtime path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let extension = fullPath |> System.IO.Path.GetExtension
@@ -21,25 +21,27 @@ module Builder =
         | ".fsproj" -> ()
         | _ -> failwith "Invalid project file"
 
-        let! exitCode1, _result =
-            Runtime.executeWithOptionsAsync
-                {
-                    Command = "dotnet publish -c release -o dist -r linux-x64"
-                    CancellationToken = None
-                    OnLine = None
-                    WorkingDirectory = Some fileDir
-                }
+        let runtimes =
+            runtime
+            |> Option.map List.singleton
+            |> Option.defaultValue [ "linux-x64"; "win-x64" ]
 
-        let! exitCode2, _result =
-            Runtime.executeWithOptionsAsync
-                {
-                    Command = "dotnet publish -c release -o dist -r win-x64"
-                    CancellationToken = None
-                    OnLine = None
-                    WorkingDirectory = Some fileDir
-                }
+        return!
+            runtimes
+            |> List.map (fun runtime -> async {
+                let! exitCode, _result =
+                    Runtime.executeWithOptionsAsync
+                        {
+                            Command = $"dotnet publish -c release -o dist -r {runtime}"
+                            CancellationToken = None
+                            OnLine = None
+                            WorkingDirectory = Some fileDir
+                        }
 
-        return exitCode1 + exitCode2
+                return exitCode
+            })
+            |> Async.Sequential
+            |> Async.map Array.sum
     }
 
     /// ## persistCodeProject
@@ -97,14 +99,14 @@ module Builder =
 
     /// ## buildCode
 
-    let inline buildCode packages modules path name code = async {
+    let inline buildCode runtime packages modules path name code = async {
         let! fsprojPath = persistCodeProject packages modules path name code
-        return! fsprojPath |> buildProject
+        return! fsprojPath |> buildProject runtime
     }
 
     /// ## buildFile
 
-    let inline buildFile packages modules path = async {
+    let inline buildFile runtime packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let dir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
@@ -116,7 +118,7 @@ module Builder =
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
-        return! code |> buildCode packages modules dir fileName
+        return! code |> buildCode runtime packages modules dir fileName
     }
 
     /// ## Arguments
@@ -126,6 +128,7 @@ module Builder =
         | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce>] Path of path : string
         | [<Argu.ArguAttributes.Unique>] Packages of packages : string list
         | [<Argu.ArguAttributes.Unique>] Modules of modules : string list
+        | [<Argu.ArguAttributes.Unique>] Runtime of runtime : string
 
         interface Argu.IArgParserTemplate with
             member s.Usage =
@@ -133,6 +136,7 @@ module Builder =
                 | Path _ -> nameof Arguments.Path
                 | Packages _ -> nameof Arguments.Packages
                 | Modules _ -> nameof Arguments.Modules
+                | Runtime _ -> nameof Arguments.Runtime
 
     /// ## main
 
@@ -155,8 +159,13 @@ module Builder =
             | Some [ Arguments.Modules modules ] -> modules
             | _ -> []
 
+        let runtime =
+            match argsMap |> Map.tryFind (nameof Arguments.Runtime) with
+            | Some [ Arguments.Runtime runtime ] -> Some runtime
+            | _ -> None
+
         path
-        |> buildFile packages modules
+        |> buildFile runtime packages modules
         |> Async.runWithTimeout 60000
         |> function
             | Some exitCode -> exitCode
