@@ -5,6 +5,7 @@ namespace Polyglot
 module DirTreeHtml =
 
     open FileSystem
+    open Feliz.ViewEngine
 
     type FileSystemNode =
         | File of string * string * int64
@@ -12,7 +13,7 @@ module DirTreeHtml =
         | Root of FileSystemNode list
 
     let rec scanDirectory isRoot (basePath : string) (path : string) =
-        let relativePath = path.Replace(basePath, "").Replace("\\", "/").TrimStart '/'
+        let relativePath = path.Replace(basePath, "").Replace("\\", "/").Replace("//", "/").TrimStart '/'
 
         let directories =
             path
@@ -33,29 +34,63 @@ module DirTreeHtml =
         else Folder (path |> System.IO.Path.GetFileName, relativePath, children)
 
     let rec generateHtml fsNode =
+        let sizeLabel size =
+            match float size with
+            | size when size > 1024.0 * 1024.0 -> $"%.2f{size / 1024.0 / 1024.0} MB"
+            | size when size > 1024.0 -> $"%.2f{size / 1024.0} KB"
+            | size -> $"%.2f{size} B"
         match fsNode with
         | File (fileName, relativePath, size) ->
-            let size =
-                match float size with
-                | size when size > 1024.0 * 1024.0 -> $"%.2f{size / 1024.0 / 1024.0} MB"
-                | size when size > 1024.0 -> $"%.2f{size / 1024.0} KB"
-                | size -> $"%.2f{size} B"
-            $"""
-<div class="file">&#128196;
-  <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a>
-  <span>&nbsp;({size})</span>
-</div>
-"""
+            Html.div [
+                prop.children [
+                    Html.rawText "&#128196; "
+                    Html.a [
+                        prop.href $"""{relativePath}{if relativePath = "" then "" else "/"}{fileName}"""
+                        prop.text fileName
+                    ]
+                    Html.span [
+                        prop.text $" ({size |> sizeLabel})"
+                    ]
+                ]
+            ]
         | Folder (folderName, relativePath, children) ->
-            $"""
-<details open>
-  <summary>
-    <span>&#128194; <a href="{relativePath}">{folderName}</a></span>
-  </summary>
-  <div class="children">{children |> List.map generateHtml |> String.concat "\n"}</div>
-</details>"""
+            let size =
+                let rec loop children =
+                    children
+                    |> List.sumBy (function
+                        | File (_, _, size) -> size
+                        | Folder (_, _, children)
+                        | Root children -> loop children
+                    )
+                loop children
+            Html.details [
+                prop.isOpen true
+                prop.children [
+                    Html.summary [
+                        prop.children [
+                            Html.rawText "&#128194; "
+                            Html.a [
+                                prop.href relativePath
+                                prop.text folderName
+                            ]
+                            Html.span [
+                                prop.text $" ({size |> sizeLabel})"
+                            ]
+                        ]
+                    ]
+                    Html.div [
+                        prop.children [
+                            yield! children |> List.map generateHtml
+                        ]
+                    ]
+                ]
+            ]
         | Root children ->
-            $"""<div>{children |> List.map generateHtml |> String.concat "\n"}</div>"""
+            Html.div [
+                prop.children [
+                    yield! children |> List.map generateHtml
+                ]
+            ]
 
     let generateHtmlForFileSystem root =
         $"""<!DOCTYPE html>
@@ -63,24 +98,22 @@ module DirTreeHtml =
 <head>
   <meta charset="UTF-8">
   <style>
-.file {{
-    display: flex;
+a {{
+  font-size: 15px;
 }}
-.file > span {{
-    display: none;
+span {{
+  font-size: 11px;
 }}
-.file:hover > span {{
-    display: block;
+div > div {{
+  padding-left: 10px;
 }}
-.children {{
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
+details > div {{
+  padding-left: 19px;
 }}
   </style>
 </head>
 <body>
-  {root |> generateHtml}
+  {root |> generateHtml |> Render.htmlView}
 </body>
 </html>
 """

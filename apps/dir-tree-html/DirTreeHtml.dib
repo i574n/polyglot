@@ -17,6 +17,7 @@
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+#r @"../../../../../../../.nuget/packages/feliz.viewengine/0.24.0/lib/netstandard2.0/Feliz.ViewEngine.dll"
 
 #!fsharp
 
@@ -31,6 +32,7 @@
 #!fsharp
 
 open FileSystem
+open Feliz.ViewEngine
 
 #!fsharp
 
@@ -40,7 +42,7 @@ type FileSystemNode =
     | Root of FileSystemNode list
 
 let rec scanDirectory isRoot (basePath : string) (path : string) =
-    let relativePath = path.Replace(basePath, "").Replace("\\", "/").TrimStart '/'
+    let relativePath = path.Replace(basePath, "").Replace("\\", "/").Replace("//", "/").TrimStart '/'
 
     let directories =
         path
@@ -61,29 +63,63 @@ let rec scanDirectory isRoot (basePath : string) (path : string) =
     else Folder (path |> System.IO.Path.GetFileName, relativePath, children)
 
 let rec generateHtml fsNode =
+    let sizeLabel size =
+        match float size with
+        | size when size > 1024.0 * 1024.0 -> $"%.2f{size / 1024.0 / 1024.0} MB"
+        | size when size > 1024.0 -> $"%.2f{size / 1024.0} KB"
+        | size -> $"%.2f{size} B"
     match fsNode with
     | File (fileName, relativePath, size) ->
-        let size =
-            match float size with
-            | size when size > 1024.0 * 1024.0 -> $"%.2f{size / 1024.0 / 1024.0} MB"
-            | size when size > 1024.0 -> $"%.2f{size / 1024.0} KB"
-            | size -> $"%.2f{size} B"
-        $"""
-<div class="file">&#128196;
-  <a href="{relativePath}{if relativePath.Length = 0 then "" else "/"}{fileName}">{fileName}</a>
-  <span>&nbsp;({size})</span>
-</div>
-"""
+        Html.div [
+            prop.children [
+                Html.rawText "&#128196; "
+                Html.a [
+                    prop.href $"""{relativePath}{if relativePath = "" then "" else "/"}{fileName}"""
+                    prop.text fileName
+                ]
+                Html.span [
+                    prop.text $" ({size |> sizeLabel})"
+                ]
+            ]
+        ]
     | Folder (folderName, relativePath, children) ->
-        $"""
-<details open>
-  <summary>
-    <span>&#128194; <a href="{relativePath}">{folderName}</a></span>
-  </summary>
-  <div class="children">{children |> List.map generateHtml |> String.concat "\n"}</div>
-</details>"""
+        let size =
+            let rec loop children =
+                children
+                |> List.sumBy (function
+                    | File (_, _, size) -> size
+                    | Folder (_, _, children)
+                    | Root children -> loop children
+                )
+            loop children
+        Html.details [
+            prop.isOpen true
+            prop.children [
+                Html.summary [
+                    prop.children [
+                        Html.rawText "&#128194; "
+                        Html.a [
+                            prop.href relativePath
+                            prop.text folderName
+                        ]
+                        Html.span [
+                            prop.text $" ({size |> sizeLabel})"
+                        ]
+                    ]
+                ]
+                Html.div [
+                    prop.children [
+                        yield! children |> List.map generateHtml
+                    ]
+                ]
+            ]
+        ]
     | Root children ->
-        $"""<div>{children |> List.map generateHtml |> String.concat "\n"}</div>"""
+        Html.div [
+            prop.children [
+                yield! children |> List.map generateHtml
+            ]
+        ]
 
 let generateHtmlForFileSystem root =
     $"""<!DOCTYPE html>
@@ -91,24 +127,22 @@ let generateHtmlForFileSystem root =
 <head>
   <meta charset="UTF-8">
   <style>
-.file {{
-    display: flex;
+a {{
+  font-size: 15px;
 }}
-.file > span {{
-    display: none;
+span {{
+  font-size: 11px;
 }}
-.file:hover > span {{
-    display: block;
+div > div {{
+  padding-left: 10px;
 }}
-.children {{
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
+details > div {{
+  padding-left: 19px;
 }}
   </style>
 </head>
 <body>
-  {root |> generateHtml}
+  {root |> generateHtml |> Render.htmlView}
 </body>
 </html>
 """
@@ -137,71 +171,22 @@ html
 <head>
   <meta charset="UTF-8">
   <style>
-.file {
-    display: flex;
+a {
+  font-size: 15px;
 }
-.file > span {
-    display: none;
+span {
+  font-size: 11px;
 }
-.file:hover > span {
-    display: block;
+div > div {
+  padding-left: 10px;
 }
-.children {
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
+details > div {
+  padding-left: 19px;
 }
   </style>
 </head>
 <body>
-  <div>
-<details open>
-  <summary>
-    <span>&#128194; <a href="root">root</a></span>
-  </summary>
-  <div class="children">
-<details open>
-  <summary>
-    <span>&#128194; <a href="root/3">3</a></span>
-  </summary>
-  <div class="children">
-<details open>
-  <summary>
-    <span>&#128194; <a href="root/3/2">2</a></span>
-  </summary>
-  <div class="children">
-<details open>
-  <summary>
-    <span>&#128194; <a href="root/3/2/1">1</a></span>
-  </summary>
-  <div class="children">
-<div class="file">&#128196;
-  <a href="root/3/2/1/file.txt">file.txt</a>
-  <span>&nbsp;(1.00 B)</span>
-</div>
-</div>
-</details>
-
-<div class="file">&#128196;
-  <a href="root/3/2/file.txt">file.txt</a>
-  <span>&nbsp;(2.00 B)</span>
-</div>
-</div>
-</details>
-
-<div class="file">&#128196;
-  <a href="root/3/file.txt">file.txt</a>
-  <span>&nbsp;(3.00 B)</span>
-</div>
-</div>
-</details>
-
-<div class="file">&#128196;
-  <a href="root/file.txt">file.txt</a>
-  <span>&nbsp;(4.00 B)</span>
-</div>
-</div>
-</details></div>
+  <div><details open="true"><summary>&#128194; <a href="root">root</a><span> (10.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="root/3">3</a><span> (6.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="root/3/2">2</a><span> (3.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="root/3/2/1">1</a><span> (1.00 B)</span></summary><div><div>&#128196; <a href="root/3/2/1/file.txt">file.txt</a><span> (1.00 B)</span></div></div></details><div>&#128196; <a href="root/3/2/file.txt">file.txt</a><span> (2.00 B)</span></div></div></details><div>&#128196; <a href="root/3/file.txt">file.txt</a><span> (3.00 B)</span></div></div></details><div>&#128196; <a href="root/file.txt">file.txt</a><span> (4.00 B)</span></div></div></details></div>
 </body>
 </html>
 """
