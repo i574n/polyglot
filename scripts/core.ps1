@@ -21,19 +21,14 @@ function Invoke-Block {
         [string] $OnError = $ErrorActionPreference,
         [Hashtable] $EnvironmentVariables,
         [switch] $Linux = $false,
-        [string] $Distro = ""
+        [string] $Distro = "",
+        [int] $Retries = 1
     )
-    $Error.Clear()
-
     if ($Linux -and $IsWindows) {
         $envVars = ""
         if ($EnvironmentVariables) {
             $envVars = $EnvironmentVariables.Keys | ForEach-Object { "$_=$($EnvironmentVariables[$_])" } | ForEach-Object { "$_ " }
         }
-
-        Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
-
-        $exitcode = $lastexitcode ?? 0
     } else {
         $originalEnvironmentVariables = @{}
         if ($EnvironmentVariables) {
@@ -44,11 +39,38 @@ function Invoke-Block {
                 Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
             }
         }
+    }
 
-        & @ScriptBlock
+    while ($Retries -gt 0) {
+        $Error.Clear()
+        try {
+            if ($Linux -and $IsWindows) {
+                Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
+            } else {
+                & @ScriptBlock
+            }
+            $exitcode = $lastexitcode ?? 0
+        } catch {
+            $exitcode = -1
+        }
+        if ($exitcode -ne 0 -or $Error.Count -gt 0) {
+            $msg = "`n# Invoke-Block / `$Retries: $Retries / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
-        $exitcode = $lastexitcode ?? 0
+            Write-Host $msg
+            if ($OnError -eq "Stop" -and $Retries -lt 1) {
+                if ($host.Name -match "Interactive") {
+                    [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
+                } else {
+                    exit ($exitcode, $Error.Count | Measure-Object -Maximum).Maximum
+                }
+            }
+            $Retries--
+            continue
+        }
+        break
+    }
 
+    if (!($Linux -and $IsWindows)) {
         if ($EnvironmentVariables) {
             foreach ($var in $EnvironmentVariables.Keys) {
                 if ($null -eq $originalEnvironmentVariables[$var]) {
@@ -58,19 +80,6 @@ function Invoke-Block {
                 } else {
                     Set-Item -Path "Env:$var" -Value $originalEnvironmentVariables[$var]
                 }
-            }
-        }
-    }
-
-    if ($exitcode -ne 0 -or $Error.Count -gt 0) {
-        $msg = "# Invoke-Block / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'"
-
-        if ($OnError -eq "Stop") {
-            if ($host.Name -match "Interactive") {
-                [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
-            } else {
-                Write-Output $msg
-                exit ($exitcode, $Error.Count | Measure-Object -Maximum).Maximum
             }
         }
     }
