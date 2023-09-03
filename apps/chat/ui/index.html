@@ -9,6 +9,16 @@
     <link data-trunk rel="css" href="../../../deps/hyperui/public/components.css" />
     <base data-trunk-public-url />
     <title>ui</title>
+
+<script type="text/javascript">
+async function jsTest(param) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`Test: ${param}`);
+    }, 1000);
+  });
+}
+</script>
 </head>
 
 <body></body>

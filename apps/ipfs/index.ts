@@ -11,7 +11,7 @@ async function main() {
   const data = await fs.promises.readFile(path)
   const cidStore = await storage.storeBlob(new Blob([data]))
   console.log({ cidStore })
-  await new Promise((resolve) => setTimeout(resolve, 3000))
+  await new Promise((resolve) => setTimeout(resolve, 4000))
   const status = await storage.status(cidStore)
   console.log({ status })
 }

@@ -22,6 +22,7 @@ function Invoke-Block {
         [Hashtable] $EnvironmentVariables,
         [switch] $Linux = $false,
         [string] $Distro = "",
+        [string] $Location = "",
         [int] $Retries = 1
     )
     if ($Linux -and $IsWindows) {
@@ -39,6 +40,11 @@ function Invoke-Block {
                 Set-Item -Path "Env:$var" -Value $EnvironmentVariables[$var]
             }
         }
+    }
+
+    if ($Location -ne "") {
+        $OldLocation = Get-Location
+        Set-Location $Location
     }
 
     while ($Retries -gt 0) {
@@ -68,6 +74,10 @@ function Invoke-Block {
             continue
         }
         break
+    }
+
+    if ($Location -ne "") {
+        Set-Location $OldLocation
     }
 
     if (!($Linux -and $IsWindows)) {

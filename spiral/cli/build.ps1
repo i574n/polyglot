@@ -20,7 +20,7 @@ dotnet fable --optimize --lang rs --extension .rs
 #     --extension .rs `
 #     --outDir "$ScriptDir"
 
-cargo fmt
+cargo fmt --
 
 cargo build --release
 
