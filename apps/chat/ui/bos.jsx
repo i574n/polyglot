@@ -13,18 +13,18 @@ const code = `
     <script type="module">
         console.log('## 1')
 
-        import 'https://bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe.ipfs.nftstorage.link/ipfs/bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe/1-3WEHGJYN.js'
+        import 'https://bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky.ipfs.nftstorage.link/ipfs/bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky/1-2FJZ4R6O.js'
 
     </script>
-    <link rel="icon" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/rna/favicon-f1d578da7a480441.ico">
-    <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/rna/tailwind-393535d1fac25469-3TT2HZOJ.css">
-    <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/rna/components-61317960c9987b2e-YWB32TZ5.css">
+    <link rel="icon" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/favicon-f1d578da7a480441.ico">
+    <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/tailwind-d7bed9dea032553d-SXGQQNWX.css">
+    <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/components-61317960c9987b2e-YWB32TZ5.css">
 
-    <base href="https://bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe.ipfs.nftstorage.link/ipfs/bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe/">
+    <base href="https://bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky.ipfs.nftstorage.link/ipfs/bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky/">
 
     <title>ui</title>
 
-    <link rel="preload" href="https://bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe.ipfs.nftstorage.link/ipfs/bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe/chat-8438635bfa340716_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+    <link rel="preload" href="https://bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky.ipfs.nftstorage.link/ipfs/bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky/chat-179a505a6307f144_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 
     <script type="text/javascript">
 
@@ -59,7 +59,7 @@ const code = `
         }, false)
 
         async function setInnerMessages(messagesJson) {
-            console.log('## 4', event.data, { event })
+            console.log('## 4', (event || {}).data, { messagesJson, event })
             window.top.postMessage({ innerMessages: JSON.parse(messagesJson) }, "*")
             return \`setInnerMessages / messagesJson: '\${messagesJson}'\`
         }
@@ -95,17 +95,30 @@ return (
                 onMessage={(state) => {
                     console.log("## 6", state)
                     if (typeof state === "object") {
-                        const newInnerMessages = (state.innerMessages || []).map(([id, message]) => {
+                        const newMessages = (state.innerMessages || []).map(([id, message]) => {
                             if (message.SetN2) {
                                 State.update({ n2: message.SetN2.n })
-                                return [id, null]
+                                return [[id, null], []]
+                            } else if (message.SetStorage) {
+                                Storage.set(message.SetStorage.key, message.SetStorage.value)
+                                return [[id, null], []]
+                            } else if (message.GetStorage) {
+                                const value = Storage.get(message.GetStorage.key)
+                                const outerMessage = { SetStorage: { key: message.GetStorage.key, value } }
+                                const newId = Math.floor(999999999 * Math.random())
+                                return [[id, null], [[newId, outerMessage]]]
                             } else {
-                                return [id, message]
+                                return [[id, message], []]
                             }
                         })
+                        const newInnerMessages = newMessages.map(([message, _]) => message)
                         const innerMessages = newInnerMessages.filter(([_, message]) => message)
                         const oldIds = new Set(newInnerMessages.filter(([_, message]) => !message).map(([id, _]) => id))
-                        const outerMessages = (state.outerMessages || []).filter(([id, _]) => !oldIds.has(id))
+                        const newOuterMessages = newMessages.flatMap(([_, messages]) => messages)
+                        const outerMessages = (state.outerMessages || [])
+                            .filter(([id, _]) => !oldIds.has(id))
+                            .concat(newOuterMessages)
+                        console.log("## 7", { outerMessages, innerMessages })
                         State.update({ outerMessages, innerMessages })
                     }
                 }}
@@ -113,6 +126,7 @@ return (
         </div>
         <pre>
             state = {JSON.stringify(state)}
+            dark-mode = {Storage.get('dark-mode')}
             context = {JSON.stringify(context)}
         </pre>
     </div>
