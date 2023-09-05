@@ -15,7 +15,7 @@ export default {
 
   webServer: [
     {
-      command: `cd ${__dirname}/../dist/rna && npx serve`,
+      command: `cd ${__dirname}/../dist && npx serve`,
       url: baseURL,
       timeout: 40 * 1000,
       reuseExistingServer: false, // !process.env.CI,

@@ -13,18 +13,18 @@ const code = `
     <script type="module">
         console.log('## 1')
 
-        import 'https://bafybeib2ytxiswse66up6ftrvanst5lh4qjozw5ippajz53s3sj7mkd7oa.ipfs.nftstorage.link/ipfs/bafybeib2ytxiswse66up6ftrvanst5lh4qjozw5ippajz53s3sj7mkd7oa/1-JWIMEJRF.js'
+        import 'https://bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe.ipfs.nftstorage.link/ipfs/bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe/1-3WEHGJYN.js'
 
     </script>
     <link rel="icon" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/rna/favicon-f1d578da7a480441.ico">
     <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/rna/tailwind-393535d1fac25469-3TT2HZOJ.css">
     <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/rna/components-61317960c9987b2e-YWB32TZ5.css">
 
-    <base href="https://bafybeib2ytxiswse66up6ftrvanst5lh4qjozw5ippajz53s3sj7mkd7oa.ipfs.nftstorage.link/ipfs/bafybeib2ytxiswse66up6ftrvanst5lh4qjozw5ippajz53s3sj7mkd7oa/">
+    <base href="https://bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe.ipfs.nftstorage.link/ipfs/bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe/">
 
     <title>ui</title>
 
-    <link rel="preload" href="https://bafybeib2ytxiswse66up6ftrvanst5lh4qjozw5ippajz53s3sj7mkd7oa.ipfs.nftstorage.link/ipfs/bafybeib2ytxiswse66up6ftrvanst5lh4qjozw5ippajz53s3sj7mkd7oa/chat-4e0cd448e36dcd78_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+    <link rel="preload" href="https://bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe.ipfs.nftstorage.link/ipfs/bafybeidsazlal2qmzpixkwu6lewggm2mrhrvevyclxr67b2cxc545j3foe/chat-8438635bfa340716_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 
     <script type="text/javascript">
 
@@ -32,27 +32,34 @@ const code = `
         window.top.postMessage("loaded", "*")
 
         let messageCount = 0
+        let retryCount = 0
         window.addEventListener("message", async (event) => {
-            console.log('## 3',{event})
+            console.log('## 3', event.data, { event })
 
-            try {
-                if (messageCount === 0) {
-                    await new Promise((resolve) => setTimeout(() => resolve(), 1000))
+            while (true) {
+                try {
+                    if (retryCount > 0 && messageCount === 0) {
+                        await new Promise((resolve) => setTimeout(() => resolve(), 60))
+                    }
+                    if (event.data.outerMessages.length) {
+                        await set_outer_messages_state(JSON.stringify(event.data.outerMessages))
+                    }
+                    if (event.data.innerMessages) {
+                        await set_inner_messages_state(JSON.stringify(event.data.innerMessages))
+                    }
+                    messageCount++
+                } catch (e) {
+                    retryCount++
+                    console.log('message error:', e, 'retryCount:', retryCount)
                 }
-                messageCount++
-                if (event.data.outerMessages.length) {
-                    await set_outer_messages_state(JSON.stringify(event.data.outerMessages))
+                if (messageCount > 0) {
+                    break;
                 }
-                if (event.data.innerMessages) {
-                    await set_inner_messages_state(JSON.stringify(event.data.innerMessages))
-                }
-            } catch (e) {
-                console.log('message error:', e)
             }
         }, false)
 
         async function setInnerMessages(messagesJson) {
-            console.log('## 4',{event})
+            console.log('## 4', event.data, { event })
             window.top.postMessage({ innerMessages: JSON.parse(messagesJson) }, "*")
             return \`setInnerMessages / messagesJson: '\${messagesJson}'\`
         }
@@ -67,9 +74,9 @@ return (
     <div>
         <input
             value={state.n1}
-            onChange={(e) => {
-                console.log("## 5", { e })
-                const n = Number(e.target.value) || 0
+            onChange={(event) => {
+                console.log("## 5", event.data, { event })
+                const n = Number(event.target.value) || 0
                 const id = Math.floor(999999999 * Math.random())
                 State.update({
                     n1: n,

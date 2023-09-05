@@ -6,6 +6,6 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-npx -y tailwindcss -i input.css -o dist/tailwind.css
+npx -y tailwindcss -i input.css -o target/tailwind.css
 
-{ trunk serve --dist="dist/trunk" } | Invoke-Block
+{ trunk serve --dist="target/trunk" } | Invoke-Block
