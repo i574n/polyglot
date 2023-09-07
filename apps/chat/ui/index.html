@@ -9,7 +9,16 @@
         <base data-trunk-public-url />
         <title>ui</title>
         <script type="text/javascript">
-            async function setInnerMessages(messagesJson) {
+            async function setOuterMessagesAsync(messagesJson) {
+                return `setOuterMessagesAsync / messagesJson: '${messagesJson}'`
+            }
+            async function setInnerMessagesAsync(messagesJson) {
+                return `setInnerMessagesAsync / messagesJson: '${messagesJson}'`
+            }
+            function setOuterMessages(messagesJson) {
+                return `setOuterMessages / messagesJson: '${messagesJson}'`
+            }
+            function setInnerMessages(messagesJson) {
                 return `setInnerMessages / messagesJson: '${messagesJson}'`
             }
         </script>

@@ -1,7 +1,12 @@
+const newId = () => Math.floor(99999999999999999 * Math.random())
+
 State.init({
-    n1: 0,
-    n2: 0,
-    outerMessages: [],
+    s1: "",
+    s2: "",
+    outerMessages: [
+        [newId(), { SetAccountId: { account_id: context.accountId || "" } }],
+        [newId(), { SetNetworkId: { network_id: context.networkId || "" } }],
+    ],
     innerMessages: [],
 })
 
@@ -13,18 +18,18 @@ const code = `
     <script type="module">
         console.log('## 1')
 
-        import 'https://bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky.ipfs.nftstorage.link/ipfs/bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky/1-2FJZ4R6O.js'
+        import 'https://local.near.org:5000/1-IST6ACLQ.js'
 
     </script>
     <link rel="icon" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/favicon-f1d578da7a480441.ico">
     <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/tailwind-d7bed9dea032553d-SXGQQNWX.css">
     <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/components-61317960c9987b2e-YWB32TZ5.css">
 
-    <base href="https://bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky.ipfs.nftstorage.link/ipfs/bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky/">
+    <base href="https://local.near.org:5000/">
 
     <title>ui</title>
 
-    <link rel="preload" href="https://bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky.ipfs.nftstorage.link/ipfs/bafybeieub4rjgkbrmxyik3w5rk7qlshog2vg2mfu2rhojsnvnmch2fqpky/chat-179a505a6307f144_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+    <link rel="preload" href="https://local.near.org:5000/chat-1730b9add8ed355c_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 
     <script type="text/javascript">
 
@@ -34,7 +39,7 @@ const code = `
         let messageCount = 0
         let retryCount = 0
         window.addEventListener("message", async (event) => {
-            console.log('## 3', event.data, { event })
+            console.log('## 3', JSON.stringify(event.data), { event })
 
             while (true) {
                 try {
@@ -58,8 +63,23 @@ const code = `
             }
         }, false)
 
-        async function setInnerMessages(messagesJson) {
-            console.log('## 4', (event || {}).data, { messagesJson, event })
+        async function setOuterMessagesAsync(messagesJson) {
+            console.log('## 4', JSON.stringify((event || {}).data), messagesJson, event)
+            window.top.postMessage({ outerMessages: JSON.parse(messagesJson) }, "*")
+            return \`setOuterMessages / messagesJson: '\${messagesJson}'\`
+        }
+        async function setInnerMessagesAsync(messagesJson) {
+            console.log('## 5', JSON.stringify((event || {}).data), messagesJson, event)
+            window.top.postMessage({ innerMessages: JSON.parse(messagesJson) }, "*")
+            return \`setInnerMessages / messagesJson: '\${messagesJson}'\`
+        }
+        function setOuterMessages(messagesJson) {
+            console.log('## 4.1', JSON.stringify((event || {}).data), messagesJson, event)
+            window.top.postMessage({ outerMessages: JSON.parse(messagesJson) }, "*")
+            return \`setOuterMessages / messagesJson: '\${messagesJson}'\`
+        }
+        function setInnerMessages(messagesJson) {
+            console.log('## 5.1', JSON.stringify((event || {}).data), messagesJson, event)
             window.top.postMessage({ innerMessages: JSON.parse(messagesJson) }, "*")
             return \`setInnerMessages / messagesJson: '\${messagesJson}'\`
         }
@@ -73,31 +93,35 @@ const code = `
 return (
     <div>
         <input
-            value={state.n1}
+            value={state.s1}
             onChange={(event) => {
-                console.log("## 5", event.data, { event })
-                const n = Number(event.target.value) || 0
-                const id = Math.floor(999999999 * Math.random())
+                console.log("## 6", JSON.stringify(event.data), { event })
+                const s = event.target.value || ""
                 State.update({
-                    n1: n,
-                    outerMessages: [...state.outerMessages, [id, { SetN1: { n } }]],
+                    s1: s,
+                    outerMessages: [...state.outerMessages, [newId(), { SetS1: { s } }]],
                 })
             }}
         />
-        <div>
-            <iframe
-                className="w-100"
-                srcDoc={code}
-                message={{
-                    outerMessages: state.outerMessages,
-                    innerMessages: state.innerMessages,
-                }}
-                onMessage={(state) => {
-                    console.log("## 6", state)
-                    if (typeof state === "object") {
-                        const newMessages = (state.innerMessages || []).map(([id, message]) => {
-                            if (message.SetN2) {
-                                State.update({ n2: message.SetN2.n })
+        <pre className="rbt-close-sm m-0">
+            state = {JSON.stringify(state)}
+            dark-mode = {Storage.get("dark-mode")}
+            context = {JSON.stringify(context)}
+        </pre>
+        <iframe
+            className="w-100 min-vh-100"
+            srcDoc={code}
+            message={{
+                outerMessages: state.outerMessages,
+                innerMessages: state.innerMessages,
+            }}
+            onMessage={(messages) => {
+                console.log("## 7", JSON.stringify(messages))
+                if (typeof messages === "object") {
+                    const newMessages = [...state.innerMessages, ...(messages.innerMessages || [])].map(
+                        ([id, message]) => {
+                            if (message.SetS2) {
+                                State.update({ s2: message.SetS2.s })
                                 return [[id, null], []]
                             } else if (message.SetStorage) {
                                 Storage.set(message.SetStorage.key, message.SetStorage.value)
@@ -105,29 +129,25 @@ return (
                             } else if (message.GetStorage) {
                                 const value = Storage.get(message.GetStorage.key)
                                 const outerMessage = { SetStorage: { key: message.GetStorage.key, value } }
-                                const newId = Math.floor(999999999 * Math.random())
-                                return [[id, null], [[newId, outerMessage]]]
+                                return [[id, null], [[newId(), outerMessage]]]
+                            } else if (message === "Ack") {
+                                return [[id, null], []]
                             } else {
                                 return [[id, message], []]
                             }
-                        })
-                        const newInnerMessages = newMessages.map(([message, _]) => message)
-                        const innerMessages = newInnerMessages.filter(([_, message]) => message)
-                        const oldIds = new Set(newInnerMessages.filter(([_, message]) => !message).map(([id, _]) => id))
-                        const newOuterMessages = newMessages.flatMap(([_, messages]) => messages)
-                        const outerMessages = (state.outerMessages || [])
-                            .filter(([id, _]) => !oldIds.has(id))
-                            .concat(newOuterMessages)
-                        console.log("## 7", { outerMessages, innerMessages })
-                        State.update({ outerMessages, innerMessages })
-                    }
-                }}
-            />
-        </div>
-        <pre>
-            state = {JSON.stringify(state)}
-            dark-mode = {Storage.get('dark-mode')}
-            context = {JSON.stringify(context)}
-        </pre>
+                        }
+                    )
+                    const newInnerMessages = newMessages.map(([message, _]) => message)
+                    const innerMessages = newInnerMessages.filter(([_, message]) => message)
+                    const oldIds = new Set(newInnerMessages.filter(([_, message]) => !message).map(([id, _]) => id))
+                    const newOuterMessages = newMessages.flatMap(([_, messages]) => messages)
+                    const outerMessages = [...state.outerMessages, ...(messages.outerMessages || [])]
+                        .filter(([id, _]) => !oldIds.has(id))
+                        .concat(newOuterMessages)
+                    console.log("## 8", JSON.stringify({ outerMessages, innerMessages }))
+                    State.update({ outerMessages, innerMessages })
+                }
+            }}
+        />
     </div>
 )

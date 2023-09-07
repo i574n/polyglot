@@ -9,13 +9,16 @@ use wasm_bindgen::prelude::*;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum OuterMessage {
-    SetN1 { n: u64 },
-    SetStorage { key: String, value: String },
+    SetS1 { s: String },
+    SetAccountId { account_id: String },
+    SetNetworkId { network_id: String },
+    SetStorage { key: String, value: Option<String> },
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 enum InnerMessage {
-    SetN2 { n: u64 },
+    Ack,
+    SetS2 { s: String },
     SetStorage { key: String, value: String },
     GetStorage { key: String },
 }
@@ -28,9 +31,11 @@ struct Messages {
 
 #[derive(Clone, PartialEq, Serialize, Deserialize)]
 struct State {
-    n1: RwSignal<u64>,
-    n2: RwSignal<u64>,
     dark_mode: RwSignal<bool>,
+    account_id: RwSignal<String>,
+    network_id: RwSignal<String>,
+    s1: RwSignal<String>,
+    s2: RwSignal<String>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -50,9 +55,11 @@ pub fn App() -> impl IntoView {
             inner: create_rw_signal(vec![]),
         }),
         state: create_rw_signal(State {
-            n1: create_rw_signal(0),
-            n2: create_rw_signal(0),
             dark_mode: create_rw_signal(true),
+            account_id: create_rw_signal("".to_string()),
+            network_id: create_rw_signal("".to_string()),
+            s1: create_rw_signal("".to_string()),
+            s2: create_rw_signal("".to_string()),
         }),
         loading: create_rw_signal(HashMap::new()),
     });
@@ -76,13 +83,38 @@ pub fn App() -> impl IntoView {
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(catch)]
-    fn setInnerMessages(messagesJson: &str) -> Result<js_sys::Promise, JsValue>;
+    fn setOuterMessagesAsync(messagesJson: &str) -> Result<js_sys::Promise, JsValue>;
+
+    #[wasm_bindgen(catch)]
+    fn setInnerMessagesAsync(messagesJson: &str) -> Result<js_sys::Promise, JsValue>;
+
+    #[wasm_bindgen(catch)]
+    fn setOuterMessages(messagesJson: &str) -> Result<JsValue, JsValue>;
+
+    #[wasm_bindgen(catch)]
+    fn setInnerMessages(messagesJson: &str) -> Result<JsValue, JsValue>;
 }
 
 #[wasm_bindgen]
-pub async fn set_inner_messages(messages_json: &str) -> Result<JsValue, JsValue> {
-    let promise = setInnerMessages(messages_json)?;
+pub async fn set_outer_messages_async(messages_json: &str) -> Result<JsValue, JsValue> {
+    let promise = setOuterMessagesAsync(messages_json)?;
     Ok(wasm_bindgen_futures::JsFuture::from(promise).await?)
+}
+
+#[wasm_bindgen]
+pub async fn set_inner_messages_async(messages_json: &str) -> Result<JsValue, JsValue> {
+    let promise = setInnerMessagesAsync(messages_json)?;
+    Ok(wasm_bindgen_futures::JsFuture::from(promise).await?)
+}
+
+#[wasm_bindgen]
+pub fn set_outer_messages(messages_json: &str) -> Result<JsValue, JsValue> {
+    setOuterMessages(messages_json)
+}
+
+#[wasm_bindgen]
+pub fn set_inner_messages(messages_json: &str) -> Result<JsValue, JsValue> {
+    setInnerMessages(messages_json)
 }
 
 #[wasm_bindgen]
@@ -133,9 +165,44 @@ pub fn random() -> u64 {
 
 const DARK_MODE_KEY: &str = "dark-mode";
 
+fn _use_set_inner_messages_async() -> leptos::Action<String, Result<JsValue, JsValue>> {
+    create_action(|json: &String| {
+        let json = json.to_owned();
+        async move {
+            set_inner_messages_async(&json).await
+        }
+    })
+}
+
+fn _use_set_outer_messages_async() -> leptos::Action<String, Result<JsValue, JsValue>> {
+    create_action(|json: &String| {
+        let json = json.to_owned();
+        async move {
+            set_outer_messages_async(&json).await
+        }
+    })
+}
+
+fn use_set_inner_messages() -> impl Fn(String) -> Result<JsValue, JsValue> {
+    |json| {
+        set_inner_messages(&json)
+    }
+}
+
+fn _use_set_outer_messages() -> impl Fn(String) -> Result<JsValue, JsValue> {
+    |json| {
+        set_outer_messages(&json)
+    }
+}
+
 #[component]
 fn MessagesProcessor() -> impl IntoView {
     log!("MessagesProcessor ()");
+
+    // let set_outer_messages = use_set_outer_messages_async();
+    // let set_inner_messages = use_set_inner_messages_async();
+    // let set_outer_messages = use_set_outer_messages();
+    let set_inner_messages = use_set_inner_messages();
 
     let global_state = use_context::<GlobalState>();
     create_effect(move |_| {
@@ -151,19 +218,21 @@ fn MessagesProcessor() -> impl IntoView {
             outer_messages
                 .into_iter()
                 .map(|message| match message.clone() {
-                    (id, OuterMessage::SetN1 { n }) => {
-                        let n2 = n * 2;
+                    (id, OuterMessage::SetS1 { s }) => {
+                        let s2 = s.to_uppercase();
                         global_state.state.update(|state| {
-                            state.n1.set(n);
-                            state.n2.set(n2);
+                            state.s1.set(s);
+                            state.s2.set(s2.clone());
                         });
-                        (None, vec![(id, InnerMessage::SetN2 { n: n2 })])
+                        (None, vec![(id, InnerMessage::SetS2 { s: s2 })])
                     }
-                    (_, OuterMessage::SetStorage { key, value }) => {
+                    (id, OuterMessage::SetStorage { key, value }) => {
                         match key.as_str() {
                             DARK_MODE_KEY => {
-                                let dark_mode = serde_json::from_str::<bool>(&value).unwrap();
-                                global_state.state.get().dark_mode.set(dark_mode);
+                                if let Some(value) = value {
+                                    let dark_mode = serde_json::from_str::<bool>(&value).unwrap();
+                                    global_state.state.get().dark_mode.set(dark_mode);
+                                }
                             }
                             _ => log!(
                                 "MessageProcessor / invalid message / message: {:#?}",
@@ -176,7 +245,15 @@ fn MessagesProcessor() -> impl IntoView {
                                 _ => (),
                             };
                         });
-                        (None, vec![])
+                        (None, vec![(id, InnerMessage::Ack)])
+                    }
+                    (id, OuterMessage::SetAccountId { account_id }) => {
+                        global_state.state.get().account_id.set(account_id);
+                        (None, vec![(id, InnerMessage::Ack)])
+                    }
+                    (id, OuterMessage::SetNetworkId { network_id }) => {
+                        global_state.state.get().network_id.set(network_id);
+                        (None, vec![(id, InnerMessage::Ack)])
                     }
                 })
                 .fold((vec![], vec![]), |(outer, inner), (outer2, inner2)| {
@@ -193,17 +270,26 @@ fn MessagesProcessor() -> impl IntoView {
             });
 
             let json = serde_json::to_string(&new_messages.1).unwrap();
-            spawn_local(async move {
-                let result = set_inner_messages(&json).await.unwrap();
-                log!(
-                    "MessagesProcessor / spawn_local set_inner_messages / result: {:#?}",
-                    result
-                );
-            })
+            // set_inner_messages.dispatch(json);
+            // let result = set_inner_messages.value().get();
+            let result = set_inner_messages(json);
+            log!(
+                "MessagesProcessor / set_inner_messages / result: {:#?}",
+                result
+            );
         }
 
         if new_messages.0.len() != outer_messages_len {
-            messages.outer.set(new_messages.0);
+            messages.outer.set(new_messages.0.clone());
+
+            // let json = serde_json::to_string(&new_messages.0).unwrap();
+            // // set_outer_messages.dispatch(json);
+            // // let result = set_outer_messages.value().get();
+            // let result = set_outer_messages(json);
+            // log!(
+            //     "MessagesProcessor / set_outer_messages / result: {:#?}",
+            //     result
+            // );
         }
     });
 
@@ -224,6 +310,10 @@ fn DarkModeButton() -> impl IntoView {
     let global_state = use_context::<GlobalState>().unwrap();
     let global_state2 = use_context::<GlobalState>().unwrap();
     let global_state3 = use_context::<GlobalState>().unwrap();
+
+    // let set_inner_messages = use_set_inner_messages_async();
+    let set_inner_messages1 = use_set_inner_messages();
+    let set_inner_messages2 = use_set_inner_messages();
 
     create_effect(move |_| {
         log!("DarkModeButton / dark_mode effect 1 / ##1");
@@ -268,13 +358,13 @@ fn DarkModeButton() -> impl IntoView {
                 });
 
                 let json = serde_json::to_string(&new_inner_messages).unwrap();
-                spawn_local(async move {
-                    let result = set_inner_messages(&json).await.unwrap();
-                    log!(
-                        "DarkModeButton / spawn_local set_inner_messages / result: {:#?}",
-                        result
-                    );
-                })
+                // set_inner_messages.dispatch(json);
+                // let result = set_inner_messages.value().get();
+                let result = set_inner_messages1(json);
+                log!(
+                    "DarkModeButton / set_inner_messages / result: {:#?}",
+                    result
+                );
             }
         }
     });
@@ -283,6 +373,8 @@ fn DarkModeButton() -> impl IntoView {
         log!("DarkModeButton / loading memo");
         global_state2.loading.get_untracked()
     });
+
+    let (loaded, set_loaded) = create_signal(false);
 
     create_effect(move |_| {
         log!("DarkModeButton / dark_mode effect 2 / ##1");
@@ -293,44 +385,49 @@ fn DarkModeButton() -> impl IntoView {
             .map(|x| x.get())
             .unwrap_or(false);
         log!(
-            "DarkModeButton / dark_mode effect 2 / ##3 / dark_mode_loading: {:#?}",
-            dark_mode_loading
+            "DarkModeButton / dark_mode effect 2 / ##3 / dark_mode_loading: {:#?} / loaded: {:#?}",
+            dark_mode_loading,
+            loaded()
         );
         if !dark_mode_loading {
-            let json = serde_json::to_string(&dark_mode).unwrap();
-            log!(
-                "DarkModeButton / dark_mode effect 2 / ##4 / json: {:#?}",
-                json
-            );
-            match window().local_storage() {
-                Ok(Some(storage)) => match storage.set_item(DARK_MODE_KEY, &json) {
-                    Result::Err(error) => {
-                        log!("DarkModeButton / dark_mode effect / error: {:#?}", error);
-                    }
-                    _ => (),
-                },
-                _ => {
-                    let message = InnerMessage::SetStorage {
-                        key: DARK_MODE_KEY.to_string(),
-                        value: json,
-                    };
-                    let new_inner_messages: Vec<_> = global_state
-                        .messages
-                        .get_untracked()
-                        .inner
-                        .get_untracked()
-                        .into_iter()
-                        .chain(vec![(random(), message)].into_iter())
-                        .collect();
+            if !loaded() {
+                set_loaded.set(true);
+            } else {
+                let json = serde_json::to_string(&dark_mode).unwrap();
+                log!(
+                    "DarkModeButton / dark_mode effect 2 / ##4 / json: {:#?}",
+                    json
+                );
+                match window().local_storage() {
+                    Ok(Some(storage)) => match storage.set_item(DARK_MODE_KEY, &json) {
+                        Result::Err(error) => {
+                            log!("DarkModeButton / dark_mode effect / error: {:#?}", error);
+                        }
+                        _ => (),
+                    },
+                    _ => {
+                        let message = InnerMessage::SetStorage {
+                            key: DARK_MODE_KEY.to_string(),
+                            value: json,
+                        };
+                        let new_inner_messages: Vec<_> = global_state
+                            .messages
+                            .get_untracked()
+                            .inner
+                            .get_untracked()
+                            .into_iter()
+                            .chain(vec![(random(), message)].into_iter())
+                            .collect();
 
-                    let json = serde_json::to_string(&new_inner_messages).unwrap();
-                    spawn_local(async move {
-                        let result = set_inner_messages(&json).await.unwrap();
+                        let json = serde_json::to_string(&new_inner_messages).unwrap();
+                        // set_inner_messages.dispatch(json);
+                        // let result = set_inner_messages.value().get();
+                        let result = set_inner_messages2(json);
                         log!(
-                            "DarkModeButton / spawn_local set_inner_messages / result: {:#?}",
+                            "DarkModeButton / set_inner_messages / result: {:#?}",
                             result
                         );
-                    })
+                    }
                 }
             }
         }
@@ -366,7 +463,7 @@ fn Home() -> impl IntoView {
 
     let global_state_json = create_memo(move |_| {
         let json = global_state_resource.with(|global_state| match global_state {
-            Some(Some(global_state)) => serde_json::to_string(global_state).unwrap(),
+            Some(Some(global_state)) => serde_json::to_string_pretty(global_state).unwrap(),
             _ => "".to_string(),
         });
         log!("Home / global_state_json memo / json: {:#?}", json);
@@ -421,9 +518,9 @@ fn Home() -> impl IntoView {
 
                                 <tr class="odd:bg-gray-50 dark:odd:bg-gray-800/50">
                                     <td
-                                        class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+                                        class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-left text-xs"
                                     >
-                                        global_state: {move || global_state_json}
+                                        global_state: <pre>{move || global_state_json}</pre>
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
