@@ -18,18 +18,20 @@ const code = `
     <script type="module">
         console.log('## 1')
 
-        import 'https://local.near.org:5000/1-IST6ACLQ.js'
+        // import 'https://local.near.org:5000/1-IST6ACLQ.js'
+        import 'https://bafybeibujudaihiybcyynd34w6exdx523h7ju5xenvfax7gt66aw5nw5ui.ipfs.nftstorage.link/ipfs/bafybeibujudaihiybcyynd34w6exdx523h7ju5xenvfax7gt66aw5nw5ui/1-IST6ACLQ.js'
 
     </script>
-    <link rel="icon" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/favicon-f1d578da7a480441.ico">
-    <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/tailwind-d7bed9dea032553d-SXGQQNWX.css">
-    <link rel="stylesheet" href="https://i574n.github.io/polyglot/apps/chat/ui/dist/components-61317960c9987b2e-YWB32TZ5.css">
+    <link rel="stylesheet" href="https://bafybeih3tjkulzcrecyrw3szw4yv7unq3mv6p6jqrihujoljpdmsp6rdcm.ipfs.nftstorage.link/ipfs/bafybeih3tjkulzcrecyrw3szw4yv7unq3mv6p6jqrihujoljpdmsp6rdcm/tailwind-d7bed9dea032553d-SXGQQNWX.css">
+    <link rel="stylesheet" href="https://bafybeih3tjkulzcrecyrw3szw4yv7unq3mv6p6jqrihujoljpdmsp6rdcm.ipfs.nftstorage.link/ipfs/bafybeih3tjkulzcrecyrw3szw4yv7unq3mv6p6jqrihujoljpdmsp6rdcm/components-61317960c9987b2e-YWB32TZ5.css">
 
-    <base href="https://local.near.org:5000/">
+    <!-- <base href="https://local.near.org:5000/"> -->
+    <base href="https://bafybeibujudaihiybcyynd34w6exdx523h7ju5xenvfax7gt66aw5nw5ui.ipfs.nftstorage.link/ipfs/bafybeibujudaihiybcyynd34w6exdx523h7ju5xenvfax7gt66aw5nw5ui/">
 
     <title>ui</title>
 
-    <link rel="preload" href="https://local.near.org:5000/chat-1730b9add8ed355c_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+    <!-- <link rel="preload" href="https://local.near.org:5000/chat-1730b9add8ed355c_bg.wasm" as="fetch" type="application/wasm" crossorigin=""> -->
+    <link rel="preload" href="https://bafybeibujudaihiybcyynd34w6exdx523h7ju5xenvfax7gt66aw5nw5ui.ipfs.nftstorage.link/ipfs/bafybeibujudaihiybcyynd34w6exdx523h7ju5xenvfax7gt66aw5nw5ui/chat-1730b9add8ed355c_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
 
     <script type="text/javascript">
 

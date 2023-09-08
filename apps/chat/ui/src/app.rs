@@ -168,31 +168,23 @@ const DARK_MODE_KEY: &str = "dark-mode";
 fn _use_set_inner_messages_async() -> leptos::Action<String, Result<JsValue, JsValue>> {
     create_action(|json: &String| {
         let json = json.to_owned();
-        async move {
-            set_inner_messages_async(&json).await
-        }
+        async move { set_inner_messages_async(&json).await }
     })
 }
 
 fn _use_set_outer_messages_async() -> leptos::Action<String, Result<JsValue, JsValue>> {
     create_action(|json: &String| {
         let json = json.to_owned();
-        async move {
-            set_outer_messages_async(&json).await
-        }
+        async move { set_outer_messages_async(&json).await }
     })
 }
 
 fn use_set_inner_messages() -> impl Fn(String) -> Result<JsValue, JsValue> {
-    |json| {
-        set_inner_messages(&json)
-    }
+    |json| set_inner_messages(&json)
 }
 
 fn _use_set_outer_messages() -> impl Fn(String) -> Result<JsValue, JsValue> {
-    |json| {
-        set_outer_messages(&json)
-    }
+    |json| set_outer_messages(&json)
 }
 
 #[component]
@@ -447,6 +439,160 @@ fn DarkModeButton() -> impl IntoView {
     }
 }
 
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct TransactionCursor {
+    timestamp: String,
+    index_in_chunk: u8,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+struct TransferArgs {
+    deposit: String,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct DeployContractArgs {
+    code: String,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct Permission {
+    #[serde(rename = "type")]
+    permission_type: String,
+    contract_id: Option<String>,
+    method_names: Option<Vec<String>>,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+struct AccessKey {
+    nonce: u8,
+    permission: Permission,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct AddKeyArgs {
+    public_key: String,
+    access_key: AccessKey,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct FunctionCallArgs {
+    method_name: String,
+    args: String,
+    gas: u64,
+    deposit: String,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(tag = "kind", content = "args")]
+#[serde(rename_all = "camelCase")]
+enum TransactionAction {
+    FunctionCall(FunctionCallArgs),
+    AddKey(AddKeyArgs),
+    DeployContract(DeployContractArgs),
+    Transfer(TransferArgs),
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct Transaction {
+    hash: String,
+    signer_id: String,
+    receiver_id: String,
+    block_hash: String,
+    block_timestamp: u64,
+    actions: Vec<TransactionAction>,
+    status: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct TransactionListByAccountId {
+    items: Vec<Transaction>,
+    cursor: Option<TransactionCursor>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct ContractById {
+    code_hash: String,
+    transaction_hash: String,
+    timestamp: u64,
+    locked: bool,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct AccountTransactionsCount {
+    in_transactions_count: u64,
+    out_transactions_count: u64,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(untagged)]
+enum ResultData {
+    AccountTransactionsCount(AccountTransactionsCount),
+    ContractById(ContractById),
+    TransactionListByAccountId(TransactionListByAccountId),
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct DataWrapper {
+    data: ResultData,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct ErrorDataInner {
+    code: String,
+    http_status: u32,
+    path: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ErrorData {
+    message: String,
+    code: i32,
+    data: ErrorDataInner,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ErrorWrapper {
+    error: ErrorData,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ResultWrapper {
+    result: Option<DataWrapper>,
+    error: Option<ErrorWrapper>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct IdInput {
+    id: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct TransactionListByAccountIdInput {
+    account_id: String,
+    limit: u8,
+    cursor: Option<TransactionCursor>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(untagged)]
+enum InputData {
+    IdInput(IdInput),
+    TransactionListByAccountIdInput(TransactionListByAccountIdInput),
+}
+
+use futures::StreamExt;
+
 #[component]
 fn Home() -> impl IntoView {
     log!("Home ()");
@@ -472,6 +618,110 @@ fn Home() -> impl IntoView {
     });
 
     let (row_count, set_row_count) = create_signal(1);
+
+    let (explorer_backend_host, set_explorer_backend_host) =
+        create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app".to_string());
+
+    let response = create_resource(
+        move || (row_count.get(), explorer_backend_host.get()),
+        |(row_count, explorer_backend_host)| async move {
+            log!("async_data resource");
+
+            if row_count > 1 {
+                let load_page = |cursor: Option<TransactionCursor>| async {
+                    let input_obj: HashMap<String, InputData> = HashMap::from_iter(vec![
+                        (
+                            "0".to_string(),
+                            InputData::IdInput(IdInput {
+                                id: "i574n.near".to_string(),
+                            }),
+                        ),
+                        (
+                            "1".to_string(),
+                            InputData::IdInput(IdInput {
+                                id: "i574n.near".to_string(),
+                            }),
+                        ),
+                        (
+                            "2".to_string(),
+                            InputData::TransactionListByAccountIdInput(
+                                TransactionListByAccountIdInput {
+                                    account_id: "i574n.near".to_string(),
+                                    limit: 100,
+                                    cursor: cursor,
+                                },
+                            ),
+                        ),
+                    ]);
+
+                    let input_json = serde_json::to_string(&input_obj).unwrap();
+                    let input = js_sys::encode_uri_component(&input_json);
+                    let url = format!("https://{}/trpc/account.transactionsCount,contract.byId,transaction.listByAccountId?batch=1&input={}", explorer_backend_host, input);
+
+                    let json = reqwest_wasm::Client::builder()
+                        .build()
+                        .unwrap()
+                        .get(url)
+                        .send()
+                        .await
+                        .unwrap()
+                        .text()
+                        .await
+                        .unwrap();
+
+                    let obj: Vec<ResultWrapper> = serde_json::from_str(&json).unwrap();
+
+                    obj
+                };
+
+                let transactions =
+                    futures::stream::unfold((0, None), |(page_index, cursor)| async move {
+                        match (page_index, cursor) {
+                            (page_index, None) if page_index > 0 => None,
+                            (page_index, cursor) => {
+                                let page = load_page(cursor).await;
+                                let transaction_list = page.iter().find_map(|result_wrapper| {
+                                    result_wrapper
+                                        .result
+                                        .as_ref()
+                                        .map(|result| match &result.data {
+                                            ResultData::TransactionListByAccountId(
+                                                transaction_list_by_account_id,
+                                            ) => Some(transaction_list_by_account_id),
+                                            _ => None,
+                                        })
+                                        .flatten()
+                                });
+
+                                match transaction_list {
+                                    Some(transaction_list) => {
+                                        let next_cursor = if transaction_list.items.is_empty() {
+                                            None
+                                        } else {
+                                            transaction_list.cursor.clone()
+                                        };
+                                        Some((
+                                            futures::stream::iter(transaction_list.items.clone()),
+                                            (page_index + 1, next_cursor),
+                                        ))
+                                    }
+                                    _ => None,
+                                }
+                            }
+                        }
+                    })
+                    .flatten()
+                    .collect::<Vec<_>>()
+                    .await;
+
+                let obj_json = serde_json::to_string_pretty(&transactions).unwrap();
+
+                Some(obj_json)
+            } else {
+                None
+            }
+        },
+    );
 
     view! {
         <>
@@ -523,14 +773,23 @@ fn Home() -> impl IntoView {
                                         global_state: <pre>{move || global_state_json}</pre>
                                     </td>
                                     <td
-                                        class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+                                        class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-left text-xs"
                                     >
-                                        ?
+                                        <pre>{move || match response.get() {
+                                            None => "loading...".to_string(),
+                                            Some(None) => "None".to_string(),
+                                            Some(Some(text)) => text,
+                                        }}</pre>
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
                                     >
-                                        ?
+                                        <input
+                                            prop:value=explorer_backend_host
+                                            on:keyup={move |event: web_sys::KeyboardEvent| {
+                                                set_explorer_backend_host(event_target_value(&event));
+                                            }}
+                                        />
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
