@@ -9,6 +9,7 @@ $ErrorActionPreference = "Stop"
 
 
 { cargo build --release --target wasm32-unknown-unknown --features chain } | Invoke-Block
+New-Item dist -ItemType Directory -Force | Out-Null
 Copy-Item -Force target/wasm32-unknown-unknown/release/dice_contract.wasm dist/dice.wasm
 
 if (!$fast) {

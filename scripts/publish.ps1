@@ -23,6 +23,9 @@ rsync -av `
     --exclude 'pkg' `
     --exclude 'target' `
 `
+    --exclude 'dist/*.pdb' `
+    --include 'dist/*' `
+`
     --include 'LICENSE' `
     --include '*.ans' `
     --include '*.cs' `
@@ -63,11 +66,6 @@ rsync -av `
     --include '*.yaml' `
     --include '*.yml' `
     --include '*.zip' `
-`
-    --include 'dist/' `
-    --include 'dist/*.exe' `
-    --exclude 'dist/*.*' `
-    --include 'dist/*' `
 `
     --include '*/' `
     --exclude '*' `

@@ -18,7 +18,8 @@ $files = @(
     Get-ChildItem -Path . -Recurse -File -Force `
     | Where-Object {
         $_.FullName.Replace("\", "/").Contains("/dist") `
-            -and ($_.Extension -eq ".exe" -or $_.Extension -eq "")
+            -and ($_.Extension -eq ".exe" -or $_.Extension -eq "") `
+            -and $_.Name -ne "LICENSE"
     } `
     | Select-Object FullName, DirectoryName, Name
 )
