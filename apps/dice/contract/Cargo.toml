@@ -13,7 +13,7 @@ crate-type = ["cdylib"]
 [dependencies]
 near-sdk = "~4.1"
 dice = { package = "dice", path = "..", default-features = false, features = ["chain"] }
-fable_library_rust = { path = "../target/rs/fable_modules/fable-library-rust", default-features = false }
+fable_library_rust = { path = "../../../spiral/test/fable_modules/fable-library-rust", default-features = false }
 
 [features]
 chain = []

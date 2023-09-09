@@ -3,6 +3,7 @@ param(
 )
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
+. ./core.ps1
 
 
 function CheckToml {
@@ -11,7 +12,7 @@ function CheckToml {
     )
     $toml = [IO.Path]::GetFullPath("$ScriptDir/$toml")
     Write-Output "`n$toml"
-    cargo outdated -w -m $toml
+    { cargo outdated -w -m $toml } | Invoke-Block
 }
 
 function CheckJson {
@@ -20,13 +21,13 @@ function CheckJson {
     )
     $json = [IO.Path]::GetFullPath("$ScriptDir/$json")
     Write-Output "`n$json"
-    pnpm -C $json outdated-pre
+    { pnpm -C $json outdated-pre } | Invoke-Block
 }
 
 
-dotnet paket outdated --include-prereleases
+{ dotnet paket outdated --include-prereleases } | Invoke-Block
 
-cargo outdated -w
+{ cargo outdated -w } | Invoke-Block
 
 CheckToml "../apps/chat/contract/Cargo.toml"
 CheckToml "../apps/chat/tests/Cargo.toml"
