@@ -43,7 +43,7 @@ jobs:
 
       - run: pwsh scripts/build.ps1
 
-      - run: rm -rf /opt/hostedtoolcache
+      - run: rm -rf apps/chat/ui/target
 
       - run: pwsh scripts/publish.ps1
 
