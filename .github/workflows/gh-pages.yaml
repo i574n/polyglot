@@ -43,6 +43,8 @@ jobs:
 
       - run: pwsh scripts/build.ps1
 
+      - run: rm -rf /opt/hostedtoolcache
+
       - run: pwsh scripts/publish.ps1
 
       - run: pwsh dist/scripts/publish-fleek.ps1
