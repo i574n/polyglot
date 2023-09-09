@@ -31,9 +31,3 @@ $env:RUST_LOG="info"
 #!pwsh
 
 { . $ScriptDir/../../target/release/test$(GetExecutableSuffix) } | Invoke-Block
-
-#!pwsh
-
-if ($env:CI) {
-    Remove-Item ./fable_modules -Recurse -Force -ErrorAction Ignore
-}
