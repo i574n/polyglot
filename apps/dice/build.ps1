@@ -5,7 +5,6 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
-. ../../scripts/chain.ps1
 
 
 if (!$fast) {
@@ -14,9 +13,9 @@ if (!$fast) {
     { dotnet repl --run Dice.dib --output-path Dice.repl.ipynb --exit-after-run } | Invoke-Block
 }
 
-{ . ../parser/target/dist/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block
+{ . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block
 
-{ . ../builder/target/dist/Builder$(GetExecutableSuffix) Dice.fs --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) Dice.fs --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
 
 { dotnet fable target/Dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs } | Invoke-Block
 if (!$fast) {
@@ -61,6 +60,8 @@ if (!$fast) {
 
 { pwsh ./contract/build.ps1 -fast 1 } | Invoke-Block
 
-$nearSandboxExe = DownloadNearSandbox
+{ pwsh ./tests/build.ps1 } | Invoke-Block
 
-{ cargo run --release --manifest-path tests/Cargo.toml } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }
+if ($env:CI) {
+    Remove-Item ./target -Recurse -Force -ErrorAction Ignore
+}

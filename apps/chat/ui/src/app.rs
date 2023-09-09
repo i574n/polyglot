@@ -566,9 +566,16 @@ struct ErrorWrapper {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(untagged)]
+enum ErrorWrapperEnum {
+    ErrorWrapper(ErrorWrapper),
+    ErrorData(ErrorData),
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 struct ResultWrapper {
     result: Option<DataWrapper>,
-    error: Option<ErrorWrapper>,
+    error: Option<ErrorWrapperEnum>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -592,6 +599,133 @@ enum InputData {
 }
 
 use futures::StreamExt;
+
+#[derive(Serialize, Deserialize, Debug)]
+struct RpcInput {
+    jsonrpc: String,
+    id: String,
+    method: String,
+    params: Vec<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ErrorCauseInfo {
+    error_message: String,
+}
+#[derive(Serialize, Deserialize, Debug)]
+struct ErrorCause {
+    name: String,
+    info: ErrorCauseInfo,
+}
+#[derive(Serialize, Deserialize, Debug)]
+struct RpcError {
+    name: String,
+    cause: ErrorCause,
+    code: i32,
+    message: String,
+    data: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct RpcResponse {
+    jsonrpc: String,
+    result: Option<TransactionStatus>,
+    error: Option<RpcError>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct TransactionStatus {
+    receipts: Vec<Receipt>,
+    receipts_outcome: Vec<ReceiptsOutcome>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Receipt {
+    predecessor_id: String,
+    receipt: ReceiptDetail,
+    receipt_id: String,
+    receiver_id: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "PascalCase")]
+struct ReceiptDetail {
+    action: ActionDetail,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ActionDetail {
+    actions: Vec<HashMap<String, TransferDetail>>,
+    gas_price: String,
+    input_data_ids: Vec<String>,
+    output_data_receivers: Vec<String>,
+    signer_id: String,
+    signer_public_key: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct TransferDetail {
+    deposit: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct ReceiptsOutcome {
+    block_hash: String,
+    id: String,
+    outcome: OutcomeDetail,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct OutcomeDetail {
+    executor_id: String,
+    gas_burnt: u64,
+    logs: Vec<String>,
+    metadata: Metadata,
+    receipt_ids: Vec<String>,
+    status: HashMap<String, String>,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct Metadata {
+    gas_profile: Vec<GasProfile>,
+    version: u8,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+struct GasProfile {
+    cost: String,
+    cost_category: String,
+    gas_used: String,
+}
+
+async fn fetch_transaction_status(hash: String) -> RpcResponse {
+    let input_obj = RpcInput {
+        jsonrpc: "2.0".to_string(),
+        id: "dontcare".to_string(),
+        method: "EXPERIMENTAL_tx_status".to_string(),
+        params: vec![hash, "bowen".to_string()],
+    };
+
+    // let input_json = serde_json::to_string(&input_obj).unwrap();
+
+    let url = "https://rpc.mainnet.near.org";
+
+    let json = reqwest_wasm::Client::builder()
+        .build()
+        .unwrap()
+        .post(url)
+        .json(&input_obj)
+        .send()
+        .await
+        .unwrap()
+        .text()
+        .await
+        .unwrap();
+
+    let obj: RpcResponse = serde_json::from_str(&json).unwrap();
+
+    obj
+}
 
 #[component]
 fn Home() -> impl IntoView {
@@ -714,9 +848,14 @@ fn Home() -> impl IntoView {
                     .collect::<Vec<_>>()
                     .await;
 
-                let obj_json = serde_json::to_string_pretty(&transactions).unwrap();
+                // let obj_json = serde_json::to_string_pretty(&transactions).unwrap();
 
-                Some(obj_json)
+                // Some(obj_json)
+
+                // only the first 2
+                let transactions = transactions.into_iter().take(2).collect::<Vec<_>>();
+
+                Some(transactions)
             } else {
                 None
             }
@@ -775,11 +914,30 @@ fn Home() -> impl IntoView {
                                     <td
                                         class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200 text-left text-xs"
                                     >
-                                        <pre>{move || match response.get() {
-                                            None => "loading...".to_string(),
-                                            Some(None) => "None".to_string(),
-                                            Some(Some(text)) => text,
-                                        }}</pre>
+                                        // <pre>{move || match response.get() {
+                                        //     None => "loading...".to_string(),
+                                        //     Some(None) => "None".to_string(),
+                                        //     Some(Some(text)) => text,
+                                        // }}</pre>
+                                        {move || match response.get() {
+                                            None => view! { <>{"loading...".to_string()}</> },
+                                            Some(None) => view! { <>{"None".to_string()}</> },
+                                            Some(Some(transactions)) => view! {
+                                                <><For
+                                                    each=move || transactions.clone()
+                                                    key=|transaction| transaction.hash.to_owned()
+                                                    view=move |transaction| view! {
+                                                        <Await
+                                                            future=move || fetch_transaction_status(transaction.hash.to_owned())
+                                                            bind:status
+                                                        >
+                                                            <div>{status.result.as_ref().map(|result|result.receipts_outcome.len())
+                                                            }</div>
+                                                        </Await>
+                                                    }
+                                                /></>
+                                            },
+                                        }}
                                     </td>
                                     <td
                                         class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"

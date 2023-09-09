@@ -32,4 +32,4 @@ if (!$fast) {
 
 { dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block
 
-Copy-Item -Recurse -Force "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net7.0/**" $netVersion
+Copy-Item -Recurse -Force "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net8.0/**" $netVersion

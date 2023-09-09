@@ -32,7 +32,7 @@ module Builder =
                 let! exitCode, _result =
                     Runtime.executeWithOptionsAsync
                         {
-                            Command = $"dotnet publish -c release -o dist -r {runtime}"
+                            Command = $"dotnet publish -c release -o ../dist -r {runtime}"
                             CancellationToken = None
                             OnLine = None
                             WorkingDirectory = Some fileDir

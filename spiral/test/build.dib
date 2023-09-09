@@ -9,7 +9,7 @@
 
 #!pwsh
 
-{ . ../../apps/spiral/target/dist/Supervisor$(GetExecutableSuffix) --buildfile test.spi test.fsx --timeout 10000 } | Invoke-Block
+{ . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --buildfile test.spi test.fsx --timeout 10000 } | Invoke-Block
 
 #!pwsh
 
@@ -31,3 +31,9 @@ $env:RUST_LOG="info"
 #!pwsh
 
 { . $ScriptDir/../../target/release/test$(GetExecutableSuffix) } | Invoke-Block
+
+#!pwsh
+
+if ($env:CI) {
+    Remove-Item ./fable_modules -Recurse -Force -ErrorAction Ignore
+}

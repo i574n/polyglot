@@ -40,3 +40,7 @@ if (!$fast) {
     { pnpm install --frozen-lockfile } | Invoke-Block -Location e2e
     { pnpm test:e2e } | Invoke-Block -Location e2e
 }
+
+if ($env:CI) {
+    Remove-Item ./target -Recurse -Force -ErrorAction Ignore
+}

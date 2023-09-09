@@ -21,13 +21,7 @@ rsync -av `
     --exclude 'obj' `
     --exclude 'paket-files' `
     --exclude 'pkg' `
-`
-    --include 'target/' `
-    --include 'target/dist/' `
-    --include 'target/dist/*.exe' `
-    --exclude 'target/dist/*.*' `
-    --include 'target/dist/*' `
-    --exclude 'target/*' `
+    --exclude 'target' `
 `
     --include 'LICENSE' `
     --include '*.ans' `
@@ -70,6 +64,11 @@ rsync -av `
     --include '*.yml' `
     --include '*.zip' `
 `
+    --include 'dist/' `
+    --include 'dist/*.exe' `
+    --exclude 'dist/*.*' `
+    --include 'dist/*' `
+`
     --include '*/' `
     --exclude '*' `
     --no-links `
@@ -81,4 +80,4 @@ Get-ChildItem -Path ../dist -Recurse -Force | Where-Object { $_.Name.StartsWith(
     Rename-Item -Path $_.FullName -NewName "_$($_.Name)"
 }
 
-{ . ../apps/dir-tree-html/target/dist/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block
+{ . ../apps/dir-tree-html/dist/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block

@@ -17,7 +17,7 @@ if ($dir -ne "dist") {
 $files = @(
     Get-ChildItem -Path . -Recurse -File -Force `
     | Where-Object {
-        $_.FullName.Replace("\", "/").Contains("/target/dist") `
+        $_.FullName.Replace("\", "/").Contains("/dist") `
             -and ($_.Extension -eq ".exe" -or $_.Extension -eq "")
     } `
     | Select-Object FullName, DirectoryName, Name
@@ -110,4 +110,4 @@ if ($Error.Count -gt 0) {
     exit 1
 }
 
-{ . ../apps/dir-tree-html/target/dist/DirTreeHtml$(GetExecutableSuffix) --dir . --html index.html } | Invoke-Block
+{ . ../apps/dir-tree-html/dist/DirTreeHtml$(GetExecutableSuffix) --dir . --html index.html } | Invoke-Block
