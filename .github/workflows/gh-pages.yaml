@@ -28,10 +28,6 @@ jobs:
           rust-version: nightly
           components: clippy rust-src rustfmt
 
-      - uses: taiki-e/install-action@v2
-        with:
-          tool: wasm-pack
-
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
