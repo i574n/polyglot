@@ -52,10 +52,10 @@ fn Home() -> impl IntoView {
 
     let global_state1 = use_context::<GlobalState>();
     let global_state2 = use_context::<GlobalState>();
-    let global_state_resource = create_resource(
+    let global_state_resource = create_local_resource(
         move || global_state1.clone(),
         |global_state| async move {
-            log!("Home / global_state_resource");
+            log!("Home () / global_state_resource create_local_resource");
             global_state
         },
     );
@@ -65,7 +65,7 @@ fn Home() -> impl IntoView {
             Some(Some(global_state)) => serde_json::to_string_pretty(global_state).unwrap(),
             _ => "".to_string(),
         });
-        log!("Home / global_state_json memo / json: {:#?}", json);
+        log!("Home () / global_state_json create_memo / json: {:#?}", json);
 
         json
     });
@@ -75,10 +75,10 @@ fn Home() -> impl IntoView {
     let (explorer_backend_host, set_explorer_backend_host) =
         create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app".to_string());
 
-    let response = create_resource(
+    let response = create_local_resource(
         move || (row_count.get(), explorer_backend_host.get()),
         |(row_count, explorer_backend_host)| async move {
-            log!("async_data resource");
+            log!("Home () / response create_local_resource");
 
             if row_count > 1 {
                 let load_page = |cursor: Option<TransactionCursor>| async {
@@ -184,12 +184,12 @@ fn Home() -> impl IntoView {
     view! {
         <>
             {(|| {
-                log!("Home / render1");
+                log!("Home () / render1");
                 view! {<></>}
             })()}
             <MessagesProcessor />
             {(|| {
-                log!("Home / render2");
+                log!("Home () / render2");
                 view! {<></>}
             })()}
             <div class:dark={move || global_state2.clone().unwrap().state.get().dark_mode.get()}>

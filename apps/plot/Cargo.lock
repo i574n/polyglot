@@ -67,7 +67,7 @@ dependencies = [
 [[package]]
 name = "plotters"
 version = "0.3.5"
-source = "git+https://github.com/plotters-rs/plotters.git#7030c7354de75d15824ca2dcc82b492efcd96297"
+source = "git+https://github.com/plotters-rs/plotters.git#7c1f8ec41ae9e70b91c3427bd19c929ac45fb31d"
 dependencies = [
  "num-traits",
  "plotters-backend",
@@ -79,12 +79,12 @@ dependencies = [
 [[package]]
 name = "plotters-backend"
 version = "0.3.5"
-source = "git+https://github.com/plotters-rs/plotters.git#7030c7354de75d15824ca2dcc82b492efcd96297"
+source = "git+https://github.com/plotters-rs/plotters.git#7c1f8ec41ae9e70b91c3427bd19c929ac45fb31d"
 
 [[package]]
 name = "plotters-svg"
 version = "0.3.5"
-source = "git+https://github.com/plotters-rs/plotters.git#7030c7354de75d15824ca2dcc82b492efcd96297"
+source = "git+https://github.com/plotters-rs/plotters.git#7c1f8ec41ae9e70b91c3427bd19c929ac45fb31d"
 dependencies = [
  "plotters-backend",
 ]
@@ -115,15 +115,29 @@ checksum = "1ad4cc8da4ef723ed60bced201181d83791ad433213d8c24efffda1eec85d741"
 
 [[package]]
 name = "serde"
-version = "1.0.185"
+version = "1.0.188"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be9b6f69f1dfd54c3b568ffa45c310d6973a5e5148fd40cf515acaf38cf5bc31"
+checksum = "cf9e0fcba69a370eed61bcf2b728575f726b50b55cba78064753d708ddc7549e"
+dependencies = [
+ "serde_derive",
+]
+
+[[package]]
+name = "serde_derive"
+version = "1.0.188"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4eca7ac642d82aa35b60049a6eccb4be6be75e599bd2e9adb5f875a737654af2"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
 
 [[package]]
 name = "serde_json"
-version = "1.0.105"
+version = "1.0.106"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "693151e1ac27563d6dbcec9dee9fbd5da8539b20fa14ad3752b2e6d363ace360"
+checksum = "2cc66a619ed80bf7a0f6b17dd063a84b88f6dea1813737cf469aef1d081142c2"
 dependencies = [
  "itoa",
  "ryu",
@@ -132,9 +146,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.29"
+version = "2.0.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c324c494eba9d92503e6f1ef2e6df781e78f6a7705a0202d9801b198807d518a"
+checksum = "718fa2415bcb8d8bd775917a1bf12a7931b6dfa890753378538118181e0cb398"
 dependencies = [
  "proc-macro2",
  "quote",

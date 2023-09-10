@@ -23,6 +23,8 @@ rsync -av `
     --exclude 'pkg' `
     --exclude 'target' `
 `
+    --exclude 'pnpm-lock.yaml' `
+`
     --exclude 'dist/*.pdb' `
     --include 'dist/*' `
 `

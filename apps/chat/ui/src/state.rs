@@ -156,7 +156,7 @@ pub fn MessagesProcessor() -> impl IntoView {
 
     let global_state = use_context::<GlobalState>();
     create_effect(move |_| {
-        log!("MessagesProcessor / state effect");
+        log!("MessagesProcessor () / create_effect");
         let global_state = global_state.clone().unwrap();
         let messages = global_state.messages.get();
         let outer_messages = messages.outer.get();
@@ -185,7 +185,7 @@ pub fn MessagesProcessor() -> impl IntoView {
                                 }
                             }
                             _ => log!(
-                                "MessageProcessor / invalid message / message: {:#?}",
+                                "MessageProcessor () / create_effect / invalid message / message: {:#?}",
                                 message
                             ),
                         }
@@ -224,7 +224,7 @@ pub fn MessagesProcessor() -> impl IntoView {
             // let result = set_inner_messages.value().get();
             let result = set_inner_messages(json);
             log!(
-                "MessagesProcessor / set_inner_messages / result: {:#?}",
+                "MessagesProcessor () / create_effect / set_inner_messages / result: {:#?}",
                 result
             );
         }
@@ -246,7 +246,7 @@ pub fn MessagesProcessor() -> impl IntoView {
     view! {
         <>
             {(|| {
-                log!("MessagesProcessor / render");
+                log!("MessagesProcessor () / render");
                 view! {<></>}
             })()}
         </>
