@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use chat::components::DarkModeButton::*;
+use chat::components::Player::*;
 use chat::near::backend::*;
 use chat::near::rpc::*;
 use chat::state::{State, *};
@@ -65,7 +66,10 @@ fn Home() -> impl IntoView {
             Some(Some(global_state)) => serde_json::to_string_pretty(global_state).unwrap(),
             _ => "".to_string(),
         });
-        log!("Home () / global_state_json create_memo / json: {:#?}", json);
+        log!(
+            "Home () / global_state_json create_memo / json: {:#?}",
+            json
+        );
 
         json
     });
@@ -250,7 +254,7 @@ fn Home() -> impl IntoView {
                                                             future=move || fetch_transaction_status(transaction.hash.to_owned())
                                                             bind:status
                                                         >
-                                                            <div>{status.result.as_ref().map(|result|result.receipts_outcome.len())
+                                                            <div>{status.result.as_ref().map(|result|result.receipts_outcome.len()).unwrap_or(0)
                                                             }</div>
                                                         </Await>
                                                     }
@@ -320,6 +324,7 @@ fn Home() -> impl IntoView {
                                 />
                             </tbody>
                         </table>
+                        <Player />
                     </div>
                 </div>
             </div>

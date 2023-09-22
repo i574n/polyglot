@@ -28,6 +28,12 @@ jobs:
           rust-version: nightly
           components: clippy rust-src rustfmt
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages

@@ -24,3 +24,8 @@ serde-wasm-bindgen = "~0.5"
 wasm-bindgen = { version = "0.2" }
 wasm-bindgen-futures = "~0.4"
 web-sys = { version = "~0.3", features = ["Storage"] }
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1

@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { dotnet repl --run DirTreeHtml.dib --output-path DirTreeHtml.repl.ipynb --exit-after-run } | Invoke-Block
+    Invoke-Dib DirTreeHtml.dib
 }
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) DirTreeHtml.dib } | Invoke-Block

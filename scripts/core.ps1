@@ -183,3 +183,26 @@ function GetExecutableSuffix {
         return ""
     }
 }
+
+function Invoke-Dib {
+    param (
+        [Parameter(Position = 0, Mandatory)]
+        [string] $path,
+
+        [Parameter(Position = 1, ValueFromRemainingArguments)]
+        [Object[]]$replArgs
+    )
+    $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run $path --output-path "$path.ipynb" --exit-after-run } }
+    $key = $null
+    foreach ($item in $replArgs) {
+        if ($item -match "^-") {
+            $key = $item -replace "^-"
+        } elseif ($null -ne $key) {
+            $mergedArgs[$key] = $item
+            $key = $null
+        }
+    }
+    Invoke-Block @mergedArgs
+
+    { jupyter nbconvert "$path.ipynb" --to html --HTMLExporter.theme=dark } | Invoke-Block
+}

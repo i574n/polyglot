@@ -14,7 +14,7 @@ if (!$fast) {
     npx -y tailwindcss -i input.css -o target/tailwind.css
 }
 
-{ trunk build --dist="target/trunk" --public-url="./dist" } | Invoke-Block
+{ trunk build $($fast ? $() : '--release') --dist="target/trunk" --public-url="./dist" } | Invoke-Block
 
 $path = "target/trunk/index.html"
 $html = Get-Content $path

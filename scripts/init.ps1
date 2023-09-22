@@ -43,4 +43,4 @@ dotnet paket restore
 { . $ScriptDir/symlinks.ps1 } | Invoke-Block
 { . $ScriptDir/dep_dotnet-interactive.ps1 -fast $($fast ?? '') } | Invoke-Block
 { . $ScriptDir/dep_dotnet-repl.ps1 } | Invoke-Block
-{ dotnet repl --run "$ScriptDir/init.dib" --output-path "$ScriptDir/init.repl.ipynb" --exit-after-run } | Invoke-Block
+Invoke-Dib "$ScriptDir/init.dib"

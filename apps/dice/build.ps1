@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 if (!$fast) {
     { dotnet run -c Release } | Invoke-Block
 
-    { dotnet repl --run Dice.dib --output-path Dice.repl.ipynb --exit-after-run } | Invoke-Block
+    Invoke-Dib Dice.dib
 }
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block

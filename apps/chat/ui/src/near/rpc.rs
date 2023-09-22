@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-
+use futures::StreamExt;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct RpcInput {
@@ -12,7 +12,8 @@ pub struct RpcInput {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ErrorCauseInfo {
-    pub error_message: String,
+    pub error_message: Option<String>,
+    pub requested_transaction_hash: Option<String>,
 }
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ErrorCause {
@@ -33,6 +34,7 @@ pub struct RpcResponse {
     pub jsonrpc: String,
     pub result: Option<TransactionStatus>,
     pub error: Option<RpcError>,
+    pub id: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -101,30 +103,51 @@ pub struct GasProfile {
 }
 
 pub async fn fetch_transaction_status(hash: String) -> RpcResponse {
-    let input_obj = RpcInput {
-        jsonrpc: "2.0".to_string(),
-        id: "dontcare".to_string(),
-        method: "EXPERIMENTAL_tx_status".to_string(),
-        params: vec![hash, "bowen".to_string()],
-    };
+    let urls = vec![
+        "https://rpc.mainnet.near.org",
+        "https://archival-rpc.mainnet.near.org",
+    ];
 
-    // let input_json = serde_json::to_string(&input_obj).unwrap();
+    let hash = hash.as_str();
 
-    let url = "https://rpc.mainnet.near.org";
+    futures::stream::iter(urls)
+        .fold((None, None), |(obj, code), url| async move {
+            match (obj, code) {
+                (_, Some(_)) | (None, _) => {
+                    let input_obj = RpcInput {
+                        jsonrpc: "2.0".to_string(),
+                        id: "dontcare".to_string(),
+                        method: "EXPERIMENTAL_tx_status".to_string(),
+                        params: vec![hash.to_string(), "bowen".to_string()],
+                    };
+                    let json = reqwest_wasm::Client::builder()
+                        .build()
+                        .unwrap()
+                        .post(url)
+                        .json(&input_obj)
+                        .send()
+                        .await
+                        .unwrap()
+                        .text()
+                        .await
+                        .unwrap();
 
-    let json = reqwest_wasm::Client::builder()
-        .build()
-        .unwrap()
-        .post(url)
-        .json(&input_obj)
-        .send()
+                    let obj: RpcResponse = serde_json::from_str(&json).unwrap();
+                    if let Some(error) = &obj.error {
+                        let error_code = error.code.clone();
+                        if error_code == -32000 {
+                            (Some(obj), Some(error_code))
+                        } else {
+                            (Some(obj), None)
+                        }
+                    } else {
+                        (Some(obj), None)
+                    }
+                }
+                (obj, code) => (obj, code),
+            }
+        })
         .await
+        .0
         .unwrap()
-        .text()
-        .await
-        .unwrap();
-
-    let obj: RpcResponse = serde_json::from_str(&json).unwrap();
-
-    obj
 }
