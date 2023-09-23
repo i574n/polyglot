@@ -244,6 +244,25 @@ count
 
 #!markdown
 
+## printException
+
+#!fsharp
+
+let inline printException (ex : System.Exception) =
+    $"{ex.GetType ()}: {ex.Message}"
+
+#!fsharp
+
+//// test
+
+fun () -> failwith "test"
+|> _throwsC (fun ex _ ->
+    printException ex
+    |> _equal "System.Exception: test"
+)
+
+#!markdown
+
 ## trace
 
 #!fsharp
@@ -260,6 +279,7 @@ let inline getLocals () = ""
 let mutable traceEnabled = true
 let mutable traceCount = 0
 let mutable traceLevel = Verbose
+let mutable traceDump = false
 
 let private replStart =
 #if INTERACTIVE
@@ -272,7 +292,7 @@ let private replStart =
     fun () -> None : int64 option
 #endif
 
-let trace level fn getLocals =
+let rec trace level fn getLocals =
     if traceEnabled && level >= traceLevel then
         traceCount <- traceCount + 1
         let time =
@@ -292,10 +312,23 @@ let trace level fn getLocals =
 #endif
                 |> dateTime.ToString
 #endif
-        $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
-        |> String.trimStart [||]
-        |> String.trimEnd [| ' '; '/' |]
-        |> System.Console.WriteLine
+        let text =
+            $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
+            |> String.trimStart [||]
+            |> String.trimEnd [| ' '; '/' |]
+
+        System.Console.WriteLine text
+#if !CHAIN
+        if traceDump then
+            try
+                let tmpPath = System.IO.Path.GetTempPath ()
+                let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
+                System.IO.Directory.CreateDirectory logDir |> ignore
+                let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
+                System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
+            with ex ->
+                trace Error (fun () -> $"trace / ex: {ex |> printException}") getLocals
+#endif
 
 let inline withTrace enabled fn =
     let oldTraceEnabled = traceEnabled
@@ -318,6 +351,14 @@ let inline withTraceLevel level fn =
         fn ()
     finally
         traceLevel <- oldTraceLevel
+
+let inline withTraceDump dump fn =
+    let oldTraceDump = traceDump
+    try
+        traceDump <- dump
+        fn ()
+    finally
+        traceDump <- oldTraceDump
 
 #!fsharp
 
@@ -380,25 +421,6 @@ async {
 }
 |> Async.RunSynchronously
 newDisposableTest |> _equal 0
-
-#!markdown
-
-## printException
-
-#!fsharp
-
-let inline printException (ex : System.Exception) =
-    $"{ex.GetType ()}: {ex.Message}"
-
-#!fsharp
-
-//// test
-
-fun () -> failwith "test"
-|> _throwsC (fun ex _ ->
-    printException ex
-    |> _equal "System.Exception: test"
-)
 
 #!markdown
 

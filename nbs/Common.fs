@@ -90,6 +90,11 @@ module Common =
         let result = lazy fn ()
         fun () -> result.Value
 
+    /// ## printException
+
+    let inline printException (ex : System.Exception) =
+        $"{ex.GetType ()}: {ex.Message}"
+
     /// ## trace
 
     type TraceLevel =
@@ -104,6 +109,7 @@ module Common =
     let mutable traceEnabled = true
     let mutable traceCount = 0
     let mutable traceLevel = Verbose
+    let mutable traceDump = false
 
     let private replStart =
 #if INTERACTIVE
@@ -116,7 +122,7 @@ module Common =
         fun () -> None : int64 option
 #endif
 
-    let trace level fn getLocals =
+    let rec trace level fn getLocals =
         if traceEnabled && level >= traceLevel then
             traceCount <- traceCount + 1
             let time =
@@ -136,10 +142,23 @@ module Common =
 #endif
                     |> dateTime.ToString
 #endif
-            $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
-            |> String.trimStart [||]
-            |> String.trimEnd [| ' '; '/' |]
-            |> System.Console.WriteLine
+            let text =
+                $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
+                |> String.trimStart [||]
+                |> String.trimEnd [| ' '; '/' |]
+
+            System.Console.WriteLine text
+#if !CHAIN
+            if traceDump then
+                try
+                    let tmpPath = System.IO.Path.GetTempPath ()
+                    let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
+                    System.IO.Directory.CreateDirectory logDir |> ignore
+                    let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
+                    System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
+                with ex ->
+                    trace Error (fun () -> $"trace / ex: {ex |> printException}") getLocals
+#endif
 
     let inline withTrace enabled fn =
         let oldTraceEnabled = traceEnabled
@@ -163,17 +182,20 @@ module Common =
         finally
             traceLevel <- oldTraceLevel
 
+    let inline withTraceDump dump fn =
+        let oldTraceDump = traceDump
+        try
+            traceDump <- dump
+            fn ()
+        finally
+            traceDump <- oldTraceDump
+
     /// ## newDisposable
 
     let inline newDisposable fn =
         { new System.IDisposable with
             member _.Dispose () = fn ()
         }
-
-    /// ## printException
-
-    let inline printException (ex : System.Exception) =
-        $"{ex.GetType ()}: {ex.Message}"
 
     /// ## retryFn
 
