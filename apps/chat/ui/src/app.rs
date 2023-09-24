@@ -6,7 +6,7 @@ use chat::near::backend::*;
 use chat::near::rpc::*;
 use chat::state::{State, *};
 
-use leptos::*;
+use leptos::{logging::log, *};
 use leptos_meta::*;
 use leptos_router::*;
 

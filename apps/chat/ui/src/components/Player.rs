@@ -1,5 +1,4 @@
-use leptos::*;
-
+use leptos::{logging::log, *};
 
 #[component]
 pub fn Player() -> impl IntoView {

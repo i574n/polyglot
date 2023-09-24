@@ -1,8 +1,7 @@
-use leptos::*;
+use leptos::{logging::log, *};
 use serde::{Deserialize, Serialize};
-use wasm_bindgen::prelude::*;
 use std::collections::HashMap;
-
+use wasm_bindgen::prelude::*;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum OuterMessage {

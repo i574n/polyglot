@@ -1,7 +1,7 @@
 use crate::js::*;
 use crate::state::*;
 use borsh::{BorshDeserialize, BorshSerialize};
-use leptos::*;
+use leptos::{logging::log, *};
 
 async fn build_database() -> Result<rexie::Rexie, rexie::Error> {
     log!("DarkModeButton / build_database");
