@@ -88,7 +88,7 @@ let inline waitForPortAccess timeout status port =
         else
             if retry % 100 = 0 then
                 let getLocals () = $"port: {port} / retry: {retry} / {getLocals ()}"
-                trace Warn (fun () -> "waitForPortAccess") getLocals
+                trace Warning (fun () -> "waitForPortAccess") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
     }

@@ -53,6 +53,10 @@ pub mod Polyglot {
                 )))
             })
         }
+        pub fn traceDump() -> LrcPtr<MutCell<bool>> {
+            static traceDump: MutCell<Option<LrcPtr<MutCell<bool>>>> = MutCell::new(None);
+            traceDump.get_or_init(|| LrcPtr::new(MutCell::new(false)))
+        }
         fn replStart() -> Option<i64> {
             None::<i64>
         }
@@ -68,7 +72,7 @@ pub mod Polyglot {
             } {
                 Polyglot::Common::traceCount().set(Polyglot::Common::traceCount().get() + 1_i32);
                 {
-                    let arg: string = {
+                    let text: string = {
                         let trimChars_2: Array<char> = new_array(&[' ', '/']);
                         trimEndChars(
                             trimStartChars(
@@ -85,7 +89,7 @@ pub mod Polyglot {
                             trimChars_2,
                         )
                     };
-                    println!("{0}", arg,)
+                    println!("{0}", text,)
                 }
             };
         }

@@ -15,7 +15,7 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) Dice.fs --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) Dice.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
 
 { dotnet fable target/Dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs } | Invoke-Block
 if (!$fast) {

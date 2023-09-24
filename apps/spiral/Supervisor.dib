@@ -45,19 +45,23 @@ open FileSystem
 let inline sendJson (port : int) (json : string) = async {
     let! portOpen = Networking.testPortOpen port
     if portOpen then
-        // use runtime = new NetMQ.NetMQRuntime ()
-        use request = new NetMQ.Sockets.RequestSocket ()
-        request.Connect $"tcp://127.0.0.1:{port}"
+        try
+            // use runtime = new NetMQ.NetMQRuntime ()
+            use request = new NetMQ.Sockets.RequestSocket ()
+            request.Connect $"tcp://127.0.0.1:{port}"
 
-        let msg = NetMQ.NetMQMessage ()
-        msg.Append json
+            let msg = NetMQ.NetMQMessage ()
+            msg.Append json
 
-        NetMQ.OutgoingSocketExtensions.SendMultipartMessage (request, msg)
-        let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
-        // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
-        let resultString = result |> Seq.map (fun x -> x.ConvertToString ()) |> String.concat ""
-        trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.FrameCount: {result.FrameCount} / resultString.Length: {resultString.Length}") getLocals
-        return Some resultString
+            NetMQ.OutgoingSocketExtensions.SendMultipartMessage (request, msg)
+            let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
+            // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
+            let resultString = result |> Seq.map (fun x -> x.ConvertToString ()) |> String.concat ""
+            trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.FrameCount: {result.FrameCount} / resultString.Length: {resultString.Length}") getLocals
+            return Some resultString
+        with ex ->
+            trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> printException}") getLocals
+            return None
     else
         trace Debug (fun () -> "sendJson / error: port not open") getLocals
         return None
@@ -136,17 +140,25 @@ let inline awaitCompiler port cancellationToken = async {
     request.SubscribeToAnyTopic ()
     request.Connect $"tcp://127.0.0.1:{serverPort + 1}"
 
-    let rec loop i = async {
-        let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
-        // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
-        return
-            result
-            |> Seq.map (fun x -> x.ConvertToString ())
-            |> String.concat ""
-            |> FSharp.Json.Json.deserialize<ClientErrorsRes>
+    let rec loop _i = async {
+        try
+            let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
+            // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
+            return
+                result
+                |> Seq.map (fun x -> x.ConvertToString ())
+                |> String.concat ""
+                |> FSharp.Json.Json.deserialize<ClientErrorsRes>
+                |> Some
+        with ex ->
+            trace Critical (fun () -> $"awaitCompiler / ex: {ex |> printException}") getLocals
+            return None
     }
 
-    return serverPort, loop |> FSharp.Control.AsyncSeq.initInfiniteAsync, (request :> System.IDisposable)
+    return
+        serverPort,
+        loop |> FSharp.Control.AsyncSeq.initInfiniteAsync |> FSharp.Control.AsyncSeq.choose id,
+        (request :> System.IDisposable)
 }
 
 #!markdown
@@ -265,18 +277,25 @@ let inline buildFile timeout cancellationToken path = async {
             fsxContent, errors |> List.distinct
         )
         |> FSharp.Control.AsyncSeq.tryLast
+        |> Async.catch
         |> Async.runWithTimeoutAsync timeout
         |> Async.StartChild
 
     let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
-    let! fileOpenResult = fileOpenObj |> sendObj serverPort
+    let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
     let buildFileObj = {| BuildFile = {| uri = fullPath |> getFileUri; backend = "Fsharp" |} |}
-    let! buildFileResult = buildFileObj |> sendObj serverPort
+    let! _buildFileResult = buildFileObj |> sendObj serverPort
 
     return!
         outputChild
-        |> Async.map (Option.flatten >> Option.defaultValue (None, []))
+        |> Async.map (function
+            | Some (Ok (Some result)) -> result
+            | Some (Error ex) ->
+                trace Critical (fun () -> $"buildFile / error: {ex |> printException}") getLocals
+                None, []
+            | _ -> None, []
+        )
 }
 
 #!markdown
@@ -619,7 +638,7 @@ let main args =
         errors
         |> List.map snd
         |> List.iter (fun error ->
-            trace Error (fun () -> $"main / error: {error}") getLocals
+            trace Critical (fun () -> $"main / error: {error}") getLocals
         )
 
         match outputCode with

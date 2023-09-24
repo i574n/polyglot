@@ -25,6 +25,8 @@ var traceCount = 0;
 
 TraceLevel traceLevel = const TraceLevel(/* Verbose */ 0);
 
+var traceDump = false;
+
 types.Some<int>? replStart() => null;
 
 void trace(TraceLevel level, String Function() fn, String Function() getLocals) {
@@ -39,8 +41,8 @@ void trace(TraceLevel level, String Function() fn, String Function() getLocals) 
             final t = time_span.fromTicks(date.getTicks(date.now()) - types.value(matchValue));
             tmp_capture_1 = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t), time_span.microseconds(t));
         }
-        final arg_2 = string.trimEnd(string.trimStart(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [date.toString(tmp_capture_1, 'HH:mm:ss'), traceCount, level, fn(), getLocals()])), <int>[]), trimChars_2);
-        console.log(arg_2);
+        final text = string.trimEnd(string.trimStart(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [date.toString(tmp_capture_1, 'HH:mm:ss'), traceCount, level, fn(), getLocals()])), <int>[]), trimChars_2);
+        console.log(text);
     }
 }
 

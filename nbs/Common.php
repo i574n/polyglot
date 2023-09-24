@@ -115,16 +115,19 @@ $GLOBALS['traceCount'] = 0;
 $GLOBALS['traceLevel'] = new TraceLevel_Verbose();
 
 #6
+$GLOBALS['traceDump'] = false;
+
+#7
 function replStart($unitVar) {
     return NULL;
 }
 
-#7
+#8
 function trace($level, $fn, $getLocals) {
     if ($GLOBALS['traceEnabled'] ? \Util\compare($level, $GLOBALS['traceLevel']) >= 0 : false) {
         $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
         $trimChars_2 = [ ' ', '/' ];
-        $arg_2 = \String\trimEnd(\String\trimStart(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ (function ($matchValue) {         if (is_null($matchValue)) {
+        $text = \String\trimEnd(\String\trimStart(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ (function ($matchValue) {         if (is_null($matchValue)) {
             return \Date\now();
         } else {
             $replStart_1 = $matchValue;

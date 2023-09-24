@@ -32,6 +32,6 @@ let inline getUnionCaseName<'T> (x: 'T) =
 
 //// test
 
-TraceLevel.Error
+TraceLevel.Critical
 |> getUnionCaseName
-|> _equal (nameof TraceLevel.Error)
+|> _equal (nameof TraceLevel.Critical)

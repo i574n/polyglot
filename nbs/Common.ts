@@ -66,6 +66,8 @@ export let traceCount = createAtom<int32>(0);
 
 export let traceLevel = createAtom<TraceLevel_$union>(TraceLevel_Verbose());
 
+export let traceDump = createAtom<boolean>(false);
+
 function replStart(): Option<int64> {
     return void 0;
 }
@@ -74,10 +76,10 @@ export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (
     let matchValue: Option<int64>, replStart_1: int64, t: number;
     if (traceEnabled() && (compare(level, traceLevel()) >= 0)) {
         traceCount(traceCount() + 1);
-        let arg_2: string;
+        let text: string;
         const trimChars_2: string[] = [" ", "/"];
-        arg_2 = trimEnd(trimStart(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [toString((matchValue = replStart(), (matchValue == null) ? now() : ((replStart_1 = value(matchValue), (t = fromTicks(toInt64(op_Subtraction(getTicks(now()), replStart_1))), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t)))))), "HH:mm:ss"), traceCount(), level, fn(), getLocals()]))), ...trimChars_2);
-        console.log(arg_2);
+        text = trimEnd(trimStart(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [toString((matchValue = replStart(), (matchValue == null) ? now() : ((replStart_1 = value(matchValue), (t = fromTicks(toInt64(op_Subtraction(getTicks(now()), replStart_1))), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t)))))), "HH:mm:ss"), traceCount(), level, fn(), getLocals()]))), ...trimChars_2);
+        console.log(text);
     }
 }
 

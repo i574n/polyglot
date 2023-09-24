@@ -52,6 +52,16 @@ let inline map fn a = async {
     return fn x
 }
 
+#!fsharp
+
+let inline catch a =
+    a
+    |> Async.Catch
+    |> map (function
+        | Choice1Of2 result -> Ok result
+        | Choice2Of2 ex -> Error ex
+    )
+
 #!markdown
 
 ## runWithTimeoutAsync
@@ -77,10 +87,10 @@ let inline runWithTimeoutAsync (timeout : int) fn =
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
             let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
-            trace Warn (fun () -> "runWithTimeoutAsync") getLocals
+            trace Warning (fun () -> "runWithTimeoutAsync") getLocals
             return None
         | ex ->
-            trace Error (fun () -> "runWithTimeoutAsync") getLocals
+            trace Critical (fun () -> "runWithTimeoutAsync") getLocals
             return raise ex
     }
 
@@ -100,6 +110,52 @@ let inline runWithTimeout timeout fn =
 
 Async.Sleep 60
 |> runWithTimeout 10
+|> _equal None
+
+#!fsharp
+
+//// test
+
+Async.Sleep 10
+|> runWithTimeout 60
+|> _equal (Some ())
+
+#!markdown
+
+## runWithTimeoutChildAsync
+
+#!fsharp
+
+let inline runWithTimeoutChildAsync (timeout : int) fn = async {
+    let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+    let! child = Async.StartChild (fn, timeout)
+    return!
+        child
+        |> catch
+        |> map (function
+            | Ok result -> Some result
+            | Error (:? System.TimeoutException as ex) ->
+                trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
+                None
+            | Error ex ->
+                trace Critical (fun () -> $"runWithTimeoutChildAsync / ex: {ex |> printException}") getLocals
+                None
+        )
+}
+
+#!fsharp
+
+let inline runWithTimeoutChild timeout fn =
+    fn
+    |> runWithTimeoutChildAsync timeout
+    |> Async.RunSynchronously
+
+#!fsharp
+
+//// test
+
+Async.Sleep 60
+|> runWithTimeoutChild 10
 |> _equal None
 
 #!fsharp
@@ -132,7 +188,7 @@ let inline runWithTimeoutStrict (timeout : int) fn =
             let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
             return None, getLocals
         | e ->
-            trace Error (fun () -> "runWithTimeoutStrict") getLocals
+            trace Critical (fun () -> "runWithTimeoutStrict") getLocals
             return raise e
     }
 
@@ -152,10 +208,10 @@ let inline runWithTimeoutStrict (timeout : int) fn =
         |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
         ->
         let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
-        trace Warn (fun () -> "runWithTimeoutStrict") getLocals
+        trace Warning (fun () -> "runWithTimeoutStrict") getLocals
         None
     | ex ->
-        trace Error (fun () -> "runWithTimeoutStrict") getLocals
+        trace Critical (fun () -> "runWithTimeoutStrict") getLocals
         raise ex
 
 #!fsharp

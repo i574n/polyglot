@@ -353,7 +353,7 @@ let inline deleteFileAsync path =
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
-                trace Warn (fun () -> "deleteFileAsync") getLocals
+                trace Warning (fun () -> "deleteFileAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
     }
@@ -420,7 +420,7 @@ let inline moveFileAsync newPath oldPath =
             if retry % 100 = 0 then
                 let getLocals () =
                     $"oldPath: {oldPath} / newPath: {newPath} / ex: {ex |> printException} / {getLocals ()}"
-                trace Warn (fun () -> "moveFileAsync") getLocals
+                trace Warning (fun () -> "moveFileAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
     }
@@ -492,7 +492,7 @@ async {
 
 [<RequireQualifiedAccess>]
 type FileSystemChangeType =
-    | Error
+    | Failure
     | Changed
     | Created
     | Deleted
@@ -500,7 +500,7 @@ type FileSystemChangeType =
 
 [<RequireQualifiedAccess>]
 type FileSystemChange =
-    | Error of exn: exn
+    | Failure of exn: exn
     | Changed of path: string * content: string option
     | Created of path: string * content: string option
     | Deleted of path: string
@@ -564,10 +564,10 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
                 ]
             )
 
-    let errorStream =
+    let failureStream =
         AsyncSeq.subscribeEvent
             watcher.Error
-            (fun event -> ticks (), [ FileSystemChange.Error (event.GetException ()) ])
+            (fun event -> ticks (), [ FileSystemChange.Failure (event.GetException ()) ])
 
     let inline readContent fullPath =
         let rec loop retry = async {
@@ -597,7 +597,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
             deletedStream
             createdStream
             renamedStream
-            errorStream
+            failureStream
         ]
         |> FSharp.Control.AsyncSeq.mergeAll
         |> FSharp.Control.AsyncSeq.map (fun (t, events) ->
@@ -877,7 +877,7 @@ run
 
 let inline sortEvent event =
     match event with
-    | FileSystemChange.Error _ -> 0
+    | FileSystemChange.Failure _ -> 0
     | FileSystemChange.Created _ -> 1
     | FileSystemChange.Changed _ -> 2
     | FileSystemChange.Renamed (_oldPath, _) -> 3
@@ -889,7 +889,7 @@ let inline formatEvents events =
     |> List.sortBy (snd >> sortEvent)
     |> List.choose (fun (ticks, event) ->
         match event with
-        | FileSystemChange.Error _ ->
+        | FileSystemChange.Failure _ ->
             None
         | FileSystemChange.Changed (path, _) ->
             Some (ticks, System.IO.Path.GetFileName path, nameof FileSystemChangeType.Changed)

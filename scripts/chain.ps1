@@ -33,7 +33,7 @@ function DownloadNearSandbox {
                 $output = Expand-Archive -Force $nearSandboxZip (Split-Path $path) -PassThru
                 Write-Host "Output: $output / length: $($output.Length)"
             } catch {
-                Write-Host "Exception: '$_' / Error: '$Error'"
+                Write-Host "Error: '$Error'"
             }
             Write-Host "## 3"
 

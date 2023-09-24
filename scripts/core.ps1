@@ -60,7 +60,7 @@ function Invoke-Block {
             $exitcode = -1
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
-            $msg = "`n# Invoke-Block / `$Retries: $Retries / `$OnError: $OnError / `$exitcode: $exitcode / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+            $msg = "`n# Invoke-Block / `$Retries: $Retries / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
             Write-Host $msg
             if ($OnError -eq "Stop" -and $Retries -le 1) {
@@ -138,7 +138,7 @@ function Update-Json {
 }
 
 function EnsureSymbolicLink([string]$Path, [string] $Target) {
-    $Path =  [IO.Path]::GetFullPath((Join-Path $ScriptDir $Path))
+    $Path = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Path))
     $Target = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Target))
 
     if (-Not (Test-Path (Split-Path $Path))) {
@@ -205,4 +205,9 @@ function Invoke-Dib {
     Invoke-Block @mergedArgs
 
     { jupyter nbconvert "$path.ipynb" --to html --HTMLExporter.theme=dark } | Invoke-Block
+
+    $counter = 1
+    (Get-Content "$path.html" -Raw) `
+        -replace '(id="cell\-id=)[a-fA-F0-9]{8}', { $_.Groups[1].Value + $counter++ } `
+    | Set-Content "$path.html"
 }

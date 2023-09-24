@@ -101,8 +101,8 @@ module Common =
         | Verbose
         | Debug
         | Info
-        | Warn
-        | Error
+        | Warning
+        | Critical
 
     let inline getLocals () = ""
 
@@ -148,7 +148,7 @@ module Common =
                 |> String.trimEnd [| ' '; '/' |]
 
             System.Console.WriteLine text
-#if !CHAIN
+#if !CHAIN && !FABLE_COMPILER
             if traceDump then
                 try
                     let tmpPath = System.IO.Path.GetTempPath ()
@@ -157,7 +157,7 @@ module Common =
                     let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
                     System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
                 with ex ->
-                    trace Error (fun () -> $"trace / ex: {ex |> printException}") getLocals
+                    trace Critical (fun () -> $"trace / ex: {ex |> printException}") getLocals
 #endif
 
     let inline withTrace enabled fn =
@@ -207,7 +207,7 @@ module Common =
                 else None
             with ex ->
                 let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
-                trace Warn (fun () -> "retryFn") getLocals
+                trace Warning (fun () -> "retryFn") getLocals
                 System.Threading.Thread.Sleep 1
                 loop (retry + 1)
         loop 0

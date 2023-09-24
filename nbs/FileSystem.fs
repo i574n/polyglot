@@ -135,7 +135,7 @@ module FileSystem =
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
-                    trace Warn (fun () -> "deleteFileAsync") getLocals
+                    trace Warning (fun () -> "deleteFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
         }
@@ -152,7 +152,7 @@ module FileSystem =
                 if retry % 100 = 0 then
                     let getLocals () =
                         $"oldPath: {oldPath} / newPath: {newPath} / ex: {ex |> printException} / {getLocals ()}"
-                    trace Warn (fun () -> "moveFileAsync") getLocals
+                    trace Warning (fun () -> "moveFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
         }
@@ -162,7 +162,7 @@ module FileSystem =
 
     [<RequireQualifiedAccess>]
     type FileSystemChangeType =
-        | Error
+        | Failure
         | Changed
         | Created
         | Deleted
@@ -170,7 +170,7 @@ module FileSystem =
 
     [<RequireQualifiedAccess>]
     type FileSystemChange =
-        | Error of exn: exn
+        | Failure of exn: exn
         | Changed of path: string * content: string option
         | Created of path: string * content: string option
         | Deleted of path: string
@@ -234,10 +234,10 @@ module FileSystem =
                     ]
                 )
 
-        let errorStream =
+        let failureStream =
             AsyncSeq.subscribeEvent
                 watcher.Error
-                (fun event -> ticks (), [ FileSystemChange.Error (event.GetException ()) ])
+                (fun event -> ticks (), [ FileSystemChange.Failure (event.GetException ()) ])
 
         let inline readContent fullPath =
             let rec loop retry = async {
@@ -267,7 +267,7 @@ module FileSystem =
                 deletedStream
                 createdStream
                 renamedStream
-                errorStream
+                failureStream
             ]
             |> FSharp.Control.AsyncSeq.mergeAll
             |> FSharp.Control.AsyncSeq.map (fun (t, events) ->

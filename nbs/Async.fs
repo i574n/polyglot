@@ -32,6 +32,14 @@ module Async =
         return fn x
     }
 
+    let inline catch a =
+        a
+        |> Async.Catch
+        |> map (function
+            | Choice1Of2 result -> Ok result
+            | Choice2Of2 ex -> Error ex
+        )
+
     /// ## runWithTimeoutAsync
 
     let inline runWithTimeoutAsync (timeout : int) fn =
@@ -53,10 +61,10 @@ module Async =
                 |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
                 ->
                 let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
-                trace Warn (fun () -> "runWithTimeoutAsync") getLocals
+                trace Warning (fun () -> "runWithTimeoutAsync") getLocals
                 return None
             | ex ->
-                trace Error (fun () -> "runWithTimeoutAsync") getLocals
+                trace Critical (fun () -> "runWithTimeoutAsync") getLocals
                 return raise ex
         }
 
@@ -66,6 +74,30 @@ module Async =
     let inline runWithTimeout timeout fn =
         fn
         |> runWithTimeoutAsync timeout
+        |> Async.RunSynchronously
+
+    /// ## runWithTimeoutChildAsync
+
+    let inline runWithTimeoutChildAsync (timeout : int) fn = async {
+        let getLocals () = $"timeout: {timeout} / {getLocals ()}"
+        let! child = Async.StartChild (fn, timeout)
+        return!
+            child
+            |> catch
+            |> map (function
+                | Ok result -> Some result
+                | Error (:? System.TimeoutException as ex) ->
+                    trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
+                    None
+                | Error ex ->
+                    trace Critical (fun () -> $"runWithTimeoutChildAsync / ex: {ex |> printException}") getLocals
+                    None
+            )
+    }
+
+    let inline runWithTimeoutChild timeout fn =
+        fn
+        |> runWithTimeoutChildAsync timeout
         |> Async.RunSynchronously
 
     /// ## runWithTimeoutStrict
@@ -86,7 +118,7 @@ module Async =
                 let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
                 return None, getLocals
             | e ->
-                trace Error (fun () -> "runWithTimeoutStrict") getLocals
+                trace Critical (fun () -> "runWithTimeoutStrict") getLocals
                 return raise e
         }
 
@@ -106,10 +138,10 @@ module Async =
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
             let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
-            trace Warn (fun () -> "runWithTimeoutStrict") getLocals
+            trace Warning (fun () -> "runWithTimeoutStrict") getLocals
             None
         | ex ->
-            trace Error (fun () -> "runWithTimeoutStrict") getLocals
+            trace Critical (fun () -> "runWithTimeoutStrict") getLocals
             raise ex
 
     /// ## awaitValueTask

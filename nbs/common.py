@@ -35,6 +35,8 @@ trace_count: int = create_atom(0)
 
 trace_level: TraceLevel = create_atom(TraceLevel(0))
 
+trace_dump: bool = create_atom(False)
+
 def repl_start(__unit: None=None) -> Optional[int64]:
     return None
 
