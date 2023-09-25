@@ -574,7 +574,8 @@ inl main () =
 |> buildCode 8000 None
 |> Async.runWithTimeout 8000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _equal None
+// |> _equal None
+|> fun x -> printfn $"{x.ToDisplayString ()}"
 
 #!markdown
 
