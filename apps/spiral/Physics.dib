@@ -10,6 +10,10 @@
 
 #!import ../nbs/Plotting.dib
 
+#!markdown
+
+## Testing
+
 #!spiral
 
 // // test
@@ -26,11 +30,9 @@ inl _is_less_than b a =
 inl _is_less_than_or_equal b a =
     assert (b <= a) $"$\"_is_less_than_or_equal / actual: {!a} / expected: {!b}\""
 
-#!spiral
+#!markdown
 
-inl init_series start end inc =
-    inl total = conv ((end - start) / inc) + 1
-    am.init total (conv >> (*) inc >> (+) start) : a i32 f64
+## Math
 
 #!spiral
 
@@ -48,6 +50,9 @@ inl log_base (new_base : f64) (a : f64) =
 
 inl pi () =
     $"System.Math.PI" : f64
+
+inl round forall t {float}. (x : t) : t =
+    $"round !x"
 
 inl sin (d : f64) =
     $"System.Math.Sin !d" : f64
@@ -136,6 +141,49 @@ pi () / 2 |> cos
 e () |> square
 |> _almost_equal 7.3890560989306495
 
+#!markdown
+
+## iterate
+
+#!spiral
+
+inl iterate num_steps x0 f =
+    inl rec loop x n =
+        if n = 0
+        then x
+        else loop (f x) (n - 1)
+    loop x0 num_steps
+
+inl iterate' num_steps x0 f =
+    listm.init num_steps id
+    |> listm.fold (fun x _ => f x) x0
+
+#!spiral
+
+// // test
+
+((+) 1)
+|> iterate 10i32 1i32
+|> _equal 11
+
+((+) 1)
+|> iterate' 10i32 1i32
+|> _equal 11
+
+#!markdown
+
+## init_series
+
+#!spiral
+
+inl init_series start end inc =
+    inl total = conv ((end - start) / inc) + 1
+    am.init total (conv >> (*) inc >> (+) start) : a i32 f64
+
+inl init_series' start end inc =
+    inl total : f64 = conv ((end - start) / inc) + 1
+    listm.init total (conv >> (*) inc >> (+) start) : list f64
+
 #!spiral
 
 // // test
@@ -152,6 +200,59 @@ inl x = init_series -10 10 0.1
 inl y_sin = x |> am.map sin
 inl y_cos = x |> am.map cos
 "sin cos", "x", x, "y", ;["sin", y_sin; "cos", y_cos]
+
+#!spiral
+
+// // test
+
+inl y_pos y0 vy0 ay t =
+    y0 + vy0 * t + ay * (t |> square) / 2
+
+inl x = init_series 0 5 0.01
+inl y = x |> am.map (y_pos 0 20 -9.8)
+"projectile motion", "time (s)", x, "", ;["height of projectile (m)", y]
+
+#!markdown
+
+## velocity_cf
+
+#!spiral
+
+type mass = f64
+type time = f64
+type position = f64
+type velocity = f64
+type force = f64
+
+type velocity_cf = mass -> velocity -> list force -> (time -> velocity)
+
+inl velocity_cf m v0 fs =
+    inl f_net = fs |> listm.fold (+) 0
+    inl a0 = f_net / m
+    inl v t = v0 + a0 * t
+    v
+
+#!spiral
+
+// // test
+
+velocity_cf 0.1f64 0.6 [0.04; -0.08] 0
+|> _equal 0.6
+
+velocity_cf 0.1f64 0.6 [0.04; -0.08] 1
+|> _equal 0.2
+
+#!spiral
+
+// // test
+
+inl x = init_series 0 4 0.1
+inl y = x |> am.map (velocity_cf 0.1f64 0.6 [0.04; -0.08])
+"car on an air track", "time (s)", x, "", ;["velocity of car (m/s)", y]
+
+#!markdown
+
+## derivative
 
 #!spiral
 
@@ -186,6 +287,10 @@ derivative 0.000000000000001 (fun x => x ** 4 / 4) 1 - 1
 derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
 |> _almost_equal -1
 
+#!markdown
+
+## integration
+
 #!spiral
 
 type integration = (f64 -> f64) -> f64 -> f64 -> f64
@@ -210,6 +315,21 @@ integral 0.01 square 0 1
 
 inl integral' dt : integration =
     fun f a b =>
+        init_series' (a + dt / 2) (b - dt / 2) dt
+        |> listm.map (f >> (*) dt)
+        |> listm.fold (+) 0
+
+#!spiral
+
+// // test
+
+integral' 0.1 square 0 1
+|> _almost_equal (integral 0.1 square 0 1)
+
+#!spiral
+
+inl integral'' dt : integration =
+    fun f a b =>
         init_series (a + dt / 2) (b - dt / 2) dt
         |> am.map (f >> (*) dt)
         |> am.fold (+) 0
@@ -218,8 +338,132 @@ inl integral' dt : integration =
 
 // // test
 
-integral' 0.01 square 0 1
+integral'' 0.01 square 0 1
 |> _almost_equal 0.33332500000000004
+
+#!markdown
+
+## anti_derivative
+
+#!spiral
+
+inl anti_derivative dt v0 a t =
+    v0 + integral' dt a 0 t
+
+#!markdown
+
+## velocity_ft
+
+#!spiral
+
+type velocity_ft = mass -> velocity -> list (time -> force) -> (time -> velocity)
+
+inl velocity_ft dt : velocity_ft =
+    fun m v0 fs =>
+        inl f_net t = fs |> listm.map (fun f => f t) |> listm.fold (+) 0
+        inl a t = f_net t / m
+        anti_derivative dt v0 a
+
+#!markdown
+
+## position_ft
+
+#!spiral
+
+type position_ft = mass -> position -> velocity -> list (time -> force) -> (time -> position)
+
+inl position_ft dt : position_ft =
+    fun m x0 v0 fs =>
+        velocity_ft dt m v0 fs
+        |> anti_derivative dt x0
+
+#!spiral
+
+// // test
+
+inl pedal_coast (t : time) : force =
+    inl t_cycle = 20
+    inl n_complete : i32 = t / t_cycle |> conv
+    inl remainder = t - conv n_complete * t_cycle
+    if remainder > 0 && remainder < 10
+    then 10
+    else 0
+
+inl x = init_series -5 45 0.1
+inl y = x |> am.map pedal_coast
+"child pedaling then coasting", "time (s)", x, "", ;["force on bike (N)", y]
+
+#!spiral
+
+// // test
+
+inl x = init_series -5 45 1
+inl y = x |> am.map (position_ft 0.1f64 20 0 0 [pedal_coast])
+"child pedaling then coasting", "time (s)", x, "", ;["position of bike (m)", y]
+
+#!markdown
+
+## velocity_fv
+
+#!spiral
+
+inl newton_second_v m fs v0 =
+    fs |> listm.map (fun f => f v0) |> listm.fold (+) 0 |> fun x => x / m
+
+inl update_velocity dt m fs v0 =
+    v0 + newton_second_v m fs v0 * dt
+
+inl velocity_fv dt m v0 fs t =
+    inl num_steps = t / dt |> round |> abs
+    update_velocity dt m fs |> iterate' num_steps v0
+
+#!spiral
+
+inl f_air drag rho area v =
+    -drag * rho * area * abs v * v / 2
+
+#!spiral
+
+// // test
+
+inl x = init_series 0 60 0.5
+inl y = x |> am.map (velocity_fv 1 70 0f64 [fun _ => 100; f_air 2 1.225 0.6])
+"bike velocity", "time (s)", x, "", ;["velocity of bike (m/s)", y]
+
+#!markdown
+
+## velocity_ftv
+
+#!spiral
+
+inl newton_second_tv m fs (t, v0) =
+    inl f_net = fs |> listm.map (fun f => f (t, v0)) |> listm.fold (+) 0
+    inl acc = f_net / m
+    1, acc
+
+inl update_tv dt m fs (t, v0) =
+    inl dtdt, dvdt = newton_second_tv m fs (t, v0)
+    t + dtdt * dt, v0 + dvdt * dt
+
+inl velocity_ftv dt m tv0 fs t =
+    inl num_steps = t / dt |> round |> abs
+    update_tv dt m fs |> iterate' num_steps tv0 |> snd
+
+#!spiral
+
+// // test
+
+inl x = init_series 0 100 0.1
+inl y =
+    x
+    |> am.map (
+        velocity_ftv 0.1 20 (0, 0) [fun (t, _) => pedal_coast t; fun (_, v) => f_air 2 1.225 0.5 v]
+    )
+"pedaling and coasting with air", "time (s)", x, "", ;["velocity of bike (m/s)", y]
+
+#!markdown
+
+## vec
 
 #!spiral
 
@@ -240,6 +484,21 @@ inl vec x y z : vec =
 vec 1 2 3 .z
 |> _equal 3
 
+#!markdown
+
+### consts
+
+#!spiral
+
+inl i_hat () = vec 1 0 0
+inl j_hat () = vec 0 1 0
+inl k_hat () = vec 0 0 1
+inl zero_vec () = vec 0 0 0
+
+#!markdown
+
+### ^+^
+
 #!spiral
 
 inl (^+^) (a : vec) (b : vec) =
@@ -251,6 +510,27 @@ inl (^+^) (a : vec) (b : vec) =
 
 vec 1 2 3 ^+^ vec 4 5 6
 |> _equal (vec 5 7 9)
+
+#!markdown
+
+### sum_vec
+
+#!spiral
+
+inl sum_vec vs =
+    vs |> listm.fold (^+^) (zero_vec ())
+
+#!spiral
+
+// // test
+
+[vec 1 2 3; vec 4 5 6]
+|> sum_vec
+|> _equal (vec 5 7 9)
+
+#!markdown
+
+### *^
 
 #!spiral
 
@@ -264,6 +544,10 @@ inl (*^) c { x y z } =
 5 *^ vec 1 2 3
 |> _equal (vec 5 10 15)
 
+#!markdown
+
+### ^*
+
 #!spiral
 
 inl (^*) v c =
@@ -276,6 +560,10 @@ inl (^*) v c =
 vec 1 2 3 ^* 5
 |> _equal (vec 5 10 15)
 
+#!markdown
+
+### ^/
+
 #!spiral
 
 inl (^/) { x y z } c =
@@ -287,6 +575,10 @@ inl (^/) { x y z } c =
 
 vec 1 2 3 ^/ 5
 |> _equal (vec 0.2 0.4 0.6)
+
+#!markdown
+
+### negate_vec
 
 #!spiral
 
@@ -301,6 +593,10 @@ vec 1 2 3
 |> negate_vec
 |> _equal (vec -1 -2 -3)
 
+#!markdown
+
+### ^-^
+
 #!spiral
 
 inl (^-^) a b =
@@ -313,6 +609,10 @@ inl (^-^) a b =
 vec 1 2 3 ^-^ vec 4 5 6
 |> _equal (vec -3 -3 -3)
 
+#!markdown
+
+### <.>
+
 #!spiral
 
 inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
@@ -324,6 +624,10 @@ inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
 
 vec 1 2 3 <.> vec 4 5 6
 |> _equal 32
+
+#!markdown
+
+### \>\<
 
 #!spiral
 
@@ -340,25 +644,9 @@ inl (><) (a : vec) (b : vec) =
 vec 1 2 3 >< vec 4 5 6
 |> _equal (vec -3 6 -3)
 
-#!spiral
+#!markdown
 
-inl i_hat () = vec 1 0 0
-inl j_hat () = vec 0 1 0
-inl k_hat () = vec 0 0 1
-inl zero_vec () = vec 0 0 0
-
-#!spiral
-
-inl sum_vec vs =
-    vs |> listm.fold (^+^) (zero_vec ())
-
-#!spiral
-
-// // test
-
-[vec 1 2 3; vec 4 5 6]
-|> sum_vec
-|> _equal (vec 5 7 9)
+### magnitude
 
 #!spiral
 
@@ -373,6 +661,10 @@ vec 1 2 3
 |> magnitude
 |> _almost_equal 3.7416573867739413
 
+#!markdown
+
+### v1
+
 #!spiral
 
 inl v1 t =
@@ -384,6 +676,10 @@ inl v1 t =
 
 v1 1
 |> _equal (vec 2 6 6)
+
+#!markdown
+
+### vec_derivative
 
 #!spiral
 

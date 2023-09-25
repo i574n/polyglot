@@ -521,6 +521,61 @@ inl main () =
     )
 )
 
+#!fsharp
+
+//// test
+
+"""
+inl init_series start end inc =
+    inl total : f64 = conv ((end - start) / inc) + 1
+    listm.init total (conv >> (*) inc >> (+) start) : list f64
+
+type integration = (f64 -> f64) -> f64 -> f64 -> f64
+
+inl integral dt : integration =
+    fun f a b =>
+        init_series (a + dt / 2) (b - dt / 2) dt
+        |> listm.map (f >> (*) dt)
+        |> listm.fold (+) 0
+
+inl main () =
+    integral 0.1 (fun x => x ** 2) 0 1
+"""
+|> buildCode 8000 None
+|> Async.runWithTimeout 8000
+|> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
+|> _equal (
+    Some (
+        Some "0.3325000000000001\n",
+        []
+    )
+)
+
+#!fsharp
+
+//// test
+
+"""
+inl init_series start end inc =
+    inl total : f64 = conv ((end - start) / inc) + 1
+    listm.init total (conv >> (*) inc >> (+) start) : list f64
+
+type integration = (f64 -> f64) -> f64 -> f64 -> f64
+
+inl integral dt : integration =
+    fun f a b =>
+        init_series (a + dt / 2) (b - dt / 2) dt
+        |> listm.map (f >> (*) dt)
+        |> listm.fold (+) 0
+
+inl main () =
+    integral 0.01 (fun x => x ** 2) 0 1
+"""
+|> buildCode 8000 None
+|> Async.runWithTimeout 8000
+|> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
+|> _equal None
+
 #!markdown
 
 ## getFileTokenRange
