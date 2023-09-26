@@ -18,6 +18,7 @@ if (!(Search-Command "rustup")) {
         /bin/sh $rustupScriptPath -y
         $env:PATH = "~/.cargo/bin:$env:PATH"
     }
+    rustup install nightly
 }
 
 function Search-DotnetSdk($version) {
@@ -32,7 +33,7 @@ function Search-DotnetSdk($version) {
 
 if (!(Search-DotnetSdk "8")) {
     if (!$IsWindows) {
-        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.100-preview.6.23330.14
+        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.100-rc.1.23463.5
     }
 }
 

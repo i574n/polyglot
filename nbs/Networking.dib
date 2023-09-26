@@ -103,7 +103,7 @@ let port = 5000
 let inline lockPort () = async {
     trace Debug (fun () -> "_1") getLocals
     do! Async.Sleep 5000
-    let listener = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    use listener = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
     trace Debug (fun () -> "_2") getLocals
     listener.Start ()
     trace Debug (fun () -> "_3") getLocals
@@ -153,7 +153,7 @@ let port = 5000
 let inline lockPort () = async {
     trace Debug (fun () -> "_1") getLocals
     do! Async.Sleep 500
-    let listener = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    use listener = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
     trace Debug (fun () -> "_2") getLocals
     listener.Start ()
     trace Debug (fun () -> "_3") getLocals
@@ -220,8 +220,8 @@ let port = 5000
 
 let inline lockPorts () = async {
     trace Debug (fun () -> "_1") getLocals
-    let listener1 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
-    let listener2 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
+    use listener1 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    use listener2 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
     trace Debug (fun () -> "_2") getLocals
     listener1.Start ()
     listener2.Start ()
@@ -269,8 +269,8 @@ let port = 5000
 
 let inline lockPorts () = async {
     trace Debug (fun () -> "_1") getLocals
-    let listener1 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
-    let listener2 = System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
+    use listener1 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port)
+    use listener2 = new System.Net.Sockets.TcpListener (System.Net.IPAddress.Parse "127.0.0.1", port + 1)
     trace Debug (fun () -> "_2") getLocals
     listener1.Start ()
     listener2.Start ()

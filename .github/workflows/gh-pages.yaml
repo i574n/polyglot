@@ -41,6 +41,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
+      - uses: actions/cache@v3
+        with:
+            path: |
+                ~/.cargo/bin/
+                ~/.cargo/registry/index/
+                ~/.cargo/registry/cache/
+                ~/.cargo/git/db/
+                target/
+            key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+            restore-keys: ${{ runner.os }}-cargo-
+
       - run: pwsh scripts/init.ps1
 
       - run: pwsh scripts/build.ps1
