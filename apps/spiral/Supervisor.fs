@@ -75,8 +75,9 @@ module Supervisor =
                             CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
-                                if line |> String.contains $"Server bound to: http://localhost:{availablePort}"
-                                then inbox.Post availablePort
+                                if line |> String.contains $"Server bound to: http://localhost:{availablePort}" then
+                                    do! Networking.waitForPortAccess (Some 10000) true availablePort |> Async.Ignore
+                                    inbox.Post availablePort
                             }
                         }
                 trace Debug (fun () -> $"startSupervisor / exitCode: {exitCode} / result: {result}") getLocals
@@ -136,7 +137,12 @@ module Supervisor =
             then 13807
             else 13805
 
-        let! serverPort, errors, disposable = awaitCompiler port cancellationToken
+        use cts = new System.Threading.CancellationTokenSource ()
+        use cts =
+            System.Threading.CancellationTokenSource.CreateLinkedTokenSource
+                [| cts.Token; cancellationToken |> Option.defaultValue System.Threading.CancellationToken.None |]
+        use _ = newDisposable cts.Cancel
+        let! serverPort, errors, disposable = awaitCompiler port (Some cts.Token)
         use _ = disposable
 
         let fsxContentSeq =

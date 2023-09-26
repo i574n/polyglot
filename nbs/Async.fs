@@ -64,7 +64,7 @@ module Async =
                 trace Warning (fun () -> "runWithTimeoutAsync") getLocals
                 return None
             | ex ->
-                trace Critical (fun () -> "runWithTimeoutAsync") getLocals
+                trace Critical (fun () -> "runWithTimeoutAsync / ex: {ex |> printException}") getLocals
                 return raise ex
         }
 

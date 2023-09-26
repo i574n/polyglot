@@ -90,7 +90,7 @@ let inline runWithTimeoutAsync (timeout : int) fn =
             trace Warning (fun () -> "runWithTimeoutAsync") getLocals
             return None
         | ex ->
-            trace Critical (fun () -> "runWithTimeoutAsync") getLocals
+            trace Critical (fun () -> "runWithTimeoutAsync / ex: {ex |> printException}") getLocals
             return raise ex
     }
 

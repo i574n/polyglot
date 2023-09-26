@@ -16,6 +16,7 @@ $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
 Set-Location $extensionSrcPath
 npm install
+{ npm install } | Invoke-Block -Location ../polyglot-notebooks-ui-components
 npm run compile
 npx @vscode/vsce package
 Set-Location $ScriptDir
