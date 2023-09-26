@@ -81,7 +81,7 @@ Install-Module -Name PSToml -Scope CurrentUser
 
 #!pwsh
 
-{ . "$ScriptDir/../spiral/extension.ps1" } | Invoke-Block
+{ . "$ScriptDir/dep_spiral_extension.ps1" } | Invoke-Block
 
 #!pwsh
 

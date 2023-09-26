@@ -354,6 +354,15 @@ let buildCode timeout cancellationToken code = buildCode timeout cancellationTok
 
 //// test
 
+""
+|> buildCode 4000 None
+|> Async.runWithTimeout 4000
+|> _equal None
+
+#!fsharp
+
+//// test
+
 """inl app () =
     fsharp.console.write_line "text"
     1i32
@@ -407,15 +416,6 @@ let v0 : (unit -> int32) = closure0()
 Global inl/let statements should all return functions known at parse time."]
     )
 )
-
-#!fsharp
-
-//// test
-
-""
-|> buildCode 4000 None
-|> Async.runWithTimeout 4000
-|> _equal None
 
 #!fsharp
 

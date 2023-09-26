@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    Invoke-Dib Supervisor.dib
+    Invoke-Dib Supervisor.dib -Retries 3
 }
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Supervisor.dib } | Invoke-Block

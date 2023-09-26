@@ -147,14 +147,14 @@ e () |> square
 
 #!spiral
 
-inl iterate num_steps x0 f =
+inl iterate f x0 num_steps =
     inl rec loop x n =
         if n = 0
         then x
         else loop (f x) (n - 1)
     loop x0 num_steps
 
-inl iterate' num_steps x0 f =
+inl iterate' f x0 num_steps =
     listm.init num_steps id
     |> listm.fold (fun x _ => f x) x0
 
@@ -162,13 +162,63 @@ inl iterate' num_steps x0 f =
 
 // // test
 
-((+) 1)
-|> iterate 10i32 1i32
+
+10i32 |> iterate ((+) 1) 1i32
 |> _equal 11
 
-((+) 1)
-|> iterate' 10i32 1i32
+10i32 |> iterate' ((+) 1) 1i32
 |> _equal 11
+
+#!markdown
+
+## list
+
+#!spiral
+
+inl rec list_item i list =
+    list |> function
+    | Cons (x, xs) =>
+        if i <= 0
+        then x
+        else list_item (i - 1) xs
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> list_item 9i32
+|> _equal 9
+
+#!spiral
+
+inl list_sum list =
+    list |> listm.fold (+) 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> list_sum
+|> _equal 45
+
+#!markdown
+
+## a
+
+#!spiral
+
+inl a_sum (a' : a _ _) =
+    a' |> am.fold (+) 0
+
+#!spiral
+
+// // test
+
+am.init 10i32 id
+|> a_sum
+|> _equal 45
 
 #!markdown
 
@@ -178,17 +228,17 @@ inl iterate' num_steps x0 f =
 
 inl init_series start end inc =
     inl total = conv ((end - start) / inc) + 1
-    am.init total (conv >> (*) inc >> (+) start) : a i32 f64
+    am.init total (conv >> (*) inc >> (+) start) : a i32 _
 
 inl init_series' start end inc =
     inl total : f64 = conv ((end - start) / inc) + 1
-    listm.init total (conv >> (*) inc >> (+) start) : list f64
+    listm.init total (conv >> (*) inc >> (+) start)
 
 #!spiral
 
 // // test
 
-inl x = init_series -3 3 0.01
+inl x : a _ f64 = init_series -3 3 0.01
 inl y = x |> am.map square
 "square", "x", x, "y", ;["square", y]
 
@@ -208,7 +258,7 @@ inl y_cos = x |> am.map cos
 inl y_pos y0 vy0 ay t =
     y0 + vy0 * t + ay * (t |> square) / 2
 
-inl x = init_series 0 5 0.01
+inl x : a _ f64 = init_series 0 5 0.01
 inl y = x |> am.map (y_pos 0 20 -9.8)
 "projectile motion", "time (s)", x, "", ;["height of projectile (m)", y]
 
@@ -227,7 +277,7 @@ type force = f64
 type velocity_cf = mass -> velocity -> list force -> (time -> velocity)
 
 inl velocity_cf m v0 fs =
-    inl f_net = fs |> listm.fold (+) 0
+    inl f_net = fs |> list_sum
     inl a0 = f_net / m
     inl v t = v0 + a0 * t
     v
@@ -317,7 +367,7 @@ inl integral' dt : integration =
     fun f a b =>
         init_series' (a + dt / 2) (b - dt / 2) dt
         |> listm.map (f >> (*) dt)
-        |> listm.fold (+) 0
+        |> list_sum
 
 #!spiral
 
@@ -332,7 +382,7 @@ inl integral'' dt : integration =
     fun f a b =>
         init_series (a + dt / 2) (b - dt / 2) dt
         |> am.map (f >> (*) dt)
-        |> am.fold (+) 0
+        |> a_sum
 
 #!spiral
 
@@ -360,7 +410,7 @@ type velocity_ft = mass -> velocity -> list (time -> force) -> (time -> velocity
 
 inl velocity_ft dt : velocity_ft =
     fun m v0 fs =>
-        inl f_net t = fs |> listm.map (fun f => f t) |> listm.fold (+) 0
+        inl f_net t = fs |> listm.map (fun f => f t) |> list_sum
         inl a t = f_net t / m
         anti_derivative dt v0 a
 
@@ -408,14 +458,14 @@ inl y = x |> am.map (position_ft 0.1f64 20 0 0 [pedal_coast])
 #!spiral
 
 inl newton_second_v m fs v0 =
-    fs |> listm.map (fun f => f v0) |> listm.fold (+) 0 |> fun x => x / m
+    fs |> listm.map (fun f => f v0) |> list_sum |> fun x => x / m
 
 inl update_velocity dt m fs v0 =
     v0 + newton_second_v m fs v0 * dt
 
 inl velocity_fv dt m v0 fs t =
-    inl num_steps = t / dt |> round |> abs
-    update_velocity dt m fs |> iterate' num_steps v0
+    t / dt |> round |> abs
+    |> iterate' (update_velocity dt m fs) v0
 
 #!spiral
 
@@ -437,7 +487,7 @@ inl y = x |> am.map (velocity_fv 1 70 0f64 [fun _ => 100; f_air 2 1.225 0.6])
 #!spiral
 
 inl newton_second_tv m fs (t, v0) =
-    inl f_net = fs |> listm.map (fun f => f (t, v0)) |> listm.fold (+) 0
+    inl f_net = fs |> listm.map (fun f => f (t, v0)) |> list_sum
     inl acc = f_net / m
     1, acc
 
@@ -446,8 +496,9 @@ inl update_tv dt m fs (t, v0) =
     t + dtdt * dt, v0 + dvdt * dt
 
 inl velocity_ftv dt m tv0 fs t =
-    inl num_steps = t / dt |> round |> abs
-    update_tv dt m fs |> iterate' num_steps tv0 |> snd
+    t / dt |> round |> abs
+    |> iterate' (update_tv dt m fs) tv0
+    |> snd
 
 #!spiral
 
@@ -460,6 +511,87 @@ inl y =
         velocity_ftv 0.1 20 (0, 0) [fun (t, _) => pedal_coast t; fun (_, v) => f_air 2 1.225 0.5 v]
     )
 "pedaling and coasting with air", "time (s)", x, "", ;["velocity of bike (m/s)", y]
+
+#!spiral
+
+// // test
+
+type state_1d = time * position * velocity
+
+inl newton_second_1d m fs (t, x0, v0) : state_1d =
+    inl f_net = fs |> listm.map (fun f => f (t, x0, v0)) |> list_sum
+    inl acc = f_net / m
+    1f64, v0, acc
+
+inl euler_1d dt deriv (t0, x0, v0) =
+    inl _, _, dvdt = deriv (t0, x0, v0)
+    inl t1 = t0 + dt
+    inl x1 = x0 + v0 * dt
+    inl v1 = v0 + dvdt * dt
+    t1, x1, v1
+
+inl update_txv dt m fs =
+    newton_second_1d m fs |> euler_1d dt
+
+inl states_txv dt m txv0 fs =
+    iterate' (update_txv dt m fs) txv0
+
+inl velocity_1d sts t =
+    inl t0, _, _ = sts 0
+    inl t1, _, _ = sts 1
+    inl dt = t1 - t0
+    inl num_steps = t / dt |> round |> abs
+    inl _, _, v0 = sts num_steps
+    v0
+
+inl velocity_ftxv dt m txv0 fs =
+    states_txv dt m txv0 fs |> velocity_1d
+
+inl position_1d sts t =
+    inl t0, _, _ = sts 0
+    inl t1, _, _ = sts 1
+    inl dt = t1 - t0
+    inl num_steps = t / dt |> round |> abs
+    inl _, x0, _ = sts num_steps
+    x0
+
+inl position_ftxv dt m txv0 fs =
+    states_txv dt m txv0 fs |> position_1d
+
+inl spring_force k (_, x0, _) =
+    -k * x0
+
+#!spiral
+
+// // test
+
+inl damped_ho_forces () =
+    [
+        spring_force 0.8
+        fun _, _, v0 => f_air 2 1.225 (pi () * square 0.02) v0
+        fun _ => -0.0027 * 9.80665
+    ]
+    
+inl damped_ho_states () =
+    states_txv 0.001 0.0027 (0.0, 0.1, 0.0) (damped_ho_forces ())
+    
+inl pingpong_position t =
+    position_ftxv 0.001 0.0027 (0, 0.1, 0) (damped_ho_forces ()) t
+
+inl x : a _ f64 = init_series 0 3 0.01
+inl y = x |> am.map pingpong_position
+"ping pong ball on a slinky", "time (s)", x, "", ;["position (m)", y]
+
+#!spiral
+
+// // test
+
+inl pingpong_velocity t =
+    velocity_ftxv 0.001 0.0027 (0, 0.1, 0) (damped_ho_forces ()) t
+
+inl x = init_series 0 3 0.01
+inl y = x |> am.map pingpong_velocity
+"ping pong ball on a slinky", "time (s)", x, "", ;["velocity (m/s)", y]
 
 #!markdown
 
