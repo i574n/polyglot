@@ -5,7 +5,8 @@ namespace Polyglot
 module Supervisor =
 
     open Common
-    open FileSystem
+    open FileSystem.Operators
+    open Microsoft.AspNetCore.SignalR.Client
 
     /// ## sendJson
 
@@ -13,19 +14,12 @@ module Supervisor =
         let! portOpen = Networking.testPortOpen port
         if portOpen then
             try
-                // use runtime = new NetMQ.NetMQRuntime ()
-                use request = new NetMQ.Sockets.RequestSocket ()
-                request.Connect $"tcp://127.0.0.1:{port}"
-
-                let msg = NetMQ.NetMQMessage ()
-                msg.Append json
-
-                NetMQ.OutgoingSocketExtensions.SendMultipartMessage (request, msg)
-                let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
-                // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
-                let resultString = result |> Seq.map (fun x -> x.ConvertToString ()) |> String.concat ""
-                trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.FrameCount: {result.FrameCount} / resultString.Length: {resultString.Length}") getLocals
-                return Some resultString
+                let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{port}").Build()
+                do! connection.StartAsync () |> Async.AwaitTask
+                let! result = connection.InvokeAsync<string>("ClientToServerMsg", json) |> Async.AwaitTask
+                do! connection.StopAsync () |> Async.AwaitTask
+                trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.Length: {result |> Option.ofObj |> Option.map String.length}") getLocals
+                return Some result
             with ex ->
                 trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> printException}") getLocals
                 return None
@@ -64,8 +58,6 @@ module Supervisor =
         let compiler = MailboxProcessor.Start (fun inbox -> async {
             let! availablePort = Networking.getAvailablePort (Some 60) port
             if port = 13805 && availablePort <> port then
-                let pingObj = {| Ping = true |}
-                let! pingResult = pingObj |> sendObj port
                 inbox.Post port
             else
                 let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
@@ -75,7 +67,6 @@ module Supervisor =
                     |> System.IO.Path.GetFullPath
 
                 let dllPath = compilerPath </> "Spiral.dll"
-                // let commandsPath = compilerPath </> "compiler/supervisor/commands"
 
                 let! exitCode, result =
                     Runtime.executeWithOptionsAsync
@@ -84,7 +75,7 @@ module Supervisor =
                             CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
-                                if line |> String.contains $"Server bound to: tcp://*:{availablePort}"
+                                if line |> String.contains $"Server bound to: http://localhost:{availablePort}"
                                 then inbox.Post availablePort
                             }
                         }
@@ -93,29 +84,29 @@ module Supervisor =
 
         let! serverPort = compiler.Receive ()
 
-        let request = new NetMQ.Sockets.SubscriberSocket ()
-        request.SubscribeToAnyTopic ()
-        request.Connect $"tcp://127.0.0.1:{serverPort + 1}"
+        let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{serverPort}").Build ()
+        do! connection.StartAsync () |> Async.AwaitTask
 
-        let rec loop _i = async {
-            try
-                let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
-                // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
-                return
-                    result
-                    |> Seq.map (fun x -> x.ConvertToString ())
-                    |> String.concat ""
-                    |> FSharp.Json.Json.deserialize<ClientErrorsRes>
-                    |> Some
-            with ex ->
-                trace Critical (fun () -> $"awaitCompiler / ex: {ex |> printException}") getLocals
-                return None
-        }
+        let event = Event<_> ()
+        let disposable = connection.On<string> ("ServerToClientMsg", event.Trigger)
+        let stream =
+            FSharp.Control.AsyncSeq.unfoldAsync
+                (fun () -> async {
+                    let! msg = event.Publish |> Async.AwaitEvent
+                    return Some (msg |> FSharp.Json.Json.deserialize<ClientErrorsRes>, ())
+                })
+                ()
+
+        let disposable =
+            newDisposable (fun () ->
+                disposable.Dispose ()
+                connection.StopAsync () |> Async.AwaitTask |> Async.StartImmediate
+            )
 
         return
             serverPort,
-            loop |> FSharp.Control.AsyncSeq.initInfiniteAsync |> FSharp.Control.AsyncSeq.choose id,
-            (request :> System.IDisposable)
+            stream,
+            disposable
     }
 
     /// ## getFileUri
@@ -151,7 +142,8 @@ module Supervisor =
         let fsxContentSeq =
             stream
             |> FSharp.Control.AsyncSeq.choose (function
-                | _, FileSystemChange.Changed (path, Some content) when path = $"{fileName}.fsx" -> Some content
+                | _, FileSystem.FileSystemChange.Changed (path, Some content) when path = $"{fileName}.fsx" ->
+                    Some content
                 | _ -> None
             )
             |> FSharp.Control.AsyncSeq.map (fun content ->

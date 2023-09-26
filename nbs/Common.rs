@@ -29,8 +29,8 @@ pub mod Polyglot {
             Verbose,
             Debug,
             Info,
-            Warn,
-            Error,
+            Warning,
+            Critical,
         }
         impl core::fmt::Display for Polyglot::Common::TraceLevel {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {

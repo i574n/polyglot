@@ -9,7 +9,7 @@ function Invoke-Linux {
         } else {
             $Distro = ""
         }
-        Invoke-Expression "wsl$Distro $($ScriptBlock.ToString().Trim())"
+        Invoke-Expression "wsl$Distro --shell-type login -- $($ScriptBlock.ToString().Trim())"
     } else {
         & @ScriptBlock
     }

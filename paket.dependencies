@@ -14,7 +14,7 @@ nuget FsCheck ~> 3.0 prerelease
 nuget FSharp.Control.AsyncSeq ~> 3.2
 nuget FSharp.Core >= 7.0 prerelease
 nuget FSharp.Json ~> 0.4
-nuget NetMQ ~> 4.0
+nuget Microsoft.AspNetCore.SignalR.Client == 7.0.0
 nuget System.CommandLine ~> 2.0 prerelease
 nuget System.Reactive.Linq ~> 6.0 prerelease
 nuget Tomlyn ~> 0.16

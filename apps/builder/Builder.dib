@@ -31,7 +31,7 @@
 #!fsharp
 
 open Common
-open FileSystem
+open FileSystem.Operators
 
 #!markdown
 

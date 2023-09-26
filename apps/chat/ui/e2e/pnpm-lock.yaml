@@ -9,8 +9,8 @@ devDependencies:
     specifier: 1.38.0-beta-1691778350000
     version: 1.38.0-beta-1691778350000
   npm-check-updates:
-    specifier: ~16.13
-    version: 16.13.0
+    specifier: ~16.14
+    version: 16.14.4
 
 packages:
 
@@ -1264,8 +1264,8 @@ packages:
       npm-normalize-package-bin: 3.0.1
     dev: true
 
-  /npm-check-updates@16.13.0:
-    resolution: {integrity: sha512-zTJCqov2+KpCLM7lOOxXLFiqKg8RLt10dempIbE9EfKCzoN1yqSrDcBCpU6uOmlSRy3IIGm1rK+piCrn+uulJw==}
+  /npm-check-updates@16.14.4:
+    resolution: {integrity: sha512-PKg1wv3vno75/9qgRLqV2huBO7eukOlW+PmIGl7LPXjElfYTUTWUtaMOdOckImaSj4Uqe46W/zMbMFZQp5dHRQ==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:
@@ -1297,6 +1297,7 @@ packages:
       semver-utils: 1.1.4
       source-map-support: 0.5.21
       spawn-please: 2.0.2
+      strip-ansi: 7.1.0
       strip-json-comments: 5.0.1
       untildify: 4.0.0
       update-notifier: 6.0.2

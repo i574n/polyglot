@@ -17,8 +17,11 @@
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
-#r @"../../../../../../../.nuget/packages/asyncio/0.1.69/lib/netstandard2.0/AsyncIO.dll"
-#r @"../../../../../../../.nuget/packages/netmq/4.0.1.13/lib/netstandard2.1/NetMQ.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.http.connections.common/7.0.0/lib/net7.0/Microsoft.AspNetCore.Http.Connections.Common.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.http.connections.client/7.0.0/lib/net7.0/Microsoft.AspNetCore.Http.Connections.Client.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.common/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Common.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.client/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Client.dll"
+#r @"../../../../../../../.nuget/packages/microsoft.aspnetcore.signalr.client.core/7.0.0/lib/net7.0/Microsoft.AspNetCore.SignalR.Client.Core.dll"
 #r @"../../../../../../../.nuget/packages/fsharp.json/0.4.1/lib/netstandard2.0/FSharp.Json.dll"
 
 #!fsharp
@@ -34,7 +37,8 @@
 #!fsharp
 
 open Common
-open FileSystem
+open FileSystem.Operators
+open Microsoft.AspNetCore.SignalR.Client
 
 #!markdown
 
@@ -46,19 +50,12 @@ let inline sendJson (port : int) (json : string) = async {
     let! portOpen = Networking.testPortOpen port
     if portOpen then
         try
-            // use runtime = new NetMQ.NetMQRuntime ()
-            use request = new NetMQ.Sockets.RequestSocket ()
-            request.Connect $"tcp://127.0.0.1:{port}"
-
-            let msg = NetMQ.NetMQMessage ()
-            msg.Append json
-
-            NetMQ.OutgoingSocketExtensions.SendMultipartMessage (request, msg)
-            let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
-            // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
-            let resultString = result |> Seq.map (fun x -> x.ConvertToString ()) |> String.concat ""
-            trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.FrameCount: {result.FrameCount} / resultString.Length: {resultString.Length}") getLocals
-            return Some resultString
+            let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{port}").Build()
+            do! connection.StartAsync () |> Async.AwaitTask
+            let! result = connection.InvokeAsync<string>("ClientToServerMsg", json) |> Async.AwaitTask
+            do! connection.StopAsync () |> Async.AwaitTask
+            trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.Length: {result |> Option.ofObj |> Option.map String.length}") getLocals
+            return Some result
         with ex ->
             trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> printException}") getLocals
             return None
@@ -107,8 +104,6 @@ let inline awaitCompiler port cancellationToken = async {
     let compiler = MailboxProcessor.Start (fun inbox -> async {
         let! availablePort = Networking.getAvailablePort (Some 60) port
         if port = 13805 && availablePort <> port then
-            let pingObj = {| Ping = true |}
-            let! pingResult = pingObj |> sendObj port
             inbox.Post port
         else
             let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
@@ -118,7 +113,6 @@ let inline awaitCompiler port cancellationToken = async {
                 |> System.IO.Path.GetFullPath
 
             let dllPath = compilerPath </> "Spiral.dll"
-            // let commandsPath = compilerPath </> "compiler/supervisor/commands"
 
             let! exitCode, result =
                 Runtime.executeWithOptionsAsync
@@ -127,7 +121,7 @@ let inline awaitCompiler port cancellationToken = async {
                         CancellationToken = Some ct
                         WorkingDirectory = None
                         OnLine = Some <| fun { Line = line } -> async {
-                            if line |> String.contains $"Server bound to: tcp://*:{availablePort}"
+                            if line |> String.contains $"Server bound to: http://localhost:{availablePort}"
                             then inbox.Post availablePort
                         }
                     }
@@ -136,29 +130,29 @@ let inline awaitCompiler port cancellationToken = async {
 
     let! serverPort = compiler.Receive ()
 
-    let request = new NetMQ.Sockets.SubscriberSocket ()
-    request.SubscribeToAnyTopic ()
-    request.Connect $"tcp://127.0.0.1:{serverPort + 1}"
+    let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{serverPort}").Build ()
+    do! connection.StartAsync () |> Async.AwaitTask
 
-    let rec loop _i = async {
-        try
-            let result = NetMQ.ReceivingSocketExtensions.ReceiveMultipartMessage (request, 10)
-            // let! result = NetMQ.AsyncReceiveExtensions.ReceiveMultipartMessageAsync (request, 10) |> Async.AwaitTask
-            return
-                result
-                |> Seq.map (fun x -> x.ConvertToString ())
-                |> String.concat ""
-                |> FSharp.Json.Json.deserialize<ClientErrorsRes>
-                |> Some
-        with ex ->
-            trace Critical (fun () -> $"awaitCompiler / ex: {ex |> printException}") getLocals
-            return None
-    }
+    let event = Event<_> ()
+    let disposable = connection.On<string> ("ServerToClientMsg", event.Trigger)
+    let stream =
+        FSharp.Control.AsyncSeq.unfoldAsync
+            (fun () -> async {
+                let! msg = event.Publish |> Async.AwaitEvent
+                return Some (msg |> FSharp.Json.Json.deserialize<ClientErrorsRes>, ())
+            })
+            ()
+
+    let disposable =
+        newDisposable (fun () ->
+            disposable.Dispose ()
+            connection.StopAsync () |> Async.AwaitTask |> Async.StartImmediate
+        )
 
     return
         serverPort,
-        loop |> FSharp.Control.AsyncSeq.initInfiniteAsync |> FSharp.Control.AsyncSeq.choose id,
-        (request :> System.IDisposable)
+        stream,
+        disposable
 }
 
 #!markdown
@@ -204,7 +198,8 @@ let inline buildFile timeout cancellationToken path = async {
     let fsxContentSeq =
         stream
         |> FSharp.Control.AsyncSeq.choose (function
-            | _, FileSystemChange.Changed (path, Some content) when path = $"{fileName}.fsx" -> Some content
+            | _, FileSystem.FileSystemChange.Changed (path, Some content) when path = $"{fileName}.fsx" ->
+                Some content
             | _ -> None
         )
         |> FSharp.Control.AsyncSeq.map (fun content ->

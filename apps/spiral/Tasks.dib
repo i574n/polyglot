@@ -17,7 +17,7 @@ inl types () =
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
     real
-        $"Fable.Core.Rust.emitExpr !args !code" : t
+        $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
 
 
 nominal std_string = $"std_string_String"

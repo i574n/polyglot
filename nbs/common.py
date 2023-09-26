@@ -24,7 +24,7 @@ class TraceLevel(Union):
 
     @staticmethod
     def cases() -> List[str]:
-        return ["Verbose", "Debug", "Info", "Warn", "Error"]
+        return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
 TraceLevel_reflection = _expr0

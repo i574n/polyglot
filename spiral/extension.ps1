@@ -52,26 +52,29 @@ if ($extensionsPath.Count -gt 0) {
 foreach ($extensionsPath in $extensionsPath) {
     $extensionDestDir = $json.publisher + "." + $json.name + "-" + $json.version
     $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
-    Write-Output "Copying extension to $extensionPath"
 
-    Remove-Item $extensionPath -Recurse -Force -ErrorAction Ignore
+    if (Test-Path $extensionPath) {
+        Write-Output "Copying extension to $extensionPath"
 
-    Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
-    Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
-        $destPath = Join-Path -Path $extensionPath -ChildPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
+        Remove-Item $extensionPath -Recurse -Force -ErrorAction Ignore
 
-        if (Test-Path $destPath) {
-            try {
-                [System.IO.File]::Delete($destPath)
-            } catch {
-                Write-Output "Failed to delete $destPath"
+        Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
+        Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
+            $destPath = Join-Path -Path $extensionPath -ChildPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
+
+            if (Test-Path $destPath) {
+                try {
+                    [System.IO.File]::Delete($destPath)
+                } catch {
+                    Write-Output "Failed to delete $destPath"
+                }
+            } else {
+                New-Item -Path $destPath -Force | Out-Null
             }
-        } else {
-            New-Item -Path $destPath -Force | Out-Null
+
+            Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction SilentlyContinue
         }
 
-        Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction SilentlyContinue
+        Remove-Item "$extensionPath/dist" -Recurse -Force
     }
-
-    Remove-Item "$extensionPath/dist" -Recurse -Force
 }

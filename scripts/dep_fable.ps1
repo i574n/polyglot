@@ -25,3 +25,6 @@ $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
 Copy-Item -Recurse -Force "../deps/Fable/src/Fable.Cli/bin/Release/$dotnetVersion/**" $toolVersionPath
+
+{ dotnet build -c Release "../deps/Fable/src/Fable.Core/Fable.Core.fsproj" } | Invoke-Block
+Copy-Item -Force "../deps/Fable/src/Fable.Core/bin/Release/netstandard2.0/Fable.Core.dll" "$HOME/.nuget/packages/fable.core/4.0.0/lib/netstandard2.0/Fable.Core.dll"

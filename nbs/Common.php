@@ -21,7 +21,7 @@ $GLOBALS['q'] = '"';
 #2
 abstract class TraceLevel implements FSharpUnion {
     static function allCases() {
-        return [ '\\Polyglot\\Common\\TraceLevel_Verbose', '\\Polyglot\\Common\\TraceLevel_Debug', '\\Polyglot\\Common\\TraceLevel_Info', '\\Polyglot\\Common\\TraceLevel_Warn', '\\Polyglot\\Common\\TraceLevel_Error' ];
+        return [ '\\Polyglot\\Common\\TraceLevel_Verbose', '\\Polyglot\\Common\\TraceLevel_Debug', '\\Polyglot\\Common\\TraceLevel_Info', '\\Polyglot\\Common\\TraceLevel_Warning', '\\Polyglot\\Common\\TraceLevel_Critical' ];
     }
 }
 
@@ -74,11 +74,11 @@ class TraceLevel_Info extends TraceLevel implements IComparable {
 }
 
 #2
-class TraceLevel_Warn extends TraceLevel implements IComparable {
+class TraceLevel_Warning extends TraceLevel implements IComparable {
     function __construct() {
     }
     static function get_FSharpCase() {
-        return 'Warn';
+        return 'Warning';
     }
     function get_Tag() {
         return 3;
@@ -90,11 +90,11 @@ class TraceLevel_Warn extends TraceLevel implements IComparable {
 }
 
 #2
-class TraceLevel_Error extends TraceLevel implements IComparable {
+class TraceLevel_Critical extends TraceLevel implements IComparable {
     function __construct() {
     }
     static function get_FSharpCase() {
-        return 'Error';
+        return 'Critical';
     }
     function get_Tag() {
         return 4;

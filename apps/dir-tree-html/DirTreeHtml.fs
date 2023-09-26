@@ -4,7 +4,7 @@ namespace Polyglot
 
 module DirTreeHtml =
 
-    open FileSystem
+    open FileSystem.Operators
     open Feliz.ViewEngine
 
     type FileSystemNode =

@@ -23,8 +23,8 @@ export type TraceLevel_$cases = {
     0: ["Verbose", []],
     1: ["Debug", []],
     2: ["Info", []],
-    3: ["Warn", []],
-    4: ["Error", []]
+    3: ["Warning", []],
+    4: ["Critical", []]
 }
 
 export function TraceLevel_Verbose() {
@@ -39,11 +39,11 @@ export function TraceLevel_Info() {
     return new TraceLevel<2>(2, []);
 }
 
-export function TraceLevel_Warn() {
+export function TraceLevel_Warning() {
     return new TraceLevel<3>(3, []);
 }
 
-export function TraceLevel_Error() {
+export function TraceLevel_Critical() {
     return new TraceLevel<4>(4, []);
 }
 
@@ -52,7 +52,7 @@ export class TraceLevel<Tag extends keyof TraceLevel_$cases> extends Union<Tag, 
         super();
     }
     cases() {
-        return ["Verbose", "Debug", "Info", "Warn", "Error"];
+        return ["Verbose", "Debug", "Info", "Warning", "Critical"];
     }
 }
 

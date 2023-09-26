@@ -36,8 +36,13 @@ open Common
 
 #!fsharp
 
-let inline (</>) a b =
-    System.IO.Path.Combine (a, b)
+module Operators =
+    let inline (</>) a b =
+        System.IO.Path.Combine (a, b)
+
+#!fsharp
+
+open Operators
 
 #!markdown
 

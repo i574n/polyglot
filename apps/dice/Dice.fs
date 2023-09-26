@@ -55,7 +55,7 @@ module Dice =
 #if FABLE_COMPILER_RUST
 #if !CHAIN
     let rollDice () : int =
-        Fable.Core.Rust.emitExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
+        Fable.Core.RustInterop.emitRustExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
 #endif
 #else
     let private random = System.Random ()

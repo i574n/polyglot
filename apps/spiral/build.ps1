@@ -13,7 +13,7 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Supervisor.dib } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) Supervisor.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FSharp.Control.AsyncSeq FSharp.Json NetMQ System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Networking.fs nbs/Runtime.fs nbs/FileSystem.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) Supervisor.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FSharp.Control.AsyncSeq FSharp.Json Microsoft.AspNetCore.SignalR.Client System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Networking.fs nbs/Runtime.fs nbs/FileSystem.fs } | Invoke-Block
 
 if (!$fast) {
     Invoke-Dib Spiral.dib

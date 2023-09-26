@@ -3,6 +3,7 @@ playwright-report/
 playwright-videos/
 test-results/
 node_modules/
+fable_modules/
 dist/
 deps/
 artifacts/

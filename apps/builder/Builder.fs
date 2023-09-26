@@ -5,7 +5,7 @@ namespace Polyglot
 module Builder =
 
     open Common
-    open FileSystem
+    open FileSystem.Operators
 
     /// ## buildProject
 

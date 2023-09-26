@@ -13,8 +13,6 @@
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
-#r @"../../../../../../../.nuget/packages/asyncio/0.1.69/lib/netstandard2.0/AsyncIO.dll"
-#r @"../../../../../../../.nuget/packages/netmq/4.0.1.13/lib/netstandard2.1/NetMQ.dll"
 #r @"../../../../../../../.nuget/packages/fsharp.json/0.4.1/lib/netstandard2.0/FSharp.Json.dll"
 
 #!fsharp
@@ -31,7 +29,7 @@
 #!fsharp
 
 open Common
-open FileSystem
+open FileSystem.Operators
 
 #!fsharp
 
@@ -50,7 +48,7 @@ Formatter.Register<struct (string * string * float array * string * struct (stri
             let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"
 
             if System.IO.File.Exists svgPath |> not then
-                do! json |> writeAllTextAsync (linePlotsDataPath </> hashHex)
+                do! json |> FileSystem.writeAllTextAsync (linePlotsDataPath </> hashHex)
 
                 let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
@@ -66,7 +64,7 @@ Formatter.Register<struct (string * string * float array * string * struct (stri
                     |> Async.withTraceLevel Info
                 if exitCode <> 0 then
                     return failwith $"plot failed with exit code {exitCode} and output {result}"
-            return! svgPath |> readAllTextAsync
+            return! svgPath |> FileSystem.readAllTextAsync
         }
         |> Async.runWithTimeoutStrict 10000
         |> Option.defaultValue json

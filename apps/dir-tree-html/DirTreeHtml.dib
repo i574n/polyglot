@@ -31,7 +31,7 @@
 
 #!fsharp
 
-open FileSystem
+open FileSystem.Operators
 open Feliz.ViewEngine
 
 #!fsharp
@@ -151,11 +151,15 @@ details > div {{
 
 //// test
 
-let tempFolder = createTempDirectory ()
+let tempFolder = FileSystem.createTempDirectory ()
 let rec loop d n = async {
     if n >= 0 then
         tempFolder </> d |> System.IO.Directory.CreateDirectory |> ignore
-        do! n |> string |> String.replicate (n + 1) |> writeAllTextAsync (tempFolder </> d </> $"file.txt")
+        do!
+            n
+            |> string
+            |> String.replicate (n + 1)
+            |> FileSystem.writeAllTextAsync (tempFolder </> d </> $"file.txt")
         do! loop $"{d}/{n}" (n - 1)
 }
 loop "root" 3

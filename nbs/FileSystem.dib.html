@@ -7584,15 +7584,30 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">module</span> <span class="n">Operators</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">inline</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
+        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Operators</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7602,7 +7617,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7621,7 +7636,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7645,14 +7660,14 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0707-0736-0d7432e6e71f
+<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0025-2532-227f97539f58
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7662,7 +7677,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7688,7 +7703,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7714,7 +7729,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0722-2206-204ce4378390 / result: { CreationTime = 2023-09-24 12:24:07 PM
+<pre>00:00:00 #1 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0037-3762-3ba63926b183 / result: { CreationTime = 2023-09-26 1:58:00 AM
   Exists = true }
 True
 </pre>
@@ -7723,7 +7738,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7733,7 +7748,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7749,7 +7764,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7782,7 +7797,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7792,7 +7807,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7816,7 +7831,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7848,7 +7863,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7881,7 +7896,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7891,7 +7906,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7907,7 +7922,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7917,7 +7932,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7938,7 +7953,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7948,7 +7963,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7964,7 +7979,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7974,7 +7989,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7993,7 +8008,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8003,7 +8018,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8038,7 +8053,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8111,7 +8126,7 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #2 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0793-9389-914fff984a37 / result: { CreationTime = 2023-09-24 12:24:07 PM
+<pre>00:00:00 #2 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301 / result: { CreationTime = 2023-09-26 1:58:01 AM
   Exists = true }
 00:00:00 #3 [Debug] 1
 00:00:00 #4 [Debug] 2
@@ -8119,8 +8134,8 @@ True
 00:00:00 #6 [Debug] 3
 00:00:00 #7 [Debug] _2
 00:00:00 #8 [Debug] 4
-00:00:00 #9 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0793-9389-914fff984a37\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0793-9389-914fff984a37\test.txt' because it is being used by another process.
-00:00:02 #10 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0793-9389-914fff984a37\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-0793-9389-914fff984a37\test.txt' because it is being used by another process.
+00:00:00 #9 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt' because it is being used by another process.
+00:00:02 #10 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt' because it is being used by another process.
 00:00:02 #11 [Debug] _3
 00:00:02 #12 [Debug] _4
 00:00:02 #13 [Debug] _5
@@ -8139,7 +8154,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8149,7 +8164,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8175,7 +8190,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8239,7 +8254,7 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:03 #18 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1038-3843-32ce4d38b93c / result: { CreationTime = 2023-09-24 12:24:10 PM
+<pre>00:00:03 #18 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0348-4850-4f487b16b73a / result: { CreationTime = 2023-09-26 1:58:03 AM
   Exists = true }
 00:00:03 #19 [Debug] 1
 00:00:03 #20 [Debug] 2
@@ -8247,14 +8262,14 @@ True
 00:00:03 #22 [Debug] _1
 00:00:03 #23 [Debug] _2
 00:00:03 #24 [Debug] 4
-00:00:03 #25 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1038-3843-32ce4d38b93c\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:04 #26 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1038-3843-32ce4d38b93c\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:03 #25 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0348-4850-4f487b16b73a\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:04 #26 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0348-4850-4f487b16b73a\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
 00:00:05 #27 [Debug] _3
 00:00:05 #28 [Debug] 5
 00:00:05 #29 [Debug] 6
-127
-127
-127
+128
+128
+128
 True
 </pre>
 </div>
@@ -8262,7 +8277,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8272,7 +8287,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8298,7 +8313,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8361,7 +8376,7 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:05 #30 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1271-7114-7156f2c26818 / result: { CreationTime = 2023-09-24 12:24:12 PM
+<pre>00:00:05 #30 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca / result: { CreationTime = 2023-09-26 1:58:05 AM
   Exists = true }
 00:00:05 #31 [Debug] 1
 00:00:05 #32 [Debug] 2
@@ -8369,14 +8384,14 @@ True
 00:00:05 #34 [Debug] _1
 00:00:05 #35 [Debug] _2
 00:00:05 #36 [Debug] 4
-00:00:05 #37 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1271-7114-7156f2c26818\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1271-7114-7156f2c26818\test.txt' because it is being used by another process.
-00:00:07 #38 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1271-7114-7156f2c26818\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1271-7114-7156f2c26818\test.txt' because it is being used by another process.
+00:00:05 #37 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt' because it is being used by another process.
+00:00:07 #38 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt' because it is being used by another process.
 00:00:07 #39 [Debug] _3
 00:00:07 #40 [Debug] 5
 00:00:07 #41 [Debug] 6
-128
-128
-128
+127
+127
+127
 True
 </pre>
 </div>
@@ -8384,7 +8399,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8394,7 +8409,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8421,7 +8436,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8496,24 +8511,24 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:07 #42 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1513-1331-17d8ec5c4f81 / result: { CreationTime = 2023-09-24 12:24:15 PM
+<pre>00:00:07 #42 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5 / result: { CreationTime = 2023-09-26 1:58:08 AM
   Exists = true }
 00:00:07 #43 [Debug] 1
 00:00:07 #44 [Debug] 2
 00:00:07 #45 [Debug] 3
 00:00:07 #46 [Debug] _1
-00:00:07 #47 [Debug] 4
-00:00:07 #48 [Debug] _2
-00:00:07 #49 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1513-1331-17d8ec5c4f81\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1513-1331-17d8ec5c4f81\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:09 #50 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1513-1331-17d8ec5c4f81\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-1513-1331-17d8ec5c4f81\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
+00:00:07 #47 [Debug] _2
+00:00:07 #48 [Debug] 4
+00:00:07 #49 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
+00:00:09 #50 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
 00:00:09 #51 [Debug] _3
 00:00:09 #52 [Debug] 5
 00:00:09 #53 [Debug] 6
 00:00:09 #54 [Debug] 7
 00:00:09 #55 [Debug] 8
-130
-130
-130
+128
+128
+128
 0
 0
 0
@@ -8525,7 +8540,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8535,7 +8550,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8707,7 +8722,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8717,7 +8732,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8797,7 +8812,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8807,7 +8822,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8884,30 +8899,30 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15 #56 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2282-8290-8f46a993beb0 / result: { CreationTime = 2023-09-24 12:24:22 PM
+<pre>00:00:15 #56 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-1581-8124-8a51ef294ad2 / result: { CreationTime = 2023-09-26 1:58:15 AM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:17 #57 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2282-8290-8f46a993beb0 / filter: FileName, LastWrite
+00:00:17 #57 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-1581-8124-8a51ef294ad2 / filter: FileName, LastWrite
 00:00:17 #58 [Debug] testEventsRaw / eventsLog: 
-0 / 638311694631164846 / Created ("file1.txt", Some "a1")
-1 / 638311694631164847 / Changed ("file1.txt", Some "a1")
-68469 / 638311694631233316 / Changed ("file1.txt", Some "a1")
-2123 / 638311694631235439 / Created ("file2.txt", Some "a2")
-1 / 638311694631235440 / Changed ("file2.txt", Some "a2")
-137 / 638311694631235577 / Changed ("file2.txt", Some "a2")
-2632584 / 638311694633868161 / Changed ("file1.txt", Some "b1")
-1901 / 638311694633870062 / Changed ("file1.txt", Some "b1")
-11855 / 638311694633881917 / Changed ("file2.txt", Some "b2")
-2106 / 638311694633884023 / Changed ("file2.txt", Some "b2")
-2655050 / 638311694636539073 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-5509 / 638311694636544582 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2606558 / 638311694639151140 / Changed ("file_1.txt", Some "c1")
-2591 / 638311694639153731 / Changed ("file_1.txt", Some "c1")
-8318 / 638311694639162049 / Changed ("file_2.txt", Some "c2")
-1758 / 638311694639163807 / Changed ("file_2.txt", Some "c2")
-2627660 / 638311694641791467 / Deleted "file_1.txt"
-3270 / 638311694641794737 / Deleted "file_2.txt"
+0 / 638313046961027535 / Created ("file1.txt", Some "a1")
+1 / 638313046961027536 / Changed ("file1.txt", Some "a1")
+65270 / 638313046961092806 / Changed ("file1.txt", Some "a1")
+2102 / 638313046961094908 / Created ("file2.txt", Some "a2")
+1 / 638313046961094909 / Changed ("file2.txt", Some "a2")
+148 / 638313046961095057 / Changed ("file2.txt", Some "a2")
+2480163 / 638313046963575220 / Changed ("file1.txt", Some "b1")
+2058 / 638313046963577278 / Changed ("file1.txt", Some "b1")
+7432 / 638313046963584710 / Changed ("file2.txt", Some "b2")
+2002 / 638313046963586712 / Changed ("file2.txt", Some "b2")
+2567238 / 638313046966153950 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+10725 / 638313046966164675 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2663747 / 638313046968828422 / Changed ("file_1.txt", Some "c1")
+2674 / 638313046968831096 / Changed ("file_1.txt", Some "c1")
+14481 / 638313046968845577 / Changed ("file_2.txt", Some "c2")
+2573 / 638313046968848150 / Changed ("file_2.txt", Some "c2")
+2519674 / 638313046971367824 / Deleted "file_1.txt"
+5209 / 638313046971373033 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8951,7 +8966,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8961,7 +8976,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9055,38 +9070,37 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:21 #59 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / result: { CreationTime = 2023-09-24 12:24:29 PM
+<pre>00:00:21 #59 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / result: { CreationTime = 2023-09-26 1:58:21 AM
   Exists = true }
-00:00:22 #60 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / filter: FileName, LastWrite
-00:00:22 #60 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / filter: FileName, LastWrite
-00:00:23 #61 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / filter: FileName, LastWrite
-00:00:23 #62 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file1.txt' because it is being used by another process.
-00:00:23 #63 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / filter: FileName, LastWrite
-00:00:23 #64 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file2.txt' because it is being used by another process.
-00:00:26 #65 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file_1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / filter: FileName, LastWrite
-00:00:26 #66 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file_1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208\file_1.txt' because it is being used by another process.
+00:00:23 #60 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
+00:00:23 #61 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
+00:00:23 #62 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file2.txt' because it is being used by another process.
+00:00:26 #63 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
+00:00:26 #64 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_1.txt' because it is being used by another process.
+00:00:26 #65 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
+00:00:26 #66 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_2.txt' because it is being used by another process.
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:29 #67 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-2917-1784-10000c82d208 / filter: FileName, LastWrite
-00:00:30 #68 [Debug] testEventsRaw / eventsLog: 
-0 / 638311694694835064 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
-1 / 638311694694835065 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
-96612 / 638311694694931677 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
-60007 / 638311694694991684 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
-1 / 638311694694991685 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
-112765 / 638311694695104450 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15239666 / 638311694710344116 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
-171393 / 638311694710515509 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-84946 / 638311694710600455 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
-128665 / 638311694710729120 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15137693 / 638311694725866813 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
-16656 / 638311694725883469 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "2222222222222
-15247803 / 638311694741131272 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
-108160 / 638311694741239432 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111
-78305 / 638311694741317737 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-87578 / 638311694741405315 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-15078810 / 638311694756484125 / Deleted "file_1.txt"
-6561 / 638311694756490686 / Deleted "file_2.txt"
+00:00:29 #67 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
+00:00:29 #68 [Debug] testEventsRaw / eventsLog: 
+0 / 638313047021204279 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
+1 / 638313047021204280 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
+263258 / 638313047021467538 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
+22557 / 638313047021490095 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
+1 / 638313047021490096 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
+122295 / 638313047021612391 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+15288091 / 638313047036900482 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
+272487 / 638313047037172969 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
+58295 / 638313047037231264 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+123945 / 638313047037355209 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+15146439 / 638313047052501648 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
+11420 / 638313047052513068 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "2222222222222
+15286949 / 638313047067800017 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
+261955 / 638313047068061972 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111
+97101 / 638313047068159073 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+140146 / 638313047068299219 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222
+15055722 / 638313047083354941 / Deleted "file_1.txt"
+13596 / 638313047083368537 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9130,7 +9144,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9140,7 +9154,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9233,7 +9247,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9243,7 +9257,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9306,11 +9320,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:32 #69 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-3999-9910-9c5b59fe6971 / result: { CreationTime = 2023-09-24 12:24:39 PM
+<pre>00:00:32 #69 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3257-5712-5474aba41e87 / result: { CreationTime = 2023-09-26 1:58:32 AM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:33 #70 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-3999-9910-9c5b59fe6971 / filter: FileName, LastWrite
+00:00:32 #70 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3257-5712-5474aba41e87 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9336,7 +9350,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9346,7 +9360,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9407,11 +9421,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:35 #71 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-4266-6623-61a5533a7e29 / result: { CreationTime = 2023-09-24 12:24:42 PM
+<pre>00:00:34 #71 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3516-1636-1e9de76735f1 / result: { CreationTime = 2023-09-26 1:58:35 AM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:35 #72 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-4266-6623-61a5533a7e29 / filter: FileName, LastWrite
+00:00:35 #72 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3516-1636-1e9de76735f1 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9432,7 +9446,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9442,7 +9456,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9508,11 +9522,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:38 #73 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-4582-8252-87888a3a9842 / result: { CreationTime = 2023-09-24 12:24:45 PM
+<pre>00:00:37 #73 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3822-2256-28d9ea2e3100 / result: { CreationTime = 2023-09-26 1:58:38 AM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:39 #74 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-4582-8252-87888a3a9842 / filter: FileName, LastWrite
+00:00:38 #74 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3822-2256-28d9ea2e3100 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9539,7 +9553,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9549,7 +9563,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9623,11 +9637,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:42 #75 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-4950-5098-52ef0cdc24f1 / result: { CreationTime = 2023-09-24 12:24:49 PM
+<pre>00:00:41 #75 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-4182-8202-8d2aea533ac2 / result: { CreationTime = 2023-09-26 1:58:41 AM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:42 #76 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230924-1224-4950-5098-52ef0cdc24f1 / filter: FileName, LastWrite
+00:00:41 #76 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-4182-8202-8d2aea533ac2 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

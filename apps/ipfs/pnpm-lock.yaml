@@ -11,11 +11,11 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ~20.6
-    version: 20.6.0
+    specifier: ~20.7
+    version: 20.7.0
   npm-check-updates:
-    specifier: ~16.13
-    version: 16.13.0
+    specifier: ~16.14
+    version: 16.14.4
   tsx:
     specifier: ~3.12
     version: 3.12.7
@@ -552,8 +552,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: false
 
-  /@types/node@20.6.0:
-    resolution: {integrity: sha512-najjVq5KN2vsH2U/xyh2opaSEz6cZMR2SetLIlxlj08nOcmPOemJmUK2o4kUzfLqfrWE0PIrNeE16XhYDd3nqg==}
+  /@types/node@20.7.0:
+    resolution: {integrity: sha512-zI22/pJW2wUZOVyguFaUL1HABdmSVxpXrzIqkjsHmyUjNhPoWM1CKfvVuXfetHhIok4RY573cqS0mZ1SJEnoTg==}
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -2487,8 +2487,8 @@ packages:
       npm-normalize-package-bin: 3.0.1
     dev: true
 
-  /npm-check-updates@16.13.0:
-    resolution: {integrity: sha512-zTJCqov2+KpCLM7lOOxXLFiqKg8RLt10dempIbE9EfKCzoN1yqSrDcBCpU6uOmlSRy3IIGm1rK+piCrn+uulJw==}
+  /npm-check-updates@16.14.4:
+    resolution: {integrity: sha512-PKg1wv3vno75/9qgRLqV2huBO7eukOlW+PmIGl7LPXjElfYTUTWUtaMOdOckImaSj4Uqe46W/zMbMFZQp5dHRQ==}
     engines: {node: '>=14.14'}
     hasBin: true
     dependencies:
@@ -2520,6 +2520,7 @@ packages:
       semver-utils: 1.1.4
       source-map-support: 0.5.21
       spawn-please: 2.0.2
+      strip-ansi: 7.1.0
       strip-json-comments: 5.0.1
       untildify: 4.0.0
       update-notifier: 6.0.2
@@ -2812,7 +2813,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 20.6.0
+      '@types/node': 20.7.0
       long: 4.0.0
     dev: false
 

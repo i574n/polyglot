@@ -92,7 +92,7 @@ nominal html_style_element = $"Types.web_sys.HtmlStyleElement"
 
 
 inl emit_expr forall a t. (args : a) (code : string) : t =
-    $"Fable.Core.Rust.emitExpr !args !code"
+    $"Fable.Core.RustInterop.emitRustExpr !args !code"
 
 inl deref_array forall t. (x : ref' (array t)) : vec t =
     // emit_expr x "core::ops::Deref::deref($0)"

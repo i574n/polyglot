@@ -8,8 +8,11 @@ module FileSystem =
 
     /// ## Operators
 
-    let inline (</>) a b =
-        System.IO.Path.Combine (a, b)
+    module Operators =
+        let inline (</>) a b =
+            System.IO.Path.Combine (a, b)
+
+    open Operators
 
     /// ## createTempDirectoryName
 
