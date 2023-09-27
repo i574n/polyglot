@@ -123,10 +123,23 @@ let inline awaitCompiler port cancellationToken = async {
                         OnLine = Some <| fun { Line = line } -> async {
                             if line |> String.contains $"Server bound to: http://localhost:{availablePort}" then
                                 do! Networking.waitForPortAccess (Some 10000) true availablePort |> Async.Ignore
+
+                                let rec loop retry = async {
+                                    let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"
+                                    try
+                                        let pingObj = {| Ping = true |}
+                                        let! pingResult = pingObj |> sendObj availablePort
+                                        trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
+                                    with ex ->
+                                        trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> printException}") getLocals
+                                        do! Async.Sleep 10
+                                        do! loop (retry + 1)
+                                }
+                                do! loop 0
                                 inbox.Post availablePort
                         }
                     }
-            trace Debug (fun () -> $"startSupervisor / exitCode: {exitCode} / result: {result}") getLocals
+            trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
     }, ct)
 
     let! serverPort = compiler.Receive ()
@@ -355,8 +368,8 @@ let buildCode timeout cancellationToken code = buildCode timeout cancellationTok
 //// test
 
 ""
-|> buildCode 4000 None
-|> Async.runWithTimeout 4000
+|> buildCode 6000 None
+|> Async.runWithTimeout 6000
 |> _equal None
 
 #!fsharp
@@ -372,8 +385,8 @@ inl main () =
     |> dyn
     |> ignore
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -402,8 +415,8 @@ inl main () =
     |> dyn
     |> ignore
 "
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -424,8 +437,8 @@ Global inl/let statements should all return functions known at parse time."]
 """inl main () =
     1i32 / 0i32
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -445,8 +458,8 @@ Global inl/let statements should all return functions known at parse time."]
 inl main () =
     ()
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -466,8 +479,8 @@ Expected: uppercase variable"]
 inl main () =
     ()
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -490,8 +503,8 @@ inl main () =
         real_unbox ()
     ()
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -512,8 +525,8 @@ inl main () =
             | _ => obj
         real_unbox `i32 1
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -542,8 +555,8 @@ inl integral dt : integration =
 inl main () =
     integral 0.1 (fun x => x ** 2) 0 1
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -572,8 +585,8 @@ inl integral dt : integration =
 inl main () =
     integral 0.01 (fun x => x ** 2) 0 1
 """
-|> buildCode 8000 None
-|> Async.runWithTimeout 8000
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 // |> _equal None
 |> fun x -> printfn $"{x.ToDisplayString ()}"
@@ -635,8 +648,8 @@ let inline getCodeTokenRange timeout cancellationToken code = async {
 //// test
 
 """inl main () = ()"""
-|> getCodeTokenRange 8000 None
-|> Async.runWithTimeout 8000
+|> getCodeTokenRange 10000 None
+|> Async.runWithTimeout 10000
 |> Option.flatten
 |> _equal (Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
 2; 1; 8; 0; 0; 1; 1; 8; 0|])
@@ -646,8 +659,8 @@ let inline getCodeTokenRange timeout cancellationToken code = async {
 //// test
 
 """inl main () = 1i32"""
-|> getCodeTokenRange 8000 None
-|> Async.runWithTimeout 8000
+|> getCodeTokenRange 10000 None
+|> Async.runWithTimeout 10000
 |> Option.flatten
 |> _equal (Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
 2; 1; 3; 0; 0; 1; 3; 12; 0|])

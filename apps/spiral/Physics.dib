@@ -512,9 +512,11 @@ inl y =
     )
 "pedaling and coasting with air", "time (s)", x, "", ;["velocity of bike (m/s)", y]
 
-#!spiral
+#!markdown
 
-// // test
+## velocity_ftxv
+
+#!spiral
 
 type state_1d = time * position * velocity
 
@@ -592,6 +594,97 @@ inl pingpong_velocity t =
 inl x = init_series 0 3 0.01
 inl y = x |> am.map pingpong_velocity
 "ping pong ball on a slinky", "time (s)", x, "", ;["velocity (m/s)", y]
+
+#!markdown
+
+## shift
+
+#!spiral
+
+nominal state_1d = time * position * velocity
+nominal rrr = f64 * f64 * f64
+
+inl newton_second_1d m fs (state_1d (t, x0, v0)) : rrr =
+    inl f_net = fs |> listm.map (fun f => f (state_1d (t, x0, v0))) |> list_sum
+    inl acc = f_net / m
+    rrr (1f64, v0, acc)
+
+inl euler_cromer_1d dt (deriv : state_1d -> rrr) (state_1d (t0, x0, v0)) =
+    inl (rrr (_, _, dvdt)) = deriv (state_1d (t0, x0, v0))
+    inl t1 = t0 + dt
+    inl v1 = v0 + dvdt * dt
+    inl x1 = x0 + v1 * dt
+    state_1d (t1, x1, v1)
+
+inl update_txv_ec dt m fs =
+    euler_cromer_1d dt (newton_second_1d m fs)
+
+prototype (+++) ds : ds -> ds -> ds
+prototype scale ds : f64 -> ds -> ds
+
+instance (+++) rrr = fun (rrr (dtdt0, dxdt0, dvdt0)) (rrr (dtdt1, dxdt1, dvdt1)) =>
+    rrr (dtdt0 + dtdt1, dxdt0 + dxdt1, dvdt0 + dvdt1)
+
+instance scale rrr = fun w (rrr (dtdt0, dxdt0, dvdt0)) =>
+    rrr (w * dtdt0, w * dxdt0, w * dvdt0)
+
+prototype shift s : forall ds {(+++)}. f64 -> ds -> s -> s
+
+instance shift state_1d = fun dt ds (state_1d (t, x, v)) =>
+    inl dtdt, dxdt, dvdt =
+        real
+            match ds with
+            | rrr (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
+            | state_1d (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
+    state_1d (t + dtdt * dt, x + dxdt * dt, v + dvdt * dt)
+
+instance shift rrr = fun dt ds (rrr (t, x, v)) =>
+    inl dtdt, dxdt, dvdt =
+        real
+            match ds with
+            | rrr (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
+            | state_1d (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
+    rrr (t + dtdt * dt, x + dxdt * dt, v + dvdt * dt)
+
+prototype euler s : forall ds {(+++)}. f64 -> (s -> ds) -> s -> s
+
+instance euler state_1d = fun dt deriv st0 => shift dt (deriv st0) st0
+instance euler rrr = fun dt deriv st0 => shift dt (deriv st0) st0
+
+prototype runge_kutta_4 s : forall ds {(+++)}. f64 -> (s -> ds) -> s -> s
+
+instance runge_kutta_4 state_1d = fun dt deriv st0 =>
+    inl m0 = deriv st0
+    inl m1 = deriv (shift (dt / 2) m0 st0)
+    inl m2 = deriv (shift (dt / 2) m1 st0)
+    inl m3 = deriv (shift dt m2 st0)
+    shift (dt / 6) (m0 +++ m1 +++ m1 +++ m2 +++ m2 +++ m3) st0
+
+instance runge_kutta_4 rrr = fun dt deriv st0 =>
+    inl m0 = deriv st0
+    inl m1 = deriv (shift (dt / 2) m0 st0)
+    inl m2 = deriv (shift (dt / 2) m1 st0)
+    inl m3 = deriv (shift dt m2 st0)
+    shift (dt / 6) (m0 +++ m1 +++ m1 +++ m2 +++ m2 +++ m3) st0
+
+inl exponential (rrr (_, x0, v0)) =
+    rrr (1f64, v0, x0)
+
+inl exponential' (state_1d (_, x0, v0)) =
+    rrr (1f64, v0, x0)
+
+#!spiral
+
+// // test
+
+iterate (euler 0.01 exponential) (rrr (0, 1, 1)) 800i32
+|> _equal (rrr (7.999999999999874, 2864.8311229272326, 2864.8311229272326))
+
+iterate (euler_cromer_1d 0.1 exponential') (state_1d (0, 1, 1)) 80i32
+|> _equal (state_1d (7.999999999999988, 3043.379244966009, 2895.0121485099035))
+
+iterate (runge_kutta_4 1 exponential) (rrr (0, 1, 1)) 8i32
+|> _equal (rrr (8.0, 2894.789038540849, 2894.789038540849))
 
 #!markdown
 

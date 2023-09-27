@@ -77,10 +77,23 @@ module Supervisor =
                             OnLine = Some <| fun { Line = line } -> async {
                                 if line |> String.contains $"Server bound to: http://localhost:{availablePort}" then
                                     do! Networking.waitForPortAccess (Some 10000) true availablePort |> Async.Ignore
+
+                                    let rec loop retry = async {
+                                        let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"
+                                        try
+                                            let pingObj = {| Ping = true |}
+                                            let! pingResult = pingObj |> sendObj availablePort
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
+                                        with ex ->
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> printException}") getLocals
+                                            do! Async.Sleep 10
+                                            do! loop (retry + 1)
+                                    }
+                                    do! loop 0
                                     inbox.Post availablePort
                             }
                         }
-                trace Debug (fun () -> $"startSupervisor / exitCode: {exitCode} / result: {result}") getLocals
+                trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
         }, ct)
 
         let! serverPort = compiler.Receive ()
