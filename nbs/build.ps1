@@ -13,6 +13,7 @@ if (!$fast) {
     Invoke-Dib AsyncSeq.dib
     Invoke-Dib Common.dib
     Invoke-Dib CommonFSharp.dib
+    Invoke-Dib Threading.dib
     Invoke-Dib Crypto.dib
     Invoke-Dib FileSystem.dib
     Invoke-Dib Networking.dib
@@ -20,4 +21,4 @@ if (!$fast) {
     Invoke-Dib Toml.dib
 }
 
-{ . ../apps/parser/dist/DibParser$(GetExecutableSuffix) Async.dib AsyncSeq.dib Common.dib CommonFSharp.dib Crypto.dib FileSystem.dib Networking.dib Runtime.dib Toml.dib } | Invoke-Block
+{ . ../apps/parser/dist/DibParser$(GetExecutableSuffix) Async.dib AsyncSeq.dib Common.dib CommonFSharp.dib Threading.dib Crypto.dib FileSystem.dib Networking.dib Runtime.dib Toml.dib } | Invoke-Block

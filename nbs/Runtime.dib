@@ -365,7 +365,7 @@ type Arguments =
     interface Argu.IArgParserTemplate with
         member s.Usage =
             match s with
-            | Paths _ -> nameof Arguments.Paths
+            | Paths _ -> nameof Paths
 
 #!fsharp
 
@@ -396,7 +396,7 @@ type Arguments =
     interface Argu.IArgParserTemplate with
         member s.Usage =
             match s with
-            | Paths _ -> nameof Arguments.Paths
+            | Paths _ -> nameof Paths
 
 parseAllArgs<Arguments> [| "a b"; "c" |]
 |> _equal [ Arguments.Paths [ "a b"; "c" ] ]

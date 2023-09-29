@@ -150,12 +150,10 @@ module Supervisor =
             then 13807
             else 13805
 
-        use cts = new System.Threading.CancellationTokenSource ()
-        use cts =
-            System.Threading.CancellationTokenSource.CreateLinkedTokenSource
-                [| cts.Token; cancellationToken |> Option.defaultValue System.Threading.CancellationToken.None |]
-        use _ = newDisposable cts.Cancel
-        let! serverPort, errors, disposable = awaitCompiler port (Some cts.Token)
+        let token, disposable = Threading.newDisposableToken cancellationToken
+        use _ = disposable
+
+        let! serverPort, errors, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
         let fsxContentSeq =
@@ -258,7 +256,7 @@ module Supervisor =
 
     /// ## persistCode
 
-    let inline persistCode timeout cancellationToken code = async {
+    let inline persistCode code = async {
         let tempDir = FileSystem.createTempDirectory ()
 
         let mainPath = tempDir </> "main.spi"
@@ -288,14 +286,14 @@ modules:
     /// ## buildCode
 
     let inline buildCode timeout cancellationToken code = async {
-        let! mainPath, disposable = persistCode timeout cancellationToken code
+        let! mainPath, disposable = persistCode code
         use _ = disposable
         return! mainPath |> buildFile timeout cancellationToken
     }
 
     /// ## getFileTokenRange
 
-    let inline getFileTokenRange timeout cancellationToken path = async {
+    let inline getFileTokenRange cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let! code = fullPath |> FileSystem.readAllTextAsync
         let lines = code |> String.split [| '\n' |]
@@ -306,11 +304,14 @@ modules:
             then 13807
             else 13805
 
-        let! serverPort, outputs, disposable = awaitCompiler port cancellationToken
+        let token, disposable = Threading.newDisposableToken cancellationToken
+        use _ = disposable
+
+        let! serverPort, _errors, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
         let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
-        let! fileOpenResult = fileOpenObj |> sendObj serverPort
+        let! _fileOpenResult = fileOpenObj |> sendObj serverPort
 
         let fileTokenRangeObj =
             {|
@@ -331,10 +332,10 @@ modules:
 
     /// ## getCodeTokenRange
 
-    let inline getCodeTokenRange timeout cancellationToken code = async {
-        let! mainPath, disposable = persistCode timeout cancellationToken code
+    let inline getCodeTokenRange cancellationToken code = async {
+        let! mainPath, disposable = persistCode code
         use _ = disposable
-        return! mainPath |> getFileTokenRange timeout cancellationToken
+        return! mainPath |> getFileTokenRange cancellationToken
     }
 
     /// ## Arguments
@@ -347,8 +348,8 @@ modules:
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
-                | BuildFile _ -> nameof Arguments.BuildFile
-                | Timeout _ -> nameof Arguments.Timeout
+                | BuildFile _ -> nameof BuildFile
+                | Timeout _ -> nameof Timeout
 
     /// ## main
 

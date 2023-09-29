@@ -39,23 +39,14 @@ inl _is_less_than_or_equal b a =
 inl atan2 (y : f64) (x : f64) =
     $"System.Math.Atan2 (!y, !x)" : f64
 
-inl cos (d : f64) =
-    $"System.Math.Cos !d" : f64
-
 inl e () =
     exp 1f64
 
 inl log_base (new_base : f64) (a : f64) =
     $"System.Math.Log (!a, !new_base)" : f64
 
-inl pi () =
-    $"System.Math.PI" : f64
-
 inl round forall t {float}. (x : t) : t =
     $"round !x"
-
-inl sin (d : f64) =
-    $"System.Math.Sin !d" : f64
 
 inl square x =
     x ** 2
@@ -85,31 +76,31 @@ inl square x =
 
 // // test
 
-pi ()
-|> _almost_equal 3.141592653589793
+pi
+|> _almost_equal 3.141592653589793f64
 
 #!spiral
 
 // // test
 
-pi () |> cos
-|> _equal -1
+pi |> cos
+|> _equal -1f64
 
 #!spiral
 
 // // test
 
-pi ()
+pi
 |> cos
-|> fun n => n / 2
+|> fun n => n / 2f64
 |> _almost_equal -0.5
 
 #!spiral
 
 // // test
 
-pi () / 2 |> cos
-|> _almost_equal 0.00000000000000006123233995736766
+pi / 2 |> cos
+|> _almost_equal 0.00000000000000006123233995736766f64
 
 #!spiral
 
@@ -149,7 +140,7 @@ e () |> square
 
 inl iterate f x0 num_steps =
     inl rec loop x n =
-        if n = 0
+        if n <= 0
         then x
         else loop (f x) (n - 1)
     loop x0 num_steps
@@ -161,7 +152,6 @@ inl iterate' f x0 num_steps =
 #!spiral
 
 // // test
-
 
 10i32 |> iterate ((+) 1) 1i32
 |> _equal 11
@@ -246,7 +236,7 @@ inl y = x |> am.map square
 
 // // test
 
-inl x = init_series -10 10 0.1
+inl x : a _ f64 = init_series -10 10 0.1
 inl y_sin = x |> am.map sin
 inl y_cos = x |> am.map cos
 "sin cos", "x", x, "y", ;["sin", y_sin; "cos", y_cos]
@@ -518,19 +508,20 @@ inl y =
 
 #!spiral
 
-type state_1d = time * position * velocity
+nominal state_1d = time * position * velocity
+nominal rrr = f64 * f64 * f64
 
-inl newton_second_1d m fs (t, x0, v0) : state_1d =
-    inl f_net = fs |> listm.map (fun f => f (t, x0, v0)) |> list_sum
+inl newton_second_1d m fs (state_1d (t, x0, v0)) =
+    inl f_net = fs |> listm.map (fun f => f (state_1d (t, x0, v0))) |> list_sum
     inl acc = f_net / m
-    1f64, v0, acc
+    rrr (1f64, v0, acc)
 
-inl euler_1d dt deriv (t0, x0, v0) =
-    inl _, _, dvdt = deriv (t0, x0, v0)
+inl euler_1d dt deriv (state_1d (t0, x0, v0) as t) =
+    inl (rrr (_, _, dvdt)) = deriv t
     inl t1 = t0 + dt
     inl x1 = x0 + v0 * dt
     inl v1 = v0 + dvdt * dt
-    t1, x1, v1
+    state_1d (t1, x1, v1)
 
 inl update_txv dt m fs =
     newton_second_1d m fs |> euler_1d dt
@@ -539,28 +530,28 @@ inl states_txv dt m txv0 fs =
     iterate' (update_txv dt m fs) txv0
 
 inl velocity_1d sts t =
-    inl t0, _, _ = sts 0
-    inl t1, _, _ = sts 1
+    inl (state_1d (t0, _, _)) = sts 0
+    inl (state_1d (t1, _, _)) = sts 1
     inl dt = t1 - t0
     inl num_steps = t / dt |> round |> abs
-    inl _, _, v0 = sts num_steps
+    inl (state_1d (_, _, v0)) = sts num_steps
     v0
 
 inl velocity_ftxv dt m txv0 fs =
     states_txv dt m txv0 fs |> velocity_1d
 
 inl position_1d sts t =
-    inl t0, _, _ = sts 0
-    inl t1, _, _ = sts 1
+    inl (state_1d (t0, _, _)) = sts 0
+    inl (state_1d (t1, _, _)) = sts 1
     inl dt = t1 - t0
     inl num_steps = t / dt |> round |> abs
-    inl _, x0, _ = sts num_steps
+    inl (state_1d (_, x0, _)) = sts num_steps
     x0
 
 inl position_ftxv dt m txv0 fs =
     states_txv dt m txv0 fs |> position_1d
 
-inl spring_force k (_, x0, _) =
+inl spring_force k (state_1d (_, x0, _)) =
     -k * x0
 
 #!spiral
@@ -570,15 +561,15 @@ inl spring_force k (_, x0, _) =
 inl damped_ho_forces () =
     [
         spring_force 0.8
-        fun _, _, v0 => f_air 2 1.225 (pi () * square 0.02) v0
+        fun (state_1d (_, _, v0)) => f_air 2 1.225 (pi * square 0.02) v0
         fun _ => -0.0027 * 9.80665
     ]
     
 inl damped_ho_states () =
-    states_txv 0.001 0.0027 (0.0, 0.1, 0.0) (damped_ho_forces ())
+    states_txv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ())
     
 inl pingpong_position t =
-    position_ftxv 0.001 0.0027 (0, 0.1, 0) (damped_ho_forces ()) t
+    position_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
 
 inl x : a _ f64 = init_series 0 3 0.01
 inl y = x |> am.map pingpong_position
@@ -589,7 +580,7 @@ inl y = x |> am.map pingpong_position
 // // test
 
 inl pingpong_velocity t =
-    velocity_ftxv 0.001 0.0027 (0, 0.1, 0) (damped_ho_forces ()) t
+    velocity_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
 
 inl x = init_series 0 3 0.01
 inl y = x |> am.map pingpong_velocity
@@ -601,16 +592,21 @@ inl y = x |> am.map pingpong_velocity
 
 #!spiral
 
-nominal state_1d = time * position * velocity
-nominal rrr = f64 * f64 * f64
+type update_function s = s -> s
 
-inl newton_second_1d m fs (state_1d (t, x0, v0)) : rrr =
-    inl f_net = fs |> listm.map (fun f => f (state_1d (t, x0, v0))) |> list_sum
-    inl acc = f_net / m
-    rrr (1f64, v0, acc)
+type differential_equation s ds = s -> ds
 
-inl euler_cromer_1d dt (deriv : state_1d -> rrr) (state_1d (t0, x0, v0)) =
-    inl (rrr (_, _, dvdt)) = deriv (state_1d (t0, x0, v0))
+type numerical_method s ds = differential_equation s ds -> update_function s
+
+
+inl solver method =
+    method >> iterate
+inl solver' method =
+    method >> iterate'
+
+
+inl euler_cromer_1d dt deriv (state_1d (t0, x0, v0) as t) =
+    inl (rrr (_, _, dvdt)) = deriv t
     inl t1 = t0 + dt
     inl v1 = v0 + dvdt * dt
     inl x1 = x0 + v1 * dt
@@ -628,63 +624,44 @@ instance (+++) rrr = fun (rrr (dtdt0, dxdt0, dvdt0)) (rrr (dtdt1, dxdt1, dvdt1))
 instance scale rrr = fun w (rrr (dtdt0, dxdt0, dvdt0)) =>
     rrr (w * dtdt0, w * dxdt0, w * dvdt0)
 
-prototype shift s : forall ds {(+++)}. f64 -> ds -> s -> s
+prototype shift s : forall ds. f64 -> ds -> s -> s
 
 instance shift state_1d = fun dt ds (state_1d (t, x, v)) =>
     inl dtdt, dxdt, dvdt =
         real
             match ds with
-            | rrr (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
-            | state_1d (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
+            | rrr x => x
+            | state_1d x => x
     state_1d (t + dtdt * dt, x + dxdt * dt, v + dvdt * dt)
 
-instance shift rrr = fun dt ds (rrr (t, x, v)) =>
-    inl dtdt, dxdt, dvdt =
-        real
-            match ds with
-            | rrr (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
-            | state_1d (dtdt, dxdt, dvdt) => dtdt, dxdt, dvdt
-    rrr (t + dtdt * dt, x + dxdt * dt, v + dvdt * dt)
+inl euler dt deriv st0 =
+    shift dt (deriv st0) st0
 
-prototype euler s : forall ds {(+++)}. f64 -> (s -> ds) -> s -> s
-
-instance euler state_1d = fun dt deriv st0 => shift dt (deriv st0) st0
-instance euler rrr = fun dt deriv st0 => shift dt (deriv st0) st0
-
-prototype runge_kutta_4 s : forall ds {(+++)}. f64 -> (s -> ds) -> s -> s
-
-instance runge_kutta_4 state_1d = fun dt deriv st0 =>
+inl runge_kutta_4 dt deriv st0 =
     inl m0 = deriv st0
     inl m1 = deriv (shift (dt / 2) m0 st0)
     inl m2 = deriv (shift (dt / 2) m1 st0)
     inl m3 = deriv (shift dt m2 st0)
     shift (dt / 6) (m0 +++ m1 +++ m1 +++ m2 +++ m2 +++ m3) st0
 
-instance runge_kutta_4 rrr = fun dt deriv st0 =>
-    inl m0 = deriv st0
-    inl m1 = deriv (shift (dt / 2) m0 st0)
-    inl m2 = deriv (shift (dt / 2) m1 st0)
-    inl m3 = deriv (shift dt m2 st0)
-    shift (dt / 6) (m0 +++ m1 +++ m1 +++ m2 +++ m2 +++ m3) st0
+inl exponential (_, x0, v0) =
+    1f64, v0, x0
 
-inl exponential (rrr (_, x0, v0)) =
-    rrr (1f64, v0, x0)
-
-inl exponential' (state_1d (_, x0, v0)) =
-    rrr (1f64, v0, x0)
+inl of_state_1d (state_1d (t, x, v)) =
+    t, x, v
 
 #!spiral
 
 // // test
 
-iterate (euler 0.01 exponential) (rrr (0, 1, 1)) 800i32
-|> _equal (rrr (7.999999999999874, 2864.8311229272326, 2864.8311229272326))
+solver (euler 0.01) (of_state_1d >> exponential >> state_1d) (state_1d (0, 1, 1)) 800i32
+|> _equal (state_1d (7.999999999999874, 2864.8311229272326, 2864.8311229272326))
 
-iterate (euler_cromer_1d 0.1 exponential') (state_1d (0, 1, 1)) 80i32
+solver (euler_cromer_1d 0.1) (of_state_1d >> exponential >> rrr) (state_1d (0, 1, 1)) 80i32
 |> _equal (state_1d (7.999999999999988, 3043.379244966009, 2895.0121485099035))
 
-iterate (runge_kutta_4 1 exponential) (rrr (0, 1, 1)) 8i32
-|> _equal (rrr (8.0, 2894.789038540849, 2894.789038540849))
+solver (runge_kutta_4 1) (of_state_1d >> exponential >> rrr) (state_1d (0, 1, 1)) 8i32
+|> _equal (state_1d (8.0, 2894.789038540849, 2894.789038540849))
 
 #!markdown
 
@@ -768,6 +745,13 @@ inl (*^) c { x y z } =
 
 5 *^ vec 1 2 3
 |> _equal (vec 5 10 15)
+
+#!spiral
+
+// // test
+
+3 *^ i_hat () ^+^ 4 *^ k_hat ()
+|> _equal (vec 3 0 4)
 
 #!markdown
 
@@ -921,8 +905,182 @@ inl vec_derivative dt : vec_derivative =
 vec_derivative 0.01 v1 3 .x
 |> _almost_equal (derivative 0.01 (v1 >> fun v => v.x) 3)
 
+#!markdown
+
+## position_ps
+
 #!spiral
 
-// // test
+nominal particle_state =
+    {
+        mass : f64
+        charge : f64
+        time : f64
+        pos_vec : vec
+        velocity : vec
+    }
 
-()
+inl default_particle_state () : particle_state =
+    particle_state {
+        mass = 1
+        charge = 0
+        time = 0
+        pos_vec = zero_vec ()
+        velocity = zero_vec ()
+    }
+    
+inl rock_state () =
+    inl (particle_state default_particle_state') = default_particle_state ()
+    particle_state { default_particle_state' with
+        mass = 2
+        velocity = vec 3 0 4
+    }
+
+type one_body_force = particle_state -> vec
+
+nominal d_particle_state =
+    {
+        dmdt : f64
+        dqdt : f64
+        dtdt : f64
+        drdt : vec
+        dvdt : vec
+    }
+
+inl newton_second_ps (fs : list one_body_force) (st : particle_state) : d_particle_state =
+    inl f_net = fs |> listm.map (fun f => f st) |> sum_vec
+    d_particle_state {
+        dmdt = 0
+        dqdt = 0
+        dtdt = 1
+        drdt = st.velocity
+        dvdt = f_net ^/ st.mass
+    }
+
+inl earth_surface_gravity (st : particle_state) =
+    inl g = 9.80665
+    -st.mass * g *^ k_hat ()
+
+inl sun_gravity (st : particle_state) : vec =
+    inl big_g = 0.0000000000667408
+    inl sun_mass = 1988480000000000000000000000000
+    -big_g * sun_mass * st.mass *^ st.pos_vec ^/ magnitude st.pos_vec ** 3
+
+inl air_resistance drag rho area (st : particle_state) =
+    -0.5 * drag * rho * area * magnitude st.velocity *^ st.velocity
+
+inl wind_force v_wind drag rho area (st : particle_state) =
+    inl v_rel = st.velocity ^-^ v_wind
+    -0.5 * drag * rho * area * magnitude v_rel *^ v_rel
+
+inl uniform_lorentz_force v_e v_b (st : particle_state) =
+    st.charge *^ (v_e ^+^ st.velocity >< v_b)
+
+inl euler_cromer_ps dt (deriv : particle_state -> d_particle_state) (particle_state st) =
+    inl dst : d_particle_state = deriv (particle_state st)
+    inl v' = st.velocity ^+^ dst.dvdt ^* dt
+    particle_state { st with
+        time = st.time + dt
+        pos_vec = st.pos_vec ^+^ v' ^* dt
+        velocity = st.velocity ^+^ dst.dvdt ^* dt
+    }
+
+instance (+++) d_particle_state = fun (dps : d_particle_state) (dps' : d_particle_state) =>
+    d_particle_state {
+        dmdt = dps.dmdt + dps'.dmdt
+        dqdt = dps.dqdt + dps'.dqdt
+        dtdt = dps.dtdt + dps'.dtdt
+        drdt = dps.drdt ^+^ dps'.drdt
+        dvdt = dps.dvdt ^+^ dps'.dvdt
+    }
+
+instance scale d_particle_state = fun w (dps : d_particle_state) =>
+    d_particle_state {
+        dmdt = w * dps.dmdt
+        dqdt = w * dps.dqdt
+        dtdt = w * dps.dtdt
+        drdt = w *^ dps.drdt
+        dvdt = w *^ dps.dvdt
+    }
+
+instance shift particle_state = fun dt dps (particle_state st) =>
+    inl (d_particle_state dps) =
+        real
+            match dps with
+            | d_particle_state _ => dps
+    particle_state { st with
+        time = st.time + dps.dtdt * dt
+        pos_vec = st.pos_vec ^+^ dps.drdt ^* dt
+        velocity = st.velocity ^+^ dps.dvdt ^* dt
+    }
+
+#!spiral
+
+// // timeout=3000
+
+inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
+    newton_second_ps >> method >> iterate
+    
+inl update_ps (method : numerical_method particle_state d_particle_state) =
+    newton_second_ps >> method
+
+inl position_ps (method : numerical_method particle_state d_particle_state) fs st t =
+    inl states : i32 -> particle_state = states_ps method fs st
+    inl dt = (states 1).time - (states 0).time
+    inl num_steps = t / dt |> round |> abs
+    inl st1 = solver' method (newton_second_ps fs) st num_steps
+    st1.pos_vec
+
+inl halley_update dt =
+    update_ps (euler_cromer_ps dt) [sun_gravity]
+
+inl halley_initial () =
+    inl (particle_state default_particle_state') = default_particle_state ()
+    particle_state { default_particle_state' with
+        mass = 220000000000000
+        pos_vec = 87660000000 *^ i_hat ()
+        velocity = 54569 *^ j_hat ()
+    }
+    
+inl baseball_forces () =
+    inl area = pi * (0.074 / 2) |> square
+    [
+        earth_surface_gravity
+        air_resistance 0.3 1.225 area
+    ]
+
+inl z_ge0 (sts : i32 -> particle_state) : list particle_state =
+    inl rec loop i acc =
+        inl st = sts i
+        if st.pos_vec.z < 0 || i > 5
+        then listm.rev acc
+        else join loop (i + 1) (st :: acc)
+    loop 0 []
+
+inl trajectory (sts : list particle_state) : list (f64 * f64) =
+    sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
+
+inl baseball_trajectory dt v0 theta_deg =
+    inl theta_rad = theta_deg * pi / 180
+    inl vy0 = v0 * cos theta_rad
+    inl vz0 = v0 * sin theta_rad
+    inl initial_state =
+        particle_state {
+            mass = 0.145
+            charge = 0
+            time = 0
+            pos_vec = zero_vec ()
+            velocity = vec 0 vy0 vz0
+        }
+    states_ps (join euler_cromer_ps dt) (baseball_forces ()) initial_state
+    |> z_ge0
+    |> trajectory
+
+
+inl baseball_range dt v0 theta_deg : f64 =
+    baseball_trajectory dt v0 theta_deg
+    |> listm.fold (fun _ (y, _) => y) 0
+
+inl x : a _ f64 = init_series 10 80 11
+inl y = x |> am.map (baseball_range 0.01 45)
+"range for a baseball hit at 45 m/s", "angle above horizontal (degrees)", x, "", ;["horizontal range (m)", y]

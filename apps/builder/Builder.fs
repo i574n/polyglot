@@ -133,7 +133,7 @@ module Builder =
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
-                | Path _ -> nameof Arguments.Path
+                | Path _ -> nameof Path
                 | Packages _ -> nameof Arguments.Packages
                 | Modules _ -> nameof Arguments.Modules
                 | Runtime _ -> nameof Arguments.Runtime

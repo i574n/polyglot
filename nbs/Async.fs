@@ -64,8 +64,8 @@ module Async =
                 trace Warning (fun () -> "runWithTimeoutAsync") getLocals
                 return None
             | ex ->
-                trace Critical (fun () -> "runWithTimeoutAsync / ex: {ex |> printException}") getLocals
-                return raise ex
+                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> printException}") getLocals
+                return None
         }
 
         [ timeoutTask; task ]
@@ -90,7 +90,7 @@ module Async =
                     trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutChildAsync / ex: {ex |> printException}") getLocals
+                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> printException}") getLocals
                     None
             )
     }
@@ -117,9 +117,9 @@ module Async =
             | :? System.TimeoutException as ex ->
                 let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
                 return None, getLocals
-            | e ->
-                trace Critical (fun () -> "runWithTimeoutStrict") getLocals
-                return raise e
+            | ex ->
+                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> printException}") getLocals
+                return raise ex
         }
 
         try
@@ -141,8 +141,9 @@ module Async =
             trace Warning (fun () -> "runWithTimeoutStrict") getLocals
             None
         | ex ->
-            trace Critical (fun () -> "runWithTimeoutStrict") getLocals
-            raise ex
+            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            trace Critical (fun () -> "runWithTimeoutStrict**") getLocals
+            None
 
     /// ## awaitValueTask
 
