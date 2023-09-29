@@ -21,15 +21,15 @@ rustup update
 
 #!pwsh
 
-cargo +nightly install cargo-outdated
+{ cargo +nightly install cargo-outdated } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-cargo +nightly install wasm-pack
+{ cargo +nightly install wasm-pack } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-cargo +nightly install trunk
+{ cargo +nightly install trunk } | Invoke-Block -OnError Continue
 
 #!pwsh
 
