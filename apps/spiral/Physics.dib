@@ -928,13 +928,6 @@ inl default_particle_state () : particle_state =
         pos_vec = zero_vec ()
         velocity = zero_vec ()
     }
-    
-inl rock_state () =
-    inl (particle_state default_particle_state') = default_particle_state ()
-    particle_state { default_particle_state' with
-        mass = 2
-        velocity = vec 3 0 4
-    }
 
 type one_body_force = particle_state -> vec
 
@@ -961,20 +954,8 @@ inl earth_surface_gravity (st : particle_state) =
     inl g = 9.80665
     -st.mass * g *^ k_hat ()
 
-inl sun_gravity (st : particle_state) : vec =
-    inl big_g = 0.0000000000667408
-    inl sun_mass = 1988480000000000000000000000000
-    -big_g * sun_mass * st.mass *^ st.pos_vec ^/ magnitude st.pos_vec ** 3
-
 inl air_resistance drag rho area (st : particle_state) =
     -0.5 * drag * rho * area * magnitude st.velocity *^ st.velocity
-
-inl wind_force v_wind drag rho area (st : particle_state) =
-    inl v_rel = st.velocity ^-^ v_wind
-    -0.5 * drag * rho * area * magnitude v_rel *^ v_rel
-
-inl uniform_lorentz_force v_e v_b (st : particle_state) =
-    st.charge *^ (v_e ^+^ st.velocity >< v_b)
 
 inl euler_cromer_ps dt (deriv : particle_state -> d_particle_state) (particle_state st) =
     inl dst : d_particle_state = deriv (particle_state st)
@@ -1014,13 +995,29 @@ instance shift particle_state = fun dt dps (particle_state st) =>
         velocity = st.velocity ^+^ dps.dvdt ^* dt
     }
 
+inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
+    newton_second_ps >> method >> iterate'
+
+inl z_ge0 sts =
+    inl result = mut []
+    inl i = mut 0i32
+    inl rec loop () =
+        inl st : particle_state = sts *i
+        if st.pos_vec.z < 0
+        then *result |> listm.rev
+        else
+            result <- st :: *result
+            i <- *i + 1
+            join loop ()
+    loop ()
+
+inl trajectory sts =
+    sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
+
 #!spiral
 
-// // timeout=3000
+// // test
 
-inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
-    newton_second_ps >> method >> iterate
-    
 inl update_ps (method : numerical_method particle_state d_particle_state) =
     newton_second_ps >> method
 
@@ -1030,6 +1027,25 @@ inl position_ps (method : numerical_method particle_state d_particle_state) fs s
     inl num_steps = t / dt |> round |> abs
     inl st1 = solver' method (newton_second_ps fs) st num_steps
     st1.pos_vec
+
+inl sun_gravity (st : particle_state) : vec =
+    inl big_g = 0.0000000000667408
+    inl sun_mass = 1988480000000000000000000000000
+    -big_g * sun_mass * st.mass *^ st.pos_vec ^/ magnitude st.pos_vec ** 3
+
+inl wind_force v_wind drag rho area (st : particle_state) =
+    inl v_rel = st.velocity ^-^ v_wind
+    -0.5 * drag * rho * area * magnitude v_rel *^ v_rel
+
+inl uniform_lorentz_force v_e v_b (st : particle_state) =
+    st.charge *^ (v_e ^+^ st.velocity >< v_b)
+
+inl rock_state () =
+    inl (particle_state default_particle_state') = default_particle_state ()
+    particle_state { default_particle_state' with
+        mass = 2
+        velocity = vec 3 0 4
+    }
 
 inl halley_update dt =
     update_ps (euler_cromer_ps dt) [sun_gravity]
@@ -1041,24 +1057,18 @@ inl halley_initial () =
         pos_vec = 87660000000 *^ i_hat ()
         velocity = 54569 *^ j_hat ()
     }
-    
+
+#!spiral
+
+// // test
+// // timeout=5000
+
 inl baseball_forces () =
-    inl area = pi * (0.074 / 2) |> square
+    inl area = pi * (0.074 / 2) ** 2
     [
         earth_surface_gravity
         air_resistance 0.3 1.225 area
     ]
-
-inl z_ge0 (sts : i32 -> particle_state) : list particle_state =
-    inl rec loop i acc =
-        inl st = sts i
-        if st.pos_vec.z < 0 || i > 5
-        then listm.rev acc
-        else join loop (i + 1) (st :: acc)
-    loop 0 []
-
-inl trajectory (sts : list particle_state) : list (f64 * f64) =
-    sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
 
 inl baseball_trajectory dt v0 theta_deg =
     inl theta_rad = theta_deg * pi / 180
@@ -1072,15 +1082,38 @@ inl baseball_trajectory dt v0 theta_deg =
             pos_vec = zero_vec ()
             velocity = vec 0 vy0 vz0
         }
-    states_ps (join euler_cromer_ps dt) (baseball_forces ()) initial_state
+    states_ps (euler_cromer_ps dt) (baseball_forces ()) initial_state
     |> z_ge0
     |> trajectory
 
-
-inl baseball_range dt v0 theta_deg : f64 =
+inl baseball_range dt v0 theta_deg =
     baseball_trajectory dt v0 theta_deg
     |> listm.fold (fun _ (y, _) => y) 0
 
-inl x : a _ f64 = init_series 10 80 11
+inl x : a _ f64 = init_series 10 80 1
 inl y = x |> am.map (baseball_range 0.01 45)
 "range for a baseball hit at 45 m/s", "angle above horizontal (degrees)", x, "", ;["horizontal range (m)", y]
+
+#!spiral
+
+// // test
+// // timeout=5000
+
+inl best_angle (min, max) =
+    inl best_range = mut 0f64
+    inl best_theta_deg = mut min
+    inl theta_deg = mut min
+    inl rec loop () =
+        if *theta_deg > max
+        then *best_range, *best_theta_deg
+        else
+            inl range = baseball_range 0.01 45 *theta_deg
+            if range > *best_range then
+                best_range <- range
+                best_theta_deg <- *theta_deg
+            theta_deg <- *theta_deg + 1
+            join loop ()
+    loop ()
+
+best_angle (30f64, 60f64)
+|> _equal (116.77499158246208, 41)

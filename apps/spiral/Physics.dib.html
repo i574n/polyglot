@@ -7588,23 +7588,14 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">atan2</span> <span class="p">(</span><span class="n">y</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"System.Math.Atan2 (!y, !x)"</span> <span class="p">:</span> <span class="n">f64</span>
 
-<span class="n">inl</span> <span class="n">cos</span> <span class="p">(</span><span class="n">d</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"System.Math.Cos !d"</span> <span class="p">:</span> <span class="n">f64</span>
-
 <span class="n">inl</span> <span class="n">e</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">exp</span> <span class="mi">1</span><span class="n">f64</span>
 
 <span class="n">inl</span> <span class="n">log_base</span> <span class="p">(</span><span class="n">new_base</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"System.Math.Log (!a, !new_base)"</span> <span class="p">:</span> <span class="n">f64</span>
 
-<span class="n">inl</span> <span class="n">pi</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"System.Math.PI"</span> <span class="p">:</span> <span class="n">f64</span>
-
 <span class="n">inl</span> <span class="nb">round</span> <span class="n">forall</span> <span class="n">t</span> <span class="p">{</span><span class="nb">float</span><span class="p">}</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"round !x"</span>
-
-<span class="n">inl</span> <span class="n">sin</span> <span class="p">(</span><span class="n">d</span> <span class="p">:</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"System.Math.Sin !d"</span> <span class="p">:</span> <span class="n">f64</span>
 
 <span class="n">inl</span> <span class="n">square</span> <span class="n">x</span> <span class="o">=</span>
     <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
@@ -7739,8 +7730,8 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">pi</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">3.141592653589793</span>
+<span class="n">pi</span>
+<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">3.141592653589793</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7754,20 +7745,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : float = System.Math.PI
-    let v1 : float = 3.141592653589793 - v0
-    let v2 : float =  -v1
-    let v3 : bool = v1 &gt;= v2
-    let v4 : float =
-        if v3 then
-            v1
-        else
-            v2
-    let v5 : bool = v4 &lt; 1E-08
-    let v6 : string = $"_almost_equal / actual: {v0} / expected: {3.141592653589793}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v0 : string = $"_almost_equal / actual: {3.141592653589793} / expected: {3.141592653589793}"
+    ()
 method0()
 
 </pre>
@@ -7785,8 +7764,8 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">pi</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">cos</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">pi</span> <span class="o">|&gt;</span> <span class="n">cos</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="o">-</span><span class="mi">1</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7800,13 +7779,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : float = System.Math.PI
-    let v1 : float = System.Math.Cos v0
-    let v2 : bool = v1 = -1.0
-    let v3 : string = $"_equal / actual: {v1} / expected: {-1.0}"
-    let v4 : bool = v2 = false
-    if v4 then
-        failwith&lt;unit&gt; v3
+    let v0 : string = $"_equal / actual: {-1.0} / expected: {-1.0}"
+    ()
 method0()
 
 </pre>
@@ -7824,9 +7798,9 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">pi</span> <span class="p">()</span>
+<span class="n">pi</span>
 <span class="o">|&gt;</span> <span class="n">cos</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="n">f64</span>
 <span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="o">-</span><span class="mf">0.5</span>
 </pre></div>
 </div>
@@ -7841,22 +7815,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : float = System.Math.PI
-    let v1 : float = System.Math.Cos v0
-    let v2 : float = v1 / 2.0
-    let v3 : float = -0.5 - v2
-    let v4 : float =  -v3
-    let v5 : bool = v3 &gt;= v4
-    let v6 : float =
-        if v5 then
-            v3
-        else
-            v4
-    let v7 : bool = v6 &lt; 1E-08
-    let v8 : string = $"_almost_equal / actual: {v2} / expected: {-0.5}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+    let v0 : string = $"_almost_equal / actual: {-0.5} / expected: {-0.5}"
+    ()
 method0()
 
 </pre>
@@ -7874,8 +7834,8 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">pi</span> <span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">|&gt;</span> <span class="n">cos</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.00000000000000006123233995736766</span>
+<span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">|&gt;</span> <span class="n">cos</span>
+<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.00000000000000006123233995736766</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7889,22 +7849,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : float = System.Math.PI
-    let v1 : float = v0 / 2.0
-    let v2 : float = System.Math.Cos v1
-    let v3 : float = 6.123233995736766E-17 - v2
-    let v4 : float =  -v3
-    let v5 : bool = v3 &gt;= v4
-    let v6 : float =
-        if v5 then
-            v3
-        else
-            v4
-    let v7 : bool = v6 &lt; 1E-08
-    let v8 : string = $"_almost_equal / actual: {v2} / expected: {6.123233995736766E-17}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+    let v0 : string = $"_almost_equal / actual: {6.123233995736766E-17} / expected: {6.123233995736766E-17}"
+    ()
 method0()
 
 </pre>
@@ -8079,7 +8025,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">iterate</span> <span class="n">f</span> <span class="n">x0</span> <span class="n">num_steps</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">x</span> <span class="n">n</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span>
         <span class="n">then</span> <span class="n">x</span>
         <span class="k">else</span> <span class="n">loop</span> <span class="p">(</span><span class="n">f</span> <span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">loop</span> <span class="n">x0</span> <span class="n">num_steps</span>
@@ -8115,7 +8061,6 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
 
 <span class="mi">10</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">iterate</span> <span class="p">((</span><span class="o">+</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">11</span>
@@ -8840,7 +8785,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">init_series</span> <span class="o">-</span><span class="mi">10</span> <span class="mi">10</span> <span class="mf">0.1</span>
+<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">init_series</span> <span class="o">-</span><span class="mi">10</span> <span class="mi">10</span> <span class="mf">0.1</span>
 <span class="n">inl</span> <span class="n">y_sin</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">sin</span>
 <span class="n">inl</span> <span class="n">y_cos</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">cos</span>
 <span class="s2">"sin cos"</span><span class="p">,</span> <span class="s2">"x"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">,</span> <span class="p">;[</span><span class="s2">"sin"</span><span class="p">,</span> <span class="n">y_sin</span><span class="p">;</span> <span class="s2">"cos"</span><span class="p">,</span> <span class="n">y_cos</span><span class="p">]</span>
@@ -9190,7 +9135,7 @@ and method0 () : struct (string * string * (float []) * string * (struct (string
     while method2(v8, v10) do
         let v12 : int32 = v10.l0
         let v13 : float = v0.[int v12]
-        let v14 : float = System.Math.Sin v13
+        let v14 : float = sin v13
         v9.[int v12] &lt;- v14
         let v15 : int32 = v12 + 1
         v10.l0 &lt;- v15
@@ -9200,7 +9145,7 @@ and method0 () : struct (string * string * (float []) * string * (struct (string
     while method2(v8, v17) do
         let v19 : int32 = v17.l0
         let v20 : float = v0.[int v19]
-        let v21 : float = System.Math.Cos v20
+        let v21 : float = cos v20
         v16.[int v19] &lt;- v21
         let v22 : int32 = v19 + 1
         v17.l0 &lt;- v22
@@ -12242,19 +12187,20 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">state_1d</span> <span class="o">=</span> <span class="n">time</span> <span class="o">*</span> <span class="n">position</span> <span class="o">*</span> <span class="n">velocity</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">state_1d</span> <span class="o">=</span> <span class="n">time</span> <span class="o">*</span> <span class="n">position</span> <span class="o">*</span> <span class="n">velocity</span>
+<span class="n">nominal</span> <span class="n">rrr</span> <span class="o">=</span> <span class="n">f64</span> <span class="o">*</span> <span class="n">f64</span> <span class="o">*</span> <span class="n">f64</span>
 
-<span class="n">inl</span> <span class="n">newton_second_1d</span> <span class="n">m</span> <span class="n">fs</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span> <span class="p">:</span> <span class="n">state_1d</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">f_net</span> <span class="o">=</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">list_sum</span>
+<span class="n">inl</span> <span class="n">newton_second_1d</span> <span class="n">m</span> <span class="n">fs</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">f_net</span> <span class="o">=</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)))</span> <span class="o">|&gt;</span> <span class="n">list_sum</span>
     <span class="n">inl</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">f_net</span> <span class="o">/</span> <span class="n">m</span>
-    <span class="mi">1</span><span class="n">f64</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">acc</span>
+    <span class="n">rrr</span> <span class="p">(</span><span class="mi">1</span><span class="n">f64</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
 
-<span class="n">inl</span> <span class="n">euler_1d</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">dvdt</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+<span class="n">inl</span> <span class="n">euler_1d</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span> <span class="k">as</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">))</span> <span class="o">=</span> <span class="n">deriv</span> <span class="n">t</span>
     <span class="n">inl</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">dt</span>
     <span class="n">inl</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">dt</span>
     <span class="n">inl</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">dvdt</span> <span class="o">*</span> <span class="n">dt</span>
-    <span class="n">t1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">v1</span>
+    <span class="n">state_1d</span> <span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">update_txv</span> <span class="n">dt</span> <span class="n">m</span> <span class="n">fs</span> <span class="o">=</span>
     <span class="n">newton_second_1d</span> <span class="n">m</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">euler_1d</span> <span class="n">dt</span>
@@ -12263,28 +12209,28 @@ method0()
     <span class="n">iterate</span><span class="s1">' (update_txv dt m fs) txv0</span>
 
 <span class="n">inl</span> <span class="n">velocity_1d</span> <span class="n">sts</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">t0</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">0</span>
-    <span class="n">inl</span> <span class="n">t1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">1</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">0</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">1</span>
     <span class="n">inl</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
     <span class="n">inl</span> <span class="n">num_steps</span> <span class="o">=</span> <span class="n">t</span> <span class="o">/</span> <span class="n">dt</span> <span class="o">|&gt;</span> <span class="nb">round</span> <span class="o">|&gt;</span> <span class="nb">abs</span>
-    <span class="n">inl</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">v0</span> <span class="o">=</span> <span class="n">sts</span> <span class="n">num_steps</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">=</span> <span class="n">sts</span> <span class="n">num_steps</span>
     <span class="n">v0</span>
 
 <span class="n">inl</span> <span class="n">velocity_ftxv</span> <span class="n">dt</span> <span class="n">m</span> <span class="n">txv0</span> <span class="n">fs</span> <span class="o">=</span>
     <span class="n">states_txv</span> <span class="n">dt</span> <span class="n">m</span> <span class="n">txv0</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">velocity_1d</span>
 
 <span class="n">inl</span> <span class="n">position_1d</span> <span class="n">sts</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">t0</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">0</span>
-    <span class="n">inl</span> <span class="n">t1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">1</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">0</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span> <span class="n">sts</span> <span class="mi">1</span>
     <span class="n">inl</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
     <span class="n">inl</span> <span class="n">num_steps</span> <span class="o">=</span> <span class="n">t</span> <span class="o">/</span> <span class="n">dt</span> <span class="o">|&gt;</span> <span class="nb">round</span> <span class="o">|&gt;</span> <span class="nb">abs</span>
-    <span class="n">inl</span> <span class="n">_</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">sts</span> <span class="n">num_steps</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span> <span class="n">sts</span> <span class="n">num_steps</span>
     <span class="n">x0</span>
 
 <span class="n">inl</span> <span class="n">position_ftxv</span> <span class="n">dt</span> <span class="n">m</span> <span class="n">txv0</span> <span class="n">fs</span> <span class="o">=</span>
     <span class="n">states_txv</span> <span class="n">dt</span> <span class="n">m</span> <span class="n">txv0</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">position_1d</span>
 
-<span class="n">inl</span> <span class="n">spring_force</span> <span class="n">k</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span>
+<span class="n">inl</span> <span class="n">spring_force</span> <span class="n">k</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span>
     <span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">x0</span>
 </pre></div>
 </div>
@@ -12318,15 +12264,15 @@ method0()
 <span class="n">inl</span> <span class="n">damped_ho_forces</span> <span class="p">()</span> <span class="o">=</span>
     <span class="p">[</span>
         <span class="n">spring_force</span> <span class="mf">0.8</span>
-        <span class="n">fun</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">v0</span> <span class="o">=&gt;</span> <span class="n">f_air</span> <span class="mi">2</span> <span class="mf">1.225</span> <span class="p">(</span><span class="n">pi</span> <span class="p">()</span> <span class="o">*</span> <span class="n">square</span> <span class="mf">0.02</span><span class="p">)</span> <span class="n">v0</span>
+        <span class="n">fun</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">=&gt;</span> <span class="n">f_air</span> <span class="mi">2</span> <span class="mf">1.225</span> <span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">square</span> <span class="mf">0.02</span><span class="p">)</span> <span class="n">v0</span>
         <span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mf">0.0027</span> <span class="o">*</span> <span class="mf">9.80665</span>
     <span class="p">]</span>
     
 <span class="n">inl</span> <span class="n">damped_ho_states</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">states_txv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span>
+    <span class="n">states_txv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span>
     
 <span class="n">inl</span> <span class="n">pingpong_position</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">position_ftxv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span> <span class="n">t</span>
+    <span class="n">position_ftxv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span> <span class="n">t</span>
 
 <span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">init_series</span> <span class="mi">0</span> <span class="mi">3</span> <span class="mf">0.01</span>
 <span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">pingpong_position</span>
@@ -12673,29 +12619,26 @@ and method3 (v0 : float, v1 : float) : UH0 =
 and method4 (v0 : UH0, v1 : float, v2 : float, v3 : float) : struct (float * float * float) =
     match v0 with
     | UH0_0(v4, v5) -&gt; (* Cons *)
-        let v6 : float = System.Math.PI
-        let v7 : float = v6 * 0.0004
-        let v8 : float = -2.45 * v7
-        let v9 : float =  -v3
-        let v10 : bool = v3 &gt;= v9
-        let v11 : float =
-            if v10 then
+        let v6 : float =  -v3
+        let v7 : bool = v3 &gt;= v6
+        let v8 : float =
+            if v7 then
                 v3
             else
-                v9
-        let v12 : float = v8 * v11
-        let v13 : float = v12 * v3
-        let v14 : float = v13 / 2.0
-        let v15 : float = -0.8 * v2
-        let v16 : float = v15 + v14
-        let v17 : float = v16 + -0.026477955
-        let v18 : float = v17 / 0.0027
-        let v19 : float = v1 + 0.001
-        let v20 : float = v3 * 0.001
-        let v21 : float = v2 + v20
-        let v22 : float = v18 * 0.001
-        let v23 : float = v3 + v22
-        method4(v5, v19, v21, v23)
+                v6
+        let v9 : float = -0.0030787608005179976 * v8
+        let v10 : float = v9 * v3
+        let v11 : float = v10 / 2.0
+        let v12 : float = -0.8 * v2
+        let v13 : float = v12 + v11
+        let v14 : float = v13 + -0.026477955
+        let v15 : float = v14 / 0.0027
+        let v16 : float = v1 + 0.001
+        let v17 : float = v3 * 0.001
+        let v18 : float = v2 + v17
+        let v19 : float = v15 * 0.001
+        let v20 : float = v3 + v19
+        method4(v5, v16, v18, v20)
     | UH0_1 -&gt; (* Nil *)
         struct (v1, v2, v3)
 and method0 () : struct (string * string * (float []) * string * (struct (string * (float [])) [])) =
@@ -12715,41 +12658,31 @@ and method0 () : struct (string * string * (float []) * string * (struct (string
     while method2(v7, v9) do
         let v11 : int32 = v9.l0
         let v12 : float = v0.[int v11]
-        let v13 : float = System.Math.PI
-        let v14 : float = v13 * 0.0004
-        let v15 : float = -2.45 * v14
-        let v16 : float = v15 * 0.0
-        let v17 : float = v16 * 0.0
-        let v18 : float = v17 / 2.0
-        let v19 : float = -0.08000000000000002 + v18
-        let v20 : float = v19 + -0.026477955
-        let v21 : float = v20 / 0.0027
-        let v22 : float = v21 * 0.001
-        let v23 : float = v12 / 0.001
-        let v24 : float = round v23
-        let v25 : float =  -v24
-        let v26 : bool = v24 &gt;= v25
-        let v27 : float =
-            if v26 then
-                v24
+        let v13 : float = v12 / 0.001
+        let v14 : float = round v13
+        let v15 : float =  -v14
+        let v16 : bool = v14 &gt;= v15
+        let v17 : float =
+            if v16 then
+                v14
             else
-                v25
-        let v28 : float = 0.0
-        let v29 : UH0 = method3(v27, v28)
-        let v30 : float = 0.0
-        let v31 : float = 0.1
-        let v32 : float = 0.0
-        let struct (v33 : float, v34 : float, v35 : float) = method4(v29, v30, v31, v32)
-        v8.[int v11] &lt;- v34
-        let v36 : int32 = v11 + 1
-        v9.l0 &lt;- v36
+                v15
+        let v18 : float = 0.0
+        let v19 : UH0 = method3(v17, v18)
+        let v20 : float = 0.0
+        let v21 : float = 0.1
+        let v22 : float = 0.0
+        let struct (v23 : float, v24 : float, v25 : float) = method4(v19, v20, v21, v22)
+        v8.[int v11] &lt;- v24
+        let v26 : int32 = v11 + 1
+        v9.l0 &lt;- v26
         ()
-    let v37 : string = "position (m)"
-    let v38 : (struct (string * (float [])) []) = [|struct (v37, v8)|]
-    let v39 : string = "ping pong ball on a slinky"
-    let v40 : string = "time (s)"
-    let v41 : string = ""
-    struct (v39, v40, v0, v41, v38)
+    let v27 : string = "position (m)"
+    let v28 : (struct (string * (float [])) []) = [|struct (v27, v8)|]
+    let v29 : string = "ping pong ball on a slinky"
+    let v30 : string = "time (s)"
+    let v31 : string = ""
+    struct (v29, v30, v0, v31, v28)
 method0()
 
 </pre>
@@ -12768,7 +12701,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">inl</span> <span class="n">pingpong_velocity</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">velocity_ftxv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span> <span class="n">t</span>
+    <span class="n">velocity_ftxv</span> <span class="mf">0.001</span> <span class="mf">0.0027</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="p">(</span><span class="n">damped_ho_forces</span> <span class="p">())</span> <span class="n">t</span>
 
 <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">init_series</span> <span class="mi">0</span> <span class="mi">3</span> <span class="mf">0.01</span>
 <span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">pingpong_velocity</span>
@@ -13137,29 +13070,26 @@ and method3 (v0 : float, v1 : float) : UH0 =
 and method4 (v0 : UH0, v1 : float, v2 : float, v3 : float) : struct (float * float * float) =
     match v0 with
     | UH0_0(v4, v5) -&gt; (* Cons *)
-        let v6 : float = System.Math.PI
-        let v7 : float = v6 * 0.0004
-        let v8 : float = -2.45 * v7
-        let v9 : float =  -v3
-        let v10 : bool = v3 &gt;= v9
-        let v11 : float =
-            if v10 then
+        let v6 : float =  -v3
+        let v7 : bool = v3 &gt;= v6
+        let v8 : float =
+            if v7 then
                 v3
             else
-                v9
-        let v12 : float = v8 * v11
-        let v13 : float = v12 * v3
-        let v14 : float = v13 / 2.0
-        let v15 : float = -0.8 * v2
-        let v16 : float = v15 + v14
-        let v17 : float = v16 + -0.026477955
-        let v18 : float = v17 / 0.0027
-        let v19 : float = v1 + 0.001
-        let v20 : float = v3 * 0.001
-        let v21 : float = v2 + v20
-        let v22 : float = v18 * 0.001
-        let v23 : float = v3 + v22
-        method4(v5, v19, v21, v23)
+                v6
+        let v9 : float = -0.0030787608005179976 * v8
+        let v10 : float = v9 * v3
+        let v11 : float = v10 / 2.0
+        let v12 : float = -0.8 * v2
+        let v13 : float = v12 + v11
+        let v14 : float = v13 + -0.026477955
+        let v15 : float = v14 / 0.0027
+        let v16 : float = v1 + 0.001
+        let v17 : float = v3 * 0.001
+        let v18 : float = v2 + v17
+        let v19 : float = v15 * 0.001
+        let v20 : float = v3 + v19
+        method4(v5, v16, v18, v20)
     | UH0_1 -&gt; (* Nil *)
         struct (v1, v2, v3)
 and method0 () : struct (string * string * (float []) * string * (struct (string * (float [])) [])) =
@@ -13179,41 +13109,31 @@ and method0 () : struct (string * string * (float []) * string * (struct (string
     while method2(v7, v9) do
         let v11 : int32 = v9.l0
         let v12 : float = v0.[int v11]
-        let v13 : float = System.Math.PI
-        let v14 : float = v13 * 0.0004
-        let v15 : float = -2.45 * v14
-        let v16 : float = v15 * 0.0
-        let v17 : float = v16 * 0.0
-        let v18 : float = v17 / 2.0
-        let v19 : float = -0.08000000000000002 + v18
-        let v20 : float = v19 + -0.026477955
-        let v21 : float = v20 / 0.0027
-        let v22 : float = v21 * 0.001
-        let v23 : float = v12 / 0.001
-        let v24 : float = round v23
-        let v25 : float =  -v24
-        let v26 : bool = v24 &gt;= v25
-        let v27 : float =
-            if v26 then
-                v24
+        let v13 : float = v12 / 0.001
+        let v14 : float = round v13
+        let v15 : float =  -v14
+        let v16 : bool = v14 &gt;= v15
+        let v17 : float =
+            if v16 then
+                v14
             else
-                v25
-        let v28 : float = 0.0
-        let v29 : UH0 = method3(v27, v28)
-        let v30 : float = 0.0
-        let v31 : float = 0.1
-        let v32 : float = 0.0
-        let struct (v33 : float, v34 : float, v35 : float) = method4(v29, v30, v31, v32)
-        v8.[int v11] &lt;- v35
-        let v36 : int32 = v11 + 1
-        v9.l0 &lt;- v36
+                v15
+        let v18 : float = 0.0
+        let v19 : UH0 = method3(v17, v18)
+        let v20 : float = 0.0
+        let v21 : float = 0.1
+        let v22 : float = 0.0
+        let struct (v23 : float, v24 : float, v25 : float) = method4(v19, v20, v21, v22)
+        v8.[int v11] &lt;- v25
+        let v26 : int32 = v11 + 1
+        v9.l0 &lt;- v26
         ()
-    let v37 : string = "velocity (m/s)"
-    let v38 : (struct (string * (float [])) []) = [|struct (v37, v8)|]
-    let v39 : string = "ping pong ball on a slinky"
-    let v40 : string = "time (s)"
-    let v41 : string = ""
-    struct (v39, v40, v0, v41, v38)
+    let v27 : string = "velocity (m/s)"
+    let v28 : (struct (string * (float [])) []) = [|struct (v27, v8)|]
+    let v29 : string = "ping pong ball on a slinky"
+    let v30 : string = "time (s)"
+    let v31 : string = ""
+    struct (v29, v30, v0, v31, v28)
 method0()
 
 </pre>
@@ -13240,16 +13160,21 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">state_1d</span> <span class="o">=</span> <span class="n">time</span> <span class="o">*</span> <span class="n">position</span> <span class="o">*</span> <span class="n">velocity</span>
-<span class="n">nominal</span> <span class="n">rrr</span> <span class="o">=</span> <span class="n">f64</span> <span class="o">*</span> <span class="n">f64</span> <span class="o">*</span> <span class="n">f64</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">update_function</span> <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span>
 
-<span class="n">inl</span> <span class="n">newton_second_1d</span> <span class="n">m</span> <span class="n">fs</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="p">:</span> <span class="n">rrr</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">f_net</span> <span class="o">=</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="n">f</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)))</span> <span class="o">|&gt;</span> <span class="n">list_sum</span>
-    <span class="n">inl</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">f_net</span> <span class="o">/</span> <span class="n">m</span>
-    <span class="n">rrr</span> <span class="p">(</span><span class="mi">1</span><span class="n">f64</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+<span class="nb">type</span> <span class="n">differential_equation</span> <span class="n">s</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">ds</span>
 
-<span class="n">inl</span> <span class="n">euler_cromer_1d</span> <span class="n">dt</span> <span class="p">(</span><span class="n">deriv</span> <span class="p">:</span> <span class="n">state_1d</span> <span class="o">-&gt;</span> <span class="n">rrr</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">))</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span>
+<span class="nb">type</span> <span class="n">numerical_method</span> <span class="n">s</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">differential_equation</span> <span class="n">s</span> <span class="n">ds</span> <span class="o">-&gt;</span> <span class="n">update_function</span> <span class="n">s</span>
+
+
+<span class="n">inl</span> <span class="n">solver</span> <span class="n">method</span> <span class="o">=</span>
+    <span class="n">method</span> <span class="o">&gt;&gt;</span> <span class="n">iterate</span>
+<span class="n">inl</span> <span class="n">solver</span><span class="s1">' method =</span>
+    <span class="n">method</span> <span class="o">&gt;&gt;</span> <span class="n">iterate</span><span class="s1">'</span>
+
+
+<span class="n">inl</span> <span class="n">euler_cromer_1d</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span> <span class="k">as</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">))</span> <span class="o">=</span> <span class="n">deriv</span> <span class="n">t</span>
     <span class="n">inl</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">dt</span>
     <span class="n">inl</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">+</span> <span class="n">dvdt</span> <span class="o">*</span> <span class="n">dt</span>
     <span class="n">inl</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="n">v1</span> <span class="o">*</span> <span class="n">dt</span>
@@ -13267,50 +13192,31 @@ method0()
 <span class="n">instance</span> <span class="n">scale</span> <span class="n">rrr</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">w</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="n">dtdt0</span><span class="p">,</span> <span class="n">dxdt0</span><span class="p">,</span> <span class="n">dvdt0</span><span class="p">))</span> <span class="o">=&gt;</span>
     <span class="n">rrr</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">dtdt0</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">dxdt0</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">dvdt0</span><span class="p">)</span>
 
-<span class="n">prototype</span> <span class="n">shift</span> <span class="n">s</span> <span class="p">:</span> <span class="n">forall</span> <span class="n">ds</span> <span class="p">{(</span><span class="o">+++</span><span class="p">)}</span><span class="o">.</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="n">ds</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span>
+<span class="n">prototype</span> <span class="n">shift</span> <span class="n">s</span> <span class="p">:</span> <span class="n">forall</span> <span class="n">ds</span><span class="o">.</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="n">ds</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span>
 
 <span class="n">instance</span> <span class="n">shift</span> <span class="n">state_1d</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">ds</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span> <span class="o">=</span>
         <span class="n">real</span>
             <span class="k">match</span> <span class="n">ds</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">rrr</span> <span class="p">(</span><span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span>
-            <span class="o">|</span> <span class="n">state_1d</span> <span class="p">(</span><span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span>
+            <span class="o">|</span> <span class="n">rrr</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
+            <span class="o">|</span> <span class="n">state_1d</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
     <span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">dtdt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dxdt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="n">dvdt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
 
-<span class="n">instance</span> <span class="n">shift</span> <span class="n">rrr</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">ds</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span> <span class="o">=</span>
-        <span class="n">real</span>
-            <span class="k">match</span> <span class="n">ds</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">rrr</span> <span class="p">(</span><span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span>
-            <span class="o">|</span> <span class="n">state_1d</span> <span class="p">(</span><span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">dtdt</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">dvdt</span>
-    <span class="n">rrr</span> <span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="n">dtdt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dxdt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="n">dvdt</span> <span class="o">*</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">inl</span> <span class="n">euler</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="n">st0</span> <span class="o">=</span>
+    <span class="n">shift</span> <span class="n">dt</span> <span class="p">(</span><span class="n">deriv</span> <span class="n">st0</span><span class="p">)</span> <span class="n">st0</span>
 
-<span class="n">prototype</span> <span class="n">euler</span> <span class="n">s</span> <span class="p">:</span> <span class="n">forall</span> <span class="n">ds</span> <span class="p">{(</span><span class="o">+++</span><span class="p">)}</span><span class="o">.</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">ds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span>
-
-<span class="n">instance</span> <span class="n">euler</span> <span class="n">state_1d</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="n">st0</span> <span class="o">=&gt;</span> <span class="n">shift</span> <span class="n">dt</span> <span class="p">(</span><span class="n">deriv</span> <span class="n">st0</span><span class="p">)</span> <span class="n">st0</span>
-<span class="n">instance</span> <span class="n">euler</span> <span class="n">rrr</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="n">st0</span> <span class="o">=&gt;</span> <span class="n">shift</span> <span class="n">dt</span> <span class="p">(</span><span class="n">deriv</span> <span class="n">st0</span><span class="p">)</span> <span class="n">st0</span>
-
-<span class="n">prototype</span> <span class="n">runge_kutta_4</span> <span class="n">s</span> <span class="p">:</span> <span class="n">forall</span> <span class="n">ds</span> <span class="p">{(</span><span class="o">+++</span><span class="p">)}</span><span class="o">.</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">ds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span>
-
-<span class="n">instance</span> <span class="n">runge_kutta_4</span> <span class="n">state_1d</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="n">st0</span> <span class="o">=&gt;</span>
+<span class="n">inl</span> <span class="n">runge_kutta_4</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="n">st0</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">m0</span> <span class="o">=</span> <span class="n">deriv</span> <span class="n">st0</span>
     <span class="n">inl</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">shift</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">m0</span> <span class="n">st0</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">shift</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">m1</span> <span class="n">st0</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">m3</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">shift</span> <span class="n">dt</span> <span class="n">m2</span> <span class="n">st0</span><span class="p">)</span>
     <span class="n">shift</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="p">(</span><span class="n">m0</span> <span class="o">+++</span> <span class="n">m1</span> <span class="o">+++</span> <span class="n">m1</span> <span class="o">+++</span> <span class="n">m2</span> <span class="o">+++</span> <span class="n">m2</span> <span class="o">+++</span> <span class="n">m3</span><span class="p">)</span> <span class="n">st0</span>
 
-<span class="n">instance</span> <span class="n">runge_kutta_4</span> <span class="n">rrr</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">deriv</span> <span class="n">st0</span> <span class="o">=&gt;</span>
-    <span class="n">inl</span> <span class="n">m0</span> <span class="o">=</span> <span class="n">deriv</span> <span class="n">st0</span>
-    <span class="n">inl</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">shift</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">m0</span> <span class="n">st0</span><span class="p">)</span>
-    <span class="n">inl</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">shift</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="n">m1</span> <span class="n">st0</span><span class="p">)</span>
-    <span class="n">inl</span> <span class="n">m3</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">shift</span> <span class="n">dt</span> <span class="n">m2</span> <span class="n">st0</span><span class="p">)</span>
-    <span class="n">shift</span> <span class="p">(</span><span class="n">dt</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="p">(</span><span class="n">m0</span> <span class="o">+++</span> <span class="n">m1</span> <span class="o">+++</span> <span class="n">m1</span> <span class="o">+++</span> <span class="n">m2</span> <span class="o">+++</span> <span class="n">m2</span> <span class="o">+++</span> <span class="n">m3</span><span class="p">)</span> <span class="n">st0</span>
+<span class="n">inl</span> <span class="n">exponential</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span> <span class="o">=</span>
+    <span class="mi">1</span><span class="n">f64</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">x0</span>
 
-<span class="n">inl</span> <span class="n">exponential</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">=</span>
-    <span class="n">rrr</span> <span class="p">(</span><span class="mi">1</span><span class="n">f64</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
-
-<span class="n">inl</span> <span class="n">exponential</span><span class="s1">' (state_1d (_, x0, v0)) =</span>
-    <span class="n">rrr</span> <span class="p">(</span><span class="mi">1</span><span class="n">f64</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">inl</span> <span class="n">of_state_1d</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="o">=</span>
+    <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span>
 </pre></div>
 </div>
 </div>
@@ -13340,14 +13246,14 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">iterate</span> <span class="p">(</span><span class="n">euler</span> <span class="mf">0.01</span> <span class="n">exponential</span><span class="p">)</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">800</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="mf">7.999999999999874</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">))</span>
+<span class="n">solver</span> <span class="p">(</span><span class="n">euler</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">(</span><span class="n">of_state_1d</span> <span class="o">&gt;&gt;</span> <span class="n">exponential</span> <span class="o">&gt;&gt;</span> <span class="n">state_1d</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">800</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">7.999999999999874</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">))</span>
 
-<span class="n">iterate</span> <span class="p">(</span><span class="n">euler_cromer_1d</span> <span class="mf">0.1</span> <span class="n">exponential</span><span class="s1">') (state_1d (0, 1, 1)) 80i32</span>
+<span class="n">solver</span> <span class="p">(</span><span class="n">euler_cromer_1d</span> <span class="mf">0.1</span><span class="p">)</span> <span class="p">(</span><span class="n">of_state_1d</span> <span class="o">&gt;&gt;</span> <span class="n">exponential</span> <span class="o">&gt;&gt;</span> <span class="n">rrr</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">80</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">7.999999999999988</span><span class="p">,</span> <span class="mf">3043.379244966009</span><span class="p">,</span> <span class="mf">2895.0121485099035</span><span class="p">))</span>
 
-<span class="n">iterate</span> <span class="p">(</span><span class="n">runge_kutta_4</span> <span class="mi">1</span> <span class="n">exponential</span><span class="p">)</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">8</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">rrr</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">))</span>
+<span class="n">solver</span> <span class="p">(</span><span class="n">runge_kutta_4</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">of_state_1d</span> <span class="o">&gt;&gt;</span> <span class="n">exponential</span> <span class="o">&gt;&gt;</span> <span class="n">rrr</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">8</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -13718,8 +13624,42 @@ method0()
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=84">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="mi">3</span> <span class="o">*^</span> <span class="n">i_hat</span> <span class="p">()</span> <span class="o">^+^</span> <span class="mi">4</span> <span class="o">*^</span> <span class="n">k_hat</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: {struct (3.0, 0.0, 4.0)} / expected: {struct (3.0, 0.0, 4.0)}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13729,7 +13669,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=85">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13758,7 +13698,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=86">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=87">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13793,7 +13733,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=88">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13803,7 +13743,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=88">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13832,7 +13772,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=89">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=90">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13867,7 +13807,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13877,7 +13817,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=91">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13906,7 +13846,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=92">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13942,7 +13882,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=93">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13952,7 +13892,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=94">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -13981,7 +13921,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=95">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=96">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14016,7 +13956,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=97">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14026,7 +13966,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=97">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14055,7 +13995,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=98">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=99">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14090,7 +14030,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=99">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=100">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14100,7 +14040,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=100">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14132,7 +14072,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=101">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=102">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14167,7 +14107,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=102">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=103">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14177,7 +14117,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=103">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14206,7 +14146,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=104">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=105">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14242,7 +14182,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=105">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=106">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14252,7 +14192,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=106">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14281,7 +14221,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=107">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14316,7 +14256,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=108">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=109">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14326,7 +14266,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=109">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=110">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14358,7 +14298,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=110">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=111">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14392,7 +14332,18 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=111">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=112">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="position_ps">position_ps<a class="anchor-link" href="#position_ps">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=113">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -14400,9 +14351,108 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">particle_state</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">mass</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">charge</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">time</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">pos_vec</span> <span class="p">:</span> <span class="n">vec</span>
+        <span class="n">velocity</span> <span class="p">:</span> <span class="n">vec</span>
+    <span class="p">}</span>
 
-<span class="p">()</span>
+<span class="n">inl</span> <span class="n">default_particle_state</span> <span class="p">()</span> <span class="p">:</span> <span class="n">particle_state</span> <span class="o">=</span>
+    <span class="n">particle_state</span> <span class="p">{</span>
+        <span class="n">mass</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">charge</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">pos_vec</span> <span class="o">=</span> <span class="n">zero_vec</span> <span class="p">()</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">zero_vec</span> <span class="p">()</span>
+    <span class="p">}</span>
+
+<span class="nb">type</span> <span class="n">one_body_force</span> <span class="o">=</span> <span class="n">particle_state</span> <span class="o">-&gt;</span> <span class="n">vec</span>
+
+<span class="n">nominal</span> <span class="n">d_particle_state</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">dmdt</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">dqdt</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">dtdt</span> <span class="p">:</span> <span class="n">f64</span>
+        <span class="n">drdt</span> <span class="p">:</span> <span class="n">vec</span>
+        <span class="n">dvdt</span> <span class="p">:</span> <span class="n">vec</span>
+    <span class="p">}</span>
+
+<span class="n">inl</span> <span class="n">newton_second_ps</span> <span class="p">(</span><span class="n">fs</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">one_body_force</span><span class="p">)</span> <span class="p">(</span><span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span><span class="p">)</span> <span class="p">:</span> <span class="n">d_particle_state</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">f_net</span> <span class="o">=</span> <span class="n">fs</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="n">f</span> <span class="n">st</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">sum_vec</span>
+    <span class="n">d_particle_state</span> <span class="p">{</span>
+        <span class="n">dmdt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">dqdt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">dtdt</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">drdt</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span>
+        <span class="n">dvdt</span> <span class="o">=</span> <span class="n">f_net</span> <span class="o">^/</span> <span class="n">st</span><span class="o">.</span><span class="n">mass</span>
+    <span class="p">}</span>
+
+<span class="n">inl</span> <span class="n">earth_surface_gravity</span> <span class="p">(</span><span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">g</span> <span class="o">=</span> <span class="mf">9.80665</span>
+    <span class="o">-</span><span class="n">st</span><span class="o">.</span><span class="n">mass</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*^</span> <span class="n">k_hat</span> <span class="p">()</span>
+
+<span class="n">inl</span> <span class="n">air_resistance</span> <span class="n">drag</span> <span class="n">rho</span> <span class="n">area</span> <span class="p">(</span><span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span><span class="p">)</span> <span class="o">=</span>
+    <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">drag</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">area</span> <span class="o">*</span> <span class="n">magnitude</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span> <span class="o">*^</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span>
+
+<span class="n">inl</span> <span class="n">euler_cromer_ps</span> <span class="n">dt</span> <span class="p">(</span><span class="n">deriv</span> <span class="p">:</span> <span class="n">particle_state</span> <span class="o">-&gt;</span> <span class="n">d_particle_state</span><span class="p">)</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">dst</span> <span class="p">:</span> <span class="n">d_particle_state</span> <span class="o">=</span> <span class="n">deriv</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">v</span><span class="s1">' = st.velocity ^+^ dst.dvdt ^* dt</span>
+    <span class="n">particle_state</span> <span class="p">{</span> <span class="n">st</span> <span class="k">with</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">time</span> <span class="o">+</span> <span class="n">dt</span>
+        <span class="n">pos_vec</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="o">^+^</span> <span class="n">v</span><span class="s1">' ^* dt</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span> <span class="o">^+^</span> <span class="n">dst</span><span class="o">.</span><span class="n">dvdt</span> <span class="o">^*</span> <span class="n">dt</span>
+    <span class="p">}</span>
+
+<span class="n">instance</span> <span class="p">(</span><span class="o">+++</span><span class="p">)</span> <span class="n">d_particle_state</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">dps</span> <span class="p">:</span> <span class="n">d_particle_state</span><span class="p">)</span> <span class="p">(</span><span class="n">dps</span><span class="s1">' : d_particle_state) =&gt;</span>
+    <span class="n">d_particle_state</span> <span class="p">{</span>
+        <span class="n">dmdt</span> <span class="o">=</span> <span class="n">dps</span><span class="o">.</span><span class="n">dmdt</span> <span class="o">+</span> <span class="n">dps</span><span class="s1">'.dmdt</span>
+        <span class="n">dqdt</span> <span class="o">=</span> <span class="n">dps</span><span class="o">.</span><span class="n">dqdt</span> <span class="o">+</span> <span class="n">dps</span><span class="s1">'.dqdt</span>
+        <span class="n">dtdt</span> <span class="o">=</span> <span class="n">dps</span><span class="o">.</span><span class="n">dtdt</span> <span class="o">+</span> <span class="n">dps</span><span class="s1">'.dtdt</span>
+        <span class="n">drdt</span> <span class="o">=</span> <span class="n">dps</span><span class="o">.</span><span class="n">drdt</span> <span class="o">^+^</span> <span class="n">dps</span><span class="s1">'.drdt</span>
+        <span class="n">dvdt</span> <span class="o">=</span> <span class="n">dps</span><span class="o">.</span><span class="n">dvdt</span> <span class="o">^+^</span> <span class="n">dps</span><span class="s1">'.dvdt</span>
+    <span class="p">}</span>
+
+<span class="n">instance</span> <span class="n">scale</span> <span class="n">d_particle_state</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">w</span> <span class="p">(</span><span class="n">dps</span> <span class="p">:</span> <span class="n">d_particle_state</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="n">d_particle_state</span> <span class="p">{</span>
+        <span class="n">dmdt</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">dps</span><span class="o">.</span><span class="n">dmdt</span>
+        <span class="n">dqdt</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">dps</span><span class="o">.</span><span class="n">dqdt</span>
+        <span class="n">dtdt</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*</span> <span class="n">dps</span><span class="o">.</span><span class="n">dtdt</span>
+        <span class="n">drdt</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*^</span> <span class="n">dps</span><span class="o">.</span><span class="n">drdt</span>
+        <span class="n">dvdt</span> <span class="o">=</span> <span class="n">w</span> <span class="o">*^</span> <span class="n">dps</span><span class="o">.</span><span class="n">dvdt</span>
+    <span class="p">}</span>
+
+<span class="n">instance</span> <span class="n">shift</span> <span class="n">particle_state</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">dt</span> <span class="n">dps</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">d_particle_state</span> <span class="n">dps</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">real</span>
+            <span class="k">match</span> <span class="n">dps</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">d_particle_state</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">dps</span>
+    <span class="n">particle_state</span> <span class="p">{</span> <span class="n">st</span> <span class="k">with</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">time</span> <span class="o">+</span> <span class="n">dps</span><span class="o">.</span><span class="n">dtdt</span> <span class="o">*</span> <span class="n">dt</span>
+        <span class="n">pos_vec</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="o">^+^</span> <span class="n">dps</span><span class="o">.</span><span class="n">drdt</span> <span class="o">^*</span> <span class="n">dt</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span> <span class="o">^+^</span> <span class="n">dps</span><span class="o">.</span><span class="n">dvdt</span> <span class="o">^*</span> <span class="n">dt</span>
+    <span class="p">}</span>
+
+<span class="n">inl</span> <span class="n">states_ps</span> <span class="p">(</span><span class="n">method</span> <span class="p">:</span> <span class="n">numerical_method</span> <span class="n">particle_state</span> <span class="n">d_particle_state</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">i32</span> <span class="o">-&gt;</span> <span class="n">particle_state</span> <span class="o">=</span>
+    <span class="n">newton_second_ps</span> <span class="o">&gt;&gt;</span> <span class="n">method</span> <span class="o">&gt;&gt;</span> <span class="n">iterate</span><span class="s1">'</span>
+
+<span class="n">inl</span> <span class="n">z_ge0</span> <span class="n">sts</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mut</span> <span class="p">[]</span>
+    <span class="n">inl</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="n">inl</span> <span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span> <span class="o">=</span> <span class="n">sts</span> <span class="o">*</span><span class="n">i</span>
+        <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span><span class="o">.</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="n">then</span> <span class="o">*</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">rev</span>
+        <span class="k">else</span>
+            <span class="n">result</span> <span class="o">&lt;-</span> <span class="n">st</span> <span class="p">::</span> <span class="o">*</span><span class="n">result</span>
+            <span class="n">i</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">join</span> <span class="n">loop</span> <span class="p">()</span>
+    <span class="n">loop</span> <span class="p">()</span>
+
+<span class="n">inl</span> <span class="n">trajectory</span> <span class="n">sts</span> <span class="o">=</span>
+    <span class="n">sts</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span><span class="o">.</span><span class="n">z</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -14415,8 +14465,940 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=114">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">update_ps</span> <span class="p">(</span><span class="n">method</span> <span class="p">:</span> <span class="n">numerical_method</span> <span class="n">particle_state</span> <span class="n">d_particle_state</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">newton_second_ps</span> <span class="o">&gt;&gt;</span> <span class="n">method</span>
+
+<span class="n">inl</span> <span class="n">position_ps</span> <span class="p">(</span><span class="n">method</span> <span class="p">:</span> <span class="n">numerical_method</span> <span class="n">particle_state</span> <span class="n">d_particle_state</span><span class="p">)</span> <span class="n">fs</span> <span class="n">st</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">states</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">-&gt;</span> <span class="n">particle_state</span> <span class="o">=</span> <span class="n">states_ps</span> <span class="n">method</span> <span class="n">fs</span> <span class="n">st</span>
+    <span class="n">inl</span> <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">states</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="p">(</span><span class="n">states</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">time</span>
+    <span class="n">inl</span> <span class="n">num_steps</span> <span class="o">=</span> <span class="n">t</span> <span class="o">/</span> <span class="n">dt</span> <span class="o">|&gt;</span> <span class="nb">round</span> <span class="o">|&gt;</span> <span class="nb">abs</span>
+    <span class="n">inl</span> <span class="n">st1</span> <span class="o">=</span> <span class="n">solver</span><span class="s1">' method (newton_second_ps fs) st num_steps</span>
+    <span class="n">st1</span><span class="o">.</span><span class="n">pos_vec</span>
+
+<span class="n">inl</span> <span class="n">sun_gravity</span> <span class="p">(</span><span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span><span class="p">)</span> <span class="p">:</span> <span class="n">vec</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">big_g</span> <span class="o">=</span> <span class="mf">0.0000000000667408</span>
+    <span class="n">inl</span> <span class="n">sun_mass</span> <span class="o">=</span> <span class="mi">1988480000000000000000000000000</span>
+    <span class="o">-</span><span class="n">big_g</span> <span class="o">*</span> <span class="n">sun_mass</span> <span class="o">*</span> <span class="n">st</span><span class="o">.</span><span class="n">mass</span> <span class="o">*^</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="o">^/</span> <span class="n">magnitude</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="o">**</span> <span class="mi">3</span>
+
+<span class="n">inl</span> <span class="n">wind_force</span> <span class="n">v_wind</span> <span class="n">drag</span> <span class="n">rho</span> <span class="n">area</span> <span class="p">(</span><span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">v_rel</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span> <span class="o">^-^</span> <span class="n">v_wind</span>
+    <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">drag</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">area</span> <span class="o">*</span> <span class="n">magnitude</span> <span class="n">v_rel</span> <span class="o">*^</span> <span class="n">v_rel</span>
+
+<span class="n">inl</span> <span class="n">uniform_lorentz_force</span> <span class="n">v_e</span> <span class="n">v_b</span> <span class="p">(</span><span class="n">st</span> <span class="p">:</span> <span class="n">particle_state</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">charge</span> <span class="o">*^</span> <span class="p">(</span><span class="n">v_e</span> <span class="o">^+^</span> <span class="n">st</span><span class="o">.</span><span class="n">velocity</span> <span class="o">&gt;&lt;</span> <span class="n">v_b</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">rock_state</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">default_particle_state</span><span class="s1">') = default_particle_state ()</span>
+    <span class="n">particle_state</span> <span class="p">{</span> <span class="n">default_particle_state</span><span class="s1">' with</span>
+        <span class="n">mass</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">vec</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">4</span>
+    <span class="p">}</span>
+
+<span class="n">inl</span> <span class="n">halley_update</span> <span class="n">dt</span> <span class="o">=</span>
+    <span class="n">update_ps</span> <span class="p">(</span><span class="n">euler_cromer_ps</span> <span class="n">dt</span><span class="p">)</span> <span class="p">[</span><span class="n">sun_gravity</span><span class="p">]</span>
+
+<span class="n">inl</span> <span class="n">halley_initial</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">default_particle_state</span><span class="s1">') = default_particle_state ()</span>
+    <span class="n">particle_state</span> <span class="p">{</span> <span class="n">default_particle_state</span><span class="s1">' with</span>
+        <span class="n">mass</span> <span class="o">=</span> <span class="mi">220000000000000</span>
+        <span class="n">pos_vec</span> <span class="o">=</span> <span class="mi">87660000000</span> <span class="o">*^</span> <span class="n">i_hat</span> <span class="p">()</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="mi">54569</span> <span class="o">*^</span> <span class="n">j_hat</span> <span class="p">()</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=115">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span>
+
+<span class="n">inl</span> <span class="n">baseball_forces</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">area</span> <span class="o">=</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.074</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="p">[</span>
+        <span class="n">earth_surface_gravity</span>
+        <span class="n">air_resistance</span> <span class="mf">0.3</span> <span class="mf">1.225</span> <span class="n">area</span>
+    <span class="p">]</span>
+
+<span class="n">inl</span> <span class="n">baseball_trajectory</span> <span class="n">dt</span> <span class="n">v0</span> <span class="n">theta_deg</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">theta_rad</span> <span class="o">=</span> <span class="n">theta_deg</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span>
+    <span class="n">inl</span> <span class="n">vy0</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">cos</span> <span class="n">theta_rad</span>
+    <span class="n">inl</span> <span class="n">vz0</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">sin</span> <span class="n">theta_rad</span>
+    <span class="n">inl</span> <span class="n">initial_state</span> <span class="o">=</span>
+        <span class="n">particle_state</span> <span class="p">{</span>
+            <span class="n">mass</span> <span class="o">=</span> <span class="mf">0.145</span>
+            <span class="n">charge</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">pos_vec</span> <span class="o">=</span> <span class="n">zero_vec</span> <span class="p">()</span>
+            <span class="n">velocity</span> <span class="o">=</span> <span class="n">vec</span> <span class="mi">0</span> <span class="n">vy0</span> <span class="n">vz0</span>
+        <span class="p">}</span>
+    <span class="n">states_ps</span> <span class="p">(</span><span class="n">euler_cromer_ps</span> <span class="n">dt</span><span class="p">)</span> <span class="p">(</span><span class="n">baseball_forces</span> <span class="p">())</span> <span class="n">initial_state</span>
+    <span class="o">|&gt;</span> <span class="n">z_ge0</span>
+    <span class="o">|&gt;</span> <span class="n">trajectory</span>
+
+<span class="n">inl</span> <span class="n">baseball_range</span> <span class="n">dt</span> <span class="n">v0</span> <span class="n">theta_deg</span> <span class="o">=</span>
+    <span class="n">baseball_trajectory</span> <span class="n">dt</span> <span class="n">v0</span> <span class="n">theta_deg</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">y</span><span class="p">)</span> <span class="mi">0</span>
+
+<span class="n">inl</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">init_series</span> <span class="mi">10</span> <span class="mi">80</span> <span class="mi">1</span>
+<span class="n">inl</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">baseball_range</span> <span class="mf">0.01</span> <span class="mi">45</span><span class="p">)</span>
+<span class="s2">"range for a baseball hit at 45 m/s"</span><span class="p">,</span> <span class="s2">"angle above horizontal (degrees)"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="p">;[</span><span class="s2">"horizontal range (m)"</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<svg height="480" viewbox="0 0 640 480" width="640" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#141414" height="480" opacity="1" stroke="none" width="640" x="0" y="0"></rect>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="320" y="10">
+range for a baseball hit at 45 m/s
+</text>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="55" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="62" x2="62" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="70" x2="70" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="77" x2="77" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="85" x2="85" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="92" x2="92" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="100" x2="100" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="107" x2="107" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="115" x2="115" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="123" x2="123" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="130" x2="130" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="138" x2="138" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="145" x2="145" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="153" x2="153" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="160" x2="160" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="168" x2="168" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="175" x2="175" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="183" x2="183" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="191" x2="191" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="198" x2="198" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="206" x2="206" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="213" x2="213" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="221" x2="221" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="228" x2="228" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="236" x2="236" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="243" x2="243" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="251" x2="251" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="259" x2="259" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="266" x2="266" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="274" x2="274" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="281" x2="281" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="289" x2="289" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="296" x2="296" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="304" x2="304" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="311" x2="311" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="319" x2="319" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="327" x2="327" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="334" x2="334" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="342" x2="342" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="349" x2="349" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="357" x2="357" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="364" x2="364" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="372" x2="372" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="379" x2="379" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="387" x2="387" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="395" x2="395" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="402" x2="402" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="410" x2="410" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="417" x2="417" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="425" x2="425" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="432" x2="432" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="440" x2="440" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="447" x2="447" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="455" x2="455" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="463" x2="463" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="470" x2="470" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="478" x2="478" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="485" x2="485" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="493" x2="493" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="500" x2="500" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="508" x2="508" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="515" x2="515" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="523" x2="523" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="531" x2="531" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="538" x2="538" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="546" x2="546" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="553" x2="553" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="561" x2="561" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="568" x2="568" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="576" x2="576" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="584" x2="584" y1="424" y2="75"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="420" y2="420"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="411" y2="411"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="402" y2="402"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="393" y2="393"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="384" y2="384"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="375" y2="375"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="366" y2="366"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="357" y2="357"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="348" y2="348"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="339" y2="339"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="330" y2="330"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="321" y2="321"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="312" y2="312"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="303" y2="303"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="294" y2="294"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="285" y2="285"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="276" y2="276"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="267" y2="267"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="259" y2="259"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="250" y2="250"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="241" y2="241"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="232" y2="232"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="223" y2="223"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="214" y2="214"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="205" y2="205"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="196" y2="196"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="187" y2="187"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="178" y2="178"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="169" y2="169"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="160" y2="160"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="151" y2="151"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="142" y2="142"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="133" y2="133"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="124" y2="124"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="115" y2="115"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="106" y2="106"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="97" y2="97"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="88" y2="88"></line>
+<line opacity="1" stroke="#323232" stroke-width="1" x1="55" x2="584" y1="79" y2="79"></line>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="320" y="25">
+angle above horizontal (degrees)
+</text>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" transform="rotate(270, 5, 250)" x="5" y="250">
+</text>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="320" y="475">
+angle above horizontal (degrees)
+</text>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" transform="rotate(90, 635, 250)" x="635" y="250">
+</text>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="55" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="92" x2="92" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="130" x2="130" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="168" x2="168" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="206" x2="206" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="243" x2="243" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="281" x2="281" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="319" x2="319" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="357" x2="357" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="395" x2="395" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="432" x2="432" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="470" x2="470" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="508" x2="508" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="546" x2="546" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="584" x2="584" y1="424" y2="75"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="420" y2="420"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="375" y2="375"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="330" y2="330"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="285" y2="285"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="241" y2="241"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="196" y2="196"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="151" y2="151"></line>
+<line opacity="1" stroke="#5A5A5A" stroke-width="1" x1="55" x2="584" y1="106" y2="106"></line>
+<polyline fill="none" opacity="1" points="55,74 584,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="55" y="65">
+10.0
+</text>
+<polyline fill="none" opacity="1" points="55,69 55,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="92" y="65">
+15.0
+</text>
+<polyline fill="none" opacity="1" points="92,69 92,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="130" y="65">
+20.0
+</text>
+<polyline fill="none" opacity="1" points="130,69 130,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="168" y="65">
+25.0
+</text>
+<polyline fill="none" opacity="1" points="168,69 168,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="206" y="65">
+30.0
+</text>
+<polyline fill="none" opacity="1" points="206,69 206,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="243" y="65">
+35.0
+</text>
+<polyline fill="none" opacity="1" points="243,69 243,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="281" y="65">
+40.0
+</text>
+<polyline fill="none" opacity="1" points="281,69 281,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="319" y="65">
+45.0
+</text>
+<polyline fill="none" opacity="1" points="319,69 319,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="357" y="65">
+50.0
+</text>
+<polyline fill="none" opacity="1" points="357,69 357,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="395" y="65">
+55.0
+</text>
+<polyline fill="none" opacity="1" points="395,69 395,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="432" y="65">
+60.0
+</text>
+<polyline fill="none" opacity="1" points="432,69 432,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="470" y="65">
+65.0
+</text>
+<polyline fill="none" opacity="1" points="470,69 470,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="508" y="65">
+70.0
+</text>
+<polyline fill="none" opacity="1" points="508,69 508,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="546" y="65">
+75.0
+</text>
+<polyline fill="none" opacity="1" points="546,69 546,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="-0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="584" y="65">
+80.0
+</text>
+<polyline fill="none" opacity="1" points="584,69 584,74 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<polyline fill="none" opacity="1" points="54,75 54,424 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="420">
+40.0
+</text>
+<polyline fill="none" opacity="1" points="49,420 54,420 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="375">
+50.0
+</text>
+<polyline fill="none" opacity="1" points="49,375 54,375 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="330">
+60.0
+</text>
+<polyline fill="none" opacity="1" points="49,330 54,330 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="285">
+70.0
+</text>
+<polyline fill="none" opacity="1" points="49,285 54,285 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="241">
+80.0
+</text>
+<polyline fill="none" opacity="1" points="49,241 54,241 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="196">
+90.0
+</text>
+<polyline fill="none" opacity="1" points="49,196 54,196 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="151">
+100.0
+</text>
+<polyline fill="none" opacity="1" points="49,151 54,151 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="45" y="106">
+110.0
+</text>
+<polyline fill="none" opacity="1" points="49,106 54,106 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<polyline fill="none" opacity="1" points="55,425 584,425 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="55" y="435">
+10.0
+</text>
+<polyline fill="none" opacity="1" points="55,425 55,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="92" y="435">
+15.0
+</text>
+<polyline fill="none" opacity="1" points="92,425 92,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="130" y="435">
+20.0
+</text>
+<polyline fill="none" opacity="1" points="130,425 130,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="168" y="435">
+25.0
+</text>
+<polyline fill="none" opacity="1" points="168,425 168,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="206" y="435">
+30.0
+</text>
+<polyline fill="none" opacity="1" points="206,425 206,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="243" y="435">
+35.0
+</text>
+<polyline fill="none" opacity="1" points="243,425 243,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="281" y="435">
+40.0
+</text>
+<polyline fill="none" opacity="1" points="281,425 281,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="319" y="435">
+45.0
+</text>
+<polyline fill="none" opacity="1" points="319,425 319,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="357" y="435">
+50.0
+</text>
+<polyline fill="none" opacity="1" points="357,425 357,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="395" y="435">
+55.0
+</text>
+<polyline fill="none" opacity="1" points="395,425 395,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="432" y="435">
+60.0
+</text>
+<polyline fill="none" opacity="1" points="432,425 432,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="470" y="435">
+65.0
+</text>
+<polyline fill="none" opacity="1" points="470,425 470,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="508" y="435">
+70.0
+</text>
+<polyline fill="none" opacity="1" points="508,425 508,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="546" y="435">
+75.0
+</text>
+<polyline fill="none" opacity="1" points="546,425 546,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="middle" x="584" y="435">
+80.0
+</text>
+<polyline fill="none" opacity="1" points="584,425 584,430 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<polyline fill="none" opacity="1" points="585,75 585,424 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="622" y="420">
+40.0
+</text>
+<polyline fill="none" opacity="1" points="585,420 590,420 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="622" y="375">
+50.0
+</text>
+<polyline fill="none" opacity="1" points="585,375 590,375 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="622" y="330">
+60.0
+</text>
+<polyline fill="none" opacity="1" points="585,330 590,330 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="622" y="285">
+70.0
+</text>
+<polyline fill="none" opacity="1" points="585,285 590,285 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="622" y="241">
+80.0
+</text>
+<polyline fill="none" opacity="1" points="585,241 590,241 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="end" x="622" y="196">
+90.0
+</text>
+<polyline fill="none" opacity="1" points="585,196 590,196 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="start" x="595" y="151">
+100.0
+</text>
+<polyline fill="none" opacity="1" points="585,151 590,151 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<text dy="0.5ex" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="start" x="595" y="106">
+110.0
+</text>
+<polyline fill="none" opacity="1" points="585,106 590,106 " stroke="#FFFFFF" stroke-width="1"></polyline>
+<polyline fill="none" opacity="1" points="55,348 62,329 70,310 77,292 85,276 92,259 100,244 107,230 115,217 123,204 130,192 138,180 145,169 153,159 160,150 168,141 175,133 183,125 191,118 198,111 206,106 213,100 221,95 228,91 236,87 243,84 251,81 259,79 266,78 274,76 281,76 289,75 296,76 304,77 311,79 319,80 327,82 334,86 342,89 349,93 357,97 364,102 372,107 379,112 387,119 395,125 402,132 410,140 417,148 425,156 432,165 440,174 447,183 455,193 463,204 470,215 478,226 485,238 493,250 500,263 508,276 515,289 523,302 531,317 538,331 546,346 553,361 561,376 568,392 576,408 584,424 " stroke="#FF0000" stroke-width="1"></polyline>
+<rect fill="none" height="30" opacity="1" stroke="#FFFFFF" width="159" x="421" y="235"></rect>
+<text dy="0.76em" fill="#FFFFFF" font-family="sans-serif" font-size="9.67741935483871" opacity="1" text-anchor="start" x="461" y="245">
+horizontal range (m)
+</text>
+<polyline fill="none" opacity="1" points="431,250 451,250 " stroke="#FF0000" stroke-width="1"></polyline>
+</svg>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+and UH0 =
+    | UH0_0 of float * float * float * float * float * float * float * float * float * UH0
+    | UH0_1
+and Mut1 = {mutable l0 : UH0}
+and Mut2 = {mutable l0 : int32}
+and UH1 =
+    | UH1_0 of int32 * UH1
+    | UH1_1
+and UH2 =
+    | UH2_0 of float * float * UH2
+    | UH2_1
+let rec method1 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 71
+    v2
+and method2 (v0 : int32, v1 : Mut0) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 &lt; v0
+    v3
+and method3 (v0 : int32, v1 : int32) : UH1 =
+    let v2 : bool = v1 &lt; v0
+    if v2 then
+        let v3 : int32 = v1 + 1
+        let v4 : UH1 = method3(v0, v3)
+        UH1_0(v1, v4)
+    else
+        UH1_1
+and method4 (v0 : UH1, v1 : float, v2 : float, v3 : float, v4 : float, v5 : float, v6 : float, v7 : float, v8 : float, v9 : float) : struct (float * float * float * float * float * float * float * float * float) =
+    match v0 with
+    | UH1_0(v10, v11) -&gt; (* Cons *)
+        let v12 : float = v7 * v7
+        let v13 : float = v8 * v8
+        let v14 : float = v12 + v13
+        let v15 : float = v9 * v9
+        let v16 : float = v14 + v15
+        let v17 : float = sqrt v16
+        let v18 : float = -0.0007902794129829633 * v17
+        let v19 : float = v18 * v7
+        let v20 : float = v18 * v8
+        let v21 : float = v18 * v9
+        let v22 : float =  -v2
+        let v23 : float = v22 * 9.80665
+        let v24 : float = v23 * 0.0
+        let v25 : float = v24 + v19
+        let v26 : float = v24 + v20
+        let v27 : float = v23 + v21
+        let v28 : float = v25 / v2
+        let v29 : float = v26 / v2
+        let v30 : float = v27 / v2
+        let v31 : float = 0.01 * v28
+        let v32 : float = 0.01 * v29
+        let v33 : float = 0.01 * v30
+        let v34 : float = v7 + v31
+        let v35 : float = v8 + v32
+        let v36 : float = v9 + v33
+        let v37 : float = v6 + 0.01
+        let v38 : float = 0.01 * v34
+        let v39 : float = 0.01 * v35
+        let v40 : float = 0.01 * v36
+        let v41 : float = v3 + v38
+        let v42 : float = v4 + v39
+        let v43 : float = v5 + v40
+        method4(v11, v1, v2, v41, v42, v43, v37, v34, v35, v36)
+    | UH1_1 -&gt; (* Nil *)
+        struct (v1, v2, v3, v4, v5, v6, v7, v8, v9)
+and method5 (v0 : UH0, v1 : UH0) : UH0 =
+    match v0 with
+    | UH0_0(v2, v3, v4, v5, v6, v7, v8, v9, v10, v11) -&gt; (* Cons *)
+        let v12 : UH0 = UH0_0(v2, v3, v4, v5, v6, v7, v8, v9, v10, v1)
+        method5(v11, v12)
+    | UH0_1 -&gt; (* Nil *)
+        v1
+and method6 (v0 : float, v1 : float, v2 : Mut1, v3 : Mut2) : UH0 =
+    let v4 : int32 = v3.l0
+    let v5 : int32 = 0
+    let v6 : UH1 = method3(v4, v5)
+    let v7 : float = 0.0
+    let v8 : float = 0.145
+    let v9 : float = 0.0
+    let v10 : float = 0.0
+    let v11 : float = 0.0
+    let v12 : float = 0.0
+    let v13 : float = 0.0
+    let struct (v14 : float, v15 : float, v16 : float, v17 : float, v18 : float, v19 : float, v20 : float, v21 : float, v22 : float) = method4(v6, v7, v8, v9, v10, v11, v12, v13, v0, v1)
+    let v23 : bool = v18 &lt; 0.0
+    if v23 then
+        let v24 : UH0 = v2.l0
+        let v25 : UH0 = UH0_1
+        method5(v24, v25)
+    else
+        let v27 : UH0 = v2.l0
+        let v28 : UH0 = UH0_0(v14, v15, v16, v17, v18, v19, v20, v21, v22, v27)
+        v2.l0 &lt;- v28
+        let v29 : int32 = v3.l0
+        let v30 : int32 = v29 + 1
+        v3.l0 &lt;- v30
+        method6(v0, v1, v2, v3)
+and method7 (v0 : UH0, v1 : UH2) : UH2 =
+    match v0 with
+    | UH0_0(v2, v3, v4, v5, v6, v7, v8, v9, v10, v11) -&gt; (* Cons *)
+        let v12 : UH2 = method7(v11, v1)
+        UH2_0(v5, v6, v12)
+    | UH0_1 -&gt; (* Nil *)
+        v1
+and method8 (v0 : UH2, v1 : float) : float =
+    match v0 with
+    | UH2_0(v2, v3, v4) -&gt; (* Cons *)
+        method8(v4, v2)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method0 () : struct (string * string * (float []) * string * (struct (string * (float [])) [])) =
+    let v0 : (float []) = Array.zeroCreate&lt;float&gt; (71)
+    let v1 : Mut0 = {l0 = 0} : Mut0
+    while method1(v1) do
+        let v3 : int32 = v1.l0
+        let v4 : float = float v3
+        let v5 : float = 10.0 + v4
+        v0.[int v3] &lt;- v5
+        let v6 : int32 = v3 + 1
+        v1.l0 &lt;- v6
+        ()
+    let v7 : int32 = v0.Length
+    let v8 : (float []) = Array.zeroCreate&lt;float&gt; (v7)
+    let v9 : Mut0 = {l0 = 0} : Mut0
+    while method2(v7, v9) do
+        let v11 : int32 = v9.l0
+        let v12 : float = v0.[int v11]
+        let v13 : float = v12 * 3.141592653589793
+        let v14 : float = v13 / 180.0
+        let v15 : float = cos v14
+        let v16 : float = 45.0 * v15
+        let v17 : float = sin v14
+        let v18 : float = 45.0 * v17
+        let v19 : UH0 = UH0_1
+        let v20 : Mut1 = {l0 = v19} : Mut1
+        let v21 : Mut2 = {l0 = 0} : Mut2
+        let v22 : int32 = v21.l0
+        let v23 : int32 = 0
+        let v24 : UH1 = method3(v22, v23)
+        let v25 : float = 0.0
+        let v26 : float = 0.145
+        let v27 : float = 0.0
+        let v28 : float = 0.0
+        let v29 : float = 0.0
+        let v30 : float = 0.0
+        let v31 : float = 0.0
+        let struct (v32 : float, v33 : float, v34 : float, v35 : float, v36 : float, v37 : float, v38 : float, v39 : float, v40 : float) = method4(v24, v25, v26, v27, v28, v29, v30, v31, v16, v18)
+        let v41 : bool = v36 &lt; 0.0
+        let v50 : UH0 =
+            if v41 then
+                let v42 : UH0 = v20.l0
+                let v43 : UH0 = UH0_1
+                method5(v42, v43)
+            else
+                let v45 : UH0 = v20.l0
+                let v46 : UH0 = UH0_0(v32, v33, v34, v35, v36, v37, v38, v39, v40, v45)
+                v20.l0 &lt;- v46
+                let v47 : int32 = v21.l0
+                let v48 : int32 = v47 + 1
+                v21.l0 &lt;- v48
+                method6(v16, v18, v20, v21)
+        let v51 : UH2 = UH2_1
+        let v52 : UH2 = method7(v50, v51)
+        let v53 : float = 0.0
+        let v54 : float = method8(v52, v53)
+        v8.[int v11] &lt;- v54
+        let v55 : int32 = v11 + 1
+        v9.l0 &lt;- v55
+        ()
+    let v56 : string = "horizontal range (m)"
+    let v57 : (struct (string * (float [])) []) = [|struct (v56, v8)|]
+    let v58 : string = "range for a baseball hit at 45 m/s"
+    let v59 : string = "angle above horizontal (degrees)"
+    let v60 : string = ""
+    struct (v58, v59, v0, v60, v57)
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=116">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span>
+
+<span class="n">inl</span> <span class="n">best_angle</span> <span class="p">(</span><span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">best_range</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">f64</span>
+    <span class="n">inl</span> <span class="n">best_theta_deg</span> <span class="o">=</span> <span class="n">mut</span> <span class="nb">min</span>
+    <span class="n">inl</span> <span class="n">theta_deg</span> <span class="o">=</span> <span class="n">mut</span> <span class="nb">min</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="o">*</span><span class="n">theta_deg</span> <span class="o">&gt;</span> <span class="nb">max</span>
+        <span class="n">then</span> <span class="o">*</span><span class="n">best_range</span><span class="p">,</span> <span class="o">*</span><span class="n">best_theta_deg</span>
+        <span class="k">else</span>
+            <span class="n">inl</span> <span class="nb">range</span> <span class="o">=</span> <span class="n">baseball_range</span> <span class="mf">0.01</span> <span class="mi">45</span> <span class="o">*</span><span class="n">theta_deg</span>
+            <span class="k">if</span> <span class="nb">range</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">best_range</span> <span class="n">then</span>
+                <span class="n">best_range</span> <span class="o">&lt;-</span> <span class="nb">range</span>
+                <span class="n">best_theta_deg</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">theta_deg</span>
+            <span class="n">theta_deg</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">theta_deg</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">join</span> <span class="n">loop</span> <span class="p">()</span>
+    <span class="n">loop</span> <span class="p">()</span>
+
+<span class="n">best_angle</span> <span class="p">(</span><span class="mi">30</span><span class="n">f64</span><span class="p">,</span> <span class="mi">60</span><span class="n">f64</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mf">116.77499158246208</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : float}
+and UH0 =
+    | UH0_0 of float * float * float * float * float * float * float * float * float * UH0
+    | UH0_1
+and Mut1 = {mutable l0 : UH0}
+and Mut2 = {mutable l0 : int32}
+and UH1 =
+    | UH1_0 of int32 * UH1
+    | UH1_1
+and UH2 =
+    | UH2_0 of float * float * UH2
+    | UH2_1
+let rec method1 (v0 : int32, v1 : int32) : UH1 =
+    let v2 : bool = v1 &lt; v0
+    if v2 then
+        let v3 : int32 = v1 + 1
+        let v4 : UH1 = method1(v0, v3)
+        UH1_0(v1, v4)
+    else
+        UH1_1
+and method2 (v0 : UH1, v1 : float, v2 : float, v3 : float, v4 : float, v5 : float, v6 : float, v7 : float, v8 : float, v9 : float) : struct (float * float * float * float * float * float * float * float * float) =
+    match v0 with
+    | UH1_0(v10, v11) -&gt; (* Cons *)
+        let v12 : float = v7 * v7
+        let v13 : float = v8 * v8
+        let v14 : float = v12 + v13
+        let v15 : float = v9 * v9
+        let v16 : float = v14 + v15
+        let v17 : float = sqrt v16
+        let v18 : float = -0.0007902794129829633 * v17
+        let v19 : float = v18 * v7
+        let v20 : float = v18 * v8
+        let v21 : float = v18 * v9
+        let v22 : float =  -v2
+        let v23 : float = v22 * 9.80665
+        let v24 : float = v23 * 0.0
+        let v25 : float = v24 + v19
+        let v26 : float = v24 + v20
+        let v27 : float = v23 + v21
+        let v28 : float = v25 / v2
+        let v29 : float = v26 / v2
+        let v30 : float = v27 / v2
+        let v31 : float = 0.01 * v28
+        let v32 : float = 0.01 * v29
+        let v33 : float = 0.01 * v30
+        let v34 : float = v7 + v31
+        let v35 : float = v8 + v32
+        let v36 : float = v9 + v33
+        let v37 : float = v6 + 0.01
+        let v38 : float = 0.01 * v34
+        let v39 : float = 0.01 * v35
+        let v40 : float = 0.01 * v36
+        let v41 : float = v3 + v38
+        let v42 : float = v4 + v39
+        let v43 : float = v5 + v40
+        method2(v11, v1, v2, v41, v42, v43, v37, v34, v35, v36)
+    | UH1_1 -&gt; (* Nil *)
+        struct (v1, v2, v3, v4, v5, v6, v7, v8, v9)
+and method3 (v0 : UH0, v1 : UH0) : UH0 =
+    match v0 with
+    | UH0_0(v2, v3, v4, v5, v6, v7, v8, v9, v10, v11) -&gt; (* Cons *)
+        let v12 : UH0 = UH0_0(v2, v3, v4, v5, v6, v7, v8, v9, v10, v1)
+        method3(v11, v12)
+    | UH0_1 -&gt; (* Nil *)
+        v1
+and method4 (v0 : float, v1 : float, v2 : Mut1, v3 : Mut2) : UH0 =
+    let v4 : int32 = v3.l0
+    let v5 : int32 = 0
+    let v6 : UH1 = method1(v4, v5)
+    let v7 : float = 0.0
+    let v8 : float = 0.145
+    let v9 : float = 0.0
+    let v10 : float = 0.0
+    let v11 : float = 0.0
+    let v12 : float = 0.0
+    let v13 : float = 0.0
+    let struct (v14 : float, v15 : float, v16 : float, v17 : float, v18 : float, v19 : float, v20 : float, v21 : float, v22 : float) = method2(v6, v7, v8, v9, v10, v11, v12, v13, v0, v1)
+    let v23 : bool = v18 &lt; 0.0
+    if v23 then
+        let v24 : UH0 = v2.l0
+        let v25 : UH0 = UH0_1
+        method3(v24, v25)
+    else
+        let v27 : UH0 = v2.l0
+        let v28 : UH0 = UH0_0(v14, v15, v16, v17, v18, v19, v20, v21, v22, v27)
+        v2.l0 &lt;- v28
+        let v29 : int32 = v3.l0
+        let v30 : int32 = v29 + 1
+        v3.l0 &lt;- v30
+        method4(v0, v1, v2, v3)
+and method5 (v0 : UH0, v1 : UH2) : UH2 =
+    match v0 with
+    | UH0_0(v2, v3, v4, v5, v6, v7, v8, v9, v10, v11) -&gt; (* Cons *)
+        let v12 : UH2 = method5(v11, v1)
+        UH2_0(v5, v6, v12)
+    | UH0_1 -&gt; (* Nil *)
+        v1
+and method6 (v0 : UH2, v1 : float) : float =
+    match v0 with
+    | UH2_0(v2, v3, v4) -&gt; (* Cons *)
+        method6(v4, v2)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method7 (v0 : Mut0, v1 : Mut0, v2 : Mut0) : struct (float * float) =
+    let v3 : float = v2.l0
+    let v4 : bool = v3 &gt; 60.0
+    if v4 then
+        let v5 : float = v0.l0
+        let v6 : float = v1.l0
+        struct (v5, v6)
+    else
+        let v7 : float = v2.l0
+        let v8 : float = v7 * 3.141592653589793
+        let v9 : float = v8 / 180.0
+        let v10 : float = cos v9
+        let v11 : float = 45.0 * v10
+        let v12 : float = sin v9
+        let v13 : float = 45.0 * v12
+        let v14 : UH0 = UH0_1
+        let v15 : Mut1 = {l0 = v14} : Mut1
+        let v16 : Mut2 = {l0 = 0} : Mut2
+        let v17 : int32 = v16.l0
+        let v18 : int32 = 0
+        let v19 : UH1 = method1(v17, v18)
+        let v20 : float = 0.0
+        let v21 : float = 0.145
+        let v22 : float = 0.0
+        let v23 : float = 0.0
+        let v24 : float = 0.0
+        let v25 : float = 0.0
+        let v26 : float = 0.0
+        let struct (v27 : float, v28 : float, v29 : float, v30 : float, v31 : float, v32 : float, v33 : float, v34 : float, v35 : float) = method2(v19, v20, v21, v22, v23, v24, v25, v26, v11, v13)
+        let v36 : bool = v31 &lt; 0.0
+        let v45 : UH0 =
+            if v36 then
+                let v37 : UH0 = v15.l0
+                let v38 : UH0 = UH0_1
+                method3(v37, v38)
+            else
+                let v40 : UH0 = v15.l0
+                let v41 : UH0 = UH0_0(v27, v28, v29, v30, v31, v32, v33, v34, v35, v40)
+                v15.l0 &lt;- v41
+                let v42 : int32 = v16.l0
+                let v43 : int32 = v42 + 1
+                v16.l0 &lt;- v43
+                method4(v11, v13, v15, v16)
+        let v46 : UH2 = UH2_1
+        let v47 : UH2 = method5(v45, v46)
+        let v48 : float = 0.0
+        let v49 : float = method6(v47, v48)
+        let v50 : float = v0.l0
+        let v51 : bool = v49 &gt; v50
+        if v51 then
+            v0.l0 &lt;- v49
+            let v52 : float = v2.l0
+            v1.l0 &lt;- v52
+            ()
+        let v53 : float = v2.l0
+        let v54 : float = v53 + 1.0
+        v2.l0 &lt;- v54
+        method7(v0, v1, v2)
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0.0} : Mut0
+    let v1 : Mut0 = {l0 = 30.0} : Mut0
+    let v2 : Mut0 = {l0 = 30.0} : Mut0
+    let v3 : float = v2.l0
+    let v4 : bool = v3 &gt; 60.0
+    let struct (v57 : float, v58 : float) =
+        if v4 then
+            let v5 : float = v0.l0
+            let v6 : float = v1.l0
+            struct (v5, v6)
+        else
+            let v7 : float = v2.l0
+            let v8 : float = v7 * 3.141592653589793
+            let v9 : float = v8 / 180.0
+            let v10 : float = cos v9
+            let v11 : float = 45.0 * v10
+            let v12 : float = sin v9
+            let v13 : float = 45.0 * v12
+            let v14 : UH0 = UH0_1
+            let v15 : Mut1 = {l0 = v14} : Mut1
+            let v16 : Mut2 = {l0 = 0} : Mut2
+            let v17 : int32 = v16.l0
+            let v18 : int32 = 0
+            let v19 : UH1 = method1(v17, v18)
+            let v20 : float = 0.0
+            let v21 : float = 0.145
+            let v22 : float = 0.0
+            let v23 : float = 0.0
+            let v24 : float = 0.0
+            let v25 : float = 0.0
+            let v26 : float = 0.0
+            let struct (v27 : float, v28 : float, v29 : float, v30 : float, v31 : float, v32 : float, v33 : float, v34 : float, v35 : float) = method2(v19, v20, v21, v22, v23, v24, v25, v26, v11, v13)
+            let v36 : bool = v31 &lt; 0.0
+            let v45 : UH0 =
+                if v36 then
+                    let v37 : UH0 = v15.l0
+                    let v38 : UH0 = UH0_1
+                    method3(v37, v38)
+                else
+                    let v40 : UH0 = v15.l0
+                    let v41 : UH0 = UH0_0(v27, v28, v29, v30, v31, v32, v33, v34, v35, v40)
+                    v15.l0 &lt;- v41
+                    let v42 : int32 = v16.l0
+                    let v43 : int32 = v42 + 1
+                    v16.l0 &lt;- v43
+                    method4(v11, v13, v15, v16)
+            let v46 : UH2 = UH2_1
+            let v47 : UH2 = method5(v45, v46)
+            let v48 : float = 0.0
+            let v49 : float = method6(v47, v48)
+            let v50 : float = v0.l0
+            let v51 : bool = v49 &gt; v50
+            if v51 then
+                v0.l0 &lt;- v49
+                let v52 : float = v2.l0
+                v1.l0 &lt;- v52
+                ()
+            let v53 : float = v2.l0
+            let v54 : float = v53 + 1.0
+            v2.l0 &lt;- v54
+            method7(v0, v1, v2)
+    let v59 : bool = v57 = 116.77499158246208
+    let v61 : bool =
+        if v59 then
+            let v60 : bool = v58 = 41.0
+            v60
+        else
+            false
+    let v62 : string = $"_equal / actual: {struct (v57, v58)} / expected: {struct (116.77499158246208, 41.0)}"
+    let v63 : bool = v61 = false
+    if v63 then
+        failwith&lt;unit&gt; v62
 method0()
 
 </pre>
