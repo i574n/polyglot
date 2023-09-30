@@ -376,7 +376,7 @@ listm.init 10i32 id
 inl list_take_while cond sts =
     let rec loop acc i =
         inl st = sts i
-        if cond st
+        if cond st i
         then loop (st :: acc) (i + 1)
         else acc |> listm.rev
     loop [] 0i32
@@ -390,7 +390,7 @@ listm.init 10i32 id
 |> fun list =>
     fun n =>
         list |> lazy_list_item n
-|> list_take_while (fun n => n < 5)
+|> list_take_while (fun n _ => n < 5)
 |> list_sum
 |> _equal 10
 
@@ -399,7 +399,7 @@ listm.init 10i32 id
 inl list_take_while_ cond sts =
     inl rec loop acc i =
         inl st = sts i
-        if cond st
+        if cond st i
         then loop (st :: acc) (i + 1)
         else acc |> listm.rev
     loop [] 0i32
@@ -413,7 +413,7 @@ listm.init 10i32 id
 |> fun list =>
     fun n =>
         list |> lazy_list_item n
-|> list_take_while_ (fun n => n < 5)
+|> list_take_while_ (fun n _ => n < 5)
 |> list_sum
 |> _equal 10
 
@@ -428,7 +428,7 @@ inl list_take_while' cond sts =
     inl i = mut 0i32
     let rec loop () =
         inl st = sts *i
-        if cond st then
+        if cond st *i then
             result <- st :: *result
             i <- *i + 1
             loop ()
@@ -444,7 +444,7 @@ listm.init 10i32 id
 |> fun list =>
     fun n =>
         list |> lazy_list_item n
-|> list_take_while' (fun n => n < 5)
+|> list_take_while' (fun n _ => n < 5)
 |> list_sum
 |> _equal 10
 
@@ -454,11 +454,11 @@ listm.init 10i32 id
 
 #!spiral
 
-inl list_take_while'' forall t. (cond : t -> bool) (sts : i32 -> t) : list t =
+inl list_take_while'' forall t. (cond : t -> i32 -> bool) (sts : i32 -> t) : list t =
     real
         inl rec loop acc i =
             inl st = sts i
-            if cond st
+            if cond st i
             then loop ((::) `t st acc) ((+) `i32 i 1i32)
             else listm.rev `t acc
         loop (Nil `t) 0
@@ -472,17 +472,17 @@ listm.init 10i32 id
 |> fun list =>
     fun n =>
         list |> lazy_list_item n
-|> list_take_while'' (fun n => n < 5)
+|> list_take_while'' (fun n _ => n < 5)
 |> list_sum
 |> _equal 10
 
 #!spiral
 
-inl list_take_while''_ forall t. (cond : t -> bool) (sts : i32 -> t) : list t =
+inl list_take_while''_ forall t. (cond : t -> i32 -> bool) (sts : i32 -> t) : list t =
     real
         inl rec loop acc i =
             inl st = sts i
-            if cond st
+            if cond st i
             then join loop ((::) `t st acc) ((+) `i32 i 1i32)
             else listm.rev `t acc
         loop (Nil `t) 0
@@ -496,9 +496,39 @@ listm.init 10i32 id
 |> fun list =>
     fun n =>
         list |> lazy_list_item n
-|> list_take_while''_ (fun n => n < 5)
+|> list_take_while''_ (fun n _ => n < 5)
 |> list_sum
 |> _equal 10
+
+#!markdown
+
+### list_unzip
+
+#!spiral
+
+inl list_unzip list =
+    list
+    |> listm.fold
+        (fun (acc_x, acc_y) (x, y) =>
+            x :: acc_x, y :: acc_y
+        )
+        ([], [])
+    |> fun x, y =>
+        x |> listm.rev, y |> listm.rev
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> listm.map (fun x => x, x)
+|> list_unzip
+|> fun x, y =>
+    x |> list_sum
+    |> _equal 45
+
+    y |> list_sum
+    |> _equal 45
 
 #!markdown
 
@@ -1309,7 +1339,7 @@ inl states_ps (method : numerical_method particle_state d_particle_state) : _ ->
 
 inl z_ge0 sts =
     sts
-    |> list_take_while (fun (particle_state st) => st.pos_vec.z >= 0)
+    |> list_take_while (fun (particle_state st) _ => st.pos_vec.z >= 0)
 
 inl trajectory sts =
     sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
@@ -1412,6 +1442,67 @@ inl best_angle (min, max) =
 
 best_angle (30f64, 60f64)
 |> _equal (116.77499158246208, 41)
+
+#!markdown
+
+## relativity_ps
+
+#!spiral
+
+inl relativity_ps fs (st : particle_state) =
+    inl f_net = fs |> listm.map (fun f => f st) |> sum_vec
+    inl c = 299792458
+    inl u = st.velocity ^/ c
+    inl acc = sqrt (1 - (u <.> u)) *^ (f_net ^-^ (f_net <.> u) *^ u) ^/ st.mass
+    d_particle_state {
+        dmdt = 0
+        dqdt = 0
+        dtdt = 1
+        drdt = st.velocity
+        dvdt = acc
+    }
+
+#!spiral
+
+// // test
+
+inl year = 365.25 * 24 * 60 * 60
+inl c = 299792458
+inl ~method = runge_kutta_4 100000
+inl forces = [ fun _ => 10 *^ i_hat () ]
+inl (particle_state default_particle_state') = default_particle_state ()
+inl initial_state =
+    particle_state { default_particle_state' with
+        mass = 1
+    }
+
+inl newton_states = solver_ method (newton_second_ps forces) initial_state
+inl relativity_states = solver_ method (relativity_ps forces) initial_state
+
+inl newton_x, newton_y =
+    newton_states
+    |> list_take_while (fun (particle_state st) _ => st.time <= year)
+    |> listm.map (fun (particle_state st) => st.time / year, st.velocity.x / c)
+    |> list_unzip
+
+inl _, relativity_y =
+    relativity_states
+    |> list_take_while (fun (particle_state st) _ => st.time <= year)
+    |> listm.map (fun (particle_state st) => st.time / year, st.velocity.x / c)
+    |> list_unzip
+
+inl newton_x : a i32 _ = newton_x |> listm.toArray
+inl newton_y : a i32 _ = newton_y |> listm.toArray
+inl relativity_y : a i32 _ = relativity_y |> listm.toArray
+
+"response to a constant force",
+"time (years)",
+newton_x,
+"velocity (multiples of c)",
+;[
+    "newtonian", newton_y
+    "relativistic", relativity_y
+]
 
 #!markdown
 

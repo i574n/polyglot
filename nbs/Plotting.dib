@@ -52,12 +52,14 @@ Formatter.Register<struct (string * string * float array * string * struct (stri
 
                 let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
+                let ct = Microsoft.DotNet.Interactive.KernelInvocationContext.Current.CancellationToken
+
                 let plotExePath = repositoryRoot </> $"apps/plot/target/release/plot{Runtime.getExecutableSuffix ()}"
                 let! exitCode, result =
                     Runtime.executeWithOptionsAsync
                         {
                             Command = plotExePath
-                            CancellationToken = None
+                            CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = None
                         }
