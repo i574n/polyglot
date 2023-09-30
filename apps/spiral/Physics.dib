@@ -145,6 +145,31 @@ inl iterate f x0 num_steps =
         else loop (f x) (n - 1)
     loop x0 num_steps
 
+#!spiral
+
+// // test
+
+10i32 |> iterate ((+) 1) 1i32
+|> _equal 11
+
+#!spiral
+
+inl iterate_ f x0 num_steps =
+    let rec loop x n =
+        if n <= 0
+        then x
+        else loop (f x) (n - 1)
+    loop x0 num_steps
+
+#!spiral
+
+// // test
+
+10i32 |> iterate_ ((+) 1) 1i32
+|> _equal 11
+
+#!spiral
+
 inl iterate' f x0 num_steps =
     listm.init num_steps id
     |> listm.fold (fun x _ => f x) x0
@@ -153,9 +178,6 @@ inl iterate' f x0 num_steps =
 
 // // test
 
-10i32 |> iterate ((+) 1) 1i32
-|> _equal 11
-
 10i32 |> iterate' ((+) 1) 1i32
 |> _equal 11
 
@@ -163,14 +185,16 @@ inl iterate' f x0 num_steps =
 
 ## list
 
+#!markdown
+
+### list_item
+
 #!spiral
 
-inl rec list_item i list =
-    list |> function
-    | Cons (x, xs) =>
-        if i <= 0
-        then x
-        else list_item (i - 1) xs
+inl rec list_item i = function
+    | Cons (x, _) when i = 0 => x
+    | Cons (_, xs) => list_item (i - 1) xs
+    | Nil => failwith "list_item: index out of bounds"
 
 #!spiral
 
@@ -179,6 +203,156 @@ inl rec list_item i list =
 listm.init 10i32 id
 |> list_item 9i32
 |> _equal 9
+
+#!markdown
+
+### lazy_list
+
+#!spiral
+
+union rec lazy_list t =
+    | LazyCons : t * (() -> lazy_list t)
+    | LazyNil
+
+inl rec lazy_list list =
+    match list with
+    | [] => LazyNil
+    | x :: xs => LazyCons (x, fun () => lazy_list xs)
+
+inl rec lazy_list_item i = function
+    | LazyCons (x, _) when i = 0 => x
+    | LazyCons (_, fn) => lazy_list_item (i - 1) (fn ())
+    | LazyNil => failwith "list_item: index out of bounds"
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> lazy_list
+|> lazy_list_item 9i32
+|> _equal 9
+
+#!spiral
+
+// // test
+
+inl rec infinite_lazy_list_from n =
+    LazyCons (n, fun () => infinite_lazy_list_from (n + 1))
+
+infinite_lazy_list_from 0i32
+|> lazy_list_item 4i32
+|> _equal 4i32
+
+#!spiral
+
+// // test
+
+inl print_and_return x =
+    $"printfn $\"el {!x}\""
+    x
+
+inl finite_lazy_list () =
+    LazyCons (
+        print_and_return 0i32,
+        fun () =>
+            LazyCons (
+                print_and_return 1i32,
+                fun () =>
+                    LazyCons (
+                        print_and_return 2i32,
+                        fun () =>
+                            LazyCons (
+                                print_and_return 3i32,
+                                fun () =>
+                                    LazyCons (
+                                        print_and_return 4i32,
+                                        fun () =>
+                                            LazyCons (
+                                                print_and_return 5i32,
+                                                fun () =>
+                                                    LazyNil
+                                            )
+                                    )
+                            )
+                    )
+            )
+    )
+
+#!markdown
+
+### memoize_lazy_list
+
+#!spiral
+
+union memoized_lazy_list t =
+    | NotComputed : () -> lazy_list t
+    | Computed : lazy_list t
+
+inl rec memoize_lazy_list lazy_list =
+    inl state = mut (NotComputed fun () => lazy_list)
+    fun () =>
+        match *state with
+        | Computed x => x
+        | NotComputed fn =>
+            inl new_state =
+                match fn () with
+                | LazyNil => LazyNil
+                | LazyCons (x, fn) => LazyCons (x, memoize_lazy_list (fn ()))
+            state <- Computed new_state
+            new_state
+
+#!spiral
+
+// // test
+
+inl list_memo = finite_lazy_list () |> memoize_lazy_list
+
+list_memo ()
+|> lazy_list_item 3i32
+|> _equal 3i32
+
+list_memo ()
+|> lazy_list_item 5i32
+|> _equal 5i32
+
+#!markdown
+
+### memoize_lazy_list'
+
+#!spiral
+
+inl rec memoize_lazy_list' lazy_list =
+    match lazy_list with
+    | LazyNil => fun () => LazyNil
+    | LazyCons (x, fn) =>
+        inl cache = mut None
+        fun () =>
+            match *cache with
+            | Some v => v
+            | None =>
+                inl next = memoize_lazy_list' (fn ())
+                inl value = LazyCons (x, next)
+                cache <- Some value
+                value
+
+#!spiral
+
+// // test
+
+inl list_memo = finite_lazy_list () |> memoize_lazy_list'
+
+list_memo ()
+|> lazy_list_item 3i32
+|> _equal 3i32
+
+list_memo ()
+|> lazy_list_item 5i32
+|> _equal 5i32
+
+#!markdown
+
+### list_sum
 
 #!spiral
 
@@ -192,6 +366,139 @@ inl list_sum list =
 listm.init 10i32 id
 |> list_sum
 |> _equal 45
+
+#!markdown
+
+### list_take_while
+
+#!spiral
+
+inl list_take_while cond sts =
+    let rec loop acc i =
+        inl st = sts i
+        if cond st
+        then loop (st :: acc) (i + 1)
+        else acc |> listm.rev
+    loop [] 0i32
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> lazy_list
+|> fun list =>
+    fun n =>
+        list |> lazy_list_item n
+|> list_take_while (fun n => n < 5)
+|> list_sum
+|> _equal 10
+
+#!spiral
+
+inl list_take_while_ cond sts =
+    inl rec loop acc i =
+        inl st = sts i
+        if cond st
+        then loop (st :: acc) (i + 1)
+        else acc |> listm.rev
+    loop [] 0i32
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> lazy_list
+|> fun list =>
+    fun n =>
+        list |> lazy_list_item n
+|> list_take_while_ (fun n => n < 5)
+|> list_sum
+|> _equal 10
+
+#!markdown
+
+### list_take_while'
+
+#!spiral
+
+inl list_take_while' cond sts =
+    inl result = mut []
+    inl i = mut 0i32
+    let rec loop () =
+        inl st = sts *i
+        if cond st then
+            result <- st :: *result
+            i <- *i + 1
+            loop ()
+        else *result |> listm.rev
+    loop ()
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> lazy_list
+|> fun list =>
+    fun n =>
+        list |> lazy_list_item n
+|> list_take_while' (fun n => n < 5)
+|> list_sum
+|> _equal 10
+
+#!markdown
+
+### list_take_while''
+
+#!spiral
+
+inl list_take_while'' forall t. (cond : t -> bool) (sts : i32 -> t) : list t =
+    real
+        inl rec loop acc i =
+            inl st = sts i
+            if cond st
+            then loop ((::) `t st acc) ((+) `i32 i 1i32)
+            else listm.rev `t acc
+        loop (Nil `t) 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> lazy_list
+|> fun list =>
+    fun n =>
+        list |> lazy_list_item n
+|> list_take_while'' (fun n => n < 5)
+|> list_sum
+|> _equal 10
+
+#!spiral
+
+inl list_take_while''_ forall t. (cond : t -> bool) (sts : i32 -> t) : list t =
+    real
+        inl rec loop acc i =
+            inl st = sts i
+            if cond st
+            then join loop ((::) `t st acc) ((+) `i32 i 1i32)
+            else listm.rev `t acc
+        loop (Nil `t) 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> lazy_list
+|> fun list =>
+    fun n =>
+        list |> lazy_list_item n
+|> list_take_while''_ (fun n => n < 5)
+|> list_sum
+|> _equal 10
 
 #!markdown
 
@@ -379,7 +686,7 @@ inl integral'' dt : integration =
 // // test
 
 integral'' 0.01 square 0 1
-|> _almost_equal 0.33332500000000004
+|> _almost_equal (integral 0.01 square 0 1)
 
 #!markdown
 
@@ -455,7 +762,7 @@ inl update_velocity dt m fs v0 =
 
 inl velocity_fv dt m v0 fs t =
     t / dt |> round |> abs
-    |> iterate' (update_velocity dt m fs) v0
+    |> iterate_ (update_velocity dt m fs) v0
 
 #!spiral
 
@@ -487,7 +794,7 @@ inl update_tv dt m fs (t, v0) =
 
 inl velocity_ftv dt m tv0 fs t =
     t / dt |> round |> abs
-    |> iterate' (update_tv dt m fs) tv0
+    |> iterate_ (update_tv dt m fs) tv0
     |> snd
 
 #!spiral
@@ -527,7 +834,7 @@ inl update_txv dt m fs =
     newton_second_1d m fs |> euler_1d dt
 
 inl states_txv dt m txv0 fs =
-    iterate' (update_txv dt m fs) txv0
+    iterate_ (update_txv dt m fs) txv0
 
 inl velocity_1d sts t =
     inl (state_1d (t0, _, _)) = sts 0
@@ -603,6 +910,8 @@ inl solver method =
     method >> iterate
 inl solver' method =
     method >> iterate'
+inl solver_ method =
+    method >> iterate_
 
 
 inl euler_cromer_1d dt deriv (state_1d (t0, x0, v0) as t) =
@@ -907,7 +1216,7 @@ vec_derivative 0.01 v1 3 .x
 
 #!markdown
 
-## position_ps
+## states_ps
 
 #!spiral
 
@@ -996,20 +1305,11 @@ instance shift particle_state = fun dt dps (particle_state st) =>
     }
 
 inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
-    newton_second_ps >> method >> iterate'
+    newton_second_ps >> method >> iterate_
 
 inl z_ge0 sts =
-    inl result = mut []
-    inl i = mut 0i32
-    inl rec loop () =
-        inl st : particle_state = sts *i
-        if st.pos_vec.z < 0
-        then *result |> listm.rev
-        else
-            result <- st :: *result
-            i <- *i + 1
-            join loop ()
-    loop ()
+    sts
+    |> list_take_while (fun (particle_state st) => st.pos_vec.z >= 0)
 
 inl trajectory sts =
     sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
@@ -1061,7 +1361,6 @@ inl halley_initial () =
 #!spiral
 
 // // test
-// // timeout=5000
 
 inl baseball_forces () =
     inl area = pi * (0.074 / 2) ** 2
@@ -1097,23 +1396,23 @@ inl y = x |> am.map (baseball_range 0.01 45)
 #!spiral
 
 // // test
-// // timeout=5000
 
 inl best_angle (min, max) =
-    inl best_range = mut 0f64
-    inl best_theta_deg = mut min
-    inl theta_deg = mut min
-    inl rec loop () =
-        if *theta_deg > max
-        then *best_range, *best_theta_deg
+    let rec loop theta_deg (best_range, best_theta_deg) =
+        if theta_deg > max
+        then best_range, best_theta_deg
         else
-            inl range = baseball_range 0.01 45 *theta_deg
-            if range > *best_range then
-                best_range <- range
-                best_theta_deg <- *theta_deg
-            theta_deg <- *theta_deg + 1
-            join loop ()
-    loop ()
+            inl range = baseball_range 0.01 45 theta_deg
+            loop
+                (theta_deg + 1)
+                (if range > best_range
+                    then range, theta_deg
+                    else best_range, best_theta_deg)
+    loop min (0f64, min)
 
 best_angle (30f64, 60f64)
 |> _equal (116.77499158246208, 41)
+
+#!markdown
+
+## end
