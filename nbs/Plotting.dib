@@ -37,12 +37,12 @@ let tmpSpiralPath = Path.GetTempPath () </> "!dotnet-interactive-spiral"
 let linePlotsDataPath = tmpSpiralPath </> "line-plots-data"
 let linePlotsSvgPath = tmpSpiralPath </> "line-plots-svg"
 
-[tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath]
+[ tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath ]
 |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
-Formatter.Register<struct (string * string * float array * string * struct (string * float array) array)> (
-    (fun struct (caption, x_desc, x, y_desc, ys) ->
-        let json = (caption, (x_desc, x), (y_desc, ys)) |> FSharp.Json.Json.serialize
+Formatter.Register<struct (string * string * string * struct (string * float array * float array) array)> (
+    (fun struct (caption, x_desc, y_desc, ys) ->
+        let json = (caption, x_desc, y_desc, ys) |> FSharp.Json.Json.serialize
         async {
             let hashHex = json |> Crypto.hashText
             let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"

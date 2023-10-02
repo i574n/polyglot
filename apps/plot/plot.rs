@@ -1,41 +1,50 @@
 use plotters::prelude::*;
 
+type Data<'a> = (
+    &'a str,
+    &'a str,
+    &'a str,
+    Vec<(&'a str, Vec<f64>, Vec<f64>)>,
+);
+
 fn draw_line_plot(
-    (caption, x_axis, y_axis): (&str, (&str, Vec<f32>), (&str, Vec<(&str, Vec<f32>)>)),
+    (caption, x_desc, y_desc, axis): Data,
     path: String,
 ) -> Result<(), Box<dyn std::error::Error>> {
     let root = SVGBackend::new(&path, (640, 480)).into_drawing_area();
     let _ = root.fill(&RGBColor(20, 20, 20));
 
-    let (x_desc, x_axis) = x_axis;
-    let (y_desc, y_axis) = y_axis;
+    let get_min_max_axis = |axis: &mut dyn Iterator<Item = &f64>| {
+        axis.fold((std::f64::MAX, std::f64::MIN), |(min, max), n| {
+            (min.min(*n), max.max(*n))
+        })
+    };
 
-    let (min_y, max_y) = y_axis
-        .iter()
-        .map(|(_, y)| y)
-        .flatten()
-        .fold((std::f32::MAX, std::f32::MIN), |(min, max), y| {
-            (min.min(*y), max.max(*y))
-        });
+    let (min_x, max_x) = get_min_max_axis(axis.iter().map(|(_, x, _)| x).flatten().by_ref());
+    let (min_y, max_y) = get_min_max_axis(axis.iter().map(|(_, _, y)| y).flatten().by_ref());
 
-    let y_axis: Vec<(&str, Vec<(f32, f32)>)> = y_axis
+    let axis: Vec<(&str, Vec<(f64, f64)>)> = axis
         .into_iter()
-        .map(|(label, y)| {
+        .map(|(label, x, y)| {
             (
                 label,
                 y.into_iter()
                     .enumerate()
-                    .map(|(idx, y)| (x_axis[idx], y))
+                    .map(|(idx, y)| (x[idx], y))
                     .collect(),
             )
         })
         .collect();
 
+    let add_margin = |x, y| (x - (y - x) * 0.03, y + (y - x) * 0.03);
+    let (min_x, max_x) = add_margin(min_x, max_x);
+    let (min_y, max_y) = add_margin(min_y, max_y);
+
     let mut cc = ChartBuilder::on(&root)
         .margin(5)
         .caption(caption, &WHITE)
         .set_all_label_area_size(50)
-        .build_cartesian_2d(x_axis[0]..*x_axis.last().unwrap(), min_y..max_y)?;
+        .build_cartesian_2d(min_x..max_x, min_y..max_y)?;
 
     cc.configure_mesh()
         .x_labels(20)
@@ -53,7 +62,7 @@ fn draw_line_plot(
 
     let colors = vec![&RED, &BLUE, &YELLOW, &GREEN];
 
-    for (idx, (label, y)) in y_axis.iter().enumerate() {
+    for (idx, (label, y)) in axis.iter().enumerate() {
         let color = colors[idx % colors.len()];
         cc.draw_series(LineSeries::new(y.clone(), color))?
             .label(*label)
@@ -95,9 +104,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for (json, svg_path) in missing_svg {
         println!("Creating {}", svg_path.display());
 
-        let (caption, x_axis, y_axis): (&str, (&str, Vec<f32>), (&str, Vec<(&str, Vec<f32>)>)) =
-            serde_json::from_str(&json)?;
-        draw_line_plot((caption, x_axis, y_axis), svg_path.display().to_string())?;
+        let data: Data = serde_json::from_str(&json)?;
+        draw_line_plot(data, svg_path.display().to_string())?;
     }
 
     Ok(())

@@ -198,7 +198,7 @@ module Supervisor =
             )
 
         let outputSeq =
-            [fsxContentSeq; errorsSeq]
+            [ fsxContentSeq; errorsSeq ]
             |> FSharp.Control.AsyncSeq.mergeAll
 
         let! outputChild =

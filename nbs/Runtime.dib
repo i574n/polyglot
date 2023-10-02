@@ -341,7 +341,7 @@ let inline splitArgs commandLine =
 let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
     let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
     let errorHandler : Argu.IExiter =
-        if ["Microsoft.DotNet.Interactive.App"; "dotnet-repl"] |> List.contains assemblyName
+        if [ "Microsoft.DotNet.Interactive.App"; "dotnet-repl" ] |> List.contains assemblyName
         then Argu.ExceptionExiter ()
         else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
 

@@ -59,6 +59,7 @@ inl (~#) (s : string) : ref' str =
 #!spiral
 
 // // rust
+// // timeout=180000
 
 nominal task_name = string
 

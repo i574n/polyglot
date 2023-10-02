@@ -255,7 +255,7 @@ let inline buildFile timeout cancellationToken path = async {
         )
 
     let outputSeq =
-        [fsxContentSeq; errorsSeq]
+        [ fsxContentSeq; errorsSeq ]
         |> FSharp.Control.AsyncSeq.mergeAll
 
     let! outputChild =
@@ -424,8 +424,8 @@ inl main () =
 let v0 : (unit -> int32) = closure0()
 ()
 ",
-        ["main.spi:
-Global inl/let statements should all return functions known at parse time."]
+        [ "main.spi:
+Global inl/let statements should all return functions known at parse time." ]
     )
 )
 
@@ -442,7 +442,7 @@ Global inl/let statements should all return functions known at parse time."]
 |> _equal (
     Some (
         None,
-        ["An attempt to divide by zero has been detected at compile time."]
+        [ "An attempt to divide by zero has been detected at compile time." ]
     )
 )
 
@@ -464,8 +464,8 @@ inl main () =
     Some (
         Some "()
 ",
-        ["main.spi:
-Expected: uppercase variable"]
+        [ "main.spi:
+Expected: uppercase variable" ]
     )
 )
 
@@ -484,8 +484,8 @@ inl main () =
 |> _equal (
     Some (
         None,
-        ["main.spi:
-Expected: whitespace"]
+        [ "main.spi:
+Expected: whitespace" ]
     )
 )
 
@@ -508,7 +508,7 @@ inl main () =
 |> _equal (
     Some (
         None,
-        ["Cannot apply a forall with a term."]
+        [ "Cannot apply a forall with a term." ]
     )
 )
 
@@ -530,7 +530,7 @@ inl main () =
 |> _equal (
     Some (
         None,
-        ["The main function should not have a forall."]
+        [ "The main function should not have a forall." ]
     )
 )
 
@@ -653,8 +653,8 @@ let inline getCodeTokenRange cancellationToken code = async {
 |> getCodeTokenRange None
 |> Async.runWithTimeout 10000
 |> Option.flatten
-|> _equal (Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
-2; 1; 8; 0; 0; 1; 1; 8; 0|])
+|> _equal (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
+2; 1; 8; 0; 0; 1; 1; 8; 0 |])
 
 #!fsharp
 
@@ -664,8 +664,8 @@ let inline getCodeTokenRange cancellationToken code = async {
 |> getCodeTokenRange None
 |> Async.runWithTimeout 10000
 |> Option.flatten
-|> _equal (Some [|0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
-2; 1; 3; 0; 0; 1; 3; 12; 0|])
+|> _equal (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
+2; 1; 3; 0; 0; 1; 3; 12; 0 |])
 
 #!markdown
 

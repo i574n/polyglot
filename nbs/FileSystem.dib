@@ -803,7 +803,7 @@ let inline write path = async {
     let n = 2
 
     let contents =
-        [1..n]
+        [ 1 .. n ]
         |> List.map (string >> String.replicate 1_000_000)
 
     for i = 1 to n do
