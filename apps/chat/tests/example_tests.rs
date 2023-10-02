@@ -16,13 +16,13 @@ fn tokens_to_usd(tokens: u128) -> f64 {
 fn print_usd(result: workspaces::result::ExecutionFinalResult) {
     println!(
         "total_gas_burnt_usd: {:#?}",
-        gas_to_usd(result.total_gas_burnt)
+        gas_to_usd(result.total_gas_burnt.as_gas())
     );
     result.outcomes().iter().for_each(|outcome| {
         println!("outcome (success: {:#?}):", outcome.is_success());
         println!(
             "  outcome_gas_burnt_usd: {:#?}",
-            gas_to_usd(outcome.gas_burnt)
+            gas_to_usd(outcome.gas_burnt.as_gas())
         );
         println!(
             "  outcome_tokens_burnt_usd: {:#?}",

@@ -18,13 +18,32 @@ $toolVersionPath = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
 Write-Output "Tool path: $toolVersionPath"
 
-{ dotnet build -c Release "../deps/Fable/src/Fable.Cli/Fable.Cli.fsproj" } | Invoke-Block
+$projectPath = "../deps/Fable/src/Fable.Cli"
 
-$releasePath = "../deps/Fable/src/Fable.Cli/bin/Release"
+{ dotnet build -c Release "$projectPath/Fable.Cli.fsproj" } | Invoke-Block
+
+$releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
-Copy-Item -Recurse -Force "../deps/Fable/src/Fable.Cli/bin/Release/$dotnetVersion/**" $toolVersionPath
+Copy-Item -Recurse -Force "$releasePath/$dotnetVersion/**" $toolVersionPath
 
-{ dotnet build -c Release "../deps/Fable/src/Fable.Core/Fable.Core.fsproj" } | Invoke-Block
-Copy-Item -Force "../deps/Fable/src/Fable.Core/bin/Release/netstandard2.0/Fable.Core.dll" "$HOME/.nuget/packages/fable.core/4.0.0/lib/netstandard2.0/Fable.Core.dll"
+
+Copy-Item -Recurse -Force "../deps/Fable/src/fable-library**" "$tools/.."
+
+
+$path = "$HOME/.nuget/packages/fable.core"
+$lib = Get-LastSortedItem -Path $path -Filter "lib"
+$libVersionPath = Get-LastSortedItem -Path $lib.FullName -Filter "netstandard2.0"
+
+Write-Output "Lib path: $libVersionPath"
+
+$projectPath = "../deps/Fable/src/Fable.Core"
+
+{ dotnet build -c Release "$projectPath/Fable.Core.fsproj" } | Invoke-Block
+
+$releasePath = "$projectPath/bin/Release"
+$dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.core.dll"
+$dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
+
+Copy-Item -Recurse -Force "$releasePath/$dotnetVersion/**" $libVersionPath

@@ -11,7 +11,7 @@ NUGET
     Expecto.FsCheck (10.1.0-fscheck3)
       Expecto (>= 10.1)
       FsCheck (>= 3.0.0-beta2)
-    Fable.Core (4.0)
+    Fable.Core (4.1)
     Feliz.ViewEngine (0.24)
       FSharp.Core (>= 4.7)
     FParsec (2.0.0-beta2)

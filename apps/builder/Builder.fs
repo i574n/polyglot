@@ -134,9 +134,9 @@ module Builder =
             member s.Usage =
                 match s with
                 | Path _ -> nameof Path
-                | Packages _ -> nameof Arguments.Packages
-                | Modules _ -> nameof Arguments.Modules
-                | Runtime _ -> nameof Arguments.Runtime
+                | Packages _ -> nameof Packages
+                | Modules _ -> nameof Modules
+                | Runtime _ -> nameof Runtime
 
     /// ## main
 

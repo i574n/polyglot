@@ -246,19 +246,21 @@ fn Home() -> impl IntoView {
                                             None => view! { <>{"loading...".to_string()}</> },
                                             Some(None) => view! { <>{"None".to_string()}</> },
                                             Some(Some(transactions)) => view! {
-                                                <><For
-                                                    each=move || transactions.clone()
-                                                    key=|transaction| transaction.hash.to_owned()
-                                                    view=move |transaction| view! {
+                                                <>
+                                                    <For
+                                                        each=move || transactions.clone()
+                                                        key=|transaction| transaction.hash.to_owned()
+                                                        let:transaction
+                                                    >
                                                         <Await
                                                             future=move || fetch_transaction_status(transaction.hash.to_owned())
-                                                            bind:status
+                                                            let:status
                                                         >
                                                             <div>{status.result.as_ref().map(|result|result.receipts_outcome.len()).unwrap_or(0)
                                                             }</div>
                                                         </Await>
-                                                    }
-                                                /></>
+                                                    </For>
+                                                </>
                                             },
                                         }}
                                     </td>
@@ -282,46 +284,46 @@ fn Home() -> impl IntoView {
                                 <For
                                     each=move || 0..row_count()
                                     key=|i| *i
-                                    view=move |i| view! {
-                                        <tr class="odd:bg-gray-50 dark:odd:bg-gray-800/50">
-                                            <td
-                                                class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
-                                            >
-                                                {i * 3 + 1}
-                                            </td>
-                                            <td
-                                                class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
-                                            >
-                                                {i * 3 + 2}
-                                            </td>
-                                            <td
-                                                class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
-                                            >
-                                                {i * 3 + 3}
-                                            </td>
-                                            <td
-                                                class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
-                                            >
-                                                {if i == 0 {
-                                                    view! {
-                                                        <span>
-                                                            <button
-                                                                class="bg-amber-600 hover:bg-sky-700 px-2 text-white rounded-sm"
-                                                                on:click=move |_| set_row_count.update(|count| *count += 1)
-                                                            >
-                                                                +
-                                                            </button>
-                                                        </span>
-                                                    }
-                                                } else {
-                                                    view! {
-                                                        <span></span>
-                                                    }
-                                                }}
-                                            </td>
-                                        </tr>
-                                    }
-                                />
+                                    let:i
+                                >
+                                    <tr class="odd:bg-gray-50 dark:odd:bg-gray-800/50">
+                                        <td
+                                            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+                                        >
+                                            {i * 3 + 1}
+                                        </td>
+                                        <td
+                                            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+                                        >
+                                            {i * 3 + 2}
+                                        </td>
+                                        <td
+                                            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+                                        >
+                                            {i * 3 + 3}
+                                        </td>
+                                        <td
+                                            class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200"
+                                        >
+                                            {if i == 0 {
+                                                view! {
+                                                    <span>
+                                                        <button
+                                                            class="bg-amber-600 hover:bg-sky-700 px-2 text-white rounded-sm"
+                                                            on:click=move |_| set_row_count.update(|count| *count += 1)
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </span>
+                                                }
+                                            } else {
+                                                view! {
+                                                    <span></span>
+                                                }
+                                            }}
+                                        </td>
+                                    </tr>
+                                </For>
                             </tbody>
                         </table>
                         <Player />

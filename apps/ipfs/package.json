@@ -9,9 +9,9 @@
     "nft.storage": "~7.1"
   },
   "devDependencies": {
-    "@types/node": "~20.7",
+    "@types/node": "~20.8",
     "npm-check-updates": "~16.14",
-    "typescript": "~5.2",
-    "tsx": "~3.12"
+    "typescript": "next",
+    "tsx": "~3.13"
   }
 }

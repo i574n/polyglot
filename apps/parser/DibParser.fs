@@ -214,7 +214,7 @@ module {moduleName} ="
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
-                | Paths _ -> nameof Arguments.Paths
+                | Paths _ -> nameof Paths
 
     /// ## main
 

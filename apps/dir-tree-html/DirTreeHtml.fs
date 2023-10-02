@@ -128,8 +128,8 @@ details > div {{
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
-                | Dir _ -> nameof Arguments.Dir
-                | Html _ -> nameof Arguments.Html
+                | Dir _ -> nameof Dir
+                | Html _ -> nameof Html
 
     /// ## main
 

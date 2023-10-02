@@ -76,7 +76,7 @@ module Supervisor =
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
                                 if line |> String.contains $"Server bound to: http://localhost:{availablePort}" then
-                                    do! Networking.waitForPortAccess (Some 10000) true availablePort |> Async.Ignore
+                                    do! Networking.waitForPortAccess (Some 500) true availablePort |> Async.Ignore
 
                                     let rec loop retry = async {
                                         let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"

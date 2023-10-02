@@ -93,7 +93,7 @@ module JsonParser =
     let jUnicodeChar =
         let backslash = pchar '\\'
         let uChar = pchar 'u'
-        let hexdigit = anyOf (['0'..'9'] @ ['A'..'F'] @ ['a'..'f'])
+        let hexdigit = anyOf ([ '0' .. '9' ] @ [ 'A' .. 'F' ] @ [ 'a' .. 'f' ])
         let fourHexDigits = hexdigit .>>. hexdigit .>>. hexdigit .>>. hexdigit
 
         let inline convertToChar (((h1, h2), h3), h4) =

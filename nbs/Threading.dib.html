@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Toml.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Threading.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7497,7 +7497,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Toml-(Polyglot)">Toml (Polyglot)<a class="anchor-link" href="#Toml-(Polyglot)">¶</a></h1>
+<h1 id="Threading-(Polyglot)">Threading (Polyglot)<a class="anchor-link" href="#Threading-(Polyglot)">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7523,7 +7523,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/tomlyn/0.16.2/lib/net6.0/Tomlyn.dll"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../nbs/Common.fs</span>
 </pre></div>
 </div>
 </div>
@@ -7537,23 +7537,20 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../nbs/Common.fs</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="newDisposableToken">newDisposableToken<a class="anchor-link" href="#newDisposableToken">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7565,11 +7562,15 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="p">(</span><span class="o">/./</span><span class="p">)</span> <span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">TomlTable</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">TomlTable</span> <span class="o">=</span>
-    <span class="n">table</span><span class="o">.</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">:</span><span class="err">?</span><span class="o">&gt;</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">TomlTable</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="p">(</span><span class="o">/../</span><span class="p">)</span> <span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">TomlTable</span><span class="p">)</span> <span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="s1">'T seq =</span>
-    <span class="n">table</span><span class="o">.</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">:</span><span class="err">?</span><span class="o">&gt;</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Model</span><span class="o">.</span><span class="n">TomlArray</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">cast</span><span class="o">&lt;</span><span class="s1">'T&gt;</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">newDisposableToken</span> <span class="p">(</span><span class="n">mergeToken</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span> <span class="n">option</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">cts</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationTokenSource</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">cts</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">mergeToken</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="n">cts</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="n">mergeToken</span> <span class="o">-&gt;</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationTokenSource</span><span class="o">.</span><span class="n">CreateLinkedTokenSource</span> <span class="p">[</span><span class="o">|</span> <span class="n">cts</span><span class="o">.</span><span class="n">Token</span><span class="p">;</span> <span class="n">mergeToken</span> <span class="o">|</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">newDisposable</span> <span class="n">cts</span><span class="o">.</span><span class="n">Cancel</span>
+    <span class="n">cts</span><span class="o">.</span><span class="n">Token</span><span class="p">,</span> <span class="n">disposable</span>
 </pre></div>
 </div>
 </div>
@@ -7585,20 +7586,27 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tomlContent</span> <span class="o">=</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">[extension]</span>
-<span class="sd">paths = ["/a", "/b"]</span>
-<span class="sd">"""</span>
+<span class="n">let</span> <span class="n">mutable</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">let</span> <span class="n">toml</span> <span class="o">=</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Toml</span><span class="o">.</span><span class="n">Parse</span> <span class="n">tomlContent</span>
-<span class="n">let</span> <span class="n">tomlModel</span> <span class="o">=</span> <span class="n">Tomlyn</span><span class="o">.</span><span class="n">Toml</span><span class="o">.</span><span class="n">ToModel</span> <span class="n">toml</span>
+<span class="n">let</span> <span class="n">inline</span> <span class="n">run</span> <span class="n">fn</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">token</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">newDisposableToken</span> <span class="kc">None</span>
+    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
+    <span class="n">fn</span> <span class="n">token</span>
+    <span class="k">async</span> <span class="p">{</span>
+        <span class="n">fn</span> <span class="n">token</span>
+    <span class="p">}</span>
+    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
 
-<span class="n">let</span> <span class="n">paths</span> <span class="p">:</span> <span class="n">string</span> <span class="n">seq</span> <span class="o">=</span> <span class="n">tomlModel</span> <span class="o">/./</span> <span class="s2">"extension"</span> <span class="o">/../</span> <span class="s2">"paths"</span>
+<span class="n">let</span> <span class="n">inline</span> <span class="n">fn</span> <span class="p">(</span><span class="n">token</span> <span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">counter</span> <span class="o">&lt;-</span> <span class="n">counter</span> <span class="o">+</span> <span class="p">(</span><span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">IsCancellationRequested</span> <span class="n">then</span> <span class="mi">10</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">paths</span>
-<span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="s2">"/a"</span><span class="p">;</span> <span class="s2">"/b"</span> <span class="p">]</span>
+<span class="k">async</span> <span class="p">{</span>
+    <span class="n">run</span> <span class="n">fn</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">counter</span>
+<span class="p">}</span>
+<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">11</span>
 </pre></div>
 </div>
 </div>
@@ -7611,7 +7619,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>[ /a, /b ]
+<pre>11
 </pre>
 </div>
 </div>

@@ -42,7 +42,7 @@ module Networking =
             else
                 if retry % 100 = 0 then
                     let getLocals () = $"port: {port} / retry: {retry} / {getLocals ()}"
-                    trace Warning (fun () -> "waitForPortAccess") getLocals
+                    trace Verbose (fun () -> "waitForPortAccess") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
         }
