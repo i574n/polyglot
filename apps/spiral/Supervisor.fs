@@ -266,10 +266,10 @@ module Supervisor =
 
         let spiprojPath = tempDir </> "package.spiproj"
         let spiprojCode =
-            $"""packageDir: {repositoryRoot </> "spiral"}
+            $"""packageDir: {repositoryRoot </> "lib"}
 packages:
     |core-
-    fsharp
+    spiral-
 modules:
     main
 """

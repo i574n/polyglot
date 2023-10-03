@@ -1,0 +1,11 @@
+packages:
+    |core-
+modules:
+    testing
+    console
+    math
+    optionm'
+    am'
+    listm'
+    util
+    physics

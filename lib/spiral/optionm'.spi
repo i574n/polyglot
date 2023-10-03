@@ -1,0 +1,9 @@
+// // # optionm
+
+// // ## default_value
+
+inl default_value d = optionm.defaultWith d
+
+// // ## default_with
+
+inl default_with fn = function Some x => x | None => fn ()

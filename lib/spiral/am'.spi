@@ -1,0 +1,12 @@
+// // # am
+
+// // ## sum
+
+inl sum (a' : a _ _) =
+    a' |> am.fold (+) 0
+
+// // ## init_series
+
+inl init_series start end inc =
+    inl total = conv ((end - start) / inc) + 1
+    am.init total (conv >> (*) inc >> (+) start) : a i32 _

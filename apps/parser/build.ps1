@@ -9,9 +9,9 @@ $ErrorActionPreference = "Stop"
 
 $dibParserExe = "dist/DibParser$(GetExecutableSuffix)"
 if ($fast -and (Test-Path $dibParserExe)) {
-    { . $dibParserExe DibParser.dib } | Invoke-Block
+    { . $dibParserExe DibParser.dib fs } | Invoke-Block
 } else {
-    Invoke-Dib DibParser.dib -EnvironmentVariables @{ "ARGS" = "DibParser.dib" }
+    Invoke-Dib DibParser.dib -EnvironmentVariables @{ "ARGS" = "DibParser.dib fs" }
 }
 
 { . ../builder/dist/Builder$(GetExecutableSuffix) DibParser.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FParsec FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Runtime.fs nbs/FileSystem.fs } | Invoke-Block
@@ -21,7 +21,7 @@ if (!$fast) {
     Invoke-Dib Parser.dib
 }
 
-{ . dist/DibParser$(GetExecutableSuffix) JsonParser.dib Parser.dib } | Invoke-Block
+{ . dist/DibParser$(GetExecutableSuffix) JsonParser.dib fs Parser.dib fs } | Invoke-Block
 
 if ($env:CI) {
     Remove-Item ./target -Recurse -Force -ErrorAction Ignore

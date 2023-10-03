@@ -1,0 +1,47 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# am
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## sum
+
+#!spiral
+
+inl sum (a' : a _ _) =
+    a' |> am.fold (+) 0
+
+#!spiral
+
+// // test
+
+am.init 10i32 id
+|> sum
+|> _equal 45
+
+#!markdown
+
+## init_series
+
+#!spiral
+
+inl init_series start end inc =
+    inl total = conv ((end - start) / inc) + 1
+    am.init total (conv >> (*) inc >> (+) start) : a i32 _
+
+#!spiral
+
+// // test
+
+init_series 0 1 0.5
+|> _equal (a ;[0f64; 0.5; 1])

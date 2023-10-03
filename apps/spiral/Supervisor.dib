@@ -327,10 +327,10 @@ let inline persistCode code = async {
 
     let spiprojPath = tempDir </> "package.spiproj"
     let spiprojCode =
-        $"""packageDir: {repositoryRoot </> "spiral"}
+        $"""packageDir: {repositoryRoot </> "lib"}
 packages:
     |core-
-    fsharp
+    spiral-
 modules:
     main
 """
@@ -366,17 +366,8 @@ let buildCode timeout cancellationToken code = buildCode timeout cancellationTok
 
 //// test
 
-""
-|> buildCode 6000 None
-|> Async.runWithTimeout 6000
-|> _equal None
-
-#!fsharp
-
-//// test
-
 """inl app () =
-    fsharp.console.write_line "text"
+    console.write_line "text"
     1i32
 
 inl main () =
@@ -384,8 +375,8 @@ inl main () =
     |> dyn
     |> ignore
 """
-|> buildCode 10000 None
-|> Async.runWithTimeout 10000
+|> buildCode 15000 None
+|> Async.runWithTimeout 15000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
 |> _equal (
     Some (
@@ -399,6 +390,15 @@ let v0 : (unit -> int32) = closure0()
         []
     )
 )
+
+#!fsharp
+
+//// test
+
+""
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
+|> _equal None
 
 #!fsharp
 

@@ -1,10 +1,10 @@
+packageDir: ../lib
 packages:
     |core-
+    spiral-
 modules:
     real_util*
     util-
-    fsharp/
-        console
     console_fsx
     rust/
         util

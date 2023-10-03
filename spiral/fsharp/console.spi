@@ -1,2 +1,0 @@
-inl write_line ~obj : () =
-    $"System.Console.WriteLine !obj"

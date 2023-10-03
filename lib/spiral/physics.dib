@@ -1,746 +1,20 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
 
 #!markdown
 
-## Physics (Polyglot)
+# physics
 
 #!fsharp
 
 #!import ../nbs/Plotting.dib
 
-#!markdown
-
-## Testing
-
 #!spiral
 
 // // test
 
-inl _almost_equal b a =
-    assert (abs (b - a) < 0.00000001) $"$\"_almost_equal / actual: {!a} / expected: {!b}\""
-
-inl _equal b a =
-    assert (a = b) $"$\"_equal / actual: {!a} / expected: {!b}\""
-
-inl _is_less_than b a =
-    assert (b < a) $"$\"_is_less_than / actual: {!a} / expected: {!b}\""
-
-inl _is_less_than_or_equal b a =
-    assert (b <= a) $"$\"_is_less_than_or_equal / actual: {!a} / expected: {!b}\""
-
-inl _throws (fn : () -> ()) : option string =
-    inl none = None : option string
-    inl some (s : string) = Some s
-    $"try !fn (); !none with ex -> !some ex.Message"
-
-#!markdown
-
-## Math
-
-#!spiral
-
-inl atan2 (y : f64) (x : f64) =
-    $"System.Math.Atan2 (!y, !x)" : f64
-
-inl e () =
-    exp 1f64
-
-inl log_base (new_base : f64) (a : f64) =
-    $"System.Math.Log (!a, !new_base)" : f64
-
-inl round forall t {float}. (x : t) : t =
-    $"round !x"
-
-inl square x =
-    x ** 2
-
-#!spiral
-
-// // test
-
-2 * 2 / 0.4f64 |> sqrt
-|> _almost_equal 3.1622776601683795
-
-#!spiral
-
-// // test
-
-2f64 / 3
-|> _almost_equal 0.6666666666666666
-
-#!spiral
-
-// // test
-
-2f64 |> log
-|> _almost_equal 0.6931471805599453
-
-#!spiral
-
-// // test
-
-pi
-|> _almost_equal 3.141592653589793f64
-
-#!spiral
-
-// // test
-
-pi |> cos
-|> _equal -1f64
-
-#!spiral
-
-// // test
-
-pi
-|> cos
-|> fun n => n / 2f64
-|> _almost_equal -0.5
-
-#!spiral
-
-// // test
-
-pi / 2 |> cos
-|> _almost_equal 0.00000000000000006123233995736766f64
-
-#!spiral
-
-// // test
-
-100 |> log_base 10
-|> _equal 2
-
-#!spiral
-
-// // test
-
-0 |> atan2 1
-|> _equal 1.5707963267948966
-
-#!spiral
-
-// // test
-
-5f64
-|> sqrt
-|> square
-|> _almost_equal 5
-
-#!spiral
-
-// // test
-
-e () |> square
-|> _almost_equal 7.3890560989306495
-
-#!markdown
-
-## option
-
-#!markdown
-
-### option_default_value
-
-#!spiral
-
-inl option_default_value d = optionm.defaultWith d
-
-#!spiral
-
-// // test
-
-None
-|> option_default_value 3i32
-|> _equal 3i32
-
-#!markdown
-
-### option_default_with
-
-#!spiral
-
-inl option_default_with fn = function Some x => x | None => fn ()
-
-#!spiral
-
-// // test
-
-None
-|> option_default_with (fun () => 3i32)
-|> _equal 3i32
-
-#!markdown
-
-## a
-
-#!spiral
-
-inl a_sum (a' : a _ _) =
-    a' |> am.fold (+) 0
-
-#!spiral
-
-// // test
-
-am.init 10i32 id
-|> a_sum
-|> _equal 45
-
-#!markdown
-
-## list
-
-#!markdown
-
-### try_list_item
-
-#!spiral
-
-inl rec try_list_item i = function
-    | Cons (x, _) when i = 0 => Some x
-    | Cons (_, xs) => try_list_item (i - 1) xs
-    | Nil => None
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> try_list_item 9i32
-|> _equal (Some 9)
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> try_list_item 10i32
-|> _equal None
-
-#!markdown
-
-### list_item
-
-#!spiral
-
-inl list_item i =
-    try_list_item i >> optionm.value
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> list_item 9i32
-|> _equal 9
-
-#!spiral
-
-// // test
-
-fun () =>
-    listm.init 10i32 id
-    |> list_item 10i32
-    |> ignore
-|> _throws
-|> _equal (Some "Option does not have a value.")
-
-#!markdown
-
-### try_list_item_
-
-#!spiral
-
-let rec try_list_item_ i = function
-    | Cons (x, _) when i = 0 => Some x
-    | Cons (_, xs) => try_list_item_ (i - 1) xs
-    | Nil => None
-
-#!markdown
-
-### list_item_
-
-#!spiral
-
-inl list_item_ i =
-    try_list_item_ i >> optionm.value
-
-#!markdown
-
-### lazy_list
-
-#!spiral
-
-union rec lazy_list t =
-    | LazyCons : t * (() -> lazy_list t)
-    | LazyNil
-
-inl rec lazy_list list =
-    match list with
-    | [] => LazyNil
-    | x :: xs => LazyCons (x, fun () => lazy_list xs)
-
-inl rec try_lazy_list_item i = function
-    | LazyCons (x, _) when i = 0 => Some x
-    | LazyCons (_, fn) => try_lazy_list_item (i - 1) (fn ())
-    | LazyNil => None
-
-inl lazy_list_item i =
-    try_lazy_list_item i >> optionm.value
-
-inl try_lazy_list_item_ i list =
-    inl i = mut i
-    inl list = mut list
-    let rec loop () =
-        match *list with
-        | LazyCons (x, _) when *i = 0 => Some x
-        | LazyCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | LazyNil => None
-    loop ()
-
-inl lazy_list_item_ i =
-    try_lazy_list_item_ i >> optionm.value
-
-let rec try_lazy_list_item__ i list =
-    inl i = mut i
-    inl list = mut list
-    inl result = mut None
-    let rec loop () =
-        match *list with
-        | LazyCons (x, _) when *i = 0 => result <- Some x
-        | LazyCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | LazyNil => ()
-    loop ()
-    *result
-
-inl lazy_list_item__ i =
-    try_lazy_list_item__ i >> optionm.value
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> lazy_list
-|> lazy_list_item 9i32
-|> _equal 9
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> lazy_list
-|> lazy_list_item_ 9i32
-|> _equal 9
-
-#!markdown
-
-### new_infinite_lazy_list
-
-#!spiral
-
-inl new_infinite_lazy_list fn =
-    inl rec loop n =
-        LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-inl new_infinite_lazy_list_ fn =
-    let rec loop n =
-        LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-#!spiral
-
-// // test
-
-inl print_and_return x =
-    $"printfn $\"print_and_return / x: {!x}\""
-    x
-
-new_infinite_lazy_list print_and_return
-|> lazy_list_item 4i32
-|> _equal 4i32
-
-#!spiral
-
-// // test
-
-inl new_finite_lazy_list max =
-    inl rec loop n =
-        if n >= max
-        then LazyNil
-        else LazyCons (print_and_return n, fun () => loop (n + 1))
-    loop 0
-
-inl new_finite_lazy_list_ max =
-    let rec loop n =
-        if n >= max
-        then LazyNil
-        else LazyCons (print_and_return n, fun () => loop (n + 1))
-    loop 0
-
-#!markdown
-
-### memoize_lazy_list
-
-#!spiral
-
-union memoized_lazy_list t =
-    | NotComputed : () -> lazy_list t
-    | Computed : lazy_list t
-
-inl memoize_lazy_list list =
-    inl rec loop list =
-        inl state = mut (NotComputed list)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | LazyNil => LazyNil
-                    | LazyCons (x, fn) => LazyCons (x, loop fn)
-                state <- Computed new_state
-                new_state
-    loop (fun () => list)
-
-inl memoize_lazy_list_ list =
-    let rec loop list =
-        inl state = mut (NotComputed list)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | LazyNil => LazyNil
-                    | LazyCons (x, fn) => LazyCons (x, loop fn)
-                state <- Computed new_state
-                new_state
-    loop (fun () => list)
-
-#!spiral
-
-// // test
-
-inl list_memo = new_finite_lazy_list 10 |> memoize_lazy_list
-
-list_memo ()
-|> lazy_list_item 3i32
-|> _equal 3i32
-
-list_memo ()
-|> lazy_list_item 5i32
-|> _equal 5i32
-
-#!spiral
-
-// // test
-
-inl list_memo = new_infinite_lazy_list_ print_and_return |> memoize_lazy_list
-
-list_memo ()
-|> lazy_list_item 3i32
-|> _equal 3i32
-
-list_memo ()
-|> lazy_list_item 5i32
-|> _equal 5i32
-
-#!markdown
-
-### list_sum
-
-#!spiral
-
-inl list_sum list =
-    list |> listm.fold (+) 0
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> list_sum
-|> _equal 45
-
-#!markdown
-
-### list_unzip
-
-#!spiral
-
-inl list_unzip list =
-    list
-    |> listm.fold
-        (fun (acc_x, acc_y) (x, y) =>
-            x :: acc_x, y :: acc_y
-        )
-        ([], [])
-    |> fun x, y =>
-        x |> listm.rev, y |> listm.rev
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> listm.map (fun x => x, x)
-|> list_unzip
-|> fun x, y =>
-    x |> list_sum
-    |> _equal 45
-
-    y |> list_sum
-    |> _equal 45
-
-#!markdown
-
-### try_list_index_of
-
-#!spiral
-
-inl try_list_index_of forall t n {number}. (item : t) (list : list t) : option n =
-    inl rec loop (i : n) = function
-        | [] => None
-        | x :: xs =>
-            if x = item
-            then Some i
-            else loop (i + 1) xs
-    loop 0 list
-
-inl list_index_of item =
-    try_list_index_of item >> optionm.value
-
-inl try_list_index_of_ forall t n {number}. (item : t) (list : list t) : option n =
-    let rec loop (i : n) = function
-        | [] => None
-        | x :: xs =>
-            if x = item
-            then Some i
-            else loop (i + 1) xs
-    loop 0 list
-
-inl list_index_of_ item =
-    try_list_index_of_ item >> optionm.value
-
-inl try_list_index_of__ forall t n {number}. (item : t) (list : list t) : option n =
-    inl i = mut 0
-    inl list = mut list
-    inl result = mut None
-    let rec loop () =
-        match *list with
-        | [] => result <- None
-        | x :: xs =>
-            if x = item
-            then result <- Some *i
-            else
-                i <- *i + 1
-                list <- xs
-                loop ()
-    loop ()
-    *result
-
-inl list_index_of__ item =
-    try_list_index_of__ item >> optionm.value
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> list_index_of 5i32
-|> _equal 5i32
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> try_list_index_of 10i32
-|> _equal (None : option i32)
-
-#!markdown
-
-## take_while
-
-#!spiral
-
-inl take_while cond sts =
-    inl rec loop acc i =
-        inl st = sts i
-        if cond st i
-        then loop (st :: acc) (i + 1)
-        else acc |> listm.rev
-    loop [] 0i32
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> fun list =>
-    fun n =>
-        list |> list_item n
-|> take_while (fun n _ => n < 5)
-|> list_sum
-|> _equal 10
-
-#!spiral
-
-// // test
-
-new_finite_lazy_list 10i32
-|> fun list =>
-    fun n =>
-        list |> lazy_list_item n
-|> take_while (fun n _ => n < 5)
-|> list_sum
-|> _equal 10
-
-#!markdown
-
-## take_while_
-
-#!spiral
-
-inl take_while_ cond sts =
-    let rec loop acc i =
-        inl st = sts i
-        if cond st i
-        then loop (st :: acc) (i + 1)
-        else acc |> listm.rev
-    loop [] 0i32
-
-#!spiral
-
-// // test
-
-new_infinite_lazy_list_ print_and_return
-|> fun list =>
-    fun n =>
-        list |> lazy_list_item_ n
-|> take_while_ (fun n _ => n < 5i32)
-|> list_sum
-|> _equal 10
-
-#!spiral
-
-// // test
-
-new_infinite_lazy_list_ print_and_return
-|> memoize_lazy_list
-|> fun list =>
-    inl list = list ()
-    fun n =>
-        list |> lazy_list_item_ n
-|> take_while_ (fun n _ => n < 5i32)
-|> list_sum
-|> _equal 10
-
-#!spiral
-
-// // test
-
-new_finite_lazy_list 10i32
-|> memoize_lazy_list
-|> fun list =>
-    inl list = list ()
-    fun n =>
-        list |> lazy_list_item_ n
-|> take_while_ (fun n _ => n < 5)
-|> list_sum
-|> _equal 10
-
-#!markdown
-
-## take_while__
-
-#!spiral
-
-inl take_while__ cond sts =
-    inl result = mut []
-    inl i = mut 0i32
-    let rec loop () =
-        inl st = sts *i
-        if cond st *i then
-            result <- st :: *result
-            i <- *i + 1
-            loop ()
-        else *result |> listm.rev
-    loop ()
-
-#!spiral
-
-// // test
-
-new_infinite_lazy_list_ print_and_return
-|> fun list =>
-    fun n =>
-        list |> lazy_list_item_ n
-|> take_while__ (fun n _ => n < 5i32)
-|> list_sum
-|> _equal 10
-
-#!markdown
-
-## iterate
-
-#!spiral
-
-inl iterate f x0 num_steps =
-    inl rec loop x n =
-        if n <= 0
-        then x
-        else loop (f x) (n - 1)
-    loop x0 num_steps
-
-#!spiral
-
-// // test
-
-10i32 |> iterate ((+) 1) 1i32
-|> _equal 11
-
-#!spiral
-
-inl iterate_ f x0 num_steps =
-    let rec loop x n =
-        if n <= 0
-        then x
-        else loop (f x) (n - 1)
-    loop x0 num_steps
-
-#!spiral
-
-// // test
-
-10i32 |> iterate_ ((+) 1) 1i32
-|> _equal 11
-
-#!spiral
-
-inl iterate' f x0 num_steps =
-    listm.init num_steps id
-    |> listm.fold (fun x _ => f x) x0
-
-#!spiral
-
-// // test
-
-10i32 |> iterate' ((+) 1) 1i32
-|> _equal 11
+open testing
 
 #!markdown
 
@@ -748,27 +22,17 @@ inl iterate' f x0 num_steps =
 
 #!spiral
 
-inl init_series start end inc =
-    inl total = conv ((end - start) / inc) + 1
-    am.init total (conv >> (*) inc >> (+) start) : a i32 _
-
-inl init_series' start end inc =
-    inl total : f64 = conv ((end - start) / inc) + 1
-    listm.init total (conv >> (*) inc >> (+) start)
-
-#!spiral
-
 // // test
 
-inl x : a _ f64 = init_series -3 3 0.01
-inl y = x |> am.map square
+inl x : a _ f64 = am'.init_series -3 3 0.01
+inl y = x |> am.map math.square
 "square", "x", "y", ;[ "square", x, y ]
 
 #!spiral
 
 // // test
 
-inl x : a _ f64 = init_series -10 10 0.1
+inl x : a _ f64 = am'.init_series -10 10 0.1
 inl y_sin = x |> am.map sin
 inl y_cos = x |> am.map cos
 "sin cos", "x", "y", ;[ "sin", x, y_sin; "cos", x, y_cos ]
@@ -778,9 +42,9 @@ inl y_cos = x |> am.map cos
 // // test
 
 inl y_pos y0 vy0 ay t =
-    y0 + vy0 * t + ay * (t |> square) / 2
+    y0 + vy0 * t + ay * (t |> math.square) / 2
 
-inl x : a _ f64 = init_series 0 5 0.01
+inl x : a _ f64 = am'.init_series 0 5 0.01
 inl y = x |> am.map (y_pos 0 20 -9.8)
 "projectile motion", "time (s)", "", ;[ "height of projectile (m)", x, y ]
 
@@ -799,7 +63,7 @@ type force = f64
 type velocity_cf = mass -> velocity -> list force -> (time -> velocity)
 
 inl velocity_cf m v0 fs =
-    inl f_net = fs |> list_sum
+    inl f_net = fs |> listm'.sum
     inl a0 = f_net / m
     inl v t = v0 + a0 * t
     v
@@ -818,7 +82,7 @@ velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ] 1
 
 // // test
 
-inl x = init_series 0 4 0.1
+inl x = am'.init_series 0 4 0.1
 inl y = x |> am.map (velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ])
 "car on an air track", "time (s)", "", ;[ "velocity of car (m/s)", x, y ]
 
@@ -880,38 +144,38 @@ inl integral dt : integration =
 
 // // test
 
-integral 0.01 square 0 1
+integral 0.01 math.square 0 1
 |> _almost_equal 0.33332500000000004
 
 #!spiral
 
 inl integral' dt : integration =
     fun f a b =>
-        init_series' (a + dt / 2) (b - dt / 2) dt
+        listm'.init_series (a + dt / 2) (b - dt / 2) dt
         |> listm.map (f >> (*) dt)
-        |> list_sum
+        |> listm'.sum
 
 #!spiral
 
 // // test
 
-integral' 0.1 square 0 1
-|> _almost_equal (integral 0.1 square 0 1)
+integral' 0.1 math.square 0 1
+|> _almost_equal (integral 0.1 math.square 0 1)
 
 #!spiral
 
 inl integral'' dt : integration =
     fun f a b =>
-        init_series (a + dt / 2) (b - dt / 2) dt
+        am'.init_series (a + dt / 2) (b - dt / 2) dt
         |> am.map (f >> (*) dt)
-        |> a_sum
+        |> am'.sum
 
 #!spiral
 
 // // test
 
-integral'' 0.01 square 0 1
-|> _almost_equal (integral 0.01 square 0 1)
+integral'' 0.01 math.square 0 1
+|> _almost_equal (integral 0.01 math.square 0 1)
 
 #!markdown
 
@@ -932,7 +196,7 @@ type velocity_ft = mass -> velocity -> list (time -> force) -> (time -> velocity
 
 inl velocity_ft dt : velocity_ft =
     fun m v0 fs =>
-        inl f_net t = fs |> listm.map (fun f => f t) |> list_sum
+        inl f_net t = fs |> listm.map (fun f => f t) |> listm'.sum
         inl a t = f_net t / m
         anti_derivative dt v0 a
 
@@ -961,7 +225,7 @@ inl pedal_coast (t : time) : force =
     then 10
     else 0
 
-inl x = init_series -5 45 0.1
+inl x = am'.init_series -5 45 0.1
 inl y = x |> am.map pedal_coast
 "child pedaling then coasting", "time (s)", "", ;[ "force on bike (N)", x, y ]
 
@@ -969,7 +233,7 @@ inl y = x |> am.map pedal_coast
 
 // // test
 
-inl x = init_series -5 45 1
+inl x = am'.init_series -5 45 1
 inl y = x |> am.map (position_ft 0.1f64 20 0 0 [ pedal_coast ])
 "child pedaling then coasting", "time (s)", "", ;[ "position of bike (m)", x, y ]
 
@@ -980,14 +244,14 @@ inl y = x |> am.map (position_ft 0.1f64 20 0 0 [ pedal_coast ])
 #!spiral
 
 inl newton_second_v m fs v0 =
-    fs |> listm.map (fun f => f v0) |> list_sum |> fun x => x / m
+    fs |> listm.map (fun f => f v0) |> listm'.sum |> fun x => x / m
 
 inl update_velocity dt m fs v0 =
     v0 + newton_second_v m fs v0 * dt
 
 inl velocity_fv dt m v0 fs t =
-    t / dt |> round |> abs
-    |> iterate_ (update_velocity dt m fs) v0
+    t / dt |> math.round |> abs
+    |> util.iterate_ (update_velocity dt m fs) v0
 
 #!spiral
 
@@ -998,7 +262,7 @@ inl f_air drag rho area v =
 
 // // test
 
-inl x = init_series 0 60 0.5
+inl x = am'.init_series 0 60 0.5
 inl y = x |> am.map (velocity_fv 1 70 0f64 [ fun _ => 100; f_air 2 1.225 0.6 ])
 "bike velocity", "time (s)", "", ;[ "velocity of bike (m/s)", x, y ]
 
@@ -1009,7 +273,7 @@ inl y = x |> am.map (velocity_fv 1 70 0f64 [ fun _ => 100; f_air 2 1.225 0.6 ])
 #!spiral
 
 inl newton_second_tv m fs (t, v0) =
-    inl f_net = fs |> listm.map (fun f => f (t, v0)) |> list_sum
+    inl f_net = fs |> listm.map (fun f => f (t, v0)) |> listm'.sum
     inl acc = f_net / m
     1, acc
 
@@ -1018,15 +282,15 @@ inl update_tv dt m fs (t, v0) =
     t + dtdt * dt, v0 + dvdt * dt
 
 inl velocity_ftv dt m tv0 fs t =
-    t / dt |> round |> abs
-    |> iterate_ (update_tv dt m fs) tv0
+    t / dt |> math.round |> abs
+    |> util.iterate_ (update_tv dt m fs) tv0
     |> snd
 
 #!spiral
 
 // // test
 
-inl x = init_series 0 100 0.1
+inl x = am'.init_series 0 100 0.1
 inl y =
     x
     |> am.map (
@@ -1044,7 +308,7 @@ nominal state_1d = time * position * velocity
 nominal rrr = f64 * f64 * f64
 
 inl newton_second_1d m fs (state_1d (t, x0, v0)) =
-    inl f_net = fs |> listm.map (fun f => f (state_1d (t, x0, v0))) |> list_sum
+    inl f_net = fs |> listm.map (fun f => f (state_1d (t, x0, v0))) |> listm'.sum
     inl acc = f_net / m
     rrr (1f64, v0, acc)
 
@@ -1059,13 +323,13 @@ inl update_txv dt m fs =
     newton_second_1d m fs |> euler_1d dt
 
 inl states_txv dt m txv0 fs =
-    iterate_ (update_txv dt m fs) txv0
+    util.iterate_ (update_txv dt m fs) txv0
 
 inl velocity_1d sts t =
     inl (state_1d (t0, _, _)) = sts 0
     inl (state_1d (t1, _, _)) = sts 1
     inl dt = t1 - t0
-    inl num_steps = t / dt |> round |> abs
+    inl num_steps = t / dt |> math.round |> abs
     inl (state_1d (_, _, v0)) = sts num_steps
     v0
 
@@ -1076,7 +340,7 @@ inl position_1d sts t =
     inl (state_1d (t0, _, _)) = sts 0
     inl (state_1d (t1, _, _)) = sts 1
     inl dt = t1 - t0
-    inl num_steps = t / dt |> round |> abs
+    inl num_steps = t / dt |> math.round |> abs
     inl (state_1d (_, x0, _)) = sts num_steps
     x0
 
@@ -1093,17 +357,17 @@ inl spring_force k (state_1d (_, x0, _)) =
 inl damped_ho_forces () =
     [
         spring_force 0.8
-        fun (state_1d (_, _, v0)) => f_air 2 1.225 (pi * square 0.02) v0
+        fun (state_1d (_, _, v0)) => f_air 2 1.225 (pi * math.square 0.02) v0
         fun _ => -0.0027 * 9.80665
     ]
-    
+
 inl damped_ho_states () =
     states_txv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ())
-    
+
 inl pingpong_position t =
     position_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
 
-inl x : a _ f64 = init_series 0 3 0.01
+inl x : a _ f64 = am'.init_series 0 3 0.01
 inl y = x |> am.map pingpong_position
 "ping pong ball on a slinky", "time (s)", "", ;[ "position (m)", x, y ]
 
@@ -1114,7 +378,7 @@ inl y = x |> am.map pingpong_position
 inl pingpong_velocity t =
     velocity_ftxv 0.001 0.0027 (state_1d (0, 0.1, 0)) (damped_ho_forces ()) t
 
-inl x = init_series 0 3 0.01
+inl x = am'.init_series 0 3 0.01
 inl y = x |> am.map pingpong_velocity
 "ping pong ball on a slinky", "time (s)", "", ;[ "velocity (m/s)", x, y ]
 
@@ -1132,11 +396,11 @@ type numerical_method s ds = differential_equation s ds -> update_function s
 
 
 inl solver method =
-    method >> iterate
+    method >> util.iterate
 inl solver' method =
-    method >> iterate'
+    method >> util.iterate'
 inl solver_ method =
-    method >> iterate_
+    method >> util.iterate_
 
 
 inl euler_cromer_1d dt deriv (state_1d (t0, x0, v0) as t) =
@@ -1530,11 +794,11 @@ instance shift particle_state = fun dt dps (particle_state st) =>
     }
 
 inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
-    newton_second_ps >> method >> iterate_
+    newton_second_ps >> method >> util.iterate_
 
 inl z_ge0 sts =
     sts
-    |> take_while_ (fun (particle_state st) _ => st.pos_vec.z >= 0)
+    |> util.take_while_ (fun (particle_state st) _ => st.pos_vec.z >= 0)
 
 inl trajectory sts =
     sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
@@ -1549,7 +813,7 @@ inl update_ps (method : numerical_method particle_state d_particle_state) =
 inl position_ps (method : numerical_method particle_state d_particle_state) fs st t =
     inl states : i32 -> particle_state = states_ps method fs st
     inl dt = (states 1).time - (states 0).time
-    inl num_steps = t / dt |> round |> abs
+    inl num_steps = t / dt |> math.round |> abs
     inl st1 = solver' method (newton_second_ps fs) st num_steps
     st1.pos_vec
 
@@ -1611,7 +875,7 @@ inl baseball_range dt v0 theta_deg =
     baseball_trajectory dt v0 theta_deg
     |> listm.fold (fun _ (y, _) => y) 0
 
-inl x : a _ f64 = init_series 10 80 1
+inl x : a _ f64 = am'.init_series 10 80 1
 inl y = x |> am.map (baseball_range 0.01 45)
 "range for a baseball hit at 45 m/s",
 "angle above horizontal (degrees)",
@@ -1676,15 +940,15 @@ inl relativity_states = solver_ method (relativity_ps forces) initial_state
 
 inl newton_x, newton_y =
     newton_states
-    |> take_while_ (fun (particle_state st) _ => st.time <= year)
+    |> util.take_while_ (fun (particle_state st) _ => st.time <= year)
     |> listm.map (fun (particle_state st) => st.time / year, st.velocity.x / c)
-    |> list_unzip
+    |> listm'.unzip
 
 inl _, relativity_y =
     relativity_states
-    |> take_while_ (fun (particle_state st) _ => st.time <= year)
+    |> util.take_while_ (fun (particle_state st) _ => st.time <= year)
     |> listm.map (fun (particle_state st) => st.time / year, st.velocity.x / c)
-    |> list_unzip
+    |> listm'.unzip
 
 inl newton_x : a i32 _ = newton_x |> listm.toArray
 inl newton_y : a i32 _ = newton_y |> listm.toArray
@@ -1723,15 +987,15 @@ inl relativity_states = solver_ method (relativity_ps forces) initial_state
 
 inl newton_x, newton_y =
     newton_states
-    |> take_while_ (fun (particle_state st) i => i < 100)
+    |> util.take_while_ (fun (particle_state st) i => i < 100)
     |> listm.map (fun (particle_state st) => st.pos_vec.x, st.pos_vec.y)
-    |> list_unzip
+    |> listm'.unzip
 
 inl relativity_x, relativity_y =
     relativity_states
-    |> take_while_ (fun (particle_state st) i => i < 165)
+    |> util.take_while_ (fun (particle_state st) i => i < 165)
     |> listm.map (fun (particle_state st) => st.pos_vec.x, st.pos_vec.y)
-    |> list_unzip
+    |> listm'.unzip
 
 inl newton_x : a i32 _ = newton_x |> listm.toArray
 inl newton_y : a i32 _ = newton_y |> listm.toArray

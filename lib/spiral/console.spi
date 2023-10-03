@@ -1,0 +1,9 @@
+// // # console
+
+// // ## write_line
+
+inl write_line obj : () =
+    $"System.Console.WriteLine !obj"
+
+inl write_line_ ~obj : () =
+    $"System.Console.WriteLine !obj"

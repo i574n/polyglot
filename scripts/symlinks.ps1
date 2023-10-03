@@ -7,3 +7,4 @@ $ErrorActionPreference = "Stop"
 
 
 EnsureSymbolicLink -Path "../apps/nbs" -Target "../nbs"
+EnsureSymbolicLink -Path "../lib/nbs" -Target "../nbs"

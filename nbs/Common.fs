@@ -34,6 +34,12 @@ module Common =
         let inline substring startIndex length (input : string) =
             input.Substring (startIndex, length)
 
+        let inline toLower (input : string) =
+            input.ToLower ()
+
+        let inline toUpper (input : string) =
+            input.ToUpper ()
+
         let inline trim (input : string) =
             input.Trim ()
 

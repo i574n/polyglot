@@ -1,5 +1,5 @@
 inl app () =
-    "test" |> fsharp.console.write_line
+    "test" |> console.write_line
     0i32
 
 inl main () =

@@ -1,0 +1,27 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# console
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## write_line
+
+#!spiral
+
+inl write_line obj : () =
+    $"System.Console.WriteLine !obj"
+
+#!spiral
+
+inl write_line_ ~obj : () =
+    $"System.Console.WriteLine !obj"

@@ -190,11 +190,11 @@ function Invoke-Dib {
         [string] $path,
 
         [Parameter(Position = 1, ValueFromRemainingArguments)]
-        [Object[]]$replArgs
+        [Object[]]$_args
     )
     $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run $path --output-path "$path.ipynb" --exit-after-run } }
     $key = $null
-    foreach ($item in $replArgs) {
+    foreach ($item in $_args) {
         if ($item -match "^-") {
             $key = $item -replace "^-"
         } elseif ($null -ne $key) {

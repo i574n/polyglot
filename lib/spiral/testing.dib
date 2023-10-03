@@ -1,0 +1,32 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# testing
+
+#!spiral
+
+inl _almost_equal b a =
+    assert (abs (b - a) < 0.00000001) $"$\"_almost_equal / actual: %A{!a} / expected: %A{!b}\""
+
+inl _equal b a =
+    assert (a = b) $"$\"_equal / actual: %A{!a} / expected: %A{!b}\""
+
+inl _is_less_than b a =
+    assert (b < a) $"$\"_is_less_than / actual: %A{!a} / expected: %A{!b}\""
+
+inl _is_less_than_or_equal b a =
+    assert (b <= a) $"$\"_is_less_than_or_equal / actual: %A{!a} / expected: %A{!b}\""
+
+inl _throws (fn : () -> ()) : option string =
+    inl none = None : option string
+    inl some (s : string) = Some s
+    $"try !fn (); !none with ex -> !some ex.Message"
+
+#!spiral
+
+inl print_and_return x =
+    $"printfn $\"print_and_return / x: {!x}\""
+    x

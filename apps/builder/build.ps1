@@ -9,9 +9,9 @@ $ErrorActionPreference = "Stop"
 
 $dibParserExe = "../parser/dist/DibParser$(GetExecutableSuffix)"
 if ($fast -and (Test-Path $dibParserExe)) {
-    { . $dibParserExe Builder.dib } | Invoke-Block
+    { . $dibParserExe Builder.dib fs } | Invoke-Block
 } else {
-    { dotnet repl --run ../parser/DibParser.dib --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "ARGS" = "Builder.dib" }
+    { dotnet repl --run ../parser/DibParser.dib --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "ARGS" = "Builder.dib fs" }
 }
 
 Invoke-Dib Builder.dib -EnvironmentVariables @{ "ARGS" = "Builder.fs --packages Argu FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Runtime.fs nbs/FileSystem.fs" }

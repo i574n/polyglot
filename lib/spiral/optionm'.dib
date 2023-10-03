@@ -1,0 +1,45 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# optionm
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## default_value
+
+#!spiral
+
+inl default_value d = optionm.defaultWith d
+
+#!spiral
+
+// // test
+
+None
+|> default_value 3i32
+|> _equal 3i32
+
+#!markdown
+
+## default_with
+
+#!spiral
+
+inl default_with fn = function Some x => x | None => fn ()
+
+#!spiral
+
+// // test
+
+None
+|> default_with (fun () => 3i32)
+|> _equal 3i32

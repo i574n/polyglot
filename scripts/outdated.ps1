@@ -8,11 +8,15 @@ $ErrorActionPreference = "Stop"
 
 function CheckToml {
     param (
-        [string] $toml
+        [Parameter(Position = 0, Mandatory)]
+        [string] $toml,
+
+        [Parameter(Position = 1, ValueFromRemainingArguments)]
+        [Object[]]$_args
     )
     $toml = [IO.Path]::GetFullPath("$ScriptDir/$toml")
     Write-Output "`n$toml"
-    { cargo outdated -w -m $toml } | Invoke-Block
+    { cargo outdated -w -m $toml @_args } | Invoke-Block
 }
 
 function CheckJson {
@@ -30,11 +34,11 @@ function CheckJson {
 { cargo outdated -w } | Invoke-Block
 
 CheckToml "../apps/chat/contract/Cargo.toml"
-CheckToml "../apps/chat/tests/Cargo.toml"
+CheckToml "../apps/chat/tests/Cargo.toml" --exclude tokio
 CheckToml "../apps/chat/ui/Cargo.toml"
 CheckToml "../apps/dice/Cargo.toml"
 CheckToml "../apps/dice/contract/Cargo.toml"
-CheckToml "../apps/dice/tests/Cargo.toml"
+CheckToml "../apps/dice/tests/Cargo.toml" --exclude tokio
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson "../spiral/extension"
