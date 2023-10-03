@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Tasks.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>console.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7497,7 +7497,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Tasks-(Polyglot)">Tasks (Polyglot)<a class="anchor-link" href="#Tasks-(Polyglot)">¶</a></h2>
+<h1 id="console">console<a class="anchor-link" href="#console">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7509,53 +7509,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">rust</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;] type std_string_String = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">&amp;$0</span><span class="se">\"</span><span class="s2">)&gt;] type Ref&lt;'T&gt; = class end"</span>
-    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">str</span><span class="se">\"</span><span class="s2">)&gt;] type Str = class end"</span>
-
-<span class="n">inl</span> <span class="n">emit_expr</span> <span class="n">forall</span> <span class="n">a</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span> <span class="p">(</span><span class="n">code</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="err">$</span><span class="s2">"Fable.Core.RustInterop.emitRustExpr !args !code"</span> <span class="p">:</span> <span class="n">t</span>
-
-
-<span class="n">nominal</span> <span class="n">std_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_string_String"</span>
-<span class="n">nominal</span> <span class="n">ref</span><span class="s1">' t = $"Ref&lt;`t&gt;"</span>
-<span class="n">nominal</span> <span class="nb">str</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Str"</span>
-
-<span class="n">inl</span> <span class="n">format_debug</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">emit_expr</span> <span class="err">`</span><span class="n">t</span> <span class="err">`</span><span class="n">std_string</span> <span class="n">x</span> <span class="s2">"format!(</span><span class="se">\"</span><span class="s2">{:?}</span><span class="se">\"</span><span class="s2">, $0)"</span>
-
-<span class="n">inl</span> <span class="n">format_pretty</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">emit_expr</span> <span class="err">`</span><span class="n">t</span> <span class="err">`</span><span class="n">std_string</span> <span class="n">x</span> <span class="s2">"format!(</span><span class="se">\"</span><span class="s2">{:#?}</span><span class="se">\"</span><span class="s2">, $0)"</span>
-
-<span class="n">inl</span> <span class="n">to_std_string</span> <span class="p">(</span><span class="nb">str</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' str) : std_string =</span>
-    <span class="o">//</span> <span class="n">inl</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">join</span> <span class="nb">str</span>
-    <span class="o">//</span> <span class="o">//</span> <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">!str.to_string()</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="o">//</span> <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">alloc::string::to_string(!str)</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="n">emit_expr</span> <span class="nb">str</span> <span class="s2">"($0).to_string()"</span>
-    <span class="n">emit_expr</span> <span class="nb">str</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">String::from(core::ops::Deref::deref($0))</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="n">emit_expr</span> <span class="nb">str</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">String::from(*$0)</span><span class="se">\"</span><span class="s2">"</span>
-    <span class="o">//</span> <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">String::from(!str)</span><span class="se">\"</span><span class="s2">"</span>
-
-<span class="n">inl</span> <span class="nb">format</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-    <span class="n">real</span>
-        <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">std_string</span> <span class="o">=</span>
-            <span class="n">typecase</span> <span class="n">t</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">string</span> <span class="o">=&gt;</span> <span class="n">to_std_string</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">std_string</span> <span class="o">=&gt;</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">format_pretty</span> <span class="err">`</span><span class="n">t</span> <span class="n">x</span>
-        <span class="n">result</span>
-
-<span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' str =</span>
-    <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">r#</span><span class="se">\\\"\"</span><span class="s2"> + !s + </span><span class="se">\"\\\"</span><span class="s2">#</span><span class="se">\"</span><span class="s2">"</span>
-
-<span class="n">inl</span> <span class="p">(</span><span class="o">~</span><span class="c1">#) (s : string) : ref' str =</span>
-    <span class="n">raw_string_literal</span> <span class="n">s</span>
+<span class="nb">open</span> <span class="n">testing</span>
 </pre></div>
 </div>
 </div>
@@ -7568,444 +7524,21 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.fsx:
-()
+<pre>()
 
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">rust</span>
-<span class="o">//</span> <span class="o">//</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">180000</span>
-
-<span class="n">nominal</span> <span class="n">task_name</span> <span class="o">=</span> <span class="n">string</span>
-
-<span class="n">union</span> <span class="n">manual_scheduling</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">WithSuggestion</span>
-    <span class="o">|</span> <span class="n">WithoutSuggestion</span>
-
-<span class="n">union</span> <span class="n">recurrency_offset</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Days</span> <span class="p">:</span> <span class="n">i32</span>
-    <span class="o">|</span> <span class="n">Weeks</span> <span class="p">:</span> <span class="n">i32</span>
-    <span class="o">|</span> <span class="n">Months</span> <span class="p">:</span> <span class="n">i32</span>
-
-<span class="n">union</span> <span class="n">day_of_week</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Sunday</span>
-    <span class="o">|</span> <span class="n">Monday</span>
-    <span class="o">|</span> <span class="n">Tuesday</span>
-    <span class="o">|</span> <span class="n">Wednesday</span>
-    <span class="o">|</span> <span class="n">Thursday</span>
-    <span class="o">|</span> <span class="n">Friday</span>
-    <span class="o">|</span> <span class="n">Saturday</span>
-
-<span class="n">union</span> <span class="n">month</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">January</span>
-    <span class="o">|</span> <span class="n">February</span>
-    <span class="o">|</span> <span class="n">March</span>
-    <span class="o">|</span> <span class="n">April</span>
-    <span class="o">|</span> <span class="n">May</span>
-    <span class="o">|</span> <span class="n">June</span>
-    <span class="o">|</span> <span class="n">July</span>
-    <span class="o">|</span> <span class="n">August</span>
-    <span class="o">|</span> <span class="n">September</span>
-    <span class="o">|</span> <span class="n">October</span>
-    <span class="o">|</span> <span class="n">November</span>
-    <span class="o">|</span> <span class="n">December</span>
-
-<span class="n">nominal</span> <span class="n">day</span> <span class="o">=</span> <span class="n">i32</span>
-<span class="n">nominal</span> <span class="n">year</span> <span class="o">=</span> <span class="n">i32</span>
-
-<span class="n">union</span> <span class="n">fixed_recurrency</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Weekly</span> <span class="p">:</span> <span class="n">day_of_week</span>
-    <span class="o">|</span> <span class="n">Monthly</span> <span class="p">:</span> <span class="n">day</span>
-    <span class="o">|</span> <span class="n">Yearly</span> <span class="p">:</span> <span class="n">day</span> <span class="o">*</span> <span class="n">month</span>
-
-<span class="n">union</span> <span class="n">recurrency</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Offset</span> <span class="p">:</span> <span class="n">recurrency_offset</span>
-    <span class="o">|</span> <span class="n">Fixed</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">fixed_recurrency</span>
-
-<span class="n">union</span> <span class="n">scheduling</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Manual</span> <span class="p">:</span> <span class="n">manual_scheduling</span>
-    <span class="o">|</span> <span class="n">Recurrent</span> <span class="p">:</span> <span class="n">recurrency</span>
-
-<span class="nb">type</span> <span class="n">task</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">name</span> <span class="p">:</span> <span class="n">task_name</span>
-        <span class="n">scheduling</span> <span class="p">:</span> <span class="n">scheduling</span>
-    <span class="p">}</span>
-
-<span class="nb">type</span> <span class="n">date</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">year</span> <span class="p">:</span> <span class="n">year</span>
-        <span class="n">month</span> <span class="p">:</span> <span class="n">month</span>
-        <span class="n">day</span> <span class="p">:</span> <span class="n">day</span>
-    <span class="p">}</span>
-
-<span class="n">union</span> <span class="n">status</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Postponed</span> <span class="p">:</span> <span class="n">option</span> <span class="p">()</span>
-
-<span class="nb">type</span> <span class="n">event</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">date</span> <span class="p">:</span> <span class="n">date</span>
-        <span class="n">status</span> <span class="p">:</span> <span class="n">status</span>
-    <span class="p">}</span>
-
-<span class="nb">type</span> <span class="n">task_template</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">task</span> <span class="p">:</span> <span class="n">task</span>
-        <span class="n">events</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">event</span>
-    <span class="p">}</span>
-
-<span class="n">inl</span> <span class="n">tasks</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">task_template</span> <span class="o">=</span>
-    <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="n">task</span> <span class="o">=</span>
-                <span class="p">{</span>
-                    <span class="n">name</span> <span class="o">=</span> <span class="n">task_name</span> <span class="s2">"01"</span>
-                    <span class="n">scheduling</span> <span class="o">=</span> <span class="n">Manual</span> <span class="n">WithSuggestion</span>
-                <span class="p">}</span>
-            <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="p">}</span>
-        <span class="p">{</span>
-            <span class="n">task</span> <span class="o">=</span>
-                <span class="p">{</span>
-                    <span class="n">name</span> <span class="o">=</span> <span class="n">task_name</span> <span class="s2">"02"</span>
-                    <span class="n">scheduling</span> <span class="o">=</span> <span class="n">Manual</span> <span class="n">WithSuggestion</span>
-                <span class="p">}</span>
-            <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="p">}</span>
-        <span class="p">{</span>
-            <span class="n">task</span> <span class="o">=</span>
-                <span class="p">{</span>
-                    <span class="n">name</span> <span class="o">=</span> <span class="n">task_name</span> <span class="s2">"03"</span>
-                    <span class="n">scheduling</span> <span class="o">=</span> <span class="n">Manual</span> <span class="n">WithSuggestion</span>
-                <span class="p">}</span>
-            <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-
-<span class="n">types</span> <span class="p">()</span>
-
-<span class="n">tasks</span> <span class="o">|&gt;</span> <span class="n">format_pretty</span> <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.rs output:
-UH2_0(
-    UH0_1,
-    "01",
-    US4_0(
-        US3_0,
-    ),
-    UH2_0(
-        UH0_1,
-        "02",
-        US4_0(
-            US3_0,
-        ),
-        UH2_0(
-            UH0_1,
-            "03",
-            US4_0(
-                US3_0,
-            ),
-            UH2_1,
-        ),
-    ),
-)
-</pre>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-.fsx:
-[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
-[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
-type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1
-    | US0_2
-    | US0_3
-    | US0_4
-    | US0_5
-    | US0_6
-    | US0_7
-    | US0_8
-    | US0_9
-    | US0_10
-    | US0_11
-and [&lt;Struct&gt;] US2 =
-    | US2_0
-    | US2_1
-and [&lt;Struct&gt;] US1 =
-    | US1_0 of f0_0 : US2
-and UH0 =
-    | UH0_0 of int32 * US0 * int32 * US1 * UH0
-    | UH0_1
-and [&lt;Struct&gt;] US3 =
-    | US3_0
-    | US3_1
-and [&lt;Struct&gt;] US7 =
-    | US7_0
-    | US7_1
-    | US7_2
-    | US7_3
-    | US7_4
-    | US7_5
-    | US7_6
-and [&lt;Struct&gt;] US6 =
-    | US6_0 of f0_0 : int32
-    | US6_1 of f1_0 : US7
-    | US6_2 of f2_0 : int32 * f2_1 : US0
-and UH1 =
-    | UH1_0 of US6 * UH1
-    | UH1_1
-and [&lt;Struct&gt;] US8 =
-    | US8_0 of f0_0 : int32
-    | US8_1 of f1_0 : int32
-    | US8_2 of f2_0 : int32
-and [&lt;Struct&gt;] US5 =
-    | US5_0 of f0_0 : UH1
-    | US5_1 of f1_0 : US8
-and [&lt;Struct&gt;] US4 =
-    | US4_0 of f0_0 : US3
-    | US4_1 of f1_0 : US5
-and UH2 =
-    | UH2_0 of UH0 * string * US4 * UH2
-    | UH2_1
-let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : string = "01"
-    let v2 : US3 = US3_0
-    let v3 : US4 = US4_0(v2)
-    let v4 : UH0 = UH0_1
-    let v5 : string = "02"
-    let v6 : US3 = US3_0
-    let v7 : US4 = US4_0(v6)
-    let v8 : UH0 = UH0_1
-    let v9 : string = "03"
-    let v10 : US3 = US3_0
-    let v11 : US4 = US4_0(v10)
-    let v12 : UH2 = UH2_1
-    let v13 : UH2 = UH2_0(v8, v9, v11, v12)
-    let v14 : UH2 = UH2_0(v4, v5, v7, v13)
-    let v15 : UH2 = UH2_0(v0, v1, v3, v14)
-    let v16 : string = "format!(\"{:#?}\", $0)"
-    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v15 v16
-    System.Console.WriteLine v17
-    ()
-method0()
-
-.rs:
-#![allow(dead_code,)]
-#![allow(non_camel_case_types,)]
-#![allow(non_snake_case,)]
-#![allow(non_upper_case_globals,)]
-#![allow(unreachable_code,)]
-#![allow(unused_attributes,)]
-#![allow(unused_imports,)]
-#![allow(unused_macros,)]
-#![allow(unused_parens,)]
-#![allow(unused_variables,)]
-pub mod Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596 {
-    use super::*;
-    use fable_library_rust::Native_::Any;
-    use fable_library_rust::Native_::LrcPtr;
-    use fable_library_rust::Native_::on_startup;
-    use fable_library_rust::String_::string;
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US0 {
-        US0_0,
-        US0_1,
-        US0_2,
-        US0_3,
-        US0_4,
-        US0_5,
-        US0_6,
-        US0_7,
-        US0_8,
-        US0_9,
-        US0_10,
-        US0_11,
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US0
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US2 { US2_0, US2_1, }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US2
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US1 {
-        US1_0(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US2),
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US1
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum UH0 {
-        UH0_0(i32,
-              Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US0,
-              i32,
-              Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US1,
-              LrcPtr&lt;Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH0&gt;),
-        UH0_1,
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH0
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US3 { US3_0, US3_1, }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US3
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US7 { US7_0, US7_1, US7_2, US7_3, US7_4, US7_5, US7_6, }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US7
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US6 {
-        US6_0(i32),
-        US6_1(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US7),
-        US6_2(i32,
-              Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US0),
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US6
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum UH1 {
-        UH1_0(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US6,
-              LrcPtr&lt;Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH1&gt;),
-        UH1_1,
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH1
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US8 { US8_0(i32), US8_1(i32), US8_2(i32), }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US8
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US5 {
-        US5_0(LrcPtr&lt;Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH1&gt;),
-        US5_1(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US8),
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US5
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum US4 {
-        US4_0(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US3),
-        US4_1(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US5),
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US4
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-    pub enum UH2 {
-        UH2_0(LrcPtr&lt;Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH0&gt;,
-              string,
-              Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US4,
-              LrcPtr&lt;Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH2&gt;),
-        UH2_1,
-    }
-    impl core::fmt::Display for
-     Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH2
-     {
-        fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
-            write!(f, "{}", core::any::type_name::&lt;Self&gt;())
-        }
-    }
-    pub fn method0() {
-        let v17: std::string::String =
-            format!("{:#?}", &amp;LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH2::UH2_0(LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH0::UH0_1),
-                                                                                                                            string("01"),
-                                                                                                                            Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US4::US4_0(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US3::US3_0),
-                                                                                                                            LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH2::UH2_0(LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH0::UH0_1),
-                                                                                                                                                                                                                          string("02"),
-                                                                                                                                                                                                                          Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US4::US4_0(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US3::US3_0),
-                                                                                                                                                                                                                          LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH2::UH2_0(LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH0::UH0_1),
-                                                                                                                                                                                                                                                                                                                        string("03"),
-                                                                                                                                                                                                                                                                                                                        Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US4::US4_0(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::US3::US3_0),
-                                                                                                                                                                                                                                                                                                                        LrcPtr::new(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::UH2::UH2_1))))))));
-        println!("{0}", &amp;v17,);
-        ()
-    }
-    on_startup!(Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596::method0());
-}
-
-</pre>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="write_line">write_line<a class="anchor-link" href="#write_line">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8017,9 +7550,8 @@ pub mod Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596 {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_line</span> <span class="n">obj</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"System.Console.WriteLine !obj"</span>
 </pre></div>
 </div>
 </div>
@@ -8032,9 +7564,7 @@ pub mod Repl_84983367c2ec36fa80ca015c041e53cc0c481e2c660e3767a68d3ac035be2596 {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
+<pre>()
 
 </pre>
 </div>
@@ -8049,9 +7579,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">write_line_</span> <span class="o">~</span><span class="n">obj</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"System.Console.WriteLine !obj"</span>
 </pre></div>
 </div>
 </div>
@@ -8064,137 +7593,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    ()
-method0()
+<pre>()
 
 </pre>
 </div>

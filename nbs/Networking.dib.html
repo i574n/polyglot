@@ -7712,7 +7712,7 @@ False
         <span class="k">else</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"port: </span><span class="si">{port}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForPortAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
+                <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForPortAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="p">}</span>
@@ -7737,7 +7737,7 @@ False
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockPort</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5000</span>
-    <span class="n">let</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">listener</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
@@ -7794,13 +7794,13 @@ False
 00:00:01 #5 [Debug] 2
 00:00:01 #6 [Debug] 3
 00:00:03 #7 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:03 #8 [Warning] waitForPortAccess / port: 5000 / retry: 0
+00:00:03 #8 [Verbose] waitForPortAccess / port: 5000 / retry: 0
 00:00:05 #9 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
 00:00:06 #10 [Debug] _2
 00:00:06 #11 [Debug] _3
 00:00:06 #12 [Debug] 4
-00:00:06 #13 [Warning] waitForPortAccess / port: 5000 / retry: 0
-00:00:08 #14 [Warning] waitForPortAccess / port: 5000 / retry: 100
+00:00:06 #13 [Verbose] waitForPortAccess / port: 5000 / retry: 0
+00:00:07 #14 [Verbose] waitForPortAccess / port: 5000 / retry: 100
 00:00:08 #15 [Debug] _4
 00:00:08 #16 [Debug] _5
 00:00:10 #17 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
@@ -7809,9 +7809,9 @@ False
 2
 2
 2
-117
-117
-117
+119
+119
+119
 True
 </pre>
 </div>
@@ -7833,7 +7833,7 @@ True
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockPort</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">500</span>
-    <span class="n">let</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">listener</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
@@ -7886,11 +7886,11 @@ True
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:11 #20 [Debug] 1
-00:00:11 #21 [Debug] 2
+00:00:11 #22 [Debug] 2
 00:00:11 #22 [Debug] _1
 00:00:11 #23 [Debug] 3
 00:00:11 #24 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:11 #25 [Warning] waitForPortAccess / port: 5000 / retry: 0
+00:00:11 #25 [Verbose] waitForPortAccess / port: 5000 / retry: 0
 00:00:11 #26 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:11 #27 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:11 #28 [Debug] runWithTimeoutAsync / timeout: 60
@@ -7900,7 +7900,7 @@ True
 00:00:11 #32 [Debug] _3
 00:00:11 #33 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:11 #34 [Debug] 4
-00:00:11 #35 [Warning] waitForPortAccess / port: 5000 / retry: 0
+00:00:11 #35 [Verbose] waitForPortAccess / port: 5000 / retry: 0
 00:00:11 #36 [Debug] _4
 00:00:11 #37 [Debug] _5
 00:00:11 #38 [Debug] runWithTimeoutAsync / timeout: 60
@@ -7909,9 +7909,9 @@ True
 7
 7
 7
-7
-7
-7
+9
+9
+9
 True
 </pre>
 </div>
@@ -7967,8 +7967,8 @@ True
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockPorts</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span> <span class="n">listener1</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-    <span class="n">let</span> <span class="n">listener2</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">listener1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">listener2</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">listener1</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
     <span class="n">listener2</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
@@ -8020,24 +8020,24 @@ True
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:12 #41 [Debug] 1
-00:00:12 #42 [Debug] 2
+00:00:12 #43 [Debug] 2
 00:00:12 #43 [Debug] _1
 00:00:12 #44 [Debug] _2
 00:00:12 #45 [Debug] _3
 00:00:12 #46 [Debug] 3
-00:00:15 #47 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:15 #48 [Debug] 4
-00:00:15 #49 [Warning] waitForPortAccess / port: 5000 / retry: 0
-00:00:16 #50 [Warning] waitForPortAccess / port: 5000 / retry: 100
+00:00:14 #47 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:14 #48 [Debug] 4
+00:00:14 #49 [Verbose] waitForPortAccess / port: 5000 / retry: 0
+00:00:16 #50 [Verbose] waitForPortAccess / port: 5000 / retry: 100
 00:00:16 #51 [Debug] _4
 00:00:16 #52 [Debug] _5
 00:00:18 #53 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
 00:00:18 #54 [Debug] 5
 00:00:18 #55 [Debug] 6
 5002
-113
-113
-113
+114
+114
+114
 True
 </pre>
 </div>
@@ -8058,8 +8058,8 @@ True
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockPorts</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span> <span class="n">listener1</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-    <span class="n">let</span> <span class="n">listener2</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">listener1</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">use</span> <span class="n">listener2</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Sockets</span><span class="o">.</span><span class="n">TcpListener</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">IPAddress</span><span class="o">.</span><span class="n">Parse</span> <span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">listener1</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
     <span class="n">listener2</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
@@ -8075,7 +8075,7 @@ True
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockPorts</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">120</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">availablePort</span> <span class="o">=</span> <span class="n">getAvailablePort</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">60</span><span class="p">)</span> <span class="n">port</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
@@ -8118,7 +8118,7 @@ True
 00:00:19 #61 [Debug] 3
 00:00:19 #62 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:19 #63 [Debug] 4
-00:00:19 #64 [Warning] waitForPortAccess / port: 5000 / retry: 0
+00:00:19 #64 [Verbose] waitForPortAccess / port: 5000 / retry: 0
 00:00:19 #65 [Debug] _4
 00:00:19 #66 [Debug] _5
 00:00:19 #67 [Debug] runWithTimeoutAsync / timeout: 60
