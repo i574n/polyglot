@@ -1,6 +1,6 @@
 use serde_json::json;
 use std::collections::HashMap;
-use workspaces::AccountId;
+use near_workspaces::AccountId;
 
 // const GAS_PRICE_IN_NEAR: f64 = 0.0001;
 const NEAR_PRICE_IN_USD: f64 = 6.68;
@@ -13,7 +13,7 @@ fn tokens_to_usd(tokens: u128) -> f64 {
     (tokens as f64) / 1e24 * NEAR_PRICE_IN_USD
 }
 
-fn print_usd(result: workspaces::result::ExecutionFinalResult) {
+fn print_usd(result: near_workspaces::result::ExecutionFinalResult) {
     println!(
         "total_gas_burnt_usd: {:#?}",
         gas_to_usd(result.total_gas_burnt.as_gas())
@@ -38,7 +38,7 @@ async fn main() -> anyhow::Result<()> {
         .display()
         .to_string();
 
-    let worker = workspaces::sandbox().await?;
+    let worker = near_workspaces::sandbox().await?;
     let wasm = std::fs::read(contract_path)?;
     let contract = worker.dev_deploy(&wasm).await?;
     let contract_id = contract.id();
