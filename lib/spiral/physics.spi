@@ -1,5 +1,7 @@
 // // # physics
 
+inl (/@) x = listm'.(/@) x
+
 // // ## init_series
 
 // // ## velocity_cf
@@ -85,7 +87,7 @@ inl update_velocity dt m fs v0 =
 
 inl velocity_fv dt m v0 fs t =
     t / dt |> math.round |> abs
-    |> util.iterate_ (update_velocity dt m fs) v0
+    |> seq.iterate_ (update_velocity dt m fs) v0
 
 inl f_air drag rho area v =
     -drag * rho * area * abs v * v / 2
@@ -103,7 +105,7 @@ inl update_tv dt m fs (t, v0) =
 
 inl velocity_ftv dt m tv0 fs t =
     t / dt |> math.round |> abs
-    |> util.iterate_ (update_tv dt m fs) tv0
+    |> seq.iterate_ (update_tv dt m fs) tv0
     |> snd
 
 // // ## velocity_ftxv
@@ -127,7 +129,7 @@ inl update_txv dt m fs =
     newton_second_1d m fs |> euler_1d dt
 
 inl states_txv dt m txv0 fs =
-    util.iterate_ (update_txv dt m fs) txv0
+    seq.iterate_ (update_txv dt m fs) txv0
 
 inl velocity_1d sts t =
     inl (state_1d (t0, _, _)) = sts 0
@@ -164,11 +166,11 @@ type numerical_method s ds = differential_equation s ds -> update_function s
 
 
 inl solver method =
-    method >> util.iterate
+    method >> seq.iterate
 inl solver' method =
-    method >> util.iterate'
+    method >> seq.iterate'
 inl solver_ method =
-    method >> util.iterate_
+    method >> seq.iterate_
 
 
 inl euler_cromer_1d dt deriv (state_1d (t0, x0, v0) as t) =
@@ -388,11 +390,11 @@ instance shift particle_state = fun dt dps (particle_state st) =>
     }
 
 inl states_ps (method : numerical_method particle_state d_particle_state) : _ -> _ -> i32 -> particle_state =
-    newton_second_ps >> method >> util.iterate_
+    newton_second_ps >> method >> seq.iterate_
 
 inl z_ge0 sts =
     sts
-    |> util.take_while_ (fun (particle_state st) _ => st.pos_vec.z >= 0)
+    |> seq.take_while_ (fun (particle_state st) _ => st.pos_vec.z >= 0)
 
 inl trajectory sts =
     sts |> listm.map (fun (particle_state st) => st.pos_vec.y, st.pos_vec.z)
@@ -414,5 +416,13 @@ inl relativity_ps fs (st : particle_state) =
 
 inl uniform_lorentz_force v_e v_b (st : particle_state) =
     st.charge *^ (v_e ^+^ st.velocity >< v_b)
+
+// // ### system kinetic energy versus time 1
+
+// // ### wave 1
+
+// // ### system kinetic energy versus time 2
+
+// // ### wave 2
 
 // // ## end

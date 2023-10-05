@@ -1,0 +1,62 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# common
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## pair
+
+#!spiral
+
+inl pair x y =
+    x, y
+
+#!spiral
+
+// // test
+
+pair 1i32 2i32
+|> _equal (1, 2)
+
+#!markdown
+
+## ||>
+
+#!spiral
+
+inl (||>) (arg1, arg2) fn = arg2 |> fn arg1
+
+#!spiral
+
+// // test
+
+(3i32, 2i32)
+||> fun a b => a - b
+|> _equal 1
+
+#!markdown
+
+## flip
+
+#!spiral
+
+inl flip fn a b =
+    fn b a
+
+#!spiral
+
+// // test
+
+(1i32, 2i32)
+||> flip pair
+|> _equal (2, 1)

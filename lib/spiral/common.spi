@@ -1,0 +1,15 @@
+// // # common
+
+// // ## pair
+
+inl pair x y =
+    x, y
+
+// // ## ||>
+
+inl (||>) (arg1, arg2) fn = arg2 |> fn arg1
+
+// // ## flip
+
+inl flip fn a b =
+    fn b a

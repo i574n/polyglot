@@ -43,3 +43,22 @@ inl default_with fn = function Some x => x | None => fn ()
 None
 |> default_with (fun () => 3i32)
 |> _equal 3i32
+
+#!markdown
+
+## choose
+
+#!spiral
+
+inl choose forall a b c. (fn : a -> b -> c) (a : option a) (b : option b) : option c =
+    match a, b with
+    | Some x, Some y => fn x y |> Some
+    | _ => None
+
+#!spiral
+
+// // test
+
+(Some 2i32, Some 3)
+||> choose (+)
+|> _equal (Some 5)

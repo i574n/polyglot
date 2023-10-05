@@ -2,10 +2,12 @@ packages:
     |core-
 modules:
     testing
+    common-
     console
     math
     optionm'
     am'
     listm'
+    seq
     util
     physics

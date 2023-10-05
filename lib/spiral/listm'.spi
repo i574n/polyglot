@@ -1,5 +1,9 @@
 // // # listm
 
+// // ## /@
+
+inl (/@) a b = b |> listm.append a
+
 inl init_series start end inc =
     inl total : f64 = conv ((end - start) / inc) + 1
     listm.init total (conv >> (*) inc >> (+) start)
@@ -160,10 +164,16 @@ inl unzip list =
     |> fun x, y =>
         x |> listm.rev, y |> listm.rev
 
+inl unzip_ list =
+    let rec loop acc_x acc_y = function
+        | Cons ((x, y), xs) => loop (x :: acc_x) (y :: acc_y) xs
+        | Nil => acc_x |> listm.rev, acc_y |> listm.rev
+    loop [] [] list
+
 // // ## try_index_of
 
-inl try_index_of forall t n {number}. (item : t) (list : list t) : option n =
-    inl rec loop (i : n) = function
+inl try_index_of item list =
+    inl rec loop i = function
         | [] => None
         | x :: xs =>
             if x = item
@@ -174,8 +184,8 @@ inl try_index_of forall t n {number}. (item : t) (list : list t) : option n =
 inl index_of item =
     try_index_of item >> optionm.value
 
-inl try_index_of_ forall t n {number}. (item : t) (list : list t) : option n =
-    let rec loop (i : n) = function
+inl try_index_of_ item list =
+    let rec loop i = function
         | [] => None
         | x :: xs =>
             if x = item
@@ -186,7 +196,7 @@ inl try_index_of_ forall t n {number}. (item : t) (list : list t) : option n =
 inl index_of_ item =
     try_index_of_ item >> optionm.value
 
-inl try_index_of__ forall t n {number}. (item : t) (list : list t) : option n =
+inl try_index_of__ item list =
     inl i = mut 0
     inl list = mut list
     inl result = mut None
@@ -205,3 +215,85 @@ inl try_index_of__ forall t n {number}. (item : t) (list : list t) : option n =
 
 inl index_of__ item =
     try_index_of__ item >> optionm.value
+
+// // ## try_find
+
+inl try_find fn list =
+    inl rec loop = function
+        | [] => None
+        | x :: xs =>
+            if fn x
+            then Some x
+            else loop xs
+    loop list
+
+inl try_find_ fn list =
+    let rec loop = function
+        | [] => None
+        | x :: xs =>
+            if fn x
+            then Some x
+            else loop xs
+    loop list
+
+inl find x =
+    try_find x >> optionm.value
+
+inl find_ x =
+    try_find_ x >> optionm.value
+
+// // ## choose
+
+inl choose f l =
+    (l, [])
+    ||> listm.foldBack fun x acc =>
+        match f x with
+        | Some y => y :: acc
+        | None => acc
+
+inl choose_ f l =
+    let rec loop acc = function
+        | [] => acc |> listm.rev
+        | x :: xs =>
+            match f x with
+            | Some y => loop (y :: acc) xs
+            | None => loop acc xs
+    loop [] l
+
+// // ## zip_with
+
+inl zip_with fn xs ys =
+    inl rec loop acc xs ys =
+        match xs, ys with
+        | Cons (x, xs), Cons (y, ys) =>
+            loop (fn x y :: acc) xs ys
+        | _ => listm.rev acc
+    loop [] xs ys
+
+inl zip_with_ fn xs ys =
+    let rec loop acc xs ys =
+        match xs, ys with
+        | Cons (x, xs), Cons (y, ys) =>
+            loop (fn x y :: acc) xs ys
+        | _ => listm.rev acc
+    loop [] xs ys
+
+// // ## zip
+
+inl zip xs ys =
+    zip_with pair xs ys
+
+inl zip_ xs ys =
+    zip_with_ pair xs ys
+
+// // ## indexed
+
+inl indexed list =
+    list
+    |> listm.fold
+        (fun (acc, i) x =>
+            (i, x) :: acc, i + 1
+        )
+        ([], 0)
+    |> fst
+    |> listm.rev
