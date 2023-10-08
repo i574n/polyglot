@@ -180,21 +180,21 @@ module Supervisor =
             |> FSharp.Control.AsyncSeq.choose (fun error ->
                 match error with
                 | FatalError message ->
-                    Some (message, true, error)
+                    Some (message, error)
                 | TracedError data ->
-                    Some (data.message, true, error)
+                    Some (data.message, error)
                 | PackageErrors data when data.errors |> List.isEmpty |> not ->
-                    Some (data |> printErrorData, true, error)
+                    Some (data |> printErrorData, error)
                 | TokenizerErrors data when data.errors |> List.isEmpty |> not ->
-                    Some (data |> printErrorData, true, error)
+                    Some (data |> printErrorData, error)
                 | ParserErrors data when data.errors |> List.isEmpty |> not ->
-                    Some (data |> printErrorData, false, error)
+                    Some (data |> printErrorData, error)
                 | TypeErrors data when data.errors |> List.isEmpty |> not ->
-                    Some (data |> printErrorData, true, error)
+                    Some (data |> printErrorData, error)
                 | _ -> None
             )
-            |> FSharp.Control.AsyncSeq.map (fun (message, fatal, error) ->
-                None, Some (message, fatal, error)
+            |> FSharp.Control.AsyncSeq.map (fun (message, error) ->
+                None, Some (message, error)
             )
 
         let outputSeq =
@@ -207,15 +207,11 @@ module Supervisor =
                 fun (fsxContentResult, errors, firstErrorTicks) (fsxContent, error) ->
                     match fsxContent, error with
                     | Some fsxContent, None -> Some fsxContent, errors, firstErrorTicks
-                    | None, Some (message, fatal, error) ->
+                    | None, Some (message, error) ->
                         fsxContentResult,
                         (message, error) :: errors,
                         firstErrorTicks
-                        |> Option.defaultWith (fun () ->
-                            if fatal
-                            then System.DateTime.MinValue.Ticks
-                            else System.DateTime.Now.Ticks
-                        )
+                        |> Option.defaultWith (fun () -> System.DateTime.MinValue.Ticks)
                         |> Some
                     | _ -> fsxContentResult, errors, firstErrorTicks
             )
