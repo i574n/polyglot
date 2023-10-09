@@ -1583,24 +1583,6 @@ inl string_initial_overtone n =
     |> seq.from_list
     |> multi_particle_state
 
-inl string_initial_pluck () =
-    inl ball_mass = 0.0008293 * 0.65 / 64
-    inl (particle_state default_particle_state') = default_particle_state ()
-    listm'.init_series 0.01 0.64 0.01
-    |> listm.map (fun x =>
-        inl y =
-            inl n = if x <= 0.51 then 0 else 0.65
-            0.005 / (0.51 - n) * (x - n)
-        particle_state {
-            default_particle_state' with
-                mass = ball_mass
-                pos_vec = x *^ i_hat () ^+^ y *^ j_hat ()
-                velocity = zero_vec ()
-        }
-    )
-    |> seq.from_list
-    |> multi_particle_state
-
 let main () =
     inl ~frames = listm'.init_series 0 9 1f64
     inl initial_state : _ f64 = string_initial_overtone 3i32
@@ -1611,7 +1593,7 @@ let main () =
                 seq.iterate' (string_update 0.000025) initial_state |> fun f => f 0f64
             inl rs =
                 [ zero_vec () ]
-                /@ (sts |> seq.fold (fun acc (particle_state st) => acc /@ [ st.pos_vec ]) [])
+                /@ (sts |> seq.fold_ (fun acc (particle_state st) => acc /@ [ st.pos_vec ]) [])
                 /@ [ 0.65 *^ i_hat () ]
             inl x, y =
                 rs

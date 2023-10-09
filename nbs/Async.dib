@@ -52,6 +52,10 @@ let inline map fn a = async {
     return fn x
 }
 
+#!markdown
+
+## catch
+
 #!fsharp
 
 let inline catch a =
@@ -303,6 +307,42 @@ let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.Canc
     let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
     return cts.Token
 }
+
+#!markdown
+
+## withCancellationToken
+
+#!fsharp
+
+let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
+    Async.StartImmediateAsTask (fn, ct)
+    |> Async.AwaitTask
+
+#!fsharp
+
+//// test
+
+let cts = new System.Threading.CancellationTokenSource ()
+
+async {
+    let run = async {
+        do! Async.Sleep 100
+        return 1
+    }
+
+    let! child =
+        run
+        |> withCancellationToken cts.Token
+        |> catch
+        |> Async.StartChild
+
+    do! Async.Sleep 50
+    cts.Cancel ()
+    return! child
+}
+|> Async.RunSynchronously
+|> Result.mapError (fun x -> x.Message)
+|> _equal (Error ("A task was canceled."))
 
 #!markdown
 

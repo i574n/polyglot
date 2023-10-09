@@ -137,7 +137,7 @@ function Update-Json {
     $jsonContent | ConvertTo-Json -Depth 10 | Set-Content -Path $jsonPath
 }
 
-function EnsureSymbolicLink([string]$Path, [string] $Target) {
+function EnsureSymbolicLink([string] $Path, [string] $Target) {
     $Path = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Path))
     $Target = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Target))
 
@@ -190,7 +190,7 @@ function Invoke-Dib {
         [string] $path,
 
         [Parameter(Position = 1, ValueFromRemainingArguments)]
-        [Object[]]$_args
+        [Object[]] $_args
     )
     $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run $path --output-path "$path.ipynb" --exit-after-run } }
     $key = $null

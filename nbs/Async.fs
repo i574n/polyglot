@@ -32,6 +32,8 @@ module Async =
         return fn x
     }
 
+    /// ## catch
+
     let inline catch a =
         a
         |> Async.Catch
@@ -167,6 +169,12 @@ module Async =
         let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
         return cts.Token
     }
+
+    /// ## withCancellationToken
+
+    let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
+        Async.StartImmediateAsTask (fn, ct)
+        |> Async.AwaitTask
 
     /// ## withTraceLevel
 

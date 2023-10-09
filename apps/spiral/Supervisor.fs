@@ -55,9 +55,11 @@ module Supervisor =
             |> Option.defaultValue System.Threading.CancellationToken.None
             |> Async.mergeCancellationTokenWithDefaultAsync
 
+        let cts = new System.Threading.CancellationTokenSource ()
+
         let compiler = MailboxProcessor.Start (fun inbox -> async {
             let! availablePort = Networking.getAvailablePort (Some 60) port
-            if port = 13805 && availablePort <> port then
+            if availablePort <> port then
                 inbox.Post port
             else
                 let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
@@ -94,6 +96,7 @@ module Supervisor =
                             }
                         }
                 trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
+                cts.Cancel ()
         }, ct)
 
         let! serverPort = compiler.Receive ()
@@ -120,6 +123,7 @@ module Supervisor =
         return
             serverPort,
             stream,
+            cts.Token,
             disposable
     }
 
@@ -133,9 +137,12 @@ module Supervisor =
         | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
         | _ -> failwith "invalid uri"
 
+    let inline getCompilerPort () =
+        13805
+
     /// ## buildFile
 
-    let inline buildFile timeout cancellationToken path = async {
+    let inline buildFile timeout port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
@@ -144,16 +151,10 @@ module Supervisor =
         let stream, disposable = FileSystem.watchDirectory true fileDir
         use _ = disposable
 
-        let port =
-            if fullPath |> String.startsWith (System.IO.Path.GetTempPath ())
-                && fullPath |> String.contains "Microsoft.DotNet.Interactive.App" |> not
-            then 13807
-            else 13805
-
         let token, disposable = Threading.newDisposableToken cancellationToken
         use _ = disposable
 
-        let! serverPort, errors, disposable = awaitCompiler port (Some token)
+        let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
         let fsxContentSeq =
@@ -202,33 +203,27 @@ module Supervisor =
             |> FSharp.Control.AsyncSeq.mergeAll
 
         let! outputChild =
-            ((None, [], None), outputSeq)
+            ((None, []), outputSeq)
             ||> FSharp.Control.AsyncSeq.scan (
-                fun (fsxContentResult, errors, firstErrorTicks) (fsxContent, error) ->
+                fun (fsxContentResult, errors) (fsxContent, error) ->
                     match fsxContent, error with
-                    | Some fsxContent, None -> Some fsxContent, errors, firstErrorTicks
-                    | None, Some (message, error) ->
+                    | Some fsxContent, None -> Some fsxContent, errors
+                    | None, Some error ->
                         fsxContentResult,
-                        (message, error) :: errors,
-                        firstErrorTicks
-                        |> Option.defaultWith (fun () -> System.DateTime.MinValue.Ticks)
-                        |> Some
-                    | _ -> fsxContentResult, errors, firstErrorTicks
+                        error :: errors
+                    | _ -> fsxContentResult, errors
             )
-            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, firstErrorTicks) ->
-                let firstErrorMs =
-                    firstErrorTicks
-                    |> Option.map (fun t -> System.TimeSpan(System.DateTime.Now.Ticks - t).TotalMilliseconds)
-                trace Debug (fun () -> $"buildFile / fsxContent: {fsxContent} / errors: {errors} / firstErrorMs: {firstErrorMs}") getLocals
-                match fsxContent, errors, firstErrorMs with
-                | None, [], _ -> true
-                | None, _, Some firstErrorMs when firstErrorMs < 2000. -> true
+            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors) ->
+                trace Debug (fun () -> $"buildFile / fsxContent: {fsxContent} / errors: {errors}") getLocals
+                match fsxContent, errors with
+                | None, [] -> true
                 | _ -> false
             )
-            |> FSharp.Control.AsyncSeq.map (fun (fsxContent, errors, _) ->
+            |> FSharp.Control.AsyncSeq.map (fun (fsxContent, errors) ->
                 fsxContent, errors |> List.distinct
             )
             |> FSharp.Control.AsyncSeq.tryLast
+            |> Async.withCancellationToken ct
             |> Async.catch
             |> Async.runWithTimeoutAsync timeout
             |> Async.StartChild
@@ -284,26 +279,21 @@ modules:
     let inline buildCode timeout cancellationToken code = async {
         let! mainPath, disposable = persistCode code
         use _ = disposable
-        return! mainPath |> buildFile timeout cancellationToken
+        let port = getCompilerPort ()
+        return! mainPath |> buildFile timeout port cancellationToken
     }
 
     /// ## getFileTokenRange
 
-    let inline getFileTokenRange cancellationToken path = async {
+    let inline getFileTokenRange port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let! code = fullPath |> FileSystem.readAllTextAsync
         let lines = code |> String.split [| '\n' |]
 
-        let port =
-            if fullPath |> String.startsWith (System.IO.Path.GetTempPath ())
-                && fullPath |> String.contains "Microsoft.DotNet.Interactive.App" |> not
-            then 13807
-            else 13805
-
         let token, disposable = Threading.newDisposableToken cancellationToken
         use _ = disposable
 
-        let! serverPort, _errors, disposable = awaitCompiler port (Some token)
+        let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
         use _ = disposable
 
         let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
@@ -321,7 +311,10 @@ modules:
                             |]
                     |}
             |}
-        let! fileTokenRangeResult = fileTokenRangeObj |> sendObj serverPort
+        let! fileTokenRangeResult =
+            fileTokenRangeObj
+            |> sendObj serverPort
+            |> Async.withCancellationToken ct
 
         return fileTokenRangeResult |> Option.map FSharp.Json.Json.deserialize<int array>
     }
@@ -331,53 +324,137 @@ modules:
     let inline getCodeTokenRange cancellationToken code = async {
         let! mainPath, disposable = persistCode code
         use _ = disposable
-        return! mainPath |> getFileTokenRange cancellationToken
+        let port = getCompilerPort ()
+        return! mainPath |> getFileTokenRange port cancellationToken
     }
 
     /// ## Arguments
 
     [<RequireQualifiedAccess>]
     type Arguments =
-        | [<Argu.ArguAttributes.Mandatory>] BuildFile of string * string
+        | BuildFile of string * string
+        | FileTokenRange of string * string
+        | ExecuteCommand of string
         | Timeout of int
+        | Port of int
 
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
                 | BuildFile _ -> nameof BuildFile
+                | FileTokenRange _ -> nameof FileTokenRange
+                | ExecuteCommand _ -> nameof ExecuteCommand
                 | Timeout _ -> nameof Timeout
+                | Port _ -> nameof Port
 
     /// ## main
 
     let main args =
         let argsMap = args |> Runtime.parseArgsMap<Arguments>
 
-        let inputPath, outputPath =
-            match argsMap.[nameof Arguments.BuildFile] with
-            | [ Arguments.BuildFile (inputPath, outputPath) ] -> Some (inputPath, outputPath)
-            | _ -> None
-            |> Option.get
+        let buildFileActions =
+            argsMap
+            |> Map.tryFind (nameof Arguments.BuildFile)
+            |> Option.defaultValue []
+            |> List.choose (function
+                | Arguments.BuildFile (inputPath, outputPath) -> Some (inputPath, outputPath)
+                | _ -> None
+            )
+
+        let fileTokenRangeActions =
+            argsMap
+            |> Map.tryFind (nameof Arguments.FileTokenRange)
+            |> Option.defaultValue []
+            |> List.choose (function
+                | Arguments.FileTokenRange (inputPath, outputPath) -> Some (inputPath, outputPath)
+                | _ -> None
+            )
+
+        let executeCommandActions =
+            argsMap
+            |> Map.tryFind (nameof Arguments.ExecuteCommand)
+            |> Option.defaultValue []
+            |> List.choose (function
+                | Arguments.ExecuteCommand command -> Some command
+                | _ -> None
+            )
 
         let timeout =
             match argsMap |> Map.tryFind (nameof Arguments.Timeout) with
             | Some [ Arguments.Timeout timeout ] -> timeout
-            | _ -> 30000
+            | _ -> 60000 * 5
+
+        let port =
+            match argsMap |> Map.tryFind (nameof Arguments.Port) with
+            | Some [ Arguments.Port port ] -> Some port
+            | _ -> None
 
         async {
-            let! outputCode, errors = inputPath |> buildFile timeout None
+            let! buildFileResult =
+                buildFileActions
+                |> List.map (fun (inputPath, outputPath) -> async {
+                    let port = port |> Option.defaultWith getCompilerPort
+                    let! outputCode, errors = inputPath |> buildFile timeout port None
 
-            errors
-            |> List.map snd
-            |> List.iter (fun error ->
-                trace Critical (fun () -> $"main / error: {error}") getLocals
-            )
+                    errors
+                    |> List.map snd
+                    |> List.iter (fun error ->
+                        trace Critical (fun () -> $"main / error: {error}") getLocals
+                    )
 
-            match outputCode with
-            | Some outputCode ->
-                do! outputCode |> FileSystem.writeAllTextAsync outputPath
-                return 0
-            | None ->
-                return 1
+                    match outputCode with
+                    | Some outputCode ->
+                        do! outputCode |> FileSystem.writeAllTextAsync outputPath
+                        return 0
+                    | None ->
+                        return 1
+                })
+                |> Async.Sequential
+
+            let! fileTokenRangeResult =
+                fileTokenRangeActions
+                |> List.map (fun (inputPath, outputPath) -> async {
+                    let port = port |> Option.defaultWith getCompilerPort
+                    let! tokenRange = inputPath |> getFileTokenRange port None
+                    match tokenRange with
+                    | Some tokenRange ->
+                        do! tokenRange |> FSharp.Json.Json.serialize |> FileSystem.writeAllTextAsync outputPath
+                        return 0
+                    | None ->
+                        return 1
+                })
+                |> Async.Sequential
+
+            let! executeCommandResult =
+                executeCommandActions
+                |> List.map (fun command -> async {
+                    let port = port |> Option.defaultWith getCompilerPort
+
+                    let localToken, disposable = Threading.newDisposableToken None
+                    use _ = disposable
+
+                    let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
+                    use _ = disposable
+
+                    let! exitCode, result =
+                        Runtime.executeWithOptionsAsync
+                            {
+                                Command = command
+                                CancellationToken = Some compilerToken
+                                WorkingDirectory = None
+                                OnLine = None
+                            }
+
+                    trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode}") getLocals
+
+                    return exitCode
+                })
+                |> Async.Sequential
+
+            return
+                [| buildFileResult; fileTokenRangeResult; executeCommandResult |]
+                |> Array.collect id
+                |> Array.sum
         }
         |> Async.runWithTimeout timeout
         |> Option.defaultValue 1

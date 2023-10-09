@@ -151,13 +151,14 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
     trace Debug (fun () -> $"executeAsync / options: {options}") getLocals
 
     let startInfo = System.Diagnostics.ProcessStartInfo (
-        WorkingDirectory = workingDirectory,
-        FileName = fileName,
         Arguments = arguments,
-        RedirectStandardOutput = true,
+        CreateNoWindow = true,
+        FileName = fileName,
         RedirectStandardError = true,
+        RedirectStandardOutput = true,
+        StandardOutputEncoding = System.Text.Encoding.UTF8,
         UseShellExecute = false,
-        CreateNoWindow = true
+        WorkingDirectory = workingDirectory
     )
 
     use proc = new System.Diagnostics.Process (StartInfo = startInfo)

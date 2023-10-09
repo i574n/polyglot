@@ -18736,6 +18736,7 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">7000</span>
 
 <span class="n">inl</span> <span class="n">linear_spring</span> <span class="n">k</span> <span class="n">re</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st1</span><span class="p">)</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st2</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">st1</span><span class="o">.</span><span class="n">pos_vec</span>
@@ -18776,24 +18777,6 @@ method0()
     <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">from_list</span>
     <span class="o">|&gt;</span> <span class="n">multi_particle_state</span>
 
-<span class="n">inl</span> <span class="n">string_initial_pluck</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">ball_mass</span> <span class="o">=</span> <span class="mf">0.0008293</span> <span class="o">*</span> <span class="mf">0.65</span> <span class="o">/</span> <span class="mi">64</span>
-    <span class="n">inl</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">default_particle_state</span><span class="s1">') = default_particle_state ()</span>
-    <span class="n">listm</span><span class="s1">'.init_series 0.01 0.64 0.01</span>
-    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">inl</span> <span class="n">y</span> <span class="o">=</span>
-            <span class="n">inl</span> <span class="n">n</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">0.51</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.65</span>
-            <span class="mf">0.005</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.51</span> <span class="o">-</span> <span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">n</span><span class="p">)</span>
-        <span class="n">particle_state</span> <span class="p">{</span>
-            <span class="n">default_particle_state</span><span class="s1">' with</span>
-                <span class="n">mass</span> <span class="o">=</span> <span class="n">ball_mass</span>
-                <span class="n">pos_vec</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*^</span> <span class="n">i_hat</span> <span class="p">()</span> <span class="o">^+^</span> <span class="n">y</span> <span class="o">*^</span> <span class="n">j_hat</span> <span class="p">()</span>
-                <span class="n">velocity</span> <span class="o">=</span> <span class="n">zero_vec</span> <span class="p">()</span>
-        <span class="p">}</span>
-    <span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">from_list</span>
-    <span class="o">|&gt;</span> <span class="n">multi_particle_state</span>
-
 <span class="n">let</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="o">~</span><span class="n">frames</span> <span class="o">=</span> <span class="n">listm</span><span class="s1">'.init_series 0 9 1f64</span>
     <span class="n">inl</span> <span class="n">initial_state</span> <span class="p">:</span> <span class="n">_</span> <span class="n">f64</span> <span class="o">=</span> <span class="n">string_initial_overtone</span> <span class="mi">3</span><span class="n">i32</span>
@@ -18804,7 +18787,7 @@ method0()
                 <span class="n">seq</span><span class="o">.</span><span class="n">iterate</span><span class="s1">' (string_update 0.000025) initial_state |&gt; fun f =&gt; f 0f64</span>
             <span class="n">inl</span> <span class="n">rs</span> <span class="o">=</span>
                 <span class="p">[</span> <span class="n">zero_vec</span> <span class="p">()</span> <span class="p">]</span>
-                <span class="o">/@</span> <span class="p">(</span><span class="n">sts</span> <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">/@</span> <span class="p">[</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="p">])</span> <span class="p">[])</span>
+                <span class="o">/@</span> <span class="p">(</span><span class="n">sts</span> <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">fold_</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">/@</span> <span class="p">[</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="p">])</span> <span class="p">[])</span>
                 <span class="o">/@</span> <span class="p">[</span> <span class="mf">0.65</span> <span class="o">*^</span> <span class="n">i_hat</span> <span class="p">()</span> <span class="p">]</span>
             <span class="n">inl</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span>
                 <span class="n">rs</span>
@@ -19136,324 +19119,450 @@ displacement (m)
 and UH1 =
     | UH1_0 of (float []) * (float []) * UH1
     | UH1_1
-let rec method3 (v0 : UH0, v1 : int32) : int32 =
+and UH2 =
+    | UH2_0 of float * float * float * UH2
+    | UH2_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : float * f1_1 : float * f1_2 : float * f1_3 : float * f1_4 : float * f1_5 : float * f1_6 : float * f1_7 : float * f1_8 : float
+and UH3 =
+    | UH3_0 of float * float * UH3
+    | UH3_1
+let rec method3 (v0 : UH2, v1 : UH2) : UH2 =
+    match v0 with
+    | UH2_0(v2, v3, v4, v5) -&gt; (* Cons *)
+        let v6 : UH2 = method3(v5, v1)
+        UH2_0(v2, v3, v4, v6)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method2 (v0 : UH2, v1 : float) : UH2 =
+    let v2 : bool = v1 = 0.0
+    let v258 : US0 =
+        if v2 then
+            US0_1(0.0, 8.422578125E-06, 0.01, 0.0007224452478461068, 0.0, 0.0, 0.0, 0.0, 0.0)
+        else
+            let v4 : float = v1 - 1.0
+            let v5 : bool = v4 = 0.0
+            if v5 then
+                US0_1(0.0, 8.422578125E-06, 0.02, 0.0014297283919934465, 0.0, 0.0, 0.0, 0.0, 0.0)
+            else
+                let v7 : float = v4 - 1.0
+                let v8 : bool = v7 = 0.0
+                if v8 then
+                    US0_1(0.0, 8.422578125E-06, 0.03, 0.0021070055388626454, 0.0, 0.0, 0.0, 0.0, 0.0)
+                else
+                    let v10 : float = v7 - 1.0
+                    let v11 : bool = v10 = 0.0
+                    if v11 then
+                        US0_1(0.0, 8.422578125E-06, 0.04, 0.00274006253677335, 0.0, 0.0, 0.0, 0.0, 0.0)
+                    else
+                        let v13 : float = v10 - 1.0
+                        let v14 : bool = v13 = 0.0
+                        if v14 then
+                            US0_1(0.0, 8.422578125E-06, 0.05, 0.0033156132912039757, 0.0, 0.0, 0.0, 0.0, 0.0)
+                        else
+                            let v16 : float = v13 - 1.0
+                            let v17 : bool = v16 = 0.0
+                            if v17 then
+                                US0_1(0.0, 8.422578125E-06, 0.060000000000000005, 0.0038215786027292415, 0.0, 0.0, 0.0, 0.0, 0.0)
+                            else
+                                let v19 : float = v16 - 1.0
+                                let v20 : bool = v19 = 0.0
+                                if v20 then
+                                    US0_1(0.0, 8.422578125E-06, 0.06999999999999999, 0.004247339675607605, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                else
+                                    let v22 : float = v19 - 1.0
+                                    let v23 : bool = v22 = 0.0
+                                    if v23 then
+                                        US0_1(0.0, 8.422578125E-06, 0.08, 0.004583960976582912, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                    else
+                                        let v25 : float = v22 - 1.0
+                                        let v26 : bool = v25 = 0.0
+                                        if v26 then
+                                            US0_1(0.0, 8.422578125E-06, 0.09, 0.004824377766717757, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                        else
+                                            let v28 : float = v25 - 1.0
+                                            let v29 : bool = v28 = 0.0
+                                            if v29 then
+                                                US0_1(0.0, 8.422578125E-06, 0.09999999999999999, 0.00496354437049027, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                            else
+                                                let v31 : float = v28 - 1.0
+                                                let v32 : bool = v31 = 0.0
+                                                if v32 then
+                                                    US0_1(0.0, 8.422578125E-06, 0.11, 0.004998540070400965, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                else
+                                                    let v34 : float = v31 - 1.0
+                                                    let v35 : bool = v34 = 0.0
+                                                    if v35 then
+                                                        US0_1(0.0, 8.422578125E-06, 0.12, 0.004928630404658255, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                    else
+                                                        let v37 : float = v34 - 1.0
+                                                        let v38 : bool = v37 = 0.0
+                                                        if v38 then
+                                                            US0_1(0.0, 8.422578125E-06, 0.13, 0.004755282581475768, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                        else
+                                                            let v40 : float = v37 - 1.0
+                                                            let v41 : bool = v40 = 0.0
+                                                            if v41 then
+                                                                US0_1(0.0, 8.422578125E-06, 0.14, 0.004482134686478519, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                            else
+                                                                let v43 : float = v40 - 1.0
+                                                                let v44 : bool = v43 = 0.0
+                                                                if v44 then
+                                                                    US0_1(0.0, 8.422578125E-06, 0.15000000000000002, 0.0041149193294682815, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                else
+                                                                    let v46 : float = v43 - 1.0
+                                                                    let v47 : bool = v46 = 0.0
+                                                                    if v47 then
+                                                                        US0_1(0.0, 8.422578125E-06, 0.16, 0.0036613433329888666, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                    else
+                                                                        let v49 : float = v46 - 1.0
+                                                                        let v50 : bool = v49 = 0.0
+                                                                        if v50 then
+                                                                            US0_1(0.0, 8.422578125E-06, 0.17, 0.0031309259876915697, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                        else
+                                                                            let v52 : float = v49 - 1.0
+                                                                            let v53 : bool = v52 = 0.0
+                                                                            if v53 then
+                                                                                US0_1(0.0, 8.422578125E-06, 0.18000000000000002, 0.002534799269067951, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                            else
+                                                                                let v55 : float = v52 - 1.0
+                                                                                let v56 : bool = v55 = 0.0
+                                                                                if v56 then
+                                                                                    US0_1(0.0, 8.422578125E-06, 0.19, 0.0018854742084416015, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                else
+                                                                                    let v58 : float = v55 - 1.0
+                                                                                    let v59 : bool = v58 = 0.0
+                                                                                    if v59 then
+                                                                                        US0_1(0.0, 8.422578125E-06, 0.2, 0.0011965783214377905, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                    else
+                                                                                        let v61 : float = v58 - 1.0
+                                                                                        let v62 : bool = v61 = 0.0
+                                                                                        if v62 then
+                                                                                            US0_1(0.0, 8.422578125E-06, 0.21000000000000002, 0.00048256960457257535, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                        else
+                                                                                            let v64 : float = v61 - 1.0
+                                                                                            let v65 : bool = v64 = 0.0
+                                                                                            if v65 then
+                                                                                                US0_1(0.0, 8.422578125E-06, 0.22, -0.00024156689762753317, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                            else
+                                                                                                let v67 : float = v64 - 1.0
+                                                                                                let v68 : bool = v67 = 0.0
+                                                                                                if v68 then
+                                                                                                    US0_1(0.0, 8.422578125E-06, 0.23, -0.0009606335867685418, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                else
+                                                                                                    let v70 : float = v67 - 1.0
+                                                                                                    let v71 : bool = v70 = 0.0
+                                                                                                    if v71 then
+                                                                                                        US0_1(0.0, 8.422578125E-06, 0.24000000000000002, -0.001659539265642642, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                    else
+                                                                                                        let v73 : float = v70 - 1.0
+                                                                                                        let v74 : bool = v73 = 0.0
+                                                                                                        if v74 then
+                                                                                                            US0_1(0.0, 8.422578125E-06, 0.25, -0.002323615860218842, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                        else
+                                                                                                            let v76 : float = v73 - 1.0
+                                                                                                            let v77 : bool = v76 = 0.0
+                                                                                                            if v77 then
+                                                                                                                US0_1(0.0, 8.422578125E-06, 0.26, -0.0029389262614623636, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                            else
+                                                                                                                let v79 : float = v76 - 1.0
+                                                                                                                let v80 : bool = v79 = 0.0
+                                                                                                                if v80 then
+                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.27, -0.003492556826244686, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                else
+                                                                                                                    let v82 : float = v79 - 1.0
+                                                                                                                    let v83 : bool = v82 = 0.0
+                                                                                                                    if v83 then
+                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.28, -0.003972888398568771, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                    else
+                                                                                                                        let v85 : float = v82 - 1.0
+                                                                                                                        let v86 : bool = v85 = 0.0
+                                                                                                                        if v86 then
+                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.29000000000000004, -0.00436984016313259, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                        else
+                                                                                                                            let v88 : float = v85 - 1.0
+                                                                                                                            let v89 : bool = v88 = 0.0
+                                                                                                                            if v89 then
+                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.3, -0.004675081213427074, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                            else
+                                                                                                                                let v91 : float = v88 - 1.0
+                                                                                                                                let v92 : bool = v91 = 0.0
+                                                                                                                                if v92 then
+                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.31, -0.004882205394146359, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                else
+                                                                                                                                    let v94 : float = v91 - 1.0
+                                                                                                                                    let v95 : bool = v94 = 0.0
+                                                                                                                                    if v95 then
+                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.32, -0.004986865748457456, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                    else
+                                                                                                                                        let v97 : float = v94 - 1.0
+                                                                                                                                        let v98 : bool = v97 = 0.0
+                                                                                                                                        if v98 then
+                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.33, -0.004986865748457456, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                        else
+                                                                                                                                            let v100 : float = v97 - 1.0
+                                                                                                                                            let v101 : bool = v100 = 0.0
+                                                                                                                                            if v101 then
+                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.34, -0.004882205394146361, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                            else
+                                                                                                                                                let v103 : float = v100 - 1.0
+                                                                                                                                                let v104 : bool = v103 = 0.0
+                                                                                                                                                if v104 then
+                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.35000000000000003, -0.004675081213427074, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                else
+                                                                                                                                                    let v106 : float = v103 - 1.0
+                                                                                                                                                    let v107 : bool = v106 = 0.0
+                                                                                                                                                    if v107 then
+                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.36000000000000004, -0.004369840163132589, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                    else
+                                                                                                                                                        let v109 : float = v106 - 1.0
+                                                                                                                                                        let v110 : bool = v109 = 0.0
+                                                                                                                                                        if v110 then
+                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.37, -0.003972888398568774, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                        else
+                                                                                                                                                            let v112 : float = v109 - 1.0
+                                                                                                                                                            let v113 : bool = v112 = 0.0
+                                                                                                                                                            if v113 then
+                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.38, -0.0034925568262446837, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                            else
+                                                                                                                                                                let v115 : float = v112 - 1.0
+                                                                                                                                                                let v116 : bool = v115 = 0.0
+                                                                                                                                                                if v116 then
+                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.39, -0.002938926261462367, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                else
+                                                                                                                                                                    let v118 : float = v115 - 1.0
+                                                                                                                                                                    let v119 : bool = v118 = 0.0
+                                                                                                                                                                    if v119 then
+                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.4, -0.002323615860218846, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                    else
+                                                                                                                                                                        let v121 : float = v118 - 1.0
+                                                                                                                                                                        let v122 : bool = v121 = 0.0
+                                                                                                                                                                        if v122 then
+                                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.41000000000000003, -0.0016595392656426435, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                        else
+                                                                                                                                                                            let v124 : float = v121 - 1.0
+                                                                                                                                                                            let v125 : bool = v124 = 0.0
+                                                                                                                                                                            if v125 then
+                                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.42000000000000004, -0.0009606335867685414, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                            else
+                                                                                                                                                                                let v127 : float = v124 - 1.0
+                                                                                                                                                                                let v128 : bool = v127 = 0.0
+                                                                                                                                                                                if v128 then
+                                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.43, -0.00024156689762753724, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                else
+                                                                                                                                                                                    let v130 : float = v127 - 1.0
+                                                                                                                                                                                    let v131 : bool = v130 = 0.0
+                                                                                                                                                                                    if v131 then
+                                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.44, 0.0004825696045725713, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                    else
+                                                                                                                                                                                        let v133 : float = v130 - 1.0
+                                                                                                                                                                                        let v134 : bool = v133 = 0.0
+                                                                                                                                                                                        if v134 then
+                                                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.45, 0.0011965783214377866, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                        else
+                                                                                                                                                                                            let v136 : float = v133 - 1.0
+                                                                                                                                                                                            let v137 : bool = v136 = 0.0
+                                                                                                                                                                                            if v137 then
+                                                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.46, 0.0018854742084416021, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                            else
+                                                                                                                                                                                                let v139 : float = v136 - 1.0
+                                                                                                                                                                                                let v140 : bool = v139 = 0.0
+                                                                                                                                                                                                if v140 then
+                                                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.47000000000000003, 0.002534799269067953, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                else
+                                                                                                                                                                                                    let v142 : float = v139 - 1.0
+                                                                                                                                                                                                    let v143 : bool = v142 = 0.0
+                                                                                                                                                                                                    if v143 then
+                                                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.48000000000000004, 0.003130925987691568, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                    else
+                                                                                                                                                                                                        let v145 : float = v142 - 1.0
+                                                                                                                                                                                                        let v146 : bool = v145 = 0.0
+                                                                                                                                                                                                        if v146 then
+                                                                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.49, 0.0036613433329888622, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                        else
+                                                                                                                                                                                                            let v148 : float = v145 - 1.0
+                                                                                                                                                                                                            let v149 : bool = v148 = 0.0
+                                                                                                                                                                                                            if v149 then
+                                                                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.5, 0.0041149193294682815, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                            else
+                                                                                                                                                                                                                let v151 : float = v148 - 1.0
+                                                                                                                                                                                                                let v152 : bool = v151 = 0.0
+                                                                                                                                                                                                                if v152 then
+                                                                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.51, 0.0044821346864785195, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                else
+                                                                                                                                                                                                                    let v154 : float = v151 - 1.0
+                                                                                                                                                                                                                    let v155 : bool = v154 = 0.0
+                                                                                                                                                                                                                    if v155 then
+                                                                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.52, 0.004755282581475766, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                    else
+                                                                                                                                                                                                                        let v157 : float = v154 - 1.0
+                                                                                                                                                                                                                        let v158 : bool = v157 = 0.0
+                                                                                                                                                                                                                        if v158 then
+                                                                                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.53, 0.004928630404658255, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                        else
+                                                                                                                                                                                                                            let v160 : float = v157 - 1.0
+                                                                                                                                                                                                                            let v161 : bool = v160 = 0.0
+                                                                                                                                                                                                                            if v161 then
+                                                                                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.54, 0.004998540070400965, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                            else
+                                                                                                                                                                                                                                let v163 : float = v160 - 1.0
+                                                                                                                                                                                                                                let v164 : bool = v163 = 0.0
+                                                                                                                                                                                                                                if v164 then
+                                                                                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.55, 0.004963544370490271, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                else
+                                                                                                                                                                                                                                    let v166 : float = v163 - 1.0
+                                                                                                                                                                                                                                    let v167 : bool = v166 = 0.0
+                                                                                                                                                                                                                                    if v167 then
+                                                                                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.56, 0.004824377766717758, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                    else
+                                                                                                                                                                                                                                        let v169 : float = v166 - 1.0
+                                                                                                                                                                                                                                        let v170 : bool = v169 = 0.0
+                                                                                                                                                                                                                                        if v170 then
+                                                                                                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.5700000000000001, 0.004583960976582912, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                        else
+                                                                                                                                                                                                                                            let v172 : float = v169 - 1.0
+                                                                                                                                                                                                                                            let v173 : bool = v172 = 0.0
+                                                                                                                                                                                                                                            if v173 then
+                                                                                                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.5800000000000001, 0.004247339675607605, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                            else
+                                                                                                                                                                                                                                                let v175 : float = v172 - 1.0
+                                                                                                                                                                                                                                                let v176 : bool = v175 = 0.0
+                                                                                                                                                                                                                                                if v176 then
+                                                                                                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.59, 0.003821578602729245, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                                else
+                                                                                                                                                                                                                                                    let v178 : float = v175 - 1.0
+                                                                                                                                                                                                                                                    let v179 : bool = v178 = 0.0
+                                                                                                                                                                                                                                                    if v179 then
+                                                                                                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.6, 0.0033156132912039783, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                                    else
+                                                                                                                                                                                                                                                        let v181 : float = v178 - 1.0
+                                                                                                                                                                                                                                                        let v182 : bool = v181 = 0.0
+                                                                                                                                                                                                                                                        if v182 then
+                                                                                                                                                                                                                                                            US0_1(0.0, 8.422578125E-06, 0.61, 0.0027400625367733585, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                                        else
+                                                                                                                                                                                                                                                            let v184 : float = v181 - 1.0
+                                                                                                                                                                                                                                                            let v185 : bool = v184 = 0.0
+                                                                                                                                                                                                                                                            if v185 then
+                                                                                                                                                                                                                                                                US0_1(0.0, 8.422578125E-06, 0.62, 0.0021070055388626528, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                                            else
+                                                                                                                                                                                                                                                                let v187 : float = v184 - 1.0
+                                                                                                                                                                                                                                                                let v188 : bool = v187 = 0.0
+                                                                                                                                                                                                                                                                if v188 then
+                                                                                                                                                                                                                                                                    US0_1(0.0, 8.422578125E-06, 0.63, 0.001429728391993452, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                                                else
+                                                                                                                                                                                                                                                                    let v190 : float = v187 - 1.0
+                                                                                                                                                                                                                                                                    let v191 : bool = v190 = 0.0
+                                                                                                                                                                                                                                                                    if v191 then
+                                                                                                                                                                                                                                                                        US0_1(0.0, 8.422578125E-06, 0.64, 0.0007224452478461016, 0.0, 0.0, 0.0, 0.0, 0.0)
+                                                                                                                                                                                                                                                                    else
+                                                                                                                                                                                                                                                                        let v193 : float = v190 - 1.0
+                                                                                                                                                                                                                                                                        US0_0
+    match v258 with
+    | US0_0 -&gt; (* None *)
+        v0
+    | US0_1(v259, v260, v261, v262, v263, v264, v265, v266, v267) -&gt; (* Some *)
+        let v268 : UH2 = UH2_1
+        let v269 : UH2 = UH2_0(v261, v262, v263, v268)
+        let v270 : UH2 = method3(v0, v269)
+        let v271 : float = v1 + 1.0
+        method2(v270, v271)
+and method4 (v0 : UH2, v1 : UH3) : UH3 =
+    match v0 with
+    | UH2_0(v2, v3, v4, v5) -&gt; (* Cons *)
+        let v6 : UH3 = method4(v5, v1)
+        UH3_0(v2, v3, v6)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method5 (v0 : UH3, v1 : UH0, v2 : UH0) : struct (UH0 * UH0) =
+    match v0 with
+    | UH3_0(v3, v4, v5) -&gt; (* Cons *)
+        let v6 : UH0 = UH0_0(v3, v1)
+        let v7 : UH0 = UH0_0(v4, v2)
+        method5(v5, v6, v7)
+    | UH3_1 -&gt; (* Nil *)
+        struct (v1, v2)
+and method6 (v0 : UH0, v1 : UH0) : UH0 =
+    match v0 with
+    | UH0_0(v2, v3) -&gt; (* Cons *)
+        let v4 : UH0 = UH0_0(v2, v1)
+        method6(v3, v4)
+    | UH0_1 -&gt; (* Nil *)
+        v1
+and method8 (v0 : UH0, v1 : int32) : int32 =
     match v0 with
     | UH0_0(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + 1
-        method3(v3, v4)
+        method8(v3, v4)
     | UH0_1 -&gt; (* Nil *)
         v1
-and method4 (v0 : (float []), v1 : UH0, v2 : int32) : int32 =
+and method9 (v0 : (float []), v1 : UH0, v2 : int32) : int32 =
     match v1 with
     | UH0_0(v3, v4) -&gt; (* Cons *)
         v0.[int v2] &lt;- v3
         let v5 : int32 = v2 + 1
-        method4(v0, v4, v5)
+        method9(v0, v4, v5)
     | UH0_1 -&gt; (* Nil *)
         v2
-and method2 (v0 : UH0) : (float []) =
+and method7 (v0 : UH0) : (float []) =
     let v1 : int32 = 0
-    let v2 : int32 = method3(v0, v1)
+    let v2 : int32 = method8(v0, v1)
     let v3 : (float []) = Array.zeroCreate&lt;float&gt; (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method4(v3, v0, v4)
+    let v5 : int32 = method9(v3, v0, v4)
     v3
 and method1 (v0 : UH0, v1 : UH1) : UH1 =
     match v0 with
     | UH0_0(v2, v3) -&gt; (* Cons *)
         let v4 : UH1 = method1(v3, v1)
-        let v5 : float = 0.0
-        let v6 : float = 0.01
-        let v7 : float = 0.02
-        let v8 : float = 0.03
-        let v9 : float = 0.04
-        let v10 : float = 0.05
-        let v11 : float = 0.060000000000000005
-        let v12 : float = 0.06999999999999999
-        let v13 : float = 0.08
-        let v14 : float = 0.09
-        let v15 : float = 0.09999999999999999
-        let v16 : float = 0.11
-        let v17 : float = 0.12
-        let v18 : float = 0.13
-        let v19 : float = 0.14
-        let v20 : float = 0.15000000000000002
-        let v21 : float = 0.16
-        let v22 : float = 0.17
-        let v23 : float = 0.18000000000000002
-        let v24 : float = 0.19
-        let v25 : float = 0.2
-        let v26 : float = 0.21000000000000002
-        let v27 : float = 0.22
-        let v28 : float = 0.23
-        let v29 : float = 0.24000000000000002
-        let v30 : float = 0.25
-        let v31 : float = 0.26
-        let v32 : float = 0.27
-        let v33 : float = 0.28
-        let v34 : float = 0.29000000000000004
-        let v35 : float = 0.3
-        let v36 : float = 0.31
-        let v37 : float = 0.32
-        let v38 : float = 0.33
-        let v39 : float = 0.34
-        let v40 : float = 0.35000000000000003
-        let v41 : float = 0.36000000000000004
-        let v42 : float = 0.37
-        let v43 : float = 0.38
-        let v44 : float = 0.39
-        let v45 : float = 0.4
-        let v46 : float = 0.41000000000000003
-        let v47 : float = 0.42000000000000004
-        let v48 : float = 0.43
-        let v49 : float = 0.44
-        let v50 : float = 0.45
-        let v51 : float = 0.46
-        let v52 : float = 0.47000000000000003
-        let v53 : float = 0.48000000000000004
-        let v54 : float = 0.49
-        let v55 : float = 0.5
-        let v56 : float = 0.51
-        let v57 : float = 0.52
-        let v58 : float = 0.53
-        let v59 : float = 0.54
-        let v60 : float = 0.55
-        let v61 : float = 0.56
-        let v62 : float = 0.5700000000000001
-        let v63 : float = 0.5800000000000001
-        let v64 : float = 0.59
-        let v65 : float = 0.6
-        let v66 : float = 0.61
-        let v67 : float = 0.62
-        let v68 : float = 0.63
-        let v69 : float = 0.64
-        let v70 : float = 0.65
-        let v71 : UH0 = UH0_1
-        let v72 : UH0 = UH0_0(v70, v71)
-        let v73 : UH0 = UH0_0(v69, v72)
-        let v74 : UH0 = UH0_0(v68, v73)
-        let v75 : UH0 = UH0_0(v67, v74)
-        let v76 : UH0 = UH0_0(v66, v75)
-        let v77 : UH0 = UH0_0(v65, v76)
-        let v78 : UH0 = UH0_0(v64, v77)
-        let v79 : UH0 = UH0_0(v63, v78)
-        let v80 : UH0 = UH0_0(v62, v79)
-        let v81 : UH0 = UH0_0(v61, v80)
-        let v82 : UH0 = UH0_0(v60, v81)
-        let v83 : UH0 = UH0_0(v59, v82)
-        let v84 : UH0 = UH0_0(v58, v83)
-        let v85 : UH0 = UH0_0(v57, v84)
-        let v86 : UH0 = UH0_0(v56, v85)
-        let v87 : UH0 = UH0_0(v55, v86)
-        let v88 : UH0 = UH0_0(v54, v87)
-        let v89 : UH0 = UH0_0(v53, v88)
-        let v90 : UH0 = UH0_0(v52, v89)
-        let v91 : UH0 = UH0_0(v51, v90)
-        let v92 : UH0 = UH0_0(v50, v91)
-        let v93 : UH0 = UH0_0(v49, v92)
-        let v94 : UH0 = UH0_0(v48, v93)
-        let v95 : UH0 = UH0_0(v47, v94)
-        let v96 : UH0 = UH0_0(v46, v95)
-        let v97 : UH0 = UH0_0(v45, v96)
-        let v98 : UH0 = UH0_0(v44, v97)
-        let v99 : UH0 = UH0_0(v43, v98)
-        let v100 : UH0 = UH0_0(v42, v99)
-        let v101 : UH0 = UH0_0(v41, v100)
-        let v102 : UH0 = UH0_0(v40, v101)
-        let v103 : UH0 = UH0_0(v39, v102)
-        let v104 : UH0 = UH0_0(v38, v103)
-        let v105 : UH0 = UH0_0(v37, v104)
-        let v106 : UH0 = UH0_0(v36, v105)
-        let v107 : UH0 = UH0_0(v35, v106)
-        let v108 : UH0 = UH0_0(v34, v107)
-        let v109 : UH0 = UH0_0(v33, v108)
-        let v110 : UH0 = UH0_0(v32, v109)
-        let v111 : UH0 = UH0_0(v31, v110)
-        let v112 : UH0 = UH0_0(v30, v111)
-        let v113 : UH0 = UH0_0(v29, v112)
-        let v114 : UH0 = UH0_0(v28, v113)
-        let v115 : UH0 = UH0_0(v27, v114)
-        let v116 : UH0 = UH0_0(v26, v115)
-        let v117 : UH0 = UH0_0(v25, v116)
-        let v118 : UH0 = UH0_0(v24, v117)
-        let v119 : UH0 = UH0_0(v23, v118)
-        let v120 : UH0 = UH0_0(v22, v119)
-        let v121 : UH0 = UH0_0(v21, v120)
-        let v122 : UH0 = UH0_0(v20, v121)
-        let v123 : UH0 = UH0_0(v19, v122)
-        let v124 : UH0 = UH0_0(v18, v123)
-        let v125 : UH0 = UH0_0(v17, v124)
-        let v126 : UH0 = UH0_0(v16, v125)
-        let v127 : UH0 = UH0_0(v15, v126)
-        let v128 : UH0 = UH0_0(v14, v127)
-        let v129 : UH0 = UH0_0(v13, v128)
-        let v130 : UH0 = UH0_0(v12, v129)
-        let v131 : UH0 = UH0_0(v11, v130)
-        let v132 : UH0 = UH0_0(v10, v131)
-        let v133 : UH0 = UH0_0(v9, v132)
-        let v134 : UH0 = UH0_0(v8, v133)
-        let v135 : UH0 = UH0_0(v7, v134)
-        let v136 : UH0 = UH0_0(v6, v135)
-        let v137 : UH0 = UH0_0(v5, v136)
-        let v138 : (float []) = method2(v137)
-        let v139 : float = 0.0
-        let v140 : float = 0.0007224452478461068
-        let v141 : float = 0.0014297283919934465
-        let v142 : float = 0.0021070055388626454
-        let v143 : float = 0.00274006253677335
-        let v144 : float = 0.0033156132912039757
-        let v145 : float = 0.0038215786027292415
-        let v146 : float = 0.004247339675607605
-        let v147 : float = 0.004583960976582912
-        let v148 : float = 0.004824377766717757
-        let v149 : float = 0.00496354437049027
-        let v150 : float = 0.004998540070400965
-        let v151 : float = 0.004928630404658255
-        let v152 : float = 0.004755282581475768
-        let v153 : float = 0.004482134686478519
-        let v154 : float = 0.0041149193294682815
-        let v155 : float = 0.0036613433329888666
-        let v156 : float = 0.0031309259876915697
-        let v157 : float = 0.002534799269067951
-        let v158 : float = 0.0018854742084416015
-        let v159 : float = 0.0011965783214377905
-        let v160 : float = 0.00048256960457257535
-        let v161 : float = -0.00024156689762753317
-        let v162 : float = -0.0009606335867685418
-        let v163 : float = -0.001659539265642642
-        let v164 : float = -0.002323615860218842
-        let v165 : float = -0.0029389262614623636
-        let v166 : float = -0.003492556826244686
-        let v167 : float = -0.003972888398568771
-        let v168 : float = -0.00436984016313259
-        let v169 : float = -0.004675081213427074
-        let v170 : float = -0.004882205394146359
-        let v171 : float = -0.004986865748457456
-        let v172 : float = -0.004986865748457456
-        let v173 : float = -0.004882205394146361
-        let v174 : float = -0.004675081213427074
-        let v175 : float = -0.004369840163132589
-        let v176 : float = -0.003972888398568774
-        let v177 : float = -0.0034925568262446837
-        let v178 : float = -0.002938926261462367
-        let v179 : float = -0.002323615860218846
-        let v180 : float = -0.0016595392656426435
-        let v181 : float = -0.0009606335867685414
-        let v182 : float = -0.00024156689762753724
-        let v183 : float = 0.0004825696045725713
-        let v184 : float = 0.0011965783214377866
-        let v185 : float = 0.0018854742084416021
-        let v186 : float = 0.002534799269067953
-        let v187 : float = 0.003130925987691568
-        let v188 : float = 0.0036613433329888622
-        let v189 : float = 0.0041149193294682815
-        let v190 : float = 0.0044821346864785195
-        let v191 : float = 0.004755282581475766
-        let v192 : float = 0.004928630404658255
-        let v193 : float = 0.004998540070400965
-        let v194 : float = 0.004963544370490271
-        let v195 : float = 0.004824377766717758
-        let v196 : float = 0.004583960976582912
-        let v197 : float = 0.004247339675607605
-        let v198 : float = 0.003821578602729245
-        let v199 : float = 0.0033156132912039783
-        let v200 : float = 0.0027400625367733585
-        let v201 : float = 0.0021070055388626528
-        let v202 : float = 0.001429728391993452
-        let v203 : float = 0.0007224452478461016
-        let v204 : float = 0.0
-        let v205 : UH0 = UH0_1
-        let v206 : UH0 = UH0_0(v204, v205)
-        let v207 : UH0 = UH0_0(v203, v206)
-        let v208 : UH0 = UH0_0(v202, v207)
-        let v209 : UH0 = UH0_0(v201, v208)
-        let v210 : UH0 = UH0_0(v200, v209)
-        let v211 : UH0 = UH0_0(v199, v210)
-        let v212 : UH0 = UH0_0(v198, v211)
-        let v213 : UH0 = UH0_0(v197, v212)
-        let v214 : UH0 = UH0_0(v196, v213)
-        let v215 : UH0 = UH0_0(v195, v214)
-        let v216 : UH0 = UH0_0(v194, v215)
-        let v217 : UH0 = UH0_0(v193, v216)
-        let v218 : UH0 = UH0_0(v192, v217)
-        let v219 : UH0 = UH0_0(v191, v218)
-        let v220 : UH0 = UH0_0(v190, v219)
-        let v221 : UH0 = UH0_0(v189, v220)
-        let v222 : UH0 = UH0_0(v188, v221)
-        let v223 : UH0 = UH0_0(v187, v222)
-        let v224 : UH0 = UH0_0(v186, v223)
-        let v225 : UH0 = UH0_0(v185, v224)
-        let v226 : UH0 = UH0_0(v184, v225)
-        let v227 : UH0 = UH0_0(v183, v226)
-        let v228 : UH0 = UH0_0(v182, v227)
-        let v229 : UH0 = UH0_0(v181, v228)
-        let v230 : UH0 = UH0_0(v180, v229)
-        let v231 : UH0 = UH0_0(v179, v230)
-        let v232 : UH0 = UH0_0(v178, v231)
-        let v233 : UH0 = UH0_0(v177, v232)
-        let v234 : UH0 = UH0_0(v176, v233)
-        let v235 : UH0 = UH0_0(v175, v234)
-        let v236 : UH0 = UH0_0(v174, v235)
-        let v237 : UH0 = UH0_0(v173, v236)
-        let v238 : UH0 = UH0_0(v172, v237)
-        let v239 : UH0 = UH0_0(v171, v238)
-        let v240 : UH0 = UH0_0(v170, v239)
-        let v241 : UH0 = UH0_0(v169, v240)
-        let v242 : UH0 = UH0_0(v168, v241)
-        let v243 : UH0 = UH0_0(v167, v242)
-        let v244 : UH0 = UH0_0(v166, v243)
-        let v245 : UH0 = UH0_0(v165, v244)
-        let v246 : UH0 = UH0_0(v164, v245)
-        let v247 : UH0 = UH0_0(v163, v246)
-        let v248 : UH0 = UH0_0(v162, v247)
-        let v249 : UH0 = UH0_0(v161, v248)
-        let v250 : UH0 = UH0_0(v160, v249)
-        let v251 : UH0 = UH0_0(v159, v250)
-        let v252 : UH0 = UH0_0(v158, v251)
-        let v253 : UH0 = UH0_0(v157, v252)
-        let v254 : UH0 = UH0_0(v156, v253)
-        let v255 : UH0 = UH0_0(v155, v254)
-        let v256 : UH0 = UH0_0(v154, v255)
-        let v257 : UH0 = UH0_0(v153, v256)
-        let v258 : UH0 = UH0_0(v152, v257)
-        let v259 : UH0 = UH0_0(v151, v258)
-        let v260 : UH0 = UH0_0(v150, v259)
-        let v261 : UH0 = UH0_0(v149, v260)
-        let v262 : UH0 = UH0_0(v148, v261)
-        let v263 : UH0 = UH0_0(v147, v262)
-        let v264 : UH0 = UH0_0(v146, v263)
-        let v265 : UH0 = UH0_0(v145, v264)
-        let v266 : UH0 = UH0_0(v144, v265)
-        let v267 : UH0 = UH0_0(v143, v266)
-        let v268 : UH0 = UH0_0(v142, v267)
-        let v269 : UH0 = UH0_0(v141, v268)
-        let v270 : UH0 = UH0_0(v140, v269)
-        let v271 : UH0 = UH0_0(v139, v270)
-        let v272 : (float []) = method2(v271)
-        UH1_0(v138, v272, v4)
+        let v5 : UH2 = UH2_1
+        let v6 : float = 0.0
+        let v7 : UH2 = method2(v5, v6)
+        let v8 : float = 0.65
+        let v9 : float = 0.0
+        let v10 : float = 0.0
+        let v11 : UH2 = UH2_1
+        let v12 : UH2 = UH2_0(v8, v9, v10, v11)
+        let v13 : UH2 = method3(v7, v12)
+        let v14 : UH3 = UH3_1
+        let v15 : UH3 = method4(v13, v14)
+        let v16 : float = 0.0
+        let v17 : UH0 = UH0_1
+        let v18 : UH0 = UH0_0(v16, v17)
+        let v19 : float = 0.0
+        let v20 : UH0 = UH0_1
+        let v21 : UH0 = UH0_0(v19, v20)
+        let struct (v22 : UH0, v23 : UH0) = method5(v15, v18, v21)
+        let v24 : UH0 = UH0_1
+        let v25 : UH0 = method6(v22, v24)
+        let v26 : UH0 = UH0_1
+        let v27 : UH0 = method6(v23, v26)
+        let v28 : (float []) = method7(v25)
+        let v29 : (float []) = method7(v27)
+        UH1_0(v28, v29, v4)
     | UH0_1 -&gt; (* Nil *)
         v1
-and method6 (v0 : UH1, v1 : int32) : int32 =
+and method11 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
     | UH1_0(v2, v3, v4) -&gt; (* Cons *)
         let v5 : int32 = v1 + 1
-        method6(v4, v5)
+        method11(v4, v5)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method7 (v0 : (struct ((float []) * (float [])) []), v1 : UH1, v2 : int32) : int32 =
+and method12 (v0 : (struct ((float []) * (float [])) []), v1 : UH1, v2 : int32) : int32 =
     match v1 with
     | UH1_0(v3, v4, v5) -&gt; (* Cons *)
         v0.[int v2] &lt;- struct (v3, v4)
         let v6 : int32 = v2 + 1
-        method7(v0, v5, v6)
+        method12(v0, v5, v6)
     | UH1_1 -&gt; (* Nil *)
         v2
-and method5 (v0 : UH1) : (struct ((float []) * (float [])) []) =
+and method10 (v0 : UH1) : (struct ((float []) * (float [])) []) =
     let v1 : int32 = 0
-    let v2 : int32 = method6(v0, v1)
+    let v2 : int32 = method11(v0, v1)
     let v3 : (struct ((float []) * (float [])) []) = Array.zeroCreate&lt;struct ((float []) * (float []))&gt; (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method7(v3, v0, v4)
+    let v5 : int32 = method12(v3, v0, v4)
     v3
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : float = 0.0
@@ -19479,7 +19588,7 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v20 : UH0 = UH0_0(v0, v19)
     let v21 : UH1 = UH1_1
     let v22 : UH1 = method1(v20, v21)
-    let v23 : (struct ((float []) * (float [])) []) = method5(v22)
+    let v23 : (struct ((float []) * (float [])) []) = method10(v22)
     let struct (v24 : (float []), v25 : (float [])) = v23.[int 0]
     let v26 : string = $"{0}"
     let v27 : (struct (string * (float []) * (float [])) []) = [|struct (v26, v24, v25)|]

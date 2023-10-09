@@ -172,3 +172,37 @@ testEvent.Calls
     "RemoveHandler"
     "IObservable.Dispose"
 ]
+
+#!fsharp
+
+let subscribeToken (token : System.Threading.CancellationToken) =
+    let tcs = new System.Threading.Tasks.TaskCompletionSource ()
+    System.Action tcs.SetResult |> token.Register |> ignore
+    let start = System.DateTime.Now.Ticks
+    FSharp.Control.AsyncSeq.unfoldAsync
+        (fun () -> async {
+            do! tcs.Task |> Async.AwaitTask
+            return Some (System.DateTime.Now.Ticks - start, ())
+        })
+        ()
+
+#!fsharp
+
+//// test
+
+let cts = new System.Threading.CancellationTokenSource ()
+
+async {
+    let! child =
+        cts.Token
+        |> subscribeToken
+        |> FSharp.Control.AsyncSeq.tryFirst
+        |> Async.StartChild
+
+    do! Async.Sleep 100
+    cts.Cancel ()
+    return! child
+}
+|> Async.RunSynchronously
+|> Option.get
+|> _isGreaterThan 1000000
