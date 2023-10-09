@@ -18736,7 +18736,6 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-<span class="o">//</span> <span class="o">//</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">7000</span>
 
 <span class="n">inl</span> <span class="n">linear_spring</span> <span class="n">k</span> <span class="n">re</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st1</span><span class="p">)</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st2</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">st1</span><span class="o">.</span><span class="n">pos_vec</span>
@@ -18784,10 +18783,10 @@ method0()
         <span class="n">frames</span>
         <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span>
             <span class="n">inl</span> <span class="p">(</span><span class="n">multi_particle_state</span> <span class="n">sts</span><span class="p">)</span> <span class="o">=</span>
-                <span class="n">seq</span><span class="o">.</span><span class="n">iterate</span><span class="s1">' (string_update 0.000025) initial_state |&gt; fun f =&gt; f 0f64</span>
+                <span class="n">seq</span><span class="o">.</span><span class="n">iterate</span> <span class="p">(</span><span class="n">string_update</span> <span class="mf">0.000025</span><span class="p">)</span> <span class="n">initial_state</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">f</span> <span class="o">=&gt;</span> <span class="n">f</span> <span class="mi">0</span><span class="n">f64</span>
             <span class="n">inl</span> <span class="n">rs</span> <span class="o">=</span>
                 <span class="p">[</span> <span class="n">zero_vec</span> <span class="p">()</span> <span class="p">]</span>
-                <span class="o">/@</span> <span class="p">(</span><span class="n">sts</span> <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">fold_</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">/@</span> <span class="p">[</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="p">])</span> <span class="p">[])</span>
+                <span class="o">/@</span> <span class="p">(</span><span class="n">sts</span> <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">fold_</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="p">(</span><span class="n">particle_state</span> <span class="n">st</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">st</span><span class="o">.</span><span class="n">pos_vec</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="p">[]</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">rev</span><span class="p">)</span>
                 <span class="o">/@</span> <span class="p">[</span> <span class="mf">0.65</span> <span class="o">*^</span> <span class="n">i_hat</span> <span class="p">()</span> <span class="p">]</span>
             <span class="n">inl</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span>
                 <span class="n">rs</span>
@@ -19128,14 +19127,7 @@ and [&lt;Struct&gt;] US0 =
 and UH3 =
     | UH3_0 of float * float * UH3
     | UH3_1
-let rec method3 (v0 : UH2, v1 : UH2) : UH2 =
-    match v0 with
-    | UH2_0(v2, v3, v4, v5) -&gt; (* Cons *)
-        let v6 : UH2 = method3(v5, v1)
-        UH2_0(v2, v3, v4, v6)
-    | UH2_1 -&gt; (* Nil *)
-        v1
-and method2 (v0 : UH2, v1 : float) : UH2 =
+let rec method2 (v0 : UH2, v1 : float) : UH2 =
     let v2 : bool = v1 = 0.0
     let v258 : US0 =
         if v2 then
@@ -19462,54 +19454,66 @@ and method2 (v0 : UH2, v1 : float) : UH2 =
     | US0_0 -&gt; (* None *)
         v0
     | US0_1(v259, v260, v261, v262, v263, v264, v265, v266, v267) -&gt; (* Some *)
-        let v268 : UH2 = UH2_1
-        let v269 : UH2 = UH2_0(v261, v262, v263, v268)
-        let v270 : UH2 = method3(v0, v269)
-        let v271 : float = v1 + 1.0
-        method2(v270, v271)
-and method4 (v0 : UH2, v1 : UH3) : UH3 =
+        let v268 : UH2 = UH2_0(v261, v262, v263, v0)
+        let v269 : float = v1 + 1.0
+        method2(v268, v269)
+and method3 (v0 : UH2, v1 : UH2) : UH2 =
     match v0 with
     | UH2_0(v2, v3, v4, v5) -&gt; (* Cons *)
-        let v6 : UH3 = method4(v5, v1)
+        let v6 : UH2 = UH2_0(v2, v3, v4, v1)
+        method3(v5, v6)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method4 (v0 : UH2, v1 : UH2) : UH2 =
+    match v0 with
+    | UH2_0(v2, v3, v4, v5) -&gt; (* Cons *)
+        let v6 : UH2 = method4(v5, v1)
+        UH2_0(v2, v3, v4, v6)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method5 (v0 : UH2, v1 : UH3) : UH3 =
+    match v0 with
+    | UH2_0(v2, v3, v4, v5) -&gt; (* Cons *)
+        let v6 : UH3 = method5(v5, v1)
         UH3_0(v2, v3, v6)
     | UH2_1 -&gt; (* Nil *)
         v1
-and method5 (v0 : UH3, v1 : UH0, v2 : UH0) : struct (UH0 * UH0) =
+and method6 (v0 : UH3, v1 : UH0, v2 : UH0) : struct (UH0 * UH0) =
     match v0 with
     | UH3_0(v3, v4, v5) -&gt; (* Cons *)
         let v6 : UH0 = UH0_0(v3, v1)
         let v7 : UH0 = UH0_0(v4, v2)
-        method5(v5, v6, v7)
+        method6(v5, v6, v7)
     | UH3_1 -&gt; (* Nil *)
         struct (v1, v2)
-and method6 (v0 : UH0, v1 : UH0) : UH0 =
+and method7 (v0 : UH0, v1 : UH0) : UH0 =
     match v0 with
     | UH0_0(v2, v3) -&gt; (* Cons *)
         let v4 : UH0 = UH0_0(v2, v1)
-        method6(v3, v4)
+        method7(v3, v4)
     | UH0_1 -&gt; (* Nil *)
         v1
-and method8 (v0 : UH0, v1 : int32) : int32 =
+and method9 (v0 : UH0, v1 : int32) : int32 =
     match v0 with
     | UH0_0(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + 1
-        method8(v3, v4)
+        method9(v3, v4)
     | UH0_1 -&gt; (* Nil *)
         v1
-and method9 (v0 : (float []), v1 : UH0, v2 : int32) : int32 =
+and method10 (v0 : (float []), v1 : UH0, v2 : int32) : int32 =
     match v1 with
     | UH0_0(v3, v4) -&gt; (* Cons *)
         v0.[int v2] &lt;- v3
         let v5 : int32 = v2 + 1
-        method9(v0, v4, v5)
+        method10(v0, v4, v5)
     | UH0_1 -&gt; (* Nil *)
         v2
-and method7 (v0 : UH0) : (float []) =
+and method8 (v0 : UH0) : (float []) =
     let v1 : int32 = 0
-    let v2 : int32 = method8(v0, v1)
+    let v2 : int32 = method9(v0, v1)
     let v3 : (float []) = Array.zeroCreate&lt;float&gt; (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method9(v3, v0, v4)
+    let v5 : int32 = method10(v3, v0, v4)
     v3
 and method1 (v0 : UH0, v1 : UH1) : UH1 =
     match v0 with
@@ -19518,51 +19522,53 @@ and method1 (v0 : UH0, v1 : UH1) : UH1 =
         let v5 : UH2 = UH2_1
         let v6 : float = 0.0
         let v7 : UH2 = method2(v5, v6)
-        let v8 : float = 0.65
-        let v9 : float = 0.0
-        let v10 : float = 0.0
-        let v11 : UH2 = UH2_1
-        let v12 : UH2 = UH2_0(v8, v9, v10, v11)
-        let v13 : UH2 = method3(v7, v12)
-        let v14 : UH3 = UH3_1
-        let v15 : UH3 = method4(v13, v14)
-        let v16 : float = 0.0
-        let v17 : UH0 = UH0_1
-        let v18 : UH0 = UH0_0(v16, v17)
-        let v19 : float = 0.0
-        let v20 : UH0 = UH0_1
-        let v21 : UH0 = UH0_0(v19, v20)
-        let struct (v22 : UH0, v23 : UH0) = method5(v15, v18, v21)
-        let v24 : UH0 = UH0_1
-        let v25 : UH0 = method6(v22, v24)
+        let v8 : UH2 = UH2_1
+        let v9 : UH2 = method3(v7, v8)
+        let v10 : float = 0.65
+        let v11 : float = 0.0
+        let v12 : float = 0.0
+        let v13 : UH2 = UH2_1
+        let v14 : UH2 = UH2_0(v10, v11, v12, v13)
+        let v15 : UH2 = method4(v9, v14)
+        let v16 : UH3 = UH3_1
+        let v17 : UH3 = method5(v15, v16)
+        let v18 : float = 0.0
+        let v19 : UH0 = UH0_1
+        let v20 : UH0 = UH0_0(v18, v19)
+        let v21 : float = 0.0
+        let v22 : UH0 = UH0_1
+        let v23 : UH0 = UH0_0(v21, v22)
+        let struct (v24 : UH0, v25 : UH0) = method6(v17, v20, v23)
         let v26 : UH0 = UH0_1
-        let v27 : UH0 = method6(v23, v26)
-        let v28 : (float []) = method7(v25)
-        let v29 : (float []) = method7(v27)
-        UH1_0(v28, v29, v4)
+        let v27 : UH0 = method7(v24, v26)
+        let v28 : UH0 = UH0_1
+        let v29 : UH0 = method7(v25, v28)
+        let v30 : (float []) = method8(v27)
+        let v31 : (float []) = method8(v29)
+        UH1_0(v30, v31, v4)
     | UH0_1 -&gt; (* Nil *)
         v1
-and method11 (v0 : UH1, v1 : int32) : int32 =
+and method12 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
     | UH1_0(v2, v3, v4) -&gt; (* Cons *)
         let v5 : int32 = v1 + 1
-        method11(v4, v5)
+        method12(v4, v5)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method12 (v0 : (struct ((float []) * (float [])) []), v1 : UH1, v2 : int32) : int32 =
+and method13 (v0 : (struct ((float []) * (float [])) []), v1 : UH1, v2 : int32) : int32 =
     match v1 with
     | UH1_0(v3, v4, v5) -&gt; (* Cons *)
         v0.[int v2] &lt;- struct (v3, v4)
         let v6 : int32 = v2 + 1
-        method12(v0, v5, v6)
+        method13(v0, v5, v6)
     | UH1_1 -&gt; (* Nil *)
         v2
-and method10 (v0 : UH1) : (struct ((float []) * (float [])) []) =
+and method11 (v0 : UH1) : (struct ((float []) * (float [])) []) =
     let v1 : int32 = 0
-    let v2 : int32 = method11(v0, v1)
+    let v2 : int32 = method12(v0, v1)
     let v3 : (struct ((float []) * (float [])) []) = Array.zeroCreate&lt;struct ((float []) * (float []))&gt; (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method12(v3, v0, v4)
+    let v5 : int32 = method13(v3, v0, v4)
     v3
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : float = 0.0
@@ -19588,7 +19594,7 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v20 : UH0 = UH0_0(v0, v19)
     let v21 : UH1 = UH1_1
     let v22 : UH1 = method1(v20, v21)
-    let v23 : (struct ((float []) * (float [])) []) = method10(v22)
+    let v23 : (struct ((float []) * (float [])) []) = method11(v22)
     let struct (v24 : (float []), v25 : (float [])) = v23.[int 0]
     let v26 : string = $"{0}"
     let v27 : (struct (string * (float []) * (float [])) []) = [|struct (v26, v24, v25)|]

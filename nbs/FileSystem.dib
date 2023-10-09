@@ -324,7 +324,7 @@ async {
     trace Debug (fun () -> "2") getLocals
     let! child = lockDirectory () |> Async.StartChild
     trace Debug (fun () -> "3") getLocals
-    do! Async.Sleep 1
+    do! Async.Sleep 60
     trace Debug (fun () -> "4") getLocals
     let! retries = deleteDirectoryAsync path
     trace Debug (fun () -> "5") getLocals

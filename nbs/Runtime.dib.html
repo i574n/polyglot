@@ -7865,13 +7865,14 @@ table th {
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / options: </span><span class="si">{options}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
 
     <span class="n">let</span> <span class="n">startInfo</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">ProcessStartInfo</span> <span class="p">(</span>
-        <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="n">workingDirectory</span><span class="p">,</span>
-        <span class="n">FileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="p">,</span>
         <span class="n">Arguments</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">,</span>
-        <span class="n">RedirectStandardOutput</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
+        <span class="n">CreateNoWindow</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
+        <span class="n">FileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="p">,</span>
         <span class="n">RedirectStandardError</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
+        <span class="n">RedirectStandardOutput</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
+        <span class="n">StandardOutputEncoding</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">UTF8</span><span class="p">,</span>
         <span class="n">UseShellExecute</span> <span class="o">=</span> <span class="n">false</span><span class="p">,</span>
-        <span class="n">CreateNoWindow</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="n">workingDirectory</span>
     <span class="p">)</span>
 
     <span class="n">use</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span> <span class="p">(</span><span class="n">StartInfo</span> <span class="o">=</span> <span class="n">startInfo</span><span class="p">)</span>
@@ -8007,25 +8008,25 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2516-1693-1eeaf6498db3 / result: { CreationTime = 2023-10-02 2:48:25 PM
+<pre>00:00:00 #1 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5132-3280-3112d1c2cb12 / result: { CreationTime = 2023-10-08 11:11:51 PM
   Exists = true }
 00:00:00 #2 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2516-1693-1eeaf6498db3\test.txt""
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5132-3280-3112d1c2cb12\test.txt""
   WorkingDirectory = None
   CancellationToken = None
   OnLine = None }
-00:00:00 #3 [Debug] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2516-1693-1eeaf6498db3\test.txt' because it does not exist.</span>
-00:00:00 #4 [Debug] executeAsync / exitCode: 1 / proc.Id: 27172 / output.Length: 171
+00:00:00 #3 [Debug] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5132-3280-3112d1c2cb12\test.txt' because it does not exist.</span>
+00:00:00 #4 [Debug] executeAsync / exitCode: 1 / proc.Id: 70824 / output.Length: 171
 1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2516-1693-1eeaf6498db3\test.txt' because it does not exist.</span>]
+[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5132-3280-3112d1c2cb12\test.txt' because it does not exist.</span>]
 00:00:00 #5 [Debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
   WorkingDirectory =
    Some
-     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2516-1693-1eeaf6498db3"
+     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5132-3280-3112d1c2cb12"
   CancellationToken = None
   OnLine = None }
 00:00:01 #6 [Debug] &gt; 0
-00:00:01 #7 [Debug] executeAsync / exitCode: 0 / proc.Id: 19112 / output.Length: 1
+00:00:01 #7 [Debug] executeAsync / exitCode: 0 / proc.Id: 46348 / output.Length: 1
 0
 0
 True
@@ -8092,19 +8093,19 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #8 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2740-4036-4c2c32b95fef / result: { CreationTime = 2023-10-02 2:48:27 PM
+<pre>00:00:02 #8 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5340-4007-4109f514f225 / result: { CreationTime = 2023-10-08 11:11:53 PM
   Exists = true }
 00:00:02 #9 [Debug] 1
 00:00:02 #11 [Debug] 2
 00:00:02 #10 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231002-1448-2740-4036-4c2c32b95fef\test.txt""
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2311-5340-4007-4109f514f225\test.txt""
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = None }
 00:00:02 #12 [Debug] 3
 00:00:02 #13 [Debug] 4
 00:00:02 #14 [Warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:02 #15 [Debug] executeAsync / exitCode: -2147483648 / proc.Id: 17172 / output.Length: 66
+00:00:02 #15 [Debug] executeAsync / exitCode: -2147483648 / proc.Id: 13424 / output.Length: 66
 00:00:02 #16 [Debug] 5
 -2147483648
 System.Threading.Tasks.TaskCanceledException: A task was canceled.

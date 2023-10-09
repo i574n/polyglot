@@ -1590,10 +1590,10 @@ let main () =
         frames
         |> listm.map (fun n =>
             inl (multi_particle_state sts) =
-                seq.iterate' (string_update 0.000025) initial_state |> fun f => f 0f64
+                seq.iterate (string_update 0.000025) initial_state |> fun f => f 0f64
             inl rs =
                 [ zero_vec () ]
-                /@ (sts |> seq.fold_ (fun acc (particle_state st) => acc /@ [ st.pos_vec ]) [])
+                /@ (sts |> seq.fold_ (fun acc (particle_state st) => st.pos_vec :: acc) [] |> listm.rev)
                 /@ [ 0.65 *^ i_hat () ]
             inl x, y =
                 rs

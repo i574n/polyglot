@@ -7660,7 +7660,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0025-2532-227f97539f58
+<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1450-5020-548afde0f6ca
 </pre>
 </div>
 </div>
@@ -7729,7 +7729,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0037-3762-3ba63926b183 / result: { CreationTime = 2023-09-26 1:58:00 AM
+<pre>00:00:00 #1 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1464-6442-68ce73ac7c4a / result: { CreationTime = 2023-10-08 11:10:14 PM
   Exists = true }
 True
 </pre>
@@ -8126,7 +8126,7 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #2 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301 / result: { CreationTime = 2023-09-26 1:58:01 AM
+<pre>00:00:00 #2 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1541-4140-426114067616 / result: { CreationTime = 2023-10-08 11:10:15 PM
   Exists = true }
 00:00:00 #3 [Debug] 1
 00:00:00 #4 [Debug] 2
@@ -8134,8 +8134,8 @@ True
 00:00:00 #6 [Debug] 3
 00:00:00 #7 [Debug] _2
 00:00:00 #8 [Debug] 4
-00:00:00 #9 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt' because it is being used by another process.
-00:00:02 #10 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0104-0436-0dc6d56f7301\test.txt' because it is being used by another process.
+00:00:00 #9 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1541-4140-426114067616\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1541-4140-426114067616\test.txt' because it is being used by another process.
+00:00:02 #10 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1541-4140-426114067616\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1541-4140-426114067616\test.txt' because it is being used by another process.
 00:00:02 #11 [Debug] _3
 00:00:02 #12 [Debug] _4
 00:00:02 #13 [Debug] _5
@@ -8143,9 +8143,9 @@ True
 00:00:02 #15 [Debug] 5
 00:00:02 #16 [Debug] 6
 00:00:02 #17 [Debug] 7
-127
-127
-127
+128
+128
+128
 1
 True
 </pre>
@@ -8223,7 +8223,7 @@ True
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">deleteDirectoryAsync</span> <span class="n">path</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
@@ -8254,7 +8254,7 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:03 #18 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0348-4850-4f487b16b73a / result: { CreationTime = 2023-09-26 1:58:03 AM
+<pre>00:00:03 #18 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1789-8990-805426275b6a / result: { CreationTime = 2023-10-08 11:10:17 PM
   Exists = true }
 00:00:03 #19 [Debug] 1
 00:00:03 #20 [Debug] 2
@@ -8262,14 +8262,14 @@ True
 00:00:03 #22 [Debug] _1
 00:00:03 #23 [Debug] _2
 00:00:03 #24 [Debug] 4
-00:00:03 #25 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0348-4850-4f487b16b73a\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:04 #26 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0348-4850-4f487b16b73a\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:03 #25 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1789-8990-805426275b6a\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:04 #26 [Debug] deleteDirectoryAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-1789-8990-805426275b6a\test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
 00:00:05 #27 [Debug] _3
 00:00:05 #28 [Debug] 5
 00:00:05 #29 [Debug] 6
-128
-128
-128
+125
+125
+125
 True
 </pre>
 </div>
@@ -8376,7 +8376,7 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:05 #30 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca / result: { CreationTime = 2023-09-26 1:58:05 AM
+<pre>00:00:05 #30 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2024-2425-2a5c0d82e3f3 / result: { CreationTime = 2023-10-08 11:10:20 PM
   Exists = true }
 00:00:05 #31 [Debug] 1
 00:00:05 #32 [Debug] 2
@@ -8384,14 +8384,14 @@ True
 00:00:05 #34 [Debug] _1
 00:00:05 #35 [Debug] _2
 00:00:05 #36 [Debug] 4
-00:00:05 #37 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt' because it is being used by another process.
-00:00:07 #38 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0580-8067-855b9de28fca\test.txt' because it is being used by another process.
+00:00:05 #37 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2024-2425-2a5c0d82e3f3\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2024-2425-2a5c0d82e3f3\test.txt' because it is being used by another process.
+00:00:07 #38 [Warning] deleteFileAsync / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2024-2425-2a5c0d82e3f3\test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2024-2425-2a5c0d82e3f3\test.txt' because it is being used by another process.
 00:00:07 #39 [Debug] _3
 00:00:07 #40 [Debug] 5
 00:00:07 #41 [Debug] 6
-127
-127
-127
+128
+128
+128
 True
 </pre>
 </div>
@@ -8511,21 +8511,21 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:07 #42 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5 / result: { CreationTime = 2023-09-26 1:58:08 AM
+<pre>00:00:08 #42 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2272-7262-7f2c8fec2b04 / result: { CreationTime = 2023-10-08 11:10:22 PM
   Exists = true }
-00:00:07 #43 [Debug] 1
-00:00:07 #44 [Debug] 2
-00:00:07 #45 [Debug] 3
-00:00:07 #46 [Debug] _1
-00:00:07 #47 [Debug] _2
-00:00:07 #48 [Debug] 4
-00:00:07 #49 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:09 #50 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-0820-2021-20e7e42567f5\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:09 #51 [Debug] _3
-00:00:09 #52 [Debug] 5
-00:00:09 #53 [Debug] 6
-00:00:09 #54 [Debug] 7
-00:00:09 #55 [Debug] 8
+00:00:08 #43 [Debug] 1
+00:00:08 #44 [Debug] 2
+00:00:08 #45 [Debug] 3
+00:00:08 #46 [Debug] _1
+00:00:08 #47 [Debug] _2
+00:00:08 #48 [Debug] 4
+00:00:08 #49 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2272-7262-7f2c8fec2b04\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2272-7262-7f2c8fec2b04\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
+00:00:09 #50 [Warning] moveFileAsync / oldPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2272-7262-7f2c8fec2b04\test.txt / newPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-2272-7262-7f2c8fec2b04\test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
+00:00:10 #51 [Debug] _3
+00:00:10 #52 [Debug] 5
+00:00:10 #53 [Debug] 6
+00:00:10 #54 [Debug] 7
+00:00:10 #55 [Debug] 8
 128
 128
 128
@@ -8899,30 +8899,30 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15 #56 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-1581-8124-8a51ef294ad2 / result: { CreationTime = 2023-09-26 1:58:15 AM
+<pre>00:00:16 #56 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3106-0670-0721ca40b17a / result: { CreationTime = 2023-10-08 11:10:31 PM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:17 #57 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-1581-8124-8a51ef294ad2 / filter: FileName, LastWrite
-00:00:17 #58 [Debug] testEventsRaw / eventsLog: 
-0 / 638313046961027535 / Created ("file1.txt", Some "a1")
-1 / 638313046961027536 / Changed ("file1.txt", Some "a1")
-65270 / 638313046961092806 / Changed ("file1.txt", Some "a1")
-2102 / 638313046961094908 / Created ("file2.txt", Some "a2")
-1 / 638313046961094909 / Changed ("file2.txt", Some "a2")
-148 / 638313046961095057 / Changed ("file2.txt", Some "a2")
-2480163 / 638313046963575220 / Changed ("file1.txt", Some "b1")
-2058 / 638313046963577278 / Changed ("file1.txt", Some "b1")
-7432 / 638313046963584710 / Changed ("file2.txt", Some "b2")
-2002 / 638313046963586712 / Changed ("file2.txt", Some "b2")
-2567238 / 638313046966153950 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-10725 / 638313046966164675 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2663747 / 638313046968828422 / Changed ("file_1.txt", Some "c1")
-2674 / 638313046968831096 / Changed ("file_1.txt", Some "c1")
-14481 / 638313046968845577 / Changed ("file_2.txt", Some "c2")
-2573 / 638313046968848150 / Changed ("file_2.txt", Some "c2")
-2519674 / 638313046971367824 / Deleted "file_1.txt"
-5209 / 638313046971373033 / Deleted "file_2.txt"
+00:00:18 #57 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3106-0670-0721ca40b17a / filter: FileName, LastWrite
+00:00:18 #58 [Debug] testEventsRaw / eventsLog: 
+0 / 638324178313570174 / Created ("file1.txt", Some "a1")
+1 / 638324178313570175 / Changed ("file1.txt", Some "a1")
+38275 / 638324178313608450 / Changed ("file1.txt", Some "a1")
+1317 / 638324178313609767 / Created ("file2.txt", Some "a2")
+1 / 638324178313609768 / Changed ("file2.txt", Some "a2")
+81 / 638324178313609849 / Changed ("file2.txt", Some "a2")
+2557128 / 638324178316166977 / Changed ("file1.txt", Some "b1")
+9123 / 638324178316176100 / Changed ("file1.txt", Some "b1")
+12548 / 638324178316188648 / Changed ("file2.txt", Some "b2")
+2151 / 638324178316190799 / Changed ("file2.txt", Some "b2")
+2661292 / 638324178318852091 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+5812 / 638324178318857903 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2612480 / 638324178321470383 / Changed ("file_1.txt", Some "c1")
+1815 / 638324178321472198 / Changed ("file_1.txt", Some "c1")
+10084 / 638324178321482282 / Changed ("file_2.txt", Some "c2")
+1929 / 638324178321484211 / Changed ("file_2.txt", Some "c2")
+2642892 / 638324178324127103 / Deleted "file_1.txt"
+3242 / 638324178324130345 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8990,7 +8990,7 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="n">let</span> <span class="n">contents</span> <span class="o">=</span>
-        <span class="p">[</span><span class="mf">1.</span><span class="o">.</span><span class="n">n</span><span class="p">]</span>
+        <span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="n">n</span> <span class="p">]</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">string</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">1_000_000</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
@@ -9070,37 +9070,33 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:21 #59 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / result: { CreationTime = 2023-09-26 1:58:21 AM
+<pre>00:00:23 #59 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66 / result: { CreationTime = 2023-10-08 11:10:37 PM
   Exists = true }
-00:00:23 #60 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
-00:00:23 #61 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
-00:00:23 #62 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file2.txt' because it is being used by another process.
-00:00:26 #63 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
-00:00:26 #64 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_1.txt' because it is being used by another process.
-00:00:26 #65 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
-00:00:26 #66 [Debug] waitForFileAccess / path: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6\file_2.txt' because it is being used by another process.
+00:00:23 #61 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66 / filter: FileName, LastWrite
+00:00:23 #61 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66\file2.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66 / filter: FileName, LastWrite
+00:00:28 #62 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66\file_1.txt' because it is being used by another process.) / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66 / filter: FileName, LastWrite
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:29 #67 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-2182-8202-865eaf5ca4f6 / filter: FileName, LastWrite
-00:00:29 #68 [Debug] testEventsRaw / eventsLog: 
-0 / 638313047021204279 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
-1 / 638313047021204280 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
-263258 / 638313047021467538 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-22557 / 638313047021490095 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
-1 / 638313047021490096 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
-122295 / 638313047021612391 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15288091 / 638313047036900482 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
-272487 / 638313047037172969 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-58295 / 638313047037231264 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
-123945 / 638313047037355209 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15146439 / 638313047052501648 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
-11420 / 638313047052513068 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "2222222222222
-15286949 / 638313047067800017 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
-261955 / 638313047068061972 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111
-97101 / 638313047068159073 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-140146 / 638313047068299219 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222
-15055722 / 638313047083354941 / Deleted "file_1.txt"
-13596 / 638313047083368537 / Deleted "file_2.txt"
+00:00:31 #63 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-3781-8165-83f22069dc66 / filter: FileName, LastWrite
+00:00:31 #64 [Debug] testEventsRaw / eventsLog: 
+0 / 638324178381071239 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
+1 / 638324178381071240 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
+109612 / 638324178381180852 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
+21063 / 638324178381201915 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
+1 / 638324178381201916 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
+143308 / 638324178381345224 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+15063935 / 638324178396409159 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
+77324 / 638324178396486483 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
+41031 / 638324178396527514 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+82620 / 638324178396610134 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+15165443 / 638324178411775577 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
+7374 / 638324178411782951 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "22222222222222
+15212893 / 638324178426995844 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
+77749 / 638324178427073593 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111
+81008 / 638324178427154601 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+61756 / 638324178427216357 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+15130614 / 638324178442346971 / Deleted "file_1.txt"
+8429 / 638324178442355400 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9320,11 +9316,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:32 #69 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3257-5712-5474aba41e87 / result: { CreationTime = 2023-09-26 1:58:32 AM
+<pre>00:00:33 #65 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-4863-6346-6f795dd4a7e0 / result: { CreationTime = 2023-10-08 11:10:48 PM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:32 #70 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3257-5712-5474aba41e87 / filter: FileName, LastWrite
+00:00:34 #66 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-4863-6346-6f795dd4a7e0 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9421,11 +9417,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:34 #71 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3516-1636-1e9de76735f1 / result: { CreationTime = 2023-09-26 1:58:35 AM
+<pre>00:00:36 #67 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-5158-5881-5fe759f83a73 / result: { CreationTime = 2023-10-08 11:10:51 PM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:35 #72 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3516-1636-1e9de76735f1 / filter: FileName, LastWrite
+00:00:37 #68 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-5158-5881-5fe759f83a73 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9522,11 +9518,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:37 #73 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3822-2256-28d9ea2e3100 / result: { CreationTime = 2023-09-26 1:58:38 AM
+<pre>00:00:40 #69 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-5532-3229-360d64168ab1 / result: { CreationTime = 2023-10-08 11:10:55 PM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:38 #74 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-3822-2256-28d9ea2e3100 / filter: FileName, LastWrite
+00:00:41 #70 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-5532-3229-360d64168ab1 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9637,11 +9633,11 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:41 #75 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-4182-8202-8d2aea533ac2 / result: { CreationTime = 2023-09-26 1:58:41 AM
+<pre>00:00:44 #71 [Debug] createTempDirectory / tempFolder: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-5924-2443-2e6ca31dce73 / result: { CreationTime = 2023-10-08 11:10:59 PM
   Exists = true }
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:41 #76 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20230926-0158-4182-8202-8d2aea533ac2 / filter: FileName, LastWrite
+00:00:45 #72 [Debug] watchWithFilter / Disposing watch stream / fullPath: C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20231008-2310-5924-2443-2e6ca31dce73 / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

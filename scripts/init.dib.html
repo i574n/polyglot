@@ -7555,8 +7555,33 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for 'stable-x86_64-pc-windows-msvc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: latest update on 2023-10-05, rust version 1.73.0 (cc66ad468 2023-10-03)</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-std' for 'wasm32-unknown-unknown'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-src'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'cargo'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'clippy'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-docs'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-std'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rustc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rustfmt'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-std' for 'wasm32-unknown-unknown'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-src'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'cargo'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'clippy'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-docs'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-std'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rustc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rustfmt'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-std' for 'wasm32-unknown-unknown'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-src'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'cargo'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'clippy'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-docs'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-std'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rustc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rustfmt'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for 'nightly-x86_64-pc-windows-msvc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: latest update on 2023-09-26, rust version 1.74.0-nightly (0288f2e19 2023-09-25)</span>
+<span class="ansi-red-intense-fg ansi-bold">info: latest update on 2023-10-09, rust version 1.75.0-nightly (bf9a1c8a1 2023-10-08)</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-std' for 'wasm32-unknown-unknown'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-src'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'cargo'</span>
@@ -7582,7 +7607,7 @@ a.anchor-link {
 <span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for '1.56-x86_64-pc-windows-msvc'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: checking for self-update</span>
 
-       stable-x86_64-pc-windows-msvc unchanged - rustc 1.72.1 (d5c2e9c34 2023-09-13)
+         stable-x86_64-pc-windows-msvc updated - rustc 1.73.0 (cc66ad468 2023-10-03) (from rustc 1.72.1 (d5c2e9c34 2023-09-13))
   nightly-x86_64-pc-windows-msvc update failed - rustc 1.73.0-nightly (0e8e857b1 2023-07-16)
          1.56-x86_64-pc-windows-msvc unchanged - rustc 1.56.1 (59eed8a2a 2021-11-01)
 
@@ -7600,7 +7625,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">cargo</span><span class="o">-</span><span class="n">outdated</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">cargo</span><span class="o">-</span><span class="n">outdated</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7628,7 +7653,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">wasm</span><span class="o">-</span><span class="n">pack</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">wasm</span><span class="o">-</span><span class="n">pack</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7656,7 +7681,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">trunk</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">trunk</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7698,7 +7723,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 1 package in 4s
+changed 1 package in 10s
 </pre>
 </div>
 </div>
@@ -7726,7 +7751,7 @@ changed 1 package in 4s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 2 packages in 16s
+changed 2 packages in 19s
 </pre>
 </div>
 </div>
@@ -7754,7 +7779,7 @@ changed 2 packages in 16s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 2 packages in 3s
+changed 2 packages in 4s
 </pre>
 </div>
 </div>
@@ -7810,7 +7835,7 @@ changed 24 packages in 22s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 3 packages in 4s
+changed 3 packages in 7s
 </pre>
 </div>
 </div>
@@ -7940,7 +7965,7 @@ changed 3 packages in 4s
 <pre>Lockfile is up to date, resolution step is skipped
 Already up to date
 
-Done in 1.2s
+Done in 2.4s
 </pre>
 </div>
 </div>
@@ -7972,14 +7997,14 @@ Already up to date.
 MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
-C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\8.0.100-preview.7.23376.3\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(314,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\The Spiral Language 2.fsproj]
+C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\The Spiral Language 2.fsproj]
   The Spiral Language 2 -&gt; C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:25.33
+Time Elapsed 00:00:32.53
 </pre>
 </div>
 </div>
@@ -7993,7 +8018,7 @@ Time Elapsed 00:00:25.33
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="s2">"$ScriptDir/../spiral/extension.ps1"</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="s2">"$ScriptDir/dep_spiral_extension.ps1"</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
 </pre></div>
 </div>
 </div>
@@ -8018,8 +8043,8 @@ Executing prepublish script 'npm run vscode:prepublish'...
 &gt; spiral-lang-vscode@2.4.21 vscode:prepublish
 &gt; tsc
 
-This extension consists of 633 files, out of which 127 are JavaScript files. For performance reasons, you should bundle your extension: https://aka.ms/vscode-bundle-extension . You should also exclude unnecessary files by adding them to your .vscodeignore: https://aka.ms/vscode-vscodeignore
- DONE  Packaged: C:\home\git\polyglot\deps\The-Spiral-Language\VS Code Plugin\spiral-lang-vscode-2.4.21.vsix (633 files, 5.91MB)
+This extension consists of 1664 files, out of which 127 are JavaScript files. For performance reasons, you should bundle your extension: https://aka.ms/vscode-bundle-extension . You should also exclude unnecessary files by adding them to your .vscodeignore: https://aka.ms/vscode-vscodeignore
+ DONE  Packaged: C:\home\git\polyglot\deps\The-Spiral-Language\VS Code Plugin\spiral-lang-vscode-2.4.21.vsix (1664 files, 7.17MB)
 Copying extension to C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\mrakgr.spiral-lang-vscode-2.4.21
 </pre>
 </div>
@@ -8049,13 +8074,13 @@ Copying extension to C:\Users\i574n\scoop\persist\vscode-insiders\data\extension
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">fatal: destination path 'Fable' already exists and is not an empty directory.</span>
 Already up to date.
-Tool path: C:\Users\i574n\.nuget\packages\fable\4.1.4\tools\net6.0\any
+Tool path: C:\Users\i574n\.nuget\packages\fable\4.2.1\tools\net6.0\any
 MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
-C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\8.0.100-preview.7.23376.3\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(314,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Cli\Fable.Cli.fsproj]
-C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\8.0.100-preview.7.23376.3\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(314,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\Rust.AST.fsproj]
-C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\8.0.100-preview.7.23376.3\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(314,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.AST\Fable.AST.fsproj]
+C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Cli\Fable.Cli.fsproj]
+C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\Rust.AST.fsproj]
+C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.AST\Fable.AST.fsproj]
   Rust.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\bin\Release\netstandard2.0\Rust.AST.dll
   Fable.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.AST\bin\Release\netstandard2.0\Fable.AST.dll
   Fable.Transforms -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\bin\Release\netstandard2.0\Fable.Transforms.dll
@@ -8065,7 +8090,19 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.85
+Time Elapsed 00:00:03.02
+Lib path: C:\Users\i574n\.nuget\packages\fable.core\4.1.0\lib\netstandard2.0
+MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Core\Fable.Core.fsproj]
+  Fable.Core -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Core\bin\Release\netstandard2.0\Fable.Core.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.39
 </pre>
 </div>
 </div>
@@ -8097,7 +8134,7 @@ Already up to date.
 yarn install v1.22.19
 [1/4] Resolving packages...
 success Already up-to-date.
-Done in 0.47s.
+Done in 0.53s.
 yarn run v1.22.19
 $ next build
 - info Creating an optimized production build...
@@ -8144,16 +8181,22 @@ Route (pages)                              Size     First Load JS
 $ yarn css
 $ yarn css:components &amp;&amp; yarn css:blogs
 $ npx tailwindcss -i src/styles/components.css -o public/components.css -m
+<span class="ansi-red-intense-fg ansi-bold">Browserslist: caniuse-lite is outdated. Please run:</span>
+<span class="ansi-red-intense-fg ansi-bold">  npx update-browserslist-db@latest</span>
+<span class="ansi-red-intense-fg ansi-bold">  Why you should do it regularly: https://github.com/browserslist/update-db#readme</span>
 
 <span class="ansi-red-intense-fg ansi-bold">Rebuilding...</span>
 
-<span class="ansi-red-intense-fg ansi-bold">Done in 5311ms.</span>
+<span class="ansi-red-intense-fg ansi-bold">Done in 4552ms.</span>
 $ npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m
+<span class="ansi-red-intense-fg ansi-bold">Browserslist: caniuse-lite is outdated. Please run:</span>
+<span class="ansi-red-intense-fg ansi-bold">  npx update-browserslist-db@latest</span>
+<span class="ansi-red-intense-fg ansi-bold">  Why you should do it regularly: https://github.com/browserslist/update-db#readme</span>
 
 <span class="ansi-red-intense-fg ansi-bold">Rebuilding...</span>
 
-<span class="ansi-red-intense-fg ansi-bold">Done in 675ms.</span>
-Done in 83.44s.
+<span class="ansi-red-intense-fg ansi-bold">Done in 694ms.</span>
+Done in 80.25s.
 </pre>
 </div>
 </div>
