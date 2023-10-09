@@ -208,19 +208,18 @@ module Supervisor =
                 fun (fsxContentResult, errors) (fsxContent, error) ->
                     match fsxContent, error with
                     | Some fsxContent, None -> Some fsxContent, errors
-                    | None, Some error ->
-                        fsxContentResult,
-                        error :: errors
+                    | None, Some error -> fsxContentResult, error :: errors
                     | _ -> fsxContentResult, errors
             )
+            |> FSharp.Control.AsyncSeq.map (fun (fsxContent, errors) ->
+                fsxContent, errors |> List.distinct |> List.rev
+            )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors) ->
-                trace Debug (fun () -> $"buildFile / fsxContent: {fsxContent} / errors: {errors}") getLocals
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent} / errors: {errors}") getLocals
                 match fsxContent, errors with
                 | None, [] -> true
+                | None, [ _ , FatalError "File main has a type error somewhere in its path." ] -> true
                 | _ -> false
-            )
-            |> FSharp.Control.AsyncSeq.map (fun (fsxContent, errors) ->
-                fsxContent, errors |> List.distinct
             )
             |> FSharp.Control.AsyncSeq.tryLast
             |> Async.withCancellationToken ct

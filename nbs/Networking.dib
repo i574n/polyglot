@@ -237,7 +237,7 @@ async {
     trace Debug (fun () -> "1") getLocals
     let! child = lockPorts () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
-    do! Async.Sleep 180
+    do! Async.Sleep 240
     trace Debug (fun () -> "3") getLocals
     let! availablePort = getAvailablePort None port
     trace Debug (fun () -> "4") getLocals
@@ -286,7 +286,7 @@ async {
     trace Debug (fun () -> "1") getLocals
     let! child = lockPorts () |> Async.StartChild
     trace Debug (fun () -> "2") getLocals
-    do! Async.Sleep 120
+    do! Async.Sleep 240
     trace Debug (fun () -> "3") getLocals
     let! availablePort = getAvailablePort (Some 60) port
     trace Debug (fun () -> "4") getLocals
@@ -303,8 +303,8 @@ async {
 
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 10 else 1)
-            (if Runtime.isWindows () then 30 else 120)
+            (if Runtime.isWindows () then 2 else 1)
+            (if Runtime.isWindows () then 10 else 120)
 
         true
     | _ -> false

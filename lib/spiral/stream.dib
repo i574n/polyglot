@@ -1,0 +1,333 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# stream
+
+#!spiral
+
+// // test
+
+open testing
+
+#!spiral
+
+union rec stream t =
+    | StreamCons : t * (() -> stream t)
+    | StreamNil
+
+#!markdown
+
+## from_list
+
+#!spiral
+
+inl rec from_list list =
+    match list with
+    | [] => StreamNil
+    | x :: xs => StreamCons (x, fun () => from_list xs)
+
+#!markdown
+
+## try_item
+
+#!spiral
+
+inl rec try_item i = function
+    | StreamCons (x, _) when i = 0 => Some x
+    | StreamCons (_, fn) => try_item (i - 1) (fn ())
+    | StreamNil => None
+
+inl item i =
+    try_item i >> optionm.value
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> item 9i32
+|> _equal 9
+
+#!spiral
+
+inl try_item_ i list =
+    inl i = mut i
+    inl list = mut list
+    let rec loop () =
+        match *list with
+        | StreamCons (x, _) when *i = 0 => Some x
+        | StreamCons (_, fn) =>
+            i <- *i - 1
+            list <- fn ()
+            loop ()
+        | StreamNil => None
+    loop ()
+
+inl item_ i =
+    try_item_ i >> optionm.value
+
+let rec try_item__ i list =
+    inl i = mut i
+    inl list = mut list
+    inl result = mut None
+    let rec loop () =
+        match *list with
+        | StreamCons (x, _) when *i = 0 => result <- Some x
+        | StreamCons (_, fn) =>
+            i <- *i - 1
+            list <- fn ()
+            loop ()
+        | StreamNil => ()
+    loop ()
+    *result
+
+inl item__ i =
+    try_item__ i >> optionm.value
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> item_ 9i32
+|> _equal 9
+
+#!markdown
+
+## new_infinite_stream
+
+#!spiral
+
+inl new_infinite_stream fn =
+    inl rec loop n =
+        StreamCons (fn n, fun () => loop (n + 1))
+    loop 0
+
+inl new_infinite_stream_ fn =
+    let rec loop n =
+        StreamCons (fn n, fun () => loop (n + 1))
+    loop 0
+
+#!spiral
+
+// // test
+
+new_infinite_stream print_and_return
+|> item 4i32
+|> _equal 4i32
+
+#!markdown
+
+## new_finite_stream
+
+#!spiral
+
+inl new_finite_stream fn max =
+    inl rec loop n =
+        if n >= max
+        then StreamNil
+        else StreamCons (fn n, fun () => loop (n + 1))
+    loop 0
+
+inl new_finite_stream_ fn max =
+    let rec loop n =
+        if n >= max
+        then StreamNil
+        else StreamCons (fn n, fun () => loop (n + 1))
+    loop 0
+
+#!markdown
+
+## memoize
+
+#!spiral
+
+union memoized_stream t =
+    | NotComputed : () -> stream t
+    | Computed : stream t
+
+inl memoize s =
+    inl rec loop s =
+        inl state = mut (NotComputed s)
+        fun () =>
+            match *state with
+            | Computed x => x
+            | NotComputed fn =>
+                inl new_state =
+                    match fn () with
+                    | StreamNil => StreamNil
+                    | StreamCons (x, fn) => StreamCons (x, loop fn)
+                state <- Computed new_state
+                new_state
+    loop (fun () => s)
+
+inl memoize_ s =
+    let rec loop s =
+        inl state = mut (NotComputed s)
+        fun () =>
+            match *state with
+            | Computed x => x
+            | NotComputed fn =>
+                inl new_state =
+                    match fn () with
+                    | StreamNil => StreamNil
+                    | StreamCons (x, fn) => StreamCons (x, loop fn)
+                state <- Computed new_state
+                new_state
+    loop (fun () => s)
+
+#!spiral
+
+// // test
+
+inl memo_stream = new_finite_stream print_and_return 10 |> memoize
+
+memo_stream ()
+|> item 3i32
+|> _equal 3i32
+
+memo_stream ()
+|> item 5i32
+|> _equal 5i32
+
+#!spiral
+
+// // test
+
+inl memo_stream = new_infinite_stream_ print_and_return |> memoize
+
+memo_stream ()
+|> item 3i32
+|> _equal 3i32
+
+memo_stream ()
+|> item 5i32
+|> _equal 5i32
+
+#!markdown
+
+## unfold
+
+#!spiral
+
+inl unfold f x0 =
+    inl rec loop x =
+        match f x with
+        | Some (x', y) => StreamCons (x', fun () => loop y)
+        | None => StreamNil
+    loop x0
+
+#!markdown
+
+## take_while
+
+#!spiral
+
+inl take_while cond s =
+    inl rec loop i s =
+        match s with
+        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
+        | _ => StreamNil
+    loop 0 s
+
+inl take_while_ cond s =
+    let rec loop i s =
+        match s with
+        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
+        | _ => StreamNil
+    loop 0 s
+
+#!markdown
+
+## to_list
+
+#!spiral
+
+inl to_list s =
+    inl rec loop i =
+        match s |> try_item i with
+        | Some st => st :: loop (i + 1)
+        | _ => []
+    loop 0i32
+
+#!spiral
+
+// // test
+
+unfold (fun state => Some (state, state * 6)) 1i32
+|> take_while (fun _ i => i <= 7i32)
+|> to_list
+|> _equal [ 1i32; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+
+#!markdown
+
+## fold
+
+#!spiral
+
+inl fold fn init s =
+    inl rec loop acc s =
+        match s with
+        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
+        | StreamNil => acc
+    loop init s
+
+inl fold_ fn init s =
+    let rec loop acc s =
+        match s with
+        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
+        | StreamNil => acc
+    loop init s
+
+#!markdown
+
+## sum
+
+#!spiral
+
+inl sum seq =
+    seq |> fold (+) 0
+
+inl sum_ seq =
+    seq |> fold_ (+) 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> sum
+|> _equal 45
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> sum_
+|> _equal 45
+
+#!spiral
+
+// // test
+
+new_finite_stream print_and_return 10i32
+|> take_while (fun n (_ : i32) => n < 5)
+|> sum
+|> _equal 10
+
+#!spiral
+
+// // test
+
+new_infinite_stream_ print_and_return
+|> take_while_ (fun n (_ : i32) => n < 5i32)
+|> sum_
+|> _equal 10

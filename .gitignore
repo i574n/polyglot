@@ -16,5 +16,7 @@ paket-files/
 .paket/
 .history/
 
+apps/lib
 apps/nbs
 lib/nbs
+nbs/lib

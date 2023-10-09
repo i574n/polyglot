@@ -24,8 +24,12 @@ inl (/@) a b = b |> listm.append a
 
 // // test
 
-["a"; "b"] /@ ["c"; "d"]
-|> _equal ["a"; "b"; "c"; "d"]
+[ "a"; "b" ] /@ [ "c"; "d" ]
+|> _equal [ "a"; "b"; "c"; "d" ]
+
+#!markdown
+
+## init_series
 
 #!spiral
 
@@ -38,7 +42,7 @@ inl init_series start end inc =
 // // test
 
 init_series 0 1 0.5
-|> _equal [0f64; 0.5; 1]
+|> _equal [ 0f64; 0.5; 1 ]
 
 #!markdown
 
@@ -114,189 +118,6 @@ let rec try_item_ i = function
 
 inl item_ i =
     try_item_ i >> optionm.value
-
-#!markdown
-
-## lazy_list
-
-#!spiral
-
-union rec lazy_list t =
-    | LazyCons : t * (() -> lazy_list t)
-    | LazyNil
-
-inl rec lazy_list list =
-    match list with
-    | [] => LazyNil
-    | x :: xs => LazyCons (x, fun () => lazy_list xs)
-
-inl rec try_lazy_item i = function
-    | LazyCons (x, _) when i = 0 => Some x
-    | LazyCons (_, fn) => try_lazy_item (i - 1) (fn ())
-    | LazyNil => None
-
-inl lazy_item i =
-    try_lazy_item i >> optionm.value
-
-inl try_lazy_item_ i list =
-    inl i = mut i
-    inl list = mut list
-    let rec loop () =
-        match *list with
-        | LazyCons (x, _) when *i = 0 => Some x
-        | LazyCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | LazyNil => None
-    loop ()
-
-inl lazy_item_ i =
-    try_lazy_item_ i >> optionm.value
-
-let rec try_lazy_item__ i list =
-    inl i = mut i
-    inl list = mut list
-    inl result = mut None
-    let rec loop () =
-        match *list with
-        | LazyCons (x, _) when *i = 0 => result <- Some x
-        | LazyCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | LazyNil => ()
-    loop ()
-    *result
-
-inl lazy_item__ i =
-    try_lazy_item__ i >> optionm.value
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> lazy_list
-|> lazy_item 9i32
-|> _equal 9
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> lazy_list
-|> lazy_item_ 9i32
-|> _equal 9
-
-#!markdown
-
-## new_infinite_lazy_list
-
-#!spiral
-
-inl new_infinite_lazy_list fn =
-    inl rec loop n =
-        LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-inl new_infinite_lazy_list_ fn =
-    let rec loop n =
-        LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-#!spiral
-
-// // test
-
-new_infinite_lazy_list print_and_return
-|> lazy_item 4i32
-|> _equal 4i32
-
-#!spiral
-
-inl new_finite_lazy_list fn max =
-    inl rec loop n =
-        if n >= max
-        then LazyNil
-        else LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-inl new_finite_lazy_list_ fn max =
-    let rec loop n =
-        if n >= max
-        then LazyNil
-        else LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-#!markdown
-
-## memoize_lazy_list
-
-#!spiral
-
-union memoized_lazy_list t =
-    | NotComputed : () -> lazy_list t
-    | Computed : lazy_list t
-
-inl memoize_lazy_list list =
-    inl rec loop list =
-        inl state = mut (NotComputed list)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | LazyNil => LazyNil
-                    | LazyCons (x, fn) => LazyCons (x, loop fn)
-                state <- Computed new_state
-                new_state
-    loop (fun () => list)
-
-inl memoize_lazy_list_ list =
-    let rec loop list =
-        inl state = mut (NotComputed list)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | LazyNil => LazyNil
-                    | LazyCons (x, fn) => LazyCons (x, loop fn)
-                state <- Computed new_state
-                new_state
-    loop (fun () => list)
-
-#!spiral
-
-// // test
-
-inl memo_list = new_finite_lazy_list print_and_return 10 |> memoize_lazy_list
-
-memo_list ()
-|> lazy_item 3i32
-|> _equal 3i32
-
-memo_list ()
-|> lazy_item 5i32
-|> _equal 5i32
-
-#!spiral
-
-// // test
-
-inl memo_list = new_infinite_lazy_list_ print_and_return |> memoize_lazy_list
-
-memo_list ()
-|> lazy_item 3i32
-|> _equal 3i32
-
-memo_list ()
-|> lazy_item 5i32
-|> _equal 5i32
 
 #!markdown
 
@@ -493,7 +314,7 @@ inl choose_ f l =
 
 listm.init 10i32 id
 |> choose (fun x => if x % 2 = 0 then Some x else None)
-|> _equal [0; 2; 4; 6; 8]
+|> _equal [ 0; 2; 4; 6; 8 ]
 
 #!markdown
 
@@ -521,9 +342,9 @@ inl zip_with_ fn xs ys =
 
 // // test
 
-([1i32; 2; 3], [4; 5; 6])
+([ 1i32; 2; 3 ], [ 4; 5; 6 ])
 ||> zip_with (+)
-|> _equal [5; 7; 9]
+|> _equal [ 5; 7; 9 ]
 
 #!markdown
 
@@ -541,9 +362,9 @@ inl zip_ xs ys =
 
 // // test
 
-([1i32; 2; 3], [4i32; 5; 6])
+([ 1i32; 2; 3 ], [ 4i32; 5; 6 ])
 ||> zip
-|> _equal [1, 4; 2, 5; 3, 6]
+|> _equal [ 1, 4; 2, 5; 3, 6 ]
 
 #!markdown
 
@@ -567,4 +388,4 @@ inl indexed list =
 
 listm.init 5i32 ((*) 2)
 |> indexed
-|> _equal [0i32, 0; 1, 2; 2, 4; 3, 6; 4, 8]
+|> _equal [ 0i32, 0; 1, 2; 2, 4; 3, 6; 4, 8 ]

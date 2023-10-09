@@ -4,6 +4,8 @@
 
 inl (/@) a b = b |> listm.append a
 
+// // ## init_series
+
 inl init_series start end inc =
     inl total : f64 = conv ((end - start) / inc) + 1
     listm.init total (conv >> (*) inc >> (+) start)
@@ -31,121 +33,6 @@ let rec try_item_ i = function
 
 inl item_ i =
     try_item_ i >> optionm.value
-
-// // ## lazy_list
-
-union rec lazy_list t =
-    | LazyCons : t * (() -> lazy_list t)
-    | LazyNil
-
-inl rec lazy_list list =
-    match list with
-    | [] => LazyNil
-    | x :: xs => LazyCons (x, fun () => lazy_list xs)
-
-inl rec try_lazy_item i = function
-    | LazyCons (x, _) when i = 0 => Some x
-    | LazyCons (_, fn) => try_lazy_item (i - 1) (fn ())
-    | LazyNil => None
-
-inl lazy_item i =
-    try_lazy_item i >> optionm.value
-
-inl try_lazy_item_ i list =
-    inl i = mut i
-    inl list = mut list
-    let rec loop () =
-        match *list with
-        | LazyCons (x, _) when *i = 0 => Some x
-        | LazyCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | LazyNil => None
-    loop ()
-
-inl lazy_item_ i =
-    try_lazy_item_ i >> optionm.value
-
-let rec try_lazy_item__ i list =
-    inl i = mut i
-    inl list = mut list
-    inl result = mut None
-    let rec loop () =
-        match *list with
-        | LazyCons (x, _) when *i = 0 => result <- Some x
-        | LazyCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | LazyNil => ()
-    loop ()
-    *result
-
-inl lazy_item__ i =
-    try_lazy_item__ i >> optionm.value
-
-// // ## new_infinite_lazy_list
-
-inl new_infinite_lazy_list fn =
-    inl rec loop n =
-        LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-inl new_infinite_lazy_list_ fn =
-    let rec loop n =
-        LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-inl new_finite_lazy_list fn max =
-    inl rec loop n =
-        if n >= max
-        then LazyNil
-        else LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-inl new_finite_lazy_list_ fn max =
-    let rec loop n =
-        if n >= max
-        then LazyNil
-        else LazyCons (fn n, fun () => loop (n + 1))
-    loop 0
-
-// // ## memoize_lazy_list
-
-union memoized_lazy_list t =
-    | NotComputed : () -> lazy_list t
-    | Computed : lazy_list t
-
-inl memoize_lazy_list list =
-    inl rec loop list =
-        inl state = mut (NotComputed list)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | LazyNil => LazyNil
-                    | LazyCons (x, fn) => LazyCons (x, loop fn)
-                state <- Computed new_state
-                new_state
-    loop (fun () => list)
-
-inl memoize_lazy_list_ list =
-    let rec loop list =
-        inl state = mut (NotComputed list)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | LazyNil => LazyNil
-                    | LazyCons (x, fn) => LazyCons (x, loop fn)
-                state <- Computed new_state
-                new_state
-    loop (fun () => list)
 
 // // ## sum
 
