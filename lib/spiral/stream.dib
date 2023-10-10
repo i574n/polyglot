@@ -224,45 +224,20 @@ inl unfold f x0 =
 
 #!markdown
 
-## take_while
+## iterate
 
 #!spiral
 
-inl take_while cond s =
-    inl rec loop i s =
-        match s with
-        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
-        | _ => StreamNil
-    loop 0 s
-
-inl take_while_ cond s =
-    let rec loop i s =
-        match s with
-        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
-        | _ => StreamNil
-    loop 0 s
-
-#!markdown
-
-## to_list
-
-#!spiral
-
-inl to_list s =
-    inl rec loop i =
-        match s |> try_item i with
-        | Some st => st :: loop (i + 1)
-        | _ => []
-    loop 0i32
+inl iterate f =
+    unfold (fun x => Some (x, f x))
 
 #!spiral
 
 // // test
 
-unfold (fun state => Some (state, state * 6)) 1i32
-|> take_while (fun _ i => i <= 7i32)
-|> to_list
-|> _equal [ 1i32; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+iterate ((*) 2) 1i32
+|> item 10i32
+|> _equal 1024
 
 #!markdown
 
@@ -283,6 +258,26 @@ inl fold_ fn init s =
         | StreamCons (st, fn') => loop (fn acc st) (fn' ())
         | StreamNil => acc
     loop init s
+
+#!markdown
+
+## take_while
+
+#!spiral
+
+inl take_while cond s =
+    inl rec loop i s =
+        match s with
+        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
+        | _ => StreamNil
+    loop 0 s
+
+inl take_while_ cond s =
+    let rec loop i s =
+        match s with
+        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
+        | _ => StreamNil
+    loop 0 s
 
 #!markdown
 
@@ -331,3 +326,167 @@ new_infinite_stream_ print_and_return
 |> take_while_ (fun n (_ : i32) => n < 5i32)
 |> sum_
 |> _equal 10
+
+#!markdown
+
+## to_list
+
+#!spiral
+
+inl to_list s =
+    inl rec loop acc s =
+        match s with
+        | StreamCons (st, fn) => loop (st :: acc) (fn ())
+        | StreamNil => acc |> listm.rev
+    loop [] s
+
+#!spiral
+
+// // test
+
+iterate ((*) 6) 1i32
+|> take_while (fun _ i => i <= 7i32)
+|> to_list
+|> _equal [ 1i32; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+
+#!markdown
+
+## indexed
+
+#!spiral
+
+inl indexed s =
+    inl rec loop i s =
+        match s with
+        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
+        | StreamNil => StreamNil
+    loop 0 s
+
+inl indexed_ s =
+    let rec loop i s =
+        match s with
+        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
+        | StreamNil => StreamNil
+    loop 0 s
+
+#!spiral
+
+// // test
+
+listm.init 10i32 ((*) 2)
+|> from_list
+|> indexed
+|> item 5i32
+|> _equal (5i32, 10i32)
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map fn s =
+    inl rec loop s =
+        match s with
+        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
+        | StreamNil => StreamNil
+    loop s
+
+inl map_ fn s =
+    let rec loop s =
+        match s with
+        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
+        | StreamNil => StreamNil
+    loop s
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> map ((*) 2)
+|> item 5i32
+|> _equal 10i32
+
+#!markdown
+
+## zip_with
+
+#!spiral
+
+inl zip_with fn s1 s2 =
+    inl rec loop s1 s2 =
+        match s1, s2 with
+        | StreamCons (st1, fn1), StreamCons (st2, fn2) =>
+            StreamCons (fn st1 st2, fun () => loop (fn1 ()) (fn2 ()))
+        | StreamNil, _ | _, StreamNil => StreamNil
+    loop s1 s2
+
+inl zip_with_ fn s1 s2 =
+    let rec loop s1 s2 =
+        match s1, s2 with
+        | StreamCons (st1, fn1), StreamCons (st2, fn2) =>
+            StreamCons (fn st1 st2, fun () => loop (fn1 ()) (fn2 ()))
+        | StreamNil, _ | _, StreamNil => StreamNil
+    loop s1 s2
+
+#!spiral
+
+// // test
+
+((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
+||> zip_with (+)
+|> item 2i32
+|> _equal 6
+
+#!markdown
+
+## zip
+
+#!spiral
+
+inl zip s1 s2 =
+    zip_with pair s1 s2
+
+inl zip_ s1 s2 =
+    zip_with_ pair s1 s2
+
+#!spiral
+
+// // test
+
+((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
+||> zip
+|> item 5i32
+|> _equal (5, 10)
+
+#!markdown
+
+## unzip
+
+#!spiral
+
+inl unzip s =
+    inl rec loop s =
+        match s with
+        | StreamCons ((x, y), fn) =>
+            inl xs, ys = loop (fn ())
+            StreamCons (x, fun () => xs), StreamCons (y, fun () => ys)
+        | StreamNil => pair StreamNil StreamNil
+    loop s
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> listm.map (fun x => x, x)
+|> from_list
+|> unzip
+|> fun x, y =>
+    x |> sum
+    |> _equal 45
+
+    y |> sum
+    |> _equal 45

@@ -7731,9 +7731,9 @@ print_and_return / x: 9
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">seq</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">s</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span>
-        <span class="n">n</span><span class="p">,</span> <span class="n">seq</span> <span class="n">n</span>
+        <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">item</span> <span class="n">n</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7767,7 +7767,7 @@ print_and_return / x: 9
 <span class="o">|&gt;</span> <span class="n">from_list</span>
 <span class="o">|&gt;</span> <span class="n">indexed</span>
 <span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mi">5</span><span class="n">i32</span><span class="p">,</span> <span class="n">Some</span> <span class="mi">10</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">5</span><span class="n">i32</span><span class="p">,</span> <span class="mi">10</span><span class="n">i32</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7782,11 +7782,11 @@ print_and_return / x: 9
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_1 of f1_0 : int32 * f1_1 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(10)
-    let v4 : US0 = US0_1(10)
-    let v5 : string = $"_equal / actual: %A{struct (5, v3)} / expected: %A{struct (5, v4)}"
+    let v3 : US0 = US0_1(5, 10)
+    let v4 : US0 = US0_1(5, 10)
+    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
     ()
 method0()
 

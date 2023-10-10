@@ -267,6 +267,8 @@ let inline buildFile timeout port cancellationToken path = async {
             fun (fsxContentResult, errors) (fsxContent, error) ->
                 match fsxContent, error with
                 | Some fsxContent, None -> Some fsxContent, errors
+                | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
+                    fsxContentResult, errors
                 | None, Some error -> fsxContentResult, error :: errors
                 | _ -> fsxContentResult, errors
         )
@@ -277,7 +279,6 @@ let inline buildFile timeout port cancellationToken path = async {
             trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent} / errors: {errors}") getLocals
             match fsxContent, errors with
             | None, [] -> true
-            | None, [ _ , FatalError "File main has a type error somewhere in its path." ] -> true
             | _ -> false
         )
         |> FSharp.Control.AsyncSeq.tryLast
@@ -449,11 +450,31 @@ Global inl/let statements should all return functions known at parse time." ]
     Some (
         None,
         [
-            "File main has a type error somewhere in its path."
             "main.spi:
 Constraint satisfaction error.
 Got: string
 Fails to satisfy: number"
+        ]
+    )
+)
+
+#!fsharp
+
+//// test
+
+"""inl main () =
+    x + y
+"""
+|> buildCode 10000 None
+|> Async.runWithTimeout 10000
+|> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
+|> _equal (
+    Some (
+        None,
+        [
+            "main.spi:
+Unbound variable.
+Unbound variable."
         ]
     )
 )

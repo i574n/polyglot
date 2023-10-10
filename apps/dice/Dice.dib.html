@@ -7543,8 +7543,36 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">testing</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7554,7 +7582,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7568,7 +7596,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7600,8 +7628,94 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sixth_power_sequence</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">sixth_power_sequence</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">36</span><span class="p">;</span> <span class="mi">216</span><span class="p">;</span> <span class="mi">1296</span><span class="p">;</span> <span class="mi">7776</span><span class="p">;</span> <span class="mi">46656</span><span class="p">;</span> <span class="mi">279936</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+let rec method0 () : unit =
+    let v63 : UH0 = UH0_1
+    let v64 : UH0 = UH0_0(279936, v63)
+    let v65 : UH0 = UH0_0(46656, v64)
+    let v66 : UH0 = UH0_0(7776, v65)
+    let v67 : UH0 = UH0_0(1296, v66)
+    let v68 : UH0 = UH0_0(216, v67)
+    let v69 : UH0 = UH0_0(36, v68)
+    let v70 : UH0 = UH0_0(6, v69)
+    let v71 : UH0 = UH0_0(1, v70)
+    let v72 : UH0 = UH0_1
+    let v73 : UH0 = UH0_0(279936, v72)
+    let v74 : UH0 = UH0_0(46656, v73)
+    let v75 : UH0 = UH0_0(7776, v74)
+    let v76 : UH0 = UH0_0(1296, v75)
+    let v77 : UH0 = UH0_0(216, v76)
+    let v78 : UH0 = UH0_0(36, v77)
+    let v79 : UH0 = UH0_0(6, v78)
+    let v80 : UH0 = UH0_0(1, v79)
+    let v81 : string = $"_equal / actual: %A{v71} / expected: %A{v80}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7611,7 +7725,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7640,7 +7754,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7674,7 +7788,7 @@ FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7709,7 +7823,7 @@ FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7745,8 +7859,227 @@ FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="n">rolls</span> <span class="n">power</span> <span class="n">acc</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="n">rolls</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">power</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">=&gt;</span>
+        <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.iter ((|&gt;) $"$</span><span class="se">\"</span><span class="s1">accumulate_dice_rolls / power: {!power} / acc: {!acc}</span><span class="se">\"</span><span class="s1">")</span>
+        <span class="n">Some</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rolls</span><span class="p">)</span>
+    <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="kc">None</span>
+    <span class="o">|</span> <span class="n">roll</span> <span class="p">::</span> <span class="n">rest</span> <span class="n">when</span> <span class="n">roll</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">coeff</span> <span class="o">=</span> <span class="n">sixth_power_sequence</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">item</span> <span class="n">power</span>
+        <span class="n">inl</span> <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">roll</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">coeff</span>
+        <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.iter ((|&gt;) $"$</span><span class="se">\"</span><span class="s1">accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}</span><span class="se">\"</span><span class="s1">"</span>
+        <span class="p">)</span>
+        <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rest</span> <span class="p">(</span><span class="n">power</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">roll</span> <span class="p">::</span> <span class="n">rest</span> <span class="o">=&gt;</span>
+        <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.iter ((|&gt;) $"$</span><span class="se">\"</span><span class="s1">accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}</span><span class="se">\"</span><span class="s1">")</span>
+        <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rest</span> <span class="p">(</span><span class="n">power</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">acc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">0</span><span class="n">i32</span> <span class="mi">1000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1006</span><span class="p">,</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32 * f1_1 : UH0
+let rec method0 () : unit =
+    let v0 : string = $"accumulate_dice_rolls / power: {0} / acc: {1000} / roll: {6} / value: {5}"
+    System.Console.WriteLine v0
+    let v1 : string = $"accumulate_dice_rolls / power: {-1} / acc: {1005}"
+    System.Console.WriteLine v1
+    let v35 : UH0 = UH0_1
+    let v36 : UH0 = UH0_0(2, v35)
+    let v37 : UH0 = UH0_0(3, v36)
+    let v38 : UH0 = UH0_0(4, v37)
+    let v39 : UH0 = UH0_0(5, v38)
+    let v40 : US0 = US0_1(1006, v39)
+    let v41 : UH0 = UH0_1
+    let v42 : UH0 = UH0_0(2, v41)
+    let v43 : UH0 = UH0_0(3, v42)
+    let v44 : UH0 = UH0_0(4, v43)
+    let v45 : UH0 = UH0_0(5, v44)
+    let v46 : US0 = US0_1(1006, v45)
+    let v47 : string = $"_equal / actual: %A{v40} / expected: %A{v46}"
+    ()
+method0()
+
+accumulate_dice_rolls / power: 0 / acc: 1000 / roll: 6 / value: 5
+accumulate_dice_rolls / power: -1 / acc: 1005
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">1000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1035</span><span class="p">,</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32 * f1_1 : UH0
+let rec method0 () : unit =
+    let v0 : string = $"accumulate_dice_rolls / power: {1} / acc: {1000} / roll: {6} / value: {30}"
+    System.Console.WriteLine v0
+    let v1 : string = $"accumulate_dice_rolls / power: {0} / acc: {1030} / roll: {5} / value: {4}"
+    System.Console.WriteLine v1
+    let v2 : string = $"accumulate_dice_rolls / power: {-1} / acc: {1034}"
+    System.Console.WriteLine v2
+    let v28 : UH0 = UH0_1
+    let v29 : UH0 = UH0_0(2, v28)
+    let v30 : UH0 = UH0_0(3, v29)
+    let v31 : UH0 = UH0_0(4, v30)
+    let v32 : US0 = US0_1(1035, v31)
+    let v33 : UH0 = UH0_1
+    let v34 : UH0 = UH0_0(2, v33)
+    let v35 : UH0 = UH0_0(3, v34)
+    let v36 : UH0 = UH0_0(4, v35)
+    let v37 : US0 = US0_1(1035, v36)
+    let v38 : string = $"_equal / actual: %A{v32} / expected: %A{v37}"
+    ()
+method0()
+
+accumulate_dice_rolls / power: 1 / acc: 1000 / roll: 6 / value: 30
+accumulate_dice_rolls / power: 0 / acc: 1030 / roll: 5 / value: 4
+accumulate_dice_rolls / power: -1 / acc: 1034
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">2</span><span class="n">i32</span> <span class="mi">1000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1208</span><span class="p">,</span> <span class="p">[</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32 * f1_1 : UH0
+let rec method0 () : unit =
+    let v0 : string = $"accumulate_dice_rolls / power: {2} / acc: {1000} / roll: {6} / value: {180}"
+    System.Console.WriteLine v0
+    let v1 : string = $"accumulate_dice_rolls / power: {1} / acc: {1180} / roll: {5} / value: {24}"
+    System.Console.WriteLine v1
+    let v2 : string = $"accumulate_dice_rolls / power: {0} / acc: {1204} / roll: {4} / value: {3}"
+    System.Console.WriteLine v2
+    let v3 : string = $"accumulate_dice_rolls / power: {-1} / acc: {1207}"
+    System.Console.WriteLine v3
+    let v22 : UH0 = UH0_1
+    let v23 : UH0 = UH0_0(2, v22)
+    let v24 : UH0 = UH0_0(3, v23)
+    let v25 : US0 = US0_1(1208, v24)
+    let v26 : UH0 = UH0_1
+    let v27 : UH0 = UH0_0(2, v26)
+    let v28 : UH0 = UH0_0(3, v27)
+    let v29 : US0 = US0_1(1208, v28)
+    let v30 : string = $"_equal / actual: %A{v25} / expected: %A{v29}"
+    ()
+method0()
+
+accumulate_dice_rolls / power: 2 / acc: 1000 / roll: 6 / value: 180
+accumulate_dice_rolls / power: 1 / acc: 1180 / roll: 5 / value: 24
+accumulate_dice_rolls / power: 0 / acc: 1204 / roll: 4 / value: 3
+accumulate_dice_rolls / power: -1 / acc: 1207
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7756,7 +8089,7 @@ FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7774,7 +8107,7 @@ FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7811,7 +8144,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7848,7 +8181,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7884,8 +8217,211 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="nb">max</span> <span class="n">rolls</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">power</span> <span class="o">=</span> <span class="n">listm</span><span class="o">.</span><span class="n">length</span> <span class="n">rolls</span> <span class="o">-</span> <span class="mi">1</span><span class="n">i32</span>
+    <span class="k">match</span> <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">result</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="nb">max</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">result</span>
+    <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">995</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+let rec method0 () : unit =
+    let v0 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {1}"
+    System.Console.WriteLine v0
+    let v1 : string = $"accumulate_dice_rolls / power: {3} / acc: {0} / roll: {5} / value: {864}"
+    System.Console.WriteLine v1
+    let v2 : string = $"accumulate_dice_rolls / power: {2} / acc: {864} / roll: {4} / value: {108}"
+    System.Console.WriteLine v2
+    let v3 : string = $"accumulate_dice_rolls / power: {1} / acc: {972} / roll: {4} / value: {18}"
+    System.Console.WriteLine v3
+    let v4 : string = $"accumulate_dice_rolls / power: {0} / acc: {990} / roll: {5} / value: {4}"
+    System.Console.WriteLine v4
+    let v5 : string = $"accumulate_dice_rolls / power: {-1} / acc: {994}"
+    System.Console.WriteLine v5
+    let v9 : US0 = US0_1(995)
+    let v10 : US0 = US0_1(995)
+    let v11 : string = $"_equal / actual: %A{v9} / expected: %A{v10}"
+    ()
+method0()
+
+accumulate_dice_rolls / power: 4 / acc: 0 / roll: 1
+accumulate_dice_rolls / power: 3 / acc: 0 / roll: 5 / value: 864
+accumulate_dice_rolls / power: 2 / acc: 864 / roll: 4 / value: 108
+accumulate_dice_rolls / power: 1 / acc: 972 / roll: 4 / value: 18
+accumulate_dice_rolls / power: 0 / acc: 990 / roll: 5 / value: 4
+accumulate_dice_rolls / power: -1 / acc: 994
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1715</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+let rec method0 () : unit =
+    let v0 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {2} / value: {1296}"
+    System.Console.WriteLine v0
+    let v1 : string = $"accumulate_dice_rolls / power: {3} / acc: {1296} / roll: {2} / value: {216}"
+    System.Console.WriteLine v1
+    let v2 : string = $"accumulate_dice_rolls / power: {2} / acc: {1512} / roll: {6} / value: {180}"
+    System.Console.WriteLine v2
+    let v3 : string = $"accumulate_dice_rolls / power: {1} / acc: {1692} / roll: {4} / value: {18}"
+    System.Console.WriteLine v3
+    let v4 : string = $"accumulate_dice_rolls / power: {0} / acc: {1710} / roll: {5} / value: {4}"
+    System.Console.WriteLine v4
+    let v5 : string = $"accumulate_dice_rolls / power: {-1} / acc: {1714}"
+    System.Console.WriteLine v5
+    let v9 : US0 = US0_1(1715)
+    let v10 : US0 = US0_1(1715)
+    let v11 : string = $"_equal / actual: %A{v9} / expected: %A{v10}"
+    ()
+method0()
+
+accumulate_dice_rolls / power: 4 / acc: 0 / roll: 2 / value: 1296
+accumulate_dice_rolls / power: 3 / acc: 1296 / roll: 2 / value: 216
+accumulate_dice_rolls / power: 2 / acc: 1512 / roll: 6 / value: 180
+accumulate_dice_rolls / power: 1 / acc: 1692 / roll: 4 / value: 18
+accumulate_dice_rolls / power: 0 / acc: 1710 / roll: 5 / value: 4
+accumulate_dice_rolls / power: -1 / acc: 1714
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+let rec method0 () : unit =
+    let v0 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {4} / value: {3888}"
+    System.Console.WriteLine v0
+    let v1 : string = $"accumulate_dice_rolls / power: {3} / acc: {3888} / roll: {1}"
+    System.Console.WriteLine v1
+    let v2 : string = $"accumulate_dice_rolls / power: {2} / acc: {3888} / roll: {1}"
+    System.Console.WriteLine v2
+    let v3 : string = $"accumulate_dice_rolls / power: {1} / acc: {3888} / roll: {2} / value: {6}"
+    System.Console.WriteLine v3
+    let v4 : string = $"accumulate_dice_rolls / power: {0} / acc: {3894} / roll: {3} / value: {2}"
+    System.Console.WriteLine v4
+    let v5 : string = $"accumulate_dice_rolls / power: {-1} / acc: {3896}"
+    System.Console.WriteLine v5
+    let v9 : US0 = US0_0
+    let v10 : US0 = US0_0
+    let v11 : string = $"_equal / actual: %A{v9} / expected: %A{v10}"
+    ()
+method0()
+
+accumulate_dice_rolls / power: 4 / acc: 0 / roll: 4 / value: 3888
+accumulate_dice_rolls / power: 3 / acc: 3888 / roll: 1
+accumulate_dice_rolls / power: 2 / acc: 3888 / roll: 1
+accumulate_dice_rolls / power: 1 / acc: 3888 / roll: 2 / value: 6
+accumulate_dice_rolls / power: 0 / acc: 3894 / roll: 3 / value: 2
+accumulate_dice_rolls / power: -1 / acc: 3896
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7895,7 +8431,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7918,7 +8454,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7949,7 +8485,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7980,8 +8516,119 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">calculate_dice_count</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="nb">max</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="n">p</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="nb">max</span>
+        <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.iter ((|&gt;) $"$</span><span class="se">\"</span><span class="s1">calculate_dice_count / max: {!max} / n: {!n} / p: {!p}</span><span class="se">\"</span><span class="s1">")</span>
+            <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">then</span> <span class="mi">1</span>
+    <span class="k">else</span> <span class="n">loop</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">calculate_dice_count</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">36</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">2</span><span class="n">i32</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"calculate_dice_count / max: {36} / n: {2} / p: {36}"
+    System.Console.WriteLine v0
+    let v1 : string = $"_equal / actual: %A{2} / expected: %A{2}"
+    ()
+method0()
+
+calculate_dice_count / max: 36 / n: 2 / p: 36
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">calculate_dice_count</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">7777</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">6</span><span class="n">i32</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"calculate_dice_count / max: {7777} / n: {6} / p: {46656}"
+    System.Console.WriteLine v0
+    let v1 : string = $"_equal / actual: %A{6} / expected: %A{6}"
+    ()
+method0()
+
+calculate_dice_count / max: 7777 / n: 6 / p: 46656
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7991,7 +8638,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8014,8 +8661,37 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">roll_dice</span> <span class="p">()</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"System.Random().Next (1, 7)"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8025,7 +8701,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8040,8 +8716,37 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rotate_number</span> <span class="nb">max</span> <span class="n">n</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">)</span> <span class="o">%</span> <span class="nb">max</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8051,7 +8756,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8066,7 +8771,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8098,8 +8803,111 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rotate_numbers</span> <span class="nb">max</span> <span class="n">items</span> <span class="o">=</span>
+    <span class="n">items</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">rotate_number</span> <span class="nb">max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">listm</span><span class="s1">'.init_series -1i32 14 1</span>
+<span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">from_list</span>
+<span class="o">|&gt;</span> <span class="n">rotate_numbers</span> <span class="mi">6</span>
+<span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+let rec method0 () : unit =
+    let v187 : UH0 = UH0_1
+    let v188 : UH0 = UH0_0(2, v187)
+    let v189 : UH0 = UH0_0(1, v188)
+    let v190 : UH0 = UH0_0(6, v189)
+    let v191 : UH0 = UH0_0(5, v190)
+    let v192 : UH0 = UH0_0(4, v191)
+    let v193 : UH0 = UH0_0(3, v192)
+    let v194 : UH0 = UH0_0(2, v193)
+    let v195 : UH0 = UH0_0(1, v194)
+    let v196 : UH0 = UH0_0(6, v195)
+    let v197 : UH0 = UH0_0(5, v196)
+    let v198 : UH0 = UH0_0(4, v197)
+    let v199 : UH0 = UH0_0(3, v198)
+    let v200 : UH0 = UH0_0(2, v199)
+    let v201 : UH0 = UH0_0(1, v200)
+    let v202 : UH0 = UH0_0(6, v201)
+    let v203 : UH0 = UH0_0(5, v202)
+    let v204 : UH0 = UH0_1
+    let v205 : UH0 = UH0_0(2, v204)
+    let v206 : UH0 = UH0_0(1, v205)
+    let v207 : UH0 = UH0_0(6, v206)
+    let v208 : UH0 = UH0_0(5, v207)
+    let v209 : UH0 = UH0_0(4, v208)
+    let v210 : UH0 = UH0_0(3, v209)
+    let v211 : UH0 = UH0_0(2, v210)
+    let v212 : UH0 = UH0_0(1, v211)
+    let v213 : UH0 = UH0_0(6, v212)
+    let v214 : UH0 = UH0_0(5, v213)
+    let v215 : UH0 = UH0_0(4, v214)
+    let v216 : UH0 = UH0_0(3, v215)
+    let v217 : UH0 = UH0_0(2, v216)
+    let v218 : UH0 = UH0_0(1, v217)
+    let v219 : UH0 = UH0_0(6, v218)
+    let v220 : UH0 = UH0_0(5, v219)
+    let v221 : string = $"_equal / actual: %A{v203} / expected: %A{v220}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8109,7 +8917,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8131,8 +8939,43 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_sequential_roller</span> <span class="nb">list</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">current_index</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+        <span class="k">match</span> <span class="nb">list</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_item *current_index with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="n">item</span> <span class="o">=&gt;</span>
+            <span class="n">current_index</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">current_index</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">item</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="s2">"create_sequential_roller / end of list"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8142,7 +8985,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8166,7 +9009,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8196,7 +9039,7 @@ accumulateDiceRolls / power: -1 / acc: 3896
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8235,7 +9078,7 @@ accumulateDiceRolls / power: -1 / acc: 994
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8278,7 +9121,7 @@ System.Exception: createSequentialRoller / End of list
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8304,8 +9147,1654 @@ System.Exception: createSequentialRoller / End of list
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">roll_progressively</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="n">roll</span> <span class="n">reroll</span> <span class="nb">max</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">power</span> <span class="o">=</span> <span class="p">(</span><span class="n">calculate_dice_count</span> <span class="n">log</span> <span class="nb">max</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="n">i32</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">rolls</span> <span class="n">size</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="n">power</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">roll</span> <span class="p">()</span> <span class="p">::</span> <span class="n">rolls</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="k">match</span> <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="nb">max</span> <span class="o">=&gt;</span> <span class="n">result</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">reroll</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="n">power</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">roll</span> <span class="p">()))</span> <span class="n">power</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">roll</span> <span class="p">()</span> <span class="p">::</span> <span class="n">rolls</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">loop</span> <span class="p">[]</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">roll_progressively</span> <span class="kc">None</span> <span class="n">roll_dice</span> <span class="n">false</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32 * f1_1 : UH0
+let rec method1 (v0 : UH0, v1 : int32) : int32 =
+    let v2 : bool = v1 &lt; 1
+    if v2 then
+        let v3 : int32 = System.Random().Next (1, 7)
+        let v4 : UH0 = UH0_0(v3, v0)
+        let v5 : int32 = v1 + 1
+        method1(v4, v5)
+    else
+        let v21 : US0 =
+            match v0 with
+            | UH0_0(v8, v9) -&gt; (* Cons *)
+                let v10 : bool = v8 &gt; 1
+                if v10 then
+                    let v11 : int32 = v8 - 1
+                    let v12 : string = $"accumulate_dice_rolls / power: {0} / acc: {0} / roll: {v8} / value: {v11}"
+                    let v13 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v11}"
+                    let v14 : int32 = v11 + 1
+                    US0_1(v14, v9)
+                else
+                    let v16 : string = $"accumulate_dice_rolls / power: {0} / acc: {0} / roll: {v8}"
+                    let v17 : string = $"accumulate_dice_rolls / power: {-1} / acc: {0}"
+                    US0_1(1, v9)
+            | UH0_1 -&gt; (* Nil *)
+                US0_0
+        match v21 with
+        | US0_1(v22, v23) -&gt; (* Some *)
+            let v24 : bool = v22 &lt;= 1
+            if v24 then
+                v22
+            else
+                let v25 : int32 = System.Random().Next (1, 7)
+                let v26 : UH0 = UH0_0(v25, v0)
+                let v27 : int32 = v1 + 1
+                method1(v26, v27)
+        | _ -&gt;
+            let v30 : int32 = System.Random().Next (1, 7)
+            let v31 : UH0 = UH0_0(v30, v0)
+            let v32 : int32 = v1 + 1
+            method1(v31, v32)
+and method0 () : unit =
+    let v0 : UH0 = UH0_1
+    let v1 : int32 = 0
+    let v2 : int32 = method1(v0, v1)
+    let v3 : bool = v2 = 1
+    let v4 : string = $"_equal / actual: %A{v2} / expected: %A{1}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">sequential_roll</span> <span class="o">=</span> <span class="n">create_sequential_roller</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
+
+<span class="n">roll_progressively</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">sequential_roll</span> <span class="n">false</span> <span class="mi">2000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">995</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+and UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : int32 * f1_1 : UH0
+let rec method1 (v0 : Mut0, v1 : UH0, v2 : int32) : int32 =
+    let v3 : bool = v2 &lt; 5
+    if v3 then
+        let v4 : int32 = v0.l0
+        let v5 : bool = v4 = 0
+        let v25 : US0 =
+            if v5 then
+                US0_1(5)
+            else
+                let v7 : int32 = v4 - 1
+                let v8 : bool = v7 = 0
+                if v8 then
+                    US0_1(4)
+                else
+                    let v10 : int32 = v7 - 1
+                    let v11 : bool = v10 = 0
+                    if v11 then
+                        US0_1(4)
+                    else
+                        let v13 : int32 = v10 - 1
+                        let v14 : bool = v13 = 0
+                        if v14 then
+                            US0_1(5)
+                        else
+                            let v16 : int32 = v13 - 1
+                            let v17 : bool = v16 = 0
+                            if v17 then
+                                US0_1(1)
+                            else
+                                let v19 : int32 = v16 - 1
+                                US0_0
+        let v31 : int32 =
+            match v25 with
+            | US0_0 -&gt; (* None *)
+                failwith&lt;int32&gt; "create_sequential_roller / end of list"
+            | US0_1(v26) -&gt; (* Some *)
+                let v27 : int32 = v0.l0
+                let v28 : int32 = v27 + 1
+                v0.l0 &lt;- v28
+                v26
+        let v32 : UH0 = UH0_0(v31, v1)
+        let v33 : int32 = v2 + 1
+        method1(v0, v32, v33)
+    else
+        let v480 : US1 =
+            match v1 with
+            | UH0_0(v36, v37) -&gt; (* Cons *)
+                let v38 : bool = v36 &gt; 1
+                if v38 then
+                    let v39 : int32 = v36 - 1
+                    let v40 : int32 = v39 * 1296
+                    let v41 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {v36} / value: {v40}"
+                    System.Console.WriteLine v41
+                    match v37 with
+                    | UH0_0(v43, v44) -&gt; (* Cons *)
+                        let v45 : bool = v43 &gt; 1
+                        if v45 then
+                            let v46 : int32 = v43 - 1
+                            let v47 : int32 = v46 * 216
+                            let v48 : string = $"accumulate_dice_rolls / power: {3} / acc: {v40} / roll: {v43} / value: {v47}"
+                            System.Console.WriteLine v48
+                            let v49 : int32 = v40 + v47
+                            match v44 with
+                            | UH0_0(v51, v52) -&gt; (* Cons *)
+                                let v53 : bool = v51 &gt; 1
+                                if v53 then
+                                    let v54 : int32 = v51 - 1
+                                    let v55 : int32 = v54 * 36
+                                    let v56 : string = $"accumulate_dice_rolls / power: {2} / acc: {v49} / roll: {v51} / value: {v55}"
+                                    System.Console.WriteLine v56
+                                    let v57 : int32 = v49 + v55
+                                    match v52 with
+                                    | UH0_0(v59, v60) -&gt; (* Cons *)
+                                        let v61 : bool = v59 &gt; 1
+                                        if v61 then
+                                            let v62 : int32 = v59 - 1
+                                            let v63 : int32 = v62 * 6
+                                            let v64 : string = $"accumulate_dice_rolls / power: {1} / acc: {v57} / roll: {v59} / value: {v63}"
+                                            System.Console.WriteLine v64
+                                            let v65 : int32 = v57 + v63
+                                            match v60 with
+                                            | UH0_0(v67, v68) -&gt; (* Cons *)
+                                                let v69 : bool = v67 &gt; 1
+                                                if v69 then
+                                                    let v70 : int32 = v67 - 1
+                                                    let v71 : string = $"accumulate_dice_rolls / power: {0} / acc: {v65} / roll: {v67} / value: {v70}"
+                                                    System.Console.WriteLine v71
+                                                    let v72 : int32 = v65 + v70
+                                                    let v73 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v72}"
+                                                    System.Console.WriteLine v73
+                                                    let v74 : int32 = v72 + 1
+                                                    US1_1(v74, v68)
+                                                else
+                                                    let v76 : string = $"accumulate_dice_rolls / power: {0} / acc: {v65} / roll: {v67}"
+                                                    System.Console.WriteLine v76
+                                                    let v77 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v65}"
+                                                    System.Console.WriteLine v77
+                                                    let v78 : int32 = v65 + 1
+                                                    US1_1(v78, v68)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v83 : string = $"accumulate_dice_rolls / power: {1} / acc: {v57} / roll: {v59}"
+                                            System.Console.WriteLine v83
+                                            match v60 with
+                                            | UH0_0(v85, v86) -&gt; (* Cons *)
+                                                let v87 : bool = v85 &gt; 1
+                                                if v87 then
+                                                    let v88 : int32 = v85 - 1
+                                                    let v89 : string = $"accumulate_dice_rolls / power: {0} / acc: {v57} / roll: {v85} / value: {v88}"
+                                                    System.Console.WriteLine v89
+                                                    let v90 : int32 = v57 + v88
+                                                    let v91 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v90}"
+                                                    System.Console.WriteLine v91
+                                                    let v92 : int32 = v90 + 1
+                                                    US1_1(v92, v86)
+                                                else
+                                                    let v94 : string = $"accumulate_dice_rolls / power: {0} / acc: {v57} / roll: {v85}"
+                                                    System.Console.WriteLine v94
+                                                    let v95 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v57}"
+                                                    System.Console.WriteLine v95
+                                                    let v96 : int32 = v57 + 1
+                                                    US1_1(v96, v86)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v104 : string = $"accumulate_dice_rolls / power: {2} / acc: {v49} / roll: {v51}"
+                                    System.Console.WriteLine v104
+                                    match v52 with
+                                    | UH0_0(v106, v107) -&gt; (* Cons *)
+                                        let v108 : bool = v106 &gt; 1
+                                        if v108 then
+                                            let v109 : int32 = v106 - 1
+                                            let v110 : int32 = v109 * 6
+                                            let v111 : string = $"accumulate_dice_rolls / power: {1} / acc: {v49} / roll: {v106} / value: {v110}"
+                                            System.Console.WriteLine v111
+                                            let v112 : int32 = v49 + v110
+                                            match v107 with
+                                            | UH0_0(v114, v115) -&gt; (* Cons *)
+                                                let v116 : bool = v114 &gt; 1
+                                                if v116 then
+                                                    let v117 : int32 = v114 - 1
+                                                    let v118 : string = $"accumulate_dice_rolls / power: {0} / acc: {v112} / roll: {v114} / value: {v117}"
+                                                    System.Console.WriteLine v118
+                                                    let v119 : int32 = v112 + v117
+                                                    let v120 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v119}"
+                                                    System.Console.WriteLine v120
+                                                    let v121 : int32 = v119 + 1
+                                                    US1_1(v121, v115)
+                                                else
+                                                    let v123 : string = $"accumulate_dice_rolls / power: {0} / acc: {v112} / roll: {v114}"
+                                                    System.Console.WriteLine v123
+                                                    let v124 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v112}"
+                                                    System.Console.WriteLine v124
+                                                    let v125 : int32 = v112 + 1
+                                                    US1_1(v125, v115)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v130 : string = $"accumulate_dice_rolls / power: {1} / acc: {v49} / roll: {v106}"
+                                            System.Console.WriteLine v130
+                                            match v107 with
+                                            | UH0_0(v132, v133) -&gt; (* Cons *)
+                                                let v134 : bool = v132 &gt; 1
+                                                if v134 then
+                                                    let v135 : int32 = v132 - 1
+                                                    let v136 : string = $"accumulate_dice_rolls / power: {0} / acc: {v49} / roll: {v132} / value: {v135}"
+                                                    System.Console.WriteLine v136
+                                                    let v137 : int32 = v49 + v135
+                                                    let v138 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v137}"
+                                                    System.Console.WriteLine v138
+                                                    let v139 : int32 = v137 + 1
+                                                    US1_1(v139, v133)
+                                                else
+                                                    let v141 : string = $"accumulate_dice_rolls / power: {0} / acc: {v49} / roll: {v132}"
+                                                    System.Console.WriteLine v141
+                                                    let v142 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v49}"
+                                                    System.Console.WriteLine v142
+                                                    let v143 : int32 = v49 + 1
+                                                    US1_1(v143, v133)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                        else
+                            let v154 : string = $"accumulate_dice_rolls / power: {3} / acc: {v40} / roll: {v43}"
+                            System.Console.WriteLine v154
+                            match v44 with
+                            | UH0_0(v156, v157) -&gt; (* Cons *)
+                                let v158 : bool = v156 &gt; 1
+                                if v158 then
+                                    let v159 : int32 = v156 - 1
+                                    let v160 : int32 = v159 * 36
+                                    let v161 : string = $"accumulate_dice_rolls / power: {2} / acc: {v40} / roll: {v156} / value: {v160}"
+                                    System.Console.WriteLine v161
+                                    let v162 : int32 = v40 + v160
+                                    match v157 with
+                                    | UH0_0(v164, v165) -&gt; (* Cons *)
+                                        let v166 : bool = v164 &gt; 1
+                                        if v166 then
+                                            let v167 : int32 = v164 - 1
+                                            let v168 : int32 = v167 * 6
+                                            let v169 : string = $"accumulate_dice_rolls / power: {1} / acc: {v162} / roll: {v164} / value: {v168}"
+                                            System.Console.WriteLine v169
+                                            let v170 : int32 = v162 + v168
+                                            match v165 with
+                                            | UH0_0(v172, v173) -&gt; (* Cons *)
+                                                let v174 : bool = v172 &gt; 1
+                                                if v174 then
+                                                    let v175 : int32 = v172 - 1
+                                                    let v176 : string = $"accumulate_dice_rolls / power: {0} / acc: {v170} / roll: {v172} / value: {v175}"
+                                                    System.Console.WriteLine v176
+                                                    let v177 : int32 = v170 + v175
+                                                    let v178 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v177}"
+                                                    System.Console.WriteLine v178
+                                                    let v179 : int32 = v177 + 1
+                                                    US1_1(v179, v173)
+                                                else
+                                                    let v181 : string = $"accumulate_dice_rolls / power: {0} / acc: {v170} / roll: {v172}"
+                                                    System.Console.WriteLine v181
+                                                    let v182 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v170}"
+                                                    System.Console.WriteLine v182
+                                                    let v183 : int32 = v170 + 1
+                                                    US1_1(v183, v173)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v188 : string = $"accumulate_dice_rolls / power: {1} / acc: {v162} / roll: {v164}"
+                                            System.Console.WriteLine v188
+                                            match v165 with
+                                            | UH0_0(v190, v191) -&gt; (* Cons *)
+                                                let v192 : bool = v190 &gt; 1
+                                                if v192 then
+                                                    let v193 : int32 = v190 - 1
+                                                    let v194 : string = $"accumulate_dice_rolls / power: {0} / acc: {v162} / roll: {v190} / value: {v193}"
+                                                    System.Console.WriteLine v194
+                                                    let v195 : int32 = v162 + v193
+                                                    let v196 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v195}"
+                                                    System.Console.WriteLine v196
+                                                    let v197 : int32 = v195 + 1
+                                                    US1_1(v197, v191)
+                                                else
+                                                    let v199 : string = $"accumulate_dice_rolls / power: {0} / acc: {v162} / roll: {v190}"
+                                                    System.Console.WriteLine v199
+                                                    let v200 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v162}"
+                                                    System.Console.WriteLine v200
+                                                    let v201 : int32 = v162 + 1
+                                                    US1_1(v201, v191)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v209 : string = $"accumulate_dice_rolls / power: {2} / acc: {v40} / roll: {v156}"
+                                    System.Console.WriteLine v209
+                                    match v157 with
+                                    | UH0_0(v211, v212) -&gt; (* Cons *)
+                                        let v213 : bool = v211 &gt; 1
+                                        if v213 then
+                                            let v214 : int32 = v211 - 1
+                                            let v215 : int32 = v214 * 6
+                                            let v216 : string = $"accumulate_dice_rolls / power: {1} / acc: {v40} / roll: {v211} / value: {v215}"
+                                            System.Console.WriteLine v216
+                                            let v217 : int32 = v40 + v215
+                                            match v212 with
+                                            | UH0_0(v219, v220) -&gt; (* Cons *)
+                                                let v221 : bool = v219 &gt; 1
+                                                if v221 then
+                                                    let v222 : int32 = v219 - 1
+                                                    let v223 : string = $"accumulate_dice_rolls / power: {0} / acc: {v217} / roll: {v219} / value: {v222}"
+                                                    System.Console.WriteLine v223
+                                                    let v224 : int32 = v217 + v222
+                                                    let v225 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v224}"
+                                                    System.Console.WriteLine v225
+                                                    let v226 : int32 = v224 + 1
+                                                    US1_1(v226, v220)
+                                                else
+                                                    let v228 : string = $"accumulate_dice_rolls / power: {0} / acc: {v217} / roll: {v219}"
+                                                    System.Console.WriteLine v228
+                                                    let v229 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v217}"
+                                                    System.Console.WriteLine v229
+                                                    let v230 : int32 = v217 + 1
+                                                    US1_1(v230, v220)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v235 : string = $"accumulate_dice_rolls / power: {1} / acc: {v40} / roll: {v211}"
+                                            System.Console.WriteLine v235
+                                            match v212 with
+                                            | UH0_0(v237, v238) -&gt; (* Cons *)
+                                                let v239 : bool = v237 &gt; 1
+                                                if v239 then
+                                                    let v240 : int32 = v237 - 1
+                                                    let v241 : string = $"accumulate_dice_rolls / power: {0} / acc: {v40} / roll: {v237} / value: {v240}"
+                                                    System.Console.WriteLine v241
+                                                    let v242 : int32 = v40 + v240
+                                                    let v243 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v242}"
+                                                    System.Console.WriteLine v243
+                                                    let v244 : int32 = v242 + 1
+                                                    US1_1(v244, v238)
+                                                else
+                                                    let v246 : string = $"accumulate_dice_rolls / power: {0} / acc: {v40} / roll: {v237}"
+                                                    System.Console.WriteLine v246
+                                                    let v247 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v40}"
+                                                    System.Console.WriteLine v247
+                                                    let v248 : int32 = v40 + 1
+                                                    US1_1(v248, v238)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                    | UH0_1 -&gt; (* Nil *)
+                        US1_0
+                else
+                    let v262 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {v36}"
+                    System.Console.WriteLine v262
+                    match v37 with
+                    | UH0_0(v264, v265) -&gt; (* Cons *)
+                        let v266 : bool = v264 &gt; 1
+                        if v266 then
+                            let v267 : int32 = v264 - 1
+                            let v268 : int32 = v267 * 216
+                            let v269 : string = $"accumulate_dice_rolls / power: {3} / acc: {0} / roll: {v264} / value: {v268}"
+                            System.Console.WriteLine v269
+                            match v265 with
+                            | UH0_0(v271, v272) -&gt; (* Cons *)
+                                let v273 : bool = v271 &gt; 1
+                                if v273 then
+                                    let v274 : int32 = v271 - 1
+                                    let v275 : int32 = v274 * 36
+                                    let v276 : string = $"accumulate_dice_rolls / power: {2} / acc: {v268} / roll: {v271} / value: {v275}"
+                                    System.Console.WriteLine v276
+                                    let v277 : int32 = v268 + v275
+                                    match v272 with
+                                    | UH0_0(v279, v280) -&gt; (* Cons *)
+                                        let v281 : bool = v279 &gt; 1
+                                        if v281 then
+                                            let v282 : int32 = v279 - 1
+                                            let v283 : int32 = v282 * 6
+                                            let v284 : string = $"accumulate_dice_rolls / power: {1} / acc: {v277} / roll: {v279} / value: {v283}"
+                                            System.Console.WriteLine v284
+                                            let v285 : int32 = v277 + v283
+                                            match v280 with
+                                            | UH0_0(v287, v288) -&gt; (* Cons *)
+                                                let v289 : bool = v287 &gt; 1
+                                                if v289 then
+                                                    let v290 : int32 = v287 - 1
+                                                    let v291 : string = $"accumulate_dice_rolls / power: {0} / acc: {v285} / roll: {v287} / value: {v290}"
+                                                    System.Console.WriteLine v291
+                                                    let v292 : int32 = v285 + v290
+                                                    let v293 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v292}"
+                                                    System.Console.WriteLine v293
+                                                    let v294 : int32 = v292 + 1
+                                                    US1_1(v294, v288)
+                                                else
+                                                    let v296 : string = $"accumulate_dice_rolls / power: {0} / acc: {v285} / roll: {v287}"
+                                                    System.Console.WriteLine v296
+                                                    let v297 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v285}"
+                                                    System.Console.WriteLine v297
+                                                    let v298 : int32 = v285 + 1
+                                                    US1_1(v298, v288)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v303 : string = $"accumulate_dice_rolls / power: {1} / acc: {v277} / roll: {v279}"
+                                            System.Console.WriteLine v303
+                                            match v280 with
+                                            | UH0_0(v305, v306) -&gt; (* Cons *)
+                                                let v307 : bool = v305 &gt; 1
+                                                if v307 then
+                                                    let v308 : int32 = v305 - 1
+                                                    let v309 : string = $"accumulate_dice_rolls / power: {0} / acc: {v277} / roll: {v305} / value: {v308}"
+                                                    System.Console.WriteLine v309
+                                                    let v310 : int32 = v277 + v308
+                                                    let v311 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v310}"
+                                                    System.Console.WriteLine v311
+                                                    let v312 : int32 = v310 + 1
+                                                    US1_1(v312, v306)
+                                                else
+                                                    let v314 : string = $"accumulate_dice_rolls / power: {0} / acc: {v277} / roll: {v305}"
+                                                    System.Console.WriteLine v314
+                                                    let v315 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v277}"
+                                                    System.Console.WriteLine v315
+                                                    let v316 : int32 = v277 + 1
+                                                    US1_1(v316, v306)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v324 : string = $"accumulate_dice_rolls / power: {2} / acc: {v268} / roll: {v271}"
+                                    System.Console.WriteLine v324
+                                    match v272 with
+                                    | UH0_0(v326, v327) -&gt; (* Cons *)
+                                        let v328 : bool = v326 &gt; 1
+                                        if v328 then
+                                            let v329 : int32 = v326 - 1
+                                            let v330 : int32 = v329 * 6
+                                            let v331 : string = $"accumulate_dice_rolls / power: {1} / acc: {v268} / roll: {v326} / value: {v330}"
+                                            System.Console.WriteLine v331
+                                            let v332 : int32 = v268 + v330
+                                            match v327 with
+                                            | UH0_0(v334, v335) -&gt; (* Cons *)
+                                                let v336 : bool = v334 &gt; 1
+                                                if v336 then
+                                                    let v337 : int32 = v334 - 1
+                                                    let v338 : string = $"accumulate_dice_rolls / power: {0} / acc: {v332} / roll: {v334} / value: {v337}"
+                                                    System.Console.WriteLine v338
+                                                    let v339 : int32 = v332 + v337
+                                                    let v340 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v339}"
+                                                    System.Console.WriteLine v340
+                                                    let v341 : int32 = v339 + 1
+                                                    US1_1(v341, v335)
+                                                else
+                                                    let v343 : string = $"accumulate_dice_rolls / power: {0} / acc: {v332} / roll: {v334}"
+                                                    System.Console.WriteLine v343
+                                                    let v344 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v332}"
+                                                    System.Console.WriteLine v344
+                                                    let v345 : int32 = v332 + 1
+                                                    US1_1(v345, v335)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v350 : string = $"accumulate_dice_rolls / power: {1} / acc: {v268} / roll: {v326}"
+                                            System.Console.WriteLine v350
+                                            match v327 with
+                                            | UH0_0(v352, v353) -&gt; (* Cons *)
+                                                let v354 : bool = v352 &gt; 1
+                                                if v354 then
+                                                    let v355 : int32 = v352 - 1
+                                                    let v356 : string = $"accumulate_dice_rolls / power: {0} / acc: {v268} / roll: {v352} / value: {v355}"
+                                                    System.Console.WriteLine v356
+                                                    let v357 : int32 = v268 + v355
+                                                    let v358 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v357}"
+                                                    System.Console.WriteLine v358
+                                                    let v359 : int32 = v357 + 1
+                                                    US1_1(v359, v353)
+                                                else
+                                                    let v361 : string = $"accumulate_dice_rolls / power: {0} / acc: {v268} / roll: {v352}"
+                                                    System.Console.WriteLine v361
+                                                    let v362 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v268}"
+                                                    System.Console.WriteLine v362
+                                                    let v363 : int32 = v268 + 1
+                                                    US1_1(v363, v353)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                        else
+                            let v374 : string = $"accumulate_dice_rolls / power: {3} / acc: {0} / roll: {v264}"
+                            System.Console.WriteLine v374
+                            match v265 with
+                            | UH0_0(v376, v377) -&gt; (* Cons *)
+                                let v378 : bool = v376 &gt; 1
+                                if v378 then
+                                    let v379 : int32 = v376 - 1
+                                    let v380 : int32 = v379 * 36
+                                    let v381 : string = $"accumulate_dice_rolls / power: {2} / acc: {0} / roll: {v376} / value: {v380}"
+                                    System.Console.WriteLine v381
+                                    match v377 with
+                                    | UH0_0(v383, v384) -&gt; (* Cons *)
+                                        let v385 : bool = v383 &gt; 1
+                                        if v385 then
+                                            let v386 : int32 = v383 - 1
+                                            let v387 : int32 = v386 * 6
+                                            let v388 : string = $"accumulate_dice_rolls / power: {1} / acc: {v380} / roll: {v383} / value: {v387}"
+                                            System.Console.WriteLine v388
+                                            let v389 : int32 = v380 + v387
+                                            match v384 with
+                                            | UH0_0(v391, v392) -&gt; (* Cons *)
+                                                let v393 : bool = v391 &gt; 1
+                                                if v393 then
+                                                    let v394 : int32 = v391 - 1
+                                                    let v395 : string = $"accumulate_dice_rolls / power: {0} / acc: {v389} / roll: {v391} / value: {v394}"
+                                                    System.Console.WriteLine v395
+                                                    let v396 : int32 = v389 + v394
+                                                    let v397 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v396}"
+                                                    System.Console.WriteLine v397
+                                                    let v398 : int32 = v396 + 1
+                                                    US1_1(v398, v392)
+                                                else
+                                                    let v400 : string = $"accumulate_dice_rolls / power: {0} / acc: {v389} / roll: {v391}"
+                                                    System.Console.WriteLine v400
+                                                    let v401 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v389}"
+                                                    System.Console.WriteLine v401
+                                                    let v402 : int32 = v389 + 1
+                                                    US1_1(v402, v392)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v407 : string = $"accumulate_dice_rolls / power: {1} / acc: {v380} / roll: {v383}"
+                                            System.Console.WriteLine v407
+                                            match v384 with
+                                            | UH0_0(v409, v410) -&gt; (* Cons *)
+                                                let v411 : bool = v409 &gt; 1
+                                                if v411 then
+                                                    let v412 : int32 = v409 - 1
+                                                    let v413 : string = $"accumulate_dice_rolls / power: {0} / acc: {v380} / roll: {v409} / value: {v412}"
+                                                    System.Console.WriteLine v413
+                                                    let v414 : int32 = v380 + v412
+                                                    let v415 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v414}"
+                                                    System.Console.WriteLine v415
+                                                    let v416 : int32 = v414 + 1
+                                                    US1_1(v416, v410)
+                                                else
+                                                    let v418 : string = $"accumulate_dice_rolls / power: {0} / acc: {v380} / roll: {v409}"
+                                                    System.Console.WriteLine v418
+                                                    let v419 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v380}"
+                                                    System.Console.WriteLine v419
+                                                    let v420 : int32 = v380 + 1
+                                                    US1_1(v420, v410)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v428 : string = $"accumulate_dice_rolls / power: {2} / acc: {0} / roll: {v376}"
+                                    System.Console.WriteLine v428
+                                    match v377 with
+                                    | UH0_0(v430, v431) -&gt; (* Cons *)
+                                        let v432 : bool = v430 &gt; 1
+                                        if v432 then
+                                            let v433 : int32 = v430 - 1
+                                            let v434 : int32 = v433 * 6
+                                            let v435 : string = $"accumulate_dice_rolls / power: {1} / acc: {0} / roll: {v430} / value: {v434}"
+                                            System.Console.WriteLine v435
+                                            match v431 with
+                                            | UH0_0(v437, v438) -&gt; (* Cons *)
+                                                let v439 : bool = v437 &gt; 1
+                                                if v439 then
+                                                    let v440 : int32 = v437 - 1
+                                                    let v441 : string = $"accumulate_dice_rolls / power: {0} / acc: {v434} / roll: {v437} / value: {v440}"
+                                                    System.Console.WriteLine v441
+                                                    let v442 : int32 = v434 + v440
+                                                    let v443 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v442}"
+                                                    System.Console.WriteLine v443
+                                                    let v444 : int32 = v442 + 1
+                                                    US1_1(v444, v438)
+                                                else
+                                                    let v446 : string = $"accumulate_dice_rolls / power: {0} / acc: {v434} / roll: {v437}"
+                                                    System.Console.WriteLine v446
+                                                    let v447 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v434}"
+                                                    System.Console.WriteLine v447
+                                                    let v448 : int32 = v434 + 1
+                                                    US1_1(v448, v438)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v453 : string = $"accumulate_dice_rolls / power: {1} / acc: {0} / roll: {v430}"
+                                            System.Console.WriteLine v453
+                                            match v431 with
+                                            | UH0_0(v455, v456) -&gt; (* Cons *)
+                                                let v457 : bool = v455 &gt; 1
+                                                if v457 then
+                                                    let v458 : int32 = v455 - 1
+                                                    let v459 : string = $"accumulate_dice_rolls / power: {0} / acc: {0} / roll: {v455} / value: {v458}"
+                                                    System.Console.WriteLine v459
+                                                    let v460 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v458}"
+                                                    System.Console.WriteLine v460
+                                                    let v461 : int32 = v458 + 1
+                                                    US1_1(v461, v456)
+                                                else
+                                                    let v463 : string = $"accumulate_dice_rolls / power: {0} / acc: {0} / roll: {v455}"
+                                                    System.Console.WriteLine v463
+                                                    let v464 : string = $"accumulate_dice_rolls / power: {-1} / acc: {0}"
+                                                    System.Console.WriteLine v464
+                                                    US1_1(1, v456)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                    | UH0_1 -&gt; (* Nil *)
+                        US1_0
+            | UH0_1 -&gt; (* Nil *)
+                US1_0
+        match v480 with
+        | US1_1(v481, v482) -&gt; (* Some *)
+            let v483 : bool = v481 &lt;= 2000
+            if v483 then
+                v481
+            else
+                let v484 : int32 = v0.l0
+                let v485 : bool = v484 = 0
+                let v505 : US0 =
+                    if v485 then
+                        US0_1(5)
+                    else
+                        let v487 : int32 = v484 - 1
+                        let v488 : bool = v487 = 0
+                        if v488 then
+                            US0_1(4)
+                        else
+                            let v490 : int32 = v487 - 1
+                            let v491 : bool = v490 = 0
+                            if v491 then
+                                US0_1(4)
+                            else
+                                let v493 : int32 = v490 - 1
+                                let v494 : bool = v493 = 0
+                                if v494 then
+                                    US0_1(5)
+                                else
+                                    let v496 : int32 = v493 - 1
+                                    let v497 : bool = v496 = 0
+                                    if v497 then
+                                        US0_1(1)
+                                    else
+                                        let v499 : int32 = v496 - 1
+                                        US0_0
+                let v511 : int32 =
+                    match v505 with
+                    | US0_0 -&gt; (* None *)
+                        failwith&lt;int32&gt; "create_sequential_roller / end of list"
+                    | US0_1(v506) -&gt; (* Some *)
+                        let v507 : int32 = v0.l0
+                        let v508 : int32 = v507 + 1
+                        v0.l0 &lt;- v508
+                        v506
+                let v512 : UH0 = UH0_0(v511, v1)
+                let v513 : int32 = v2 + 1
+                method1(v0, v512, v513)
+        | _ -&gt;
+            let v516 : int32 = v0.l0
+            let v517 : bool = v516 = 0
+            let v537 : US0 =
+                if v517 then
+                    US0_1(5)
+                else
+                    let v519 : int32 = v516 - 1
+                    let v520 : bool = v519 = 0
+                    if v520 then
+                        US0_1(4)
+                    else
+                        let v522 : int32 = v519 - 1
+                        let v523 : bool = v522 = 0
+                        if v523 then
+                            US0_1(4)
+                        else
+                            let v525 : int32 = v522 - 1
+                            let v526 : bool = v525 = 0
+                            if v526 then
+                                US0_1(5)
+                            else
+                                let v528 : int32 = v525 - 1
+                                let v529 : bool = v528 = 0
+                                if v529 then
+                                    US0_1(1)
+                                else
+                                    let v531 : int32 = v528 - 1
+                                    US0_0
+            let v543 : int32 =
+                match v537 with
+                | US0_0 -&gt; (* None *)
+                    failwith&lt;int32&gt; "create_sequential_roller / end of list"
+                | US0_1(v538) -&gt; (* Some *)
+                    let v539 : int32 = v0.l0
+                    let v540 : int32 = v539 + 1
+                    v0.l0 &lt;- v540
+                    v538
+            let v544 : UH0 = UH0_0(v543, v1)
+            let v545 : int32 = v2 + 1
+            method1(v0, v544, v545)
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0} : Mut0
+    let v1 : string = $"calculate_dice_count / max: {2000} / n: {5} / p: {7776}"
+    System.Console.WriteLine v1
+    let v2 : UH0 = UH0_1
+    let v3 : int32 = 0
+    let v4 : int32 = method1(v0, v2, v3)
+    let v5 : bool = v4 = 995
+    let v6 : string = $"_equal / actual: %A{v4} / expected: %A{995}"
+    let v7 : bool = v5 = false
+    if v7 then
+        failwith&lt;unit&gt; v6
+method0()
+
+calculate_dice_count / max: 2000 / n: 5 / p: 7776
+accumulate_dice_rolls / power: 4 / acc: 0 / roll: 1
+accumulate_dice_rolls / power: 3 / acc: 0 / roll: 5 / value: 864
+accumulate_dice_rolls / power: 2 / acc: 864 / roll: 4 / value: 108
+accumulate_dice_rolls / power: 1 / acc: 972 / roll: 4 / value: 18
+accumulate_dice_rolls / power: 0 / acc: 990 / roll: 5 / value: 4
+accumulate_dice_rolls / power: -1 / acc: 994
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">sequential_roll</span> <span class="o">=</span> <span class="n">create_sequential_roller</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span>
+
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">roll_progressively</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">sequential_roll</span> <span class="n">false</span> <span class="mi">2000</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="o">|&gt;</span> <span class="n">_throws</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="s2">"create_sequential_roller / end of list"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+and UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : int32 * f1_1 : UH0
+and [&lt;Struct&gt;] US2 =
+    | US2_0
+    | US2_1 of f1_0 : string
+let rec method1 (v0 : Mut0, v1 : UH0, v2 : int32) : int32 =
+    let v3 : bool = v2 &lt; 5
+    if v3 then
+        let v4 : int32 = v0.l0
+        let v5 : bool = v4 = 0
+        let v25 : US0 =
+            if v5 then
+                US0_1(5)
+            else
+                let v7 : int32 = v4 - 1
+                let v8 : bool = v7 = 0
+                if v8 then
+                    US0_1(4)
+                else
+                    let v10 : int32 = v7 - 1
+                    let v11 : bool = v10 = 0
+                    if v11 then
+                        US0_1(4)
+                    else
+                        let v13 : int32 = v10 - 1
+                        let v14 : bool = v13 = 0
+                        if v14 then
+                            US0_1(5)
+                        else
+                            let v16 : int32 = v13 - 1
+                            let v17 : bool = v16 = 0
+                            if v17 then
+                                US0_1(2)
+                            else
+                                let v19 : int32 = v16 - 1
+                                US0_0
+        let v31 : int32 =
+            match v25 with
+            | US0_0 -&gt; (* None *)
+                failwith&lt;int32&gt; "create_sequential_roller / end of list"
+            | US0_1(v26) -&gt; (* Some *)
+                let v27 : int32 = v0.l0
+                let v28 : int32 = v27 + 1
+                v0.l0 &lt;- v28
+                v26
+        let v32 : UH0 = UH0_0(v31, v1)
+        let v33 : int32 = v2 + 1
+        method1(v0, v32, v33)
+    else
+        let v480 : US1 =
+            match v1 with
+            | UH0_0(v36, v37) -&gt; (* Cons *)
+                let v38 : bool = v36 &gt; 1
+                if v38 then
+                    let v39 : int32 = v36 - 1
+                    let v40 : int32 = v39 * 1296
+                    let v41 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {v36} / value: {v40}"
+                    System.Console.WriteLine v41
+                    match v37 with
+                    | UH0_0(v43, v44) -&gt; (* Cons *)
+                        let v45 : bool = v43 &gt; 1
+                        if v45 then
+                            let v46 : int32 = v43 - 1
+                            let v47 : int32 = v46 * 216
+                            let v48 : string = $"accumulate_dice_rolls / power: {3} / acc: {v40} / roll: {v43} / value: {v47}"
+                            System.Console.WriteLine v48
+                            let v49 : int32 = v40 + v47
+                            match v44 with
+                            | UH0_0(v51, v52) -&gt; (* Cons *)
+                                let v53 : bool = v51 &gt; 1
+                                if v53 then
+                                    let v54 : int32 = v51 - 1
+                                    let v55 : int32 = v54 * 36
+                                    let v56 : string = $"accumulate_dice_rolls / power: {2} / acc: {v49} / roll: {v51} / value: {v55}"
+                                    System.Console.WriteLine v56
+                                    let v57 : int32 = v49 + v55
+                                    match v52 with
+                                    | UH0_0(v59, v60) -&gt; (* Cons *)
+                                        let v61 : bool = v59 &gt; 1
+                                        if v61 then
+                                            let v62 : int32 = v59 - 1
+                                            let v63 : int32 = v62 * 6
+                                            let v64 : string = $"accumulate_dice_rolls / power: {1} / acc: {v57} / roll: {v59} / value: {v63}"
+                                            System.Console.WriteLine v64
+                                            let v65 : int32 = v57 + v63
+                                            match v60 with
+                                            | UH0_0(v67, v68) -&gt; (* Cons *)
+                                                let v69 : bool = v67 &gt; 1
+                                                if v69 then
+                                                    let v70 : int32 = v67 - 1
+                                                    let v71 : string = $"accumulate_dice_rolls / power: {0} / acc: {v65} / roll: {v67} / value: {v70}"
+                                                    System.Console.WriteLine v71
+                                                    let v72 : int32 = v65 + v70
+                                                    let v73 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v72}"
+                                                    System.Console.WriteLine v73
+                                                    let v74 : int32 = v72 + 1
+                                                    US1_1(v74, v68)
+                                                else
+                                                    let v76 : string = $"accumulate_dice_rolls / power: {0} / acc: {v65} / roll: {v67}"
+                                                    System.Console.WriteLine v76
+                                                    let v77 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v65}"
+                                                    System.Console.WriteLine v77
+                                                    let v78 : int32 = v65 + 1
+                                                    US1_1(v78, v68)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v83 : string = $"accumulate_dice_rolls / power: {1} / acc: {v57} / roll: {v59}"
+                                            System.Console.WriteLine v83
+                                            match v60 with
+                                            | UH0_0(v85, v86) -&gt; (* Cons *)
+                                                let v87 : bool = v85 &gt; 1
+                                                if v87 then
+                                                    let v88 : int32 = v85 - 1
+                                                    let v89 : string = $"accumulate_dice_rolls / power: {0} / acc: {v57} / roll: {v85} / value: {v88}"
+                                                    System.Console.WriteLine v89
+                                                    let v90 : int32 = v57 + v88
+                                                    let v91 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v90}"
+                                                    System.Console.WriteLine v91
+                                                    let v92 : int32 = v90 + 1
+                                                    US1_1(v92, v86)
+                                                else
+                                                    let v94 : string = $"accumulate_dice_rolls / power: {0} / acc: {v57} / roll: {v85}"
+                                                    System.Console.WriteLine v94
+                                                    let v95 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v57}"
+                                                    System.Console.WriteLine v95
+                                                    let v96 : int32 = v57 + 1
+                                                    US1_1(v96, v86)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v104 : string = $"accumulate_dice_rolls / power: {2} / acc: {v49} / roll: {v51}"
+                                    System.Console.WriteLine v104
+                                    match v52 with
+                                    | UH0_0(v106, v107) -&gt; (* Cons *)
+                                        let v108 : bool = v106 &gt; 1
+                                        if v108 then
+                                            let v109 : int32 = v106 - 1
+                                            let v110 : int32 = v109 * 6
+                                            let v111 : string = $"accumulate_dice_rolls / power: {1} / acc: {v49} / roll: {v106} / value: {v110}"
+                                            System.Console.WriteLine v111
+                                            let v112 : int32 = v49 + v110
+                                            match v107 with
+                                            | UH0_0(v114, v115) -&gt; (* Cons *)
+                                                let v116 : bool = v114 &gt; 1
+                                                if v116 then
+                                                    let v117 : int32 = v114 - 1
+                                                    let v118 : string = $"accumulate_dice_rolls / power: {0} / acc: {v112} / roll: {v114} / value: {v117}"
+                                                    System.Console.WriteLine v118
+                                                    let v119 : int32 = v112 + v117
+                                                    let v120 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v119}"
+                                                    System.Console.WriteLine v120
+                                                    let v121 : int32 = v119 + 1
+                                                    US1_1(v121, v115)
+                                                else
+                                                    let v123 : string = $"accumulate_dice_rolls / power: {0} / acc: {v112} / roll: {v114}"
+                                                    System.Console.WriteLine v123
+                                                    let v124 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v112}"
+                                                    System.Console.WriteLine v124
+                                                    let v125 : int32 = v112 + 1
+                                                    US1_1(v125, v115)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v130 : string = $"accumulate_dice_rolls / power: {1} / acc: {v49} / roll: {v106}"
+                                            System.Console.WriteLine v130
+                                            match v107 with
+                                            | UH0_0(v132, v133) -&gt; (* Cons *)
+                                                let v134 : bool = v132 &gt; 1
+                                                if v134 then
+                                                    let v135 : int32 = v132 - 1
+                                                    let v136 : string = $"accumulate_dice_rolls / power: {0} / acc: {v49} / roll: {v132} / value: {v135}"
+                                                    System.Console.WriteLine v136
+                                                    let v137 : int32 = v49 + v135
+                                                    let v138 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v137}"
+                                                    System.Console.WriteLine v138
+                                                    let v139 : int32 = v137 + 1
+                                                    US1_1(v139, v133)
+                                                else
+                                                    let v141 : string = $"accumulate_dice_rolls / power: {0} / acc: {v49} / roll: {v132}"
+                                                    System.Console.WriteLine v141
+                                                    let v142 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v49}"
+                                                    System.Console.WriteLine v142
+                                                    let v143 : int32 = v49 + 1
+                                                    US1_1(v143, v133)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                        else
+                            let v154 : string = $"accumulate_dice_rolls / power: {3} / acc: {v40} / roll: {v43}"
+                            System.Console.WriteLine v154
+                            match v44 with
+                            | UH0_0(v156, v157) -&gt; (* Cons *)
+                                let v158 : bool = v156 &gt; 1
+                                if v158 then
+                                    let v159 : int32 = v156 - 1
+                                    let v160 : int32 = v159 * 36
+                                    let v161 : string = $"accumulate_dice_rolls / power: {2} / acc: {v40} / roll: {v156} / value: {v160}"
+                                    System.Console.WriteLine v161
+                                    let v162 : int32 = v40 + v160
+                                    match v157 with
+                                    | UH0_0(v164, v165) -&gt; (* Cons *)
+                                        let v166 : bool = v164 &gt; 1
+                                        if v166 then
+                                            let v167 : int32 = v164 - 1
+                                            let v168 : int32 = v167 * 6
+                                            let v169 : string = $"accumulate_dice_rolls / power: {1} / acc: {v162} / roll: {v164} / value: {v168}"
+                                            System.Console.WriteLine v169
+                                            let v170 : int32 = v162 + v168
+                                            match v165 with
+                                            | UH0_0(v172, v173) -&gt; (* Cons *)
+                                                let v174 : bool = v172 &gt; 1
+                                                if v174 then
+                                                    let v175 : int32 = v172 - 1
+                                                    let v176 : string = $"accumulate_dice_rolls / power: {0} / acc: {v170} / roll: {v172} / value: {v175}"
+                                                    System.Console.WriteLine v176
+                                                    let v177 : int32 = v170 + v175
+                                                    let v178 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v177}"
+                                                    System.Console.WriteLine v178
+                                                    let v179 : int32 = v177 + 1
+                                                    US1_1(v179, v173)
+                                                else
+                                                    let v181 : string = $"accumulate_dice_rolls / power: {0} / acc: {v170} / roll: {v172}"
+                                                    System.Console.WriteLine v181
+                                                    let v182 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v170}"
+                                                    System.Console.WriteLine v182
+                                                    let v183 : int32 = v170 + 1
+                                                    US1_1(v183, v173)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v188 : string = $"accumulate_dice_rolls / power: {1} / acc: {v162} / roll: {v164}"
+                                            System.Console.WriteLine v188
+                                            match v165 with
+                                            | UH0_0(v190, v191) -&gt; (* Cons *)
+                                                let v192 : bool = v190 &gt; 1
+                                                if v192 then
+                                                    let v193 : int32 = v190 - 1
+                                                    let v194 : string = $"accumulate_dice_rolls / power: {0} / acc: {v162} / roll: {v190} / value: {v193}"
+                                                    System.Console.WriteLine v194
+                                                    let v195 : int32 = v162 + v193
+                                                    let v196 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v195}"
+                                                    System.Console.WriteLine v196
+                                                    let v197 : int32 = v195 + 1
+                                                    US1_1(v197, v191)
+                                                else
+                                                    let v199 : string = $"accumulate_dice_rolls / power: {0} / acc: {v162} / roll: {v190}"
+                                                    System.Console.WriteLine v199
+                                                    let v200 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v162}"
+                                                    System.Console.WriteLine v200
+                                                    let v201 : int32 = v162 + 1
+                                                    US1_1(v201, v191)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v209 : string = $"accumulate_dice_rolls / power: {2} / acc: {v40} / roll: {v156}"
+                                    System.Console.WriteLine v209
+                                    match v157 with
+                                    | UH0_0(v211, v212) -&gt; (* Cons *)
+                                        let v213 : bool = v211 &gt; 1
+                                        if v213 then
+                                            let v214 : int32 = v211 - 1
+                                            let v215 : int32 = v214 * 6
+                                            let v216 : string = $"accumulate_dice_rolls / power: {1} / acc: {v40} / roll: {v211} / value: {v215}"
+                                            System.Console.WriteLine v216
+                                            let v217 : int32 = v40 + v215
+                                            match v212 with
+                                            | UH0_0(v219, v220) -&gt; (* Cons *)
+                                                let v221 : bool = v219 &gt; 1
+                                                if v221 then
+                                                    let v222 : int32 = v219 - 1
+                                                    let v223 : string = $"accumulate_dice_rolls / power: {0} / acc: {v217} / roll: {v219} / value: {v222}"
+                                                    System.Console.WriteLine v223
+                                                    let v224 : int32 = v217 + v222
+                                                    let v225 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v224}"
+                                                    System.Console.WriteLine v225
+                                                    let v226 : int32 = v224 + 1
+                                                    US1_1(v226, v220)
+                                                else
+                                                    let v228 : string = $"accumulate_dice_rolls / power: {0} / acc: {v217} / roll: {v219}"
+                                                    System.Console.WriteLine v228
+                                                    let v229 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v217}"
+                                                    System.Console.WriteLine v229
+                                                    let v230 : int32 = v217 + 1
+                                                    US1_1(v230, v220)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v235 : string = $"accumulate_dice_rolls / power: {1} / acc: {v40} / roll: {v211}"
+                                            System.Console.WriteLine v235
+                                            match v212 with
+                                            | UH0_0(v237, v238) -&gt; (* Cons *)
+                                                let v239 : bool = v237 &gt; 1
+                                                if v239 then
+                                                    let v240 : int32 = v237 - 1
+                                                    let v241 : string = $"accumulate_dice_rolls / power: {0} / acc: {v40} / roll: {v237} / value: {v240}"
+                                                    System.Console.WriteLine v241
+                                                    let v242 : int32 = v40 + v240
+                                                    let v243 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v242}"
+                                                    System.Console.WriteLine v243
+                                                    let v244 : int32 = v242 + 1
+                                                    US1_1(v244, v238)
+                                                else
+                                                    let v246 : string = $"accumulate_dice_rolls / power: {0} / acc: {v40} / roll: {v237}"
+                                                    System.Console.WriteLine v246
+                                                    let v247 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v40}"
+                                                    System.Console.WriteLine v247
+                                                    let v248 : int32 = v40 + 1
+                                                    US1_1(v248, v238)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                    | UH0_1 -&gt; (* Nil *)
+                        US1_0
+                else
+                    let v262 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {v36}"
+                    System.Console.WriteLine v262
+                    match v37 with
+                    | UH0_0(v264, v265) -&gt; (* Cons *)
+                        let v266 : bool = v264 &gt; 1
+                        if v266 then
+                            let v267 : int32 = v264 - 1
+                            let v268 : int32 = v267 * 216
+                            let v269 : string = $"accumulate_dice_rolls / power: {3} / acc: {0} / roll: {v264} / value: {v268}"
+                            System.Console.WriteLine v269
+                            match v265 with
+                            | UH0_0(v271, v272) -&gt; (* Cons *)
+                                let v273 : bool = v271 &gt; 1
+                                if v273 then
+                                    let v274 : int32 = v271 - 1
+                                    let v275 : int32 = v274 * 36
+                                    let v276 : string = $"accumulate_dice_rolls / power: {2} / acc: {v268} / roll: {v271} / value: {v275}"
+                                    System.Console.WriteLine v276
+                                    let v277 : int32 = v268 + v275
+                                    match v272 with
+                                    | UH0_0(v279, v280) -&gt; (* Cons *)
+                                        let v281 : bool = v279 &gt; 1
+                                        if v281 then
+                                            let v282 : int32 = v279 - 1
+                                            let v283 : int32 = v282 * 6
+                                            let v284 : string = $"accumulate_dice_rolls / power: {1} / acc: {v277} / roll: {v279} / value: {v283}"
+                                            System.Console.WriteLine v284
+                                            let v285 : int32 = v277 + v283
+                                            match v280 with
+                                            | UH0_0(v287, v288) -&gt; (* Cons *)
+                                                let v289 : bool = v287 &gt; 1
+                                                if v289 then
+                                                    let v290 : int32 = v287 - 1
+                                                    let v291 : string = $"accumulate_dice_rolls / power: {0} / acc: {v285} / roll: {v287} / value: {v290}"
+                                                    System.Console.WriteLine v291
+                                                    let v292 : int32 = v285 + v290
+                                                    let v293 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v292}"
+                                                    System.Console.WriteLine v293
+                                                    let v294 : int32 = v292 + 1
+                                                    US1_1(v294, v288)
+                                                else
+                                                    let v296 : string = $"accumulate_dice_rolls / power: {0} / acc: {v285} / roll: {v287}"
+                                                    System.Console.WriteLine v296
+                                                    let v297 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v285}"
+                                                    System.Console.WriteLine v297
+                                                    let v298 : int32 = v285 + 1
+                                                    US1_1(v298, v288)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v303 : string = $"accumulate_dice_rolls / power: {1} / acc: {v277} / roll: {v279}"
+                                            System.Console.WriteLine v303
+                                            match v280 with
+                                            | UH0_0(v305, v306) -&gt; (* Cons *)
+                                                let v307 : bool = v305 &gt; 1
+                                                if v307 then
+                                                    let v308 : int32 = v305 - 1
+                                                    let v309 : string = $"accumulate_dice_rolls / power: {0} / acc: {v277} / roll: {v305} / value: {v308}"
+                                                    System.Console.WriteLine v309
+                                                    let v310 : int32 = v277 + v308
+                                                    let v311 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v310}"
+                                                    System.Console.WriteLine v311
+                                                    let v312 : int32 = v310 + 1
+                                                    US1_1(v312, v306)
+                                                else
+                                                    let v314 : string = $"accumulate_dice_rolls / power: {0} / acc: {v277} / roll: {v305}"
+                                                    System.Console.WriteLine v314
+                                                    let v315 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v277}"
+                                                    System.Console.WriteLine v315
+                                                    let v316 : int32 = v277 + 1
+                                                    US1_1(v316, v306)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v324 : string = $"accumulate_dice_rolls / power: {2} / acc: {v268} / roll: {v271}"
+                                    System.Console.WriteLine v324
+                                    match v272 with
+                                    | UH0_0(v326, v327) -&gt; (* Cons *)
+                                        let v328 : bool = v326 &gt; 1
+                                        if v328 then
+                                            let v329 : int32 = v326 - 1
+                                            let v330 : int32 = v329 * 6
+                                            let v331 : string = $"accumulate_dice_rolls / power: {1} / acc: {v268} / roll: {v326} / value: {v330}"
+                                            System.Console.WriteLine v331
+                                            let v332 : int32 = v268 + v330
+                                            match v327 with
+                                            | UH0_0(v334, v335) -&gt; (* Cons *)
+                                                let v336 : bool = v334 &gt; 1
+                                                if v336 then
+                                                    let v337 : int32 = v334 - 1
+                                                    let v338 : string = $"accumulate_dice_rolls / power: {0} / acc: {v332} / roll: {v334} / value: {v337}"
+                                                    System.Console.WriteLine v338
+                                                    let v339 : int32 = v332 + v337
+                                                    let v340 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v339}"
+                                                    System.Console.WriteLine v340
+                                                    let v341 : int32 = v339 + 1
+                                                    US1_1(v341, v335)
+                                                else
+                                                    let v343 : string = $"accumulate_dice_rolls / power: {0} / acc: {v332} / roll: {v334}"
+                                                    System.Console.WriteLine v343
+                                                    let v344 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v332}"
+                                                    System.Console.WriteLine v344
+                                                    let v345 : int32 = v332 + 1
+                                                    US1_1(v345, v335)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v350 : string = $"accumulate_dice_rolls / power: {1} / acc: {v268} / roll: {v326}"
+                                            System.Console.WriteLine v350
+                                            match v327 with
+                                            | UH0_0(v352, v353) -&gt; (* Cons *)
+                                                let v354 : bool = v352 &gt; 1
+                                                if v354 then
+                                                    let v355 : int32 = v352 - 1
+                                                    let v356 : string = $"accumulate_dice_rolls / power: {0} / acc: {v268} / roll: {v352} / value: {v355}"
+                                                    System.Console.WriteLine v356
+                                                    let v357 : int32 = v268 + v355
+                                                    let v358 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v357}"
+                                                    System.Console.WriteLine v358
+                                                    let v359 : int32 = v357 + 1
+                                                    US1_1(v359, v353)
+                                                else
+                                                    let v361 : string = $"accumulate_dice_rolls / power: {0} / acc: {v268} / roll: {v352}"
+                                                    System.Console.WriteLine v361
+                                                    let v362 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v268}"
+                                                    System.Console.WriteLine v362
+                                                    let v363 : int32 = v268 + 1
+                                                    US1_1(v363, v353)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                        else
+                            let v374 : string = $"accumulate_dice_rolls / power: {3} / acc: {0} / roll: {v264}"
+                            System.Console.WriteLine v374
+                            match v265 with
+                            | UH0_0(v376, v377) -&gt; (* Cons *)
+                                let v378 : bool = v376 &gt; 1
+                                if v378 then
+                                    let v379 : int32 = v376 - 1
+                                    let v380 : int32 = v379 * 36
+                                    let v381 : string = $"accumulate_dice_rolls / power: {2} / acc: {0} / roll: {v376} / value: {v380}"
+                                    System.Console.WriteLine v381
+                                    match v377 with
+                                    | UH0_0(v383, v384) -&gt; (* Cons *)
+                                        let v385 : bool = v383 &gt; 1
+                                        if v385 then
+                                            let v386 : int32 = v383 - 1
+                                            let v387 : int32 = v386 * 6
+                                            let v388 : string = $"accumulate_dice_rolls / power: {1} / acc: {v380} / roll: {v383} / value: {v387}"
+                                            System.Console.WriteLine v388
+                                            let v389 : int32 = v380 + v387
+                                            match v384 with
+                                            | UH0_0(v391, v392) -&gt; (* Cons *)
+                                                let v393 : bool = v391 &gt; 1
+                                                if v393 then
+                                                    let v394 : int32 = v391 - 1
+                                                    let v395 : string = $"accumulate_dice_rolls / power: {0} / acc: {v389} / roll: {v391} / value: {v394}"
+                                                    System.Console.WriteLine v395
+                                                    let v396 : int32 = v389 + v394
+                                                    let v397 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v396}"
+                                                    System.Console.WriteLine v397
+                                                    let v398 : int32 = v396 + 1
+                                                    US1_1(v398, v392)
+                                                else
+                                                    let v400 : string = $"accumulate_dice_rolls / power: {0} / acc: {v389} / roll: {v391}"
+                                                    System.Console.WriteLine v400
+                                                    let v401 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v389}"
+                                                    System.Console.WriteLine v401
+                                                    let v402 : int32 = v389 + 1
+                                                    US1_1(v402, v392)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v407 : string = $"accumulate_dice_rolls / power: {1} / acc: {v380} / roll: {v383}"
+                                            System.Console.WriteLine v407
+                                            match v384 with
+                                            | UH0_0(v409, v410) -&gt; (* Cons *)
+                                                let v411 : bool = v409 &gt; 1
+                                                if v411 then
+                                                    let v412 : int32 = v409 - 1
+                                                    let v413 : string = $"accumulate_dice_rolls / power: {0} / acc: {v380} / roll: {v409} / value: {v412}"
+                                                    System.Console.WriteLine v413
+                                                    let v414 : int32 = v380 + v412
+                                                    let v415 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v414}"
+                                                    System.Console.WriteLine v415
+                                                    let v416 : int32 = v414 + 1
+                                                    US1_1(v416, v410)
+                                                else
+                                                    let v418 : string = $"accumulate_dice_rolls / power: {0} / acc: {v380} / roll: {v409}"
+                                                    System.Console.WriteLine v418
+                                                    let v419 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v380}"
+                                                    System.Console.WriteLine v419
+                                                    let v420 : int32 = v380 + 1
+                                                    US1_1(v420, v410)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                                else
+                                    let v428 : string = $"accumulate_dice_rolls / power: {2} / acc: {0} / roll: {v376}"
+                                    System.Console.WriteLine v428
+                                    match v377 with
+                                    | UH0_0(v430, v431) -&gt; (* Cons *)
+                                        let v432 : bool = v430 &gt; 1
+                                        if v432 then
+                                            let v433 : int32 = v430 - 1
+                                            let v434 : int32 = v433 * 6
+                                            let v435 : string = $"accumulate_dice_rolls / power: {1} / acc: {0} / roll: {v430} / value: {v434}"
+                                            System.Console.WriteLine v435
+                                            match v431 with
+                                            | UH0_0(v437, v438) -&gt; (* Cons *)
+                                                let v439 : bool = v437 &gt; 1
+                                                if v439 then
+                                                    let v440 : int32 = v437 - 1
+                                                    let v441 : string = $"accumulate_dice_rolls / power: {0} / acc: {v434} / roll: {v437} / value: {v440}"
+                                                    System.Console.WriteLine v441
+                                                    let v442 : int32 = v434 + v440
+                                                    let v443 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v442}"
+                                                    System.Console.WriteLine v443
+                                                    let v444 : int32 = v442 + 1
+                                                    US1_1(v444, v438)
+                                                else
+                                                    let v446 : string = $"accumulate_dice_rolls / power: {0} / acc: {v434} / roll: {v437}"
+                                                    System.Console.WriteLine v446
+                                                    let v447 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v434}"
+                                                    System.Console.WriteLine v447
+                                                    let v448 : int32 = v434 + 1
+                                                    US1_1(v448, v438)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                        else
+                                            let v453 : string = $"accumulate_dice_rolls / power: {1} / acc: {0} / roll: {v430}"
+                                            System.Console.WriteLine v453
+                                            match v431 with
+                                            | UH0_0(v455, v456) -&gt; (* Cons *)
+                                                let v457 : bool = v455 &gt; 1
+                                                if v457 then
+                                                    let v458 : int32 = v455 - 1
+                                                    let v459 : string = $"accumulate_dice_rolls / power: {0} / acc: {0} / roll: {v455} / value: {v458}"
+                                                    System.Console.WriteLine v459
+                                                    let v460 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v458}"
+                                                    System.Console.WriteLine v460
+                                                    let v461 : int32 = v458 + 1
+                                                    US1_1(v461, v456)
+                                                else
+                                                    let v463 : string = $"accumulate_dice_rolls / power: {0} / acc: {0} / roll: {v455}"
+                                                    System.Console.WriteLine v463
+                                                    let v464 : string = $"accumulate_dice_rolls / power: {-1} / acc: {0}"
+                                                    System.Console.WriteLine v464
+                                                    US1_1(1, v456)
+                                            | UH0_1 -&gt; (* Nil *)
+                                                US1_0
+                                    | UH0_1 -&gt; (* Nil *)
+                                        US1_0
+                            | UH0_1 -&gt; (* Nil *)
+                                US1_0
+                    | UH0_1 -&gt; (* Nil *)
+                        US1_0
+            | UH0_1 -&gt; (* Nil *)
+                US1_0
+        match v480 with
+        | US1_1(v481, v482) -&gt; (* Some *)
+            let v483 : bool = v481 &lt;= 2000
+            if v483 then
+                v481
+            else
+                let v484 : int32 = v0.l0
+                let v485 : bool = v484 = 0
+                let v505 : US0 =
+                    if v485 then
+                        US0_1(5)
+                    else
+                        let v487 : int32 = v484 - 1
+                        let v488 : bool = v487 = 0
+                        if v488 then
+                            US0_1(4)
+                        else
+                            let v490 : int32 = v487 - 1
+                            let v491 : bool = v490 = 0
+                            if v491 then
+                                US0_1(4)
+                            else
+                                let v493 : int32 = v490 - 1
+                                let v494 : bool = v493 = 0
+                                if v494 then
+                                    US0_1(5)
+                                else
+                                    let v496 : int32 = v493 - 1
+                                    let v497 : bool = v496 = 0
+                                    if v497 then
+                                        US0_1(2)
+                                    else
+                                        let v499 : int32 = v496 - 1
+                                        US0_0
+                let v511 : int32 =
+                    match v505 with
+                    | US0_0 -&gt; (* None *)
+                        failwith&lt;int32&gt; "create_sequential_roller / end of list"
+                    | US0_1(v506) -&gt; (* Some *)
+                        let v507 : int32 = v0.l0
+                        let v508 : int32 = v507 + 1
+                        v0.l0 &lt;- v508
+                        v506
+                let v512 : UH0 = UH0_0(v511, v1)
+                let v513 : int32 = v2 + 1
+                method1(v0, v512, v513)
+        | _ -&gt;
+            let v516 : int32 = v0.l0
+            let v517 : bool = v516 = 0
+            let v537 : US0 =
+                if v517 then
+                    US0_1(5)
+                else
+                    let v519 : int32 = v516 - 1
+                    let v520 : bool = v519 = 0
+                    if v520 then
+                        US0_1(4)
+                    else
+                        let v522 : int32 = v519 - 1
+                        let v523 : bool = v522 = 0
+                        if v523 then
+                            US0_1(4)
+                        else
+                            let v525 : int32 = v522 - 1
+                            let v526 : bool = v525 = 0
+                            if v526 then
+                                US0_1(5)
+                            else
+                                let v528 : int32 = v525 - 1
+                                let v529 : bool = v528 = 0
+                                if v529 then
+                                    US0_1(2)
+                                else
+                                    let v531 : int32 = v528 - 1
+                                    US0_0
+            let v543 : int32 =
+                match v537 with
+                | US0_0 -&gt; (* None *)
+                    failwith&lt;int32&gt; "create_sequential_roller / end of list"
+                | US0_1(v538) -&gt; (* Some *)
+                    let v539 : int32 = v0.l0
+                    let v540 : int32 = v539 + 1
+                    v0.l0 &lt;- v540
+                    v538
+            let v544 : UH0 = UH0_0(v543, v1)
+            let v545 : int32 = v2 + 1
+            method1(v0, v544, v545)
+and closure0 (v0 : Mut0) () : unit =
+    let v1 : string = $"calculate_dice_count / max: {2000} / n: {5} / p: {7776}"
+    System.Console.WriteLine v1
+    let v2 : UH0 = UH0_1
+    let v3 : int32 = 0
+    let v4 : int32 = method1(v0, v2, v3)
+    ()
+and closure1 () (v0 : string) : US2 =
+    US2_1(v0)
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0} : Mut0
+    let v1 : (unit -&gt; unit) = closure0(v0)
+    let v2 : US2 = US2_0
+    let v3 : (string -&gt; US2) = closure1()
+    let v4 : US2 = try v1 (); v2 with ex -&gt; v3 ex.Message
+    let v9 : bool =
+        match v4 with
+        | US2_1(v7) -&gt; (* Some *)
+            let v8 : bool = v7 = "create_sequential_roller / end of list"
+            v8
+        | _ -&gt;
+            false
+    let v10 : string = "create_sequential_roller / end of list"
+    let v11 : US2 = US2_1(v10)
+    let v12 : string = $"_equal / actual: %A{v4} / expected: %A{v11}"
+    let v13 : bool = v9 = false
+    if v13 then
+        failwith&lt;unit&gt; v12
+method0()
+
+calculate_dice_count / max: 2000 / n: 5 / p: 7776
+accumulate_dice_rolls / power: 4 / acc: 0 / roll: 2 / value: 1296
+accumulate_dice_rolls / power: 3 / acc: 1296 / roll: 5 / value: 864
+accumulate_dice_rolls / power: 2 / acc: 2160 / roll: 4 / value: 108
+accumulate_dice_rolls / power: 1 / acc: 2268 / roll: 4 / value: 18
+accumulate_dice_rolls / power: 0 / acc: 2286 / roll: 5 / value: 4
+accumulate_dice_rolls / power: -1 / acc: 2290
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="o">//</span> <span class="n">listm</span><span class="s1">'.init_series 1i32 10 1</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">from_list</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">map_</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">roll_progressively</span> <span class="kc">None</span> <span class="n">roll_dice</span> <span class="n">false</span> <span class="mi">10</span><span class="p">)</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">stream</span><span class="o">.</span><span class="n">to_list</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.group_by_ id</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">k</span><span class="p">,</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">length</span> <span class="n">v</span> <span class="p">:</span> <span class="n">i32</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8315,7 +10804,7 @@ System.Exception: createSequentialRoller / End of list
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

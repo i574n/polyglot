@@ -13,7 +13,7 @@ if (!$fast) {
     Invoke-Dib Dice.dib
 }
 
-{ . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib fs } | Invoke-Block
+{ . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib fs Dice.dib spi } | Invoke-Block
 
 { . ../builder/dist/Builder$(GetExecutableSuffix) Dice.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
 

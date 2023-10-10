@@ -14,3 +14,9 @@ inl choose forall a b c. (fn : a -> b -> c) (a : option a) (b : option b) : opti
     match a, b with
     | Some x, Some y => fn x y |> Some
     | _ => None
+
+// // ## iter
+
+inl iter fn = function
+    | Some x => fn x
+    | None => ()

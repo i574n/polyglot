@@ -8544,7 +8544,7 @@ print_and_return / x: 5
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="take_while">take_while<a class="anchor-link" href="#take_while">¶</a></h2>
+<h2 id="iterate">iterate<a class="anchor-link" href="#iterate">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8556,19 +8556,8 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">take_while</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
-
-<span class="n">inl</span> <span class="n">take_while_</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">iterate</span> <span class="n">f</span> <span class="o">=</span>
+    <span class="n">unfold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -8588,51 +8577,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_list">to_list<a class="anchor-link" href="#to_list">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">try_item</span> <span class="n">i</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="n">st</span> <span class="o">=&gt;</span> <span class="n">st</span> <span class="p">::</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="p">[]</span>
-    <span class="n">loop</span> <span class="mi">0</span><span class="n">i32</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8642,10 +8587,9 @@ print_and_return / x: 5
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">unfold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">state</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">state</span> <span class="o">*</span> <span class="mi">6</span><span class="p">))</span> <span class="mi">1</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="n">i32</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">to_list</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">36</span><span class="p">;</span> <span class="mi">216</span><span class="p">;</span> <span class="mi">1296</span><span class="p">;</span> <span class="mi">7776</span><span class="p">;</span> <span class="mi">46656</span><span class="p">;</span> <span class="mi">279936</span> <span class="p">]</span>
+<span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">10</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1024</span>
 </pre></div>
 </div>
 </div>
@@ -8658,29 +8602,8 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * UH0
-    | UH0_1
-let rec method0 () : unit =
-    let v63 : UH0 = UH0_1
-    let v64 : UH0 = UH0_0(279936, v63)
-    let v65 : UH0 = UH0_0(46656, v64)
-    let v66 : UH0 = UH0_0(7776, v65)
-    let v67 : UH0 = UH0_0(1296, v66)
-    let v68 : UH0 = UH0_0(216, v67)
-    let v69 : UH0 = UH0_0(36, v68)
-    let v70 : UH0 = UH0_0(6, v69)
-    let v71 : UH0 = UH0_0(1, v70)
-    let v72 : UH0 = UH0_1
-    let v73 : UH0 = UH0_0(279936, v72)
-    let v74 : UH0 = UH0_0(46656, v73)
-    let v75 : UH0 = UH0_0(7776, v74)
-    let v76 : UH0 = UH0_0(1296, v75)
-    let v77 : UH0 = UH0_0(216, v76)
-    let v78 : UH0 = UH0_0(36, v77)
-    let v79 : UH0 = UH0_0(6, v78)
-    let v80 : UH0 = UH0_0(1, v79)
-    let v81 : string = $"_equal / actual: %A{v71} / expected: %A{v80}"
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: %A{1024} / expected: %A{1024}"
     ()
 method0()
 
@@ -8690,7 +8613,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8700,7 +8623,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8721,6 +8644,57 @@ method0()
         <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; loop (fn acc st) (fn'</span> <span class="p">())</span>
         <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
     <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="take_while">take_while<a class="anchor-link" href="#take_while">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">take_while</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
+
+<span class="n">inl</span> <span class="n">take_while_</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
 </pre></div>
 </div>
 </div>
@@ -9030,6 +9004,540 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_list">to_list<a class="anchor-link" href="#to_list">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">st</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">rev</span>
+    <span class="n">loop</span> <span class="p">[]</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">to_list</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">36</span><span class="p">;</span> <span class="mi">216</span><span class="p">;</span> <span class="mi">1296</span><span class="p">;</span> <span class="mi">7776</span><span class="p">;</span> <span class="mi">46656</span><span class="p">;</span> <span class="mi">279936</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+let rec method0 () : unit =
+    let v63 : UH0 = UH0_1
+    let v64 : UH0 = UH0_0(279936, v63)
+    let v65 : UH0 = UH0_0(46656, v64)
+    let v66 : UH0 = UH0_0(7776, v65)
+    let v67 : UH0 = UH0_0(1296, v66)
+    let v68 : UH0 = UH0_0(216, v67)
+    let v69 : UH0 = UH0_0(36, v68)
+    let v70 : UH0 = UH0_0(6, v69)
+    let v71 : UH0 = UH0_0(1, v70)
+    let v72 : UH0 = UH0_1
+    let v73 : UH0 = UH0_0(279936, v72)
+    let v74 : UH0 = UH0_0(46656, v73)
+    let v75 : UH0 = UH0_0(7776, v74)
+    let v76 : UH0 = UH0_0(1296, v75)
+    let v77 : UH0 = UH0_0(216, v76)
+    let v78 : UH0 = UH0_0(36, v77)
+    let v79 : UH0 = UH0_0(6, v78)
+    let v80 : UH0 = UH0_0(1, v79)
+    let v81 : string = $"_equal / actual: %A{v71} / expected: %A{v80}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="indexed">indexed<a class="anchor-link" href="#indexed">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">st</span><span class="p">),</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
+
+<span class="n">inl</span> <span class="n">indexed_</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">st</span><span class="p">),</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">from_list</span>
+<span class="o">|&gt;</span> <span class="n">indexed</span>
+<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mi">5</span><span class="n">i32</span><span class="p">,</span> <span class="mi">10</span><span class="n">i32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="map">map<a class="anchor-link" href="#map">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span> <span class="n">fn</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; StreamCons (fn st, fun () =&gt; loop (fn'</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="n">s</span>
+
+<span class="n">inl</span> <span class="n">map_</span> <span class="n">fn</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; StreamCons (fn st, fun () =&gt; loop (fn'</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
+<span class="o">|&gt;</span> <span class="n">from_list</span>
+<span class="o">|&gt;</span> <span class="nb">map</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">10</span><span class="n">i32</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: %A{10} / expected: %A{10}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="zip_with">zip_with<a class="anchor-link" href="#zip_with">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">zip_with</span> <span class="n">fn</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">fn1</span><span class="p">),</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st2</span><span class="p">,</span> <span class="n">fn2</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">st1</span> <span class="n">st2</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">fn1</span> <span class="p">())</span> <span class="p">(</span><span class="n">fn2</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span><span class="p">,</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span>
+
+<span class="n">inl</span> <span class="n">zip_with_</span> <span class="n">fn</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">fn1</span><span class="p">),</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st2</span><span class="p">,</span> <span class="n">fn2</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">st1</span> <span class="n">st2</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">fn1</span> <span class="p">())</span> <span class="p">(</span><span class="n">fn2</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span><span class="p">,</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="p">((</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">),</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">))</span>
+<span class="o">||&gt;</span> <span class="n">zip_with</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">2</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: %A{6} / expected: %A{6}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="zip">zip<a class="anchor-link" href="#zip">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">zip</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
+    <span class="n">zip_with</span> <span class="n">pair</span> <span class="n">s1</span> <span class="n">s2</span>
+
+<span class="n">inl</span> <span class="n">zip_</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
+    <span class="n">zip_with_</span> <span class="n">pair</span> <span class="n">s1</span> <span class="n">s2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="p">((</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">),</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">))</span>
+<span class="o">||&gt;</span> <span class="nb">zip</span>
+<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="unzip">unzip<a class="anchor-link" href="#unzip">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unzip</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
+        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">loop</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
+            <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">xs</span><span class="p">),</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">ys</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">pair</span> <span class="n">StreamNil</span> <span class="n">StreamNil</span>
+    <span class="n">loop</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
+<span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">from_list</span>
+<span class="o">|&gt;</span> <span class="n">unzip</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=&gt;</span>
+    <span class="n">x</span> <span class="o">|&gt;</span> <span class="nb">sum</span>
+    <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">45</span>
+
+    <span class="n">y</span> <span class="o">|&gt;</span> <span class="nb">sum</span>
+    <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">45</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let v0 : string = $"_equal / actual: %A{45} / expected: %A{45}"
+    let v1 : string = $"_equal / actual: %A{45} / expected: %A{45}"
+    ()
+method0()
+
 </pre>
 </div>
 </div>

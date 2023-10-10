@@ -1339,9 +1339,9 @@ union force t =
     | ExternalForce : t * one_body_force
     | InternalForce : t * t * two_body_force
 
-nominal multi_particle_state dim = seq.seq dim particle_state
+nominal multi_particle_state = stream.stream particle_state
 
-nominal d_multi_particle_state dim = seq.seq dim d_particle_state
+nominal d_multi_particle_state = stream.stream d_particle_state
 
 inl force_on n s force =
     match force with
@@ -1349,71 +1349,72 @@ inl force_on n s force =
         if n = n0
         then f_one_body
         else fun _ => zero_vec ()
-        |> Some
     | InternalForce (n0, n1, f_two_body) =>
         if n = n0
-        then n1 |> s |> optionm.map f_two_body
+        then s |> stream.try_item n1 |> optionm.map f_two_body
         elif n = n1
-        then n0 |> s |> optionm.map f_two_body
-        else Some (fun _ => zero_vec ())
+        then s |> stream.try_item n0 |> optionm.map f_two_body
+        else None
+        |> optionm'.default_value (fun _ => zero_vec ())
 
 inl forces_on n (multi_particle_state sts) fs =
     fs
     |> listm.map (force_on n sts)
-    |> listm'.choose id
 
 inl newton_second_mps fs ((multi_particle_state sts) as mpst) =
-    fun n =>
-        sts n
-        |> optionm.map ((newton_second_ps (forces_on n (multi_particle_state sts) fs)))
-    |> d_multi_particle_state
+    inl deriv (n, st) =
+        newton_second_ps (forces_on n mpst fs) st
+    sts |> stream.indexed_ |> stream.map deriv |> d_multi_particle_state
 
-instance (+++) d_multi_particle_state dim {number} =
+instance (+++) d_multi_particle_state =
     fun (d_multi_particle_state dsts1) (d_multi_particle_state dsts2) =>
         (dsts1, dsts2)
-        ||> seq.zip_with (optionm'.choose (+++))
+        ||> stream.zip_with (+++)
         |> d_multi_particle_state
 
-instance scale d_multi_particle_state dim {number} = fun w (d_multi_particle_state dsts) =>
-    dsts >> (optionm'.choose scale (Some w))
+instance scale d_multi_particle_state = fun w (d_multi_particle_state dsts) =>
+    dsts
+    |> stream.map (scale w)
     |> d_multi_particle_state
 
-instance shift multi_particle_state dim {number} = fun dt dsts (multi_particle_state sts) =>
+instance shift multi_particle_state = fun dt dsts (multi_particle_state sts) =>
     inl (d_multi_particle_state dsts) =
         real
             match dsts with
             | d_multi_particle_state _ => dsts
     (dsts, sts)
-    ||> seq.zip_with (optionm'.choose (shift dt))
-    |> seq.memoize_
+    ||> stream.zip_with (shift dt)
+    |> stream.memoize_
+    |> fun x => x ()
     |> multi_particle_state
 
-inl euler_cromer_mps forall dim {number}. dt : numerical_method (multi_particle_state dim) (d_multi_particle_state dim) =
+inl euler_cromer_mps dt : numerical_method multi_particle_state d_multi_particle_state =
     fun deriv ((multi_particle_state sts0) as mpst0) =>
         inl (multi_particle_state sts1) = euler dt deriv mpst0
-        fun n =>
-            (sts0, sts1)
-            ||> seq.zip n
-            |> function
-                | Some (particle_state st0), Some (particle_state st1) =>
-                    particle_state {
-                        st1 with
-                            pos_vec = st0.pos_vec ^+^ st1.velocity ^* dt
-                    }
-                    |> Some
-                | _ => None
+        (sts0, sts1)
+        ||> stream.zip
+        |> stream.map (fun ((particle_state st0), (particle_state st1)) =>
+            particle_state {
+                st1 with
+                    pos_vec = st0.pos_vec ^+^ st1.velocity ^* dt
+            }
+        )
         |> multi_particle_state
 
-inl update_mps (method : numerical_method (multi_particle_state _) (d_multi_particle_state _)) =
+inl update_mps (method : numerical_method multi_particle_state d_multi_particle_state) =
     newton_second_mps >> method
 
-inl states_mps (method : numerical_method (multi_particle_state _) (d_multi_particle_state _)) =
+inl states_mps (method : numerical_method multi_particle_state d_multi_particle_state) =
     newton_second_mps
     >> method
     >> (fun x (multi_particle_state y) =>
-        y |> seq.memoize_ |> multi_particle_state |> x
+        y
+        |> stream.memoize_
+        |> (fun x => x ())
+        |> multi_particle_state |> x
     )
-    >> seq.iterate_
+    // >> stream.iterate
+    >> seq.iterate'
 
 inl kinetic_energy (particle_state st) =
     inl m = st.mass
@@ -1421,8 +1422,9 @@ inl kinetic_energy (particle_state st) =
     0.5 * m * v ** 2
 
 inl system_ke (multi_particle_state sts) =
-    sts >> optionm.map kinetic_energy
-    |> seq.sum_
+    sts
+    |> stream.map kinetic_energy
+    |> stream.sum_
 
 inl linear_spring_pe k re (particle_state st1) (particle_state st2) =
     inl r1 = st1.pos_vec
@@ -1437,26 +1439,10 @@ inl earth_surface_gravity_pe (particle_state st) =
     inl z = st.pos_vec.z
     m * g * z
 
-inl two_springs_pe (multi_particle_state sts) =
-    match sts 0, sts 1 with
-    | Some st0, Some st1 =>
-        linear_spring_pe 100 0.5 (default_particle_state ()) st0
-        + linear_spring_pe 100 0.5 st0 st1
-        + earth_surface_gravity_pe st0
-        + earth_surface_gravity_pe st1
-        |> Some
-    | _ => None
-
-inl two_springs_me mpst =
-    system_ke mpst + (two_springs_pe mpst |> optionm'.default_value 0)
-
 inl ball_radius () = 0.03
 
 inl billiard_forces k =
-    [ InternalForce (0, 1, billiard_force k (2 * ball_radius ())) ]
-
-inl billiard_update n_method k dt =
-    update_mps (n_method dt) (billiard_forces k)
+    [ InternalForce (0i32, 1, billiard_force k (2 * ball_radius ())) ]
 
 inl billiard_initial () =
     inl ball_mass = 0.160
@@ -1475,7 +1461,7 @@ inl billiard_initial () =
                 velocity = zero_vec ()
         }
     ]
-    |> seq.from_list
+    |> stream.from_list
     |> multi_particle_state
 
 inl billiard_states ~n_method k dt =
@@ -1485,7 +1471,7 @@ inl billiard_states_finite n_method k dt =
     billiard_states n_method k dt
     >> Some
     |> seq.take_while_ (fun (multi_particle_state mpst) (_ : i32) =>
-        match mpst 0 with
+        match mpst |> stream.try_item 0i32 with
         | Some st =>
             st.time <= 10
         | None => false
@@ -1497,28 +1483,31 @@ inl momentum (particle_state st) =
     m *^ v
 
 inl system_p (multi_particle_state sts) =
-    sts >> optionm.map momentum
-    |> seq.fold (^+^) (zero_vec ())
+    sts
+    |> stream.map momentum
+    |> stream.fold (^+^) (zero_vec ())
 
 inl time_ke_ec_x, time_ke_ec_y =
     billiard_states_finite euler_cromer_mps 30 0.03
     |> listm.map (fun (multi_particle_state mpst) =>
-        mpst 0i32
+        mpst |> stream.try_item 0i32
         |> optionm.map (fun st =>
             st.time, system_ke (multi_particle_state mpst)
         )
     )
+    // |> stream.to_list
     |> listm'.choose id
     |> listm'.unzip
 
 inl time_ke_rk4_x, time_ke_rk4_y =
     billiard_states_finite runge_kutta_4 30 0.03
     |> listm.map (fun (multi_particle_state mpst) =>
-        mpst 0i32
+        mpst |> stream.try_item 0i32
         |> optionm.map (fun st =>
             st.time, system_ke (multi_particle_state mpst)
         )
     )
+    // |> stream.to_list
     |> listm'.choose id
     |> listm'.unzip
 
@@ -1557,7 +1546,7 @@ inl fixed_linear_spring k re r1 =
 
 inl forces_string () =
     [
-        ExternalForce (0, fixed_linear_spring 5384 0 (zero_vec ()))
+        ExternalForce (0i32, fixed_linear_spring 5384 0 (zero_vec ()))
         ExternalForce (63, fixed_linear_spring 5384 0 (0.65 *^ i_hat ()))
     ] /@ (
         listm'.init_series 0 59 1
@@ -1580,34 +1569,37 @@ inl string_initial_overtone n =
                 velocity = zero_vec ()
         }
     )
-    |> seq.from_list
+    |> stream.from_list
     |> multi_particle_state
 
 let main () =
-    inl ~frames = listm'.init_series 0 9 1f64
-    inl initial_state : _ f64 = string_initial_overtone 3i32
+    inl frames = listm'.init_series 0 9 1f64 |> stream.from_list
+    inl initial_state = string_initial_overtone 3i32
     inl frames =
         frames
-        |> listm.map (fun n =>
+        |> stream.map (fun n =>
             inl (multi_particle_state sts) =
-                seq.iterate (string_update 0.000025) initial_state |> fun f => f 0f64
+                seq.iterate (string_update 0.000025) initial_state |> fun f => f 0f64 // |> stream.item 0f64
+                // stream.iterate (string_update 0.000025) initial_state |> stream.item 0f64
             inl rs =
                 [ zero_vec () ]
-                /@ (sts |> seq.fold_ (fun acc (particle_state st) => st.pos_vec :: acc) [] |> listm.rev)
+                /@ (sts |> stream.fold (fun acc (particle_state st) => st.pos_vec :: acc) [] |> listm.rev)
                 /@ [ 0.65 *^ i_hat () ]
+                |> stream.from_list
             inl x, y =
                 rs
-                |> listm.map (fun r => r.x, r.y)
-                |> listm'.unzip
-            inl x : a i32 _ = x |> listm.toArray
-            inl y : a i32 _ = y |> listm.toArray
+                |> stream.map (fun r => r.x, r.y)
+                |> stream.unzip
+            inl x : a i32 _ = x |> stream.to_list |> listm.toArray
+            inl y : a i32 _ = y |> stream.to_list |> listm.toArray
             x, y
         )
-        |> listm.toArray : a i32 _
+        // |> listm.toArray : a i32 _
         
     inl n = 0i32
 
-    inl x, y = index frames n
+    // inl x, y = index frames n
+    inl x, y = frames |> stream.item n
 
     "wave",
     "position (m)",

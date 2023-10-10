@@ -33,7 +33,7 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/spiral/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../lib/spiral/build.ps1" } | Invoke-Block -Retries 3
 
 #!pwsh
 

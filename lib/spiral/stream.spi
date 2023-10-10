@@ -128,30 +128,10 @@ inl unfold f x0 =
         | None => StreamNil
     loop x0
 
-// // ## take_while
+// // ## iterate
 
-inl take_while cond s =
-    inl rec loop i s =
-        match s with
-        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
-        | _ => StreamNil
-    loop 0 s
-
-inl take_while_ cond s =
-    let rec loop i s =
-        match s with
-        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
-        | _ => StreamNil
-    loop 0 s
-
-// // ## to_list
-
-inl to_list s =
-    inl rec loop i =
-        match s |> try_item i with
-        | Some st => st :: loop (i + 1)
-        | _ => []
-    loop 0i32
+inl iterate f =
+    unfold (fun x => Some (x, f x))
 
 // // ## fold
 
@@ -169,6 +149,22 @@ inl fold_ fn init s =
         | StreamNil => acc
     loop init s
 
+// // ## take_while
+
+inl take_while cond s =
+    inl rec loop i s =
+        match s with
+        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
+        | _ => StreamNil
+    loop 0 s
+
+inl take_while_ cond s =
+    let rec loop i s =
+        match s with
+        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
+        | _ => StreamNil
+    loop 0 s
+
 // // ## sum
 
 inl sum seq =
@@ -176,3 +172,81 @@ inl sum seq =
 
 inl sum_ seq =
     seq |> fold_ (+) 0
+
+// // ## to_list
+
+inl to_list s =
+    inl rec loop acc s =
+        match s with
+        | StreamCons (st, fn) => loop (st :: acc) (fn ())
+        | StreamNil => acc |> listm.rev
+    loop [] s
+
+// // ## indexed
+
+inl indexed s =
+    inl rec loop i s =
+        match s with
+        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
+        | StreamNil => StreamNil
+    loop 0 s
+
+inl indexed_ s =
+    let rec loop i s =
+        match s with
+        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
+        | StreamNil => StreamNil
+    loop 0 s
+
+// // ## map
+
+inl map fn s =
+    inl rec loop s =
+        match s with
+        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
+        | StreamNil => StreamNil
+    loop s
+
+inl map_ fn s =
+    let rec loop s =
+        match s with
+        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
+        | StreamNil => StreamNil
+    loop s
+
+// // ## zip_with
+
+inl zip_with fn s1 s2 =
+    inl rec loop s1 s2 =
+        match s1, s2 with
+        | StreamCons (st1, fn1), StreamCons (st2, fn2) =>
+            StreamCons (fn st1 st2, fun () => loop (fn1 ()) (fn2 ()))
+        | StreamNil, _ | _, StreamNil => StreamNil
+    loop s1 s2
+
+inl zip_with_ fn s1 s2 =
+    let rec loop s1 s2 =
+        match s1, s2 with
+        | StreamCons (st1, fn1), StreamCons (st2, fn2) =>
+            StreamCons (fn st1 st2, fun () => loop (fn1 ()) (fn2 ()))
+        | StreamNil, _ | _, StreamNil => StreamNil
+    loop s1 s2
+
+// // ## zip
+
+inl zip s1 s2 =
+    zip_with pair s1 s2
+
+inl zip_ s1 s2 =
+    zip_with_ pair s1 s2
+
+// // ## unzip
+
+inl unzip s =
+    inl rec loop s =
+        match s with
+        | StreamCons ((x, y), fn) =>
+            inl xs, ys = loop (fn ())
+            StreamCons (x, fun () => xs), StreamCons (y, fun () => ys)
+        | StreamNil => pair StreamNil StreamNil
+    loop s

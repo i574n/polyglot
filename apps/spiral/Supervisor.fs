@@ -208,6 +208,8 @@ module Supervisor =
                 fun (fsxContentResult, errors) (fsxContent, error) ->
                     match fsxContent, error with
                     | Some fsxContent, None -> Some fsxContent, errors
+                    | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
+                        fsxContentResult, errors
                     | None, Some error -> fsxContentResult, error :: errors
                     | _ -> fsxContentResult, errors
             )
@@ -218,7 +220,6 @@ module Supervisor =
                 trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent} / errors: {errors}") getLocals
                 match fsxContent, errors with
                 | None, [] -> true
-                | None, [ _ , FatalError "File main has a type error somewhere in its path." ] -> true
                 | _ -> false
             )
             |> FSharp.Control.AsyncSeq.tryLast

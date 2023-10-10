@@ -54,9 +54,9 @@ listm.init 10i32 print_and_return
 
 #!spiral
 
-inl indexed seq =
+inl indexed s =
     fun n =>
-        n, seq n
+        s |> item n |> optionm.map (fun x => n, x)
 
 #!spiral
 
@@ -66,7 +66,7 @@ listm.init 10i32 ((*) 2)
 |> from_list
 |> indexed
 |> item 5i32
-|> _equal (5i32, Some 10i32)
+|> _equal (Some (5i32, 10i32))
 
 #!markdown
 

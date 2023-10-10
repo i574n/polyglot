@@ -62,3 +62,26 @@ inl choose forall a b c. (fn : a -> b -> c) (a : option a) (b : option b) : opti
 (Some 2i32, Some 3)
 ||> choose (+)
 |> _equal (Some 5)
+
+#!markdown
+
+## iter
+
+#!spiral
+
+inl iter fn = function
+    | Some x => fn x
+    | None => ()
+
+#!spiral
+
+// // test
+
+inl n = mut 1i32
+inl fn =
+    fun n' =>
+        n <- *n + n'
+Some 1i32 |> iter fn
+None |> iter fn
+*n
+|> _equal 2i32

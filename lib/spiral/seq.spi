@@ -17,9 +17,9 @@ inl from_list list =
 
 // // ## indexed
 
-inl indexed seq =
+inl indexed s =
     fun n =>
-        n, seq n
+        s |> item n |> optionm.map (fun x => n, x)
 
 // // ## zip
 

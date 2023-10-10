@@ -1,0 +1,89 @@
+// // # Dice (Polyglot)
+
+open testing
+
+// // ## sixthPowerSequence
+
+inl sixth_power_sequence () =
+    stream.iterate ((*) 6) 1i32
+
+// // ## accumulateDiceRolls
+
+inl rec accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
+    match rolls with
+    | _ when power < 0 =>
+        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc}\"")
+        Some (acc + 1, rolls)
+    | [] => None
+    | roll :: rest when roll > 1 =>
+        inl coeff = sixth_power_sequence () |> stream.item power
+        inl value = (roll - 1) * coeff
+        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}\""
+        )
+        accumulate_dice_rolls log rest (power - 1) (acc + value)
+    | roll :: rest =>
+        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}\"")
+        accumulate_dice_rolls log rest (power - 1) acc
+
+// // ## rollWithinBounds
+
+inl roll_within_bounds (log : option (string -> ())) max rolls =
+    inl power = listm.length rolls - 1i32
+    match accumulate_dice_rolls log rolls power 0 with
+    | Some (result, _) when result >= 1 && result <= max => Some result
+    | _ => None
+
+// // ## calculateDiceCount
+
+inl calculate_dice_count (log : option (string -> ())) max =
+    inl rec loop n p =
+        if p < max
+        then loop (n + 1) (p * 6)
+        else
+            log |> optionm'.iter ((|>) $"$\"calculate_dice_count / max: {!max} / n: {!n} / p: {!p}\"")
+            n
+    if max = 1
+    then 1
+    else loop 0 1
+
+// // ## rollDice
+
+inl roll_dice () : i32 =
+    $"System.Random().Next (1, 7)"
+
+// // ## rotateNumber
+
+inl rotate_number max n =
+    (n - 1 + max) % max + 1
+
+// // ## rotateNumbers
+
+inl rotate_numbers max items =
+    items |> stream.map (rotate_number max)
+
+// // ## createSequentialRoller
+
+inl create_sequential_roller list =
+    inl current_index = mut 0i32
+    fun () =>
+        match list |> listm'.try_item *current_index with
+        | Some item =>
+            current_index <- *current_index + 1
+            item
+        | None => failwith "create_sequential_roller / end of list"
+
+// // ## rollProgressively
+
+inl roll_progressively (log : option (string -> ())) roll reroll max =
+    inl power = (calculate_dice_count log max) - 1i32
+    let rec loop rolls size =
+        if size < power + 1
+        then loop (roll () :: rolls) (size + 1)
+        else
+            match accumulate_dice_rolls log rolls power 0 with
+            | Some (result, _) when result <= max => result
+            | _ when reroll => loop (listm.init power (fun _ => roll ())) power
+            | _ => loop (roll () :: rolls) (size + 1)
+    loop [] 0
+
+// // ## main
