@@ -39,7 +39,6 @@ if (!(Search-DotnetSdk "8")) {
 
 
 dotnet tool restore
-dotnet tool restore
 
 { dotnet paket restore } | Invoke-Block
 

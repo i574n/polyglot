@@ -14,6 +14,11 @@
   "features": {
     "docker-in-docker": "latest"
   },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "64gb"
+  },
   "postCreateCommand": "pwd && rustc --version && echo postCreateCommand",
   "runArgs": [
     "--cap-add=SYS_PTRACE",
