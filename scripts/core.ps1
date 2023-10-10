@@ -50,6 +50,7 @@ function Invoke-Block {
     while ($Retries -gt 0) {
         $Error.Clear()
         try {
+            $exitcode = 0
             if ($Linux -and $IsWindows) {
                 Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
             } else {
@@ -156,8 +157,7 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
 
     if (-Not (Test-Path $Path)) {
         Write-Output "Creating symlink: $Path -> $Target"
-        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target
-        Write-Output "Symlink New-Item / result: '$result' / Error: '$Error'"
+        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
         if ($null -eq $result) {
             Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
         }

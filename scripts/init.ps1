@@ -39,7 +39,9 @@ if (!(Search-DotnetSdk "8")) {
 
 
 dotnet tool restore
-dotnet paket restore
+dotnet tool restore
+
+{ dotnet paket restore } | Invoke-Block
 
 { . $ScriptDir/symlinks.ps1 } | Invoke-Block
 { . $ScriptDir/dep_dotnet-interactive.ps1 -fast $($fast ?? '') } | Invoke-Block
