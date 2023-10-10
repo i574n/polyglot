@@ -156,7 +156,8 @@ function EnsureSymbolicLink([string] $Path, [string] $Target) {
 
     if (-Not (Test-Path $Path)) {
         Write-Output "Creating symlink: $Path -> $Target"
-        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target -ErrorAction SilentlyContinue
+        $result = New-Item -ItemType SymbolicLink -Path $Path -Target $Target
+        Write-Output "Symlink New-Item / result: '$result' / Error: '$Error'"
         if ($null -eq $result) {
             Write-Error "Failed to create symlink: $Path -> $Target ($Error)"
         }
