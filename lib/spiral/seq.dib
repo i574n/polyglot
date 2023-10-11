@@ -223,7 +223,7 @@ inl take_while_ cond seq =
 // // test
 
 stream.new_infinite_stream_ print_and_return
-|> flip stream.try_item_
+|> flip stream.try_item
 |> take_while_ (fun n (_ : i32) => n < 5i32)
 |> listm'.sum
 |> _equal 10
@@ -237,7 +237,7 @@ stream.new_infinite_stream_ print_and_return
 |> fun list =>
     inl list = list ()
     fun n =>
-        list |> stream.try_item_ n
+        list |> stream.try_item n
 |> take_while_ (fun n (_ : i32) => n < 5i32)
 |> listm'.sum
 |> _equal 10
@@ -251,7 +251,7 @@ stream.new_finite_stream print_and_return 10i32
 |> fun list =>
     inl list = list ()
     fun n =>
-        list |> stream.try_item_ n
+        list |> stream.try_item n
 |> take_while_ (fun n (_ : i32) => n < 5)
 |> listm'.sum
 |> _equal 10

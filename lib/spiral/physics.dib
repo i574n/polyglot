@@ -1364,7 +1364,7 @@ inl forces_on n (multi_particle_state sts) fs =
 inl newton_second_mps fs ((multi_particle_state sts) as mpst) =
     inl deriv (n, st) =
         newton_second_ps (forces_on n mpst fs) st
-    sts |> stream.indexed_ |> stream.map deriv |> d_multi_particle_state
+    sts |> stream.indexed |> stream.map deriv |> d_multi_particle_state
 
 instance (+++) d_multi_particle_state =
     fun (d_multi_particle_state dsts1) (d_multi_particle_state dsts2) =>
@@ -1384,7 +1384,7 @@ instance shift multi_particle_state = fun dt dsts (multi_particle_state sts) =>
             | d_multi_particle_state _ => dsts
     (dsts, sts)
     ||> stream.zip_with (shift dt)
-    |> stream.memoize_
+    |> stream.memoize
     |> fun x => x ()
     |> multi_particle_state
 
@@ -1409,7 +1409,7 @@ inl states_mps (method : numerical_method multi_particle_state d_multi_particle_
     >> method
     >> (fun x (multi_particle_state y) =>
         y
-        |> stream.memoize_
+        |> stream.memoize
         |> (fun x => x ())
         |> multi_particle_state |> x
     )
@@ -1424,7 +1424,7 @@ inl kinetic_energy (particle_state st) =
 inl system_ke (multi_particle_state sts) =
     sts
     |> stream.map kinetic_energy
-    |> stream.sum_
+    |> stream.sum
 
 inl linear_spring_pe k re (particle_state st1) (particle_state st2) =
     inl r1 = st1.pos_vec

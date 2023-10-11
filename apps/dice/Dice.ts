@@ -9,6 +9,7 @@ import { TraceLevel_Debug, trace } from "./nbs/Common.js";
 export const sixthPowerSequence: Iterable<int32> = cache<int32>(unfold<int32, int32>((state: int32): Option<[int32, int32]> => ([state, state * 6] as [int32, int32]), 1));
 
 /**
+ * ## sixth_power_sequence
  * ## accumulateDiceRolls
  */
 export function accumulateDiceRolls(log_mut: Option<((arg0: string) => void)>, rolls_mut: FSharpList<int32>, power_mut: int32, acc_mut: int32): Option<[int32, FSharpList<int32>]> {
@@ -53,6 +54,7 @@ export function accumulateDiceRolls(log_mut: Option<((arg0: string) => void)>, r
 }
 
 /**
+ * ## accumulate_dice_rolls
  * ## rollWithinBounds
  */
 export function rollWithinBounds(log: Option<((arg0: string) => void)>, max: int32, rolls: FSharpList<int32>): Option<int32> {
@@ -86,6 +88,7 @@ export function rollDice(): int32 {
 }
 
 /**
+ * ## roll_dice
  * ## rotateNumber
  */
 export function rotateNumber(max: int32, n: int32): int32 {
@@ -100,6 +103,7 @@ export function rotateNumbers(max: int32, items: Iterable<int32>): Iterable<int3
 }
 
 /**
+ * ## rotate_numbers
  * ## createSequentialRoller
  */
 export function createSequentialRoller<$a>(list: FSharpList<$a>): (() => $a) {
@@ -118,6 +122,7 @@ export function createSequentialRoller<$a>(list: FSharpList<$a>): (() => $a) {
 }
 
 /**
+ * ## create_sequential_roller
  * ## rollProgressively
  */
 export function rollProgressively(log: Option<((arg0: string) => void)>, roll: (() => int32), reroll: boolean, max: int32): int32 {

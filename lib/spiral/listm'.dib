@@ -18,7 +18,8 @@ open testing
 
 #!spiral
 
-inl (/@) a b = b |> listm.append a
+inl (/@) a b =
+    b |> listm.append a
 
 #!spiral
 
@@ -143,20 +144,11 @@ listm.init 10i32 id
 #!spiral
 
 inl unzip list =
-    list
-    |> listm.fold
-        (fun (acc_x, acc_y) (x, y) =>
-            x :: acc_x, y :: acc_y
-        )
-        ([], [])
+    (([], []), list)
+    ||> listm.fold fun (acc_x, acc_y) (x, y) =>
+        x :: acc_x, y :: acc_y
     |> fun x, y =>
         x |> listm.rev, y |> listm.rev
-
-inl unzip_ list =
-    let rec loop acc_x acc_y = function
-        | Cons ((x, y), xs) => loop (x :: acc_x) (y :: acc_y) xs
-        | Nil => acc_x |> listm.rev, acc_y |> listm.rev
-    loop [] [] list
 
 #!spiral
 
@@ -299,15 +291,6 @@ inl choose f l =
         | Some y => y :: acc
         | None => acc
 
-inl choose_ f l =
-    let rec loop acc = function
-        | [] => acc |> listm.rev
-        | x :: xs =>
-            match f x with
-            | Some y => loop (y :: acc) xs
-            | None => loop acc xs
-    loop [] l
-
 #!spiral
 
 // // test
@@ -373,12 +356,9 @@ inl zip_ xs ys =
 #!spiral
 
 inl indexed list =
-    list
-    |> listm.fold
-        (fun (acc, i) x =>
-            (i, x) :: acc, i + 1
-        )
-        ([], 0)
+    (([], 0), list)
+    ||> listm.fold fun (acc, i) x =>
+        (i, x) :: acc, i + 1
     |> fst
     |> listm.rev
 
@@ -389,3 +369,31 @@ inl indexed list =
 listm.init 5i32 ((*) 2)
 |> indexed
 |> _equal [ 0i32, 0; 1, 2; 2, 4; 3, 6; 4, 8 ]
+
+#!markdown
+
+## group_by
+
+#!spiral
+
+inl group_by fn list =
+    (list, [])
+    ||> listm.foldBack fun x acc =>
+        inl xk = fn x
+        inl found, new_acc =
+            ((false, []), acc)
+            ||> listm.fold fun (found, acc') (k, xs) =>
+                if k = xk
+                then true, (k, x :: xs) :: acc'
+                else found, (k, xs) :: acc'
+        if found
+        then new_acc
+        else (xk, [ x ]) :: new_acc
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> group_by (fun x => x % 2 = 0)
+|> _equal [ true, [ 0; 2; 4; 6; 8 ]; false, [ 1; 3; 5; 7; 9 ] ]

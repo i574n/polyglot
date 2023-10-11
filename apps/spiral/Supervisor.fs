@@ -198,27 +198,32 @@ module Supervisor =
                 None, Some (message, error)
             )
 
+        let timerSeq =
+            1000
+            |> FSharp.Control.AsyncSeq.intervalMs
+            |> FSharp.Control.AsyncSeq.map (fun _ -> None, None)
+
         let outputSeq =
-            [ fsxContentSeq; errorsSeq ]
+            [ fsxContentSeq; errorsSeq; timerSeq ]
             |> FSharp.Control.AsyncSeq.mergeAll
 
         let! outputChild =
-            ((None, []), outputSeq)
+            ((None, [], 0), outputSeq)
             ||> FSharp.Control.AsyncSeq.scan (
-                fun (fsxContentResult, errors) (fsxContent, error) ->
+                fun (fsxContentResult, errors, typeErrorCount) (fsxContent, error) ->
                     match fsxContent, error with
-                    | Some fsxContent, None -> Some fsxContent, errors
+                    | Some fsxContent, None -> Some fsxContent, errors, typeErrorCount
                     | None, Some (_, FatalError "File main has a type error somewhere in its path.") ->
-                        fsxContentResult, errors
-                    | None, Some error -> fsxContentResult, error :: errors
-                    | _ -> fsxContentResult, errors
+                        fsxContentResult, errors, typeErrorCount + 1
+                    | None, Some error -> fsxContentResult, error :: errors, typeErrorCount
+                    | None, None when typeErrorCount >= 1 ->
+                        fsxContentResult, errors, typeErrorCount + 1
+                    | _ -> fsxContentResult, errors, typeErrorCount
             )
-            |> FSharp.Control.AsyncSeq.map (fun (fsxContent, errors) ->
-                fsxContent, errors |> List.distinct |> List.rev
-            )
-            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent} / errors: {errors}") getLocals
+            |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent} / errors: {errors} / typeErrorCount: {typeErrorCount}") getLocals
                 match fsxContent, errors with
+                | None, [] when typeErrorCount > 2 -> false
                 | None, [] -> true
                 | _ -> false
             )
@@ -237,7 +242,7 @@ module Supervisor =
         return!
             outputChild
             |> Async.map (function
-                | Some (Ok (Some result)) -> result
+                | Some (Ok (Some (message, errors, _))) -> message, errors |> List.distinct |> List.rev
                 | Some (Error ex) ->
                     trace Critical (fun () -> $"buildFile / error: {ex |> printException}") getLocals
                     None, []

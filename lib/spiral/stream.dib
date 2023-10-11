@@ -20,14 +20,72 @@ union rec stream t =
 
 #!markdown
 
+## fold
+
+#!spiral
+
+inl fold fn init s =
+    inl rec body acc = function
+        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
+        | StreamNil => acc
+    and inl loop acc = join_body body acc
+    loop init s
+
+#!markdown
+
+## fold_back
+
+#!spiral
+
+inl fold_back fn s init =
+    inl rec body acc = function
+        | StreamCons (st, fn') => fn st (loop acc (fn' ()))
+        | StreamNil => acc
+    and inl loop acc = join_body body acc
+    loop init s
+
+#!markdown
+
+## to_list
+
+#!spiral
+
+inl to_list s =
+    (s, [])
+    ||> fold_back fun x acc =>
+        x :: acc
+
+#!markdown
+
+## rev
+
+#!spiral
+
+inl rev s =
+    (StreamNil, s)
+    ||> fold fun s x =>
+        StreamCons (x, fun () => s)
+
+#!markdown
+
 ## from_list
 
 #!spiral
 
-inl rec from_list list =
-    match list with
-    | [] => StreamNil
-    | x :: xs => StreamCons (x, fun () => from_list xs)
+inl from_list list =
+    (list, StreamNil)
+    ||> listm.foldBack fun x acc =>
+        StreamCons (x, fun () => acc)
+
+#!spiral
+
+// // test
+
+listm.init 3i32 id
+|> from_list
+|> rev
+|> to_list
+|> _equal [ 2; 1; 0 ]
 
 #!markdown
 
@@ -35,10 +93,13 @@ inl rec from_list list =
 
 #!spiral
 
-inl rec try_item i = function
-    | StreamCons (x, _) when i = 0 => Some x
-    | StreamCons (_, fn) => try_item (i - 1) (fn ())
-    | StreamNil => None
+inl try_item i s =
+    inl rec body i = function
+        | StreamCons (x, _) when i = 0 => Some x
+        | StreamCons (_, fn) => loop (i - 1) (fn ())
+        | StreamNil => None
+    and inl loop acc = join_body body acc
+    loop i s
 
 inl item i =
     try_item i >> optionm.value
@@ -50,51 +111,6 @@ inl item i =
 listm.init 10i32 id
 |> from_list
 |> item 9i32
-|> _equal 9
-
-#!spiral
-
-inl try_item_ i list =
-    inl i = mut i
-    inl list = mut list
-    let rec loop () =
-        match *list with
-        | StreamCons (x, _) when *i = 0 => Some x
-        | StreamCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | StreamNil => None
-    loop ()
-
-inl item_ i =
-    try_item_ i >> optionm.value
-
-let rec try_item__ i list =
-    inl i = mut i
-    inl list = mut list
-    inl result = mut None
-    let rec loop () =
-        match *list with
-        | StreamCons (x, _) when *i = 0 => result <- Some x
-        | StreamCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | StreamNil => ()
-    loop ()
-    *result
-
-inl item__ i =
-    try_item__ i >> optionm.value
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> from_list
-|> item_ 9i32
 |> _equal 9
 
 #!markdown
@@ -134,13 +150,6 @@ inl new_finite_stream fn max =
         else StreamCons (fn n, fun () => loop (n + 1))
     loop 0
 
-inl new_finite_stream_ fn max =
-    let rec loop n =
-        if n >= max
-        then StreamNil
-        else StreamCons (fn n, fun () => loop (n + 1))
-    loop 0
-
 #!markdown
 
 ## memoize
@@ -152,7 +161,7 @@ union memoized_stream t =
     | Computed : stream t
 
 inl memoize s =
-    inl rec loop s =
+    inl rec body () s =
         inl state = mut (NotComputed s)
         fun () =>
             match *state with
@@ -164,21 +173,7 @@ inl memoize s =
                     | StreamCons (x, fn) => StreamCons (x, loop fn)
                 state <- Computed new_state
                 new_state
-    loop (fun () => s)
-
-inl memoize_ s =
-    let rec loop s =
-        inl state = mut (NotComputed s)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | StreamNil => StreamNil
-                    | StreamCons (x, fn) => StreamCons (x, loop fn)
-                state <- Computed new_state
-                new_state
+    and inl loop s = join_body body () s
     loop (fun () => s)
 
 #!spiral
@@ -216,10 +211,11 @@ memo_stream ()
 #!spiral
 
 inl unfold f x0 =
-    inl rec loop x =
+    inl rec body () x =
         match f x with
         | Some (x', y) => StreamCons (x', fun () => loop y)
         | None => StreamNil
+    and inl loop x = join_body body () x
     loop x0
 
 #!markdown
@@ -241,42 +237,15 @@ iterate ((*) 2) 1i32
 
 #!markdown
 
-## fold
-
-#!spiral
-
-inl fold fn init s =
-    inl rec loop acc s =
-        match s with
-        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
-        | StreamNil => acc
-    loop init s
-
-inl fold_ fn init s =
-    let rec loop acc s =
-        match s with
-        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
-        | StreamNil => acc
-    loop init s
-
-#!markdown
-
 ## take_while
 
 #!spiral
 
 inl take_while cond s =
-    inl rec loop i s =
-        match s with
+    inl rec body i = function
         | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
         | _ => StreamNil
-    loop 0 s
-
-inl take_while_ cond s =
-    let rec loop i s =
-        match s with
-        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
-        | _ => StreamNil
+    and inl loop i = join_body body i
     loop 0 s
 
 #!markdown
@@ -288,9 +257,6 @@ inl take_while_ cond s =
 inl sum seq =
     seq |> fold (+) 0
 
-inl sum_ seq =
-    seq |> fold_ (+) 0
-
 #!spiral
 
 // // test
@@ -298,15 +264,6 @@ inl sum_ seq =
 listm.init 10i32 id
 |> from_list
 |> sum
-|> _equal 45
-
-#!spiral
-
-// // test
-
-listm.init 10i32 id
-|> from_list
-|> sum_
 |> _equal 45
 
 #!spiral
@@ -322,23 +279,10 @@ new_finite_stream print_and_return 10i32
 
 // // test
 
-new_infinite_stream_ print_and_return
-|> take_while_ (fun n (_ : i32) => n < 5i32)
-|> sum_
+new_infinite_stream print_and_return
+|> take_while (fun n (_ : i32) => n < 5i32)
+|> sum
 |> _equal 10
-
-#!markdown
-
-## to_list
-
-#!spiral
-
-inl to_list s =
-    inl rec loop acc s =
-        match s with
-        | StreamCons (st, fn) => loop (st :: acc) (fn ())
-        | StreamNil => acc |> listm.rev
-    loop [] s
 
 #!spiral
 
@@ -356,18 +300,11 @@ iterate ((*) 6) 1i32
 #!spiral
 
 inl indexed s =
-    inl rec loop i s =
-        match s with
-        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
-        | StreamNil => StreamNil
-    loop 0 s
-
-inl indexed_ s =
-    let rec loop i s =
-        match s with
-        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
-        | StreamNil => StreamNil
-    loop 0 s
+    ((StreamNil, 0), s)
+    ||> fold fun (acc, i) x =>
+        StreamCons ((i, x), fun () => acc), i + 1
+    |> fst
+    |> rev
 
 #!spiral
 
@@ -386,18 +323,9 @@ listm.init 10i32 ((*) 2)
 #!spiral
 
 inl map fn s =
-    inl rec loop s =
-        match s with
-        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
-        | StreamNil => StreamNil
-    loop s
-
-inl map_ fn s =
-    let rec loop s =
-        match s with
-        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
-        | StreamNil => StreamNil
-    loop s
+    (s, StreamNil)
+    ||> fold_back fun x acc =>
+        StreamCons (fn x, fun () => acc)
 
 #!spiral
 

@@ -4,56 +4,57 @@ union rec stream t =
     | StreamCons : t * (() -> stream t)
     | StreamNil
 
+// // ## fold
+
+inl fold fn init s =
+    inl rec body acc = function
+        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
+        | StreamNil => acc
+    and inl loop acc = join_body body acc
+    loop init s
+
+// // ## fold_back
+
+inl fold_back fn s init =
+    inl rec body acc = function
+        | StreamCons (st, fn') => fn st (loop acc (fn' ()))
+        | StreamNil => acc
+    and inl loop acc = join_body body acc
+    loop init s
+
+// // ## to_list
+
+inl to_list s =
+    (s, [])
+    ||> fold_back fun x acc =>
+        x :: acc
+
+// // ## rev
+
+inl rev s =
+    (StreamNil, s)
+    ||> fold fun s x =>
+        StreamCons (x, fun () => s)
+
 // // ## from_list
 
-inl rec from_list list =
-    match list with
-    | [] => StreamNil
-    | x :: xs => StreamCons (x, fun () => from_list xs)
+inl from_list list =
+    (list, StreamNil)
+    ||> listm.foldBack fun x acc =>
+        StreamCons (x, fun () => acc)
 
 // // ## try_item
 
-inl rec try_item i = function
-    | StreamCons (x, _) when i = 0 => Some x
-    | StreamCons (_, fn) => try_item (i - 1) (fn ())
-    | StreamNil => None
+inl try_item i s =
+    inl rec body i = function
+        | StreamCons (x, _) when i = 0 => Some x
+        | StreamCons (_, fn) => loop (i - 1) (fn ())
+        | StreamNil => None
+    and inl loop acc = join_body body acc
+    loop i s
 
 inl item i =
     try_item i >> optionm.value
-
-inl try_item_ i list =
-    inl i = mut i
-    inl list = mut list
-    let rec loop () =
-        match *list with
-        | StreamCons (x, _) when *i = 0 => Some x
-        | StreamCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | StreamNil => None
-    loop ()
-
-inl item_ i =
-    try_item_ i >> optionm.value
-
-let rec try_item__ i list =
-    inl i = mut i
-    inl list = mut list
-    inl result = mut None
-    let rec loop () =
-        match *list with
-        | StreamCons (x, _) when *i = 0 => result <- Some x
-        | StreamCons (_, fn) =>
-            i <- *i - 1
-            list <- fn ()
-            loop ()
-        | StreamNil => ()
-    loop ()
-    *result
-
-inl item__ i =
-    try_item__ i >> optionm.value
 
 // // ## new_infinite_stream
 
@@ -76,13 +77,6 @@ inl new_finite_stream fn max =
         else StreamCons (fn n, fun () => loop (n + 1))
     loop 0
 
-inl new_finite_stream_ fn max =
-    let rec loop n =
-        if n >= max
-        then StreamNil
-        else StreamCons (fn n, fun () => loop (n + 1))
-    loop 0
-
 // // ## memoize
 
 union memoized_stream t =
@@ -90,7 +84,7 @@ union memoized_stream t =
     | Computed : stream t
 
 inl memoize s =
-    inl rec loop s =
+    inl rec body () s =
         inl state = mut (NotComputed s)
         fun () =>
             match *state with
@@ -102,30 +96,17 @@ inl memoize s =
                     | StreamCons (x, fn) => StreamCons (x, loop fn)
                 state <- Computed new_state
                 new_state
-    loop (fun () => s)
-
-inl memoize_ s =
-    let rec loop s =
-        inl state = mut (NotComputed s)
-        fun () =>
-            match *state with
-            | Computed x => x
-            | NotComputed fn =>
-                inl new_state =
-                    match fn () with
-                    | StreamNil => StreamNil
-                    | StreamCons (x, fn) => StreamCons (x, loop fn)
-                state <- Computed new_state
-                new_state
+    and inl loop s = join_body body () s
     loop (fun () => s)
 
 // // ## unfold
 
 inl unfold f x0 =
-    inl rec loop x =
+    inl rec body () x =
         match f x with
         | Some (x', y) => StreamCons (x', fun () => loop y)
         | None => StreamNil
+    and inl loop x = join_body body () x
     loop x0
 
 // // ## iterate
@@ -133,36 +114,13 @@ inl unfold f x0 =
 inl iterate f =
     unfold (fun x => Some (x, f x))
 
-// // ## fold
-
-inl fold fn init s =
-    inl rec loop acc s =
-        match s with
-        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
-        | StreamNil => acc
-    loop init s
-
-inl fold_ fn init s =
-    let rec loop acc s =
-        match s with
-        | StreamCons (st, fn') => loop (fn acc st) (fn' ())
-        | StreamNil => acc
-    loop init s
-
 // // ## take_while
 
 inl take_while cond s =
-    inl rec loop i s =
-        match s with
+    inl rec body i = function
         | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
         | _ => StreamNil
-    loop 0 s
-
-inl take_while_ cond s =
-    let rec loop i s =
-        match s with
-        | StreamCons (st, fn) when cond st i => StreamCons (st, fun () => loop (i + 1) (fn ()))
-        | _ => StreamNil
+    and inl loop i = join_body body i
     loop 0 s
 
 // // ## sum
@@ -170,49 +128,21 @@ inl take_while_ cond s =
 inl sum seq =
     seq |> fold (+) 0
 
-inl sum_ seq =
-    seq |> fold_ (+) 0
-
-// // ## to_list
-
-inl to_list s =
-    inl rec loop acc s =
-        match s with
-        | StreamCons (st, fn) => loop (st :: acc) (fn ())
-        | StreamNil => acc |> listm.rev
-    loop [] s
-
 // // ## indexed
 
 inl indexed s =
-    inl rec loop i s =
-        match s with
-        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
-        | StreamNil => StreamNil
-    loop 0 s
-
-inl indexed_ s =
-    let rec loop i s =
-        match s with
-        | StreamCons (st, fn) => StreamCons ((i, st), fun () => loop (i + 1) (fn ()))
-        | StreamNil => StreamNil
-    loop 0 s
+    ((StreamNil, 0), s)
+    ||> fold fun (acc, i) x =>
+        StreamCons ((i, x), fun () => acc), i + 1
+    |> fst
+    |> rev
 
 // // ## map
 
 inl map fn s =
-    inl rec loop s =
-        match s with
-        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
-        | StreamNil => StreamNil
-    loop s
-
-inl map_ fn s =
-    let rec loop s =
-        match s with
-        | StreamCons (st, fn') => StreamCons (fn st, fun () => loop (fn' ()))
-        | StreamNil => StreamNil
-    loop s
+    (s, StreamNil)
+    ||> fold_back fun x acc =>
+        StreamCons (fn x, fun () => acc)
 
 // // ## zip_with
 

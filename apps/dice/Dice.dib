@@ -39,6 +39,10 @@ sixthPowerSequence
 |> Seq.toList
 |> _equal [ 1; 6; 36; 216; 1296; 7776; 46656; 279936 ]
 
+#!markdown
+
+## sixth_power_sequence
+
 #!spiral
 
 inl sixth_power_sequence () =
@@ -97,23 +101,35 @@ accumulateDiceRolls (Some (printfn "%s")) [ 6; 5; 4; 3; 2 ] 1 1000
 accumulateDiceRolls (Some (printfn "%s")) [ 6; 5; 4; 3; 2 ] 2 1000
 |> _equal (Some (1208, [ 3; 2 ]))
 
+#!markdown
+
+## accumulate_dice_rolls
+
 #!spiral
 
-inl rec accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
-    match rolls with
-    | _ when power < 0 =>
-        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc}\"")
-        Some (acc + 1, rolls)
-    | [] => None
-    | roll :: rest when roll > 1 =>
-        inl coeff = sixth_power_sequence () |> stream.item power
-        inl value = (roll - 1) * coeff
-        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}\""
-        )
-        accumulate_dice_rolls log rest (power - 1) (acc + value)
-    | roll :: rest =>
-        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}\"")
-        accumulate_dice_rolls log rest (power - 1) acc
+inl accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
+    inl rec body acc power rolls =
+        match rolls with
+        | _ when power < 0 =>
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc}\"")
+            Some (acc + 1, rolls)
+        | [] => None
+        | roll :: rest when roll > 1 =>
+            inl coeff = sixth_power_sequence () |> stream.item power
+            inl value = (roll - 1) * coeff
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}\""
+            )
+            loop (acc + value) (power - 1) rest
+        | roll :: rest =>
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}\"")
+            loop acc (power - 1) rest
+    and inl loop acc power rolls =
+        if var_is rolls |> not
+        then body acc power rolls
+        else
+            inl acc = dyn acc
+            join body acc power rolls
+    loop acc power rolls
 
 #!spiral
 
@@ -168,6 +184,10 @@ rollWithinBounds (Some (printfn "%s")) 2000 [ 2; 2; 6; 4; 5 ]
 
 rollWithinBounds (Some (printfn "%s")) 2000 [ 4; 1; 1; 2; 3 ]
 |> _equal None
+
+#!markdown
+
+## roll_within_bounds
 
 #!spiral
 
@@ -229,6 +249,10 @@ calculateDiceCount (Some (printfn "%s")) 36
 calculateDiceCount (Some (printfn "%s")) 7777
 |> _equal 6
 
+#!markdown
+
+## calculate_dice_count
+
 #!spiral
 
 inl calculate_dice_count (log : option (string -> ())) max =
@@ -273,6 +297,10 @@ let rollDice () =
     random.Next (1, 7)
 #endif
 
+#!markdown
+
+## roll_dice
+
 #!spiral
 
 inl roll_dice () : i32 =
@@ -310,6 +338,10 @@ let rotateNumbers max items =
 |> Seq.toList
 |> _equal [ 5; 6; 1; 2; 3; 4; 5; 6; 1; 2; 3; 4; 5; 6; 1; 2 ]
 
+#!markdown
+
+## rotate_numbers
+
 #!spiral
 
 inl rotate_numbers max items =
@@ -341,16 +373,38 @@ let createSequentialRoller list =
         | None ->
             failwith "createSequentialRoller / End of list"
 
+#!markdown
+
+## create_sequential_roller
+
 #!spiral
 
 inl create_sequential_roller list =
+    inl s = list |> stream.from_list |> stream.memoize
     inl current_index = mut 0i32
-    fun () =>
-        match list |> listm'.try_item *current_index with
+    inl acc = mut 1
+    inl len = mut -1
+    let rec loop () =
+        match s () |> stream.try_item *current_index with
         | Some item =>
             current_index <- *current_index + 1
             item
-        | None => failwith "create_sequential_roller / end of list"
+        | None =>
+            if *len = -1
+            then len <- *current_index
+            acc <- (*acc + 1) % *len
+            current_index <- *acc - 1
+            loop ()
+    loop
+
+#!spiral
+
+// // test
+
+inl sequential_roll = create_sequential_roller [ 1i32; 2; 3; 4 ]
+
+am.init 13i32 (ignore >> sequential_roll)
+|> _equal (a ;[ 1; 2; 3; 4; 2; 3; 4; 3; 4; 1; 2; 3; 4 ] : a i32 i32)
 
 #!markdown
 
@@ -450,23 +504,26 @@ rollProgressively (Some (printfn "%s")) rollDice true 2000
 
 //// ignore
 
-let inline rollMax fn max n =
-    [ 1 .. n ]
-    |> List.map (fun _ -> fn max)
-    |> List.groupBy id
-    |> List.map (fun (_, v) -> v.Length)
+let run () =
+    let inline rollMax fn max n =
+        [ 1 .. n ]
+        |> List.map (fun _ -> fn max)
+        |> List.groupBy id
+        |> List.map (fun (_, v) -> v.Length)
 
-let max = 10
-let n = 30
-let even = (n / max) |> int
+    let max = 10
+    let n = 30
+    let even = (n / max) |> int
 
-let rec rollN current =
-    let roll = rollMax (rollProgressively None rollDice true) max n
-    if roll |> List.forall ((=) even)
-    then current
-    else rollN (current + 1)
+    let rec rollN current =
+        let roll = rollMax (rollProgressively None rollDice true) max n
+        if roll |> List.forall ((=) even)
+        then current
+        else rollN (current + 1)
 
-rollN 0
+    rollN 0
+
+// run ()
 
 #!fsharp
 
@@ -480,6 +537,10 @@ rollN 0
 // )
 // |> List.map float
 // |> List.average
+
+#!markdown
+
+## roll_progressively
 
 #!spiral
 
@@ -515,22 +576,23 @@ roll_progressively (Some console.write_line) sequential_roll false 2000
 
 // // test
 
-inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 2 ]
+// inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 2 ]
 
-fun () => roll_progressively (Some console.write_line) sequential_roll false 2000 |> ignore
-|> _throws
-|> _equal (Some "create_sequential_roller / end of list")
+// fun () => roll_progressively (Some console.write_line) sequential_roll false 2000 |> ignore
+// |> _throws
+// |> _equal (Some "create_sequential_roller / end of list")
+()
 
 #!spiral
 
 // // test
+// // // print_code=false
 
-// listm'.init_series 1i32 10 1
-// |> stream.from_list
-// |> stream.map_ (fun _ => roll_progressively None roll_dice false 10)
-// |> stream.to_list
-// |> listm'.group_by_ id
-// |> listm.map (fun (k, v) => k, (listm.length v : i32))
+listm'.init_series 1i32 40 1
+|> listm.map (fun _ => roll_progressively None roll_dice false 10)
+|> listm'.group_by id
+|> listm.map (fun (k, v) => k, (listm.length v : i32))
+|> listm.toArray : a i32 _
 
 #!markdown
 

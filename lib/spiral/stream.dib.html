@@ -7568,7 +7568,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="from_list">from_list<a class="anchor-link" href="#from_list">¶</a></h2>
+<h2 id="fold">fold<a class="anchor-link" href="#fold">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7580,10 +7580,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">from_list</span> <span class="nb">list</span> <span class="o">=</span>
-    <span class="k">match</span> <span class="nb">list</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="o">|</span> <span class="n">x</span> <span class="p">::</span> <span class="n">xs</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">from_list</span> <span class="n">xs</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fold</span> <span class="n">fn</span> <span class="n">init</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; loop (fn acc st) (fn'</span> <span class="p">())</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">loop_body</span> <span class="n">body</span> <span class="n">acc</span>
+    <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
 </pre></div>
 </div>
 </div>
@@ -7610,7 +7612,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="try_item">try_item<a class="anchor-link" href="#try_item">¶</a></h2>
+<h2 id="fold_back">fold_back<a class="anchor-link" href="#fold_back">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7622,10 +7624,231 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rec</span> <span class="n">try_item</span> <span class="n">i</span> <span class="o">=</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">x</span>
-    <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">try_item</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
-    <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="kc">None</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fold_back</span> <span class="n">fn</span> <span class="n">s</span> <span class="n">init</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; fn st (loop acc (fn'</span> <span class="p">()))</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">loop_body</span> <span class="n">body</span> <span class="n">acc</span>
+    <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_list">to_list<a class="anchor-link" href="#to_list">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="o">||&gt;</span> <span class="n">fold_back</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
+        <span class="n">x</span> <span class="p">::</span> <span class="n">acc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rev">rev<a class="anchor-link" href="#rev">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rev</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">StreamNil</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="o">||&gt;</span> <span class="n">fold</span> <span class="n">fun</span> <span class="n">s</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="from_list">from_list<a class="anchor-link" href="#from_list">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_list</span> <span class="nb">list</span> <span class="o">=</span>
+    <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">StreamNil</span><span class="p">)</span>
+    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
+        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">3</span><span class="n">i32</span> <span class="nb">id</span>
+<span class="o">|&gt;</span> <span class="n">from_list</span>
+<span class="o">|&gt;</span> <span class="n">rev</span>
+<span class="o">|&gt;</span> <span class="n">to_list</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">0</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of int32 * UH0
+    | UH0_1
+let rec method0 () : unit =
+    let v18 : UH0 = UH0_1
+    let v19 : UH0 = UH0_0(0, v18)
+    let v20 : UH0 = UH0_0(1, v19)
+    let v21 : UH0 = UH0_0(2, v20)
+    let v22 : UH0 = UH0_1
+    let v23 : UH0 = UH0_0(0, v22)
+    let v24 : UH0 = UH0_0(1, v23)
+    let v25 : UH0 = UH0_0(2, v24)
+    let v26 : string = $"_equal / actual: %A{v21} / expected: %A{v25}"
+    ()
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="try_item">try_item<a class="anchor-link" href="#try_item">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_item</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">i</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">x</span>
+        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
+        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="kc">None</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">loop_body</span> <span class="n">body</span> <span class="n">acc</span>
+    <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span>
 
 <span class="n">inl</span> <span class="n">item</span> <span class="n">i</span> <span class="o">=</span>
     <span class="n">try_item</span> <span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
@@ -7648,7 +7871,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7684,172 +7907,8 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_item_</span> <span class="n">i</span> <span class="nb">list</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">i</span>
-    <span class="n">inl</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">mut</span> <span class="nb">list</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">()</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="o">*</span><span class="nb">list</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">x</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">i</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="nb">list</span> <span class="o">&lt;-</span> <span class="n">fn</span> <span class="p">()</span>
-            <span class="n">loop</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="kc">None</span>
-    <span class="n">loop</span> <span class="p">()</span>
-
-<span class="n">inl</span> <span class="n">item_</span> <span class="n">i</span> <span class="o">=</span>
-    <span class="n">try_item_</span> <span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
-
-<span class="n">let</span> <span class="n">rec</span> <span class="n">try_item__</span> <span class="n">i</span> <span class="nb">list</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mut</span> <span class="n">i</span>
-    <span class="n">inl</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">mut</span> <span class="nb">list</span>
-    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mut</span> <span class="kc">None</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">()</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="o">*</span><span class="nb">list</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="o">*</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">result</span> <span class="o">&lt;-</span> <span class="n">Some</span> <span class="n">x</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">i</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="nb">list</span> <span class="o">&lt;-</span> <span class="n">fn</span> <span class="p">()</span>
-            <span class="n">loop</span> <span class="p">()</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="p">()</span>
-    <span class="n">loop</span> <span class="p">()</span>
-    <span class="o">*</span><span class="n">result</span>
-
-<span class="n">inl</span> <span class="n">item__</span> <span class="n">i</span> <span class="o">=</span>
-    <span class="n">try_item__</span> <span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="n">item_</span> <span class="mi">9</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">9</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type Mut0 = {mutable l0 : int32}
-and UH0 =
-    | UH0_0 of int32 * (unit -&gt; UH0)
-    | UH0_1
-and Mut1 = {mutable l0 : UH0}
-and [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
-let rec closure9 () () : UH0 =
-    UH0_1
-and closure8 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure9()
-    UH0_0(9, v0)
-and closure7 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure8()
-    UH0_0(8, v0)
-and closure6 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure7()
-    UH0_0(7, v0)
-and closure5 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure6()
-    UH0_0(6, v0)
-and closure4 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure5()
-    UH0_0(5, v0)
-and closure3 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure4()
-    UH0_0(4, v0)
-and closure2 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure3()
-    UH0_0(3, v0)
-and closure1 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure2()
-    UH0_0(2, v0)
-and closure0 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure1()
-    UH0_0(1, v0)
-and method1 (v0 : Mut0, v1 : Mut1) : US0 =
-    let v2 : UH0 = v1.l0
-    match v2 with
-    | UH0_0(v3, v4) -&gt; (* StreamCons *)
-        let v5 : int32 = v0.l0
-        let v6 : bool = v5 = 0
-        if v6 then
-            US0_1(v3)
-        else
-            let v8 : int32 = v0.l0
-            let v9 : int32 = v8 - 1
-            v0.l0 &lt;- v9
-            let v10 : UH0 = v4 ()
-            v1.l0 &lt;- v10
-            method1(v0, v1)
-    | UH0_1 -&gt; (* StreamNil *)
-        US0_0
-and method0 () : unit =
-    let v0 : Mut0 = {l0 = 9} : Mut0
-    let v1 : (unit -&gt; UH0) = closure0()
-    let v2 : UH0 = UH0_0(0, v1)
-    let v3 : Mut1 = {l0 = v2} : Mut1
-    let v4 : US0 = method1(v0, v3)
-    let v8 : int32 =
-        match v4 with
-        | US0_0 -&gt; (* None *)
-            failwith&lt;int32&gt; "Option does not have a value."
-        | US0_1(v5) -&gt; (* Some *)
-            v5
-    let v9 : bool = v8 = 9
-    let v10 : string = $"_equal / actual: %A{v8} / expected: %A{9}"
-    let v11 : bool = v9 = false
-    if v11 then
-        failwith&lt;unit&gt; v10
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7859,7 +7918,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7895,7 +7954,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7941,7 +8000,7 @@ print_and_return / x: 4
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7951,7 +8010,7 @@ print_and_return / x: 4
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7965,13 +8024,6 @@ print_and_return / x: 4
         <span class="n">then</span> <span class="n">StreamNil</span>
         <span class="k">else</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">n</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">loop</span> <span class="mi">0</span>
-
-<span class="n">inl</span> <span class="n">new_finite_stream_</span> <span class="n">fn</span> <span class="nb">max</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="nb">max</span>
-        <span class="n">then</span> <span class="n">StreamNil</span>
-        <span class="k">else</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">n</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">loop</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -7992,7 +8044,7 @@ print_and_return / x: 4
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8002,7 +8054,7 @@ print_and_return / x: 4
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8015,7 +8067,7 @@ print_and_return / x: 4
     <span class="o">|</span> <span class="n">Computed</span> <span class="p">:</span> <span class="n">stream</span> <span class="n">t</span>
 
 <span class="n">inl</span> <span class="n">memoize</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="p">()</span> <span class="n">s</span> <span class="o">=</span>
         <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">mut</span> <span class="p">(</span><span class="n">NotComputed</span> <span class="n">s</span><span class="p">)</span>
         <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="k">match</span> <span class="o">*</span><span class="n">state</span> <span class="k">with</span>
@@ -8027,21 +8079,7 @@ print_and_return / x: 4
                     <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loop</span> <span class="n">fn</span><span class="p">)</span>
                 <span class="n">state</span> <span class="o">&lt;-</span> <span class="n">Computed</span> <span class="n">new_state</span>
                 <span class="n">new_state</span>
-    <span class="n">loop</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span>
-
-<span class="n">inl</span> <span class="n">memoize_</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">mut</span> <span class="p">(</span><span class="n">NotComputed</span> <span class="n">s</span><span class="p">)</span>
-        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">match</span> <span class="o">*</span><span class="n">state</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Computed</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">NotComputed</span> <span class="n">fn</span> <span class="o">=&gt;</span>
-                <span class="n">inl</span> <span class="n">new_state</span> <span class="o">=</span>
-                    <span class="k">match</span> <span class="n">fn</span> <span class="p">()</span> <span class="k">with</span>
-                    <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-                    <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loop</span> <span class="n">fn</span><span class="p">)</span>
-                <span class="n">state</span> <span class="o">&lt;-</span> <span class="n">Computed</span> <span class="n">new_state</span>
-                <span class="n">new_state</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span> <span class="n">loop_body</span> <span class="n">body</span> <span class="p">()</span> <span class="n">s</span>
     <span class="n">loop</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8062,7 +8100,7 @@ print_and_return / x: 4
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8151,135 +8189,97 @@ and closure11 (v0 : Mut0) () : UH0 =
         v2
     | US0_1(v3) -&gt; (* NotComputed *)
         let v4 : UH0 = v3 ()
-        let v13 : UH0 =
+        let v11 : UH0 =
             match v4 with
             | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : US0 = US0_1(v7)
-                let v9 : Mut0 = {l0 = v8} : Mut0
-                let v10 : (unit -&gt; UH0) = closure11(v9)
-                UH0_0(v6, v10)
+                let v8 : (unit -&gt; UH0) = method1(v7)
+                UH0_0(v6, v8)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v14 : US0 = US0_0(v13)
-        v0.l0 &lt;- v14
-        v13
+        let v12 : US0 = US0_0(v11)
+        v0.l0 &lt;- v12
+        v11
+and method1 (v0 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
+    let v1 : US0 = US0_1(v0)
+    let v2 : Mut0 = {l0 = v1} : Mut0
+    closure11(v2)
+and method2 (v0 : UH0, v1 : int32) : US1 =
+    match v0 with
+    | UH0_0(v2, v3) -&gt; (* StreamCons *)
+        let v4 : bool = v1 = 0
+        if v4 then
+            US1_1(v2)
+        else
+            let v6 : int32 = v1 - 1
+            let v7 : UH0 = v3 ()
+            method2(v7, v6)
+    | UH0_1 -&gt; (* StreamNil *)
+        US1_0
 and method0 () : unit =
     printfn $"print_and_return / x: {0}"
     let v0 : (unit -&gt; UH0) = closure0()
     let v1 : US0 = US0_1(v0)
     let v2 : Mut0 = {l0 = v1} : Mut0
     let v3 : US0 = v2.l0
-    let v18 : UH0 =
+    let v16 : UH0 =
         match v3 with
         | US0_0(v4) -&gt; (* Computed *)
             v4
         | US0_1(v5) -&gt; (* NotComputed *)
             let v6 : UH0 = v5 ()
-            let v15 : UH0 =
+            let v13 : UH0 =
                 match v6 with
                 | UH0_0(v8, v9) -&gt; (* StreamCons *)
-                    let v10 : US0 = US0_1(v9)
-                    let v11 : Mut0 = {l0 = v10} : Mut0
-                    let v12 : (unit -&gt; UH0) = closure11(v11)
-                    UH0_0(v8, v12)
+                    let v10 : (unit -&gt; UH0) = method1(v9)
+                    UH0_0(v8, v10)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v16 : US0 = US0_0(v15)
-            v2.l0 &lt;- v16
-            v15
-    let v42 : US1 =
+            let v14 : US0 = US0_0(v13)
+            v2.l0 &lt;- v14
+            v13
+    let v17 : int32 = 3
+    let v18 : US1 = method2(v16, v17)
+    let v22 : int32 =
         match v18 with
-        | UH0_0(v19, v20) -&gt; (* StreamCons *)
-            let v21 : UH0 = v20 ()
-            match v21 with
-            | UH0_0(v22, v23) -&gt; (* StreamCons *)
-                let v24 : UH0 = v23 ()
-                match v24 with
-                | UH0_0(v25, v26) -&gt; (* StreamCons *)
-                    let v27 : UH0 = v26 ()
-                    match v27 with
-                    | UH0_0(v28, v29) -&gt; (* StreamCons *)
-                        US1_1(v28)
-                    | UH0_1 -&gt; (* StreamNil *)
-                        US1_0
-                | UH0_1 -&gt; (* StreamNil *)
-                    US1_0
-            | UH0_1 -&gt; (* StreamNil *)
-                US1_0
-        | UH0_1 -&gt; (* StreamNil *)
-            US1_0
-    let v46 : int32 =
-        match v42 with
         | US1_0 -&gt; (* None *)
             failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v43) -&gt; (* Some *)
-            v43
-    let v47 : bool = v46 = 3
-    let v48 : string = $"_equal / actual: %A{v46} / expected: %A{3}"
-    let v49 : bool = v47 = false
-    if v49 then
-        failwith&lt;unit&gt; v48
-    let v50 : US0 = v2.l0
-    let v65 : UH0 =
-        match v50 with
-        | US0_0(v51) -&gt; (* Computed *)
-            v51
-        | US0_1(v52) -&gt; (* NotComputed *)
-            let v53 : UH0 = v52 ()
-            let v62 : UH0 =
-                match v53 with
-                | UH0_0(v55, v56) -&gt; (* StreamCons *)
-                    let v57 : US0 = US0_1(v56)
-                    let v58 : Mut0 = {l0 = v57} : Mut0
-                    let v59 : (unit -&gt; UH0) = closure11(v58)
-                    UH0_0(v55, v59)
+        | US1_1(v19) -&gt; (* Some *)
+            v19
+    let v23 : bool = v22 = 3
+    let v24 : string = $"_equal / actual: %A{v22} / expected: %A{3}"
+    let v25 : bool = v23 = false
+    if v25 then
+        failwith&lt;unit&gt; v24
+    let v26 : US0 = v2.l0
+    let v39 : UH0 =
+        match v26 with
+        | US0_0(v27) -&gt; (* Computed *)
+            v27
+        | US0_1(v28) -&gt; (* NotComputed *)
+            let v29 : UH0 = v28 ()
+            let v36 : UH0 =
+                match v29 with
+                | UH0_0(v31, v32) -&gt; (* StreamCons *)
+                    let v33 : (unit -&gt; UH0) = method1(v32)
+                    UH0_0(v31, v33)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v63 : US0 = US0_0(v62)
-            v2.l0 &lt;- v63
-            v62
-    let v101 : US1 =
-        match v65 with
-        | UH0_0(v66, v67) -&gt; (* StreamCons *)
-            let v68 : UH0 = v67 ()
-            match v68 with
-            | UH0_0(v69, v70) -&gt; (* StreamCons *)
-                let v71 : UH0 = v70 ()
-                match v71 with
-                | UH0_0(v72, v73) -&gt; (* StreamCons *)
-                    let v74 : UH0 = v73 ()
-                    match v74 with
-                    | UH0_0(v75, v76) -&gt; (* StreamCons *)
-                        let v77 : UH0 = v76 ()
-                        match v77 with
-                        | UH0_0(v78, v79) -&gt; (* StreamCons *)
-                            let v80 : UH0 = v79 ()
-                            match v80 with
-                            | UH0_0(v81, v82) -&gt; (* StreamCons *)
-                                US1_1(v81)
-                            | UH0_1 -&gt; (* StreamNil *)
-                                US1_0
-                        | UH0_1 -&gt; (* StreamNil *)
-                            US1_0
-                    | UH0_1 -&gt; (* StreamNil *)
-                        US1_0
-                | UH0_1 -&gt; (* StreamNil *)
-                    US1_0
-            | UH0_1 -&gt; (* StreamNil *)
-                US1_0
-        | UH0_1 -&gt; (* StreamNil *)
-            US1_0
-    let v105 : int32 =
-        match v101 with
+            let v37 : US0 = US0_0(v36)
+            v2.l0 &lt;- v37
+            v36
+    let v40 : int32 = 5
+    let v41 : US1 = method2(v39, v40)
+    let v45 : int32 =
+        match v41 with
         | US1_0 -&gt; (* None *)
             failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v102) -&gt; (* Some *)
-            v102
-    let v106 : bool = v105 = 5
-    let v107 : string = $"_equal / actual: %A{v105} / expected: %A{5}"
-    let v108 : bool = v106 = false
-    if v108 then
-        failwith&lt;unit&gt; v107
+        | US1_1(v42) -&gt; (* Some *)
+            v42
+    let v46 : bool = v45 = 5
+    let v47 : string = $"_equal / actual: %A{v45} / expected: %A{5}"
+    let v48 : bool = v46 = false
+    if v48 then
+        failwith&lt;unit&gt; v47
 method0()
 
 print_and_return / x: 0
@@ -8293,7 +8293,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8350,18 +8350,32 @@ and closure2 (v0 : Mut0) () : UH0 =
         v2
     | US0_1(v3) -&gt; (* NotComputed *)
         let v4 : UH0 = v3 ()
-        let v13 : UH0 =
+        let v11 : UH0 =
             match v4 with
             | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : US0 = US0_1(v7)
-                let v9 : Mut0 = {l0 = v8} : Mut0
-                let v10 : (unit -&gt; UH0) = closure2(v9)
-                UH0_0(v6, v10)
+                let v8 : (unit -&gt; UH0) = method2(v7)
+                UH0_0(v6, v8)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v14 : US0 = US0_0(v13)
-        v0.l0 &lt;- v14
-        v13
+        let v12 : US0 = US0_0(v11)
+        v0.l0 &lt;- v12
+        v11
+and method2 (v0 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
+    let v1 : US0 = US0_1(v0)
+    let v2 : Mut0 = {l0 = v1} : Mut0
+    closure2(v2)
+and method3 (v0 : UH0, v1 : int32) : US1 =
+    match v0 with
+    | UH0_0(v2, v3) -&gt; (* StreamCons *)
+        let v4 : bool = v1 = 0
+        if v4 then
+            US1_1(v2)
+        else
+            let v6 : int32 = v1 - 1
+            let v7 : UH0 = v3 ()
+            method3(v7, v6)
+    | UH0_1 -&gt; (* StreamNil *)
+        US1_0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
@@ -8369,117 +8383,65 @@ and method0 () : unit =
     let v3 : US0 = US0_1(v2)
     let v4 : Mut0 = {l0 = v3} : Mut0
     let v5 : US0 = v4.l0
-    let v20 : UH0 =
+    let v18 : UH0 =
         match v5 with
         | US0_0(v6) -&gt; (* Computed *)
             v6
         | US0_1(v7) -&gt; (* NotComputed *)
             let v8 : UH0 = v7 ()
-            let v17 : UH0 =
+            let v15 : UH0 =
                 match v8 with
                 | UH0_0(v10, v11) -&gt; (* StreamCons *)
-                    let v12 : US0 = US0_1(v11)
-                    let v13 : Mut0 = {l0 = v12} : Mut0
-                    let v14 : (unit -&gt; UH0) = closure2(v13)
-                    UH0_0(v10, v14)
+                    let v12 : (unit -&gt; UH0) = method2(v11)
+                    UH0_0(v10, v12)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v18 : US0 = US0_0(v17)
-            v4.l0 &lt;- v18
-            v17
-    let v44 : US1 =
+            let v16 : US0 = US0_0(v15)
+            v4.l0 &lt;- v16
+            v15
+    let v19 : int32 = 3
+    let v20 : US1 = method3(v18, v19)
+    let v24 : int32 =
         match v20 with
-        | UH0_0(v21, v22) -&gt; (* StreamCons *)
-            let v23 : UH0 = v22 ()
-            match v23 with
-            | UH0_0(v24, v25) -&gt; (* StreamCons *)
-                let v26 : UH0 = v25 ()
-                match v26 with
-                | UH0_0(v27, v28) -&gt; (* StreamCons *)
-                    let v29 : UH0 = v28 ()
-                    match v29 with
-                    | UH0_0(v30, v31) -&gt; (* StreamCons *)
-                        US1_1(v30)
-                    | UH0_1 -&gt; (* StreamNil *)
-                        US1_0
-                | UH0_1 -&gt; (* StreamNil *)
-                    US1_0
-            | UH0_1 -&gt; (* StreamNil *)
-                US1_0
-        | UH0_1 -&gt; (* StreamNil *)
-            US1_0
-    let v48 : int32 =
-        match v44 with
         | US1_0 -&gt; (* None *)
             failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v45) -&gt; (* Some *)
-            v45
-    let v49 : bool = v48 = 3
-    let v50 : string = $"_equal / actual: %A{v48} / expected: %A{3}"
-    let v51 : bool = v49 = false
-    if v51 then
-        failwith&lt;unit&gt; v50
-    let v52 : US0 = v4.l0
-    let v67 : UH0 =
-        match v52 with
-        | US0_0(v53) -&gt; (* Computed *)
-            v53
-        | US0_1(v54) -&gt; (* NotComputed *)
-            let v55 : UH0 = v54 ()
-            let v64 : UH0 =
-                match v55 with
-                | UH0_0(v57, v58) -&gt; (* StreamCons *)
-                    let v59 : US0 = US0_1(v58)
-                    let v60 : Mut0 = {l0 = v59} : Mut0
-                    let v61 : (unit -&gt; UH0) = closure2(v60)
-                    UH0_0(v57, v61)
+        | US1_1(v21) -&gt; (* Some *)
+            v21
+    let v25 : bool = v24 = 3
+    let v26 : string = $"_equal / actual: %A{v24} / expected: %A{3}"
+    let v27 : bool = v25 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
+    let v28 : US0 = v4.l0
+    let v41 : UH0 =
+        match v28 with
+        | US0_0(v29) -&gt; (* Computed *)
+            v29
+        | US0_1(v30) -&gt; (* NotComputed *)
+            let v31 : UH0 = v30 ()
+            let v38 : UH0 =
+                match v31 with
+                | UH0_0(v33, v34) -&gt; (* StreamCons *)
+                    let v35 : (unit -&gt; UH0) = method2(v34)
+                    UH0_0(v33, v35)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v65 : US0 = US0_0(v64)
-            v4.l0 &lt;- v65
-            v64
-    let v103 : US1 =
-        match v67 with
-        | UH0_0(v68, v69) -&gt; (* StreamCons *)
-            let v70 : UH0 = v69 ()
-            match v70 with
-            | UH0_0(v71, v72) -&gt; (* StreamCons *)
-                let v73 : UH0 = v72 ()
-                match v73 with
-                | UH0_0(v74, v75) -&gt; (* StreamCons *)
-                    let v76 : UH0 = v75 ()
-                    match v76 with
-                    | UH0_0(v77, v78) -&gt; (* StreamCons *)
-                        let v79 : UH0 = v78 ()
-                        match v79 with
-                        | UH0_0(v80, v81) -&gt; (* StreamCons *)
-                            let v82 : UH0 = v81 ()
-                            match v82 with
-                            | UH0_0(v83, v84) -&gt; (* StreamCons *)
-                                US1_1(v83)
-                            | UH0_1 -&gt; (* StreamNil *)
-                                US1_0
-                        | UH0_1 -&gt; (* StreamNil *)
-                            US1_0
-                    | UH0_1 -&gt; (* StreamNil *)
-                        US1_0
-                | UH0_1 -&gt; (* StreamNil *)
-                    US1_0
-            | UH0_1 -&gt; (* StreamNil *)
-                US1_0
-        | UH0_1 -&gt; (* StreamNil *)
-            US1_0
-    let v107 : int32 =
-        match v103 with
+            let v39 : US0 = US0_0(v38)
+            v4.l0 &lt;- v39
+            v38
+    let v42 : int32 = 5
+    let v43 : US1 = method3(v41, v42)
+    let v47 : int32 =
+        match v43 with
         | US1_0 -&gt; (* None *)
             failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v104) -&gt; (* Some *)
-            v104
-    let v108 : bool = v107 = 5
-    let v109 : string = $"_equal / actual: %A{v107} / expected: %A{5}"
-    let v110 : bool = v108 = false
-    if v110 then
-        failwith&lt;unit&gt; v109
+        | US1_1(v44) -&gt; (* Some *)
+            v44
+    let v48 : bool = v47 = 5
+    let v49 : string = $"_equal / actual: %A{v47} / expected: %A{5}"
+    let v50 : bool = v48 = false
+    if v50 then
+        failwith&lt;unit&gt; v49
 method0()
 
 print_and_return / x: 0
@@ -8494,7 +8456,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8504,7 +8466,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8513,10 +8475,11 @@ print_and_return / x: 5
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unfold</span> <span class="n">f</span> <span class="n">x0</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">x</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="p">()</span> <span class="n">x</span> <span class="o">=</span>
         <span class="k">match</span> <span class="n">f</span> <span class="n">x</span> <span class="k">with</span>
         <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">x</span><span class="s1">', y) =&gt; StreamCons (x'</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="n">y</span><span class="p">)</span>
         <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">x</span> <span class="o">=</span> <span class="n">loop_body</span> <span class="n">body</span> <span class="p">()</span> <span class="n">x</span>
     <span class="n">loop</span> <span class="n">x0</span>
 </pre></div>
 </div>
@@ -8538,7 +8501,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8548,7 +8511,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8577,7 +8540,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8613,58 +8576,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fold">fold<a class="anchor-link" href="#fold">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fold</span> <span class="n">fn</span> <span class="n">init</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; loop (fn acc st) (fn'</span> <span class="p">())</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
-    <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
-
-<span class="n">inl</span> <span class="n">fold_</span> <span class="n">fn</span> <span class="n">init</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; loop (fn acc st) (fn'</span> <span class="p">())</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
-    <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8674,7 +8586,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8683,17 +8595,10 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">take_while</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">i</span> <span class="o">=</span> <span class="n">function</span>
         <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
         <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
-
-<span class="n">inl</span> <span class="n">take_while_</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">i</span> <span class="o">=</span> <span class="n">loop_body</span> <span class="n">body</span> <span class="n">i</span>
     <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
 </pre></div>
 </div>
@@ -8715,7 +8620,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8725,7 +8630,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8735,9 +8640,6 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">sum</span> <span class="n">seq</span> <span class="o">=</span>
     <span class="n">seq</span> <span class="o">|&gt;</span> <span class="n">fold</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">0</span>
-
-<span class="n">inl</span> <span class="n">sum_</span> <span class="n">seq</span> <span class="o">=</span>
-    <span class="n">seq</span> <span class="o">|&gt;</span> <span class="n">fold_</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8757,7 +8659,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8793,91 +8695,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="n">sum_</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">45</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * (unit -&gt; UH0)
-    | UH0_1
-let rec closure9 () () : UH0 =
-    UH0_1
-and closure8 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure9()
-    UH0_0(9, v0)
-and closure7 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure8()
-    UH0_0(8, v0)
-and closure6 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure7()
-    UH0_0(7, v0)
-and closure5 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure6()
-    UH0_0(6, v0)
-and closure4 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure5()
-    UH0_0(5, v0)
-and closure3 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure4()
-    UH0_0(4, v0)
-and closure2 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure3()
-    UH0_0(3, v0)
-and closure1 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure2()
-    UH0_0(2, v0)
-and closure0 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure1()
-    UH0_0(1, v0)
-and method1 (v0 : int32, v1 : UH0) : int32 =
-    match v1 with
-    | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : int32 = v0 + v2
-        let v5 : UH0 = v3 ()
-        method1(v4, v5)
-    | UH0_1 -&gt; (* StreamNil *)
-        v0
-and method0 () : unit =
-    let v0 : int32 = 0
-    let v1 : int32 = 0
-    let v2 : (unit -&gt; UH0) = closure0()
-    let v3 : UH0 = UH0_0(v1, v2)
-    let v4 : int32 = method1(v0, v3)
-    let v5 : bool = v4 = 45
-    let v6 : string = $"_equal / actual: %A{v4} / expected: %A{45}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8925,7 +8743,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8935,9 +8753,9 @@ print_and_return / x: 5
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">new_infinite_stream_</span> <span class="n">print_and_return</span>
-<span class="o">|&gt;</span> <span class="n">take_while_</span> <span class="p">(</span><span class="n">fun</span> <span class="n">n</span> <span class="p">(</span><span class="n">_</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">sum_</span>
+<span class="n">new_infinite_stream</span> <span class="n">print_and_return</span>
+<span class="o">|&gt;</span> <span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">n</span> <span class="p">(</span><span class="n">_</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="nb">sum</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">10</span>
 </pre></div>
 </div>
@@ -8951,51 +8769,15 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * (unit -&gt; UH0)
-    | UH0_1
-let rec closure0 (v0 : int32) () : UH0 =
-    let v1 : int32 = v0 + 1
-    method1(v1)
-and method1 (v0 : int32) : UH0 =
-    printfn $"print_and_return / x: {v0}"
-    let v1 : (unit -&gt; UH0) = closure0(v0)
-    UH0_0(v0, v1)
-and closure1 (v0 : int32, v1 : (unit -&gt; UH0)) () : UH0 =
-    let v2 : int32 = v0 + 1
-    let v3 : UH0 = v1 ()
-    method2(v2, v3)
-and method2 (v0 : int32, v1 : UH0) : UH0 =
-    match v1 with
-    | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : bool = v2 &lt; 5
-        if v4 then
-            let v5 : (unit -&gt; UH0) = closure1(v0, v3)
-            UH0_0(v2, v5)
-        else
-            UH0_1
-    | _ -&gt;
-        UH0_1
-and method3 (v0 : int32, v1 : UH0) : int32 =
-    match v1 with
-    | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : int32 = v0 + v2
-        let v5 : UH0 = v3 ()
-        method3(v4, v5)
-    | UH0_1 -&gt; (* StreamNil *)
-        v0
-and method0 () : unit =
-    let v0 : int32 = 0
-    let v1 : UH0 = method1(v0)
-    let v2 : int32 = 0
-    let v3 : UH0 = method2(v2, v1)
-    let v4 : int32 = 0
-    let v5 : int32 = method3(v4, v3)
-    let v6 : bool = v5 = 10
-    let v7 : string = $"_equal / actual: %A{v5} / expected: %A{10}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+<pre>let rec method0 () : unit =
+    printfn $"print_and_return / x: {0}"
+    printfn $"print_and_return / x: {1}"
+    printfn $"print_and_return / x: {2}"
+    printfn $"print_and_return / x: {3}"
+    printfn $"print_and_return / x: {4}"
+    printfn $"print_and_return / x: {5}"
+    let v0 : string = $"_equal / actual: %A{10} / expected: %A{10}"
+    ()
 method0()
 
 print_and_return / x: 0
@@ -9009,51 +8791,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_list">to_list<a class="anchor-link" href="#to_list">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">st</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">rev</span>
-    <span class="n">loop</span> <span class="p">[]</span> <span class="n">s</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9111,7 +8849,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9121,7 +8859,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9130,18 +8868,11 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">st</span><span class="p">),</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
-
-<span class="n">inl</span> <span class="n">indexed_</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">st</span><span class="p">),</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
+    <span class="p">((</span><span class="n">StreamNil</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span>
+    <span class="o">||&gt;</span> <span class="n">fold</span> <span class="n">fun</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="n">StreamCons</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="p">),</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="o">|&gt;</span> <span class="n">fst</span>
+    <span class="o">|&gt;</span> <span class="n">rev</span>
 </pre></div>
 </div>
 </div>
@@ -9161,7 +8892,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9199,7 +8930,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9209,7 +8940,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9218,18 +8949,9 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span> <span class="n">fn</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; StreamCons (fn st, fun () =&gt; loop (fn'</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="n">s</span>
-
-<span class="n">inl</span> <span class="n">map_</span> <span class="n">fn</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; StreamCons (fn st, fun () =&gt; loop (fn'</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="n">s</span>
+    <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">StreamNil</span><span class="p">)</span>
+    <span class="o">||&gt;</span> <span class="n">fold_back</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
+        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9249,7 +8971,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9287,7 +9009,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9297,7 +9019,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9339,7 +9061,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9376,7 +9098,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9386,7 +9108,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9418,7 +9140,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9455,7 +9177,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9465,7 +9187,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9500,7 +9222,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

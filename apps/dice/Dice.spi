@@ -4,28 +4,42 @@ open testing
 
 // // ## sixthPowerSequence
 
+// // ## sixth_power_sequence
+
 inl sixth_power_sequence () =
     stream.iterate ((*) 6) 1i32
 
 // // ## accumulateDiceRolls
 
-inl rec accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
-    match rolls with
-    | _ when power < 0 =>
-        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc}\"")
-        Some (acc + 1, rolls)
-    | [] => None
-    | roll :: rest when roll > 1 =>
-        inl coeff = sixth_power_sequence () |> stream.item power
-        inl value = (roll - 1) * coeff
-        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}\""
-        )
-        accumulate_dice_rolls log rest (power - 1) (acc + value)
-    | roll :: rest =>
-        log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}\"")
-        accumulate_dice_rolls log rest (power - 1) acc
+// // ## accumulate_dice_rolls
+
+inl accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
+    inl rec body acc power rolls =
+        match rolls with
+        | _ when power < 0 =>
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc}\"")
+            Some (acc + 1, rolls)
+        | [] => None
+        | roll :: rest when roll > 1 =>
+            inl coeff = sixth_power_sequence () |> stream.item power
+            inl value = (roll - 1) * coeff
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}\""
+            )
+            loop (acc + value) (power - 1) rest
+        | roll :: rest =>
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}\"")
+            loop acc (power - 1) rest
+    and inl loop acc power rolls =
+        if var_is rolls |> not
+        then body acc power rolls
+        else
+            inl acc = dyn acc
+            join body acc power rolls
+    loop acc power rolls
 
 // // ## rollWithinBounds
+
+// // ## roll_within_bounds
 
 inl roll_within_bounds (log : option (string -> ())) max rolls =
     inl power = listm.length rolls - 1i32
@@ -34,6 +48,8 @@ inl roll_within_bounds (log : option (string -> ())) max rolls =
     | _ => None
 
 // // ## calculateDiceCount
+
+// // ## calculate_dice_count
 
 inl calculate_dice_count (log : option (string -> ())) max =
     inl rec loop n p =
@@ -48,6 +64,8 @@ inl calculate_dice_count (log : option (string -> ())) max =
 
 // // ## rollDice
 
+// // ## roll_dice
+
 inl roll_dice () : i32 =
     $"System.Random().Next (1, 7)"
 
@@ -58,21 +76,36 @@ inl rotate_number max n =
 
 // // ## rotateNumbers
 
+// // ## rotate_numbers
+
 inl rotate_numbers max items =
     items |> stream.map (rotate_number max)
 
 // // ## createSequentialRoller
 
+// // ## create_sequential_roller
+
 inl create_sequential_roller list =
+    inl s = list |> stream.from_list |> stream.memoize
     inl current_index = mut 0i32
-    fun () =>
-        match list |> listm'.try_item *current_index with
+    inl acc = mut 1
+    inl len = mut -1
+    let rec loop () =
+        match s () |> stream.try_item *current_index with
         | Some item =>
             current_index <- *current_index + 1
             item
-        | None => failwith "create_sequential_roller / end of list"
+        | None =>
+            if *len = -1
+            then len <- *current_index
+            acc <- (*acc + 1) % *len
+            current_index <- *acc - 1
+            loop ()
+    loop
 
 // // ## rollProgressively
+
+// // ## roll_progressively
 
 inl roll_progressively (log : option (string -> ())) roll reroll max =
     inl power = (calculate_dice_count log max) - 1i32

@@ -15,7 +15,7 @@
       ]
     },
     "microsoft.dotnet-interactive": {
-      "version": "1.0.445401",
+      "version": "1.0.450903",
       "commands": [
         "dotnet-interactive"
       ]
