@@ -95,10 +95,16 @@ listm.init 3i32 id
 
 inl try_item i s =
     inl rec body i = function
-        | StreamCons (x, _) when i = 0 => Some x
+        | StreamCons (x, _) when i <= 0 => Some x
         | StreamCons (_, fn) => loop (i - 1) (fn ())
         | StreamNil => None
-    and inl loop acc = join_body body acc
+    and inl loop acc s' =
+        match var_is acc, var_is s' with
+        | false, false => body acc s'
+        | _ =>
+            inl acc = dyn acc
+            inl s' = dyn s'
+            join body acc s'
     loop i s
 
 inl item i =
@@ -161,7 +167,7 @@ union memoized_stream t =
     | Computed : stream t
 
 inl memoize s =
-    inl rec body () s =
+    inl rec body s =
         inl state = mut (NotComputed s)
         fun () =>
             match *state with
@@ -173,7 +179,7 @@ inl memoize s =
                     | StreamCons (x, fn) => StreamCons (x, loop fn)
                 state <- Computed new_state
                 new_state
-    and inl loop s = join_body body () s
+    and inl loop s' = join_body_unit body s s'
     loop (fun () => s)
 
 #!spiral
@@ -211,11 +217,11 @@ memo_stream ()
 #!spiral
 
 inl unfold f x0 =
-    inl rec body () x =
+    inl rec body x =
         match f x with
         | Some (x', y) => StreamCons (x', fun () => loop y)
         | None => StreamNil
-    and inl loop x = join_body body () x
+    and inl loop x = join_body_unit body x0 x
     loop x0
 
 #!markdown
@@ -396,12 +402,18 @@ inl zip_ s1 s2 =
 #!spiral
 
 inl unzip s =
-    inl rec loop s =
+    inl rec body s =
         match s with
         | StreamCons ((x, y), fn) =>
             inl xs, ys = loop (fn ())
             StreamCons (x, fun () => xs), StreamCons (y, fun () => ys)
         | StreamNil => pair StreamNil StreamNil
+    and inl loop x =
+        if var_is x |> not
+        then body x
+        else
+            inl x = dyn x
+            join body x
     loop s
 
 #!spiral

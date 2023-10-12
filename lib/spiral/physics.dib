@@ -254,8 +254,9 @@ inl update_velocity dt m fs v0 =
     v0 + newton_second_v m fs v0 * dt
 
 inl velocity_fv dt m v0 fs t =
-    t / dt |> math.round |> abs
-    |> seq.iterate_ (update_velocity dt m fs) v0
+    stream.iterate (update_velocity dt m fs) v0
+    |> stream.try_item (t / dt |> math.round |> abs)
+    |> optionm'.default_value 0
 
 #!spiral
 
@@ -286,9 +287,10 @@ inl update_tv dt m fs (t, v0) =
     t + dtdt * dt, v0 + dvdt * dt
 
 inl velocity_ftv dt m tv0 fs t =
-    t / dt |> math.round |> abs
-    |> seq.iterate_ (update_tv dt m fs) tv0
-    |> snd
+    stream.iterate (join update_tv dt m fs) tv0
+    |> stream.try_item (t / dt |> math.round |> abs)
+    |> optionm.map snd
+    |> optionm'.default_value 0
 
 #!spiral
 
@@ -298,7 +300,7 @@ inl x = am'.init_series 0 100 0.1
 inl y =
     x
     |> am.map (
-        velocity_ftv 0.1 20 (0, 0) [ fun (t, _) => pedal_coast t; fun (_, v) => f_air 2 1.225 0.5 v ]
+        velocity_ftv 0.1 20 (dyn (0, 0)) [ fun (t, _) => pedal_coast t; fun (_, v) => f_air 2 1.225 0.5 v ]
     )
 "pedaling and coasting with air", "time (s)", "", ;[ "velocity of bike (m/s)", x, y ]
 
@@ -1554,7 +1556,7 @@ inl forces_string () =
     )
 
 inl string_update dt =
-    update_mps (runge_kutta_4 dt) (forces_string ())
+    update_mps (join runge_kutta_4 dt) (join forces_string ())
 
 inl string_initial_overtone n =
     inl ball_mass = 0.0008293 * 0.65 / 64
@@ -1573,40 +1575,38 @@ inl string_initial_overtone n =
     |> multi_particle_state
 
 let main () =
-    inl frames = listm'.init_series 0 9 1f64 |> stream.from_list
-    inl initial_state = string_initial_overtone 3i32
+    inl ~frames = listm'.init_series 0 65 1f64 |> stream.from_list
+    inl ~initial_state = string_initial_overtone 3i32
     inl frames =
         frames
         |> stream.map (fun n =>
             inl (multi_particle_state sts) =
-                seq.iterate (string_update 0.000025) initial_state |> fun f => f 0f64 // |> stream.item 0f64
-                // stream.iterate (string_update 0.000025) initial_state |> stream.item 0f64
-            inl rs =
-                [ zero_vec () ]
-                /@ (sts |> stream.fold (fun acc (particle_state st) => st.pos_vec :: acc) [] |> listm.rev)
-                /@ [ 0.65 *^ i_hat () ]
-                |> stream.from_list
+                stream.iterate (string_update 0.000025) initial_state |> stream.item n
             inl x, y =
-                rs
-                |> stream.map (fun r => r.x, r.y)
+                [ zero_vec () ]
+                /@ (sts |> stream.map (fun (particle_state st) => st.pos_vec) |> stream.to_list)
+                /@ [ 0.65 *^ i_hat () ]
+                |> listm.map (fun r => r.x, r.y)
+                |> stream.from_list
                 |> stream.unzip
             inl x : a i32 _ = x |> stream.to_list |> listm.toArray
             inl y : a i32 _ = y |> stream.to_list |> listm.toArray
             x, y
         )
-        // |> listm.toArray : a i32 _
-        
-    inl n = 0i32
 
-    // inl x, y = index frames n
-    inl x, y = frames |> stream.item n
-
-    "wave",
-    "position (m)",
-    "displacement (m)",
-    ;[
-        ($"$\"{!n}\"" : string), x, y
-    ]
+    inl plots =
+        frames
+        |> stream.indexed
+        |> stream.map (fun ((n : i32), (x, y)) =>
+            "wave",
+            "position (m)",
+            "displacement (m)",
+            ;[
+                ($"$\"{!n}\"" : string), x, y
+            ]
+        )
+    
+    plots |> stream.to_list |> listm.toArray : a i32 _
 
 #!markdown
 

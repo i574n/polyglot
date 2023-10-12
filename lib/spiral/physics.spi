@@ -86,8 +86,9 @@ inl update_velocity dt m fs v0 =
     v0 + newton_second_v m fs v0 * dt
 
 inl velocity_fv dt m v0 fs t =
-    t / dt |> math.round |> abs
-    |> seq.iterate_ (update_velocity dt m fs) v0
+    stream.iterate (update_velocity dt m fs) v0
+    |> stream.try_item (t / dt |> math.round |> abs)
+    |> optionm'.default_value 0
 
 inl f_air drag rho area v =
     -drag * rho * area * abs v * v / 2
@@ -104,9 +105,10 @@ inl update_tv dt m fs (t, v0) =
     t + dtdt * dt, v0 + dvdt * dt
 
 inl velocity_ftv dt m tv0 fs t =
-    t / dt |> math.round |> abs
-    |> seq.iterate_ (update_tv dt m fs) tv0
-    |> snd
+    stream.iterate (join update_tv dt m fs) tv0
+    |> stream.try_item (t / dt |> math.round |> abs)
+    |> optionm.map snd
+    |> optionm'.default_value 0
 
 // // ## velocity_ftxv
 

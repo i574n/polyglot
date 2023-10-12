@@ -380,7 +380,7 @@ let createSequentialRoller list =
 #!spiral
 
 inl create_sequential_roller list =
-    inl s = list |> stream.from_list |> stream.memoize
+    inl s = list |> listm.rev |> listm.append list |> stream.from_list |> stream.memoize
     inl current_index = mut 0i32
     inl acc = mut 1
     inl len = mut -1
@@ -392,7 +392,10 @@ inl create_sequential_roller list =
         | None =>
             if *len = -1
             then len <- *current_index
-            acc <- (*acc + 1) % *len
+            acc <-
+                if *acc >= *len
+                then 1
+                else *acc + 1
             current_index <- *acc - 1
             loop ()
     loop
@@ -403,8 +406,8 @@ inl create_sequential_roller list =
 
 inl sequential_roll = create_sequential_roller [ 1i32; 2; 3; 4 ]
 
-am.init 13i32 (ignore >> sequential_roll)
-|> _equal (a ;[ 1; 2; 3; 4; 2; 3; 4; 3; 4; 1; 2; 3; 4 ] : a i32 i32)
+am.init 20i32 (ignore >> sequential_roll)
+|> _equal (a ;[ 1; 2; 3; 4; 4; 3; 2; 1; 2; 3; 4; 4; 3; 2; 1; 3; 4; 4; 3; 2 ] : a i32 i32)
 
 #!markdown
 
@@ -576,23 +579,35 @@ roll_progressively (Some console.write_line) sequential_roll false 2000
 
 // // test
 
-// inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 2 ]
+inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 2 ]
 
-// fun () => roll_progressively (Some console.write_line) sequential_roll false 2000 |> ignore
-// |> _throws
-// |> _equal (Some "create_sequential_roller / end of list")
-()
+roll_progressively (Some console.write_line) sequential_roll false 2000
+|> _equal 1678
 
 #!spiral
 
 // // test
-// // // print_code=false
 
 listm'.init_series 1i32 40 1
 |> listm.map (fun _ => roll_progressively None roll_dice false 10)
 |> listm'.group_by id
 |> listm.map (fun (k, v) => k, (listm.length v : i32))
-|> listm.toArray : a i32 _
+|> listm.toArray
+|> fun (ar : a i32 _) =>
+    $"!ar |> Array.sortBy (fun (struct (a, b)) -> a)" : a i32 $"struct (int32 * int32)"
+
+#!spiral
+
+// // test
+// // print_code=false
+
+listm'.init_series 1i32 40 1
+|> listm.map (fun _ => roll_progressively None roll_dice true 10)
+|> listm'.group_by id
+|> listm.map (fun (k, v) => k, (listm.length v : i32))
+|> listm.toArray
+|> fun (ar : a i32 _) =>
+    $"!ar |> Array.sortBy (fun (struct (a, b)) -> a)" : a i32 $"struct (int32 * int32)"
 
 #!markdown
 

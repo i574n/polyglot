@@ -86,7 +86,7 @@ inl rotate_numbers max items =
 // // ## create_sequential_roller
 
 inl create_sequential_roller list =
-    inl s = list |> stream.from_list |> stream.memoize
+    inl s = list |> listm.rev |> listm.append list |> stream.from_list |> stream.memoize
     inl current_index = mut 0i32
     inl acc = mut 1
     inl len = mut -1
@@ -98,7 +98,10 @@ inl create_sequential_roller list =
         | None =>
             if *len = -1
             then len <- *current_index
-            acc <- (*acc + 1) % *len
+            acc <-
+                if *acc >= *len
+                then 1
+                else *acc + 1
             current_index <- *acc - 1
             loop ()
     loop

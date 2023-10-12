@@ -8436,16 +8436,16 @@ and method1 (v0 : int32) : UH0 =
     printfn $"print_and_return / x: {v0}"
     let v1 : (unit -&gt; UH0) = closure0(v0)
     UH0_0(v0, v1)
-and method3 (v0 : UH0, v1 : int32) : US0 =
-    match v0 with
+and method3 (v0 : int32, v1 : UH0) : US0 =
+    match v1 with
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : bool = v1 = 0
+        let v4 : bool = v0 &lt;= 0
         if v4 then
             US0_1(v2)
         else
-            let v6 : int32 = v1 - 1
+            let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
-            method3(v7, v6)
+            method3(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
         US0_0
 and method4 (v0 : UH1, v1 : UH1) : UH1 =
@@ -8456,7 +8456,7 @@ and method4 (v0 : UH1, v1 : UH1) : UH1 =
     | UH1_1 -&gt; (* Nil *)
         v1
 and method2 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
-    let v3 : US0 = method3(v0, v2)
+    let v3 : US0 = method3(v2, v0)
     match v3 with
     | US0_1(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
@@ -8566,37 +8566,37 @@ and method1 (v0 : int32) : UH0 =
     UH0_0(v0, v1)
 and closure1 (v0 : UH0) () : UH0 =
     v0
-and closure2 (v0 : Mut0) () : UH0 =
-    let v1 : US0 = v0.l0
-    match v1 with
-    | US0_0(v2) -&gt; (* Computed *)
-        v2
-    | US0_1(v3) -&gt; (* NotComputed *)
-        let v4 : UH0 = v3 ()
-        let v11 : UH0 =
-            match v4 with
-            | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : (unit -&gt; UH0) = method2(v7)
-                UH0_0(v6, v8)
+and closure2 (v0 : UH0, v1 : Mut0) () : UH0 =
+    let v2 : US0 = v1.l0
+    match v2 with
+    | US0_0(v3) -&gt; (* Computed *)
+        v3
+    | US0_1(v4) -&gt; (* NotComputed *)
+        let v5 : UH0 = v4 ()
+        let v12 : UH0 =
+            match v5 with
+            | UH0_0(v7, v8) -&gt; (* StreamCons *)
+                let v9 : (unit -&gt; UH0) = method2(v0, v8)
+                UH0_0(v7, v9)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v12 : US0 = US0_0(v11)
-        v0.l0 &lt;- v12
-        v11
-and method2 (v0 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
-    let v1 : US0 = US0_1(v0)
-    let v2 : Mut0 = {l0 = v1} : Mut0
-    closure2(v2)
-and method4 (v0 : UH0, v1 : int32) : US1 =
-    match v0 with
+        let v13 : US0 = US0_0(v12)
+        v1.l0 &lt;- v13
+        v12
+and method2 (v0 : UH0, v1 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
+    let v2 : US0 = US0_1(v1)
+    let v3 : Mut0 = {l0 = v2} : Mut0
+    closure2(v0, v3)
+and method4 (v0 : int32, v1 : UH0) : US1 =
+    match v1 with
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : bool = v1 = 0
+        let v4 : bool = v0 &lt;= 0
         if v4 then
             US1_1(v2)
         else
-            let v6 : int32 = v1 - 1
+            let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
-            method4(v7, v6)
+            method4(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
         US1_0
 and method5 (v0 : UH1, v1 : UH1) : UH1 =
@@ -8607,7 +8607,7 @@ and method5 (v0 : UH1, v1 : UH1) : UH1 =
     | UH1_1 -&gt; (* Nil *)
         v1
 and method3 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
-    let v3 : US1 = method4(v0, v2)
+    let v3 : US1 = method4(v2, v0)
     match v3 with
     | US1_1(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
@@ -8632,35 +8632,18 @@ and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
     let v2 : (unit -&gt; UH0) = closure1(v1)
-    let v3 : US0 = US0_1(v2)
-    let v4 : Mut0 = {l0 = v3} : Mut0
-    let v5 : US0 = v4.l0
-    let v18 : UH0 =
-        match v5 with
-        | US0_0(v6) -&gt; (* Computed *)
-            v6
-        | US0_1(v7) -&gt; (* NotComputed *)
-            let v8 : UH0 = v7 ()
-            let v15 : UH0 =
-                match v8 with
-                | UH0_0(v10, v11) -&gt; (* StreamCons *)
-                    let v12 : (unit -&gt; UH0) = method2(v11)
-                    UH0_0(v10, v12)
-                | UH0_1 -&gt; (* StreamNil *)
-                    UH0_1
-            let v16 : US0 = US0_0(v15)
-            v4.l0 &lt;- v16
-            v15
-    let v19 : UH1 = UH1_1
-    let v20 : int32 = 0
-    let v21 : UH1 = method3(v18, v19, v20)
-    let v22 : int32 = 0
-    let v23 : int32 = method6(v21, v22)
-    let v24 : bool = v23 = 10
-    let v25 : string = $"_equal / actual: %A{v23} / expected: %A{10}"
-    let v26 : bool = v24 = false
-    if v26 then
-        failwith&lt;unit&gt; v25
+    let v3 : (unit -&gt; UH0) = method2(v1, v2)
+    let v4 : UH0 = v3 ()
+    let v5 : UH1 = UH1_1
+    let v6 : int32 = 0
+    let v7 : UH1 = method3(v4, v5, v6)
+    let v8 : int32 = 0
+    let v9 : int32 = method6(v7, v8)
+    let v10 : bool = v9 = 10
+    let v11 : string = $"_equal / actual: %A{v9} / expected: %A{10}"
+    let v12 : bool = v10 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
 method0()
 
 print_and_return / x: 0
@@ -8766,59 +8749,57 @@ and closure11 (v0 : Mut0) () : UH0 =
         v2
     | US0_1(v3) -&gt; (* NotComputed *)
         let v4 : UH0 = v3 ()
-        let v11 : UH0 =
+        let v13 : UH0 =
             match v4 with
             | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : (unit -&gt; UH0) = method1(v7)
-                UH0_0(v6, v8)
+                let v8 : US0 = US0_1(v7)
+                let v9 : Mut0 = {l0 = v8} : Mut0
+                let v10 : (unit -&gt; UH0) = closure11(v9)
+                UH0_0(v6, v10)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v12 : US0 = US0_0(v11)
-        v0.l0 &lt;- v12
-        v11
-and method1 (v0 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
-    let v1 : US0 = US0_1(v0)
-    let v2 : Mut0 = {l0 = v1} : Mut0
-    closure11(v2)
-and method3 (v0 : UH0, v1 : int32) : US1 =
-    match v0 with
+        let v14 : US0 = US0_0(v13)
+        v0.l0 &lt;- v14
+        v13
+and method2 (v0 : int32, v1 : UH0) : US1 =
+    match v1 with
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : bool = v1 = 0
+        let v4 : bool = v0 &lt;= 0
         if v4 then
             US1_1(v2)
         else
-            let v6 : int32 = v1 - 1
+            let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
-            method3(v7, v6)
+            method2(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
         US1_0
-and method4 (v0 : UH1, v1 : UH1) : UH1 =
+and method3 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
     | UH1_0(v2, v3) -&gt; (* Cons *)
         let v4 : UH1 = UH1_0(v2, v1)
-        method4(v3, v4)
+        method3(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method2 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
-    let v3 : US1 = method3(v0, v2)
+and method1 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
+    let v3 : US1 = method2(v2, v0)
     match v3 with
     | US1_1(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
             let v6 : UH1 = UH1_0(v4, v1)
             let v7 : int32 = v2 + 1
-            method2(v0, v6, v7)
+            method1(v0, v6, v7)
         else
             let v9 : UH1 = UH1_1
-            method4(v1, v9)
+            method3(v1, v9)
     | _ -&gt;
         let v12 : UH1 = UH1_1
-        method4(v1, v12)
-and method5 (v0 : UH1, v1 : int32) : int32 =
+        method3(v1, v12)
+and method4 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
     | UH1_0(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
-        method5(v3, v4)
+        method4(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
 and method0 () : unit =
@@ -8827,32 +8808,34 @@ and method0 () : unit =
     let v1 : US0 = US0_1(v0)
     let v2 : Mut0 = {l0 = v1} : Mut0
     let v3 : US0 = v2.l0
-    let v16 : UH0 =
+    let v18 : UH0 =
         match v3 with
         | US0_0(v4) -&gt; (* Computed *)
             v4
         | US0_1(v5) -&gt; (* NotComputed *)
             let v6 : UH0 = v5 ()
-            let v13 : UH0 =
+            let v15 : UH0 =
                 match v6 with
                 | UH0_0(v8, v9) -&gt; (* StreamCons *)
-                    let v10 : (unit -&gt; UH0) = method1(v9)
-                    UH0_0(v8, v10)
+                    let v10 : US0 = US0_1(v9)
+                    let v11 : Mut0 = {l0 = v10} : Mut0
+                    let v12 : (unit -&gt; UH0) = closure11(v11)
+                    UH0_0(v8, v12)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v14 : US0 = US0_0(v13)
-            v2.l0 &lt;- v14
-            v13
-    let v17 : UH1 = UH1_1
-    let v18 : int32 = 0
-    let v19 : UH1 = method2(v16, v17, v18)
+            let v16 : US0 = US0_0(v15)
+            v2.l0 &lt;- v16
+            v15
+    let v19 : UH1 = UH1_1
     let v20 : int32 = 0
-    let v21 : int32 = method5(v19, v20)
-    let v22 : bool = v21 = 10
-    let v23 : string = $"_equal / actual: %A{v21} / expected: %A{10}"
-    let v24 : bool = v22 = false
-    if v24 then
-        failwith&lt;unit&gt; v23
+    let v21 : UH1 = method1(v18, v19, v20)
+    let v22 : int32 = 0
+    let v23 : int32 = method4(v21, v22)
+    let v24 : bool = v23 = 10
+    let v25 : string = $"_equal / actual: %A{v23} / expected: %A{10}"
+    let v26 : bool = v24 = false
+    if v26 then
+        failwith&lt;unit&gt; v25
 method0()
 
 print_and_return / x: 0
