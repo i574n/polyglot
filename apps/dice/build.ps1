@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 if (!$fast) {
     { dotnet run -c Release } | Invoke-Block
 
-    Invoke-Dib Dice.dib -Retries 5
+    { . ../spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 Dice.dib`"" } | Invoke-Block -Retries 5
 }
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib fs Dice.dib spi } | Invoke-Block
