@@ -1,18 +1,6 @@
-#!meta
-
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
-
-#!markdown
-
-## Tasks (Polyglot)
-
-#!spiral
-
-// // test
+// // ## Tasks (Polyglot)
 
 open testing
-
-#!spiral
 
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
@@ -59,8 +47,6 @@ inl raw_string_literal (s : string) : ref' str =
 
 inl (~#) (s : string) : ref' str =
     raw_string_literal s
-
-#!spiral
 
 nominal task_name = string
 
@@ -139,62 +125,3 @@ type task_template =
         task : task
         events : list event
     }
-
-#!spiral
-
-// // test
-// // rust=
-
-types ()
-
-#!spiral
-
-// // test
-// // rust=
-
-inl get_tasks () : list task_template =
-    [
-        {
-            task =
-                {
-                    name = task_name "01"
-                    scheduling = Manual WithSuggestion
-                }
-            events = []
-        }
-        {
-            task =
-                {
-                    name = task_name "02"
-                    scheduling = Manual WithSuggestion
-                }
-            events = []
-        }
-        {
-            task =
-                {
-                    name = task_name "03"
-                    scheduling = Manual WithSuggestion
-                }
-            events = []
-        }
-    ]
-
-types ()
-get_tasks () |> format_pretty |> console.write_line
-
-#!spiral
-
-// // test
-// // rust=
-
-get_tasks ()
-|> listm'.try_item 0i32
-|> fun (Some task) => task.task.name
-|> _equal (task_name "01")
-
-#!spiral
-
-// // test
-
-()
