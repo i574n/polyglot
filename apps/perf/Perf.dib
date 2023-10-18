@@ -191,14 +191,7 @@ let sortResultList resultList =
         |> List.indexed
 
     printfn ""
-    printfn "Averages  "
-    averages
-    |> List.iter (fun (i, avg) ->
-        printfn $"Test case %d{i + 1}. Average Time: %A{avg}  "
-    )
-
-    printfn ""
-    printfn "Ranking  "
+    printfn "Average Ranking  "
     averages
     |> List.sortBy snd
     |> List.iter (fun (i, avg) ->
@@ -213,10 +206,10 @@ let sortResultList resultList =
 
 Test: Empty3
 
-Solution: (a, a)
+Solution: (a, a)  
 Test case 1. A. Time: 91L
 
-Solution: (a, a)
+Solution: (a, a)  
 Test case 1. A. Time: 56L
 
 Input  | Expected      | Result | Best
@@ -224,10 +217,10 @@ Input  | Expected      | Result | Best
 (a, a) | a             | a      | (1, 91)
 (a, a) | a             | a      | (1, 56)
 
-Averages
+Averages  
 Test case 1. Average Time: 73L
 
-Ranking
+Ranking  
 Test case 1. Average Time: 73L
 
 #!fsharp
@@ -255,10 +248,10 @@ empty3Tests
 
 Test: Empty2
 
-Solution: (a, a)
+Solution: (a, a)  
 Test case 1. A. Time: 59L
 
-Solution: (a, a)
+Solution: (a, a)  
 Test case 1. A. Time: 53L
 
 Input   | Expected        | Result  | Best
@@ -266,10 +259,10 @@ Input   | Expected        | Result  | Best
 (a, a)  | a               | a       | (1, 59)
 (a, a)  | a               | a       | (1, 53)
 
-Averages
+Averages  
 Test case 1. Average Time: 56L
 
-Ranking
+Ranking  
 Test case 1. Average Time: 56L
 
 #!fsharp
@@ -297,13 +290,13 @@ empty2Tests
 
 Test: Empty
 
-Solution: 0
+Solution: 0  
 Test case 1. A. Time: 61L
 
-Solution: 2
+Solution: 2  
 Test case 1. A. Time: 62L
 
-Solution: 5
+Solution: 5  
 Test case 1. A. Time: 70L
 
 Input   | Expected        | Result  | Best
@@ -312,10 +305,10 @@ Input   | Expected        | Result  | Best
 2       | 2               | 2       | (1, 62)
 5       | 5               | 5       | (1, 70)
 
-Averages
+Averages  
 Test case 1. Average Time: 64L
 
-Ranking
+Ranking  
 Test case 1. Average Time: 64L
 
 #!fsharp
@@ -401,7 +394,7 @@ Input                                                                           
 abc                                                                             | abc             | abc     | (11, 1219)
 accabb                                                                          | acb             | acb     | (11, 1317)
 pprrqqpp                                                                        | prq             | prq     | (11, 1322)
-aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb acb             | acb     | (11, 2040)
+aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb | acb             | acb     | (11, 2040)
 
 Averages  
 Test case 1. Average Time: 4622L  

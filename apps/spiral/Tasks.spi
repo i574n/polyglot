@@ -1,7 +1,5 @@
 // // ## Tasks (Polyglot)
 
-open testing
-
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"

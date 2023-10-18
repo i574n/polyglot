@@ -387,7 +387,7 @@ modules:
         let timeout =
             match argsMap |> Map.tryFind (nameof Arguments.Timeout) with
             | Some [ Arguments.Timeout timeout ] -> timeout
-            | _ -> 60000 * 5
+            | _ -> 60000 * 60
 
         let port =
             match argsMap |> Map.tryFind (nameof Arguments.Port) with
