@@ -7531,8 +7531,74 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">/@</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">listm</span><span class="s1">'.(/@) x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">am</span><span class="s1">'_singleton x =</span>
+    <span class="n">a</span> <span class="p">;[</span> <span class="n">x</span> <span class="p">]</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+
+<span class="n">inl</span> <span class="n">nameof</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"nameof !x"</span>
+
+<span class="n">inl</span> <span class="n">printfn</span> <span class="n">x</span> <span class="o">=</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="n">x</span>
+
+<span class="n">inl</span> <span class="n">string_concat</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="n">b</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!b |&gt; String.concat !a"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7542,7 +7608,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7562,8 +7628,42 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">test_case_result</span> <span class="o">=</span>
+    <span class="p">{</span>
+        <span class="n">Input</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="n">Expected</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="n">Result</span> <span class="p">:</span> <span class="n">string</span>
+        <span class="n">TimeList</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">u64</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7573,7 +7673,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7635,8 +7735,85 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run</span> <span class="n">forall</span> <span class="nb">input</span> <span class="n">expected</span><span class="o">.</span> <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span> <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">=</span>
+    <span class="o">//</span> <span class="n">let</span> <span class="n">inputStr</span> <span class="o">=</span>
+    <span class="o">//</span>     <span class="n">match</span> <span class="n">box</span> <span class="nb">input</span> <span class="k">with</span>
+    <span class="o">//</span>     <span class="o">|</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">ICollection</span> <span class="k">as</span> <span class="nb">input</span> <span class="o">-&gt;</span>
+    <span class="o">//</span>         <span class="n">System</span><span class="o">.</span><span class="n">Linq</span><span class="o">.</span><span class="n">Enumerable</span><span class="o">.</span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">obj</span><span class="o">&gt;</span> <span class="nb">input</span>
+    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span>
+    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">","</span>
+    <span class="o">//</span>     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="n">ToString</span> <span class="p">()</span>
+
+    <span class="o">//</span> <span class="n">printfn</span> <span class="s2">""</span>
+    <span class="o">//</span> <span class="n">printfn</span> <span class="err">$</span><span class="s2">"Solution: </span><span class="si">{inputStr}</span><span class="s2">  "</span>
+
+    <span class="o">//</span> <span class="n">let</span> <span class="n">performanceInvoke</span> <span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="n">unit</span> <span class="o">-&gt;</span> <span class="s1">'T) =</span>
+    <span class="o">//</span>     <span class="n">GC</span><span class="o">.</span><span class="n">Collect</span> <span class="p">()</span>
+    <span class="o">//</span>     <span class="n">let</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Stopwatch</span> <span class="p">()</span>
+    <span class="o">//</span>     <span class="n">stopwatch</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span>
+    <span class="o">//</span>     <span class="n">let</span> <span class="n">time1</span> <span class="o">=</span> <span class="n">stopwatch</span><span class="o">.</span><span class="n">ElapsedMilliseconds</span>
+
+    <span class="o">//</span>     <span class="n">let</span> <span class="n">result</span> <span class="o">=</span>
+    <span class="o">//</span>         <span class="p">[</span><span class="o">|</span> <span class="mi">0</span> <span class="o">..</span> <span class="mi">2000000</span> <span class="o">|</span><span class="p">]</span>
+    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">Parallel</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
+    <span class="o">//</span>             <span class="n">fn</span> <span class="p">()</span>
+    <span class="o">//</span>         <span class="p">)</span>
+    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">last</span>
+
+    <span class="o">//</span>     <span class="n">let</span> <span class="n">time2</span> <span class="o">=</span> <span class="n">stopwatch</span><span class="o">.</span><span class="n">ElapsedMilliseconds</span> <span class="o">-</span> <span class="n">time1</span>
+
+    <span class="o">//</span>     <span class="n">result</span><span class="p">,</span> <span class="n">time2</span>
+
+    <span class="o">//</span> <span class="n">let</span> <span class="n">resultsWithTime</span> <span class="o">=</span>
+    <span class="o">//</span>     <span class="n">solutions</span>
+    <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">mapi</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="p">(</span><span class="n">testName</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span> <span class="o">-&gt;</span>
+    <span class="o">//</span>         <span class="n">let</span> <span class="n">result</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">performanceInvoke</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">solution</span> <span class="nb">input</span><span class="p">)</span>
+    <span class="o">//</span>         <span class="n">printfn</span> <span class="err">$</span><span class="s2">"Test case </span><span class="si">%d</span><span class="s2">{i + 1}. </span><span class="si">%s{testName}</span><span class="s2">. Time: %A</span><span class="si">{time}</span><span class="s2">  "</span>
+    <span class="o">//</span>         <span class="n">result</span><span class="p">,</span> <span class="n">time</span>
+    <span class="o">//</span>     <span class="p">)</span>
+
+
+    <span class="o">//</span> <span class="n">match</span> <span class="n">resultsWithTime</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="k">with</span>
+    <span class="o">//</span> <span class="o">|</span> <span class="p">([]</span> <span class="o">|</span> <span class="p">[</span> <span class="n">_</span> <span class="p">])</span> <span class="o">-&gt;</span> <span class="p">()</span>
+    <span class="o">//</span> <span class="o">|</span> <span class="p">(</span><span class="n">head</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="n">when</span> <span class="n">tail</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">forall</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">head</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span>
+    <span class="o">//</span> <span class="o">|</span> <span class="n">results</span> <span class="o">-&gt;</span> <span class="n">failwithf</span> <span class="err">$</span><span class="s2">"Challenge error: %A</span><span class="si">{results}</span><span class="s2">"</span>
+
+    <span class="o">//</span> <span class="p">{</span>
+    <span class="o">//</span>     <span class="n">Input</span> <span class="o">=</span> <span class="n">inputStr</span>
+    <span class="o">//</span>     <span class="n">Expected</span> <span class="o">=</span> <span class="n">expected</span><span class="o">.</span><span class="n">ToString</span> <span class="p">()</span>
+    <span class="o">//</span>     <span class="n">Result</span> <span class="o">=</span> <span class="n">resultsWithTime</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">head</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">ToString</span> <span class="p">()</span>
+    <span class="o">//</span>     <span class="n">TimeList</span> <span class="o">=</span> <span class="n">resultsWithTime</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
+    <span class="o">//</span> <span class="p">}</span>
+    <span class="n">solutions</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">expected</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7646,7 +7823,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7666,8 +7843,41 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">runAll</span> <span class="n">forall</span> <span class="nb">input</span> <span class="n">expected</span><span class="o">.</span> <span class="n">testName</span> <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span> <span class="n">testCases</span> <span class="o">=</span>
+    <span class="n">printfn</span> <span class="s2">""</span>
+    <span class="n">printfn</span> <span class="s2">""</span>
+    <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Test: {!testName}</span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">testCases</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">run</span> <span class="n">solutions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7677,7 +7887,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7774,14 +7984,7 @@ a.anchor-link {
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">indexed</span>
 
     <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="s2">"Averages  "</span>
-    <span class="n">averages</span>
-    <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">printfn</span> <span class="err">$</span><span class="s2">"Test case </span><span class="si">%d</span><span class="s2">{i + 1}. Average Time: %A</span><span class="si">{avg}</span><span class="s2">  "</span>
-    <span class="p">)</span>
-
-    <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="s2">"Ranking  "</span>
+    <span class="n">printfn</span> <span class="s2">"Average Ranking  "</span>
     <span class="n">averages</span>
     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">sortBy</span> <span class="n">snd</span>
     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="o">-&gt;</span>
@@ -7793,7 +7996,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7804,16 +8007,16 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Test: Empty3</p>
-<p>Solution: (a, a)
+<p>Solution: (a, a)<br/>
 Test case 1. A. Time: 91L</p>
-<p>Solution: (a, a)
+<p>Solution: (a, a)<br/>
 Test case 1. A. Time: 56L</p>
 <table>
 <thead>
@@ -7839,14 +8042,14 @@ Test case 1. A. Time: 56L</p>
 </tr>
 </tbody>
 </table>
-<p>Averages
+<p>Averages<br/>
 Test case 1. Average Time: 73L</p>
-<p>Ranking
+<p>Ranking<br/>
 Test case 1. Average Time: 73L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7885,28 +8088,25 @@ Test case 1. Average Time: 73L</p>
 Test: empty3Tests
 
 Solution: (a, a)  
-Test case 1. A. Time: 29L  
+Test case 1. A. Time: 26L  
 
 Solution: (a, a)  
-Test case 1. A. Time: 21L  
+Test case 1. A. Time: 17L  
 
 Input 	| Expected	| Result	| Best   
 ---   	| ---     	| ---   	| ---    
-(a, a)	| a       	| a     	| (1, 29)
-(a, a)	| a       	| a     	| (1, 21)
+(a, a)	| a       	| a     	| (1, 26)
+(a, a)	| a       	| a     	| (1, 17)
 
-Averages  
-Test case 1. Average Time: 25L  
-
-Ranking  
-Test case 1. Average Time: 25L  
+Average Ranking  
+Test case 1. Average Time: 21L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7917,16 +8117,16 @@ Test case 1. Average Time: 25L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Test: Empty2</p>
-<p>Solution: (a, a)
+<p>Solution: (a, a)<br/>
 Test case 1. A. Time: 59L</p>
-<p>Solution: (a, a)
+<p>Solution: (a, a)<br/>
 Test case 1. A. Time: 53L</p>
 <table>
 <thead>
@@ -7952,14 +8152,14 @@ Test case 1. A. Time: 53L</p>
 </tr>
 </tbody>
 </table>
-<p>Averages
+<p>Averages<br/>
 Test case 1. Average Time: 56L</p>
-<p>Ranking
+<p>Ranking<br/>
 Test case 1. Average Time: 56L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7998,28 +8198,25 @@ Test case 1. Average Time: 56L</p>
 Test: empty2Tests
 
 Solution: (a, a)  
-Test case 1. A. Time: 22L  
+Test case 1. A. Time: 17L  
 
 Solution: (a, a)  
-Test case 1. A. Time: 22L  
+Test case 1. A. Time: 17L  
 
 Input 	| Expected	| Result	| Best   
 ---   	| ---     	| ---   	| ---    
-(a, a)	| a       	| a     	| (1, 22)
-(a, a)	| a       	| a     	| (1, 22)
+(a, a)	| a       	| a     	| (1, 17)
+(a, a)	| a       	| a     	| (1, 17)
 
-Averages  
-Test case 1. Average Time: 22L  
-
-Ranking  
-Test case 1. Average Time: 22L  
+Average Ranking  
+Test case 1. Average Time: 17L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8030,18 +8227,18 @@ Test case 1. Average Time: 22L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Test: Empty</p>
-<p>Solution: 0
+<p>Solution: 0<br/>
 Test case 1. A. Time: 61L</p>
-<p>Solution: 2
+<p>Solution: 2<br/>
 Test case 1. A. Time: 62L</p>
-<p>Solution: 5
+<p>Solution: 5<br/>
 Test case 1. A. Time: 70L</p>
 <table>
 <thead>
@@ -8073,14 +8270,14 @@ Test case 1. A. Time: 70L</p>
 </tr>
 </tbody>
 </table>
-<p>Averages
+<p>Averages<br/>
 Test case 1. Average Time: 64L</p>
-<p>Ranking
+<p>Ranking<br/>
 Test case 1. Average Time: 64L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8120,32 +8317,29 @@ Test case 1. Average Time: 64L</p>
 Test: emptyTests
 
 Solution: 0  
-Test case 1. A. Time: 22L  
+Test case 1. A. Time: 17L  
 
 Solution: 2  
-Test case 1. A. Time: 23L  
+Test case 1. A. Time: 15L  
 
 Solution: 5  
-Test case 1. A. Time: 22L  
+Test case 1. A. Time: 16L  
 
 Input	| Expected	| Result	| Best   
 ---  	| ---     	| ---   	| ---    
-0    	| 0       	| 0     	| (1, 22)
-2    	| 2       	| 2     	| (1, 23)
-5    	| 5       	| 5     	| (1, 22)
+0    	| 0       	| 0     	| (1, 17)
+2    	| 2       	| 2     	| (1, 15)
+5    	| 5       	| 5     	| (1, 16)
 
-Averages  
-Test case 1. Average Time: 22L  
-
-Ranking  
-Test case 1. Average Time: 22L  
+Average Ranking  
+Test case 1. Average Time: 16L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8156,7 +8350,7 @@ Test case 1. Average Time: 22L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8211,12 +8405,42 @@ Test case 8. H. Time: 7099L<br/>
 Test case 9. I. Time: 6133L<br/>
 Test case 10. J. Time: 5993L<br/>
 Test case 11. K. Time: 2040L</p>
-<p>Input                                                                           | Expected        | Result  | Best
----                                                                             | ---             | ---     | ---
-abc                                                                             | abc             | abc     | (11, 1219)
-accabb                                                                          | acb             | acb     | (11, 1317)
-pprrqqpp                                                                        | prq             | prq     | (11, 1322)
-aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb acb             | acb     | (11, 2040)</p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Expected</th>
+<th>Result</th>
+<th>Best</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abc</td>
+<td>abc</td>
+<td>abc</td>
+<td>(11, 1219)</td>
+</tr>
+<tr>
+<td>accabb</td>
+<td>acb</td>
+<td>acb</td>
+<td>(11, 1317)</td>
+</tr>
+<tr>
+<td>pprrqqpp</td>
+<td>prq</td>
+<td>prq</td>
+<td>(11, 1322)</td>
+</tr>
+<tr>
+<td>aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb</td>
+<td>acb</td>
+<td>acb</td>
+<td>(11, 2040)</td>
+</tr>
+</tbody>
+</table>
 <p>Averages<br/>
 Test case 1. Average Time: 4622L<br/>
 Test case 2. Average Time: 4483L<br/>
@@ -8244,7 +8468,7 @@ Test case 11. Average Time: 1474L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8387,96 +8611,83 @@ Test case 11. Average Time: 1474L</p>
 Test: uniqueLettersTests
 
 Solution: abc  
-Test case 1. A. Time: 1022L  
-Test case 2. B. Time: 1399L  
+Test case 1. A. Time: 1127L  
+Test case 2. B. Time: 1453L  
 Test case 3. C. Time: 1822L  
-Test case 4. D. Time: 1144L  
-Test case 5. E. Time: 1293L  
-Test case 6. F. Time: 1376L  
-Test case 7. G. Time: 1244L  
-Test case 8. H. Time: 1240L  
-Test case 9. I. Time: 847L  
-Test case 10. J. Time: 893L  
-Test case 11. K. Time: 925L  
+Test case 4. D. Time: 1126L  
+Test case 5. E. Time: 1198L  
+Test case 6. F. Time: 1291L  
+Test case 7. G. Time: 1211L  
+Test case 8. H. Time: 1241L  
+Test case 9. I. Time: 1245L  
+Test case 10. J. Time: 1128L  
+Test case 11. K. Time: 1093L  
 
 Solution: accabb  
-Test case 1. A. Time: 979L  
-Test case 2. B. Time: 1247L  
-Test case 3. C. Time: 1519L  
-Test case 4. D. Time: 963L  
-Test case 5. E. Time: 1027L  
-Test case 6. F. Time: 1248L  
-Test case 7. G. Time: 1074L  
-Test case 8. H. Time: 1116L  
-Test case 9. I. Time: 990L  
-Test case 10. J. Time: 890L  
-Test case 11. K. Time: 921L  
+Test case 1. A. Time: 1355L  
+Test case 2. B. Time: 1184L  
+Test case 3. C. Time: 1433L  
+Test case 4. D. Time: 1014L  
+Test case 5. E. Time: 1097L  
+Test case 6. F. Time: 1061L  
+Test case 7. G. Time: 964L  
+Test case 8. H. Time: 987L  
+Test case 9. I. Time: 914L  
+Test case 10. J. Time: 954L  
+Test case 11. K. Time: 887L  
 
 Solution: pprrqqpp  
-Test case 1. A. Time: 880L  
-Test case 2. B. Time: 1176L  
-Test case 3. C. Time: 1600L  
-Test case 4. D. Time: 1034L  
-Test case 5. E. Time: 1122L  
-Test case 6. F. Time: 1231L  
-Test case 7. G. Time: 1173L  
-Test case 8. H. Time: 1229L  
-Test case 9. I. Time: 1182L  
-Test case 10. J. Time: 997L  
-Test case 11. K. Time: 900L  
+Test case 1. A. Time: 860L  
+Test case 2. B. Time: 1060L  
+Test case 3. C. Time: 1399L  
+Test case 4. D. Time: 982L  
+Test case 5. E. Time: 1099L  
+Test case 6. F. Time: 1156L  
+Test case 7. G. Time: 1063L  
+Test case 8. H. Time: 1059L  
+Test case 9. I. Time: 1034L  
+Test case 10. J. Time: 1006L  
+Test case 11. K. Time: 937L  
 
 Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb  
-Test case 1. A. Time: 3074L  
-Test case 2. B. Time: 3727L  
-Test case 3. C. Time: 5607L  
-Test case 4. D. Time: 3235L  
-Test case 5. E. Time: 3007L  
-Test case 6. F. Time: 3573L  
-Test case 7. G. Time: 3035L  
-Test case 8. H. Time: 3553L  
-Test case 9. I. Time: 3564L  
-Test case 10. J. Time: 3577L  
-Test case 11. K. Time: 1615L  
+Test case 1. A. Time: 2653L  
+Test case 2. B. Time: 2912L  
+Test case 3. C. Time: 4760L  
+Test case 4. D. Time: 2901L  
+Test case 5. E. Time: 2823L  
+Test case 6. F. Time: 3202L  
+Test case 7. G. Time: 2785L  
+Test case 8. H. Time: 3410L  
+Test case 9. I. Time: 2921L  
+Test case 10. J. Time: 3089L  
+Test case 11. K. Time: 1453L  
 
 Input                                                                          	| Expected	| Result	| Best      
 ---                                                                            	| ---     	| ---   	| ---       
-abc                                                                            	| abc     	| abc   	| (9, 847)  
-accabb                                                                         	| acb     	| acb   	| (10, 890) 
-pprrqqpp                                                                       	| prq     	| prq   	| (1, 880)  
-aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (11, 1615)
+abc                                                                            	| abc     	| abc   	| (11, 1093)
+accabb                                                                         	| acb     	| acb   	| (11, 887) 
+pprrqqpp                                                                       	| prq     	| prq   	| (1, 860)  
+aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (11, 1453)
 
-Averages  
-Test case 1. Average Time: 1488L  
-Test case 2. Average Time: 1887L  
-Test case 3. Average Time: 2637L  
-Test case 4. Average Time: 1594L  
-Test case 5. Average Time: 1612L  
-Test case 6. Average Time: 1857L  
-Test case 7. Average Time: 1631L  
-Test case 8. Average Time: 1784L  
-Test case 9. Average Time: 1645L  
-Test case 10. Average Time: 1589L  
-Test case 11. Average Time: 1090L  
-
-Ranking  
-Test case 11. Average Time: 1090L  
-Test case 1. Average Time: 1488L  
-Test case 10. Average Time: 1589L  
-Test case 4. Average Time: 1594L  
-Test case 5. Average Time: 1612L  
-Test case 7. Average Time: 1631L  
-Test case 9. Average Time: 1645L  
-Test case 8. Average Time: 1784L  
-Test case 6. Average Time: 1857L  
-Test case 2. Average Time: 1887L  
-Test case 3. Average Time: 2637L  
+Average Ranking  
+Test case 11. Average Time: 1092L  
+Test case 1. Average Time: 1498L  
+Test case 4. Average Time: 1505L  
+Test case 7. Average Time: 1505L  
+Test case 9. Average Time: 1528L  
+Test case 10. Average Time: 1544L  
+Test case 5. Average Time: 1554L  
+Test case 2. Average Time: 1652L  
+Test case 8. Average Time: 1674L  
+Test case 6. Average Time: 1677L  
+Test case 3. Average Time: 2353L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8487,7 +8698,7 @@ Test case 3. Average Time: 2637L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8642,7 +8853,7 @@ Test case 8. Average Time: 1551L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8792,124 +9003,452 @@ Test case 8. Average Time: 1551L</p>
 Test: rotateStringsTests
 
 Solution: abc  
-Test case 1. A. Time: 1299L  
-Test case 2. B. Time: 1351L  
-Test case 3. C. Time: 1431L  
-Test case 4. CA. Time: 1991L  
-Test case 5. CB. Time: 1602L  
-Test case 6. D. Time: 1740L  
-Test case 7. E. Time: 1253L  
-Test case 8. F. Time: 1176L  
-Test case 9. FA. Time: 1207L  
-Test case 10. FB. Time: 1914L  
-Test case 11. FC. Time: 3851L  
+Test case 1. A. Time: 1214L  
+Test case 2. B. Time: 1391L  
+Test case 3. C. Time: 1268L  
+Test case 4. CA. Time: 1766L  
+Test case 5. CB. Time: 1492L  
+Test case 6. D. Time: 1450L  
+Test case 7. E. Time: 1091L  
+Test case 8. F. Time: 986L  
+Test case 9. FA. Time: 1145L  
+Test case 10. FB. Time: 1853L  
+Test case 11. FC. Time: 3363L  
 
 Solution: abcde  
-Test case 1. A. Time: 1790L  
-Test case 2. B. Time: 1458L  
-Test case 3. C. Time: 1758L  
-Test case 4. CA. Time: 1927L  
-Test case 5. CB. Time: 1809L  
-Test case 6. D. Time: 2478L  
-Test case 7. E. Time: 1580L  
-Test case 8. F. Time: 1397L  
-Test case 9. FA. Time: 1495L  
-Test case 10. FB. Time: 2494L  
-Test case 11. FC. Time: 3956L  
+Test case 1. A. Time: 1609L  
+Test case 2. B. Time: 1416L  
+Test case 3. C. Time: 1604L  
+Test case 4. CA. Time: 1762L  
+Test case 5. CB. Time: 1667L  
+Test case 6. D. Time: 2561L  
+Test case 7. E. Time: 1702L  
+Test case 8. F. Time: 1140L  
+Test case 9. FA. Time: 1494L  
+Test case 10. FB. Time: 2202L  
+Test case 11. FC. Time: 3421L  
 
 Solution: abcdefghi  
-Test case 1. A. Time: 3202L  
-Test case 2. B. Time: 2823L  
-Test case 3. C. Time: 2393L  
-Test case 4. CA. Time: 3025L  
-Test case 5. CB. Time: 3306L  
-Test case 6. D. Time: 5328L  
-Test case 7. E. Time: 2374L  
-Test case 8. F. Time: 2226L  
-Test case 9. FA. Time: 2628L  
-Test case 10. FB. Time: 3230L  
-Test case 11. FC. Time: 4424L  
+Test case 1. A. Time: 2927L  
+Test case 2. B. Time: 2282L  
+Test case 3. C. Time: 2596L  
+Test case 4. CA. Time: 2588L  
+Test case 5. CB. Time: 3321L  
+Test case 6. D. Time: 4399L  
+Test case 7. E. Time: 2610L  
+Test case 8. F. Time: 1860L  
+Test case 9. FA. Time: 2453L  
+Test case 10. FB. Time: 3001L  
+Test case 11. FC. Time: 4276L  
 
 Solution: abab  
-Test case 1. A. Time: 1365L  
-Test case 2. B. Time: 1510L  
-Test case 3. C. Time: 1560L  
-Test case 4. CA. Time: 1702L  
-Test case 5. CB. Time: 1462L  
-Test case 6. D. Time: 1926L  
-Test case 7. E. Time: 1460L  
-Test case 8. F. Time: 1229L  
-Test case 9. FA. Time: 1517L  
-Test case 10. FB. Time: 2363L  
-Test case 11. FC. Time: 3699L  
+Test case 1. A. Time: 1467L  
+Test case 2. B. Time: 1354L  
+Test case 3. C. Time: 1464L  
+Test case 4. CA. Time: 1555L  
+Test case 5. CB. Time: 1363L  
+Test case 6. D. Time: 1750L  
+Test case 7. E. Time: 1283L  
+Test case 8. F. Time: 1177L  
+Test case 9. FA. Time: 1359L  
+Test case 10. FB. Time: 1970L  
+Test case 11. FC. Time: 3267L  
 
 Solution: aa  
-Test case 1. A. Time: 1108L  
-Test case 2. B. Time: 1380L  
-Test case 3. C. Time: 1070L  
-Test case 4. CA. Time: 1319L  
-Test case 5. CB. Time: 1061L  
-Test case 6. D. Time: 1076L  
-Test case 7. E. Time: 940L  
-Test case 8. F. Time: 866L  
-Test case 9. FA. Time: 876L  
-Test case 10. FB. Time: 1578L  
-Test case 11. FC. Time: 3210L  
+Test case 1. A. Time: 896L  
+Test case 2. B. Time: 944L  
+Test case 3. C. Time: 981L  
+Test case 4. CA. Time: 1191L  
+Test case 5. CB. Time: 1004L  
+Test case 6. D. Time: 1007L  
+Test case 7. E. Time: 833L  
+Test case 8. F. Time: 807L  
+Test case 9. FA. Time: 846L  
+Test case 10. FB. Time: 1524L  
+Test case 11. FC. Time: 2829L  
 
 Solution: z  
-Test case 1. A. Time: 679L  
-Test case 2. B. Time: 688L  
-Test case 3. C. Time: 760L  
-Test case 4. CA. Time: 984L  
-Test case 5. CB. Time: 842L  
-Test case 6. D. Time: 728L  
-Test case 7. E. Time: 728L  
-Test case 8. F. Time: 189L  
-Test case 9. FA. Time: 223L  
-Test case 10. FB. Time: 791L  
-Test case 11. FC. Time: 1828L  
+Test case 1. A. Time: 633L  
+Test case 2. B. Time: 741L  
+Test case 3. C. Time: 697L  
+Test case 4. CA. Time: 957L  
+Test case 5. CB. Time: 760L  
+Test case 6. D. Time: 687L  
+Test case 7. E. Time: 632L  
+Test case 8. F. Time: 206L  
+Test case 9. FA. Time: 209L  
+Test case 10. FB. Time: 758L  
+Test case 11. FC. Time: 1905L  
 
 Input    	| Expected                                                                                 	| Result                                                                                   	| Best     
 ---      	| ---                                                                                      	| ---                                                                                      	| ---      
-abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (8, 1176)
-abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (8, 1397)
-abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (8, 2226)
-abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (8, 1229)
-aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (8, 866) 
-z        	| z                                                                                        	| z                                                                                        	| (8, 189) 
+abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (8, 986) 
+abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (8, 1140)
+abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (8, 1860)
+abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (8, 1177)
+aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (8, 807) 
+z        	| z                                                                                        	| z                                                                                        	| (8, 206) 
 
-Averages  
-Test case 1. Average Time: 1573L  
-Test case 2. Average Time: 1535L  
-Test case 3. Average Time: 1495L  
-Test case 4. Average Time: 1824L  
-Test case 5. Average Time: 1680L  
-Test case 6. Average Time: 2212L  
-Test case 7. Average Time: 1389L  
-Test case 8. Average Time: 1180L  
-Test case 9. Average Time: 1324L  
-Test case 10. Average Time: 2061L  
-Test case 11. Average Time: 3494L  
-
-Ranking  
-Test case 8. Average Time: 1180L  
-Test case 9. Average Time: 1324L  
-Test case 7. Average Time: 1389L  
-Test case 3. Average Time: 1495L  
-Test case 2. Average Time: 1535L  
-Test case 1. Average Time: 1573L  
-Test case 5. Average Time: 1680L  
-Test case 4. Average Time: 1824L  
-Test case 10. Average Time: 2061L  
-Test case 6. Average Time: 2212L  
-Test case 11. Average Time: 3494L  
+Average Ranking  
+Test case 8. Average Time: 1029L  
+Test case 9. Average Time: 1251L  
+Test case 2. Average Time: 1354L  
+Test case 7. Average Time: 1358L  
+Test case 3. Average Time: 1435L  
+Test case 1. Average Time: 1457L  
+Test case 5. Average Time: 1601L  
+Test case 4. Average Time: 1636L  
+Test case 10. Average Time: 1884L  
+Test case 6. Average Time: 1975L  
+Test case 11. Average Time: 3176L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rotate_strings_tests">rotate_strings_tests<a class="anchor-link" href="#rotate_strings_tests">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">get_solutions</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="p">[</span>
+        <span class="o">//</span> <span class="s2">"A"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="n">let</span> <span class="n">resultList</span> <span class="o">=</span>
+        <span class="o">//</span>         <span class="n">List</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">x</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>             <span class="n">let</span> <span class="n">rotate</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">letter</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">Substring</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">letter</span>
+        <span class="o">//</span>             <span class="p">[</span> <span class="n">rotate</span> <span class="p">(</span><span class="k">if</span> <span class="n">acc</span><span class="o">.</span><span class="n">IsEmpty</span> <span class="n">then</span> <span class="nb">input</span> <span class="k">else</span> <span class="n">acc</span><span class="o">.</span><span class="n">Head</span><span class="p">)</span> <span class="p">(</span><span class="n">string</span> <span class="n">x</span><span class="p">)</span> <span class="p">]</span> <span class="o">/@</span> <span class="n">acc</span>
+        <span class="o">//</span>         <span class="p">)</span> <span class="p">[]</span> <span class="p">(</span><span class="n">Seq</span><span class="o">.</span><span class="n">toList</span> <span class="nb">input</span><span class="p">)</span>
+
+        <span class="o">//</span>     <span class="n">List</span><span class="o">.</span><span class="n">foldBack</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">+</span> <span class="n">acc</span> <span class="o">+</span> <span class="s2">" "</span><span class="p">)</span> <span class="n">resultList</span> <span class="s2">""</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">TrimEnd</span> <span class="p">()</span>
+
+        <span class="o">//</span> <span class="s2">"B"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="nb">input</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="n">string</span> <span class="nb">list</span><span class="p">)</span> <span class="n">letter</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>         <span class="n">let</span> <span class="n">last</span> <span class="o">=</span>
+        <span class="o">//</span>             <span class="k">if</span> <span class="n">acc</span><span class="o">.</span><span class="n">IsEmpty</span>
+        <span class="o">//</span>             <span class="n">then</span> <span class="nb">input</span>
+        <span class="o">//</span>             <span class="k">else</span> <span class="n">acc</span><span class="o">.</span><span class="n">Head</span>
+
+        <span class="o">//</span>         <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">last</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">letter</span>
+
+        <span class="o">//</span>         <span class="n">item</span> <span class="p">::</span> <span class="n">acc</span>
+        <span class="o">//</span>     <span class="p">)</span> <span class="p">[]</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"C"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="nb">input</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">string</span><span class="p">)</span> <span class="n">letter</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="o">.</span><span class="n">Head</span><span class="o">.</span><span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">letter</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="p">[</span> <span class="nb">input</span> <span class="p">]</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">skip</span> <span class="mi">1</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"CA"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="nb">input</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">string</span><span class="p">)</span> <span class="n">letter</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="o">.</span><span class="n">Head</span><span class="o">.</span><span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">letter</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="p">[</span> <span class="nb">input</span> <span class="p">]</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">rev</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">skip</span> <span class="mi">1</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"CB"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="nb">input</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">string</span><span class="p">)</span> <span class="n">letter</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="n">acc</span><span class="o">.</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">letter</span> <span class="p">]))</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="nb">input</span> <span class="p">])</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">rev</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">skip</span> <span class="mi">1</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"D"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="nb">input</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>         <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">acc</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="nb">list</span> <span class="n">char</span><span class="p">))</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">//</span>             <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">acc</span><span class="o">.</span><span class="n">Length</span> <span class="o">=</span> <span class="nb">list</span><span class="o">.</span><span class="n">Length</span> <span class="o">=&gt;</span> <span class="n">acc</span>
+        <span class="o">//</span>             <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>                 <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">/@</span> <span class="p">[</span> <span class="n">head</span> <span class="p">]</span>
+        <span class="o">//</span>                 <span class="n">loop</span> <span class="p">(</span><span class="n">item</span> <span class="p">::</span> <span class="n">acc</span><span class="p">)</span> <span class="n">item</span>
+        <span class="o">//</span>             <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="p">[]</span>
+        <span class="o">//</span>         <span class="n">loop</span> <span class="p">[]</span> <span class="nb">list</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">List</span><span class="o">.</span><span class="n">toArray</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="p">)</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"E"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="nb">input</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">list</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>         <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">last</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="o">//</span>             <span class="o">|</span> <span class="n">head</span> <span class="p">::</span> <span class="n">tail</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>                 <span class="n">let</span> <span class="n">item</span> <span class="o">=</span> <span class="n">last</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">string</span> <span class="n">head</span>
+        <span class="o">//</span>                 <span class="n">item</span> <span class="p">::</span> <span class="n">loop</span> <span class="n">item</span> <span class="n">tail</span>
+        <span class="o">//</span>             <span class="o">|</span> <span class="p">[]</span> <span class="o">=&gt;</span> <span class="p">[]</span>
+        <span class="o">//</span>         <span class="n">loop</span> <span class="nb">input</span> <span class="nb">list</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="s2">"F"</span><span class="p">,</span>
+        <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">input_length</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="o">.</span><span class="n">length</span>
+            <span class="n">am</span><span class="s1">'_singleton 0i32</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.init_series 1 (input_length - 1) 1)</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span>
+                <span class="n">inl</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">input_length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="n">inl</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="err">$</span><span class="s2">"!a + !b"</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">string_concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"FA"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="n">List</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">append</span> <span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">]</span>
+        <span class="o">//</span>   <span class="o">//</span>  <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="n">i</span> <span class="o">..</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">])</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"FB"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="n">Seq</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span>
+        <span class="o">//</span>   <span class="o">//</span>  <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">seq</span> <span class="p">{</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">})</span>
+        <span class="o">//</span>   <span class="o">//</span>  <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="n">i</span> <span class="o">..</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">])</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+
+        <span class="o">//</span> <span class="s2">"FC"</span><span class="p">,</span>
+        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span>     <span class="n">Array</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">])</span>
+        <span class="o">//</span> <span class="o">//</span>    <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">Parallel</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="n">i</span> <span class="o">..</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">])</span>
+        <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+    <span class="p">]</span>
+
+<span class="n">let</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+
+    <span class="n">inl</span> <span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"bca cab abc"</span>
+        <span class="s2">"abcde"</span><span class="p">,</span> <span class="s2">"bcdea cdeab deabc eabcd abcde"</span>
+        <span class="s2">"abcdefghi"</span><span class="p">,</span> <span class="s2">"bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"</span>
+        <span class="s2">"abab"</span><span class="p">,</span> <span class="s2">"baba abab baba abab"</span>
+        <span class="s2">"aa"</span><span class="p">,</span> <span class="s2">"aa aa"</span>
+        <span class="s2">"z"</span><span class="p">,</span> <span class="s2">"z"</span>
+    <span class="p">]</span>
+
+    <span class="n">inl</span> <span class="n">solutions</span> <span class="o">=</span> <span class="n">get_solutions</span> <span class="p">()</span>
+
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">rotateStringsTests</span> <span class="p">()</span> <span class="o">=</span> <span class="n">runAll</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">rotateStringsTests</span><span class="p">)</span> <span class="n">solutions</span> <span class="n">test_cases</span>
+    <span class="n">rotateStringsTests</span> <span class="p">(),</span>
+    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">sortResultList</span>
+
+    <span class="n">solutions</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<details class="dni-treeview" open="open"><summary><span class="dni-code-hint"><code>(UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abc", "bca cab abc",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcde",\n      "bcdea cdeab deabc eabcd abcde",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n         "bcdefghia cdefghiab defghiabc efghiabcd fghiab...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abc", "bca cab abc",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcde",\n      "bcdea cdeab deabc eabcd abcde",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n         "bcdefghia cdefghiab defghiabc efghiabcd fghiabc...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abc</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>bca cab abc</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcde", "bcdea cdeab deabc eabcd abcde",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n      "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abcde</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>bcdea cdeab deabc eabcd abcde</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n   "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abab", "baba abab baba abab",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abcdefghi</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abab", "baba abab baba abab",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "aa", "aa aa",\n      UH0_0 (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "z", "z", UH0_1)))</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td>F</td></tr><tr><td>Item2</td><td>FSI_0007+v5@103-1</td></tr><tr><td>Item3</td><td>UH1_1</td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abab</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>baba abab baba abab</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "aa", "aa aa",\n   UH0_0 (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "z", "z", UH0_1))</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td>UH1_0 ("F", <fun:v5@103-1>, UH1_1)</fun:v5@103-1></td></tr><tr><td>Item2</td><td>aa</td></tr><tr><td>Item3</td><td>aa aa</td></tr><tr><td>Item4</td><td>UH0_0 (UH1_0 ("F", <fun:v5@103-1>, UH1_1), "z", "z", UH0_1)</fun:v5@103-1></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details><style>
+.dni-code-hint {
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.dni-treeview {
+    white-space: nowrap;
+}
+.dni-treeview td {
+    vertical-align: top;
+    text-align: start;
+}
+details.dni-treeview {
+    padding-left: 1em;
+}
+table td {
+    text-align: start;
+}
+table tr { 
+    vertical-align: top; 
+    margin: 0em 0px;
+}
+table tr td pre 
+{ 
+    vertical-align: top !important; 
+    margin: 0em 0px !important;
+} 
+table th {
+    text-align: start;
+}
+</style>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH1 =
+    | UH1_0 of string * (string -&gt; string) * UH1
+    | UH1_1
+and UH0 =
+    | UH0_0 of UH1 * string * string * UH0
+    | UH0_1
+and Mut0 = {mutable l0 : int32}
+let rec method1 (v0 : int32, v1 : Mut0) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 &lt; v0
+    v3
+and closure1 () (v0 : string) : string =
+    let v1 : int32 = v0.Length
+    let v2 : (int32 []) = [|0|]
+    let v3 : int32 = v1 - 1
+    let v4 : int32 = v3 - 1
+    let v5 : int32 = v4 + 1
+    let v6 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v5)
+    let v7 : Mut0 = {l0 = 0} : Mut0
+    while method1(v5, v7) do
+        let v9 : int32 = v7.l0
+        let v10 : int32 = 1 + v9
+        v6.[int v9] &lt;- v10
+        let v11 : int32 = v9 + 1
+        v7.l0 &lt;- v11
+        ()
+    let v12 : int32 = v6.Length
+    let v13 : int32 = v2.Length
+    let v14 : int32 = v12 + v13
+    let v15 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v14)
+    let v16 : Mut0 = {l0 = 0} : Mut0
+    while method1(v14, v16) do
+        let v18 : int32 = v16.l0
+        let v19 : bool = v18 &lt; v12
+        let v23 : int32 =
+            if v19 then
+                let v20 : int32 = v6.[int v18]
+                v20
+            else
+                let v21 : int32 = v18 - v12
+                let v22 : int32 = v2.[int v21]
+                v22
+        v15.[int v18] &lt;- v23
+        let v24 : int32 = v18 + 1
+        v16.l0 &lt;- v24
+        ()
+    let v25 : int32 = v15.Length
+    let v26 : (string []) = Array.zeroCreate&lt;string&gt; (v25)
+    let v27 : Mut0 = {l0 = 0} : Mut0
+    while method1(v25, v27) do
+        let v29 : int32 = v27.l0
+        let v30 : int32 = v15.[int v29]
+        let v31 : string = v0.[int v30..int v3]
+        let v32 : int32 = v30 - 1
+        let v33 : string = v0.[int 0..int v32]
+        let v34 : string = v31 + v33
+        v26.[int v29] &lt;- v34
+        let v35 : int32 = v29 + 1
+        v27.l0 &lt;- v35
+        ()
+    let v36 : string = " "
+    let v37 : string = v26 |&gt; String.concat v36
+    v37
+and closure0 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure0()
+    let v1 : string = nameof v0
+    let v2 : string = ""
+    System.Console.WriteLine v2
+    System.Console.WriteLine v2
+    let v3 : string = $"Test: {v1}"
+    System.Console.WriteLine v3
+    let v4 : string = "F"
+    let v5 : (string -&gt; string) = closure1()
+    let v6 : UH1 = UH1_1
+    let v7 : UH1 = UH1_0(v4, v5, v6)
+    let v8 : string = "abc"
+    let v9 : string = "bca cab abc"
+    let v10 : string = "abcde"
+    let v11 : string = "bcdea cdeab deabc eabcd abcde"
+    let v12 : string = "abcdefghi"
+    let v13 : string = "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+    let v14 : string = "abab"
+    let v15 : string = "baba abab baba abab"
+    let v16 : string = "aa"
+    let v17 : string = "aa aa"
+    let v18 : string = "z"
+    let v19 : UH0 = UH0_1
+    let v20 : UH0 = UH0_0(v7, v18, v18, v19)
+    let v21 : UH0 = UH0_0(v7, v16, v17, v20)
+    let v22 : UH0 = UH0_0(v7, v14, v15, v21)
+    let v23 : UH0 = UH0_0(v7, v12, v13, v22)
+    let v24 : UH0 = UH0_0(v7, v10, v11, v23)
+    UH0_0(v7, v8, v9, v24)
+and method0 () : struct (UH0 * UH1) =
+    let v0 : (unit -&gt; UH0) = closure0()
+    let v1 : string = nameof v0
+    let v2 : string = ""
+    System.Console.WriteLine v2
+    System.Console.WriteLine v2
+    let v3 : string = $"Test: {v1}"
+    System.Console.WriteLine v3
+    let v4 : string = "F"
+    let v5 : (string -&gt; string) = closure1()
+    let v6 : UH1 = UH1_1
+    let v7 : UH1 = UH1_0(v4, v5, v6)
+    let v8 : string = "abc"
+    let v9 : string = "bca cab abc"
+    let v10 : string = "abcde"
+    let v11 : string = "bcdea cdeab deabc eabcd abcde"
+    let v12 : string = "abcdefghi"
+    let v13 : string = "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+    let v14 : string = "abab"
+    let v15 : string = "baba abab baba abab"
+    let v16 : string = "aa"
+    let v17 : string = "aa aa"
+    let v18 : string = "z"
+    let v19 : UH0 = UH0_1
+    let v20 : UH0 = UH0_0(v7, v18, v18, v19)
+    let v21 : UH0 = UH0_0(v7, v16, v17, v20)
+    let v22 : UH0 = UH0_0(v7, v14, v15, v21)
+    let v23 : UH0 = UH0_0(v7, v12, v13, v22)
+    let v24 : UH0 = UH0_0(v7, v10, v11, v23)
+    let v25 : UH0 = UH0_0(v7, v8, v9, v24)
+    struct (v25, v7)
+method0()
+
+
+
+Test: v0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8920,7 +9459,7 @@ Test case 11. Average Time: 3494L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8986,7 +9525,7 @@ Test case 1. Average Time: 706L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9032,40 +9571,37 @@ Test case 1. Average Time: 706L</p>
 Test: returnLettersWithOddCountTests
 
 Solution: 1  
-Test case 1. A. Time: 564L  
+Test case 1. A. Time: 602L  
 
 Solution: 2  
-Test case 1. A. Time: 567L  
+Test case 1. A. Time: 571L  
 
 Solution: 3  
-Test case 1. A. Time: 593L  
+Test case 1. A. Time: 600L  
 
 Solution: 9  
-Test case 1. A. Time: 608L  
+Test case 1. A. Time: 571L  
 
 Solution: 10  
-Test case 1. A. Time: 737L  
+Test case 1. A. Time: 624L  
 
 Input	| Expected  	| Result    	| Best    
 ---  	| ---       	| ---       	| ---     
-1    	| a         	| a         	| (1, 564)
-2    	| ba        	| ba        	| (1, 567)
-3    	| aaa       	| aaa       	| (1, 593)
-9    	| aaaaaaaaa 	| aaaaaaaaa 	| (1, 608)
-10   	| baaaaaaaaa	| baaaaaaaaa	| (1, 737)
+1    	| a         	| a         	| (1, 602)
+2    	| ba        	| ba        	| (1, 571)
+3    	| aaa       	| aaa       	| (1, 600)
+9    	| aaaaaaaaa 	| aaaaaaaaa 	| (1, 571)
+10   	| baaaaaaaaa	| baaaaaaaaa	| (1, 624)
 
-Averages  
-Test case 1. Average Time: 613L  
-
-Ranking  
-Test case 1. Average Time: 613L  
+Average Ranking  
+Test case 1. Average Time: 593L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9076,7 +9612,7 @@ Test case 1. Average Time: 613L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9142,7 +9678,7 @@ Test case 1. Average Time: 165L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9189,39 +9725,36 @@ Test case 1. Average Time: 165L</p>
 Test: hasAnyPairCloseToEachotherTests
 
 Solution: 0  
-Test case 1. A. Time: 174L  
+Test case 1. A. Time: 164L  
 
 Solution: 1,2  
-Test case 1. A. Time: 243L  
+Test case 1. A. Time: 242L  
 
 Solution: 3,5  
-Test case 1. A. Time: 239L  
-
-Solution: 3,4,6  
 Test case 1. A. Time: 228L  
 
+Solution: 3,4,6  
+Test case 1. A. Time: 258L  
+
 Solution: 2,4,6  
-Test case 1. A. Time: 103L  
+Test case 1. A. Time: 289L  
 
 Input	| Expected	| Result	| Best    
 ---  	| ---     	| ---   	| ---     
-0    	| False   	| False 	| (1, 174)
-1,2  	| True    	| True  	| (1, 243)
-3,5  	| False   	| False 	| (1, 239)
-3,4,6	| True    	| True  	| (1, 228)
-2,4,6	| False   	| False 	| (1, 103)
+0    	| False   	| False 	| (1, 164)
+1,2  	| True    	| True  	| (1, 242)
+3,5  	| False   	| False 	| (1, 228)
+3,4,6	| True    	| True  	| (1, 258)
+2,4,6	| False   	| False 	| (1, 289)
 
-Averages  
-Test case 1. Average Time: 197L  
-
-Ranking  
-Test case 1. Average Time: 197L  
+Average Ranking  
+Test case 1. Average Time: 236L  
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

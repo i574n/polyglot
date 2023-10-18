@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 120
+    timeout-minutes: 180
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -70,7 +70,7 @@ jobs:
 
   push:
     needs: build
-    timeout-minutes: 120
+    timeout-minutes: 180
     runs-on: ubuntu-latest
     permissions:
       contents: write

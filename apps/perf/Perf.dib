@@ -12,6 +12,24 @@
 
 open testing
 
+#!spiral
+
+inl (/@) x = listm'.(/@) x
+
+#!spiral
+
+inl am'_singleton x =
+    a ;[ x ] : a i32 _
+
+inl nameof x : string =
+    $"nameof !x"
+
+inl printfn x =
+    console.write_line x
+
+inl string_concat (a : string) b : string =
+    $"!b |> String.concat !a"
+
 #!markdown
 
 ## TestCaseResult
@@ -24,6 +42,16 @@ type TestCaseResult =
         Expected: string
         Result: string
         TimeList: int64 list 
+    }
+
+#!spiral
+
+type test_case_result =
+    {
+        Input : string
+        Expected : string
+        Result : string
+        TimeList : list u64
     }
 
 #!markdown
@@ -82,6 +110,59 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
         TimeList = resultsWithTime |> List.map snd
     }
 
+#!spiral
+
+inl run forall input expected. (solutions : list (string * (input -> expected))) (input, expected) =
+    // let inputStr =
+    //     match box input with
+    //     | :? System.Collections.ICollection as input ->
+    //         System.Linq.Enumerable.Cast<obj> input
+    //         |> Seq.map string
+    //         |> String.concat ","
+    //     | _ -> input.ToString ()
+
+    // printfn ""
+    // printfn $"Solution: {inputStr}  "
+
+    // let performanceInvoke (fn: unit -> 'T) =
+    //     GC.Collect ()
+    //     let stopwatch = System.Diagnostics.Stopwatch ()
+    //     stopwatch.Start ()
+    //     let time1 = stopwatch.ElapsedMilliseconds
+
+    //     let result =
+    //         [| 0 .. 2000000 |]
+    //         |> Array.Parallel.map (fun _ ->
+    //             fn ()
+    //         )
+    //         |> Array.last
+
+    //     let time2 = stopwatch.ElapsedMilliseconds - time1
+
+    //     result, time2
+
+    // let resultsWithTime =
+    //     solutions
+    //     |> List.mapi (fun i (testName, solution) ->
+    //         let result, time = performanceInvoke (fun () -> solution input)
+    //         printfn $"Test case %d{i + 1}. %s{testName}. Time: %A{time}  "
+    //         result, time
+    //     )
+
+
+    // match resultsWithTime |> List.map fst with
+    // | ([] | [ _ ]) -> ()
+    // | (head :: tail) when tail |> List.forall ((=) head) -> ()
+    // | results -> failwithf $"Challenge error: %A{results}"
+
+    // {
+    //     Input = inputStr
+    //     Expected = expected.ToString ()
+    //     Result = resultsWithTime |> Seq.map fst |> Seq.head |> fun x -> x.ToString ()
+    //     TimeList = resultsWithTime |> List.map snd
+    // }
+    solutions, input, expected
+
 #!markdown
 
 ## runAll
@@ -95,6 +176,15 @@ let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCas
     testCases
     |> Seq.map (run solutions)
     |> Seq.toList
+
+#!spiral
+
+inl runAll forall input expected. testName (solutions : list (string * (input -> expected))) testCases =
+    printfn ""
+    printfn ""
+    printfn ($"$\"Test: {!testName}\"" : string)
+    testCases
+    |> listm.map (run solutions)
 
 #!markdown
 
@@ -793,6 +883,152 @@ let testCases = seq {
 let rec rotateStringsTests = runAll (nameof rotateStringsTests) solutions testCases
 rotateStringsTests
 |> sortResultList
+
+#!markdown
+
+## rotate_strings_tests
+
+#!spiral
+
+// // test
+
+inl get_solutions () =
+    [
+        // "A",
+        // fun (input : string) =>
+        //     let resultList =
+        //         List.fold (fun acc x =>
+        //             let rotate (text : string) (letter : string) = text.Substring (1, input.Length - 1) + letter
+        //             [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] /@ acc
+        //         ) [] (Seq.toList input)
+
+        //     List.foldBack (fun acc x => x + acc + " ") resultList ""
+        //     |> fun x => x.TrimEnd ()
+
+        // "B",
+        // fun input =>
+        //     input
+        //     |> Seq.toList
+        //     |> List.fold (fun (acc : string list) letter =>
+        //         let last =
+        //             if acc.IsEmpty
+        //             then input
+        //             else acc.Head
+
+        //         let item = last.[1 .. input.Length - 1] + string letter
+
+        //         item :: acc
+        //     ) []
+        //     |> List.rev
+        //     |> String.concat " "
+
+        // "C",
+        // fun input =>
+        //     input
+        //     |> Seq.toList
+        //     |> List.fold (fun (acc : list string) letter => acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
+        //     |> List.rev
+        //     |> List.skip 1
+        //     |> String.concat " "
+
+        // "CA",
+        // fun input =>
+        //     input
+        //     |> Seq.fold (fun (acc : list string) letter => acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
+        //     |> Seq.rev
+        //     |> Seq.skip 1
+        //     |> String.concat " "
+
+        // "CB",
+        // fun input =>
+        //     input
+        //     |> Seq.toArray
+        //     |> Array.fold (fun (acc : a _ string) letter => acc |> Array.append (a ;[ acc.[0].[ 1 .. input.Length - 1 ] + string letter ])) (a ;[ input ])
+        //     |> Array.rev
+        //     |> Array.skip 1
+        //     |> String.concat " "
+
+        // "D",
+        // fun input =>
+        //     input
+        //     |> Seq.toList
+        //     |> fun list =>
+        //         let rec loop (acc : list (list char)) = function
+        //             | _ when acc.Length = list.Length => acc
+        //             | head :: tail =>
+        //                 let item = tail /@ [ head ]
+        //                 loop (item :: acc) item
+        //             | [] => []
+        //         loop [] list
+        //     |> List.rev
+        //     |> List.map (List.toArray >> String)
+        //     |> String.concat " "
+
+        // "E",
+        // fun input =>
+        //     input
+        //     |> Seq.toList
+        //     |> fun list =>
+        //         let rec loop (last : string) = function
+        //             | head :: tail =>
+        //                 let item = last.[1 .. input.Length - 1] + string head
+        //                 item :: loop item tail
+        //             | [] => []
+        //         loop input list
+        //     |> String.concat " "
+
+        "F",
+        fun input =>
+            inl input_length = input |> sm.length
+            am'_singleton 0i32
+            |> am.append (am'.init_series 1 (input_length - 1) 1)
+            |> am.map (fun i =>
+                inl a = sm.slice input { from = i; to = input_length - 1 } : string
+                inl b = sm.slice input { from = 0; to = i - 1 } : string
+                $"!a + !b" : string
+            )
+            |> string_concat " "
+
+        // "FA",
+        // fun input =>
+        //     List.singleton 0
+        //     |> List.append [ 1 .. input.Length - 1 ]
+        //   //  |> List.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
+        //     |> String.concat " "
+
+        // "FB",
+        // fun input =>
+        //     Seq.singleton 0
+        //   //  |> Seq.append (seq { 1 .. input.Length - 1 })
+        //   //  |> Seq.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
+        //     |> String.concat " "
+
+        // "FC",
+        // fun input =>
+        //     Array.singleton 0
+        //     |> Array.append (a ;[ 1 .. input.Length - 1 ])
+        // //    |> Array.Parallel.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
+        //     |> String.concat " "
+    ]
+
+let main () =
+
+    inl test_cases = [
+        "abc", "bca cab abc"
+        "abcde", "bcdea cdeab deabc eabcd abcde"
+        "abcdefghi", "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+        "abab", "baba abab baba abab"
+        "aa", "aa aa"
+        "z", "z"
+    ]
+
+    inl solutions = get_solutions ()
+
+    inl rec rotateStringsTests () = runAll (nameof rotateStringsTests) solutions test_cases
+    rotateStringsTests (),
+    // |> sortResultList
+
+    solutions
 
 #!markdown
 

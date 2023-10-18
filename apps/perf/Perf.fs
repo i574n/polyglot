@@ -163,14 +163,7 @@ let sortResultList resultList =
         |> List.indexed
 
     printfn ""
-    printfn "Averages  "
-    averages
-    |> List.iter (fun (i, avg) ->
-        printfn $"Test case %d{i + 1}. Average Time: %A{avg}  "
-    )
-
-    printfn ""
-    printfn "Ranking  "
+    printfn "Average Ranking  "
     averages
     |> List.sortBy snd
     |> List.iter (fun (i, avg) ->
@@ -305,7 +298,7 @@ let sortResultList resultList =
 /// abc                                                                             | abc             | abc     | (11, 1219)
 /// accabb                                                                          | acb             | acb     | (11, 1317)
 /// pprrqqpp                                                                        | prq             | prq     | (11, 1322)
-/// aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb acb             | acb     | (11, 2040)
+/// aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb | acb             | acb     | (11, 2040)
 ///
 /// Averages
 /// Test case 1. Average Time: 4622L
@@ -451,6 +444,8 @@ let sortResultList resultList =
 /// Test case 7. Average Time: 1797L
 /// Test case 9. Average Time: 1688L
 /// Test case 8. Average Time: 1551L
+
+/// ## rotate_strings_tests
 
 /// ## returnLettersWithOddCountTests
 
