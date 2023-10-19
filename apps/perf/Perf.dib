@@ -18,17 +18,83 @@ inl (/@) x = listm'.(/@) x
 
 #!spiral
 
+nominal option_fsharp t = $"`t option"
+
+inl optionm'_from_fsharp forall t. (x : option_fsharp t) : option t =
+    inl some x : option t = Some x
+    inl none : option t = None
+    $"!x |> Option.map !some |> Option.defaultValue !none"
+
+
+inl am'_average forall el {number}. (array : a _ el) : el =
+    $"!array |> Array.average"
+
+inl am'_indexed forall dim el. (array : a dim el) : a dim (dim * el) =
+    $"!array |> Array.indexed |> Array.map (fun (a, b) -> struct (a, b))"
+
+inl am'_last forall el. (array : a _ el) : el =
+    $"!array |> Array.last"
+
+inl am'_parallel_map forall dim el el'. (fn : el -> el') (array : a dim el) : a dim el' =
+    $"!array |> Array.Parallel.map !fn"
+
 inl am'_singleton x =
     a ;[ x ] : a i32 _
+
+inl am'_sort_by forall dim el. (fn : el -> _) (array : a dim el) : a dim el =
+    $"!array |> Array.sortBy !fn"
+
+inl am'_sort_descending forall dim el. (array : a dim el) : a dim el =
+    $"!array |> Array.sortDescending"
+
+inl am'_transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
+    $"!array |> Array.transpose"
+
+inl am'_try_item forall dim el. (i : i32) (array : a dim el) : option el =
+    $"!array |> Array.tryItem !i" |> optionm'_from_fsharp
+
+nominal console_color = $"System.ConsoleColor"
+
+inl format_debug x =
+    $"$\"%A{!x}\"" : string
+
+nominal map k v = $"Map<`k, `v>"
+
+inl map_item forall k v. (k : k) (map : map k v) : v =
+    $"!map.[!k]"
+
+inl map_of_array forall k v. (array : a _ (k * v)) : map k v =
+    $"!array |> Array.map (fun (struct (a, b)) -> a, b) |> Map.ofArray"
 
 inl nameof x : string =
     $"nameof !x"
 
+inl obj_to_string x : string =
+    $"!x.ToString ()"
+
 inl printfn x =
     console.write_line x
 
-inl string_concat (a : string) b : string =
+nominal stopwatch = $"System.Diagnostics.Stopwatch"
+
+inl stopwatch () : stopwatch =
+    $"`stopwatch" ()
+
+inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
+    $"!stopwatch.ElapsedMilliseconds"
+
+inl stopwatch_start (stopwatch : stopwatch) : () =
+    $"!stopwatch.Start ()"
+
+inl string_concat (a : string) (b : a _ _) : string =
     $"!b |> String.concat !a"
+
+inl string_join (concat : string) (s : a _ string) : string =
+    $"System.String.Join (!concat, !s)"
+
+
+inl string_pad_right (pad : i32) (s : string) : string =
+    $"!s.PadRight !pad"
 
 #!markdown
 
@@ -41,7 +107,7 @@ type TestCaseResult =
         Input: string
         Expected: string
         Result: string
-        TimeList: int64 list 
+        TimeList: int64 list
     }
 
 #!spiral
@@ -51,7 +117,7 @@ type test_case_result =
         Input : string
         Expected : string
         Result : string
-        TimeList : list u64
+        TimeList : list i64
     }
 
 #!markdown
@@ -110,19 +176,22 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
         TimeList = resultsWithTime |> List.map snd
     }
 
+#!markdown
+
+## run
+
 #!spiral
 
-inl run forall input expected. (solutions : list (string * (input -> expected))) (input, expected) =
-    // let inputStr =
-    //     match box input with
-    //     | :? System.Collections.ICollection as input ->
-    //         System.Linq.Enumerable.Cast<obj> input
-    //         |> Seq.map string
-    //         |> String.concat ","
-    //     | _ -> input.ToString ()
+inl run forall input expected.
+    (solutions : list (string * (input -> expected)))
+    ((input, expected) : (input * expected))
+    : test_case_result
+    =
+    inl input_str =
+        input |> obj_to_string
 
-    // printfn ""
-    // printfn $"Solution: {inputStr}  "
+    printfn ""
+    printfn ($"$\"Solution: {!input_str}  \"" : string)
 
     // let performanceInvoke (fn: unit -> 'T) =
     //     GC.Collect ()
@@ -141,6 +210,20 @@ inl run forall input expected. (solutions : list (string * (input -> expected)))
 
     //     result, time2
 
+    inl performance_invoke (fn : () -> expected) =
+        $"System.GC.Collect ()"
+        inl stopwatch = stopwatch ()
+        stopwatch |> stopwatch_start
+        inl time1 = stopwatch |> stopwatch_elapsed_milliseconds
+        inl result : expected =
+            am'.init_series 0 2000000 1i32
+            |> am'_parallel_map (fun n =>
+                fn ()
+            )
+            |> am'_last
+        inl time2 = (stopwatch |> stopwatch_elapsed_milliseconds) - time1
+        result, time2
+
     // let resultsWithTime =
     //     solutions
     //     |> List.mapi (fun i (testName, solution) ->
@@ -148,6 +231,16 @@ inl run forall input expected. (solutions : list (string * (input -> expected)))
     //         printfn $"Test case %d{i + 1}. %s{testName}. Time: %A{time}  "
     //         result, time
     //     )
+
+    inl results_with_time =
+        solutions
+        |> listm'.indexed
+        |> listm.map (fun ((i : i32), (test_name, solution)) =>
+            inl result, time = performance_invoke (fun () => solution input)
+            printfn ($"$\"Test case {!i + 1}. {!test_name}. Time: {!time}  \"" : string)
+            result, time
+        )
+
 
 
     // match resultsWithTime |> List.map fst with
@@ -161,7 +254,17 @@ inl run forall input expected. (solutions : list (string * (input -> expected)))
     //     Result = resultsWithTime |> Seq.map fst |> Seq.head |> fun x -> x.ToString ()
     //     TimeList = resultsWithTime |> List.map snd
     // }
-    solutions, input, expected
+    match results_with_time |> listm.map fst with
+    | ([] | [ _ ]) => ()
+    | (head :: tail) when tail |> listm.fold (fun acc x => acc && x = head) true => ()
+    | results => failwith ($"$\"Challenge error: {!results}\"" : string)
+
+    {
+        Input = input_str
+        Expected = expected |> obj_to_string
+        Result = results_with_time |> listm.map fst |> listm'.item 0i32 |> obj_to_string
+        TimeList = results_with_time |> listm.map snd
+    }
 
 #!markdown
 
@@ -177,13 +280,17 @@ let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCas
     |> Seq.map (run solutions)
     |> Seq.toList
 
+#!markdown
+
+## run_all
+
 #!spiral
 
-inl runAll forall input expected. testName (solutions : list (string * (input -> expected))) testCases =
+inl run_all forall input expected. test_name (solutions : list (string * (input -> expected))) test_cases =
     printfn ""
     printfn ""
-    printfn ($"$\"Test: {!testName}\"" : string)
-    testCases
+    printfn ($"$\"Test: {!test_name}\"" : string)
+    test_cases
     |> listm.map (run solutions)
 
 #!markdown
@@ -286,6 +393,117 @@ let sortResultList resultList =
     |> List.sortBy snd
     |> List.iter (fun (i, avg) ->
         printfn $"Test case %d{i + 1}. Average Time: %A{avg}  "
+    )
+
+#!markdown
+
+## sort_result_list
+
+#!spiral
+
+inl sort_result_list results =
+    inl table =
+        inl rows =
+            results
+            |> listm.map (fun (result : test_case_result) =>
+                inl best =
+                    result.TimeList
+                    |> listm'.indexed
+                    |> listm.map (fun (i, time) =>
+                        i + 1i64, time
+                    )
+                    |> listm.toArray
+                    |> am'_sort_by snd
+                    |> fun array => index array 0i32
+                    |> obj_to_string
+                inl row =
+                    [
+                        result.Input
+                        result.Expected
+                        result.Result
+                        best
+                    ]
+                inl color : option console_color =
+                    match result.Expected = result.Result with
+                    | true => Some $"`console_color.DarkGreen"
+                    | false => Some $"`console_color.DarkRed"
+                row, color
+            )
+        inl header =
+            [
+                [
+                    "Input"
+                    "Expected"
+                    "Result"
+                    "Best"
+                ]
+                [
+                    "---"
+                    "---"
+                    "---"
+                    "---"
+                ]
+            ]
+            |> listm.map (fun row => row, None)
+        header /@ rows
+
+    inl formattedTable =
+        inl lengthMap : map i32 i64 =
+            table
+            |> listm.map (fst >> listm.toArray)
+            |> listm.toArray
+            |> am'_transpose
+            |> am.map (fun column =>
+                column
+                |> am.map sm.length
+                |> am'_sort_descending
+                |> am'_try_item 0i32
+                |> optionm'.default_value 0i64
+            )
+            |> am'_indexed
+            |> map_of_array
+        table
+        |> listm.map (fun (row, color) =>
+            inl newRow =
+                row
+                |> listm'.indexed
+                |> listm.map (fun (i, cell) =>
+                    cell |> string_pad_right (lengthMap |> map_item i |> conv)
+                )
+                |> listm.toArray
+            newRow, color
+        )
+
+    printfn ""
+    formattedTable
+    |> listm.iter (fun ((row : a i32 string), color) =>
+        match color with
+        | Some color => $"System.Console.ForegroundColor <- !color"
+        | None => $"System.Console.ResetColor ()"
+
+        printfn (row |> string_join "\t| ")
+
+        $"System.Console.ResetColor ()"
+    )
+
+    inl averages =
+        results
+        |> listm.map fun result =>
+            result.TimeList
+            |> listm.map ($"float" : i64 -> f64)
+            |> listm.toArray : a i32 _
+        |> listm.toArray
+        |> am'_transpose
+        |> am.map am'_average
+        |> am.map ($"int64" : f64 -> i64)
+        |> am'_indexed
+
+    printfn ""
+    printfn "Average Ranking  "
+    averages
+    |> am'_sort_by snd
+    |> am.iter (fun ((i : i32), avg) =>
+        printfn ($"$\"Test case %d{!i + 1}. Average Time: %A{!avg}  \"" : string)
     )
 
 #!markdown
@@ -891,6 +1109,8 @@ rotateStringsTests
 #!spiral
 
 // // test
+// // timeout=60000
+// // print_code=true
 
 inl get_solutions () =
     [
@@ -979,6 +1199,10 @@ inl get_solutions () =
 
         "F",
         fun input =>
+        // Array.singleton 0
+        // |> Array.append [| 1 .. input.Length - 1 |]
+        // |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
+        // |> String.concat " "
             inl input_length = input |> sm.length
             am'_singleton 0i32
             |> am.append (am'.init_series 1 (input_length - 1) 1)
@@ -989,12 +1213,23 @@ inl get_solutions () =
             )
             |> string_concat " "
 
-        // "FA",
-        // fun input =>
+        "FA",
+        fun input =>
         //     List.singleton 0
         //     |> List.append [ 1 .. input.Length - 1 ]
         //   //  |> List.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
         //     |> String.concat " "
+            inl input_length = input |> sm.length
+            listm.singleton 0i32
+            |> listm.append (listm'.init_series 1 (input_length - 1) 1)
+            |> listm.map (fun i =>
+                inl a = sm.slice input { from = i; to = input_length - 1 } : string
+                inl b = if i = 0 then "" else sm.slice input { from = 0; to = i - 1 } : string
+                $"!a + !b" : string
+            )
+            |> listm.toArray
+            |> fun x => x : a i32 _
+            |> string_concat " "
 
         // "FB",
         // fun input =>
@@ -1011,8 +1246,7 @@ inl get_solutions () =
         //     |> String.concat " "
     ]
 
-let main () =
-
+inl rec rotate_strings_tests () =
     inl test_cases = [
         "abc", "bca cab abc"
         "abcde", "bcdea cdeab deabc eabcd abcde"
@@ -1024,11 +1258,18 @@ let main () =
 
     inl solutions = get_solutions ()
 
-    inl rec rotateStringsTests () = runAll (nameof rotateStringsTests) solutions test_cases
-    rotateStringsTests (),
-    // |> sortResultList
+    run_all (nameof rotate_strings_tests) solutions test_cases
+    |> sort_result_list
 
-    solutions
+rotate_strings_tests ()
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+// rotate_strings_tests ()
 
 #!markdown
 

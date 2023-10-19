@@ -7,7 +7,7 @@ type TestCaseResult =
         Input: string
         Expected: string
         Result: string
-        TimeList: int64 list 
+        TimeList: int64 list
     }
 
 /// ## run
@@ -62,6 +62,8 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
         TimeList = resultsWithTime |> List.map snd
     }
 
+/// ## run
+
 /// ## runAll
 
 let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
@@ -71,6 +73,8 @@ let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCas
     testCases
     |> Seq.map (run solutions)
     |> Seq.toList
+
+/// ## run_all
 
 /// ## sortResultList
 
@@ -169,6 +173,8 @@ let sortResultList resultList =
     |> List.iter (fun (i, avg) ->
         printfn $"Test case %d{i + 1}. Average Time: %A{avg}  "
     )
+
+/// ## sort_result_list
 
 /// ## empty3Tests
 

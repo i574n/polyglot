@@ -7567,17 +7567,83 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">am</span><span class="s1">'_singleton x =</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">option_fsharp</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"`t option"</span>
+
+<span class="n">inl</span> <span class="n">optionm</span><span class="s1">'_from_fsharp forall t. (x : option_fsharp t) : option t =</span>
+    <span class="n">inl</span> <span class="n">some</span> <span class="n">x</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">x</span>
+    <span class="n">inl</span> <span class="n">none</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="err">$</span><span class="s2">"!x |&gt; Option.map !some |&gt; Option.defaultValue !none"</span>
+
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_average forall el </span><span class="si">{number}</span><span class="s1">. (array : a _ el) : el =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.average"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_indexed forall dim el. (array : a dim el) : a dim (dim * el) =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.indexed |&gt; Array.map (fun (a, b) -&gt; struct (a, b))"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_last forall el. (array : a _ el) : el =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.last"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_parallel_map forall dim el el'</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">el</span> <span class="o">-&gt;</span> <span class="n">el</span><span class="s1">') (array : a dim el) : a dim el'</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.Parallel.map !fn"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_singleton x =</span>
     <span class="n">a</span> <span class="p">;[</span> <span class="n">x</span> <span class="p">]</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_sort_by forall dim el. (fn : el -&gt; _) (array : a dim el) : a dim el =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.sortBy !fn"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_sort_descending forall dim el. (array : a dim el) : a dim el =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.sortDescending"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.transpose"</span>
+
+<span class="n">inl</span> <span class="n">am</span><span class="s1">'_try_item forall dim el. (i : i32) (array : a dim el) : option el =</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.tryItem !i"</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'_from_fsharp</span>
+
+<span class="n">nominal</span> <span class="n">console_color</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.ConsoleColor"</span>
+
+<span class="n">inl</span> <span class="n">format_debug</span> <span class="n">x</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">%A{!x}</span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span>
+
+<span class="n">nominal</span> <span class="nb">map</span> <span class="n">k</span> <span class="n">v</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"Map&lt;`k, `v&gt;"</span>
+
+<span class="n">inl</span> <span class="n">map_item</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">k</span> <span class="p">:</span> <span class="n">k</span><span class="p">)</span> <span class="p">(</span><span class="nb">map</span> <span class="p">:</span> <span class="nb">map</span> <span class="n">k</span> <span class="n">v</span><span class="p">)</span> <span class="p">:</span> <span class="n">v</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!map.[!k]"</span>
+
+<span class="n">inl</span> <span class="n">map_of_array</span> <span class="n">forall</span> <span class="n">k</span> <span class="n">v</span><span class="o">.</span> <span class="p">(</span><span class="n">array</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">v</span><span class="p">))</span> <span class="p">:</span> <span class="nb">map</span> <span class="n">k</span> <span class="n">v</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray"</span>
 
 <span class="n">inl</span> <span class="n">nameof</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"nameof !x"</span>
 
+<span class="n">inl</span> <span class="n">obj_to_string</span> <span class="n">x</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!x.ToString ()"</span>
+
 <span class="n">inl</span> <span class="n">printfn</span> <span class="n">x</span> <span class="o">=</span>
     <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="n">x</span>
 
-<span class="n">inl</span> <span class="n">string_concat</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="n">b</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+<span class="n">nominal</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.Diagnostics.Stopwatch"</span>
+
+<span class="n">inl</span> <span class="n">stopwatch</span> <span class="p">()</span> <span class="p">:</span> <span class="n">stopwatch</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"`stopwatch"</span> <span class="p">()</span>
+
+<span class="n">inl</span> <span class="n">stopwatch_elapsed_milliseconds</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="p">:</span> <span class="n">stopwatch</span><span class="p">)</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!stopwatch.ElapsedMilliseconds"</span>
+
+<span class="n">inl</span> <span class="n">stopwatch_start</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="p">:</span> <span class="n">stopwatch</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!stopwatch.Start ()"</span>
+
+<span class="n">inl</span> <span class="n">string_concat</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">_</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"!b |&gt; String.concat !a"</span>
+
+<span class="n">inl</span> <span class="n">string_join</span> <span class="p">(</span><span class="n">concat</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"System.String.Join (!concat, !s)"</span>
+
+
+<span class="n">inl</span> <span class="n">string_pad_right</span> <span class="p">(</span><span class="n">pad</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!s.PadRight !pad"</span>
 </pre></div>
 </div>
 </div>
@@ -7621,7 +7687,7 @@ a.anchor-link {
         <span class="n">Input</span><span class="p">:</span> <span class="n">string</span>
         <span class="n">Expected</span><span class="p">:</span> <span class="n">string</span>
         <span class="n">Result</span><span class="p">:</span> <span class="n">string</span>
-        <span class="n">TimeList</span><span class="p">:</span> <span class="n">int64</span> <span class="nb">list</span> 
+        <span class="n">TimeList</span><span class="p">:</span> <span class="n">int64</span> <span class="nb">list</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7641,7 +7707,7 @@ a.anchor-link {
         <span class="n">Input</span> <span class="p">:</span> <span class="n">string</span>
         <span class="n">Expected</span> <span class="p">:</span> <span class="n">string</span>
         <span class="n">Result</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="n">TimeList</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">u64</span>
+        <span class="n">TimeList</span> <span class="p">:</span> <span class="nb">list</span> <span class="n">i64</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -7735,7 +7801,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="run">run<a class="anchor-link" href="#run">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7743,17 +7820,16 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run</span> <span class="n">forall</span> <span class="nb">input</span> <span class="n">expected</span><span class="o">.</span> <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span> <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="o">=</span>
-    <span class="o">//</span> <span class="n">let</span> <span class="n">inputStr</span> <span class="o">=</span>
-    <span class="o">//</span>     <span class="n">match</span> <span class="n">box</span> <span class="nb">input</span> <span class="k">with</span>
-    <span class="o">//</span>     <span class="o">|</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">ICollection</span> <span class="k">as</span> <span class="nb">input</span> <span class="o">-&gt;</span>
-    <span class="o">//</span>         <span class="n">System</span><span class="o">.</span><span class="n">Linq</span><span class="o">.</span><span class="n">Enumerable</span><span class="o">.</span><span class="n">Cast</span><span class="o">&lt;</span><span class="n">obj</span><span class="o">&gt;</span> <span class="nb">input</span>
-    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span>
-    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">","</span>
-    <span class="o">//</span>     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="n">ToString</span> <span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run</span> <span class="n">forall</span> <span class="nb">input</span> <span class="n">expected</span><span class="o">.</span>
+    <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="nb">input</span> <span class="o">*</span> <span class="n">expected</span><span class="p">))</span>
+    <span class="p">:</span> <span class="n">test_case_result</span>
+    <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">input_str</span> <span class="o">=</span>
+        <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">obj_to_string</span>
 
-    <span class="o">//</span> <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="o">//</span> <span class="n">printfn</span> <span class="err">$</span><span class="s2">"Solution: </span><span class="si">{inputStr}</span><span class="s2">  "</span>
+    <span class="n">printfn</span> <span class="s2">""</span>
+    <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Solution: {!input_str}  </span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
 
     <span class="o">//</span> <span class="n">let</span> <span class="n">performanceInvoke</span> <span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="n">unit</span> <span class="o">-&gt;</span> <span class="s1">'T) =</span>
     <span class="o">//</span>     <span class="n">GC</span><span class="o">.</span><span class="n">Collect</span> <span class="p">()</span>
@@ -7772,6 +7848,20 @@ a.anchor-link {
 
     <span class="o">//</span>     <span class="n">result</span><span class="p">,</span> <span class="n">time2</span>
 
+    <span class="n">inl</span> <span class="n">performance_invoke</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)</span> <span class="o">=</span>
+        <span class="err">$</span><span class="s2">"System.GC.Collect ()"</span>
+        <span class="n">inl</span> <span class="n">stopwatch</span> <span class="o">=</span> <span class="n">stopwatch</span> <span class="p">()</span>
+        <span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">stopwatch_start</span>
+        <span class="n">inl</span> <span class="n">time1</span> <span class="o">=</span> <span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">stopwatch_elapsed_milliseconds</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">expected</span> <span class="o">=</span>
+            <span class="n">am</span><span class="s1">'.init_series 0 2000000 1i32</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_parallel_map (fun n =&gt;</span>
+                <span class="n">fn</span> <span class="p">()</span>
+            <span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_last</span>
+        <span class="n">inl</span> <span class="n">time2</span> <span class="o">=</span> <span class="p">(</span><span class="n">stopwatch</span> <span class="o">|&gt;</span> <span class="n">stopwatch_elapsed_milliseconds</span><span class="p">)</span> <span class="o">-</span> <span class="n">time1</span>
+        <span class="n">result</span><span class="p">,</span> <span class="n">time2</span>
+
     <span class="o">//</span> <span class="n">let</span> <span class="n">resultsWithTime</span> <span class="o">=</span>
     <span class="o">//</span>     <span class="n">solutions</span>
     <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">mapi</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="p">(</span><span class="n">testName</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span> <span class="o">-&gt;</span>
@@ -7779,6 +7869,16 @@ a.anchor-link {
     <span class="o">//</span>         <span class="n">printfn</span> <span class="err">$</span><span class="s2">"Test case </span><span class="si">%d</span><span class="s2">{i + 1}. </span><span class="si">%s{testName}</span><span class="s2">. Time: %A</span><span class="si">{time}</span><span class="s2">  "</span>
     <span class="o">//</span>         <span class="n">result</span><span class="p">,</span> <span class="n">time</span>
     <span class="o">//</span>     <span class="p">)</span>
+
+    <span class="n">inl</span> <span class="n">results_with_time</span> <span class="o">=</span>
+        <span class="n">solutions</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.indexed</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">((</span><span class="n">i</span> <span class="p">:</span> <span class="n">i32</span><span class="p">),</span> <span class="p">(</span><span class="n">test_name</span><span class="p">,</span> <span class="n">solution</span><span class="p">))</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">result</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="n">performance_invoke</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">solution</span> <span class="nb">input</span><span class="p">)</span>
+            <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Test case {!i + 1}. {!test_name}. Time: {!time}  </span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="n">result</span><span class="p">,</span> <span class="n">time</span>
+        <span class="p">)</span>
+
 
 
     <span class="o">//</span> <span class="n">match</span> <span class="n">resultsWithTime</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="k">with</span>
@@ -7792,7 +7892,17 @@ a.anchor-link {
     <span class="o">//</span>     <span class="n">Result</span> <span class="o">=</span> <span class="n">resultsWithTime</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">head</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">ToString</span> <span class="p">()</span>
     <span class="o">//</span>     <span class="n">TimeList</span> <span class="o">=</span> <span class="n">resultsWithTime</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
     <span class="o">//</span> <span class="p">}</span>
-    <span class="n">solutions</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">expected</span>
+    <span class="k">match</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="p">([]</span> <span class="o">|</span> <span class="p">[</span> <span class="n">_</span> <span class="p">])</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="o">|</span> <span class="p">(</span><span class="n">head</span> <span class="p">::</span> <span class="n">tail</span><span class="p">)</span> <span class="n">when</span> <span class="n">tail</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">acc</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">)</span> <span class="n">true</span> <span class="o">=&gt;</span> <span class="p">()</span>
+    <span class="o">|</span> <span class="n">results</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Challenge error: {!results}</span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+
+    <span class="p">{</span>
+        <span class="n">Input</span> <span class="o">=</span> <span class="n">input_str</span>
+        <span class="n">Expected</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">|&gt;</span> <span class="n">obj_to_string</span>
+        <span class="n">Result</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.item 0i32 |&gt; obj_to_string</span>
+        <span class="n">TimeList</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -7813,7 +7923,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7823,7 +7933,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7843,7 +7953,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="run_all">run_all<a class="anchor-link" href="#run_all">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7851,11 +7972,11 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">runAll</span> <span class="n">forall</span> <span class="nb">input</span> <span class="n">expected</span><span class="o">.</span> <span class="n">testName</span> <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span> <span class="n">testCases</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">run_all</span> <span class="n">forall</span> <span class="nb">input</span> <span class="n">expected</span><span class="o">.</span> <span class="n">test_name</span> <span class="p">(</span><span class="n">solutions</span> <span class="p">:</span> <span class="nb">list</span> <span class="p">(</span><span class="n">string</span> <span class="o">*</span> <span class="p">(</span><span class="nb">input</span> <span class="o">-&gt;</span> <span class="n">expected</span><span class="p">)))</span> <span class="n">test_cases</span> <span class="o">=</span>
     <span class="n">printfn</span> <span class="s2">""</span>
     <span class="n">printfn</span> <span class="s2">""</span>
-    <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Test: {!testName}</span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-    <span class="n">testCases</span>
+    <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Test: {!test_name}</span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">test_cases</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">run</span> <span class="n">solutions</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7877,7 +7998,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7887,7 +8008,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7996,7 +8117,149 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="sort_result_list">sort_result_list<a class="anchor-link" href="#sort_result_list">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sort_result_list</span> <span class="n">results</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">table</span> <span class="o">=</span>
+        <span class="n">inl</span> <span class="n">rows</span> <span class="o">=</span>
+            <span class="n">results</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">result</span> <span class="p">:</span> <span class="n">test_case_result</span><span class="p">)</span> <span class="o">=&gt;</span>
+                <span class="n">inl</span> <span class="n">best</span> <span class="o">=</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">TimeList</span>
+                    <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.indexed</span>
+                    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span> <span class="o">=&gt;</span>
+                        <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="n">i64</span><span class="p">,</span> <span class="n">time</span>
+                    <span class="p">)</span>
+                    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+                    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_sort_by snd</span>
+                    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">array</span> <span class="o">=&gt;</span> <span class="n">index</span> <span class="n">array</span> <span class="mi">0</span><span class="n">i32</span>
+                    <span class="o">|&gt;</span> <span class="n">obj_to_string</span>
+                <span class="n">inl</span> <span class="n">row</span> <span class="o">=</span>
+                    <span class="p">[</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">Input</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">Expected</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">Result</span>
+                        <span class="n">best</span>
+                    <span class="p">]</span>
+                <span class="n">inl</span> <span class="n">color</span> <span class="p">:</span> <span class="n">option</span> <span class="n">console_color</span> <span class="o">=</span>
+                    <span class="k">match</span> <span class="n">result</span><span class="o">.</span><span class="n">Expected</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Result</span> <span class="k">with</span>
+                    <span class="o">|</span> <span class="n">true</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="err">$</span><span class="s2">"`console_color.DarkGreen"</span>
+                    <span class="o">|</span> <span class="n">false</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="err">$</span><span class="s2">"`console_color.DarkRed"</span>
+                <span class="n">row</span><span class="p">,</span> <span class="n">color</span>
+            <span class="p">)</span>
+        <span class="n">inl</span> <span class="n">header</span> <span class="o">=</span>
+            <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="s2">"Input"</span>
+                    <span class="s2">"Expected"</span>
+                    <span class="s2">"Result"</span>
+                    <span class="s2">"Best"</span>
+                <span class="p">]</span>
+                <span class="p">[</span>
+                    <span class="s2">"---"</span>
+                    <span class="s2">"---"</span>
+                    <span class="s2">"---"</span>
+                    <span class="s2">"---"</span>
+                <span class="p">]</span>
+            <span class="p">]</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">row</span> <span class="o">=&gt;</span> <span class="n">row</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">header</span> <span class="o">/@</span> <span class="n">rows</span>
+
+    <span class="n">inl</span> <span class="n">formattedTable</span> <span class="o">=</span>
+        <span class="n">inl</span> <span class="n">lengthMap</span> <span class="p">:</span> <span class="nb">map</span> <span class="n">i32</span> <span class="n">i64</span> <span class="o">=</span>
+            <span class="n">table</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fst</span> <span class="o">&gt;&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_transpose</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">column</span> <span class="o">=&gt;</span>
+                <span class="n">column</span>
+                <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">sm</span><span class="o">.</span><span class="n">length</span>
+                <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_sort_descending</span>
+                <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_try_item 0i32</span>
+                <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value 0i64</span>
+            <span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_indexed</span>
+            <span class="o">|&gt;</span> <span class="n">map_of_array</span>
+        <span class="n">table</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">newRow</span> <span class="o">=</span>
+                <span class="n">row</span>
+                <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.indexed</span>
+                <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span> <span class="o">=&gt;</span>
+                    <span class="n">cell</span> <span class="o">|&gt;</span> <span class="n">string_pad_right</span> <span class="p">(</span><span class="n">lengthMap</span> <span class="o">|&gt;</span> <span class="n">map_item</span> <span class="n">i</span> <span class="o">|&gt;</span> <span class="n">conv</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+            <span class="n">newRow</span><span class="p">,</span> <span class="n">color</span>
+        <span class="p">)</span>
+
+    <span class="n">printfn</span> <span class="s2">""</span>
+    <span class="n">formattedTable</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="p">((</span><span class="n">row</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">string</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <span class="k">match</span> <span class="n">color</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="n">color</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"System.Console.ForegroundColor &lt;- !color"</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"System.Console.ResetColor ()"</span>
+
+        <span class="n">printfn</span> <span class="p">(</span><span class="n">row</span> <span class="o">|&gt;</span> <span class="n">string_join</span> <span class="s2">"</span><span class="se">\t</span><span class="s2">| "</span><span class="p">)</span>
+
+        <span class="err">$</span><span class="s2">"System.Console.ResetColor ()"</span>
+    <span class="p">)</span>
+
+    <span class="n">inl</span> <span class="n">averages</span> <span class="o">=</span>
+        <span class="n">results</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="n">result</span> <span class="o">=&gt;</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">TimeList</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="err">$</span><span class="s2">"float"</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">-&gt;</span> <span class="n">f64</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+        <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_transpose</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">am</span><span class="s1">'_average</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="err">$</span><span class="s2">"int64"</span> <span class="p">:</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="n">i64</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_indexed</span>
+
+    <span class="n">printfn</span> <span class="s2">""</span>
+    <span class="n">printfn</span> <span class="s2">"Average Ranking  "</span>
+    <span class="n">averages</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_sort_by snd</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="p">((</span><span class="n">i</span> <span class="p">:</span> <span class="n">i32</span><span class="p">),</span> <span class="n">avg</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Test case </span><span class="si">%d</span><span class="s2">{!i + 1}. Average Time: %A{!avg}  </span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8007,7 +8270,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8049,7 +8312,7 @@ Test case 1. Average Time: 73L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8088,25 +8351,25 @@ Test case 1. Average Time: 73L</p>
 Test: empty3Tests
 
 Solution: (a, a)  
-Test case 1. A. Time: 26L  
+Test case 1. A. Time: 24L  
 
 Solution: (a, a)  
 Test case 1. A. Time: 17L  
 
 Input 	| Expected	| Result	| Best   
 ---   	| ---     	| ---   	| ---    
-(a, a)	| a       	| a     	| (1, 26)
+(a, a)	| a       	| a     	| (1, 24)
 (a, a)	| a       	| a     	| (1, 17)
 
 Average Ranking  
-Test case 1. Average Time: 21L  
+Test case 1. Average Time: 20L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8117,7 +8380,7 @@ Test case 1. Average Time: 21L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8159,7 +8422,7 @@ Test case 1. Average Time: 56L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8201,22 +8464,22 @@ Solution: (a, a)
 Test case 1. A. Time: 17L  
 
 Solution: (a, a)  
-Test case 1. A. Time: 17L  
+Test case 1. A. Time: 19L  
 
 Input 	| Expected	| Result	| Best   
 ---   	| ---     	| ---   	| ---    
 (a, a)	| a       	| a     	| (1, 17)
-(a, a)	| a       	| a     	| (1, 17)
+(a, a)	| a       	| a     	| (1, 19)
 
 Average Ranking  
-Test case 1. Average Time: 17L  
+Test case 1. Average Time: 18L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8227,7 +8490,7 @@ Test case 1. Average Time: 17L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8277,7 +8540,7 @@ Test case 1. Average Time: 64L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8317,29 +8580,29 @@ Test case 1. Average Time: 64L</p>
 Test: emptyTests
 
 Solution: 0  
-Test case 1. A. Time: 17L  
+Test case 1. A. Time: 18L  
 
 Solution: 2  
-Test case 1. A. Time: 15L  
+Test case 1. A. Time: 18L  
 
 Solution: 5  
-Test case 1. A. Time: 16L  
+Test case 1. A. Time: 20L  
 
 Input	| Expected	| Result	| Best   
 ---  	| ---     	| ---   	| ---    
-0    	| 0       	| 0     	| (1, 17)
-2    	| 2       	| 2     	| (1, 15)
-5    	| 5       	| 5     	| (1, 16)
+0    	| 0       	| 0     	| (1, 18)
+2    	| 2       	| 2     	| (1, 18)
+5    	| 5       	| 5     	| (1, 20)
 
 Average Ranking  
-Test case 1. Average Time: 16L  
+Test case 1. Average Time: 18L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8350,7 +8613,7 @@ Test case 1. Average Time: 16L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8468,7 +8731,7 @@ Test case 11. Average Time: 1474L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8611,83 +8874,83 @@ Test case 11. Average Time: 1474L</p>
 Test: uniqueLettersTests
 
 Solution: abc  
-Test case 1. A. Time: 1127L  
-Test case 2. B. Time: 1453L  
-Test case 3. C. Time: 1822L  
-Test case 4. D. Time: 1126L  
-Test case 5. E. Time: 1198L  
-Test case 6. F. Time: 1291L  
-Test case 7. G. Time: 1211L  
-Test case 8. H. Time: 1241L  
-Test case 9. I. Time: 1245L  
-Test case 10. J. Time: 1128L  
-Test case 11. K. Time: 1093L  
+Test case 1. A. Time: 1372L  
+Test case 2. B. Time: 1862L  
+Test case 3. C. Time: 2428L  
+Test case 4. D. Time: 1318L  
+Test case 5. E. Time: 1663L  
+Test case 6. F. Time: 1932L  
+Test case 7. G. Time: 1647L  
+Test case 8. H. Time: 1768L  
+Test case 9. I. Time: 1399L  
+Test case 10. J. Time: 1422L  
+Test case 11. K. Time: 1437L  
 
 Solution: accabb  
-Test case 1. A. Time: 1355L  
-Test case 2. B. Time: 1184L  
-Test case 3. C. Time: 1433L  
-Test case 4. D. Time: 1014L  
-Test case 5. E. Time: 1097L  
-Test case 6. F. Time: 1061L  
-Test case 7. G. Time: 964L  
-Test case 8. H. Time: 987L  
-Test case 9. I. Time: 914L  
-Test case 10. J. Time: 954L  
-Test case 11. K. Time: 887L  
+Test case 1. A. Time: 1499L  
+Test case 2. B. Time: 2217L  
+Test case 3. C. Time: 2059L  
+Test case 4. D. Time: 1370L  
+Test case 5. E. Time: 1324L  
+Test case 6. F. Time: 1272L  
+Test case 7. G. Time: 1387L  
+Test case 8. H. Time: 1586L  
+Test case 9. I. Time: 1511L  
+Test case 10. J. Time: 1270L  
+Test case 11. K. Time: 980L  
 
 Solution: pprrqqpp  
-Test case 1. A. Time: 860L  
-Test case 2. B. Time: 1060L  
-Test case 3. C. Time: 1399L  
-Test case 4. D. Time: 982L  
-Test case 5. E. Time: 1099L  
-Test case 6. F. Time: 1156L  
-Test case 7. G. Time: 1063L  
-Test case 8. H. Time: 1059L  
-Test case 9. I. Time: 1034L  
-Test case 10. J. Time: 1006L  
-Test case 11. K. Time: 937L  
+Test case 1. A. Time: 916L  
+Test case 2. B. Time: 1054L  
+Test case 3. C. Time: 1682L  
+Test case 4. D. Time: 1177L  
+Test case 5. E. Time: 1216L  
+Test case 6. F. Time: 1198L  
+Test case 7. G. Time: 1038L  
+Test case 8. H. Time: 1189L  
+Test case 9. I. Time: 1185L  
+Test case 10. J. Time: 1085L  
+Test case 11. K. Time: 877L  
 
 Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb  
-Test case 1. A. Time: 2653L  
-Test case 2. B. Time: 2912L  
-Test case 3. C. Time: 4760L  
-Test case 4. D. Time: 2901L  
-Test case 5. E. Time: 2823L  
-Test case 6. F. Time: 3202L  
-Test case 7. G. Time: 2785L  
-Test case 8. H. Time: 3410L  
-Test case 9. I. Time: 2921L  
-Test case 10. J. Time: 3089L  
-Test case 11. K. Time: 1453L  
+Test case 1. A. Time: 3188L  
+Test case 2. B. Time: 4242L  
+Test case 3. C. Time: 5373L  
+Test case 4. D. Time: 2787L  
+Test case 5. E. Time: 3393L  
+Test case 6. F. Time: 3057L  
+Test case 7. G. Time: 3315L  
+Test case 8. H. Time: 3215L  
+Test case 9. I. Time: 3549L  
+Test case 10. J. Time: 2900L  
+Test case 11. K. Time: 1579L  
 
 Input                                                                          	| Expected	| Result	| Best      
 ---                                                                            	| ---     	| ---   	| ---       
-abc                                                                            	| abc     	| abc   	| (11, 1093)
-accabb                                                                         	| acb     	| acb   	| (11, 887) 
-pprrqqpp                                                                       	| prq     	| prq   	| (1, 860)  
-aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (11, 1453)
+abc                                                                            	| abc     	| abc   	| (4, 1318) 
+accabb                                                                         	| acb     	| acb   	| (11, 980) 
+pprrqqpp                                                                       	| prq     	| prq   	| (11, 877) 
+aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (11, 1579)
 
 Average Ranking  
-Test case 11. Average Time: 1092L  
-Test case 1. Average Time: 1498L  
-Test case 4. Average Time: 1505L  
-Test case 7. Average Time: 1505L  
-Test case 9. Average Time: 1528L  
-Test case 10. Average Time: 1544L  
-Test case 5. Average Time: 1554L  
-Test case 2. Average Time: 1652L  
-Test case 8. Average Time: 1674L  
-Test case 6. Average Time: 1677L  
-Test case 3. Average Time: 2353L  
+Test case 11. Average Time: 1218L  
+Test case 4. Average Time: 1663L  
+Test case 10. Average Time: 1669L  
+Test case 1. Average Time: 1743L  
+Test case 7. Average Time: 1846L  
+Test case 6. Average Time: 1864L  
+Test case 5. Average Time: 1899L  
+Test case 9. Average Time: 1911L  
+Test case 8. Average Time: 1939L  
+Test case 2. Average Time: 2343L  
+Test case 3. Average Time: 2885L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8698,7 +8961,7 @@ Test case 3. Average Time: 2353L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8853,7 +9116,7 @@ Test case 8. Average Time: 1551L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9003,111 +9266,111 @@ Test case 8. Average Time: 1551L</p>
 Test: rotateStringsTests
 
 Solution: abc  
-Test case 1. A. Time: 1214L  
-Test case 2. B. Time: 1391L  
-Test case 3. C. Time: 1268L  
-Test case 4. CA. Time: 1766L  
-Test case 5. CB. Time: 1492L  
-Test case 6. D. Time: 1450L  
-Test case 7. E. Time: 1091L  
-Test case 8. F. Time: 986L  
-Test case 9. FA. Time: 1145L  
-Test case 10. FB. Time: 1853L  
-Test case 11. FC. Time: 3363L  
+Test case 1. A. Time: 1259L  
+Test case 2. B. Time: 1446L  
+Test case 3. C. Time: 1447L  
+Test case 4. CA. Time: 1828L  
+Test case 5. CB. Time: 1746L  
+Test case 6. D. Time: 1751L  
+Test case 7. E. Time: 1262L  
+Test case 8. F. Time: 953L  
+Test case 9. FA. Time: 1128L  
+Test case 10. FB. Time: 1996L  
+Test case 11. FC. Time: 3505L  
 
 Solution: abcde  
-Test case 1. A. Time: 1609L  
-Test case 2. B. Time: 1416L  
-Test case 3. C. Time: 1604L  
-Test case 4. CA. Time: 1762L  
-Test case 5. CB. Time: 1667L  
-Test case 6. D. Time: 2561L  
-Test case 7. E. Time: 1702L  
-Test case 8. F. Time: 1140L  
-Test case 9. FA. Time: 1494L  
-Test case 10. FB. Time: 2202L  
-Test case 11. FC. Time: 3421L  
+Test case 1. A. Time: 1685L  
+Test case 2. B. Time: 1708L  
+Test case 3. C. Time: 1682L  
+Test case 4. CA. Time: 1813L  
+Test case 5. CB. Time: 1718L  
+Test case 6. D. Time: 2416L  
+Test case 7. E. Time: 1632L  
+Test case 8. F. Time: 1288L  
+Test case 9. FA. Time: 1714L  
+Test case 10. FB. Time: 2225L  
+Test case 11. FC. Time: 3667L  
 
 Solution: abcdefghi  
-Test case 1. A. Time: 2927L  
-Test case 2. B. Time: 2282L  
-Test case 3. C. Time: 2596L  
-Test case 4. CA. Time: 2588L  
-Test case 5. CB. Time: 3321L  
-Test case 6. D. Time: 4399L  
-Test case 7. E. Time: 2610L  
-Test case 8. F. Time: 1860L  
-Test case 9. FA. Time: 2453L  
-Test case 10. FB. Time: 3001L  
-Test case 11. FC. Time: 4276L  
+Test case 1. A. Time: 3083L  
+Test case 2. B. Time: 2816L  
+Test case 3. C. Time: 2315L  
+Test case 4. CA. Time: 2622L  
+Test case 5. CB. Time: 3020L  
+Test case 6. D. Time: 5043L  
+Test case 7. E. Time: 2267L  
+Test case 8. F. Time: 1987L  
+Test case 9. FA. Time: 2564L  
+Test case 10. FB. Time: 3069L  
+Test case 11. FC. Time: 4483L  
 
 Solution: abab  
-Test case 1. A. Time: 1467L  
-Test case 2. B. Time: 1354L  
-Test case 3. C. Time: 1464L  
-Test case 4. CA. Time: 1555L  
-Test case 5. CB. Time: 1363L  
-Test case 6. D. Time: 1750L  
-Test case 7. E. Time: 1283L  
-Test case 8. F. Time: 1177L  
-Test case 9. FA. Time: 1359L  
-Test case 10. FB. Time: 1970L  
-Test case 11. FC. Time: 3267L  
+Test case 1. A. Time: 1438L  
+Test case 2. B. Time: 1400L  
+Test case 3. C. Time: 1472L  
+Test case 4. CA. Time: 1624L  
+Test case 5. CB. Time: 1647L  
+Test case 6. D. Time: 1901L  
+Test case 7. E. Time: 1561L  
+Test case 8. F. Time: 1229L  
+Test case 9. FA. Time: 1193L  
+Test case 10. FB. Time: 2078L  
+Test case 11. FC. Time: 3444L  
 
 Solution: aa  
-Test case 1. A. Time: 896L  
-Test case 2. B. Time: 944L  
-Test case 3. C. Time: 981L  
-Test case 4. CA. Time: 1191L  
-Test case 5. CB. Time: 1004L  
-Test case 6. D. Time: 1007L  
-Test case 7. E. Time: 833L  
-Test case 8. F. Time: 807L  
-Test case 9. FA. Time: 846L  
-Test case 10. FB. Time: 1524L  
-Test case 11. FC. Time: 2829L  
+Test case 1. A. Time: 922L  
+Test case 2. B. Time: 921L  
+Test case 3. C. Time: 950L  
+Test case 4. CA. Time: 1172L  
+Test case 5. CB. Time: 1103L  
+Test case 6. D. Time: 1078L  
+Test case 7. E. Time: 910L  
+Test case 8. F. Time: 813L  
+Test case 9. FA. Time: 805L  
+Test case 10. FB. Time: 1494L  
+Test case 11. FC. Time: 2815L  
 
 Solution: z  
-Test case 1. A. Time: 633L  
-Test case 2. B. Time: 741L  
-Test case 3. C. Time: 697L  
-Test case 4. CA. Time: 957L  
-Test case 5. CB. Time: 760L  
-Test case 6. D. Time: 687L  
-Test case 7. E. Time: 632L  
-Test case 8. F. Time: 206L  
-Test case 9. FA. Time: 209L  
-Test case 10. FB. Time: 758L  
-Test case 11. FC. Time: 1905L  
+Test case 1. A. Time: 666L  
+Test case 2. B. Time: 634L  
+Test case 3. C. Time: 718L  
+Test case 4. CA. Time: 940L  
+Test case 5. CB. Time: 772L  
+Test case 6. D. Time: 672L  
+Test case 7. E. Time: 611L  
+Test case 8. F. Time: 200L  
+Test case 9. FA. Time: 219L  
+Test case 10. FB. Time: 824L  
+Test case 11. FC. Time: 1757L  
 
 Input    	| Expected                                                                                 	| Result                                                                                   	| Best     
 ---      	| ---                                                                                      	| ---                                                                                      	| ---      
-abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (8, 986) 
-abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (8, 1140)
-abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (8, 1860)
-abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (8, 1177)
-aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (8, 807) 
-z        	| z                                                                                        	| z                                                                                        	| (8, 206) 
+abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (8, 953) 
+abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (8, 1288)
+abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (8, 1987)
+abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (9, 1193)
+aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (9, 805) 
+z        	| z                                                                                        	| z                                                                                        	| (8, 200) 
 
 Average Ranking  
-Test case 8. Average Time: 1029L  
-Test case 9. Average Time: 1251L  
-Test case 2. Average Time: 1354L  
-Test case 7. Average Time: 1358L  
-Test case 3. Average Time: 1435L  
-Test case 1. Average Time: 1457L  
-Test case 5. Average Time: 1601L  
-Test case 4. Average Time: 1636L  
-Test case 10. Average Time: 1884L  
-Test case 6. Average Time: 1975L  
-Test case 11. Average Time: 3176L  
+Test case 8. Average Time: 1078L  
+Test case 9. Average Time: 1270L  
+Test case 7. Average Time: 1373L  
+Test case 3. Average Time: 1430L  
+Test case 2. Average Time: 1487L  
+Test case 1. Average Time: 1508L  
+Test case 4. Average Time: 1666L  
+Test case 5. Average Time: 1667L  
+Test case 10. Average Time: 1947L  
+Test case 6. Average Time: 2143L  
+Test case 11. Average Time: 3278L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9117,7 +9380,7 @@ Test case 11. Average Time: 3176L
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9126,6 +9389,8 @@ Test case 11. Average Time: 3176L
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60000</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
 
 <span class="n">inl</span> <span class="n">get_solutions</span> <span class="p">()</span> <span class="o">=</span>
     <span class="p">[</span>
@@ -9214,6 +9479,10 @@ Test case 11. Average Time: 3176L
 
         <span class="s2">"F"</span><span class="p">,</span>
         <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="o">//</span> <span class="n">Array</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span>
+        <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">append</span> <span class="p">[</span><span class="o">|</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">|</span><span class="p">]</span>
+        <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="n">i</span> <span class="o">..</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">])</span>
+        <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
             <span class="n">inl</span> <span class="n">input_length</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="o">.</span><span class="n">length</span>
             <span class="n">am</span><span class="s1">'_singleton 0i32</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.init_series 1 (input_length - 1) 1)</span>
@@ -9224,12 +9493,23 @@ Test case 11. Average Time: 3176L
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">string_concat</span> <span class="s2">" "</span>
 
-        <span class="o">//</span> <span class="s2">"FA"</span><span class="p">,</span>
-        <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
+        <span class="s2">"FA"</span><span class="p">,</span>
+        <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
         <span class="o">//</span>     <span class="n">List</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">append</span> <span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">]</span>
         <span class="o">//</span>   <span class="o">//</span>  <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="n">i</span> <span class="o">..</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">input</span><span class="o">.</span><span class="p">[</span> <span class="o">..</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">])</span>
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
+            <span class="n">inl</span> <span class="n">input_length</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="o">.</span><span class="n">length</span>
+            <span class="n">listm</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span><span class="n">i32</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">listm</span><span class="s1">'.init_series 1 (input_length - 1) 1)</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span>
+                <span class="n">inl</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">input_length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="n">inl</span> <span class="n">b</span> <span class="o">=</span> <span class="k">if</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="s2">""</span> <span class="k">else</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="err">$</span><span class="s2">"!a + !b"</span> <span class="p">:</span> <span class="n">string</span>
+            <span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">_</span>
+            <span class="o">|&gt;</span> <span class="n">string_concat</span> <span class="s2">" "</span>
 
         <span class="o">//</span> <span class="s2">"FB"</span><span class="p">,</span>
         <span class="o">//</span> <span class="n">fun</span> <span class="nb">input</span> <span class="o">=&gt;</span>
@@ -9246,8 +9526,7 @@ Test case 11. Average Time: 3176L
         <span class="o">//</span>     <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">" "</span>
     <span class="p">]</span>
 
-<span class="n">let</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-
+<span class="n">inl</span> <span class="n">rec</span> <span class="n">rotate_strings_tests</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"bca cab abc"</span>
         <span class="s2">"abcde"</span><span class="p">,</span> <span class="s2">"bcdea cdeab deabc eabcd abcde"</span>
@@ -9259,11 +9538,10 @@ Test case 11. Average Time: 3176L
 
     <span class="n">inl</span> <span class="n">solutions</span> <span class="o">=</span> <span class="n">get_solutions</span> <span class="p">()</span>
 
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">rotateStringsTests</span> <span class="p">()</span> <span class="o">=</span> <span class="n">runAll</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">rotateStringsTests</span><span class="p">)</span> <span class="n">solutions</span> <span class="n">test_cases</span>
-    <span class="n">rotateStringsTests</span> <span class="p">(),</span>
-    <span class="o">//</span> <span class="o">|&gt;</span> <span class="n">sortResultList</span>
+    <span class="n">run_all</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">rotate_strings_tests</span><span class="p">)</span> <span class="n">solutions</span> <span class="n">test_cases</span>
+    <span class="o">|&gt;</span> <span class="n">sort_result_list</span>
 
-    <span class="n">solutions</span>
+<span class="n">rotate_strings_tests</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -9275,180 +9553,2376 @@ Test case 11. Average Time: 3176L
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<details class="dni-treeview" open="open"><summary><span class="dni-code-hint"><code>(UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abc", "bca cab abc",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcde",\n      "bcdea cdeab deabc eabcd abcde",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n         "bcdefghia cdefghiab defghiabc efghiabcd fghiab...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abc", "bca cab abc",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcde",\n      "bcdea cdeab deabc eabcd abcde",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n         "bcdefghia cdefghiab defghiabc efghiabcd fghiabc...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abc</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>bca cab abc</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcde", "bcdea cdeab deabc eabcd abcde",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n      "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abcde</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>bcdea cdeab deabc eabcd abcde</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abcdefghi",\n   "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abab", "baba abab baba abab",\n      UH0_0\n        (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "...</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abcdefghi</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "abab", "baba abab baba abab",\n   UH0_0\n     (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "aa", "aa aa",\n      UH0_0 (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "z", "z", UH0_1)))</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td>F</td></tr><tr><td>Item2</td><td>FSI_0007+v5@103-1</td></tr><tr><td>Item3</td><td>UH1_1</td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>abab</pre></div></td></tr><tr><td>Item3</td><td><div class="dni-plaintext"><pre>baba abab baba abab</pre></div></td></tr><tr><td>Item4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH0_0\n  (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "aa", "aa aa",\n   UH0_0 (UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1), "z", "z", UH0_1))</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td>UH1_0 ("F", <fun:v5@103-1>, UH1_1)</fun:v5@103-1></td></tr><tr><td>Item2</td><td>aa</td></tr><tr><td>Item3</td><td>aa aa</td></tr><tr><td>Item4</td><td>UH0_0 (UH1_0 ("F", <fun:v5@103-1>, UH1_1), "z", "z", UH0_1)</fun:v5@103-1></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_0 ("F", &lt;fun:v5@103-1&gt;, UH1_1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>F</pre></div></td></tr><tr><td>Item2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>FSI_0007+v5@103-1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr><tr><td>Item3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>UH1_1</code></span></summary><div><table><thead><tr></tr></thead><tbody></tbody></table></div></details></td></tr></tbody></table></div></details></td></tr></tbody></table></div></details><style>
-.dni-code-hint {
-    font-style: italic;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.dni-treeview {
-    white-space: nowrap;
-}
-.dni-treeview td {
-    vertical-align: top;
-    text-align: start;
-}
-details.dni-treeview {
-    padding-left: 1em;
-}
-table td {
-    text-align: start;
-}
-table tr { 
-    vertical-align: top; 
-    margin: 0em 0px;
-}
-table tr td pre 
-{ 
-    vertical-align: top !important; 
-    margin: 0em 0px !important;
-} 
-table th {
-    text-align: start;
-}
-</style>
-</div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH1 =
-    | UH1_0 of string * (string -&gt; string) * UH1
-    | UH1_1
+<pre>type Mut0 = {mutable l0 : int32}
 and UH0 =
-    | UH0_0 of UH1 * string * string * UH0
+    | UH0_0 of string * UH0
     | UH0_1
-and Mut0 = {mutable l0 : int32}
-let rec method1 (v0 : int32, v1 : Mut0) : bool =
+and UH1 =
+    | UH1_0 of int64 * int64 * UH1
+    | UH1_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : System.ConsoleColor
+and UH2 =
+    | UH2_0 of (string []) * UH2
+    | UH2_1
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : int64
+and UH3 =
+    | UH3_0 of float * UH3
+    | UH3_1
+and UH4 =
+    | UH4_0 of (float []) * UH4
+    | UH4_1
+let rec method1 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 2000001
+    v2
+and method3 (v0 : UH0, v1 : int32) : int32 =
+    match v0 with
+    | UH0_0(v2, v3) -&gt; (* Cons *)
+        let v4 : int32 = v1 + 1
+        method3(v3, v4)
+    | UH0_1 -&gt; (* Nil *)
+        v1
+and method4 (v0 : (string []), v1 : UH0, v2 : int32) : int32 =
+    match v1 with
+    | UH0_0(v3, v4) -&gt; (* Cons *)
+        v0.[int v2] &lt;- v3
+        let v5 : int32 = v2 + 1
+        method4(v0, v4, v5)
+    | UH0_1 -&gt; (* Nil *)
+        v2
+and method2 (v0 : UH0) : (string []) =
+    let v1 : int32 = 0
+    let v2 : int32 = method3(v0, v1)
+    let v3 : (string []) = Array.zeroCreate&lt;string&gt; (v2)
+    let v4 : int32 = 0
+    let v5 : int32 = method4(v3, v0, v4)
+    v3
+and closure1 () (v0 : int32) : string =
+    let v1 : string = "z"
+    let v2 : string = ""
+    let v3 : string = v1 + v2
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = UH0_0(v3, v4)
+    let v6 : (string []) = method2(v5)
+    let v7 : string = " "
+    let v8 : string = v6 |&gt; String.concat v7
+    v8
+and method5 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 0
+    v2
+and method6 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and closure1 () (v0 : string) : string =
-    let v1 : int32 = v0.Length
-    let v2 : (int32 []) = [|0|]
-    let v3 : int32 = v1 - 1
-    let v4 : int32 = v3 - 1
-    let v5 : int32 = v4 + 1
-    let v6 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v5)
-    let v7 : Mut0 = {l0 = 0} : Mut0
-    while method1(v5, v7) do
-        let v9 : int32 = v7.l0
-        let v10 : int32 = 1 + v9
-        v6.[int v9] &lt;- v10
-        let v11 : int32 = v9 + 1
-        v7.l0 &lt;- v11
+and closure2 () (v0 : int32) : string =
+    let v1 : (int32 []) = [|0|]
+    let v2 : (int32 []) = Array.zeroCreate&lt;int32&gt; (0)
+    let v3 : Mut0 = {l0 = 0} : Mut0
+    while method5(v3) do
+        let v5 : int32 = v3.l0
+        let v6 : int32 = 1 + v5
+        v2.[int v5] &lt;- v6
+        let v7 : int32 = v5 + 1
+        v3.l0 &lt;- v7
         ()
-    let v12 : int32 = v6.Length
-    let v13 : int32 = v2.Length
-    let v14 : int32 = v12 + v13
-    let v15 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v14)
-    let v16 : Mut0 = {l0 = 0} : Mut0
-    while method1(v14, v16) do
-        let v18 : int32 = v16.l0
-        let v19 : bool = v18 &lt; v12
-        let v23 : int32 =
-            if v19 then
-                let v20 : int32 = v6.[int v18]
-                v20
+    let v8 : int32 = v2.Length
+    let v9 : int32 = v1.Length
+    let v10 : int32 = v8 + v9
+    let v11 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v10)
+    let v12 : Mut0 = {l0 = 0} : Mut0
+    while method6(v10, v12) do
+        let v14 : int32 = v12.l0
+        let v15 : bool = v14 &lt; v8
+        let v19 : int32 =
+            if v15 then
+                let v16 : int32 = v2.[int v14]
+                v16
             else
-                let v21 : int32 = v18 - v12
-                let v22 : int32 = v2.[int v21]
-                v22
-        v15.[int v18] &lt;- v23
-        let v24 : int32 = v18 + 1
-        v16.l0 &lt;- v24
+                let v17 : int32 = v14 - v8
+                let v18 : int32 = v1.[int v17]
+                v18
+        v11.[int v14] &lt;- v19
+        let v20 : int32 = v14 + 1
+        v12.l0 &lt;- v20
         ()
-    let v25 : int32 = v15.Length
-    let v26 : (string []) = Array.zeroCreate&lt;string&gt; (v25)
-    let v27 : Mut0 = {l0 = 0} : Mut0
-    while method1(v25, v27) do
-        let v29 : int32 = v27.l0
-        let v30 : int32 = v15.[int v29]
-        let v31 : string = v0.[int v30..int v3]
-        let v32 : int32 = v30 - 1
-        let v33 : string = v0.[int 0..int v32]
-        let v34 : string = v31 + v33
-        v26.[int v29] &lt;- v34
-        let v35 : int32 = v29 + 1
-        v27.l0 &lt;- v35
+    let v21 : int32 = v11.Length
+    let v22 : (string []) = Array.zeroCreate&lt;string&gt; (v21)
+    let v23 : Mut0 = {l0 = 0} : Mut0
+    while method6(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : int32 = v11.[int v25]
+        let v27 : string = "z".[int v26..int 0]
+        let v28 : int32 = v26 - 1
+        let v29 : string = "z".[int 0..int v28]
+        let v30 : string = v27 + v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
         ()
-    let v36 : string = " "
-    let v37 : string = v26 |&gt; String.concat v36
-    v37
-and closure0 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure0()
+    let v32 : string = " "
+    let v33 : string = v22 |&gt; String.concat v32
+    v33
+and closure3 () (v0 : int32) : string =
+    let v1 : string = "aa"
+    let v2 : string = ""
+    let v3 : string = v1 + v2
+    let v4 : string = "a"
+    let v5 : string = v4 + v4
+    let v6 : UH0 = UH0_1
+    let v7 : UH0 = UH0_0(v3, v6)
+    let v8 : UH0 = UH0_0(v5, v7)
+    let v9 : (string []) = method2(v8)
+    let v10 : string = " "
+    let v11 : string = v9 |&gt; String.concat v10
+    v11
+and method7 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 1
+    v2
+and closure4 () (v0 : int32) : string =
+    let v1 : (int32 []) = [|0|]
+    let v2 : (int32 []) = Array.zeroCreate&lt;int32&gt; (1)
+    let v3 : Mut0 = {l0 = 0} : Mut0
+    while method7(v3) do
+        let v5 : int32 = v3.l0
+        let v6 : int32 = 1 + v5
+        v2.[int v5] &lt;- v6
+        let v7 : int32 = v5 + 1
+        v3.l0 &lt;- v7
+        ()
+    let v8 : int32 = v2.Length
+    let v9 : int32 = v1.Length
+    let v10 : int32 = v8 + v9
+    let v11 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v10)
+    let v12 : Mut0 = {l0 = 0} : Mut0
+    while method6(v10, v12) do
+        let v14 : int32 = v12.l0
+        let v15 : bool = v14 &lt; v8
+        let v19 : int32 =
+            if v15 then
+                let v16 : int32 = v2.[int v14]
+                v16
+            else
+                let v17 : int32 = v14 - v8
+                let v18 : int32 = v1.[int v17]
+                v18
+        v11.[int v14] &lt;- v19
+        let v20 : int32 = v14 + 1
+        v12.l0 &lt;- v20
+        ()
+    let v21 : int32 = v11.Length
+    let v22 : (string []) = Array.zeroCreate&lt;string&gt; (v21)
+    let v23 : Mut0 = {l0 = 0} : Mut0
+    while method6(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : int32 = v11.[int v25]
+        let v27 : string = "aa".[int v26..int 1]
+        let v28 : int32 = v26 - 1
+        let v29 : string = "aa".[int 0..int v28]
+        let v30 : string = v27 + v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
+        ()
+    let v32 : string = " "
+    let v33 : string = v22 |&gt; String.concat v32
+    v33
+and closure5 () (v0 : int32) : string =
+    let v1 : string = "abab"
+    let v2 : string = ""
+    let v3 : string = v1 + v2
+    let v4 : string = "b"
+    let v5 : string = "aba"
+    let v6 : string = v4 + v5
+    let v7 : string = "ab"
+    let v8 : string = v7 + v7
+    let v9 : string = "bab"
+    let v10 : string = "a"
+    let v11 : string = v9 + v10
+    let v12 : UH0 = UH0_1
+    let v13 : UH0 = UH0_0(v3, v12)
+    let v14 : UH0 = UH0_0(v6, v13)
+    let v15 : UH0 = UH0_0(v8, v14)
+    let v16 : UH0 = UH0_0(v11, v15)
+    let v17 : (string []) = method2(v16)
+    let v18 : string = " "
+    let v19 : string = v17 |&gt; String.concat v18
+    v19
+and method8 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 3
+    v2
+and closure6 () (v0 : int32) : string =
+    let v1 : (int32 []) = [|0|]
+    let v2 : (int32 []) = Array.zeroCreate&lt;int32&gt; (3)
+    let v3 : Mut0 = {l0 = 0} : Mut0
+    while method8(v3) do
+        let v5 : int32 = v3.l0
+        let v6 : int32 = 1 + v5
+        v2.[int v5] &lt;- v6
+        let v7 : int32 = v5 + 1
+        v3.l0 &lt;- v7
+        ()
+    let v8 : int32 = v2.Length
+    let v9 : int32 = v1.Length
+    let v10 : int32 = v8 + v9
+    let v11 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v10)
+    let v12 : Mut0 = {l0 = 0} : Mut0
+    while method6(v10, v12) do
+        let v14 : int32 = v12.l0
+        let v15 : bool = v14 &lt; v8
+        let v19 : int32 =
+            if v15 then
+                let v16 : int32 = v2.[int v14]
+                v16
+            else
+                let v17 : int32 = v14 - v8
+                let v18 : int32 = v1.[int v17]
+                v18
+        v11.[int v14] &lt;- v19
+        let v20 : int32 = v14 + 1
+        v12.l0 &lt;- v20
+        ()
+    let v21 : int32 = v11.Length
+    let v22 : (string []) = Array.zeroCreate&lt;string&gt; (v21)
+    let v23 : Mut0 = {l0 = 0} : Mut0
+    while method6(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : int32 = v11.[int v25]
+        let v27 : string = "abab".[int v26..int 3]
+        let v28 : int32 = v26 - 1
+        let v29 : string = "abab".[int 0..int v28]
+        let v30 : string = v27 + v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
+        ()
+    let v32 : string = " "
+    let v33 : string = v22 |&gt; String.concat v32
+    v33
+and closure7 () (v0 : int32) : string =
+    let v1 : string = "abcdefghi"
+    let v2 : string = ""
+    let v3 : string = v1 + v2
+    let v4 : string = "i"
+    let v5 : string = "abcdefgh"
+    let v6 : string = v4 + v5
+    let v7 : string = "hi"
+    let v8 : string = "abcdefg"
+    let v9 : string = v7 + v8
+    let v10 : string = "ghi"
+    let v11 : string = "abcdef"
+    let v12 : string = v10 + v11
+    let v13 : string = "fghi"
+    let v14 : string = "abcde"
+    let v15 : string = v13 + v14
+    let v16 : string = "efghi"
+    let v17 : string = "abcd"
+    let v18 : string = v16 + v17
+    let v19 : string = "defghi"
+    let v20 : string = "abc"
+    let v21 : string = v19 + v20
+    let v22 : string = "cdefghi"
+    let v23 : string = "ab"
+    let v24 : string = v22 + v23
+    let v25 : string = "bcdefghi"
+    let v26 : string = "a"
+    let v27 : string = v25 + v26
+    let v28 : UH0 = UH0_1
+    let v29 : UH0 = UH0_0(v3, v28)
+    let v30 : UH0 = UH0_0(v6, v29)
+    let v31 : UH0 = UH0_0(v9, v30)
+    let v32 : UH0 = UH0_0(v12, v31)
+    let v33 : UH0 = UH0_0(v15, v32)
+    let v34 : UH0 = UH0_0(v18, v33)
+    let v35 : UH0 = UH0_0(v21, v34)
+    let v36 : UH0 = UH0_0(v24, v35)
+    let v37 : UH0 = UH0_0(v27, v36)
+    let v38 : (string []) = method2(v37)
+    let v39 : string = " "
+    let v40 : string = v38 |&gt; String.concat v39
+    v40
+and method9 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 8
+    v2
+and closure8 () (v0 : int32) : string =
+    let v1 : (int32 []) = [|0|]
+    let v2 : (int32 []) = Array.zeroCreate&lt;int32&gt; (8)
+    let v3 : Mut0 = {l0 = 0} : Mut0
+    while method9(v3) do
+        let v5 : int32 = v3.l0
+        let v6 : int32 = 1 + v5
+        v2.[int v5] &lt;- v6
+        let v7 : int32 = v5 + 1
+        v3.l0 &lt;- v7
+        ()
+    let v8 : int32 = v2.Length
+    let v9 : int32 = v1.Length
+    let v10 : int32 = v8 + v9
+    let v11 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v10)
+    let v12 : Mut0 = {l0 = 0} : Mut0
+    while method6(v10, v12) do
+        let v14 : int32 = v12.l0
+        let v15 : bool = v14 &lt; v8
+        let v19 : int32 =
+            if v15 then
+                let v16 : int32 = v2.[int v14]
+                v16
+            else
+                let v17 : int32 = v14 - v8
+                let v18 : int32 = v1.[int v17]
+                v18
+        v11.[int v14] &lt;- v19
+        let v20 : int32 = v14 + 1
+        v12.l0 &lt;- v20
+        ()
+    let v21 : int32 = v11.Length
+    let v22 : (string []) = Array.zeroCreate&lt;string&gt; (v21)
+    let v23 : Mut0 = {l0 = 0} : Mut0
+    while method6(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : int32 = v11.[int v25]
+        let v27 : string = "abcdefghi".[int v26..int 8]
+        let v28 : int32 = v26 - 1
+        let v29 : string = "abcdefghi".[int 0..int v28]
+        let v30 : string = v27 + v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
+        ()
+    let v32 : string = " "
+    let v33 : string = v22 |&gt; String.concat v32
+    v33
+and closure9 () (v0 : int32) : string =
+    let v1 : string = "abcde"
+    let v2 : string = ""
+    let v3 : string = v1 + v2
+    let v4 : string = "e"
+    let v5 : string = "abcd"
+    let v6 : string = v4 + v5
+    let v7 : string = "de"
+    let v8 : string = "abc"
+    let v9 : string = v7 + v8
+    let v10 : string = "cde"
+    let v11 : string = "ab"
+    let v12 : string = v10 + v11
+    let v13 : string = "bcde"
+    let v14 : string = "a"
+    let v15 : string = v13 + v14
+    let v16 : UH0 = UH0_1
+    let v17 : UH0 = UH0_0(v3, v16)
+    let v18 : UH0 = UH0_0(v6, v17)
+    let v19 : UH0 = UH0_0(v9, v18)
+    let v20 : UH0 = UH0_0(v12, v19)
+    let v21 : UH0 = UH0_0(v15, v20)
+    let v22 : (string []) = method2(v21)
+    let v23 : string = " "
+    let v24 : string = v22 |&gt; String.concat v23
+    v24
+and method10 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 4
+    v2
+and closure10 () (v0 : int32) : string =
+    let v1 : (int32 []) = [|0|]
+    let v2 : (int32 []) = Array.zeroCreate&lt;int32&gt; (4)
+    let v3 : Mut0 = {l0 = 0} : Mut0
+    while method10(v3) do
+        let v5 : int32 = v3.l0
+        let v6 : int32 = 1 + v5
+        v2.[int v5] &lt;- v6
+        let v7 : int32 = v5 + 1
+        v3.l0 &lt;- v7
+        ()
+    let v8 : int32 = v2.Length
+    let v9 : int32 = v1.Length
+    let v10 : int32 = v8 + v9
+    let v11 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v10)
+    let v12 : Mut0 = {l0 = 0} : Mut0
+    while method6(v10, v12) do
+        let v14 : int32 = v12.l0
+        let v15 : bool = v14 &lt; v8
+        let v19 : int32 =
+            if v15 then
+                let v16 : int32 = v2.[int v14]
+                v16
+            else
+                let v17 : int32 = v14 - v8
+                let v18 : int32 = v1.[int v17]
+                v18
+        v11.[int v14] &lt;- v19
+        let v20 : int32 = v14 + 1
+        v12.l0 &lt;- v20
+        ()
+    let v21 : int32 = v11.Length
+    let v22 : (string []) = Array.zeroCreate&lt;string&gt; (v21)
+    let v23 : Mut0 = {l0 = 0} : Mut0
+    while method6(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : int32 = v11.[int v25]
+        let v27 : string = "abcde".[int v26..int 4]
+        let v28 : int32 = v26 - 1
+        let v29 : string = "abcde".[int 0..int v28]
+        let v30 : string = v27 + v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
+        ()
+    let v32 : string = " "
+    let v33 : string = v22 |&gt; String.concat v32
+    v33
+and closure11 () (v0 : int32) : string =
+    let v1 : string = "abc"
+    let v2 : string = ""
+    let v3 : string = v1 + v2
+    let v4 : string = "c"
+    let v5 : string = "ab"
+    let v6 : string = v4 + v5
+    let v7 : string = "bc"
+    let v8 : string = "a"
+    let v9 : string = v7 + v8
+    let v10 : UH0 = UH0_1
+    let v11 : UH0 = UH0_0(v3, v10)
+    let v12 : UH0 = UH0_0(v6, v11)
+    let v13 : UH0 = UH0_0(v9, v12)
+    let v14 : (string []) = method2(v13)
+    let v15 : string = " "
+    let v16 : string = v14 |&gt; String.concat v15
+    v16
+and method11 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 2
+    v2
+and closure12 () (v0 : int32) : string =
+    let v1 : (int32 []) = [|0|]
+    let v2 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2)
+    let v3 : Mut0 = {l0 = 0} : Mut0
+    while method11(v3) do
+        let v5 : int32 = v3.l0
+        let v6 : int32 = 1 + v5
+        v2.[int v5] &lt;- v6
+        let v7 : int32 = v5 + 1
+        v3.l0 &lt;- v7
+        ()
+    let v8 : int32 = v2.Length
+    let v9 : int32 = v1.Length
+    let v10 : int32 = v8 + v9
+    let v11 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v10)
+    let v12 : Mut0 = {l0 = 0} : Mut0
+    while method6(v10, v12) do
+        let v14 : int32 = v12.l0
+        let v15 : bool = v14 &lt; v8
+        let v19 : int32 =
+            if v15 then
+                let v16 : int32 = v2.[int v14]
+                v16
+            else
+                let v17 : int32 = v14 - v8
+                let v18 : int32 = v1.[int v17]
+                v18
+        v11.[int v14] &lt;- v19
+        let v20 : int32 = v14 + 1
+        v12.l0 &lt;- v20
+        ()
+    let v21 : int32 = v11.Length
+    let v22 : (string []) = Array.zeroCreate&lt;string&gt; (v21)
+    let v23 : Mut0 = {l0 = 0} : Mut0
+    while method6(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : int32 = v11.[int v25]
+        let v27 : string = "abc".[int v26..int 2]
+        let v28 : int32 = v26 - 1
+        let v29 : string = "abc".[int 0..int v28]
+        let v30 : string = v27 + v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
+        ()
+    let v32 : string = " "
+    let v33 : string = v22 |&gt; String.concat v32
+    v33
+and method13 (v0 : UH1, v1 : int32) : int32 =
+    match v0 with
+    | UH1_0(v2, v3, v4) -&gt; (* Cons *)
+        let v5 : int32 = v1 + 1
+        method13(v4, v5)
+    | UH1_1 -&gt; (* Nil *)
+        v1
+and method14 (v0 : (struct (int64 * int64) []), v1 : UH1, v2 : int32) : int32 =
+    match v1 with
+    | UH1_0(v3, v4, v5) -&gt; (* Cons *)
+        v0.[int v2] &lt;- struct (v3, v4)
+        let v6 : int32 = v2 + 1
+        method14(v0, v5, v6)
+    | UH1_1 -&gt; (* Nil *)
+        v2
+and method12 (v0 : UH1) : (struct (int64 * int64) []) =
+    let v1 : int32 = 0
+    let v2 : int32 = method13(v0, v1)
+    let v3 : (struct (int64 * int64) []) = Array.zeroCreate&lt;struct (int64 * int64)&gt; (v2)
+    let v4 : int32 = 0
+    let v5 : int32 = method14(v3, v0, v4)
+    v3
+and closure13 () struct (v0 : int64, v1 : int64) : int64 =
+    v1
+and method16 (v0 : UH2, v1 : int32) : int32 =
+    match v0 with
+    | UH2_0(v2, v3) -&gt; (* Cons *)
+        let v4 : int32 = v1 + 1
+        method16(v3, v4)
+    | UH2_1 -&gt; (* Nil *)
+        v1
+and method17 (v0 : ((string []) []), v1 : UH2, v2 : int32) : int32 =
+    match v1 with
+    | UH2_0(v3, v4) -&gt; (* Cons *)
+        v0.[int v2] &lt;- v3
+        let v5 : int32 = v2 + 1
+        method17(v0, v4, v5)
+    | UH2_1 -&gt; (* Nil *)
+        v2
+and method15 (v0 : UH2) : ((string []) []) =
+    let v1 : int32 = 0
+    let v2 : int32 = method16(v0, v1)
+    let v3 : ((string []) []) = Array.zeroCreate&lt;(string [])&gt; (v2)
+    let v4 : int32 = 0
+    let v5 : int32 = method17(v3, v0, v4)
+    v3
+and closure14 () (v0 : int64) : US1 =
+    US1_1(v0)
+and method19 (v0 : UH3, v1 : int32) : int32 =
+    match v0 with
+    | UH3_0(v2, v3) -&gt; (* Cons *)
+        let v4 : int32 = v1 + 1
+        method19(v3, v4)
+    | UH3_1 -&gt; (* Nil *)
+        v1
+and method20 (v0 : (float []), v1 : UH3, v2 : int32) : int32 =
+    match v1 with
+    | UH3_0(v3, v4) -&gt; (* Cons *)
+        v0.[int v2] &lt;- v3
+        let v5 : int32 = v2 + 1
+        method20(v0, v4, v5)
+    | UH3_1 -&gt; (* Nil *)
+        v2
+and method18 (v0 : UH3) : (float []) =
+    let v1 : int32 = 0
+    let v2 : int32 = method19(v0, v1)
+    let v3 : (float []) = Array.zeroCreate&lt;float&gt; (v2)
+    let v4 : int32 = 0
+    let v5 : int32 = method20(v3, v0, v4)
+    v3
+and method22 (v0 : UH4, v1 : int32) : int32 =
+    match v0 with
+    | UH4_0(v2, v3) -&gt; (* Cons *)
+        let v4 : int32 = v1 + 1
+        method22(v3, v4)
+    | UH4_1 -&gt; (* Nil *)
+        v1
+and method23 (v0 : ((float []) []), v1 : UH4, v2 : int32) : int32 =
+    match v1 with
+    | UH4_0(v3, v4) -&gt; (* Cons *)
+        v0.[int v2] &lt;- v3
+        let v5 : int32 = v2 + 1
+        method23(v0, v4, v5)
+    | UH4_1 -&gt; (* Nil *)
+        v2
+and method21 (v0 : UH4) : ((float []) []) =
+    let v1 : int32 = 0
+    let v2 : int32 = method22(v0, v1)
+    let v3 : ((float []) []) = Array.zeroCreate&lt;(float [])&gt; (v2)
+    let v4 : int32 = 0
+    let v5 : int32 = method23(v3, v0, v4)
+    v3
+and closure15 () struct (v0 : int32, v1 : int64) : int64 =
+    v1
+and closure0 () () : unit =
+    let v0 : (unit -&gt; unit) = closure0()
     let v1 : string = nameof v0
     let v2 : string = ""
     System.Console.WriteLine v2
     System.Console.WriteLine v2
     let v3 : string = $"Test: {v1}"
     System.Console.WriteLine v3
-    let v4 : string = "F"
-    let v5 : (string -&gt; string) = closure1()
-    let v6 : UH1 = UH1_1
-    let v7 : UH1 = UH1_0(v4, v5, v6)
-    let v8 : string = "abc"
-    let v9 : string = "bca cab abc"
-    let v10 : string = "abcde"
-    let v11 : string = "bcdea cdeab deabc eabcd abcde"
-    let v12 : string = "abcdefghi"
-    let v13 : string = "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
-    let v14 : string = "abab"
-    let v15 : string = "baba abab baba abab"
-    let v16 : string = "aa"
-    let v17 : string = "aa aa"
-    let v18 : string = "z"
-    let v19 : UH0 = UH0_1
-    let v20 : UH0 = UH0_0(v7, v18, v18, v19)
-    let v21 : UH0 = UH0_0(v7, v16, v17, v20)
-    let v22 : UH0 = UH0_0(v7, v14, v15, v21)
-    let v23 : UH0 = UH0_0(v7, v12, v13, v22)
-    let v24 : UH0 = UH0_0(v7, v10, v11, v23)
-    UH0_0(v7, v8, v9, v24)
-and method0 () : struct (UH0 * UH1) =
-    let v0 : (unit -&gt; UH0) = closure0()
+    let v4 : string = "z"
+    let v5 : string = v4.ToString ()
+    System.Console.WriteLine v2
+    let v6 : string = $"Solution: {v5}  "
+    System.Console.WriteLine v6
+    System.GC.Collect ()
+    let v7 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v8 : System.Diagnostics.Stopwatch = v7 ()
+    v8.Start ()
+    let v9 : int64 = v8.ElapsedMilliseconds
+    let v10 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v11 : Mut0 = {l0 = 0} : Mut0
+    while method1(v11) do
+        let v13 : int32 = v11.l0
+        v10.[int v13] &lt;- v13
+        let v14 : int32 = v13 + 1
+        v11.l0 &lt;- v14
+        ()
+    let v15 : (int32 -&gt; string) = closure1()
+    let v16 : (string []) = v10 |&gt; Array.Parallel.map v15
+    let v17 : string = v16 |&gt; Array.last
+    let v18 : int64 = v8.ElapsedMilliseconds
+    let v19 : int64 = v18 - v9
+    let v20 : string = "FA"
+    let v21 : string = $"Test case {1 + 1}. {v20}. Time: {v19}  "
+    System.Console.WriteLine v21
+    System.GC.Collect ()
+    let v22 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v23 : System.Diagnostics.Stopwatch = v22 ()
+    v23.Start ()
+    let v24 : int64 = v23.ElapsedMilliseconds
+    let v25 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v26 : Mut0 = {l0 = 0} : Mut0
+    while method1(v26) do
+        let v28 : int32 = v26.l0
+        v25.[int v28] &lt;- v28
+        let v29 : int32 = v28 + 1
+        v26.l0 &lt;- v29
+        ()
+    let v30 : (int32 -&gt; string) = closure2()
+    let v31 : (string []) = v25 |&gt; Array.Parallel.map v30
+    let v32 : string = v31 |&gt; Array.last
+    let v33 : int64 = v23.ElapsedMilliseconds
+    let v34 : int64 = v33 - v24
+    let v35 : string = "F"
+    let v36 : string = $"Test case {0 + 1}. {v35}. Time: {v34}  "
+    System.Console.WriteLine v36
+    let v37 : bool = v17 = v32
+    if v37 then
+        ()
+    else
+        let v38 : UH0 = UH0_1
+        let v39 : UH0 = UH0_0(v17, v38)
+        let v40 : UH0 = UH0_0(v32, v39)
+        let v41 : string = $"Challenge error: {v40}"
+        failwith&lt;unit&gt; v41
+    let v42 : string = v4.ToString ()
+    let v43 : string = v32.ToString ()
+    let v44 : string = "aa"
+    let v45 : string = v44.ToString ()
+    System.Console.WriteLine v2
+    let v46 : string = $"Solution: {v45}  "
+    System.Console.WriteLine v46
+    System.GC.Collect ()
+    let v47 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v48 : System.Diagnostics.Stopwatch = v47 ()
+    v48.Start ()
+    let v49 : int64 = v48.ElapsedMilliseconds
+    let v50 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v51 : Mut0 = {l0 = 0} : Mut0
+    while method1(v51) do
+        let v53 : int32 = v51.l0
+        v50.[int v53] &lt;- v53
+        let v54 : int32 = v53 + 1
+        v51.l0 &lt;- v54
+        ()
+    let v55 : (int32 -&gt; string) = closure3()
+    let v56 : (string []) = v50 |&gt; Array.Parallel.map v55
+    let v57 : string = v56 |&gt; Array.last
+    let v58 : int64 = v48.ElapsedMilliseconds
+    let v59 : int64 = v58 - v49
+    let v60 : string = $"Test case {1 + 1}. {v20}. Time: {v59}  "
+    System.Console.WriteLine v60
+    System.GC.Collect ()
+    let v61 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v62 : System.Diagnostics.Stopwatch = v61 ()
+    v62.Start ()
+    let v63 : int64 = v62.ElapsedMilliseconds
+    let v64 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v65 : Mut0 = {l0 = 0} : Mut0
+    while method1(v65) do
+        let v67 : int32 = v65.l0
+        v64.[int v67] &lt;- v67
+        let v68 : int32 = v67 + 1
+        v65.l0 &lt;- v68
+        ()
+    let v69 : (int32 -&gt; string) = closure4()
+    let v70 : (string []) = v64 |&gt; Array.Parallel.map v69
+    let v71 : string = v70 |&gt; Array.last
+    let v72 : int64 = v62.ElapsedMilliseconds
+    let v73 : int64 = v72 - v63
+    let v74 : string = $"Test case {0 + 1}. {v35}. Time: {v73}  "
+    System.Console.WriteLine v74
+    let v75 : bool = v57 = v71
+    if v75 then
+        ()
+    else
+        let v76 : UH0 = UH0_1
+        let v77 : UH0 = UH0_0(v57, v76)
+        let v78 : UH0 = UH0_0(v71, v77)
+        let v79 : string = $"Challenge error: {v78}"
+        failwith&lt;unit&gt; v79
+    let v80 : string = "aa aa"
+    let v81 : string = v80.ToString ()
+    let v82 : string = v71.ToString ()
+    let v83 : string = "abab"
+    let v84 : string = v83.ToString ()
+    System.Console.WriteLine v2
+    let v85 : string = $"Solution: {v84}  "
+    System.Console.WriteLine v85
+    System.GC.Collect ()
+    let v86 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v87 : System.Diagnostics.Stopwatch = v86 ()
+    v87.Start ()
+    let v88 : int64 = v87.ElapsedMilliseconds
+    let v89 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v90 : Mut0 = {l0 = 0} : Mut0
+    while method1(v90) do
+        let v92 : int32 = v90.l0
+        v89.[int v92] &lt;- v92
+        let v93 : int32 = v92 + 1
+        v90.l0 &lt;- v93
+        ()
+    let v94 : (int32 -&gt; string) = closure5()
+    let v95 : (string []) = v89 |&gt; Array.Parallel.map v94
+    let v96 : string = v95 |&gt; Array.last
+    let v97 : int64 = v87.ElapsedMilliseconds
+    let v98 : int64 = v97 - v88
+    let v99 : string = $"Test case {1 + 1}. {v20}. Time: {v98}  "
+    System.Console.WriteLine v99
+    System.GC.Collect ()
+    let v100 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v101 : System.Diagnostics.Stopwatch = v100 ()
+    v101.Start ()
+    let v102 : int64 = v101.ElapsedMilliseconds
+    let v103 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v104 : Mut0 = {l0 = 0} : Mut0
+    while method1(v104) do
+        let v106 : int32 = v104.l0
+        v103.[int v106] &lt;- v106
+        let v107 : int32 = v106 + 1
+        v104.l0 &lt;- v107
+        ()
+    let v108 : (int32 -&gt; string) = closure6()
+    let v109 : (string []) = v103 |&gt; Array.Parallel.map v108
+    let v110 : string = v109 |&gt; Array.last
+    let v111 : int64 = v101.ElapsedMilliseconds
+    let v112 : int64 = v111 - v102
+    let v113 : string = $"Test case {0 + 1}. {v35}. Time: {v112}  "
+    System.Console.WriteLine v113
+    let v114 : bool = v96 = v110
+    if v114 then
+        ()
+    else
+        let v115 : UH0 = UH0_1
+        let v116 : UH0 = UH0_0(v96, v115)
+        let v117 : UH0 = UH0_0(v110, v116)
+        let v118 : string = $"Challenge error: {v117}"
+        failwith&lt;unit&gt; v118
+    let v119 : string = "baba abab baba abab"
+    let v120 : string = v119.ToString ()
+    let v121 : string = v110.ToString ()
+    let v122 : string = "abcdefghi"
+    let v123 : string = v122.ToString ()
+    System.Console.WriteLine v2
+    let v124 : string = $"Solution: {v123}  "
+    System.Console.WriteLine v124
+    System.GC.Collect ()
+    let v125 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v126 : System.Diagnostics.Stopwatch = v125 ()
+    v126.Start ()
+    let v127 : int64 = v126.ElapsedMilliseconds
+    let v128 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v129 : Mut0 = {l0 = 0} : Mut0
+    while method1(v129) do
+        let v131 : int32 = v129.l0
+        v128.[int v131] &lt;- v131
+        let v132 : int32 = v131 + 1
+        v129.l0 &lt;- v132
+        ()
+    let v133 : (int32 -&gt; string) = closure7()
+    let v134 : (string []) = v128 |&gt; Array.Parallel.map v133
+    let v135 : string = v134 |&gt; Array.last
+    let v136 : int64 = v126.ElapsedMilliseconds
+    let v137 : int64 = v136 - v127
+    let v138 : string = $"Test case {1 + 1}. {v20}. Time: {v137}  "
+    System.Console.WriteLine v138
+    System.GC.Collect ()
+    let v139 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v140 : System.Diagnostics.Stopwatch = v139 ()
+    v140.Start ()
+    let v141 : int64 = v140.ElapsedMilliseconds
+    let v142 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v143 : Mut0 = {l0 = 0} : Mut0
+    while method1(v143) do
+        let v145 : int32 = v143.l0
+        v142.[int v145] &lt;- v145
+        let v146 : int32 = v145 + 1
+        v143.l0 &lt;- v146
+        ()
+    let v147 : (int32 -&gt; string) = closure8()
+    let v148 : (string []) = v142 |&gt; Array.Parallel.map v147
+    let v149 : string = v148 |&gt; Array.last
+    let v150 : int64 = v140.ElapsedMilliseconds
+    let v151 : int64 = v150 - v141
+    let v152 : string = $"Test case {0 + 1}. {v35}. Time: {v151}  "
+    System.Console.WriteLine v152
+    let v153 : bool = v135 = v149
+    if v153 then
+        ()
+    else
+        let v154 : UH0 = UH0_1
+        let v155 : UH0 = UH0_0(v135, v154)
+        let v156 : UH0 = UH0_0(v149, v155)
+        let v157 : string = $"Challenge error: {v156}"
+        failwith&lt;unit&gt; v157
+    let v158 : string = "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+    let v159 : string = v158.ToString ()
+    let v160 : string = v149.ToString ()
+    let v161 : string = "abcde"
+    let v162 : string = v161.ToString ()
+    System.Console.WriteLine v2
+    let v163 : string = $"Solution: {v162}  "
+    System.Console.WriteLine v163
+    System.GC.Collect ()
+    let v164 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v165 : System.Diagnostics.Stopwatch = v164 ()
+    v165.Start ()
+    let v166 : int64 = v165.ElapsedMilliseconds
+    let v167 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v168 : Mut0 = {l0 = 0} : Mut0
+    while method1(v168) do
+        let v170 : int32 = v168.l0
+        v167.[int v170] &lt;- v170
+        let v171 : int32 = v170 + 1
+        v168.l0 &lt;- v171
+        ()
+    let v172 : (int32 -&gt; string) = closure9()
+    let v173 : (string []) = v167 |&gt; Array.Parallel.map v172
+    let v174 : string = v173 |&gt; Array.last
+    let v175 : int64 = v165.ElapsedMilliseconds
+    let v176 : int64 = v175 - v166
+    let v177 : string = $"Test case {1 + 1}. {v20}. Time: {v176}  "
+    System.Console.WriteLine v177
+    System.GC.Collect ()
+    let v178 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v179 : System.Diagnostics.Stopwatch = v178 ()
+    v179.Start ()
+    let v180 : int64 = v179.ElapsedMilliseconds
+    let v181 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v182 : Mut0 = {l0 = 0} : Mut0
+    while method1(v182) do
+        let v184 : int32 = v182.l0
+        v181.[int v184] &lt;- v184
+        let v185 : int32 = v184 + 1
+        v182.l0 &lt;- v185
+        ()
+    let v186 : (int32 -&gt; string) = closure10()
+    let v187 : (string []) = v181 |&gt; Array.Parallel.map v186
+    let v188 : string = v187 |&gt; Array.last
+    let v189 : int64 = v179.ElapsedMilliseconds
+    let v190 : int64 = v189 - v180
+    let v191 : string = $"Test case {0 + 1}. {v35}. Time: {v190}  "
+    System.Console.WriteLine v191
+    let v192 : bool = v174 = v188
+    if v192 then
+        ()
+    else
+        let v193 : UH0 = UH0_1
+        let v194 : UH0 = UH0_0(v174, v193)
+        let v195 : UH0 = UH0_0(v188, v194)
+        let v196 : string = $"Challenge error: {v195}"
+        failwith&lt;unit&gt; v196
+    let v197 : string = "bcdea cdeab deabc eabcd abcde"
+    let v198 : string = v197.ToString ()
+    let v199 : string = v188.ToString ()
+    let v200 : string = "abc"
+    let v201 : string = v200.ToString ()
+    System.Console.WriteLine v2
+    let v202 : string = $"Solution: {v201}  "
+    System.Console.WriteLine v202
+    System.GC.Collect ()
+    let v203 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v204 : System.Diagnostics.Stopwatch = v203 ()
+    v204.Start ()
+    let v205 : int64 = v204.ElapsedMilliseconds
+    let v206 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v207 : Mut0 = {l0 = 0} : Mut0
+    while method1(v207) do
+        let v209 : int32 = v207.l0
+        v206.[int v209] &lt;- v209
+        let v210 : int32 = v209 + 1
+        v207.l0 &lt;- v210
+        ()
+    let v211 : (int32 -&gt; string) = closure11()
+    let v212 : (string []) = v206 |&gt; Array.Parallel.map v211
+    let v213 : string = v212 |&gt; Array.last
+    let v214 : int64 = v204.ElapsedMilliseconds
+    let v215 : int64 = v214 - v205
+    let v216 : string = $"Test case {1 + 1}. {v20}. Time: {v215}  "
+    System.Console.WriteLine v216
+    System.GC.Collect ()
+    let v217 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v218 : System.Diagnostics.Stopwatch = v217 ()
+    v218.Start ()
+    let v219 : int64 = v218.ElapsedMilliseconds
+    let v220 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v221 : Mut0 = {l0 = 0} : Mut0
+    while method1(v221) do
+        let v223 : int32 = v221.l0
+        v220.[int v223] &lt;- v223
+        let v224 : int32 = v223 + 1
+        v221.l0 &lt;- v224
+        ()
+    let v225 : (int32 -&gt; string) = closure12()
+    let v226 : (string []) = v220 |&gt; Array.Parallel.map v225
+    let v227 : string = v226 |&gt; Array.last
+    let v228 : int64 = v218.ElapsedMilliseconds
+    let v229 : int64 = v228 - v219
+    let v230 : string = $"Test case {0 + 1}. {v35}. Time: {v229}  "
+    System.Console.WriteLine v230
+    let v231 : bool = v213 = v227
+    if v231 then
+        ()
+    else
+        let v232 : UH0 = UH0_1
+        let v233 : UH0 = UH0_0(v213, v232)
+        let v234 : UH0 = UH0_0(v227, v233)
+        let v235 : string = $"Challenge error: {v234}"
+        failwith&lt;unit&gt; v235
+    let v236 : string = "bca cab abc"
+    let v237 : string = v236.ToString ()
+    let v238 : string = v227.ToString ()
+    let v239 : int64 = 1L
+    let v240 : int64 = 2L
+    let v241 : UH1 = UH1_1
+    let v242 : UH1 = UH1_0(v240, v19, v241)
+    let v243 : UH1 = UH1_0(v239, v34, v242)
+    let v244 : (struct (int64 * int64) []) = method12(v243)
+    let v245 : (struct (int64 * int64) -&gt; int64) = closure13()
+    let v246 : (struct (int64 * int64) []) = v244 |&gt; Array.sortBy v245
+    let struct (v247 : int64, v248 : int64) = v246.[int 0]
+    let v249 : string = struct (v247, v248).ToString ()
+    let v250 : bool = v42 = v43
+    let v255 : US0 =
+        if v250 then
+            let v251 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v251)
+        else
+            let v253 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v253)
+    let v256 : int64 = 1L
+    let v257 : int64 = 2L
+    let v258 : UH1 = UH1_1
+    let v259 : UH1 = UH1_0(v257, v59, v258)
+    let v260 : UH1 = UH1_0(v256, v73, v259)
+    let v261 : (struct (int64 * int64) []) = method12(v260)
+    let v262 : (struct (int64 * int64) []) = v261 |&gt; Array.sortBy v245
+    let struct (v263 : int64, v264 : int64) = v262.[int 0]
+    let v265 : string = struct (v263, v264).ToString ()
+    let v266 : bool = v81 = v82
+    let v271 : US0 =
+        if v266 then
+            let v267 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v267)
+        else
+            let v269 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v269)
+    let v272 : int64 = 1L
+    let v273 : int64 = 2L
+    let v274 : UH1 = UH1_1
+    let v275 : UH1 = UH1_0(v273, v98, v274)
+    let v276 : UH1 = UH1_0(v272, v112, v275)
+    let v277 : (struct (int64 * int64) []) = method12(v276)
+    let v278 : (struct (int64 * int64) []) = v277 |&gt; Array.sortBy v245
+    let struct (v279 : int64, v280 : int64) = v278.[int 0]
+    let v281 : string = struct (v279, v280).ToString ()
+    let v282 : bool = v120 = v121
+    let v287 : US0 =
+        if v282 then
+            let v283 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v283)
+        else
+            let v285 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v285)
+    let v288 : int64 = 1L
+    let v289 : int64 = 2L
+    let v290 : UH1 = UH1_1
+    let v291 : UH1 = UH1_0(v289, v137, v290)
+    let v292 : UH1 = UH1_0(v288, v151, v291)
+    let v293 : (struct (int64 * int64) []) = method12(v292)
+    let v294 : (struct (int64 * int64) []) = v293 |&gt; Array.sortBy v245
+    let struct (v295 : int64, v296 : int64) = v294.[int 0]
+    let v297 : string = struct (v295, v296).ToString ()
+    let v298 : bool = v159 = v160
+    let v303 : US0 =
+        if v298 then
+            let v299 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v299)
+        else
+            let v301 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v301)
+    let v304 : int64 = 1L
+    let v305 : int64 = 2L
+    let v306 : UH1 = UH1_1
+    let v307 : UH1 = UH1_0(v305, v176, v306)
+    let v308 : UH1 = UH1_0(v304, v190, v307)
+    let v309 : (struct (int64 * int64) []) = method12(v308)
+    let v310 : (struct (int64 * int64) []) = v309 |&gt; Array.sortBy v245
+    let struct (v311 : int64, v312 : int64) = v310.[int 0]
+    let v313 : string = struct (v311, v312).ToString ()
+    let v314 : bool = v198 = v199
+    let v319 : US0 =
+        if v314 then
+            let v315 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v315)
+        else
+            let v317 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v317)
+    let v320 : int64 = 1L
+    let v321 : int64 = 2L
+    let v322 : UH1 = UH1_1
+    let v323 : UH1 = UH1_0(v321, v215, v322)
+    let v324 : UH1 = UH1_0(v320, v229, v323)
+    let v325 : (struct (int64 * int64) []) = method12(v324)
+    let v326 : (struct (int64 * int64) []) = v325 |&gt; Array.sortBy v245
+    let struct (v327 : int64, v328 : int64) = v326.[int 0]
+    let v329 : string = struct (v327, v328).ToString ()
+    let v330 : bool = v237 = v238
+    let v335 : US0 =
+        if v330 then
+            let v331 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v331)
+        else
+            let v333 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v333)
+    let v336 : UH0 = UH0_1
+    let v337 : UH0 = UH0_0(v249, v336)
+    let v338 : UH0 = UH0_0(v43, v337)
+    let v339 : UH0 = UH0_0(v42, v338)
+    let v340 : UH0 = UH0_0(v5, v339)
+    let v341 : (string []) = method2(v340)
+    let v342 : UH0 = UH0_1
+    let v343 : UH0 = UH0_0(v265, v342)
+    let v344 : UH0 = UH0_0(v82, v343)
+    let v345 : UH0 = UH0_0(v81, v344)
+    let v346 : UH0 = UH0_0(v45, v345)
+    let v347 : (string []) = method2(v346)
+    let v348 : UH0 = UH0_1
+    let v349 : UH0 = UH0_0(v281, v348)
+    let v350 : UH0 = UH0_0(v121, v349)
+    let v351 : UH0 = UH0_0(v120, v350)
+    let v352 : UH0 = UH0_0(v84, v351)
+    let v353 : (string []) = method2(v352)
+    let v354 : UH0 = UH0_1
+    let v355 : UH0 = UH0_0(v297, v354)
+    let v356 : UH0 = UH0_0(v160, v355)
+    let v357 : UH0 = UH0_0(v159, v356)
+    let v358 : UH0 = UH0_0(v123, v357)
+    let v359 : (string []) = method2(v358)
+    let v360 : UH0 = UH0_1
+    let v361 : UH0 = UH0_0(v313, v360)
+    let v362 : UH0 = UH0_0(v199, v361)
+    let v363 : UH0 = UH0_0(v198, v362)
+    let v364 : UH0 = UH0_0(v162, v363)
+    let v365 : (string []) = method2(v364)
+    let v366 : UH0 = UH0_1
+    let v367 : UH0 = UH0_0(v329, v366)
+    let v368 : UH0 = UH0_0(v238, v367)
+    let v369 : UH0 = UH0_0(v237, v368)
+    let v370 : UH0 = UH0_0(v201, v369)
+    let v371 : (string []) = method2(v370)
+    let v372 : string = "---"
+    let v373 : UH0 = UH0_1
+    let v374 : UH0 = UH0_0(v372, v373)
+    let v375 : UH0 = UH0_0(v372, v374)
+    let v376 : UH0 = UH0_0(v372, v375)
+    let v377 : UH0 = UH0_0(v372, v376)
+    let v378 : (string []) = method2(v377)
+    let v379 : string = "Input"
+    let v380 : string = "Expected"
+    let v381 : string = "Result"
+    let v382 : string = "Best"
+    let v383 : UH0 = UH0_1
+    let v384 : UH0 = UH0_0(v382, v383)
+    let v385 : UH0 = UH0_0(v381, v384)
+    let v386 : UH0 = UH0_0(v380, v385)
+    let v387 : UH0 = UH0_0(v379, v386)
+    let v388 : (string []) = method2(v387)
+    let v389 : UH2 = UH2_1
+    let v390 : UH2 = UH2_0(v341, v389)
+    let v391 : UH2 = UH2_0(v347, v390)
+    let v392 : UH2 = UH2_0(v353, v391)
+    let v393 : UH2 = UH2_0(v359, v392)
+    let v394 : UH2 = UH2_0(v365, v393)
+    let v395 : UH2 = UH2_0(v371, v394)
+    let v396 : UH2 = UH2_0(v378, v395)
+    let v397 : UH2 = UH2_0(v388, v396)
+    let v398 : ((string []) []) = method15(v397)
+    let v399 : ((string []) []) = v398 |&gt; Array.transpose
+    let v400 : int32 = v399.Length
+    let v401 : (int64 []) = Array.zeroCreate&lt;int64&gt; (v400)
+    let v402 : Mut0 = {l0 = 0} : Mut0
+    while method6(v400, v402) do
+        let v404 : int32 = v402.l0
+        let v405 : (string []) = v399.[int v404]
+        let v406 : int32 = v405.Length
+        let v407 : (int64 []) = Array.zeroCreate&lt;int64&gt; (v406)
+        let v408 : Mut0 = {l0 = 0} : Mut0
+        while method6(v406, v408) do
+            let v410 : int32 = v408.l0
+            let v411 : string = v405.[int v410]
+            let v412 : int64 = System.Convert.ToInt64 v411.Length
+            v407.[int v410] &lt;- v412
+            let v413 : int32 = v410 + 1
+            v408.l0 &lt;- v413
+            ()
+        let v414 : (int64 []) = v407 |&gt; Array.sortDescending
+        let v415 : int64 option = v414 |&gt; Array.tryItem 0
+        let v416 : (int64 -&gt; US1) = closure14()
+        let v417 : US1 = US1_0
+        let v418 : US1 = v415 |&gt; Option.map v416 |&gt; Option.defaultValue v417
+        let v421 : int64 =
+            match v418 with
+            | US1_0 -&gt; (* None *)
+                0L
+            | US1_1(v419) -&gt; (* Some *)
+                v419
+        v401.[int v404] &lt;- v421
+        let v422 : int32 = v404 + 1
+        v402.l0 &lt;- v422
+        ()
+    let v423 : (struct (int32 * int64) []) = v401 |&gt; Array.indexed |&gt; Array.map (fun (a, b) -&gt; struct (a, b))
+    let v424 : Map&lt;int32, int64&gt; = v423 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
+    let v425 : int64 = v424.[3]
+    let v426 : int32 = int32 v425
+    let v427 : string = v249.PadRight v426
+    let v428 : int64 = v424.[2]
+    let v429 : int32 = int32 v428
+    let v430 : string = v43.PadRight v429
+    let v431 : int64 = v424.[1]
+    let v432 : int32 = int32 v431
+    let v433 : string = v42.PadRight v432
+    let v434 : int64 = v424.[0]
+    let v435 : int32 = int32 v434
+    let v436 : string = v5.PadRight v435
+    let v437 : UH0 = UH0_1
+    let v438 : UH0 = UH0_0(v427, v437)
+    let v439 : UH0 = UH0_0(v430, v438)
+    let v440 : UH0 = UH0_0(v433, v439)
+    let v441 : UH0 = UH0_0(v436, v440)
+    let v442 : (string []) = method2(v441)
+    let v443 : int64 = v424.[3]
+    let v444 : int32 = int32 v443
+    let v445 : string = v265.PadRight v444
+    let v446 : int64 = v424.[2]
+    let v447 : int32 = int32 v446
+    let v448 : string = v82.PadRight v447
+    let v449 : int64 = v424.[1]
+    let v450 : int32 = int32 v449
+    let v451 : string = v81.PadRight v450
+    let v452 : int64 = v424.[0]
+    let v453 : int32 = int32 v452
+    let v454 : string = v45.PadRight v453
+    let v455 : UH0 = UH0_1
+    let v456 : UH0 = UH0_0(v445, v455)
+    let v457 : UH0 = UH0_0(v448, v456)
+    let v458 : UH0 = UH0_0(v451, v457)
+    let v459 : UH0 = UH0_0(v454, v458)
+    let v460 : (string []) = method2(v459)
+    let v461 : int64 = v424.[3]
+    let v462 : int32 = int32 v461
+    let v463 : string = v281.PadRight v462
+    let v464 : int64 = v424.[2]
+    let v465 : int32 = int32 v464
+    let v466 : string = v121.PadRight v465
+    let v467 : int64 = v424.[1]
+    let v468 : int32 = int32 v467
+    let v469 : string = v120.PadRight v468
+    let v470 : int64 = v424.[0]
+    let v471 : int32 = int32 v470
+    let v472 : string = v84.PadRight v471
+    let v473 : UH0 = UH0_1
+    let v474 : UH0 = UH0_0(v463, v473)
+    let v475 : UH0 = UH0_0(v466, v474)
+    let v476 : UH0 = UH0_0(v469, v475)
+    let v477 : UH0 = UH0_0(v472, v476)
+    let v478 : (string []) = method2(v477)
+    let v479 : int64 = v424.[3]
+    let v480 : int32 = int32 v479
+    let v481 : string = v297.PadRight v480
+    let v482 : int64 = v424.[2]
+    let v483 : int32 = int32 v482
+    let v484 : string = v160.PadRight v483
+    let v485 : int64 = v424.[1]
+    let v486 : int32 = int32 v485
+    let v487 : string = v159.PadRight v486
+    let v488 : int64 = v424.[0]
+    let v489 : int32 = int32 v488
+    let v490 : string = v123.PadRight v489
+    let v491 : UH0 = UH0_1
+    let v492 : UH0 = UH0_0(v481, v491)
+    let v493 : UH0 = UH0_0(v484, v492)
+    let v494 : UH0 = UH0_0(v487, v493)
+    let v495 : UH0 = UH0_0(v490, v494)
+    let v496 : (string []) = method2(v495)
+    let v497 : int64 = v424.[3]
+    let v498 : int32 = int32 v497
+    let v499 : string = v313.PadRight v498
+    let v500 : int64 = v424.[2]
+    let v501 : int32 = int32 v500
+    let v502 : string = v199.PadRight v501
+    let v503 : int64 = v424.[1]
+    let v504 : int32 = int32 v503
+    let v505 : string = v198.PadRight v504
+    let v506 : int64 = v424.[0]
+    let v507 : int32 = int32 v506
+    let v508 : string = v162.PadRight v507
+    let v509 : UH0 = UH0_1
+    let v510 : UH0 = UH0_0(v499, v509)
+    let v511 : UH0 = UH0_0(v502, v510)
+    let v512 : UH0 = UH0_0(v505, v511)
+    let v513 : UH0 = UH0_0(v508, v512)
+    let v514 : (string []) = method2(v513)
+    let v515 : int64 = v424.[3]
+    let v516 : int32 = int32 v515
+    let v517 : string = v329.PadRight v516
+    let v518 : int64 = v424.[2]
+    let v519 : int32 = int32 v518
+    let v520 : string = v238.PadRight v519
+    let v521 : int64 = v424.[1]
+    let v522 : int32 = int32 v521
+    let v523 : string = v237.PadRight v522
+    let v524 : int64 = v424.[0]
+    let v525 : int32 = int32 v524
+    let v526 : string = v201.PadRight v525
+    let v527 : UH0 = UH0_1
+    let v528 : UH0 = UH0_0(v517, v527)
+    let v529 : UH0 = UH0_0(v520, v528)
+    let v530 : UH0 = UH0_0(v523, v529)
+    let v531 : UH0 = UH0_0(v526, v530)
+    let v532 : (string []) = method2(v531)
+    let v533 : int64 = v424.[3]
+    let v534 : int32 = int32 v533
+    let v535 : string = v372.PadRight v534
+    let v536 : int64 = v424.[2]
+    let v537 : int32 = int32 v536
+    let v538 : string = v372.PadRight v537
+    let v539 : int64 = v424.[1]
+    let v540 : int32 = int32 v539
+    let v541 : string = v372.PadRight v540
+    let v542 : int64 = v424.[0]
+    let v543 : int32 = int32 v542
+    let v544 : string = v372.PadRight v543
+    let v545 : UH0 = UH0_1
+    let v546 : UH0 = UH0_0(v535, v545)
+    let v547 : UH0 = UH0_0(v538, v546)
+    let v548 : UH0 = UH0_0(v541, v547)
+    let v549 : UH0 = UH0_0(v544, v548)
+    let v550 : (string []) = method2(v549)
+    let v551 : int64 = v424.[3]
+    let v552 : int32 = int32 v551
+    let v553 : string = v382.PadRight v552
+    let v554 : int64 = v424.[2]
+    let v555 : int32 = int32 v554
+    let v556 : string = v381.PadRight v555
+    let v557 : int64 = v424.[1]
+    let v558 : int32 = int32 v557
+    let v559 : string = v380.PadRight v558
+    let v560 : int64 = v424.[0]
+    let v561 : int32 = int32 v560
+    let v562 : string = v379.PadRight v561
+    let v563 : UH0 = UH0_1
+    let v564 : UH0 = UH0_0(v553, v563)
+    let v565 : UH0 = UH0_0(v556, v564)
+    let v566 : UH0 = UH0_0(v559, v565)
+    let v567 : UH0 = UH0_0(v562, v566)
+    let v568 : (string []) = method2(v567)
+    System.Console.WriteLine v2
+    System.Console.ResetColor ()
+    let v569 : string = "\t| "
+    let v570 : string = System.String.Join (v569, v568)
+    System.Console.WriteLine v570
+    System.Console.ResetColor ()
+    System.Console.ResetColor ()
+    let v571 : string = System.String.Join (v569, v550)
+    System.Console.WriteLine v571
+    System.Console.ResetColor ()
+    match v335 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v572) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v572
+        ()
+    let v573 : string = System.String.Join (v569, v532)
+    System.Console.WriteLine v573
+    System.Console.ResetColor ()
+    match v319 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v574) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v574
+        ()
+    let v575 : string = System.String.Join (v569, v514)
+    System.Console.WriteLine v575
+    System.Console.ResetColor ()
+    match v303 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v576) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v576
+        ()
+    let v577 : string = System.String.Join (v569, v496)
+    System.Console.WriteLine v577
+    System.Console.ResetColor ()
+    match v287 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v578) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v578
+        ()
+    let v579 : string = System.String.Join (v569, v478)
+    System.Console.WriteLine v579
+    System.Console.ResetColor ()
+    match v271 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v580) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v580
+        ()
+    let v581 : string = System.String.Join (v569, v460)
+    System.Console.WriteLine v581
+    System.Console.ResetColor ()
+    match v255 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v582) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v582
+        ()
+    let v583 : string = System.String.Join (v569, v442)
+    System.Console.WriteLine v583
+    System.Console.ResetColor ()
+    let v584 : (int64 -&gt; float) = float
+    let v585 : float = v584 v19
+    let v586 : float = v584 v34
+    let v587 : UH3 = UH3_1
+    let v588 : UH3 = UH3_0(v585, v587)
+    let v589 : UH3 = UH3_0(v586, v588)
+    let v590 : (float []) = method18(v589)
+    let v591 : (int64 -&gt; float) = float
+    let v592 : float = v591 v59
+    let v593 : float = v591 v73
+    let v594 : UH3 = UH3_1
+    let v595 : UH3 = UH3_0(v592, v594)
+    let v596 : UH3 = UH3_0(v593, v595)
+    let v597 : (float []) = method18(v596)
+    let v598 : (int64 -&gt; float) = float
+    let v599 : float = v598 v98
+    let v600 : float = v598 v112
+    let v601 : UH3 = UH3_1
+    let v602 : UH3 = UH3_0(v599, v601)
+    let v603 : UH3 = UH3_0(v600, v602)
+    let v604 : (float []) = method18(v603)
+    let v605 : (int64 -&gt; float) = float
+    let v606 : float = v605 v137
+    let v607 : float = v605 v151
+    let v608 : UH3 = UH3_1
+    let v609 : UH3 = UH3_0(v606, v608)
+    let v610 : UH3 = UH3_0(v607, v609)
+    let v611 : (float []) = method18(v610)
+    let v612 : (int64 -&gt; float) = float
+    let v613 : float = v612 v176
+    let v614 : float = v612 v190
+    let v615 : UH3 = UH3_1
+    let v616 : UH3 = UH3_0(v613, v615)
+    let v617 : UH3 = UH3_0(v614, v616)
+    let v618 : (float []) = method18(v617)
+    let v619 : (int64 -&gt; float) = float
+    let v620 : float = v619 v215
+    let v621 : float = v619 v229
+    let v622 : UH3 = UH3_1
+    let v623 : UH3 = UH3_0(v620, v622)
+    let v624 : UH3 = UH3_0(v621, v623)
+    let v625 : (float []) = method18(v624)
+    let v626 : UH4 = UH4_1
+    let v627 : UH4 = UH4_0(v590, v626)
+    let v628 : UH4 = UH4_0(v597, v627)
+    let v629 : UH4 = UH4_0(v604, v628)
+    let v630 : UH4 = UH4_0(v611, v629)
+    let v631 : UH4 = UH4_0(v618, v630)
+    let v632 : UH4 = UH4_0(v625, v631)
+    let v633 : ((float []) []) = method21(v632)
+    let v634 : ((float []) []) = v633 |&gt; Array.transpose
+    let v635 : int32 = v634.Length
+    let v636 : (float []) = Array.zeroCreate&lt;float&gt; (v635)
+    let v637 : Mut0 = {l0 = 0} : Mut0
+    while method6(v635, v637) do
+        let v639 : int32 = v637.l0
+        let v640 : (float []) = v634.[int v639]
+        let v641 : float = v640 |&gt; Array.average
+        v636.[int v639] &lt;- v641
+        let v642 : int32 = v639 + 1
+        v637.l0 &lt;- v642
+        ()
+    let v643 : (float -&gt; int64) = int64
+    let v644 : int32 = v636.Length
+    let v645 : (int64 []) = Array.zeroCreate&lt;int64&gt; (v644)
+    let v646 : Mut0 = {l0 = 0} : Mut0
+    while method6(v644, v646) do
+        let v648 : int32 = v646.l0
+        let v649 : float = v636.[int v648]
+        let v650 : int64 = v643 v649
+        v645.[int v648] &lt;- v650
+        let v651 : int32 = v648 + 1
+        v646.l0 &lt;- v651
+        ()
+    let v652 : (struct (int32 * int64) []) = v645 |&gt; Array.indexed |&gt; Array.map (fun (a, b) -&gt; struct (a, b))
+    System.Console.WriteLine v2
+    let v653 : string = "Average Ranking  "
+    System.Console.WriteLine v653
+    let v654 : (struct (int32 * int64) -&gt; int64) = closure15()
+    let v655 : (struct (int32 * int64) []) = v652 |&gt; Array.sortBy v654
+    let v656 : int32 = v655.Length
+    let v657 : Mut0 = {l0 = 0} : Mut0
+    while method6(v656, v657) do
+        let v659 : int32 = v657.l0
+        let struct (v660 : int32, v661 : int64) = v655.[int v659]
+        let v662 : string = $"Test case %d{v660 + 1}. Average Time: %A{v661}  "
+        System.Console.WriteLine v662
+        let v663 : int32 = v659 + 1
+        v657.l0 &lt;- v663
+        ()
+    ()
+and method0 () : unit =
+    let v0 : (unit -&gt; unit) = closure0()
     let v1 : string = nameof v0
     let v2 : string = ""
     System.Console.WriteLine v2
     System.Console.WriteLine v2
     let v3 : string = $"Test: {v1}"
     System.Console.WriteLine v3
-    let v4 : string = "F"
-    let v5 : (string -&gt; string) = closure1()
-    let v6 : UH1 = UH1_1
-    let v7 : UH1 = UH1_0(v4, v5, v6)
-    let v8 : string = "abc"
-    let v9 : string = "bca cab abc"
-    let v10 : string = "abcde"
-    let v11 : string = "bcdea cdeab deabc eabcd abcde"
-    let v12 : string = "abcdefghi"
-    let v13 : string = "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
-    let v14 : string = "abab"
-    let v15 : string = "baba abab baba abab"
-    let v16 : string = "aa"
-    let v17 : string = "aa aa"
-    let v18 : string = "z"
-    let v19 : UH0 = UH0_1
-    let v20 : UH0 = UH0_0(v7, v18, v18, v19)
-    let v21 : UH0 = UH0_0(v7, v16, v17, v20)
-    let v22 : UH0 = UH0_0(v7, v14, v15, v21)
-    let v23 : UH0 = UH0_0(v7, v12, v13, v22)
-    let v24 : UH0 = UH0_0(v7, v10, v11, v23)
-    let v25 : UH0 = UH0_0(v7, v8, v9, v24)
-    struct (v25, v7)
+    let v4 : string = "z"
+    let v5 : string = v4.ToString ()
+    System.Console.WriteLine v2
+    let v6 : string = $"Solution: {v5}  "
+    System.Console.WriteLine v6
+    System.GC.Collect ()
+    let v7 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v8 : System.Diagnostics.Stopwatch = v7 ()
+    v8.Start ()
+    let v9 : int64 = v8.ElapsedMilliseconds
+    let v10 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v11 : Mut0 = {l0 = 0} : Mut0
+    while method1(v11) do
+        let v13 : int32 = v11.l0
+        v10.[int v13] &lt;- v13
+        let v14 : int32 = v13 + 1
+        v11.l0 &lt;- v14
+        ()
+    let v15 : (int32 -&gt; string) = closure1()
+    let v16 : (string []) = v10 |&gt; Array.Parallel.map v15
+    let v17 : string = v16 |&gt; Array.last
+    let v18 : int64 = v8.ElapsedMilliseconds
+    let v19 : int64 = v18 - v9
+    let v20 : string = "FA"
+    let v21 : string = $"Test case {1 + 1}. {v20}. Time: {v19}  "
+    System.Console.WriteLine v21
+    System.GC.Collect ()
+    let v22 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v23 : System.Diagnostics.Stopwatch = v22 ()
+    v23.Start ()
+    let v24 : int64 = v23.ElapsedMilliseconds
+    let v25 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v26 : Mut0 = {l0 = 0} : Mut0
+    while method1(v26) do
+        let v28 : int32 = v26.l0
+        v25.[int v28] &lt;- v28
+        let v29 : int32 = v28 + 1
+        v26.l0 &lt;- v29
+        ()
+    let v30 : (int32 -&gt; string) = closure2()
+    let v31 : (string []) = v25 |&gt; Array.Parallel.map v30
+    let v32 : string = v31 |&gt; Array.last
+    let v33 : int64 = v23.ElapsedMilliseconds
+    let v34 : int64 = v33 - v24
+    let v35 : string = "F"
+    let v36 : string = $"Test case {0 + 1}. {v35}. Time: {v34}  "
+    System.Console.WriteLine v36
+    let v37 : bool = v17 = v32
+    if v37 then
+        ()
+    else
+        let v38 : UH0 = UH0_1
+        let v39 : UH0 = UH0_0(v17, v38)
+        let v40 : UH0 = UH0_0(v32, v39)
+        let v41 : string = $"Challenge error: {v40}"
+        failwith&lt;unit&gt; v41
+    let v42 : string = v4.ToString ()
+    let v43 : string = v32.ToString ()
+    let v44 : string = "aa"
+    let v45 : string = v44.ToString ()
+    System.Console.WriteLine v2
+    let v46 : string = $"Solution: {v45}  "
+    System.Console.WriteLine v46
+    System.GC.Collect ()
+    let v47 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v48 : System.Diagnostics.Stopwatch = v47 ()
+    v48.Start ()
+    let v49 : int64 = v48.ElapsedMilliseconds
+    let v50 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v51 : Mut0 = {l0 = 0} : Mut0
+    while method1(v51) do
+        let v53 : int32 = v51.l0
+        v50.[int v53] &lt;- v53
+        let v54 : int32 = v53 + 1
+        v51.l0 &lt;- v54
+        ()
+    let v55 : (int32 -&gt; string) = closure3()
+    let v56 : (string []) = v50 |&gt; Array.Parallel.map v55
+    let v57 : string = v56 |&gt; Array.last
+    let v58 : int64 = v48.ElapsedMilliseconds
+    let v59 : int64 = v58 - v49
+    let v60 : string = $"Test case {1 + 1}. {v20}. Time: {v59}  "
+    System.Console.WriteLine v60
+    System.GC.Collect ()
+    let v61 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v62 : System.Diagnostics.Stopwatch = v61 ()
+    v62.Start ()
+    let v63 : int64 = v62.ElapsedMilliseconds
+    let v64 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v65 : Mut0 = {l0 = 0} : Mut0
+    while method1(v65) do
+        let v67 : int32 = v65.l0
+        v64.[int v67] &lt;- v67
+        let v68 : int32 = v67 + 1
+        v65.l0 &lt;- v68
+        ()
+    let v69 : (int32 -&gt; string) = closure4()
+    let v70 : (string []) = v64 |&gt; Array.Parallel.map v69
+    let v71 : string = v70 |&gt; Array.last
+    let v72 : int64 = v62.ElapsedMilliseconds
+    let v73 : int64 = v72 - v63
+    let v74 : string = $"Test case {0 + 1}. {v35}. Time: {v73}  "
+    System.Console.WriteLine v74
+    let v75 : bool = v57 = v71
+    if v75 then
+        ()
+    else
+        let v76 : UH0 = UH0_1
+        let v77 : UH0 = UH0_0(v57, v76)
+        let v78 : UH0 = UH0_0(v71, v77)
+        let v79 : string = $"Challenge error: {v78}"
+        failwith&lt;unit&gt; v79
+    let v80 : string = "aa aa"
+    let v81 : string = v80.ToString ()
+    let v82 : string = v71.ToString ()
+    let v83 : string = "abab"
+    let v84 : string = v83.ToString ()
+    System.Console.WriteLine v2
+    let v85 : string = $"Solution: {v84}  "
+    System.Console.WriteLine v85
+    System.GC.Collect ()
+    let v86 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v87 : System.Diagnostics.Stopwatch = v86 ()
+    v87.Start ()
+    let v88 : int64 = v87.ElapsedMilliseconds
+    let v89 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v90 : Mut0 = {l0 = 0} : Mut0
+    while method1(v90) do
+        let v92 : int32 = v90.l0
+        v89.[int v92] &lt;- v92
+        let v93 : int32 = v92 + 1
+        v90.l0 &lt;- v93
+        ()
+    let v94 : (int32 -&gt; string) = closure5()
+    let v95 : (string []) = v89 |&gt; Array.Parallel.map v94
+    let v96 : string = v95 |&gt; Array.last
+    let v97 : int64 = v87.ElapsedMilliseconds
+    let v98 : int64 = v97 - v88
+    let v99 : string = $"Test case {1 + 1}. {v20}. Time: {v98}  "
+    System.Console.WriteLine v99
+    System.GC.Collect ()
+    let v100 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v101 : System.Diagnostics.Stopwatch = v100 ()
+    v101.Start ()
+    let v102 : int64 = v101.ElapsedMilliseconds
+    let v103 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v104 : Mut0 = {l0 = 0} : Mut0
+    while method1(v104) do
+        let v106 : int32 = v104.l0
+        v103.[int v106] &lt;- v106
+        let v107 : int32 = v106 + 1
+        v104.l0 &lt;- v107
+        ()
+    let v108 : (int32 -&gt; string) = closure6()
+    let v109 : (string []) = v103 |&gt; Array.Parallel.map v108
+    let v110 : string = v109 |&gt; Array.last
+    let v111 : int64 = v101.ElapsedMilliseconds
+    let v112 : int64 = v111 - v102
+    let v113 : string = $"Test case {0 + 1}. {v35}. Time: {v112}  "
+    System.Console.WriteLine v113
+    let v114 : bool = v96 = v110
+    if v114 then
+        ()
+    else
+        let v115 : UH0 = UH0_1
+        let v116 : UH0 = UH0_0(v96, v115)
+        let v117 : UH0 = UH0_0(v110, v116)
+        let v118 : string = $"Challenge error: {v117}"
+        failwith&lt;unit&gt; v118
+    let v119 : string = "baba abab baba abab"
+    let v120 : string = v119.ToString ()
+    let v121 : string = v110.ToString ()
+    let v122 : string = "abcdefghi"
+    let v123 : string = v122.ToString ()
+    System.Console.WriteLine v2
+    let v124 : string = $"Solution: {v123}  "
+    System.Console.WriteLine v124
+    System.GC.Collect ()
+    let v125 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v126 : System.Diagnostics.Stopwatch = v125 ()
+    v126.Start ()
+    let v127 : int64 = v126.ElapsedMilliseconds
+    let v128 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v129 : Mut0 = {l0 = 0} : Mut0
+    while method1(v129) do
+        let v131 : int32 = v129.l0
+        v128.[int v131] &lt;- v131
+        let v132 : int32 = v131 + 1
+        v129.l0 &lt;- v132
+        ()
+    let v133 : (int32 -&gt; string) = closure7()
+    let v134 : (string []) = v128 |&gt; Array.Parallel.map v133
+    let v135 : string = v134 |&gt; Array.last
+    let v136 : int64 = v126.ElapsedMilliseconds
+    let v137 : int64 = v136 - v127
+    let v138 : string = $"Test case {1 + 1}. {v20}. Time: {v137}  "
+    System.Console.WriteLine v138
+    System.GC.Collect ()
+    let v139 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v140 : System.Diagnostics.Stopwatch = v139 ()
+    v140.Start ()
+    let v141 : int64 = v140.ElapsedMilliseconds
+    let v142 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v143 : Mut0 = {l0 = 0} : Mut0
+    while method1(v143) do
+        let v145 : int32 = v143.l0
+        v142.[int v145] &lt;- v145
+        let v146 : int32 = v145 + 1
+        v143.l0 &lt;- v146
+        ()
+    let v147 : (int32 -&gt; string) = closure8()
+    let v148 : (string []) = v142 |&gt; Array.Parallel.map v147
+    let v149 : string = v148 |&gt; Array.last
+    let v150 : int64 = v140.ElapsedMilliseconds
+    let v151 : int64 = v150 - v141
+    let v152 : string = $"Test case {0 + 1}. {v35}. Time: {v151}  "
+    System.Console.WriteLine v152
+    let v153 : bool = v135 = v149
+    if v153 then
+        ()
+    else
+        let v154 : UH0 = UH0_1
+        let v155 : UH0 = UH0_0(v135, v154)
+        let v156 : UH0 = UH0_0(v149, v155)
+        let v157 : string = $"Challenge error: {v156}"
+        failwith&lt;unit&gt; v157
+    let v158 : string = "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"
+    let v159 : string = v158.ToString ()
+    let v160 : string = v149.ToString ()
+    let v161 : string = "abcde"
+    let v162 : string = v161.ToString ()
+    System.Console.WriteLine v2
+    let v163 : string = $"Solution: {v162}  "
+    System.Console.WriteLine v163
+    System.GC.Collect ()
+    let v164 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v165 : System.Diagnostics.Stopwatch = v164 ()
+    v165.Start ()
+    let v166 : int64 = v165.ElapsedMilliseconds
+    let v167 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v168 : Mut0 = {l0 = 0} : Mut0
+    while method1(v168) do
+        let v170 : int32 = v168.l0
+        v167.[int v170] &lt;- v170
+        let v171 : int32 = v170 + 1
+        v168.l0 &lt;- v171
+        ()
+    let v172 : (int32 -&gt; string) = closure9()
+    let v173 : (string []) = v167 |&gt; Array.Parallel.map v172
+    let v174 : string = v173 |&gt; Array.last
+    let v175 : int64 = v165.ElapsedMilliseconds
+    let v176 : int64 = v175 - v166
+    let v177 : string = $"Test case {1 + 1}. {v20}. Time: {v176}  "
+    System.Console.WriteLine v177
+    System.GC.Collect ()
+    let v178 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v179 : System.Diagnostics.Stopwatch = v178 ()
+    v179.Start ()
+    let v180 : int64 = v179.ElapsedMilliseconds
+    let v181 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v182 : Mut0 = {l0 = 0} : Mut0
+    while method1(v182) do
+        let v184 : int32 = v182.l0
+        v181.[int v184] &lt;- v184
+        let v185 : int32 = v184 + 1
+        v182.l0 &lt;- v185
+        ()
+    let v186 : (int32 -&gt; string) = closure10()
+    let v187 : (string []) = v181 |&gt; Array.Parallel.map v186
+    let v188 : string = v187 |&gt; Array.last
+    let v189 : int64 = v179.ElapsedMilliseconds
+    let v190 : int64 = v189 - v180
+    let v191 : string = $"Test case {0 + 1}. {v35}. Time: {v190}  "
+    System.Console.WriteLine v191
+    let v192 : bool = v174 = v188
+    if v192 then
+        ()
+    else
+        let v193 : UH0 = UH0_1
+        let v194 : UH0 = UH0_0(v174, v193)
+        let v195 : UH0 = UH0_0(v188, v194)
+        let v196 : string = $"Challenge error: {v195}"
+        failwith&lt;unit&gt; v196
+    let v197 : string = "bcdea cdeab deabc eabcd abcde"
+    let v198 : string = v197.ToString ()
+    let v199 : string = v188.ToString ()
+    let v200 : string = "abc"
+    let v201 : string = v200.ToString ()
+    System.Console.WriteLine v2
+    let v202 : string = $"Solution: {v201}  "
+    System.Console.WriteLine v202
+    System.GC.Collect ()
+    let v203 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v204 : System.Diagnostics.Stopwatch = v203 ()
+    v204.Start ()
+    let v205 : int64 = v204.ElapsedMilliseconds
+    let v206 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v207 : Mut0 = {l0 = 0} : Mut0
+    while method1(v207) do
+        let v209 : int32 = v207.l0
+        v206.[int v209] &lt;- v209
+        let v210 : int32 = v209 + 1
+        v207.l0 &lt;- v210
+        ()
+    let v211 : (int32 -&gt; string) = closure11()
+    let v212 : (string []) = v206 |&gt; Array.Parallel.map v211
+    let v213 : string = v212 |&gt; Array.last
+    let v214 : int64 = v204.ElapsedMilliseconds
+    let v215 : int64 = v214 - v205
+    let v216 : string = $"Test case {1 + 1}. {v20}. Time: {v215}  "
+    System.Console.WriteLine v216
+    System.GC.Collect ()
+    let v217 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
+    let v218 : System.Diagnostics.Stopwatch = v217 ()
+    v218.Start ()
+    let v219 : int64 = v218.ElapsedMilliseconds
+    let v220 : (int32 []) = Array.zeroCreate&lt;int32&gt; (2000001)
+    let v221 : Mut0 = {l0 = 0} : Mut0
+    while method1(v221) do
+        let v223 : int32 = v221.l0
+        v220.[int v223] &lt;- v223
+        let v224 : int32 = v223 + 1
+        v221.l0 &lt;- v224
+        ()
+    let v225 : (int32 -&gt; string) = closure12()
+    let v226 : (string []) = v220 |&gt; Array.Parallel.map v225
+    let v227 : string = v226 |&gt; Array.last
+    let v228 : int64 = v218.ElapsedMilliseconds
+    let v229 : int64 = v228 - v219
+    let v230 : string = $"Test case {0 + 1}. {v35}. Time: {v229}  "
+    System.Console.WriteLine v230
+    let v231 : bool = v213 = v227
+    if v231 then
+        ()
+    else
+        let v232 : UH0 = UH0_1
+        let v233 : UH0 = UH0_0(v213, v232)
+        let v234 : UH0 = UH0_0(v227, v233)
+        let v235 : string = $"Challenge error: {v234}"
+        failwith&lt;unit&gt; v235
+    let v236 : string = "bca cab abc"
+    let v237 : string = v236.ToString ()
+    let v238 : string = v227.ToString ()
+    let v239 : int64 = 1L
+    let v240 : int64 = 2L
+    let v241 : UH1 = UH1_1
+    let v242 : UH1 = UH1_0(v240, v19, v241)
+    let v243 : UH1 = UH1_0(v239, v34, v242)
+    let v244 : (struct (int64 * int64) []) = method12(v243)
+    let v245 : (struct (int64 * int64) -&gt; int64) = closure13()
+    let v246 : (struct (int64 * int64) []) = v244 |&gt; Array.sortBy v245
+    let struct (v247 : int64, v248 : int64) = v246.[int 0]
+    let v249 : string = struct (v247, v248).ToString ()
+    let v250 : bool = v42 = v43
+    let v255 : US0 =
+        if v250 then
+            let v251 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v251)
+        else
+            let v253 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v253)
+    let v256 : int64 = 1L
+    let v257 : int64 = 2L
+    let v258 : UH1 = UH1_1
+    let v259 : UH1 = UH1_0(v257, v59, v258)
+    let v260 : UH1 = UH1_0(v256, v73, v259)
+    let v261 : (struct (int64 * int64) []) = method12(v260)
+    let v262 : (struct (int64 * int64) []) = v261 |&gt; Array.sortBy v245
+    let struct (v263 : int64, v264 : int64) = v262.[int 0]
+    let v265 : string = struct (v263, v264).ToString ()
+    let v266 : bool = v81 = v82
+    let v271 : US0 =
+        if v266 then
+            let v267 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v267)
+        else
+            let v269 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v269)
+    let v272 : int64 = 1L
+    let v273 : int64 = 2L
+    let v274 : UH1 = UH1_1
+    let v275 : UH1 = UH1_0(v273, v98, v274)
+    let v276 : UH1 = UH1_0(v272, v112, v275)
+    let v277 : (struct (int64 * int64) []) = method12(v276)
+    let v278 : (struct (int64 * int64) []) = v277 |&gt; Array.sortBy v245
+    let struct (v279 : int64, v280 : int64) = v278.[int 0]
+    let v281 : string = struct (v279, v280).ToString ()
+    let v282 : bool = v120 = v121
+    let v287 : US0 =
+        if v282 then
+            let v283 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v283)
+        else
+            let v285 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v285)
+    let v288 : int64 = 1L
+    let v289 : int64 = 2L
+    let v290 : UH1 = UH1_1
+    let v291 : UH1 = UH1_0(v289, v137, v290)
+    let v292 : UH1 = UH1_0(v288, v151, v291)
+    let v293 : (struct (int64 * int64) []) = method12(v292)
+    let v294 : (struct (int64 * int64) []) = v293 |&gt; Array.sortBy v245
+    let struct (v295 : int64, v296 : int64) = v294.[int 0]
+    let v297 : string = struct (v295, v296).ToString ()
+    let v298 : bool = v159 = v160
+    let v303 : US0 =
+        if v298 then
+            let v299 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v299)
+        else
+            let v301 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v301)
+    let v304 : int64 = 1L
+    let v305 : int64 = 2L
+    let v306 : UH1 = UH1_1
+    let v307 : UH1 = UH1_0(v305, v176, v306)
+    let v308 : UH1 = UH1_0(v304, v190, v307)
+    let v309 : (struct (int64 * int64) []) = method12(v308)
+    let v310 : (struct (int64 * int64) []) = v309 |&gt; Array.sortBy v245
+    let struct (v311 : int64, v312 : int64) = v310.[int 0]
+    let v313 : string = struct (v311, v312).ToString ()
+    let v314 : bool = v198 = v199
+    let v319 : US0 =
+        if v314 then
+            let v315 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v315)
+        else
+            let v317 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v317)
+    let v320 : int64 = 1L
+    let v321 : int64 = 2L
+    let v322 : UH1 = UH1_1
+    let v323 : UH1 = UH1_0(v321, v215, v322)
+    let v324 : UH1 = UH1_0(v320, v229, v323)
+    let v325 : (struct (int64 * int64) []) = method12(v324)
+    let v326 : (struct (int64 * int64) []) = v325 |&gt; Array.sortBy v245
+    let struct (v327 : int64, v328 : int64) = v326.[int 0]
+    let v329 : string = struct (v327, v328).ToString ()
+    let v330 : bool = v237 = v238
+    let v335 : US0 =
+        if v330 then
+            let v331 : System.ConsoleColor = System.ConsoleColor.DarkGreen
+            US0_1(v331)
+        else
+            let v333 : System.ConsoleColor = System.ConsoleColor.DarkRed
+            US0_1(v333)
+    let v336 : UH0 = UH0_1
+    let v337 : UH0 = UH0_0(v249, v336)
+    let v338 : UH0 = UH0_0(v43, v337)
+    let v339 : UH0 = UH0_0(v42, v338)
+    let v340 : UH0 = UH0_0(v5, v339)
+    let v341 : (string []) = method2(v340)
+    let v342 : UH0 = UH0_1
+    let v343 : UH0 = UH0_0(v265, v342)
+    let v344 : UH0 = UH0_0(v82, v343)
+    let v345 : UH0 = UH0_0(v81, v344)
+    let v346 : UH0 = UH0_0(v45, v345)
+    let v347 : (string []) = method2(v346)
+    let v348 : UH0 = UH0_1
+    let v349 : UH0 = UH0_0(v281, v348)
+    let v350 : UH0 = UH0_0(v121, v349)
+    let v351 : UH0 = UH0_0(v120, v350)
+    let v352 : UH0 = UH0_0(v84, v351)
+    let v353 : (string []) = method2(v352)
+    let v354 : UH0 = UH0_1
+    let v355 : UH0 = UH0_0(v297, v354)
+    let v356 : UH0 = UH0_0(v160, v355)
+    let v357 : UH0 = UH0_0(v159, v356)
+    let v358 : UH0 = UH0_0(v123, v357)
+    let v359 : (string []) = method2(v358)
+    let v360 : UH0 = UH0_1
+    let v361 : UH0 = UH0_0(v313, v360)
+    let v362 : UH0 = UH0_0(v199, v361)
+    let v363 : UH0 = UH0_0(v198, v362)
+    let v364 : UH0 = UH0_0(v162, v363)
+    let v365 : (string []) = method2(v364)
+    let v366 : UH0 = UH0_1
+    let v367 : UH0 = UH0_0(v329, v366)
+    let v368 : UH0 = UH0_0(v238, v367)
+    let v369 : UH0 = UH0_0(v237, v368)
+    let v370 : UH0 = UH0_0(v201, v369)
+    let v371 : (string []) = method2(v370)
+    let v372 : string = "---"
+    let v373 : UH0 = UH0_1
+    let v374 : UH0 = UH0_0(v372, v373)
+    let v375 : UH0 = UH0_0(v372, v374)
+    let v376 : UH0 = UH0_0(v372, v375)
+    let v377 : UH0 = UH0_0(v372, v376)
+    let v378 : (string []) = method2(v377)
+    let v379 : string = "Input"
+    let v380 : string = "Expected"
+    let v381 : string = "Result"
+    let v382 : string = "Best"
+    let v383 : UH0 = UH0_1
+    let v384 : UH0 = UH0_0(v382, v383)
+    let v385 : UH0 = UH0_0(v381, v384)
+    let v386 : UH0 = UH0_0(v380, v385)
+    let v387 : UH0 = UH0_0(v379, v386)
+    let v388 : (string []) = method2(v387)
+    let v389 : UH2 = UH2_1
+    let v390 : UH2 = UH2_0(v341, v389)
+    let v391 : UH2 = UH2_0(v347, v390)
+    let v392 : UH2 = UH2_0(v353, v391)
+    let v393 : UH2 = UH2_0(v359, v392)
+    let v394 : UH2 = UH2_0(v365, v393)
+    let v395 : UH2 = UH2_0(v371, v394)
+    let v396 : UH2 = UH2_0(v378, v395)
+    let v397 : UH2 = UH2_0(v388, v396)
+    let v398 : ((string []) []) = method15(v397)
+    let v399 : ((string []) []) = v398 |&gt; Array.transpose
+    let v400 : int32 = v399.Length
+    let v401 : (int64 []) = Array.zeroCreate&lt;int64&gt; (v400)
+    let v402 : Mut0 = {l0 = 0} : Mut0
+    while method6(v400, v402) do
+        let v404 : int32 = v402.l0
+        let v405 : (string []) = v399.[int v404]
+        let v406 : int32 = v405.Length
+        let v407 : (int64 []) = Array.zeroCreate&lt;int64&gt; (v406)
+        let v408 : Mut0 = {l0 = 0} : Mut0
+        while method6(v406, v408) do
+            let v410 : int32 = v408.l0
+            let v411 : string = v405.[int v410]
+            let v412 : int64 = System.Convert.ToInt64 v411.Length
+            v407.[int v410] &lt;- v412
+            let v413 : int32 = v410 + 1
+            v408.l0 &lt;- v413
+            ()
+        let v414 : (int64 []) = v407 |&gt; Array.sortDescending
+        let v415 : int64 option = v414 |&gt; Array.tryItem 0
+        let v416 : (int64 -&gt; US1) = closure14()
+        let v417 : US1 = US1_0
+        let v418 : US1 = v415 |&gt; Option.map v416 |&gt; Option.defaultValue v417
+        let v421 : int64 =
+            match v418 with
+            | US1_0 -&gt; (* None *)
+                0L
+            | US1_1(v419) -&gt; (* Some *)
+                v419
+        v401.[int v404] &lt;- v421
+        let v422 : int32 = v404 + 1
+        v402.l0 &lt;- v422
+        ()
+    let v423 : (struct (int32 * int64) []) = v401 |&gt; Array.indexed |&gt; Array.map (fun (a, b) -&gt; struct (a, b))
+    let v424 : Map&lt;int32, int64&gt; = v423 |&gt; Array.map (fun (struct (a, b)) -&gt; a, b) |&gt; Map.ofArray
+    let v425 : int64 = v424.[3]
+    let v426 : int32 = int32 v425
+    let v427 : string = v249.PadRight v426
+    let v428 : int64 = v424.[2]
+    let v429 : int32 = int32 v428
+    let v430 : string = v43.PadRight v429
+    let v431 : int64 = v424.[1]
+    let v432 : int32 = int32 v431
+    let v433 : string = v42.PadRight v432
+    let v434 : int64 = v424.[0]
+    let v435 : int32 = int32 v434
+    let v436 : string = v5.PadRight v435
+    let v437 : UH0 = UH0_1
+    let v438 : UH0 = UH0_0(v427, v437)
+    let v439 : UH0 = UH0_0(v430, v438)
+    let v440 : UH0 = UH0_0(v433, v439)
+    let v441 : UH0 = UH0_0(v436, v440)
+    let v442 : (string []) = method2(v441)
+    let v443 : int64 = v424.[3]
+    let v444 : int32 = int32 v443
+    let v445 : string = v265.PadRight v444
+    let v446 : int64 = v424.[2]
+    let v447 : int32 = int32 v446
+    let v448 : string = v82.PadRight v447
+    let v449 : int64 = v424.[1]
+    let v450 : int32 = int32 v449
+    let v451 : string = v81.PadRight v450
+    let v452 : int64 = v424.[0]
+    let v453 : int32 = int32 v452
+    let v454 : string = v45.PadRight v453
+    let v455 : UH0 = UH0_1
+    let v456 : UH0 = UH0_0(v445, v455)
+    let v457 : UH0 = UH0_0(v448, v456)
+    let v458 : UH0 = UH0_0(v451, v457)
+    let v459 : UH0 = UH0_0(v454, v458)
+    let v460 : (string []) = method2(v459)
+    let v461 : int64 = v424.[3]
+    let v462 : int32 = int32 v461
+    let v463 : string = v281.PadRight v462
+    let v464 : int64 = v424.[2]
+    let v465 : int32 = int32 v464
+    let v466 : string = v121.PadRight v465
+    let v467 : int64 = v424.[1]
+    let v468 : int32 = int32 v467
+    let v469 : string = v120.PadRight v468
+    let v470 : int64 = v424.[0]
+    let v471 : int32 = int32 v470
+    let v472 : string = v84.PadRight v471
+    let v473 : UH0 = UH0_1
+    let v474 : UH0 = UH0_0(v463, v473)
+    let v475 : UH0 = UH0_0(v466, v474)
+    let v476 : UH0 = UH0_0(v469, v475)
+    let v477 : UH0 = UH0_0(v472, v476)
+    let v478 : (string []) = method2(v477)
+    let v479 : int64 = v424.[3]
+    let v480 : int32 = int32 v479
+    let v481 : string = v297.PadRight v480
+    let v482 : int64 = v424.[2]
+    let v483 : int32 = int32 v482
+    let v484 : string = v160.PadRight v483
+    let v485 : int64 = v424.[1]
+    let v486 : int32 = int32 v485
+    let v487 : string = v159.PadRight v486
+    let v488 : int64 = v424.[0]
+    let v489 : int32 = int32 v488
+    let v490 : string = v123.PadRight v489
+    let v491 : UH0 = UH0_1
+    let v492 : UH0 = UH0_0(v481, v491)
+    let v493 : UH0 = UH0_0(v484, v492)
+    let v494 : UH0 = UH0_0(v487, v493)
+    let v495 : UH0 = UH0_0(v490, v494)
+    let v496 : (string []) = method2(v495)
+    let v497 : int64 = v424.[3]
+    let v498 : int32 = int32 v497
+    let v499 : string = v313.PadRight v498
+    let v500 : int64 = v424.[2]
+    let v501 : int32 = int32 v500
+    let v502 : string = v199.PadRight v501
+    let v503 : int64 = v424.[1]
+    let v504 : int32 = int32 v503
+    let v505 : string = v198.PadRight v504
+    let v506 : int64 = v424.[0]
+    let v507 : int32 = int32 v506
+    let v508 : string = v162.PadRight v507
+    let v509 : UH0 = UH0_1
+    let v510 : UH0 = UH0_0(v499, v509)
+    let v511 : UH0 = UH0_0(v502, v510)
+    let v512 : UH0 = UH0_0(v505, v511)
+    let v513 : UH0 = UH0_0(v508, v512)
+    let v514 : (string []) = method2(v513)
+    let v515 : int64 = v424.[3]
+    let v516 : int32 = int32 v515
+    let v517 : string = v329.PadRight v516
+    let v518 : int64 = v424.[2]
+    let v519 : int32 = int32 v518
+    let v520 : string = v238.PadRight v519
+    let v521 : int64 = v424.[1]
+    let v522 : int32 = int32 v521
+    let v523 : string = v237.PadRight v522
+    let v524 : int64 = v424.[0]
+    let v525 : int32 = int32 v524
+    let v526 : string = v201.PadRight v525
+    let v527 : UH0 = UH0_1
+    let v528 : UH0 = UH0_0(v517, v527)
+    let v529 : UH0 = UH0_0(v520, v528)
+    let v530 : UH0 = UH0_0(v523, v529)
+    let v531 : UH0 = UH0_0(v526, v530)
+    let v532 : (string []) = method2(v531)
+    let v533 : int64 = v424.[3]
+    let v534 : int32 = int32 v533
+    let v535 : string = v372.PadRight v534
+    let v536 : int64 = v424.[2]
+    let v537 : int32 = int32 v536
+    let v538 : string = v372.PadRight v537
+    let v539 : int64 = v424.[1]
+    let v540 : int32 = int32 v539
+    let v541 : string = v372.PadRight v540
+    let v542 : int64 = v424.[0]
+    let v543 : int32 = int32 v542
+    let v544 : string = v372.PadRight v543
+    let v545 : UH0 = UH0_1
+    let v546 : UH0 = UH0_0(v535, v545)
+    let v547 : UH0 = UH0_0(v538, v546)
+    let v548 : UH0 = UH0_0(v541, v547)
+    let v549 : UH0 = UH0_0(v544, v548)
+    let v550 : (string []) = method2(v549)
+    let v551 : int64 = v424.[3]
+    let v552 : int32 = int32 v551
+    let v553 : string = v382.PadRight v552
+    let v554 : int64 = v424.[2]
+    let v555 : int32 = int32 v554
+    let v556 : string = v381.PadRight v555
+    let v557 : int64 = v424.[1]
+    let v558 : int32 = int32 v557
+    let v559 : string = v380.PadRight v558
+    let v560 : int64 = v424.[0]
+    let v561 : int32 = int32 v560
+    let v562 : string = v379.PadRight v561
+    let v563 : UH0 = UH0_1
+    let v564 : UH0 = UH0_0(v553, v563)
+    let v565 : UH0 = UH0_0(v556, v564)
+    let v566 : UH0 = UH0_0(v559, v565)
+    let v567 : UH0 = UH0_0(v562, v566)
+    let v568 : (string []) = method2(v567)
+    System.Console.WriteLine v2
+    System.Console.ResetColor ()
+    let v569 : string = "\t| "
+    let v570 : string = System.String.Join (v569, v568)
+    System.Console.WriteLine v570
+    System.Console.ResetColor ()
+    System.Console.ResetColor ()
+    let v571 : string = System.String.Join (v569, v550)
+    System.Console.WriteLine v571
+    System.Console.ResetColor ()
+    match v335 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v572) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v572
+        ()
+    let v573 : string = System.String.Join (v569, v532)
+    System.Console.WriteLine v573
+    System.Console.ResetColor ()
+    match v319 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v574) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v574
+        ()
+    let v575 : string = System.String.Join (v569, v514)
+    System.Console.WriteLine v575
+    System.Console.ResetColor ()
+    match v303 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v576) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v576
+        ()
+    let v577 : string = System.String.Join (v569, v496)
+    System.Console.WriteLine v577
+    System.Console.ResetColor ()
+    match v287 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v578) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v578
+        ()
+    let v579 : string = System.String.Join (v569, v478)
+    System.Console.WriteLine v579
+    System.Console.ResetColor ()
+    match v271 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v580) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v580
+        ()
+    let v581 : string = System.String.Join (v569, v460)
+    System.Console.WriteLine v581
+    System.Console.ResetColor ()
+    match v255 with
+    | US0_0 -&gt; (* None *)
+        System.Console.ResetColor ()
+        ()
+    | US0_1(v582) -&gt; (* Some *)
+        System.Console.ForegroundColor &lt;- v582
+        ()
+    let v583 : string = System.String.Join (v569, v442)
+    System.Console.WriteLine v583
+    System.Console.ResetColor ()
+    let v584 : (int64 -&gt; float) = float
+    let v585 : float = v584 v19
+    let v586 : float = v584 v34
+    let v587 : UH3 = UH3_1
+    let v588 : UH3 = UH3_0(v585, v587)
+    let v589 : UH3 = UH3_0(v586, v588)
+    let v590 : (float []) = method18(v589)
+    let v591 : (int64 -&gt; float) = float
+    let v592 : float = v591 v59
+    let v593 : float = v591 v73
+    let v594 : UH3 = UH3_1
+    let v595 : UH3 = UH3_0(v592, v594)
+    let v596 : UH3 = UH3_0(v593, v595)
+    let v597 : (float []) = method18(v596)
+    let v598 : (int64 -&gt; float) = float
+    let v599 : float = v598 v98
+    let v600 : float = v598 v112
+    let v601 : UH3 = UH3_1
+    let v602 : UH3 = UH3_0(v599, v601)
+    let v603 : UH3 = UH3_0(v600, v602)
+    let v604 : (float []) = method18(v603)
+    let v605 : (int64 -&gt; float) = float
+    let v606 : float = v605 v137
+    let v607 : float = v605 v151
+    let v608 : UH3 = UH3_1
+    let v609 : UH3 = UH3_0(v606, v608)
+    let v610 : UH3 = UH3_0(v607, v609)
+    let v611 : (float []) = method18(v610)
+    let v612 : (int64 -&gt; float) = float
+    let v613 : float = v612 v176
+    let v614 : float = v612 v190
+    let v615 : UH3 = UH3_1
+    let v616 : UH3 = UH3_0(v613, v615)
+    let v617 : UH3 = UH3_0(v614, v616)
+    let v618 : (float []) = method18(v617)
+    let v619 : (int64 -&gt; float) = float
+    let v620 : float = v619 v215
+    let v621 : float = v619 v229
+    let v622 : UH3 = UH3_1
+    let v623 : UH3 = UH3_0(v620, v622)
+    let v624 : UH3 = UH3_0(v621, v623)
+    let v625 : (float []) = method18(v624)
+    let v626 : UH4 = UH4_1
+    let v627 : UH4 = UH4_0(v590, v626)
+    let v628 : UH4 = UH4_0(v597, v627)
+    let v629 : UH4 = UH4_0(v604, v628)
+    let v630 : UH4 = UH4_0(v611, v629)
+    let v631 : UH4 = UH4_0(v618, v630)
+    let v632 : UH4 = UH4_0(v625, v631)
+    let v633 : ((float []) []) = method21(v632)
+    let v634 : ((float []) []) = v633 |&gt; Array.transpose
+    let v635 : int32 = v634.Length
+    let v636 : (float []) = Array.zeroCreate&lt;float&gt; (v635)
+    let v637 : Mut0 = {l0 = 0} : Mut0
+    while method6(v635, v637) do
+        let v639 : int32 = v637.l0
+        let v640 : (float []) = v634.[int v639]
+        let v641 : float = v640 |&gt; Array.average
+        v636.[int v639] &lt;- v641
+        let v642 : int32 = v639 + 1
+        v637.l0 &lt;- v642
+        ()
+    let v643 : (float -&gt; int64) = int64
+    let v644 : int32 = v636.Length
+    let v645 : (int64 []) = Array.zeroCreate&lt;int64&gt; (v644)
+    let v646 : Mut0 = {l0 = 0} : Mut0
+    while method6(v644, v646) do
+        let v648 : int32 = v646.l0
+        let v649 : float = v636.[int v648]
+        let v650 : int64 = v643 v649
+        v645.[int v648] &lt;- v650
+        let v651 : int32 = v648 + 1
+        v646.l0 &lt;- v651
+        ()
+    let v652 : (struct (int32 * int64) []) = v645 |&gt; Array.indexed |&gt; Array.map (fun (a, b) -&gt; struct (a, b))
+    System.Console.WriteLine v2
+    let v653 : string = "Average Ranking  "
+    System.Console.WriteLine v653
+    let v654 : (struct (int32 * int64) -&gt; int64) = closure15()
+    let v655 : (struct (int32 * int64) []) = v652 |&gt; Array.sortBy v654
+    let v656 : int32 = v655.Length
+    let v657 : Mut0 = {l0 = 0} : Mut0
+    while method6(v656, v657) do
+        let v659 : int32 = v657.l0
+        let struct (v660 : int32, v661 : int64) = v655.[int v659]
+        let v662 : string = $"Test case %d{v660 + 1}. Average Time: %A{v661}  "
+        System.Console.WriteLine v662
+        let v663 : int32 = v659 + 1
+        v657.l0 &lt;- v663
+        ()
+    ()
 method0()
 
 
 
 Test: v0
+
+Solution: z  
+Test case 2. FA. Time: 134  
+Test case 1. F. Time: 216  
+
+Solution: aa  
+Test case 2. FA. Time: 741  
+Test case 1. F. Time: 816  
+
+Solution: abab  
+Test case 2. FA. Time: 1210  
+Test case 1. F. Time: 1225  
+
+Solution: abcdefghi  
+Test case 2. FA. Time: 1921  
+Test case 1. F. Time: 2176  
+
+Solution: abcde  
+Test case 2. FA. Time: 1037  
+Test case 1. F. Time: 1132  
+
+Solution: abc  
+Test case 2. FA. Time: 799  
+Test case 1. F. Time: 934  
+
+Input    	| Expected                                                                                 	| Result                                                                                   	| Best     
+---      	| ---                                                                                      	| ---                                                                                      	| ---      
+abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (2, 799) 
+abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (2, 1037)
+abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (2, 1921)
+abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (2, 1210)
+aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (2, 741) 
+z        	| z                                                                                        	| z                                                                                        	| (2, 134) 
+
+Average Ranking  
+Test case 2. Average Time: 973L  
+Test case 1. Average Time: 1083L  
 </pre>
 </div>
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="o">//</span> <span class="n">rotate_strings_tests</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9459,7 +11933,7 @@ Test: v0
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9525,7 +11999,7 @@ Test case 1. Average Time: 706L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9571,37 +12045,37 @@ Test case 1. Average Time: 706L</p>
 Test: returnLettersWithOddCountTests
 
 Solution: 1  
-Test case 1. A. Time: 602L  
+Test case 1. A. Time: 577L  
 
 Solution: 2  
-Test case 1. A. Time: 571L  
+Test case 1. A. Time: 618L  
 
 Solution: 3  
-Test case 1. A. Time: 600L  
+Test case 1. A. Time: 581L  
 
 Solution: 9  
-Test case 1. A. Time: 571L  
+Test case 1. A. Time: 575L  
 
 Solution: 10  
-Test case 1. A. Time: 624L  
+Test case 1. A. Time: 633L  
 
 Input	| Expected  	| Result    	| Best    
 ---  	| ---       	| ---       	| ---     
-1    	| a         	| a         	| (1, 602)
-2    	| ba        	| ba        	| (1, 571)
-3    	| aaa       	| aaa       	| (1, 600)
-9    	| aaaaaaaaa 	| aaaaaaaaa 	| (1, 571)
-10   	| baaaaaaaaa	| baaaaaaaaa	| (1, 624)
+1    	| a         	| a         	| (1, 577)
+2    	| ba        	| ba        	| (1, 618)
+3    	| aaa       	| aaa       	| (1, 581)
+9    	| aaaaaaaaa 	| aaaaaaaaa 	| (1, 575)
+10   	| baaaaaaaaa	| baaaaaaaaa	| (1, 633)
 
 Average Ranking  
-Test case 1. Average Time: 593L  
+Test case 1. Average Time: 596L  
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9612,7 +12086,7 @@ Test case 1. Average Time: 593L
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9678,7 +12152,7 @@ Test case 1. Average Time: 165L</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9725,36 +12199,36 @@ Test case 1. Average Time: 165L</p>
 Test: hasAnyPairCloseToEachotherTests
 
 Solution: 0  
-Test case 1. A. Time: 164L  
+Test case 1. A. Time: 169L  
 
 Solution: 1,2  
-Test case 1. A. Time: 242L  
+Test case 1. A. Time: 230L  
 
 Solution: 3,5  
-Test case 1. A. Time: 228L  
+Test case 1. A. Time: 171L  
 
 Solution: 3,4,6  
-Test case 1. A. Time: 258L  
+Test case 1. A. Time: 110L  
 
 Solution: 2,4,6  
-Test case 1. A. Time: 289L  
+Test case 1. A. Time: 111L  
 
 Input	| Expected	| Result	| Best    
 ---  	| ---     	| ---   	| ---     
-0    	| False   	| False 	| (1, 164)
-1,2  	| True    	| True  	| (1, 242)
-3,5  	| False   	| False 	| (1, 228)
-3,4,6	| True    	| True  	| (1, 258)
-2,4,6	| False   	| False 	| (1, 289)
+0    	| False   	| False 	| (1, 169)
+1,2  	| True    	| True  	| (1, 230)
+3,5  	| False   	| False 	| (1, 171)
+3,4,6	| True    	| True  	| (1, 110)
+2,4,6	| False   	| False 	| (1, 111)
 
 Average Ranking  
-Test case 1. Average Time: 236L  
+Test case 1. Average Time: 158L  
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
