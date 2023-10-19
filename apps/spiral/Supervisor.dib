@@ -207,7 +207,11 @@ let inline buildFile timeout port cancellationToken path = async {
     let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
     let! code = fullPath |> FileSystem.readAllTextAsync
 
-    let stream, disposable = FileSystem.watchDirectory true fileDir
+    let eventFilter = function
+        | FileSystem.FileSystemChange.Changed (path, _) when path = $"{fileName}.fsx" -> true
+        | _ -> false
+
+    let stream, disposable = fileDir |> FileSystem.watchDirectory eventFilter
     use _ = disposable
 
     let token, disposable = Threading.newDisposableToken cancellationToken
@@ -219,7 +223,9 @@ let inline buildFile timeout port cancellationToken path = async {
     let fsxContentSeq =
         stream
         |> FSharp.Control.AsyncSeq.choose (function
-            | _, FileSystem.FileSystemChange.Changed (path, Some content) when path = $"{fileName}.fsx" ->
+            | _, (FileSystem.FileSystemChange.Changed (path, Some content) as event)
+                when event |> eventFilter
+                ->
                 Some content
             | _ -> None
         )
@@ -294,6 +300,8 @@ let inline buildFile timeout port cancellationToken path = async {
 
     let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
     let! _fileOpenResult = fileOpenObj |> sendObj serverPort
+
+    do! Async.Sleep 30
 
     let buildFileObj = {| BuildFile = {| uri = fullPath |> getFileUri; backend = "Fsharp" |} |}
     let! _buildFileResult = buildFileObj |> sendObj serverPort

@@ -112,6 +112,30 @@ module FileSystem =
         }
         loop 0
 
+    /// ## readAllTextRetryAsync
+
+    let inline readAllTextRetryAsync fullPath =
+        let rec loop retry = async {
+            try
+                if retry > 0
+                then do!
+                    fullPath
+                    |> waitForFileAccess (Some (
+                        System.IO.FileAccess.Read,
+                        System.IO.FileShare.Read
+                    ))
+                    |> Async.runWithTimeoutAsync 1000
+                    |> Async.Ignore
+                return! fullPath |> readAllTextAsync |> Async.map Some
+            with ex ->
+                let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
+                trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
+                if retry = 0
+                then return! loop (retry + 1)
+                else return None
+        }
+        loop 0
+
     /// ## deleteDirectoryAsync
 
     let inline deleteDirectoryAsync path =
@@ -242,28 +266,6 @@ module FileSystem =
                 watcher.Error
                 (fun event -> ticks (), [ FileSystemChange.Failure (event.GetException ()) ])
 
-        let inline readContent fullPath =
-            let rec loop retry = async {
-                try
-                    if retry > 0
-                    then do!
-                        fullPath
-                        |> waitForFileAccess (Some (
-                            System.IO.FileAccess.Read,
-                            System.IO.FileShare.Read
-                        ))
-                        |> Async.runWithTimeoutAsync 10000
-                        |> Async.Ignore
-                    return! fullPath |> readAllTextAsync |> Async.map Some
-                with ex ->
-                    let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
-                    trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
-                    if retry = 0
-                    then return! loop (retry + 1)
-                    else return None
-            }
-            loop 0
-
         let stream =
             [
                 changedStream
@@ -285,17 +287,17 @@ module FileSystem =
             )
             |> FSharp.Control.AsyncSeq.concatSeq
             |> FSharp.Control.AsyncSeq.mapAsyncParallel (fun (t, event) -> async {
-                match shouldReadContent, event with
+                match shouldReadContent event, event with
                 | true, FileSystemChange.Changed (path, _) ->
-                    do! Async.Sleep 1
-                    let! content = fullPath </> path |> readContent
+                    do! Async.Sleep 5
+                    let! content = fullPath </> path |> readAllTextRetryAsync
                     return t, FileSystemChange.Changed (path, content)
                 | true, FileSystemChange.Created (path, _) ->
-                    do! Async.Sleep 1
-                    let! content = fullPath </> path |> readContent
+                    do! Async.Sleep 5
+                    let! content = fullPath </> path |> readAllTextRetryAsync
                     return t, FileSystemChange.Created (path, content)
                 | true, FileSystemChange.Renamed (oldPath, (newPath, _)) ->
-                    let! content = fullPath </> newPath |> readContent
+                    let! content = fullPath </> newPath |> readAllTextRetryAsync
                     return t, FileSystemChange.Renamed (oldPath, (newPath, content))
                 | _ -> return t, event
             })

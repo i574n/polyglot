@@ -6,7 +6,7 @@ edition = "2021"
 [workspace]
 
 [dependencies]
-borsh = { version = "~1.0.0-alpha.6" }
+borsh = { version = "~1.1" }
 console_error_panic_hook = { version = "0.1"}
 console_log = { version = "1"}
 futures = "~0.3"
