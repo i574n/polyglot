@@ -10,3 +10,18 @@ inl sum (a' : a _ _) =
 inl init_series start end inc =
     inl total = conv ((end - start) / inc) + 1
     am.init total (conv >> (*) inc >> (+) start) : a i32 _
+
+// // ## last
+
+inl last (array : a _ _) =
+    index array (length array - 1)
+
+// // ## indexed
+
+inl indexed (array : a _ _) =
+    (([], 0), array)
+    ||> am.fold fun (acc, i) x =>
+        (i, x) :: acc, i + 1
+    |> fst
+    |> listm.rev
+    |> listm.toArray

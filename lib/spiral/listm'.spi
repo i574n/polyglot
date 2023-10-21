@@ -180,3 +180,17 @@ inl group_by fn list =
         if found
         then new_acc
         else (xk, [ x ]) :: new_acc
+
+// // ## forall'
+
+inl forall' fn (head :: tail) =
+    (true, tail)
+    ||> listm.fold fun acc x =>
+        acc && x = head
+
+// // ## last
+
+inl last list =
+    list
+    |> listm.rev
+    |> item 0i32

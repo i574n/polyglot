@@ -11,90 +11,11 @@
 // // test
 
 open testing
+open benchmark
 
 #!spiral
 
 inl (/@) x = listm'.(/@) x
-
-#!spiral
-
-nominal option_fsharp t = $"`t option"
-
-inl optionm'_from_fsharp forall t. (x : option_fsharp t) : option t =
-    inl some x : option t = Some x
-    inl none : option t = None
-    $"!x |> Option.map !some |> Option.defaultValue !none"
-
-
-inl am'_average forall el {number}. (array : a _ el) : el =
-    $"!array |> Array.average"
-
-inl am'_indexed forall dim el. (array : a dim el) : a dim (dim * el) =
-    $"!array |> Array.indexed |> Array.map (fun (a, b) -> struct (a, b))"
-
-inl am'_last forall el. (array : a _ el) : el =
-    $"!array |> Array.last"
-
-inl am'_parallel_map forall dim el el'. (fn : el -> el') (array : a dim el) : a dim el' =
-    $"!array |> Array.Parallel.map !fn"
-
-inl am'_singleton x =
-    a ;[ x ] : a i32 _
-
-inl am'_sort_by forall dim el. (fn : el -> _) (array : a dim el) : a dim el =
-    $"!array |> Array.sortBy !fn"
-
-inl am'_sort_descending forall dim el. (array : a dim el) : a dim el =
-    $"!array |> Array.sortDescending"
-
-inl am'_transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
-    $"!array |> Array.transpose"
-
-inl am'_try_item forall dim el. (i : i32) (array : a dim el) : option el =
-    $"!array |> Array.tryItem !i" |> optionm'_from_fsharp
-
-nominal console_color = $"System.ConsoleColor"
-
-inl format_debug x =
-    $"$\"%A{!x}\"" : string
-
-nominal map k v = $"Map<`k, `v>"
-
-inl map_item forall k v. (k : k) (map : map k v) : v =
-    $"!map.[!k]"
-
-inl map_of_array forall k v. (array : a _ (k * v)) : map k v =
-    $"!array |> Array.map (fun (struct (a, b)) -> a, b) |> Map.ofArray"
-
-inl nameof x : string =
-    $"nameof !x"
-
-inl obj_to_string x : string =
-    $"!x.ToString ()"
-
-inl printfn x =
-    console.write_line x
-
-nominal stopwatch = $"System.Diagnostics.Stopwatch"
-
-inl stopwatch () : stopwatch =
-    $"`stopwatch" ()
-
-inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
-    $"!stopwatch.ElapsedMilliseconds"
-
-inl stopwatch_start (stopwatch : stopwatch) : () =
-    $"!stopwatch.Start ()"
-
-inl string_concat (a : string) (b : a _ _) : string =
-    $"!b |> String.concat !a"
-
-inl string_join (concat : string) (s : a _ string) : string =
-    $"System.String.Join (!concat, !s)"
-
-
-inl string_pad_right (pad : i32) (s : string) : string =
-    $"!s.PadRight !pad"
 
 #!markdown
 
@@ -110,23 +31,13 @@ type TestCaseResult =
         TimeList: int64 list
     }
 
-#!spiral
-
-type test_case_result =
-    {
-        Input : string
-        Expected : string
-        Result : string
-        TimeList : list i64
-    }
-
 #!markdown
 
 ## run
 
 #!fsharp
 
-let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
+let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
     let inputStr =
         match box input with
         | :? System.Collections.ICollection as input ->
@@ -145,7 +56,7 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
         let time1 = stopwatch.ElapsedMilliseconds
 
         let result =
-            [| 0 .. 2000000 |]
+            [| 0 .. count |]
             |> Array.Parallel.map (fun _ ->
                 fn ()
             )
@@ -178,120 +89,17 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
 
 #!markdown
 
-## run
-
-#!spiral
-
-inl run forall input expected.
-    (solutions : list (string * (input -> expected)))
-    ((input, expected) : (input * expected))
-    : test_case_result
-    =
-    inl input_str =
-        input |> obj_to_string
-
-    printfn ""
-    printfn ($"$\"Solution: {!input_str}  \"" : string)
-
-    // let performanceInvoke (fn: unit -> 'T) =
-    //     GC.Collect ()
-    //     let stopwatch = System.Diagnostics.Stopwatch ()
-    //     stopwatch.Start ()
-    //     let time1 = stopwatch.ElapsedMilliseconds
-
-    //     let result =
-    //         [| 0 .. 2000000 |]
-    //         |> Array.Parallel.map (fun _ ->
-    //             fn ()
-    //         )
-    //         |> Array.last
-
-    //     let time2 = stopwatch.ElapsedMilliseconds - time1
-
-    //     result, time2
-
-    inl performance_invoke (fn : () -> expected) =
-        $"System.GC.Collect ()"
-        inl stopwatch = stopwatch ()
-        stopwatch |> stopwatch_start
-        inl time1 = stopwatch |> stopwatch_elapsed_milliseconds
-        inl result : expected =
-            am'.init_series 0 2000000 1i32
-            |> am'_parallel_map (fun n =>
-                fn ()
-            )
-            |> am'_last
-        inl time2 = (stopwatch |> stopwatch_elapsed_milliseconds) - time1
-        result, time2
-
-    // let resultsWithTime =
-    //     solutions
-    //     |> List.mapi (fun i (testName, solution) ->
-    //         let result, time = performanceInvoke (fun () -> solution input)
-    //         printfn $"Test case %d{i + 1}. %s{testName}. Time: %A{time}  "
-    //         result, time
-    //     )
-
-    inl results_with_time =
-        solutions
-        |> listm'.indexed
-        |> listm.map (fun ((i : i32), (test_name, solution)) =>
-            inl result, time = performance_invoke (fun () => solution input)
-            printfn ($"$\"Test case {!i + 1}. {!test_name}. Time: {!time}  \"" : string)
-            result, time
-        )
-
-
-
-    // match resultsWithTime |> List.map fst with
-    // | ([] | [ _ ]) -> ()
-    // | (head :: tail) when tail |> List.forall ((=) head) -> ()
-    // | results -> failwithf $"Challenge error: %A{results}"
-
-    // {
-    //     Input = inputStr
-    //     Expected = expected.ToString ()
-    //     Result = resultsWithTime |> Seq.map fst |> Seq.head |> fun x -> x.ToString ()
-    //     TimeList = resultsWithTime |> List.map snd
-    // }
-    match results_with_time |> listm.map fst with
-    | ([] | [ _ ]) => ()
-    | (head :: tail) when tail |> listm.fold (fun acc x => acc && x = head) true => ()
-    | results => failwith ($"$\"Challenge error: {!results}\"" : string)
-
-    {
-        Input = input_str
-        Expected = expected |> obj_to_string
-        Result = results_with_time |> listm.map fst |> listm'.item 0i32 |> obj_to_string
-        TimeList = results_with_time |> listm.map snd
-    }
-
-#!markdown
-
 ## runAll
 
 #!fsharp
 
-let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
+let runAll testName count (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
     printfn ""
     printfn ""
     printfn $"Test: {testName}"
     testCases
-    |> Seq.map (run solutions)
+    |> Seq.map (run count solutions)
     |> Seq.toList
-
-#!markdown
-
-## run_all
-
-#!spiral
-
-inl run_all forall input expected. test_name (solutions : list (string * (input -> expected))) test_cases =
-    printfn ""
-    printfn ""
-    printfn ($"$\"Test: {!test_name}\"" : string)
-    test_cases
-    |> listm.map (run solutions)
 
 #!markdown
 
@@ -395,116 +203,19 @@ let sortResultList resultList =
         printfn $"Test case %d{i + 1}. Average Time: %A{avg}  "
     )
 
-#!markdown
+#!fsharp
 
-## sort_result_list
+let mutable _count =
+    if ("CI" |> System.Environment.GetEnvironmentVariable |> fun x -> $"%A{x}") <> "<null>"
+    then 2000000
+    else 2000
 
 #!spiral
 
-inl sort_result_list results =
-    inl table =
-        inl rows =
-            results
-            |> listm.map (fun (result : test_case_result) =>
-                inl best =
-                    result.TimeList
-                    |> listm'.indexed
-                    |> listm.map (fun (i, time) =>
-                        i + 1i64, time
-                    )
-                    |> listm.toArray
-                    |> am'_sort_by snd
-                    |> fun array => index array 0i32
-                    |> obj_to_string
-                inl row =
-                    [
-                        result.Input
-                        result.Expected
-                        result.Result
-                        best
-                    ]
-                inl color : option console_color =
-                    match result.Expected = result.Result with
-                    | true => Some $"`console_color.DarkGreen"
-                    | false => Some $"`console_color.DarkRed"
-                row, color
-            )
-        inl header =
-            [
-                [
-                    "Input"
-                    "Expected"
-                    "Result"
-                    "Best"
-                ]
-                [
-                    "---"
-                    "---"
-                    "---"
-                    "---"
-                ]
-            ]
-            |> listm.map (fun row => row, None)
-        header /@ rows
-
-    inl formattedTable =
-        inl lengthMap : map i32 i64 =
-            table
-            |> listm.map (fst >> listm.toArray)
-            |> listm.toArray
-            |> am'_transpose
-            |> am.map (fun column =>
-                column
-                |> am.map sm.length
-                |> am'_sort_descending
-                |> am'_try_item 0i32
-                |> optionm'.default_value 0i64
-            )
-            |> am'_indexed
-            |> map_of_array
-        table
-        |> listm.map (fun (row, color) =>
-            inl newRow =
-                row
-                |> listm'.indexed
-                |> listm.map (fun (i, cell) =>
-                    cell |> string_pad_right (lengthMap |> map_item i |> conv)
-                )
-                |> listm.toArray
-            newRow, color
-        )
-
-    printfn ""
-    formattedTable
-    |> listm.iter (fun ((row : a i32 string), color) =>
-        match color with
-        | Some color => $"System.Console.ForegroundColor <- !color"
-        | None => $"System.Console.ResetColor ()"
-
-        printfn (row |> string_join "\t| ")
-
-        $"System.Console.ResetColor ()"
-    )
-
-    inl averages =
-        results
-        |> listm.map fun result =>
-            result.TimeList
-            |> listm.map ($"float" : i64 -> f64)
-            |> listm.toArray : a i32 _
-        |> listm.toArray
-        |> am'_transpose
-        |> am.map am'_average
-        |> am.map ($"int64" : f64 -> i64)
-        |> am'_indexed
-
-    printfn ""
-    printfn "Average Ranking  "
-    averages
-    |> am'_sort_by snd
-    |> am.iter (fun ((i : i32), avg) =>
-        printfn ($"$\"Test case %d{!i + 1}. Average Time: %A{!avg}  \"" : string)
-    )
+inl get_count () =
+    if ("CI" |> get_environment_variable |> format_debug) <> "<null>"
+    then 2000000i32
+    else 2000
 
 #!markdown
 
@@ -544,7 +255,7 @@ let testCases = seq {
     ("a", "a"), "a"
     ("a", "a"), "a"
 }
-let rec empty3Tests = runAll (nameof empty3Tests) solutions testCases
+let rec empty3Tests = runAll (nameof empty3Tests) _count solutions testCases
 empty3Tests
 |> sortResultList
 
@@ -586,7 +297,7 @@ let testCases = seq {
     ("a", "a"), "a"
     ("a", "a"), "a"
 }
-let rec empty2Tests = runAll (nameof empty2Tests) solutions testCases
+let rec empty2Tests = runAll (nameof empty2Tests) _count solutions testCases
 empty2Tests
 |> sortResultList
 
@@ -633,7 +344,7 @@ let testCases = seq {
     2, 2
     5, 5
 }
-let rec emptyTests = runAll (nameof emptyTests) solutions testCases
+let rec emptyTests = runAll (nameof emptyTests) _count solutions testCases
 emptyTests
 |> sortResultList
 
@@ -847,7 +558,7 @@ let testCases = seq {
     "pprrqqpp", "prq"
     "aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb", "acb"
 }
-let rec uniqueLettersTests = runAll (nameof uniqueLettersTests) solutions testCases
+let rec uniqueLettersTests = runAll (nameof uniqueLettersTests) _count solutions testCases
 uniqueLettersTests
 |> sortResultList
 
@@ -1098,7 +809,7 @@ let testCases = seq {
     "aa", "aa aa"
     "z", "z"
 }
-let rec rotateStringsTests = runAll (nameof rotateStringsTests) solutions testCases
+let rec rotateStringsTests = runAll (nameof rotateStringsTests) _count solutions testCases
 rotateStringsTests
 |> sortResultList
 
@@ -1204,7 +915,7 @@ inl get_solutions () =
         // |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
         // |> String.concat " "
             inl input_length = input |> sm.length
-            am'_singleton 0i32
+            am.singleton 0i32
             |> am.append (am'.init_series 1 (input_length - 1) 1)
             |> am.map (fun i =>
                 inl a = sm.slice input { from = i; to = input_length - 1 } : string
@@ -1258,7 +969,7 @@ inl rec rotate_strings_tests () =
 
     inl solutions = get_solutions ()
 
-    run_all (nameof rotate_strings_tests) solutions test_cases
+    run_all (nameof rotate_strings_tests) (get_count ()) solutions test_cases
     |> sort_result_list
 
 rotate_strings_tests ()
@@ -1328,7 +1039,8 @@ let testCases = seq {
     9, "aaaaaaaaa"
     10, "baaaaaaaaa"
 }
-let rec returnLettersWithOddCountTests = runAll (nameof returnLettersWithOddCountTests) solutions testCases
+let rec returnLettersWithOddCountTests =
+    runAll (nameof returnLettersWithOddCountTests) _count solutions testCases
 returnLettersWithOddCountTests
 |> sortResultList
 
@@ -1390,7 +1102,8 @@ let testCases = seq {
     [| 3; 4; 6 |], true
     [| 2; 4; 6 |], false
 }
-let rec hasAnyPairCloseToEachotherTests = runAll (nameof hasAnyPairCloseToEachotherTests) solutions testCases
+let rec hasAnyPairCloseToEachotherTests =
+    runAll (nameof hasAnyPairCloseToEachotherTests) _count solutions testCases
 hasAnyPairCloseToEachotherTests
 |> sortResultList
 

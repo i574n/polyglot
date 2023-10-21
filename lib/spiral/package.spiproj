@@ -8,6 +8,7 @@ modules:
     optionm'
     am'
     listm'
+    benchmark
     stream
     seq
     util

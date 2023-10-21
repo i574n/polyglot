@@ -118,3 +118,59 @@ inl join_body_unit body d x =
 [5i32; 4; join 3; 2; 1]
 |> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
 |> _equal 15
+
+#!markdown
+
+## run_target
+
+#!spiral
+
+union target =
+    | Rust
+    | Fsharp
+
+inl run_target (fn : target -> (() -> _)) =
+    inl rust_fn = fn Rust
+    inl fsharp_fn = fn Fsharp
+
+    $"#if FABLE_COMPILER_RUST"
+    $"!rust_fn ()"
+    $"#else"
+    $"!fsharp_fn ()"
+    $"#endif"
+
+#!markdown
+
+## format_debug
+
+#!spiral
+
+inl format_debug x =
+    $"$\"%A{!x}\"" : string
+
+#!markdown
+
+## nameof
+
+#!spiral
+
+inl nameof x : string =
+    $"nameof !x"
+
+#!markdown
+
+## obj_to_string
+
+#!spiral
+
+inl obj_to_string x : string =
+    $"!x.ToString ()"
+
+#!markdown
+
+## get_environment_variable
+
+#!spiral
+
+inl get_environment_variable (var : string) : string =
+    $"System.Environment.GetEnvironmentVariable !var"

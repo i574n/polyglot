@@ -45,3 +45,42 @@ inl init_series start end inc =
 
 init_series 0 1 0.5
 |> _equal (a ;[0f64; 0.5; 1])
+
+#!markdown
+
+## last
+
+#!spiral
+
+inl last (array : a _ _) =
+    index array (length array - 1)
+
+#!spiral
+
+// // test
+
+am.init 10i32 id
+|> last
+|> _equal 9
+
+#!markdown
+
+## indexed
+
+#!spiral
+
+inl indexed (array : a _ _) =
+    (([], 0), array)
+    ||> am.fold fun (acc, i) x =>
+        (i, x) :: acc, i + 1
+    |> fst
+    |> listm.rev
+    |> listm.toArray
+
+#!spiral
+
+// // test
+
+am.init 3i32 ((*) 2)
+|> indexed
+|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)

@@ -85,3 +85,31 @@ Some 1i32 |> iter fn
 None |> iter fn
 *n
 |> _equal 2i32
+
+#!markdown
+
+## option_fsharp
+
+#!spiral
+
+nominal option_fsharp t = $"`t option"
+
+inl from_fsharp forall t. (x : option_fsharp t) : option t =
+    inl some x : option t = Some x
+    inl none : option t = None
+    $"!x |> Option.map !some |> Option.defaultValue !none"
+
+inl to_fsharp forall t. (x : option t) : option_fsharp t =
+    match x with
+    | Some x => $"Some !x"
+    | None => $"None"
+
+#!spiral
+
+// // test
+
+inl x = Some 3i32
+inl y : option i32 = None
+inl x' = x |> to_fsharp |> from_fsharp
+inl y' = y |> to_fsharp |> from_fsharp
+(x', y') |> _equal (x, y)
