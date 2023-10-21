@@ -12,7 +12,7 @@ type TestCaseResult =
 
 /// ## run
 
-let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
+let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
     let inputStr =
         match box input with
         | :? System.Collections.ICollection as input ->
@@ -31,7 +31,7 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
         let time1 = stopwatch.ElapsedMilliseconds
 
         let result =
-            [| 0 .. 2000000 |]
+            [| 0 .. count |]
             |> Array.Parallel.map (fun _ ->
                 fn ()
             )
@@ -62,19 +62,15 @@ let run (solutions: (string * ('TInput -> 'TExpected)) list) (input, expected) =
         TimeList = resultsWithTime |> List.map snd
     }
 
-/// ## run
-
 /// ## runAll
 
-let runAll testName (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
+let runAll testName count (solutions: (string * ('TInput -> 'TExpected)) list) testCases =
     printfn ""
     printfn ""
     printfn $"Test: {testName}"
     testCases
-    |> Seq.map (run solutions)
+    |> Seq.map (run count solutions)
     |> Seq.toList
-
-/// ## run_all
 
 /// ## sortResultList
 
@@ -174,7 +170,10 @@ let sortResultList resultList =
         printfn $"Test case %d{i + 1}. Average Time: %A{avg}  "
     )
 
-/// ## sort_result_list
+let mutable _count =
+    if ("CI" |> System.Environment.GetEnvironmentVariable |> fun x -> $"%A{x}") <> "<null>"
+    then 2000000
+    else 2000
 
 /// ## empty3Tests
 
