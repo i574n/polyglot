@@ -212,10 +212,8 @@ let mutable _count =
 
 #!spiral
 
-inl get_count () =
-    if ("CI" |> get_environment_variable |> format_debug) <> "<null>"
-    then 2000000i32
-    else 2000
+inl is_fast () =
+    false
 
 #!markdown
 
@@ -969,7 +967,14 @@ inl rec rotate_strings_tests () =
 
     inl solutions = get_solutions ()
 
-    run_all (nameof rotate_strings_tests) (get_count ()) solutions test_cases
+    // inl is_fast () = true
+
+    inl count =
+        if is_fast ()
+        then 1000i32
+        else 2000000i32
+
+    run_all (nameof rotate_strings_tests) count solutions test_cases
     |> sort_result_list
 
 rotate_strings_tests ()
@@ -981,6 +986,139 @@ rotate_strings_tests ()
 // // print_code=false
 
 // rotate_strings_tests ()
+
+#!markdown
+
+## binary_search_tests
+
+#!spiral
+
+// // test
+// // timeout=60000
+// // print_code=true
+
+inl binary_search_semi_open_1 arr target left right =
+    inl rec body left right =
+        if left >= right
+        then None
+        else
+            inl mid = (left + right) / 2
+            inl item = index arr mid
+            if item = target
+            then Some mid
+            elif item < target
+            then loop (mid + 1) right
+            else loop left mid
+    and inl loop left right =
+        if var_is right |> not
+        then body left right
+        else
+            inl left = dyn left
+            join body left right
+    loop left right
+
+inl binary_search_closed_1 arr target left right =
+    inl rec body left right =
+        if left > right
+        then None
+        else
+            inl mid = (left + right) / 2
+            inl item = index arr mid
+            if item = target
+            then Some mid
+            elif item < target
+            then loop (mid + 1) right
+            else loop left (mid - 1)
+    and inl loop left right =
+        if var_is right |> not
+        then body left right
+        else
+            inl left = dyn left
+            join body left right
+    loop left right
+
+inl binary_search_semi_open_2 arr target left right =
+    let rec body left right =
+        if left >= right
+        then None
+        else
+            inl mid = (left + right) / 2
+            inl item = index arr mid
+            if item = target
+            then Some mid
+            elif item < target
+            then loop (mid + 1) right
+            else loop left mid
+    and inl loop left right = body left right
+    loop left right
+
+inl binary_search_closed_2 arr target left right =
+    let rec body left right =
+        if left > right
+        then None
+        else
+            inl mid = (left + right) / 2
+            inl item = index arr mid
+            if item = target
+            then Some mid
+            elif item < target
+            then loop (mid + 1) right
+            else loop left (mid - 1)
+    and inl loop left right = body left right
+    loop left right
+
+inl get_solutions () =
+    [
+        "semi_open_1",
+        fun (arr, (target, len)) =>
+            binary_search_semi_open_1 arr target 0 len
+
+        "closed_1",
+        fun (arr, (target, len)) =>
+            binary_search_closed_1 arr target 0 (len - 1)
+
+        "semi_open_2",
+        fun (arr, (target, len)) =>
+            binary_search_semi_open_2 arr target 0 len
+
+        "closed_2",
+        fun (arr, (target, len)) =>
+            binary_search_closed_2 arr target 0 (len - 1)
+    ]
+
+inl rec binary_search_tests () =
+    inl arr_with_len target len arr =
+        arr, (target, (len |> optionm'.default_with fun () => length arr))
+
+    inl test_cases = [
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 None), (Some 3i32)
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 None), (Some 0i32)
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 None), (Some 6i32)
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 None), None
+        ((am'.init_series 1i32 100 1) |> arr_with_len 60 None), (Some 59)
+
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 6 (Some 7)), (Some 3i32)
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 1 (Some 7)), (Some 0i32)
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 11 (Some 7)), (Some 6i32)
+        (a ;[ 1i32; 3; 4; 6; 8; 9; 11 ] |> arr_with_len 12 (Some 7)), None
+        ((am'.init_series 1i32 100 1) |> arr_with_len 60 (Some 100)), (Some 59)
+    ]
+
+    inl solutions = get_solutions ()
+
+    // inl is_fast () = true
+
+    inl count =
+        if is_fast ()
+        then 1000i32
+        else 8000000i32
+
+    run_all (nameof binary_search_tests) count solutions test_cases
+    |> sort_result_list
+
+
+let main () =
+    binary_search_tests ()
 
 #!markdown
 

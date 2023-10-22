@@ -452,6 +452,8 @@ let mutable _count =
 
 /// ## rotate_strings_tests
 
+/// ## binary_search_tests
+
 /// ## returnLettersWithOddCountTests
 
 /// Test: ReturnLettersWithOddCount

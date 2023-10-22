@@ -96,7 +96,7 @@ type test_case_result =
         Input : string
         Expected : string
         Result : string
-        TimeList : list i64
+        TimeList : a u64 i64
     }
 
 #!markdown
@@ -111,7 +111,7 @@ inl run forall input expected.
     ((input, expected) : (input * expected))
     : test_case_result
     =
-    inl input_str = input |> obj_to_string
+    inl input_str = input |> format_debug
 
     printfn ""
     printfn ($"$\"Solution: {!input_str}  \"" : string)
@@ -128,24 +128,25 @@ inl run forall input expected.
         inl time2 = (stopwatch |> stopwatch_elapsed_milliseconds) - time1
         result, time2
 
-    inl results_with_time =
+    inl results_with_time : a u64 _ =
         solutions
         |> listm'.indexed
-        |> listm.map fun ((i : i32), (test_name, solution)) =>
+        |> listm.toArray
+        |> am.map fun ((i : i32), (test_name, solution)) =>
             inl result, time = performance_invoke fun () => solution input
             printfn ($"$\"Test case {!i + 1}. {!test_name}. Time: {!time}  \"" : string)
             result, time
 
-    match results_with_time |> listm.map fst with
-    | [] | [ _ ] => ()
-    | head :: tail when tail |> listm'.forall' ((=) head) => ()
+    match results_with_time |> am.map fst with
+    | array when length array <= 1 => ()
+    | array when array |> am.forall' ((=) (index array 0)) => ()
     | results => failwith ($"$\"Challenge error: {!results}\"" : string)
 
     {
         Input = input_str
-        Expected = expected |> obj_to_string
-        Result = results_with_time |> listm.map fst |> listm'.item 0i32 |> obj_to_string
-        TimeList = results_with_time |> listm.map snd
+        Expected = expected |> format_debug
+        Result = results_with_time |> am.map fst |> fun array => index array 0 |> format_debug
+        TimeList = results_with_time |> am.map snd
     }
 
 #!markdown
@@ -164,7 +165,8 @@ inl run_all forall input expected.
     printfn ""
     printfn ($"$\"Test: {!test_name}\"" : string)
     test_cases
-    |> listm.map (run count solutions)
+    |> listm.toArray
+    |> am.map (run count solutions)
 
 #!markdown
 
@@ -176,13 +178,12 @@ inl sort_result_list results =
     inl table =
         inl rows =
             results
-            |> listm.map (fun (result : test_case_result) =>
+            |> am.map fun (result : test_case_result) =>
                 inl best =
                     result.TimeList
-                    |> listm'.indexed
-                    |> listm.map fun (i, time) =>
+                    |> am'.indexed
+                    |> am.map fun (i, time) =>
                         i + 1i64, time
-                    |> listm.toArray
                     |> am'_sort_by snd
                     |> fun array => index array 0i32
                     |> format_debug
@@ -198,7 +199,7 @@ inl sort_result_list results =
                     | true => Some $"`console_color.DarkGreen"
                     | false => Some $"`console_color.DarkRed"
                 row, color
-            )
+
         inl header =
             [
                 [
@@ -215,14 +216,13 @@ inl sort_result_list results =
                 ]
             ]
             |> listm.map fun row => row, None
-        header /@ rows
+            |> listm.toArray
+        rows |> am.append header
 
     inl formattedTable =
         inl lengthMap : map i32 i64 =
             table
-            |> listm.map (fst >> listm.toArray)
-            |> listm.toArray
-            |> fun (x : a i32 _) => x
+            |> am.map (fst >> listm.toArray)
             |> am'_transpose
             |> am.map fun column =>
                 column
@@ -234,7 +234,7 @@ inl sort_result_list results =
             |> fun (x : a i32 _) => x
             |> map_of_array
         table
-        |> listm.map fun (row, color) =>
+        |> am.map fun (row, color) =>
             inl newRow =
                 row
                 |> listm'.indexed
@@ -245,7 +245,7 @@ inl sort_result_list results =
 
     printfn ""
     formattedTable
-    |> listm.iter fun ((row : a i32 string), color) =>
+    |> am.iter fun ((row : a i32 string), color) =>
         match color with
         | Some color => color |> console_set_foreground_color
         | None => console_reset_color ()
@@ -254,17 +254,15 @@ inl sort_result_list results =
 
         console_reset_color ()
 
-    inl averages =
+    inl averages : a u64 _ =
         results
-        |> listm.map fun result =>
+        |> am.map fun result =>
             result.TimeList
-            |> listm.map ($"float" : i64 -> f64)
-            |> listm.toArray : a i32 _
-        |> listm.toArray
+            |> am.map ($"float" : i64 -> f64)
         |> am'_transpose
         |> am.map am'_average
         |> am.map ($"int64" : f64 -> i64)
-        |> am'.indexed : a i32 _
+        |> am'.indexed
 
     printfn ""
     printfn "Average Ranking  "
@@ -277,9 +275,8 @@ inl sort_result_list results =
 
 // // test
 
-inl get_count () =
-    2000000
-    // 2000
+inl is_fast () =
+    false
 
 #!markdown
 
@@ -315,17 +312,28 @@ inl get_solutions () =
         "A",
         fun (a, _b) =>
             a
+
+        "B",
+        fun (_a, b) =>
+            b
     ]
 
 inl rec empty_2_tests () =
     inl test_cases = [
         ("a", "a"), "a"
-        ("a", "a"), "a"
+        ("b", "b"), "b"
     ]
 
     inl solutions = get_solutions ()
 
-    run_all (nameof empty_2_tests) (get_count ()) solutions test_cases
+    // inl is_fast () = true
+
+    inl count =
+        if is_fast ()
+        then 1000i32
+        else 2000000i32
+
+    run_all (nameof empty_2_tests) count solutions test_cases
     |> sort_result_list
 
 empty_2_tests ()
@@ -379,7 +387,14 @@ inl rec empty_1_tests () =
 
     inl solutions = get_solutions ()
 
-    run_all (nameof empty_1_tests) (get_count ()) solutions test_cases
+    // inl is_fast () = true
+
+    inl count =
+        if is_fast ()
+        then 1000i32
+        else 2000000i32
+
+    run_all (nameof empty_1_tests) count solutions test_cases
     |> sort_result_list
 
 empty_1_tests ()
