@@ -118,16 +118,35 @@ $GLOBALS['traceLevel'] = new TraceLevel_Verbose();
 $GLOBALS['traceDump'] = false;
 
 #7
+function testTraceLevel($level) {
+    if ($GLOBALS['traceEnabled']) {
+        return \Util\compare($level, $GLOBALS['traceLevel']) >= 0;
+    } else {
+        return false;
+    }
+}
+
+#8
+function traceRaw($level, $fn) {
+    if (testTraceLevel($level)) {
+        $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
+        $text = NULL;
+        return $console->log;
+    } else {
+        return NULL;
+    }
+}
+
+#9
 function replStart($unitVar) {
     return NULL;
 }
 
-#8
+#10
 function trace($level, $fn, $getLocals) {
-    if ($GLOBALS['traceEnabled'] ? \Util\compare($level, $GLOBALS['traceLevel']) >= 0 : false) {
-        $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
+    return traceRaw($level, function ($unitVar) use ($fn, $getLocals, $level, $replStart, $traceCount) { 
         $trimChars_2 = [ ' ', '/' ];
-        $text = \String\trimEnd(\String\trimStart(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ (function ($matchValue) {         if (is_null($matchValue)) {
+        return \String\trimEnd(\String\trimStart(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ (function ($matchValue) {         if (is_null($matchValue)) {
             return \Date\now();
         } else {
             $replStart_1 = $matchValue;
@@ -135,9 +154,6 @@ function trace($level, $fn, $getLocals) {
             return \Date\create(1, 1, 1, $t->\TimeSpan\hours(), $t->\TimeSpan\minutes(), $t->\TimeSpan\seconds(), $t->\TimeSpan\milliseconds(), $t->\TimeSpan\microseconds());
         }
  })(replStart(NULL))->\Date\toString('HH:mm:ss'), $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ])), [  ]), $trimChars_2);
-        return $console->log;
-    } else {
-        return NULL;
-    }
+    });
 }
 

@@ -59,6 +59,22 @@ pub mod Polyglot {
             static traceDump: MutCell<Option<LrcPtr<MutCell<bool>>>> = MutCell::new(None);
             traceDump.get_or_init(|| LrcPtr::new(MutCell::new(false)))
         }
+        pub fn testTraceLevel(level: LrcPtr<Polyglot::Common::TraceLevel>) -> bool {
+            if Polyglot::Common::traceEnabled().get() {
+                compare(level, Polyglot::Common::traceLevel().get()) >= 0_i32
+            } else {
+                false
+            }
+        }
+        pub fn traceRaw(level: LrcPtr<Polyglot::Common::TraceLevel>, r#fn: Func0<string>) {
+            if Polyglot::Common::testTraceLevel(level) {
+                Polyglot::Common::traceCount().set(Polyglot::Common::traceCount().get() + 1_i32);
+                {
+                    let text: string = sprintf!("{}", &r#fn());
+                    println!("{0}", text,)
+                }
+            };
+        }
         fn replStart() -> Option<i64> {
             None::<i64>
         }
@@ -67,62 +83,57 @@ pub mod Polyglot {
             r#fn: Func0<string>,
             getLocals: Func0<string>,
         ) {
-            if if Polyglot::Common::traceEnabled().get() {
-                compare(level.clone(), Polyglot::Common::traceLevel().get()) >= 0_i32
-            } else {
-                false
-            } {
-                Polyglot::Common::traceCount().set(Polyglot::Common::traceCount().get() + 1_i32);
-                {
-                    let text: string = {
-                        let trimChars_2: Array<char> = new_array(&[' ', '/']);
-                        trimEndChars(
-                            trimStartChars(
-                                sprintf!(
-                                    "{} #{} [{:?}] {} / {}",
-                                    &{
-                                        let dateTime: DateTime = {
-                                            let matchValue: Option<i64> =
-                                                Polyglot::Common::replStart();
-                                            match &matchValue {
-                                                None => DateTime::now(),
-                                                Some(matchValue_0_0) => {
-                                                    let replStart_1: i64 = matchValue_0_0.clone();
-                                                    let t: TimeSpan = TimeSpan::new_ticks(
-                                                        {
-                                                            let copyOfStruct: DateTime =
-                                                                DateTime::now();
-                                                            copyOfStruct.ticks()
-                                                        } - replStart_1,
-                                                    );
-                                                    DateTime::new_ymdhms_micro(
-                                                        1_i32,
-                                                        1_i32,
-                                                        1_i32,
-                                                        t.hours(),
-                                                        t.minutes(),
-                                                        t.seconds(),
-                                                        t.milliseconds(),
-                                                        t.microseconds(),
-                                                    )
-                                                }
+            let fn_1 = Func0::new({
+                let r#fn = r#fn.clone();
+                let getLocals = getLocals.clone();
+                let level = level.clone();
+                move || {
+                    let trimChars_2: Array<char> = new_array(&[' ', '/']);
+                    trimEndChars(
+                        trimStartChars(
+                            sprintf!(
+                                "{} #{} [{:?}] {} / {}",
+                                &{
+                                    let dateTime: DateTime = {
+                                        let matchValue: Option<i64> = Polyglot::Common::replStart();
+                                        match &matchValue {
+                                            None => DateTime::now(),
+                                            Some(matchValue_0_0) => {
+                                                let replStart_1: i64 = matchValue_0_0.clone();
+                                                let t: TimeSpan = TimeSpan::new_ticks(
+                                                    {
+                                                        let copyOfStruct: DateTime =
+                                                            DateTime::now();
+                                                        copyOfStruct.ticks()
+                                                    } - replStart_1,
+                                                );
+                                                DateTime::new_ymdhms_micro(
+                                                    1_i32,
+                                                    1_i32,
+                                                    1_i32,
+                                                    t.hours(),
+                                                    t.minutes(),
+                                                    t.seconds(),
+                                                    t.milliseconds(),
+                                                    t.microseconds(),
+                                                )
                                             }
-                                        };
-                                        dateTime.toString(string("hh:mm:ss"))
-                                    },
-                                    &Polyglot::Common::traceCount().get(),
-                                    &level,
-                                    &r#fn(),
-                                    &getLocals()
-                                ),
-                                new_empty::<char>(),
+                                        }
+                                    };
+                                    dateTime.toString(string("hh:mm:ss"))
+                                },
+                                &Polyglot::Common::traceCount().get(),
+                                &level,
+                                &r#fn(),
+                                &getLocals()
                             ),
-                            trimChars_2,
-                        )
-                    };
-                    println!("{0}", text,)
+                            new_empty::<char>(),
+                        ),
+                        trimChars_2,
+                    )
                 }
-            };
+            });
+            Polyglot::Common::traceRaw(level.clone(), fn_1)
         }
     }
 }

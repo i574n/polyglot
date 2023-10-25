@@ -101,7 +101,7 @@ module Common =
     let inline printException (ex : System.Exception) =
         $"{ex.GetType ()}: {ex.Message}"
 
-    /// ## trace
+    /// ## TraceLevel
 
     type TraceLevel =
         | Verbose
@@ -117,6 +117,32 @@ module Common =
     let mutable traceLevel = Verbose
     let mutable traceDump = false
 
+    let testTraceLevel level =
+        traceEnabled && level >= traceLevel
+
+    /// ## traceRaw
+
+    let rec traceRaw level fn =
+        if level |> testTraceLevel then
+            traceCount <- traceCount + 1
+
+            let text = $"%s{fn ()}"
+
+            System.Console.WriteLine text
+#if !CHAIN && !FABLE_COMPILER
+            if traceDump then
+                try
+                    let tmpPath = System.IO.Path.GetTempPath ()
+                    let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
+                    System.IO.Directory.CreateDirectory logDir |> ignore
+                    let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
+                    System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
+                with ex ->
+                    traceRaw Critical (fun () -> $"trace / ex: {ex |> printException}")
+#endif
+
+    /// ## trace
+
     let private replStart =
 #if INTERACTIVE || !FABLE_COMPILER
         fun () ->
@@ -128,9 +154,8 @@ module Common =
         fun () -> None : int64 option
 #endif
 
-    let rec trace level fn getLocals =
-        if traceEnabled && level >= traceLevel then
-            traceCount <- traceCount + 1
+    let trace level fn getLocals =
+        fun () ->
             let time =
 #if CHAIN
                 ""
@@ -148,23 +173,10 @@ module Common =
 #endif
                     |> dateTime.ToString
 #endif
-            let text =
-                $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
-                |> String.trimStart [||]
-                |> String.trimEnd [| ' '; '/' |]
-
-            System.Console.WriteLine text
-#if !CHAIN && !FABLE_COMPILER
-            if traceDump then
-                try
-                    let tmpPath = System.IO.Path.GetTempPath ()
-                    let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
-                    System.IO.Directory.CreateDirectory logDir |> ignore
-                    let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
-                    System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
-                with ex ->
-                    trace Critical (fun () -> $"trace / ex: {ex |> printException}") getLocals
-#endif
+            $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
+            |> String.trimStart [||]
+            |> String.trimEnd [| ' '; '/' |]
+        |> traceRaw level
 
     let inline withTrace enabled fn =
         let oldTraceEnabled = traceEnabled

@@ -178,7 +178,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
             | None -> ()
 
             trace
-                Debug
+                Verbose
                 (fun () -> $"> {e.Data}")
                 Common.getLocals
 

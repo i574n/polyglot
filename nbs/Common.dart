@@ -27,22 +27,36 @@ TraceLevel traceLevel = const TraceLevel(/* Verbose */ 0);
 
 var traceDump = false;
 
+bool testTraceLevel(TraceLevel level) {
+    if (traceEnabled) {
+        return level.compareTo(traceLevel) >= 0;
+    } else {
+        return false;
+    }
+}
+
+void traceRaw(TraceLevel level, String Function() fn) {
+    if (testTraceLevel(level)) {
+        traceCount = traceCount + 1;
+        final text = '${fn()}';
+        console.log(text);
+    }
+}
+
 types.Some<int>? replStart() => null;
 
 void trace(TraceLevel level, String Function() fn, String Function() getLocals) {
-    if (traceEnabled && (level.compareTo(traceLevel) >= 0)) {
-        traceCount = traceCount + 1;
+    traceRaw(level, () {
         final trimChars_2 = [32, 47];
         final types.Some<int>? matchValue = replStart();
-        late final DateTime tmp_capture_1;
+        late final DateTime tmp_capture;
         if (matchValue == null) {
-            tmp_capture_1 = date.now();
+            tmp_capture = date.now();
         } else {
             final t = time_span.fromTicks(date.getTicks(date.now()) - types.value(matchValue));
-            tmp_capture_1 = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t), time_span.microseconds(t));
+            tmp_capture = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t), time_span.microseconds(t));
         }
-        final text = string.trimEnd(string.trimStart(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [date.toString(tmp_capture_1, 'HH:mm:ss'), traceCount, level, fn(), getLocals()])), <int>[]), trimChars_2);
-        console.log(text);
-    }
+        return string.trimEnd(string.trimStart(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [date.toString(tmp_capture, 'HH:mm:ss'), traceCount, level, fn(), getLocals()])), <int>[]), trimChars_2);
+    });
 }
 

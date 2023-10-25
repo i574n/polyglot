@@ -61,11 +61,11 @@ def roll_within_bounds(log: Optional[Callable[[str], None]], max: int, rolls: FS
     match_value: Optional[Tuple[int, FSharpList[int]]] = accumulate_dice_rolls(log, rolls, length(rolls) - 1, 0)
     (pattern_matching_result, result_1) = (None, None)
     if match_value is not None:
-        def _arrow3(__unit: None=None, log: Any=log, max: int=max, rolls: Any=rolls) -> bool:
+        def _arrow2(__unit: None=None, log: Any=log, max: int=max, rolls: Any=rolls) -> bool:
             result: int = match_value[0] or 0
             return (result <= max) if (result >= 1) else False
 
-        if _arrow3():
+        if _arrow2():
             pattern_matching_result = 0
             result_1 = match_value[0]
 
@@ -103,7 +103,7 @@ def rotate_numbers(max: int, items: IEnumerable_1[int]) -> IEnumerable_1[int]:
 
 def create_sequential_roller(list_1: FSharpList[__A]) -> Callable[[], __A]:
     current_index: int = 0
-    def _arrow4(__unit: None=None, list_1: FSharpList[Any]=list_1) -> __A:
+    def _arrow3(__unit: None=None, list_1: FSharpList[Any]=list_1) -> __A:
         nonlocal current_index
         match_value: Optional[__A] = try_item(current_index, list_1)
         if match_value is None:
@@ -115,11 +115,11 @@ def create_sequential_roller(list_1: FSharpList[__A]) -> Callable[[], __A]:
             return item
 
 
-    return _arrow4
+    return _arrow3
 
 
 def roll_progressively(log: Optional[Callable[[str], None]], roll: Callable[[], int], reroll: bool, max: int) -> int:
-    def _arrow5(__unit: None=None, log: Any=log, roll: Any=roll, reroll: bool=reroll, max: int=max) -> int:
+    def _arrow4(__unit: None=None, log: Any=log, roll: Any=roll, reroll: bool=reroll, max: int=max) -> int:
         max_1: int = max or 0
         def loop(n_mut: int, p_mut: int) -> int:
             while True:
@@ -140,7 +140,7 @@ def roll_progressively(log: Optional[Callable[[str], None]], roll: Callable[[], 
 
         return 1 if (max_1 == 1) else loop(0, 1)
 
-    power: int = (_arrow5() - 1) or 0
+    power: int = (_arrow4() - 1) or 0
     def loop_1(rolls_mut: FSharpList[int], size_mut: int, log: Any=log, roll: Any=roll, reroll: bool=reroll, max: int=max) -> int:
         while True:
             (rolls, size) = (rolls_mut, size_mut)
@@ -174,10 +174,10 @@ def roll_progressively(log: Optional[Callable[[str], None]], roll: Callable[[], 
                     return result_1
 
                 elif pattern_matching_result == 1:
-                    def _arrow6(_arg: int, rolls: Any=rolls, size: int=size) -> int:
+                    def _arrow5(_arg: int, rolls: Any=rolls, size: int=size) -> int:
                         return roll()
 
-                    rolls_mut = initialize(power, _arrow6)
+                    rolls_mut = initialize(power, _arrow5)
                     size_mut = power
                     continue
 
@@ -193,21 +193,21 @@ def roll_progressively(log: Optional[Callable[[str], None]], roll: Callable[[], 
 
 
 def main(args: Array[str]) -> int:
-    def _arrow8(__unit: None=None, args: Any=args) -> Callable[[str], None]:
+    def _arrow7(__unit: None=None, args: Any=args) -> Callable[[str], None]:
         clo: Callable[[str], None] = to_console(printf("%s"))
-        def _arrow7(arg: str) -> None:
+        def _arrow6(arg: str) -> None:
             clo(arg)
 
-        return _arrow7
+        return _arrow6
 
-    result: Optional[int] = roll_within_bounds(_arrow8(), 2000, of_array([1, 5, 4, 4, 5]))
-    def _arrow9(__unit: None=None, args: Any=args) -> str:
+    result: Optional[int] = roll_within_bounds(_arrow7(), 2000, of_array([1, 5, 4, 4, 5]))
+    def _arrow8(__unit: None=None, args: Any=args) -> str:
         return ("main / result: " + str(default_arg(result, -1))) + ""
 
-    def _arrow10(__unit: None=None, args: Any=args) -> str:
+    def _arrow9(__unit: None=None, args: Any=args) -> str:
         return ""
 
-    trace(TraceLevel(1), _arrow9, _arrow10)
+    trace(TraceLevel(1), _arrow8, _arrow9)
     return 0
 
 

@@ -91,7 +91,7 @@ module Runtime =
                 | None -> ()
 
                 trace
-                    Debug
+                    Verbose
                     (fun () -> $"> {e.Data}")
                     Common.getLocals
 
