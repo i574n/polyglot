@@ -8315,9 +8315,9 @@ System.Exception: test
 <span class="n">let</span> <span class="n">mutable</span> <span class="n">traceDump</span> <span class="o">=</span> <span class="n">false</span>
 
 <span class="n">let</span> <span class="n">private</span> <span class="n">replStart</span> <span class="o">=</span>
-<span class="c1">#if INTERACTIVE</span>
+<span class="c1">#if INTERACTIVE || !FABLE_COMPILER</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="n">System</span><span class="o">.</span><span class="n">Reflection</span><span class="o">.</span><span class="n">Assembly</span><span class="o">.</span><span class="n">GetEntryAssembly</span><span class="p">()</span><span class="o">.</span><span class="n">GetName</span><span class="p">()</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="s2">"dotnet-repl"</span>
+        <span class="k">if</span> <span class="n">System</span><span class="o">.</span><span class="n">Reflection</span><span class="o">.</span><span class="n">Assembly</span><span class="o">.</span><span class="n">GetEntryAssembly</span><span class="p">()</span><span class="o">.</span><span class="n">GetName</span><span class="p">()</span><span class="o">.</span><span class="n">Name</span> <span class="o">&lt;&gt;</span> <span class="s2">"Microsoft.DotNet.Interactive.App"</span>
         <span class="n">then</span> <span class="n">Some</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span><span class="o">.</span><span class="n">Ticks</span>
         <span class="k">else</span> <span class="kc">None</span>
     <span class="o">|&gt;</span> <span class="n">memoize</span>

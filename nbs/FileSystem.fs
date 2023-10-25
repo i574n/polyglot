@@ -29,13 +29,14 @@ module FileSystem =
         let tempFolder = createTempDirectoryName ()
         let result = System.IO.Directory.CreateDirectory tempFolder
 
-        let getLocals () =
-            $"tempFolder: {tempFolder} / result: {({|
-                Exists = result.Exists
-                CreationTime = result.CreationTime
-            |})} {getLocals ()}"
+        if not result.Exists then
+            let getLocals () =
+                $"tempFolder: {tempFolder} / result: {({|
+                    Exists = result.Exists
+                    CreationTime = result.CreationTime
+                |})} {getLocals ()}"
 
-        trace Debug (fun () -> "createTempDirectory") getLocals
+            trace Debug (fun () -> "createTempDirectory") getLocals
 
         tempFolder
 
@@ -105,7 +106,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
                     trace Debug (fun () -> "waitForFileAccess") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -145,7 +146,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
                     trace Debug (fun () -> "deleteDirectoryAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -161,7 +162,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path} / ex: {ex |> printException} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warning (fun () -> "deleteFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -178,7 +179,7 @@ module FileSystem =
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () =
-                        $"oldPath: {oldPath} / newPath: {newPath} / ex: {ex |> printException} / {getLocals ()}"
+                        $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
                     trace Warning (fun () -> "moveFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -206,7 +207,7 @@ module FileSystem =
 
     let inline watchDirectoryWithFilter filter shouldReadContent path =
         let fullPath = path |> System.IO.Path.GetFullPath
-        let getLocals () = $"fullPath: {fullPath} / filter: {filter} / {getLocals ()}"
+        let getLocals () = $"filter: {filter} / {getLocals ()}"
 
         let watcher =
             new System.IO.FileSystemWatcher (

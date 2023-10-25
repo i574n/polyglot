@@ -118,9 +118,9 @@ module Common =
     let mutable traceDump = false
 
     let private replStart =
-#if INTERACTIVE
+#if INTERACTIVE || !FABLE_COMPILER
         fun () ->
-            if System.Reflection.Assembly.GetEntryAssembly().GetName().Name = "dotnet-repl"
+            if System.Reflection.Assembly.GetEntryAssembly().GetName().Name <> "Microsoft.DotNet.Interactive.App"
             then Some System.DateTime.Now.Ticks
             else None
         |> memoize

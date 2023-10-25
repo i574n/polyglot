@@ -223,7 +223,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
     let output = output |> Seq.rev |> String.concat "\n"
 
     trace Debug (fun () ->
-        $"executeAsync / exitCode: {exitCode} / proc.Id: {proc.Id} / output.Length: {output.Length}"
+        $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}"
     ) getLocals
 
     return exitCode, output
