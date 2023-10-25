@@ -17,7 +17,7 @@
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
 #r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
-#r @"../../../../../../../.nuget/packages/feliz.viewengine/0.24.0/lib/netstandard2.0/Feliz.ViewEngine.dll"
+#r @"../../../../../../../.nuget/packages/falco.markup/1.0.2/lib/netstandard2.0/Falco.Markup.dll"
 
 #!fsharp
 
@@ -32,7 +32,7 @@
 #!fsharp
 
 open FileSystem.Operators
-open Feliz.ViewEngine
+open Falco.Markup
 
 #!fsharp
 
@@ -70,16 +70,15 @@ let rec generateHtml fsNode =
         | size -> $"%.2f{size} B"
     match fsNode with
     | File (fileName, relativePath, size) ->
-        Html.div [
-            prop.children [
-                Html.rawText "&#128196; "
-                Html.a [
-                    prop.href $"""{relativePath}{if relativePath = "" then "" else "/"}{fileName}"""
-                    prop.text fileName
-                ]
-                Html.span [
-                    prop.text $" ({size |> sizeLabel})"
-                ]
+        Elem.div [] [
+            Text.raw "&#128196; "
+            Elem.a [
+                Attr.href $"""{relativePath}{if relativePath = "" then "" else "/"}{fileName}"""
+            ] [
+                Text.raw fileName
+            ]
+            Elem.span [] [
+                Text.raw $" ({size |> sizeLabel})"
             ]
         ]
     | Folder (folderName, relativePath, children) ->
@@ -92,33 +91,27 @@ let rec generateHtml fsNode =
                     | Root children -> loop children
                 )
             loop children
-        Html.details [
-            prop.isOpen true
-            prop.children [
-                Html.summary [
-                    prop.children [
-                        Html.rawText "&#128194; "
-                        Html.a [
-                            prop.href relativePath
-                            prop.text folderName
-                        ]
-                        Html.span [
-                            prop.text $" ({size |> sizeLabel})"
-                        ]
-                    ]
+        Elem.details [
+            Attr.open' "true"
+        ] [
+            Elem.summary [] [
+                Text.raw "&#128194; "
+                Elem.a [
+                    Attr.href relativePath
+                ] [
+                    Text.raw folderName
                 ]
-                Html.div [
-                    prop.children [
-                        yield! children |> List.map generateHtml
-                    ]
+                Elem.span [] [
+                    Text.raw $" ({size |> sizeLabel})"
                 ]
+            ]
+            Elem.div [] [
+                yield! children |> List.map generateHtml
             ]
         ]
     | Root children ->
-        Html.div [
-            prop.children [
-                yield! children |> List.map generateHtml
-            ]
+        Elem.div [] [
+            yield! children |> List.map generateHtml
         ]
 
 let generateHtmlForFileSystem root =
@@ -142,7 +135,7 @@ details > div {{
   </style>
 </head>
 <body>
-  {root |> generateHtml |> Render.htmlView}
+  {root |> generateHtml |> renderNode}
 </body>
 </html>
 """
@@ -162,7 +155,7 @@ let rec loop d n = async {
             |> FileSystem.writeAllTextAsync (tempFolder </> d </> $"file.txt")
         do! loop $"{d}/{n}" (n - 1)
 }
-loop "root" 3
+loop "_.root" 3
 |> Async.RunSynchronously
 
 let html =
@@ -190,7 +183,7 @@ details > div {
   </style>
 </head>
 <body>
-  <div><details open="true"><summary>&#128194; <a href="root">root</a><span> (10.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="root/3">3</a><span> (6.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="root/3/2">2</a><span> (3.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="root/3/2/1">1</a><span> (1.00 B)</span></summary><div><div>&#128196; <a href="root/3/2/1/file.txt">file.txt</a><span> (1.00 B)</span></div></div></details><div>&#128196; <a href="root/3/2/file.txt">file.txt</a><span> (2.00 B)</span></div></div></details><div>&#128196; <a href="root/3/file.txt">file.txt</a><span> (3.00 B)</span></div></div></details><div>&#128196; <a href="root/file.txt">file.txt</a><span> (4.00 B)</span></div></div></details></div>
+  <div><details open="true"><summary>&#128194; <a href="_.root">_.root</a><span> (10.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="_.root/3">3</a><span> (6.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="_.root/3/2">2</a><span> (3.00 B)</span></summary><div><details open="true"><summary>&#128194; <a href="_.root/3/2/1">1</a><span> (1.00 B)</span></summary><div><div>&#128196; <a href="_.root/3/2/1/file.txt">file.txt</a><span> (1.00 B)</span></div></div></details><div>&#128196; <a href="_.root/3/2/file.txt">file.txt</a><span> (2.00 B)</span></div></div></details><div>&#128196; <a href="_.root/3/file.txt">file.txt</a><span> (3.00 B)</span></div></div></details><div>&#128196; <a href="_.root/file.txt">file.txt</a><span> (4.00 B)</span></div></div></details></div>
 </body>
 </html>
 """

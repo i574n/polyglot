@@ -5,7 +5,7 @@ namespace Polyglot
 module DirTreeHtml =
 
     open FileSystem.Operators
-    open Feliz.ViewEngine
+    open Falco.Markup
 
     type FileSystemNode =
         | File of string * string * int64
@@ -41,16 +41,15 @@ module DirTreeHtml =
             | size -> $"%.2f{size} B"
         match fsNode with
         | File (fileName, relativePath, size) ->
-            Html.div [
-                prop.children [
-                    Html.rawText "&#128196; "
-                    Html.a [
-                        prop.href $"""{relativePath}{if relativePath = "" then "" else "/"}{fileName}"""
-                        prop.text fileName
-                    ]
-                    Html.span [
-                        prop.text $" ({size |> sizeLabel})"
-                    ]
+            Elem.div [] [
+                Text.raw "&#128196; "
+                Elem.a [
+                    Attr.href $"""{relativePath}{if relativePath = "" then "" else "/"}{fileName}"""
+                ] [
+                    Text.raw fileName
+                ]
+                Elem.span [] [
+                    Text.raw $" ({size |> sizeLabel})"
                 ]
             ]
         | Folder (folderName, relativePath, children) ->
@@ -63,33 +62,27 @@ module DirTreeHtml =
                         | Root children -> loop children
                     )
                 loop children
-            Html.details [
-                prop.isOpen true
-                prop.children [
-                    Html.summary [
-                        prop.children [
-                            Html.rawText "&#128194; "
-                            Html.a [
-                                prop.href relativePath
-                                prop.text folderName
-                            ]
-                            Html.span [
-                                prop.text $" ({size |> sizeLabel})"
-                            ]
-                        ]
+            Elem.details [
+                Attr.open' "true"
+            ] [
+                Elem.summary [] [
+                    Text.raw "&#128194; "
+                    Elem.a [
+                        Attr.href relativePath
+                    ] [
+                        Text.raw folderName
                     ]
-                    Html.div [
-                        prop.children [
-                            yield! children |> List.map generateHtml
-                        ]
+                    Elem.span [] [
+                        Text.raw $" ({size |> sizeLabel})"
                     ]
+                ]
+                Elem.div [] [
+                    yield! children |> List.map generateHtml
                 ]
             ]
         | Root children ->
-            Html.div [
-                prop.children [
-                    yield! children |> List.map generateHtml
-                ]
+            Elem.div [] [
+                yield! children |> List.map generateHtml
             ]
 
     let generateHtmlForFileSystem root =
@@ -113,7 +106,7 @@ details > div {{
   </style>
 </head>
 <body>
-  {root |> generateHtml |> Render.htmlView}
+  {root |> generateHtml |> renderNode}
 </body>
 </html>
 """
