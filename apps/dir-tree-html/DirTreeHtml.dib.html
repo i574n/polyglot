@@ -7611,6 +7611,7 @@ a.anchor-link {
         <span class="o">|</span> <span class="n">size</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">%.2f{size}</span><span class="s2"> B"</span>
     <span class="k">match</span> <span class="n">fsNode</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">File</span> <span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">relativePath</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span> <span class="o">-&gt;</span>
+        <span class="n">printfn</span> <span class="err">$</span><span class="s2">"File / fileName: </span><span class="si">{fileName}</span><span class="s2"> / relativePath: </span><span class="si">{relativePath}</span><span class="s2"> / size: </span><span class="si">{size}</span><span class="s2">"</span>
         <span class="n">Elem</span><span class="o">.</span><span class="n">div</span> <span class="p">[]</span> <span class="p">[</span>
             <span class="n">Text</span><span class="o">.</span><span class="n">raw</span> <span class="s2">"&amp;#128196; "</span>
             <span class="n">Elem</span><span class="o">.</span><span class="n">a</span> <span class="p">[</span>
@@ -7623,6 +7624,7 @@ a.anchor-link {
             <span class="p">]</span>
         <span class="p">]</span>
     <span class="o">|</span> <span class="n">Folder</span> <span class="p">(</span><span class="n">folderName</span><span class="p">,</span> <span class="n">relativePath</span><span class="p">,</span> <span class="n">children</span><span class="p">)</span> <span class="o">-&gt;</span>
+        <span class="n">printfn</span> <span class="err">$</span><span class="s2">"Folder / folderName: </span><span class="si">{folderName}</span><span class="s2"> / relativePath: </span><span class="si">{relativePath}</span><span class="s2">"</span>
         <span class="n">let</span> <span class="n">size</span> <span class="o">=</span>
             <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">children</span> <span class="o">=</span>
                 <span class="n">children</span>
@@ -7781,7 +7783,15 @@ details > div {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;!DOCTYPE html&gt;
+<pre>Folder / folderName: _.root / relativePath: _.root
+Folder / folderName: 3 / relativePath: _.root/3
+Folder / folderName: 2 / relativePath: _.root/3/2
+Folder / folderName: 1 / relativePath: _.root/3/2/1
+File / fileName: file.txt / relativePath: _.root/3/2/1 / size: 1
+File / fileName: file.txt / relativePath: _.root/3/2 / size: 2
+File / fileName: file.txt / relativePath: _.root/3 / size: 3
+File / fileName: file.txt / relativePath: _.root / size: 4
+&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
