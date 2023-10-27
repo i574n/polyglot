@@ -2,7 +2,7 @@
 name = "exercism"
 version = "0.0.1"
 edition = "2021"
-workspace = "../../"
+workspace = "../../../"
 
 
 [dependencies]
