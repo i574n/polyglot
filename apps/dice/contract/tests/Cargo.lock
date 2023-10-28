@@ -979,7 +979,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "dice"
+name = "dice_contract_tests"
 version = "0.0.1"
 dependencies = [
  "anyhow",

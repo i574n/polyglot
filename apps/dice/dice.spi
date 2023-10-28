@@ -1,13 +1,9 @@
-// // # Dice (Polyglot)
-
-// // ## sixthPowerSequence
+// // # dice (Polyglot)
 
 // // ## sixth_power_sequence
 
 inl sixth_power_sequence () =
     stream.iterate ((*) 6) 1i32
-
-// // ## accumulateDiceRolls
 
 // // ## accumulate_dice_rolls
 
@@ -35,8 +31,6 @@ inl accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
             join body acc power rolls
     loop acc power rolls
 
-// // ## rollWithinBounds
-
 // // ## roll_within_bounds
 
 inl roll_within_bounds (log : option (string -> ())) max rolls =
@@ -44,8 +38,6 @@ inl roll_within_bounds (log : option (string -> ())) max rolls =
     match accumulate_dice_rolls log rolls power 0 with
     | Some (result, _) when result >= 1 && result <= max => Some result
     | _ => None
-
-// // ## calculateDiceCount
 
 // // ## calculate_dice_count
 
@@ -60,26 +52,20 @@ inl calculate_dice_count (log : option (string -> ())) max =
     then 1
     else loop 0 1
 
-// // ## rollDice
-
 // // ## roll_dice
 
 inl roll_dice () : i32 =
     $"System.Random().Next (1, 7)"
 
-// // ## rotateNumber
+// // ## rotate_number
 
 inl rotate_number max n =
     (n - 1 + max) % max + 1
-
-// // ## rotateNumbers
 
 // // ## rotate_numbers
 
 inl rotate_numbers max items =
     items |> stream.map (rotate_number max)
-
-// // ## createSequentialRoller
 
 // // ## create_sequential_roller
 
@@ -104,8 +90,6 @@ inl create_sequential_roller list =
             loop ()
     loop
 
-// // ## rollProgressively
-
 // // ## roll_progressively
 
 inl roll_progressively (log : option (string -> ())) roll reroll max =
@@ -119,5 +103,3 @@ inl roll_progressively (log : option (string -> ())) roll reroll max =
             | _ when reroll => loop (listm.init power (fun _ => roll ())) power
             | _ => loop (roll () :: rolls) (size + 1)
     loop [] 0
-
-// // ## main

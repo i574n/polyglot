@@ -63,7 +63,7 @@ impl State {
         let hash_u8 = env::keccak512(&entropy);
         let hash_vec = hash_u8.iter().map(|x| *x as i32).collect::<Vec<i32>>();
         let hash_seq = fable_library_rust::Seq_::ofList((&hash_vec).into());
-        let rolls = dice::Polyglot::Dice::rotateNumbers(6, hash_seq);
+        let rolls = dice_fsharp::Polyglot::dice_fsharp::rotateNumbers(6, hash_seq);
         let rolls_list = fable_library_rust::List_::ofSeq(rolls);
 
         let signer_account_id_log = signer_account_id.as_str();
@@ -71,8 +71,8 @@ impl State {
 
         log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_vec: {hash_vec:?} / rolls_list: {rolls_list_log:?}"));
 
-        let sequential_roll = dice::Polyglot::Dice::createSequentialRoller(rolls_list);
-        let result = dice::Polyglot::Dice::rollProgressively(
+        let sequential_roll = dice_fsharp::Polyglot::dice_fsharp::createSequentialRoller(rolls_list);
+        let result = dice_fsharp::Polyglot::dice_fsharp::rollProgressively(
             Some(Self::get_logger()),
             sequential_roll,
             false,
@@ -86,7 +86,7 @@ impl State {
         log!(format!(
             "roll_within_bounds / max: {max:#?} / rolls: {rolls:?}"
         ));
-        dice::Polyglot::Dice::rollWithinBounds(Some(Self::get_logger()), max, (&rolls).into())
+        dice_fsharp::Polyglot::dice_fsharp::rollWithinBounds(Some(Self::get_logger()), max, (&rolls).into())
     }
 
     #[result_serializer(borsh)]

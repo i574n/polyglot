@@ -2,15 +2,13 @@
 namespace Polyglot
 #endif
 
-module Dice =
+module dice_fsharp =
 
     open Common
 
     /// ## sixthPowerSequence
 
     let sixthPowerSequence = 1 |> Seq.unfold (fun state -> Some (state, state * 6)) |> Seq.cache
-
-    /// ## sixth_power_sequence
 
     /// ## accumulateDiceRolls
 
@@ -31,8 +29,6 @@ module Dice =
             log |> Option.iter ((|>) $"accumulateDiceRolls / power: {power} / acc: {acc} / roll: {roll}")
             accumulateDiceRolls log rest (power - 1) acc
 
-    /// ## accumulate_dice_rolls
-
     /// ## rollWithinBounds
 
     let rollWithinBounds log max rolls =
@@ -40,8 +36,6 @@ module Dice =
         match accumulateDiceRolls log rolls power 0 with
         | Some (result, _) when result >= 1 && result <= max -> Some result
         | _ -> None
-
-    /// ## roll_within_bounds
 
     /// ## calculateDiceCount
 
@@ -56,8 +50,6 @@ module Dice =
         then 1
         else loop 0 1
 
-    /// ## calculate_dice_count
-
     /// ## rollDice
 
 #if FABLE_COMPILER_RUST
@@ -71,8 +63,6 @@ module Dice =
         random.Next (1, 7)
 #endif
 
-    /// ## roll_dice
-
     /// ## rotateNumber
 
     let rotateNumber max n =
@@ -82,8 +72,6 @@ module Dice =
 
     let rotateNumbers max items =
         items |> Seq.map (rotateNumber max)
-
-    /// ## rotate_numbers
 
     /// ## createSequentialRoller
 
@@ -96,8 +84,6 @@ module Dice =
                 item
             | None ->
                 failwith "createSequentialRoller / End of list"
-
-    /// ## create_sequential_roller
 
     /// ## rollProgressively
 
@@ -112,8 +98,6 @@ module Dice =
                 | _ when reroll -> loop (List.init power (fun _ -> roll ())) power
                 | _ -> loop (roll () :: rolls) (size + 1)
         loop [] 0
-
-    /// ## roll_progressively
 
     /// ## main
 

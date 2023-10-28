@@ -15,7 +15,7 @@ Copy-Item -Force target/wasm32-unknown-unknown/release/dice_contract.wasm dist/d
 if (!$fast) {
     $nearSandboxExe = DownloadNearSandbox
 
-    { ../tests/target/release/dice } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }
+    { ./tests/target/release/dice_contract_tests } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }
 }
 
 if ($env:CI) {

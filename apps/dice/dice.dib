@@ -1,0 +1,287 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# dice (Polyglot)
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## sixth_power_sequence
+
+#!spiral
+
+inl sixth_power_sequence () =
+    stream.iterate ((*) 6) 1i32
+
+#!spiral
+
+// // test
+
+sixth_power_sequence ()
+|> stream.take_while (fun _ i => i <= 7i32)
+|> stream.to_list
+|> _equal [ 1i32; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+
+#!markdown
+
+## accumulate_dice_rolls
+
+#!spiral
+
+inl accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
+    inl rec body acc power rolls =
+        match rolls with
+        | _ when power < 0 =>
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc}\"")
+            Some (acc + 1, rolls)
+        | [] => None
+        | roll :: rest when roll > 1 =>
+            inl coeff = sixth_power_sequence () |> stream.item power
+            inl value = (roll - 1) * coeff
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll} / value: {!value}\""
+            )
+            loop (acc + value) (power - 1) rest
+        | roll :: rest =>
+            log |> optionm'.iter ((|>) $"$\"accumulate_dice_rolls / power: {!power} / acc: {!acc} / roll: {!roll}\"")
+            loop acc (power - 1) rest
+    and inl loop acc power rolls =
+        if var_is rolls |> not
+        then body acc power rolls
+        else
+            inl acc = dyn acc
+            join body acc power rolls
+    loop acc power rolls
+
+#!spiral
+
+// // test
+
+accumulate_dice_rolls (Some console.write_line) [ 6; 5; 4; 3; 2 ] 0i32 1000
+|> _equal (Some (1006, [ 5; 4; 3; 2 ]))
+
+#!spiral
+
+// // test
+
+accumulate_dice_rolls (Some console.write_line) [ 6; 5; 4; 3; 2 ] 1i32 1000
+|> _equal (Some (1035, [ 4; 3; 2 ]))
+
+#!spiral
+
+// // test
+
+accumulate_dice_rolls (Some console.write_line) [ 6; 5; 4; 3; 2 ] 2i32 1000
+|> _equal (Some (1208, [ 3; 2 ]))
+
+#!markdown
+
+## roll_within_bounds
+
+#!spiral
+
+inl roll_within_bounds (log : option (string -> ())) max rolls =
+    inl power = listm.length rolls - 1i32
+    match accumulate_dice_rolls log rolls power 0 with
+    | Some (result, _) when result >= 1 && result <= max => Some result
+    | _ => None
+
+#!spiral
+
+// // test
+
+roll_within_bounds (Some console.write_line) 2000 [ 1; 5; 4; 4; 5 ]
+|> _equal (Some 995)
+
+#!spiral
+
+// // test
+
+roll_within_bounds (Some console.write_line) 2000 [ 2; 2; 6; 4; 5 ]
+|> _equal (Some 1715)
+
+#!spiral
+
+// // test
+
+roll_within_bounds (Some console.write_line) 2000 [ 4; 1; 1; 2; 3 ]
+|> _equal None
+
+#!markdown
+
+## calculate_dice_count
+
+#!spiral
+
+inl calculate_dice_count (log : option (string -> ())) max =
+    inl rec loop n p =
+        if p < max
+        then loop (n + 1) (p * 6)
+        else
+            log |> optionm'.iter ((|>) $"$\"calculate_dice_count / max: {!max} / n: {!n} / p: {!p}\"")
+            n
+    if max = 1
+    then 1
+    else loop 0 1
+
+#!spiral
+
+// // test
+
+calculate_dice_count (Some console.write_line) 36i32
+|> _equal 2i32
+
+#!spiral
+
+// // test
+
+calculate_dice_count (Some console.write_line) 7777i32
+|> _equal 6i32
+
+#!markdown
+
+## roll_dice
+
+#!spiral
+
+inl roll_dice () : i32 =
+    $"System.Random().Next (1, 7)"
+
+#!markdown
+
+## rotate_number
+
+#!spiral
+
+inl rotate_number max n =
+    (n - 1 + max) % max + 1
+
+#!markdown
+
+## rotate_numbers
+
+#!spiral
+
+inl rotate_numbers max items =
+    items |> stream.map (rotate_number max)
+
+#!spiral
+
+// // test
+
+listm'.init_series -1i32 14 1
+|> stream.from_list
+|> rotate_numbers 6
+|> stream.to_list
+|> _equal [ 5; 6; 1; 2; 3; 4; 5; 6; 1; 2; 3; 4; 5; 6; 1; 2 ]
+
+#!markdown
+
+## create_sequential_roller
+
+#!spiral
+
+inl create_sequential_roller list =
+    inl s = list |> listm.rev |> listm.append list |> stream.from_list |> stream.memoize
+    inl current_index = mut 0i32
+    inl acc = mut 1
+    inl len = mut -1
+    let rec loop () =
+        match s () |> stream.try_item *current_index with
+        | Some item =>
+            current_index <- *current_index + 1
+            item
+        | None =>
+            if *len = -1
+            then len <- *current_index
+            acc <-
+                if *acc >= *len
+                then 1
+                else *acc + 1
+            current_index <- *acc - 1
+            loop ()
+    loop
+
+#!spiral
+
+// // test
+
+inl sequential_roll = create_sequential_roller [ 1i32; 2; 3; 4 ]
+
+am.init 20i32 (ignore >> sequential_roll)
+|> _equal (a ;[ 1; 2; 3; 4; 4; 3; 2; 1; 2; 3; 4; 4; 3; 2; 1; 3; 4; 4; 3; 2 ] : a i32 i32)
+
+#!markdown
+
+## roll_progressively
+
+#!spiral
+
+inl roll_progressively (log : option (string -> ())) roll reroll max =
+    inl power = (calculate_dice_count log max) - 1i32
+    let rec loop rolls size =
+        if size < power + 1
+        then loop (roll () :: rolls) (size + 1)
+        else
+            match accumulate_dice_rolls log rolls power 0 with
+            | Some (result, _) when result <= max => result
+            | _ when reroll => loop (listm.init power (fun _ => roll ())) power
+            | _ => loop (roll () :: rolls) (size + 1)
+    loop [] 0
+
+#!spiral
+
+// // test
+
+roll_progressively None roll_dice false 1
+|> _equal 1
+
+#!spiral
+
+// // test
+
+inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 1 ]
+
+roll_progressively (Some console.write_line) sequential_roll false 2000
+|> _equal 995
+
+#!spiral
+
+// // test
+
+inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 2 ]
+
+roll_progressively (Some console.write_line) sequential_roll false 2000
+|> _equal 1678
+
+#!spiral
+
+// // test
+
+listm'.init_series 1i32 40 1
+|> listm.map (fun _ => roll_progressively None roll_dice false 10)
+|> listm'.group_by id
+|> listm.map (fun (k, v) => k, (listm.length v : i32))
+|> listm.toArray
+|> fun (ar : a i32 _) =>
+    $"!ar |> Array.sortBy (fun (struct (a, b)) -> a)" : a i32 $"struct (int32 * int32)"
+
+#!spiral
+
+// // test
+// // print_code=false
+
+listm'.init_series 1i32 40 1
+|> listm.map (fun _ => roll_progressively None roll_dice true 10)
+|> listm'.group_by id
+|> listm.map (fun (k, v) => k, (listm.length v : i32))
+|> listm.toArray
+|> fun (ar : a i32 _) =>
+    $"!ar |> Array.sortBy (fun (struct (a, b)) -> a)" : a i32 $"struct (int32 * int32)"

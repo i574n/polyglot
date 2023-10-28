@@ -34,7 +34,7 @@ fn print_usd(result: near_workspaces::result::ExecutionFinalResult) {
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let contract_path = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../contract/dist/chat.wasm")
+        .join("../dist/chat.wasm")
         .display()
         .to_string();
 

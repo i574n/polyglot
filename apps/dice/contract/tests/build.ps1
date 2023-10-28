@@ -3,8 +3,8 @@ param(
 )
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
-. ../../../scripts/core.ps1
-. ../../../scripts/chain.ps1
+. ../../../../scripts/core.ps1
+. ../../../../scripts/chain.ps1
 
 
 $nearSandboxExe = DownloadNearSandbox

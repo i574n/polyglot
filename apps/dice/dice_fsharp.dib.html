@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Builder.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>dice_fsharp.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7497,7 +7497,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Builder-(Polyglot)">Builder (Polyglot)<a class="anchor-link" href="#Builder-(Polyglot)">¶</a></h1>
+<h1 id="dice_fsharp-(Polyglot)">dice_fsharp (Polyglot)<a class="anchor-link" href="#dice_fsharp-(Polyglot)">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7523,11 +7523,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
 </pre></div>
 </div>
 </div>
@@ -7541,45 +7537,24 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
-<span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Async.fs</span>
-<span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Networking.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Runtime.fs</span>
-<span class="c1">#!import ../../lib/fsharp/FileSystem.fs</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
-<span class="nb">open</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">Operators</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buildProject">buildProject<a class="anchor-link" href="#buildProject">¶</a></h2>
+<h2 id="sixthPowerSequence">sixthPowerSequence<a class="anchor-link" href="#sixthPowerSequence">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7587,41 +7562,40 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
-    <span class="n">let</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetExtension</span>
-
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"fullPath: </span><span class="si">{fullPath}</span><span class="s2"> / {getLocals ()}"</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"buildProject"</span><span class="p">)</span> <span class="n">getLocals</span>
-
-    <span class="k">match</span> <span class="n">extension</span> <span class="k">with</span>
-    <span class="o">|</span> <span class="s2">".fsproj"</span> <span class="o">-&gt;</span> <span class="p">()</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"Invalid project file"</span>
-
-    <span class="n">let</span> <span class="n">runtimes</span> <span class="o">=</span>
-        <span class="n">runtime</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="n">List</span><span class="o">.</span><span class="n">singleton</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">[</span> <span class="s2">"linux-x64"</span><span class="p">;</span> <span class="s2">"win-x64"</span> <span class="p">]</span>
-
-    <span class="k">return</span><span class="err">!</span>
-        <span class="n">runtimes</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">runtime</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-            <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">_result</span> <span class="o">=</span>
-                <span class="n">Runtime</span><span class="o">.</span><span class="n">executeWithOptionsAsync</span>
-                    <span class="p">{</span>
-                        <span class="n">Command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet publish ""</span><span class="si">{path}</span><span class="s2">"" --configuration Release --output ../dist --runtime </span><span class="si">{runtime}</span><span class="s2">"</span>
-                        <span class="n">CancellationToken</span> <span class="o">=</span> <span class="kc">None</span>
-                        <span class="n">OnLine</span> <span class="o">=</span> <span class="kc">None</span>
-                        <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">fileDir</span>
-                    <span class="p">}</span>
-
-            <span class="k">return</span> <span class="n">exitCode</span>
-        <span class="p">})</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Array</span><span class="o">.</span><span class="n">sum</span>
-<span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">sixthPowerSequence</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">unfold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">state</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">state</span> <span class="o">*</span> <span class="mi">6</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">cache</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">sixthPowerSequence</span>
+<span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">take</span> <span class="mi">8</span>
+<span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">36</span><span class="p">;</span> <span class="mi">216</span><span class="p">;</span> <span class="mi">1296</span><span class="p">;</span> <span class="mi">7776</span><span class="p">;</span> <span class="mi">46656</span><span class="p">;</span> <span class="mi">279936</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[ 1, 6, 36, 216, 1296, 7776, 46656, 279936 ]
+</pre>
 </div>
 </div>
 </div>
@@ -7633,7 +7607,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="persistCodeProject">persistCodeProject<a class="anchor-link" href="#persistCodeProject">¶</a></h2>
+<h2 id="accumulateDiceRolls">accumulateDiceRolls<a class="anchor-link" href="#accumulateDiceRolls">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7645,73 +7619,28 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {getLocals ()}"</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"persistCodeProject"</span><span class="p">)</span> <span class="n">getLocals</span>
-
-    <span class="n">let</span> <span class="n">targetPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target"</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">targetPath</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-
-    <span class="n">let</span> <span class="n">filePath</span> <span class="o">=</span> <span class="n">targetPath</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fs"</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">filePath</span>
-
-    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
-
-    <span class="n">let</span> <span class="n">modulesCode</span> <span class="o">=</span>
-        <span class="n">modules</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">path</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"""&lt;Compile Include="{repositoryRoot &lt;/&gt; path}" /&gt;"""</span><span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
-
-    <span class="n">let</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">targetPath</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fsproj"</span>
-    <span class="n">let</span> <span class="n">fsprojCode</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"""&lt;Project Sdk="Microsoft.NET.Sdk"&gt;</span>
-<span class="s2">    &lt;PropertyGroup&gt;</span>
-<span class="s2">        &lt;TargetFramework&gt;net8.0&lt;/TargetFramework&gt;</span>
-<span class="s2">        &lt;LangVersion&gt;preview&lt;/LangVersion&gt;</span>
-<span class="s2">        &lt;RollForward&gt;Major&lt;/RollForward&gt;</span>
-<span class="s2">        &lt;TargetLatestRuntimePatch&gt;true&lt;/TargetLatestRuntimePatch&gt;</span>
-<span class="s2">        &lt;PublishAot&gt;false&lt;/PublishAot&gt;</span>
-<span class="s2">        &lt;PublishTrimmed&gt;false&lt;/PublishTrimmed&gt;</span>
-<span class="s2">        &lt;PublishSingleFile&gt;true&lt;/PublishSingleFile&gt;</span>
-<span class="s2">        &lt;SelfContained&gt;true&lt;/SelfContained&gt;</span>
-<span class="s2">        &lt;Version&gt;0.0.1-alpha.1&lt;/Version&gt;</span>
-<span class="s2">        &lt;OutputType&gt;Exe&lt;/OutputType&gt;</span>
-<span class="s2">    &lt;/PropertyGroup&gt;</span>
-
-<span class="s2">    &lt;ItemGroup&gt;</span>
-<span class="s2">        </span><span class="si">{modulesCode}</span>
-<span class="s2">        &lt;Compile Include="</span><span class="si">{filePath}</span><span class="s2">" /&gt;</span>
-<span class="s2">    &lt;/ItemGroup&gt;</span>
-
-<span class="s2">    &lt;Import Project="</span><span class="si">{repositoryRoot}</span><span class="s2">/.paket/Paket.Restore.targets" /&gt;</span>
-<span class="s2">&lt;/Project&gt;</span>
-<span class="s2">"""</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">fsprojCode</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">fsprojPath</span>
-
-    <span class="n">let</span> <span class="n">paketReferencesPath</span> <span class="o">=</span> <span class="n">targetPath</span> <span class="o">&lt;/&gt;</span> <span class="s2">"paket.references"</span>
-    <span class="n">let</span> <span class="n">paketReferencesCode</span> <span class="o">=</span>
-        <span class="s2">"FSharp.Core"</span> <span class="p">::</span> <span class="n">packages</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">paketReferencesCode</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">paketReferencesPath</span>
-
-    <span class="k">return</span> <span class="n">fsprojPath</span>
-<span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rec</span> <span class="n">accumulateDiceRolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="n">acc</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="n">rolls</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">power</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">-&gt;</span>
+        <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">iter</span> <span class="p">((</span><span class="o">|&gt;</span><span class="p">)</span> <span class="err">$</span><span class="s2">"accumulateDiceRolls / power: </span><span class="si">{power}</span><span class="s2"> / acc: </span><span class="si">{acc}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">Some</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rolls</span><span class="p">)</span>
+    <span class="o">|</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+    <span class="o">|</span> <span class="n">roll</span> <span class="p">::</span> <span class="n">rest</span> <span class="n">when</span> <span class="n">roll</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span>
+        <span class="n">let</span> <span class="n">coeff</span> <span class="o">=</span> <span class="n">sixthPowerSequence</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">item</span> <span class="n">power</span>
+        <span class="n">let</span> <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">roll</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">coeff</span>
+        <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">iter</span> <span class="p">((</span><span class="o">|&gt;</span><span class="p">)</span> <span class="err">$</span><span class="s2">"accumulateDiceRolls / </span><span class="se">\</span>
+<span class="s2">            power: </span><span class="si">{power}</span><span class="s2"> / acc: </span><span class="si">{acc}</span><span class="s2"> / roll: </span><span class="si">{roll}</span><span class="s2"> / value: </span><span class="si">{value}</span><span class="s2">"</span>
+        <span class="p">)</span>
+        <span class="n">accumulateDiceRolls</span> <span class="n">log</span> <span class="n">rest</span> <span class="p">(</span><span class="n">power</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">acc</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">roll</span> <span class="p">::</span> <span class="n">rest</span> <span class="o">-&gt;</span>
+        <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">iter</span> <span class="p">((</span><span class="o">|&gt;</span><span class="p">)</span> <span class="err">$</span><span class="s2">"accumulateDiceRolls / power: </span><span class="si">{power}</span><span class="s2"> / acc: </span><span class="si">{acc}</span><span class="s2"> / roll: </span><span class="si">{roll}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">accumulateDiceRolls</span> <span class="n">log</span> <span class="n">rest</span> <span class="p">(</span><span class="n">power</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">acc</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buildCode">buildCode<a class="anchor-link" href="#buildCode">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7719,11 +7648,63 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="n">name</span> <span class="n">code</span>
-    <span class="k">return</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">|&gt;</span> <span class="n">buildProject</span> <span class="n">runtime</span>
-<span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">accumulateDiceRolls</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">0</span> <span class="mi">1000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1006</span><span class="p">,</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>accumulateDiceRolls / power: 0 / acc: 1000 / roll: 6 / value: 5
+accumulateDiceRolls / power: -1 / acc: 1005
+FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
+      Value:       - 1006
+      - [ 5, 4, 3, 2 ]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">accumulateDiceRolls</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">1</span> <span class="mi">1000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1035</span><span class="p">,</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>accumulateDiceRolls / power: 1 / acc: 1000 / roll: 6 / value: 30
+accumulateDiceRolls / power: 0 / acc: 1030 / roll: 5 / value: 4
+accumulateDiceRolls / power: -1 / acc: 1034
+FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
+      Value:       - 1035
+      - [ 4, 3, 2 ]
+</pre>
 </div>
 </div>
 </div>
@@ -7738,12 +7719,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/test"</span>
-
-<span class="s2">"1 + 1"</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="n">tempFolder</span> <span class="s2">"test"</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">60000</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">accumulateDiceRolls</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">2</span> <span class="mi">1000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1208</span><span class="p">,</span> <span class="p">[</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -7756,44 +7733,48 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] persistCodeProject / packages: [] / modules: [] / path: C:\home\git\polyglot\apps\builder\target/test / name: test / code.Length: 5
-00:00:00 #2 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj
-00:00:00 #3 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime linux-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
-  CancellationToken = None
-  OnLine = None }
-00:00:00 #4 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:00 #5 [Verbose] &gt;   Determining projects to restore...
-00:00:01 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 479 ms).
-00:00:01 #7 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:03 #8 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:03 #9 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:04 #10 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\linux-x64\test.dll
-00:00:05 #11 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
-00:00:05 #12 [Debug] executeAsync / exitCode: 0 / output.Length: 1240
-00:00:05 #13 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime win-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
-  CancellationToken = None
-  OnLine = None }
-00:00:06 #14 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:06 #15 [Verbose] &gt;   Determining projects to restore...
-00:00:07 #16 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 346 ms).
-00:00:07 #17 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:09 #18 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:09 #19 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:09 #20 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\win-x64\test.dll
-00:00:13 #21 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
-00:00:13 #22 [Debug] executeAsync / exitCode: 0 / output.Length: 1238
-FSharpOption&lt;Int32&gt;
-      Value: 0
+<pre>accumulateDiceRolls / power: 2 / acc: 1000 / roll: 6 / value: 180
+accumulateDiceRolls / power: 1 / acc: 1180 / roll: 5 / value: 24
+accumulateDiceRolls / power: 0 / acc: 1204 / roll: 4 / value: 3
+accumulateDiceRolls / power: -1 / acc: 1207
+FSharpOption&lt;Tuple&lt;Int32,FSharpList&lt;Int32&gt;&gt;&gt;
+      Value:       - 1208
+      - [ 3, 2 ]
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rollWithinBounds">rollWithinBounds<a class="anchor-link" href="#rollWithinBounds">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rollWithinBounds</span> <span class="n">log</span> <span class="nb">max</span> <span class="n">rolls</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">power</span> <span class="o">=</span> <span class="n">List</span><span class="o">.</span><span class="n">length</span> <span class="n">rolls</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">match</span> <span class="n">accumulateDiceRolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">result</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="nb">max</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">result</span>
+    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7803,12 +7784,8 @@ FSharpOption&lt;Int32&gt;
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/test"</span>
-
-<span class="s2">"1 + a"</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="n">tempFolder</span> <span class="s2">"test"</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">60000</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">rollWithinBounds</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">995</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7821,49 +7798,20 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:13 #23 [Debug] persistCodeProject / packages: [] / modules: [] / path: C:\home\git\polyglot\apps\builder\target/test / name: test / code.Length: 5
-00:00:13 #24 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj
-00:00:13 #25 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime linux-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
-  CancellationToken = None
-  OnLine = None }
-00:00:14 #26 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:14 #27 [Verbose] &gt;   Determining projects to restore...
-00:00:15 #28 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 352 ms).
-00:00:15 #29 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:17 #30 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:17 #31 [Debug] executeAsync / exitCode: 1 / output.Length: 684
-00:00:17 #32 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime win-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
-  CancellationToken = None
-  OnLine = None }
-00:00:17 #33 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:18 #34 [Verbose] &gt;   Determining projects to restore...
-00:00:18 #35 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 326 ms).
-00:00:18 #36 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:20 #37 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:20 #38 [Debug] executeAsync / exitCode: 1 / output.Length: 684
+<pre>accumulateDiceRolls / power: 4 / acc: 0 / roll: 1
+accumulateDiceRolls / power: 3 / acc: 0 / roll: 5 / value: 864
+accumulateDiceRolls / power: 2 / acc: 864 / roll: 4 / value: 108
+accumulateDiceRolls / power: 1 / acc: 972 / roll: 4 / value: 18
+accumulateDiceRolls / power: 0 / acc: 990 / roll: 5 / value: 4
+accumulateDiceRolls / power: -1 / acc: 994
 FSharpOption&lt;Int32&gt;
-      Value: 2
+      Value: 995
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="buildFile">buildFile<a class="anchor-link" href="#buildFile">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7871,37 +7819,36 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildFile</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
-    <span class="n">let</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">code</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">readAllTextAsync</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-    <span class="n">let</span> <span class="n">code</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Replace</span> <span class="p">(</span>
-        <span class="n">code</span><span class="p">,</span>
-        <span class="o">@</span><span class="s2">"( *)(let\s+main\s+.*?\s*=)"</span><span class="p">,</span>
-        <span class="n">fun</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="s2">"[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="nb">dir</span> <span class="n">fileName</span>
-<span class="p">}</span>
+<span class="n">rollWithinBounds</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1715</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>accumulateDiceRolls / power: 4 / acc: 0 / roll: 2 / value: 1296
+accumulateDiceRolls / power: 3 / acc: 1296 / roll: 2 / value: 216
+accumulateDiceRolls / power: 2 / acc: 1512 / roll: 6 / value: 180
+accumulateDiceRolls / power: 1 / acc: 1692 / roll: 4 / value: 18
+accumulateDiceRolls / power: 0 / acc: 1710 / roll: 5 / value: 4
+accumulateDiceRolls / power: -1 / acc: 1714
+FSharpOption&lt;Int32&gt;
+      Value: 1715
+</pre>
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Arguments">Arguments<a class="anchor-link" href="#Arguments">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7909,21 +7856,30 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="o">&lt;</span><span class="n">RequireQualifiedAccess</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="nb">type</span> <span class="n">Arguments</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">MainCommand</span><span class="p">;</span> <span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">ExactlyOnce</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Path</span> <span class="n">of</span> <span class="n">path</span> <span class="p">:</span> <span class="n">string</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Packages</span> <span class="n">of</span> <span class="n">packages</span> <span class="p">:</span> <span class="n">string</span> <span class="nb">list</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Modules</span> <span class="n">of</span> <span class="n">modules</span> <span class="p">:</span> <span class="n">string</span> <span class="nb">list</span>
-    <span class="o">|</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">Argu</span><span class="o">.</span><span class="n">ArguAttributes</span><span class="o">.</span><span class="n">Unique</span><span class="o">&gt;</span><span class="p">]</span> <span class="n">Runtime</span> <span class="n">of</span> <span class="n">runtime</span> <span class="p">:</span> <span class="n">string</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-    <span class="n">interface</span> <span class="n">Argu</span><span class="o">.</span><span class="n">IArgParserTemplate</span> <span class="k">with</span>
-        <span class="n">member</span> <span class="n">s</span><span class="o">.</span><span class="n">Usage</span> <span class="o">=</span>
-            <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Path</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Path</span>
-            <span class="o">|</span> <span class="n">Packages</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Packages</span>
-            <span class="o">|</span> <span class="n">Modules</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Modules</span>
-            <span class="o">|</span> <span class="n">Runtime</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Runtime</span>
+<span class="n">rollWithinBounds</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>accumulateDiceRolls / power: 4 / acc: 0 / roll: 4 / value: 3888
+accumulateDiceRolls / power: 3 / acc: 3888 / roll: 1
+accumulateDiceRolls / power: 2 / acc: 3888 / roll: 1
+accumulateDiceRolls / power: 1 / acc: 3888 / roll: 2 / value: 6
+accumulateDiceRolls / power: 0 / acc: 3894 / roll: 3 / value: 2
+accumulateDiceRolls / power: -1 / acc: 3896
+&lt;null&gt;
+</pre>
 </div>
 </div>
 </div>
@@ -7935,7 +7891,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
+<h2 id="calculateDiceCount">calculateDiceCount<a class="anchor-link" href="#calculateDiceCount">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7947,36 +7903,16 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">main</span> <span class="n">args</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">argsMap</span> <span class="o">=</span> <span class="n">args</span> <span class="o">|&gt;</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">parseArgsMap</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span>
-
-    <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span><span class="o">.</span><span class="p">[</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Path</span><span class="p">]</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Path</span> <span class="n">path</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">path</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
-
-    <span class="n">let</span> <span class="n">packages</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Packages</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Packages</span> <span class="n">packages</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">packages</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-
-    <span class="n">let</span> <span class="n">modules</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Modules</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Modules</span> <span class="n">modules</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">modules</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">[]</span>
-
-    <span class="n">let</span> <span class="n">runtime</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">argsMap</span> <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">tryFind</span> <span class="p">(</span><span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Runtime</span><span class="p">)</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Runtime</span> <span class="n">runtime</span> <span class="p">]</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">runtime</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
-
-    <span class="n">path</span>
-    <span class="o">|&gt;</span> <span class="n">buildFile</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span>
-    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">60000</span>
-    <span class="o">|&gt;</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="n">exitCode</span> <span class="o">-&gt;</span> <span class="n">exitCode</span>
-        <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="mi">1</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">calculateDiceCount</span> <span class="n">log</span> <span class="nb">max</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="n">p</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="nb">max</span>
+        <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">iter</span> <span class="p">((</span><span class="o">|&gt;</span><span class="p">)</span> <span class="err">$</span><span class="s2">"calculateDiceCount / max: </span><span class="si">{max}</span><span class="s2"> / n: </span><span class="si">{n}</span><span class="s2"> / p: </span><span class="si">{p}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">n</span>
+    <span class="k">if</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">then</span> <span class="mi">1</span>
+    <span class="k">else</span> <span class="n">loop</span> <span class="mi">0</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -7992,14 +7928,8 @@ FSharpOption&lt;Int32&gt;
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">args</span> <span class="o">=</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">GetEnvironmentVariable</span> <span class="s2">"ARGS"</span>
-    <span class="o">|&gt;</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">splitArgs</span>
-    <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
-
-<span class="k">match</span> <span class="n">args</span> <span class="k">with</span>
-<span class="o">|</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">-&gt;</span> <span class="mi">0</span>
-<span class="o">|</span> <span class="n">args</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">main</span> <span class="n">args</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">failwith</span> <span class="s2">"main failed"</span>
+<span class="n">calculateDiceCount</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">36</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -8011,71 +7941,393 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div class="dni-plaintext"><pre>0</pre></div><style>
-.dni-code-hint {
-    font-style: italic;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.dni-treeview {
-    white-space: nowrap;
-}
-.dni-treeview td {
-    vertical-align: top;
-    text-align: start;
-}
-details.dni-treeview {
-    padding-left: 1em;
-}
-table td {
-    text-align: start;
-}
-table tr { 
-    vertical-align: top; 
-    margin: 0em 0px;
-}
-table tr td pre 
-{ 
-    vertical-align: top !important; 
-    margin: 0em 0px !important;
-} 
-table th {
-    text-align: start;
-}
-</style>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>calculateDiceCount / max: 36 / n: 2 / p: 36
+2
+</pre>
 </div>
 </div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">calculateDiceCount</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">7777</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:22 #39 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/fsharp/Common.fs; lib/fsharp/CommonFSharp.fs; lib/fsharp/Async.fs; ... ] / path: C:\home\git\polyglot\apps\builder / name: Builder / code.Length: 6017
-00:00:22 #40 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\Builder.fsproj
-00:00:22 #41 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target\Builder.fsproj" --configuration Release --output ../dist --runtime linux-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target"
-  CancellationToken = None
-  OnLine = None }
-00:00:22 #42 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:23 #43 [Verbose] &gt;   Determining projects to restore...
-00:00:24 #44 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 454 ms).
-00:00:24 #45 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\Builder.fsproj]
-00:00:30 #46 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\linux-x64\Builder.dll
-00:00:32 #47 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:32 #48 [Debug] executeAsync / exitCode: 0 / output.Length: 621
-00:00:32 #49 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target\Builder.fsproj" --configuration Release --output ../dist --runtime win-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target"
-  CancellationToken = None
-  OnLine = None }
-00:00:32 #50 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:32 #51 [Verbose] &gt;   Determining projects to restore...
-00:00:33 #52 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 415 ms).
-00:00:33 #53 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\Builder.fsproj]
-00:00:40 #54 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\win-x64\Builder.dll
-00:00:48 #55 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:48 #56 [Debug] executeAsync / exitCode: 0 / output.Length: 619
+<pre>calculateDiceCount / max: 7777 / n: 6 / p: 46656
+6
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rollDice">rollDice<a class="anchor-link" href="#rollDice">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if FABLE_COMPILER_RUST</span>
+<span class="c1">#if !CHAIN</span>
+<span class="n">let</span> <span class="n">rollDice</span> <span class="p">()</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span>
+    <span class="n">Fable</span><span class="o">.</span><span class="n">Core</span><span class="o">.</span><span class="n">RustInterop</span><span class="o">.</span><span class="n">emitRustExpr</span> <span class="p">()</span> <span class="s2">"rand::Rng::gen_range(&amp;mut rand::thread_rng(), 1..7)"</span>
+<span class="c1">#endif</span>
+<span class="c1">#else</span>
+<span class="n">let</span> <span class="n">private</span> <span class="n">random</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Random</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">rollDice</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">Next</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rotateNumber">rotateNumber<a class="anchor-link" href="#rotateNumber">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rotateNumber</span> <span class="nb">max</span> <span class="n">n</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">)</span> <span class="o">%</span> <span class="nb">max</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rotateNumbers">rotateNumbers<a class="anchor-link" href="#rotateNumbers">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rotateNumbers</span> <span class="nb">max</span> <span class="n">items</span> <span class="o">=</span>
+    <span class="n">items</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">rotateNumber</span> <span class="nb">max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="p">[</span> <span class="o">-</span><span class="mi">1</span> <span class="o">..</span> <span class="mi">14</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">rotateNumbers</span> <span class="mi">6</span>
+<span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[ 5, 6, 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 1, 2 ]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="createSequentialRoller">createSequentialRoller<a class="anchor-link" href="#createSequentialRoller">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">createSequentialRoller</span> <span class="nb">list</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">mutable</span> <span class="n">currentIndex</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
+        <span class="k">match</span> <span class="nb">list</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">tryItem</span> <span class="n">currentIndex</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="n">item</span> <span class="o">-&gt;</span>
+            <span class="n">currentIndex</span> <span class="o">&lt;-</span> <span class="n">currentIndex</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">item</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
+            <span class="n">failwith</span> <span class="s2">"createSequentialRoller / End of list"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="rollProgressively">rollProgressively<a class="anchor-link" href="#rollProgressively">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">rollProgressively</span> <span class="n">log</span> <span class="n">roll</span> <span class="n">reroll</span> <span class="nb">max</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">power</span> <span class="o">=</span> <span class="p">(</span><span class="n">calculateDiceCount</span> <span class="n">log</span> <span class="nb">max</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">rolls</span> <span class="n">size</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="n">power</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">roll</span> <span class="p">()</span> <span class="p">::</span> <span class="n">rolls</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="k">match</span> <span class="n">accumulateDiceRolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="nb">max</span> <span class="o">-&gt;</span> <span class="n">result</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">reroll</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">List</span><span class="o">.</span><span class="n">init</span> <span class="n">power</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">roll</span> <span class="p">()))</span> <span class="n">power</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">roll</span> <span class="p">()</span> <span class="p">::</span> <span class="n">rolls</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">loop</span> <span class="p">[]</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">rollProgressively</span> <span class="kc">None</span> <span class="n">rollDice</span> <span class="n">false</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">let</span> <span class="n">sequentialRoll</span> <span class="o">=</span> <span class="n">createSequentialRoller</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
+
+<span class="n">rollProgressively</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="n">sequentialRoll</span> <span class="n">false</span> <span class="mi">2000</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">995</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>calculateDiceCount / max: 2000 / n: 5 / p: 7776
+accumulateDiceRolls / power: 4 / acc: 0 / roll: 1
+accumulateDiceRolls / power: 3 / acc: 0 / roll: 5 / value: 864
+accumulateDiceRolls / power: 2 / acc: 864 / roll: 4 / value: 108
+accumulateDiceRolls / power: 1 / acc: 972 / roll: 4 / value: 18
+accumulateDiceRolls / power: 0 / acc: 990 / roll: 5 / value: 4
+accumulateDiceRolls / power: -1 / acc: 994
+995
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="n">let</span> <span class="n">sequentialRoll</span> <span class="o">=</span> <span class="n">createSequentialRoller</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span>
+
+<span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">rollProgressively</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="n">sequentialRoll</span> <span class="n">false</span> <span class="mi">2000</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+<span class="o">|&gt;</span> <span class="n">_throwsC</span> <span class="p">(</span><span class="n">fun</span> <span class="n">ex</span> <span class="n">_</span> <span class="o">-&gt;</span>
+    <span class="n">printException</span> <span class="n">ex</span>
+    <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="s2">"System.Exception: createSequentialRoller / End of list"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>FSI_0031+it@5-11
+calculateDiceCount / max: 2000 / n: 5 / p: 7776
+accumulateDiceRolls / power: 4 / acc: 0 / roll: 2 / value: 1296
+accumulateDiceRolls / power: 3 / acc: 1296 / roll: 5 / value: 864
+accumulateDiceRolls / power: 2 / acc: 2160 / roll: 4 / value: 108
+accumulateDiceRolls / power: 1 / acc: 2268 / roll: 4 / value: 18
+accumulateDiceRolls / power: 0 / acc: 2286 / roll: 5 / value: 4
+accumulateDiceRolls / power: -1 / acc: 2290
+System.Exception: createSequentialRoller / End of list
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="mi">100</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="n">n</span> <span class="o">-&gt;</span>
+    <span class="p">[</span> <span class="mi">0</span> <span class="o">..</span> <span class="mi">1</span> <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="n">reroll</span> <span class="o">-&gt;</span>
+        <span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="mi">3500</span> <span class="p">]</span>
+        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">rollProgressively</span> <span class="kc">None</span> <span class="n">rollDice</span> <span class="p">(</span><span class="n">reroll</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">n</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">groupBy</span> <span class="nb">id</span>
+        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">length</span>
+        <span class="o">|&gt;</span> <span class="n">__equal</span> <span class="n">false</span> <span class="n">n</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">main</span> <span class="n">args</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">rollWithinBounds</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"main / result: {result |&gt; Option.defaultValue -1}"</span><span class="p">)</span> <span class="n">getLocals</span>
+    <span class="mi">0</span>
+</pre></div>
 </div>
 </div>
 </div>

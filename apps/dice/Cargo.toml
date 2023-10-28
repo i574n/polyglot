@@ -1,5 +1,5 @@
 [package]
-name = "dice"
+name = "dice_fsharp"
 version = "0.0.1"
 edition = "2021"
 
@@ -14,8 +14,8 @@ chain = ["fable_library_rust"]
 default = ["fable_library_rust/default", "dep:rand"]
 
 [[bin]]
-name = "dice"
-path = "Dice.rs"
+name = "dice_fsharp"
+path = "dice_fsharp.rs"
 
 [lib]
-path = "DiceChain.rs"
+path = "dice_chain_fsharp.rs"

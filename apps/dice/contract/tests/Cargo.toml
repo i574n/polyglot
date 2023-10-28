@@ -1,5 +1,5 @@
 [package]
-name = "chat"
+name = "dice_contract_tests"
 version = "0.0.1"
 edition = "2021"
 
@@ -7,12 +7,9 @@ edition = "2021"
 
 [dependencies]
 anyhow = "~1.0"
+borsh = { version = "~1.1" }
 serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
 tokio = { version = ">=1.28", features = ["full"] }
 near-workspaces = { version = "~0.8", features = ["experimental", "unstable"] }
 
 [dev-dependencies]
-
-[[bin]]
-name = "chat"
-path = "./example_tests.rs"

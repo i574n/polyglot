@@ -10,12 +10,12 @@ $ErrorActionPreference = "Stop"
 
 { cargo build --release --target wasm32-unknown-unknown } | Invoke-Block
 New-Item dist -ItemType Directory -Force | Out-Null
-Copy-Item -Force target/wasm32-unknown-unknown/release/chat.wasm dist/chat.wasm
+Copy-Item -Force target/wasm32-unknown-unknown/release/chat_contract.wasm dist/chat.wasm
 
 if (!$fast) {
     $nearSandboxExe = DownloadNearSandbox
 
-    { ../tests/target/release/chat } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }
+    { ./tests/target/release/chat_contract_tests } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }
 }
 
 if ($env:CI) {
