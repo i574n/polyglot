@@ -34,11 +34,11 @@ function CheckJson {
 { cargo outdated -w } | Invoke-Block
 
 CheckToml "../apps/chat/contract/Cargo.toml"
-CheckToml "../apps/chat/tests/Cargo.toml" --exclude tokio
+CheckToml "../apps/chat/contract/tests/Cargo.toml" --exclude tokio
 CheckToml "../apps/chat/ui/Cargo.toml"
 CheckToml "../apps/dice/Cargo.toml"
 CheckToml "../apps/dice/contract/Cargo.toml"
-CheckToml "../apps/dice/tests/Cargo.toml" --exclude tokio
+CheckToml "../apps/dice/contract/tests/Cargo.toml" --exclude tokio
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson "../apps/spiral/temp/extension"

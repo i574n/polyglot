@@ -667,7 +667,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fd16c4719339c4530435d38e511904438d07cce7950afa3718a84ac36c10e89e"
 
 [[package]]
-name = "chat"
+name = "chat_contract_tests"
 version = "0.0.1"
 dependencies = [
  "anyhow",
