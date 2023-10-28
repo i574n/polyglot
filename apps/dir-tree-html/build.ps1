@@ -13,7 +13,7 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) DirTreeHtml.dib fs } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) DirTreeHtml.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu Falco.Markup FSharp.Control.AsyncSeq FSharp.Json System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Networking.fs nbs/Runtime.fs nbs/FileSystem.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) DirTreeHtml.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu Falco.Markup FSharp.Control.AsyncSeq FSharp.Json System.CommandLine System.Reactive.Linq --modules lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Networking.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
 
 if ($env:CI) {
     Remove-Item ./target -Recurse -Force -ErrorAction Ignore

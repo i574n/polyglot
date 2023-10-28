@@ -15,7 +15,7 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Dice.dib fs Dice.dib spi } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) Dice.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules nbs/Common.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) Dice.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
 
 { dotnet fable target/Dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs } | Invoke-Block
 if (!$fast) {
@@ -25,16 +25,16 @@ if (!$fast) {
     { dotnet fable target/Dice.fsproj --optimize --lang dart --extension .dart --outDir target/dart } | Invoke-Block -OnError Continue
 }
 
-Copy-Item -Force target/rs/nbs/Common.rs ../../nbs/Common.rs
+Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../lib/fsharp/Common.rs
 if (!$fast) {
-    Copy-Item -Force target/ts/nbs/Common.ts ../../nbs/Common.ts
-    Copy-Item -Force target/py/nbs/common.py ../../nbs/common.py
-    Copy-Item -Force target/php/nbs/Common.php ../../nbs/Common.php
-    Copy-Item -Force target/dart/nbs/Common.dart ../../nbs/Common.dart
+    Copy-Item -Force target/ts/lib/fsharp/Common.ts ../../lib/fsharp/Common.ts
+    Copy-Item -Force target/py/lib/fsharp/common.py ../../lib/fsharp/common.py
+    Copy-Item -Force target/php/lib/fsharp/Common.php ../../lib/fsharp/Common.php
+    Copy-Item -Force target/dart/lib/fsharp/Common.dart ../../lib/fsharp/Common.dart
 }
 
 (Get-Content target/rs/Dice.rs) `
-    -replace "../../../nbs", "../../nbs" `
+    -replace "../../../lib/fsharp", "../../lib/fsharp" `
     | Set-Content Dice.rs
 if (!$fast) {
     Copy-Item -Force target/ts/Dice.ts Dice.ts
@@ -45,10 +45,10 @@ if (!$fast) {
 
 { dotnet fable target/Dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define CHAIN } | Invoke-Block
 
-Copy-Item -Force target/rs/nbs/Common.rs ../../nbs/CommonChain.rs
+Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonChain.rs
 
 (Get-Content target/rs/Dice.rs) `
-    -replace "../../../nbs", "../../nbs" `
+    -replace "../../../lib/fsharp", "../../lib/fsharp" `
     -replace "/Common.rs", "/CommonChain.rs" `
     | Set-Content DiceChain.rs
 

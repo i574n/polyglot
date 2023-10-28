@@ -8,11 +8,11 @@
 
 #!fsharp
 
-#!import ../nbs/Testing.dib
+#!import ../../lib/fsharp/Testing.dib
 
 #!fsharp
 
-#!import ../nbs/Common.fs
+#!import ../../lib/fsharp/Common.fs
 #!import Parser.fs
 
 #!fsharp

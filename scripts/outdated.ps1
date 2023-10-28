@@ -41,6 +41,6 @@ CheckToml "../apps/dice/contract/Cargo.toml"
 CheckToml "../apps/dice/tests/Cargo.toml" --exclude tokio
 CheckToml "../apps/plot/Cargo.toml"
 
-CheckJson "../spiral/extension"
+CheckJson "../apps/spiral/temp/extension"
 CheckJson "../apps/ipfs"
 CheckJson ".."

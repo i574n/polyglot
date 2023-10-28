@@ -4,7 +4,7 @@ import { defaultArg, value as value_1, toArray, Option } from "./fable_modules/f
 import { ofArray, empty, initialize, cons, tryItem, length, tail, head, isEmpty, FSharpList } from "./fable_modules/fable-library-ts/List.js";
 import { nonSeeded } from "./fable_modules/fable-library-ts/Random.js";
 import { printf, toConsole } from "./fable_modules/fable-library-ts/String.js";
-import { TraceLevel_Debug, trace } from "./nbs/Common.js";
+import { TraceLevel_Debug, trace } from "./lib/fsharp/Common.js";
 
 export const sixthPowerSequence: Iterable<int32> = cache<int32>(unfold<int32, int32>((state: int32): Option<[int32, int32]> => ([state, state * 6] as [int32, int32]), 1));
 

@@ -10,19 +10,19 @@ edition = "2021"
 [dev-dependencies]
 
 [build-dependencies]
+extension = { path = "./apps/spiral/temp/extension" }
+test = { path = "./apps/spiral/temp/test" }
+# proxy = { path = "./apps/spiral/temp/proxy" }
+# cli = { path = "./apps/spiral/temp/cli" }
 exercism = { path = "./examples/rust/exercism" }
-extension = { path = "./spiral/extension" }
-test = { path = "./spiral/test" }
-# proxy = { path = "./spiral/proxy" }
-# cli = { path = "./spiral/cli" }
 
 [lib]
-path = "./spiral/cli/main.rs"
+path = "./apps/spiral/temp/cli/main.rs"
 
 members = [
     "examples/rust/exercism",
-    "spiral/extension",
-    "spiral/test",
-    # "spiral/proxy",
-    # "spiral/cli",
+    "apps/spiral/temp/extension",
+    "apps/spiral/temp/test",
+    # "apps/spiral/temp/proxy",
+    # "apps/spiral/temp/cli",
 ]

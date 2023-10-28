@@ -77,7 +77,7 @@ rsync -av `
     ../dist/
 
 Get-ChildItem -Path ../dist -Recurse -Force | Where-Object { $_.Name.StartsWith(".") } | ForEach-Object {
-    Rename-Item -Path $_.FullName -NewName "_$($_.Name)"
+    Rename-Item -Path $_.FullName -NewName "_$($_.Name.Substring(1))"
 }
 
 { . ../apps/dir-tree-html/dist/DirTreeHtml$(GetExecutableSuffix) --dir ../dist --html ../dist/index.html } | Invoke-Block

@@ -14,8 +14,8 @@ pub mod Polyglot {
     use super::*;
     pub mod Dice {
         use super::*;
-        use crate::module_394e13d8::Polyglot::Common;
-        use crate::module_394e13d8::Polyglot::Common::TraceLevel;
+        use crate::module_ad43931::Polyglot::Common;
+        use crate::module_ad43931::Polyglot::Common::TraceLevel;
         use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::List_::cons;
         use fable_library_rust::List_::empty;
@@ -365,9 +365,9 @@ pub mod Polyglot {
         }
     }
 }
-#[path = "../../nbs/Common.rs"]
-mod module_394e13d8;
-pub use module_394e13d8::*;
+#[path = "../../lib/fsharp/Common.rs"]
+mod module_ad43931;
+pub use module_ad43931::*;
 pub fn main() {
     let args = std::env::args().skip(1).map(fromString).collect();
     Polyglot::Dice::main(array_from(args));

@@ -8,7 +8,7 @@
 
 #!fsharp
 
-#!import ../nbs/Testing.dib
+#!import ../../lib/fsharp/Testing.dib
 
 #!fsharp
 
@@ -21,13 +21,13 @@
 
 #!fsharp
 
-#!import ../nbs/Common.fs
-#!import ../nbs/CommonFSharp.fs
-#!import ../nbs/Async.fs
-#!import ../nbs/AsyncSeq.fs
-#!import ../nbs/Networking.fs
-#!import ../nbs/Runtime.fs
-#!import ../nbs/FileSystem.fs
+#!import ../../lib/fsharp/Common.fs
+#!import ../../lib/fsharp/CommonFSharp.fs
+#!import ../../lib/fsharp/Async.fs
+#!import ../../lib/fsharp/AsyncSeq.fs
+#!import ../../lib/fsharp/Networking.fs
+#!import ../../lib/fsharp/Runtime.fs
+#!import ../../lib/fsharp/FileSystem.fs
 
 #!fsharp
 
@@ -70,7 +70,6 @@ let rec generateHtml fsNode =
         | size -> $"%.2f{size} B"
     match fsNode with
     | File (fileName, relativePath, size) ->
-        printfn $"File / fileName: {fileName} / relativePath: {relativePath} / size: {size}"
         Elem.div [] [
             Text.raw "&#128196; "
             Elem.a [
@@ -83,7 +82,6 @@ let rec generateHtml fsNode =
             ]
         ]
     | Folder (folderName, relativePath, children) ->
-        printfn $"Folder / folderName: {folderName} / relativePath: {relativePath}"
         let size =
             let rec loop children =
                 children

@@ -1,0 +1,421 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+
+#!markdown
+
+# Runtime (Polyglot)
+
+#!fsharp
+
+#!import ../../lib/fsharp/Testing.dib
+
+#!fsharp
+
+#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
+#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.1.1/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
+
+#!fsharp
+
+#!import ../../lib/fsharp/Common.fs
+#!import ../../lib/fsharp/CommonFSharp.fs
+#!import ../../lib/fsharp/Async.fs
+#!import ../../lib/fsharp/AsyncSeq.fs
+#!import ../../lib/fsharp/Runtime.fs
+#!import ../../lib/fsharp/FileSystem.fs
+
+#!fsharp
+
+open Common
+
+#!fsharp
+
+//// test
+
+open FileSystem.Operators
+
+#!markdown
+
+## isWindows
+
+#!fsharp
+
+let isWindows =
+    fun () ->
+        System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
+            System.Runtime.InteropServices.OSPlatform.Windows
+    |> memoize
+
+#!fsharp
+
+//// test
+
+isWindows ()
+
+#!markdown
+
+## getExecutableSuffix
+
+#!fsharp
+
+let inline getExecutableSuffix () =
+    if isWindows ()
+    then ".exe"
+    else ""
+
+#!fsharp
+
+//// test
+
+getExecutableSuffix ()
+
+#!markdown
+
+## splitCommand
+
+#!fsharp
+
+type private CommandParseStep =
+    | Start
+    | Path of quoted: bool
+    | Arguments
+
+let splitCommand (command: string) =
+    let rec loop (path, args) chars step =
+        match chars, step with
+        | ('"' | '\'') :: tail, _ when path = "" -> loop (path, args) tail (Path true)
+        | ('"' | '\'') :: tail, Path true -> loop (path, args) tail (Path false)
+        | ' ' :: tail, Path true -> loop ($"{path} ", args) tail (Path true)
+        | ' ' :: tail, (Start | Path _) -> loop (path, args) tail Arguments
+        | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
+        | char :: tail, _ -> loop ($"{path}{char}", args) tail step
+        | _, _ -> path |> String.replace @"\" "/", args
+    loop ("", "") (command |> Seq.toList) Start
+
+#!fsharp
+
+//// test
+
+splitCommand ""
+|> _equal ("", "")
+
+splitCommand "/a/b/c"
+|> _equal ("/a/b/c", "")
+
+splitCommand "cat file.txt"
+|> _equal ("cat", "file.txt")
+
+splitCommand """..\..\file.exe file1.txt file2.txt"""
+|> _equal ("../../file.exe", "file1.txt file2.txt")
+
+splitCommand @"c:\dir\file.exe ""file1.txt file2.txt"""
+|> _equal ("c:/dir/file.exe", @"""file1.txt file2.txt""")
+
+splitCommand @"""..\..\dir name\file.exe"" ""file 1.txt"" file2.txt"
+|> _equal ("../../dir name/file.exe", @"""file 1.txt"" file2.txt")
+
+splitCommand @"""..\..\file 1.exe"" -c \\""echo 1\\"""
+|> _equal ("../../file 1.exe", @"-c \\""echo 1\\""")
+
+splitCommand @"..\..\file 1.exe -c \\""echo 1\\"""
+|> _equal ("../../file", @"1.exe -c \\""echo 1\\""")
+
+#!markdown
+
+## executeAsync
+
+#!fsharp
+
+type ExecutionLine =
+    {
+        ProcessId : int
+        Line : string
+        Error : bool
+    }
+
+type ExecutionOptions =
+    {
+        Command : string
+        WorkingDirectory : string option
+        CancellationToken : System.Threading.CancellationToken option
+        OnLine : (ExecutionLine -> Async<unit>) option
+    }
+
+let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
+    let fileName, arguments = options.Command |> splitCommand
+    let workingDirectory = options.WorkingDirectory |> Option.defaultValue ""
+
+    trace Debug (fun () -> $"executeAsync / options: {options}") getLocals
+
+    let startInfo = System.Diagnostics.ProcessStartInfo (
+        Arguments = arguments,
+        CreateNoWindow = true,
+        FileName = fileName,
+        RedirectStandardError = true,
+        RedirectStandardOutput = true,
+        StandardOutputEncoding = System.Text.Encoding.UTF8,
+        UseShellExecute = false,
+        WorkingDirectory = workingDirectory
+    )
+
+    use proc = new System.Diagnostics.Process (StartInfo = startInfo)
+    let output = System.Collections.Concurrent.ConcurrentStack<string> ()
+
+    let inline event error (e: System.Diagnostics.DataReceivedEventArgs) = async {
+        if e.Data <> null then
+            match options.OnLine with
+            | Some onLine ->
+                do!
+                    onLine
+                        {
+                            ProcessId = proc.Id
+                            Line = e.Data
+                            Error = error
+                        }
+            | None -> ()
+
+            trace
+                Verbose
+                (fun () -> $"> {e.Data}")
+                Common.getLocals
+
+            output.Push
+                $"{
+                    if error then '['.ToString() else System.String.Empty
+                }{
+                    e.Data
+                }{
+                    if error then ']'.ToString() else System.String.Empty
+                }"
+    }
+
+    proc.OutputDataReceived.Add (event false >> Async.StartImmediate)
+    proc.ErrorDataReceived.Add (event true >> Async.StartImmediate)
+
+    if proc.Start () |> not
+    then failwith $"executeAsync / proc.Start () error"
+
+    proc.BeginErrorReadLine ()
+    proc.BeginOutputReadLine ()
+
+    let! ct =
+        options.CancellationToken
+        |> Option.defaultValue System.Threading.CancellationToken.None
+        |> Async.mergeCancellationTokenWithDefaultAsync
+
+    use reg = ct.Register (fun _ ->
+        if not proc.HasExited then proc.Kill ()
+    )
+
+    let! exitCode = async {
+        try
+            do! proc.WaitForExitAsync ct |> Async.AwaitTask
+            return proc.ExitCode
+        with :? System.Threading.Tasks.TaskCanceledException as ex ->
+            trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> printException}") getLocals
+            ex |> printException |> output.Push
+            return System.Int32.MinValue
+    }
+
+    let output = output |> Seq.rev |> String.concat "\n"
+
+    trace Debug (fun () ->
+        $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}"
+    ) getLocals
+
+    return exitCode, output
+}
+
+let inline executeAsync command =
+    executeWithOptionsAsync
+        {
+            Command = command
+            CancellationToken = None
+            OnLine = None
+            WorkingDirectory = None
+        }
+
+#!fsharp
+
+//// test
+
+let tempFolder = FileSystem.createTempDirectory ()
+let fileName = "test.txt"
+let path = tempFolder </> fileName
+
+async {
+    let! exitCode, result = executeAsync @$"pwsh -c ""Get-Content {path}"""
+    exitCode |> _equal 1
+    result |> _stringContains "not exist"
+
+    do! "0" |> FileSystem.writeAllTextAsync path
+
+    return!
+        executeWithOptionsAsync
+            {
+                Command = @$"pwsh -c ""Get-Content {fileName}"""
+                CancellationToken = None
+                OnLine = None
+                WorkingDirectory = Some tempFolder
+            }
+
+}
+|> Async.runWithTimeout 10000
+|> function
+    | Some (exitCode, output) ->
+        exitCode |> _equal 0
+        output |> _equal "0"
+
+        true
+    | _ -> false
+|> _equal true
+
+#!fsharp
+
+//// test
+
+let tempFolder = FileSystem.createTempDirectory ()
+let path = tempFolder </> "test.txt"
+
+let command = @$"pwsh -c ""Get-Content {path}"""
+
+async {
+    do! "0" |> FileSystem.writeAllTextAsync path
+    let cts = new System.Threading.CancellationTokenSource ()
+    trace Debug (fun () -> "1") getLocals
+    let! result =
+        executeWithOptionsAsync
+            {
+                Command = command
+                CancellationToken = Some cts.Token
+                OnLine = None
+                WorkingDirectory = None
+            }
+        |> Async.StartChild
+    trace Debug (fun () -> "2") getLocals
+    do! Async.Sleep 100
+    trace Debug (fun () -> "3") getLocals
+    cts.Cancel ()
+    trace Debug (fun () -> "4") getLocals
+    let! exitCode, output = result
+    trace Debug (fun () -> "5") getLocals
+    return exitCode, output
+}
+|> Async.runWithTimeout 10000
+|> function
+    | Some (exitCode, output) ->
+        exitCode |> _equal -2147483648
+        output |> _equal "System.Threading.Tasks.TaskCanceledException: A task was canceled."
+
+        true
+    | _ -> false
+|> _equal true
+
+#!markdown
+
+## splitArgs
+
+#!fsharp
+
+let inline splitArgs commandLine =
+    commandLine
+    |> System.CommandLine.Parsing.CommandLineStringSplitter.Instance.Split
+
+#!fsharp
+
+//// test
+
+"""a b "c d" e"""
+|> splitArgs
+|> Seq.toArray
+|> _equal [| "a"; "b"; "c d"; "e" |]
+
+#!markdown
+
+## parseArgs
+
+#!fsharp
+
+let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
+    let assemblyName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let errorHandler : Argu.IExiter =
+        if [ "Microsoft.DotNet.Interactive.App"; "dotnet-repl" ] |> List.contains assemblyName
+        then Argu.ExceptionExiter ()
+        else Argu.ProcessExiter (function Argu.ErrorCode.HelpText -> None | _ -> Some System.ConsoleColor.Red)
+
+    let parser =
+        Argu.ArgumentParser.Create<'T> (
+            programName = $"{assemblyName}{getExecutableSuffix ()}",
+            errorHandler = errorHandler
+        )
+
+    parser.ParseCommandLine args
+
+#!fsharp
+
+//// test
+
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+        Paths of paths : string list
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Paths _ -> nameof Paths
+
+#!fsharp
+
+//// test
+
+fun () -> parseArgs<Arguments> [||] |> ignore
+|> _throwsC (fun ex _ ->
+    printException ex
+    |> _stringContains "Argu.ArguParseException: ERROR: missing parameter '<paths>...'."
+)
+
+#!fsharp
+
+let inline parseAllArgs<'T when 'T :> Argu.IArgParserTemplate> args =
+    args
+    |> parseArgs<'T>
+    |> fun results -> results.GetAllResults ()
+
+#!fsharp
+
+//// test
+
+[<RequireQualifiedAccess>]
+type Arguments =
+    | [<Argu.ArguAttributes.MainCommand; Argu.ArguAttributes.ExactlyOnce; Argu.ArguAttributes.Last>]
+        Paths of paths : string list
+
+    interface Argu.IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Paths _ -> nameof Paths
+
+parseAllArgs<Arguments> [| "a b"; "c" |]
+|> _equal [ Arguments.Paths [ "a b"; "c" ] ]
+
+#!fsharp
+
+let inline parseArgsMap<'T when 'T :> Argu.IArgParserTemplate> args =
+    args
+    |> parseAllArgs<'T>
+    |> List.groupBy CommonFSharp.getUnionCaseName<'T>
+    |> Map.ofList
+
+#!fsharp
+
+//// test
+
+parseArgsMap<Arguments> [| "a b"; "c" |]
+|> _equal (
+    [ nameof Arguments.Paths, [ Arguments.Paths [ "a b"; "c" ] ] ]
+    |> Map.ofList
+)

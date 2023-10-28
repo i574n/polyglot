@@ -15,7 +15,3 @@ tmp/
 paket-files/
 .paket/
 .history/
-
-apps/lib
-apps/nbs
-lib/nbs

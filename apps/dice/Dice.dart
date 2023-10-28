@@ -1,5 +1,5 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
-import './nbs/Common.dart' as common;
+import './lib/fsharp/Common.dart' as common;
 import './fable_modules/fable_library/List.dart' as list_2;
 import './fable_modules/fable_library/Option.dart' as option_3;
 import './fable_modules/fable_library/Random.dart' as random_1;

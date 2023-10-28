@@ -6,7 +6,7 @@ require_once(__FABLE_LIBRARY__.'/Option.php');
 require_once(__FABLE_LIBRARY__.'/Random.php');
 require_once(__FABLE_LIBRARY__.'/Seq.php');
 require_once(__FABLE_LIBRARY__.'/String.php');
-require_once(__ROOT__.'/../../../../../nbs/Common.fs.php');
+require_once(__ROOT__.'/../../../../../lib/fsharp/Common.fs.php');
 
 #0
 $GLOBALS['sixthPowerSequence'] = \Seq\cache(\Seq\unfold(function ($state) { return [ $state, $state * 6 ];

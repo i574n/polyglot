@@ -17,7 +17,7 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../nbs/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../lib/fsharp/build.ps1" } | Invoke-Block
 
 #!pwsh
 
@@ -33,19 +33,15 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/perf/build.ps1" } | Invoke-Block
+# { . "$ScriptDir/../apps/spiral/temp/cli/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-# { . "$ScriptDir/../spiral/cli/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../spiral/test/build.ps1" } | Invoke-Block
-
-#!pwsh
-
-{ . "$ScriptDir/../spiral/extension/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../apps/spiral/temp/extension/build.ps1" } | Invoke-Block
 
 #!pwsh
 
@@ -54,6 +50,10 @@
 #!pwsh
 
 { . "$ScriptDir/../apps/dice/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/perf/build.ps1" } | Invoke-Block
 
 #!pwsh
 

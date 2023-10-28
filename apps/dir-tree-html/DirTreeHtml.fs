@@ -41,7 +41,6 @@ module DirTreeHtml =
             | size -> $"%.2f{size} B"
         match fsNode with
         | File (fileName, relativePath, size) ->
-            printfn $"File / fileName: {fileName} / relativePath: {relativePath} / size: {size}"
             Elem.div [] [
                 Text.raw "&#128196; "
                 Elem.a [
@@ -54,7 +53,6 @@ module DirTreeHtml =
                 ]
             ]
         | Folder (folderName, relativePath, children) ->
-            printfn $"Folder / folderName: {folderName} / relativePath: {relativePath}"
             let size =
                 let rec loop children =
                     children

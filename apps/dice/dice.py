@@ -1,6 +1,6 @@
 import sys
 from typing import (Tuple, Optional, Callable, Any, TypeVar)
-from nbs.common import (trace, TraceLevel)
+from lib.fsharp.common import (trace, TraceLevel)
 from fable_modules.fable_library.list import (FSharpList, is_empty, head, tail, length, try_item, cons, initialize, empty, of_array)
 from fable_modules.fable_library.option import (to_array, value as value_1, default_arg)
 from fable_modules.fable_library.seq import (cache, unfold, iterate, item as item_1, map)

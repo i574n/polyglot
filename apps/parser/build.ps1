@@ -14,7 +14,7 @@ if ($fast -and (Test-Path $dibParserExe)) {
     Invoke-Dib DibParser.dib -EnvironmentVariables @{ "ARGS" = "DibParser.dib fs" }
 }
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) DibParser.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FParsec FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules nbs/Common.fs nbs/CommonFSharp.fs nbs/Async.fs nbs/AsyncSeq.fs nbs/Runtime.fs nbs/FileSystem.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) DibParser.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FParsec FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
 
 if (!$fast) {
     Invoke-Dib JsonParser.dib
