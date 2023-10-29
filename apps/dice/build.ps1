@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { pwsh ./fsharp/build.ps1 } | Invoke-Block
+    { . ./fsharp/build.ps1 } | Invoke-Block
 
     { dotnet run --configuration Release --project temp/dice.fsproj } | Invoke-Block
 
