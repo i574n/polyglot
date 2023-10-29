@@ -7551,7 +7551,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">sixth_power_sequence</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
+    <span class="n">stream</span><span class="o">.</span><span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -7699,7 +7699,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">0</span><span class="n">i32</span> <span class="mi">1000</span>
+<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">0</span><span class="n">i32</span> <span class="mi">1000</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1006</span><span class="p">,</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
 </pre></div>
 </div>
@@ -7757,7 +7757,7 @@ accumulate_dice_rolls / power: -1 / acc: 1005
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">1000</span>
+<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">1000</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1035</span><span class="p">,</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
 </pre></div>
 </div>
@@ -7816,7 +7816,7 @@ accumulate_dice_rolls / power: -1 / acc: 1034
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">2</span><span class="n">i32</span> <span class="mi">1000</span>
+<span class="n">accumulate_dice_rolls</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="p">[</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span> <span class="mi">2</span><span class="n">i32</span> <span class="mi">1000</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="mi">1208</span><span class="p">,</span> <span class="p">[</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]))</span>
 </pre></div>
 </div>
@@ -7886,7 +7886,7 @@ accumulate_dice_rolls / power: -1 / acc: 1207
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="nb">max</span> <span class="n">rolls</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">power</span> <span class="o">=</span> <span class="n">listm</span><span class="o">.</span><span class="n">length</span> <span class="n">rolls</span> <span class="o">-</span> <span class="mi">1</span><span class="n">i32</span>
+    <span class="n">inl</span> <span class="n">power</span> <span class="o">=</span> <span class="n">listm</span><span class="o">.</span><span class="n">length</span> <span class="n">rolls</span> <span class="o">-</span> <span class="mi">1</span><span class="n">i64</span>
     <span class="k">match</span> <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">result</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="nb">max</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">result</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="kc">None</span>
@@ -7919,7 +7919,7 @@ accumulate_dice_rolls / power: -1 / acc: 1207
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span><span class="n">i32</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">995</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7937,17 +7937,17 @@ accumulate_dice_rolls / power: -1 / acc: 1207
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {1}"
+    let v0 : string = $"accumulate_dice_rolls / power: {4L} / acc: {0} / roll: {1}"
     System.Console.WriteLine v0
-    let v1 : string = $"accumulate_dice_rolls / power: {3} / acc: {0} / roll: {5} / value: {864}"
+    let v1 : string = $"accumulate_dice_rolls / power: {3L} / acc: {0} / roll: {5} / value: {864}"
     System.Console.WriteLine v1
-    let v2 : string = $"accumulate_dice_rolls / power: {2} / acc: {864} / roll: {4} / value: {108}"
+    let v2 : string = $"accumulate_dice_rolls / power: {2L} / acc: {864} / roll: {4} / value: {108}"
     System.Console.WriteLine v2
-    let v3 : string = $"accumulate_dice_rolls / power: {1} / acc: {972} / roll: {4} / value: {18}"
+    let v3 : string = $"accumulate_dice_rolls / power: {1L} / acc: {972} / roll: {4} / value: {18}"
     System.Console.WriteLine v3
-    let v4 : string = $"accumulate_dice_rolls / power: {0} / acc: {990} / roll: {5} / value: {4}"
+    let v4 : string = $"accumulate_dice_rolls / power: {0L} / acc: {990} / roll: {5} / value: {4}"
     System.Console.WriteLine v4
-    let v5 : string = $"accumulate_dice_rolls / power: {-1} / acc: {994}"
+    let v5 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {994}"
     System.Console.WriteLine v5
     let v9 : US0 = US0_1(995)
     let v10 : US0 = US0_1(995)
@@ -7976,7 +7976,7 @@ accumulate_dice_rolls / power: -1 / acc: 994
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
+<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span><span class="n">i32</span> <span class="p">[</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1715</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -7994,17 +7994,17 @@ accumulate_dice_rolls / power: -1 / acc: 994
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {2} / value: {1296}"
+    let v0 : string = $"accumulate_dice_rolls / power: {4L} / acc: {0} / roll: {2} / value: {1296}"
     System.Console.WriteLine v0
-    let v1 : string = $"accumulate_dice_rolls / power: {3} / acc: {1296} / roll: {2} / value: {216}"
+    let v1 : string = $"accumulate_dice_rolls / power: {3L} / acc: {1296} / roll: {2} / value: {216}"
     System.Console.WriteLine v1
-    let v2 : string = $"accumulate_dice_rolls / power: {2} / acc: {1512} / roll: {6} / value: {180}"
+    let v2 : string = $"accumulate_dice_rolls / power: {2L} / acc: {1512} / roll: {6} / value: {180}"
     System.Console.WriteLine v2
-    let v3 : string = $"accumulate_dice_rolls / power: {1} / acc: {1692} / roll: {4} / value: {18}"
+    let v3 : string = $"accumulate_dice_rolls / power: {1L} / acc: {1692} / roll: {4} / value: {18}"
     System.Console.WriteLine v3
-    let v4 : string = $"accumulate_dice_rolls / power: {0} / acc: {1710} / roll: {5} / value: {4}"
+    let v4 : string = $"accumulate_dice_rolls / power: {0L} / acc: {1710} / roll: {5} / value: {4}"
     System.Console.WriteLine v4
-    let v5 : string = $"accumulate_dice_rolls / power: {-1} / acc: {1714}"
+    let v5 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {1714}"
     System.Console.WriteLine v5
     let v9 : US0 = US0_1(1715)
     let v10 : US0 = US0_1(1715)
@@ -8033,7 +8033,7 @@ accumulate_dice_rolls / power: -1 / acc: 1714
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">]</span>
+<span class="n">roll_within_bounds</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="mi">2000</span><span class="n">i32</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
 </pre></div>
 </div>
@@ -8051,17 +8051,17 @@ accumulate_dice_rolls / power: -1 / acc: 1714
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : string = $"accumulate_dice_rolls / power: {4} / acc: {0} / roll: {4} / value: {3888}"
+    let v0 : string = $"accumulate_dice_rolls / power: {4L} / acc: {0} / roll: {4} / value: {3888}"
     System.Console.WriteLine v0
-    let v1 : string = $"accumulate_dice_rolls / power: {3} / acc: {3888} / roll: {1}"
+    let v1 : string = $"accumulate_dice_rolls / power: {3L} / acc: {3888} / roll: {1}"
     System.Console.WriteLine v1
-    let v2 : string = $"accumulate_dice_rolls / power: {2} / acc: {3888} / roll: {1}"
+    let v2 : string = $"accumulate_dice_rolls / power: {2L} / acc: {3888} / roll: {1}"
     System.Console.WriteLine v2
-    let v3 : string = $"accumulate_dice_rolls / power: {1} / acc: {3888} / roll: {2} / value: {6}"
+    let v3 : string = $"accumulate_dice_rolls / power: {1L} / acc: {3888} / roll: {2} / value: {6}"
     System.Console.WriteLine v3
-    let v4 : string = $"accumulate_dice_rolls / power: {0} / acc: {3894} / roll: {3} / value: {2}"
+    let v4 : string = $"accumulate_dice_rolls / power: {0L} / acc: {3894} / roll: {3} / value: {2}"
     System.Console.WriteLine v4
-    let v5 : string = $"accumulate_dice_rolls / power: {-1} / acc: {3896}"
+    let v5 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {3896}"
     System.Console.WriteLine v5
     let v9 : US0 = US0_0
     let v10 : US0 = US0_0
@@ -8100,12 +8100,19 @@ accumulate_dice_rolls / power: -1 / acc: 3896
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">calculate_dice_count</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="nb">max</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="n">p</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="nb">max</span>
+    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">n</span> <span class="n">p</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="nb">max</span>
         <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
         <span class="k">else</span>
             <span class="n">log</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.iter ((|&gt;) $"$</span><span class="se">\"</span><span class="s1">calculate_dice_count / max: {!max} / n: {!n} / p: {!p}</span><span class="se">\"</span><span class="s1">")</span>
             <span class="n">n</span>
+    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">n</span> <span class="n">p</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">var_is</span> <span class="nb">max</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+        <span class="n">then</span> <span class="n">body</span> <span class="n">n</span> <span class="n">p</span>
+        <span class="k">else</span>
+            <span class="n">inl</span> <span class="n">n</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">n</span>
+            <span class="n">inl</span> <span class="n">p</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">p</span>
+            <span class="n">join</span> <span class="n">body</span> <span class="n">n</span> <span class="n">p</span>
     <span class="k">if</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">then</span> <span class="mi">1</span>
     <span class="k">else</span> <span class="n">loop</span> <span class="mi">0</span> <span class="mi">1</span>
@@ -8675,12 +8682,11 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">roll_progressively</span> <span class="p">(</span><span class="n">log</span> <span class="p">:</span> <span class="n">option</span> <span class="p">(</span><span class="n">string</span> <span class="o">-&gt;</span> <span class="p">()))</span> <span class="n">roll</span> <span class="n">reroll</span> <span class="nb">max</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">power</span> <span class="o">=</span> <span class="p">(</span><span class="n">calculate_dice_count</span> <span class="n">log</span> <span class="nb">max</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="n">i32</span>
+    <span class="n">inl</span> <span class="n">power</span> <span class="o">=</span> <span class="p">(</span><span class="n">calculate_dice_count</span> <span class="n">log</span> <span class="nb">max</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="n">i64</span>
     <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">rolls</span> <span class="n">size</span> <span class="o">=</span>
         <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="n">power</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">then</span> <span class="n">loop</span> <span class="p">(</span><span class="n">roll</span> <span class="p">()</span> <span class="p">::</span> <span class="n">rolls</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">else</span>
-            <span class="k">match</span> <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="k">with</span>
+        <span class="k">else</span> <span class="n">accumulate_dice_rolls</span> <span class="n">log</span> <span class="n">rolls</span> <span class="n">power</span> <span class="mi">0</span> <span class="o">|&gt;</span> <span class="n">function</span>
             <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="nb">max</span> <span class="o">=&gt;</span> <span class="n">result</span>
             <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">reroll</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="n">power</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">roll</span> <span class="p">()))</span> <span class="n">power</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">roll</span> <span class="p">()</span> <span class="p">::</span> <span class="n">rolls</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8735,7 +8741,7 @@ and [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32 * f1_1 : UH0
 let rec method3 (v0 : UH0, v1 : int32) : US0 =
-    let v2 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v1}"
+    let v2 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {v1}"
     let v3 : int32 = v1 + 1
     US0_1(v3, v0)
 and method2 (v0 : UH0, v1 : int32) : US0 =
@@ -8744,20 +8750,20 @@ and method2 (v0 : UH0, v1 : int32) : US0 =
         let v5 : bool = v3 &gt; 1
         if v5 then
             let v6 : int32 = v3 - 1
-            let v7 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3} / value: {v6}"
+            let v7 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3} / value: {v6}"
             let v8 : int32 = v1 + v6
             method3(v4, v8)
         else
-            let v10 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3}"
+            let v10 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3}"
             method3(v4, v1)
     | UH0_1 -&gt; (* Nil *)
         US0_0
-and method1 (v0 : UH0, v1 : int32) : int32 =
-    let v2 : bool = v1 &lt; 1
+and method1 (v0 : UH0, v1 : int64) : int32 =
+    let v2 : bool = v1 &lt; 1L
     if v2 then
         let v3 : int32 = System.Random().Next (1, 7)
         let v4 : UH0 = UH0_0(v3, v0)
-        let v5 : int32 = v1 + 1
+        let v5 : int64 = v1 + 1L
         method1(v4, v5)
     else
         let v7 : int32 = 0
@@ -8770,16 +8776,16 @@ and method1 (v0 : UH0, v1 : int32) : int32 =
             else
                 let v12 : int32 = System.Random().Next (1, 7)
                 let v13 : UH0 = UH0_0(v12, v0)
-                let v14 : int32 = v1 + 1
+                let v14 : int64 = v1 + 1L
                 method1(v13, v14)
         | _ -&gt;
             let v17 : int32 = System.Random().Next (1, 7)
             let v18 : UH0 = UH0_0(v17, v0)
-            let v19 : int32 = v1 + 1
+            let v19 : int64 = v1 + 1L
             method1(v18, v19)
 and method0 () : unit =
     let v0 : UH0 = UH0_1
-    let v1 : int32 = 0
+    let v1 : int64 = 0L
     let v2 : int32 = method1(v0, v1)
     let v3 : bool = v2 = 1
     let v4 : string = $"_equal / actual: %A{v2} / expected: %A{1}"
@@ -8805,7 +8811,7 @@ method0()
 
 <span class="n">inl</span> <span class="n">sequential_roll</span> <span class="o">=</span> <span class="n">create_sequential_roller</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
 
-<span class="n">roll_progressively</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">sequential_roll</span> <span class="n">false</span> <span class="mi">2000</span>
+<span class="n">roll_progressively</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">sequential_roll</span> <span class="n">false</span> <span class="mi">2000</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">995</span>
 </pre></div>
 </div>
@@ -8950,7 +8956,7 @@ and method2 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1) : int32 =
         v1.l0 &lt;- v24
         v22
 and method9 (v0 : UH1, v1 : int32) : US2 =
-    let v2 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v1}"
+    let v2 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {v1}"
     System.Console.WriteLine v2
     let v3 : int32 = v1 + 1
     US2_1(v3, v0)
@@ -8960,12 +8966,12 @@ and method8 (v0 : UH1, v1 : int32) : US2 =
         let v5 : bool = v3 &gt; 1
         if v5 then
             let v6 : int32 = v3 - 1
-            let v7 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3} / value: {v6}"
+            let v7 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3} / value: {v6}"
             System.Console.WriteLine v7
             let v8 : int32 = v1 + v6
             method9(v4, v8)
         else
-            let v10 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3}"
+            let v10 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v10
             method9(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -8977,12 +8983,12 @@ and method7 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 6
-            let v8 : string = $"accumulate_dice_rolls / power: {1} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {1L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method8(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {1} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {1L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method8(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -8994,12 +9000,12 @@ and method6 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 36
-            let v8 : string = $"accumulate_dice_rolls / power: {2} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {2L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method7(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {2} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {2L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method7(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -9011,12 +9017,12 @@ and method5 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 216
-            let v8 : string = $"accumulate_dice_rolls / power: {3} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {3L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method6(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {3} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {3L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method6(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -9028,22 +9034,22 @@ and method4 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 1296
-            let v8 : string = $"accumulate_dice_rolls / power: {4} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {4L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method5(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {4} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {4L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method5(v4, v1)
     | UH1_1 -&gt; (* Nil *)
         US2_0
-and method1 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1, v4 : UH1, v5 : int32) : int32 =
-    let v6 : bool = v5 &lt; 5
+and method1 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1, v4 : UH1, v5 : int64) : int32 =
+    let v6 : bool = v5 &lt; 5L
     if v6 then
         let v7 : int32 = method2(v0, v1, v2, v3)
         let v8 : UH1 = UH1_0(v7, v4)
-        let v9 : int32 = v5 + 1
+        let v9 : int64 = v5 + 1L
         method1(v0, v1, v2, v3, v8, v9)
     else
         let v11 : int32 = 0
@@ -9056,12 +9062,12 @@ and method1 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1, v4 : UH1, v5 : int32) :
             else
                 let v16 : int32 = method2(v0, v1, v2, v3)
                 let v17 : UH1 = UH1_0(v16, v4)
-                let v18 : int32 = v5 + 1
+                let v18 : int64 = v5 + 1L
                 method1(v0, v1, v2, v3, v17, v18)
         | _ -&gt;
             let v21 : int32 = method2(v0, v1, v2, v3)
             let v22 : UH1 = UH1_0(v21, v4)
-            let v23 : int32 = v5 + 1
+            let v23 : int64 = v5 + 1L
             method1(v0, v1, v2, v3, v22, v23)
 and method0 () : unit =
     let v0 : (unit -&gt; UH0) = closure0()
@@ -9070,10 +9076,10 @@ and method0 () : unit =
     let v3 : Mut1 = {l0 = 0} : Mut1
     let v4 : Mut1 = {l0 = 1} : Mut1
     let v5 : Mut1 = {l0 = -1} : Mut1
-    let v6 : string = $"calculate_dice_count / max: {2000} / n: {5} / p: {7776}"
+    let v6 : string = $"calculate_dice_count / max: {2000} / n: {5L} / p: {7776}"
     System.Console.WriteLine v6
     let v7 : UH1 = UH1_1
-    let v8 : int32 = 0
+    let v8 : int64 = 0L
     let v9 : int32 = method1(v2, v3, v4, v5, v7, v8)
     let v10 : bool = v9 = 995
     let v11 : string = $"_equal / actual: %A{v9} / expected: %A{995}"
@@ -9106,7 +9112,7 @@ accumulate_dice_rolls / power: -1 / acc: 994
 
 <span class="n">inl</span> <span class="n">sequential_roll</span> <span class="o">=</span> <span class="n">create_sequential_roller</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">2</span> <span class="p">]</span>
 
-<span class="n">roll_progressively</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">sequential_roll</span> <span class="n">false</span> <span class="mi">2000</span>
+<span class="n">roll_progressively</span> <span class="p">(</span><span class="n">Some</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span><span class="p">)</span> <span class="n">sequential_roll</span> <span class="n">false</span> <span class="mi">2000</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1678</span>
 </pre></div>
 </div>
@@ -9251,7 +9257,7 @@ and method2 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1) : int32 =
         v1.l0 &lt;- v24
         v22
 and method9 (v0 : UH1, v1 : int32) : US2 =
-    let v2 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v1}"
+    let v2 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {v1}"
     System.Console.WriteLine v2
     let v3 : int32 = v1 + 1
     US2_1(v3, v0)
@@ -9261,12 +9267,12 @@ and method8 (v0 : UH1, v1 : int32) : US2 =
         let v5 : bool = v3 &gt; 1
         if v5 then
             let v6 : int32 = v3 - 1
-            let v7 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3} / value: {v6}"
+            let v7 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3} / value: {v6}"
             System.Console.WriteLine v7
             let v8 : int32 = v1 + v6
             method9(v4, v8)
         else
-            let v10 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3}"
+            let v10 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v10
             method9(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -9278,12 +9284,12 @@ and method7 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 6
-            let v8 : string = $"accumulate_dice_rolls / power: {1} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {1L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method8(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {1} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {1L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method8(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -9295,12 +9301,12 @@ and method6 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 36
-            let v8 : string = $"accumulate_dice_rolls / power: {2} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {2L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method7(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {2} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {2L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method7(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -9312,12 +9318,12 @@ and method5 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 216
-            let v8 : string = $"accumulate_dice_rolls / power: {3} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {3L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method6(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {3} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {3L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method6(v4, v1)
     | UH1_1 -&gt; (* Nil *)
@@ -9329,22 +9335,22 @@ and method4 (v0 : UH1, v1 : int32) : US2 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 1296
-            let v8 : string = $"accumulate_dice_rolls / power: {4} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {4L} / acc: {v1} / roll: {v3} / value: {v7}"
             System.Console.WriteLine v8
             let v9 : int32 = v1 + v7
             method5(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {4} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {4L} / acc: {v1} / roll: {v3}"
             System.Console.WriteLine v11
             method5(v4, v1)
     | UH1_1 -&gt; (* Nil *)
         US2_0
-and method1 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1, v4 : UH1, v5 : int32) : int32 =
-    let v6 : bool = v5 &lt; 5
+and method1 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1, v4 : UH1, v5 : int64) : int32 =
+    let v6 : bool = v5 &lt; 5L
     if v6 then
         let v7 : int32 = method2(v0, v1, v2, v3)
         let v8 : UH1 = UH1_0(v7, v4)
-        let v9 : int32 = v5 + 1
+        let v9 : int64 = v5 + 1L
         method1(v0, v1, v2, v3, v8, v9)
     else
         let v11 : int32 = 0
@@ -9357,12 +9363,12 @@ and method1 (v0 : Mut0, v1 : Mut1, v2 : Mut1, v3 : Mut1, v4 : UH1, v5 : int32) :
             else
                 let v16 : int32 = method2(v0, v1, v2, v3)
                 let v17 : UH1 = UH1_0(v16, v4)
-                let v18 : int32 = v5 + 1
+                let v18 : int64 = v5 + 1L
                 method1(v0, v1, v2, v3, v17, v18)
         | _ -&gt;
             let v21 : int32 = method2(v0, v1, v2, v3)
             let v22 : UH1 = UH1_0(v21, v4)
-            let v23 : int32 = v5 + 1
+            let v23 : int64 = v5 + 1L
             method1(v0, v1, v2, v3, v22, v23)
 and method0 () : unit =
     let v0 : (unit -&gt; UH0) = closure0()
@@ -9371,10 +9377,10 @@ and method0 () : unit =
     let v3 : Mut1 = {l0 = 0} : Mut1
     let v4 : Mut1 = {l0 = 1} : Mut1
     let v5 : Mut1 = {l0 = -1} : Mut1
-    let v6 : string = $"calculate_dice_count / max: {2000} / n: {5} / p: {7776}"
+    let v6 : string = $"calculate_dice_count / max: {2000} / n: {5L} / p: {7776}"
     System.Console.WriteLine v6
     let v7 : UH1 = UH1_1
-    let v8 : int32 = 0
+    let v8 : int64 = 0L
     let v9 : int32 = method1(v2, v3, v4, v5, v7, v8)
     let v10 : bool = v9 = 1678
     let v11 : string = $"_equal / actual: %A{v9} / expected: %A{1678}"
@@ -9430,7 +9436,7 @@ accumulate_dice_rolls / power: -1 / acc: 1677
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<table><thead><tr><th><i>index</i></th><th>value</th></tr></thead><tbody><tr><td>0</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(2, 3)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>2</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(3, 6)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(4, 6)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(5, 8)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(6, 5)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>5</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(7, 1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>6</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(8, 1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>7</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(9, 7)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>9</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>8</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(10, 3)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>10</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr></tbody></table></div></details></td></tr></tbody></table><style>
+<table><thead><tr><th><i>index</i></th><th>value</th></tr></thead><tbody><tr><td>0</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(1, 1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(2, 4)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>2</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(3, 5)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(4, 6)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(5, 7)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>5</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(6, 5)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>6</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(8, 3)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>7</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(10, 9)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>10</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>9</pre></div></td></tr></tbody></table></div></details></td></tr></tbody></table><style>
 .dni-code-hint {
     font-style: italic;
     overflow: hidden;
@@ -9480,7 +9486,7 @@ and UH2 =
     | UH2_0 of int32 * int32 * UH2
     | UH2_1
 let rec method4 (v0 : UH0, v1 : int32) : US0 =
-    let v2 : string = $"accumulate_dice_rolls / power: {-1} / acc: {v1}"
+    let v2 : string = $"accumulate_dice_rolls / power: {-1L} / acc: {v1}"
     let v3 : int32 = v1 + 1
     US0_1(v3, v0)
 and method3 (v0 : UH0, v1 : int32) : US0 =
@@ -9489,11 +9495,11 @@ and method3 (v0 : UH0, v1 : int32) : US0 =
         let v5 : bool = v3 &gt; 1
         if v5 then
             let v6 : int32 = v3 - 1
-            let v7 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3} / value: {v6}"
+            let v7 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3} / value: {v6}"
             let v8 : int32 = v1 + v6
             method4(v4, v8)
         else
-            let v10 : string = $"accumulate_dice_rolls / power: {0} / acc: {v1} / roll: {v3}"
+            let v10 : string = $"accumulate_dice_rolls / power: {0L} / acc: {v1} / roll: {v3}"
             method4(v4, v1)
     | UH0_1 -&gt; (* Nil *)
         US0_0
@@ -9504,20 +9510,20 @@ and method2 (v0 : UH0, v1 : int32) : US0 =
         if v5 then
             let v6 : int32 = v3 - 1
             let v7 : int32 = v6 * 6
-            let v8 : string = $"accumulate_dice_rolls / power: {1} / acc: {v1} / roll: {v3} / value: {v7}"
+            let v8 : string = $"accumulate_dice_rolls / power: {1L} / acc: {v1} / roll: {v3} / value: {v7}"
             let v9 : int32 = v1 + v7
             method3(v4, v9)
         else
-            let v11 : string = $"accumulate_dice_rolls / power: {1} / acc: {v1} / roll: {v3}"
+            let v11 : string = $"accumulate_dice_rolls / power: {1L} / acc: {v1} / roll: {v3}"
             method3(v4, v1)
     | UH0_1 -&gt; (* Nil *)
         US0_0
-and method1 (v0 : UH0, v1 : int32) : int32 =
-    let v2 : bool = v1 &lt; 2
+and method1 (v0 : UH0, v1 : int64) : int32 =
+    let v2 : bool = v1 &lt; 2L
     if v2 then
         let v3 : int32 = System.Random().Next (1, 7)
         let v4 : UH0 = UH0_0(v3, v0)
-        let v5 : int32 = v1 + 1
+        let v5 : int64 = v1 + 1L
         method1(v4, v5)
     else
         let v7 : int32 = 0
@@ -9530,12 +9536,12 @@ and method1 (v0 : UH0, v1 : int32) : int32 =
             else
                 let v12 : int32 = System.Random().Next (1, 7)
                 let v13 : UH0 = UH0_0(v12, v0)
-                let v14 : int32 = v1 + 1
+                let v14 : int64 = v1 + 1L
                 method1(v13, v14)
         | _ -&gt;
             let v17 : int32 = System.Random().Next (1, 7)
             let v18 : UH0 = UH0_0(v17, v0)
-            let v19 : int32 = v1 + 1
+            let v19 : int64 = v1 + 1L
             method1(v18, v19)
 and method5 (v0 : int32, v1 : UH1, v2 : bool, v3 : UH1) : struct (bool * UH1) =
     match v1 with
@@ -9591,165 +9597,165 @@ and method8 (v0 : UH2) : (struct (int32 * int32) []) =
     let v5 : int32 = method10(v3, v0, v4)
     v3
 and method0 () : (struct (int32 * int32) []) =
-    let v0 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v0 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v1 : UH0 = UH0_1
-    let v2 : int32 = 0
+    let v2 : int64 = 0L
     let v3 : int32 = method1(v1, v2)
-    let v4 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v4 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v5 : UH0 = UH0_1
-    let v6 : int32 = 0
+    let v6 : int64 = 0L
     let v7 : int32 = method1(v5, v6)
-    let v8 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v8 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v9 : UH0 = UH0_1
-    let v10 : int32 = 0
+    let v10 : int64 = 0L
     let v11 : int32 = method1(v9, v10)
-    let v12 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v12 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v13 : UH0 = UH0_1
-    let v14 : int32 = 0
+    let v14 : int64 = 0L
     let v15 : int32 = method1(v13, v14)
-    let v16 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v16 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v17 : UH0 = UH0_1
-    let v18 : int32 = 0
+    let v18 : int64 = 0L
     let v19 : int32 = method1(v17, v18)
-    let v20 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v20 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v21 : UH0 = UH0_1
-    let v22 : int32 = 0
+    let v22 : int64 = 0L
     let v23 : int32 = method1(v21, v22)
-    let v24 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v24 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v25 : UH0 = UH0_1
-    let v26 : int32 = 0
+    let v26 : int64 = 0L
     let v27 : int32 = method1(v25, v26)
-    let v28 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v28 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v29 : UH0 = UH0_1
-    let v30 : int32 = 0
+    let v30 : int64 = 0L
     let v31 : int32 = method1(v29, v30)
-    let v32 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v32 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v33 : UH0 = UH0_1
-    let v34 : int32 = 0
+    let v34 : int64 = 0L
     let v35 : int32 = method1(v33, v34)
-    let v36 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v36 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v37 : UH0 = UH0_1
-    let v38 : int32 = 0
+    let v38 : int64 = 0L
     let v39 : int32 = method1(v37, v38)
-    let v40 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v40 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v41 : UH0 = UH0_1
-    let v42 : int32 = 0
+    let v42 : int64 = 0L
     let v43 : int32 = method1(v41, v42)
-    let v44 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v44 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v45 : UH0 = UH0_1
-    let v46 : int32 = 0
+    let v46 : int64 = 0L
     let v47 : int32 = method1(v45, v46)
-    let v48 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v48 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v49 : UH0 = UH0_1
-    let v50 : int32 = 0
+    let v50 : int64 = 0L
     let v51 : int32 = method1(v49, v50)
-    let v52 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v52 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v53 : UH0 = UH0_1
-    let v54 : int32 = 0
+    let v54 : int64 = 0L
     let v55 : int32 = method1(v53, v54)
-    let v56 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v56 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v57 : UH0 = UH0_1
-    let v58 : int32 = 0
+    let v58 : int64 = 0L
     let v59 : int32 = method1(v57, v58)
-    let v60 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v60 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v61 : UH0 = UH0_1
-    let v62 : int32 = 0
+    let v62 : int64 = 0L
     let v63 : int32 = method1(v61, v62)
-    let v64 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v64 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v65 : UH0 = UH0_1
-    let v66 : int32 = 0
+    let v66 : int64 = 0L
     let v67 : int32 = method1(v65, v66)
-    let v68 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v68 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v69 : UH0 = UH0_1
-    let v70 : int32 = 0
+    let v70 : int64 = 0L
     let v71 : int32 = method1(v69, v70)
-    let v72 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v72 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v73 : UH0 = UH0_1
-    let v74 : int32 = 0
+    let v74 : int64 = 0L
     let v75 : int32 = method1(v73, v74)
-    let v76 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v76 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v77 : UH0 = UH0_1
-    let v78 : int32 = 0
+    let v78 : int64 = 0L
     let v79 : int32 = method1(v77, v78)
-    let v80 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v80 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v81 : UH0 = UH0_1
-    let v82 : int32 = 0
+    let v82 : int64 = 0L
     let v83 : int32 = method1(v81, v82)
-    let v84 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v84 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v85 : UH0 = UH0_1
-    let v86 : int32 = 0
+    let v86 : int64 = 0L
     let v87 : int32 = method1(v85, v86)
-    let v88 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v88 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v89 : UH0 = UH0_1
-    let v90 : int32 = 0
+    let v90 : int64 = 0L
     let v91 : int32 = method1(v89, v90)
-    let v92 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v92 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v93 : UH0 = UH0_1
-    let v94 : int32 = 0
+    let v94 : int64 = 0L
     let v95 : int32 = method1(v93, v94)
-    let v96 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v96 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v97 : UH0 = UH0_1
-    let v98 : int32 = 0
+    let v98 : int64 = 0L
     let v99 : int32 = method1(v97, v98)
-    let v100 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v100 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v101 : UH0 = UH0_1
-    let v102 : int32 = 0
+    let v102 : int64 = 0L
     let v103 : int32 = method1(v101, v102)
-    let v104 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v104 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v105 : UH0 = UH0_1
-    let v106 : int32 = 0
+    let v106 : int64 = 0L
     let v107 : int32 = method1(v105, v106)
-    let v108 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v108 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v109 : UH0 = UH0_1
-    let v110 : int32 = 0
+    let v110 : int64 = 0L
     let v111 : int32 = method1(v109, v110)
-    let v112 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v112 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v113 : UH0 = UH0_1
-    let v114 : int32 = 0
+    let v114 : int64 = 0L
     let v115 : int32 = method1(v113, v114)
-    let v116 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v116 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v117 : UH0 = UH0_1
-    let v118 : int32 = 0
+    let v118 : int64 = 0L
     let v119 : int32 = method1(v117, v118)
-    let v120 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v120 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v121 : UH0 = UH0_1
-    let v122 : int32 = 0
+    let v122 : int64 = 0L
     let v123 : int32 = method1(v121, v122)
-    let v124 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v124 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v125 : UH0 = UH0_1
-    let v126 : int32 = 0
+    let v126 : int64 = 0L
     let v127 : int32 = method1(v125, v126)
-    let v128 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v128 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v129 : UH0 = UH0_1
-    let v130 : int32 = 0
+    let v130 : int64 = 0L
     let v131 : int32 = method1(v129, v130)
-    let v132 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v132 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v133 : UH0 = UH0_1
-    let v134 : int32 = 0
+    let v134 : int64 = 0L
     let v135 : int32 = method1(v133, v134)
-    let v136 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v136 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v137 : UH0 = UH0_1
-    let v138 : int32 = 0
+    let v138 : int64 = 0L
     let v139 : int32 = method1(v137, v138)
-    let v140 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v140 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v141 : UH0 = UH0_1
-    let v142 : int32 = 0
+    let v142 : int64 = 0L
     let v143 : int32 = method1(v141, v142)
-    let v144 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v144 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v145 : UH0 = UH0_1
-    let v146 : int32 = 0
+    let v146 : int64 = 0L
     let v147 : int32 = method1(v145, v146)
-    let v148 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v148 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v149 : UH0 = UH0_1
-    let v150 : int32 = 0
+    let v150 : int64 = 0L
     let v151 : int32 = method1(v149, v150)
-    let v152 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v152 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v153 : UH0 = UH0_1
-    let v154 : int32 = 0
+    let v154 : int64 = 0L
     let v155 : int32 = method1(v153, v154)
-    let v156 : string = $"calculate_dice_count / max: {10} / n: {2} / p: {36}"
+    let v156 : string = $"calculate_dice_count / max: {10} / n: {2L} / p: {36}"
     let v157 : UH0 = UH0_1
-    let v158 : int32 = 0
+    let v158 : int64 = 0L
     let v159 : int32 = method1(v157, v158)
     let v160 : bool = v3 = v7
     let struct (v170 : bool, v171 : UH1) =
@@ -10195,7 +10201,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<table><thead><tr><th><i>index</i></th><th>value</th></tr></thead><tbody><tr><td>0</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(2, 2)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>2</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>2</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(3, 4)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(4, 7)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(5, 3)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(6, 1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>5</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(7, 4)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>6</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(8, 7)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>7</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(9, 8)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>9</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>8</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(10, 4)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>10</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr></tbody></table></div></details></td></tr></tbody></table><style>
+<table><thead><tr><th><i>index</i></th><th>value</th></tr></thead><tbody><tr><td>0</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(1, 1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>1</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(2, 1)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>2</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>1</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>2</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(3, 8)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>3</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(4, 5)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>4</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(5, 5)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>5</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(6, 3)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>3</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>6</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(7, 4)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>7</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>4</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>7</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(8, 5)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>8</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>5</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>8</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(9, 6)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>9</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>6</pre></div></td></tr></tbody></table></div></details></td></tr><tr><td>9</td><td><details class="dni-treeview"><summary><span class="dni-code-hint"><code>(10, 2)</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>Item1</td><td><div class="dni-plaintext"><pre>10</pre></div></td></tr><tr><td>Item2</td><td><div class="dni-plaintext"><pre>2</pre></div></td></tr></tbody></table></div></details></td></tr></tbody></table><style>
 .dni-code-hint {
     font-style: italic;
     overflow: hidden;
@@ -10227,6 +10233,605 @@ table th {
     text-align: start;
 }
 </style>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">rotate_numbers</span><span class="s1">' : u64 -&gt; stream.stream u64 -&gt; stream.stream u64 = rotate_numbers</span>
+    <span class="n">inl</span> <span class="n">create_sequential_roller</span><span class="s1">' : (list u64 -&gt; () -&gt; u64) = create_sequential_roller</span>
+    <span class="n">inl</span> <span class="n">roll_progressively</span><span class="s1">' : (option (string -&gt; ()) -&gt; (() -&gt; u64) -&gt; bool -&gt; u64 -&gt; u64) = roll_progressively</span>
+    <span class="n">inl</span> <span class="n">roll_within_bounds</span><span class="s1">' : option (string -&gt; ()) -&gt; u64 -&gt; list u64 -&gt; option u64 = roll_within_bounds</span>
+
+    <span class="p">(</span><span class="n">rotate_numbers</span><span class="s1">', create_sequential_roller'</span><span class="p">,</span> <span class="n">roll_progressively</span><span class="s1">', roll_within_bounds'</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">dyn</span>
+    <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type UH0 =
+    | UH0_0 of uint64 * (unit -&gt; UH0)
+    | UH0_1
+and UH1 =
+    | UH1_0 of uint64 * UH1
+    | UH1_1
+and [&lt;Struct&gt;] US0 =
+    | US0_0 of f0_0 : UH0
+    | US0_1 of f1_0 : (unit -&gt; UH0)
+and Mut0 = {mutable l0 : US0}
+and Mut1 = {mutable l0 : int32}
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : uint64
+and [&lt;Struct&gt;] US2 =
+    | US2_0
+    | US2_1 of f1_0 : (string -&gt; unit)
+and [&lt;Struct&gt;] US3 =
+    | US3_0
+    | US3_1 of f1_0 : uint64 * f1_1 : UH1
+let rec closure2 (v0 : UH0) () : UH0 =
+    v0
+and method1 (v0 : uint64, v1 : UH0, v2 : UH0) : UH0 =
+    match v1 with
+    | UH0_0(v3, v4) -&gt; (* StreamCons *)
+        let v5 : UH0 = v4 ()
+        let v6 : UH0 = method1(v0, v5, v2)
+        let v7 : uint64 = v3 - 1UL
+        let v8 : uint64 = v7 + v0
+        let v9 : uint64 = v8 % v0
+        let v10 : uint64 = v9 + 1UL
+        let v11 : (unit -&gt; UH0) = closure2(v6)
+        UH0_0(v10, v11)
+    | UH0_1 -&gt; (* StreamNil *)
+        v2
+and closure1 (v0 : uint64) (v1 : UH0) : UH0 =
+    let v2 : UH0 = UH0_1
+    method1(v0, v1, v2)
+and closure0 () (v0 : uint64) : (UH0 -&gt; UH0) =
+    closure1(v0)
+and method2 (v0 : UH1, v1 : UH1) : UH1 =
+    match v0 with
+    | UH1_0(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_0(v2, v1)
+        method2(v3, v4)
+    | UH1_1 -&gt; (* Nil *)
+        v1
+and method3 (v0 : UH1, v1 : UH1) : UH1 =
+    match v0 with
+    | UH1_0(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = method3(v3, v1)
+        UH1_0(v2, v4)
+    | UH1_1 -&gt; (* Nil *)
+        v1
+and closure4 (v0 : UH0) () : UH0 =
+    v0
+and method4 (v0 : UH1, v1 : UH0) : UH0 =
+    match v0 with
+    | UH1_0(v2, v3) -&gt; (* Cons *)
+        let v4 : UH0 = method4(v3, v1)
+        let v5 : (unit -&gt; UH0) = closure4(v4)
+        UH0_0(v2, v5)
+    | UH1_1 -&gt; (* Nil *)
+        v1
+and closure5 (v0 : UH0) () : UH0 =
+    v0
+and closure6 (v0 : UH0, v1 : Mut0) () : UH0 =
+    let v2 : US0 = v1.l0
+    match v2 with
+    | US0_0(v3) -&gt; (* Computed *)
+        v3
+    | US0_1(v4) -&gt; (* NotComputed *)
+        let v5 : UH0 = v4 ()
+        let v12 : UH0 =
+            match v5 with
+            | UH0_0(v7, v8) -&gt; (* StreamCons *)
+                let v9 : (unit -&gt; UH0) = method5(v0, v8)
+                UH0_0(v7, v9)
+            | UH0_1 -&gt; (* StreamNil *)
+                UH0_1
+        let v13 : US0 = US0_0(v12)
+        v1.l0 &lt;- v13
+        v12
+and method5 (v0 : UH0, v1 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
+    let v2 : US0 = US0_1(v1)
+    let v3 : Mut0 = {l0 = v2} : Mut0
+    closure6(v0, v3)
+and method7 (v0 : int32, v1 : UH0) : US1 =
+    match v1 with
+    | UH0_0(v2, v3) -&gt; (* StreamCons *)
+        let v4 : bool = v0 &lt;= 0
+        if v4 then
+            US1_1(v2)
+        else
+            let v6 : int32 = v0 - 1
+            let v7 : UH0 = v3 ()
+            method7(v6, v7)
+    | UH0_1 -&gt; (* StreamNil *)
+        US1_0
+and method6 (v0 : (unit -&gt; UH0), v1 : Mut1, v2 : Mut1, v3 : Mut1) : uint64 =
+    let v4 : UH0 = v0 ()
+    let v5 : int32 = v1.l0
+    let v6 : US1 = method7(v5, v4)
+    match v6 with
+    | US1_0 -&gt; (* None *)
+        let v10 : int32 = v3.l0
+        let v11 : bool = v10 = -1
+        if v11 then
+            let v12 : int32 = v1.l0
+            v3.l0 &lt;- v12
+            ()
+        let v13 : int32 = v2.l0
+        let v14 : int32 = v3.l0
+        let v15 : bool = v13 &gt;= v14
+        let v18 : int32 =
+            if v15 then
+                1
+            else
+                let v16 : int32 = v2.l0
+                let v17 : int32 = v16 + 1
+                v17
+        v2.l0 &lt;- v18
+        let v19 : int32 = v2.l0
+        let v20 : int32 = v19 - 1
+        v1.l0 &lt;- v20
+        method6(v0, v1, v2, v3)
+    | US1_1(v7) -&gt; (* Some *)
+        let v8 : int32 = v1.l0
+        let v9 : int32 = v8 + 1
+        v1.l0 &lt;- v9
+        v7
+and closure7 (v0 : (unit -&gt; UH0), v1 : Mut1, v2 : Mut1, v3 : Mut1) () : uint64 =
+    method6(v0, v1, v2, v3)
+and closure3 () (v0 : UH1) : (unit -&gt; uint64) =
+    let v1 : UH1 = UH1_1
+    let v2 : UH1 = method2(v0, v1)
+    let v3 : UH1 = method3(v0, v2)
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = method4(v3, v4)
+    let v6 : (unit -&gt; UH0) = closure5(v5)
+    let v7 : (unit -&gt; UH0) = method5(v5, v6)
+    let v8 : Mut1 = {l0 = 0} : Mut1
+    let v9 : Mut1 = {l0 = 1} : Mut1
+    let v10 : Mut1 = {l0 = -1} : Mut1
+    closure7(v7, v8, v9, v10)
+and method8 (v0 : US2, v1 : uint64, v2 : int64, v3 : uint64) : int64 =
+    let v4 : bool = v3 &gt; 0UL
+    let v6 : bool =
+        if v4 then
+            let v5 : bool = v3 &lt; v1
+            v5
+        else
+            false
+    if v6 then
+        let v7 : int64 = v2 + 1L
+        let v8 : uint64 = v3 * 6UL
+        method8(v0, v1, v7, v8)
+    else
+        let v10 : string = $"calculate_dice_count / max: {v1} / n: {v2} / p: {v3}"
+        match v0 with
+        | US2_0 -&gt; (* None *)
+            ()
+        | US2_1(v11) -&gt; (* Some *)
+            v11 v10
+        v2
+and closure75 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure75()
+    UH0_0(0UL, v0)
+and closure74 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure75()
+    UH0_0(9223372036854775808UL, v0)
+and closure73 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure74()
+    UH0_0(4611686018427387904UL, v0)
+and closure72 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure73()
+    UH0_0(6917529027641081856UL, v0)
+and closure71 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure72()
+    UH0_0(1152921504606846976UL, v0)
+and closure70 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure71()
+    UH0_0(15564440312192434176UL, v0)
+and closure69 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure70()
+    UH0_0(11817445422220181504UL, v0)
+and closure68 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure69()
+    UH0_0(5044031582654955520UL, v0)
+and closure67 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure68()
+    UH0_0(6989586621679009792UL, v0)
+and closure66 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure67()
+    UH0_0(16537217831704461312UL, v0)
+and closure65 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure66()
+    UH0_0(11979575008805519360UL, v0)
+and closure64 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure65()
+    UH0_0(14294425217273954304UL, v0)
+and closure63 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure64()
+    UH0_0(2382404202878992384UL, v0)
+and closure62 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure63()
+    UH0_0(6545982058383015936UL, v0)
+and closure61 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure62()
+    UH0_0(10314369046585278464UL, v0)
+and closure60 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure61()
+    UH0_0(4793518853382471680UL, v0)
+and closure59 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure60()
+    UH0_0(3873377154515337216UL, v0)
+and closure58 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure59()
+    UH0_0(645562859085889536UL, v0)
+and closure57 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure58()
+    UH0_0(107593809847648256UL, v0)
+and closure56 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure57()
+    UH0_0(3092389647259533312UL, v0)
+and closure55 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure56()
+    UH0_0(9738770311398031360UL, v0)
+and closure54 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure55()
+    UH0_0(16995415113324298240UL, v0)
+and closure53 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure54()
+    UH0_0(8981483876790566912UL, v0)
+and closure52 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure53()
+    UH0_0(13794743361938128896UL, v0)
+and closure51 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure52()
+    UH0_0(2299123893656354816UL, v0)
+and closure50 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure51()
+    UH0_0(3457644661227651072UL, v0)
+and closure49 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure50()
+    UH0_0(576274110204608512UL, v0)
+and closure48 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure49()
+    UH0_0(6244960376270618624UL, v0)
+and closure47 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure48()
+    UH0_0(13338656111851470848UL, v0)
+and closure46 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure47()
+    UH0_0(14520938734448279552UL, v0)
+and closure45 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure46()
+    UH0_0(14717985838214414336UL, v0)
+and closure44 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure45()
+    UH0_0(5527454985320660992UL, v0)
+and closure43 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure44()
+    UH0_0(16293529225644736512UL, v0)
+and closure42 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure43()
+    UH0_0(11938960241128898560UL, v0)
+and closure41 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure42()
+    UH0_0(8138741398091333632UL, v0)
+and closure40 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure41()
+    UH0_0(7505371590918406144UL, v0)
+and closure39 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure40()
+    UH0_0(16623181993244360704UL, v0)
+and closure38 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure39()
+    UH0_0(8919445023443910656UL, v0)
+and closure37 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure38()
+    UH0_0(4561031516192243712UL, v0)
+and closure36 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure37()
+    UH0_0(9983543956220149760UL, v0)
+and closure35 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure36()
+    UH0_0(4738381338321616896UL, v0)
+and closure34 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure35()
+    UH0_0(789730223053602816UL, v0)
+and closure33 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure34()
+    UH0_0(131621703842267136UL, v0)
+and closure32 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure33()
+    UH0_0(21936950640377856UL, v0)
+and closure31 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure32()
+    UH0_0(3656158440062976UL, v0)
+and closure30 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure31()
+    UH0_0(609359740010496UL, v0)
+and closure29 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure30()
+    UH0_0(101559956668416UL, v0)
+and closure28 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure29()
+    UH0_0(16926659444736UL, v0)
+and closure27 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure28()
+    UH0_0(2821109907456UL, v0)
+and closure26 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure27()
+    UH0_0(470184984576UL, v0)
+and closure25 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure26()
+    UH0_0(78364164096UL, v0)
+and closure24 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure25()
+    UH0_0(13060694016UL, v0)
+and closure23 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure24()
+    UH0_0(2176782336UL, v0)
+and closure22 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure23()
+    UH0_0(362797056UL, v0)
+and closure21 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure22()
+    UH0_0(60466176UL, v0)
+and closure20 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure21()
+    UH0_0(10077696UL, v0)
+and closure19 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure20()
+    UH0_0(1679616UL, v0)
+and closure18 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure19()
+    UH0_0(279936UL, v0)
+and closure17 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure18()
+    UH0_0(46656UL, v0)
+and closure16 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure17()
+    UH0_0(7776UL, v0)
+and closure15 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure16()
+    UH0_0(1296UL, v0)
+and closure14 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure15()
+    UH0_0(216UL, v0)
+and closure13 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure14()
+    UH0_0(36UL, v0)
+and closure12 () () : UH0 =
+    let v0 : (unit -&gt; UH0) = closure13()
+    UH0_0(6UL, v0)
+and method11 (v0 : int64, v1 : UH0) : US1 =
+    match v1 with
+    | UH0_0(v2, v3) -&gt; (* StreamCons *)
+        let v4 : bool = v0 &lt;= 0L
+        if v4 then
+            US1_1(v2)
+        else
+            let v6 : int64 = v0 - 1L
+            let v7 : UH0 = v3 ()
+            method11(v6, v7)
+    | UH0_1 -&gt; (* StreamNil *)
+        US1_0
+and method10 (v0 : US2, v1 : int64, v2 : UH1, v3 : uint64) : US3 =
+    let v4 : bool = v1 &lt; 0L
+    if v4 then
+        let v5 : string = $"accumulate_dice_rolls / power: {v1} / acc: {v3}"
+        match v0 with
+        | US2_0 -&gt; (* None *)
+            ()
+        | US2_1(v6) -&gt; (* Some *)
+            v6 v5
+        let v7 : uint64 = v3 + 1UL
+        US3_1(v7, v2)
+    else
+        match v2 with
+        | UH1_0(v10, v11) -&gt; (* Cons *)
+            let v12 : bool = v10 &gt; 1UL
+            if v12 then
+                let v13 : uint64 = 1UL
+                let v14 : (unit -&gt; UH0) = closure12()
+                let v15 : UH0 = UH0_0(v13, v14)
+                let v16 : US1 = method11(v1, v15)
+                let v20 : uint64 =
+                    match v16 with
+                    | US1_0 -&gt; (* None *)
+                        failwith&lt;uint64&gt; "Option does not have a value."
+                    | US1_1(v17) -&gt; (* Some *)
+                        v17
+                let v21 : uint64 = v10 - 1UL
+                let v22 : uint64 = v21 * v20
+                let v23 : string = $"accumulate_dice_rolls / power: {v1} / acc: {v3} / roll: {v10} / value: {v22}"
+                match v0 with
+                | US2_0 -&gt; (* None *)
+                    ()
+                | US2_1(v24) -&gt; (* Some *)
+                    v24 v23
+                let v25 : uint64 = v3 + v22
+                let v26 : int64 = v1 - 1L
+                method10(v0, v26, v11, v25)
+            else
+                let v28 : string = $"accumulate_dice_rolls / power: {v1} / acc: {v3} / roll: {v10}"
+                match v0 with
+                | US2_0 -&gt; (* None *)
+                    ()
+                | US2_1(v29) -&gt; (* Some *)
+                    v29 v28
+                let v30 : int64 = v1 - 1L
+                method10(v0, v30, v11, v3)
+        | UH1_1 -&gt; (* Nil *)
+            US3_0
+and method12 (v0 : int64, v1 : (unit -&gt; uint64), v2 : int64) : UH1 =
+    let v3 : bool = v2 &lt; v0
+    if v3 then
+        let v4 : uint64 = v1 ()
+        let v5 : int64 = v2 + 1L
+        let v6 : UH1 = method12(v0, v1, v5)
+        UH1_0(v4, v6)
+    else
+        UH1_1
+and method13 (v0 : US2, v1 : (unit -&gt; uint64), v2 : bool, v3 : uint64, v4 : int64, v5 : UH1) : uint64 =
+    let v6 : int64 = v4 + 1L
+    let v7 : bool = v4 &lt; v6
+    if v7 then
+        let v8 : uint64 = v1 ()
+        let v9 : UH1 = UH1_0(v8, v5)
+        method9(v0, v1, v2, v3, v4, v9, v6)
+    else
+        let v11 : uint64 = 0UL
+        let v12 : US3 = method10(v0, v4, v5, v11)
+        match v12 with
+        | US3_1(v13, v14) -&gt; (* Some *)
+            let v15 : bool = v13 &lt;= v3
+            if v15 then
+                v13
+            else
+                if v2 then
+                    let v16 : int64 = 0L
+                    let v17 : UH1 = method12(v4, v1, v16)
+                    method13(v0, v1, v2, v3, v4, v17)
+                else
+                    let v19 : uint64 = v1 ()
+                    let v20 : UH1 = UH1_0(v19, v5)
+                    method9(v0, v1, v2, v3, v4, v20, v6)
+        | _ -&gt;
+            if v2 then
+                let v24 : int64 = 0L
+                let v25 : UH1 = method12(v4, v1, v24)
+                method13(v0, v1, v2, v3, v4, v25)
+            else
+                let v27 : uint64 = v1 ()
+                let v28 : UH1 = UH1_0(v27, v5)
+                method9(v0, v1, v2, v3, v4, v28, v6)
+and method9 (v0 : US2, v1 : (unit -&gt; uint64), v2 : bool, v3 : uint64, v4 : int64, v5 : UH1, v6 : int64) : uint64 =
+    let v7 : int64 = v4 + 1L
+    let v8 : bool = v6 &lt; v7
+    if v8 then
+        let v9 : uint64 = v1 ()
+        let v10 : UH1 = UH1_0(v9, v5)
+        let v11 : int64 = v6 + 1L
+        method9(v0, v1, v2, v3, v4, v10, v11)
+    else
+        let v13 : uint64 = 0UL
+        let v14 : US3 = method10(v0, v4, v5, v13)
+        match v14 with
+        | US3_1(v15, v16) -&gt; (* Some *)
+            let v17 : bool = v15 &lt;= v3
+            if v17 then
+                v15
+            else
+                if v2 then
+                    let v18 : int64 = 0L
+                    let v19 : UH1 = method12(v4, v1, v18)
+                    method13(v0, v1, v2, v3, v4, v19)
+                else
+                    let v21 : uint64 = v1 ()
+                    let v22 : UH1 = UH1_0(v21, v5)
+                    let v23 : int64 = v6 + 1L
+                    method9(v0, v1, v2, v3, v4, v22, v23)
+        | _ -&gt;
+            if v2 then
+                let v27 : int64 = 0L
+                let v28 : UH1 = method12(v4, v1, v27)
+                method13(v0, v1, v2, v3, v4, v28)
+            else
+                let v30 : uint64 = v1 ()
+                let v31 : UH1 = UH1_0(v30, v5)
+                let v32 : int64 = v6 + 1L
+                method9(v0, v1, v2, v3, v4, v31, v32)
+and closure11 (v0 : US2, v1 : (unit -&gt; uint64), v2 : bool) (v3 : uint64) : uint64 =
+    let v4 : bool = v3 = 1UL
+    let v8 : int64 =
+        if v4 then
+            1L
+        else
+            let v5 : int64 = 0L
+            let v6 : uint64 = 1UL
+            method8(v0, v3, v5, v6)
+    let v9 : int64 = v8 - 1L
+    let v10 : UH1 = UH1_1
+    let v11 : int64 = 0L
+    method9(v0, v1, v2, v3, v9, v10, v11)
+and closure10 (v0 : US2, v1 : (unit -&gt; uint64)) (v2 : bool) : (uint64 -&gt; uint64) =
+    closure11(v0, v1, v2)
+and closure9 (v0 : US2) (v1 : (unit -&gt; uint64)) : (bool -&gt; (uint64 -&gt; uint64)) =
+    closure10(v0, v1)
+and closure8 () (v0 : US2) : ((unit -&gt; uint64) -&gt; (bool -&gt; (uint64 -&gt; uint64))) =
+    closure9(v0)
+and method14 (v0 : UH1, v1 : int64) : int64 =
+    match v0 with
+    | UH1_0(v2, v3) -&gt; (* Cons *)
+        let v4 : int64 = v1 + 1L
+        method14(v3, v4)
+    | UH1_1 -&gt; (* Nil *)
+        v1
+and closure78 (v0 : US2, v1 : uint64) (v2 : UH1) : US1 =
+    let v3 : int64 = 0L
+    let v4 : int64 = method14(v2, v3)
+    let v5 : int64 = v4 - 1L
+    let v6 : uint64 = 0UL
+    let v7 : US3 = method10(v0, v5, v2, v6)
+    match v7 with
+    | US3_1(v8, v9) -&gt; (* Some *)
+        let v10 : bool = v8 &gt;= 1UL
+        let v12 : bool =
+            if v10 then
+                let v11 : bool = v8 &lt;= v1
+                v11
+            else
+                false
+        if v12 then
+            US1_1(v8)
+        else
+            US1_0
+    | _ -&gt;
+        US1_0
+and closure77 (v0 : US2) (v1 : uint64) : (UH1 -&gt; US1) =
+    closure78(v0, v1)
+and closure76 () (v0 : US2) : (uint64 -&gt; (UH1 -&gt; US1)) =
+    closure77(v0)
+and method0 () : unit =
+    let v0 : (uint64 -&gt; (UH0 -&gt; UH0)) = closure0()
+    let v1 : (UH1 -&gt; (unit -&gt; uint64)) = closure3()
+    let v2 : (US2 -&gt; ((unit -&gt; uint64) -&gt; (bool -&gt; (uint64 -&gt; uint64)))) = closure8()
+    let v3 : (US2 -&gt; (uint64 -&gt; (UH1 -&gt; US1))) = closure76()
+    ()
+method0()
+
+</pre>
 </div>
 </div>
 </div>

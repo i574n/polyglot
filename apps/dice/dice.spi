@@ -3,7 +3,7 @@
 // // ## sixth_power_sequence
 
 inl sixth_power_sequence () =
-    stream.iterate ((*) 6) 1i32
+    stream.iterate ((*) 6) 1
 
 // // ## accumulate_dice_rolls
 
@@ -34,7 +34,7 @@ inl accumulate_dice_rolls (log : option (string -> ())) rolls power acc =
 // // ## roll_within_bounds
 
 inl roll_within_bounds (log : option (string -> ())) max rolls =
-    inl power = listm.length rolls - 1i32
+    inl power = listm.length rolls - 1i64
     match accumulate_dice_rolls log rolls power 0 with
     | Some (result, _) when result >= 1 && result <= max => Some result
     | _ => None
@@ -42,12 +42,19 @@ inl roll_within_bounds (log : option (string -> ())) max rolls =
 // // ## calculate_dice_count
 
 inl calculate_dice_count (log : option (string -> ())) max =
-    inl rec loop n p =
-        if p < max
+    inl rec body n p =
+        if p > 0 && p < max
         then loop (n + 1) (p * 6)
         else
             log |> optionm'.iter ((|>) $"$\"calculate_dice_count / max: {!max} / n: {!n} / p: {!p}\"")
             n
+    and inl loop n p =
+        if var_is max |> not
+        then body n p
+        else
+            inl n = dyn n
+            inl p = dyn p
+            join body n p
     if max = 1
     then 1
     else loop 0 1
@@ -93,13 +100,24 @@ inl create_sequential_roller list =
 // // ## roll_progressively
 
 inl roll_progressively (log : option (string -> ())) roll reroll max =
-    inl power = (calculate_dice_count log max) - 1i32
+    inl power = (calculate_dice_count log max) - 1i64
     let rec loop rolls size =
         if size < power + 1
         then loop (roll () :: rolls) (size + 1)
-        else
-            match accumulate_dice_rolls log rolls power 0 with
+        else accumulate_dice_rolls log rolls power 0 |> function
             | Some (result, _) when result <= max => result
             | _ when reroll => loop (listm.init power (fun _ => roll ())) power
             | _ => loop (roll () :: rolls) (size + 1)
     loop [] 0
+
+// // ## main
+
+let main () =
+    inl rotate_numbers' : u64 -> stream.stream u64 -> stream.stream u64 = rotate_numbers
+    inl create_sequential_roller' : (list u64 -> () -> u64) = create_sequential_roller
+    inl roll_progressively' : (option (string -> ()) -> (() -> u64) -> bool -> u64 -> u64) = roll_progressively
+    inl roll_within_bounds' : option (string -> ()) -> u64 -> list u64 -> option u64 = roll_within_bounds
+
+    (rotate_numbers', create_sequential_roller', roll_progressively', roll_within_bounds')
+    |> dyn
+    |> ignore
