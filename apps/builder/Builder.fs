@@ -118,6 +118,11 @@ module Builder =
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
+        let code =
+            if code |> String.endsWith "\n()\n"
+            then code |> String.substring 0 ((code |> String.length) - 3)
+            else code
+
         return! code |> buildCode runtime packages modules dir fileName
     }
 

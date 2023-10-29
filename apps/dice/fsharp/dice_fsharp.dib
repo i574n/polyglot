@@ -8,11 +8,11 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Testing.dib
+#!import ../../../lib/fsharp/Testing.dib
 
 #!fsharp
 
-#!import ../../lib/fsharp/Common.fs
+#!import ../../../lib/fsharp/Common.fs
 
 #!fsharp
 

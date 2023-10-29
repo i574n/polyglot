@@ -15,3 +15,5 @@ tmp/
 paket-files/
 .paket/
 .history/
+
+apps/lib

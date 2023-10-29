@@ -14,8 +14,8 @@ pub mod Polyglot {
     use super::*;
     pub mod dice_fsharp {
         use super::*;
-        use crate::module_ad43931::Polyglot::Common;
-        use crate::module_ad43931::Polyglot::Common::TraceLevel;
+        use crate::module_8cb3e09e::Polyglot::Common;
+        use crate::module_8cb3e09e::Polyglot::Common::TraceLevel;
         use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::List_::cons;
         use fable_library_rust::List_::empty;
@@ -179,6 +179,9 @@ pub mod Polyglot {
             } else {
                 None::<i32>
             }
+        }
+        pub fn rollDice() -> i32 {
+            rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)
         }
         pub fn rotateNumber(max: i32, n: i32) -> i32 {
             (n - 1_i32 + max) % max + 1_i32
@@ -363,9 +366,9 @@ pub mod Polyglot {
         }
     }
 }
-#[path = "../../lib/fsharp/CommonChain.rs"]
-mod module_ad43931;
-pub use module_ad43931::*;
+#[path = "../../../lib/fsharp/Common.rs"]
+mod module_8cb3e09e;
+pub use module_8cb3e09e::*;
 pub fn main() {
     let args = std::env::args().skip(1).map(fromString).collect();
     Polyglot::dice_fsharp::main(array_from(args));

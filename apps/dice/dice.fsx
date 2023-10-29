@@ -551,3 +551,5 @@ and method0 () : unit =
     let v3 : (US2 -> (uint64 -> (UH1 -> US1))) = closure76()
     ()
 method0()
+let main _args = 0
+()
