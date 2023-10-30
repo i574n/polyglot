@@ -19,7 +19,8 @@ if (!$fast) {
     { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 stream.dib`"" } | Invoke-Block -Retries 5
     { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 seq.dib`"" } | Invoke-Block -Retries 5
     { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 util.dib`"" } | Invoke-Block -Retries 5
+    { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 rust.dib`"" } | Invoke-Block -Retries 5
     { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 physics.dib`"" } | Invoke-Block -Retries 5
 }
 
-{ . ../../apps/parser/dist/DibParser$(GetExecutableSuffix) testing.dib spi common.dib spi console.dib spi math.dib spi "optionm'.dib" spi "am'.dib" spi "listm'.dib" spi benchmark.dib spi stream.dib spi seq.dib spi util.dib spi physics.dib spi } | Invoke-Block
+{ . ../../apps/parser/dist/DibParser$(GetExecutableSuffix) testing.dib spi common.dib spi console.dib spi math.dib spi "optionm'.dib" spi "am'.dib" spi "listm'.dib" spi benchmark.dib spi stream.dib spi seq.dib spi util.dib spi rust.dib spi physics.dib spi } | Invoke-Block

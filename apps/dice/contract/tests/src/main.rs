@@ -72,8 +72,8 @@ async fn main() -> anyhow::Result<()> {
         .call("roll_within_bounds_borsh")
         .args((|| {
             let mut args = Vec::new();
-            2000_i32.serialize(&mut args).unwrap();
-            vec![2, 2, 6, 4, 5].serialize(&mut args).unwrap();
+            2000_u64.serialize(&mut args).unwrap();
+            vec![2u8, 2, 6, 4, 5].serialize(&mut args).unwrap();
             args
         })())
         .transact()
@@ -82,9 +82,9 @@ async fn main() -> anyhow::Result<()> {
     print_usd(result.clone());
     match result.into_result() {
         Ok(result) => {
-            let n = result.borsh::<Option<i32>>().ok();
+            let n = result.borsh::<Option<u64>>().ok();
             println!("n: {n:#?}");
-            assert_eq!(n, Some(Some(1715_i32)));
+            assert_eq!(n, Some(Some(1715)));
         }
         Err(_) => {
             panic!("Expected Some(ExecutionResult<Value>)");

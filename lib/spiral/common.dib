@@ -125,19 +125,49 @@ inl join_body_unit body d x =
 
 #!spiral
 
+union target_runtime =
+    | Native
+    | Wasm
+
 union target =
-    | Rust
+    | Rust : target_runtime
     | Fsharp
 
-inl run_target (fn : target -> (() -> _)) =
-    inl rust_fn = fn Rust
-    inl fsharp_fn = fn Fsharp
-
+inl run_target forall t. (fn : target -> (() -> t)) : t =
+    $"let mutable result = None"
     $"#if FABLE_COMPILER_RUST"
-    $"!rust_fn ()"
+    $"#if \!WASM"
+    fn (Rust Native) () |> fun x => $"!x"
     $"#else"
-    $"!fsharp_fn ()"
+    fn (Rust Wasm) () |> fun x => $"!x"
     $"#endif"
+    $"#else"
+    fn Fsharp () |> fun x => $"!x"
+    $"#endif"
+    $"|> fun x -> result <- Some x"
+    $"result |> Option.get"
+
+#!spiral
+
+// // test
+
+run_target function
+    | Fsharp => fun () => $"1uy"
+    | Rust (Native) => fun () => $"2uy"
+    | Rust (Wasm) => fun () => $"3uy"
+|> _equal 1u8
+
+#!spiral
+
+// // test
+// // rust=
+
+run_target function
+    | Fsharp => fun () => $"1uy"
+    | Rust (Native) => fun () => $"2uy"
+    | Rust (Wasm) => fun () => $"3uy"
+|> (=) 2u8
+|> _equal true
 
 #!markdown
 

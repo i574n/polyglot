@@ -54,7 +54,7 @@ let inline fn (token : System.Threading.CancellationToken) =
 
 async {
     run fn
-    do! Async.Sleep 1
+    do! Async.Sleep 10
     return counter
 }
 |> Async.RunSynchronously

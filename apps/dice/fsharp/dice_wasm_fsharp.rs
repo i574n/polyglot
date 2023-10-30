@@ -23,11 +23,9 @@ pub mod Polyglot {
         use fable_library_rust::List_::initialize;
         use fable_library_rust::List_::isEmpty;
         use fable_library_rust::List_::length;
-        use fable_library_rust::List_::ofArray;
         use fable_library_rust::List_::tail;
         use fable_library_rust::List_::tryItem;
         use fable_library_rust::List_::List;
-        use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::Array;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Func0;
@@ -35,7 +33,6 @@ pub mod Polyglot {
         use fable_library_rust::Native_::Func2;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
-        use fable_library_rust::Option_::defaultValue;
         use fable_library_rust::Option_::getValue;
         use fable_library_rust::Option_::iterate;
         use fable_library_rust::Seq_::cache;
@@ -179,6 +176,9 @@ pub mod Polyglot {
             } else {
                 None::<i32>
             }
+        }
+        pub fn rollDice() -> i32 {
+            1_i32
         }
         pub fn rotateNumber(max: i32, n: i32) -> i32 {
             (n - 1_i32 + max) % max + 1_i32
@@ -338,7 +338,7 @@ pub mod Polyglot {
             loop_1(empty::<i32>(), 0_i32)
         }
         pub fn main(args: Array<string>) -> i32 {
-            let result: Option<i32> = Polyglot::dice_fsharp::rollWithinBounds(
+            let result: i32 = Polyglot::dice_fsharp::rollProgressively(
                 Some({
                     fn clo(a0: string) {
                         println!("{}", a0);
@@ -348,14 +348,15 @@ pub mod Polyglot {
                         move |arg: string| clo(arg)
                     })
                 }),
-                2000_i32,
-                ofArray(new_array(&[1_i32, 5_i32, 4_i32, 4_i32, 5_i32])),
+                Func0::new(move || Polyglot::dice_fsharp::rollDice()),
+                true,
+                i32::MAX / 2_i32,
             );
             Common::trace(
                 LrcPtr::new(TraceLevel::Debug),
                 Func0::new({
                     let result = result.clone();
-                    move || sprintf!("main / result: {}", &defaultValue(-1_i32, result.clone()))
+                    move || sprintf!("main / result: {}", &result)
                 }),
                 Func0::new(move || string("")),
             );
@@ -363,7 +364,7 @@ pub mod Polyglot {
         }
     }
 }
-#[path = "../../../lib/fsharp/CommonChain.rs"]
+#[path = "../../../lib/fsharp/CommonWasm.rs"]
 mod module_8cb3e09e;
 pub use module_8cb3e09e::*;
 pub fn main() {

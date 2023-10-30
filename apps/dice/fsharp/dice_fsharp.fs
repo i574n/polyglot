@@ -53,9 +53,11 @@ module dice_fsharp =
     /// ## rollDice
 
 #if FABLE_COMPILER_RUST
-#if !CHAIN
     let rollDice () : int =
+#if !WASM
         Fable.Core.RustInterop.emitRustExpr () "rand::Rng::gen_range(&mut rand::thread_rng(), 1..7)"
+#else
+        1
 #endif
 #else
     let private random = System.Random ()
@@ -102,6 +104,6 @@ module dice_fsharp =
     /// ## main
 
     let main args =
-        let result = rollWithinBounds (Some (printfn "%s")) 2000 [ 1; 5; 4; 4; 5 ]
-        trace Debug (fun () -> $"main / result: {result |> Option.defaultValue -1}") getLocals
+        let result = rollProgressively (Some (printfn "%s")) rollDice true (System.Int32.MaxValue / 2)
+        trace Debug (fun () -> $"main / result: {result}") getLocals
         0

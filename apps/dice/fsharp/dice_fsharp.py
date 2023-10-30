@@ -1,8 +1,8 @@
 import sys
 from typing import (Tuple, Optional, Callable, Any, TypeVar)
 from lib.fsharp.common import (trace, TraceLevel)
-from fable_modules.fable_library.list import (FSharpList, is_empty, head, tail, length, try_item, cons, initialize, empty, of_array)
-from fable_modules.fable_library.option import (to_array, value as value_1, default_arg)
+from fable_modules.fable_library.list import (FSharpList, is_empty, head, tail, length, try_item, cons, initialize, empty)
+from fable_modules.fable_library.option import (to_array, value as value_1)
 from fable_modules.fable_library.seq import (cache, unfold, iterate, item as item_1, map)
 from fable_modules.fable_library.string_ import (to_console, printf)
 from fable_modules.fable_library.types import Array
@@ -200,14 +200,17 @@ def main(args: Array[str]) -> int:
 
         return _arrow6
 
-    result: Optional[int] = roll_within_bounds(_arrow7(), 2000, of_array([1, 5, 4, 4, 5]))
-    def _arrow8(__unit: None=None, args: Any=args) -> str:
-        return ("main / result: " + str(default_arg(result, -1))) + ""
+    def _arrow8(__unit: None=None, args: Any=args) -> int:
+        return roll_dice()
 
+    result: int = roll_progressively(_arrow7(), _arrow8, True, 2147483647 // 2) or 0
     def _arrow9(__unit: None=None, args: Any=args) -> str:
+        return ("main / result: " + str(result)) + ""
+
+    def _arrow10(__unit: None=None, args: Any=args) -> str:
         return ""
 
-    trace(TraceLevel(1), _arrow8, _arrow9)
+    trace(TraceLevel(1), _arrow9, _arrow10)
     return 0
 
 

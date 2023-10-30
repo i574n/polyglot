@@ -8000,9 +8000,11 @@ accumulateDiceRolls / power: -1 / acc: 3896
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if FABLE_COMPILER_RUST</span>
-<span class="c1">#if !CHAIN</span>
 <span class="n">let</span> <span class="n">rollDice</span> <span class="p">()</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span>
+<span class="c1">#if !WASM</span>
     <span class="n">Fable</span><span class="o">.</span><span class="n">Core</span><span class="o">.</span><span class="n">RustInterop</span><span class="o">.</span><span class="n">emitRustExpr</span> <span class="p">()</span> <span class="s2">"rand::Rng::gen_range(&amp;mut rand::thread_rng(), 1..7)"</span>
+<span class="c1">#else</span>
+    <span class="mi">1</span>
 <span class="c1">#endif</span>
 <span class="c1">#else</span>
 <span class="n">let</span> <span class="n">private</span> <span class="n">random</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Random</span> <span class="p">()</span>
@@ -8324,8 +8326,8 @@ System.Exception: createSequentialRoller / End of list
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">main</span> <span class="n">args</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">rollWithinBounds</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="mi">2000</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span> <span class="p">]</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"main / result: {result |&gt; Option.defaultValue -1}"</span><span class="p">)</span> <span class="n">getLocals</span>
+    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">rollProgressively</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span><span class="n">printfn</span> <span class="s2">"</span><span class="si">%s</span><span class="s2">"</span><span class="p">))</span> <span class="n">rollDice</span> <span class="n">true</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">Int32</span><span class="o">.</span><span class="n">MaxValue</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"main / result: </span><span class="si">{result}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="mi">0</span>
 </pre></div>
 </div>

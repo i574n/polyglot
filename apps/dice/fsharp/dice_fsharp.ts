@@ -1,7 +1,7 @@
 import { map, item as item_1, iterate, unfold, cache } from "./fable_modules/fable-library-ts/Seq.js";
 import { int32 } from "./fable_modules/fable-library-ts/Int32.js";
-import { defaultArg, value as value_1, toArray, Option } from "./fable_modules/fable-library-ts/Option.js";
-import { ofArray, empty, initialize, cons, tryItem, length, tail, head, isEmpty, FSharpList } from "./fable_modules/fable-library-ts/List.js";
+import { value as value_1, toArray, Option } from "./fable_modules/fable-library-ts/Option.js";
+import { empty, initialize, cons, tryItem, length, tail, head, isEmpty, FSharpList } from "./fable_modules/fable-library-ts/List.js";
 import { nonSeeded } from "./fable_modules/fable-library-ts/Random.js";
 import { printf, toConsole } from "./fable_modules/fable-library-ts/String.js";
 import { TraceLevel_Debug, trace } from "./lib/fsharp/Common.js";
@@ -194,10 +194,10 @@ export function rollProgressively(log: Option<((arg0: string) => void)>, roll: (
 
 (function (args: string[]): int32 {
     let clo: ((arg0: string) => void);
-    const result: Option<int32> = rollWithinBounds((clo = toConsole(printf("%s")), (arg: string): void => {
+    const result: int32 = rollProgressively((clo = toConsole(printf("%s")), (arg: string): void => {
         clo(arg);
-    }), 2000, ofArray([1, 5, 4, 4, 5]));
-    trace(TraceLevel_Debug(), (): string => (`main / result: ${defaultArg(result, -1)}`), (): string => "");
+    }), rollDice, true, ~~(2147483647 / 2)) | 0;
+    trace(TraceLevel_Debug(), (): string => (`main / result: ${result}`), (): string => "");
     return 0;
 })(typeof process === 'object' ? process.argv.slice(2) : []);
 

@@ -1,0 +1,7 @@
+// // # rust
+
+// // ## emit_expr
+
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    real
+        $"Fable.Core.RustInterop.emitRustExpr !args !code" : t

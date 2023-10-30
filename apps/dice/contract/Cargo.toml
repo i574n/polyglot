@@ -12,11 +12,11 @@ crate-type = ["cdylib"]
 
 [dependencies]
 near-sdk = "~4.1"
-dice_fsharp = { path = "../fsharp", default-features = false, features = ["chain"] }
+dice = { path = "..", default-features = false, features = ["wasm"] }
 fable_library_rust = { path = "../../../apps/spiral/temp/test/fable_modules/fable-library-rust", default-features = false }
 
 [features]
-chain = []
+wasm = []
 
 [profile.release]
 codegen-units = 1

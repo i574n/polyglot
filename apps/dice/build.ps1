@@ -48,14 +48,14 @@ if (!$fast) {
     Copy-Item -Force target/dart/dice.dart dice.dart
 }
 
-{ dotnet fable target/dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define CHAIN } | Invoke-Block
+{ dotnet fable target/dice.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define WASM } | Invoke-Block
 
-Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonChain.rs
+Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonWasm.rs
 
 (Get-Content target/rs/dice.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
-    -replace "/Common.rs", "/CommonChain.rs" `
-    | Set-Content dice_chain.rs
+    -replace "/Common.rs", "/CommonWasm.rs" `
+    | Set-Content dice_wasm.rs
 
 cargo fmt --
 

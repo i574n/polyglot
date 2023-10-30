@@ -14,6 +14,12 @@ inl _almost_equal b a =
 inl _equal b a =
     assert (a = b) $"$\"_equal / actual: %A{!a} / expected: %A{!b}\""
 
+inl _is_greater_than b a =
+    assert (b > a) $"$\"_is_greater_than / actual: %A{!a} / expected: %A{!b}\""
+
+inl _is_greater_than_or_equal b a =
+    assert (b >= a) $"$\"_is_greater_than_or_equal / actual: %A{!a} / expected: %A{!b}\""
+
 inl _is_less_than b a =
     assert (b < a) $"$\"_is_less_than / actual: %A{!a} / expected: %A{!b}\""
 

@@ -1,13 +1,15 @@
 from __future__ import annotations
 from dataclasses import dataclass
 import sys
-from typing import (Any, List, Callable)
-from fable_modules.fable_library.long import (op_addition, op_modulus, op_subtraction, op_multiply)
-from fable_modules.fable_library.reflection import (TypeInfo, uint64_type, unit_type, lambda_type, union_type, record_type, int32_type, string_type)
-from fable_modules.fable_library.types import (Array, Union, Record, uint64, int64)
+from typing import (Any, List, Callable, Optional)
+from fable_modules.fable_library.long import (op_subtraction, op_addition, op_multiply, from_integer)
+from fable_modules.fable_library.option import (default_arg, map, value as value_47)
+from fable_modules.fable_library.reflection import (TypeInfo, uint8_type, unit_type, lambda_type, union_type, record_type, int64_type, string_type, uint64_type)
+from fable_modules.fable_library.types import (Array, Union, Record, int64, uint8, uint64, int8)
+from fable_modules.fable_library.util import randint
 
-def _expr1() -> TypeInfo:
-    return union_type("Dice.UH0", [], UH0, lambda: [[("Item1", uint64_type), ("Item2", lambda_type(unit_type, UH0_reflection()))], []])
+def _expr2() -> TypeInfo:
+    return union_type("Dice.UH0", [], UH0, lambda: [[("Item1", uint8_type), ("Item2", lambda_type(unit_type, UH0_reflection()))], []])
 
 
 class UH0(Union):
@@ -21,10 +23,10 @@ class UH0(Union):
         return ["UH0_0", "UH0_1"]
 
 
-UH0_reflection = _expr1
+UH0_reflection = _expr2
 
-def _expr2() -> TypeInfo:
-    return union_type("Dice.UH1", [], UH1, lambda: [[("Item1", uint64_type), ("Item2", UH1_reflection())], []])
+def _expr3() -> TypeInfo:
+    return union_type("Dice.UH1", [], UH1, lambda: [[("Item1", uint8_type), ("Item2", UH1_reflection())], []])
 
 
 class UH1(Union):
@@ -38,9 +40,9 @@ class UH1(Union):
         return ["UH1_0", "UH1_1"]
 
 
-UH1_reflection = _expr2
+UH1_reflection = _expr3
 
-def _expr3() -> TypeInfo:
+def _expr4() -> TypeInfo:
     return union_type("Dice.US0", [], US0, lambda: [[("f0_0", UH0_reflection())], [("f1_0", lambda_type(unit_type, UH0_reflection()))]])
 
 
@@ -56,9 +58,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr3
+US0_reflection = _expr4
 
-def _expr4() -> TypeInfo:
+def _expr5() -> TypeInfo:
     return record_type("Dice.Mut0", [], Mut0, lambda: [("l0", US0_reflection())])
 
 
@@ -66,20 +68,20 @@ def _expr4() -> TypeInfo:
 class Mut0(Record):
     l0: US0
 
-Mut0_reflection = _expr4
+Mut0_reflection = _expr5
 
-def _expr5() -> TypeInfo:
-    return record_type("Dice.Mut1", [], Mut1, lambda: [("l0", int32_type)])
+def _expr6() -> TypeInfo:
+    return record_type("Dice.Mut1", [], Mut1, lambda: [("l0", int64_type)])
 
 
 @dataclass(eq = False, repr = False)
 class Mut1(Record):
-    l0: int
+    l0: int64
 
-Mut1_reflection = _expr5
+Mut1_reflection = _expr6
 
-def _expr6() -> TypeInfo:
-    return union_type("Dice.US1", [], US1, lambda: [[], [("f1_0", uint64_type)]])
+def _expr7() -> TypeInfo:
+    return union_type("Dice.US1", [], US1, lambda: [[], [("f1_0", uint8_type)]])
 
 
 class US1(Union):
@@ -94,9 +96,9 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr6
+US1_reflection = _expr7
 
-def _expr7() -> TypeInfo:
+def _expr8() -> TypeInfo:
     return union_type("Dice.US2", [], US2, lambda: [[], [("f1_0", lambda_type(string_type, unit_type))]])
 
 
@@ -112,9 +114,9 @@ class US2(Union):
         return ["US2_0", "US2_1"]
 
 
-US2_reflection = _expr7
+US2_reflection = _expr8
 
-def _expr8() -> TypeInfo:
+def _expr9() -> TypeInfo:
     return union_type("Dice.US3", [], US3, lambda: [[], [("f1_0", uint64_type), ("f1_1", UH1_reflection())]])
 
 
@@ -130,85 +132,138 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr8
+US3_reflection = _expr9
 
-def closure2(v0: UH0, unit_var: None) -> UH0:
-    return v0
+def _expr10() -> TypeInfo:
+    return union_type("Dice.UH2", [], UH2, lambda: [[("Item1", uint64_type), ("Item2", lambda_type(unit_type, UH2_reflection()))], []])
 
 
-def method1(v0: uint64, v1: UH0, v2: UH0) -> UH0:
+class UH2(Union):
+    def __init__(self, tag: int, *fields: Any) -> None:
+        super().__init__()
+        self.tag: int = tag or 0
+        self.fields: Array[Any] = list(fields)
+
+    @staticmethod
+    def cases() -> List[str]:
+        return ["UH2_0", "UH2_1"]
+
+
+UH2_reflection = _expr10
+
+def _expr11() -> TypeInfo:
+    return union_type("Dice.US4", [], US4, lambda: [[], [("f1_0", uint64_type)]])
+
+
+class US4(Union):
+    __slots__ = ["tag", "fields"]
+    def __init__(self, tag: int, *fields: Any) -> None:
+        super().__init__()
+        self.tag: int = tag or 0
+        self.fields: Array[Any] = list(fields)
+
+    @staticmethod
+    def cases() -> List[str]:
+        return ["US4_0", "US4_1"]
+
+
+US4_reflection = _expr11
+
+def _expr12() -> TypeInfo:
+    return union_type("Dice.US5", [], US5, lambda: [[], [("f1_0", int64_type), ("f1_1", UH1_reflection())]])
+
+
+class US5(Union):
+    __slots__ = ["tag", "fields"]
+    def __init__(self, tag: int, *fields: Any) -> None:
+        super().__init__()
+        self.tag: int = tag or 0
+        self.fields: Array[Any] = list(fields)
+
+    @staticmethod
+    def cases() -> List[str]:
+        return ["US5_0", "US5_1"]
+
+
+US5_reflection = _expr12
+
+def closure2(v0_1: UH0, unit_var: None) -> UH0:
+    return v0_1
+
+
+def method1(v0_1: uint8, v1: UH0, v2: UH0) -> UH0:
     if v1.tag == 1:
         return v2
 
     else: 
-        v6: UH0 = method1(v0, v1.fields[1](), v2)
-        def v11(__unit: None=None, v0: uint64=v0, v1: UH0=v1, v2: UH0=v2) -> UH0:
+        v6: UH0 = method1(v0_1, v1.fields[1](), v2)
+        def v11(__unit: None=None, v0_1: uint8=v0_1, v1: UH0=v1, v2: UH0=v2) -> UH0:
             return closure2(v6, None)
 
-        return UH0(0, op_addition(op_modulus(op_addition(op_subtraction(v1.fields[0], uint64(1)), v0), v0), uint64(1)), v11)
+        return UH0(0, (((v1.fields[0] - uint8(1)) + v0_1) % v0_1) + uint8(1), v11)
 
 
 
-def closure1(v0: uint64, v1: UH0) -> UH0:
-    return method1(v0, v1, UH0(1))
+def closure1(v0_1: uint8, v1: UH0) -> UH0:
+    return method1(v0_1, v1, UH0(1))
 
 
-def closure0(unit_var: None, v0: uint64) -> Callable[[UH0], UH0]:
-    def _arrow10(v: UH0, unit_var: None=unit_var, v0: uint64=v0) -> UH0:
-        return closure1(v0, v)
+def closure0(unit_var: None, v0_1: uint8) -> Callable[[UH0], UH0]:
+    def _arrow13(v: UH0, unit_var: None=unit_var, v0_1: uint8=v0_1) -> UH0:
+        return closure1(v0_1, v)
 
-    return _arrow10
+    return _arrow13
 
 
-def method2(v0_mut: UH1, v1_mut: UH1) -> UH1:
+def method2(v0_1_mut: UH1, v1_mut: UH1) -> UH1:
     while True:
-        (v0, v1) = (v0_mut, v1_mut)
-        if v0.tag == 1:
+        (v0_1, v1) = (v0_1_mut, v1_mut)
+        if v0_1.tag == 1:
             return v1
 
         else: 
-            v0_mut = v0.fields[1]
-            v1_mut = UH1(0, v0.fields[0], v1)
+            v0_1_mut = v0_1.fields[1]
+            v1_mut = UH1(0, v0_1.fields[0], v1)
             continue
 
         break
 
 
-def method3(v0: UH1, v1: UH1) -> UH1:
-    if v0.tag == 1:
+def method3(v0_1: UH1, v1: UH1) -> UH1:
+    if v0_1.tag == 1:
         return v1
 
     else: 
-        return UH1(0, v0.fields[0], method3(v0.fields[1], v1))
+        return UH1(0, v0_1.fields[0], method3(v0_1.fields[1], v1))
 
 
 
-def closure4(v0: UH0, unit_var: None) -> UH0:
-    return v0
+def closure4(v0_1: UH0, unit_var: None) -> UH0:
+    return v0_1
 
 
-def method4(v0: UH1, v1: UH0) -> UH0:
-    if v0.tag == 1:
+def method4(v0_1: UH1, v1: UH0) -> UH0:
+    if v0_1.tag == 1:
         return v1
 
     else: 
-        v4: UH0 = method4(v0.fields[1], v1)
-        def v5(__unit: None=None, v0: UH1=v0, v1: UH0=v1) -> UH0:
+        v4: UH0 = method4(v0_1.fields[1], v1)
+        def v5(__unit: None=None, v0_1: UH1=v0_1, v1: UH0=v1) -> UH0:
             return closure4(v4, None)
 
-        return UH0(0, v0.fields[0], v5)
+        return UH0(0, v0_1.fields[0], v5)
 
 
 
-def closure5(v0: UH0, unit_var: None) -> UH0:
-    return v0
+def closure5(v0_1: UH0, unit_var: None) -> UH0:
+    return v0_1
 
 
-def closure6(v0: UH0, v1: Mut0, unit_var: None) -> UH0:
+def closure6(v0_1: UH0, v1: Mut0, unit_var: None) -> UH0:
     v2: US0 = v1.l0
     if v2.tag == 1:
         v5: UH0 = v2.fields[0]()
-        v12: UH0 = UH0(1) if (v5.tag == 1) else UH0(0, v5.fields[0], method5(v0, v5.fields[1]))
+        v12: UH0 = UH0(1) if (v5.tag == 1) else UH0(0, v5.fields[0], method5(v0_1, v5.fields[1]))
         v1.l0 = US0(0, v12)
         return v12
 
@@ -217,51 +272,51 @@ def closure6(v0: UH0, v1: Mut0, unit_var: None) -> UH0:
 
 
 
-def method5(v0: UH0, v1: Callable[[], UH0]) -> Callable[[], UH0]:
+def method5(v0_1: UH0, v1: Callable[[], UH0]) -> Callable[[], UH0]:
     v3: Mut0 = Mut0(US0(1, v1))
-    def _arrow11(__unit: None=None, v0: UH0=v0, v1: Any=v1) -> UH0:
-        return closure6(v0, v3, None)
+    def _arrow14(__unit: None=None, v0_1: UH0=v0_1, v1: Any=v1) -> UH0:
+        return closure6(v0_1, v3, None)
 
-    return _arrow11
+    return _arrow14
 
 
-def method7(v0_mut: int, v1_mut: UH0) -> US1:
+def method7(v0_1_mut: int64, v1_mut: UH0) -> US1:
     while True:
-        (v0, v1) = (v0_mut, v1_mut)
+        (v0_1, v1) = (v0_1_mut, v1_mut)
         if v1.tag == 1:
             return US1(0)
 
-        elif v0 <= 0:
+        elif v0_1 <= int64(0):
             return US1(1, v1.fields[0])
 
         else: 
-            v0_mut = v0 - 1
+            v0_1_mut = op_subtraction(v0_1, int64(1))
             v1_mut = v1.fields[1]()
             continue
 
         break
 
 
-def method6(v0_mut: Callable[[], UH0], v1_mut: Mut1, v2_mut: Mut1, v3_mut: Mut1) -> uint64:
+def method6(v0_1_mut: Callable[[], UH0], v1_mut: Mut1, v2_mut: Mut1, v3_mut: Mut1) -> uint8:
     while True:
-        (v0, v1, v2, v3) = (v0_mut, v1_mut, v2_mut, v3_mut)
-        v4: UH0 = v0()
+        (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
+        v4: UH0 = v0_1()
         v6: US1 = method7(v1.l0, v4)
         if v6.tag == 1:
-            v9: int = (v1.l0 + 1) or 0
-            v1.l0 = v9 or 0
+            v9: int64 = op_addition(v1.l0, int64(1))
+            v1.l0 = v9
             return v6.fields[0]
 
         else: 
-            if v3.l0 == -1:
-                v12: int = v1.l0 or 0
-                v3.l0 = v12 or 0
+            if v3.l0 == int64(-1):
+                v12: int64 = v1.l0
+                v3.l0 = v12
 
-            v18: int = (1 if (v2.l0 >= v3.l0) else (v2.l0 + 1)) or 0
-            v2.l0 = v18 or 0
-            v20: int = (v2.l0 - 1) or 0
-            v1.l0 = v20 or 0
-            v0_mut = v0
+            v18: int64 = int64(1) if (v2.l0 >= v3.l0) else op_addition(v2.l0, int64(1))
+            v2.l0 = v18
+            v20: int64 = op_subtraction(v2.l0, int64(1))
+            v1.l0 = v20
+            v0_1_mut = v0_1
             v1_mut = v1
             v2_mut = v2
             v3_mut = v3
@@ -270,515 +325,528 @@ def method6(v0_mut: Callable[[], UH0], v1_mut: Mut1, v2_mut: Mut1, v3_mut: Mut1)
         break
 
 
-def closure7(v0: Callable[[], UH0], v1: Mut1, v2: Mut1, v3: Mut1, unit_var: None) -> uint64:
-    return method6(v0, v1, v2, v3)
+def closure7(v0_1: Callable[[], UH0], v1: Mut1, v2: Mut1, v3: Mut1, unit_var: None) -> uint8:
+    return method6(v0_1, v1, v2, v3)
 
 
-def closure3(unit_var: None, v0: UH1) -> Callable[[], uint64]:
-    v5: UH0 = method4(method3(v0, method2(v0, UH1(1))), UH0(1))
-    def v6(__unit: None=None, unit_var: None=unit_var, v0: UH1=v0) -> UH0:
+def closure3(unit_var: None, v0_1: UH1) -> Callable[[], uint8]:
+    v5: UH0 = method4(method3(v0_1, method2(v0_1, UH1(1))), UH0(1))
+    def v6(__unit: None=None, unit_var: None=unit_var, v0_1: UH1=v0_1) -> UH0:
         return closure5(v5, None)
 
     v7: Callable[[], UH0] = method5(v5, v6)
-    v8: Mut1 = Mut1(0)
-    v9: Mut1 = Mut1(1)
-    v10: Mut1 = Mut1(-1)
-    def _arrow12(__unit: None=None, unit_var: None=unit_var, v0: UH1=v0) -> uint64:
+    v8: Mut1 = Mut1(int64(0))
+    v9: Mut1 = Mut1(int64(1))
+    v10: Mut1 = Mut1(int64(-1))
+    def _arrow15(__unit: None=None, unit_var: None=unit_var, v0_1: UH1=v0_1) -> uint8:
         return closure7(v7, v8, v9, v10, None)
 
-    return _arrow12
+    return _arrow15
 
 
-def method8(v0_mut: US2, v1_mut: uint64, v2_mut: int64, v3_mut: uint64) -> int64:
+def closure9(unit_var: None, v0_1: Callable[[str], None]) -> US2:
+    return US2(1, v0_1)
+
+
+def method8(v0_1_mut: US2, v1_mut: uint64, v2_mut: int8, v3_mut: uint64) -> int8:
     while True:
-        (v0, v1, v2, v3) = (v0_mut, v1_mut, v2_mut, v3_mut)
-        if (v3 < v1) if (v3 > uint64(0)) else False:
-            v0_mut = v0
-            v1_mut = v1
-            v2_mut = op_addition(v2, int64(1))
-            v3_mut = op_multiply(v3, uint64(6))
-            continue
+        (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
+        if v3 < v1:
+            v5: uint64 = op_multiply(v3, uint64(6))
+            if v5 >= uint64(0):
+                v0_1_mut = v0_1
+                v1_mut = v1
+                v2_mut = v2 + int8(1)
+                v3_mut = v5
+                continue
+
+            else: 
+                if v0_1.tag == 1:
+                    v0_1.fields[0](((((("calculate_dice_count / max: " + str(v1)) + " / n: ") + str(v2)) + " / p: ") + str(v3)) + "")
+
+                return v2
+
 
         else: 
-            if v0.tag == 1:
-                v0.fields[0](((((("calculate_dice_count / max: " + str(v1)) + " / n: ") + str(v2)) + " / p: ") + str(v3)) + "")
+            if v0_1.tag == 1:
+                v0_1.fields[0](((((("calculate_dice_count / max: " + str(v1)) + " / n: ") + str(v2)) + " / p: ") + str(v3)) + "")
 
             return v2
 
         break
 
 
-def closure75(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure76(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
+        return closure76(None, None)
+
+    return UH2(0, uint64(0), v0_1)
+
+
+def closure75(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
+        return closure76(None, None)
+
+    return UH2(0, uint64(9223372036854775808), v0_1)
+
+
+def closure74(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure75(None, None)
 
-    return UH0(0, uint64(0), v0)
+    return UH2(0, uint64(4611686018427387904), v0_1)
 
 
-def closure74(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
-        return closure75(None, None)
-
-    return UH0(0, uint64(9223372036854775808), v0)
-
-
-def closure73(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure73(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure74(None, None)
 
-    return UH0(0, uint64(4611686018427387904), v0)
+    return UH2(0, uint64(6917529027641081856), v0_1)
 
 
-def closure72(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure72(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure73(None, None)
 
-    return UH0(0, uint64(6917529027641081856), v0)
+    return UH2(0, uint64(1152921504606846976), v0_1)
 
 
-def closure71(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure71(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure72(None, None)
 
-    return UH0(0, uint64(1152921504606846976), v0)
+    return UH2(0, uint64(15564440312192434176), v0_1)
 
 
-def closure70(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure70(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure71(None, None)
 
-    return UH0(0, uint64(15564440312192434176), v0)
+    return UH2(0, uint64(11817445422220181504), v0_1)
 
 
-def closure69(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure69(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure70(None, None)
 
-    return UH0(0, uint64(11817445422220181504), v0)
+    return UH2(0, uint64(5044031582654955520), v0_1)
 
 
-def closure68(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure68(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure69(None, None)
 
-    return UH0(0, uint64(5044031582654955520), v0)
+    return UH2(0, uint64(6989586621679009792), v0_1)
 
 
-def closure67(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure67(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure68(None, None)
 
-    return UH0(0, uint64(6989586621679009792), v0)
+    return UH2(0, uint64(16537217831704461312), v0_1)
 
 
-def closure66(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure66(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure67(None, None)
 
-    return UH0(0, uint64(16537217831704461312), v0)
+    return UH2(0, uint64(11979575008805519360), v0_1)
 
 
-def closure65(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure65(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure66(None, None)
 
-    return UH0(0, uint64(11979575008805519360), v0)
+    return UH2(0, uint64(14294425217273954304), v0_1)
 
 
-def closure64(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure64(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure65(None, None)
 
-    return UH0(0, uint64(14294425217273954304), v0)
+    return UH2(0, uint64(2382404202878992384), v0_1)
 
 
-def closure63(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure63(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure64(None, None)
 
-    return UH0(0, uint64(2382404202878992384), v0)
+    return UH2(0, uint64(6545982058383015936), v0_1)
 
 
-def closure62(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure62(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure63(None, None)
 
-    return UH0(0, uint64(6545982058383015936), v0)
+    return UH2(0, uint64(10314369046585278464), v0_1)
 
 
-def closure61(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure61(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure62(None, None)
 
-    return UH0(0, uint64(10314369046585278464), v0)
+    return UH2(0, uint64(4793518853382471680), v0_1)
 
 
-def closure60(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure60(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure61(None, None)
 
-    return UH0(0, uint64(4793518853382471680), v0)
+    return UH2(0, uint64(3873377154515337216), v0_1)
 
 
-def closure59(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure59(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure60(None, None)
 
-    return UH0(0, uint64(3873377154515337216), v0)
+    return UH2(0, uint64(645562859085889536), v0_1)
 
 
-def closure58(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure58(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure59(None, None)
 
-    return UH0(0, uint64(645562859085889536), v0)
+    return UH2(0, uint64(107593809847648256), v0_1)
 
 
-def closure57(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure57(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure58(None, None)
 
-    return UH0(0, uint64(107593809847648256), v0)
+    return UH2(0, uint64(3092389647259533312), v0_1)
 
 
-def closure56(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure56(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure57(None, None)
 
-    return UH0(0, uint64(3092389647259533312), v0)
+    return UH2(0, uint64(9738770311398031360), v0_1)
 
 
-def closure55(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure55(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure56(None, None)
 
-    return UH0(0, uint64(9738770311398031360), v0)
+    return UH2(0, uint64(16995415113324298240), v0_1)
 
 
-def closure54(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure54(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure55(None, None)
 
-    return UH0(0, uint64(16995415113324298240), v0)
+    return UH2(0, uint64(8981483876790566912), v0_1)
 
 
-def closure53(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure53(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure54(None, None)
 
-    return UH0(0, uint64(8981483876790566912), v0)
+    return UH2(0, uint64(13794743361938128896), v0_1)
 
 
-def closure52(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure52(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure53(None, None)
 
-    return UH0(0, uint64(13794743361938128896), v0)
+    return UH2(0, uint64(2299123893656354816), v0_1)
 
 
-def closure51(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure51(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure52(None, None)
 
-    return UH0(0, uint64(2299123893656354816), v0)
+    return UH2(0, uint64(3457644661227651072), v0_1)
 
 
-def closure50(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure50(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure51(None, None)
 
-    return UH0(0, uint64(3457644661227651072), v0)
+    return UH2(0, uint64(576274110204608512), v0_1)
 
 
-def closure49(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure49(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure50(None, None)
 
-    return UH0(0, uint64(576274110204608512), v0)
+    return UH2(0, uint64(6244960376270618624), v0_1)
 
 
-def closure48(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure48(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure49(None, None)
 
-    return UH0(0, uint64(6244960376270618624), v0)
+    return UH2(0, uint64(13338656111851470848), v0_1)
 
 
-def closure47(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure47(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure48(None, None)
 
-    return UH0(0, uint64(13338656111851470848), v0)
+    return UH2(0, uint64(14520938734448279552), v0_1)
 
 
-def closure46(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure46(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure47(None, None)
 
-    return UH0(0, uint64(14520938734448279552), v0)
+    return UH2(0, uint64(14717985838214414336), v0_1)
 
 
-def closure45(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure45(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure46(None, None)
 
-    return UH0(0, uint64(14717985838214414336), v0)
+    return UH2(0, uint64(5527454985320660992), v0_1)
 
 
-def closure44(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure44(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure45(None, None)
 
-    return UH0(0, uint64(5527454985320660992), v0)
+    return UH2(0, uint64(16293529225644736512), v0_1)
 
 
-def closure43(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure43(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure44(None, None)
 
-    return UH0(0, uint64(16293529225644736512), v0)
+    return UH2(0, uint64(11938960241128898560), v0_1)
 
 
-def closure42(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure42(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure43(None, None)
 
-    return UH0(0, uint64(11938960241128898560), v0)
+    return UH2(0, uint64(8138741398091333632), v0_1)
 
 
-def closure41(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure41(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure42(None, None)
 
-    return UH0(0, uint64(8138741398091333632), v0)
+    return UH2(0, uint64(7505371590918406144), v0_1)
 
 
-def closure40(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure40(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure41(None, None)
 
-    return UH0(0, uint64(7505371590918406144), v0)
+    return UH2(0, uint64(16623181993244360704), v0_1)
 
 
-def closure39(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure39(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure40(None, None)
 
-    return UH0(0, uint64(16623181993244360704), v0)
+    return UH2(0, uint64(8919445023443910656), v0_1)
 
 
-def closure38(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure38(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure39(None, None)
 
-    return UH0(0, uint64(8919445023443910656), v0)
+    return UH2(0, uint64(4561031516192243712), v0_1)
 
 
-def closure37(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure37(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure38(None, None)
 
-    return UH0(0, uint64(4561031516192243712), v0)
+    return UH2(0, uint64(9983543956220149760), v0_1)
 
 
-def closure36(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure36(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure37(None, None)
 
-    return UH0(0, uint64(9983543956220149760), v0)
+    return UH2(0, uint64(4738381338321616896), v0_1)
 
 
-def closure35(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure35(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure36(None, None)
 
-    return UH0(0, uint64(4738381338321616896), v0)
+    return UH2(0, uint64(789730223053602816), v0_1)
 
 
-def closure34(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure34(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure35(None, None)
 
-    return UH0(0, uint64(789730223053602816), v0)
+    return UH2(0, uint64(131621703842267136), v0_1)
 
 
-def closure33(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure33(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure34(None, None)
 
-    return UH0(0, uint64(131621703842267136), v0)
+    return UH2(0, uint64(21936950640377856), v0_1)
 
 
-def closure32(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure32(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure33(None, None)
 
-    return UH0(0, uint64(21936950640377856), v0)
+    return UH2(0, uint64(3656158440062976), v0_1)
 
 
-def closure31(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure31(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure32(None, None)
 
-    return UH0(0, uint64(3656158440062976), v0)
+    return UH2(0, uint64(609359740010496), v0_1)
 
 
-def closure30(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure30(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure31(None, None)
 
-    return UH0(0, uint64(609359740010496), v0)
+    return UH2(0, uint64(101559956668416), v0_1)
 
 
-def closure29(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure29(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure30(None, None)
 
-    return UH0(0, uint64(101559956668416), v0)
+    return UH2(0, uint64(16926659444736), v0_1)
 
 
-def closure28(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure28(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure29(None, None)
 
-    return UH0(0, uint64(16926659444736), v0)
+    return UH2(0, uint64(2821109907456), v0_1)
 
 
-def closure27(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure27(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure28(None, None)
 
-    return UH0(0, uint64(2821109907456), v0)
+    return UH2(0, uint64(470184984576), v0_1)
 
 
-def closure26(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure26(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure27(None, None)
 
-    return UH0(0, uint64(470184984576), v0)
+    return UH2(0, uint64(78364164096), v0_1)
 
 
-def closure25(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure25(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure26(None, None)
 
-    return UH0(0, uint64(78364164096), v0)
+    return UH2(0, uint64(13060694016), v0_1)
 
 
-def closure24(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure24(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure25(None, None)
 
-    return UH0(0, uint64(13060694016), v0)
+    return UH2(0, uint64(2176782336), v0_1)
 
 
-def closure23(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure23(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure24(None, None)
 
-    return UH0(0, uint64(2176782336), v0)
+    return UH2(0, uint64(362797056), v0_1)
 
 
-def closure22(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure22(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure23(None, None)
 
-    return UH0(0, uint64(362797056), v0)
+    return UH2(0, uint64(60466176), v0_1)
 
 
-def closure21(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure21(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure22(None, None)
 
-    return UH0(0, uint64(60466176), v0)
+    return UH2(0, uint64(10077696), v0_1)
 
 
-def closure20(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure20(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure21(None, None)
 
-    return UH0(0, uint64(10077696), v0)
+    return UH2(0, uint64(1679616), v0_1)
 
 
-def closure19(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure19(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure20(None, None)
 
-    return UH0(0, uint64(1679616), v0)
+    return UH2(0, uint64(279936), v0_1)
 
 
-def closure18(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure18(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure19(None, None)
 
-    return UH0(0, uint64(279936), v0)
+    return UH2(0, uint64(46656), v0_1)
 
 
-def closure17(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure17(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure18(None, None)
 
-    return UH0(0, uint64(46656), v0)
+    return UH2(0, uint64(7776), v0_1)
 
 
-def closure16(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure16(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure17(None, None)
 
-    return UH0(0, uint64(7776), v0)
+    return UH2(0, uint64(1296), v0_1)
 
 
-def closure15(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure15(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure16(None, None)
 
-    return UH0(0, uint64(1296), v0)
+    return UH2(0, uint64(216), v0_1)
 
 
-def closure14(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure14(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure15(None, None)
 
-    return UH0(0, uint64(216), v0)
+    return UH2(0, uint64(36), v0_1)
 
 
-def closure13(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
+def closure13(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH2:
         return closure14(None, None)
 
-    return UH0(0, uint64(36), v0)
+    return UH2(0, uint64(6), v0_1)
 
 
-def closure12(unit_var: None, unit_var_1: None) -> UH0:
-    def v0(__unit: None=None, unit_var: None=unit_var, unit_var_1: None=unit_var_1) -> UH0:
-        return closure13(None, None)
-
-    return UH0(0, uint64(6), v0)
-
-
-def method11(v0_mut: int64, v1_mut: UH0) -> US1:
+def method11(v0_1_mut: int8, v1_mut: UH2) -> US4:
     while True:
-        (v0, v1) = (v0_mut, v1_mut)
+        (v0_1, v1) = (v0_1_mut, v1_mut)
         if v1.tag == 1:
-            return US1(0)
+            return US4(0)
 
-        elif v0 <= int64(0):
-            return US1(1, v1.fields[0])
+        elif v0_1 <= int8(0):
+            return US4(1, v1.fields[0])
 
         else: 
-            v0_mut = op_subtraction(v0, int64(1))
+            v0_1_mut = v0_1 - int8(1)
             v1_mut = v1.fields[1]()
             continue
 
         break
 
 
-def method10(v0_mut: US2, v1_mut: int64, v2_mut: UH1, v3_mut: uint64) -> US3:
+def method10(v0_1_mut: US2, v1_mut: int8, v2_mut: UH1, v3_mut: uint64) -> US3:
     while True:
-        (v0, v1, v2, v3) = (v0_mut, v1_mut, v2_mut, v3_mut)
-        if v1 < int64(0):
-            if v0.tag == 1:
-                v0.fields[0](((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + "")
+        (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
+        if v1 < int8(0):
+            if v0_1.tag == 1:
+                v0_1.fields[0](((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + "")
 
             return US3(1, op_addition(v3, uint64(1)), v2)
 
@@ -787,12 +855,12 @@ def method10(v0_mut: US2, v1_mut: int64, v2_mut: UH1, v3_mut: uint64) -> US3:
 
         else: 
             v11: UH1 = v2.fields[1]
-            v10: uint64 = v2.fields[0]
-            if v10 > uint64(1):
-                def v14(__unit: None=None, v0: US2=v0, v1: int64=v1, v2: UH1=v2, v3: uint64=v3) -> UH0:
-                    return closure12(None, None)
+            v10: uint8 = v2.fields[0]
+            if v10 > uint8(1):
+                def v14(__unit: None=None, v0_1: US2=v0_1, v1: int8=v1, v2: UH1=v2, v3: uint64=v3) -> UH2:
+                    return closure13(None, None)
 
-                v16: US1 = method11(v1, UH0(0, uint64(1), v14))
+                v16: US4 = method11(v1, UH2(0, uint64(1), v14))
                 v20: uint64
                 if v16.tag == 1:
                     v20 = v16.fields[0]
@@ -800,23 +868,22 @@ def method10(v0_mut: US2, v1_mut: int64, v2_mut: UH1, v3_mut: uint64) -> US3:
                 else: 
                     raise Exception("Option does not have a value.")
 
-                v22: uint64 = op_multiply(op_subtraction(v10, uint64(1)), v20)
-                if v0.tag == 1:
-                    v0.fields[0](((((((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + " / roll: ") + str(v10)) + " / value: ") + str(v22)) + "")
+                v23: uint64 = op_multiply(from_integer(v10 - uint8(1), True, 4), v20)
+                if v0_1.tag == 1:
+                    v0_1.fields[0](((((((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + " / roll: ") + str(v10)) + " / value: ") + str(v23)) + "")
 
-                v25: uint64 = op_addition(v3, v22)
-                v0_mut = v0
-                v1_mut = op_subtraction(v1, int64(1))
+                v0_1_mut = v0_1
+                v1_mut = v1 - int8(1)
                 v2_mut = v11
-                v3_mut = v25
+                v3_mut = op_addition(v3, v23)
                 continue
 
             else: 
-                if v0.tag == 1:
-                    v0.fields[0](((((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + " / roll: ") + str(v10)) + "")
+                if v0_1.tag == 1:
+                    v0_1.fields[0](((((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + " / roll: ") + str(v10)) + "")
 
-                v0_mut = v0
-                v1_mut = op_subtraction(v1, int64(1))
+                v0_1_mut = v0_1
+                v1_mut = v1 - int8(1)
                 v2_mut = v11
                 v3_mut = v3
                 continue
@@ -825,186 +892,977 @@ def method10(v0_mut: US2, v1_mut: int64, v2_mut: UH1, v3_mut: uint64) -> US3:
         break
 
 
-def method12(v0: int64, v1: Callable[[], uint64], v2: int64) -> UH1:
-    if v2 < v0:
-        return UH1(0, v1(), method12(v0, v1, op_addition(v2, int64(1))))
+def method12(v0_1: int8, v1: Callable[[], uint8], v2: int8) -> UH1:
+    if v2 < v0_1:
+        return UH1(0, v1(), method12(v0_1, v1, v2 + int8(1)))
 
     else: 
         return UH1(1)
 
 
 
-def method13(v0_mut: US2, v1_mut: Callable[[], uint64], v2_mut: bool, v3_mut: uint64, v4_mut: int64, v5_mut: UH1) -> uint64:
+def method13(v0_1_mut: US2, v1_mut: Callable[[], uint8], v2_mut: bool, v3_mut: uint64, v4_mut: int8, v5_mut: UH1) -> uint64:
     while True:
-        (v0, v1, v2, v3, v4, v5) = (v0_mut, v1_mut, v2_mut, v3_mut, v4_mut, v5_mut)
-        v6: int64 = op_addition(v4, int64(1))
+        (v0_1, v1, v2, v3, v4, v5) = (v0_1_mut, v1_mut, v2_mut, v3_mut, v4_mut, v5_mut)
+        v6: int8 = (v4 + int8(1)) or 0
         if v4 < v6:
-            return method9(v0, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
+            return method9(v0_1, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
 
         else: 
-            v12: US3 = method10(v0, v4, v5, uint64(0))
+            v12: US3 = method10(v0_1, v4, v5, uint64(0))
             if v12.tag == 1:
                 v13: uint64 = v12.fields[0]
                 if v13 <= v3:
                     return v13
 
                 elif v2:
-                    v0_mut = v0
+                    v0_1_mut = v0_1
                     v1_mut = v1
                     v2_mut = v2
                     v3_mut = v3
                     v4_mut = v4
-                    v5_mut = method12(v4, v1, int64(0))
+                    v5_mut = method12(v4, v1, int8(0))
                     continue
 
                 else: 
-                    return method9(v0, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
+                    return method9(v0_1, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
 
 
             elif v2:
-                v0_mut = v0
+                v0_1_mut = v0_1
                 v1_mut = v1
                 v2_mut = v2
                 v3_mut = v3
                 v4_mut = v4
-                v5_mut = method12(v4, v1, int64(0))
+                v5_mut = method12(v4, v1, int8(0))
                 continue
 
             else: 
-                return method9(v0, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
+                return method9(v0_1, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
 
 
         break
 
 
-def method9(v0_mut: US2, v1_mut: Callable[[], uint64], v2_mut: bool, v3_mut: uint64, v4_mut: int64, v5_mut: UH1, v6_mut: int64) -> uint64:
+def method9(v0_1_mut: US2, v1_mut: Callable[[], uint8], v2_mut: bool, v3_mut: uint64, v4_mut: int8, v5_mut: UH1, v6_mut: int8) -> uint64:
     while True:
-        (v0, v1, v2, v3, v4, v5, v6) = (v0_mut, v1_mut, v2_mut, v3_mut, v4_mut, v5_mut, v6_mut)
-        if v6 < op_addition(v4, int64(1)):
-            v0_mut = v0
+        (v0_1, v1, v2, v3, v4, v5, v6) = (v0_1_mut, v1_mut, v2_mut, v3_mut, v4_mut, v5_mut, v6_mut)
+        if v6 < (v4 + int8(1)):
+            v0_1_mut = v0_1
             v1_mut = v1
             v2_mut = v2
             v3_mut = v3
             v4_mut = v4
             v5_mut = UH1(0, v1(), v5)
-            v6_mut = op_addition(v6, int64(1))
+            v6_mut = v6 + int8(1)
             continue
 
         else: 
-            v14: US3 = method10(v0, v4, v5, uint64(0))
+            v14: US3 = method10(v0_1, v4, v5, uint64(0))
             if v14.tag == 1:
                 v15: uint64 = v14.fields[0]
                 if v15 <= v3:
                     return v15
 
                 elif v2:
-                    return method13(v0, v1, v2, v3, v4, method12(v4, v1, int64(0)))
+                    return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, int8(0)))
 
                 else: 
-                    v0_mut = v0
+                    v0_1_mut = v0_1
                     v1_mut = v1
                     v2_mut = v2
                     v3_mut = v3
                     v4_mut = v4
                     v5_mut = UH1(0, v1(), v5)
-                    v6_mut = op_addition(v6, int64(1))
+                    v6_mut = v6 + int8(1)
                     continue
 
 
             elif v2:
-                return method13(v0, v1, v2, v3, v4, method12(v4, v1, int64(0)))
+                return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, int8(0)))
 
             else: 
-                v0_mut = v0
+                v0_1_mut = v0_1
                 v1_mut = v1
                 v2_mut = v2
                 v3_mut = v3
                 v4_mut = v4
                 v5_mut = UH1(0, v1(), v5)
-                v6_mut = op_addition(v6, int64(1))
+                v6_mut = v6 + int8(1)
                 continue
 
 
         break
 
 
-def closure11(v0: US2, v1: Callable[[], uint64], v2: bool, v3: uint64) -> uint64:
-    return method9(v0, v1, v2, v3, op_subtraction(int64(1) if (v3 == uint64(1)) else method8(v0, v3, int64(0), uint64(1)), int64(1)), UH1(1), int64(0))
+def closure12(v0_1: US2, v1: Callable[[], uint8], v2: bool, v3: uint64) -> uint64:
+    return method9(v0_1, v1, v2, v3, (int8(1) if (v3 == uint64(1)) else method8(v0_1, v3, int8(0), uint64(1))) - int8(1), UH1(1), int8(0))
 
 
-def closure10(v0: US2, v1: Callable[[], uint64], v2: bool) -> Callable[[uint64], uint64]:
-    def _arrow13(v: uint64, v0: US2=v0, v1: Any=v1, v2: bool=v2) -> uint64:
-        return closure11(v0, v1, v2, v)
+def closure11(v0_1: US2, v1: Callable[[], uint8], v2: bool) -> Callable[[uint64], uint64]:
+    def _arrow16(v: uint64, v0_1: US2=v0_1, v1: Any=v1, v2: bool=v2) -> uint64:
+        return closure12(v0_1, v1, v2, v)
 
-    return _arrow13
-
-
-def closure9(v0: US2, v1: Callable[[], uint64]) -> Callable[[bool, uint64], uint64]:
-    def _arrow14(v: bool, v0: US2=v0, v1: Any=v1) -> Callable[[uint64], uint64]:
-        return closure10(v0, v1, v)
-
-    return _arrow14
+    return _arrow16
 
 
-def closure8(unit_var: None, v0: US2) -> Callable[[Callable[[], uint64], bool, uint64], uint64]:
-    def _arrow15(v: Callable[[], uint64], unit_var: None=unit_var, v0: US2=v0) -> Callable[[bool, uint64], uint64]:
-        return closure9(v0, v)
+def closure10(v0_1: US2, v1: Callable[[], uint8]) -> Callable[[bool, uint64], uint64]:
+    def _arrow17(v: bool, v0_1: US2=v0_1, v1: Any=v1) -> Callable[[uint64], uint64]:
+        return closure11(v0_1, v1, v)
 
-    return _arrow15
+    return _arrow17
 
 
-def method14(v0_mut: UH1, v1_mut: int64) -> int64:
+def closure8(unit_var: None, v0_1: Optional[Callable[[str], None]]=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
+    def v1(v: Callable[[str], None], unit_var: None=unit_var, v0_1: Any=v0_1) -> US2:
+        return closure9(None, v)
+
+    v3: US2 = default_arg(map(v1, v0_1), US2(0))
+    def _arrow18(v_1: Callable[[], uint8], unit_var: None=unit_var, v0_1: Any=v0_1) -> Callable[[bool, uint64], uint64]:
+        return closure10(v3, v_1)
+
+    return _arrow18
+
+
+def method14(v0_1_mut: UH1, v1_mut: int8) -> int8:
     while True:
-        (v0, v1) = (v0_mut, v1_mut)
-        if v0.tag == 1:
+        (v0_1, v1) = (v0_1_mut, v1_mut)
+        if v0_1.tag == 1:
             return v1
 
         else: 
-            v0_mut = v0.fields[1]
-            v1_mut = op_addition(v1, int64(1))
+            v0_1_mut = v0_1.fields[1]
+            v1_mut = v1 + int8(1)
             continue
 
         break
 
 
-def closure78(v0: US2, v1: uint64, v2: UH1) -> US1:
-    v7: US3 = method10(v0, op_subtraction(method14(v2, int64(0)), int64(1)), v2, uint64(0))
-    if v7.tag == 1:
-        v8: uint64 = v7.fields[0]
-        if (v8 <= v1) if (v8 >= uint64(1)) else False:
-            return US1(1, v8)
+def closure79(v0_1: Optional[Callable[[str], None]], v1: uint64, v2: UH1) -> Optional[uint64]:
+    def v3(v: Callable[[str], None], v0_1: Any=v0_1, v1: uint64=v1, v2: UH1=v2) -> US2:
+        return closure9(None, v)
 
-        else: 
-            return US1(0)
-
+    v10: US3 = method10(default_arg(map(v3, v0_1), US2(0)), method14(v2, int8(0)) - int8(1), v2, uint64(0))
+    v20: US4
+    if v10.tag == 1:
+        v11: uint64 = v10.fields[0]
+        v20 = US4(1, v11) if ((v11 <= v1) if (v11 >= uint64(1)) else False) else US4(0)
 
     else: 
-        return US1(0)
+        v20 = US4(0)
+
+    if v20.tag == 1:
+        return v20.fields[0]
+
+    else: 
+        return None
 
 
 
-def closure77(v0: US2, v1: uint64) -> Callable[[UH1], US1]:
-    def _arrow16(v: UH1, v0: US2=v0, v1: uint64=v1) -> US1:
-        return closure78(v0, v1, v)
+def closure78(v0_1: Optional[Callable[[str], None]], v1: uint64) -> Callable[[UH1], Optional[uint64]]:
+    def _arrow19(v: UH1, v0_1: Any=v0_1, v1: uint64=v1) -> Optional[uint64]:
+        return closure79(v0_1, v1, v)
 
-    return _arrow16
+    return _arrow19
 
 
-def closure76(unit_var: None, v0: US2) -> Callable[[uint64, UH1], US1]:
-    def _arrow17(v: uint64, unit_var: None=unit_var, v0: US2=v0) -> Callable[[UH1], US1]:
-        return closure77(v0, v)
+def closure77(unit_var: None, v0_1: Optional[Callable[[str], None]]=None) -> Callable[[uint64, UH1], Optional[uint64]]:
+    def _arrow20(v: uint64, unit_var: None=unit_var, v0_1: Any=v0_1) -> Callable[[UH1], Optional[uint64]]:
+        return closure78(v0_1, v)
 
-    return _arrow17
+    return _arrow20
 
 
 def method0(__unit: None=None) -> None:
     pass
 
 
+def method40(v0_1: UH1, v1: int64) -> US5:
+    print(((("accumulate_dice_rolls / power: " + str(int8(-1))) + " / acc: ") + str(v1)) + "")
+    return US5(1, op_addition(v1, int64(1)), v0_1)
+
+
+def method39(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v7: int64 = from_integer(v3 - uint8(1), False, 4)
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(0))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v7)) + "")
+            return method40(v4, op_addition(v1, v7))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(0))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method40(v4, v1)
+
+
+
+
+def method38(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(6))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(1))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method39(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(1))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method39(v4, v1)
+
+
+
+
+def method37(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(36))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(2))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method38(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(2))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method38(v4, v1)
+
+
+
+
+def method36(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(216))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(3))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method37(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(3))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method37(v4, v1)
+
+
+
+
+def method35(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(1296))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(4))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method36(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(4))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method36(v4, v1)
+
+
+
+
+def method34(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(7776))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(5))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method35(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(5))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method35(v4, v1)
+
+
+
+
+def method33(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(46656))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(6))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method34(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(6))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method34(v4, v1)
+
+
+
+
+def method32(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(279936))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(7))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method33(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(7))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method33(v4, v1)
+
+
+
+
+def method31(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(1679616))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(8))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method32(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(8))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method32(v4, v1)
+
+
+
+
+def method30(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(10077696))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(9))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method31(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(9))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method31(v4, v1)
+
+
+
+
+def method29(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(60466176))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(10))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method30(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(10))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method30(v4, v1)
+
+
+
+
+def method28(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(362797056))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(11))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method29(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(11))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method29(v4, v1)
+
+
+
+
+def method27(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(2176782336))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(12))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method28(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(12))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method28(v4, v1)
+
+
+
+
+def method26(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(13060694016))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(13))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method27(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(13))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method27(v4, v1)
+
+
+
+
+def method25(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(78364164096))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(14))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method26(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(14))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method26(v4, v1)
+
+
+
+
+def method24(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(470184984576))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(15))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method25(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(15))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method25(v4, v1)
+
+
+
+
+def method23(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(2821109907456))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(16))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method24(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(16))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method24(v4, v1)
+
+
+
+
+def method22(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(16926659444736))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(17))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method23(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(17))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method23(v4, v1)
+
+
+
+
+def method21(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(101559956668416))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(18))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method22(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(18))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method22(v4, v1)
+
+
+
+
+def method20(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(609359740010496))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(19))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method21(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(19))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method21(v4, v1)
+
+
+
+
+def method19(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(3656158440062976))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(20))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method20(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(20))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method20(v4, v1)
+
+
+
+
+def method18(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(21936950640377856))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(21))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method19(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(21))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method19(v4, v1)
+
+
+
+
+def method17(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(131621703842267136))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(22))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method18(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(22))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method18(v4, v1)
+
+
+
+
+def method16(v0_1: UH1, v1: int64) -> US5:
+    if v0_1.tag == 1:
+        return US5(0)
+
+    else: 
+        v4: UH1 = v0_1.fields[1]
+        v3: uint8 = v0_1.fields[0]
+        if v3 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(789730223053602816))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(23))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
+            return method17(v4, op_addition(v1, v8))
+
+        else: 
+            print(((((("accumulate_dice_rolls / power: " + str(int8(23))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
+            return method17(v4, v1)
+
+
+
+
+def method15(v0_1_mut: UH1, v1_mut: int8) -> int64:
+    while True:
+        (v0_1, v1) = (v0_1_mut, v1_mut)
+        if v1 < int8(24):
+            result: Optional[uint8] = None
+            x: uint8
+            value: int = randint(1, 7) or 0
+            x = int(value+0x100 if value < 0 else value) & 0xFF
+            result = x
+            v0_1_mut = UH1(0, value_47(result), v0_1)
+            v1_mut = v1 + int8(1)
+            continue
+
+        else: 
+            v13: US5 = method16(v0_1, int64(0))
+            if v13.tag == 1:
+                v14: int64 = v13.fields[0]
+                if v14 <= int64(9223372036854775807):
+                    return v14
+
+                else: 
+                    result_1: Optional[uint8] = None
+                    x_1: uint8
+                    value_1: int = randint(1, 7) or 0
+                    x_1 = int(value_1+0x100 if value_1 < 0 else value_1) & 0xFF
+                    result_1 = x_1
+                    v22: uint8 = value_47(result_1)
+                    result_2: Optional[uint8] = None
+                    x_2: uint8
+                    value_2: int = randint(1, 7) or 0
+                    x_2 = int(value_2+0x100 if value_2 < 0 else value_2) & 0xFF
+                    result_2 = x_2
+                    v26: uint8 = value_47(result_2)
+                    result_3: Optional[uint8] = None
+                    x_3: uint8
+                    value_3: int = randint(1, 7) or 0
+                    x_3 = int(value_3+0x100 if value_3 < 0 else value_3) & 0xFF
+                    result_3 = x_3
+                    v30: uint8 = value_47(result_3)
+                    result_4: Optional[uint8] = None
+                    x_4: uint8
+                    value_4: int = randint(1, 7) or 0
+                    x_4 = int(value_4+0x100 if value_4 < 0 else value_4) & 0xFF
+                    result_4 = x_4
+                    v34: uint8 = value_47(result_4)
+                    result_5: Optional[uint8] = None
+                    x_5: uint8
+                    value_5: int = randint(1, 7) or 0
+                    x_5 = int(value_5+0x100 if value_5 < 0 else value_5) & 0xFF
+                    result_5 = x_5
+                    v38: uint8 = value_47(result_5)
+                    result_6: Optional[uint8] = None
+                    x_6: uint8
+                    value_6: int = randint(1, 7) or 0
+                    x_6 = int(value_6+0x100 if value_6 < 0 else value_6) & 0xFF
+                    result_6 = x_6
+                    v42: uint8 = value_47(result_6)
+                    result_7: Optional[uint8] = None
+                    x_7: uint8
+                    value_7: int = randint(1, 7) or 0
+                    x_7 = int(value_7+0x100 if value_7 < 0 else value_7) & 0xFF
+                    result_7 = x_7
+                    v46: uint8 = value_47(result_7)
+                    result_8: Optional[uint8] = None
+                    x_8: uint8
+                    value_8: int = randint(1, 7) or 0
+                    x_8 = int(value_8+0x100 if value_8 < 0 else value_8) & 0xFF
+                    result_8 = x_8
+                    v50: uint8 = value_47(result_8)
+                    result_9: Optional[uint8] = None
+                    x_9: uint8
+                    value_9: int = randint(1, 7) or 0
+                    x_9 = int(value_9+0x100 if value_9 < 0 else value_9) & 0xFF
+                    result_9 = x_9
+                    v54: uint8 = value_47(result_9)
+                    result_10: Optional[uint8] = None
+                    x_10: uint8
+                    value_10: int = randint(1, 7) or 0
+                    x_10 = int(value_10+0x100 if value_10 < 0 else value_10) & 0xFF
+                    result_10 = x_10
+                    v58: uint8 = value_47(result_10)
+                    result_11: Optional[uint8] = None
+                    x_11: uint8
+                    value_11: int = randint(1, 7) or 0
+                    x_11 = int(value_11+0x100 if value_11 < 0 else value_11) & 0xFF
+                    result_11 = x_11
+                    v62: uint8 = value_47(result_11)
+                    result_12: Optional[uint8] = None
+                    x_12: uint8
+                    value_12: int = randint(1, 7) or 0
+                    x_12 = int(value_12+0x100 if value_12 < 0 else value_12) & 0xFF
+                    result_12 = x_12
+                    v66: uint8 = value_47(result_12)
+                    result_13: Optional[uint8] = None
+                    x_13: uint8
+                    value_13: int = randint(1, 7) or 0
+                    x_13 = int(value_13+0x100 if value_13 < 0 else value_13) & 0xFF
+                    result_13 = x_13
+                    v70: uint8 = value_47(result_13)
+                    result_14: Optional[uint8] = None
+                    x_14: uint8
+                    value_14: int = randint(1, 7) or 0
+                    x_14 = int(value_14+0x100 if value_14 < 0 else value_14) & 0xFF
+                    result_14 = x_14
+                    v74: uint8 = value_47(result_14)
+                    result_15: Optional[uint8] = None
+                    x_15: uint8
+                    value_15: int = randint(1, 7) or 0
+                    x_15 = int(value_15+0x100 if value_15 < 0 else value_15) & 0xFF
+                    result_15 = x_15
+                    v78: uint8 = value_47(result_15)
+                    result_16: Optional[uint8] = None
+                    x_16: uint8
+                    value_16: int = randint(1, 7) or 0
+                    x_16 = int(value_16+0x100 if value_16 < 0 else value_16) & 0xFF
+                    result_16 = x_16
+                    v82: uint8 = value_47(result_16)
+                    result_17: Optional[uint8] = None
+                    x_17: uint8
+                    value_17: int = randint(1, 7) or 0
+                    x_17 = int(value_17+0x100 if value_17 < 0 else value_17) & 0xFF
+                    result_17 = x_17
+                    v86: uint8 = value_47(result_17)
+                    result_18: Optional[uint8] = None
+                    x_18: uint8
+                    value_18: int = randint(1, 7) or 0
+                    x_18 = int(value_18+0x100 if value_18 < 0 else value_18) & 0xFF
+                    result_18 = x_18
+                    v90: uint8 = value_47(result_18)
+                    result_19: Optional[uint8] = None
+                    x_19: uint8
+                    value_19: int = randint(1, 7) or 0
+                    x_19 = int(value_19+0x100 if value_19 < 0 else value_19) & 0xFF
+                    result_19 = x_19
+                    v94: uint8 = value_47(result_19)
+                    result_20: Optional[uint8] = None
+                    x_20: uint8
+                    value_20: int = randint(1, 7) or 0
+                    x_20 = int(value_20+0x100 if value_20 < 0 else value_20) & 0xFF
+                    result_20 = x_20
+                    v98: uint8 = value_47(result_20)
+                    result_21: Optional[uint8] = None
+                    x_21: uint8
+                    value_21: int = randint(1, 7) or 0
+                    x_21 = int(value_21+0x100 if value_21 < 0 else value_21) & 0xFF
+                    result_21 = x_21
+                    v102: uint8 = value_47(result_21)
+                    result_22: Optional[uint8] = None
+                    x_22: uint8
+                    value_22: int = randint(1, 7) or 0
+                    x_22 = int(value_22+0x100 if value_22 < 0 else value_22) & 0xFF
+                    result_22 = x_22
+                    v106: uint8 = value_47(result_22)
+                    result_23: Optional[uint8] = None
+                    x_23: uint8
+                    value_23: int = randint(1, 7) or 0
+                    x_23 = int(value_23+0x100 if value_23 < 0 else value_23) & 0xFF
+                    result_23 = x_23
+                    v0_1_mut = UH1(0, v22, UH1(0, v26, UH1(0, v30, UH1(0, v34, UH1(0, v38, UH1(0, v42, UH1(0, v46, UH1(0, v50, UH1(0, v54, UH1(0, v58, UH1(0, v62, UH1(0, v66, UH1(0, v70, UH1(0, v74, UH1(0, v78, UH1(0, v82, UH1(0, v86, UH1(0, v90, UH1(0, v94, UH1(0, v98, UH1(0, v102, UH1(0, v106, UH1(0, value_47(result_23), UH1(1))))))))))))))))))))))))
+                    v1_mut = int8(23)
+                    continue
+
+
+            else: 
+                result_24: Optional[uint8] = None
+                x_24: uint8
+                value_24: int = randint(1, 7) or 0
+                x_24 = int(value_24+0x100 if value_24 < 0 else value_24) & 0xFF
+                result_24 = x_24
+                v143: uint8 = value_47(result_24)
+                result_25: Optional[uint8] = None
+                x_25: uint8
+                value_25: int = randint(1, 7) or 0
+                x_25 = int(value_25+0x100 if value_25 < 0 else value_25) & 0xFF
+                result_25 = x_25
+                v147: uint8 = value_47(result_25)
+                result_26: Optional[uint8] = None
+                x_26: uint8
+                value_26: int = randint(1, 7) or 0
+                x_26 = int(value_26+0x100 if value_26 < 0 else value_26) & 0xFF
+                result_26 = x_26
+                v151: uint8 = value_47(result_26)
+                result_27: Optional[uint8] = None
+                x_27: uint8
+                value_27: int = randint(1, 7) or 0
+                x_27 = int(value_27+0x100 if value_27 < 0 else value_27) & 0xFF
+                result_27 = x_27
+                v155: uint8 = value_47(result_27)
+                result_28: Optional[uint8] = None
+                x_28: uint8
+                value_28: int = randint(1, 7) or 0
+                x_28 = int(value_28+0x100 if value_28 < 0 else value_28) & 0xFF
+                result_28 = x_28
+                v159: uint8 = value_47(result_28)
+                result_29: Optional[uint8] = None
+                x_29: uint8
+                value_29: int = randint(1, 7) or 0
+                x_29 = int(value_29+0x100 if value_29 < 0 else value_29) & 0xFF
+                result_29 = x_29
+                v163: uint8 = value_47(result_29)
+                result_30: Optional[uint8] = None
+                x_30: uint8
+                value_30: int = randint(1, 7) or 0
+                x_30 = int(value_30+0x100 if value_30 < 0 else value_30) & 0xFF
+                result_30 = x_30
+                v167: uint8 = value_47(result_30)
+                result_31: Optional[uint8] = None
+                x_31: uint8
+                value_31: int = randint(1, 7) or 0
+                x_31 = int(value_31+0x100 if value_31 < 0 else value_31) & 0xFF
+                result_31 = x_31
+                v171: uint8 = value_47(result_31)
+                result_32: Optional[uint8] = None
+                x_32: uint8
+                value_32: int = randint(1, 7) or 0
+                x_32 = int(value_32+0x100 if value_32 < 0 else value_32) & 0xFF
+                result_32 = x_32
+                v175: uint8 = value_47(result_32)
+                result_33: Optional[uint8] = None
+                x_33: uint8
+                value_33: int = randint(1, 7) or 0
+                x_33 = int(value_33+0x100 if value_33 < 0 else value_33) & 0xFF
+                result_33 = x_33
+                v179: uint8 = value_47(result_33)
+                result_34: Optional[uint8] = None
+                x_34: uint8
+                value_34: int = randint(1, 7) or 0
+                x_34 = int(value_34+0x100 if value_34 < 0 else value_34) & 0xFF
+                result_34 = x_34
+                v183: uint8 = value_47(result_34)
+                result_35: Optional[uint8] = None
+                x_35: uint8
+                value_35: int = randint(1, 7) or 0
+                x_35 = int(value_35+0x100 if value_35 < 0 else value_35) & 0xFF
+                result_35 = x_35
+                v187: uint8 = value_47(result_35)
+                result_36: Optional[uint8] = None
+                x_36: uint8
+                value_36: int = randint(1, 7) or 0
+                x_36 = int(value_36+0x100 if value_36 < 0 else value_36) & 0xFF
+                result_36 = x_36
+                v191: uint8 = value_47(result_36)
+                result_37: Optional[uint8] = None
+                x_37: uint8
+                value_37: int = randint(1, 7) or 0
+                x_37 = int(value_37+0x100 if value_37 < 0 else value_37) & 0xFF
+                result_37 = x_37
+                v195: uint8 = value_47(result_37)
+                result_38: Optional[uint8] = None
+                x_38: uint8
+                value_38: int = randint(1, 7) or 0
+                x_38 = int(value_38+0x100 if value_38 < 0 else value_38) & 0xFF
+                result_38 = x_38
+                v199: uint8 = value_47(result_38)
+                result_39: Optional[uint8] = None
+                x_39: uint8
+                value_39: int = randint(1, 7) or 0
+                x_39 = int(value_39+0x100 if value_39 < 0 else value_39) & 0xFF
+                result_39 = x_39
+                v203: uint8 = value_47(result_39)
+                result_40: Optional[uint8] = None
+                x_40: uint8
+                value_40: int = randint(1, 7) or 0
+                x_40 = int(value_40+0x100 if value_40 < 0 else value_40) & 0xFF
+                result_40 = x_40
+                v207: uint8 = value_47(result_40)
+                result_41: Optional[uint8] = None
+                x_41: uint8
+                value_41: int = randint(1, 7) or 0
+                x_41 = int(value_41+0x100 if value_41 < 0 else value_41) & 0xFF
+                result_41 = x_41
+                v211: uint8 = value_47(result_41)
+                result_42: Optional[uint8] = None
+                x_42: uint8
+                value_42: int = randint(1, 7) or 0
+                x_42 = int(value_42+0x100 if value_42 < 0 else value_42) & 0xFF
+                result_42 = x_42
+                v215: uint8 = value_47(result_42)
+                result_43: Optional[uint8] = None
+                x_43: uint8
+                value_43: int = randint(1, 7) or 0
+                x_43 = int(value_43+0x100 if value_43 < 0 else value_43) & 0xFF
+                result_43 = x_43
+                v219: uint8 = value_47(result_43)
+                result_44: Optional[uint8] = None
+                x_44: uint8
+                value_44: int = randint(1, 7) or 0
+                x_44 = int(value_44+0x100 if value_44 < 0 else value_44) & 0xFF
+                result_44 = x_44
+                v223: uint8 = value_47(result_44)
+                result_45: Optional[uint8] = None
+                x_45: uint8
+                value_45: int = randint(1, 7) or 0
+                x_45 = int(value_45+0x100 if value_45 < 0 else value_45) & 0xFF
+                result_45 = x_45
+                v227: uint8 = value_47(result_45)
+                result_46: Optional[uint8] = None
+                x_46: uint8
+                value_46: int = randint(1, 7) or 0
+                x_46 = int(value_46+0x100 if value_46 < 0 else value_46) & 0xFF
+                result_46 = x_46
+                v0_1_mut = UH1(0, v143, UH1(0, v147, UH1(0, v151, UH1(0, v155, UH1(0, v159, UH1(0, v163, UH1(0, v167, UH1(0, v171, UH1(0, v175, UH1(0, v179, UH1(0, v183, UH1(0, v187, UH1(0, v191, UH1(0, v195, UH1(0, v199, UH1(0, v203, UH1(0, v207, UH1(0, v211, UH1(0, v215, UH1(0, v219, UH1(0, v223, UH1(0, v227, UH1(0, value_47(result_46), UH1(1))))))))))))))))))))))))
+                v1_mut = int8(23)
+                continue
+
+
+        break
+
+
+def closure80(unit_var: None, v0_1: Array[str]) -> int:
+    print(((((("calculate_dice_count / max: " + str(int64(9223372036854775807))) + " / n: ") + str(int8(24))) + " / p: ") + str(int64(4738381338321616896))) + "")
+    print(("result: " + str(method15(UH1(1), int8(0)))) + "")
+    return 0
+
+
 method0()
 
-def main(_args: Array[str]) -> int:
-    return 0
+def _arrow21(v: Array[str]) -> int:
+    return closure80(None, v)
+
+
+v0: Callable[[Array[str]], int] = _arrow21
+
+def main(args: Array[str]) -> int:
+    return v0(args)
 
 
 if __name__ == "__main__":

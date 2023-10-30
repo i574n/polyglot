@@ -129,7 +129,7 @@ module Common =
             let text = $"%s{fn ()}"
 
             System.Console.WriteLine text
-#if !CHAIN && !FABLE_COMPILER
+#if !WASM && !FABLE_COMPILER
             if traceDump then
                 try
                     let tmpPath = System.IO.Path.GetTempPath ()
@@ -157,7 +157,7 @@ module Common =
     let trace level fn getLocals =
         fun () ->
             let time =
-#if CHAIN
+#if WASM
                 ""
 #else
                 match replStart () with

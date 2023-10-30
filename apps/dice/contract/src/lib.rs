@@ -36,9 +36,27 @@ impl State {
     }
 
     fn get_logger() -> fable_library_rust::Native_::Func1<fable_library_rust::String_::string, ()> {
-        fable_library_rust::Native_::Func1::from(|s| {
-            log!(s.to_string());
-        })
+        let count = std::rc::Rc::new(std::cell::RefCell::new(0));
+        let acc = std::rc::Rc::new(std::cell::RefCell::new(String::new()));
+
+        let closure = {
+            let count = std::rc::Rc::clone(&count);
+            let acc = std::rc::Rc::clone(&acc);
+
+            move |s: fable_library_rust::String_::string| {
+                let mut count_ref = count.borrow_mut();
+                let mut acc_ref = acc.borrow_mut();
+
+                *count_ref += 1;
+                if s.len() == 0 || *count_ref % 5 == 0 {
+                    log!(acc_ref.clone());
+                    *acc_ref = String::new();
+                }
+                acc_ref.push_str(&(s.to_string() + "\n"));
+            }
+        };
+
+        fable_library_rust::Native_::Func1::new(closure)
     }
 
     pub fn generate_random_number(&mut self, max: u64) -> u64 {
@@ -61,40 +79,63 @@ impl State {
         entropy.extend(epoch_height.to_le_bytes());
 
         let hash_u8 = env::keccak512(&entropy);
-        let hash_vec = hash_u8.iter().map(|x| *x as i32).collect::<Vec<i32>>();
-        let hash_seq = fable_library_rust::Seq_::ofList((&hash_vec).into());
-        let rolls = dice_fsharp::Polyglot::dice_fsharp::rotateNumbers(6, hash_seq);
-        let rolls_list = fable_library_rust::List_::ofSeq(rolls);
+
+        let hash_stream = hash_u8.iter().fold(dice::Dice::UH0::UH0_1, |acc, x| {
+            dice::Dice::UH0::UH0_0(
+                *x,
+                fable_library_rust::Native_::Func0::new(move || acc.clone().into()),
+            )
+        });
+
+        let rolls = dice::Dice::closure0((), 6)(hash_stream.into());
+
+        fn list_u8_to_u64(
+            a: fable_library_rust::Native_::LrcPtr<dice::Dice::UH0>,
+        ) -> dice::Dice::UH1 {
+            match a.as_ref() {
+                dice::Dice::UH0::UH0_0(n, f) => {
+                    dice::Dice::UH1::UH1_0(*n, list_u8_to_u64(f()).into())
+                }
+                dice::Dice::UH0::UH0_1 => dice::Dice::UH1::UH1_1,
+            }
+        }
+
+        let rolls_stream: dice::Dice::UH1 = list_u8_to_u64(rolls);
 
         let signer_account_id_log = signer_account_id.as_str();
-        let rolls_list_log: Vec<i32> = rolls_list.clone().into();
+        let rolls_stream_log = rolls_stream.clone();
 
-        log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_vec: {hash_vec:?} / rolls_list: {rolls_list_log:?}"));
+        log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
 
-        let sequential_roll = dice_fsharp::Polyglot::dice_fsharp::createSequentialRoller(rolls_list);
-        let result = dice_fsharp::Polyglot::dice_fsharp::rollProgressively(
-            Some(Self::get_logger()),
-            sequential_roll,
-            false,
-            max as i32,
-        );
-
+        let sequential_roll = dice::Dice::closure3((), rolls_stream.into());
+        let logger = Self::get_logger();
+        let result = dice::Dice::closure8((), Some(logger.clone()))(sequential_roll)(false)(max);
+        logger("".into());
         result as u64
     }
 
-    pub fn roll_within_bounds(&self, max: i32, rolls: Vec<i32>) -> Option<i32> {
+    pub fn roll_within_bounds(&self, max: u64, rolls: Vec<u8>) -> Option<u64> {
         log!(format!(
             "roll_within_bounds / max: {max:#?} / rolls: {rolls:?}"
         ));
-        dice_fsharp::Polyglot::dice_fsharp::rollWithinBounds(Some(Self::get_logger()), max, (&rolls).into())
+        let rolls = rolls
+            .into_iter()
+            .rev()
+            .fold(dice::Dice::UH1::UH1_1, |acc, x| {
+                dice::Dice::UH1::UH1_0(x, acc.into())
+            });
+        let logger = Self::get_logger();
+        let result = dice::Dice::closure77((), Some(logger.clone()))(max)(rolls.into());
+        logger("".into());
+        result
     }
 
     #[result_serializer(borsh)]
     pub fn roll_within_bounds_borsh(
         &self,
-        #[serializer(borsh)] max: i32,
-        #[serializer(borsh)] rolls: Vec<i32>,
-    ) -> Option<i32> {
+        #[serializer(borsh)] max: u64,
+        #[serializer(borsh)] rolls: Vec<u8>,
+    ) -> Option<u64> {
         self.roll_within_bounds(max, rolls)
     }
 }

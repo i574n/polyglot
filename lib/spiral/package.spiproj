@@ -12,4 +12,5 @@ modules:
     stream
     seq
     util
+    rust
     physics

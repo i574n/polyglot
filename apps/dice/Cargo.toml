@@ -10,7 +10,7 @@ fable_library_rust = { path = "../../apps/spiral/temp/test/fable_modules/fable-l
 rand = { version = "~0.8", optional = true }
 
 [features]
-chain = ["fable_library_rust"]
+wasm = ["fable_library_rust"]
 default = ["fable_library_rust/default", "dep:rand"]
 
 [[bin]]
@@ -18,4 +18,4 @@ name = "dice"
 path = "dice.rs"
 
 [lib]
-path = "dice_chain.rs"
+path = "dice_wasm.rs"

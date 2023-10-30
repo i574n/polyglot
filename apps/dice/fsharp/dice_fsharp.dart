@@ -154,10 +154,10 @@ int rollProgressively(types.Some<void Function(String)>? log, int Function() rol
 
 int main(List<String> args) {
     final clo = string.toConsole(string.printf('%s'));
-    final types.Some<int>? result = rollWithinBounds(types.Some((String arg) {
+    final result = rollProgressively(types.Some((String arg) {
         clo(arg);
-    }), 2000, list_2.ofArray(const [1, 5, 4, 4, 5]));
-    common.trace(const common.TraceLevel(/* Debug */ 1), () => 'main / result: ${option_3.defaultValue(-1, result)}', () => '');
+    }), () => rollDice(), true, 2147483647 ~/ 2);
+    common.trace(const common.TraceLevel(/* Debug */ 1), () => 'main / result: $result', () => '');
     return 0;
 }
 

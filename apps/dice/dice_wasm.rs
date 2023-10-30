@@ -1949,7 +1949,7 @@ pub mod Dice {
             break '_method15 (if v1.get() < 24_i8 {
                 let result: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                 {
-                    let x: u8 = rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                    let x: u8 = 1;
                     result.set(Some(x))
                 }
                 {
@@ -1972,30 +1972,28 @@ pub mod Dice {
                     } else {
                         let result_1: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                         {
-                            let x_1: u8 = rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                            let x_1: u8 = 1;
                             result_1.set(Some(x_1))
                         }
                         {
                             let v22: u8 = getValue(result_1.get());
                             let result_2: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                             {
-                                let x_2: u8 = rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                let x_2: u8 = 1;
                                 result_2.set(Some(x_2))
                             }
                             {
                                 let v26: u8 = getValue(result_2.get());
                                 let result_3: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                                 {
-                                    let x_3: u8 =
-                                        rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                    let x_3: u8 = 1;
                                     result_3.set(Some(x_3))
                                 }
                                 {
                                     let v30: u8 = getValue(result_3.get());
                                     let result_4: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                                     {
-                                        let x_4: u8 =
-                                            rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                        let x_4: u8 = 1;
                                         result_4.set(Some(x_4))
                                     }
                                     {
@@ -2003,8 +2001,7 @@ pub mod Dice {
                                         let result_5: MutCell<Option<u8>> =
                                             MutCell::new(None::<u8>);
                                         {
-                                            let x_5: u8 =
-                                                rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                            let x_5: u8 = 1;
                                             result_5.set(Some(x_5))
                                         }
                                         {
@@ -2012,10 +2009,7 @@ pub mod Dice {
                                             let result_6: MutCell<Option<u8>> =
                                                 MutCell::new(None::<u8>);
                                             {
-                                                let x_6: u8 = rand::Rng::gen_range(
-                                                    &mut rand::thread_rng(),
-                                                    1..7,
-                                                );
+                                                let x_6: u8 = 1;
                                                 result_6.set(Some(x_6))
                                             }
                                             {
@@ -2023,10 +2017,7 @@ pub mod Dice {
                                                 let result_7: MutCell<Option<u8>> =
                                                     MutCell::new(None::<u8>);
                                                 {
-                                                    let x_7: u8 = rand::Rng::gen_range(
-                                                        &mut rand::thread_rng(),
-                                                        1..7,
-                                                    );
+                                                    let x_7: u8 = 1;
                                                     result_7.set(Some(x_7))
                                                 }
                                                 {
@@ -2034,10 +2025,7 @@ pub mod Dice {
                                                     let result_8: MutCell<Option<u8>> =
                                                         MutCell::new(None::<u8>);
                                                     {
-                                                        let x_8: u8 = rand::Rng::gen_range(
-                                                            &mut rand::thread_rng(),
-                                                            1..7,
-                                                        );
+                                                        let x_8: u8 = 1;
                                                         result_8.set(Some(x_8))
                                                     }
                                                     {
@@ -2045,10 +2033,7 @@ pub mod Dice {
                                                         let result_9: MutCell<Option<u8>> =
                                                             MutCell::new(None::<u8>);
                                                         {
-                                                            let x_9: u8 = rand::Rng::gen_range(
-                                                                &mut rand::thread_rng(),
-                                                                1..7,
-                                                            );
+                                                            let x_9: u8 = 1;
                                                             result_9.set(Some(x_9))
                                                         }
                                                         {
@@ -2056,10 +2041,7 @@ pub mod Dice {
                                                             let result_10: MutCell<Option<u8>> =
                                                                 MutCell::new(None::<u8>);
                                                             {
-                                                                let x_10: u8 = rand::Rng::gen_range(
-                                                                    &mut rand::thread_rng(),
-                                                                    1..7,
-                                                                );
+                                                                let x_10: u8 = 1;
                                                                 result_10.set(Some(x_10))
                                                             }
                                                             {
@@ -2068,11 +2050,7 @@ pub mod Dice {
                                                                 let result_11: MutCell<Option<u8>> =
                                                                     MutCell::new(None::<u8>);
                                                                 {
-                                                                    let x_11: u8 =
-                                                                        rand::Rng::gen_range(
-                                                                            &mut rand::thread_rng(),
-                                                                            1..7,
-                                                                        );
+                                                                    let x_11: u8 = 1;
                                                                     result_11.set(Some(x_11))
                                                                 }
                                                                 {
@@ -2082,9 +2060,7 @@ pub mod Dice {
                                                                         Option<u8>,
                                                                     > = MutCell::new(None::<u8>);
                                                                     {
-                                                                        let x_12:
-                                                                                         u8 =
-                                                                                     rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                        let x_12: u8 = 1;
                                                                         result_12.set(Some(x_12))
                                                                     }
                                                                     {
@@ -2097,9 +2073,7 @@ pub mod Dice {
                                                                             None::<u8>,
                                                                         );
                                                                         {
-                                                                            let x_13:
-                                                                                             u8 =
-                                                                                         rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                            let x_13: u8 = 1;
                                                                             result_13
                                                                                 .set(Some(x_13))
                                                                         }
@@ -2113,9 +2087,7 @@ pub mod Dice {
                                                                                 None::<u8>,
                                                                             );
                                                                             {
-                                                                                let x_14:
-                                                                                                 u8 =
-                                                                                             rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                let x_14: u8 = 1;
                                                                                 result_14
                                                                                     .set(Some(x_14))
                                                                             }
@@ -2129,9 +2101,8 @@ pub mod Dice {
                                                                                                  MutCell<Option<u8>> =
                                                                                              MutCell::new(None::<u8>);
                                                                                 {
-                                                                                    let x_15:
-                                                                                                     u8 =
-                                                                                                 rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                    let x_15: u8 =
+                                                                                        1;
                                                                                     result_15.set(
                                                                                         Some(x_15),
                                                                                     )
@@ -2146,7 +2117,7 @@ pub mod Dice {
                                                                                     {
                                                                                         let x_16:
                                                                                                          u8 =
-                                                                                                     rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                     1;
                                                                                         result_16.set(Some(x_16))
                                                                                     }
                                                                                     {
@@ -2159,7 +2130,7 @@ pub mod Dice {
                                                                                         {
                                                                                             let x_17:
                                                                                                              u8 =
-                                                                                                         rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                         1;
                                                                                             result_17.set(Some(x_17))
                                                                                         }
                                                                                         {
@@ -2172,7 +2143,7 @@ pub mod Dice {
                                                                                             {
                                                                                                 let x_18:
                                                                                                                  u8 =
-                                                                                                             rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                             1;
                                                                                                 result_18.set(Some(x_18))
                                                                                             }
                                                                                             {
@@ -2185,7 +2156,7 @@ pub mod Dice {
                                                                                                 {
                                                                                                     let x_19:
                                                                                                                      u8 =
-                                                                                                                 rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                 1;
                                                                                                     result_19.set(Some(x_19))
                                                                                                 }
                                                                                                 {
@@ -2198,7 +2169,7 @@ pub mod Dice {
                                                                                                     {
                                                                                                         let x_20:
                                                                                                                          u8 =
-                                                                                                                     rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                     1;
                                                                                                         result_20.set(Some(x_20))
                                                                                                     }
                                                                                                     {
@@ -2211,7 +2182,7 @@ pub mod Dice {
                                                                                                         {
                                                                                                             let x_21:
                                                                                                                              u8 =
-                                                                                                                         rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                         1;
                                                                                                             result_21.set(Some(x_21))
                                                                                                         }
                                                                                                         {
@@ -2224,7 +2195,7 @@ pub mod Dice {
                                                                                                             {
                                                                                                                 let x_22:
                                                                                                                                  u8 =
-                                                                                                                             rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                             1;
                                                                                                                 result_22.set(Some(x_22))
                                                                                                             }
                                                                                                             {
@@ -2237,7 +2208,7 @@ pub mod Dice {
                                                                                                                 {
                                                                                                                     let x_23:
                                                                                                                                      u8 =
-                                                                                                                                 rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                                 1;
                                                                                                                     result_23.set(Some(x_23))
                                                                                                                 }
                                                                                                                 {
@@ -2301,37 +2272,35 @@ pub mod Dice {
                 } else {
                     let result_24: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                     {
-                        let x_24: u8 = rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                        let x_24: u8 = 1;
                         result_24.set(Some(x_24))
                     }
                     {
                         let v143: u8 = getValue(result_24.get());
                         let result_25: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                         {
-                            let x_25: u8 = rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                            let x_25: u8 = 1;
                             result_25.set(Some(x_25))
                         }
                         {
                             let v147: u8 = getValue(result_25.get());
                             let result_26: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                             {
-                                let x_26: u8 = rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                let x_26: u8 = 1;
                                 result_26.set(Some(x_26))
                             }
                             {
                                 let v151: u8 = getValue(result_26.get());
                                 let result_27: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                                 {
-                                    let x_27: u8 =
-                                        rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                    let x_27: u8 = 1;
                                     result_27.set(Some(x_27))
                                 }
                                 {
                                     let v155: u8 = getValue(result_27.get());
                                     let result_28: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                                     {
-                                        let x_28: u8 =
-                                            rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                        let x_28: u8 = 1;
                                         result_28.set(Some(x_28))
                                     }
                                     {
@@ -2339,8 +2308,7 @@ pub mod Dice {
                                         let result_29: MutCell<Option<u8>> =
                                             MutCell::new(None::<u8>);
                                         {
-                                            let x_29: u8 =
-                                                rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                            let x_29: u8 = 1;
                                             result_29.set(Some(x_29))
                                         }
                                         {
@@ -2348,10 +2316,7 @@ pub mod Dice {
                                             let result_30: MutCell<Option<u8>> =
                                                 MutCell::new(None::<u8>);
                                             {
-                                                let x_30: u8 = rand::Rng::gen_range(
-                                                    &mut rand::thread_rng(),
-                                                    1..7,
-                                                );
+                                                let x_30: u8 = 1;
                                                 result_30.set(Some(x_30))
                                             }
                                             {
@@ -2359,10 +2324,7 @@ pub mod Dice {
                                                 let result_31: MutCell<Option<u8>> =
                                                     MutCell::new(None::<u8>);
                                                 {
-                                                    let x_31: u8 = rand::Rng::gen_range(
-                                                        &mut rand::thread_rng(),
-                                                        1..7,
-                                                    );
+                                                    let x_31: u8 = 1;
                                                     result_31.set(Some(x_31))
                                                 }
                                                 {
@@ -2370,10 +2332,7 @@ pub mod Dice {
                                                     let result_32: MutCell<Option<u8>> =
                                                         MutCell::new(None::<u8>);
                                                     {
-                                                        let x_32: u8 = rand::Rng::gen_range(
-                                                            &mut rand::thread_rng(),
-                                                            1..7,
-                                                        );
+                                                        let x_32: u8 = 1;
                                                         result_32.set(Some(x_32))
                                                     }
                                                     {
@@ -2381,10 +2340,7 @@ pub mod Dice {
                                                         let result_33: MutCell<Option<u8>> =
                                                             MutCell::new(None::<u8>);
                                                         {
-                                                            let x_33: u8 = rand::Rng::gen_range(
-                                                                &mut rand::thread_rng(),
-                                                                1..7,
-                                                            );
+                                                            let x_33: u8 = 1;
                                                             result_33.set(Some(x_33))
                                                         }
                                                         {
@@ -2393,10 +2349,7 @@ pub mod Dice {
                                                             let result_34: MutCell<Option<u8>> =
                                                                 MutCell::new(None::<u8>);
                                                             {
-                                                                let x_34: u8 = rand::Rng::gen_range(
-                                                                    &mut rand::thread_rng(),
-                                                                    1..7,
-                                                                );
+                                                                let x_34: u8 = 1;
                                                                 result_34.set(Some(x_34))
                                                             }
                                                             {
@@ -2405,11 +2358,7 @@ pub mod Dice {
                                                                 let result_35: MutCell<Option<u8>> =
                                                                     MutCell::new(None::<u8>);
                                                                 {
-                                                                    let x_35: u8 =
-                                                                        rand::Rng::gen_range(
-                                                                            &mut rand::thread_rng(),
-                                                                            1..7,
-                                                                        );
+                                                                    let x_35: u8 = 1;
                                                                     result_35.set(Some(x_35))
                                                                 }
                                                                 {
@@ -2419,9 +2368,7 @@ pub mod Dice {
                                                                         Option<u8>,
                                                                     > = MutCell::new(None::<u8>);
                                                                     {
-                                                                        let x_36:
-                                                                                         u8 =
-                                                                                     rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                        let x_36: u8 = 1;
                                                                         result_36.set(Some(x_36))
                                                                     }
                                                                     {
@@ -2434,9 +2381,7 @@ pub mod Dice {
                                                                             None::<u8>,
                                                                         );
                                                                         {
-                                                                            let x_37:
-                                                                                             u8 =
-                                                                                         rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                            let x_37: u8 = 1;
                                                                             result_37
                                                                                 .set(Some(x_37))
                                                                         }
@@ -2450,9 +2395,7 @@ pub mod Dice {
                                                                                 None::<u8>,
                                                                             );
                                                                             {
-                                                                                let x_38:
-                                                                                                 u8 =
-                                                                                             rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                let x_38: u8 = 1;
                                                                                 result_38
                                                                                     .set(Some(x_38))
                                                                             }
@@ -2466,9 +2409,8 @@ pub mod Dice {
                                                                                                  MutCell<Option<u8>> =
                                                                                              MutCell::new(None::<u8>);
                                                                                 {
-                                                                                    let x_39:
-                                                                                                     u8 =
-                                                                                                 rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                    let x_39: u8 =
+                                                                                        1;
                                                                                     result_39.set(
                                                                                         Some(x_39),
                                                                                     )
@@ -2483,7 +2425,7 @@ pub mod Dice {
                                                                                     {
                                                                                         let x_40:
                                                                                                          u8 =
-                                                                                                     rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                     1;
                                                                                         result_40.set(Some(x_40))
                                                                                     }
                                                                                     {
@@ -2496,7 +2438,7 @@ pub mod Dice {
                                                                                         {
                                                                                             let x_41:
                                                                                                              u8 =
-                                                                                                         rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                         1;
                                                                                             result_41.set(Some(x_41))
                                                                                         }
                                                                                         {
@@ -2509,7 +2451,7 @@ pub mod Dice {
                                                                                             {
                                                                                                 let x_42:
                                                                                                                  u8 =
-                                                                                                             rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                             1;
                                                                                                 result_42.set(Some(x_42))
                                                                                             }
                                                                                             {
@@ -2522,7 +2464,7 @@ pub mod Dice {
                                                                                                 {
                                                                                                     let x_43:
                                                                                                                      u8 =
-                                                                                                                 rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                 1;
                                                                                                     result_43.set(Some(x_43))
                                                                                                 }
                                                                                                 {
@@ -2535,7 +2477,7 @@ pub mod Dice {
                                                                                                     {
                                                                                                         let x_44:
                                                                                                                          u8 =
-                                                                                                                     rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                     1;
                                                                                                         result_44.set(Some(x_44))
                                                                                                     }
                                                                                                     {
@@ -2548,7 +2490,7 @@ pub mod Dice {
                                                                                                         {
                                                                                                             let x_45:
                                                                                                                              u8 =
-                                                                                                                         rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                         1;
                                                                                                             result_45.set(Some(x_45))
                                                                                                         }
                                                                                                         {
@@ -2561,7 +2503,7 @@ pub mod Dice {
                                                                                                             {
                                                                                                                 let x_46:
                                                                                                                                  u8 =
-                                                                                                                             rand::Rng::gen_range(&mut rand::thread_rng(), 1..7);
+                                                                                                                             1;
                                                                                                                 result_46.set(Some(x_46))
                                                                                                             }
                                                                                                             {
@@ -2651,7 +2593,7 @@ pub mod Dice {
         (Dice::v0())(args)
     }
 }
-#[path = "../../lib/fsharp/Common.rs"]
+#[path = "../../lib/fsharp/CommonWasm.rs"]
 mod module_ad43931;
 pub use module_ad43931::*;
 pub fn main() {

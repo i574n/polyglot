@@ -146,11 +146,12 @@ function rollProgressively($log, $roll, $reroll, $max) {
 
 #9
 function main($args) {
-    $result = rollWithinBounds((function ($clo) {     return function ($arg) use ($clo) {     return $clo($arg);
+    $result = rollProgressively((function ($clo) {     return function ($arg) use ($clo) {     return $clo($arg);
  };
- })(\String\toConsole(\String\printf('%s'))), 2000, \FSharpList\cons(1, \FSharpList\cons(5, \FSharpList\cons(4, \FSharpList\cons(4, \FSharpList\cons(5, \FSharpList\_empty()))))));
+ })(\String\toConsole(\String\printf('%s'))), function ($arg00_0040) use ($rollDice) {     return rollDice(NULL);
+ }, true, ~~~~~~2147483647 / 2);
     \Common\trace(new \Polyglot.Common\TraceLevel_Debug(), function ($unitVar) {     return NULL;
- }, function ($arg00_0040) {     return '';
+ }, function ($arg00_0040_1) {     return '';
  });
     return 0;
 }
