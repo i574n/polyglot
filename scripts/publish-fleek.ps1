@@ -29,7 +29,7 @@ $files | ForEach-Object {
     Write-Output "`npath: $($_.FullName)"
 
     $retryCount = 0
-    while ($retryCount -lt 10) {
+    while ($retryCount -lt 20) {
         if ($retryCount -gt 0) {
             Write-Host "Retrying upload of $($_.Name) - $retryCount ($Error)"
         }
@@ -101,10 +101,11 @@ $files | ForEach-Object {
         Write-Output "$($_.Name) - dwebCid: '$dwebCid'"
 
         $dwebCid | Set-Content "$($_.DirectoryName)/$($_.Name).cid"
-        Remove-Item $_.FullName -Force
 
         break
     }
+
+    Remove-Item $_.FullName -Force
 }
 if ($Error.Count -gt 0) {
     throw "Failed to upload ($Error)"
