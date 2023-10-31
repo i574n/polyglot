@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import sys
 from typing import (Any, List, Callable, Optional)
-from fable_modules.fable_library.long import (op_subtraction, op_addition, op_multiply, from_integer)
+from fable_modules.fable_library.long import (op_addition, op_modulus, op_subtraction, from_integer, to_int, op_multiply)
 from fable_modules.fable_library.option import (default_arg, map, value as value_47)
 from fable_modules.fable_library.reflection import (TypeInfo, uint8_type, unit_type, lambda_type, union_type, record_type, int64_type, string_type, uint64_type)
 from fable_modules.fable_library.types import (Array, Union, Record, int64, uint8, uint64, int8)
@@ -191,25 +191,26 @@ def closure2(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
 
 
-def method1(v0_1: uint8, v1: UH0, v2: UH0) -> UH0:
+def method1(v0_1: int64, v1: UH0, v2: UH0) -> UH0:
     if v1.tag == 1:
         return v2
 
     else: 
         v6: UH0 = method1(v0_1, v1.fields[1](), v2)
-        def v11(__unit: None=None, v0_1: uint8=v0_1, v1: UH0=v1, v2: UH0=v2) -> UH0:
+        v11: int64 = op_addition(op_modulus(op_addition(op_subtraction(from_integer(v1.fields[0], False, 4), int64(1)), v0_1), v0_1), int64(1))
+        def v13(__unit: None=None, v0_1: int64=v0_1, v1: UH0=v1, v2: UH0=v2) -> UH0:
             return closure2(v6, None)
 
-        return UH0(0, (((v1.fields[0] - uint8(1)) + v0_1) % v0_1) + uint8(1), v11)
+        return UH0(0, int(to_int(v11)+0x100 if to_int(v11) < 0 else to_int(v11)) & 0xFF, v13)
 
 
 
-def closure1(v0_1: uint8, v1: UH0) -> UH0:
+def closure1(v0_1: int64, v1: UH0) -> UH0:
     return method1(v0_1, v1, UH0(1))
 
 
-def closure0(unit_var: None, v0_1: uint8) -> Callable[[UH0], UH0]:
-    def _arrow13(v: UH0, unit_var: None=unit_var, v0_1: uint8=v0_1) -> UH0:
+def closure0(unit_var: None, v0_1: int64) -> Callable[[UH0], UH0]:
+    def _arrow13(v: UH0, unit_var: None=unit_var, v0_1: int64=v0_1) -> UH0:
         return closure1(v0_1, v)
 
     return _arrow13
@@ -353,7 +354,7 @@ def method8(v0_1_mut: US2, v1_mut: uint64, v2_mut: int8, v3_mut: uint64) -> int8
         (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
         if v3 < v1:
             v5: uint64 = op_multiply(v3, uint64(6))
-            if v5 >= uint64(0):
+            if v5 > v3:
                 v0_1_mut = v0_1
                 v1_mut = v1
                 v2_mut = v2 + int8(1)

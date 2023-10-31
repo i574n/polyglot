@@ -1,7 +1,7 @@
 import { Record, Union } from "./fable_modules/fable-library-ts/Types.js";
 import { int32, int8, uint8 } from "./fable_modules/fable-library-ts/Int32.js";
 import { uint64_type, string_type, int64_type, record_type, union_type, lambda_type, unit_type, uint8_type, TypeInfo } from "./fable_modules/fable-library-ts/Reflection.js";
-import { fromUInt8, op_Multiply, toUInt64, equals, op_Addition, op_Subtraction, toInt64, compare, uint64, int64 } from "./fable_modules/fable-library-ts/BigInt.js";
+import { op_Multiply, toUInt64, equals, compare, toUInt8, fromUInt8, op_Subtraction, op_Modulus, op_Addition, toInt64, uint64, int64 } from "./fable_modules/fable-library-ts/BigInt.js";
 import { IComparable, IEquatable } from "./fable_modules/fable-library-ts/Util.js";
 import { value as value_47, Option, map, defaultArg } from "./fable_modules/fable-library-ts/Option.js";
 import { nonSeeded } from "./fable_modules/fable-library-ts/Random.js";
@@ -304,22 +304,23 @@ export function closure2(v0_1: UH0_$union, unitVar: void): UH0_$union {
     return v0_1;
 }
 
-export function method1(v0_1: uint8, v1: UH0_$union, v2: UH0_$union): UH0_$union {
+export function method1(v0_1: int64, v1: UH0_$union, v2: UH0_$union): UH0_$union {
     if (v1.tag === /* UH0_1 */ 1) {
         return v2;
     }
     else {
         const v3: uint8 = v1.fields[0];
         const v6: UH0_$union = method1(v0_1, v1.fields[1](), v2);
-        return UH0_UH0_0((((v3 - 1) + v0_1) % v0_1) + 1, (): UH0_$union => closure2(v6, void 0));
+        const v11: int64 = toInt64(op_Addition(toInt64(op_Modulus(toInt64(op_Addition(toInt64(op_Subtraction(toInt64(fromUInt8(v3)), 1n)), v0_1)), v0_1)), 1n));
+        return UH0_UH0_0(toUInt8(v11) & 0xFF, (): UH0_$union => closure2(v6, void 0));
     }
 }
 
-export function closure1(v0_1: uint8, v1: UH0_$union): UH0_$union {
+export function closure1(v0_1: int64, v1: UH0_$union): UH0_$union {
     return method1(v0_1, v1, UH0_UH0_1());
 }
 
-export function closure0(unitVar: void, v0_1: uint8): ((arg0: UH0_$union) => UH0_$union) {
+export function closure0(unitVar: void, v0_1: int64): ((arg0: UH0_$union) => UH0_$union) {
     return (v: UH0_$union): UH0_$union => closure1(v0_1, v);
 }
 
@@ -462,7 +463,7 @@ export function method8(v0_1_mut: US2_$union, v1_mut: uint64, v2_mut: int8, v3_m
         const v0_1: US2_$union = v0_1_mut, v1: uint64 = v1_mut, v2: int8 = v2_mut, v3: uint64 = v3_mut;
         if (compare(v3, v1) < 0) {
             const v5: uint64 = toUInt64(op_Multiply(v3, 6n));
-            if (compare(v5, 0n) >= 0) {
+            if (compare(v5, v3) > 0) {
                 v0_1_mut = v0_1;
                 v1_mut = v1;
                 v2_mut = (v2 + 1);

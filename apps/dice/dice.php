@@ -586,7 +586,8 @@ function method1($v0_1, $v1, $v2) {
             return $v2;
         default:
             $v6 = method1($v0_1, $v1->Item2(NULL), $v2);
-            return new UH0_UH0_0((($v1->Item1 - 1 + $v0_1) % $v0_1 + 1), function ($arg10_0040) use ($closure2, $v6) {             return closure2($v6, NULL);
+            $v11 = \BigInt\toInt64(\BigInt\op_Addition(\BigInt\toInt64(\BigInt\op_Modulus(\BigInt\toInt64(\BigInt\op_Addition(\BigInt\toInt64(\BigInt\op_Subtraction(\BigInt\toInt64(\BigInt\fromUInt8($v1->Item1)), NULL)), $v0_1)), $v0_1)), NULL));
+            return new UH0_UH0_0(\BigInt\toUInt8($v11) & 0xFF, function ($arg10_0040) use ($closure2, $v6) {             return closure2($v6, NULL);
  });
     }
 }
@@ -746,7 +747,7 @@ function closure9($unitVar, $v0_1) {
 function method8($v0_1, $v1, $v2, $v3) {
     if (\BigInt\compare($v3, $v1) < 0) {
         $v5 = \BigInt\toUInt64(\BigInt\op_Multiply($v3, NULL));
-        if (\BigInt\compare($v5, NULL) >= 0) {
+        if (\BigInt\compare($v5, $v3) > 0) {
             return method8($v0_1, $v1, $v2 + 1, $v5);
         } else {
             $v9 = NULL;

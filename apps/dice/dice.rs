@@ -135,13 +135,13 @@ pub mod Dice {
     pub fn closure2(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
         v0_1
     }
-    pub fn method1(v0_1: u8, v1: LrcPtr<Dice::UH0>, v2: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
+    pub fn method1(v0_1: i64, v1: LrcPtr<Dice::UH0>, v2: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
         match v1.as_ref() {
             Dice::UH0::UH0_1 => v2.clone(),
             Dice::UH0::UH0_0(v1_0_0, v1_0_1) => {
                 let v6: LrcPtr<Dice::UH0> = Dice::method1(v0_1, (v1_0_1)(), v2.clone());
                 LrcPtr::new(Dice::UH0::UH0_0(
-                    (v1_0_0.clone() - 1_u8 + v0_1) % v0_1 + 1_u8,
+                    ((v1_0_0.clone() as i64 - 1_i64 + v0_1) % v0_1 + 1_i64) as u8,
                     Func0::new({
                         let v6 = v6.clone();
                         move || Dice::closure2(v6.clone(), ())
@@ -150,10 +150,10 @@ pub mod Dice {
             }
         }
     }
-    pub fn closure1(v0_1: u8, v1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
+    pub fn closure1(v0_1: i64, v1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
         Dice::method1(v0_1, v1, LrcPtr::new(Dice::UH0::UH0_1))
     }
-    pub fn closure0(unitVar: (), v0_1: u8) -> Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>> {
+    pub fn closure0(unitVar: (), v0_1: i64) -> Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>> {
         Func1::new({
             let v0_1 = v0_1.clone();
             move |v: LrcPtr<Dice::UH0>| Dice::closure1(v0_1, v)
@@ -367,7 +367,7 @@ pub mod Dice {
         '_method8: loop {
             break '_method8 (if v3.get() < v1.get() {
                 let v5: u64 = v3.get() * 6_u64;
-                if v5 >= 0_u64 {
+                if v5 > v3.get() {
                     let v0_1_temp: Dice::US2 = v0_1.get();
                     let v1_temp: u64 = v1.get();
                     let v2_temp: i8 = v2.get() + 1_i8;

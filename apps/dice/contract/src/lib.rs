@@ -89,21 +89,34 @@ impl State {
 
         let rolls = dice::Dice::closure0((), 6)(hash_stream.into());
 
-        fn list_u8_to_u64(
-            a: fable_library_rust::Native_::LrcPtr<dice::Dice::UH0>,
+        fn stream_u8_to_u64(
+            s: fable_library_rust::Native_::LrcPtr<dice::Dice::UH0>,
         ) -> dice::Dice::UH1 {
-            match a.as_ref() {
+            match s.as_ref() {
                 dice::Dice::UH0::UH0_0(n, f) => {
-                    dice::Dice::UH1::UH1_0(*n, list_u8_to_u64(f()).into())
+                    dice::Dice::UH1::UH1_0(*n, stream_u8_to_u64(f()).into())
                 }
                 dice::Dice::UH0::UH0_1 => dice::Dice::UH1::UH1_1,
             }
         }
 
-        let rolls_stream: dice::Dice::UH1 = list_u8_to_u64(rolls);
+        fn stream_u64_to_vec(
+            s: dice::Dice::UH1,
+        ) -> Vec<u8> {
+            match s {
+                dice::Dice::UH1::UH1_0(n, f) => {
+                    let mut v = stream_u64_to_vec(f.as_ref().clone());
+                    v.push(n);
+                    v
+                }
+                dice::Dice::UH1::UH1_1 => Vec::new(),
+            }
+        }
+
+        let rolls_stream: dice::Dice::UH1 = stream_u8_to_u64(rolls);
 
         let signer_account_id_log = signer_account_id.as_str();
-        let rolls_stream_log = rolls_stream.clone();
+        let rolls_stream_log = stream_u64_to_vec(rolls_stream.clone());
 
         log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
 

@@ -133,7 +133,7 @@ inl calculate_dice_count (log : option (string -> ())) max =
 
         if p < max then
             inl p' = p * 6
-            if p' >= 0
+            if p' > p
             then loop (n + 1) p'
             else return ()
         else return ()
@@ -181,8 +181,8 @@ inl roll_dice () : u8 =
 
 #!spiral
 
-inl rotate_number max n =
-    (n - 1 + max) % max + 1
+inl rotate_number forall t {number}. (max : i64) (n : t) : t =
+    (conv n - 1 + max) % max + 1 |> conv
 
 #!markdown
 
@@ -197,7 +197,7 @@ inl rotate_numbers max items =
 
 // // test
 
-listm'.init_series -1i32 14 1
+listm'.init_series -1 14 1i32
 |> stream.from_list
 |> rotate_numbers 6
 |> stream.to_list
@@ -314,7 +314,7 @@ listm'.init_series 1i32 40 1
 
 inl main () =
     let main () =
-        inl rotate_numbers' : u8 -> stream.stream u8 -> stream.stream u8 =
+        inl rotate_numbers' : i64 -> stream.stream u8 -> stream.stream u8 =
             rotate_numbers
 
         inl create_sequential_roller' : (list u8 -> () -> u8) =

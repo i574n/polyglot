@@ -29,23 +29,25 @@ and [<Struct>] US5 =
     | US5_1 of f1_0 : int64 * f1_1 : UH1
 let rec closure2 (v0 : UH0) () : UH0 =
     v0
-and method1 (v0 : uint8, v1 : UH0, v2 : UH0) : UH0 =
+and method1 (v0 : int64, v1 : UH0, v2 : UH0) : UH0 =
     match v1 with
     | UH0_0(v3, v4) -> (* StreamCons *)
         let v5 : UH0 = v4 ()
         let v6 : UH0 = method1(v0, v5, v2)
-        let v7 : uint8 = v3 - 1uy
-        let v8 : uint8 = v7 + v0
-        let v9 : uint8 = v8 % v0
-        let v10 : uint8 = v9 + 1uy
-        let v11 : (unit -> UH0) = closure2(v6)
-        UH0_0(v10, v11)
+        let v7 : int64 = int64 v3
+        let v8 : int64 = v7 - 1L
+        let v9 : int64 = v8 + v0
+        let v10 : int64 = v9 % v0
+        let v11 : int64 = v10 + 1L
+        let v12 : uint8 = uint8 v11
+        let v13 : (unit -> UH0) = closure2(v6)
+        UH0_0(v12, v13)
     | UH0_1 -> (* StreamNil *)
         v2
-and closure1 (v0 : uint8) (v1 : UH0) : UH0 =
+and closure1 (v0 : int64) (v1 : UH0) : UH0 =
     let v2 : UH0 = UH0_1
     method1(v0, v1, v2)
-and closure0 () (v0 : uint8) : (UH0 -> UH0) =
+and closure0 () (v0 : int64) : (UH0 -> UH0) =
     closure1(v0)
 and method2 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
@@ -158,7 +160,7 @@ and method8 (v0 : US2, v1 : uint64, v2 : int8, v3 : uint64) : int8 =
     let v4 : bool = v3 < v1
     if v4 then
         let v5 : uint64 = v3 * 6UL
-        let v6 : bool = v5 >= 0UL
+        let v6 : bool = v5 > v3
         if v6 then
             let v7 : int8 = v2 + 1y
             method8(v0, v1, v7, v5)
@@ -575,7 +577,7 @@ and closure78 (v0 : (string -> unit) option) (v1 : uint64) : (UH1 -> uint64 opti
 and closure77 () (v0 : (string -> unit) option) : (uint64 -> (UH1 -> uint64 option)) =
     closure78(v0)
 and method0 () : unit =
-    let v0 : (uint8 -> (UH0 -> UH0)) = closure0()
+    let v0 : (int64 -> (UH0 -> UH0)) = closure0()
     let v1 : (UH1 -> (unit -> uint8)) = closure3()
     let v2 : ((string -> unit) option -> ((unit -> uint8) -> (bool -> (uint64 -> uint64)))) = closure8()
     let v3 : ((string -> unit) option -> (uint64 -> (UH1 -> uint64 option))) = closure77()

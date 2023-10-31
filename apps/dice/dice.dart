@@ -230,8 +230,8 @@ UH0 method1(int v0_1, UH0 v1, UH0 v2) {
     } else {
         final v1_1 = v1 as UH0_UH0_0;
         final UH0 v6 = method1(v0_1, v1_1.Item2(), v2);
-        final v8 = (v1_1.Item1 - 1) + v0_1;
-        return UH0_UH0_0(v8.remainder(v0_1) + 1, () => closure2(v6, util.ignore()));
+        final v9 = (v1_1.Item1 - 1) + v0_1;
+        return UH0_UH0_0(v9.remainder(v0_1) + 1, () => closure2(v6, util.ignore()));
     }
 }
 
@@ -376,7 +376,7 @@ int method8(US2 v0_1_mut, int v1_mut, int v2_mut, int v3_mut) {
         final v3 = v3_mut;
         if (v3 < v1) {
             final v5 = v3 * 6;
-            if (v5 >= 0) {
+            if (v5 > v3) {
                 v0_1_mut = v0_1;
                 v1_mut = v1;
                 v2_mut = v2 + 1;
