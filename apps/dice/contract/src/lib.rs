@@ -48,8 +48,8 @@ impl State {
                 let mut acc_ref = acc.borrow_mut();
 
                 *count_ref += 1;
-                if s.len() == 0 || *count_ref % 5 == 0 {
-                    log!(acc_ref.clone());
+                if s.len() == 0 || *count_ref % 6 == 0 {
+                    log!(acc_ref.clone().drain(..acc_ref.len() - 1));
                     *acc_ref = String::new();
                 }
                 acc_ref.push_str(&(s.to_string() + "\n"));
@@ -59,7 +59,7 @@ impl State {
         fable_library_rust::Native_::Func1::new(closure)
     }
 
-    pub fn generate_random_number(&mut self, max: u64) -> u64 {
+    pub fn generate_random_number(&mut self, id: String, max: u64) -> u64 {
         let seed = env::random_seed();
         let seed_log = seed.clone();
         self.contribute_seed(seed);
@@ -118,7 +118,7 @@ impl State {
         let signer_account_id_log = signer_account_id.as_str();
         let rolls_stream_log = stream_u64_to_vec(rolls_stream.clone());
 
-        log!(format!("generate_random_number / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
+        log!(format!("generate_random_number / id: {id:?} / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
 
         let sequential_roll = dice::Dice::closure3((), rolls_stream.into());
         let logger = Self::get_logger();
