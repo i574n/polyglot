@@ -19,6 +19,7 @@ $files = @(
     | Where-Object {
         $_.FullName.Replace("\", "/").Contains("/dist") `
             -and ($_.Extension -eq ".exe" -or $_.Extension -eq "") `
+            -and !$_.Name.StartsWith("_") `
             -and $_.Name -ne "LICENSE"
     } `
     | Select-Object FullName, DirectoryName, Name
@@ -26,7 +27,7 @@ $files = @(
 
 # $files | ForEach-Object -ThrottleLimit 4 -Parallel {
 $files | ForEach-Object {
-    Write-Output "`npath: $($_.FullName)"
+    Write-Output "`n`npath: $($_.FullName)"
 
     $retryCount = 0
     while ($retryCount -lt 20) {
