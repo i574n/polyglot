@@ -579,22 +579,22 @@ function closure2($v0_1, $unitVar) {
 }
 
 #12
-function method1($v0_1, $v1, $v2) {
-    switch ($v1->get_Tag())
+function method0($v0_1, $v1_1, $v2_1) {
+    switch ($v1_1->get_Tag())
     {
         case 1:
-            return $v2;
+            return $v2_1;
         default:
-            $v6 = method1($v0_1, $v1->Item2(NULL), $v2);
-            $v11 = \BigInt\toInt64(\BigInt\op_Addition(\BigInt\toInt64(\BigInt\op_Modulus(\BigInt\toInt64(\BigInt\op_Addition(\BigInt\toInt64(\BigInt\op_Subtraction(\BigInt\toInt64(\BigInt\fromUInt8($v1->Item1)), NULL)), $v0_1)), $v0_1)), NULL));
+            $v6 = method0($v0_1, $v1_1->Item2(NULL), $v2_1);
+            $v11 = \BigInt\toInt64(\BigInt\op_Addition(\BigInt\toInt64(\BigInt\op_Modulus(\BigInt\toInt64(\BigInt\op_Addition(\BigInt\toInt64(\BigInt\op_Subtraction(\BigInt\toInt64(\BigInt\fromUInt8($v1_1->Item1)), NULL)), $v0_1)), $v0_1)), NULL));
             return new UH0_UH0_0(\BigInt\toUInt8($v11) & 0xFF, function ($arg10_0040) use ($closure2, $v6) {             return closure2($v6, NULL);
  });
     }
 }
 
 #13
-function closure1($v0_1, $v1) {
-    return method1($v0_1, $v1, new UH0_UH0_1());
+function closure1($v0_1, $v1_1) {
+    return method0($v0_1, $v1_1, new UH0_UH0_1());
 }
 
 #14
@@ -604,24 +604,24 @@ function closure0($unitVar, $v0_1) {
 }
 
 #15
-function method2($v0_1, $v1) {
+function method1($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
-            return $v1;
+            return $v1_1;
         default:
-            return method2($v0_1->Item2, new UH1_UH1_0($v0_1->Item1, $v1));
+            return method1($v0_1->Item2, new UH1_UH1_0($v0_1->Item1, $v1_1));
     }
 }
 
 #16
-function method3($v0_1, $v1) {
+function method2($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
-            return $v1;
+            return $v1_1;
         default:
-            return new UH1_UH1_0($v0_1->Item1, method3($v0_1->Item2, $v1));
+            return new UH1_UH1_0($v0_1->Item1, method2($v0_1->Item2, $v1_1));
     }
 }
 
@@ -631,14 +631,14 @@ function closure4($v0_1, $unitVar) {
 }
 
 #18
-function method4($v0_1, $v1) {
+function method3($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
-            return $v1;
+            return $v1_1;
         default:
-            $v4 = method4($v0_1->Item2, $v1);
-            return new UH0_UH0_0($v0_1->Item1, function ($arg10_0040) use ($closure4, $v4) {             return closure4($v4, NULL);
+            $v4_1 = method3($v0_1->Item2, $v1_1);
+            return new UH0_UH0_0($v0_1->Item1, function ($arg10_0040) use ($closure4, $v4_1) {             return closure4($v4_1, NULL);
  });
     }
 }
@@ -649,87 +649,87 @@ function closure5($v0_1, $unitVar) {
 }
 
 #20
-function closure6($v0_1, $v1, $unitVar) {
-    $v2 = $v1->l0;
-    switch ($v2->get_Tag())
+function closure6($v0_1, $v1_1, $unitVar) {
+    $v2_1 = $v1_1->l0;
+    switch ($v2_1->get_Tag())
     {
         case 1:
-            $v5 = $v2->f1_0(NULL);
+            $v5 = $v2_1->f1_0(NULL);
             switch ($v5->get_Tag())
             {
                 case 1:
                     $v12 = new UH0_UH0_1();
                     break;
                 default:
-                    $v12 = new UH0_UH0_0($v5->Item1, $method5($v0_1, $v5->Item2));
+                    $v12 = new UH0_UH0_0($v5->Item1, $method4($v0_1, $v5->Item2));
                     break;
             }
-            $v1->l0 = new US0_US0_0($v12);
+            $v1_1->l0 = new US0_US0_0($v12);
             return $v12;
         default:
-            return $v2->f0_0;
+            return $v2_1->f0_0;
     }
 }
 
 #21
-function method5($v0_1, $v1) {
-    $v3 = new Mut0(new US0_US0_1($v1));
-    return function ($arg10_0040) use ($closure6, $v0_1, $v3) {     return closure6($v0_1, $v3, NULL);
+function method4($v0_1, $v1_1) {
+    $v3_1 = new Mut0(new US0_US0_1($v1_1));
+    return function ($arg10_0040) use ($closure6, $v0_1, $v3_1) {     return closure6($v0_1, $v3_1, NULL);
  };
 }
 
 #22
-function method7($v0_1, $v1) {
-    switch ($v1->get_Tag())
+function method6($v0_1, $v1_1) {
+    switch ($v1_1->get_Tag())
     {
         case 1:
             return new US1_US1_0();
         default:
             if (\BigInt\compare($v0_1, NULL) <= 0) {
-                return new US1_US1_1($v1->Item1);
+                return new US1_US1_1($v1_1->Item1);
             } else {
-                return method7(\BigInt\toInt64(\BigInt\op_Subtraction($v0_1, NULL)), $v1->Item2(NULL));
+                return method6(\BigInt\toInt64(\BigInt\op_Subtraction($v0_1, NULL)), $v1_1->Item2(NULL));
             }
     }
 }
 
 #23
-function method6($v0_1, $v1, $v2, $v3) {
-    $v4 = $v0_1(NULL);
-    $v6 = method7($v1->l0, $v4);
+function method5($v0_1, $v1_1, $v2_1, $v3_1) {
+    $v4_1 = $v0_1(NULL);
+    $v6 = method6($v1_1->l0, $v4_1);
     switch ($v6->get_Tag())
     {
         case 1:
-            $v9 = \BigInt\toInt64(\BigInt\op_Addition($v1->l0, NULL));
-            $v1->l0 = $v9;
+            $v9 = \BigInt\toInt64(\BigInt\op_Addition($v1_1->l0, NULL));
+            $v1_1->l0 = $v9;
             return $v6->f1_0;
         default:
-            if (\BigInt\equals($v3->l0, NULL)) {
-                $v12 = $v1->l0;
-                $v3->l0 = $v12;
+            if (\BigInt\equals($v3_1->l0, NULL)) {
+                $v12 = $v1_1->l0;
+                $v3_1->l0 = $v12;
             } else {
             }
-            if (\BigInt\compare($v2->l0, $v3->l0) >= 0) {
+            if (\BigInt\compare($v2_1->l0, $v3_1->l0) >= 0) {
                 $v18 = NULL;
             } else {
-                $v18 = \BigInt\toInt64(\BigInt\op_Addition($v2->l0, NULL));
+                $v18 = \BigInt\toInt64(\BigInt\op_Addition($v2_1->l0, NULL));
             }
-            $v2->l0 = $v18;
-            $v20 = \BigInt\toInt64(\BigInt\op_Subtraction($v2->l0, NULL));
-            $v1->l0 = $v20;
-            return method6($v0_1, $v1, $v2, $v3);
+            $v2_1->l0 = $v18;
+            $v20 = \BigInt\toInt64(\BigInt\op_Subtraction($v2_1->l0, NULL));
+            $v1_1->l0 = $v20;
+            return method5($v0_1, $v1_1, $v2_1, $v3_1);
     }
 }
 
 #24
-function closure7($v0_1, $v1, $v2, $v3, $unitVar) {
-    return method6($v0_1, $v1, $v2, $v3);
+function closure7($v0_1, $v1_1, $v2_1, $v3_1, $unitVar) {
+    return method5($v0_1, $v1_1, $v2_1, $v3_1);
 }
 
 #25
 function closure3($unitVar, $v0_1) {
-    $v5 = method4(method3($v0_1, method2($v0_1, new UH1_UH1_1())), new UH0_UH0_1());
-    $v7 = method5($v5, function ($arg10_0040) use ($closure5, $v5) {     return closure5($v5, NULL);
+    $v5 = method3(method2($v0_1, method1($v0_1, new UH1_UH1_1())), new UH0_UH0_1());
+    $v7 = method4($v5, function ($arg10_0040) use ($closure5, $v5) {     return closure5($v5, NULL);
  });
     $v8 = new Mut1(NULL);
     $v9 = new Mut1(NULL);
@@ -744,11 +744,11 @@ function closure9($unitVar, $v0_1) {
 }
 
 #27
-function method8($v0_1, $v1, $v2, $v3) {
-    if (\BigInt\compare($v3, $v1) < 0) {
-        $v5 = \BigInt\toUInt64(\BigInt\op_Multiply($v3, NULL));
-        if (\BigInt\compare($v5, $v3) > 0) {
-            return method8($v0_1, $v1, $v2 + 1, $v5);
+function method7($v0_1, $v1_1, $v2_1, $v3_1) {
+    if (\BigInt\compare($v3_1, $v1_1) < 0) {
+        $v5 = \BigInt\toUInt64(\BigInt\op_Multiply($v3_1, NULL));
+        if (\BigInt\compare($v5, $v3_1) > 0) {
+            return method7($v0_1, $v1_1, $v2_1 + 1, $v5);
         } else {
             $v9 = NULL;
             switch ($v0_1->get_Tag())
@@ -759,7 +759,7 @@ function method8($v0_1, $v1, $v2, $v3) {
                 default:
                     break;
             }
-            return $v2;
+            return $v2_1;
         }
     } else {
         $v12 = NULL;
@@ -771,7 +771,7 @@ function method8($v0_1, $v1, $v2, $v3) {
             default:
                 break;
         }
-        return $v2;
+        return $v2_1;
     }
 }
 
@@ -1160,23 +1160,23 @@ function closure13($unitVar, $unitVar_1) {
 }
 
 #92
-function method11($v0_1, $v1) {
-    switch ($v1->get_Tag())
+function method10($v0_1, $v1_1) {
+    switch ($v1_1->get_Tag())
     {
         case 1:
             return new US4_US4_0();
         default:
             if ($v0_1 <= 0) {
-                return new US4_US4_1($v1->Item1);
+                return new US4_US4_1($v1_1->Item1);
             } else {
-                return method11($v0_1 - 1, $v1->Item2(NULL));
+                return method10($v0_1 - 1, $v1_1->Item2(NULL));
             }
     }
 }
 
 #93
-function method10($v0_1, $v1, $v2, $v3) {
-    if ($v1 < 0) {
+function method9($v0_1, $v1_1, $v2_1, $v3_1) {
+    if ($v1_1 < 0) {
         $v5 = NULL;
         switch ($v0_1->get_Tag())
         {
@@ -1186,17 +1186,17 @@ function method10($v0_1, $v1, $v2, $v3) {
             default:
                 break;
         }
-        return new US3_US3_1(\BigInt\toUInt64(\BigInt\op_Addition($v3, NULL)), $v2);
+        return new US3_US3_1(\BigInt\toUInt64(\BigInt\op_Addition($v3_1, NULL)), $v2_1);
     } else {
-        switch ($v2->get_Tag())
+        switch ($v2_1->get_Tag())
         {
             case 1:
                 return new US3_US3_0();
             default:
-                $v11 = $v2->Item2;
-                $v10 = $v2->Item1;
+                $v11 = $v2_1->Item2;
+                $v10 = $v2_1->Item1;
                 if ($v10 > 1) {
-                    $v16 = method11($v1, new UH2_UH2_0(NULL, function ($arg10_0040) use ($closure13) {                     return closure13(NULL, NULL);
+                    $v16 = method10($v1_1, new UH2_UH2_0(NULL, function ($arg10_0040) use ($closure13) {                     return closure13(NULL, NULL);
  }));
                     switch ($v16->get_Tag())
                     {
@@ -1217,7 +1217,7 @@ function method10($v0_1, $v1, $v2, $v3) {
                         default:
                             break;
                     }
-                    return method10($v0_1, $v1 - 1, $v11, \BigInt\toUInt64(\BigInt\op_Addition($v3, $v23)));
+                    return method9($v0_1, $v1_1 - 1, $v11, \BigInt\toUInt64(\BigInt\op_Addition($v3_1, $v23)));
                 } else {
                     $v29 = NULL;
                     switch ($v0_1->get_Tag())
@@ -1228,119 +1228,119 @@ function method10($v0_1, $v1, $v2, $v3) {
                         default:
                             break;
                     }
-                    return method10($v0_1, $v1 - 1, $v11, $v3);
+                    return method9($v0_1, $v1_1 - 1, $v11, $v3_1);
                 }
         }
     }
 }
 
 #94
-function method12($v0_1, $v1, $v2) {
-    if ($v2 < $v0_1) {
-        return new UH1_UH1_0($v1(NULL), method12($v0_1, $v1, ($v2 + 1)));
+function method11($v0_1, $v1_1, $v2_1) {
+    if ($v2_1 < $v0_1) {
+        return new UH1_UH1_0($v1_1(NULL), method11($v0_1, $v1_1, ($v2_1 + 1)));
     } else {
         return new UH1_UH1_1();
     }
 }
 
 #95
-function method13($v0_1, $v1, $v2, $v3, $v4, $v5) {
-    $v6 = $v4 + 1;
-    if ($v4 < $v6) {
-        return $method9($v0_1, $v1, $v2, $v3, $v4, new UH1_UH1_0($v1(NULL), $v5), $v6);
+function method12($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, $v5) {
+    $v6 = $v4_1 + 1;
+    if ($v4_1 < $v6) {
+        return $method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, new UH1_UH1_0($v1_1(NULL), $v5), $v6);
     } else {
-        $v12 = method10($v0_1, $v4, $v5, NULL);
+        $v12 = method9($v0_1, $v4_1, $v5, NULL);
         if ($v12->get_Tag() == 1) {
             $v13 = $v12->f1_0;
-            if (\BigInt\compare($v13, $v3) <= 0) {
+            if (\BigInt\compare($v13, $v3_1) <= 0) {
                 return $v13;
             } else {
-                if ($v2) {
-                    return method13($v0_1, $v1, $v2, $v3, $v4, method12($v4, $v1, 0));
+                if ($v2_1) {
+                    return method12($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, method11($v4_1, $v1_1, 0));
                 } else {
-                    return $method9($v0_1, $v1, $v2, $v3, $v4, new UH1_UH1_0($v1(NULL), $v5), $v6);
+                    return $method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, new UH1_UH1_0($v1_1(NULL), $v5), $v6);
                 }
             }
         } else {
-            if ($v2) {
-                return method13($v0_1, $v1, $v2, $v3, $v4, method12($v4, $v1, 0));
+            if ($v2_1) {
+                return method12($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, method11($v4_1, $v1_1, 0));
             } else {
-                return $method9($v0_1, $v1, $v2, $v3, $v4, new UH1_UH1_0($v1(NULL), $v5), $v6);
+                return $method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, new UH1_UH1_0($v1_1(NULL), $v5), $v6);
             }
         }
     }
 }
 
 #96
-function method9($v0_1, $v1, $v2, $v3, $v4, $v5, $v6) {
-    if ($v6 < $v4 + 1) {
-        return method9($v0_1, $v1, $v2, $v3, $v4, new UH1_UH1_0($v1(NULL), $v5), $v6 + 1);
+function method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, $v5, $v6) {
+    if ($v6 < $v4_1 + 1) {
+        return method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, new UH1_UH1_0($v1_1(NULL), $v5), $v6 + 1);
     } else {
-        $v14 = method10($v0_1, $v4, $v5, NULL);
+        $v14 = method9($v0_1, $v4_1, $v5, NULL);
         if ($v14->get_Tag() == 1) {
             $v15 = $v14->f1_0;
-            if (\BigInt\compare($v15, $v3) <= 0) {
+            if (\BigInt\compare($v15, $v3_1) <= 0) {
                 return $v15;
             } else {
-                if ($v2) {
-                    return method13($v0_1, $v1, $v2, $v3, $v4, method12($v4, $v1, 0));
+                if ($v2_1) {
+                    return method12($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, method11($v4_1, $v1_1, 0));
                 } else {
-                    return method9($v0_1, $v1, $v2, $v3, $v4, new UH1_UH1_0($v1(NULL), $v5), $v6 + 1);
+                    return method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, new UH1_UH1_0($v1_1(NULL), $v5), $v6 + 1);
                 }
             }
         } else {
-            if ($v2) {
-                return method13($v0_1, $v1, $v2, $v3, $v4, method12($v4, $v1, 0));
+            if ($v2_1) {
+                return method12($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, method11($v4_1, $v1_1, 0));
             } else {
-                return method9($v0_1, $v1, $v2, $v3, $v4, new UH1_UH1_0($v1(NULL), $v5), $v6 + 1);
+                return method8($v0_1, $v1_1, $v2_1, $v3_1, $v4_1, new UH1_UH1_0($v1_1(NULL), $v5), $v6 + 1);
             }
         }
     }
 }
 
 #97
-function closure12($v0_1, $v1, $v2, $v3) {
-    return method9($v0_1, $v1, $v2, $v3, (\BigInt\equals($v3, NULL) ? 1 : method8($v0_1, $v3, 0, NULL)) - 1, new UH1_UH1_1(), 0);
+function closure12($v0_1, $v1_1, $v2_1, $v3_1) {
+    return method8($v0_1, $v1_1, $v2_1, $v3_1, (\BigInt\equals($v3_1, NULL) ? 1 : method7($v0_1, $v3_1, 0, NULL)) - 1, new UH1_UH1_1(), 0);
 }
 
 #98
-function closure11($v0_1, $v1, $v2) {
-    return function ($v) use ($closure12, $v0_1, $v1, $v2) {     return closure12($v0_1, $v1, $v2, $v);
+function closure11($v0_1, $v1_1, $v2_1) {
+    return function ($v) use ($closure12, $v0_1, $v1_1, $v2_1) {     return closure12($v0_1, $v1_1, $v2_1, $v);
  };
 }
 
 #99
-function closure10($v0_1, $v1) {
-    return function ($v) use ($closure11, $v0_1, $v1) {     return closure11($v0_1, $v1, $v);
+function closure10($v0_1, $v1_1) {
+    return function ($v) use ($closure11, $v0_1, $v1_1) {     return closure11($v0_1, $v1_1, $v);
  };
 }
 
 #100
 function closure8($unitVar, $v0_1) {
-    $v3 = \Option\defaultArg(\Option\map(function ($v) use ($closure9) {     return closure9(NULL, $v);
+    $v3_1 = \Option\defaultArg(\Option\map(function ($v) use ($closure9) {     return closure9(NULL, $v);
  }, $v0_1), new US2_US2_0());
-    return function ($v_1) use ($closure10, $v3) {     return closure10($v3, $v_1);
+    return function ($v_1) use ($closure10, $v3_1) {     return closure10($v3_1, $v_1);
  };
 }
 
 #101
-function method14($v0_1, $v1) {
+function method13($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
-            return $v1;
+            return $v1_1;
         default:
-            return method14($v0_1->Item2, $v1 + 1);
+            return method13($v0_1->Item2, $v1_1 + 1);
     }
 }
 
 #102
-function closure79($v0_1, $v1, $v2) {
-    $v10 = method10(\Option\defaultArg(\Option\map(function ($v) use ($closure9) {     return closure9(NULL, $v);
- }, $v0_1), new US2_US2_0()), method14($v2, 0) - 1, $v2, NULL);
+function closure79($v0_1, $v1_1, $v2_1) {
+    $v10 = method9(\Option\defaultArg(\Option\map(function ($v) use ($closure9) {     return closure9(NULL, $v);
+ }, $v0_1), new US2_US2_0()), method13($v2_1, 0) - 1, $v2_1, NULL);
     if ($v10->get_Tag() == 1) {
         $v11 = $v10->f1_0;
-        if (\BigInt\compare($v11, NULL) >= 0 ? \BigInt\compare($v11, $v1) <= 0 : false) {
+        if (\BigInt\compare($v11, NULL) >= 0 ? \BigInt\compare($v11, $v1_1) <= 0 : false) {
             $v20 = new US4_US4_1($v11);
         } else {
             $v20 = new US4_US4_0();
@@ -1358,8 +1358,8 @@ function closure79($v0_1, $v1, $v2) {
 }
 
 #103
-function closure78($v0_1, $v1) {
-    return function ($v) use ($closure79, $v0_1, $v1) {     return closure79($v0_1, $v1, $v);
+function closure78($v0_1, $v1_1) {
+    return function ($v) use ($closure79, $v0_1, $v1_1) {     return closure79($v0_1, $v1_1, $v);
  };
 }
 
@@ -1370,555 +1370,550 @@ function closure77($unitVar, $v0_1) {
 }
 
 #105
-function method0($unitVar) {
-    return NULL;
+function method39($v0_1, $v1_1) {
+    $v2_1 = NULL;
+    $console->log;
+    return new US5_US5_1(\BigInt\toInt64(\BigInt\op_Addition($v1_1, NULL)), $v0_1);
 }
 
 #106
-function method40($v0_1, $v1) {
-    $v2 = NULL;
-    $console->log;
-    return new US5_US5_1(\BigInt\toInt64(\BigInt\op_Addition($v1, NULL)), $v0_1);
-}
-
-#107
-function method39($v0_1, $v1) {
+function method38($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v7 = \BigInt\toInt64(\BigInt\fromUInt8($v3 - 1));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v7 = \BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1));
                 $v8 = NULL;
                 $console->log;
-                return method40($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v7)));
+                return method39($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v7)));
             } else {
                 $v11 = NULL;
                 $console->log;
-                return method40($v4, $v1);
+                return method39($v4_1, $v1_1);
+            }
+    }
+}
+
+#107
+function method37($v0_1, $v1_1) {
+    switch ($v0_1->get_Tag())
+    {
+        case 1:
+            return new US5_US5_0();
+        default:
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
+                $v9 = NULL;
+                $console->log;
+                return method38($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
+            } else {
+                $v12 = NULL;
+                $console->log;
+                return method38($v4_1, $v1_1);
             }
     }
 }
 
 #108
-function method38($v0_1, $v1) {
+function method36($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method39($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method37($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method39($v4, $v1);
+                return method37($v4_1, $v1_1);
             }
     }
 }
 
 #109
-function method37($v0_1, $v1) {
+function method35($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method38($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method36($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method38($v4, $v1);
+                return method36($v4_1, $v1_1);
             }
     }
 }
 
 #110
-function method36($v0_1, $v1) {
+function method34($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method37($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method35($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method37($v4, $v1);
+                return method35($v4_1, $v1_1);
             }
     }
 }
 
 #111
-function method35($v0_1, $v1) {
+function method33($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method36($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method34($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method36($v4, $v1);
+                return method34($v4_1, $v1_1);
             }
     }
 }
 
 #112
-function method34($v0_1, $v1) {
+function method32($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method35($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method33($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method35($v4, $v1);
+                return method33($v4_1, $v1_1);
             }
     }
 }
 
 #113
-function method33($v0_1, $v1) {
+function method31($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method34($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method32($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method34($v4, $v1);
+                return method32($v4_1, $v1_1);
             }
     }
 }
 
 #114
-function method32($v0_1, $v1) {
+function method30($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method33($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method31($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method33($v4, $v1);
+                return method31($v4_1, $v1_1);
             }
     }
 }
 
 #115
-function method31($v0_1, $v1) {
+function method29($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method32($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method30($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method32($v4, $v1);
+                return method30($v4_1, $v1_1);
             }
     }
 }
 
 #116
-function method30($v0_1, $v1) {
+function method28($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method31($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method29($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method31($v4, $v1);
+                return method29($v4_1, $v1_1);
             }
     }
 }
 
 #117
-function method29($v0_1, $v1) {
+function method27($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method30($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method28($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method30($v4, $v1);
+                return method28($v4_1, $v1_1);
             }
     }
 }
 
 #118
-function method28($v0_1, $v1) {
+function method26($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method29($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method27($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method29($v4, $v1);
+                return method27($v4_1, $v1_1);
             }
     }
 }
 
 #119
-function method27($v0_1, $v1) {
+function method25($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method28($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method26($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method28($v4, $v1);
+                return method26($v4_1, $v1_1);
             }
     }
 }
 
 #120
-function method26($v0_1, $v1) {
+function method24($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method27($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method25($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method27($v4, $v1);
+                return method25($v4_1, $v1_1);
             }
     }
 }
 
 #121
-function method25($v0_1, $v1) {
+function method23($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method26($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method24($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method26($v4, $v1);
+                return method24($v4_1, $v1_1);
             }
     }
 }
 
 #122
-function method24($v0_1, $v1) {
+function method22($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method25($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method23($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method25($v4, $v1);
+                return method23($v4_1, $v1_1);
             }
     }
 }
 
 #123
-function method23($v0_1, $v1) {
+function method21($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method24($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method22($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method24($v4, $v1);
+                return method22($v4_1, $v1_1);
             }
     }
 }
 
 #124
-function method22($v0_1, $v1) {
+function method20($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method23($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method21($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method23($v4, $v1);
+                return method21($v4_1, $v1_1);
             }
     }
 }
 
 #125
-function method21($v0_1, $v1) {
+function method19($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method22($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method20($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method22($v4, $v1);
+                return method20($v4_1, $v1_1);
             }
     }
 }
 
 #126
-function method20($v0_1, $v1) {
+function method18($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method21($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method19($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method21($v4, $v1);
+                return method19($v4_1, $v1_1);
             }
     }
 }
 
 #127
-function method19($v0_1, $v1) {
+function method17($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method20($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method18($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method20($v4, $v1);
+                return method18($v4_1, $v1_1);
             }
     }
 }
 
 #128
-function method18($v0_1, $v1) {
+function method16($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method19($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method17($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method19($v4, $v1);
+                return method17($v4_1, $v1_1);
             }
     }
 }
 
 #129
-function method17($v0_1, $v1) {
+function method15($v0_1, $v1_1) {
     switch ($v0_1->get_Tag())
     {
         case 1:
             return new US5_US5_0();
         default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
+            $v4_1 = $v0_1->Item2;
+            $v3_1 = $v0_1->Item1;
+            if ($v3_1 > 1) {
+                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3_1 - 1)), NULL));
                 $v9 = NULL;
                 $console->log;
-                return method18($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
+                return method16($v4_1, \BigInt\toInt64(\BigInt\op_Addition($v1_1, $v8)));
             } else {
                 $v12 = NULL;
                 $console->log;
-                return method18($v4, $v1);
+                return method16($v4_1, $v1_1);
             }
     }
 }
 
 #130
-function method16($v0_1, $v1) {
-    switch ($v0_1->get_Tag())
-    {
-        case 1:
-            return new US5_US5_0();
-        default:
-            $v4 = $v0_1->Item2;
-            $v3 = $v0_1->Item1;
-            if ($v3 > 1) {
-                $v8 = \BigInt\toInt64(\BigInt\op_Multiply(\BigInt\toInt64(\BigInt\fromUInt8($v3 - 1)), NULL));
-                $v9 = NULL;
-                $console->log;
-                return method17($v4, \BigInt\toInt64(\BigInt\op_Addition($v1, $v8)));
-            } else {
-                $v12 = NULL;
-                $console->log;
-                return method17($v4, $v1);
-            }
-    }
-}
-
-#131
-function method15($v0_1, $v1) {
-    if ($v1 < 24) {
+function method14($v0_1, $v1_1) {
+    if ($v1_1 < 24) {
         $result = NULL;
         $value = \Random\nonSeeded()->Next2;
         $x = $value & 0xFF;
         $result = $x;
-        return method15(new UH1_UH1_0(\Option\value($result), $v0_1), $v1 + 1);
+        return method14(new UH1_UH1_0(\Option\value($result), $v0_1), $v1_1 + 1);
     } else {
-        $v13 = method16($v0_1, NULL);
+        $v13 = method15($v0_1, NULL);
         if ($v13->get_Tag() == 1) {
             $v14 = $v13->f1_0;
             if (\BigInt\compare($v14, NULL) <= 0) {
@@ -2038,7 +2033,7 @@ function method15($v0_1, $v1) {
                 $value_23 = \Random\nonSeeded()->Next2;
                 $x_23 = $value_23 & 0xFF;
                 $result_23 = $x_23;
-                return method15(new UH1_UH1_0($v22, new UH1_UH1_0($v26, new UH1_UH1_0($v30, new UH1_UH1_0($v34, new UH1_UH1_0($v38, new UH1_UH1_0($v42, new UH1_UH1_0($v46, new UH1_UH1_0($v50, new UH1_UH1_0($v54, new UH1_UH1_0($v58, new UH1_UH1_0($v62, new UH1_UH1_0($v66, new UH1_UH1_0($v70, new UH1_UH1_0($v74, new UH1_UH1_0($v78, new UH1_UH1_0($v82, new UH1_UH1_0($v86, new UH1_UH1_0($v90, new UH1_UH1_0($v94, new UH1_UH1_0($v98, new UH1_UH1_0($v102, new UH1_UH1_0($v106, new UH1_UH1_0(\Option\value($result_23), new UH1_UH1_1()))))))))))))))))))))))), 23);
+                return method14(new UH1_UH1_0($v22, new UH1_UH1_0($v26, new UH1_UH1_0($v30, new UH1_UH1_0($v34, new UH1_UH1_0($v38, new UH1_UH1_0($v42, new UH1_UH1_0($v46, new UH1_UH1_0($v50, new UH1_UH1_0($v54, new UH1_UH1_0($v58, new UH1_UH1_0($v62, new UH1_UH1_0($v66, new UH1_UH1_0($v70, new UH1_UH1_0($v74, new UH1_UH1_0($v78, new UH1_UH1_0($v82, new UH1_UH1_0($v86, new UH1_UH1_0($v90, new UH1_UH1_0($v94, new UH1_UH1_0($v98, new UH1_UH1_0($v102, new UH1_UH1_0($v106, new UH1_UH1_0(\Option\value($result_23), new UH1_UH1_1()))))))))))))))))))))))), 23);
             }
         } else {
             $result_24 = NULL;
@@ -2155,29 +2150,62 @@ function method15($v0_1, $v1) {
             $value_46 = \Random\nonSeeded()->Next2;
             $x_46 = $value_46 & 0xFF;
             $result_46 = $x_46;
-            return method15(new UH1_UH1_0($v143, new UH1_UH1_0($v147, new UH1_UH1_0($v151, new UH1_UH1_0($v155, new UH1_UH1_0($v159, new UH1_UH1_0($v163, new UH1_UH1_0($v167, new UH1_UH1_0($v171, new UH1_UH1_0($v175, new UH1_UH1_0($v179, new UH1_UH1_0($v183, new UH1_UH1_0($v187, new UH1_UH1_0($v191, new UH1_UH1_0($v195, new UH1_UH1_0($v199, new UH1_UH1_0($v203, new UH1_UH1_0($v207, new UH1_UH1_0($v211, new UH1_UH1_0($v215, new UH1_UH1_0($v219, new UH1_UH1_0($v223, new UH1_UH1_0($v227, new UH1_UH1_0(\Option\value($result_46), new UH1_UH1_1()))))))))))))))))))))))), 23);
+            return method14(new UH1_UH1_0($v143, new UH1_UH1_0($v147, new UH1_UH1_0($v151, new UH1_UH1_0($v155, new UH1_UH1_0($v159, new UH1_UH1_0($v163, new UH1_UH1_0($v167, new UH1_UH1_0($v171, new UH1_UH1_0($v175, new UH1_UH1_0($v179, new UH1_UH1_0($v183, new UH1_UH1_0($v187, new UH1_UH1_0($v191, new UH1_UH1_0($v195, new UH1_UH1_0($v199, new UH1_UH1_0($v203, new UH1_UH1_0($v207, new UH1_UH1_0($v211, new UH1_UH1_0($v215, new UH1_UH1_0($v219, new UH1_UH1_0($v223, new UH1_UH1_0($v227, new UH1_UH1_0(\Option\value($result_46), new UH1_UH1_1()))))))))))))))))))))))), 23);
         }
     }
 }
 
-#132
+#131
 function closure80($unitVar, $v0_1) {
-    $v1 = NULL;
+    $v1_1 = NULL;
     $console->log;
     $v5 = NULL;
     $console->log;
     return 0;
 }
 
+#132
+$GLOBALS['v0'] = function ($v) use ($closure0) { return closure0(NULL, $v);
+ };
+
 #133
-method0(NULL);
+function rotate_numbers($x) {
+    return $GLOBALS['v0']($x);
+}
 
 #134
-$GLOBALS['v0'] = function ($v) use ($closure80) { return closure80(NULL, $v);
+$GLOBALS['v1'] = function ($v) use ($closure3) { return closure3(NULL, $v);
  };
 
 #135
+function create_sequential_roller($x) {
+    return $GLOBALS['v1']($x);
+}
+
+#136
+$GLOBALS['v2'] = function ($v) use ($closure8) { return closure8(NULL, $v);
+ };
+
+#137
+function roll_progressively($x) {
+    return $GLOBALS['v2']($x);
+}
+
+#138
+$GLOBALS['v3'] = function ($v) use ($closure77) { return closure77(NULL, $v);
+ };
+
+#139
+function roll_within_bounds($x) {
+    return $GLOBALS['v3']($x);
+}
+
+#140
+$GLOBALS['v4'] = function ($v) use ($closure80) { return closure80(NULL, $v);
+ };
+
+#141
 function main($args) {
-    return $GLOBALS['v0']($args);
+    return $GLOBALS['v4']($args);
 }
 

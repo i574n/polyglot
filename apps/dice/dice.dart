@@ -224,141 +224,141 @@ class US5_US5_1 extends US5 {
 
 UH0 closure2(UH0 v0_1, void unitVar) => v0_1;
 
-UH0 method1(int v0_1, UH0 v1, UH0 v2) {
-    if (v1.tag == /* UH0_1 */ 1) {
-        return v2;
+UH0 method0(int v0_1, UH0 v1_1, UH0 v2_1) {
+    if (v1_1.tag == /* UH0_1 */ 1) {
+        return v2_1;
     } else {
-        final v1_1 = v1 as UH0_UH0_0;
-        final UH0 v6 = method1(v0_1, v1_1.Item2(), v2);
-        final v9 = (v1_1.Item1 - 1) + v0_1;
+        final v1_1_1 = v1_1 as UH0_UH0_0;
+        final UH0 v6 = method0(v0_1, v1_1_1.Item2(), v2_1);
+        final v9 = (v1_1_1.Item1 - 1) + v0_1;
         return UH0_UH0_0(v9.remainder(v0_1) + 1, () => closure2(v6, util.ignore()));
     }
 }
 
-UH0 closure1(int v0_1, UH0 v1) => method1(v0_1, v1, const UH0(/* UH0_1 */ 1));
+UH0 closure1(int v0_1, UH0 v1_1) => method0(v0_1, v1_1, const UH0(/* UH0_1 */ 1));
 
 UH0 Function(UH0) closure0(void unitVar, int v0_1) => (UH0 v) => closure1(v0_1, v);
 
-UH1 method2(UH1 v0_1_mut, UH1 v1_mut) {
-    method2:
+UH1 method1(UH1 v0_1_mut, UH1 v1_1_mut) {
+    method1:
     while (true) {
         final UH1 v0_1 = v0_1_mut;
-        final UH1 v1 = v1_mut;
+        final UH1 v1_1 = v1_1_mut;
         if (v0_1.tag == /* UH1_1 */ 1) {
-            return v1;
+            return v1_1;
         } else {
             final v0_1_1 = v0_1 as UH1_UH1_0;
             v0_1_mut = v0_1_1.Item2;
-            v1_mut = UH1_UH1_0(v0_1_1.Item1, v1);
-            continue method2;
+            v1_1_mut = UH1_UH1_0(v0_1_1.Item1, v1_1);
+            continue method1;
         }
     }
 }
 
-UH1 method3(UH1 v0_1, UH1 v1) {
+UH1 method2(UH1 v0_1, UH1 v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
-        return v1;
+        return v1_1;
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        return UH1_UH1_0(v0_1_1.Item1, method3(v0_1_1.Item2, v1));
+        return UH1_UH1_0(v0_1_1.Item1, method2(v0_1_1.Item2, v1_1));
     }
 }
 
 UH0 closure4(UH0 v0_1, void unitVar) => v0_1;
 
-UH0 method4(UH1 v0_1, UH0 v1) {
+UH0 method3(UH1 v0_1, UH0 v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
-        return v1;
+        return v1_1;
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH0 v4 = method4(v0_1_1.Item2, v1);
-        return UH0_UH0_0(v0_1_1.Item1, () => closure4(v4, util.ignore()));
+        final UH0 v4_1 = method3(v0_1_1.Item2, v1_1);
+        return UH0_UH0_0(v0_1_1.Item1, () => closure4(v4_1, util.ignore()));
     }
 }
 
 UH0 closure5(UH0 v0_1, void unitVar) => v0_1;
 
-UH0 closure6(UH0 v0_1, Mut0 v1, void unitVar) {
-    final US0 v2 = v1.l0;
-    if (v2.tag == /* US0_1 */ 1) {
-        final v2_1 = v2 as US0_US0_1;
-        final UH0 v5 = v2_1.f1_0();
+UH0 closure6(UH0 v0_1, Mut0 v1_1, void unitVar) {
+    final US0 v2_1 = v1_1.l0;
+    if (v2_1.tag == /* US0_1 */ 1) {
+        final v2_1_1 = v2_1 as US0_US0_1;
+        final UH0 v5 = v2_1_1.f1_0();
         late final UH0 v12;
         if (v5.tag == /* UH0_1 */ 1) {
             v12 = const UH0(/* UH0_1 */ 1);
         } else {
             final v5_1 = v5 as UH0_UH0_0;
-            v12 = UH0_UH0_0(v5_1.Item1, method5(v0_1, v5_1.Item2));
+            v12 = UH0_UH0_0(v5_1.Item1, method4(v0_1, v5_1.Item2));
         }
-        v1.l0 = US0_US0_0(v12);
+        v1_1.l0 = US0_US0_0(v12);
         return v12;
     } else {
-        final v2_2 = v2 as US0_US0_0;
-        return v2_2.f0_0;
+        final v2_1_2 = v2_1 as US0_US0_0;
+        return v2_1_2.f0_0;
     }
 }
 
-UH0 Function() method5(UH0 v0_1, UH0 Function() v1) {
-    final v3 = Mut0(US0_US0_1(v1));
-    return () => closure6(v0_1, v3, util.ignore());
+UH0 Function() method4(UH0 v0_1, UH0 Function() v1_1) {
+    final v3_1 = Mut0(US0_US0_1(v1_1));
+    return () => closure6(v0_1, v3_1, util.ignore());
 }
 
-US1 method7(int v0_1_mut, UH0 v1_mut) {
-    method7:
-    while (true) {
-        final v0_1 = v0_1_mut;
-        final UH0 v1 = v1_mut;
-        if (v1.tag == /* UH0_1 */ 1) {
-            return const US1(/* US1_0 */ 0);
-        } else if (v0_1 <= 0) {
-            final v1_1 = v1 as UH0_UH0_0;
-            return US1_US1_1(v1_1.Item1);
-        } else {
-            v0_1_mut = v0_1 - 1;
-            final v1_2 = v1 as UH0_UH0_0;
-            v1_mut = v1_2.Item2();
-            continue method7;
-        }
-    }
-}
-
-int method6(UH0 Function() v0_1_mut, Mut1 v1_mut, Mut1 v2_mut, Mut1 v3_mut) {
+US1 method6(int v0_1_mut, UH0 v1_1_mut) {
     method6:
     while (true) {
         final v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        final v2 = v2_mut;
-        final v3 = v3_mut;
-        final UH0 v4 = v0_1();
-        final US1 v6 = method7(v1.l0, v4);
-        if (v6.tag == /* US1_1 */ 1) {
-            final v9 = v1.l0 + 1;
-            v1.l0 = v9;
-            final v6_1 = v6 as US1_US1_1;
-            return v6_1.f1_0;
+        final UH0 v1_1 = v1_1_mut;
+        if (v1_1.tag == /* UH0_1 */ 1) {
+            return const US1(/* US1_0 */ 0);
+        } else if (v0_1 <= 0) {
+            final v1_1_1 = v1_1 as UH0_UH0_0;
+            return US1_US1_1(v1_1_1.Item1);
         } else {
-            if (v3.l0 == (-1)) {
-                final v12 = v1.l0;
-                v3.l0 = v12;
-            }
-            final v18 = (v2.l0 >= v3.l0) ? 1 : (v2.l0 + 1);
-            v2.l0 = v18;
-            final v20 = v2.l0 - 1;
-            v1.l0 = v20;
-            v0_1_mut = v0_1;
-            v1_mut = v1;
-            v2_mut = v2;
-            v3_mut = v3;
+            v0_1_mut = v0_1 - 1;
+            final v1_1_2 = v1_1 as UH0_UH0_0;
+            v1_1_mut = v1_1_2.Item2();
             continue method6;
         }
     }
 }
 
-int closure7(UH0 Function() v0_1, Mut1 v1, Mut1 v2, Mut1 v3, void unitVar) => method6(v0_1, v1, v2, v3);
+int method5(UH0 Function() v0_1_mut, Mut1 v1_1_mut, Mut1 v2_1_mut, Mut1 v3_1_mut) {
+    method5:
+    while (true) {
+        final v0_1 = v0_1_mut;
+        final v1_1 = v1_1_mut;
+        final v2_1 = v2_1_mut;
+        final v3_1 = v3_1_mut;
+        final UH0 v4_1 = v0_1();
+        final US1 v6 = method6(v1_1.l0, v4_1);
+        if (v6.tag == /* US1_1 */ 1) {
+            final v9 = v1_1.l0 + 1;
+            v1_1.l0 = v9;
+            final v6_1 = v6 as US1_US1_1;
+            return v6_1.f1_0;
+        } else {
+            if (v3_1.l0 == (-1)) {
+                final v12 = v1_1.l0;
+                v3_1.l0 = v12;
+            }
+            final v18 = (v2_1.l0 >= v3_1.l0) ? 1 : (v2_1.l0 + 1);
+            v2_1.l0 = v18;
+            final v20 = v2_1.l0 - 1;
+            v1_1.l0 = v20;
+            v0_1_mut = v0_1;
+            v1_1_mut = v1_1;
+            v2_1_mut = v2_1;
+            v3_1_mut = v3_1;
+            continue method5;
+        }
+    }
+}
+
+int closure7(UH0 Function() v0_1, Mut1 v1_1, Mut1 v2_1, Mut1 v3_1, void unitVar) => method5(v0_1, v1_1, v2_1, v3_1);
 
 int Function() closure3(void unitVar, UH1 v0_1) {
-    final UH0 v5 = method4(method3(v0_1, method2(v0_1, const UH1(/* UH1_1 */ 1))), const UH0(/* UH0_1 */ 1));
-    final v7 = method5(v5, () => closure5(v5, util.ignore()));
+    final UH0 v5 = method3(method2(v0_1, method1(v0_1, const UH1(/* UH1_1 */ 1))), const UH0(/* UH0_1 */ 1));
+    final v7 = method4(v5, () => closure5(v5, util.ignore()));
     final v8 = Mut1(0);
     final v9 = Mut1(1);
     final v10 = Mut1(-1);
@@ -367,36 +367,36 @@ int Function() closure3(void unitVar, UH1 v0_1) {
 
 US2 closure9(void unitVar, void Function(String) v0_1) => US2_US2_1(v0_1);
 
-int method8(US2 v0_1_mut, int v1_mut, int v2_mut, int v3_mut) {
-    method8:
+int method7(US2 v0_1_mut, int v1_1_mut, int v2_1_mut, int v3_1_mut) {
+    method7:
     while (true) {
         final US2 v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        final v2 = v2_mut;
-        final v3 = v3_mut;
-        if (v3 < v1) {
-            final v5 = v3 * 6;
-            if (v5 > v3) {
+        final v1_1 = v1_1_mut;
+        final v2_1 = v2_1_mut;
+        final v3_1 = v3_1_mut;
+        if (v3_1 < v1_1) {
+            final v5 = v3_1 * 6;
+            if (v5 > v3_1) {
                 v0_1_mut = v0_1;
-                v1_mut = v1;
-                v2_mut = v2 + 1;
-                v3_mut = v5;
-                continue method8;
+                v1_1_mut = v1_1;
+                v2_1_mut = v2_1 + 1;
+                v3_1_mut = v5;
+                continue method7;
             } else {
-                final v9 = 'calculate_dice_count / max: $v1 / n: $v2 / p: $v3';
+                final v9 = 'calculate_dice_count / max: $v1_1 / n: $v2_1 / p: $v3_1';
                 if (v0_1.tag == /* US2_1 */ 1) {
                     final v0_1_1 = v0_1 as US2_US2_1;
                     v0_1_1.f1_0(v9);
                 }
-                return v2;
+                return v2_1;
             }
         } else {
-            final v12 = 'calculate_dice_count / max: $v1 / n: $v2 / p: $v3';
+            final v12 = 'calculate_dice_count / max: $v1_1 / n: $v2_1 / p: $v3_1';
             if (v0_1.tag == /* US2_1 */ 1) {
                 final v0_1_2 = v0_1 as US2_US2_1;
                 v0_1_2.f1_0(v12);
             }
-            return v2;
+            return v2_1;
         }
     }
 }
@@ -529,47 +529,47 @@ UH2 closure14(void unitVar, void unitVar_1) => UH2_UH2_0(36, () => closure15(uti
 
 UH2 closure13(void unitVar, void unitVar_1) => UH2_UH2_0(6, () => closure14(util.ignore(), util.ignore()));
 
-US4 method11(int v0_1_mut, UH2 v1_mut) {
-    method11:
+US4 method10(int v0_1_mut, UH2 v1_1_mut) {
+    method10:
     while (true) {
         final v0_1 = v0_1_mut;
-        final UH2 v1 = v1_mut;
-        if (v1.tag == /* UH2_1 */ 1) {
+        final UH2 v1_1 = v1_1_mut;
+        if (v1_1.tag == /* UH2_1 */ 1) {
             return const US4(/* US4_0 */ 0);
         } else if (v0_1 <= 0) {
-            final v1_1 = v1 as UH2_UH2_0;
-            return US4_US4_1(v1_1.Item1);
+            final v1_1_1 = v1_1 as UH2_UH2_0;
+            return US4_US4_1(v1_1_1.Item1);
         } else {
             v0_1_mut = v0_1 - 1;
-            final v1_2 = v1 as UH2_UH2_0;
-            v1_mut = v1_2.Item2();
-            continue method11;
+            final v1_1_2 = v1_1 as UH2_UH2_0;
+            v1_1_mut = v1_1_2.Item2();
+            continue method10;
         }
     }
 }
 
-US3 method10(US2 v0_1_mut, int v1_mut, UH1 v2_mut, int v3_mut) {
-    method10:
+US3 method9(US2 v0_1_mut, int v1_1_mut, UH1 v2_1_mut, int v3_1_mut) {
+    method9:
     while (true) {
         final US2 v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        final UH1 v2 = v2_mut;
-        final v3 = v3_mut;
-        if (v1 < 0) {
-            final v5 = 'accumulate_dice_rolls / power: $v1 / acc: $v3';
+        final v1_1 = v1_1_mut;
+        final UH1 v2_1 = v2_1_mut;
+        final v3_1 = v3_1_mut;
+        if (v1_1 < 0) {
+            final v5 = 'accumulate_dice_rolls / power: $v1_1 / acc: $v3_1';
             if (v0_1.tag == /* US2_1 */ 1) {
                 final v0_1_1 = v0_1 as US2_US2_1;
                 v0_1_1.f1_0(v5);
             }
-            return US3_US3_1(v3 + 1, v2);
-        } else if (v2.tag == /* UH1_1 */ 1) {
+            return US3_US3_1(v3_1 + 1, v2_1);
+        } else if (v2_1.tag == /* UH1_1 */ 1) {
             return const US3(/* US3_0 */ 0);
         } else {
-            final v2_1 = v2 as UH1_UH1_0;
-            final UH1 v11 = v2_1.Item2;
-            final v10 = v2_1.Item1;
+            final v2_1_1 = v2_1 as UH1_UH1_0;
+            final UH1 v11 = v2_1_1.Item2;
+            final v10 = v2_1_1.Item1;
             if (v10 > 1) {
-                final US4 v16 = method11(v1, UH2_UH2_0(1, () => closure13(util.ignore(), util.ignore())));
+                final US4 v16 = method10(v1_1, UH2_UH2_0(1, () => closure13(util.ignore(), util.ignore())));
                 final tmp_combine = v10 - 1;
                 late final int tmp_capture;
                 if (v16.tag == /* US4_1 */ 1) {
@@ -579,173 +579,173 @@ US3 method10(US2 v0_1_mut, int v1_mut, UH1 v2_mut, int v3_mut) {
                     tmp_capture = throw Exception('Option does not have a value.');
                 }
                 final v23 = tmp_combine * tmp_capture;
-                final v24 = 'accumulate_dice_rolls / power: $v1 / acc: $v3 / roll: $v10 / value: $v23';
+                final v24 = 'accumulate_dice_rolls / power: $v1_1 / acc: $v3_1 / roll: $v10 / value: $v23';
                 if (v0_1.tag == /* US2_1 */ 1) {
                     final v0_1_2 = v0_1 as US2_US2_1;
                     v0_1_2.f1_0(v24);
                 }
                 v0_1_mut = v0_1;
-                v1_mut = v1 - 1;
-                v2_mut = v11;
-                v3_mut = v3 + v23;
-                continue method10;
+                v1_1_mut = v1_1 - 1;
+                v2_1_mut = v11;
+                v3_1_mut = v3_1 + v23;
+                continue method9;
             } else {
-                final v29 = 'accumulate_dice_rolls / power: $v1 / acc: $v3 / roll: $v10';
+                final v29 = 'accumulate_dice_rolls / power: $v1_1 / acc: $v3_1 / roll: $v10';
                 if (v0_1.tag == /* US2_1 */ 1) {
                     final v0_1_3 = v0_1 as US2_US2_1;
                     v0_1_3.f1_0(v29);
                 }
                 v0_1_mut = v0_1;
-                v1_mut = v1 - 1;
-                v2_mut = v11;
-                v3_mut = v3;
-                continue method10;
-            }
-        }
-    }
-}
-
-UH1 method12(int v0_1, int Function() v1, int v2) {
-    if (v2 < v0_1) {
-        return UH1_UH1_0(v1(), method12(v0_1, v1, v2 + 1));
-    } else {
-        return const UH1(/* UH1_1 */ 1);
-    }
-}
-
-int method13(US2 v0_1_mut, int Function() v1_mut, bool v2_mut, int v3_mut, int v4_mut, UH1 v5_mut) {
-    method13:
-    while (true) {
-        final US2 v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        final v2 = v2_mut;
-        final v3 = v3_mut;
-        final v4 = v4_mut;
-        final UH1 v5 = v5_mut;
-        final v6 = v4 + 1;
-        if (v4 < v6) {
-            return method9(v0_1, v1, v2, v3, v4, UH1_UH1_0(v1(), v5), v6);
-        } else {
-            final US3 v12 = method10(v0_1, v4, v5, 0);
-            if (v12.tag == /* US3_1 */ 1) {
-                final v12_1 = v12 as US3_US3_1;
-                final v13 = v12_1.f1_0;
-                if (v13 <= v3) {
-                    return v13;
-                } else if (v2) {
-                    v0_1_mut = v0_1;
-                    v1_mut = v1;
-                    v2_mut = v2;
-                    v3_mut = v3;
-                    v4_mut = v4;
-                    v5_mut = method12(v4, v1, 0);
-                    continue method13;
-                } else {
-                    return method9(v0_1, v1, v2, v3, v4, UH1_UH1_0(v1(), v5), v6);
-                }
-            } else if (v2) {
-                v0_1_mut = v0_1;
-                v1_mut = v1;
-                v2_mut = v2;
-                v3_mut = v3;
-                v4_mut = v4;
-                v5_mut = method12(v4, v1, 0);
-                continue method13;
-            } else {
-                return method9(v0_1, v1, v2, v3, v4, UH1_UH1_0(v1(), v5), v6);
-            }
-        }
-    }
-}
-
-int method9(US2 v0_1_mut, int Function() v1_mut, bool v2_mut, int v3_mut, int v4_mut, UH1 v5_mut, int v6_mut) {
-    method9:
-    while (true) {
-        final US2 v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        final v2 = v2_mut;
-        final v3 = v3_mut;
-        final v4 = v4_mut;
-        final UH1 v5 = v5_mut;
-        final v6 = v6_mut;
-        if (v6 < (v4 + 1)) {
-            v0_1_mut = v0_1;
-            v1_mut = v1;
-            v2_mut = v2;
-            v3_mut = v3;
-            v4_mut = v4;
-            v5_mut = UH1_UH1_0(v1(), v5);
-            v6_mut = v6 + 1;
-            continue method9;
-        } else {
-            final US3 v14 = method10(v0_1, v4, v5, 0);
-            if (v14.tag == /* US3_1 */ 1) {
-                final v14_1 = v14 as US3_US3_1;
-                final v15 = v14_1.f1_0;
-                if (v15 <= v3) {
-                    return v15;
-                } else if (v2) {
-                    return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, 0));
-                } else {
-                    v0_1_mut = v0_1;
-                    v1_mut = v1;
-                    v2_mut = v2;
-                    v3_mut = v3;
-                    v4_mut = v4;
-                    v5_mut = UH1_UH1_0(v1(), v5);
-                    v6_mut = v6 + 1;
-                    continue method9;
-                }
-            } else if (v2) {
-                return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, 0));
-            } else {
-                v0_1_mut = v0_1;
-                v1_mut = v1;
-                v2_mut = v2;
-                v3_mut = v3;
-                v4_mut = v4;
-                v5_mut = UH1_UH1_0(v1(), v5);
-                v6_mut = v6 + 1;
+                v1_1_mut = v1_1 - 1;
+                v2_1_mut = v11;
+                v3_1_mut = v3_1;
                 continue method9;
             }
         }
     }
 }
 
-int closure12(US2 v0_1, int Function() v1, bool v2, int v3) => method9(v0_1, v1, v2, v3, ((v3 == 1) ? 1 : method8(v0_1, v3, 0, 1)) - 1, const UH1(/* UH1_1 */ 1), 0);
-
-int Function(int) closure11(US2 v0_1, int Function() v1, bool v2) => (int v) => closure12(v0_1, v1, v2, v);
-
-int Function(int) Function(bool) closure10(US2 v0_1, int Function() v1) => (bool v) => closure11(v0_1, v1, v);
-
-int Function(int) Function(bool) Function(int Function()) closure8(void unitVar, types.Some<void Function(String)>? v0_1) {
-    final US2 v3 = option_47.defaultValue(const US2(/* US2_0 */ 0), option_47.map<void Function(String), US2>((void Function(String) v) => closure9(util.ignore(), v), v0_1));
-    return (int Function() v_1) => closure10(v3, v_1);
+UH1 method11(int v0_1, int Function() v1_1, int v2_1) {
+    if (v2_1 < v0_1) {
+        return UH1_UH1_0(v1_1(), method11(v0_1, v1_1, v2_1 + 1));
+    } else {
+        return const UH1(/* UH1_1 */ 1);
+    }
 }
 
-int method14(UH1 v0_1_mut, int v1_mut) {
-    method14:
+int method12(US2 v0_1_mut, int Function() v1_1_mut, bool v2_1_mut, int v3_1_mut, int v4_1_mut, UH1 v5_mut) {
+    method12:
     while (true) {
-        final UH1 v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        if (v0_1.tag == /* UH1_1 */ 1) {
-            return v1;
+        final US2 v0_1 = v0_1_mut;
+        final v1_1 = v1_1_mut;
+        final v2_1 = v2_1_mut;
+        final v3_1 = v3_1_mut;
+        final v4_1 = v4_1_mut;
+        final UH1 v5 = v5_mut;
+        final v6 = v4_1 + 1;
+        if (v4_1 < v6) {
+            return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
         } else {
-            final v0_1_1 = v0_1 as UH1_UH1_0;
-            v0_1_mut = v0_1_1.Item2;
-            v1_mut = v1 + 1;
-            continue method14;
+            final US3 v12 = method9(v0_1, v4_1, v5, 0);
+            if (v12.tag == /* US3_1 */ 1) {
+                final v12_1 = v12 as US3_US3_1;
+                final v13 = v12_1.f1_0;
+                if (v13 <= v3_1) {
+                    return v13;
+                } else if (v2_1) {
+                    v0_1_mut = v0_1;
+                    v1_1_mut = v1_1;
+                    v2_1_mut = v2_1;
+                    v3_1_mut = v3_1;
+                    v4_1_mut = v4_1;
+                    v5_mut = method11(v4_1, v1_1, 0);
+                    continue method12;
+                } else {
+                    return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
+                }
+            } else if (v2_1) {
+                v0_1_mut = v0_1;
+                v1_1_mut = v1_1;
+                v2_1_mut = v2_1;
+                v3_1_mut = v3_1;
+                v4_1_mut = v4_1;
+                v5_mut = method11(v4_1, v1_1, 0);
+                continue method12;
+            } else {
+                return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
+            }
         }
     }
 }
 
-types.Some<int>? closure79(types.Some<void Function(String)>? v0_1, int v1, UH1 v2) {
-    final US3 v10 = method10(option_47.defaultValue(const US2(/* US2_0 */ 0), option_47.map<void Function(String), US2>((void Function(String) v) => closure9(util.ignore(), v), v0_1)), method14(v2, 0) - 1, v2, 0);
+int method8(US2 v0_1_mut, int Function() v1_1_mut, bool v2_1_mut, int v3_1_mut, int v4_1_mut, UH1 v5_mut, int v6_mut) {
+    method8:
+    while (true) {
+        final US2 v0_1 = v0_1_mut;
+        final v1_1 = v1_1_mut;
+        final v2_1 = v2_1_mut;
+        final v3_1 = v3_1_mut;
+        final v4_1 = v4_1_mut;
+        final UH1 v5 = v5_mut;
+        final v6 = v6_mut;
+        if (v6 < (v4_1 + 1)) {
+            v0_1_mut = v0_1;
+            v1_1_mut = v1_1;
+            v2_1_mut = v2_1;
+            v3_1_mut = v3_1;
+            v4_1_mut = v4_1;
+            v5_mut = UH1_UH1_0(v1_1(), v5);
+            v6_mut = v6 + 1;
+            continue method8;
+        } else {
+            final US3 v14 = method9(v0_1, v4_1, v5, 0);
+            if (v14.tag == /* US3_1 */ 1) {
+                final v14_1 = v14 as US3_US3_1;
+                final v15 = v14_1.f1_0;
+                if (v15 <= v3_1) {
+                    return v15;
+                } else if (v2_1) {
+                    return method12(v0_1, v1_1, v2_1, v3_1, v4_1, method11(v4_1, v1_1, 0));
+                } else {
+                    v0_1_mut = v0_1;
+                    v1_1_mut = v1_1;
+                    v2_1_mut = v2_1;
+                    v3_1_mut = v3_1;
+                    v4_1_mut = v4_1;
+                    v5_mut = UH1_UH1_0(v1_1(), v5);
+                    v6_mut = v6 + 1;
+                    continue method8;
+                }
+            } else if (v2_1) {
+                return method12(v0_1, v1_1, v2_1, v3_1, v4_1, method11(v4_1, v1_1, 0));
+            } else {
+                v0_1_mut = v0_1;
+                v1_1_mut = v1_1;
+                v2_1_mut = v2_1;
+                v3_1_mut = v3_1;
+                v4_1_mut = v4_1;
+                v5_mut = UH1_UH1_0(v1_1(), v5);
+                v6_mut = v6 + 1;
+                continue method8;
+            }
+        }
+    }
+}
+
+int closure12(US2 v0_1, int Function() v1_1, bool v2_1, int v3_1) => method8(v0_1, v1_1, v2_1, v3_1, ((v3_1 == 1) ? 1 : method7(v0_1, v3_1, 0, 1)) - 1, const UH1(/* UH1_1 */ 1), 0);
+
+int Function(int) closure11(US2 v0_1, int Function() v1_1, bool v2_1) => (int v) => closure12(v0_1, v1_1, v2_1, v);
+
+int Function(int) Function(bool) closure10(US2 v0_1, int Function() v1_1) => (bool v) => closure11(v0_1, v1_1, v);
+
+int Function(int) Function(bool) Function(int Function()) closure8(void unitVar, types.Some<void Function(String)>? v0_1) {
+    final US2 v3_1 = option_47.defaultValue(const US2(/* US2_0 */ 0), option_47.map<void Function(String), US2>((void Function(String) v) => closure9(util.ignore(), v), v0_1));
+    return (int Function() v_1) => closure10(v3_1, v_1);
+}
+
+int method13(UH1 v0_1_mut, int v1_1_mut) {
+    method13:
+    while (true) {
+        final UH1 v0_1 = v0_1_mut;
+        final v1_1 = v1_1_mut;
+        if (v0_1.tag == /* UH1_1 */ 1) {
+            return v1_1;
+        } else {
+            final v0_1_1 = v0_1 as UH1_UH1_0;
+            v0_1_mut = v0_1_1.Item2;
+            v1_1_mut = v1_1 + 1;
+            continue method13;
+        }
+    }
+}
+
+types.Some<int>? closure79(types.Some<void Function(String)>? v0_1, int v1_1, UH1 v2_1) {
+    final US3 v10 = method9(option_47.defaultValue(const US2(/* US2_0 */ 0), option_47.map<void Function(String), US2>((void Function(String) v) => closure9(util.ignore(), v), v0_1)), method13(v2_1, 0) - 1, v2_1, 0);
     late final US4 v20;
     if (v10.tag == /* US3_1 */ 1) {
         final v10_1 = v10 as US3_US3_1;
         final v11 = v10_1.f1_0;
-        v20 = ((v11 >= 1) && (v11 <= v1)) ? US4_US4_1(v11) : const US4(/* US4_0 */ 0);
+        v20 = ((v11 >= 1) && (v11 <= v1_1)) ? US4_US4_1(v11) : const US4(/* US4_0 */ 0);
     } else {
         v20 = const US4(/* US4_0 */ 0);
     }
@@ -757,513 +757,510 @@ types.Some<int>? closure79(types.Some<void Function(String)>? v0_1, int v1, UH1 
     }
 }
 
-types.Some<int>? Function(UH1) closure78(types.Some<void Function(String)>? v0_1, int v1) => (UH1 v) => closure79(v0_1, v1, v);
+types.Some<int>? Function(UH1) closure78(types.Some<void Function(String)>? v0_1, int v1_1) => (UH1 v) => closure79(v0_1, v1_1, v);
 
 types.Some<int>? Function(UH1) Function(int) closure77(void unitVar, types.Some<void Function(String)>? v0_1) => (int v) => closure78(v0_1, v);
 
-void method0() {
+US5 method39(UH1 v0_1, int v1_1) {
+    final v2_1 = 'accumulate_dice_rolls / power: ${-1} / acc: $v1_1';
+    console.log(v2_1);
+    return US5_US5_1(v1_1 + 1, v0_1);
 }
 
-US5 method40(UH1 v0_1, int v1) {
-    final v2 = 'accumulate_dice_rolls / power: ${-1} / acc: $v1';
-    console.log(v2);
-    return US5_US5_1(v1 + 1, v0_1);
-}
-
-US5 method39(UH1 v0_1, int v1) {
+US5 method38(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v7 = v3 - 1;
-            final v8 = 'accumulate_dice_rolls / power: ${0} / acc: $v1 / roll: $v3 / value: $v7';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v7 = v3_1 - 1;
+            final v8 = 'accumulate_dice_rolls / power: ${0} / acc: $v1_1 / roll: $v3_1 / value: $v7';
             console.log(v8);
-            return method40(v4, v1 + v7);
+            return method39(v4_1, v1_1 + v7);
         } else {
-            final v11 = 'accumulate_dice_rolls / power: ${0} / acc: $v1 / roll: $v3';
+            final v11 = 'accumulate_dice_rolls / power: ${0} / acc: $v1_1 / roll: $v3_1';
             console.log(v11);
-            return method40(v4, v1);
+            return method39(v4_1, v1_1);
         }
     }
 }
 
-US5 method38(UH1 v0_1, int v1) {
+US5 method37(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 6;
-            final v9 = 'accumulate_dice_rolls / power: ${1} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 6;
+            final v9 = 'accumulate_dice_rolls / power: ${1} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method39(v4, v1 + v8);
+            return method38(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${1} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${1} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method39(v4, v1);
+            return method38(v4_1, v1_1);
         }
     }
 }
 
-US5 method37(UH1 v0_1, int v1) {
+US5 method36(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 36;
-            final v9 = 'accumulate_dice_rolls / power: ${2} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 36;
+            final v9 = 'accumulate_dice_rolls / power: ${2} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method38(v4, v1 + v8);
+            return method37(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${2} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${2} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method38(v4, v1);
+            return method37(v4_1, v1_1);
         }
     }
 }
 
-US5 method36(UH1 v0_1, int v1) {
+US5 method35(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 216;
-            final v9 = 'accumulate_dice_rolls / power: ${3} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 216;
+            final v9 = 'accumulate_dice_rolls / power: ${3} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method37(v4, v1 + v8);
+            return method36(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${3} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${3} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method37(v4, v1);
+            return method36(v4_1, v1_1);
         }
     }
 }
 
-US5 method35(UH1 v0_1, int v1) {
+US5 method34(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 1296;
-            final v9 = 'accumulate_dice_rolls / power: ${4} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 1296;
+            final v9 = 'accumulate_dice_rolls / power: ${4} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method36(v4, v1 + v8);
+            return method35(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${4} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${4} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method36(v4, v1);
+            return method35(v4_1, v1_1);
         }
     }
 }
 
-US5 method34(UH1 v0_1, int v1) {
+US5 method33(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 7776;
-            final v9 = 'accumulate_dice_rolls / power: ${5} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 7776;
+            final v9 = 'accumulate_dice_rolls / power: ${5} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method35(v4, v1 + v8);
+            return method34(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${5} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${5} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method35(v4, v1);
+            return method34(v4_1, v1_1);
         }
     }
 }
 
-US5 method33(UH1 v0_1, int v1) {
+US5 method32(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 46656;
-            final v9 = 'accumulate_dice_rolls / power: ${6} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 46656;
+            final v9 = 'accumulate_dice_rolls / power: ${6} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method34(v4, v1 + v8);
+            return method33(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${6} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${6} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method34(v4, v1);
+            return method33(v4_1, v1_1);
         }
     }
 }
 
-US5 method32(UH1 v0_1, int v1) {
+US5 method31(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 279936;
-            final v9 = 'accumulate_dice_rolls / power: ${7} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 279936;
+            final v9 = 'accumulate_dice_rolls / power: ${7} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method33(v4, v1 + v8);
+            return method32(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${7} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${7} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method33(v4, v1);
+            return method32(v4_1, v1_1);
         }
     }
 }
 
-US5 method31(UH1 v0_1, int v1) {
+US5 method30(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 1679616;
-            final v9 = 'accumulate_dice_rolls / power: ${8} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 1679616;
+            final v9 = 'accumulate_dice_rolls / power: ${8} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method32(v4, v1 + v8);
+            return method31(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${8} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${8} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method32(v4, v1);
+            return method31(v4_1, v1_1);
         }
     }
 }
 
-US5 method30(UH1 v0_1, int v1) {
+US5 method29(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 10077696;
-            final v9 = 'accumulate_dice_rolls / power: ${9} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 10077696;
+            final v9 = 'accumulate_dice_rolls / power: ${9} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method31(v4, v1 + v8);
+            return method30(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${9} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${9} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method31(v4, v1);
+            return method30(v4_1, v1_1);
         }
     }
 }
 
-US5 method29(UH1 v0_1, int v1) {
+US5 method28(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 60466176;
-            final v9 = 'accumulate_dice_rolls / power: ${10} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 60466176;
+            final v9 = 'accumulate_dice_rolls / power: ${10} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method30(v4, v1 + v8);
+            return method29(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${10} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${10} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method30(v4, v1);
+            return method29(v4_1, v1_1);
         }
     }
 }
 
-US5 method28(UH1 v0_1, int v1) {
+US5 method27(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 362797056;
-            final v9 = 'accumulate_dice_rolls / power: ${11} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 362797056;
+            final v9 = 'accumulate_dice_rolls / power: ${11} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method29(v4, v1 + v8);
+            return method28(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${11} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${11} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method29(v4, v1);
+            return method28(v4_1, v1_1);
         }
     }
 }
 
-US5 method27(UH1 v0_1, int v1) {
+US5 method26(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 2176782336;
-            final v9 = 'accumulate_dice_rolls / power: ${12} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 2176782336;
+            final v9 = 'accumulate_dice_rolls / power: ${12} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method28(v4, v1 + v8);
+            return method27(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${12} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${12} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method28(v4, v1);
+            return method27(v4_1, v1_1);
         }
     }
 }
 
-US5 method26(UH1 v0_1, int v1) {
+US5 method25(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 13060694016;
-            final v9 = 'accumulate_dice_rolls / power: ${13} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 13060694016;
+            final v9 = 'accumulate_dice_rolls / power: ${13} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method27(v4, v1 + v8);
+            return method26(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${13} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${13} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method27(v4, v1);
+            return method26(v4_1, v1_1);
         }
     }
 }
 
-US5 method25(UH1 v0_1, int v1) {
+US5 method24(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 78364164096;
-            final v9 = 'accumulate_dice_rolls / power: ${14} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 78364164096;
+            final v9 = 'accumulate_dice_rolls / power: ${14} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method26(v4, v1 + v8);
+            return method25(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${14} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${14} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method26(v4, v1);
+            return method25(v4_1, v1_1);
         }
     }
 }
 
-US5 method24(UH1 v0_1, int v1) {
+US5 method23(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 470184984576;
-            final v9 = 'accumulate_dice_rolls / power: ${15} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 470184984576;
+            final v9 = 'accumulate_dice_rolls / power: ${15} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method25(v4, v1 + v8);
+            return method24(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${15} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${15} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method25(v4, v1);
+            return method24(v4_1, v1_1);
         }
     }
 }
 
-US5 method23(UH1 v0_1, int v1) {
+US5 method22(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 2821109907456;
-            final v9 = 'accumulate_dice_rolls / power: ${16} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 2821109907456;
+            final v9 = 'accumulate_dice_rolls / power: ${16} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method24(v4, v1 + v8);
+            return method23(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${16} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${16} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method24(v4, v1);
+            return method23(v4_1, v1_1);
         }
     }
 }
 
-US5 method22(UH1 v0_1, int v1) {
+US5 method21(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 16926659444736;
-            final v9 = 'accumulate_dice_rolls / power: ${17} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 16926659444736;
+            final v9 = 'accumulate_dice_rolls / power: ${17} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method23(v4, v1 + v8);
+            return method22(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${17} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${17} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method23(v4, v1);
+            return method22(v4_1, v1_1);
         }
     }
 }
 
-US5 method21(UH1 v0_1, int v1) {
+US5 method20(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 101559956668416;
-            final v9 = 'accumulate_dice_rolls / power: ${18} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 101559956668416;
+            final v9 = 'accumulate_dice_rolls / power: ${18} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method22(v4, v1 + v8);
+            return method21(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${18} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${18} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method22(v4, v1);
+            return method21(v4_1, v1_1);
         }
     }
 }
 
-US5 method20(UH1 v0_1, int v1) {
+US5 method19(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 609359740010496;
-            final v9 = 'accumulate_dice_rolls / power: ${19} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 609359740010496;
+            final v9 = 'accumulate_dice_rolls / power: ${19} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method21(v4, v1 + v8);
+            return method20(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${19} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${19} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method21(v4, v1);
+            return method20(v4_1, v1_1);
         }
     }
 }
 
-US5 method19(UH1 v0_1, int v1) {
+US5 method18(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 3656158440062976;
-            final v9 = 'accumulate_dice_rolls / power: ${20} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 3656158440062976;
+            final v9 = 'accumulate_dice_rolls / power: ${20} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method20(v4, v1 + v8);
+            return method19(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${20} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${20} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method20(v4, v1);
+            return method19(v4_1, v1_1);
         }
     }
 }
 
-US5 method18(UH1 v0_1, int v1) {
+US5 method17(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 21936950640377856;
-            final v9 = 'accumulate_dice_rolls / power: ${21} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 21936950640377856;
+            final v9 = 'accumulate_dice_rolls / power: ${21} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method19(v4, v1 + v8);
+            return method18(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${21} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${21} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method19(v4, v1);
+            return method18(v4_1, v1_1);
         }
     }
 }
 
-US5 method17(UH1 v0_1, int v1) {
+US5 method16(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 131621703842267136;
-            final v9 = 'accumulate_dice_rolls / power: ${22} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 131621703842267136;
+            final v9 = 'accumulate_dice_rolls / power: ${22} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method18(v4, v1 + v8);
+            return method17(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${22} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${22} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method18(v4, v1);
+            return method17(v4_1, v1_1);
         }
     }
 }
 
-US5 method16(UH1 v0_1, int v1) {
+US5 method15(UH1 v0_1, int v1_1) {
     if (v0_1.tag == /* UH1_1 */ 1) {
         return const US5(/* US5_0 */ 0);
     } else {
         final v0_1_1 = v0_1 as UH1_UH1_0;
-        final UH1 v4 = v0_1_1.Item2;
-        final v3 = v0_1_1.Item1;
-        if (v3 > 1) {
-            final v8 = (v3 - 1) * 789730223053602816;
-            final v9 = 'accumulate_dice_rolls / power: ${23} / acc: $v1 / roll: $v3 / value: $v8';
+        final UH1 v4_1 = v0_1_1.Item2;
+        final v3_1 = v0_1_1.Item1;
+        if (v3_1 > 1) {
+            final v8 = (v3_1 - 1) * 789730223053602816;
+            final v9 = 'accumulate_dice_rolls / power: ${23} / acc: $v1_1 / roll: $v3_1 / value: $v8';
             console.log(v9);
-            return method17(v4, v1 + v8);
+            return method16(v4_1, v1_1 + v8);
         } else {
-            final v12 = 'accumulate_dice_rolls / power: ${23} / acc: $v1 / roll: $v3';
+            final v12 = 'accumulate_dice_rolls / power: ${23} / acc: $v1_1 / roll: $v3_1';
             console.log(v12);
-            return method17(v4, v1);
+            return method16(v4_1, v1_1);
         }
     }
 }
 
-int method15(UH1 v0_1_mut, int v1_mut) {
-    method15:
+int method14(UH1 v0_1_mut, int v1_1_mut) {
+    method14:
     while (true) {
         final UH1 v0_1 = v0_1_mut;
-        final v1 = v1_mut;
-        if (v1 < 24) {
+        final v1_1 = v1_1_mut;
+        if (v1_1 < 24) {
             types.Some<int>? result;
             final x = random.nonSeeded().Next2(1, 7);
             result = types.Some(x);
             v0_1_mut = UH1_UH1_0(types.value(result), v0_1);
-            v1_mut = v1 + 1;
-            continue method15;
+            v1_1_mut = v1_1 + 1;
+            continue method14;
         } else {
-            final US5 v13 = method16(v0_1, 0);
+            final US5 v13 = method15(v0_1, 0);
             if (v13.tag == /* US5_1 */ 1) {
                 final v13_1 = v13 as US5_US5_1;
                 final v14 = v13_1.f1_0;
@@ -1362,8 +1359,8 @@ int method15(UH1 v0_1_mut, int v1_mut) {
                     final x_23 = random.nonSeeded().Next2(1, 7);
                     result_23 = types.Some(x_23);
                     v0_1_mut = UH1_UH1_0(v22, UH1_UH1_0(v26, UH1_UH1_0(v30, UH1_UH1_0(v34, UH1_UH1_0(v38, UH1_UH1_0(v42, UH1_UH1_0(v46, UH1_UH1_0(v50, UH1_UH1_0(v54, UH1_UH1_0(v58, UH1_UH1_0(v62, UH1_UH1_0(v66, UH1_UH1_0(v70, UH1_UH1_0(v74, UH1_UH1_0(v78, UH1_UH1_0(v82, UH1_UH1_0(v86, UH1_UH1_0(v90, UH1_UH1_0(v94, UH1_UH1_0(v98, UH1_UH1_0(v102, UH1_UH1_0(v106, UH1_UH1_0(types.value(result_23), const UH1(/* UH1_1 */ 1))))))))))))))))))))))));
-                    v1_mut = 23;
-                    continue method15;
+                    v1_1_mut = 23;
+                    continue method14;
                 }
             } else {
                 types.Some<int>? result_24;
@@ -1458,22 +1455,38 @@ int method15(UH1 v0_1_mut, int v1_mut) {
                 final x_46 = random.nonSeeded().Next2(1, 7);
                 result_46 = types.Some(x_46);
                 v0_1_mut = UH1_UH1_0(v143, UH1_UH1_0(v147, UH1_UH1_0(v151, UH1_UH1_0(v155, UH1_UH1_0(v159, UH1_UH1_0(v163, UH1_UH1_0(v167, UH1_UH1_0(v171, UH1_UH1_0(v175, UH1_UH1_0(v179, UH1_UH1_0(v183, UH1_UH1_0(v187, UH1_UH1_0(v191, UH1_UH1_0(v195, UH1_UH1_0(v199, UH1_UH1_0(v203, UH1_UH1_0(v207, UH1_UH1_0(v211, UH1_UH1_0(v215, UH1_UH1_0(v219, UH1_UH1_0(v223, UH1_UH1_0(v227, UH1_UH1_0(types.value(result_46), const UH1(/* UH1_1 */ 1))))))))))))))))))))))));
-                v1_mut = 23;
-                continue method15;
+                v1_1_mut = 23;
+                continue method14;
             }
         }
     }
 }
 
 int closure80(void unitVar, List<String> v0_1) {
-    final v1 = 'calculate_dice_count / max: ${9223372036854775807} / n: ${24} / p: ${4738381338321616896}';
-    console.log(v1);
-    final v5 = 'result: ${method15(const UH1(/* UH1_1 */ 1), 0)}';
+    final v1_1 = 'calculate_dice_count / max: ${9223372036854775807} / n: ${24} / p: ${4738381338321616896}';
+    console.log(v1_1);
+    final v5 = 'result: ${method14(const UH1(/* UH1_1 */ 1), 0)}';
     console.log(v5);
     return 0;
 }
 
-int v0(List<String> v) => closure80(util.ignore(), v);
+UH0 Function(UH0) v0(int v) => closure0(util.ignore(), v);
 
-int main(List<String> args) => v0(args);
+UH0 Function(UH0) rotate_numbers(int x) => v0(x);
+
+int Function() v1(UH1 v) => closure3(util.ignore(), v);
+
+int Function() create_sequential_roller(UH1 x) => v1(x);
+
+int Function(int) Function(bool) Function(int Function()) v2(types.Some<void Function(String)>? v) => closure8(util.ignore(), v);
+
+int Function(int) Function(bool) Function(int Function()) roll_progressively(types.Some<void Function(String)>? x) => v2(x);
+
+types.Some<int>? Function(UH1) Function(int) v3(types.Some<void Function(String)>? v) => closure77(util.ignore(), v);
+
+types.Some<int>? Function(UH1) Function(int) roll_within_bounds(types.Some<void Function(String)>? x) => v3(x);
+
+int v4(List<String> v) => closure80(util.ignore(), v);
+
+int main(List<String> args) => v4(args);
 

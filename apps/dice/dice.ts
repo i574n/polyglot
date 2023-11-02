@@ -304,48 +304,48 @@ export function closure2(v0_1: UH0_$union, unitVar: void): UH0_$union {
     return v0_1;
 }
 
-export function method1(v0_1: int64, v1: UH0_$union, v2: UH0_$union): UH0_$union {
-    if (v1.tag === /* UH0_1 */ 1) {
-        return v2;
+export function method0(v0_1: int64, v1_1: UH0_$union, v2_1: UH0_$union): UH0_$union {
+    if (v1_1.tag === /* UH0_1 */ 1) {
+        return v2_1;
     }
     else {
-        const v3: uint8 = v1.fields[0];
-        const v6: UH0_$union = method1(v0_1, v1.fields[1](), v2);
-        const v11: int64 = toInt64(op_Addition(toInt64(op_Modulus(toInt64(op_Addition(toInt64(op_Subtraction(toInt64(fromUInt8(v3)), 1n)), v0_1)), v0_1)), 1n));
+        const v3_1: uint8 = v1_1.fields[0];
+        const v6: UH0_$union = method0(v0_1, v1_1.fields[1](), v2_1);
+        const v11: int64 = toInt64(op_Addition(toInt64(op_Modulus(toInt64(op_Addition(toInt64(op_Subtraction(toInt64(fromUInt8(v3_1)), 1n)), v0_1)), v0_1)), 1n));
         return UH0_UH0_0(toUInt8(v11) & 0xFF, (): UH0_$union => closure2(v6, void 0));
     }
 }
 
-export function closure1(v0_1: int64, v1: UH0_$union): UH0_$union {
-    return method1(v0_1, v1, UH0_UH0_1());
+export function closure1(v0_1: int64, v1_1: UH0_$union): UH0_$union {
+    return method0(v0_1, v1_1, UH0_UH0_1());
 }
 
 export function closure0(unitVar: void, v0_1: int64): ((arg0: UH0_$union) => UH0_$union) {
     return (v: UH0_$union): UH0_$union => closure1(v0_1, v);
 }
 
-export function method2(v0_1_mut: UH1_$union, v1_mut: UH1_$union): UH1_$union {
-    method2:
+export function method1(v0_1_mut: UH1_$union, v1_1_mut: UH1_$union): UH1_$union {
+    method1:
     while (true) {
-        const v0_1: UH1_$union = v0_1_mut, v1: UH1_$union = v1_mut;
+        const v0_1: UH1_$union = v0_1_mut, v1_1: UH1_$union = v1_1_mut;
         if (v0_1.tag === /* UH1_1 */ 1) {
-            return v1;
+            return v1_1;
         }
         else {
             v0_1_mut = v0_1.fields[1];
-            v1_mut = UH1_UH1_0(v0_1.fields[0], v1);
-            continue method2;
+            v1_1_mut = UH1_UH1_0(v0_1.fields[0], v1_1);
+            continue method1;
         }
         break;
     }
 }
 
-export function method3(v0_1: UH1_$union, v1: UH1_$union): UH1_$union {
+export function method2(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
-        return v1;
+        return v1_1;
     }
     else {
-        return UH1_UH1_0(v0_1.fields[0], method3(v0_1.fields[1], v1));
+        return UH1_UH1_0(v0_1.fields[0], method2(v0_1.fields[1], v1_1));
     }
 }
 
@@ -353,14 +353,14 @@ export function closure4(v0_1: UH0_$union, unitVar: void): UH0_$union {
     return v0_1;
 }
 
-export function method4(v0_1: UH1_$union, v1: UH0_$union): UH0_$union {
+export function method3(v0_1: UH1_$union, v1_1: UH0_$union): UH0_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
-        return v1;
+        return v1_1;
     }
     else {
-        const v2: uint8 = v0_1.fields[0];
-        const v4: UH0_$union = method4(v0_1.fields[1], v1);
-        return UH0_UH0_0(v2, (): UH0_$union => closure4(v4, void 0));
+        const v2_1: uint8 = v0_1.fields[0];
+        const v4_1: UH0_$union = method3(v0_1.fields[1], v1_1);
+        return UH0_UH0_0(v2_1, (): UH0_$union => closure4(v4_1, void 0));
     }
 }
 
@@ -368,85 +368,85 @@ export function closure5(v0_1: UH0_$union, unitVar: void): UH0_$union {
     return v0_1;
 }
 
-export function closure6(v0_1: UH0_$union, v1: Mut0, unitVar: void): UH0_$union {
-    const v2: US0_$union = v1.l0;
-    if (v2.tag === /* US0_1 */ 1) {
-        const v5: UH0_$union = v2.fields[0]();
-        const v12: UH0_$union = (v5.tag === /* UH0_1 */ 1) ? UH0_UH0_1() : UH0_UH0_0(v5.fields[0], method5(v0_1, v5.fields[1]));
-        v1.l0 = US0_US0_0(v12);
+export function closure6(v0_1: UH0_$union, v1_1: Mut0, unitVar: void): UH0_$union {
+    const v2_1: US0_$union = v1_1.l0;
+    if (v2_1.tag === /* US0_1 */ 1) {
+        const v5: UH0_$union = v2_1.fields[0]();
+        const v12: UH0_$union = (v5.tag === /* UH0_1 */ 1) ? UH0_UH0_1() : UH0_UH0_0(v5.fields[0], method4(v0_1, v5.fields[1]));
+        v1_1.l0 = US0_US0_0(v12);
         return v12;
     }
     else {
-        return v2.fields[0];
+        return v2_1.fields[0];
     }
 }
 
-export function method5(v0_1: UH0_$union, v1: (() => UH0_$union)): (() => UH0_$union) {
-    const v3: Mut0 = new Mut0(US0_US0_1(v1));
-    return (): UH0_$union => closure6(v0_1, v3, void 0);
+export function method4(v0_1: UH0_$union, v1_1: (() => UH0_$union)): (() => UH0_$union) {
+    const v3_1: Mut0 = new Mut0(US0_US0_1(v1_1));
+    return (): UH0_$union => closure6(v0_1, v3_1, void 0);
 }
 
-export function method7(v0_1_mut: int64, v1_mut: UH0_$union): US1_$union {
-    method7:
+export function method6(v0_1_mut: int64, v1_1_mut: UH0_$union): US1_$union {
+    method6:
     while (true) {
-        const v0_1: int64 = v0_1_mut, v1: UH0_$union = v1_mut;
-        if (v1.tag === /* UH0_1 */ 1) {
+        const v0_1: int64 = v0_1_mut, v1_1: UH0_$union = v1_1_mut;
+        if (v1_1.tag === /* UH0_1 */ 1) {
             return US1_US1_0();
         }
         else {
-            const v3: (() => UH0_$union) = v1.fields[1];
-            const v2: uint8 = v1.fields[0];
+            const v3_1: (() => UH0_$union) = v1_1.fields[1];
+            const v2_1: uint8 = v1_1.fields[0];
             if (compare(v0_1, 0n) <= 0) {
-                return US1_US1_1(v2);
+                return US1_US1_1(v2_1);
             }
             else {
                 v0_1_mut = toInt64(op_Subtraction(v0_1, 1n));
-                v1_mut = v3();
-                continue method7;
+                v1_1_mut = v3_1();
+                continue method6;
             }
         }
         break;
     }
 }
 
-export function method6(v0_1_mut: (() => UH0_$union), v1_mut: Mut1, v2_mut: Mut1, v3_mut: Mut1): uint8 {
-    method6:
+export function method5(v0_1_mut: (() => UH0_$union), v1_1_mut: Mut1, v2_1_mut: Mut1, v3_1_mut: Mut1): uint8 {
+    method5:
     while (true) {
-        const v0_1: (() => UH0_$union) = v0_1_mut, v1: Mut1 = v1_mut, v2: Mut1 = v2_mut, v3: Mut1 = v3_mut;
-        const v4: UH0_$union = v0_1();
-        const v6: US1_$union = method7(v1.l0, v4);
+        const v0_1: (() => UH0_$union) = v0_1_mut, v1_1: Mut1 = v1_1_mut, v2_1: Mut1 = v2_1_mut, v3_1: Mut1 = v3_1_mut;
+        const v4_1: UH0_$union = v0_1();
+        const v6: US1_$union = method6(v1_1.l0, v4_1);
         if (v6.tag === /* US1_1 */ 1) {
             const v7: uint8 = v6.fields[0];
-            const v9: int64 = toInt64(op_Addition(v1.l0, 1n));
-            v1.l0 = v9;
+            const v9: int64 = toInt64(op_Addition(v1_1.l0, 1n));
+            v1_1.l0 = v9;
             return v7;
         }
         else {
-            if (equals(v3.l0, -1n)) {
-                const v12: int64 = v1.l0;
-                v3.l0 = v12;
+            if (equals(v3_1.l0, -1n)) {
+                const v12: int64 = v1_1.l0;
+                v3_1.l0 = v12;
             }
-            const v18: int64 = (compare(v2.l0, v3.l0) >= 0) ? (1n) : toInt64(op_Addition(v2.l0, 1n));
-            v2.l0 = v18;
-            const v20: int64 = toInt64(op_Subtraction(v2.l0, 1n));
-            v1.l0 = v20;
+            const v18: int64 = (compare(v2_1.l0, v3_1.l0) >= 0) ? (1n) : toInt64(op_Addition(v2_1.l0, 1n));
+            v2_1.l0 = v18;
+            const v20: int64 = toInt64(op_Subtraction(v2_1.l0, 1n));
+            v1_1.l0 = v20;
             v0_1_mut = v0_1;
-            v1_mut = v1;
-            v2_mut = v2;
-            v3_mut = v3;
-            continue method6;
+            v1_1_mut = v1_1;
+            v2_1_mut = v2_1;
+            v3_1_mut = v3_1;
+            continue method5;
         }
         break;
     }
 }
 
-export function closure7(v0_1: (() => UH0_$union), v1: Mut1, v2: Mut1, v3: Mut1, unitVar: void): uint8 {
-    return method6(v0_1, v1, v2, v3);
+export function closure7(v0_1: (() => UH0_$union), v1_1: Mut1, v2_1: Mut1, v3_1: Mut1, unitVar: void): uint8 {
+    return method5(v0_1, v1_1, v2_1, v3_1);
 }
 
 export function closure3(unitVar: void, v0_1: UH1_$union): (() => uint8) {
-    const v5: UH0_$union = method4(method3(v0_1, method2(v0_1, UH1_UH1_1())), UH0_UH0_1());
-    const v7: (() => UH0_$union) = method5(v5, (): UH0_$union => closure5(v5, void 0));
+    const v5: UH0_$union = method3(method2(v0_1, method1(v0_1, UH1_UH1_1())), UH0_UH0_1());
+    const v7: (() => UH0_$union) = method4(v5, (): UH0_$union => closure5(v5, void 0));
     const v8: Mut1 = new Mut1(0n);
     const v9: Mut1 = new Mut1(1n);
     const v10: Mut1 = new Mut1(-1n);
@@ -457,33 +457,33 @@ export function closure9(unitVar: void, v0_1: ((arg0: string) => void)): US2_$un
     return US2_US2_1(v0_1);
 }
 
-export function method8(v0_1_mut: US2_$union, v1_mut: uint64, v2_mut: int8, v3_mut: uint64): int8 {
-    method8:
+export function method7(v0_1_mut: US2_$union, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64): int8 {
+    method7:
     while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1: uint64 = v1_mut, v2: int8 = v2_mut, v3: uint64 = v3_mut;
-        if (compare(v3, v1) < 0) {
-            const v5: uint64 = toUInt64(op_Multiply(v3, 6n));
-            if (compare(v5, v3) > 0) {
+        const v0_1: US2_$union = v0_1_mut, v1_1: uint64 = v1_1_mut, v2_1: int8 = v2_1_mut, v3_1: uint64 = v3_1_mut;
+        if (compare(v3_1, v1_1) < 0) {
+            const v5: uint64 = toUInt64(op_Multiply(v3_1, 6n));
+            if (compare(v5, v3_1) > 0) {
                 v0_1_mut = v0_1;
-                v1_mut = v1;
-                v2_mut = (v2 + 1);
-                v3_mut = v5;
-                continue method8;
+                v1_1_mut = v1_1;
+                v2_1_mut = (v2_1 + 1);
+                v3_1_mut = v5;
+                continue method7;
             }
             else {
-                const v9 = `calculate_dice_count / max: ${v1} / n: ${v2} / p: ${v3}`;
+                const v9 = `calculate_dice_count / max: ${v1_1} / n: ${v2_1} / p: ${v3_1}`;
                 if (v0_1.tag === /* US2_1 */ 1) {
                     v0_1.fields[0](v9);
                 }
-                return v2 | 0;
+                return v2_1 | 0;
             }
         }
         else {
-            const v12 = `calculate_dice_count / max: ${v1} / n: ${v2} / p: ${v3}`;
+            const v12 = `calculate_dice_count / max: ${v1_1} / n: ${v2_1} / p: ${v3_1}`;
             if (v0_1.tag === /* US2_1 */ 1) {
                 v0_1.fields[0](v12);
             }
-            return v2 | 0;
+            return v2_1 | 0;
         }
         break;
     }
@@ -745,44 +745,44 @@ export function closure13(unitVar: void, unitVar_1: void): UH2_$union {
     return UH2_UH2_0(6n, (): UH2_$union => closure14(void 0, void 0));
 }
 
-export function method11(v0_1_mut: int8, v1_mut: UH2_$union): US4_$union {
-    method11:
+export function method10(v0_1_mut: int8, v1_1_mut: UH2_$union): US4_$union {
+    method10:
     while (true) {
-        const v0_1: int8 = v0_1_mut, v1: UH2_$union = v1_mut;
-        if (v1.tag === /* UH2_1 */ 1) {
+        const v0_1: int8 = v0_1_mut, v1_1: UH2_$union = v1_1_mut;
+        if (v1_1.tag === /* UH2_1 */ 1) {
             return US4_US4_0();
         }
         else if (v0_1 <= 0) {
-            return US4_US4_1(v1.fields[0]);
+            return US4_US4_1(v1_1.fields[0]);
         }
         else {
             v0_1_mut = (v0_1 - 1);
-            v1_mut = v1.fields[1]();
-            continue method11;
+            v1_1_mut = v1_1.fields[1]();
+            continue method10;
         }
         break;
     }
 }
 
-export function method10(v0_1_mut: US2_$union, v1_mut: int8, v2_mut: UH1_$union, v3_mut: uint64): US3_$union {
-    method10:
+export function method9(v0_1_mut: US2_$union, v1_1_mut: int8, v2_1_mut: UH1_$union, v3_1_mut: uint64): US3_$union {
+    method9:
     while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1: int8 = v1_mut, v2: UH1_$union = v2_mut, v3: uint64 = v3_mut;
-        if (v1 < 0) {
-            const v5 = `accumulate_dice_rolls / power: ${v1} / acc: ${v3}`;
+        const v0_1: US2_$union = v0_1_mut, v1_1: int8 = v1_1_mut, v2_1: UH1_$union = v2_1_mut, v3_1: uint64 = v3_1_mut;
+        if (v1_1 < 0) {
+            const v5 = `accumulate_dice_rolls / power: ${v1_1} / acc: ${v3_1}`;
             if (v0_1.tag === /* US2_1 */ 1) {
                 v0_1.fields[0](v5);
             }
-            return US3_US3_1(toUInt64(op_Addition(v3, 1n)), v2);
+            return US3_US3_1(toUInt64(op_Addition(v3_1, 1n)), v2_1);
         }
-        else if (v2.tag === /* UH1_1 */ 1) {
+        else if (v2_1.tag === /* UH1_1 */ 1) {
             return US3_US3_0();
         }
         else {
-            const v11: UH1_$union = v2.fields[1];
-            const v10: uint8 = v2.fields[0];
+            const v11: UH1_$union = v2_1.fields[1];
+            const v10: uint8 = v2_1.fields[0];
             if (v10 > 1) {
-                const v16: US4_$union = method11(v1, UH2_UH2_0(1n, (): UH2_$union => closure13(void 0, void 0)));
+                const v16: US4_$union = method10(v1_1, UH2_UH2_0(1n, (): UH2_$union => closure13(void 0, void 0)));
                 let v20: uint64;
                 if (v16.tag === /* US4_1 */ 1) {
                     v20 = v16.fields[0];
@@ -791,134 +791,25 @@ export function method10(v0_1_mut: US2_$union, v1_mut: int8, v2_mut: UH1_$union,
                     throw new Error("Option does not have a value.");
                 }
                 const v23: uint64 = toUInt64(op_Multiply(toUInt64(fromUInt8(v10 - 1)), v20));
-                const v24 = `accumulate_dice_rolls / power: ${v1} / acc: ${v3} / roll: ${v10} / value: ${v23}`;
+                const v24 = `accumulate_dice_rolls / power: ${v1_1} / acc: ${v3_1} / roll: ${v10} / value: ${v23}`;
                 if (v0_1.tag === /* US2_1 */ 1) {
                     v0_1.fields[0](v24);
                 }
                 v0_1_mut = v0_1;
-                v1_mut = (v1 - 1);
-                v2_mut = v11;
-                v3_mut = toUInt64(op_Addition(v3, v23));
-                continue method10;
+                v1_1_mut = (v1_1 - 1);
+                v2_1_mut = v11;
+                v3_1_mut = toUInt64(op_Addition(v3_1, v23));
+                continue method9;
             }
             else {
-                const v29 = `accumulate_dice_rolls / power: ${v1} / acc: ${v3} / roll: ${v10}`;
+                const v29 = `accumulate_dice_rolls / power: ${v1_1} / acc: ${v3_1} / roll: ${v10}`;
                 if (v0_1.tag === /* US2_1 */ 1) {
                     v0_1.fields[0](v29);
                 }
                 v0_1_mut = v0_1;
-                v1_mut = (v1 - 1);
-                v2_mut = v11;
-                v3_mut = v3;
-                continue method10;
-            }
-        }
-        break;
-    }
-}
-
-export function method12(v0_1: int8, v1: (() => uint8), v2: int8): UH1_$union {
-    if (v2 < v0_1) {
-        return UH1_UH1_0(v1(), method12(v0_1, v1, v2 + 1));
-    }
-    else {
-        return UH1_UH1_1();
-    }
-}
-
-export function method13(v0_1_mut: US2_$union, v1_mut: (() => uint8), v2_mut: boolean, v3_mut: uint64, v4_mut: int8, v5_mut: UH1_$union): uint64 {
-    method13:
-    while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1: (() => uint8) = v1_mut, v2: boolean = v2_mut, v3: uint64 = v3_mut, v4: int8 = v4_mut, v5: UH1_$union = v5_mut;
-        const v6: int8 = (v4 + 1) | 0;
-        if (v4 < v6) {
-            return method9(v0_1, v1, v2, v3, v4, UH1_UH1_0(v1(), v5), v6);
-        }
-        else {
-            const v12: US3_$union = method10(v0_1, v4, v5, 0n);
-            if (v12.tag === /* US3_1 */ 1) {
-                const v14: UH1_$union = v12.fields[1];
-                const v13: uint64 = v12.fields[0];
-                if (compare(v13, v3) <= 0) {
-                    return v13;
-                }
-                else if (v2) {
-                    v0_1_mut = v0_1;
-                    v1_mut = v1;
-                    v2_mut = v2;
-                    v3_mut = v3;
-                    v4_mut = v4;
-                    v5_mut = method12(v4, v1, 0);
-                    continue method13;
-                }
-                else {
-                    return method9(v0_1, v1, v2, v3, v4, UH1_UH1_0(v1(), v5), v6);
-                }
-            }
-            else if (v2) {
-                v0_1_mut = v0_1;
-                v1_mut = v1;
-                v2_mut = v2;
-                v3_mut = v3;
-                v4_mut = v4;
-                v5_mut = method12(v4, v1, 0);
-                continue method13;
-            }
-            else {
-                return method9(v0_1, v1, v2, v3, v4, UH1_UH1_0(v1(), v5), v6);
-            }
-        }
-        break;
-    }
-}
-
-export function method9(v0_1_mut: US2_$union, v1_mut: (() => uint8), v2_mut: boolean, v3_mut: uint64, v4_mut: int8, v5_mut: UH1_$union, v6_mut: int8): uint64 {
-    method9:
-    while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1: (() => uint8) = v1_mut, v2: boolean = v2_mut, v3: uint64 = v3_mut, v4: int8 = v4_mut, v5: UH1_$union = v5_mut, v6: int8 = v6_mut;
-        if (v6 < (v4 + 1)) {
-            v0_1_mut = v0_1;
-            v1_mut = v1;
-            v2_mut = v2;
-            v3_mut = v3;
-            v4_mut = v4;
-            v5_mut = UH1_UH1_0(v1(), v5);
-            v6_mut = (v6 + 1);
-            continue method9;
-        }
-        else {
-            const v14: US3_$union = method10(v0_1, v4, v5, 0n);
-            if (v14.tag === /* US3_1 */ 1) {
-                const v16: UH1_$union = v14.fields[1];
-                const v15: uint64 = v14.fields[0];
-                if (compare(v15, v3) <= 0) {
-                    return v15;
-                }
-                else if (v2) {
-                    return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, 0));
-                }
-                else {
-                    v0_1_mut = v0_1;
-                    v1_mut = v1;
-                    v2_mut = v2;
-                    v3_mut = v3;
-                    v4_mut = v4;
-                    v5_mut = UH1_UH1_0(v1(), v5);
-                    v6_mut = (v6 + 1);
-                    continue method9;
-                }
-            }
-            else if (v2) {
-                return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, 0));
-            }
-            else {
-                v0_1_mut = v0_1;
-                v1_mut = v1;
-                v2_mut = v2;
-                v3_mut = v3;
-                v4_mut = v4;
-                v5_mut = UH1_UH1_0(v1(), v5);
-                v6_mut = (v6 + 1);
+                v1_1_mut = (v1_1 - 1);
+                v2_1_mut = v11;
+                v3_1_mut = v3_1;
                 continue method9;
             }
         }
@@ -926,47 +817,156 @@ export function method9(v0_1_mut: US2_$union, v1_mut: (() => uint8), v2_mut: boo
     }
 }
 
-export function closure12(v0_1: US2_$union, v1: (() => uint8), v2: boolean, v3: uint64): uint64 {
-    return method9(v0_1, v1, v2, v3, (equals(v3, 1n) ? 1 : method8(v0_1, v3, 0, 1n)) - 1, UH1_UH1_1(), 0);
+export function method11(v0_1: int8, v1_1: (() => uint8), v2_1: int8): UH1_$union {
+    if (v2_1 < v0_1) {
+        return UH1_UH1_0(v1_1(), method11(v0_1, v1_1, v2_1 + 1));
+    }
+    else {
+        return UH1_UH1_1();
+    }
 }
 
-export function closure11(v0_1: US2_$union, v1: (() => uint8), v2: boolean): ((arg0: uint64) => uint64) {
-    return (v: uint64): uint64 => closure12(v0_1, v1, v2, v);
-}
-
-export function closure10(v0_1: US2_$union, v1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) {
-    return (v: boolean): ((arg0: uint64) => uint64) => closure11(v0_1, v1, v);
-}
-
-export function closure8(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) {
-    const v3: US2_$union = defaultArg(map<((arg0: string) => void), US2_$union>((v: ((arg0: string) => void)): US2_$union => closure9(void 0, v), v0_1), US2_US2_0());
-    return (v_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) => closure10(v3, v_1);
-}
-
-export function method14(v0_1_mut: UH1_$union, v1_mut: int8): int8 {
-    method14:
+export function method12(v0_1_mut: US2_$union, v1_1_mut: (() => uint8), v2_1_mut: boolean, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1_$union): uint64 {
+    method12:
     while (true) {
-        const v0_1: UH1_$union = v0_1_mut, v1: int8 = v1_mut;
-        if (v0_1.tag === /* UH1_1 */ 1) {
-            return v1 | 0;
+        const v0_1: US2_$union = v0_1_mut, v1_1: (() => uint8) = v1_1_mut, v2_1: boolean = v2_1_mut, v3_1: uint64 = v3_1_mut, v4_1: int8 = v4_1_mut, v5: UH1_$union = v5_mut;
+        const v6: int8 = (v4_1 + 1) | 0;
+        if (v4_1 < v6) {
+            return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
         }
         else {
-            const v2: uint8 = v0_1.fields[0];
-            v0_1_mut = v0_1.fields[1];
-            v1_mut = (v1 + 1);
-            continue method14;
+            const v12: US3_$union = method9(v0_1, v4_1, v5, 0n);
+            if (v12.tag === /* US3_1 */ 1) {
+                const v14: UH1_$union = v12.fields[1];
+                const v13: uint64 = v12.fields[0];
+                if (compare(v13, v3_1) <= 0) {
+                    return v13;
+                }
+                else if (v2_1) {
+                    v0_1_mut = v0_1;
+                    v1_1_mut = v1_1;
+                    v2_1_mut = v2_1;
+                    v3_1_mut = v3_1;
+                    v4_1_mut = v4_1;
+                    v5_mut = method11(v4_1, v1_1, 0);
+                    continue method12;
+                }
+                else {
+                    return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
+                }
+            }
+            else if (v2_1) {
+                v0_1_mut = v0_1;
+                v1_1_mut = v1_1;
+                v2_1_mut = v2_1;
+                v3_1_mut = v3_1;
+                v4_1_mut = v4_1;
+                v5_mut = method11(v4_1, v1_1, 0);
+                continue method12;
+            }
+            else {
+                return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
+            }
         }
         break;
     }
 }
 
-export function closure79(v0_1: Option<((arg0: string) => void)>, v1: uint64, v2: UH1_$union): Option<uint64> {
-    const v10: US3_$union = method10(defaultArg(map<((arg0: string) => void), US2_$union>((v: ((arg0: string) => void)): US2_$union => closure9(void 0, v), v0_1), US2_US2_0()), method14(v2, 0) - 1, v2, 0n);
+export function method8(v0_1_mut: US2_$union, v1_1_mut: (() => uint8), v2_1_mut: boolean, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1_$union, v6_mut: int8): uint64 {
+    method8:
+    while (true) {
+        const v0_1: US2_$union = v0_1_mut, v1_1: (() => uint8) = v1_1_mut, v2_1: boolean = v2_1_mut, v3_1: uint64 = v3_1_mut, v4_1: int8 = v4_1_mut, v5: UH1_$union = v5_mut, v6: int8 = v6_mut;
+        if (v6 < (v4_1 + 1)) {
+            v0_1_mut = v0_1;
+            v1_1_mut = v1_1;
+            v2_1_mut = v2_1;
+            v3_1_mut = v3_1;
+            v4_1_mut = v4_1;
+            v5_mut = UH1_UH1_0(v1_1(), v5);
+            v6_mut = (v6 + 1);
+            continue method8;
+        }
+        else {
+            const v14: US3_$union = method9(v0_1, v4_1, v5, 0n);
+            if (v14.tag === /* US3_1 */ 1) {
+                const v16: UH1_$union = v14.fields[1];
+                const v15: uint64 = v14.fields[0];
+                if (compare(v15, v3_1) <= 0) {
+                    return v15;
+                }
+                else if (v2_1) {
+                    return method12(v0_1, v1_1, v2_1, v3_1, v4_1, method11(v4_1, v1_1, 0));
+                }
+                else {
+                    v0_1_mut = v0_1;
+                    v1_1_mut = v1_1;
+                    v2_1_mut = v2_1;
+                    v3_1_mut = v3_1;
+                    v4_1_mut = v4_1;
+                    v5_mut = UH1_UH1_0(v1_1(), v5);
+                    v6_mut = (v6 + 1);
+                    continue method8;
+                }
+            }
+            else if (v2_1) {
+                return method12(v0_1, v1_1, v2_1, v3_1, v4_1, method11(v4_1, v1_1, 0));
+            }
+            else {
+                v0_1_mut = v0_1;
+                v1_1_mut = v1_1;
+                v2_1_mut = v2_1;
+                v3_1_mut = v3_1;
+                v4_1_mut = v4_1;
+                v5_mut = UH1_UH1_0(v1_1(), v5);
+                v6_mut = (v6 + 1);
+                continue method8;
+            }
+        }
+        break;
+    }
+}
+
+export function closure12(v0_1: US2_$union, v1_1: (() => uint8), v2_1: boolean, v3_1: uint64): uint64 {
+    return method8(v0_1, v1_1, v2_1, v3_1, (equals(v3_1, 1n) ? 1 : method7(v0_1, v3_1, 0, 1n)) - 1, UH1_UH1_1(), 0);
+}
+
+export function closure11(v0_1: US2_$union, v1_1: (() => uint8), v2_1: boolean): ((arg0: uint64) => uint64) {
+    return (v: uint64): uint64 => closure12(v0_1, v1_1, v2_1, v);
+}
+
+export function closure10(v0_1: US2_$union, v1_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) {
+    return (v: boolean): ((arg0: uint64) => uint64) => closure11(v0_1, v1_1, v);
+}
+
+export function closure8(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) {
+    const v3_1: US2_$union = defaultArg(map<((arg0: string) => void), US2_$union>((v: ((arg0: string) => void)): US2_$union => closure9(void 0, v), v0_1), US2_US2_0());
+    return (v_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) => closure10(v3_1, v_1);
+}
+
+export function method13(v0_1_mut: UH1_$union, v1_1_mut: int8): int8 {
+    method13:
+    while (true) {
+        const v0_1: UH1_$union = v0_1_mut, v1_1: int8 = v1_1_mut;
+        if (v0_1.tag === /* UH1_1 */ 1) {
+            return v1_1 | 0;
+        }
+        else {
+            const v2_1: uint8 = v0_1.fields[0];
+            v0_1_mut = v0_1.fields[1];
+            v1_1_mut = (v1_1 + 1);
+            continue method13;
+        }
+        break;
+    }
+}
+
+export function closure79(v0_1: Option<((arg0: string) => void)>, v1_1: uint64, v2_1: UH1_$union): Option<uint64> {
+    const v10: US3_$union = method9(defaultArg(map<((arg0: string) => void), US2_$union>((v: ((arg0: string) => void)): US2_$union => closure9(void 0, v), v0_1), US2_US2_0()), method13(v2_1, 0) - 1, v2_1, 0n);
     let v20: US4_$union;
     if (v10.tag === /* US3_1 */ 1) {
         const v12: UH1_$union = v10.fields[1];
         const v11: uint64 = v10.fields[0];
-        v20 = (((compare(v11, 1n) >= 0) && (compare(v11, v1) <= 0)) ? US4_US4_1(v11) : US4_US4_0());
+        v20 = (((compare(v11, 1n) >= 0) && (compare(v11, v1_1) <= 0)) ? US4_US4_1(v11) : US4_US4_0());
     }
     else {
         v20 = US4_US4_0();
@@ -979,543 +979,540 @@ export function closure79(v0_1: Option<((arg0: string) => void)>, v1: uint64, v2
     }
 }
 
-export function closure78(v0_1: Option<((arg0: string) => void)>, v1: uint64): ((arg0: UH1_$union) => Option<uint64>) {
-    return (v: UH1_$union): Option<uint64> => closure79(v0_1, v1, v);
+export function closure78(v0_1: Option<((arg0: string) => void)>, v1_1: uint64): ((arg0: UH1_$union) => Option<uint64>) {
+    return (v: UH1_$union): Option<uint64> => closure79(v0_1, v1_1, v);
 }
 
 export function closure77(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) {
     return (v: uint64): ((arg0: UH1_$union) => Option<uint64>) => closure78(v0_1, v);
 }
 
-export function method0(): void {
+export function method39(v0_1: UH1_$union, v1_1: int64): US5_$union {
+    const v2_1 = `accumulate_dice_rolls / power: ${-1} / acc: ${v1_1}`;
+    console.log(v2_1);
+    return US5_US5_1(toInt64(op_Addition(v1_1, 1n)), v0_1);
 }
 
-export function method40(v0_1: UH1_$union, v1: int64): US5_$union {
-    const v2 = `accumulate_dice_rolls / power: ${-1} / acc: ${v1}`;
-    console.log(v2);
-    return US5_US5_1(toInt64(op_Addition(v1, 1n)), v0_1);
-}
-
-export function method39(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method38(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v7: int64 = toInt64(fromUInt8(v3 - 1));
-            const v8 = `accumulate_dice_rolls / power: ${0} / acc: ${v1} / roll: ${v3} / value: ${v7}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v7: int64 = toInt64(fromUInt8(v3_1 - 1));
+            const v8 = `accumulate_dice_rolls / power: ${0} / acc: ${v1_1} / roll: ${v3_1} / value: ${v7}`;
             console.log(v8);
-            return method40(v4, toInt64(op_Addition(v1, v7)));
+            return method39(v4_1, toInt64(op_Addition(v1_1, v7)));
         }
         else {
-            const v11 = `accumulate_dice_rolls / power: ${0} / acc: ${v1} / roll: ${v3}`;
+            const v11 = `accumulate_dice_rolls / power: ${0} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v11);
-            return method40(v4, v1);
+            return method39(v4_1, v1_1);
         }
     }
 }
 
-export function method38(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method37(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 6n));
-            const v9 = `accumulate_dice_rolls / power: ${1} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 6n));
+            const v9 = `accumulate_dice_rolls / power: ${1} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method39(v4, toInt64(op_Addition(v1, v8)));
+            return method38(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${1} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${1} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method39(v4, v1);
+            return method38(v4_1, v1_1);
         }
     }
 }
 
-export function method37(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method36(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 36n));
-            const v9 = `accumulate_dice_rolls / power: ${2} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 36n));
+            const v9 = `accumulate_dice_rolls / power: ${2} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method38(v4, toInt64(op_Addition(v1, v8)));
+            return method37(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${2} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${2} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method38(v4, v1);
+            return method37(v4_1, v1_1);
         }
     }
 }
 
-export function method36(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method35(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 216n));
-            const v9 = `accumulate_dice_rolls / power: ${3} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 216n));
+            const v9 = `accumulate_dice_rolls / power: ${3} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method37(v4, toInt64(op_Addition(v1, v8)));
+            return method36(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${3} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${3} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method37(v4, v1);
+            return method36(v4_1, v1_1);
         }
     }
 }
 
-export function method35(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method34(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 1296n));
-            const v9 = `accumulate_dice_rolls / power: ${4} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 1296n));
+            const v9 = `accumulate_dice_rolls / power: ${4} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method36(v4, toInt64(op_Addition(v1, v8)));
+            return method35(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${4} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${4} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method36(v4, v1);
+            return method35(v4_1, v1_1);
         }
     }
 }
 
-export function method34(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method33(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 7776n));
-            const v9 = `accumulate_dice_rolls / power: ${5} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 7776n));
+            const v9 = `accumulate_dice_rolls / power: ${5} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method35(v4, toInt64(op_Addition(v1, v8)));
+            return method34(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${5} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${5} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method35(v4, v1);
+            return method34(v4_1, v1_1);
         }
     }
 }
 
-export function method33(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method32(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 46656n));
-            const v9 = `accumulate_dice_rolls / power: ${6} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 46656n));
+            const v9 = `accumulate_dice_rolls / power: ${6} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method34(v4, toInt64(op_Addition(v1, v8)));
+            return method33(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${6} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${6} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method34(v4, v1);
+            return method33(v4_1, v1_1);
         }
     }
 }
 
-export function method32(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method31(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 279936n));
-            const v9 = `accumulate_dice_rolls / power: ${7} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 279936n));
+            const v9 = `accumulate_dice_rolls / power: ${7} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method33(v4, toInt64(op_Addition(v1, v8)));
+            return method32(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${7} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${7} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method33(v4, v1);
+            return method32(v4_1, v1_1);
         }
     }
 }
 
-export function method31(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method30(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 1679616n));
-            const v9 = `accumulate_dice_rolls / power: ${8} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 1679616n));
+            const v9 = `accumulate_dice_rolls / power: ${8} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method32(v4, toInt64(op_Addition(v1, v8)));
+            return method31(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${8} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${8} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method32(v4, v1);
+            return method31(v4_1, v1_1);
         }
     }
 }
 
-export function method30(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method29(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 10077696n));
-            const v9 = `accumulate_dice_rolls / power: ${9} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 10077696n));
+            const v9 = `accumulate_dice_rolls / power: ${9} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method31(v4, toInt64(op_Addition(v1, v8)));
+            return method30(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${9} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${9} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method31(v4, v1);
+            return method30(v4_1, v1_1);
         }
     }
 }
 
-export function method29(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method28(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 60466176n));
-            const v9 = `accumulate_dice_rolls / power: ${10} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 60466176n));
+            const v9 = `accumulate_dice_rolls / power: ${10} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method30(v4, toInt64(op_Addition(v1, v8)));
+            return method29(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${10} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${10} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method30(v4, v1);
+            return method29(v4_1, v1_1);
         }
     }
 }
 
-export function method28(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method27(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 362797056n));
-            const v9 = `accumulate_dice_rolls / power: ${11} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 362797056n));
+            const v9 = `accumulate_dice_rolls / power: ${11} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method29(v4, toInt64(op_Addition(v1, v8)));
+            return method28(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${11} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${11} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method29(v4, v1);
+            return method28(v4_1, v1_1);
         }
     }
 }
 
-export function method27(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method26(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 2176782336n));
-            const v9 = `accumulate_dice_rolls / power: ${12} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 2176782336n));
+            const v9 = `accumulate_dice_rolls / power: ${12} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method28(v4, toInt64(op_Addition(v1, v8)));
+            return method27(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${12} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${12} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method28(v4, v1);
+            return method27(v4_1, v1_1);
         }
     }
 }
 
-export function method26(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method25(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 13060694016n));
-            const v9 = `accumulate_dice_rolls / power: ${13} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 13060694016n));
+            const v9 = `accumulate_dice_rolls / power: ${13} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method27(v4, toInt64(op_Addition(v1, v8)));
+            return method26(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${13} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${13} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method27(v4, v1);
+            return method26(v4_1, v1_1);
         }
     }
 }
 
-export function method25(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method24(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 78364164096n));
-            const v9 = `accumulate_dice_rolls / power: ${14} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 78364164096n));
+            const v9 = `accumulate_dice_rolls / power: ${14} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method26(v4, toInt64(op_Addition(v1, v8)));
+            return method25(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${14} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${14} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method26(v4, v1);
+            return method25(v4_1, v1_1);
         }
     }
 }
 
-export function method24(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method23(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 470184984576n));
-            const v9 = `accumulate_dice_rolls / power: ${15} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 470184984576n));
+            const v9 = `accumulate_dice_rolls / power: ${15} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method25(v4, toInt64(op_Addition(v1, v8)));
+            return method24(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${15} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${15} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method25(v4, v1);
+            return method24(v4_1, v1_1);
         }
     }
 }
 
-export function method23(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method22(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 2821109907456n));
-            const v9 = `accumulate_dice_rolls / power: ${16} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 2821109907456n));
+            const v9 = `accumulate_dice_rolls / power: ${16} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method24(v4, toInt64(op_Addition(v1, v8)));
+            return method23(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${16} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${16} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method24(v4, v1);
+            return method23(v4_1, v1_1);
         }
     }
 }
 
-export function method22(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method21(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 16926659444736n));
-            const v9 = `accumulate_dice_rolls / power: ${17} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 16926659444736n));
+            const v9 = `accumulate_dice_rolls / power: ${17} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method23(v4, toInt64(op_Addition(v1, v8)));
+            return method22(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${17} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${17} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method23(v4, v1);
+            return method22(v4_1, v1_1);
         }
     }
 }
 
-export function method21(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method20(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 101559956668416n));
-            const v9 = `accumulate_dice_rolls / power: ${18} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 101559956668416n));
+            const v9 = `accumulate_dice_rolls / power: ${18} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method22(v4, toInt64(op_Addition(v1, v8)));
+            return method21(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${18} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${18} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method22(v4, v1);
+            return method21(v4_1, v1_1);
         }
     }
 }
 
-export function method20(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method19(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 609359740010496n));
-            const v9 = `accumulate_dice_rolls / power: ${19} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 609359740010496n));
+            const v9 = `accumulate_dice_rolls / power: ${19} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method21(v4, toInt64(op_Addition(v1, v8)));
+            return method20(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${19} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${19} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method21(v4, v1);
+            return method20(v4_1, v1_1);
         }
     }
 }
 
-export function method19(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method18(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 3656158440062976n));
-            const v9 = `accumulate_dice_rolls / power: ${20} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 3656158440062976n));
+            const v9 = `accumulate_dice_rolls / power: ${20} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method20(v4, toInt64(op_Addition(v1, v8)));
+            return method19(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${20} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${20} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method20(v4, v1);
+            return method19(v4_1, v1_1);
         }
     }
 }
 
-export function method18(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method17(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 21936950640377856n));
-            const v9 = `accumulate_dice_rolls / power: ${21} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 21936950640377856n));
+            const v9 = `accumulate_dice_rolls / power: ${21} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method19(v4, toInt64(op_Addition(v1, v8)));
+            return method18(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${21} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${21} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method19(v4, v1);
+            return method18(v4_1, v1_1);
         }
     }
 }
 
-export function method17(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method16(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 131621703842267136n));
-            const v9 = `accumulate_dice_rolls / power: ${22} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 131621703842267136n));
+            const v9 = `accumulate_dice_rolls / power: ${22} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method18(v4, toInt64(op_Addition(v1, v8)));
+            return method17(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${22} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${22} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method18(v4, v1);
+            return method17(v4_1, v1_1);
         }
     }
 }
 
-export function method16(v0_1: UH1_$union, v1: int64): US5_$union {
+export function method15(v0_1: UH1_$union, v1_1: int64): US5_$union {
     if (v0_1.tag === /* UH1_1 */ 1) {
         return US5_US5_0();
     }
     else {
-        const v4: UH1_$union = v0_1.fields[1];
-        const v3: uint8 = v0_1.fields[0];
-        if (v3 > 1) {
-            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3 - 1)), 789730223053602816n));
-            const v9 = `accumulate_dice_rolls / power: ${23} / acc: ${v1} / roll: ${v3} / value: ${v8}`;
+        const v4_1: UH1_$union = v0_1.fields[1];
+        const v3_1: uint8 = v0_1.fields[0];
+        if (v3_1 > 1) {
+            const v8: int64 = toInt64(op_Multiply(toInt64(fromUInt8(v3_1 - 1)), 789730223053602816n));
+            const v9 = `accumulate_dice_rolls / power: ${23} / acc: ${v1_1} / roll: ${v3_1} / value: ${v8}`;
             console.log(v9);
-            return method17(v4, toInt64(op_Addition(v1, v8)));
+            return method16(v4_1, toInt64(op_Addition(v1_1, v8)));
         }
         else {
-            const v12 = `accumulate_dice_rolls / power: ${23} / acc: ${v1} / roll: ${v3}`;
+            const v12 = `accumulate_dice_rolls / power: ${23} / acc: ${v1_1} / roll: ${v3_1}`;
             console.log(v12);
-            return method17(v4, v1);
+            return method16(v4_1, v1_1);
         }
     }
 }
 
-export function method15(v0_1_mut: UH1_$union, v1_mut: int8): int64 {
-    method15:
+export function method14(v0_1_mut: UH1_$union, v1_1_mut: int8): int64 {
+    method14:
     while (true) {
-        const v0_1: UH1_$union = v0_1_mut, v1: int8 = v1_mut;
-        if (v1 < 24) {
+        const v0_1: UH1_$union = v0_1_mut, v1_1: int8 = v1_1_mut;
+        if (v1_1 < 24) {
             let result: Option<uint8> = void 0;
             let x: uint8;
             const value: int32 = nonSeeded().Next2(1, 7) | 0;
             x = (value & 0xFF);
             result = x;
             v0_1_mut = UH1_UH1_0(value_47(result), v0_1);
-            v1_mut = (v1 + 1);
-            continue method15;
+            v1_1_mut = (v1_1 + 1);
+            continue method14;
         }
         else {
-            const v13: US5_$union = method16(v0_1, 0n);
+            const v13: US5_$union = method15(v0_1, 0n);
             if (v13.tag === /* US5_1 */ 1) {
                 const v15: UH1_$union = v13.fields[1];
                 const v14: int64 = v13.fields[0];
@@ -1661,8 +1658,8 @@ export function method15(v0_1_mut: UH1_$union, v1_mut: int8): int64 {
                     x_23 = (value_23 & 0xFF);
                     result_23 = x_23;
                     v0_1_mut = UH1_UH1_0(v22, UH1_UH1_0(v26, UH1_UH1_0(v30, UH1_UH1_0(v34, UH1_UH1_0(v38, UH1_UH1_0(v42, UH1_UH1_0(v46, UH1_UH1_0(v50, UH1_UH1_0(v54, UH1_UH1_0(v58, UH1_UH1_0(v62, UH1_UH1_0(v66, UH1_UH1_0(v70, UH1_UH1_0(v74, UH1_UH1_0(v78, UH1_UH1_0(v82, UH1_UH1_0(v86, UH1_UH1_0(v90, UH1_UH1_0(v94, UH1_UH1_0(v98, UH1_UH1_0(v102, UH1_UH1_0(v106, UH1_UH1_0(value_47(result_23), UH1_UH1_1())))))))))))))))))))))));
-                    v1_mut = 23;
-                    continue method15;
+                    v1_1_mut = 23;
+                    continue method14;
                 }
             }
             else {
@@ -1804,8 +1801,8 @@ export function method15(v0_1_mut: UH1_$union, v1_mut: int8): int64 {
                 x_46 = (value_46 & 0xFF);
                 result_46 = x_46;
                 v0_1_mut = UH1_UH1_0(v143, UH1_UH1_0(v147, UH1_UH1_0(v151, UH1_UH1_0(v155, UH1_UH1_0(v159, UH1_UH1_0(v163, UH1_UH1_0(v167, UH1_UH1_0(v171, UH1_UH1_0(v175, UH1_UH1_0(v179, UH1_UH1_0(v183, UH1_UH1_0(v187, UH1_UH1_0(v191, UH1_UH1_0(v195, UH1_UH1_0(v199, UH1_UH1_0(v203, UH1_UH1_0(v207, UH1_UH1_0(v211, UH1_UH1_0(v215, UH1_UH1_0(v219, UH1_UH1_0(v223, UH1_UH1_0(v227, UH1_UH1_0(value_47(result_46), UH1_UH1_1())))))))))))))))))))))));
-                v1_mut = 23;
-                continue method15;
+                v1_1_mut = 23;
+                continue method14;
             }
         }
         break;
@@ -1813,16 +1810,38 @@ export function method15(v0_1_mut: UH1_$union, v1_mut: int8): int64 {
 }
 
 export function closure80(unitVar: void, v0_1: string[]): int32 {
-    const v1 = `calculate_dice_count / max: ${9223372036854775807n} / n: ${24} / p: ${4738381338321616896n}`;
-    console.log(v1);
-    const v5 = `result: ${method15(UH1_UH1_1(), 0)}`;
+    const v1_1 = `calculate_dice_count / max: ${9223372036854775807n} / n: ${24} / p: ${4738381338321616896n}`;
+    console.log(v1_1);
+    const v5 = `result: ${method14(UH1_UH1_1(), 0)}`;
     console.log(v5);
     return 0;
 }
 
-method0();
+export const v0 = (v: int64): ((arg0: UH0_$union) => UH0_$union) => closure0(void 0, v);
 
-export const v0 = (v: string[]): int32 => closure80(void 0, v);
+export function rotate_numbers(x: int64): ((arg0: UH0_$union) => UH0_$union) {
+    return v0(x);
+}
 
-(v0)(typeof process === 'object' ? process.argv.slice(2) : []);
+export const v1 = (v: UH1_$union): (() => uint8) => closure3(void 0, v);
+
+export function create_sequential_roller(x: UH1_$union): (() => uint8) {
+    return v1(x);
+}
+
+export const v2 = (v: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) => closure8(void 0, v);
+
+export function roll_progressively(x: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) {
+    return v2(x);
+}
+
+export const v3 = (v: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) => closure77(void 0, v);
+
+export function roll_within_bounds(x: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) {
+    return v3(x);
+}
+
+export const v4 = (v: string[]): int32 => closure80(void 0, v);
+
+(v4)(typeof process === 'object' ? process.argv.slice(2) : []);
 

@@ -13,7 +13,6 @@ use fable_library_rust::String_::fromString;
 pub mod Dice {
     use super::*;
     use fable_library_rust::NativeArray_::Array;
-    use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Any;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
@@ -135,13 +134,17 @@ pub mod Dice {
     pub fn closure2(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
         v0_1
     }
-    pub fn method1(v0_1: i64, v1: LrcPtr<Dice::UH0>, v2: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
-        match v1.as_ref() {
-            Dice::UH0::UH0_1 => v2.clone(),
-            Dice::UH0::UH0_0(v1_0_0, v1_0_1) => {
-                let v6: LrcPtr<Dice::UH0> = Dice::method1(v0_1, (v1_0_1)(), v2.clone());
+    pub fn method0(
+        v0_1: i64,
+        v1_1: LrcPtr<Dice::UH0>,
+        v2_1: LrcPtr<Dice::UH0>,
+    ) -> LrcPtr<Dice::UH0> {
+        match v1_1.as_ref() {
+            Dice::UH0::UH0_1 => v2_1.clone(),
+            Dice::UH0::UH0_0(v1_1_0_0, v1_1_0_1) => {
+                let v6: LrcPtr<Dice::UH0> = Dice::method0(v0_1, (v1_1_0_1)(), v2_1.clone());
                 LrcPtr::new(Dice::UH0::UH0_0(
-                    ((v1_0_0.clone() as i64 - 1_i64 + v0_1) % v0_1 + 1_i64) as u8,
+                    ((v1_1_0_0.clone() as i64 - 1_i64 + v0_1) % v0_1 + 1_i64) as u8,
                     Func0::new({
                         let v6 = v6.clone();
                         move || Dice::closure2(v6.clone(), ())
@@ -150,8 +153,8 @@ pub mod Dice {
             }
         }
     }
-    pub fn closure1(v0_1: i64, v1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
-        Dice::method1(v0_1, v1, LrcPtr::new(Dice::UH0::UH0_1))
+    pub fn closure1(v0_1: i64, v1_1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
+        Dice::method0(v0_1, v1_1, LrcPtr::new(Dice::UH0::UH0_1))
     }
     pub fn closure0(unitVar: (), v0_1: i64) -> Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>> {
         Func1::new({
@@ -159,45 +162,45 @@ pub mod Dice {
             move |v: LrcPtr<Dice::UH0>| Dice::closure1(v0_1, v)
         })
     }
-    pub fn method2(v0_1: LrcPtr<Dice::UH1>, v1: LrcPtr<Dice::UH1>) -> LrcPtr<Dice::UH1> {
+    pub fn method1(v0_1: LrcPtr<Dice::UH1>, v1_1: LrcPtr<Dice::UH1>) -> LrcPtr<Dice::UH1> {
         let v0_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v0_1.clone());
-        let v1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v1.clone());
-        '_method2: loop {
-            break '_method2 (match v0_1.get().as_ref() {
-                Dice::UH1::UH1_1 => v1.get(),
+        let v1_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v1_1.clone());
+        '_method1: loop {
+            break '_method1 (match v0_1.get().as_ref() {
+                Dice::UH1::UH1_1 => v1_1.get(),
                 Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
                     let v0_1_temp: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                    let v1_temp: LrcPtr<Dice::UH1> =
-                        LrcPtr::new(Dice::UH1::UH1_0(v0_1_0_0.clone(), v1.get()));
+                    let v1_1_temp: LrcPtr<Dice::UH1> =
+                        LrcPtr::new(Dice::UH1::UH1_0(v0_1_0_0.clone(), v1_1.get()));
                     v0_1.set(v0_1_temp);
-                    v1.set(v1_temp);
-                    continue '_method2;
+                    v1_1.set(v1_1_temp);
+                    continue '_method1;
                 }
             });
         }
     }
-    pub fn method3(v0_1: LrcPtr<Dice::UH1>, v1: LrcPtr<Dice::UH1>) -> LrcPtr<Dice::UH1> {
+    pub fn method2(v0_1: LrcPtr<Dice::UH1>, v1_1: LrcPtr<Dice::UH1>) -> LrcPtr<Dice::UH1> {
         match v0_1.as_ref() {
-            Dice::UH1::UH1_1 => v1.clone(),
+            Dice::UH1::UH1_1 => v1_1.clone(),
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => LrcPtr::new(Dice::UH1::UH1_0(
                 v0_1_0_0.clone(),
-                Dice::method3(v0_1_0_1.clone(), v1.clone()),
+                Dice::method2(v0_1_0_1.clone(), v1_1.clone()),
             )),
         }
     }
     pub fn closure4(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
         v0_1
     }
-    pub fn method4(v0_1: LrcPtr<Dice::UH1>, v1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
+    pub fn method3(v0_1: LrcPtr<Dice::UH1>, v1_1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
         match v0_1.as_ref() {
-            Dice::UH1::UH1_1 => v1.clone(),
+            Dice::UH1::UH1_1 => v1_1.clone(),
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH0> = Dice::method4(v0_1_0_1.clone(), v1.clone());
+                let v4_1: LrcPtr<Dice::UH0> = Dice::method3(v0_1_0_1.clone(), v1_1.clone());
                 LrcPtr::new(Dice::UH0::UH0_0(
                     v0_1_0_0.clone(),
                     Func0::new({
-                        let v4 = v4.clone();
-                        move || Dice::closure4(v4.clone(), ())
+                        let v4_1 = v4_1.clone();
+                        move || Dice::closure4(v4_1.clone(), ())
                     }),
                 ))
             }
@@ -208,105 +211,105 @@ pub mod Dice {
     }
     pub fn closure6(
         v0_1: LrcPtr<Dice::UH0>,
-        v1: LrcPtr<Dice::Mut0>,
+        v1_1: LrcPtr<Dice::Mut0>,
         unitVar: (),
     ) -> LrcPtr<Dice::UH0> {
-        let v2: Dice::US0 = v1.l0.get().clone();
-        match &v2 {
-            Dice::US0::US0_1(v2_1_0) => {
-                let v5: LrcPtr<Dice::UH0> = (v2_1_0)();
+        let v2_1: Dice::US0 = v1_1.l0.get().clone();
+        match &v2_1 {
+            Dice::US0::US0_1(v2_1_1_0) => {
+                let v5: LrcPtr<Dice::UH0> = (v2_1_1_0)();
                 let v12: LrcPtr<Dice::UH0> = match v5.as_ref() {
                     Dice::UH0::UH0_1 => LrcPtr::new(Dice::UH0::UH0_1),
                     Dice::UH0::UH0_0(v5_0_0, v5_0_1) => LrcPtr::new(Dice::UH0::UH0_0(
                         v5_0_0.clone(),
-                        Dice::method5(v0_1, v5_0_1.clone()),
+                        Dice::method4(v0_1, v5_0_1.clone()),
                     )),
                 };
-                v1.l0.set(Dice::US0::US0_0(v12.clone()));
+                v1_1.l0.set(Dice::US0::US0_0(v12.clone()));
                 v12
             }
-            Dice::US0::US0_0(v2_0_0) => v2_0_0.clone(),
+            Dice::US0::US0_0(v2_1_0_0) => v2_1_0_0.clone(),
         }
     }
-    pub fn method5(
+    pub fn method4(
         v0_1: LrcPtr<Dice::UH0>,
-        v1: Func0<LrcPtr<Dice::UH0>>,
+        v1_1: Func0<LrcPtr<Dice::UH0>>,
     ) -> Func0<LrcPtr<Dice::UH0>> {
-        let v3: LrcPtr<Dice::Mut0> = LrcPtr::new(Dice::Mut0 {
-            l0: MutCell::new(Dice::US0::US0_1(v1)),
+        let v3_1: LrcPtr<Dice::Mut0> = LrcPtr::new(Dice::Mut0 {
+            l0: MutCell::new(Dice::US0::US0_1(v1_1)),
         });
         Func0::new({
             let v0_1 = v0_1.clone();
-            let v3 = v3.clone();
-            move || Dice::closure6(v0_1.clone(), v3.clone(), ())
+            let v3_1 = v3_1.clone();
+            move || Dice::closure6(v0_1.clone(), v3_1.clone(), ())
         })
     }
-    pub fn method7(v0_1: i64, v1: LrcPtr<Dice::UH0>) -> Dice::US1 {
+    pub fn method6(v0_1: i64, v1_1: LrcPtr<Dice::UH0>) -> Dice::US1 {
         let v0_1: MutCell<i64> = MutCell::new(v0_1);
-        let v1: MutCell<LrcPtr<Dice::UH0>> = MutCell::new(v1.clone());
-        '_method7: loop {
-            break '_method7 (match v1.get().as_ref() {
+        let v1_1: MutCell<LrcPtr<Dice::UH0>> = MutCell::new(v1_1.clone());
+        '_method6: loop {
+            break '_method6 (match v1_1.get().as_ref() {
                 Dice::UH0::UH0_1 => Dice::US1::US1_0,
-                Dice::UH0::UH0_0(v1_0_0, v1_0_1) => {
+                Dice::UH0::UH0_0(v1_1_0_0, v1_1_0_1) => {
                     if v0_1.get() <= 0_i64 {
-                        Dice::US1::US1_1(v1_0_0.clone())
+                        Dice::US1::US1_1(v1_1_0_0.clone())
                     } else {
                         let v0_1_temp: i64 = v0_1.get() - 1_i64;
-                        let v1_temp: LrcPtr<Dice::UH0> = (v1_0_1)();
+                        let v1_1_temp: LrcPtr<Dice::UH0> = (v1_1_0_1)();
                         v0_1.set(v0_1_temp);
-                        v1.set(v1_temp);
-                        continue '_method7;
+                        v1_1.set(v1_1_temp);
+                        continue '_method6;
                     }
                 }
             });
         }
     }
-    pub fn method6(
+    pub fn method5(
         v0_1: Func0<LrcPtr<Dice::UH0>>,
-        v1: LrcPtr<Dice::Mut1>,
-        v2: LrcPtr<Dice::Mut1>,
-        v3: LrcPtr<Dice::Mut1>,
+        v1_1: LrcPtr<Dice::Mut1>,
+        v2_1: LrcPtr<Dice::Mut1>,
+        v3_1: LrcPtr<Dice::Mut1>,
     ) -> u8 {
         let v0_1 = MutCell::new(v0_1.clone());
-        let v1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v1.clone());
-        let v2: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v2.clone());
-        let v3: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v3.clone());
-        '_method6: loop {
-            break '_method6 ({
-                let v4: LrcPtr<Dice::UH0> = v0_1();
-                let v6: Dice::US1 = Dice::method7(v1.l0.get(), v4);
+        let v1_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v1_1.clone());
+        let v2_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v2_1.clone());
+        let v3_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v3_1.clone());
+        '_method5: loop {
+            break '_method5 ({
+                let v4_1: LrcPtr<Dice::UH0> = v0_1();
+                let v6: Dice::US1 = Dice::method6(v1_1.l0.get(), v4_1);
                 match &v6 {
                     Dice::US1::US1_1(v6_1_0) => {
-                        let v9: i64 = v1.l0.get() + 1_i64;
-                        v1.l0.set(v9);
+                        let v9: i64 = v1_1.l0.get() + 1_i64;
+                        v1_1.l0.set(v9);
                         v6_1_0.clone()
                     }
                     _ => {
-                        if v3.l0.get() == -1_i64 {
-                            let v12: i64 = v1.l0.get();
-                            v3.l0.set(v12);
+                        if v3_1.l0.get() == -1_i64 {
+                            let v12: i64 = v1_1.l0.get();
+                            v3_1.l0.set(v12);
                             ()
                         }
                         {
-                            let v18: i64 = if v2.l0.get() >= v3.l0.get() {
+                            let v18: i64 = if v2_1.l0.get() >= v3_1.l0.get() {
                                 1_i64
                             } else {
-                                v2.l0.get() + 1_i64
+                                v2_1.l0.get() + 1_i64
                             };
-                            v2.l0.set(v18);
+                            v2_1.l0.set(v18);
                             {
-                                let v20: i64 = v2.l0.get() - 1_i64;
-                                v1.l0.set(v20);
+                                let v20: i64 = v2_1.l0.get() - 1_i64;
+                                v1_1.l0.set(v20);
                                 {
                                     let v0_1_temp = v0_1.get();
-                                    let v1_temp: LrcPtr<Dice::Mut1> = v1.get();
-                                    let v2_temp: LrcPtr<Dice::Mut1> = v2.get();
-                                    let v3_temp: LrcPtr<Dice::Mut1> = v3.get();
+                                    let v1_1_temp: LrcPtr<Dice::Mut1> = v1_1.get();
+                                    let v2_1_temp: LrcPtr<Dice::Mut1> = v2_1.get();
+                                    let v3_1_temp: LrcPtr<Dice::Mut1> = v3_1.get();
                                     v0_1.set(v0_1_temp);
-                                    v1.set(v1_temp);
-                                    v2.set(v2_temp);
-                                    v3.set(v3_temp);
-                                    continue '_method6;
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method5;
                                 }
                             }
                         }
@@ -317,22 +320,22 @@ pub mod Dice {
     }
     pub fn closure7(
         v0_1: Func0<LrcPtr<Dice::UH0>>,
-        v1: LrcPtr<Dice::Mut1>,
-        v2: LrcPtr<Dice::Mut1>,
-        v3: LrcPtr<Dice::Mut1>,
+        v1_1: LrcPtr<Dice::Mut1>,
+        v2_1: LrcPtr<Dice::Mut1>,
+        v3_1: LrcPtr<Dice::Mut1>,
         unitVar: (),
     ) -> u8 {
-        Dice::method6(v0_1, v1, v2, v3)
+        Dice::method5(v0_1, v1_1, v2_1, v3_1)
     }
     pub fn closure3(unitVar: (), v0_1: LrcPtr<Dice::UH1>) -> Func0<u8> {
-        let v5: LrcPtr<Dice::UH0> = Dice::method4(
-            Dice::method3(
+        let v5: LrcPtr<Dice::UH0> = Dice::method3(
+            Dice::method2(
                 v0_1.clone(),
-                Dice::method2(v0_1, LrcPtr::new(Dice::UH1::UH1_1)),
+                Dice::method1(v0_1, LrcPtr::new(Dice::UH1::UH1_1)),
             ),
             LrcPtr::new(Dice::UH0::UH0_1),
         );
-        let v7 = Dice::method5(
+        let v7 = Dice::method4(
             v5.clone(),
             Func0::new({
                 let v5 = v5.clone();
@@ -359,49 +362,49 @@ pub mod Dice {
     pub fn closure9(unitVar: (), v0_1: Func1<string, ()>) -> Dice::US2 {
         Dice::US2::US2_1(v0_1)
     }
-    pub fn method8(v0_1: Dice::US2, v1: u64, v2: i8, v3: u64) -> i8 {
+    pub fn method7(v0_1: Dice::US2, v1_1: u64, v2_1: i8, v3_1: u64) -> i8 {
         let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
-        let v1: MutCell<u64> = MutCell::new(v1);
-        let v2: MutCell<i8> = MutCell::new(v2);
-        let v3: MutCell<u64> = MutCell::new(v3);
-        '_method8: loop {
-            break '_method8 (if v3.get() < v1.get() {
-                let v5: u64 = v3.get() * 6_u64;
-                if v5 > v3.get() {
+        let v1_1: MutCell<u64> = MutCell::new(v1_1);
+        let v2_1: MutCell<i8> = MutCell::new(v2_1);
+        let v3_1: MutCell<u64> = MutCell::new(v3_1);
+        '_method7: loop {
+            break '_method7 (if v3_1.get() < v1_1.get() {
+                let v5: u64 = v3_1.get() * 6_u64;
+                if v5 > v3_1.get() {
                     let v0_1_temp: Dice::US2 = v0_1.get();
-                    let v1_temp: u64 = v1.get();
-                    let v2_temp: i8 = v2.get() + 1_i8;
-                    let v3_temp: u64 = v5;
+                    let v1_1_temp: u64 = v1_1.get();
+                    let v2_1_temp: i8 = v2_1.get() + 1_i8;
+                    let v3_1_temp: u64 = v5;
                     v0_1.set(v0_1_temp);
-                    v1.set(v1_temp);
-                    v2.set(v2_temp);
-                    v3.set(v3_temp);
-                    continue '_method8;
+                    v1_1.set(v1_1_temp);
+                    v2_1.set(v2_1_temp);
+                    v3_1.set(v3_1_temp);
+                    continue '_method7;
                 } else {
                     let v9: string = sprintf!(
                         "calculate_dice_count / max: {} / n: {} / p: {}",
-                        &v1.get(),
-                        &v2.get(),
-                        &v3.get()
+                        &v1_1.get(),
+                        &v2_1.get(),
+                        &v3_1.get()
                     );
                     match &v0_1.get() {
                         Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v9),
                         _ => (),
                     }
-                    v2.get()
+                    v2_1.get()
                 }
             } else {
                 let v12: string = sprintf!(
                     "calculate_dice_count / max: {} / n: {} / p: {}",
-                    &v1.get(),
-                    &v2.get(),
-                    &v3.get()
+                    &v1_1.get(),
+                    &v2_1.get(),
+                    &v3_1.get()
                 );
                 match &v0_1.get() {
                     Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v12),
                     _ => (),
                 }
-                v2.get()
+                v2_1.get()
             });
         }
     }
@@ -789,52 +792,52 @@ pub mod Dice {
             Func0::new(move || Dice::closure14((), ())),
         ))
     }
-    pub fn method11(v0_1: i8, v1: LrcPtr<Dice::UH2>) -> Dice::US4 {
+    pub fn method10(v0_1: i8, v1_1: LrcPtr<Dice::UH2>) -> Dice::US4 {
         let v0_1: MutCell<i8> = MutCell::new(v0_1);
-        let v1: MutCell<LrcPtr<Dice::UH2>> = MutCell::new(v1.clone());
-        '_method11: loop {
-            break '_method11 (match v1.get().as_ref() {
+        let v1_1: MutCell<LrcPtr<Dice::UH2>> = MutCell::new(v1_1.clone());
+        '_method10: loop {
+            break '_method10 (match v1_1.get().as_ref() {
                 Dice::UH2::UH2_1 => Dice::US4::US4_0,
-                Dice::UH2::UH2_0(v1_0_0, v1_0_1) => {
+                Dice::UH2::UH2_0(v1_1_0_0, v1_1_0_1) => {
                     if v0_1.get() <= 0_i8 {
-                        Dice::US4::US4_1(v1_0_0.clone())
+                        Dice::US4::US4_1(v1_1_0_0.clone())
                     } else {
                         let v0_1_temp: i8 = v0_1.get() - 1_i8;
-                        let v1_temp: LrcPtr<Dice::UH2> = (v1_0_1)();
+                        let v1_1_temp: LrcPtr<Dice::UH2> = (v1_1_0_1)();
                         v0_1.set(v0_1_temp);
-                        v1.set(v1_temp);
-                        continue '_method11;
+                        v1_1.set(v1_1_temp);
+                        continue '_method10;
                     }
                 }
             });
         }
     }
-    pub fn method10(v0_1: Dice::US2, v1: i8, v2: LrcPtr<Dice::UH1>, v3: u64) -> Dice::US3 {
+    pub fn method9(v0_1: Dice::US2, v1_1: i8, v2_1: LrcPtr<Dice::UH1>, v3_1: u64) -> Dice::US3 {
         let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
-        let v1: MutCell<i8> = MutCell::new(v1);
-        let v2: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v2.clone());
-        let v3: MutCell<u64> = MutCell::new(v3);
-        '_method10: loop {
-            break '_method10 (if v1.get() < 0_i8 {
+        let v1_1: MutCell<i8> = MutCell::new(v1_1);
+        let v2_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v2_1.clone());
+        let v3_1: MutCell<u64> = MutCell::new(v3_1);
+        '_method9: loop {
+            break '_method9 (if v1_1.get() < 0_i8 {
                 let v5: string = sprintf!(
                     "accumulate_dice_rolls / power: {} / acc: {}",
-                    &v1.get(),
-                    &v3.get()
+                    &v1_1.get(),
+                    &v3_1.get()
                 );
                 match &v0_1.get() {
                     Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v5),
                     _ => (),
                 }
-                Dice::US3::US3_1(v3.get() + 1_u64, v2.get())
+                Dice::US3::US3_1(v3_1.get() + 1_u64, v2_1.get())
             } else {
-                match v2.get().as_ref() {
+                match v2_1.get().as_ref() {
                     Dice::UH1::UH1_1 => Dice::US3::US3_0,
-                    Dice::UH1::UH1_0(v2_0_0, v2_0_1) => {
-                        let v11: LrcPtr<Dice::UH1> = v2_0_1.clone();
-                        let v10: u8 = v2_0_0.clone();
+                    Dice::UH1::UH1_0(v2_1_0_0, v2_1_0_1) => {
+                        let v11: LrcPtr<Dice::UH1> = v2_1_0_1.clone();
+                        let v10: u8 = v2_1_0_0.clone();
                         if v10 > 1_u8 {
-                            let v16: Dice::US4 = Dice::method11(
-                                v1.get(),
+                            let v16: Dice::US4 = Dice::method10(
+                                v1_1.get(),
                                 LrcPtr::new(Dice::UH2::UH2_0(
                                     1_u64,
                                     Func0::new(move || Dice::closure13((), ())),
@@ -847,28 +850,28 @@ pub mod Dice {
                                 };
                             let v24: string =
                                          sprintf!("accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
-                                                  &v1.get(), &v3.get(), &v10,
-                                                  &v23);
+                                                  &v1_1.get(), &v3_1.get(),
+                                                  &v10, &v23);
                             match &v0_1.get() {
                                 Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v24),
                                 _ => (),
                             }
                             {
                                 let v0_1_temp: Dice::US2 = v0_1.get();
-                                let v1_temp: i8 = v1.get() - 1_i8;
-                                let v2_temp: LrcPtr<Dice::UH1> = v11;
-                                let v3_temp: u64 = v3.get() + v23;
+                                let v1_1_temp: i8 = v1_1.get() - 1_i8;
+                                let v2_1_temp: LrcPtr<Dice::UH1> = v11;
+                                let v3_1_temp: u64 = v3_1.get() + v23;
                                 v0_1.set(v0_1_temp);
-                                v1.set(v1_temp);
-                                v2.set(v2_temp);
-                                v3.set(v3_temp);
-                                continue '_method10;
+                                v1_1.set(v1_1_temp);
+                                v2_1.set(v2_1_temp);
+                                v3_1.set(v3_1_temp);
+                                continue '_method9;
                             }
                         } else {
                             let v29: string = sprintf!(
                                 "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
-                                &v1.get(),
-                                &v3.get(),
+                                &v1_1.get(),
+                                &v3_1.get(),
                                 &v10
                             );
                             match &v0_1.get() {
@@ -877,14 +880,14 @@ pub mod Dice {
                             }
                             {
                                 let v0_1_temp: Dice::US2 = v0_1.get();
-                                let v1_temp: i8 = v1.get() - 1_i8;
-                                let v2_temp: LrcPtr<Dice::UH1> = v11.clone();
-                                let v3_temp: u64 = v3.get();
+                                let v1_1_temp: i8 = v1_1.get() - 1_i8;
+                                let v2_1_temp: LrcPtr<Dice::UH1> = v11.clone();
+                                let v3_1_temp: u64 = v3_1.get();
                                 v0_1.set(v0_1_temp);
-                                v1.set(v1_temp);
-                                v2.set(v2_temp);
-                                v3.set(v3_temp);
-                                continue '_method10;
+                                v1_1.set(v1_1_temp);
+                                v2_1.set(v2_1_temp);
+                                v3_1.set(v3_1_temp);
+                                continue '_method9;
                             }
                         }
                     }
@@ -892,101 +895,104 @@ pub mod Dice {
             });
         }
     }
-    pub fn method12(v0_1: i8, v1: Func0<u8>, v2: i8) -> LrcPtr<Dice::UH1> {
-        if v2 < v0_1 {
-            LrcPtr::new(Dice::UH1::UH1_0(v1(), Dice::method12(v0_1, v1, v2 + 1_i8)))
+    pub fn method11(v0_1: i8, v1_1: Func0<u8>, v2_1: i8) -> LrcPtr<Dice::UH1> {
+        if v2_1 < v0_1 {
+            LrcPtr::new(Dice::UH1::UH1_0(
+                v1_1(),
+                Dice::method11(v0_1, v1_1, v2_1 + 1_i8),
+            ))
         } else {
             LrcPtr::new(Dice::UH1::UH1_1)
         }
     }
-    pub fn method13(
+    pub fn method12(
         v0_1: Dice::US2,
-        v1: Func0<u8>,
-        v2: bool,
-        v3: u64,
-        v4: i8,
+        v1_1: Func0<u8>,
+        v2_1: bool,
+        v3_1: u64,
+        v4_1: i8,
         v5: LrcPtr<Dice::UH1>,
     ) -> u64 {
         let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
-        let v1 = MutCell::new(v1.clone());
-        let v2: MutCell<bool> = MutCell::new(v2);
-        let v3: MutCell<u64> = MutCell::new(v3);
-        let v4: MutCell<i8> = MutCell::new(v4);
+        let v1_1 = MutCell::new(v1_1.clone());
+        let v2_1: MutCell<bool> = MutCell::new(v2_1);
+        let v3_1: MutCell<u64> = MutCell::new(v3_1);
+        let v4_1: MutCell<i8> = MutCell::new(v4_1);
         let v5: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v5.clone());
-        '_method13: loop {
-            break '_method13 ({
-                let v6: i8 = v4.get() + 1_i8;
-                if v4.get() < v6 {
-                    Dice::method9(
+        '_method12: loop {
+            break '_method12 ({
+                let v6: i8 = v4_1.get() + 1_i8;
+                if v4_1.get() < v6 {
+                    Dice::method8(
                         v0_1.get(),
-                        v1.get(),
-                        v2.get(),
-                        v3.get(),
-                        v4.get(),
-                        LrcPtr::new(Dice::UH1::UH1_0(v1(), v5.get())),
+                        v1_1.get(),
+                        v2_1.get(),
+                        v3_1.get(),
+                        v4_1.get(),
+                        LrcPtr::new(Dice::UH1::UH1_0(v1_1(), v5.get())),
                         v6,
                     )
                 } else {
-                    let v12: Dice::US3 = Dice::method10(v0_1.get(), v4.get(), v5.get(), 0_u64);
+                    let v12: Dice::US3 = Dice::method9(v0_1.get(), v4_1.get(), v5.get(), 0_u64);
                     if let Dice::US3::US3_1(v12_1_0, v12_1_1) = &v12 {
                         let v13: u64 = match &v12 {
                             Dice::US3::US3_1(x, _) => x.clone(),
                             _ => unreachable!(),
                         };
-                        if v13 <= v3.get() {
+                        if v13 <= v3_1.get() {
                             v13
                         } else {
-                            if v2.get() {
+                            if v2_1.get() {
                                 let v0_1_temp: Dice::US2 = v0_1.get();
-                                let v1_temp = v1.get();
-                                let v2_temp: bool = v2.get();
-                                let v3_temp: u64 = v3.get();
-                                let v4_temp: i8 = v4.get();
+                                let v1_1_temp = v1_1.get();
+                                let v2_1_temp: bool = v2_1.get();
+                                let v3_1_temp: u64 = v3_1.get();
+                                let v4_1_temp: i8 = v4_1.get();
                                 let v5_temp: LrcPtr<Dice::UH1> =
-                                    Dice::method12(v4.get(), v1.get(), 0_i8);
+                                    Dice::method11(v4_1.get(), v1_1.get(), 0_i8);
                                 v0_1.set(v0_1_temp);
-                                v1.set(v1_temp);
-                                v2.set(v2_temp);
-                                v3.set(v3_temp);
-                                v4.set(v4_temp);
+                                v1_1.set(v1_1_temp);
+                                v2_1.set(v2_1_temp);
+                                v3_1.set(v3_1_temp);
+                                v4_1.set(v4_1_temp);
                                 v5.set(v5_temp);
-                                continue '_method13;
+                                continue '_method12;
                             } else {
-                                Dice::method9(
+                                Dice::method8(
                                     v0_1.get(),
-                                    v1.get(),
-                                    v2.get(),
-                                    v3.get(),
-                                    v4.get(),
-                                    LrcPtr::new(Dice::UH1::UH1_0(v1(), v5.get())),
+                                    v1_1.get(),
+                                    v2_1.get(),
+                                    v3_1.get(),
+                                    v4_1.get(),
+                                    LrcPtr::new(Dice::UH1::UH1_0(v1_1(), v5.get())),
                                     v6,
                                 )
                             }
                         }
                     } else {
-                        if v2.get() {
+                        if v2_1.get() {
                             let v0_1_temp: Dice::US2 = v0_1.get();
-                            let v1_temp = v1.get();
-                            let v2_temp: bool = v2.get();
-                            let v3_temp: u64 = v3.get();
-                            let v4_temp: i8 = v4.get();
+                            let v1_1_temp = v1_1.get();
+                            let v2_1_temp: bool = v2_1.get();
+                            let v3_1_temp: u64 = v3_1.get();
+                            let v4_1_temp: i8 = v4_1.get();
                             let v5_temp: LrcPtr<Dice::UH1> =
-                                Dice::method12(v4.get(), v1.get(), 0_i8);
+                                Dice::method11(v4_1.get(), v1_1.get(), 0_i8);
                             v0_1.set(v0_1_temp);
-                            v1.set(v1_temp);
-                            v2.set(v2_temp);
-                            v3.set(v3_temp);
-                            v4.set(v4_temp);
+                            v1_1.set(v1_1_temp);
+                            v2_1.set(v2_1_temp);
+                            v3_1.set(v3_1_temp);
+                            v4_1.set(v4_1_temp);
                             v5.set(v5_temp);
-                            continue '_method13;
+                            continue '_method12;
                         } else {
-                            Dice::method9(
+                            Dice::method8(
                                 v0_1.get(),
-                                v1.get(),
-                                v2.get(),
-                                v3.get(),
-                                v4.get(),
-                                LrcPtr::new(Dice::UH1::UH1_0(v1(), v5.get())),
+                                v1_1.get(),
+                                v2_1.get(),
+                                v3_1.get(),
+                                v4_1.get(),
+                                LrcPtr::new(Dice::UH1::UH1_0(v1_1(), v5.get())),
                                 v6,
                             )
                         }
@@ -995,144 +1001,144 @@ pub mod Dice {
             });
         }
     }
-    pub fn method9(
+    pub fn method8(
         v0_1: Dice::US2,
-        v1: Func0<u8>,
-        v2: bool,
-        v3: u64,
-        v4: i8,
+        v1_1: Func0<u8>,
+        v2_1: bool,
+        v3_1: u64,
+        v4_1: i8,
         v5: LrcPtr<Dice::UH1>,
         v6: i8,
     ) -> u64 {
         let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
-        let v1 = MutCell::new(v1.clone());
-        let v2: MutCell<bool> = MutCell::new(v2);
-        let v3: MutCell<u64> = MutCell::new(v3);
-        let v4: MutCell<i8> = MutCell::new(v4);
+        let v1_1 = MutCell::new(v1_1.clone());
+        let v2_1: MutCell<bool> = MutCell::new(v2_1);
+        let v3_1: MutCell<u64> = MutCell::new(v3_1);
+        let v4_1: MutCell<i8> = MutCell::new(v4_1);
         let v5: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v5.clone());
         let v6: MutCell<i8> = MutCell::new(v6);
-        '_method9: loop {
-            break '_method9 (if v6.get() < v4.get() + 1_i8 {
+        '_method8: loop {
+            break '_method8 (if v6.get() < v4_1.get() + 1_i8 {
                 let v0_1_temp: Dice::US2 = v0_1.get();
-                let v1_temp = v1.get();
-                let v2_temp: bool = v2.get();
-                let v3_temp: u64 = v3.get();
-                let v4_temp: i8 = v4.get();
-                let v5_temp: LrcPtr<Dice::UH1> = LrcPtr::new(Dice::UH1::UH1_0(v1(), v5.get()));
+                let v1_1_temp = v1_1.get();
+                let v2_1_temp: bool = v2_1.get();
+                let v3_1_temp: u64 = v3_1.get();
+                let v4_1_temp: i8 = v4_1.get();
+                let v5_temp: LrcPtr<Dice::UH1> = LrcPtr::new(Dice::UH1::UH1_0(v1_1(), v5.get()));
                 let v6_temp: i8 = v6.get() + 1_i8;
                 v0_1.set(v0_1_temp);
-                v1.set(v1_temp);
-                v2.set(v2_temp);
-                v3.set(v3_temp);
-                v4.set(v4_temp);
+                v1_1.set(v1_1_temp);
+                v2_1.set(v2_1_temp);
+                v3_1.set(v3_1_temp);
+                v4_1.set(v4_1_temp);
                 v5.set(v5_temp);
                 v6.set(v6_temp);
-                continue '_method9;
+                continue '_method8;
             } else {
-                let v14: Dice::US3 = Dice::method10(v0_1.get(), v4.get(), v5.get(), 0_u64);
+                let v14: Dice::US3 = Dice::method9(v0_1.get(), v4_1.get(), v5.get(), 0_u64);
                 if let Dice::US3::US3_1(v14_1_0, v14_1_1) = &v14 {
                     let v15: u64 = match &v14 {
                         Dice::US3::US3_1(x, _) => x.clone(),
                         _ => unreachable!(),
                     };
-                    if v15 <= v3.get() {
+                    if v15 <= v3_1.get() {
                         v15
                     } else {
-                        if v2.get() {
-                            Dice::method13(
+                        if v2_1.get() {
+                            Dice::method12(
                                 v0_1.get(),
-                                v1.get(),
-                                v2.get(),
-                                v3.get(),
-                                v4.get(),
-                                Dice::method12(v4.get(), v1.get(), 0_i8),
+                                v1_1.get(),
+                                v2_1.get(),
+                                v3_1.get(),
+                                v4_1.get(),
+                                Dice::method11(v4_1.get(), v1_1.get(), 0_i8),
                             )
                         } else {
                             let v0_1_temp: Dice::US2 = v0_1.get();
-                            let v1_temp = v1.get();
-                            let v2_temp: bool = v2.get();
-                            let v3_temp: u64 = v3.get();
-                            let v4_temp: i8 = v4.get();
+                            let v1_1_temp = v1_1.get();
+                            let v2_1_temp: bool = v2_1.get();
+                            let v3_1_temp: u64 = v3_1.get();
+                            let v4_1_temp: i8 = v4_1.get();
                             let v5_temp: LrcPtr<Dice::UH1> =
-                                LrcPtr::new(Dice::UH1::UH1_0(v1(), v5.get()));
+                                LrcPtr::new(Dice::UH1::UH1_0(v1_1(), v5.get()));
                             let v6_temp: i8 = v6.get() + 1_i8;
                             v0_1.set(v0_1_temp);
-                            v1.set(v1_temp);
-                            v2.set(v2_temp);
-                            v3.set(v3_temp);
-                            v4.set(v4_temp);
+                            v1_1.set(v1_1_temp);
+                            v2_1.set(v2_1_temp);
+                            v3_1.set(v3_1_temp);
+                            v4_1.set(v4_1_temp);
                             v5.set(v5_temp);
                             v6.set(v6_temp);
-                            continue '_method9;
+                            continue '_method8;
                         }
                     }
                 } else {
-                    if v2.get() {
-                        Dice::method13(
+                    if v2_1.get() {
+                        Dice::method12(
                             v0_1.get(),
-                            v1.get(),
-                            v2.get(),
-                            v3.get(),
-                            v4.get(),
-                            Dice::method12(v4.get(), v1.get(), 0_i8),
+                            v1_1.get(),
+                            v2_1.get(),
+                            v3_1.get(),
+                            v4_1.get(),
+                            Dice::method11(v4_1.get(), v1_1.get(), 0_i8),
                         )
                     } else {
                         let v0_1_temp: Dice::US2 = v0_1.get();
-                        let v1_temp = v1.get();
-                        let v2_temp: bool = v2.get();
-                        let v3_temp: u64 = v3.get();
-                        let v4_temp: i8 = v4.get();
+                        let v1_1_temp = v1_1.get();
+                        let v2_1_temp: bool = v2_1.get();
+                        let v3_1_temp: u64 = v3_1.get();
+                        let v4_1_temp: i8 = v4_1.get();
                         let v5_temp: LrcPtr<Dice::UH1> =
-                            LrcPtr::new(Dice::UH1::UH1_0(v1(), v5.get()));
+                            LrcPtr::new(Dice::UH1::UH1_0(v1_1(), v5.get()));
                         let v6_temp: i8 = v6.get() + 1_i8;
                         v0_1.set(v0_1_temp);
-                        v1.set(v1_temp);
-                        v2.set(v2_temp);
-                        v3.set(v3_temp);
-                        v4.set(v4_temp);
+                        v1_1.set(v1_1_temp);
+                        v2_1.set(v2_1_temp);
+                        v3_1.set(v3_1_temp);
+                        v4_1.set(v4_1_temp);
                         v5.set(v5_temp);
                         v6.set(v6_temp);
-                        continue '_method9;
+                        continue '_method8;
                     }
                 }
             });
         }
     }
-    pub fn closure12(v0_1: Dice::US2, v1: Func0<u8>, v2: bool, v3: u64) -> u64 {
-        Dice::method9(
+    pub fn closure12(v0_1: Dice::US2, v1_1: Func0<u8>, v2_1: bool, v3_1: u64) -> u64 {
+        Dice::method8(
             v0_1.clone(),
-            v1,
-            v2,
-            v3,
-            (if v3 == 1_u64 {
+            v1_1,
+            v2_1,
+            v3_1,
+            (if v3_1 == 1_u64 {
                 1_i8
             } else {
-                Dice::method8(v0_1, v3, 0_i8, 1_u64)
+                Dice::method7(v0_1, v3_1, 0_i8, 1_u64)
             }) - 1_i8,
             LrcPtr::new(Dice::UH1::UH1_1),
             0_i8,
         )
     }
-    pub fn closure11(v0_1: Dice::US2, v1: Func0<u8>, v2: bool) -> Func1<u64, u64> {
+    pub fn closure11(v0_1: Dice::US2, v1_1: Func0<u8>, v2_1: bool) -> Func1<u64, u64> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            let v1 = v1.clone();
-            let v2 = v2.clone();
-            move |v: u64| Dice::closure12(v0_1.clone(), v1.clone(), v2, v)
+            let v1_1 = v1_1.clone();
+            let v2_1 = v2_1.clone();
+            move |v: u64| Dice::closure12(v0_1.clone(), v1_1.clone(), v2_1, v)
         })
     }
-    pub fn closure10(v0_1: Dice::US2, v1: Func0<u8>) -> Func1<bool, Func1<u64, u64>> {
+    pub fn closure10(v0_1: Dice::US2, v1_1: Func0<u8>) -> Func1<bool, Func1<u64, u64>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            let v1 = v1.clone();
-            move |v: bool| Dice::closure11(v0_1.clone(), v1.clone(), v)
+            let v1_1 = v1_1.clone();
+            move |v: bool| Dice::closure11(v0_1.clone(), v1_1.clone(), v)
         })
     }
     pub fn closure8(
         unitVar: (),
         v0_1: Option<Func1<string, ()>>,
     ) -> Func1<Func0<u8>, Func1<bool, Func1<u64, u64>>> {
-        let v3: Dice::US2 = defaultValue(
+        let v3_1: Dice::US2 = defaultValue(
             Dice::US2::US2_0,
             map(
                 Func1::new(move |v: Func1<string, ()>| Dice::closure9((), v)),
@@ -1140,32 +1146,32 @@ pub mod Dice {
             ),
         );
         Func1::new({
-            let v3 = v3.clone();
-            move |v_1: Func0<u8>| Dice::closure10(v3.clone(), v_1)
+            let v3_1 = v3_1.clone();
+            move |v_1: Func0<u8>| Dice::closure10(v3_1.clone(), v_1)
         })
     }
-    pub fn method14(v0_1: LrcPtr<Dice::UH1>, v1: i8) -> i8 {
+    pub fn method13(v0_1: LrcPtr<Dice::UH1>, v1_1: i8) -> i8 {
         let v0_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v0_1.clone());
-        let v1: MutCell<i8> = MutCell::new(v1);
-        '_method14: loop {
-            break '_method14 (match v0_1.get().as_ref() {
-                Dice::UH1::UH1_1 => v1.get(),
+        let v1_1: MutCell<i8> = MutCell::new(v1_1);
+        '_method13: loop {
+            break '_method13 (match v0_1.get().as_ref() {
+                Dice::UH1::UH1_1 => v1_1.get(),
                 Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
                     let v0_1_temp: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                    let v1_temp: i8 = v1.get() + 1_i8;
+                    let v1_1_temp: i8 = v1_1.get() + 1_i8;
                     v0_1.set(v0_1_temp);
-                    v1.set(v1_temp);
-                    continue '_method14;
+                    v1_1.set(v1_1_temp);
+                    continue '_method13;
                 }
             });
         }
     }
     pub fn closure79(
         v0_1: Option<Func1<string, ()>>,
-        v1: u64,
-        v2: LrcPtr<Dice::UH1>,
+        v1_1: u64,
+        v2_1: LrcPtr<Dice::UH1>,
     ) -> Option<u64> {
-        let v10: Dice::US3 = Dice::method10(
+        let v10: Dice::US3 = Dice::method9(
             defaultValue(
                 Dice::US2::US2_0,
                 map(
@@ -1173,8 +1179,8 @@ pub mod Dice {
                     v0_1,
                 ),
             ),
-            Dice::method14(v2.clone(), 0_i8) - 1_i8,
-            v2,
+            Dice::method13(v2_1.clone(), 0_i8) - 1_i8,
+            v2_1,
             0_u64,
         );
         let v20: Dice::US4 = if let Dice::US3::US3_1(v10_1_0, v10_1_1) = &v10 {
@@ -1182,7 +1188,7 @@ pub mod Dice {
                 Dice::US3::US3_1(x, _) => x.clone(),
                 _ => unreachable!(),
             };
-            if if v11 >= 1_u64 { v11 <= v1 } else { false } {
+            if if v11 >= 1_u64 { v11 <= v1_1 } else { false } {
                 Dice::US4::US4_1(v11)
             } else {
                 Dice::US4::US4_0
@@ -1197,12 +1203,12 @@ pub mod Dice {
     }
     pub fn closure78(
         v0_1: Option<Func1<string, ()>>,
-        v1: u64,
+        v1_1: u64,
     ) -> Func1<LrcPtr<Dice::UH1>, Option<u64>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            let v1 = v1.clone();
-            move |v: LrcPtr<Dice::UH1>| Dice::closure79(v0_1.clone(), v1, v)
+            let v1_1 = v1_1.clone();
+            move |v: LrcPtr<Dice::UH1>| Dice::closure79(v0_1.clone(), v1_1, v)
         })
     }
     pub fn closure77(
@@ -1214,739 +1220,736 @@ pub mod Dice {
             move |v: u64| Dice::closure78(v0_1.clone(), v)
         })
     }
-    pub fn method0() {
-        ();
+    pub fn method39(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
+        let v2_1: string = sprintf!("accumulate_dice_rolls / power: {} / acc: {}", &-1_i8, &v1_1);
+        println!("{0}", v2_1,);
+        Dice::US5::US5_1(v1_1 + 1_i64, v0_1)
     }
-    pub fn method40(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
-        let v2: string = sprintf!("accumulate_dice_rolls / power: {} / acc: {}", &-1_i8, &v1);
-        println!("{0}", v2,);
-        Dice::US5::US5_1(v1 + 1_i64, v0_1)
-    }
-    pub fn method39(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method38(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v7: i64 = (v3 - 1_u8) as i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v7: i64 = (v3_1 - 1_u8) as i64;
                     let v8: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &0_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v7
                     );
                     println!("{0}", v8,);
-                    Dice::method40(v4.clone(), v1 + v7)
+                    Dice::method39(v4_1.clone(), v1_1 + v7)
                 } else {
                     let v11: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &0_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v11,);
-                    Dice::method40(v4, v1)
+                    Dice::method39(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method38(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method37(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 6_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 6_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &1_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method39(v4.clone(), v1 + v8)
+                    Dice::method38(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &1_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method39(v4, v1)
+                    Dice::method38(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method37(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method36(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 36_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 36_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &2_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method38(v4.clone(), v1 + v8)
+                    Dice::method37(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &2_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method38(v4, v1)
+                    Dice::method37(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method36(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method35(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 216_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 216_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &3_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method37(v4.clone(), v1 + v8)
+                    Dice::method36(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &3_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method37(v4, v1)
+                    Dice::method36(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method35(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method34(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 1296_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 1296_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &4_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method36(v4.clone(), v1 + v8)
+                    Dice::method35(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &4_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method36(v4, v1)
+                    Dice::method35(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method34(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method33(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 7776_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 7776_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &5_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method35(v4.clone(), v1 + v8)
+                    Dice::method34(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &5_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method35(v4, v1)
+                    Dice::method34(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method33(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method32(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 46656_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 46656_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &6_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method34(v4.clone(), v1 + v8)
+                    Dice::method33(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &6_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method34(v4, v1)
+                    Dice::method33(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method32(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method31(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 279936_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 279936_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &7_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method33(v4.clone(), v1 + v8)
+                    Dice::method32(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &7_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method33(v4, v1)
+                    Dice::method32(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method31(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method30(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 1679616_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 1679616_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &8_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method32(v4.clone(), v1 + v8)
+                    Dice::method31(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &8_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method32(v4, v1)
+                    Dice::method31(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method30(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method29(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 10077696_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 10077696_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &9_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method31(v4.clone(), v1 + v8)
+                    Dice::method30(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &9_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method31(v4, v1)
+                    Dice::method30(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method29(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method28(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 60466176_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 60466176_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &10_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method30(v4.clone(), v1 + v8)
+                    Dice::method29(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &10_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method30(v4, v1)
+                    Dice::method29(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method28(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method27(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 362797056_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 362797056_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &11_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method29(v4.clone(), v1 + v8)
+                    Dice::method28(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &11_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method29(v4, v1)
+                    Dice::method28(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method27(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method26(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 2176782336_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 2176782336_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &12_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method28(v4.clone(), v1 + v8)
+                    Dice::method27(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &12_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method28(v4, v1)
+                    Dice::method27(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method26(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method25(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 13060694016_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 13060694016_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &13_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method27(v4.clone(), v1 + v8)
+                    Dice::method26(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &13_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method27(v4, v1)
+                    Dice::method26(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method25(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method24(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 78364164096_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 78364164096_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &14_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method26(v4.clone(), v1 + v8)
+                    Dice::method25(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &14_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method26(v4, v1)
+                    Dice::method25(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method24(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method23(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 470184984576_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 470184984576_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &15_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method25(v4.clone(), v1 + v8)
+                    Dice::method24(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &15_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method25(v4, v1)
+                    Dice::method24(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method23(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method22(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 2821109907456_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 2821109907456_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &16_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method24(v4.clone(), v1 + v8)
+                    Dice::method23(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &16_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method24(v4, v1)
+                    Dice::method23(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method22(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method21(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 16926659444736_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 16926659444736_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &17_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method23(v4.clone(), v1 + v8)
+                    Dice::method22(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &17_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method23(v4, v1)
+                    Dice::method22(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method21(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method20(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 101559956668416_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 101559956668416_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &18_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method22(v4.clone(), v1 + v8)
+                    Dice::method21(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &18_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method22(v4, v1)
+                    Dice::method21(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method20(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method19(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 609359740010496_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 609359740010496_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &19_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method21(v4.clone(), v1 + v8)
+                    Dice::method20(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &19_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method21(v4, v1)
+                    Dice::method20(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method19(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method18(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 3656158440062976_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 3656158440062976_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &20_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method20(v4.clone(), v1 + v8)
+                    Dice::method19(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &20_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method20(v4, v1)
+                    Dice::method19(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method18(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method17(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 21936950640377856_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 21936950640377856_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &21_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method19(v4.clone(), v1 + v8)
+                    Dice::method18(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &21_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method19(v4, v1)
+                    Dice::method18(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method17(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method16(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 131621703842267136_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 131621703842267136_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &22_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method18(v4.clone(), v1 + v8)
+                    Dice::method17(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &22_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method18(v4, v1)
+                    Dice::method17(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method16(v0_1: LrcPtr<Dice::UH1>, v1: i64) -> Dice::US5 {
+    pub fn method15(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
         match v0_1.as_ref() {
             Dice::UH1::UH1_1 => Dice::US5::US5_0,
             Dice::UH1::UH1_0(v0_1_0_0, v0_1_0_1) => {
-                let v4: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
-                let v3: u8 = v0_1_0_0.clone();
-                if v3 > 1_u8 {
-                    let v8: i64 = (v3 - 1_u8) as i64 * 789730223053602816_i64;
+                let v4_1: LrcPtr<Dice::UH1> = v0_1_0_1.clone();
+                let v3_1: u8 = v0_1_0_0.clone();
+                if v3_1 > 1_u8 {
+                    let v8: i64 = (v3_1 - 1_u8) as i64 * 789730223053602816_i64;
                     let v9: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {} / value: {}",
                         &23_i8,
-                        &v1,
-                        &v3,
+                        &v1_1,
+                        &v3_1,
                         &v8
                     );
                     println!("{0}", v9,);
-                    Dice::method17(v4.clone(), v1 + v8)
+                    Dice::method16(v4_1.clone(), v1_1 + v8)
                 } else {
                     let v12: string = sprintf!(
                         "accumulate_dice_rolls / power: {} / acc: {} / roll: {}",
                         &23_i8,
-                        &v1,
-                        &v3
+                        &v1_1,
+                        &v3_1
                     );
                     println!("{0}", v12,);
-                    Dice::method17(v4, v1)
+                    Dice::method16(v4_1, v1_1)
                 }
             }
         }
     }
-    pub fn method15(v0_1: LrcPtr<Dice::UH1>, v1: i8) -> i64 {
+    pub fn method14(v0_1: LrcPtr<Dice::UH1>, v1_1: i8) -> i64 {
         let v0_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v0_1.clone());
-        let v1: MutCell<i8> = MutCell::new(v1);
-        '_method15: loop {
-            break '_method15 (if v1.get() < 24_i8 {
+        let v1_1: MutCell<i8> = MutCell::new(v1_1);
+        '_method14: loop {
+            break '_method14 (if v1_1.get() < 24_i8 {
                 let result: MutCell<Option<u8>> = MutCell::new(None::<u8>);
                 {
                     let x: u8 = 1;
@@ -1955,13 +1958,13 @@ pub mod Dice {
                 {
                     let v0_1_temp: LrcPtr<Dice::UH1> =
                         LrcPtr::new(Dice::UH1::UH1_0(getValue(result.get()), v0_1.get()));
-                    let v1_temp: i8 = v1.get() + 1_i8;
+                    let v1_1_temp: i8 = v1_1.get() + 1_i8;
                     v0_1.set(v0_1_temp);
-                    v1.set(v1_temp);
-                    continue '_method15;
+                    v1_1.set(v1_1_temp);
+                    continue '_method14;
                 }
             } else {
-                let v13: Dice::US5 = Dice::method16(v0_1.get(), 0_i64);
+                let v13: Dice::US5 = Dice::method15(v0_1.get(), 0_i64);
                 if let Dice::US5::US5_1(v13_1_0, v13_1_1) = &v13 {
                     let v14: i64 = match &v13 {
                         Dice::US5::US5_1(x, _) => x.clone(),
@@ -2238,13 +2241,13 @@ pub mod Dice {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   LrcPtr::new(Dice::UH1::UH1_0(v106,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                LrcPtr::new(Dice::UH1::UH1_0(getValue(result_23.get()),
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             LrcPtr::new(Dice::UH1::UH1_1)))))))))))))))))))))))))))))))))))))))))))))));
-                                                                                                                    let v1_temp:
+                                                                                                                    let v1_1_temp:
                                                                                                                                      i8 =
                                                                                                                                  23_i8;
                                                                                                                     v0_1.set(v0_1_temp);
-                                                                                                                    v1.set(v1_temp);
+                                                                                                                    v1_1.set(v1_1_temp);
                                                                                                                     continue
-                                                                                                                                 '_method15;
+                                                                                                                                 '_method14;
                                                                                                                 }
                                                                                                             }
                                                                                                         }
@@ -2533,13 +2536,13 @@ pub mod Dice {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               LrcPtr::new(Dice::UH1::UH1_0(v227,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            LrcPtr::new(Dice::UH1::UH1_0(getValue(result_46.get()),
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         LrcPtr::new(Dice::UH1::UH1_1)))))))))))))))))))))))))))))))))))))))))))))));
-                                                                                                                let v1_temp:
+                                                                                                                let v1_1_temp:
                                                                                                                                  i8 =
                                                                                                                              23_i8;
                                                                                                                 v0_1.set(v0_1_temp);
-                                                                                                                v1.set(v1_temp);
+                                                                                                                v1_1.set(v1_1_temp);
                                                                                                                 continue
-                                                                                                                             '_method15;
+                                                                                                                             '_method14;
                                                                                                             }
                                                                                                         }
                                                                                                     }
@@ -2568,29 +2571,71 @@ pub mod Dice {
         }
     }
     pub fn closure80(unitVar: (), v0_1: Array<string>) -> i32 {
-        let v1: string = sprintf!(
+        let v1_1: string = sprintf!(
             "calculate_dice_count / max: {} / n: {} / p: {}",
             &i64::MAX,
             &24_i8,
             &4738381338321616896_i64
         );
-        println!("{0}", v1,);
+        println!("{0}", v1_1,);
         {
             let v5: string = sprintf!(
                 "result: {}",
-                &Dice::method15(LrcPtr::new(Dice::UH1::UH1_1), 0_i8)
+                &Dice::method14(LrcPtr::new(Dice::UH1::UH1_1), 0_i8)
             );
             println!("{0}", v5,);
             0_i32
         }
     }
-    on_startup!(Dice::method0(),);
-    pub fn v0() -> Func1<Array<string>, i32> {
-        static v0: MutCell<Option<Func1<Array<string>, i32>>> = MutCell::new(None);
-        v0.get_or_init(|| Func1::new(move |v: Array<string>| Dice::closure80((), v)))
+    pub fn v0() -> Func1<i64, Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>>> {
+        static v0: MutCell<Option<Func1<i64, Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>>>>> =
+            MutCell::new(None);
+        v0.get_or_init(|| Func1::new(move |v: i64| Dice::closure0((), v)))
+    }
+    pub fn rotate_numbers(x: i64) -> Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>> {
+        (Dice::v0())(x)
+    }
+    pub fn v1() -> Func1<LrcPtr<Dice::UH1>, Func0<u8>> {
+        static v1: MutCell<Option<Func1<LrcPtr<Dice::UH1>, Func0<u8>>>> = MutCell::new(None);
+        v1.get_or_init(|| Func1::new(move |v: LrcPtr<Dice::UH1>| Dice::closure3((), v)))
+    }
+    pub fn create_sequential_roller(x: LrcPtr<Dice::UH1>) -> Func0<u8> {
+        (Dice::v1())(x)
+    }
+    pub fn v2() -> Func1<Option<Func1<string, ()>>, Func1<Func0<u8>, Func1<bool, Func1<u64, u64>>>>
+    {
+        static v2: MutCell<
+            Option<
+                Func1<Option<Func1<string, ()>>, Func1<Func0<u8>, Func1<bool, Func1<u64, u64>>>>,
+            >,
+        > = MutCell::new(None);
+        v2.get_or_init(|| Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure8((), v)))
+    }
+    pub fn roll_progressively(
+        x: Option<Func1<string, ()>>,
+    ) -> Func1<Func0<u8>, Func1<bool, Func1<u64, u64>>> {
+        (Dice::v2())(x)
+    }
+    pub fn v3(
+    ) -> Func1<Option<Func1<string, ()>>, Func1<u64, Func1<LrcPtr<Dice::UH1>, Option<u64>>>> {
+        static v3: MutCell<
+            Option<
+                Func1<Option<Func1<string, ()>>, Func1<u64, Func1<LrcPtr<Dice::UH1>, Option<u64>>>>,
+            >,
+        > = MutCell::new(None);
+        v3.get_or_init(|| Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure77((), v)))
+    }
+    pub fn roll_within_bounds(
+        x: Option<Func1<string, ()>>,
+    ) -> Func1<u64, Func1<LrcPtr<Dice::UH1>, Option<u64>>> {
+        (Dice::v3())(x)
+    }
+    pub fn v4() -> Func1<Array<string>, i32> {
+        static v4: MutCell<Option<Func1<Array<string>, i32>>> = MutCell::new(None);
+        v4.get_or_init(|| Func1::new(move |v: Array<string>| Dice::closure80((), v)))
     }
     pub fn main(args: Array<string>) -> i32 {
-        (Dice::v0())(args)
+        (Dice::v4())(args)
     }
 }
 #[path = "../../lib/fsharp/CommonWasm.rs"]

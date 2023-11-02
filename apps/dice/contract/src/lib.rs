@@ -2,6 +2,47 @@ use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::store::vec::Vector;
 use near_sdk::{env, log, near_bindgen, PanicOnDefault};
 
+pub struct Util {}
+
+impl Util {
+    fn stream_u8_to_u64(
+        s: fable_library_rust::Native_::LrcPtr<dice::Dice::UH0>,
+    ) -> dice::Dice::UH1 {
+        match s.as_ref() {
+            dice::Dice::UH0::UH0_0(n, f) => {
+                dice::Dice::UH1::UH1_0(*n, Self::stream_u8_to_u64(f()).into())
+            }
+            dice::Dice::UH0::UH0_1 => dice::Dice::UH1::UH1_1,
+        }
+    }
+
+    fn stream_u8_to_vec(s: dice::Dice::UH1) -> Vec<u8> {
+        match s {
+            dice::Dice::UH1::UH1_0(n, f) => {
+                let mut v = Self::stream_u8_to_vec(f.as_ref().clone());
+                v.push(n);
+                v
+            }
+            dice::Dice::UH1::UH1_1 => Vec::new(),
+        }
+    }
+
+    fn vec_u8_to_list(v: Vec<u8>) -> dice::Dice::UH1 {
+        v.iter().rev().fold(dice::Dice::UH1::UH1_1, |acc, x| {
+            dice::Dice::UH1::UH1_0(*x, acc.into())
+        })
+    }
+
+    fn vec_u8_to_stream(v: Vec<u8>) -> dice::Dice::UH0 {
+        v.iter().rev().fold(dice::Dice::UH0::UH0_1, |acc, x| {
+            dice::Dice::UH0::UH0_0(
+                *x,
+                fable_library_rust::Native_::Func0::new(move || acc.clone().into()),
+            )
+        })
+    }
+}
+
 #[near_bindgen]
 #[derive(PanicOnDefault, BorshDeserialize, BorshSerialize)]
 pub struct State {
@@ -59,70 +100,43 @@ impl State {
         fable_library_rust::Native_::Func1::new(closure)
     }
 
-    pub fn generate_random_number(&mut self, id: String, max: u64) -> u64 {
+    pub fn generate_random_number(&mut self, proof: String, max: u64) -> u64 {
         let seed = env::random_seed();
-        let seed_log = seed.clone();
-        self.contribute_seed(seed);
-
         let block_timestamp = env::block_timestamp();
         let signer_account_id = env::signer_account_id();
         let account_balance = env::account_balance();
         let block_height = env::block_height();
         let epoch_height = env::epoch_height();
 
-        let mut entropy: Vec<u8> = Vec::new();
-        entropy.extend(&self.seeds);
-        entropy.extend(block_timestamp.to_le_bytes());
-        entropy.extend(signer_account_id.as_bytes());
-        entropy.extend(account_balance.to_le_bytes());
-        entropy.extend(block_height.to_le_bytes());
-        entropy.extend(epoch_height.to_le_bytes());
+        let entropy: Vec<u8> = vec![
+            seed.clone(),
+            self.seeds.iter().map(|x| *x).collect::<Vec<u8>>(),
+            proof.clone().into_bytes(),
+            block_timestamp.to_le_bytes().to_vec(),
+            signer_account_id.as_bytes().to_vec(),
+            account_balance.to_le_bytes().to_vec(),
+            block_height.to_le_bytes().to_vec(),
+            epoch_height.to_le_bytes().to_vec(),
+        ]
+        .concat();
 
         let hash_u8 = env::keccak512(&entropy);
+        self.contribute_seed(hash_u8.clone());
 
-        let hash_stream = hash_u8.iter().fold(dice::Dice::UH0::UH0_1, |acc, x| {
-            dice::Dice::UH0::UH0_0(
-                *x,
-                fable_library_rust::Native_::Func0::new(move || acc.clone().into()),
-            )
-        });
+        let hash_stream = Util::vec_u8_to_stream(hash_u8.clone());
+        let rolls_stream =
+            Util::stream_u8_to_u64(dice::Dice::rotate_numbers(6)(hash_stream.into()));
 
-        let rolls = dice::Dice::closure0((), 6)(hash_stream.into());
-
-        fn stream_u8_to_u64(
-            s: fable_library_rust::Native_::LrcPtr<dice::Dice::UH0>,
-        ) -> dice::Dice::UH1 {
-            match s.as_ref() {
-                dice::Dice::UH0::UH0_0(n, f) => {
-                    dice::Dice::UH1::UH1_0(*n, stream_u8_to_u64(f()).into())
-                }
-                dice::Dice::UH0::UH0_1 => dice::Dice::UH1::UH1_1,
-            }
+        {
+            let rolls_stream_log = Util::stream_u8_to_vec(rolls_stream.clone());
+            let signer_account_id_log = signer_account_id.as_str();
+            log!(format!("generate_random_number / proof: {proof:?} / max: {max:#?} / seed: {seed:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
         }
 
-        fn stream_u64_to_vec(
-            s: dice::Dice::UH1,
-        ) -> Vec<u8> {
-            match s {
-                dice::Dice::UH1::UH1_0(n, f) => {
-                    let mut v = stream_u64_to_vec(f.as_ref().clone());
-                    v.push(n);
-                    v
-                }
-                dice::Dice::UH1::UH1_1 => Vec::new(),
-            }
-        }
-
-        let rolls_stream: dice::Dice::UH1 = stream_u8_to_u64(rolls);
-
-        let signer_account_id_log = signer_account_id.as_str();
-        let rolls_stream_log = stream_u64_to_vec(rolls_stream.clone());
-
-        log!(format!("generate_random_number / id: {id:?} / max: {max:#?} / seed: {seed_log:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
-
-        let sequential_roll = dice::Dice::closure3((), rolls_stream.into());
+        let sequential_roll = dice::Dice::create_sequential_roller(rolls_stream.into());
         let logger = Self::get_logger();
-        let result = dice::Dice::closure8((), Some(logger.clone()))(sequential_roll)(false)(max);
+        let result =
+            dice::Dice::roll_progressively(Some(logger.clone()))(sequential_roll)(false)(max);
         logger("".into());
         result as u64
     }
@@ -131,14 +145,9 @@ impl State {
         log!(format!(
             "roll_within_bounds / max: {max:#?} / rolls: {rolls:?}"
         ));
-        let rolls = rolls
-            .into_iter()
-            .rev()
-            .fold(dice::Dice::UH1::UH1_1, |acc, x| {
-                dice::Dice::UH1::UH1_0(x, acc.into())
-            });
+        let rolls = Util::vec_u8_to_list(rolls);
         let logger = Self::get_logger();
-        let result = dice::Dice::closure77((), Some(logger.clone()))(max)(rolls.into());
+        let result = dice::Dice::roll_within_bounds(Some(logger.clone()))(max)(rolls.into());
         logger("".into());
         result
     }

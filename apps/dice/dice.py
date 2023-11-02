@@ -191,22 +191,22 @@ def closure2(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
 
 
-def method1(v0_1: int64, v1: UH0, v2: UH0) -> UH0:
-    if v1.tag == 1:
-        return v2
+def method0(v0_1: int64, v1_1: UH0, v2_1: UH0) -> UH0:
+    if v1_1.tag == 1:
+        return v2_1
 
     else: 
-        v6: UH0 = method1(v0_1, v1.fields[1](), v2)
-        v11: int64 = op_addition(op_modulus(op_addition(op_subtraction(from_integer(v1.fields[0], False, 4), int64(1)), v0_1), v0_1), int64(1))
-        def v13(__unit: None=None, v0_1: int64=v0_1, v1: UH0=v1, v2: UH0=v2) -> UH0:
+        v6: UH0 = method0(v0_1, v1_1.fields[1](), v2_1)
+        v11: int64 = op_addition(op_modulus(op_addition(op_subtraction(from_integer(v1_1.fields[0], False, 4), int64(1)), v0_1), v0_1), int64(1))
+        def v13(__unit: None=None, v0_1: int64=v0_1, v1_1: UH0=v1_1, v2_1: UH0=v2_1) -> UH0:
             return closure2(v6, None)
 
         return UH0(0, int(to_int(v11)+0x100 if to_int(v11) < 0 else to_int(v11)) & 0xFF, v13)
 
 
 
-def closure1(v0_1: int64, v1: UH0) -> UH0:
-    return method1(v0_1, v1, UH0(1))
+def closure1(v0_1: int64, v1_1: UH0) -> UH0:
+    return method0(v0_1, v1_1, UH0(1))
 
 
 def closure0(unit_var: None, v0_1: int64) -> Callable[[UH0], UH0]:
@@ -216,26 +216,26 @@ def closure0(unit_var: None, v0_1: int64) -> Callable[[UH0], UH0]:
     return _arrow13
 
 
-def method2(v0_1_mut: UH1, v1_mut: UH1) -> UH1:
+def method1(v0_1_mut: UH1, v1_1_mut: UH1) -> UH1:
     while True:
-        (v0_1, v1) = (v0_1_mut, v1_mut)
+        (v0_1, v1_1) = (v0_1_mut, v1_1_mut)
         if v0_1.tag == 1:
-            return v1
+            return v1_1
 
         else: 
             v0_1_mut = v0_1.fields[1]
-            v1_mut = UH1(0, v0_1.fields[0], v1)
+            v1_1_mut = UH1(0, v0_1.fields[0], v1_1)
             continue
 
         break
 
 
-def method3(v0_1: UH1, v1: UH1) -> UH1:
+def method2(v0_1: UH1, v1_1: UH1) -> UH1:
     if v0_1.tag == 1:
-        return v1
+        return v1_1
 
     else: 
-        return UH1(0, v0_1.fields[0], method3(v0_1.fields[1], v1))
+        return UH1(0, v0_1.fields[0], method2(v0_1.fields[1], v1_1))
 
 
 
@@ -243,14 +243,14 @@ def closure4(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
 
 
-def method4(v0_1: UH1, v1: UH0) -> UH0:
+def method3(v0_1: UH1, v1_1: UH0) -> UH0:
     if v0_1.tag == 1:
-        return v1
+        return v1_1
 
     else: 
-        v4: UH0 = method4(v0_1.fields[1], v1)
-        def v5(__unit: None=None, v0_1: UH1=v0_1, v1: UH0=v1) -> UH0:
-            return closure4(v4, None)
+        v4_1: UH0 = method3(v0_1.fields[1], v1_1)
+        def v5(__unit: None=None, v0_1: UH1=v0_1, v1_1: UH0=v1_1) -> UH0:
+            return closure4(v4_1, None)
 
         return UH0(0, v0_1.fields[0], v5)
 
@@ -260,82 +260,82 @@ def closure5(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
 
 
-def closure6(v0_1: UH0, v1: Mut0, unit_var: None) -> UH0:
-    v2: US0 = v1.l0
-    if v2.tag == 1:
-        v5: UH0 = v2.fields[0]()
-        v12: UH0 = UH0(1) if (v5.tag == 1) else UH0(0, v5.fields[0], method5(v0_1, v5.fields[1]))
-        v1.l0 = US0(0, v12)
+def closure6(v0_1: UH0, v1_1: Mut0, unit_var: None) -> UH0:
+    v2_1: US0 = v1_1.l0
+    if v2_1.tag == 1:
+        v5: UH0 = v2_1.fields[0]()
+        v12: UH0 = UH0(1) if (v5.tag == 1) else UH0(0, v5.fields[0], method4(v0_1, v5.fields[1]))
+        v1_1.l0 = US0(0, v12)
         return v12
 
     else: 
-        return v2.fields[0]
+        return v2_1.fields[0]
 
 
 
-def method5(v0_1: UH0, v1: Callable[[], UH0]) -> Callable[[], UH0]:
-    v3: Mut0 = Mut0(US0(1, v1))
-    def _arrow14(__unit: None=None, v0_1: UH0=v0_1, v1: Any=v1) -> UH0:
-        return closure6(v0_1, v3, None)
+def method4(v0_1: UH0, v1_1: Callable[[], UH0]) -> Callable[[], UH0]:
+    v3_1: Mut0 = Mut0(US0(1, v1_1))
+    def _arrow14(__unit: None=None, v0_1: UH0=v0_1, v1_1: Any=v1_1) -> UH0:
+        return closure6(v0_1, v3_1, None)
 
     return _arrow14
 
 
-def method7(v0_1_mut: int64, v1_mut: UH0) -> US1:
+def method6(v0_1_mut: int64, v1_1_mut: UH0) -> US1:
     while True:
-        (v0_1, v1) = (v0_1_mut, v1_mut)
-        if v1.tag == 1:
+        (v0_1, v1_1) = (v0_1_mut, v1_1_mut)
+        if v1_1.tag == 1:
             return US1(0)
 
         elif v0_1 <= int64(0):
-            return US1(1, v1.fields[0])
+            return US1(1, v1_1.fields[0])
 
         else: 
             v0_1_mut = op_subtraction(v0_1, int64(1))
-            v1_mut = v1.fields[1]()
+            v1_1_mut = v1_1.fields[1]()
             continue
 
         break
 
 
-def method6(v0_1_mut: Callable[[], UH0], v1_mut: Mut1, v2_mut: Mut1, v3_mut: Mut1) -> uint8:
+def method5(v0_1_mut: Callable[[], UH0], v1_1_mut: Mut1, v2_1_mut: Mut1, v3_1_mut: Mut1) -> uint8:
     while True:
-        (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
-        v4: UH0 = v0_1()
-        v6: US1 = method7(v1.l0, v4)
+        (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
+        v4_1: UH0 = v0_1()
+        v6: US1 = method6(v1_1.l0, v4_1)
         if v6.tag == 1:
-            v9: int64 = op_addition(v1.l0, int64(1))
-            v1.l0 = v9
+            v9: int64 = op_addition(v1_1.l0, int64(1))
+            v1_1.l0 = v9
             return v6.fields[0]
 
         else: 
-            if v3.l0 == int64(-1):
-                v12: int64 = v1.l0
-                v3.l0 = v12
+            if v3_1.l0 == int64(-1):
+                v12: int64 = v1_1.l0
+                v3_1.l0 = v12
 
-            v18: int64 = int64(1) if (v2.l0 >= v3.l0) else op_addition(v2.l0, int64(1))
-            v2.l0 = v18
-            v20: int64 = op_subtraction(v2.l0, int64(1))
-            v1.l0 = v20
+            v18: int64 = int64(1) if (v2_1.l0 >= v3_1.l0) else op_addition(v2_1.l0, int64(1))
+            v2_1.l0 = v18
+            v20: int64 = op_subtraction(v2_1.l0, int64(1))
+            v1_1.l0 = v20
             v0_1_mut = v0_1
-            v1_mut = v1
-            v2_mut = v2
-            v3_mut = v3
+            v1_1_mut = v1_1
+            v2_1_mut = v2_1
+            v3_1_mut = v3_1
             continue
 
         break
 
 
-def closure7(v0_1: Callable[[], UH0], v1: Mut1, v2: Mut1, v3: Mut1, unit_var: None) -> uint8:
-    return method6(v0_1, v1, v2, v3)
+def closure7(v0_1: Callable[[], UH0], v1_1: Mut1, v2_1: Mut1, v3_1: Mut1, unit_var: None) -> uint8:
+    return method5(v0_1, v1_1, v2_1, v3_1)
 
 
 def closure3(unit_var: None, v0_1: UH1) -> Callable[[], uint8]:
-    v5: UH0 = method4(method3(v0_1, method2(v0_1, UH1(1))), UH0(1))
+    v5: UH0 = method3(method2(v0_1, method1(v0_1, UH1(1))), UH0(1))
     def v6(__unit: None=None, unit_var: None=unit_var, v0_1: UH1=v0_1) -> UH0:
         return closure5(v5, None)
 
-    v7: Callable[[], UH0] = method5(v5, v6)
+    v7: Callable[[], UH0] = method4(v5, v6)
     v8: Mut1 = Mut1(int64(0))
     v9: Mut1 = Mut1(int64(1))
     v10: Mut1 = Mut1(int64(-1))
@@ -349,30 +349,30 @@ def closure9(unit_var: None, v0_1: Callable[[str], None]) -> US2:
     return US2(1, v0_1)
 
 
-def method8(v0_1_mut: US2, v1_mut: uint64, v2_mut: int8, v3_mut: uint64) -> int8:
+def method7(v0_1_mut: US2, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64) -> int8:
     while True:
-        (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
-        if v3 < v1:
-            v5: uint64 = op_multiply(v3, uint64(6))
-            if v5 > v3:
+        (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
+        if v3_1 < v1_1:
+            v5: uint64 = op_multiply(v3_1, uint64(6))
+            if v5 > v3_1:
                 v0_1_mut = v0_1
-                v1_mut = v1
-                v2_mut = v2 + int8(1)
-                v3_mut = v5
+                v1_1_mut = v1_1
+                v2_1_mut = v2_1 + int8(1)
+                v3_1_mut = v5
                 continue
 
             else: 
                 if v0_1.tag == 1:
-                    v0_1.fields[0](((((("calculate_dice_count / max: " + str(v1)) + " / n: ") + str(v2)) + " / p: ") + str(v3)) + "")
+                    v0_1.fields[0](((((("calculate_dice_count / max: " + str(v1_1)) + " / n: ") + str(v2_1)) + " / p: ") + str(v3_1)) + "")
 
-                return v2
+                return v2_1
 
 
         else: 
             if v0_1.tag == 1:
-                v0_1.fields[0](((((("calculate_dice_count / max: " + str(v1)) + " / n: ") + str(v2)) + " / p: ") + str(v3)) + "")
+                v0_1.fields[0](((((("calculate_dice_count / max: " + str(v1_1)) + " / n: ") + str(v2_1)) + " / p: ") + str(v3_1)) + "")
 
-            return v2
+            return v2_1
 
         break
 
@@ -825,43 +825,43 @@ def closure13(unit_var: None, unit_var_1: None) -> UH2:
     return UH2(0, uint64(6), v0_1)
 
 
-def method11(v0_1_mut: int8, v1_mut: UH2) -> US4:
+def method10(v0_1_mut: int8, v1_1_mut: UH2) -> US4:
     while True:
-        (v0_1, v1) = (v0_1_mut, v1_mut)
-        if v1.tag == 1:
+        (v0_1, v1_1) = (v0_1_mut, v1_1_mut)
+        if v1_1.tag == 1:
             return US4(0)
 
         elif v0_1 <= int8(0):
-            return US4(1, v1.fields[0])
+            return US4(1, v1_1.fields[0])
 
         else: 
             v0_1_mut = v0_1 - int8(1)
-            v1_mut = v1.fields[1]()
+            v1_1_mut = v1_1.fields[1]()
             continue
 
         break
 
 
-def method10(v0_1_mut: US2, v1_mut: int8, v2_mut: UH1, v3_mut: uint64) -> US3:
+def method9(v0_1_mut: US2, v1_1_mut: int8, v2_1_mut: UH1, v3_1_mut: uint64) -> US3:
     while True:
-        (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
-        if v1 < int8(0):
+        (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
+        if v1_1 < int8(0):
             if v0_1.tag == 1:
-                v0_1.fields[0](((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + "")
+                v0_1.fields[0](((("accumulate_dice_rolls / power: " + str(v1_1)) + " / acc: ") + str(v3_1)) + "")
 
-            return US3(1, op_addition(v3, uint64(1)), v2)
+            return US3(1, op_addition(v3_1, uint64(1)), v2_1)
 
-        elif v2.tag == 1:
+        elif v2_1.tag == 1:
             return US3(0)
 
         else: 
-            v11: UH1 = v2.fields[1]
-            v10: uint8 = v2.fields[0]
+            v11: UH1 = v2_1.fields[1]
+            v10: uint8 = v2_1.fields[0]
             if v10 > uint8(1):
-                def v14(__unit: None=None, v0_1: US2=v0_1, v1: int8=v1, v2: UH1=v2, v3: uint64=v3) -> UH2:
+                def v14(__unit: None=None, v0_1: US2=v0_1, v1_1: int8=v1_1, v2_1: UH1=v2_1, v3_1: uint64=v3_1) -> UH2:
                     return closure13(None, None)
 
-                v16: US4 = method11(v1, UH2(0, uint64(1), v14))
+                v16: US4 = method10(v1_1, UH2(0, uint64(1), v14))
                 v20: uint64
                 if v16.tag == 1:
                     v20 = v16.fields[0]
@@ -871,124 +871,124 @@ def method10(v0_1_mut: US2, v1_mut: int8, v2_mut: UH1, v3_mut: uint64) -> US3:
 
                 v23: uint64 = op_multiply(from_integer(v10 - uint8(1), True, 4), v20)
                 if v0_1.tag == 1:
-                    v0_1.fields[0](((((((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + " / roll: ") + str(v10)) + " / value: ") + str(v23)) + "")
+                    v0_1.fields[0](((((((("accumulate_dice_rolls / power: " + str(v1_1)) + " / acc: ") + str(v3_1)) + " / roll: ") + str(v10)) + " / value: ") + str(v23)) + "")
 
                 v0_1_mut = v0_1
-                v1_mut = v1 - int8(1)
-                v2_mut = v11
-                v3_mut = op_addition(v3, v23)
+                v1_1_mut = v1_1 - int8(1)
+                v2_1_mut = v11
+                v3_1_mut = op_addition(v3_1, v23)
                 continue
 
             else: 
                 if v0_1.tag == 1:
-                    v0_1.fields[0](((((("accumulate_dice_rolls / power: " + str(v1)) + " / acc: ") + str(v3)) + " / roll: ") + str(v10)) + "")
+                    v0_1.fields[0](((((("accumulate_dice_rolls / power: " + str(v1_1)) + " / acc: ") + str(v3_1)) + " / roll: ") + str(v10)) + "")
 
                 v0_1_mut = v0_1
-                v1_mut = v1 - int8(1)
-                v2_mut = v11
-                v3_mut = v3
+                v1_1_mut = v1_1 - int8(1)
+                v2_1_mut = v11
+                v3_1_mut = v3_1
                 continue
 
 
         break
 
 
-def method12(v0_1: int8, v1: Callable[[], uint8], v2: int8) -> UH1:
-    if v2 < v0_1:
-        return UH1(0, v1(), method12(v0_1, v1, v2 + int8(1)))
+def method11(v0_1: int8, v1_1: Callable[[], uint8], v2_1: int8) -> UH1:
+    if v2_1 < v0_1:
+        return UH1(0, v1_1(), method11(v0_1, v1_1, v2_1 + int8(1)))
 
     else: 
         return UH1(1)
 
 
 
-def method13(v0_1_mut: US2, v1_mut: Callable[[], uint8], v2_mut: bool, v3_mut: uint64, v4_mut: int8, v5_mut: UH1) -> uint64:
+def method12(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1) -> uint64:
     while True:
-        (v0_1, v1, v2, v3, v4, v5) = (v0_1_mut, v1_mut, v2_mut, v3_mut, v4_mut, v5_mut)
-        v6: int8 = (v4 + int8(1)) or 0
-        if v4 < v6:
-            return method9(v0_1, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
+        (v0_1, v1_1, v2_1, v3_1, v4_1, v5) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut, v5_mut)
+        v6: int8 = (v4_1 + int8(1)) or 0
+        if v4_1 < v6:
+            return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(), v5), v6)
 
         else: 
-            v12: US3 = method10(v0_1, v4, v5, uint64(0))
+            v12: US3 = method9(v0_1, v4_1, v5, uint64(0))
             if v12.tag == 1:
                 v13: uint64 = v12.fields[0]
-                if v13 <= v3:
+                if v13 <= v3_1:
                     return v13
 
-                elif v2:
+                elif v2_1:
                     v0_1_mut = v0_1
-                    v1_mut = v1
-                    v2_mut = v2
-                    v3_mut = v3
-                    v4_mut = v4
-                    v5_mut = method12(v4, v1, int8(0))
+                    v1_1_mut = v1_1
+                    v2_1_mut = v2_1
+                    v3_1_mut = v3_1
+                    v4_1_mut = v4_1
+                    v5_mut = method11(v4_1, v1_1, int8(0))
                     continue
 
                 else: 
-                    return method9(v0_1, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
+                    return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(), v5), v6)
 
 
-            elif v2:
+            elif v2_1:
                 v0_1_mut = v0_1
-                v1_mut = v1
-                v2_mut = v2
-                v3_mut = v3
-                v4_mut = v4
-                v5_mut = method12(v4, v1, int8(0))
+                v1_1_mut = v1_1
+                v2_1_mut = v2_1
+                v3_1_mut = v3_1
+                v4_1_mut = v4_1
+                v5_mut = method11(v4_1, v1_1, int8(0))
                 continue
 
             else: 
-                return method9(v0_1, v1, v2, v3, v4, UH1(0, v1(), v5), v6)
+                return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(), v5), v6)
 
 
         break
 
 
-def method9(v0_1_mut: US2, v1_mut: Callable[[], uint8], v2_mut: bool, v3_mut: uint64, v4_mut: int8, v5_mut: UH1, v6_mut: int8) -> uint64:
+def method8(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1, v6_mut: int8) -> uint64:
     while True:
-        (v0_1, v1, v2, v3, v4, v5, v6) = (v0_1_mut, v1_mut, v2_mut, v3_mut, v4_mut, v5_mut, v6_mut)
-        if v6 < (v4 + int8(1)):
+        (v0_1, v1_1, v2_1, v3_1, v4_1, v5, v6) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut, v5_mut, v6_mut)
+        if v6 < (v4_1 + int8(1)):
             v0_1_mut = v0_1
-            v1_mut = v1
-            v2_mut = v2
-            v3_mut = v3
-            v4_mut = v4
-            v5_mut = UH1(0, v1(), v5)
+            v1_1_mut = v1_1
+            v2_1_mut = v2_1
+            v3_1_mut = v3_1
+            v4_1_mut = v4_1
+            v5_mut = UH1(0, v1_1(), v5)
             v6_mut = v6 + int8(1)
             continue
 
         else: 
-            v14: US3 = method10(v0_1, v4, v5, uint64(0))
+            v14: US3 = method9(v0_1, v4_1, v5, uint64(0))
             if v14.tag == 1:
                 v15: uint64 = v14.fields[0]
-                if v15 <= v3:
+                if v15 <= v3_1:
                     return v15
 
-                elif v2:
-                    return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, int8(0)))
+                elif v2_1:
+                    return method12(v0_1, v1_1, v2_1, v3_1, v4_1, method11(v4_1, v1_1, int8(0)))
 
                 else: 
                     v0_1_mut = v0_1
-                    v1_mut = v1
-                    v2_mut = v2
-                    v3_mut = v3
-                    v4_mut = v4
-                    v5_mut = UH1(0, v1(), v5)
+                    v1_1_mut = v1_1
+                    v2_1_mut = v2_1
+                    v3_1_mut = v3_1
+                    v4_1_mut = v4_1
+                    v5_mut = UH1(0, v1_1(), v5)
                     v6_mut = v6 + int8(1)
                     continue
 
 
-            elif v2:
-                return method13(v0_1, v1, v2, v3, v4, method12(v4, v1, int8(0)))
+            elif v2_1:
+                return method12(v0_1, v1_1, v2_1, v3_1, v4_1, method11(v4_1, v1_1, int8(0)))
 
             else: 
                 v0_1_mut = v0_1
-                v1_mut = v1
-                v2_mut = v2
-                v3_mut = v3
-                v4_mut = v4
-                v5_mut = UH1(0, v1(), v5)
+                v1_1_mut = v1_1
+                v2_1_mut = v2_1
+                v3_1_mut = v3_1
+                v4_1_mut = v4_1
+                v5_mut = UH1(0, v1_1(), v5)
                 v6_mut = v6 + int8(1)
                 continue
 
@@ -996,58 +996,58 @@ def method9(v0_1_mut: US2, v1_mut: Callable[[], uint8], v2_mut: bool, v3_mut: ui
         break
 
 
-def closure12(v0_1: US2, v1: Callable[[], uint8], v2: bool, v3: uint64) -> uint64:
-    return method9(v0_1, v1, v2, v3, (int8(1) if (v3 == uint64(1)) else method8(v0_1, v3, int8(0), uint64(1))) - int8(1), UH1(1), int8(0))
+def closure12(v0_1: US2, v1_1: Callable[[], uint8], v2_1: bool, v3_1: uint64) -> uint64:
+    return method8(v0_1, v1_1, v2_1, v3_1, (int8(1) if (v3_1 == uint64(1)) else method7(v0_1, v3_1, int8(0), uint64(1))) - int8(1), UH1(1), int8(0))
 
 
-def closure11(v0_1: US2, v1: Callable[[], uint8], v2: bool) -> Callable[[uint64], uint64]:
-    def _arrow16(v: uint64, v0_1: US2=v0_1, v1: Any=v1, v2: bool=v2) -> uint64:
-        return closure12(v0_1, v1, v2, v)
+def closure11(v0_1: US2, v1_1: Callable[[], uint8], v2_1: bool) -> Callable[[uint64], uint64]:
+    def _arrow16(v: uint64, v0_1: US2=v0_1, v1_1: Any=v1_1, v2_1: bool=v2_1) -> uint64:
+        return closure12(v0_1, v1_1, v2_1, v)
 
     return _arrow16
 
 
-def closure10(v0_1: US2, v1: Callable[[], uint8]) -> Callable[[bool, uint64], uint64]:
-    def _arrow17(v: bool, v0_1: US2=v0_1, v1: Any=v1) -> Callable[[uint64], uint64]:
-        return closure11(v0_1, v1, v)
+def closure10(v0_1: US2, v1_1: Callable[[], uint8]) -> Callable[[bool, uint64], uint64]:
+    def _arrow17(v: bool, v0_1: US2=v0_1, v1_1: Any=v1_1) -> Callable[[uint64], uint64]:
+        return closure11(v0_1, v1_1, v)
 
     return _arrow17
 
 
 def closure8(unit_var: None, v0_1: Optional[Callable[[str], None]]=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
-    def v1(v: Callable[[str], None], unit_var: None=unit_var, v0_1: Any=v0_1) -> US2:
+    def v1_1(v: Callable[[str], None], unit_var: None=unit_var, v0_1: Any=v0_1) -> US2:
         return closure9(None, v)
 
-    v3: US2 = default_arg(map(v1, v0_1), US2(0))
+    v3_1: US2 = default_arg(map(v1_1, v0_1), US2(0))
     def _arrow18(v_1: Callable[[], uint8], unit_var: None=unit_var, v0_1: Any=v0_1) -> Callable[[bool, uint64], uint64]:
-        return closure10(v3, v_1)
+        return closure10(v3_1, v_1)
 
     return _arrow18
 
 
-def method14(v0_1_mut: UH1, v1_mut: int8) -> int8:
+def method13(v0_1_mut: UH1, v1_1_mut: int8) -> int8:
     while True:
-        (v0_1, v1) = (v0_1_mut, v1_mut)
+        (v0_1, v1_1) = (v0_1_mut, v1_1_mut)
         if v0_1.tag == 1:
-            return v1
+            return v1_1
 
         else: 
             v0_1_mut = v0_1.fields[1]
-            v1_mut = v1 + int8(1)
+            v1_1_mut = v1_1 + int8(1)
             continue
 
         break
 
 
-def closure79(v0_1: Optional[Callable[[str], None]], v1: uint64, v2: UH1) -> Optional[uint64]:
-    def v3(v: Callable[[str], None], v0_1: Any=v0_1, v1: uint64=v1, v2: UH1=v2) -> US2:
+def closure79(v0_1: Optional[Callable[[str], None]], v1_1: uint64, v2_1: UH1) -> Optional[uint64]:
+    def v3_1(v: Callable[[str], None], v0_1: Any=v0_1, v1_1: uint64=v1_1, v2_1: UH1=v2_1) -> US2:
         return closure9(None, v)
 
-    v10: US3 = method10(default_arg(map(v3, v0_1), US2(0)), method14(v2, int8(0)) - int8(1), v2, uint64(0))
+    v10: US3 = method9(default_arg(map(v3_1, v0_1), US2(0)), method13(v2_1, int8(0)) - int8(1), v2_1, uint64(0))
     v20: US4
     if v10.tag == 1:
         v11: uint64 = v10.fields[0]
-        v20 = US4(1, v11) if ((v11 <= v1) if (v11 >= uint64(1)) else False) else US4(0)
+        v20 = US4(1, v11) if ((v11 <= v1_1) if (v11 >= uint64(1)) else False) else US4(0)
 
     else: 
         v20 = US4(0)
@@ -1060,9 +1060,9 @@ def closure79(v0_1: Optional[Callable[[str], None]], v1: uint64, v2: UH1) -> Opt
 
 
 
-def closure78(v0_1: Optional[Callable[[str], None]], v1: uint64) -> Callable[[UH1], Optional[uint64]]:
-    def _arrow19(v: UH1, v0_1: Any=v0_1, v1: uint64=v1) -> Optional[uint64]:
-        return closure79(v0_1, v1, v)
+def closure78(v0_1: Optional[Callable[[str], None]], v1_1: uint64) -> Callable[[UH1], Optional[uint64]]:
+    def _arrow19(v: UH1, v0_1: Any=v0_1, v1_1: uint64=v1_1) -> Optional[uint64]:
+        return closure79(v0_1, v1_1, v)
 
     return _arrow19
 
@@ -1074,486 +1074,482 @@ def closure77(unit_var: None, v0_1: Optional[Callable[[str], None]]=None) -> Cal
     return _arrow20
 
 
-def method0(__unit: None=None) -> None:
-    pass
+def method39(v0_1: UH1, v1_1: int64) -> US5:
+    print(((("accumulate_dice_rolls / power: " + str(int8(-1))) + " / acc: ") + str(v1_1)) + "")
+    return US5(1, op_addition(v1_1, int64(1)), v0_1)
 
 
-def method40(v0_1: UH1, v1: int64) -> US5:
-    print(((("accumulate_dice_rolls / power: " + str(int8(-1))) + " / acc: ") + str(v1)) + "")
-    return US5(1, op_addition(v1, int64(1)), v0_1)
-
-
-def method39(v0_1: UH1, v1: int64) -> US5:
+def method38(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v7: int64 = from_integer(v3 - uint8(1), False, 4)
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(0))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v7)) + "")
-            return method40(v4, op_addition(v1, v7))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v7: int64 = from_integer(v3_1 - uint8(1), False, 4)
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(0))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v7)) + "")
+            return method39(v4_1, op_addition(v1_1, v7))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(0))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method40(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(0))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method39(v4_1, v1_1)
 
 
 
 
-def method38(v0_1: UH1, v1: int64) -> US5:
+def method37(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(6))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(1))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method39(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(6))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(1))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method38(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(1))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method39(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(1))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method38(v4_1, v1_1)
 
 
 
 
-def method37(v0_1: UH1, v1: int64) -> US5:
+def method36(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(36))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(2))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method38(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(36))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(2))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method37(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(2))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method38(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(2))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method37(v4_1, v1_1)
 
 
 
 
-def method36(v0_1: UH1, v1: int64) -> US5:
+def method35(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(216))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(3))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method37(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(216))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(3))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method36(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(3))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method37(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(3))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method36(v4_1, v1_1)
 
 
 
 
-def method35(v0_1: UH1, v1: int64) -> US5:
+def method34(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(1296))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(4))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method36(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(1296))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(4))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method35(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(4))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method36(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(4))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method35(v4_1, v1_1)
 
 
 
 
-def method34(v0_1: UH1, v1: int64) -> US5:
+def method33(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(7776))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(5))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method35(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(7776))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(5))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method34(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(5))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method35(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(5))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method34(v4_1, v1_1)
 
 
 
 
-def method33(v0_1: UH1, v1: int64) -> US5:
+def method32(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(46656))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(6))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method34(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(46656))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(6))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method33(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(6))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method34(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(6))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method33(v4_1, v1_1)
 
 
 
 
-def method32(v0_1: UH1, v1: int64) -> US5:
+def method31(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(279936))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(7))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method33(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(279936))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(7))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method32(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(7))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method33(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(7))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method32(v4_1, v1_1)
 
 
 
 
-def method31(v0_1: UH1, v1: int64) -> US5:
+def method30(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(1679616))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(8))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method32(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(1679616))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(8))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method31(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(8))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method32(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(8))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method31(v4_1, v1_1)
 
 
 
 
-def method30(v0_1: UH1, v1: int64) -> US5:
+def method29(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(10077696))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(9))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method31(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(10077696))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(9))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method30(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(9))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method31(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(9))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method30(v4_1, v1_1)
 
 
 
 
-def method29(v0_1: UH1, v1: int64) -> US5:
+def method28(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(60466176))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(10))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method30(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(60466176))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(10))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method29(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(10))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method30(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(10))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method29(v4_1, v1_1)
 
 
 
 
-def method28(v0_1: UH1, v1: int64) -> US5:
+def method27(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(362797056))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(11))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method29(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(362797056))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(11))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method28(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(11))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method29(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(11))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method28(v4_1, v1_1)
 
 
 
 
-def method27(v0_1: UH1, v1: int64) -> US5:
+def method26(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(2176782336))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(12))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method28(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(2176782336))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(12))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method27(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(12))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method28(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(12))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method27(v4_1, v1_1)
 
 
 
 
-def method26(v0_1: UH1, v1: int64) -> US5:
+def method25(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(13060694016))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(13))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method27(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(13060694016))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(13))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method26(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(13))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method27(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(13))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method26(v4_1, v1_1)
 
 
 
 
-def method25(v0_1: UH1, v1: int64) -> US5:
+def method24(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(78364164096))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(14))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method26(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(78364164096))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(14))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method25(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(14))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method26(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(14))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method25(v4_1, v1_1)
 
 
 
 
-def method24(v0_1: UH1, v1: int64) -> US5:
+def method23(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(470184984576))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(15))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method25(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(470184984576))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(15))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method24(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(15))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method25(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(15))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method24(v4_1, v1_1)
 
 
 
 
-def method23(v0_1: UH1, v1: int64) -> US5:
+def method22(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(2821109907456))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(16))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method24(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(2821109907456))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(16))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method23(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(16))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method24(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(16))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method23(v4_1, v1_1)
 
 
 
 
-def method22(v0_1: UH1, v1: int64) -> US5:
+def method21(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(16926659444736))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(17))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method23(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(16926659444736))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(17))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method22(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(17))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method23(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(17))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method22(v4_1, v1_1)
 
 
 
 
-def method21(v0_1: UH1, v1: int64) -> US5:
+def method20(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(101559956668416))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(18))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method22(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(101559956668416))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(18))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method21(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(18))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method22(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(18))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method21(v4_1, v1_1)
 
 
 
 
-def method20(v0_1: UH1, v1: int64) -> US5:
+def method19(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(609359740010496))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(19))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method21(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(609359740010496))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(19))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method20(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(19))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method21(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(19))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method20(v4_1, v1_1)
 
 
 
 
-def method19(v0_1: UH1, v1: int64) -> US5:
+def method18(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(3656158440062976))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(20))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method20(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(3656158440062976))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(20))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method19(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(20))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method20(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(20))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method19(v4_1, v1_1)
 
 
 
 
-def method18(v0_1: UH1, v1: int64) -> US5:
+def method17(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(21936950640377856))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(21))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method19(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(21936950640377856))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(21))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method18(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(21))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method19(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(21))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method18(v4_1, v1_1)
 
 
 
 
-def method17(v0_1: UH1, v1: int64) -> US5:
+def method16(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(131621703842267136))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(22))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method18(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(131621703842267136))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(22))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method17(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(22))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method18(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(22))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method17(v4_1, v1_1)
 
 
 
 
-def method16(v0_1: UH1, v1: int64) -> US5:
+def method15(v0_1: UH1, v1_1: int64) -> US5:
     if v0_1.tag == 1:
         return US5(0)
 
     else: 
-        v4: UH1 = v0_1.fields[1]
-        v3: uint8 = v0_1.fields[0]
-        if v3 > uint8(1):
-            v8: int64 = op_multiply(from_integer(v3 - uint8(1), False, 4), int64(789730223053602816))
-            print(((((((("accumulate_dice_rolls / power: " + str(int8(23))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + " / value: ") + str(v8)) + "")
-            return method17(v4, op_addition(v1, v8))
+        v4_1: UH1 = v0_1.fields[1]
+        v3_1: uint8 = v0_1.fields[0]
+        if v3_1 > uint8(1):
+            v8: int64 = op_multiply(from_integer(v3_1 - uint8(1), False, 4), int64(789730223053602816))
+            print(((((((("accumulate_dice_rolls / power: " + str(int8(23))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + " / value: ") + str(v8)) + "")
+            return method16(v4_1, op_addition(v1_1, v8))
 
         else: 
-            print(((((("accumulate_dice_rolls / power: " + str(int8(23))) + " / acc: ") + str(v1)) + " / roll: ") + str(v3)) + "")
-            return method17(v4, v1)
+            print(((((("accumulate_dice_rolls / power: " + str(int8(23))) + " / acc: ") + str(v1_1)) + " / roll: ") + str(v3_1)) + "")
+            return method16(v4_1, v1_1)
 
 
 
 
-def method15(v0_1_mut: UH1, v1_mut: int8) -> int64:
+def method14(v0_1_mut: UH1, v1_1_mut: int8) -> int64:
     while True:
-        (v0_1, v1) = (v0_1_mut, v1_mut)
-        if v1 < int8(24):
+        (v0_1, v1_1) = (v0_1_mut, v1_1_mut)
+        if v1_1 < int8(24):
             result: Optional[uint8] = None
             x: uint8
             value: int = randint(1, 7) or 0
             x = int(value+0x100 if value < 0 else value) & 0xFF
             result = x
             v0_1_mut = UH1(0, value_47(result), v0_1)
-            v1_mut = v1 + int8(1)
+            v1_1_mut = v1_1 + int8(1)
             continue
 
         else: 
-            v13: US5 = method16(v0_1, int64(0))
+            v13: US5 = method15(v0_1, int64(0))
             if v13.tag == 1:
                 v14: int64 = v13.fields[0]
                 if v14 <= int64(9223372036854775807):
@@ -1698,7 +1694,7 @@ def method15(v0_1_mut: UH1, v1_mut: int8) -> int64:
                     x_23 = int(value_23+0x100 if value_23 < 0 else value_23) & 0xFF
                     result_23 = x_23
                     v0_1_mut = UH1(0, v22, UH1(0, v26, UH1(0, v30, UH1(0, v34, UH1(0, v38, UH1(0, v42, UH1(0, v46, UH1(0, v50, UH1(0, v54, UH1(0, v58, UH1(0, v62, UH1(0, v66, UH1(0, v70, UH1(0, v74, UH1(0, v78, UH1(0, v82, UH1(0, v86, UH1(0, v90, UH1(0, v94, UH1(0, v98, UH1(0, v102, UH1(0, v106, UH1(0, value_47(result_23), UH1(1))))))))))))))))))))))))
-                    v1_mut = int8(23)
+                    v1_1_mut = int8(23)
                     continue
 
 
@@ -1841,7 +1837,7 @@ def method15(v0_1_mut: UH1, v1_mut: int8) -> int64:
                 x_46 = int(value_46+0x100 if value_46 < 0 else value_46) & 0xFF
                 result_46 = x_46
                 v0_1_mut = UH1(0, v143, UH1(0, v147, UH1(0, v151, UH1(0, v155, UH1(0, v159, UH1(0, v163, UH1(0, v167, UH1(0, v171, UH1(0, v175, UH1(0, v179, UH1(0, v183, UH1(0, v187, UH1(0, v191, UH1(0, v195, UH1(0, v199, UH1(0, v203, UH1(0, v207, UH1(0, v211, UH1(0, v215, UH1(0, v219, UH1(0, v223, UH1(0, v227, UH1(0, value_47(result_46), UH1(1))))))))))))))))))))))))
-                v1_mut = int8(23)
+                v1_1_mut = int8(23)
                 continue
 
 
@@ -1850,20 +1846,58 @@ def method15(v0_1_mut: UH1, v1_mut: int8) -> int64:
 
 def closure80(unit_var: None, v0_1: Array[str]) -> int:
     print(((((("calculate_dice_count / max: " + str(int64(9223372036854775807))) + " / n: ") + str(int8(24))) + " / p: ") + str(int64(4738381338321616896))) + "")
-    print(("result: " + str(method15(UH1(1), int8(0)))) + "")
+    print(("result: " + str(method14(UH1(1), int8(0)))) + "")
     return 0
 
 
-method0()
+def _arrow21(v: int64) -> Callable[[UH0], UH0]:
+    return closure0(None, v)
 
-def _arrow21(v: Array[str]) -> int:
+
+v0: Callable[[int64, UH0], UH0] = _arrow21
+
+def rotate_numbers(x: int64) -> Callable[[UH0], UH0]:
+    return v0(x)
+
+
+def _arrow22(v: UH1) -> Callable[[], uint8]:
+    return closure3(None, v)
+
+
+v1: Callable[[UH1, None], uint8] = _arrow22
+
+def create_sequential_roller(x: UH1) -> Callable[[], uint8]:
+    return v1(x)
+
+
+def _arrow23(v: Optional[Callable[[str], None]]=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
+    return closure8(None, v)
+
+
+v2: Callable[[Optional[Callable[[str], None]], Callable[[], uint8], bool, uint64], uint64] = _arrow23
+
+def roll_progressively(x: Optional[Callable[[str], None]]=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
+    return v2(x)
+
+
+def _arrow24(v: Optional[Callable[[str], None]]=None) -> Callable[[uint64, UH1], Optional[uint64]]:
+    return closure77(None, v)
+
+
+v3: Callable[[Optional[Callable[[str], None]], uint64, UH1], Optional[uint64]] = _arrow24
+
+def roll_within_bounds(x: Optional[Callable[[str], None]]=None) -> Callable[[uint64, UH1], Optional[uint64]]:
+    return v3(x)
+
+
+def _arrow25(v: Array[str]) -> int:
     return closure80(None, v)
 
 
-v0: Callable[[Array[str]], int] = _arrow21
+v4: Callable[[Array[str]], int] = _arrow25
 
 def main(args: Array[str]) -> int:
-    return v0(args)
+    return v4(args)
 
 
 if __name__ == "__main__":

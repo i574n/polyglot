@@ -126,40 +126,38 @@ inl roll_progressively (log : option (string -> ())) roll reroll max =
 
 // // ## main
 
+inl main (_args : array string) =
+    inl result = roll_progressively (Some console.write_line) roll_dice true (limit.max : i64)
+    console.write_line ($"$\"result: {!result}\"" : string)
+    0i32
+
 inl main () =
-    let main () =
-        inl rotate_numbers' : i64 -> stream.stream u8 -> stream.stream u8 =
-            rotate_numbers
+    inl rotate_numbers' : i64 -> stream.stream u8 -> stream.stream u8 =
+        rotate_numbers
 
-        inl create_sequential_roller' : (list u8 -> () -> u8) =
-            create_sequential_roller
+    inl create_sequential_roller' : (list u8 -> () -> u8) =
+        create_sequential_roller
 
-        inl roll_progressively' :
-            (optionm'.option_fsharp (string -> ()) -> (() -> u8)
-            -> bool
-            -> u64
-            -> u64)
-            =
-            optionm'.from_fsharp >> roll_progressively
+    inl roll_progressively' :
+        (optionm'.option_fsharp (string -> ()) -> (() -> u8)
+        -> bool
+        -> u64
+        -> u64)
+        =
+        optionm'.from_fsharp >> roll_progressively
 
-        inl roll_within_bounds' :
-            optionm'.option_fsharp (string -> ())
-            -> u64
-            -> list u8
-            -> optionm'.option_fsharp u64
-            =
-            fun a b c =>
-                (optionm'.from_fsharp >> roll_within_bounds) a b c
-                |> optionm'.to_fsharp
+    inl roll_within_bounds' :
+        optionm'.option_fsharp (string -> ())
+        -> u64
+        -> list u8
+        -> optionm'.option_fsharp u64
+        =
+        fun a b c =>
+            (optionm'.from_fsharp >> roll_within_bounds) a b c
+            |> optionm'.to_fsharp
 
-        (rotate_numbers', create_sequential_roller', roll_progressively', roll_within_bounds')
-        |> dyn
-        |> ignore
-    main ()
-
-    inl main (_args : array string) =
-        inl result = roll_progressively (Some console.write_line) roll_dice true (limit.max : i64)
-        console.write_line ($"$\"result: {!result}\"" : string)
-        0i32
-
+    $"let rotate_numbers x = !rotate_numbers' x" : ()
+    $"let create_sequential_roller x = !create_sequential_roller' x" : ()
+    $"let roll_progressively x = !roll_progressively' x" : ()
+    $"let roll_within_bounds x = !roll_within_bounds' x" : ()
     $"let main args = !main args" : ()
