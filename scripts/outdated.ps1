@@ -15,8 +15,8 @@ function CheckToml {
         [Object[]]$_args
     )
     $toml = [IO.Path]::GetFullPath("$ScriptDir/$toml")
-    Write-Output "`n$toml"
-    { cargo outdated -w -m $toml @_args } | Invoke-Block
+    Write-Output "`nCheckToml / toml: $toml"
+    { cargo outdated -m $toml --exclude tokio @_args } | Invoke-Block
 }
 
 function CheckJson {
@@ -31,14 +31,14 @@ function CheckJson {
 
 { dotnet paket outdated --include-prereleases } | Invoke-Block
 
-{ cargo outdated -w } | Invoke-Block
+CheckToml "../Cargo.toml" `-w
 
 CheckToml "../apps/chat/contract/Cargo.toml"
-CheckToml "../apps/chat/contract/tests/Cargo.toml" --exclude tokio
+CheckToml "../apps/chat/contract/tests/Cargo.toml"
 CheckToml "../apps/chat/ui/Cargo.toml"
 CheckToml "../apps/dice/Cargo.toml"
 CheckToml "../apps/dice/contract/Cargo.toml"
-CheckToml "../apps/dice/contract/tests/Cargo.toml" --exclude tokio
+CheckToml "../apps/dice/contract/tests/Cargo.toml"
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson "../apps/spiral/temp/extension"

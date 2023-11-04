@@ -1,11 +1,11 @@
-cargo-features = ["profile-rustflags"]
-
 [package]
 name = "chat_contract"
 version = "0.0.1"
 edition = "2021"
-
-[workspace]
+workspace = "../../../"
+description = ""
+repository.workspace = true
+license-file.workspace = true
 
 [lib]
 crate-type = ["cdylib"]
@@ -16,12 +16,3 @@ near-sdk = "~4.1"
 sha2 = "~0.10"
 multibase = "~0.9"
 unsigned-varint = "~0.7"
-
-[profile.release]
-codegen-units = 1
-opt-level = "z"
-lto = true
-debug = false
-panic = "abort"
-overflow-checks = true
-rustflags = ["-C", "link-arg=-s"]

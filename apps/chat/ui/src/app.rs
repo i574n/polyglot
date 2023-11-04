@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 
-use chat::components::DarkModeButton::*;
-use chat::components::Player::*;
-use chat::near::backend::*;
-use chat::near::rpc::*;
-use chat::state::{State, *};
+use crate::components::DarkModeButton::*;
+use crate::components::Player::*;
+use crate::near::backend::*;
+use crate::near::rpc::*;
+use crate::state::{State, *};
 
 use leptos::{logging::log, *};
 use leptos_meta::*;

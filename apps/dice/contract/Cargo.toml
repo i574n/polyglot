@@ -1,11 +1,8 @@
-cargo-features = ["profile-rustflags"]
-
 [package]
 name = "dice_contract"
 version = "0.0.1"
 edition = "2021"
-
-[workspace]
+workspace = "../../../"
 
 [lib]
 crate-type = ["cdylib"]
@@ -17,12 +14,3 @@ fable_library_rust = { path = "../../../apps/spiral/temp/test/fable_modules/fabl
 
 [features]
 wasm = []
-
-[profile.release]
-codegen-units = 1
-opt-level = "z"
-lto = true
-debug = false
-panic = "abort"
-overflow-checks = true
-rustflags = ["-C", "link-arg=-s"]

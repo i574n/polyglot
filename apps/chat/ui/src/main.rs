@@ -1,6 +1,3 @@
-mod app;
-
-use app::*;
 use leptos::{logging::log, *};
 
 pub fn main() {
@@ -10,6 +7,6 @@ pub fn main() {
     log!("csr mode - mounting to body");
 
     mount_to_body(|| {
-        view! { <App /> }
+        view! { <chat_ui::app::App /> }
     });
 }

@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 { cargo build --release --target wasm32-unknown-unknown } | Invoke-Block
 New-Item dist -ItemType Directory -Force | Out-Null
-Copy-Item -Force target/wasm32-unknown-unknown/release/chat_contract.wasm dist/chat.wasm
+Copy-Item -Force ../../../target/wasm32-unknown-unknown/release/chat_contract.wasm dist/chat.wasm
 
 if (!$fast) {
     $nearSandboxExe = DownloadNearSandbox

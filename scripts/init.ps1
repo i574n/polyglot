@@ -37,6 +37,9 @@ if (!(Search-DotnetSdk "8")) {
     }
 }
 
+if ($IsLinux) {
+    curl -fsSL https://bun.sh/install | bash
+}
 
 dotnet tool restore
 

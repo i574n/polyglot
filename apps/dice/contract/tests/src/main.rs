@@ -25,7 +25,7 @@ fn print_usd(result: near_workspaces::result::ExecutionFinalResult) {
         );
         println!(
             "  outcome_tokens_burnt_usd: {:#?}",
-            tokens_to_usd(outcome.tokens_burnt)
+            tokens_to_usd(outcome.tokens_burnt.as_near())
         );
     });
 }

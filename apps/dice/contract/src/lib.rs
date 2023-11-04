@@ -110,13 +110,13 @@ impl State {
 
         let entropy: Vec<u8> = vec![
             seed.clone(),
-            self.seeds.iter().map(|x| *x).collect::<Vec<u8>>(),
-            proof.clone().into_bytes(),
             block_timestamp.to_le_bytes().to_vec(),
-            signer_account_id.as_bytes().to_vec(),
-            account_balance.to_le_bytes().to_vec(),
             block_height.to_le_bytes().to_vec(),
             epoch_height.to_le_bytes().to_vec(),
+            account_balance.to_le_bytes().to_vec(),
+            signer_account_id.as_bytes().to_vec(),
+            self.seeds.iter().map(|x| *x).collect::<Vec<u8>>(),
+            proof.clone().into_bytes(),
         ]
         .concat();
 
@@ -130,7 +130,7 @@ impl State {
         {
             let rolls_stream_log = Util::stream_u8_to_vec(rolls_stream.clone());
             let signer_account_id_log = signer_account_id.as_str();
-            log!(format!("generate_random_number / proof: {proof:?} / max: {max:#?} / seed: {seed:?} / block_timestamp: {block_timestamp:#?} / signer_account_id: {signer_account_id_log:?} / account_balance: {account_balance:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
+            log!(format!("generate_random_number / max: {max:#?} / proof: {proof:?} / block_timestamp: {block_timestamp:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / account_balance: {account_balance:#?} / signer_account_id: {signer_account_id_log:?} / seed: {seed:?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
         }
 
         let sequential_roll = dice::Dice::create_sequential_roller(rolls_stream.into());
