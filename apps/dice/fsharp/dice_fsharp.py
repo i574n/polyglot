@@ -203,7 +203,7 @@ def main(args: Array[str]) -> int:
     def _arrow8(__unit: None=None, args: Any=args) -> int:
         return roll_dice()
 
-    result: int = roll_progressively(_arrow7(), _arrow8, True, 2147483647 // 2) or 0
+    result: int = roll_progressively(_arrow7(), _arrow8, True, 2147483647 // 10) or 0
     def _arrow9(__unit: None=None, args: Any=args) -> str:
         return ("main / result: " + str(result)) + ""
 

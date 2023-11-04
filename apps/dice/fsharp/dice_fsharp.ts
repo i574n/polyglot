@@ -196,7 +196,7 @@ export function rollProgressively(log: Option<((arg0: string) => void)>, roll: (
     let clo: ((arg0: string) => void);
     const result: int32 = rollProgressively((clo = toConsole(printf("%s")), (arg: string): void => {
         clo(arg);
-    }), rollDice, true, ~~(2147483647 / 2)) | 0;
+    }), rollDice, true, ~~(2147483647 / 10)) | 0;
     trace(TraceLevel_Debug(), (): string => (`main / result: ${result}`), (): string => "");
     return 0;
 })(typeof process === 'object' ? process.argv.slice(2) : []);

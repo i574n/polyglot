@@ -156,7 +156,7 @@ int main(List<String> args) {
     final clo = string.toConsole(string.printf('%s'));
     final result = rollProgressively(types.Some((String arg) {
         clo(arg);
-    }), () => rollDice(), true, 2147483647 ~/ 2);
+    }), () => rollDice(), true, 2147483647 ~/ 10);
     common.trace(const common.TraceLevel(/* Debug */ 1), () => 'main / result: $result', () => '');
     return 0;
 }

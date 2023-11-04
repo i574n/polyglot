@@ -149,7 +149,7 @@ function main($args) {
     $result = rollProgressively((function ($clo) {     return function ($arg) use ($clo) {     return $clo($arg);
  };
  })(\String\toConsole(\String\printf('%s'))), function ($arg00_0040) use ($rollDice) {     return rollDice(NULL);
- }, true, ~~~~~~2147483647 / 2);
+ }, true, ~~~~~~2147483647 / 10);
     \Common\trace(new \Polyglot.Common\TraceLevel_Debug(), function ($unitVar) {     return NULL;
  }, function ($arg00_0040_1) {     return '';
  });

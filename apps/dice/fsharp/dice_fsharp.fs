@@ -104,6 +104,6 @@ module dice_fsharp =
     /// ## main
 
     let main args =
-        let result = rollProgressively (Some (printfn "%s")) rollDice true (System.Int32.MaxValue / 2)
+        let result = rollProgressively (Some (printfn "%s")) rollDice true (System.Int32.MaxValue / 10)
         trace Debug (fun () -> $"main / result: {result}") getLocals
         0

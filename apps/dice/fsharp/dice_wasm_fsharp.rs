@@ -350,7 +350,7 @@ pub mod Polyglot {
                 }),
                 Func0::new(move || Polyglot::dice_fsharp::rollDice()),
                 true,
-                i32::MAX / 2_i32,
+                i32::MAX / 10_i32,
             );
             Common::trace(
                 LrcPtr::new(TraceLevel::Debug),
