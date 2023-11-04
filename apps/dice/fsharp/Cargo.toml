@@ -2,8 +2,7 @@
 name = "dice_fsharp"
 version = "0.0.1"
 edition = "2021"
-
-[workspace]
+workspace = "../../../"
 
 [dependencies]
 fable_library_rust = { path = "../../../apps/spiral/temp/test/fable_modules/fable-library-rust", optional = true, default-features = false }

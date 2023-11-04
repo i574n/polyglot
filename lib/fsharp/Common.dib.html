@@ -8359,7 +8359,7 @@ System.Exception: test
         <span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">%s</span><span class="s2">{fn ()}"</span>
 
         <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="n">text</span>
-<span class="c1">#if !CHAIN &amp;&amp; !FABLE_COMPILER</span>
+<span class="c1">#if !WASM &amp;&amp; !FABLE_COMPILER</span>
         <span class="k">if</span> <span class="n">traceDump</span> <span class="n">then</span>
             <span class="k">try</span>
                 <span class="n">let</span> <span class="n">tmpPath</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetTempPath</span> <span class="p">()</span>
@@ -8437,7 +8437,7 @@ System.Exception: test
 <span class="n">let</span> <span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">time</span> <span class="o">=</span>
-<span class="c1">#if CHAIN</span>
+<span class="c1">#if WASM</span>
             <span class="s2">""</span>
 <span class="c1">#else</span>
             <span class="k">match</span> <span class="n">replStart</span> <span class="p">()</span> <span class="k">with</span>

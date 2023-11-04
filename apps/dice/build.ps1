@@ -8,8 +8,6 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { . ./fsharp/build.ps1 } | Invoke-Block -Location .
-
     { dotnet run --configuration Release --project temp/dice.fsproj } | Invoke-Block
 
     { . ../spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 dice.dib`"" } | Invoke-Block -Retries 5

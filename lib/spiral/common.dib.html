@@ -8032,19 +8032,27 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">target</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Rust</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">target_runtime</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Native</span>
+    <span class="o">|</span> <span class="n">Wasm</span>
+
+<span class="n">union</span> <span class="n">target</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Rust</span> <span class="p">:</span> <span class="n">target_runtime</span>
     <span class="o">|</span> <span class="n">Fsharp</span>
 
-<span class="n">inl</span> <span class="n">run_target</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">target</span> <span class="o">-&gt;</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">_</span><span class="p">))</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rust_fn</span> <span class="o">=</span> <span class="n">fn</span> <span class="n">Rust</span>
-    <span class="n">inl</span> <span class="n">fsharp_fn</span> <span class="o">=</span> <span class="n">fn</span> <span class="n">Fsharp</span>
-
+<span class="n">inl</span> <span class="n">run_target</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">target</span> <span class="o">-&gt;</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"let mutable result = None"</span>
     <span class="err">$</span><span class="s2">"#if FABLE_COMPILER_RUST"</span>
-    <span class="err">$</span><span class="s2">"!rust_fn ()"</span>
+    <span class="err">$</span><span class="s2">"#if \!WASM"</span>
+    <span class="n">fn</span> <span class="p">(</span><span class="n">Rust</span> <span class="n">Native</span><span class="p">)</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"!x"</span>
     <span class="err">$</span><span class="s2">"#else"</span>
-    <span class="err">$</span><span class="s2">"!fsharp_fn ()"</span>
+    <span class="n">fn</span> <span class="p">(</span><span class="n">Rust</span> <span class="n">Wasm</span><span class="p">)</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"!x"</span>
     <span class="err">$</span><span class="s2">"#endif"</span>
+    <span class="err">$</span><span class="s2">"#else"</span>
+    <span class="n">fn</span> <span class="n">Fsharp</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"!x"</span>
+    <span class="err">$</span><span class="s2">"#endif"</span>
+    <span class="err">$</span><span class="s2">"|&gt; fun x -&gt; result &lt;- Some x"</span>
+    <span class="err">$</span><span class="s2">"result |&gt; Option.get"</span>
 </pre></div>
 </div>
 </div>
@@ -8064,8 +8072,162 @@ method0()
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">run_target</span> <span class="n">function</span>
+    <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"1uy"</span>
+    <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"2uy"</span>
+    <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"3uy"</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span><span class="n">u8</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method0 () : unit =
+    let mutable result = None
+    #if FABLE_COMPILER_RUST
+    #if !WASM
+    let v0 : uint8 = 2uy
+    v0
+    #else
+    let v1 : uint8 = 3uy
+    v1
+    #endif
+    #else
+    let v2 : uint8 = 1uy
+    v2
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v3 : uint8 = result |&gt; Option.get
+    let v4 : bool = v3 = 1uy
+    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{1uy}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+
+<span class="n">run_target</span> <span class="n">function</span>
+    <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"1uy"</span>
+    <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"2uy"</span>
+    <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"3uy"</span>
+<span class="o">|&gt;</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="mi">2</span><span class="n">u8</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>.rs output:
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+.fsx:
+let rec method0 () : unit =
+    let mutable result = None
+    #if FABLE_COMPILER_RUST
+    #if !WASM
+    let v0 : uint8 = 2uy
+    v0
+    #else
+    let v1 : uint8 = 3uy
+    v1
+    #endif
+    #else
+    let v2 : uint8 = 1uy
+    v2
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v3 : uint8 = result |&gt; Option.get
+    let v4 : bool = 2uy = v3
+    let v5 : string = $"_equal / actual: %A{v4} / expected: %A{true}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
+method0()
+
+.rs:
+#![allow(dead_code,)]
+#![allow(non_camel_case_types,)]
+#![allow(non_snake_case,)]
+#![allow(non_upper_case_globals,)]
+#![allow(unreachable_code,)]
+#![allow(unused_attributes,)]
+#![allow(unused_imports,)]
+#![allow(unused_macros,)]
+#![allow(unused_parens,)]
+#![allow(unused_variables,)]
+pub mod Repl_main {
+    use super::*;
+    use fable_library_rust::Native_::Any;
+    use fable_library_rust::Native_::MutCell;
+    use fable_library_rust::Native_::on_startup;
+    use fable_library_rust::Option_::getValue;
+    use fable_library_rust::String_::sprintf;
+    pub fn method0() {
+        let result: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
+        result.set(Some(2_u8));
+        {
+            let v4: bool = 2_u8 == getValue(result.get());
+            if v4 == false {
+                panic!("{}",
+                       sprintf!("_equal / actual: {:?} / expected: {:?}", &amp;v4, &amp;true));
+            }
+        }
+    }
+    on_startup!(Repl_main::method0());
+}
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8075,7 +8237,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8105,7 +8267,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8115,7 +8277,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8145,7 +8307,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8155,7 +8317,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8185,7 +8347,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8195,7 +8357,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

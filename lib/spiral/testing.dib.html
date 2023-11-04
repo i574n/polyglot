@@ -7515,6 +7515,12 @@ a.anchor-link {
 <span class="n">inl</span> <span class="n">_equal</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
     <span class="k">assert</span> <span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">)</span> <span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">_equal / actual: %A</span><span class="si">{!a}</span><span class="s2"> / expected: %A{!b}</span><span class="se">\"</span><span class="s2">"</span>
 
+<span class="n">inl</span> <span class="n">_is_greater_than</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">_is_greater_than / actual: %A</span><span class="si">{!a}</span><span class="s2"> / expected: %A{!b}</span><span class="se">\"</span><span class="s2">"</span>
+
+<span class="n">inl</span> <span class="n">_is_greater_than_or_equal</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">)</span> <span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">_is_greater_than_or_equal / actual: %A</span><span class="si">{!a}</span><span class="s2"> / expected: %A{!b}</span><span class="se">\"</span><span class="s2">"</span>
+
 <span class="n">inl</span> <span class="n">_is_less_than</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span>
     <span class="k">assert</span> <span class="p">(</span><span class="n">b</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">)</span> <span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">_is_less_than / actual: %A</span><span class="si">{!a}</span><span class="s2"> / expected: %A{!b}</span><span class="se">\"</span><span class="s2">"</span>
 

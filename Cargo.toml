@@ -19,6 +19,7 @@ license-file = "../LICENSE"
 extension = { path = "./apps/spiral/temp/extension" }
 plot = { path = "./apps/plot" }
 dice = { path = "./apps/dice" }
+dice_fsharp = { path = "./apps/dice/fsharp" }
 chat_ui = { path = "./apps/chat/ui" }
 chat_contract = { path = "./apps/chat/contract" }
 chat_contract_tests = { path = "./apps/chat/contract/tests" }

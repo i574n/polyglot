@@ -1279,6 +1279,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "dice_fsharp"
+version = "0.0.1"
+dependencies = [
+ "fable_library_rust",
+ "rand 0.8.5",
+]
+
+[[package]]
 name = "digest"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3569,6 +3577,7 @@ dependencies = [
  "dice",
  "dice_contract",
  "dice_contract_tests",
+ "dice_fsharp",
  "exercism",
  "extension",
  "plot",
