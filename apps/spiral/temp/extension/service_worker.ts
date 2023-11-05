@@ -33,10 +33,14 @@ function generateUnblockRule(filter: string): chrome.declarativeNetRequest.Rule 
         {
           header: "Content-Security-Policy",
           operation: chrome.declarativeNetRequest.HeaderOperation.SET,
-          value: "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; default-src 'self'; style-src 'self' 'unsafe-inline';",
+          // value: "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; script-src-elem 'self' 'unsafe-inline' * data:; object-src 'self'; default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' * data:; font-src 'self' *; connect-src 'self' *; media-src 'self' * blob:;",
+          value: "default-src * 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' 'wasm-eval' data: blob:;",
         },
+        { header: "content-security-policy-report-only", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
         { header: "Referrer-Policy", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
+        { header: "x-content-security-policy", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
         { header: "X-Frame-Options", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
+        { header: "x-webkit-csp", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
       ],
     },
     condition: {
@@ -56,7 +60,14 @@ chrome.runtime.onInstalled.addListener(() => {
 let reloadCount: { [tabId: number]: number } = {}
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log("service_worker.js / onMessage / request:", request, "/ sender:", sender)
+  console.log(
+    "service_worker.js / onMessage / request:",
+    request,
+    "/ sender:",
+    sender,
+    "/ reloadCount:",
+    sender.tab?.id && reloadCount[sender.tab.id]
+  )
 
   if (request.message && request.message.includes("WebAssembly")) {
     let filter = sender.url || sender.tab?.url || sender.origin || ""

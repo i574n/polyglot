@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "manifest_version": 3,
   "description": "polyglot",
-  "permissions": ["storage", "tabs", "notifications", "offscreen", "declarativeNetRequest"],
+  "permissions": ["debugger", "declarativeNetRequest", "notifications", "offscreen", "storage", "tabs"],
   "host_permissions": ["*://*/*"],
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; default-src 'self'; style-src 'self' 'unsafe-inline';",
@@ -21,6 +21,7 @@
       "js": ["content_script.js"]
     }
   ],
+  "devtools_page": "devtools.html",
   "web_accessible_resources": [
     {
       "resources": ["web_accessible_resources.js", "*.wasm"],
