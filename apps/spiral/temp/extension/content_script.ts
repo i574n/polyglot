@@ -38,7 +38,7 @@ window.onload = async () => {
 }
 
 if (isExtension) {
-  getBrowserInstance().runtime.onMessage.addListener((request: any, sender: any, sendResponse: any) => {
+  getBrowserInstance().runtime.onMessage.addListener((request: any, sender: any, _sendResponse: any) => {
     console.log("content_script.ts / onMessage / request:", request, "/ sender:", sender)
   })
 }

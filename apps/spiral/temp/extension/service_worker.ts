@@ -20,7 +20,7 @@ function stringToId(str: string): number {
   for (let i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i)
   }
-  return Math.round(Math.abs(hash / 4))
+  return Math.round(Math.abs(hash / 6))
 }
 
 function generateUnblockRule(filter: string): chrome.declarativeNetRequest.Rule {
@@ -30,8 +30,13 @@ function generateUnblockRule(filter: string): chrome.declarativeNetRequest.Rule 
     action: {
       type: chrome.declarativeNetRequest.RuleActionType.MODIFY_HEADERS,
       responseHeaders: [
-        { header: "x-frame-options", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
-        { header: "content-security-policy", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
+        {
+          header: "Content-Security-Policy",
+          operation: chrome.declarativeNetRequest.HeaderOperation.SET,
+          value: "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; default-src 'self'; style-src 'self' 'unsafe-inline';",
+        },
+        { header: "Referrer-Policy", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
+        { header: "X-Frame-Options", operation: chrome.declarativeNetRequest.HeaderOperation.REMOVE },
       ],
     },
     condition: {
@@ -48,6 +53,8 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("service_worker.ts / chrome.runtime.onInstalled")
 })
 
+let reloadCount: { [tabId: number]: number } = {}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log("service_worker.js / onMessage / request:", request, "/ sender:", sender)
 
@@ -61,7 +68,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       ;(async () => {
         const rule = generateUnblockRule(filter)
 
-        await chrome.declarativeNetRequest.updateDynamicRules({ addRules: [rule] })
+        await chrome.declarativeNetRequest.updateDynamicRules({ removeRuleIds: [rule.id], addRules: [rule] })
 
         if (chrome.runtime.lastError) {
           console.log(
@@ -75,7 +82,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
 
         if (sender.tab?.id) {
-          await chrome.tabs.reload(sender.tab.id)
+          reloadCount[sender.tab.id] = (reloadCount[sender.tab.id] || 0) + 1
+          if (reloadCount[sender.tab.id] < 3) {
+            await chrome.tabs.reload(sender.tab.id)
+          }
         }
 
         sendResponse({ rule })

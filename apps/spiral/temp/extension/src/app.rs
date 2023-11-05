@@ -27,16 +27,7 @@ pub fn App(window: &'static web_sys::Window) -> impl IntoView {
 
     view! {
         <Router>
-            <Routes>
-                <Route path="" view= move || view! { <div><Home window /><span style="display: none">1</span></div> }/>
-                <Route path="/" view= move || view! { <div><Home window /><span style="display: none">2</span></div> }/>
-                <Route path="#" view= move || view! { <div><Home window /><span style="display: none">3</span></div> }/>
-                <Route path="?" view= move || view! { <div><Home window /><span style="display: none">4</span></div> }/>
-                <Route path="/*" view= move || view! { <div><Home window /><span style="display: none">5</span></div> }/>
-                <Route path="***" view= move || view! { <div><Home window /><span style="display: none">6</span></div> }/>
-                <Route path="**" view= move || view! { <div><Home window /><span style="display: none">7</span></div> }/>
-                <Route path="*" view= move || view! { <div><Home window /><span style="display: none">8</span></div> }/>
-            </Routes>
+            <Home window />
         </Router>
     }
 }
@@ -198,6 +189,8 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
         let new_location_href = window.location().href().ok().unwrap_or("".to_string());
         set_location_href.set(new_location_href.clone());
 
+        crate::timer::set_albums().unwrap();
+
         log!(
             "Home () / location4.state.get(): {:#?} / new_location_href: {:#?}",
             location4.state.get(),
@@ -225,7 +218,6 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
                 log!("Home () / render2");
                 view! {<></>}
             })()}
-
 
             <div class:dark={move || global_state2.clone().unwrap().state.get().dark_mode.get()}>
                 <div>
