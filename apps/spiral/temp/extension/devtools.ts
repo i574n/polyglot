@@ -68,8 +68,6 @@ const attach = async (tabId: number) => {
             meta.remove()
           }
         })
-        // if has <!DOCTYPE html>, will miss it
-        // if not has <html> tag, will add it
         bodyText = html.documentElement.outerHTML
       }
     }
@@ -84,6 +82,7 @@ const attach = async (tabId: number) => {
 }
 
 ;(async () => {
+  console.log("devtools")
   const { tabId } = chrome.devtools.inspectedWindow
   const tab = await chrome.tabs.get(tabId)
   console.log("devtools / tabId:", tabId, "/ tab:", tab)

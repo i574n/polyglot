@@ -94,7 +94,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         if (sender.tab?.id) {
           reloadCount[sender.tab.id] = (reloadCount[sender.tab.id] || 0) + 1
-          if (reloadCount[sender.tab.id] < 3) {
+          if (reloadCount[sender.tab.id] < 2) {
             await chrome.tabs.reload(sender.tab.id)
           }
         }
