@@ -779,6 +779,7 @@ dependencies = [
 name = "chat_ui"
 version = "0.0.1"
 dependencies = [
+ "base64 0.21.5",
  "borsh 1.1.1",
  "console_error_panic_hook",
  "console_log",
