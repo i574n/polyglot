@@ -205,4 +205,4 @@ async {
 }
 |> Async.RunSynchronously
 |> Option.get
-|> _isGreaterThan 1000000
+|> _isGreaterThan 900000

@@ -14,17 +14,26 @@ mod module_d5f62357 {
     pub mod Ui {
         use super::*;
         use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::Any;
+        use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
+        on_startup!(
+            use leptos::IntoView;
+        );
+        pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
+            leptos::html::div()
+        }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v2: string = sprintf!("result: {}", &string("result"));
             println!("{0}", v2,);
             {
-                let v4: string = string("leptos::logging::log!(\"{}\", \"main / mount_to_body\")");
-                leptos::logging::log!("{}", "main / mount_to_body");
+                let v4: string = string("leptos::logging::log!(\"main / mount_to_body\")");
+                leptos::logging::log!("main / mount_to_body");
+                leptos::mount_to_body(|| Func0::new(move || Ui::closure1((), ()))());
                 0_i32
             }
         }
@@ -41,6 +50,9 @@ pub use module_d5f62357::*;
 #[path = "../../../lib/fsharp/CommonWasm.rs"]
 mod module_8cb3e09e;
 pub use module_8cb3e09e::*;
+pub mod Polyglot {
+    // pub use crate::module_8cb3e09e::Polyglot::*;
+}
 pub fn main() {
     let args = std::env::args().skip(1).map(fromString).collect();
     Ui::main(array_from(args));

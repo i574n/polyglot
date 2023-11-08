@@ -12,9 +12,36 @@
 //     });
 // }
 
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
+
+nominal leptos_fragment = $"leptos_Fragment"
+nominal leptos_into_view = $"leptos_IntoView"
+nominal leptos_view = $"leptos_View"
+nominal std_string = $"std_string_String"
+nominal dyn' t = $"Dyn<`t>"
+nominal impl t = $"Impl<`t>"
+nominal ref' t = $"Ref<`t>"
+nominal str = $"Str"
+
+inl raw_string_literal (s : string) : ref' str =
+    rust.emit_expr () $"\"r#\\\"\" + !s + \"\\\"#\""
+
+inl (~#) (s : string) : ref' str =
+    raw_string_literal s
 
 inl leptos_log (text : string) =
-    rust.emit_expr () $'@@"leptos::logging::log\!(""{}"", """ + !text + @@""")"' : ()
+    rust.emit_expr () $'@@"leptos::logging::log\!(""" + !text + @@""")"' : ()
+
+inl to_fn forall t. (x : () -> t) : () -> t =
+    rust.emit_expr x $'"|| $0()"'
 
 inl main (_args : array string) =
     inl result = "result"
@@ -23,7 +50,27 @@ inl main (_args : array string) =
 
     leptos_log "main / mount_to_body"
 
+    inl view_fn = // : () -> impl leptos_into_view =
+        // fun () =>
+        //     rust.emit_expr () $'"leptos::view!! { <><span></span></> }.into()"' : impl leptos_into_view
+        fun () =>
+            inl result = rust.emit_expr () $'"leptos::html::div()"' : impl leptos_into_view
+            // $"!result |> unbox"
+            result
+
+
+
+
+    // inl view_fn = to_fn view_fn
+
+    // rust.emit_expr view_fn $'"leptos::mount_to_body($0)"'
+    rust.emit_expr view_fn $'"leptos::mount_to_body(|| $0())"'
+
     0i32
 
 inl main () =
+    types ()
+
+    global "Fable.Core.RustInterop.emitRustExpr () \"use leptos::IntoView;\""
+
     $"let main args = !main args" : ()
