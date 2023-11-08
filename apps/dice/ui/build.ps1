@@ -17,6 +17,7 @@ Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.r
 
 (Get-Content target/rs/ui.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
+    -replace "pub use crate::module_", "// pub use crate::module_" `
     -replace "/Common.rs", "/CommonWasm.rs" `
     | Set-Content ui_wasm.rs
 
