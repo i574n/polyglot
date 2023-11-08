@@ -54,7 +54,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
 
                 let ct = Microsoft.DotNet.Interactive.KernelInvocationContext.Current.CancellationToken
 
-                let plotExePath = repositoryRoot </> $"apps/plot/target/release/plot{Runtime.getExecutableSuffix ()}"
+                let plotExePath = repositoryRoot </> $"target/release/plot{Runtime.getExecutableSuffix ()}"
                 let! exitCode, result =
                     Runtime.executeWithOptionsAsync
                         {

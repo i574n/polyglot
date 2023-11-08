@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import (Any, List, Callable, Optional)
+from typing import (Any, Callable)
 from fable_modules.fable_library.date import (to_string, now, get_ticks, create)
 from fable_modules.fable_library.long import op_subtraction
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
@@ -23,7 +23,7 @@ class TraceLevel(Union):
         self.fields: Array[Any] = list(fields)
 
     @staticmethod
-    def cases() -> List[str]:
+    def cases() -> list[str]:
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
@@ -53,15 +53,15 @@ def trace_raw(level: TraceLevel, fn: Callable[[], str]) -> None:
 
 
 
-def repl_start(__unit: None=None) -> Optional[int64]:
+def repl_start(__unit: None=None) -> int64 | None:
     return None
 
 
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
-    def fn_1(__unit: None=None, level: TraceLevel=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
+    def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
         trim_chars_2: Array[str] = [" ", "/"]
         def _arrow1(__unit: None=None) -> Any:
-            match_value: Optional[int64] = repl_start()
+            match_value: int64 | None = repl_start()
             if match_value is None:
                 return now()
 

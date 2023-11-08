@@ -98,7 +98,7 @@ let inline waitForPortAccess timeout status port =
 
 //// test
 
-let port = 5000
+let port = 5555
 
 let inline lockPort () = async {
     trace Debug (fun () -> "_1") getLocals
@@ -148,7 +148,7 @@ async {
 
 //// test
 
-let port = 5000
+let port = 5555
 
 let inline lockPort () = async {
     trace Debug (fun () -> "_1") getLocals
@@ -216,7 +216,7 @@ let inline getAvailablePort timeout initialPort =
 
 //// test
 
-let port = 5000
+let port = 5555
 
 let inline lockPorts () = async {
     trace Debug (fun () -> "_1") getLocals
@@ -265,7 +265,7 @@ async {
 
 //// test
 
-let port = 5000
+let port = 5555
 
 let inline lockPorts () = async {
     trace Debug (fun () -> "_1") getLocals

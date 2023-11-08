@@ -8200,26 +8200,29 @@ method0()
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
-pub mod Repl_main {
-    use super::*;
-    use fable_library_rust::Native_::Any;
-    use fable_library_rust::Native_::MutCell;
-    use fable_library_rust::Native_::on_startup;
-    use fable_library_rust::Option_::getValue;
-    use fable_library_rust::String_::sprintf;
-    pub fn method0() {
-        let result: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
-        result.set(Some(2_u8));
-        {
-            let v4: bool = 2_u8 == getValue(result.get());
-            if v4 == false {
-                panic!("{}",
-                       sprintf!("_equal / actual: {:?} / expected: {:?}", &amp;v4, &amp;true));
+mod module_3acfb8b4 {
+    pub mod Repl_main {
+        use super::*;
+        use fable_library_rust::Native_::Any;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::Option_::getValue;
+        use fable_library_rust::String_::sprintf;
+        pub fn method0() {
+            let result: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
+            result.set(Some(2_u8));
+            {
+                let v4: bool = 2_u8 == getValue(result.get());
+                if v4 == false {
+                    panic!("{}",
+                           sprintf!("_equal / actual: {:?} / expected: {:?}", &amp;v4, &amp;true));
+                }
             }
         }
+        on_startup!(Repl_main::method0());
     }
-    on_startup!(Repl_main::method0());
 }
+pub use module_3acfb8b4::*;
 
 </pre>
 </div>

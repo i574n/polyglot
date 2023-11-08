@@ -16,19 +16,17 @@ license-file = "../LICENSE"
 [dev-dependencies]
 
 [build-dependencies]
-extension = { path = "./apps/spiral/temp/extension" }
-plot = { path = "./apps/plot" }
-dice = { path = "./apps/dice" }
-dice_fsharp = { path = "./apps/dice/fsharp" }
-chat_ui = { path = "./apps/chat/ui" }
 chat_contract = { path = "./apps/chat/contract" }
 chat_contract_tests = { path = "./apps/chat/contract/tests" }
+dice = { path = "./apps/dice" }
+dice_fsharp = { path = "./apps/dice/fsharp" }
+dice_ui = { path = "./apps/dice/ui" }
 dice_contract = { path = "./apps/dice/contract" }
 dice_contract_tests = { path = "./apps/dice/contract/tests" }
-test = { path = "./apps/spiral/temp/test" }
-# proxy = { path = "./apps/spiral/temp/proxy" }
-# cli = { path = "./apps/spiral/temp/cli" }
 exercism = { path = "./examples/rust/exercism" }
+extension = { path = "./apps/spiral/temp/extension" }
+plot = { path = "./apps/plot" }
+test = { path = "./apps/spiral/temp/test" }
 
 [lib]
 path = "./apps/dice/dice.rs"

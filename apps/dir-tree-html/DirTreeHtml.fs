@@ -91,7 +91,12 @@ module DirTreeHtml =
 <head>
   <meta charset="UTF-8">
   <style>
+body {{
+    background-color: #222;
+    color: #ccc;
+}}
 a {{
+  color: #777;
   font-size: 15px;
 }}
 span {{

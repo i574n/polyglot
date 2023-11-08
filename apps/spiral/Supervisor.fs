@@ -345,18 +345,18 @@ modules:
 
     [<RequireQualifiedAccess>]
     type Arguments =
-        | BuildFile of string * string
-        | FileTokenRange of string * string
-        | ExecuteCommand of string
+        | Build_File of string * string
+        | File_Token_Range of string * string
+        | Execute_Command of string
         | Timeout of int
         | Port of int
 
         interface Argu.IArgParserTemplate with
             member s.Usage =
                 match s with
-                | BuildFile _ -> nameof BuildFile
-                | FileTokenRange _ -> nameof FileTokenRange
-                | ExecuteCommand _ -> nameof ExecuteCommand
+                | Build_File _ -> nameof Build_File
+                | File_Token_Range _ -> nameof File_Token_Range
+                | Execute_Command _ -> nameof Execute_Command
                 | Timeout _ -> nameof Timeout
                 | Port _ -> nameof Port
 
@@ -367,28 +367,28 @@ modules:
 
         let buildFileActions =
             argsMap
-            |> Map.tryFind (nameof Arguments.BuildFile)
+            |> Map.tryFind (nameof Arguments.Build_File)
             |> Option.defaultValue []
             |> List.choose (function
-                | Arguments.BuildFile (inputPath, outputPath) -> Some (inputPath, outputPath)
+                | Arguments.Build_File (inputPath, outputPath) -> Some (inputPath, outputPath)
                 | _ -> None
             )
 
         let fileTokenRangeActions =
             argsMap
-            |> Map.tryFind (nameof Arguments.FileTokenRange)
+            |> Map.tryFind (nameof Arguments.File_Token_Range)
             |> Option.defaultValue []
             |> List.choose (function
-                | Arguments.FileTokenRange (inputPath, outputPath) -> Some (inputPath, outputPath)
+                | Arguments.File_Token_Range (inputPath, outputPath) -> Some (inputPath, outputPath)
                 | _ -> None
             )
 
         let executeCommandActions =
             argsMap
-            |> Map.tryFind (nameof Arguments.ExecuteCommand)
+            |> Map.tryFind (nameof Arguments.Execute_Command)
             |> Option.defaultValue []
             |> List.choose (function
-                | Arguments.ExecuteCommand command -> Some command
+                | Arguments.Execute_Command command -> Some command
                 | _ -> None
             )
 

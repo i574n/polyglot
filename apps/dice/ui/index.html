@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link data-trunk rel="rust" data-wasm-opt="z" />
+        <link data-trunk rel="icon" type="image/ico" href="public/favicon.ico" />
+        <link data-trunk rel="css" href="target/tailwind.css" />
+        <link data-trunk rel="css" href="../../../deps/hyperui/public/components.css" />
+        <base data-trunk-public-url />
+        <title>ui</title>
+        <style>
+            html {
+                overflow: hidden;
+            }
+            body {
+                /* background-color: #f7fafc; */
+                /* font-weight: 300; */
+                /* letter-spacing: 0; */
+                /* line-height: 1.5; */
+                font-feature-settings: "pnum";
+                font-variant-numeric: proportional-nums;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                /* color: #1a202c; */
+                /* user-select: none; */
+                touch-action: pan-x pan-y;
+                overflow: hidden;
+            }
+            *::-webkit-scrollbar {
+                width: 9px;
+            }
+            *::-webkit-scrollbar:horizontal {
+                height: 6px;
+            }
+            *::-webkit-scrollbar-track {
+                display: none;
+            }
+            *::-webkit-scrollbar-corner {
+                display: none;
+            }
+            *::-webkit-scrollbar-thumb {
+                background: #cbd5e0;
+                opacity: 0.8;
+                background-clip: content-box;
+                border-left: 2px solid transparent;
+            }
+            *::-webkit-scrollbar-thumb:hover {
+                background: #e2e8f0;
+                background-clip: content-box;
+                border-left: 2px solid transparent;
+            }
+        </style>
+    </head>
+    <body></body>
+</html>

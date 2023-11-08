@@ -217,6 +217,12 @@ type Arguments =
             | Dir _ -> nameof Dir
             | Html _ -> nameof Html
 
+#!fsharp
+
+//// test
+
+Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
+
 #!markdown
 
 ## main

@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../../scripts/invoke-dib.ps1 dice_fsharp.dib`"" } | Invoke-Block -Retries 5
+    { . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../../scripts/invoke-dib.ps1 dice_fsharp.dib`"" } | Invoke-Block -Retries 5
 }
 
 { . ../../parser/dist/DibParser$(GetExecutableSuffix) dice_fsharp.dib fs } | Invoke-Block

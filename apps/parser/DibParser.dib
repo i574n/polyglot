@@ -768,6 +768,12 @@ type Arguments =
             match s with
             | File _ -> nameof File
 
+#!fsharp
+
+//// test
+
+Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
+
 #!markdown
 
 ## main

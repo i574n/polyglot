@@ -10,12 +10,12 @@ $ErrorActionPreference = "Stop"
 if (!$fast) {
     { dotnet run --configuration Release --project temp/dice.fsproj } | Invoke-Block
 
-    { . ../spiral/dist/Supervisor$(GetExecutableSuffix) --executecommand "pwsh -c `"../../scripts/invoke-dib.ps1 dice.dib`"" } | Invoke-Block -Retries 5
+    { . ../spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 dice.dib`"" } | Invoke-Block -Retries 5
 }
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) dice.dib spi } | Invoke-Block
 
-{ . ../spiral/dist/Supervisor$(GetExecutableSuffix) --buildfile dice.spi dice.fsx --timeout 10000 } | Invoke-Block
+{ . ../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file dice.spi dice.fsx --timeout 10000 } | Invoke-Block
 
 { . ../builder/dist/Builder$(GetExecutableSuffix) dice.fsx $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
 
@@ -64,6 +64,8 @@ if (!$fast) {
 { pwsh ./contract/build.ps1 -fast 1 } | Invoke-Block
 
 { pwsh ./contract/tests/build.ps1 } | Invoke-Block
+
+{ pwsh ./ui/build.ps1 -fast $($fast ?? '') } | Invoke-Block
 
 if ($env:CI) {
     Remove-Item ./target -Recurse -Force -ErrorAction Ignore

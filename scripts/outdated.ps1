@@ -35,11 +35,11 @@ CheckToml "../Cargo.toml" `-w
 
 CheckToml "../apps/chat/contract/Cargo.toml"
 CheckToml "../apps/chat/contract/tests/Cargo.toml"
-CheckToml "../apps/chat/ui/Cargo.toml"
 CheckToml "../apps/dice/Cargo.toml"
 CheckToml "../apps/dice/fsharp/Cargo.toml"
 CheckToml "../apps/dice/contract/Cargo.toml"
 CheckToml "../apps/dice/contract/tests/Cargo.toml"
+CheckToml "../apps/dice/ui/Cargo.toml"
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson "../apps/spiral/temp/extension"

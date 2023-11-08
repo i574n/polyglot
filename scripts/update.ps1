@@ -32,11 +32,11 @@ function UpdateJson {
 
 UpdateToml "../apps/chat/contract/Cargo.toml"
 UpdateToml "../apps/chat/contract/tests/Cargo.toml"
-UpdateToml "../apps/chat/ui/Cargo.toml"
 UpdateToml "../apps/dice/Cargo.toml"
 UpdateToml "../apps/dice/fsharp/Cargo.toml"
 UpdateToml "../apps/dice/contract/Cargo.toml"
 UpdateToml "../apps/dice/contract/tests/Cargo.toml"
+UpdateToml "../apps/dice/ui/Cargo.toml"
 UpdateToml "../apps/plot/Cargo.toml"
 
 UpdateJson "../apps/spiral/temp/extension"

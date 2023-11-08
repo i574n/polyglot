@@ -776,31 +776,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "chat_ui"
-version = "0.0.1"
-dependencies = [
- "base64 0.21.5",
- "borsh 1.1.1",
- "console_error_panic_hook",
- "console_log",
- "futures",
- "gloo-net 0.4.0",
- "js-sys",
- "leptos",
- "leptos_meta",
- "leptos_router",
- "log",
- "reqwest-wasm",
- "rexie",
- "serde",
- "serde-wasm-bindgen 0.6.1",
- "serde_json",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
 name = "chrono"
 version = "0.4.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1285,6 +1260,32 @@ version = "0.0.1"
 dependencies = [
  "fable_library_rust",
  "rand 0.8.5",
+]
+
+[[package]]
+name = "dice_ui"
+version = "0.0.1"
+dependencies = [
+ "base64 0.21.5",
+ "borsh 1.1.1",
+ "console_error_panic_hook",
+ "console_log",
+ "fable_library_rust",
+ "futures",
+ "gloo-net 0.4.0",
+ "js-sys",
+ "leptos",
+ "leptos_meta",
+ "leptos_router",
+ "log",
+ "reqwest-wasm",
+ "rexie",
+ "serde",
+ "serde-wasm-bindgen 0.6.1",
+ "serde_json",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]
@@ -3574,11 +3575,11 @@ version = "0.0.1"
 dependencies = [
  "chat_contract",
  "chat_contract_tests",
- "chat_ui",
  "dice",
  "dice_contract",
  "dice_contract_tests",
  "dice_fsharp",
+ "dice_ui",
  "exercism",
  "extension",
  "plot",

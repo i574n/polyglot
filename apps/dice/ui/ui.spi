@@ -1,0 +1,29 @@
+
+// use leptos::{logging::log, *};
+
+// pub fn main() {
+//     _ = console_log::init_with_level(log::Level::Debug);
+//     console_error_panic_hook::set_once();
+
+//     log!("csr mode - mounting to body");
+
+//     mount_to_body(|| {
+//         view! { <dice_ui::app::App /> }
+//     });
+// }
+
+
+inl leptos_log (text : string) =
+    rust.emit_expr () $'@@"leptos::logging::log\!(""{}"", """ + !text + @@""")"' : ()
+
+inl main (_args : array string) =
+    inl result = "result"
+    console.write_line ($"$\"result: {!result}\"" : string)
+
+
+    leptos_log "main / mount_to_body"
+
+    0i32
+
+inl main () =
+    $"let main args = !main args" : ()

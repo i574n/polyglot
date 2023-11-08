@@ -372,6 +372,12 @@ type Arguments =
 
 //// test
 
+Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
+
+#!fsharp
+
+//// test
+
 fun () -> parseArgs<Arguments> [||] |> ignore
 |> _throwsC (fun ex _ ->
     printException ex
