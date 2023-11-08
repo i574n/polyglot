@@ -14,24 +14,24 @@ mod module_d5f62357 {
     pub mod Ui {
         use super::*;
         use fable_library_rust::NativeArray_::Array;
-        use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::MutCell;
-        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::append;
         use fable_library_rust::String_::string;
-        on_startup!(
-            use leptos::IntoView;
-        );
+        use fable_library_rust::String_::toString;
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
-            leptos::html::div()
+            let v1: string = string("leptos::view! { <div></div> }");
+            leptos::view! { <div></div> }
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
-            let v2: string = sprintf!("result: {}", &string("result"));
-            println!("{0}", v2,);
+            let v1: string = append(append(string("args: "), toString(v0_1)), string(""));
+            leptos::logging::log!("{:#?}", &v1);
+            let _ = console_log::init_with_level(log::Level::Debug);
+            console_error_panic_hook::set_once();
             {
-                let v4: string = string("leptos::logging::log!(\"main / mount_to_body\")");
+                let v6: string = string("leptos::logging::log!(\"main / mount_to_body\")");
                 leptos::logging::log!("main / mount_to_body");
                 leptos::mount_to_body(|| Func0::new(move || Ui::closure1((), ()))());
                 0_i32
