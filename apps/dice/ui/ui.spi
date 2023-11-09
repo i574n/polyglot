@@ -1,4 +1,5 @@
 inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
@@ -17,6 +18,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
 
+nominal mouse_event = $"leptos_ev_MouseEvent"
 nominal button = $"leptos_html_Button"
 nominal div = $"leptos_html_Div"
 nominal input = $"leptos_html_Input"
@@ -76,13 +78,16 @@ inl create_signal forall t. (value : t) : (() -> t) * (t -> ()) =
 inl create_rw_signal forall t. (value : t) : rw_signal t =
     rust.emit_expr () $'$"leptos::create_rw_signal(!value)"'
 
+inl use_context forall t. () : t =
+    rust.emit_expr () $'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"'
+
 inl input () =
     inl (explorer_backend_host, set_explorer_backend_host) = create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> to_std_string)
 
     inl input' : html_element input =
         rust.emit_expr
             (explorer_backend_host, set_explorer_backend_host)
-            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
+            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
     $"!input' |> unbox" : impl into_view
 
 inl div2 () =
@@ -107,13 +112,29 @@ type global_state =
         state : rw_signal state
     }
 
+inl signal_get forall t. (signal : rw_signal t) : t =
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
+
+inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
+    inl fn = join fn
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"' : ()
+
 inl button () =
-    inl global_state : global_state = rust.emit_expr () $'"leptos::use_context::<std::rc::Rc<`global_state>>().unwrap().into()"'
+    inl global_state : global_state = use_context ()
+
+    inl on_click (_mouse_event : mouse_event) =
+        global_state.state |> signal_get
+        |> fun state => state.dark_mode |> signal_update fun x =>
+            not x
+
+    inl on_click = join on_click
 
     inl button' : html_element button =
         rust.emit_expr
             ()
-            $'"leptos::view\! { <button class=\\\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\\\">{(|| { leptos::logging::log\!(\\\"button () / render\\\"); leptos::view\! {<></>} })()}{\\\"🌓︎\\\"}</button> }"'
+            $'$"leptos::view\! {{ <button class=\\\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\\\" on:click=move |mouse_event| !on_click(mouse_event)>{{(|| {{ leptos::logging::log\!(\\\"button () / render\\\"); leptos::view\! {{<></>}} }})()}}{{\\\"🌓︎\\\"}}</button> }}"'
     $"!button' |> unbox" : impl into_view
 
 inl div1 () =
@@ -137,10 +158,19 @@ inl app () =
 
     rust.emit_expr () $'$"leptos::provide_context::<std::rc::Rc<`global_state>>(!global_state)"'
 
+
+    inl global_state : global_state = use_context ()
+
     inl div' = div1 ()
     inl div' : html_element div = $"!div' |> unbox"
 
-    $'"<div class=\\\"flex flex-1\\\">{!div'}</div>"' |> to_view
+    inl dark_class () =
+        global_state.state |> signal_get
+        |> fun state => state.dark_mode |> signal_get
+
+    inl dark_class = join dark_class
+
+    $'"<div class=\\\"flex flex-1\\\" class:dark={move || !dark_class()}>{!div'}</div>"' |> to_view
 
 inl main (args : array string) =
     log $'"args: " + string !args + ""'
