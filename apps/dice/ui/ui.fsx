@@ -1,4 +1,5 @@
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::html::Div")>] type leptos_html_Div = class end
+[<Fable.Core.Erase; Fable.Core.Emit("leptos::html::Input")>] type leptos_html_Input = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::Fragment")>] type leptos_Fragment = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::HtmlElement<$0>")>] type leptos_HtmlElement<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::IntoView")>] type leptos_IntoView = class end
@@ -11,20 +12,35 @@
 [<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("&$0")>] type Ref<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("str")>] type Str = class end
-let rec closure1 () () : Impl<leptos_IntoView> =
+let rec method0 (v0 : string) : string =
+    v0
+and method1 () : string =
+    let v0 : string = "explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app"
+    v0
+and closure1 () () : Impl<leptos_IntoView> =
     let v0 : string = string 30
-    let v1 : string = "fable_library_rust::String_::LrcStr::as_str($0)"
-    let v2 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v0 v1
-    let v3 : string = "leptos::view! { <div style=\"font-size: \".to_owned() + *$0 + \"px\">2</div> }"
-    let v4 : leptos_HtmlElement<leptos_html_Div> = Fable.Core.RustInterop.emitRustExpr v2 v3
-    let v5 : Impl<leptos_IntoView> = v4 |> unbox
-    let v6 : leptos_HtmlElement<leptos_html_Div> = v5 |> unbox
-    let v7 : string = "leptos::IntoView::into_view(v6)"
-    let v8 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "<div>{v8}</div>"
-    let v10 : string = "leptos::view! { " + v9 + " }"
-    let v11 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v10
-    v11
+    let v1 : string = method0(v0)
+    let v2 : string = $"fable_library_rust::String_::LrcStr::as_str(&v1)"
+    let v3 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v2
+    let v4 : string = method1()
+    let v5 : string = $"fable_library_rust::String_::LrcStr::as_str(&v4)"
+    let v6 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v5
+    let v7 : string = $"String::from(v6)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v7
+    let v9 : string = $"leptos::create_signal(v8)"
+    let struct (v10 : (unit -> std_string_String), v11 : (std_string_String -> unit)) = Fable.Core.RustInterop.emitRustExpr () v9
+    let v12 : string = $"leptos::view! {{ <input class=\"bg-gray-50 dark:bg-gray-900\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"
+    let v13 : leptos_HtmlElement<leptos_html_Input> = Fable.Core.RustInterop.emitRustExpr struct (v10, v11) v12
+    let v14 : Impl<leptos_IntoView> = v13 |> unbox
+    let v15 : leptos_HtmlElement<leptos_html_Input> = v14 |> unbox
+    let v16 : string = "leptos::view! { <div style=\"font-size: \".to_owned() + *$0 + \"px\">2{v15}</div> }"
+    let v17 : leptos_HtmlElement<leptos_html_Div> = Fable.Core.RustInterop.emitRustExpr v3 v16
+    let v18 : Impl<leptos_IntoView> = v17 |> unbox
+    let v19 : leptos_HtmlElement<leptos_html_Div> = v18 |> unbox
+    let v20 : string = "<div>{v19}</div>"
+    let v21 : string = "leptos::view! { " + v20 + " }"
+    let v22 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v21
+    v22
 and closure0 () (v0 : (string [])) : int32 =
     let v1 : string = "args: " + string v0 + ""
     let v2 : string = @$"leptos::logging::log!(""{{}}"", $0)"

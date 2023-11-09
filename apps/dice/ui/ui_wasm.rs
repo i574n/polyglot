@@ -21,14 +21,26 @@ mod module_d5f62357 {
         use fable_library_rust::String_::append;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toString;
+        pub fn method0(v0_1: string) -> string {
+            v0_1
+        }
+        pub fn method1() -> string {
+            string("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app")
+        }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
-            let v0_1: string = toString(30_i32);
-            let v2: &str = fable_library_rust::String_::LrcStr::as_str(&v0_1);
-            let v6: leptos::HtmlElement<leptos::html::Div> =
-                leptos::view! { <div style="font-size: ".to_owned() + *&v2 + "px">2</div> };
-            let v8: leptos::View = leptos::IntoView::into_view(v6);
-            let v10: string = string("leptos::view! { <div>{v8}</div> }");
-            leptos::view! { <div>{v8}</div> }
+            let v1: string = Ui::method0(toString(30_i32));
+            let v3: &str = fable_library_rust::String_::LrcStr::as_str(&v1);
+            let v4: string = Ui::method1();
+            let v6: &str = fable_library_rust::String_::LrcStr::as_str(&v4);
+            let v8: std::string::String = String::from(v6);
+            let patternInput = leptos::create_signal(v8);
+            let v12: string =
+                string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
+            let v15: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
+            let v19: leptos::HtmlElement<leptos::html::Div> =
+                leptos::view! { <div style="font-size: ".to_owned() + *&v3 + "px">2{v15}</div> };
+            let v21: string = string("leptos::view! { <div>{v19}</div> }");
+            leptos::view! { <div>{v19}</div> }
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1: string = append(append(string("args: "), toString(v0_1)), string(""));
