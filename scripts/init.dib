@@ -33,6 +33,10 @@ rustup update
 
 #!pwsh
 
+{ cargo +nightly install --git https://github.com/bram209/leptosfmt.git } | Invoke-Block -OnError Continue
+
+#!pwsh
+
 npm install -g pnpm
 
 #!pwsh

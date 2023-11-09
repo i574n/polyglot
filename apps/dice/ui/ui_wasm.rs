@@ -35,12 +35,15 @@ mod module_d5f62357 {
             let v8: std::string::String = String::from(v6);
             let patternInput = leptos::create_signal(v8);
             let v12: string =
-                string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
-            let v15: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
-            let v19: leptos::HtmlElement<leptos::html::Div> =
-                leptos::view! { <div style="font-size: ".to_owned() + *&v3 + "px">2{v15}</div> };
-            let v21: string = string("leptos::view! { <div>{v19}</div> }");
-            leptos::view! { <div>{v19}</div> }
+                string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
+            let v15: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
+            let v19: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" style="font-size: ".to_owned() + *&v3 + "px">2{v15}</div> };
+            let v20: string =
+                string("leptos::view! { <button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\">{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button> }");
+            let v23: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full">{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+            let v25: string =
+                string("leptos::view! { <div class=\"flex flex-1\">{v19}{v23}</div> }");
+            leptos::view! { <div class="flex flex-1">{v19}{v23}</div> }
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1: string = append(append(string("args: "), toString(v0_1)), string(""));

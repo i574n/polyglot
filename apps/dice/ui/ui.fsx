@@ -1,3 +1,4 @@
+[<Fable.Core.Erase; Fable.Core.Emit("leptos::html::Button")>] type leptos_html_Button = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::html::Div")>] type leptos_html_Div = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::html::Input")>] type leptos_html_Input = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::Fragment")>] type leptos_Fragment = class end
@@ -29,18 +30,22 @@ and closure1 () () : Impl<leptos_IntoView> =
     let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v7
     let v9 : string = $"leptos::create_signal(v8)"
     let struct (v10 : (unit -> std_string_String), v11 : (std_string_String -> unit)) = Fable.Core.RustInterop.emitRustExpr () v9
-    let v12 : string = $"leptos::view! {{ <input class=\"bg-gray-50 dark:bg-gray-900\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"
+    let v12 : string = $"leptos::view! {{ <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"
     let v13 : leptos_HtmlElement<leptos_html_Input> = Fable.Core.RustInterop.emitRustExpr struct (v10, v11) v12
     let v14 : Impl<leptos_IntoView> = v13 |> unbox
     let v15 : leptos_HtmlElement<leptos_html_Input> = v14 |> unbox
-    let v16 : string = "leptos::view! { <div style=\"font-size: \".to_owned() + *$0 + \"px\">2{v15}</div> }"
+    let v16 : string = "leptos::view! { <div class=\"flex flex-1\" style=\"font-size: \".to_owned() + *$0 + \"px\">2{v15}</div> }"
     let v17 : leptos_HtmlElement<leptos_html_Div> = Fable.Core.RustInterop.emitRustExpr v3 v16
     let v18 : Impl<leptos_IntoView> = v17 |> unbox
     let v19 : leptos_HtmlElement<leptos_html_Div> = v18 |> unbox
-    let v20 : string = "<div>{v19}</div>"
-    let v21 : string = "leptos::view! { " + v20 + " }"
-    let v22 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v21
-    v22
+    let v20 : string = "leptos::view! { <button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\">{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button> }"
+    let v21 : leptos_HtmlElement<leptos_html_Button> = Fable.Core.RustInterop.emitRustExpr () v20
+    let v22 : Impl<leptos_IntoView> = v21 |> unbox
+    let v23 : leptos_HtmlElement<leptos_html_Button> = v22 |> unbox
+    let v24 : string = "<div class=\"flex flex-1\">{v19}{v23}</div>"
+    let v25 : string = "leptos::view! { " + v24 + " }"
+    let v26 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v25
+    v26
 and closure0 () (v0 : (string [])) : int32 =
     let v1 : string = "args: " + string v0 + ""
     let v2 : string = @$"leptos::logging::log!(""{{}}"", $0)"

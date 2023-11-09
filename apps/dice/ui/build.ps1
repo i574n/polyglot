@@ -22,6 +22,7 @@ Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.r
     | Set-Content ui_wasm.rs
 
 cargo fmt --
+leptosfmt ./ui_wasm.rs
 
 if (!$fast) {
     Remove-Item ./target/trunk -Recurse -Force -ErrorAction Ignore

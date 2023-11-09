@@ -1,4 +1,5 @@
 inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
@@ -14,6 +15,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
 
+nominal button = $"leptos_html_Button"
 nominal div = $"leptos_html_Div"
 nominal input = $"leptos_html_Input"
 nominal fragment = $"leptos_Fragment"
@@ -34,6 +36,21 @@ inl raw_string_literal (s : string) : ref' str =
 
 inl (~#) (s : string) : ref' str =
     raw_string_literal s
+
+inl mount_to_body (view_fn : () -> impl into_view) =
+    rust.emit_expr view_fn $'"leptos::mount_to_body(|| $0())"' : ()
+
+inl log_string (text : string) =
+    rust.emit_expr () $'@@"leptos::logging::log\!(""" + !text + @@""")"' : ()
+
+inl log (text : string) =
+    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{}}"", $0)"' : ()
+
+inl log_debug (text : string) =
+    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"' : ()
+
+inl log_pretty (text : string) =
+    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"' : ()
 
 inl to_view (macro : string) : impl into_view =
     rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
@@ -58,7 +75,7 @@ inl input () =
     inl input' : html_element input =
         rust.emit_expr
             (explorer_backend_host, set_explorer_backend_host)
-            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
+            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
     $"!input' |> unbox" : impl into_view
 
 inl div2 () =
@@ -70,28 +87,22 @@ inl div2 () =
     inl div' : html_element div =
         rust.emit_expr
             font_size
-            $'"leptos::view\! { <div style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px\\\">2{!input'}</div> }"'
+            $'"leptos::view\! { <div class=\\\"flex flex-1\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px\\\">2{!input'}</div> }"'
     $"!div' |> unbox" : impl into_view
+
+inl button () =
+    inl button' : html_element button =
+        rust.emit_expr
+            ()
+            $'"leptos::view\! { <button class=\\\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\\\">{(|| { leptos::logging::log\!(\\\"button () / render\\\"); leptos::view\! {<></>} })()}{\\\"🌓︎\\\"}</button> }"'
+    $"!button' |> unbox" : impl into_view
 
 inl div1 () =
     inl div' = div2 ()
     inl div' : html_element div = $"!div' |> unbox"
-    $'"<div>{!div'}</div>"' |> to_view
-
-inl mount_to_body (view_fn : () -> impl into_view) =
-    rust.emit_expr view_fn $'"leptos::mount_to_body(|| $0())"' : ()
-
-inl log_string (text : string) =
-    rust.emit_expr () $'@@"leptos::logging::log\!(""" + !text + @@""")"' : ()
-
-inl log (text : string) =
-    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{}}"", $0)"' : ()
-
-inl log_debug (text : string) =
-    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"' : ()
-
-inl log_pretty (text : string) =
-    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"' : ()
+    inl button' = button ()
+    inl button' : html_element button = $"!button' |> unbox"
+    $'"<div class=\\\"flex flex-1\\\">{!div'}{!button'}</div>"' |> to_view
 
 inl main (args : array string) =
     log $'"args: " + string !args + ""'
