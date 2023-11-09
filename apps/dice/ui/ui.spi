@@ -1,5 +1,7 @@
 inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
@@ -11,7 +13,9 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
 
+nominal div = $"leptos_html_Div"
 nominal fragment = $"leptos_Fragment"
+nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
 nominal view = $"leptos_View"
 nominal std_string = $"std_string_String"
@@ -32,8 +36,27 @@ inl (~#) (s : string) : ref' str =
 inl to_view (macro : string) : impl into_view =
     rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
 
-inl div () =
-    "<div></div>" |> to_view
+inl to_view' (macro : html_element div) : impl into_view =
+    rust.emit_expr () $'"leptos::view\! { {!macro} }"'
+
+inl as_str (s : string) : ref' str =
+    rust.emit_expr s $"\"fable_library_rust::String_::LrcStr::as_str($0)\""
+
+inl div2 () =
+    inl font_size = 30i32
+    inl font_size : string = $"string !font_size"
+    inl font_size = font_size |> as_str
+    inl x : html_element div =
+        rust.emit_expr
+            font_size
+            $'"leptos::view\! { <div style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px\\\">2</div> }"'
+    $"!x |> unbox" : impl into_view
+
+inl div1 () =
+    inl x = div2 ()
+    inl x : html_element div = $"!x |> unbox"
+    inl x : view = rust.emit_expr () $'"leptos::IntoView::into_view(!x)"'
+    $'"<div>{!x}</div>"' |> to_view
 
 inl mount_to_body (view_fn : () -> impl into_view) =
     rust.emit_expr view_fn $'"leptos::mount_to_body(|| $0())"' : ()
@@ -51,7 +74,7 @@ inl log_pretty (text : string) =
     rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"' : ()
 
 inl main (args : array string) =
-    log_pretty $'"args: " + string !args + ""'
+    log $'"args: " + string !args + ""'
 
     rust.emit_expr () $'"let _ = console_log::init_with_level(log::Level::Debug)"'
     rust.emit_expr () $'"console_error_panic_hook::set_once()"'
@@ -59,7 +82,7 @@ inl main (args : array string) =
     log_string "main / mount_to_body"
 
     fun () =>
-        div ()
+        div1 ()
     |> mount_to_body
 
     0i32

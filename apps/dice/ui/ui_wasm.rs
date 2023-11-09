@@ -22,12 +22,17 @@ mod module_d5f62357 {
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toString;
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
-            let v1: string = string("leptos::view! { <div></div> }");
-            leptos::view! { <div></div> }
+            let v0_1: string = toString(30_i32);
+            let v2: &str = fable_library_rust::String_::LrcStr::as_str(&v0_1);
+            let v6: leptos::HtmlElement<leptos::html::Div> =
+                leptos::view! { <div style="font-size: ".to_owned() + *&v2 + "px">2</div> };
+            let v8: leptos::View = leptos::IntoView::into_view(v6);
+            let v10: string = string("leptos::view! { <div>{v8}</div> }");
+            leptos::view! { <div>{v8}</div> }
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1: string = append(append(string("args: "), toString(v0_1)), string(""));
-            leptos::logging::log!("{:#?}", &v1);
+            leptos::logging::log!("{}", &v1);
             let _ = console_log::init_with_level(log::Level::Debug);
             console_error_panic_hook::set_once();
             {
