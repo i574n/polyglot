@@ -61,6 +61,12 @@ inl log_pretty (text : string) =
 inl to_view (macro : string) : impl into_view =
     rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
 
+inl to_fragment (macro : string) : fragment =
+    rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
+
+inl fragment_to_view (fragment : fragment) : impl into_view =
+    rust.emit_expr () $'"leptos::IntoView::into_view(!fragment)"'
+
 inl to_view' (macro : html_element div) : impl into_view =
     rust.emit_expr () $'"leptos::view\! { {!macro} }"'
 
@@ -81,26 +87,24 @@ inl create_rw_signal forall t. (value : t) : rw_signal t =
 inl use_context forall t. () : t =
     rust.emit_expr () $'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"'
 
+inl signal_get forall t. (signal : rw_signal t) : t =
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
+
+inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
+    inl fn = join fn
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"' : ()
+
 inl input () =
     inl (explorer_backend_host, set_explorer_backend_host) = create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> to_std_string)
 
     inl input' : html_element input =
         rust.emit_expr
             (explorer_backend_host, set_explorer_backend_host)
-            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
+            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
     $"!input' |> unbox" : impl into_view
 
-inl div2 () =
-    inl font_size = 30i32
-    inl font_size : string = $"string !font_size"
-    inl font_size = font_size |> as_str
-    inl input' = input ()
-    inl input' : html_element input = $"!input' |> unbox"
-    inl div' : html_element div =
-        rust.emit_expr
-            font_size
-            $'"leptos::view\! { <div class=\\\"flex flex-1\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px\\\">2{!input'}</div> }"'
-    $"!div' |> unbox" : impl into_view
 
 type state =
     {
@@ -112,16 +116,21 @@ type global_state =
         state : rw_signal state
     }
 
-inl signal_get forall t. (signal : rw_signal t) : t =
-    inl signal = join signal
-    rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
+inl content () =
+    inl font_size = 30i32
+    inl font_size : string = $"string !font_size"
+    inl font_size = font_size |> as_str
 
-inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
-    inl fn = join fn
-    inl signal = join signal
-    rust.emit_expr () $'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"' : ()
+    inl input' = input ()
+    inl input' : html_element input = $"!input' |> unbox"
 
-inl button () =
+    inl result : html_element div =
+        rust.emit_expr
+            font_size
+            $'"leptos::view\! { <div class=\\\"flex flex-1 min-h-screen min-w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 text-xs\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px\\\">label:{!input'}</div> }"'
+    $"!result |> unbox" : impl into_view
+
+inl dark_mode_button () =
     inl global_state : global_state = use_context ()
 
     inl on_click (_mouse_event : mouse_event) =
@@ -131,18 +140,25 @@ inl button () =
 
     inl on_click = join on_click
 
-    inl button' : html_element button =
-        rust.emit_expr
-            ()
-            $'$"leptos::view\! {{ <button class=\\\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\\\" on:click=move |mouse_event| !on_click(mouse_event)>{{(|| {{ leptos::logging::log\!(\\\"button () / render\\\"); leptos::view\! {{<></>}} }})()}}{{\\\"🌓︎\\\"}}</button> }}"'
-    $"!button' |> unbox" : impl into_view
+    $'$"<button class=\\\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\\\" on:click=move |mouse_event| !on_click(mouse_event)>{{(|| {{ leptos::logging::log\!(\\\"button () / render\\\"); leptos::view\! {{<></>}} }})()}}{{\\\"🌓︎\\\"}}</button>"'
+    |> to_view
 
-inl div1 () =
-    inl div' = div2 ()
-    inl div' : html_element div = $"!div' |> unbox"
-    inl button' = button ()
-    inl button' : html_element button = $"!button' |> unbox"
-    $'"<div class=\\\"flex flex-1\\\">{!div'}{!button'}</div>"' |> to_view
+inl home () =
+    inl global_state : global_state = use_context ()
+
+    inl content' = content ()
+    inl content' : html_element div = $"!content' |> unbox"
+
+    inl class_dark () =
+        global_state.state |> signal_get
+        |> fun state => state.dark_mode |> signal_get
+
+    inl class_dark = join class_dark
+
+    inl dark_mode_button' = dark_mode_button ()
+    inl dark_mode_button' : html_element button = $"!dark_mode_button' |> unbox"
+
+    $'"<div class=\\\"flex flex-1\\\" class:dark={move || !class_dark()}>{!dark_mode_button'}{!content'}</div>"' |> to_view
 
 inl app () =
     rust.emit_expr () $'"leptos_meta::provide_meta_context()"'
@@ -158,19 +174,11 @@ inl app () =
 
     rust.emit_expr () $'$"leptos::provide_context::<std::rc::Rc<`global_state>>(!global_state)"'
 
+    inl home' = home ()
+    inl home' : html_element div = $"!home' |> unbox"
+    inl home' : view = rust.emit_expr () $'"leptos::IntoView::into_view(!home')"'
 
-    inl global_state : global_state = use_context ()
-
-    inl div' = div1 ()
-    inl div' : html_element div = $"!div' |> unbox"
-
-    inl dark_class () =
-        global_state.state |> signal_get
-        |> fun state => state.dark_mode |> signal_get
-
-    inl dark_class = join dark_class
-
-    $'"<div class=\\\"flex flex-1\\\" class:dark={move || !dark_class()}>{!div'}</div>"' |> to_view
+    $"!home' |> unbox" : impl into_view
 
 inl main (args : array string) =
     log $'"args: " + string !args + ""'

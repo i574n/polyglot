@@ -42,41 +42,41 @@ mod module_d5f62357 {
         ) -> leptos::RwSignal<leptos::RwSignal<bool>> {
             v0_1
         }
-        pub fn closure3(unitVar: (), v0_1: bool) -> bool {
-            v0_1 == false
-        }
-        pub fn method4() -> Func1<bool, bool> {
-            Func1::new(move |v: bool| Ui::closure3((), v))
-        }
-        pub fn method5(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+        pub fn method4(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
             v0_1
         }
-        pub fn closure2(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
-            let v3: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
-            let v5: leptos::RwSignal<bool> = leptos::SignalGet::get(&v3);
-            let v6 = Ui::method4();
-            let v7: leptos::RwSignal<bool> = Ui::method5(v5);
-            leptos::SignalUpdate::update(&v7, |x| *x = v6(*x));
-            ()
+        pub fn closure2(v0_1: LrcPtr<Ui::Heap0>, unitVar: ()) -> bool {
+            let v2: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
+            let v5: leptos::RwSignal<bool> = Ui::method4(leptos::SignalGet::get(&v2));
+            leptos::SignalGet::get(&v5)
         }
-        pub fn method2(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
-            Func1::new({
+        pub fn method2(v0_1: LrcPtr<Ui::Heap0>) -> Func0<bool> {
+            Func0::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::ev::MouseEvent| Ui::closure2(v0_1.clone(), v)
+                move || Ui::closure2(v0_1.clone(), ())
             })
+        }
+        pub fn closure4(unitVar: (), v0_1: bool) -> bool {
+            v0_1 == false
+        }
+        pub fn method6() -> Func1<bool, bool> {
+            Func1::new(move |v: bool| Ui::closure4((), v))
         }
         pub fn method7(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
             v0_1
         }
-        pub fn closure4(v0_1: LrcPtr<Ui::Heap0>, unitVar: ()) -> bool {
-            let v2: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
-            let v5: leptos::RwSignal<bool> = Ui::method7(leptos::SignalGet::get(&v2));
-            leptos::SignalGet::get(&v5)
+        pub fn closure3(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
+            let v3: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
+            let v5: leptos::RwSignal<bool> = leptos::SignalGet::get(&v3);
+            let v6 = Ui::method6();
+            let v7: leptos::RwSignal<bool> = Ui::method7(v5);
+            leptos::SignalUpdate::update(&v7, |x| *x = v6(*x));
+            ()
         }
-        pub fn method6(v0_1: LrcPtr<Ui::Heap0>) -> Func0<bool> {
-            Func0::new({
+        pub fn method5(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
+            Func1::new({
                 let v0_1 = v0_1.clone();
-                move || Ui::closure4(v0_1.clone(), ())
+                move |v: leptos::ev::MouseEvent| Ui::closure3(v0_1.clone(), v)
             })
         }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
@@ -97,22 +97,22 @@ mod module_d5f62357 {
                     let v17: std::string::String = String::from(v15);
                     let patternInput = leptos::create_signal(v17);
                     let v21: string =
-                        string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
-                    let v24: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
-                    let v28: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" style="font-size: ".to_owned() + *&v12 + "px">2{v24}</div> };
-                    let v31 =
-                        Ui::method2(leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into());
-                    let v32: string =
-                        string("leptos::view! { <button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v31(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button> }");
-                    let v35: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v31(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
-                    let v37: string =
-                        string("leptos::view! { <div class=\"flex flex-1\">{v28}{v35}</div> }");
-                    let v39: leptos::HtmlElement<leptos::html::Div> =
-                        leptos::view! { <div class="flex flex-1">{v28}{v35}</div> };
-                    let v40 = Ui::method6(v8);
-                    let v42: string =
-                        string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v40()}>{v39}</div> }");
-                    leptos::view! { <div class="flex flex-1" class:dark={move || v40()}>{v39}</div> }
+                        string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
+                    let v24: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
+                    let v25: string =
+                        string("leptos::view! { <div class=\"flex flex-1 min-h-screen min-w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 text-xs\" style=\"font-size: \".to_owned() + *$0 + \"px\">label:{v24}</div> }");
+                    let v28: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1 min-h-screen min-w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 text-xs" style="font-size: ".to_owned() + *&v12 + "px">label:{v24}</div> };
+                    let v29 = Ui::method2(v8);
+                    let v32 =
+                        Ui::method5(leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into());
+                    let v33: string =
+                        string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v32(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
+                    let v34: string = append(append(string("leptos::view! { "), v33), string(" }"));
+                    let v36: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v32(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+                    let v38: string =
+                        string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v29()}>{v36}{v28}</div> }");
+                    let v40: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v29()}>{v36}{v28}</div> };
+                    leptos::IntoView::into_view(v40)
                 }
             }
         }
