@@ -17,10 +17,20 @@ mod module_d5f62357 {
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
+        use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::String_::append;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toString;
+        #[derive(Clone, Debug, Default)]
+        pub struct Heap0 {
+            pub l0: leptos::RwSignal<leptos::RwSignal<bool>>,
+        }
+        impl core::fmt::Display for Ui::Heap0 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
         pub fn method0(v0_1: string) -> string {
             v0_1
         }
@@ -28,22 +38,38 @@ mod module_d5f62357 {
             string("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app")
         }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
-            let v1: string = Ui::method0(toString(30_i32));
-            let v3: &str = fable_library_rust::String_::LrcStr::as_str(&v1);
-            let v4: string = Ui::method1();
-            let v6: &str = fable_library_rust::String_::LrcStr::as_str(&v4);
-            let v8: std::string::String = String::from(v6);
-            let patternInput = leptos::create_signal(v8);
-            let v12: string =
-                string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
-            let v15: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
-            let v19: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" style="font-size: ".to_owned() + *&v3 + "px">2{v15}</div> };
-            let v20: string =
-                string("leptos::view! { <button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\">{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button> }");
-            let v23: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full">{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
-            let v25: string =
-                string("leptos::view! { <div class=\"flex flex-1\">{v19}{v23}</div> }");
-            leptos::view! { <div class="flex flex-1">{v19}{v23}</div> }
+            leptos_meta::provide_meta_context();
+            {
+                let v2: leptos::RwSignal<bool> = leptos::create_rw_signal(true);
+                let v5: LrcPtr<Ui::Heap0> = LrcPtr::new(Ui::Heap0 {
+                    l0: leptos::create_rw_signal(v2),
+                });
+                leptos::provide_context::<std::rc::Rc<Heap0>>(v5);
+                {
+                    let v8: string = Ui::method0(toString(30_i32));
+                    let v10: &str = fable_library_rust::String_::LrcStr::as_str(&v8);
+                    let v11: string = Ui::method1();
+                    let v13: &str = fable_library_rust::String_::LrcStr::as_str(&v11);
+                    let v15: std::string::String = String::from(v13);
+                    let patternInput = leptos::create_signal(v15);
+                    let v19: string =
+                        string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
+                    let v22: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
+                    let v26: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" style="font-size: ".to_owned() + *&v10 + "px">2{v22}</div> };
+                    let v28: LrcPtr<Ui::Heap0> =
+                        leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into();
+                    let v29: string =
+                        string("leptos::view! { <button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\">{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button> }");
+                    let v32: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full">{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+                    let v34: string =
+                        string("leptos::view! { <div class=\"flex flex-1\">{v26}{v32}</div> }");
+                    let v36: leptos::HtmlElement<leptos::html::Div> =
+                        leptos::view! { <div class="flex flex-1">{v26}{v32}</div> };
+                    let v38: string =
+                        string("leptos::view! { <div class=\"flex flex-1\">{v36}</div> }");
+                    leptos::view! { <div class="flex flex-1">{v36}</div> }
+                }
+            }
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1: string = append(append(string("args: "), toString(v0_1)), string(""));
