@@ -19,6 +19,8 @@ mod module_d5f62357 {
         use fable_library_rust::Native_::Func1;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Option_::defaultValue;
+        use fable_library_rust::Option_::map;
         use fable_library_rust::String_::append;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
@@ -48,6 +50,26 @@ mod module_d5f62357 {
             US1_1(rexie::Rexie),
         }
         impl core::fmt::Display for Ui::US1 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US2 {
+            US2_0,
+            US2_1(bool),
+        }
+        impl core::fmt::Display for Ui::US2 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US3 {
+            US3_0,
+            US3_1(rexie::Rexie),
+        }
+        impl core::fmt::Display for Ui::US3 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
@@ -137,31 +159,112 @@ mod module_d5f62357 {
             });
             {
                 {
+                    // ;
                     __future_init
                 }
             }
         }
-        pub fn closure6(unitVar: (), v0_1: bool) -> bool {
-            v0_1 == false
-        }
-        pub fn method9() -> Func1<bool, bool> {
-            Func1::new(move |v: bool| Ui::closure6((), v))
-        }
-        pub fn method10(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+        pub fn method9(
+            v0_1: leptos::Resource<Ui::US0, rexie::Rexie>,
+        ) -> leptos::Resource<Ui::US0, rexie::Rexie> {
             v0_1
         }
-        pub fn closure5(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
+        pub fn closure5(
+            v0_1: leptos::Resource<Ui::US0, rexie::Rexie>,
+            unitVar: (),
+        ) -> Option<rexie::Rexie> {
+            let v1: leptos::Resource<Ui::US0, rexie::Rexie> = Ui::method9(v0_1);
+            leptos::SignalGet::get(&v1)
+        }
+        pub fn method8(
+            v0_1: leptos::Resource<Ui::US0, rexie::Rexie>,
+        ) -> Func0<Option<rexie::Rexie>> {
+            Func0::new({
+                let v0_1 = v0_1.clone();
+                move || Ui::closure5(v0_1.clone(), ())
+            })
+        }
+        pub fn closure7(unitVar: (), v0_1: rexie::Rexie) -> Ui::US3 {
+            Ui::US3::US3_1(v0_1)
+        }
+        pub fn method10(v0_1: Result<Ui::US2, rexie::Error>) -> Result<Ui::US2, rexie::Error> {
+            v0_1
+        }
+        pub fn method11(v0_1: Ui::US2) -> Ui::US2 {
+            v0_1
+        }
+        pub fn closure6(
+            unitVar: (),
+            v0_1: Option<rexie::Rexie>,
+        ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Ui::US2>>> {
+            let __future_init = Box::pin(async {
+                //;
+                leptos::logging::log!(
+                    "{}",
+                    &string("ui.dark_mode_button () / dark_mode create_local_resource")
+                );
+                {
+                    let v6: Ui::US3 = defaultValue(
+                        Ui::US3::US3_0,
+                        map(Func1::new(move |v: rexie::Rexie| Ui::closure7((), v)), v0_1),
+                    );
+                    let v25: Ui::US2 = Ui::method11(match &v6 {
+                        Ui::US3::US3_1(v6_1_0) => {
+                            leptos::logging::log!("{}", &string("ui.get_dark_mode ()"));
+                            let __future_init = Box::pin(async {
+                                //;
+                                {
+                                    let v13: Result<Ui::US2, rexie::Error> =
+                                        Ui::method10(Ok(Ui::US2::US2_1(true)));
+                                    v13
+                                }
+                            });
+                            {
+                                // ;
+                                {
+                                    let v17: std::pin::Pin<
+                                        Box<
+                                            dyn std::future::Future<
+                                                Output = Result<Ui::US2, rexie::Error>,
+                                            >,
+                                        >,
+                                    > = __future_init;
+                                    let v19: Result<Ui::US2, rexie::Error> = v17.await;
+                                    v19.unwrap()
+                                }
+                            }
+                        }
+                        _ => Ui::US2::US2_0,
+                    });
+                    v25
+                }
+            });
+            {
+                // ;
+                __future_init
+            }
+        }
+        pub fn closure9(unitVar: (), v0_1: bool) -> bool {
+            v0_1 == false
+        }
+        pub fn method13() -> Func1<bool, bool> {
+            Func1::new(move |v: bool| Ui::closure9((), v))
+        }
+        pub fn method14(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+            v0_1
+        }
+        pub fn closure8(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
             let v3: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
             let v5: leptos::RwSignal<bool> = leptos::SignalGet::get(&v3);
-            let v6 = Ui::method9();
-            let v7: leptos::RwSignal<bool> = Ui::method10(v5);
+            let v6 = Ui::method13();
+            let v7: leptos::RwSignal<bool> = Ui::method14(v5);
             leptos::SignalUpdate::update(&v7, |x| *x = v6(*x));
             ()
         }
-        pub fn method8(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
+        pub fn method12(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::ev::MouseEvent| Ui::closure5(v0_1.clone(), v)
+                move |v: leptos::ev::MouseEvent| Ui::closure8(v0_1.clone(), v)
             })
         }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
@@ -195,23 +298,32 @@ mod module_d5f62357 {
                         let v37: LrcPtr<Ui::Heap0> =
                             leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into();
                         let v38 = Ui::method5();
-                        let v41: leptos::Resource<Ui::US0, rexie::Rexie> =
+                        let v42 = Ui::method8(leptos::create_local_resource(
+                            move || v38(),
+                            |x| async move {
+                                Func1::new(move |v: Ui::US0| Ui::closure4((), v))(x).await
+                            },
+                        ));
+                        let v45: leptos::Resource<Option<rexie::Rexie>, Ui::US2> =
                             leptos::create_local_resource(
-                                move || v38(),
+                                move || v42(),
                                 |x| async move {
-                                    Func1::new(move |v: Ui::US0| Ui::closure4((), v))(x).await
+                                    Func1::new(move |v_1: Option<rexie::Rexie>| {
+                                        Ui::closure6((), v_1)
+                                    })(x)
+                                    .await
                                 },
                             );
-                        let v42 = Ui::method8(v37);
-                        let v43: string =
-                            string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v42(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
-                        let v44: string =
-                            append(append(string("leptos::view! { "), v43), string(" }"));
-                        let v46: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v42(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+                        let v46 = Ui::method12(v37);
+                        let v47: string =
+                            string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v46(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
                         let v48: string =
-                            string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v33()}>{v46}{v32}</div> }");
-                        let v50: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v33()}>{v46}{v32}</div> };
-                        leptos::IntoView::into_view(v50)
+                            append(append(string("leptos::view! { "), v47), string(" }"));
+                        let v50: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v46(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+                        let v52: string =
+                            string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v33()}>{v50}{v32}</div> }");
+                        let v54: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v33()}>{v50}{v32}</div> };
+                        leptos::IntoView::into_view(v54)
                     }
                 }
             }

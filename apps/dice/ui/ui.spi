@@ -23,7 +23,6 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Result<$0, $1>\")>] type Result<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
 
 
@@ -108,7 +107,9 @@ inl future_init forall t. (depth : u8) (x : () -> t) : pin (box (dyn' (future t)
     inl x' = join x'
     rust.emit_expr () $'"!x' }})"'
     if depth = 0
-    then rust.emit_expr () $'"{ {"'
+    then rust.emit_expr () $'"{ { // "'
+    elif depth = 2
+    then rust.emit_expr () $'"{ // "'
     rust.emit_expr () $'"__future_init"'
 
 inl await forall t. (x : pin (box (dyn' (future t)))) : t =
@@ -138,6 +139,10 @@ inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl fn = join fn
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"' : ()
+
+inl resource_get forall t u. (resource : resource t u) : optionm'.option_fsharp u =
+    inl resource = join resource
+    rust.emit_expr () $'$"leptos::SignalGet::get(&!resource)"'
 
 
 type state =
@@ -183,6 +188,13 @@ inl build_database () : pin (box (dyn' (future (result rexie rexie_error)))) =
         Ok rexie
     |> future_init 1
 
+inl get_dark_mode (db : rexie) : pin (box (dyn' (future (result' (option bool) rexie_error)))) =
+    log $'"ui.get_dark_mode ()"'
+    fun () =>
+        inl x = Some true
+        $"Ok !x"
+    |> future_init 2
+
 inl dark_mode_button () =
     log $'"ui.dark_mode_button ()"'
     inl global_state : global_state = use_context ()
@@ -195,6 +207,19 @@ inl dark_mode_button () =
                     log $'"ui.dark_mode_button () / database create_local_resource"'
                     build_database () |> await |> result_get
                 |> future_init 0
+
+    inl dark_mode : resource (optionm'.option_fsharp rexie) (option bool) =
+        create_local_resource
+            fun () =>
+                database
+                |> resource_get
+            fun (database : optionm'.option_fsharp rexie) =>
+                fun () =>
+                    log $'"ui.dark_mode_button () / dark_mode create_local_resource"'
+                    match database |> optionm'.from_fsharp with
+                    | Some database => database |> get_dark_mode |> await |> result_unwrap
+                    | None => None
+                |> future_init 2
 
     inl on_click (_mouse_event : mouse_event) =
         global_state.state |> signal_get
