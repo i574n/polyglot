@@ -7,16 +7,27 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type Rc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Result<$0, $1>\")>] type Result<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
+
+
+nominal async t = $"Async<`t>"
 
 nominal mouse_event = $"leptos_ev_MouseEvent"
 nominal button = $"leptos_html_Button"
@@ -26,16 +37,29 @@ nominal fragment = $"leptos_Fragment"
 nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
 nominal rw_signal t = $"leptos_RwSignal<`t>"
+nominal resource t u = $"leptos_Resource<`t, `u>"
 nominal view = $"leptos_View"
+nominal rexie = $"rexie_Rexie"
+nominal rexie_error = $"rexie_Error"
+nominal rc t = $"std_rc_Rc<`t>"
+nominal box t = $"Box<`t>"
+nominal pin t = $"std_pin_Pin<`t>"
+nominal arc t = $"std_sync_Arc<`t>"
 nominal std_string = $"std_string_String"
 nominal dyn' t = $"Dyn<`t>"
 nominal fn' t = $"Fn<`t>"
 nominal fn_once t = $"FnOnce<`t>"
 nominal fn_unit = $"FnUnit"
+nominal future t = $"Future<`t>"
 nominal impl t = $"Impl<`t>"
-nominal rc t = $"Rc<`t>"
 nominal ref' t = $"Ref<`t>"
+nominal result' t u = $"Result<`t, `u>"
 nominal str = $"Str"
+
+inl result_get forall t e. (source : result t e) : t =
+    match source with
+    | Ok x => x
+    | Error x => failwith $'$"Result value was Error: {!x}"'
 
 inl raw_string_literal (s : string) : ref' str =
     rust.emit_expr () $"\"r#\\\"\" + !s + \"\\\"#\""
@@ -78,11 +102,30 @@ inl to_std_string (s : string) : std_string =
     inl s = s |> as_str
     rust.emit_expr () $'$"String::from(!s)"'
 
+inl future_init forall t. (depth : u8) (x : () -> t) : pin (box (dyn' (future t))) =
+    rust.emit_expr () $'"let __future_init = Box::pin(async { //"'
+    let x' = x ()
+    inl x' = join x'
+    rust.emit_expr () $'"!x' }})"'
+    if depth = 0
+    then rust.emit_expr () $'"{ {"'
+    rust.emit_expr () $'"__future_init"'
+
+inl await forall t. (x : pin (box (dyn' (future t)))) : t =
+    rust.emit_expr () $'"!x.await"'
+
+inl result_unwrap forall t u. (x : result' t u) : t =
+    rust.emit_expr () $'"!x.unwrap()"'
+
 inl create_signal forall t. (value : t) : (() -> t) * (t -> ()) =
     rust.emit_expr () $'$"leptos::create_signal(!value)"'
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
     rust.emit_expr () $'$"leptos::create_rw_signal(!value)"'
+
+inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> pin (box (dyn' (future u)))) : resource t u =
+    inl source = join source
+    rust.emit_expr fetcher $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"'
 
 inl use_context forall t. () : t =
     rust.emit_expr () $'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"'
@@ -96,15 +139,6 @@ inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"' : ()
 
-inl input () =
-    inl (explorer_backend_host, set_explorer_backend_host) = create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> to_std_string)
-
-    inl input' : html_element input =
-        rust.emit_expr
-            (explorer_backend_host, set_explorer_backend_host)
-            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
-    $"!input' |> unbox" : impl into_view
-
 
 type state =
     {
@@ -116,8 +150,17 @@ type global_state =
         state : rw_signal state
     }
 
+inl input () =
+    inl (explorer_backend_host, set_explorer_backend_host) = create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> to_std_string)
+
+    inl input' : html_element input =
+        rust.emit_expr
+            (explorer_backend_host, set_explorer_backend_host)
+            $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
+    $"!input' |> unbox" : impl into_view
+
 inl content () =
-    inl font_size = 30i32
+    inl font_size = 14i32
     inl font_size : string = $"string !font_size"
     inl font_size = font_size |> as_str
 
@@ -127,11 +170,31 @@ inl content () =
     inl result : html_element div =
         rust.emit_expr
             font_size
-            $'"leptos::view\! { <div class=\\\"flex flex-1 min-h-screen min-w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 text-xs\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px\\\">label:{!input'}</div> }"'
+            $'"leptos::view\! { <div class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 min-h-screen min-w-full place-items-baseline text-gray-700 dark:text-gray-200 text-sm\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px; place-items: baseline;\\\">label:{!input'}</div> }"'
     $"!result |> unbox" : impl into_view
 
+inl build_database () : pin (box (dyn' (future (result rexie rexie_error)))) =
+    log $'"ui.build_database ()"'
+
+    fun () =>
+        inl rexie : pin (box (dyn' (future (result' rexie rexie_error)))) = rust.emit_expr () $'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"'
+        inl rexie : result' rexie rexie_error = rexie |> await
+        inl rexie : rexie = rexie |> result_unwrap
+        Ok rexie
+    |> future_init 1
+
 inl dark_mode_button () =
+    log $'"ui.dark_mode_button ()"'
     inl global_state : global_state = use_context ()
+
+    inl database : resource (option ()) rexie =
+        create_local_resource
+            fun () => None
+            fun _ =>
+                fun () =>
+                    log $'"ui.dark_mode_button () / database create_local_resource"'
+                    build_database () |> await |> result_get
+                |> future_init 0
 
     inl on_click (_mouse_event : mouse_event) =
         global_state.state |> signal_get
@@ -144,6 +207,8 @@ inl dark_mode_button () =
     |> to_view
 
 inl home () =
+    log $'"ui.home ()"'
+
     inl global_state : global_state = use_context ()
 
     inl content' = content ()
@@ -161,6 +226,8 @@ inl home () =
     $'"<div class=\\\"flex flex-1\\\" class:dark={move || !class_dark()}>{!dark_mode_button'}{!content'}</div>"' |> to_view
 
 inl app () =
+    log $'"ui.app ()"'
+
     rust.emit_expr () $'"leptos_meta::provide_meta_context()"'
 
     inl global_state : global_state =
@@ -181,7 +248,7 @@ inl app () =
     $"!home' |> unbox" : impl into_view
 
 inl main (args : array string) =
-    log $'"args: " + string !args + ""'
+    log $'"main / args: " + string !args + ""'
 
     rust.emit_expr () $'"let _ = console_log::init_with_level(log::Level::Debug)"'
     rust.emit_expr () $'"console_error_panic_hook::set_once()"'

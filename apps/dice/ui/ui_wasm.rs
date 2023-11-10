@@ -20,6 +20,7 @@ mod module_d5f62357 {
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::String_::append;
+        use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toString;
         #[derive(Clone, Debug, Default)]
@@ -27,6 +28,26 @@ mod module_d5f62357 {
             pub l0: leptos::RwSignal<leptos::RwSignal<bool>>,
         }
         impl core::fmt::Display for Ui::Heap0 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US0 {
+            US0_0,
+            US0_1,
+        }
+        impl core::fmt::Display for Ui::US0 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US1 {
+            US1_0(rexie::Error),
+            US1_1(rexie::Rexie),
+        }
+        impl core::fmt::Display for Ui::US1 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
@@ -56,68 +77,147 @@ mod module_d5f62357 {
                 move || Ui::closure2(v0_1.clone(), ())
             })
         }
-        pub fn closure4(unitVar: (), v0_1: bool) -> bool {
-            v0_1 == false
+        pub fn closure3(unitVar: (), unitVar_1: ()) -> Ui::US0 {
+            Ui::US0::US0_0
         }
-        pub fn method6() -> Func1<bool, bool> {
-            Func1::new(move |v: bool| Ui::closure4((), v))
+        pub fn method5() -> Func0<Ui::US0> {
+            Func0::new(move || Ui::closure3((), ()))
         }
-        pub fn method7(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+        pub fn method6(v0_1: rexie::Rexie) -> Ui::US1 {
+            Ui::US1::US1_1(v0_1)
+        }
+        pub fn method7(v0_1: rexie::Rexie) -> rexie::Rexie {
             v0_1
         }
-        pub fn closure3(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
+        pub fn closure4(
+            unitVar: (),
+            v0_1: Ui::US0,
+        ) -> std::pin::Pin<Box<dyn std::future::Future<Output = rexie::Rexie>>> {
+            let __future_init = Box::pin(async {
+                //;
+                leptos::logging::log!(
+                    "{}",
+                    &string("ui.dark_mode_button () / database create_local_resource")
+                );
+                leptos::logging::log!("{}", &string("ui.build_database ()"));
+                let __future_init = Box::pin(async {
+                    //;
+                    {
+                        let v7: string =
+                    string("Box::pin(rexie::Rexie::builder(\"database\").version(1).add_object_store(rexie::ObjectStore::new(\"store\")).build())");
+                        let v8: std::pin::Pin<
+                            Box<
+                                dyn std::future::Future<
+                                    Output = Result<rexie::Rexie, rexie::Error>,
+                                >,
+                            >,
+                        > = Box::pin(
+                            rexie::Rexie::builder("database")
+                                .version(1)
+                                .add_object_store(rexie::ObjectStore::new("store"))
+                                .build(),
+                        );
+                        let v10: Result<rexie::Rexie, rexie::Error> = v8.await;
+                        let v13: Ui::US1 = Ui::method6(v10.unwrap());
+                        v13
+                    }
+                });
+                {
+                    let v16: std::pin::Pin<Box<dyn std::future::Future<Output = Ui::US1>>> =
+                        __future_init;
+                    let v18: Ui::US1 = v16.await;
+                    let v25: rexie::Rexie = Ui::method7(match &v18 {
+                        Ui::US1::US1_1(v18_1_0) => v18_1_0.clone(),
+                        Ui::US1::US1_0(v18_0_0) => {
+                            panic!("{}", sprintf!("Result value was Error: {}", v18_0_0),)
+                        }
+                    });
+                    v25
+                }
+            });
+            {
+                {
+                    __future_init
+                }
+            }
+        }
+        pub fn closure6(unitVar: (), v0_1: bool) -> bool {
+            v0_1 == false
+        }
+        pub fn method9() -> Func1<bool, bool> {
+            Func1::new(move |v: bool| Ui::closure6((), v))
+        }
+        pub fn method10(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+            v0_1
+        }
+        pub fn closure5(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
             let v3: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
             let v5: leptos::RwSignal<bool> = leptos::SignalGet::get(&v3);
-            let v6 = Ui::method6();
-            let v7: leptos::RwSignal<bool> = Ui::method7(v5);
+            let v6 = Ui::method9();
+            let v7: leptos::RwSignal<bool> = Ui::method10(v5);
             leptos::SignalUpdate::update(&v7, |x| *x = v6(*x));
             ()
         }
-        pub fn method5(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
+        pub fn method8(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::ev::MouseEvent| Ui::closure3(v0_1.clone(), v)
+                move |v: leptos::ev::MouseEvent| Ui::closure5(v0_1.clone(), v)
             })
         }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
+            leptos::logging::log!("{}", &string("ui.app ()"));
             leptos_meta::provide_meta_context();
             {
-                let v2: leptos::RwSignal<bool> = leptos::create_rw_signal(true);
-                let v5: LrcPtr<Ui::Heap0> = LrcPtr::new(Ui::Heap0 {
-                    l0: leptos::create_rw_signal(v2),
+                let v4: leptos::RwSignal<bool> = leptos::create_rw_signal(true);
+                let v7: LrcPtr<Ui::Heap0> = LrcPtr::new(Ui::Heap0 {
+                    l0: leptos::create_rw_signal(v4),
                 });
-                leptos::provide_context::<std::rc::Rc<Heap0>>(v5);
+                leptos::provide_context::<std::rc::Rc<Heap0>>(v7);
+                leptos::logging::log!("{}", &string("ui.home ()"));
                 {
-                    let v8: LrcPtr<Ui::Heap0> =
+                    let v12: LrcPtr<Ui::Heap0> =
                         leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into();
-                    let v10: string = Ui::method0(toString(30_i32));
-                    let v12: &str = fable_library_rust::String_::LrcStr::as_str(&v10);
-                    let v13: string = Ui::method1();
-                    let v15: &str = fable_library_rust::String_::LrcStr::as_str(&v13);
-                    let v17: std::string::String = String::from(v15);
-                    let patternInput = leptos::create_signal(v17);
-                    let v21: string =
-                        string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
-                    let v24: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
+                    let v14: string = Ui::method0(toString(14_i32));
+                    let v16: &str = fable_library_rust::String_::LrcStr::as_str(&v14);
+                    let v17: string = Ui::method1();
+                    let v19: &str = fable_library_rust::String_::LrcStr::as_str(&v17);
+                    let v21: std::string::String = String::from(v19);
+                    let patternInput = leptos::create_signal(v21);
                     let v25: string =
-                        string("leptos::view! { <div class=\"flex flex-1 min-h-screen min-w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 text-xs\" style=\"font-size: \".to_owned() + *$0 + \"px\">label:{v24}</div> }");
-                    let v28: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1 min-h-screen min-w-full bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-200 text-xs" style="font-size: ".to_owned() + *&v12 + "px">label:{v24}</div> };
-                    let v29 = Ui::method2(v8);
-                    let v32 =
-                        Ui::method5(leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into());
-                    let v33: string =
-                        string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v32(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
-                    let v34: string = append(append(string("leptos::view! { "), v33), string(" }"));
-                    let v36: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v32(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
-                    let v38: string =
-                        string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v29()}>{v36}{v28}</div> }");
-                    let v40: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v29()}>{v36}{v28}</div> };
-                    leptos::IntoView::into_view(v40)
+                        string("leptos::view! { <input class=\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| { $1(leptos::event_target_value(&event)) } /> }");
+                    let v28: leptos::HtmlElement<leptos::html::Input> = leptos::view! { <input class="bg-gray-50 dark:bg-gray-900 flex-1 h-8" prop:value=patternInput.0.clone() on:keyup=move |event: web_sys::KeyboardEvent| { patternInput.1.clone()(leptos::event_target_value(&event)) } /> };
+                    let v29: string =
+                        string("leptos::view! { <div class=\"bg-gray-50 dark:bg-gray-900 flex flex-1 min-h-screen min-w-full place-items-baseline text-gray-700 dark:text-gray-200 text-sm\" style=\"font-size: \".to_owned() + *$0 + \"px; place-items: baseline;\">label:{v28}</div> }");
+                    let v32: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="bg-gray-50 dark:bg-gray-900 flex flex-1 min-h-screen min-w-full place-items-baseline text-gray-700 dark:text-gray-200 text-sm" style="font-size: ".to_owned() + *&v16 + "px; place-items: baseline;">label:{v28}</div> };
+                    let v33 = Ui::method2(v12);
+                    leptos::logging::log!("{}", &string("ui.dark_mode_button ()"));
+                    {
+                        let v37: LrcPtr<Ui::Heap0> =
+                            leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into();
+                        let v38 = Ui::method5();
+                        let v41: leptos::Resource<Ui::US0, rexie::Rexie> =
+                            leptos::create_local_resource(
+                                move || v38(),
+                                |x| async move {
+                                    Func1::new(move |v: Ui::US0| Ui::closure4((), v))(x).await
+                                },
+                            );
+                        let v42 = Ui::method8(v37);
+                        let v43: string =
+                            string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v42(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
+                        let v44: string =
+                            append(append(string("leptos::view! { "), v43), string(" }"));
+                        let v46: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v42(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+                        let v48: string =
+                            string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v33()}>{v46}{v32}</div> }");
+                        let v50: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v33()}>{v46}{v32}</div> };
+                        leptos::IntoView::into_view(v50)
+                    }
                 }
             }
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
-            let v1: string = append(append(string("args: "), toString(v0_1)), string(""));
+            let v1: string = append(append(string("main / args: "), toString(v0_1)), string(""));
             leptos::logging::log!("{}", &v1);
             let _ = console_log::init_with_level(log::Level::Debug);
             console_error_panic_hook::set_once();
