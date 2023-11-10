@@ -81,6 +81,12 @@ inl log_debug (text : string) =
 inl log_pretty (text : string) =
     rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"' : ()
 
+inl format_debug x : std_string =
+    rust.emit_expr x $'@@$"format\!(""{{:?}}"", $0)"'
+
+inl format_pretty x : std_string =
+    rust.emit_expr x $'@@$"format\!(""{{:#?}}"", $0)"'
+
 inl to_view (macro : string) : impl into_view =
     rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
 
@@ -105,8 +111,10 @@ inl future_init forall t. (depth : u8) (x : () -> t) : pin (box (dyn' (future t)
     rust.emit_expr () $'"let __future_init = Box::pin(async { //"'
     let x' = x ()
     inl x' = join x'
-    rust.emit_expr () $'"!x' }})"'
-    if depth = 0
+    if depth = 3
+    then rust.emit_expr () $'"!x' }}})"'
+    else rust.emit_expr () $'"!x' }})"'
+    if depth = 0 || depth = 3
     then rust.emit_expr () $'"{ { // "'
     elif depth = 2
     then rust.emit_expr () $'"{ // "'
@@ -215,11 +223,12 @@ inl dark_mode_button () =
                 |> resource_get
             fun (database : optionm'.option_fsharp rexie) =>
                 fun () =>
-                    log $'"ui.dark_mode_button () / dark_mode create_local_resource"'
+                    inl database_log = database |> format_debug
+                    log $'"ui.dark_mode_button () / dark_mode create_local_resource / database: " + string !database_log + ""'
                     match database |> optionm'.from_fsharp with
                     | Some database => database |> get_dark_mode |> await |> result_unwrap
                     | None => None
-                |> future_init 2
+                |> future_init 3
 
     inl on_click (_mouse_event : mouse_event) =
         global_state.state |> signal_get

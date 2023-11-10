@@ -199,49 +199,54 @@ mod module_d5f62357 {
         ) -> std::pin::Pin<Box<dyn std::future::Future<Output = Ui::US2>>> {
             let __future_init = Box::pin(async {
                 //;
-                leptos::logging::log!(
-                    "{}",
-                    &string("ui.dark_mode_button () / dark_mode create_local_resource")
-                );
                 {
-                    let v6: Ui::US3 = defaultValue(
-                        Ui::US3::US3_0,
-                        map(Func1::new(move |v: rexie::Rexie| Ui::closure7((), v)), v0_1),
-                    );
-                    let v25: Ui::US2 = Ui::method11(match &v6 {
-                        Ui::US3::US3_1(v6_1_0) => {
-                            leptos::logging::log!("{}", &string("ui.get_dark_mode ()"));
-                            let __future_init = Box::pin(async {
-                                //;
+                    let v4: string =
+                    append(append(string("ui.dark_mode_button () / dark_mode create_local_resource / database: "),
+                                  toString(format!("{:?}", &v0_1))),
+                           string(""));
+                    leptos::logging::log!("{}", &v4);
+                    {
+                        let v8: Ui::US3 = defaultValue(
+                            Ui::US3::US3_0,
+                            map(Func1::new(move |v: rexie::Rexie| Ui::closure7((), v)), v0_1),
+                        );
+                        let v27: Ui::US2 = Ui::method11(match &v8 {
+                            Ui::US3::US3_1(v8_1_0) => {
+                                leptos::logging::log!("{}", &string("ui.get_dark_mode ()"));
+                                let __future_init = Box::pin(async {
+                                    //;
+                                    {
+                                        let v15: Result<Ui::US2, rexie::Error> =
+                                            Ui::method10(Ok(Ui::US2::US2_1(true)));
+                                        v15
+                                    }
+                                });
                                 {
-                                    let v13: Result<Ui::US2, rexie::Error> =
-                                        Ui::method10(Ok(Ui::US2::US2_1(true)));
-                                    v13
-                                }
-                            });
-                            {
-                                // ;
-                                {
-                                    let v17: std::pin::Pin<
-                                        Box<
-                                            dyn std::future::Future<
-                                                Output = Result<Ui::US2, rexie::Error>,
+                                    // ;
+                                    {
+                                        let v19: std::pin::Pin<
+                                            Box<
+                                                dyn std::future::Future<
+                                                    Output = Result<Ui::US2, rexie::Error>,
+                                                >,
                                             >,
-                                        >,
-                                    > = __future_init;
-                                    let v19: Result<Ui::US2, rexie::Error> = v17.await;
-                                    v19.unwrap()
+                                        > = __future_init;
+                                        let v21: Result<Ui::US2, rexie::Error> = v19.await;
+                                        v21.unwrap()
+                                    }
                                 }
                             }
-                        }
-                        _ => Ui::US2::US2_0,
-                    });
-                    v25
+                            _ => Ui::US2::US2_0,
+                        });
+                        v27
+                    }
                 }
             });
             {
-                // ;
-                __future_init
+                {
+                    // ;
+                    __future_init
+                }
             }
         }
         pub fn closure9(unitVar: (), v0_1: bool) -> bool {

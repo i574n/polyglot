@@ -83,16 +83,6 @@ pub fn DarkModeButton() -> impl IntoView {
         },
     );
 
-    let set_dark_mode_action = create_action(move |value: &bool| {
-        log!(
-            "DarkModeButton () / set_dark_mode_action / value: {:#?}",
-            value
-        );
-        let value = value.clone();
-        let database = database.get().unwrap();
-        async move { set_dark_mode(&database, value).await.unwrap() }
-    });
-
     create_effect(move |_| {
         log!("DarkModeButton () / create_effect 1 / ##1");
 
@@ -168,6 +158,16 @@ pub fn DarkModeButton() -> impl IntoView {
     });
 
     let (loaded, set_loaded) = create_signal(false);
+
+    let set_dark_mode_action = create_action(move |value: &bool| {
+        log!(
+            "DarkModeButton () / set_dark_mode_action / value: {:#?}",
+            value
+        );
+        let value = value.clone();
+        let database = database.get().unwrap();
+        async move { set_dark_mode(&database, value).await.unwrap() }
+    });
 
     create_effect(move |_| {
         log!("DarkModeButton () / create_effect 2 / ##1");

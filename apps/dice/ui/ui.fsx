@@ -121,44 +121,46 @@ and method11 (v0 : US2) : US2 =
 and closure6 () (v0 : rexie_Rexie option) : std_pin_Pin<Box<Dyn<Future<US2>>>> =
     let v1 : string = "let __future_init = Box::pin(async { //"
     Fable.Core.RustInterop.emitRustExpr () v1
-    let v2 : string = "ui.dark_mode_button () / dark_mode create_local_resource"
-    let v3 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-    Fable.Core.RustInterop.emitRustExpr v2 v3
-    let v4 : (rexie_Rexie -> US3) = closure7()
-    let v5 : US3 = US3_0
-    let v6 : US3 = v0 |> Option.map v4 |> Option.defaultValue v5
-    let v24 : US2 =
-        match v6 with
+    let v2 : string = @$"format!(""{{:?}}"", $0)"
+    let v3 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v2
+    let v4 : string = "ui.dark_mode_button () / dark_mode create_local_resource / database: " + string v3 + ""
+    let v5 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+    Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v6 : (rexie_Rexie -> US3) = closure7()
+    let v7 : US3 = US3_0
+    let v8 : US3 = v0 |> Option.map v6 |> Option.defaultValue v7
+    let v26 : US2 =
+        match v8 with
         | US3_0 -> (* None *)
             US2_0
-        | US3_1(v7) -> (* Some *)
-            let v8 : string = "ui.get_dark_mode ()"
-            let v9 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-            Fable.Core.RustInterop.emitRustExpr v8 v9
-            let v10 : string = "let __future_init = Box::pin(async { //"
-            Fable.Core.RustInterop.emitRustExpr () v10
-            let v11 : US2 = US2_1(true)
-            let v12 : Result<US2, rexie_Error> = Ok v11
-            let v13 : Result<US2, rexie_Error> = method10(v12)
-            let v14 : string = "v13 }})"
-            Fable.Core.RustInterop.emitRustExpr () v14
-            let v15 : string = "{ // "
-            Fable.Core.RustInterop.emitRustExpr () v15
-            let v16 : string = "__future_init"
-            let v17 : std_pin_Pin<Box<Dyn<Future<Result<US2, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v16
-            let v18 : string = "v17.await"
-            let v19 : Result<US2, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v18
-            let v20 : string = "v19.unwrap()"
-            let v21 : US2 = Fable.Core.RustInterop.emitRustExpr () v20
-            v21
-    let v25 : US2 = method11(v24)
-    let v26 : string = "v25 }})"
-    Fable.Core.RustInterop.emitRustExpr () v26
-    let v27 : string = "{ // "
-    Fable.Core.RustInterop.emitRustExpr () v27
-    let v28 : string = "__future_init"
-    let v29 : std_pin_Pin<Box<Dyn<Future<US2>>>> = Fable.Core.RustInterop.emitRustExpr () v28
-    v29
+        | US3_1(v9) -> (* Some *)
+            let v10 : string = "ui.get_dark_mode ()"
+            let v11 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+            Fable.Core.RustInterop.emitRustExpr v10 v11
+            let v12 : string = "let __future_init = Box::pin(async { //"
+            Fable.Core.RustInterop.emitRustExpr () v12
+            let v13 : US2 = US2_1(true)
+            let v14 : Result<US2, rexie_Error> = Ok v13
+            let v15 : Result<US2, rexie_Error> = method10(v14)
+            let v16 : string = "v15 }})"
+            Fable.Core.RustInterop.emitRustExpr () v16
+            let v17 : string = "{ // "
+            Fable.Core.RustInterop.emitRustExpr () v17
+            let v18 : string = "__future_init"
+            let v19 : std_pin_Pin<Box<Dyn<Future<Result<US2, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v18
+            let v20 : string = "v19.await"
+            let v21 : Result<US2, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v20
+            let v22 : string = "v21.unwrap()"
+            let v23 : US2 = Fable.Core.RustInterop.emitRustExpr () v22
+            v23
+    let v27 : US2 = method11(v26)
+    let v28 : string = "v27 }}})"
+    Fable.Core.RustInterop.emitRustExpr () v28
+    let v29 : string = "{ { // "
+    Fable.Core.RustInterop.emitRustExpr () v29
+    let v30 : string = "__future_init"
+    let v31 : std_pin_Pin<Box<Dyn<Future<US2>>>> = Fable.Core.RustInterop.emitRustExpr () v30
+    v31
 and closure9 () (v0 : bool) : bool =
     let v1 : bool = v0 = false
     v1
