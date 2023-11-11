@@ -20,6 +20,8 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Window\")>] type web_sys_Window = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Storage\")>] type web_sys_Storage = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
@@ -28,6 +30,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
 
 
 nominal async t = $"Async<`t>"
@@ -53,6 +56,8 @@ nominal box t = $"Box<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
 nominal std_string = $"std_string_String"
+nominal window = $"web_sys_Window"
+nominal storage = $"web_sys_Storage"
 nominal dyn' t = $"Dyn<`t>"
 nominal fn' t = $"Fn<`t>"
 nominal fn_once t = $"FnOnce<`t>"
@@ -62,11 +67,17 @@ nominal impl t = $"Impl<`t>"
 nominal ref' t = $"Ref<`t>"
 nominal result' t u = $"Result<`t, `u>"
 nominal str = $"Str"
+nominal vec t = $"Vec<`t>"
 
 inl result_get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
     | Error x => failwith $'$"Result value was Error: {!x}"'
+
+inl result_map forall t e u. (fn : t -> u) (source : result t e) : result u e =
+    match source with
+    | Ok x => fn x |> Ok
+    | Error x => Error x
 
 inl result_from_fsharp forall t u. (x : result' t u) : result t u =
     inl ok x : result t u = Ok x
@@ -178,6 +189,16 @@ inl resource_get forall t u. (resource : resource t u) : optionm'.option_fsharp 
     inl resource = join resource
     rust.emit_expr () $'$"leptos::SignalGet::get(&!resource)"'
 
+inl create_effect (fn : () -> ()) : () =
+    inl fn = join fn
+    rust.emit_expr () $'"leptos::create_effect(move |_| { !fn() })"'
+
+let window () : window =
+    rust.emit_expr () $'"leptos::leptos_dom::window()"'
+
+let local_storage (window : window) : result' (optionm'.option_fsharp storage) js_value =
+    inl window = join window
+    rust.emit_expr () $'"!window.local_storage()"'
 
 type state =
     {
@@ -253,6 +274,27 @@ inl get_dark_mode (rexie : rexie) : pin (box (dyn' (future (result' (option bool
         |> result_to_fsharp
     |> future_init 2
 
+inl set_dark_mode (mode : bool) (rexie : rexie) : pin (box (dyn' (future (result' () rexie_error)))) =
+    log $'"ui.set_dark_mode () / mode: " + string !mode + ""'
+    inl rexie = join rexie
+    fun () =>
+        inl transaction : rexie_transaction = rust.emit_expr () $'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"'
+        inl store : rexie_store = rust.emit_expr () $'"!transaction.store(\\\"store\\\")?"'
+        inl dark_mode_key = get_dark_mode_key ()
+        inl dark_mode_key = #dark_mode_key
+        inl mode_value : std_string = rust.emit_expr () $'"serde_json::json!!({ !dark_mode_key: !mode }).to_string()"'
+
+        rust.emit_expr () $'"let mut data = Vec::new()"'
+        rust.emit_expr () $'"!mode_value.serialize(&mut data).unwrap()"'
+        inl data : vec u8 = rust.emit_expr () $'"data"'
+
+        inl mode_js_value : js_value = rust.emit_expr () $'"serde_wasm_bindgen::to_value(!data).unwrap()"'
+        rust.emit_expr () $'"store.put(&!mode_js_value, Some(&\\\"data\\\".into())).await?"'
+        rust.emit_expr () $'"!transaction.done().await?"'
+
+        Ok () |> result_to_fsharp
+    |> future_init 2
+
 inl dark_mode_button () =
     log $'"ui.dark_mode_button ()"'
     inl global_state : global_state = use_context ()
@@ -279,6 +321,17 @@ inl dark_mode_button () =
                     | Some database => database |> get_dark_mode |> await |> result_unwrap
                     | None => None
                 |> future_init 3
+
+    create_effect fun () =>
+        log $'"ui.dark_mode_button () / create_effect 1 / ##1"'
+
+        match window () |> local_storage |> result_from_fsharp |> result_map optionm'.from_fsharp with
+        | Ok (Some _storage) =>
+            inl dark_mode = dark_mode |> resource_get
+            inl dark_mode = dark_mode |> format_debug
+            log $'"ui.dark_mode_button () / dark_mode effect 0 / ##1.1 / dark_mode: " + string !dark_mode + ""'
+            ()
+        | _ => ()
 
     inl on_click (_mouse_event : mouse_event) =
         global_state.state |> signal_get
