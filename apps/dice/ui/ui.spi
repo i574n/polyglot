@@ -8,6 +8,9 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>] type leptos_ReadSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>] type leptos_Memo<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
@@ -16,6 +19,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
@@ -44,7 +48,10 @@ nominal action t u = $"leptos_Action<`t, `u>"
 nominal fragment = $"leptos_Fragment"
 nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
+nominal memo t = $"leptos_Memo<`t>"
 nominal rw_signal t = $"leptos_RwSignal<`t>"
+nominal read_signal t = $"leptos_ReadSignal<`t>"
+nominal write_signal t = $"leptos_WriteSignal<`t>"
 nominal resource t u = $"leptos_Resource<`t, `u>"
 nominal view = $"leptos_View"
 nominal rexie = $"rexie_Rexie"
@@ -53,6 +60,7 @@ nominal rexie_transaction = $"rexie_Transaction"
 nominal rexie_error = $"rexie_Error"
 nominal json_value = $"serde_json_Value"
 nominal js_value = $"wasm_bindgen_JsValue"
+nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
 nominal rc t = $"std_rc_Rc<`t>"
 nominal box t = $"Box<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
@@ -103,39 +111,6 @@ inl raw_string_literal (s : string) : ref' str =
 inl (~#) (s : string) : ref' str =
     raw_string_literal s
 
-inl mount_to_body (view_fn : () -> impl into_view) =
-    rust.emit_expr view_fn $'"leptos::mount_to_body(|| $0())"' : ()
-
-inl log_string (text : string) =
-    rust.emit_expr () $'@@"leptos::logging::log\!(""" + !text + @@""")"' : ()
-
-inl log (text : string) =
-    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{}}"", $0)"' : ()
-
-inl log_debug (text : string) =
-    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"' : ()
-
-inl log_pretty (text : string) =
-    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"' : ()
-
-inl format_debug x : std_string =
-    rust.emit_expr x $'@@$"format\!(""{{:?}}"", $0)"'
-
-inl format_pretty x : std_string =
-    rust.emit_expr x $'@@$"format\!(""{{:#?}}"", $0)"'
-
-inl to_view (macro : string) : impl into_view =
-    rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
-
-inl to_fragment (macro : string) : fragment =
-    rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
-
-inl fragment_to_view (fragment : fragment) : impl into_view =
-    rust.emit_expr () $'"leptos::IntoView::into_view(!fragment)"'
-
-inl to_view' (macro : html_element div) : impl into_view =
-    rust.emit_expr () $'"leptos::view\! { {!macro} }"'
-
 inl as_str (s : string) : ref' str =
     inl s = join s
     rust.emit_expr () $'$"fable_library_rust::String_::LrcStr::as_str(&!s)"'
@@ -143,6 +118,19 @@ inl as_str (s : string) : ref' str =
 inl to_std_string (s : string) : std_string =
     inl s = s |> as_str
     rust.emit_expr () $'$"String::from(!s)"'
+
+inl new_hash_map () : hash_map _ _ =
+    rust.emit_expr () $'"std::collections::HashMap::new()"'
+
+inl map_get forall k v. (key : k) (map : hash_map k v) : optionm'.option_fsharp v =
+    inl key = join key
+    rust.emit_expr () $'"std::collections::HashMap::get(&!map, &!key).map(|x| *x)"'
+
+inl format_debug x : std_string =
+    rust.emit_expr x $'@@$"format\!(""{{:?}}"", $0)"'
+
+inl format_pretty x : std_string =
+    rust.emit_expr x $'@@$"format\!(""{{:#?}}"", $0)"'
 
 inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : pin (box (dyn' (future t))) =
     if flag = 1
@@ -166,12 +154,34 @@ inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : pin (box (dyn
 inl await forall t. (x : pin (box (dyn' (future t)))) : t =
     rust.emit_expr () $'"!x.await"'
 
-inl store_get forall t. (key : string) (store : rexie_store) : pin (box (dyn' (future t))) =
-    inl key = #key
-    inl key : ref' js_value = rust.emit_expr key $'"$0.into()"'
-    rust.emit_expr () $'$"Box::pin(rexie::Store::get(&!store, !key))"'
+inl mount_to_body (view_fn : () -> impl into_view) =
+    rust.emit_expr view_fn $'"leptos::mount_to_body(|| $0())"' : ()
 
-inl create_signal forall t. (value : t) : (() -> t) * (t -> ()) =
+inl log_string (text : string) =
+    rust.emit_expr () $'@@"leptos::logging::log\!(""" + !text + @@""")"' : ()
+
+inl log (text : string) =
+    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{}}"", $0)"' : ()
+
+inl log_debug (text : string) =
+    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"' : ()
+
+inl log_pretty (text : string) =
+    rust.emit_expr text $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"' : ()
+
+inl to_view (macro : string) : impl into_view =
+    rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
+
+inl to_fragment (macro : string) : fragment =
+    rust.emit_expr () $'"leptos::view\! { " + !macro + " }"'
+
+inl fragment_to_view (fragment : fragment) : impl into_view =
+    rust.emit_expr () $'"leptos::IntoView::into_view(!fragment)"'
+
+inl to_view' (macro : html_element div) : impl into_view =
+    rust.emit_expr () $'"leptos::view\! { {!macro} }"'
+
+inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     rust.emit_expr () $'$"leptos::create_signal(!value)"'
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
@@ -185,10 +195,18 @@ inl create_action forall t u. (action_fn : t -> pin (box (dyn' (future u)))) : a
     inl action_fn = join action_fn
     rust.emit_expr () $'"leptos::create_action(move |value: &`t| !action_fn(*value))"'
 
+inl action_dispatch forall t. (value : t) (action : action t ()) =
+    inl value = join value
+    rust.emit_expr () $'"leptos::Action::dispatch(&!action, !value)"'
+
 inl use_context forall t. () : t =
     rust.emit_expr () $'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"'
 
-inl signal_get forall t. (signal : rw_signal t) : t =
+inl rw_signal_get forall t. (signal : rw_signal t) : t =
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
+
+inl signal_get forall t. (signal : read_signal t) : t =
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
 
@@ -201,10 +219,18 @@ inl signal_get_untracked forall t. (signal : rw_signal t) : t =
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalGetUntracked::get_untracked(&!signal)"'
 
-inl signal_set forall t. (value : t) (signal : rw_signal t) =
+inl rw_signal_set forall t. (value : t) (signal : rw_signal t) =
     inl value = join value
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalSet::set(&!signal, !value)"' : ()
+
+inl signal_set forall t. (value : t) (signal : write_signal t) =
+    inl value = join value
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalSet::set(&!signal, !value)"' : ()
+
+inl memo_get forall t. (memo : memo t) : t =
+    rust.emit_expr () $'$"!memo()"'
 
 inl resource_get forall t u. (resource : resource t u) : optionm'.option_fsharp u =
     inl resource = join resource
@@ -214,12 +240,21 @@ inl create_effect (fn : () -> ()) : () =
     inl fn = join fn
     rust.emit_expr () $'"leptos::create_effect(move |_| { !fn() })"'
 
+inl create_memo forall t. (fn : () -> t) : memo t =
+    inl fn = join fn
+    rust.emit_expr () $'"leptos::create_memo(move |_| { !fn() })"'
+
 let window () : window =
     rust.emit_expr () $'"leptos::leptos_dom::window()"'
 
 let local_storage (window : window) : result' (optionm'.option_fsharp storage) js_value =
     inl window = join window
     rust.emit_expr () $'"!window.local_storage()"'
+
+inl store_get forall t. (key : string) (store : rexie_store) : pin (box (dyn' (future t))) =
+    inl key = #key
+    inl key : ref' js_value = rust.emit_expr key $'"$0.into()"'
+    rust.emit_expr () $'$"Box::pin(rexie::Store::get(&!store, !key))"'
 
 type state =
     {
@@ -229,6 +264,7 @@ type state =
 type global_state =
     heap {
         state : rw_signal state
+        loading : rw_signal (hash_map string (rw_signal bool))
     }
 
 inl get_dark_mode_key () =
@@ -279,10 +315,11 @@ inl get_dark_mode (rexie : rexie) : pin (box (dyn' (future (result' (option bool
         match mode_data |> optionm'.from_fsharp with
         | Some mode_data =>
             inl mode_data = join mode_data
-            inl data : std_string = rust.emit_expr () $'"serde_json::from_value(!mode_data).unwrap()"'
-            log $'"ui.get_dark_mode () / data: " + string !data + ""'
+            inl data : vec u8 = rust.emit_expr () $'"serde_json::from_value(!mode_data).unwrap()"'
+            inl data_log = data |> format_debug
+            log $'"ui.get_dark_mode () / data: " + string !data_log + ""'
             inl data = join data
-            inl json : std_string = rust.emit_expr () $'"borsh::BorshDeserialize::deserialize(&mut !data.as_bytes()).unwrap()"'
+            inl json : std_string = rust.emit_expr () $'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).unwrap()"'
             log $'"ui.get_dark_mode () / json: " + string !json + ""'
 
             inl obj : json_value = rust.emit_expr json $'"serde_json::from_str::<serde_json::Value>($0).unwrap()"'
@@ -356,7 +393,7 @@ inl dark_mode_button () =
             | Some (Some dark_mode) =>
                 global_state.state |> signal_get_untracked
                 |> fun state => state.dark_mode
-                |> signal_set dark_mode
+                |> rw_signal_set dark_mode
             | _ => ()
         | _ => ()
 
@@ -371,8 +408,49 @@ inl dark_mode_button () =
             database |> set_dark_mode value |> await |> result_unwrap
         |> future_init 5 1
 
+    let loading = create_memo fun () =>
+        log $'"ui.dark_mode_button () / loading create_memo"'
+        global_state.loading |> signal_get_untracked
+
+    let (loaded, set_loaded) = create_signal false
+
+    create_effect fun () =>
+        inl loaded = loaded |> signal_get
+        log $'"ui.dark_mode_button () / create_effect 2 / ##1 / loaded: " + string !loaded + ""'
+
+        inl dark_mode =
+            global_state.state |> signal_get_untracked
+            |> fun state => state.dark_mode
+            |> rw_signal_get
+
+        log $'"ui.dark_mode_button () / create_effect 2 / ##2 / dark_mode: " + string !dark_mode + ""'
+
+        inl deref forall t. (ref : ref' t) : t =
+            inl ref = join ref
+            rust.emit_expr () $'"*!ref"'
+
+        inl dark_mode_loading =
+            loading
+            |> memo_get
+            |> map_get (get_dark_mode_key ())
+            |> optionm'.from_fsharp
+            |> optionm.map rw_signal_get
+            |> optionm'.default_value false
+
+        log $'"ui.dark_mode_button () / create_effect 2 / ##3 / dark_mode_loading: " + string !dark_mode_loading + ""'
+
+        if not dark_mode_loading then
+            if not loaded
+            then set_loaded |> signal_set true
+            else
+                log $'"ui.dark_mode_button () / create_effect 2 / ##4 / dark_mode: " + string !dark_mode + ""'
+
+                match window () |> local_storage |> result_from_fsharp |> result_map optionm'.from_fsharp with
+                | Ok (Some _storage) => set_dark_mode_action |> action_dispatch dark_mode
+                | _ => ()
+
     inl on_click (_mouse_event : mouse_event) =
-        global_state.state |> signal_get
+        global_state.state |> rw_signal_get
         |> fun state => state.dark_mode |> signal_update fun x =>
             not x
 
@@ -390,8 +468,8 @@ inl home () =
     inl content' : html_element div = $"!content' |> unbox"
 
     inl class_dark () =
-        global_state.state |> signal_get
-        |> fun state => state.dark_mode |> signal_get
+        global_state.state |> rw_signal_get
+        |> fun state => state.dark_mode |> rw_signal_get
 
     inl class_dark = join class_dark
 
@@ -412,6 +490,7 @@ inl app () =
                     {
                         dark_mode = create_rw_signal true
                     }
+            loading = new_hash_map () |> create_rw_signal
         }
 
     rust.emit_expr () $'$"leptos::provide_context::<std::rc::Rc<`global_state>>(!global_state)"'
