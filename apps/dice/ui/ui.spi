@@ -3,6 +3,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
@@ -39,6 +40,7 @@ nominal mouse_event = $"leptos_ev_MouseEvent"
 nominal button = $"leptos_html_Button"
 nominal div = $"leptos_html_Div"
 nominal input = $"leptos_html_Input"
+nominal action t u = $"leptos_Action<`t, `u>"
 nominal fragment = $"leptos_Fragment"
 nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
@@ -142,21 +144,32 @@ inl to_std_string (s : string) : std_string =
     inl s = s |> as_str
     rust.emit_expr () $'$"String::from(!s)"'
 
-inl future_init forall t. (depth : u8) (x : () -> t) : pin (box (dyn' (future t))) =
-    rust.emit_expr () $'"let __future_init = Box::pin(async { //"'
+inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : pin (box (dyn' (future t))) =
+    if flag = 1
+    then rust.emit_expr () $'"let __future_init = Box::pin(async move { //"'
+    else rust.emit_expr () $'"let __future_init = Box::pin(async { //"'
     let x' = x ()
     inl x' = join x'
-    if depth = 3
+    if depth = 4 || depth = 5
+    then rust.emit_expr () $'"!x' }}}})"'
+    elif depth = 3
     then rust.emit_expr () $'"!x' }}})"'
     else rust.emit_expr () $'"!x' }})"'
     if depth = 0 || depth = 3
     then rust.emit_expr () $'"{ { // "'
     elif depth = 2
     then rust.emit_expr () $'"{ // "'
+    elif depth = 5
+    then rust.emit_expr () $'"{ { { { { { // "'
     rust.emit_expr () $'"__future_init"'
 
 inl await forall t. (x : pin (box (dyn' (future t)))) : t =
     rust.emit_expr () $'"!x.await"'
+
+inl store_get forall t. (key : string) (store : rexie_store) : pin (box (dyn' (future t))) =
+    inl key = #key
+    inl key : ref' js_value = rust.emit_expr key $'"$0.into()"'
+    rust.emit_expr () $'$"Box::pin(rexie::Store::get(&!store, !key))"'
 
 inl create_signal forall t. (value : t) : (() -> t) * (t -> ()) =
     rust.emit_expr () $'$"leptos::create_signal(!value)"'
@@ -168,6 +181,10 @@ inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> pin (bo
     inl source = join source
     rust.emit_expr fetcher $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"'
 
+inl create_action forall t u. (action_fn : t -> pin (box (dyn' (future u)))) : action t u =
+    inl action_fn = join action_fn
+    rust.emit_expr () $'"leptos::create_action(move |value: &`t| !action_fn(*value))"'
+
 inl use_context forall t. () : t =
     rust.emit_expr () $'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"'
 
@@ -175,15 +192,19 @@ inl signal_get forall t. (signal : rw_signal t) : t =
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
 
-inl store_get forall t. (key : string) (store : rexie_store) : pin (box (dyn' (future t))) =
-    inl key = #key
-    inl key : ref' js_value = rust.emit_expr key $'"$0.into()"'
-    rust.emit_expr () $'$"Box::pin(rexie::Store::get(&!store, !key))"'
-
 inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl fn = join fn
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"' : ()
+
+inl signal_get_untracked forall t. (signal : rw_signal t) : t =
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalGetUntracked::get_untracked(&!signal)"'
+
+inl signal_set forall t. (value : t) (signal : rw_signal t) =
+    inl value = join value
+    inl signal = join signal
+    rust.emit_expr () $'$"leptos::SignalSet::set(&!signal, !value)"' : ()
 
 inl resource_get forall t u. (resource : resource t u) : optionm'.option_fsharp u =
     inl resource = join resource
@@ -244,7 +265,7 @@ inl build_database () : pin (box (dyn' (future (result rexie rexie_error)))) =
         inl rexie : result' rexie rexie_error = rexie |> await
         inl rexie : rexie = rexie |> result_unwrap
         Ok rexie
-    |> future_init 1
+    |> future_init 1 0
 
 inl get_dark_mode (rexie : rexie) : pin (box (dyn' (future (result' (option bool) rexie_error)))) =
     log $'"ui.get_dark_mode ()"'
@@ -272,7 +293,7 @@ inl get_dark_mode (rexie : rexie) : pin (box (dyn' (future (result' (option bool
             Ok dark_mode
         | None => Ok None
         |> result_to_fsharp
-    |> future_init 2
+    |> future_init 2 0
 
 inl set_dark_mode (mode : bool) (rexie : rexie) : pin (box (dyn' (future (result' () rexie_error)))) =
     log $'"ui.set_dark_mode () / mode: " + string !mode + ""'
@@ -285,15 +306,15 @@ inl set_dark_mode (mode : bool) (rexie : rexie) : pin (box (dyn' (future (result
         inl mode_value : std_string = rust.emit_expr () $'"serde_json::json!!({ !dark_mode_key: !mode }).to_string()"'
 
         rust.emit_expr () $'"let mut data = Vec::new()"'
-        rust.emit_expr () $'"!mode_value.serialize(&mut data).unwrap()"'
+        rust.emit_expr () $'"borsh::BorshSerialize::serialize(&!mode_value, &mut data).unwrap()"'
         inl data : vec u8 = rust.emit_expr () $'"data"'
 
-        inl mode_js_value : js_value = rust.emit_expr () $'"serde_wasm_bindgen::to_value(!data).unwrap()"'
-        rust.emit_expr () $'"store.put(&!mode_js_value, Some(&\\\"data\\\".into())).await?"'
+        inl mode_js_value : js_value = rust.emit_expr () $'"serde_wasm_bindgen::to_value(&!data).unwrap()"'
+        rust.emit_expr () $'"!store.put(&!mode_js_value, Some(&\\\"data\\\".into())).await?"'
         rust.emit_expr () $'"!transaction.done().await?"'
 
         Ok () |> result_to_fsharp
-    |> future_init 2
+    |> future_init 4 0
 
 inl dark_mode_button () =
     log $'"ui.dark_mode_button ()"'
@@ -306,7 +327,7 @@ inl dark_mode_button () =
                 fun () =>
                     log $'"ui.dark_mode_button () / database create_local_resource"'
                     build_database () |> await |> result_get
-                |> future_init 0
+                |> future_init 0 0
 
     inl dark_mode : resource (optionm'.option_fsharp rexie) (option bool) =
         create_local_resource
@@ -320,18 +341,35 @@ inl dark_mode_button () =
                     match database |> optionm'.from_fsharp with
                     | Some database => database |> get_dark_mode |> await |> result_unwrap
                     | None => None
-                |> future_init 3
+                |> future_init 3 0
 
     create_effect fun () =>
         log $'"ui.dark_mode_button () / create_effect 1 / ##1"'
 
         match window () |> local_storage |> result_from_fsharp |> result_map optionm'.from_fsharp with
         | Ok (Some _storage) =>
-            inl dark_mode = dark_mode |> resource_get
-            inl dark_mode = dark_mode |> format_debug
-            log $'"ui.dark_mode_button () / dark_mode effect 0 / ##1.1 / dark_mode: " + string !dark_mode + ""'
-            ()
+            inl dark_mode = dark_mode |> resource_get |> optionm'.from_fsharp
+            inl dark_mode_log = dark_mode |> format_debug
+            log $'"ui.dark_mode_button () / dark_mode effect 0 / ##1.1 / dark_mode: " + string !dark_mode_log + ""'
+
+            match dark_mode with
+            | Some (Some dark_mode) =>
+                global_state.state |> signal_get_untracked
+                |> fun state => state.dark_mode
+                |> signal_set dark_mode
+            | _ => ()
         | _ => ()
+
+    inl set_dark_mode_action = create_action fun value =>
+        log $'"ui.dark_mode_button () / set_dark_mode_action / value: " + string !value + ""'
+        inl database =
+            database
+            |> resource_get
+            |> optionm'.from_fsharp
+            |> optionm.value
+        fun () =>
+            database |> set_dark_mode value |> await |> result_unwrap
+        |> future_init 5 1
 
     inl on_click (_mouse_event : mouse_event) =
         global_state.state |> signal_get

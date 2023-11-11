@@ -22,6 +22,7 @@ mod module_d5f62357 {
         use fable_library_rust::Option_::defaultValue;
         use fable_library_rust::Option_::map;
         use fable_library_rust::String_::append;
+        use fable_library_rust::String_::ofBoolean;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::toString;
@@ -120,6 +121,16 @@ mod module_d5f62357 {
             US7_1(Ui::US8),
         }
         impl core::fmt::Display for Ui::US7 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US9 {
+            US9_0,
+            US9_1(Ui::US2),
+        }
+        impl core::fmt::Display for Ui::US9 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
@@ -433,73 +444,226 @@ mod module_d5f62357 {
         ) -> leptos::Resource<Option<rexie::Rexie>, Ui::US2> {
             v0_1
         }
-        pub fn closure10(v0_1: leptos::Resource<Option<rexie::Rexie>, Ui::US2>, unitVar: ()) {
+        pub fn closure14(unitVar: (), v0_1: Ui::US2) -> Ui::US9 {
+            Ui::US9::US9_1(v0_1)
+        }
+        pub fn method20(
+            v0_1: leptos::RwSignal<leptos::RwSignal<bool>>,
+        ) -> leptos::RwSignal<leptos::RwSignal<bool>> {
+            v0_1
+        }
+        pub fn method21(v0_1: bool) -> bool {
+            v0_1
+        }
+        pub fn method22(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+            v0_1
+        }
+        pub fn closure10(
+            v0_1: LrcPtr<Ui::Heap0>,
+            v1: leptos::Resource<Option<rexie::Rexie>, Ui::US2>,
+            unitVar: (),
+        ) {
             leptos::logging::log!(
                 "{}",
                 &string("ui.dark_mode_button () / create_effect 1 / ##1")
             );
             {
-                let v4: Result<Option<web_sys::Storage>, wasm_bindgen::JsValue> =
+                let v5: Result<Option<web_sys::Storage>, wasm_bindgen::JsValue> =
                     Ui::method17(Ui::method16());
-                let v7: Ui::US6 = match &v4 {
-                    Err(v4_1_0) => Ui::closure12((), v4_1_0.clone()),
-                    Ok(v4_0_0) => Ui::closure11((), v4_0_0.clone()),
+                let v8: Ui::US6 = match &v5 {
+                    Err(v5_1_0) => Ui::closure12((), v5_1_0.clone()),
+                    Ok(v5_0_0) => Ui::closure11((), v5_0_0.clone()),
                 };
-                let v16: Ui::US7 = match &v7 {
-                    Ui::US6::US6_1(v7_1_0) => Ui::US7::US7_1(defaultValue(
+                let v17: Ui::US7 = match &v8 {
+                    Ui::US6::US6_1(v8_1_0) => Ui::US7::US7_1(defaultValue(
                         Ui::US8::US8_0,
                         map(
                             Func1::new(move |v_2: web_sys::Storage| Ui::closure13((), v_2)),
-                            v7_1_0.clone(),
+                            v8_1_0.clone(),
                         ),
                     )),
-                    Ui::US6::US6_0(v7_0_0) => Ui::US7::US7_0(v7_0_0.clone()),
+                    Ui::US6::US6_0(v8_0_0) => Ui::US7::US7_0(v8_0_0.clone()),
                 };
-                if let Ui::US7::US7_1(v16_1_0) = &v16 {
-                    if let Ui::US8::US8_1(_) = &match &v16 {
+                if let Ui::US7::US7_1(v17_1_0) = &v17 {
+                    if let Ui::US8::US8_1(_) = &match &v17 {
                         Ui::US7::US7_1(x) => x.clone(),
                         _ => unreachable!(),
                     } {
-                        let v19: leptos::Resource<Option<rexie::Rexie>, Ui::US2> =
-                            Ui::method19(v0_1);
-                        let v21: Option<Ui::US2> = leptos::SignalGet::get(&v19);
-                        let v24: string =
+                        let v20: leptos::Resource<Option<rexie::Rexie>, Ui::US2> = Ui::method19(v1);
+                        let v25: Ui::US9 = defaultValue(
+                            Ui::US9::US9_0,
+                            map(
+                                Func1::new(move |v_3: Ui::US2| Ui::closure14((), v_3)),
+                                leptos::SignalGet::get(&v20),
+                            ),
+                        );
+                        let v28: string =
                             append(append(string("ui.dark_mode_button () / dark_mode effect 0 / ##1.1 / dark_mode: "),
-                                          toString(format!("{:?}", &v21))),
+                                          toString(format!("{:?}", &v25))),
                                    string(""));
-                        leptos::logging::log!("{}", &v24);
-                        ()
+                        leptos::logging::log!("{}", &v28);
+                        if let Ui::US9::US9_1(v25_1_0) = &v25 {
+                            let v30: Ui::US2 = match &v25 {
+                                Ui::US9::US9_1(x) => x.clone(),
+                                _ => unreachable!(),
+                            };
+                            if let Ui::US2::US2_1(v30_1_0) = &v30 {
+                                let v33: leptos::RwSignal<leptos::RwSignal<bool>> =
+                                    Ui::method20(v0_1.l0.clone());
+                                let v35: leptos::RwSignal<bool> =
+                                    leptos::SignalGetUntracked::get_untracked(&v33);
+                                let v36: bool = Ui::method21(match &v30 {
+                                    Ui::US2::US2_1(x) => x.clone(),
+                                    _ => unreachable!(),
+                                });
+                                let v37: leptos::RwSignal<bool> = Ui::method22(v35);
+                                leptos::SignalSet::set(&v37, v36);
+                                ()
+                            }
+                        }
                     };
                 }
             }
         }
-        pub fn method15(v0_1: leptos::Resource<Option<rexie::Rexie>, Ui::US2>) -> Func0<()> {
+        pub fn method15(
+            v0_1: LrcPtr<Ui::Heap0>,
+            v1: leptos::Resource<Option<rexie::Rexie>, Ui::US2>,
+        ) -> Func0<()> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Ui::closure10(v0_1.clone(), ())
+                let v1 = v1.clone();
+                move || Ui::closure10(v0_1.clone(), v1.clone(), ())
             })
         }
-        pub fn closure15(unitVar: (), v0_1: bool) -> bool {
-            v0_1 == false
-        }
-        pub fn method21() -> Func1<bool, bool> {
-            Func1::new(move |v: bool| Ui::closure15((), v))
-        }
-        pub fn method22(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+        pub fn method24(v0_1: rexie::Rexie) -> rexie::Rexie {
             v0_1
         }
-        pub fn closure14(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
+        pub fn method25(v0_1: Result<(), rexie::Error>) -> Result<(), rexie::Error> {
+            v0_1
+        }
+        pub fn method26() {
+            ();
+        }
+        pub fn closure15(
+            v0_1: leptos::Resource<Ui::US0, rexie::Rexie>,
+            v1: bool,
+        ) -> std::pin::Pin<Box<dyn std::future::Future<Output = ()>>> {
+            let v2: string = append(
+                append(
+                    string("ui.dark_mode_button () / set_dark_mode_action / value: "),
+                    ofBoolean(v1),
+                ),
+                string(""),
+            );
+            leptos::logging::log!("{}", &v2);
+            {
+                let v4: leptos::Resource<Ui::US0, rexie::Rexie> = Ui::method9(v0_1);
+                let v9: Ui::US3 = defaultValue(
+                    Ui::US3::US3_0,
+                    map(
+                        Func1::new(move |v: rexie::Rexie| Ui::closure7((), v)),
+                        leptos::SignalGet::get(&v4),
+                    ),
+                );
+                let v13: rexie::Rexie = match &v9 {
+                    Ui::US3::US3_1(v9_1_0) => v9_1_0.clone(),
+                    _ => panic!("{}", string("Option does not have a value."),),
+                };
+                let __future_init = Box::pin(async move {
+                    //;
+                    {
+                        let v15: string = append(
+                            append(string("ui.set_dark_mode () / mode: "), ofBoolean(v1)),
+                            string(""),
+                        );
+                        leptos::logging::log!("{}", &v15);
+                        {
+                            let v17: rexie::Rexie = Ui::method24(v13);
+                            let __future_init = Box::pin(async {
+                                //;
+                                {
+                                    let v20: rexie::Transaction = v17.transaction(
+                                        &["store"],
+                                        rexie::TransactionMode::ReadWrite,
+                                    )?;
+                                    let v22: rexie::Store = v20.store("store")?;
+                                    let v24: string = string("r#\"dark-mode\"#");
+                                    let v25: &str = r#"dark-mode"#;
+                                    let v27: std::string::String =
+                                        serde_json::json!({ v25: v1 }).to_string();
+                                    let mut data = Vec::new();
+                                    borsh::BorshSerialize::serialize(&v27, &mut data).unwrap();
+                                    {
+                                        let v31: Vec<u8> = data;
+                                        let v33: wasm_bindgen::JsValue =
+                                            serde_wasm_bindgen::to_value(&v31).unwrap();
+                                        v22.put(&v33, Some(&"data".into())).await?;
+                                        v20.done().await?;
+                                        {
+                                            let v37: Result<(), rexie::Error> =
+                                                Ui::method25(Ok(()));
+                                            v37
+                                        }
+                                    }
+                                }
+                            });
+                            {
+                                let v40: std::pin::Pin<
+                                    Box<dyn std::future::Future<Output = Result<(), rexie::Error>>>,
+                                > = __future_init;
+                                let v42: Result<(), rexie::Error> = v40.await;
+                                v42.unwrap();
+                                Ui::method26();
+                                ()
+                            }
+                        }
+                    }
+                });
+                {
+                    {
+                        {
+                            {
+                                {
+                                    {
+                                        // ;
+                                        __future_init
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        pub fn method23(
+            v0_1: leptos::Resource<Ui::US0, rexie::Rexie>,
+        ) -> Func1<bool, std::pin::Pin<Box<dyn std::future::Future<Output = ()>>>> {
+            Func1::new({
+                let v0_1 = v0_1.clone();
+                move |v: bool| Ui::closure15(v0_1.clone(), v)
+            })
+        }
+        pub fn closure17(unitVar: (), v0_1: bool) -> bool {
+            v0_1 == false
+        }
+        pub fn method28() -> Func1<bool, bool> {
+            Func1::new(move |v: bool| Ui::closure17((), v))
+        }
+        pub fn method29(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+            v0_1
+        }
+        pub fn closure16(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
             let v3: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
             let v5: leptos::RwSignal<bool> = leptos::SignalGet::get(&v3);
-            let v6 = Ui::method21();
-            let v7: leptos::RwSignal<bool> = Ui::method22(v5);
+            let v6 = Ui::method28();
+            let v7: leptos::RwSignal<bool> = Ui::method29(v5);
             leptos::SignalUpdate::update(&v7, |x| *x = v6(*x));
             ()
         }
-        pub fn method20(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
+        pub fn method27(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::ev::MouseEvent| Ui::closure14(v0_1.clone(), v)
+                move |v: leptos::ev::MouseEvent| Ui::closure16(v0_1.clone(), v)
             })
         }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
@@ -533,33 +697,41 @@ mod module_d5f62357 {
                         let v37: LrcPtr<Ui::Heap0> =
                             leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into();
                         let v38 = Ui::method5();
-                        let v42 = Ui::method8(leptos::create_local_resource(
-                            move || v38(),
-                            |x| async move {
-                                Func1::new(move |v: Ui::US0| Ui::closure4((), v))(x).await
-                            },
-                        ));
-                        let v46 = Ui::method15(leptos::create_local_resource(
-                            move || v42(),
-                            |x| async move {
-                                Func1::new(move |v_1: Option<rexie::Rexie>| Ui::closure6((), v_1))(
-                                    x,
-                                )
-                                .await
-                            },
-                        ));
+                        let v41: leptos::Resource<Ui::US0, rexie::Rexie> =
+                            leptos::create_local_resource(
+                                move || v38(),
+                                |x| async move {
+                                    Func1::new(move |v: Ui::US0| Ui::closure4((), v))(x).await
+                                },
+                            );
+                        let v42 = Ui::method8(v41.clone());
+                        let v46 = Ui::method15(
+                            v37.clone(),
+                            leptos::create_local_resource(
+                                move || v42(),
+                                |x| async move {
+                                    Func1::new(move |v_1: Option<rexie::Rexie>| {
+                                        Ui::closure6((), v_1)
+                                    })(x)
+                                    .await
+                                },
+                            ),
+                        );
                         leptos::create_effect(move |_| v46());
                         {
-                            let v48 = Ui::method20(v37);
-                            let v49: string =
-                                string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v48(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
-                            let v50: string =
-                                append(append(string("leptos::view! { "), v49), string(" }"));
-                            let v52: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v48(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
-                            let v54: string =
-                                string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v33()}>{v52}{v32}</div> }");
-                            let v56: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v33()}>{v52}{v32}</div> };
-                            leptos::IntoView::into_view(v56)
+                            let v48 = Ui::method23(v41);
+                            let v50: leptos::Action<bool, ()> =
+                                leptos::create_action(move |value: &bool| v48(*value));
+                            let v51 = Ui::method27(v37);
+                            let v52: string =
+                                string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v51(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
+                            let v53: string =
+                                append(append(string("leptos::view! { "), v52), string(" }"));
+                            let v55: leptos::HtmlElement<leptos::html::Button> = leptos::view! { <button class="fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full" on:click=move |mouse_event| v51(mouse_event)>{(|| { leptos::logging::log!("button () / render"); leptos::view! {<></>} })()}{"🌓︎"}</button> };
+                            let v57: string =
+                                string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v33()}>{v55}{v32}</div> }");
+                            let v59: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v33()}>{v55}{v32}</div> };
+                            leptos::IntoView::into_view(v59)
                         }
                     }
                 }
