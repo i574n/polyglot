@@ -8,8 +8,12 @@
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::RwSignal<$0>")>] type leptos_RwSignal<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::Resource<$0, $1>")>] type leptos_Resource<'T, 'U> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::View")>] type leptos_View = class end
-[<Fable.Core.Erase; Fable.Core.Emit("rexie::Rexie")>] type rexie_Rexie = class end
 [<Fable.Core.Erase; Fable.Core.Emit("rexie::Error")>] type rexie_Error = class end
+[<Fable.Core.Erase; Fable.Core.Emit("rexie::Rexie")>] type rexie_Rexie = class end
+[<Fable.Core.Erase; Fable.Core.Emit("rexie::Store")>] type rexie_Store = class end
+[<Fable.Core.Erase; Fable.Core.Emit("rexie::Transaction")>] type rexie_Transaction = class end
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>] type serde_json_Value = class end
+[<Fable.Core.Erase; Fable.Core.Emit("wasm_bindgen::JsValue")>] type wasm_bindgen_JsValue = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>] type std_rc_Rc<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>] type Box<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>] type std_pin_Pin<'T> = class end
@@ -36,6 +40,12 @@ and [<Struct>] US2 =
 and [<Struct>] US3 =
     | US3_0
     | US3_1 of f1_0 : rexie_Rexie
+and [<Struct>] US4 =
+    | US4_0
+    | US4_1 of f1_0 : serde_json_Value
+and [<Struct>] US5 =
+    | US5_0 of f0_0 : rexie_Error
+    | US5_1 of f1_0 : US2
 let rec method0 (v0 : string) : string =
     v0
 and method1 () : string =
@@ -114,9 +124,19 @@ and method8 (v0 : leptos_Resource<US0, rexie_Rexie>) : (unit -> rexie_Rexie opti
     closure5(v0)
 and closure7 () (v0 : rexie_Rexie) : US3 =
     US3_1(v0)
-and method10 (v0 : Result<US2, rexie_Error>) : Result<US2, rexie_Error> =
+and method10 (v0 : rexie_Rexie) : rexie_Rexie =
     v0
-and method11 (v0 : US2) : US2 =
+and closure8 () (v0 : serde_json_Value) : US4 =
+    US4_1(v0)
+and method11 (v0 : serde_json_Value) : serde_json_Value =
+    v0
+and method12 (v0 : std_string_String) : std_string_String =
+    v0
+and closure9 () (v0 : bool) : US2 =
+    US2_1(v0)
+and method13 (v0 : Result<US2, rexie_Error>) : Result<US2, rexie_Error> =
+    v0
+and method14 (v0 : US2) : US2 =
     v0
 and closure6 () (v0 : rexie_Rexie option) : std_pin_Pin<Box<Dyn<Future<US2>>>> =
     let v1 : string = "let __future_init = Box::pin(async { //"
@@ -129,7 +149,7 @@ and closure6 () (v0 : rexie_Rexie option) : std_pin_Pin<Box<Dyn<Future<US2>>>> =
     let v6 : (rexie_Rexie -> US3) = closure7()
     let v7 : US3 = US3_0
     let v8 : US3 = v0 |> Option.map v6 |> Option.defaultValue v7
-    let v26 : US2 =
+    let v77 : US2 =
         match v8 with
         | US3_0 -> (* None *)
             US2_0
@@ -137,49 +157,105 @@ and closure6 () (v0 : rexie_Rexie option) : std_pin_Pin<Box<Dyn<Future<US2>>>> =
             let v10 : string = "ui.get_dark_mode ()"
             let v11 : string = @$"leptos::logging::log!(""{{}}"", $0)"
             Fable.Core.RustInterop.emitRustExpr v10 v11
-            let v12 : string = "let __future_init = Box::pin(async { //"
-            Fable.Core.RustInterop.emitRustExpr () v12
-            let v13 : US2 = US2_1(true)
-            let v14 : Result<US2, rexie_Error> = Ok v13
-            let v15 : Result<US2, rexie_Error> = method10(v14)
-            let v16 : string = "v15 }})"
-            Fable.Core.RustInterop.emitRustExpr () v16
-            let v17 : string = "{ // "
-            Fable.Core.RustInterop.emitRustExpr () v17
-            let v18 : string = "__future_init"
-            let v19 : std_pin_Pin<Box<Dyn<Future<Result<US2, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v18
-            let v20 : string = "v19.await"
-            let v21 : Result<US2, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v20
-            let v22 : string = "v21.unwrap()"
-            let v23 : US2 = Fable.Core.RustInterop.emitRustExpr () v22
-            v23
-    let v27 : US2 = method11(v26)
-    let v28 : string = "v27 }}})"
-    Fable.Core.RustInterop.emitRustExpr () v28
-    let v29 : string = "{ { // "
-    Fable.Core.RustInterop.emitRustExpr () v29
-    let v30 : string = "__future_init"
-    let v31 : std_pin_Pin<Box<Dyn<Future<US2>>>> = Fable.Core.RustInterop.emitRustExpr () v30
-    v31
-and closure9 () (v0 : bool) : bool =
+            let v12 : rexie_Rexie = method10(v9)
+            let v13 : string = "let __future_init = Box::pin(async { //"
+            Fable.Core.RustInterop.emitRustExpr () v13
+            let v14 : string = "v12.transaction(&[\"store\"], rexie::TransactionMode::ReadOnly)?"
+            let v15 : rexie_Transaction = Fable.Core.RustInterop.emitRustExpr () v14
+            let v16 : string = "v15.store(\"store\")?"
+            let v17 : rexie_Store = Fable.Core.RustInterop.emitRustExpr () v16
+            let v18 : string = "data"
+            let v19 : string = "r#\"" + v18 + "\"#"
+            let v20 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v19
+            let v21 : string = "$0.into()"
+            let v22 : Ref<wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr v20 v21
+            let v23 : string = $"Box::pin(rexie::Store::get(&v17, v22))"
+            let v24 : std_pin_Pin<Box<Dyn<Future<Result<wasm_bindgen_JsValue, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v23
+            let v25 : string = "v24.await"
+            let v26 : Result<wasm_bindgen_JsValue, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v25
+            let v27 : string = "v26?"
+            let v28 : wasm_bindgen_JsValue = Fable.Core.RustInterop.emitRustExpr () v27
+            let v29 : string = "serde_wasm_bindgen::from_value(v28).unwrap()"
+            let v30 : serde_json_Value option = Fable.Core.RustInterop.emitRustExpr () v29
+            let v31 : (serde_json_Value -> US4) = closure8()
+            let v32 : US4 = US4_0
+            let v33 : US4 = v30 |> Option.map v31 |> Option.defaultValue v32
+            let v59 : US5 =
+                match v33 with
+                | US4_0 -> (* None *)
+                    let v56 : US2 = US2_0
+                    US5_1(v56)
+                | US4_1(v34) -> (* Some *)
+                    let v35 : serde_json_Value = method11(v34)
+                    let v36 : string = "serde_json::from_value(v35).unwrap()"
+                    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v36
+                    let v38 : string = "ui.get_dark_mode () / data: " + string v37 + ""
+                    let v39 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+                    Fable.Core.RustInterop.emitRustExpr v38 v39
+                    let v40 : std_string_String = method12(v37)
+                    let v41 : string = "borsh::BorshDeserialize::deserialize(&mut v40.as_bytes()).unwrap()"
+                    let v42 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v41
+                    let v43 : string = "ui.get_dark_mode () / json: " + string v42 + ""
+                    let v44 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+                    Fable.Core.RustInterop.emitRustExpr v43 v44
+                    let v45 : string = "serde_json::from_str::<serde_json::Value>($0).unwrap()"
+                    let v46 : serde_json_Value = Fable.Core.RustInterop.emitRustExpr v42 v45
+                    let v47 : string = "dark-mode"
+                    let v48 : string = "r#\"" + v47 + "\"#"
+                    let v49 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v48
+                    let v50 : string = "v46[v49].as_bool()"
+                    let v51 : bool option = Fable.Core.RustInterop.emitRustExpr () v50
+                    let v52 : (bool -> US2) = closure9()
+                    let v53 : US2 = US2_0
+                    let v54 : US2 = v51 |> Option.map v52 |> Option.defaultValue v53
+                    US5_1(v54)
+            let v65 : Result<US2, rexie_Error> =
+                match v59 with
+                | US5_0(v62) -> (* Error *)
+                    let v63 : Result<US2, rexie_Error> = Error v62
+                    v63
+                | US5_1(v60) -> (* Ok *)
+                    let v61 : Result<US2, rexie_Error> = Ok v60
+                    v61
+            let v66 : Result<US2, rexie_Error> = method13(v65)
+            let v67 : string = "v66 }})"
+            Fable.Core.RustInterop.emitRustExpr () v67
+            let v68 : string = "{ // "
+            Fable.Core.RustInterop.emitRustExpr () v68
+            let v69 : string = "__future_init"
+            let v70 : std_pin_Pin<Box<Dyn<Future<Result<US2, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v69
+            let v71 : string = "v70.await"
+            let v72 : Result<US2, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v71
+            let v73 : string = "v72.unwrap()"
+            let v74 : US2 = Fable.Core.RustInterop.emitRustExpr () v73
+            v74
+    let v78 : US2 = method14(v77)
+    let v79 : string = "v78 }}})"
+    Fable.Core.RustInterop.emitRustExpr () v79
+    let v80 : string = "{ { // "
+    Fable.Core.RustInterop.emitRustExpr () v80
+    let v81 : string = "__future_init"
+    let v82 : std_pin_Pin<Box<Dyn<Future<US2>>>> = Fable.Core.RustInterop.emitRustExpr () v81
+    v82
+and closure11 () (v0 : bool) : bool =
     let v1 : bool = v0 = false
     v1
-and method13 () : (bool -> bool) =
-    closure9()
-and method14 (v0 : leptos_RwSignal<bool>) : leptos_RwSignal<bool> =
+and method16 () : (bool -> bool) =
+    closure11()
+and method17 (v0 : leptos_RwSignal<bool>) : leptos_RwSignal<bool> =
     v0
-and closure8 (v0 : Heap0) (v1 : leptos_ev_MouseEvent) : unit =
+and closure10 (v0 : Heap0) (v1 : leptos_ev_MouseEvent) : unit =
     let v2 : leptos_RwSignal<leptos_RwSignal<bool>> = v0.l0
     let v3 : leptos_RwSignal<leptos_RwSignal<bool>> = method3(v2)
     let v4 : string = $"leptos::SignalGet::get(&v3)"
     let v5 : leptos_RwSignal<bool> = Fable.Core.RustInterop.emitRustExpr () v4
-    let v6 : (bool -> bool) = method13()
-    let v7 : leptos_RwSignal<bool> = method14(v5)
+    let v6 : (bool -> bool) = method16()
+    let v7 : leptos_RwSignal<bool> = method17(v5)
     let v8 : string = $"leptos::SignalUpdate::update(&v7, |x| *x = v6(*x))"
     Fable.Core.RustInterop.emitRustExpr () v8
     ()
-and method12 (v0 : Heap0) : (leptos_ev_MouseEvent -> unit) =
-    closure8(v0)
+and method15 (v0 : Heap0) : (leptos_ev_MouseEvent -> unit) =
+    closure10(v0)
 and closure1 () () : Impl<leptos_IntoView> =
     let v0 : string = "ui.app ()"
     let v1 : string = @$"leptos::logging::log!(""{{}}"", $0)"
@@ -231,7 +307,7 @@ and closure1 () () : Impl<leptos_IntoView> =
     let v43 : string = "leptos::create_local_resource(move || v42(), |x| async move { $0(x).await })"
     let v44 : (rexie_Rexie option -> std_pin_Pin<Box<Dyn<Future<US2>>>>) = closure6()
     let v45 : leptos_Resource<rexie_Rexie option, US2> = Fable.Core.RustInterop.emitRustExpr v44 v43
-    let v46 : (leptos_ev_MouseEvent -> unit) = method12(v37)
+    let v46 : (leptos_ev_MouseEvent -> unit) = method15(v37)
     let v47 : string = $"<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v46(mouse_event)>{{(|| {{ leptos::logging::log!(\"button () / render\"); leptos::view! {{<></>}} }})()}}{{\"🌓︎\"}}</button>"
     let v48 : string = "leptos::view! { " + v47 + " }"
     let v49 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v48

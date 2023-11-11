@@ -9,8 +9,12 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Store\")>] type rexie_Store = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
@@ -39,7 +43,11 @@ nominal rw_signal t = $"leptos_RwSignal<`t>"
 nominal resource t u = $"leptos_Resource<`t, `u>"
 nominal view = $"leptos_View"
 nominal rexie = $"rexie_Rexie"
+nominal rexie_store = $"rexie_Store"
+nominal rexie_transaction = $"rexie_Transaction"
 nominal rexie_error = $"rexie_Error"
+nominal json_value = $"serde_json_Value"
+nominal js_value = $"wasm_bindgen_JsValue"
 nominal rc t = $"std_rc_Rc<`t>"
 nominal box t = $"Box<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
@@ -59,6 +67,22 @@ inl result_get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
     | Error x => failwith $'$"Result value was Error: {!x}"'
+
+inl result_from_fsharp forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    $"match !x with Ok x -> !ok x | Error x -> !error x"
+
+inl result_to_fsharp forall t u. (x : result t u) : result' t u =
+    match x with
+    | Ok x => $"Ok !x"
+    | Error err => $"Error !err"
+
+inl try forall t u. (x : result' t u) : t =
+    rust.emit_expr () $'"!x?"'
+
+inl result_unwrap forall t u. (x : result' t u) : t =
+    rust.emit_expr () $'"!x.unwrap()"'
 
 inl raw_string_literal (s : string) : ref' str =
     rust.emit_expr () $"\"r#\\\"\" + !s + \"\\\"#\""
@@ -123,9 +147,6 @@ inl future_init forall t. (depth : u8) (x : () -> t) : pin (box (dyn' (future t)
 inl await forall t. (x : pin (box (dyn' (future t)))) : t =
     rust.emit_expr () $'"!x.await"'
 
-inl result_unwrap forall t u. (x : result' t u) : t =
-    rust.emit_expr () $'"!x.unwrap()"'
-
 inl create_signal forall t. (value : t) : (() -> t) * (t -> ()) =
     rust.emit_expr () $'$"leptos::create_signal(!value)"'
 
@@ -142,6 +163,11 @@ inl use_context forall t. () : t =
 inl signal_get forall t. (signal : rw_signal t) : t =
     inl signal = join signal
     rust.emit_expr () $'$"leptos::SignalGet::get(&!signal)"'
+
+inl store_get forall t. (key : string) (store : rexie_store) : pin (box (dyn' (future t))) =
+    inl key = #key
+    inl key : ref' js_value = rust.emit_expr key $'"$0.into()"'
+    rust.emit_expr () $'$"Box::pin(rexie::Store::get(&!store, !key))"'
 
 inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl fn = join fn
@@ -162,6 +188,9 @@ type global_state =
     heap {
         state : rw_signal state
     }
+
+inl get_dark_mode_key () =
+    "dark-mode"
 
 inl input () =
     inl (explorer_backend_host, set_explorer_backend_host) = create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> to_std_string)
@@ -196,11 +225,32 @@ inl build_database () : pin (box (dyn' (future (result rexie rexie_error)))) =
         Ok rexie
     |> future_init 1
 
-inl get_dark_mode (db : rexie) : pin (box (dyn' (future (result' (option bool) rexie_error)))) =
+inl get_dark_mode (rexie : rexie) : pin (box (dyn' (future (result' (option bool) rexie_error)))) =
     log $'"ui.get_dark_mode ()"'
+    inl rexie = join rexie
     fun () =>
-        inl x = Some true
-        $"Ok !x"
+        inl transaction : rexie_transaction = rust.emit_expr () $'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadOnly)?"'
+        inl store : rexie_store = rust.emit_expr () $'"!transaction.store(\\\"store\\\")?"'
+        inl mode_value : result' js_value rexie_error = store |> store_get "data" |> await
+        inl mode_value : js_value = mode_value |> try
+        inl mode_data : optionm'.option_fsharp json_value = rust.emit_expr () $'"serde_wasm_bindgen::from_value(!mode_value).unwrap()"'
+        match mode_data |> optionm'.from_fsharp with
+        | Some mode_data =>
+            inl mode_data = join mode_data
+            inl data : std_string = rust.emit_expr () $'"serde_json::from_value(!mode_data).unwrap()"'
+            log $'"ui.get_dark_mode () / data: " + string !data + ""'
+            inl data = join data
+            inl json : std_string = rust.emit_expr () $'"borsh::BorshDeserialize::deserialize(&mut !data.as_bytes()).unwrap()"'
+            log $'"ui.get_dark_mode () / json: " + string !json + ""'
+
+            inl obj : json_value = rust.emit_expr json $'"serde_json::from_str::<serde_json::Value>($0).unwrap()"'
+            inl dark_mode_key = get_dark_mode_key ()
+            inl dark_mode_key = #dark_mode_key
+            inl dark_mode : optionm'.option_fsharp bool = rust.emit_expr () $'"!obj[!dark_mode_key].as_bool()"'
+            inl dark_mode = dark_mode |> optionm'.from_fsharp
+            Ok dark_mode
+        | None => Ok None
+        |> result_to_fsharp
     |> future_init 2
 
 inl dark_mode_button () =

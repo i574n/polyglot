@@ -74,6 +74,26 @@ mod module_d5f62357 {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
+        #[derive(Clone, Debug)]
+        pub enum US4 {
+            US4_0,
+            US4_1(serde_json::Value),
+        }
+        impl core::fmt::Display for Ui::US4 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US5 {
+            US5_0(rexie::Error),
+            US5_1(Ui::US2),
+        }
+        impl core::fmt::Display for Ui::US5 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
         pub fn method0(v0_1: string) -> string {
             v0_1
         }
@@ -187,10 +207,25 @@ mod module_d5f62357 {
         pub fn closure7(unitVar: (), v0_1: rexie::Rexie) -> Ui::US3 {
             Ui::US3::US3_1(v0_1)
         }
-        pub fn method10(v0_1: Result<Ui::US2, rexie::Error>) -> Result<Ui::US2, rexie::Error> {
+        pub fn method10(v0_1: rexie::Rexie) -> rexie::Rexie {
             v0_1
         }
-        pub fn method11(v0_1: Ui::US2) -> Ui::US2 {
+        pub fn closure8(unitVar: (), v0_1: serde_json::Value) -> Ui::US4 {
+            Ui::US4::US4_1(v0_1)
+        }
+        pub fn method11(v0_1: serde_json::Value) -> serde_json::Value {
+            v0_1
+        }
+        pub fn method12(v0_1: std::string::String) -> std::string::String {
+            v0_1
+        }
+        pub fn closure9(unitVar: (), v0_1: bool) -> Ui::US2 {
+            Ui::US2::US2_1(v0_1)
+        }
+        pub fn method13(v0_1: Result<Ui::US2, rexie::Error>) -> Result<Ui::US2, rexie::Error> {
+            v0_1
+        }
+        pub fn method14(v0_1: Ui::US2) -> Ui::US2 {
             v0_1
         }
         pub fn closure6(
@@ -210,35 +245,128 @@ mod module_d5f62357 {
                             Ui::US3::US3_0,
                             map(Func1::new(move |v: rexie::Rexie| Ui::closure7((), v)), v0_1),
                         );
-                        let v27: Ui::US2 = Ui::method11(match &v8 {
+                        let v78: Ui::US2 = Ui::method14(match &v8 {
                             Ui::US3::US3_1(v8_1_0) => {
                                 leptos::logging::log!("{}", &string("ui.get_dark_mode ()"));
-                                let __future_init = Box::pin(async {
-                                    //;
-                                    {
-                                        let v15: Result<Ui::US2, rexie::Error> =
-                                            Ui::method10(Ok(Ui::US2::US2_1(true)));
-                                        v15
-                                    }
-                                });
                                 {
-                                    // ;
-                                    {
-                                        let v19: std::pin::Pin<
-                                            Box<
-                                                dyn std::future::Future<
-                                                    Output = Result<Ui::US2, rexie::Error>,
+                                    let v12: rexie::Rexie = Ui::method10(v8_1_0.clone());
+                                    let __future_init = Box::pin(async {
+                                        //;
+                                        {
+                                            let v15: rexie::Transaction = v12.transaction(
+                                                &["store"],
+                                                rexie::TransactionMode::ReadOnly,
+                                            )?;
+                                            let v17: rexie::Store = v15.store("store")?;
+                                            let v19: string = string("r#\"data\"#");
+                                            let v20: &str = r#"data"#;
+                                            let v22: &wasm_bindgen::JsValue = &v20.into();
+                                            let v24: std::pin::Pin<
+                                                Box<
+                                                    dyn std::future::Future<
+                                                        Output = Result<
+                                                            wasm_bindgen::JsValue,
+                                                            rexie::Error,
+                                                        >,
+                                                    >,
                                                 >,
-                                            >,
-                                        > = __future_init;
-                                        let v21: Result<Ui::US2, rexie::Error> = v19.await;
-                                        v21.unwrap()
+                                            > = Box::pin(rexie::Store::get(&v17, v22));
+                                            let v26: Result<wasm_bindgen::JsValue, rexie::Error> =
+                                                v24.await;
+                                            let v28: wasm_bindgen::JsValue = v26?;
+                                            let v33: Ui::US4 = defaultValue(
+                                                Ui::US4::US4_0,
+                                                map(
+                                                    Func1::new(move |v_1: serde_json::Value| {
+                                                        Ui::closure8((), v_1)
+                                                    }),
+                                                    serde_wasm_bindgen::from_value(v28).unwrap(),
+                                                ),
+                                            );
+                                            let v59: Ui::US5 = match &v33 {
+                                                Ui::US4::US4_1(v33_1_0) => {
+                                                    let v35: serde_json::Value =
+                                                        Ui::method11(v33_1_0.clone());
+                                                    let v37: std::string::String =
+                                                        serde_json::from_value(v35).unwrap();
+                                                    let v38: string = append(
+                                                        append(
+                                                            string("ui.get_dark_mode () / data: "),
+                                                            toString(v37.clone()),
+                                                        ),
+                                                        string(""),
+                                                    );
+                                                    leptos::logging::log!("{}", &v38);
+                                                    {
+                                                        let v40: std::string::String =
+                                                            Ui::method12(v37);
+                                                        let v42: std::string::String =
+                                                            borsh::BorshDeserialize::deserialize(
+                                                                &mut v40.as_bytes(),
+                                                            )
+                                                            .unwrap();
+                                                        let v43: string = append(
+                                                            append(
+                                                                string(
+                                                                    "ui.get_dark_mode () / json: ",
+                                                                ),
+                                                                toString(v42.clone()),
+                                                            ),
+                                                            string(""),
+                                                        );
+                                                        leptos::logging::log!("{}", &v43);
+                                                        {
+                                                            let v46: serde_json::Value =
+                                                                serde_json::from_str::<
+                                                                    serde_json::Value,
+                                                                >(
+                                                                    &v42
+                                                                )
+                                                                .unwrap();
+                                                            let v48: string =
+                                                                string("r#\"dark-mode\"#");
+                                                            let v49: &str = r#"dark-mode"#;
+                                                            Ui::US5::US5_1(defaultValue(
+                                                                Ui::US2::US2_0,
+                                                                map(
+                                                                    Func1::new(move |v_2: bool| {
+                                                                        Ui::closure9((), v_2)
+                                                                    }),
+                                                                    v46[v49].as_bool(),
+                                                                ),
+                                                            ))
+                                                        }
+                                                    }
+                                                }
+                                                _ => Ui::US5::US5_1(Ui::US2::US2_0),
+                                            };
+                                            let v66: Result<Ui::US2, rexie::Error> =
+                                                Ui::method13(match &v59 {
+                                                    Ui::US5::US5_1(v59_1_0) => Ok(v59_1_0.clone()),
+                                                    Ui::US5::US5_0(v59_0_0) => Err(v59_0_0.clone()),
+                                                });
+                                            v66
+                                        }
+                                    });
+                                    {
+                                        // ;
+                                        {
+                                            let v70: std::pin::Pin<
+                                                Box<
+                                                    dyn std::future::Future<
+                                                        Output = Result<Ui::US2, rexie::Error>,
+                                                    >,
+                                                >,
+                                            > = __future_init;
+                                            let v72: Result<Ui::US2, rexie::Error> = v70.await;
+                                            v72.unwrap()
+                                        }
                                     }
                                 }
                             }
                             _ => Ui::US2::US2_0,
                         });
-                        v27
+                        v78
                     }
                 }
             });
@@ -249,27 +377,27 @@ mod module_d5f62357 {
                 }
             }
         }
-        pub fn closure9(unitVar: (), v0_1: bool) -> bool {
+        pub fn closure11(unitVar: (), v0_1: bool) -> bool {
             v0_1 == false
         }
-        pub fn method13() -> Func1<bool, bool> {
-            Func1::new(move |v: bool| Ui::closure9((), v))
+        pub fn method16() -> Func1<bool, bool> {
+            Func1::new(move |v: bool| Ui::closure11((), v))
         }
-        pub fn method14(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
+        pub fn method17(v0_1: leptos::RwSignal<bool>) -> leptos::RwSignal<bool> {
             v0_1
         }
-        pub fn closure8(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
+        pub fn closure10(v0_1: LrcPtr<Ui::Heap0>, v1: leptos::ev::MouseEvent) {
             let v3: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method3(v0_1.l0.clone());
             let v5: leptos::RwSignal<bool> = leptos::SignalGet::get(&v3);
-            let v6 = Ui::method13();
-            let v7: leptos::RwSignal<bool> = Ui::method14(v5);
+            let v6 = Ui::method16();
+            let v7: leptos::RwSignal<bool> = Ui::method17(v5);
             leptos::SignalUpdate::update(&v7, |x| *x = v6(*x));
             ()
         }
-        pub fn method12(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
+        pub fn method15(v0_1: LrcPtr<Ui::Heap0>) -> Func1<leptos::ev::MouseEvent, ()> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::ev::MouseEvent| Ui::closure8(v0_1.clone(), v)
+                move |v: leptos::ev::MouseEvent| Ui::closure10(v0_1.clone(), v)
             })
         }
         pub fn closure1(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
@@ -319,7 +447,7 @@ mod module_d5f62357 {
                                     .await
                                 },
                             );
-                        let v46 = Ui::method12(v37);
+                        let v46 = Ui::method15(v37);
                         let v47: string =
                             string("<button class=\"fixed bottom-4 right-4 bg-gray-500 text-white p-2 rounded-full\" on:click=move |mouse_event| v46(mouse_event)>{(|| { leptos::logging::log!(\"button () / render\"); leptos::view! {<></>} })()}{\"🌓︎\"}</button>");
                         let v48: string =

@@ -17,16 +17,14 @@ async fn build_database() -> Result<rexie::Rexie, rexie::Error> {
 async fn set_dark_mode(rexie: &rexie::Rexie, mode: bool) -> Result<(), rexie::Error> {
     log!("DarkModeButton / set_dark_mode / mode: {}", mode);
     let transaction = rexie.transaction(&["store"], rexie::TransactionMode::ReadWrite)?;
-    let config_store = transaction.store("store")?;
+    let store = transaction.store("store")?;
     let mode_value = serde_json::json!({ DARK_MODE_KEY: mode }).to_string();
 
     let mut data = Vec::new();
     mode_value.serialize(&mut data).unwrap();
 
     let mode_js_value = serde_wasm_bindgen::to_value(&data).unwrap();
-    config_store
-        .put(&mode_js_value, Some(&"data".into()))
-        .await?;
+    store.put(&mode_js_value, Some(&"data".into())).await?;
     transaction.done().await?;
     Ok(())
 }
@@ -34,8 +32,8 @@ async fn set_dark_mode(rexie: &rexie::Rexie, mode: bool) -> Result<(), rexie::Er
 async fn get_dark_mode(rexie: &rexie::Rexie) -> Result<Option<bool>, rexie::Error> {
     log!("DarkModeButton / get_dark_mode");
     let transaction = rexie.transaction(&["store"], rexie::TransactionMode::ReadOnly)?;
-    let config_store = transaction.store("store")?;
-    let mode_value = config_store.get(&"data".into()).await?;
+    let store = transaction.store("store")?;
+    let mode_value = store.get(&"data".into()).await?;
     let mode_data: Option<serde_json::Value> = serde_wasm_bindgen::from_value(mode_value).unwrap();
     match mode_data {
         Some(mode_data) => {
