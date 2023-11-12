@@ -71,7 +71,7 @@ foreach ($extensionsPath in $extensionsPath) {
             New-Item -Path $destPath -Force | Out-Null
         }
 
-        Move-Item -Path $_.FullName -Destination $destPath -Force -ErrorAction Ignore
+        Move-Item $_.FullName $destPath -Force -ErrorAction Ignore
     }
 
     Remove-Item "$extensionPath/dist" -Recurse -Force

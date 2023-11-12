@@ -1,0 +1,21 @@
+{
+  "name": "dice_ui",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "description": "polyglot",
+  "permissions": ["debugger", "declarativeNetRequest", "notifications", "offscreen", "storage", "tabs"],
+  "host_permissions": ["*://*/*"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; default-src 'self'; style-src 'self' 'unsafe-inline';",
+    "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'wasm-unsafe-eval'; child-src 'self'; default-src 'self'; style-src 'self' 'unsafe-inline';"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["*.wasm"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

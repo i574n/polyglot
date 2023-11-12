@@ -20,14 +20,17 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::closure::Closure<$0>\")>] type wasm_bindgen_closure_Closure<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::Function\")>] type js_sys_Function = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Window\")>] type web_sys_Window = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Storage\")>] type web_sys_Storage = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::HtmlElement\")>] type web_sys_HtmlElement = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
@@ -47,7 +50,7 @@ nominal div = $"leptos_html_Div"
 nominal input = $"leptos_html_Input"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal fragment = $"leptos_Fragment"
-nominal html_element t = $"leptos_HtmlElement<`t>"
+nominal leptos_html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
 nominal memo t = $"leptos_Memo<`t>"
 nominal rw_signal t = $"leptos_RwSignal<`t>"
@@ -62,13 +65,16 @@ nominal rexie_error = $"rexie_Error"
 nominal json_value = $"serde_json_Value"
 nominal json_error = $"serde_json_Error"
 nominal js_value = $"wasm_bindgen_JsValue"
+nominal js_closure t = $"wasm_bindgen_closure_Closure<`t>"
 nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
 nominal rc t = $"std_rc_Rc<`t>"
 nominal box t = $"Box<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
 nominal std_string = $"std_string_String"
+nominal js_function = $"js_sys_Function"
 nominal window = $"web_sys_Window"
+nominal html_element = $"web_sys_HtmlElement"
 nominal storage = $"web_sys_Storage"
 nominal dyn' t = $"Dyn<`t>"
 nominal fn' t = $"Fn<`t>"
@@ -109,6 +115,9 @@ inl result_unwrap forall t u. (x : result' t u) : t =
 
 inl result_ok forall t. (x : result' t _) : optionm'.option_fsharp t =
     rust.emit_expr () $'"!x.ok()"'
+
+inl optionm'_map forall t u. (fn : t -> u) (x : optionm'.option_fsharp t) : optionm'.option_fsharp u =
+    rust.emit_expr fn $'"!x.map(|x| $0(x))"'
 
 inl optionm'_flatten x =
     match x with
@@ -195,7 +204,7 @@ inl to_fragment (macro : string) : fragment =
 inl fragment_to_view (fragment : fragment) : impl into_view =
     rust.emit_expr () $'"leptos::IntoView::into_view(!fragment)"'
 
-inl to_view' (macro : html_element div) : impl into_view =
+inl to_view' (macro : leptos_html_element div) : impl into_view =
     rust.emit_expr () $'"leptos::view\! { {!macro} }"'
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
@@ -288,6 +297,10 @@ inl deserialize forall t. (json : string) : result' t json_error =
     inl json : std_string = json |> to_std_string
     rust.emit_expr () $'"serde_json::from_str(&!json)"'
 
+inl deref forall t. (ref : ref' t) : t =
+    inl ref = join ref
+    rust.emit_expr () $'"*!ref"'
+
 type state =
     {
         dark_mode : rw_signal bool
@@ -305,7 +318,7 @@ inl get_dark_mode_key () =
 inl input () =
     inl (explorer_backend_host, set_explorer_backend_host) = create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> to_std_string)
 
-    inl input' : html_element input =
+    inl input' : leptos_html_element input =
         rust.emit_expr
             (explorer_backend_host, set_explorer_backend_host)
             $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"'
@@ -317,9 +330,9 @@ inl content () =
     inl font_size = font_size |> as_str
 
     inl input' = input ()
-    inl input' : html_element input = $"!input' |> unbox"
+    inl input' : leptos_html_element input = $"!input' |> unbox"
 
-    inl result : html_element div =
+    inl result : leptos_html_element div =
         rust.emit_expr
             font_size
             $'"leptos::view\! { <div class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 min-h-screen min-w-full place-items-baseline text-gray-700 dark:text-gray-200 text-sm\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px; place-items: baseline;\\\">label:{!input'}</div> }"'
@@ -482,10 +495,6 @@ inl dark_mode_button () =
 
         log $'"ui.dark_mode_button () / create_effect 2 / ##2 / dark_mode: " + string !dark_mode + ""'
 
-        inl deref forall t. (ref : ref' t) : t =
-            inl ref = join ref
-            rust.emit_expr () $'"*!ref"'
-
         inl dark_mode_loading =
             loading
             |> memo_get
@@ -524,7 +533,7 @@ inl home () =
     inl global_state : global_state = use_context ()
 
     inl content' = content ()
-    inl content' : html_element div = $"!content' |> unbox"
+    inl content' : leptos_html_element div = $"!content' |> unbox"
 
     inl class_dark () =
         global_state.state |> rw_signal_get
@@ -533,7 +542,7 @@ inl home () =
     inl class_dark = join class_dark
 
     inl dark_mode_button' = dark_mode_button ()
-    inl dark_mode_button' : html_element button = $"!dark_mode_button' |> unbox"
+    inl dark_mode_button' : leptos_html_element button = $"!dark_mode_button' |> unbox"
 
     $'"<div class=\\\"flex flex-1\\\" class:dark={move || !class_dark()}>{!dark_mode_button'}{!content'}</div>"' |> to_view
 
@@ -555,7 +564,7 @@ inl app () =
     rust.emit_expr () $'$"leptos::provide_context::<std::rc::Rc<`global_state>>(!global_state)"'
 
     inl home' = home ()
-    inl home' : html_element div = $"!home' |> unbox"
+    inl home' : leptos_html_element div = $"!home' |> unbox"
     inl home' : view = rust.emit_expr () $'"leptos::IntoView::into_view(!home')"'
 
     $"!home' |> unbox" : impl into_view
@@ -566,11 +575,40 @@ inl main (args : array string) =
     rust.emit_expr () $'"let _ = console_log::init_with_level(log::Level::Debug)"'
     rust.emit_expr () $'"console_error_panic_hook::set_once()"'
 
-    log_string "main / mount_to_body"
+    inl body : optionm'.option_fsharp html_element = rust.emit_expr () $'"leptos::document().body()"'
+    inl body = body |> optionm'.from_fsharp
+    inl body_log = body |> format_debug
 
-    fun () =>
-        app ()
-    |> mount_to_body
+    log $'"main / mount_to_body / body: " + string !body_log + ""'
+
+    match body with
+    | Some _ =>
+        fun () =>
+            app ()
+        |> mount_to_body
+    | _ => ()
+
+    // inl set_timeout (fn : () -> ()) (timeout : i32) : u64 =
+    //     inl fn = join fn
+    //     rust.emit_expr () $'"leptos::set_timeout(|| !fn(), !timeout)"'
+
+    // inl clear_timeout (id : u64) =
+    //     rust.emit_expr () $'"leptos::clear_timeout(!id)"' : ()
+
+    // inl timeout_id = mut None
+    // timeout_id <- Some <| 1000 |> set_timeout fun () =>
+    //     inl body : optionm'.option_fsharp html_element = rust.emit_expr () $'"leptos::document().body()"'
+    //     inl body = body |> optionm'.from_fsharp
+    //     inl body_log = body |> format_debug
+    //     log $'"main / timeout / body: " + string !body_log + ""'
+
+    //     match body with
+    //     | Some _ =>
+    //         fun () =>
+    //             app ()
+    //         |> mount_to_body
+    //         *timeout_id |> optionm.value |> clear_timeout
+    //     | _ => ()
 
     0i32
 

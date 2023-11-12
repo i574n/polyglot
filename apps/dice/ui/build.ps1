@@ -13,13 +13,13 @@ $ErrorActionPreference = "Stop"
 
 { dotnet fable target/ui.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define WASM } | Invoke-Block
 
-Copy-Item -Force target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs
+Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Force
 
 (Get-Content target/rs/ui.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
     -replace "/Common.rs", "/CommonWasm.rs" `
-    | Set-Content ui_wasm.rs
+| Set-Content ui_wasm.rs
 
 cargo fmt --
 leptosfmt ./ui_wasm.rs
@@ -39,19 +39,32 @@ $oldModule = ($html | Select-String -Pattern "import init from '/./dist/(.*?)'")
 $html `
     -replace "/./dist/", "./" `
     -replace "import init from '([^']+)';init\(", "import init from './$oldModule';init(" `
-    | Set-Content $path
+| Set-Content $path
 
 { rna build --bundle --minify --no-map --assetNames "[name]" target/trunk/index.html --output dist } | Invoke-Block
 
 $path = "dist/index.html"
-$html = Get-Content $path
+$html = Get-Content $path -Raw
 
 $oldModule = $html | Select-String -Pattern '<link rel="modulepreload" href="([^"]+)">' -AllMatches
 if ($oldModule.Matches.Count -gt 0) {
     $oldModule.Matches | ForEach-Object { Remove-Item "dist/$($_.Groups[1].Value)" -Force }
     $newModule = $html | Select-String -Pattern "import './(.*?)'"
-    $html -replace '<link rel="modulepreload" href="([^"]+)">', "<link rel=`"modulepreload`" href=`"$($newModule.Matches[0].Groups[1].Value)`">" | Set-Content $path
+    $newModule = $newModule.Matches[0].Groups[1].Value
+    $html `
+        -replace '<link rel="modulepreload" href="([^"]+)">', "<script type=`"text/javascript`" src=`"$newModule`"></script>" `
+        -replace "\n        import './$newModule'\n    ", '' `
+    | Set-Content $path
+
+    $jsPath = "dist/$newModule"
+    $text = Get-Content $jsPath
+    $text `
+        -replace "`",import.meta.url\)\);", "`"));" `
+    | Set-Content $jsPath
 }
+
+Move-Item $path dist/popup.html -Force
+Copy-Item public/manifest.json dist/manifest.json -Force
 
 if (!$fast) {
     { pnpm install --frozen-lockfile } | Invoke-Block -Location e2e
