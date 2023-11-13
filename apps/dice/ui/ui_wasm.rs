@@ -1144,12 +1144,28 @@ mod module_d5f62357 {
                 move || Ui::closure23(v0_1.clone(), ())
             })
         }
+        pub fn method44() -> string {
+            string("view")
+        }
+        pub fn method45(
+            v0_1: leptos::HtmlElement<leptos::html::Div>,
+        ) -> leptos::HtmlElement<leptos::html::Div> {
+            v0_1
+        }
+        pub fn method46() -> string {
+            string("connection")
+        }
+        pub fn method47(
+            v0_1: leptos::HtmlElement<leptos::html::Div>,
+        ) -> leptos::HtmlElement<leptos::html::Div> {
+            v0_1
+        }
         pub fn closure24(v0_1: LrcPtr<Ui::Heap0>, unitVar: ()) -> bool {
             let v2: leptos::RwSignal<leptos::RwSignal<bool>> = Ui::method40(v0_1.l1.clone());
             let v5: leptos::RwSignal<bool> = Ui::method33(leptos::SignalGet::get(&v2));
             leptos::SignalGet::get(&v5)
         }
-        pub fn method44(v0_1: LrcPtr<Ui::Heap0>) -> Func0<bool> {
+        pub fn method48(v0_1: LrcPtr<Ui::Heap0>) -> Func0<bool> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 move || Ui::closure24(v0_1.clone(), ())
@@ -1238,14 +1254,40 @@ mod module_d5f62357 {
                                 let v61: string =
                                     append(append(string("leptos::view! { "), v60), string(" }"));
                                 let v63: leptos::HtmlElement<leptos::html::Label> = leptos::view! { <label for="AcceptConditions" class="relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"><input type="checkbox" id="AcceptConditions" class="peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden" on:change=move |event| v58(event) prop:checked={move || v59()} /><span class="absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-green-600"><svg data-unchecked-icon xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg><svg data-checked-icon xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></span><span class="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500"></span></label> };
-                                let v64: string =
-                                    string("leptos::view! { <div class=\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\" style=\"font-size: \".to_owned() + *$0 + \"px;\"><div class=\"flex items-baseline\" style=\"align-items: baseline;\"><div>explorer_backend_host:</div>{v32}</div><div class=\"flex items-center\"><div>dark_mode:</div>{v63}</div></div> }");
-                                let v67: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm" style="font-size: ".to_owned() + *&v20 + "px;"><div class="flex items-baseline" style="align-items: baseline;"><div>explorer_backend_host:</div>{v32}</div><div class="flex items-center"><div>dark_mode:</div>{v63}</div></div> };
-                                let v68 = Ui::method44(v16);
-                                let v70: string =
-                                    string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v68()}>{v67}</div> }");
-                                let v72: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v68()}>{v67}</div> };
-                                leptos::IntoView::into_view(v72)
+                                let v65: string =
+                                    string("leptos::view! { <div class=\"flex items-center\"><div>dark_mode:</div>{v63}</div> }");
+                                let v67: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex items-center"><div>dark_mode:</div>{v63}</div> };
+                                let v68: string = Ui::method44();
+                                let v70: &str = fable_library_rust::String_::LrcStr::as_str(&v68);
+                                let v72: std::string::String = String::from(v70);
+                                let v73: leptos::HtmlElement<leptos::html::Div> = Ui::method45(v67);
+                                let v74: string =
+                                    string("<details class=\"group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v72}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v73}</details>");
+                                let v75: string =
+                                    append(append(string("leptos::view! { "), v74), string(" }"));
+                                let v77: leptos::HtmlElement<leptos::html::Details> = leptos::view! { <details class="group [&_summary::-webkit-details-marker]:hidden" open><summary class="group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"><div class="flex items-center gap-2"><span class="text-sm font-medium">{v72}</span></div><span class="shrink-0 transition duration-300 group-open:-rotate-180"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span></summary>{v73}</details> };
+                                let v78: string =
+                                    string("<div class=\"flex items-baseline\" style=\"align-items: baseline;\"><div>explorer_backend_host:</div>{v32}</div>");
+                                let v79: string =
+                                    append(append(string("leptos::view! { "), v78), string(" }"));
+                                let v81: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex items-baseline" style="align-items: baseline;"><div>explorer_backend_host:</div>{v32}</div> };
+                                let v82: string = Ui::method46();
+                                let v84: &str = fable_library_rust::String_::LrcStr::as_str(&v82);
+                                let v86: std::string::String = String::from(v84);
+                                let v87: leptos::HtmlElement<leptos::html::Div> = Ui::method47(v81);
+                                let v88: string =
+                                    string("<details class=\"group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v86}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v87}</details>");
+                                let v89: string =
+                                    append(append(string("leptos::view! { "), v88), string(" }"));
+                                let v91: leptos::HtmlElement<leptos::html::Details> = leptos::view! { <details class="group [&_summary::-webkit-details-marker]:hidden" open><summary class="group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"><div class="flex items-center gap-2"><span class="text-sm font-medium">{v86}</span></div><span class="shrink-0 transition duration-300 group-open:-rotate-180"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg></span></summary>{v87}</details> };
+                                let v92: string =
+                                    string("leptos::view! { <div class=\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\" style=\"font-size: \".to_owned() + *$0 + \"px;\">{v77}{v91}</div> }");
+                                let v95: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm" style="font-size: ".to_owned() + *&v20 + "px;">{v77}{v91}</div> };
+                                let v96 = Ui::method48(v16);
+                                let v98: string =
+                                    string("leptos::view! { <div class=\"flex flex-1\" class:dark={move || v96()}>{v95}</div> }");
+                                let v100: leptos::HtmlElement<leptos::html::Div> = leptos::view! { <div class="flex flex-1" class:dark={move || v96()}>{v95}</div> };
+                                leptos::IntoView::into_view(v100)
                             }
                         }
                     }
@@ -1259,10 +1301,10 @@ mod module_d5f62357 {
         pub fn closure25(unitVar: (), unitVar_1: ()) {
             Ui::method0();
         }
-        pub fn method45() -> Func0<()> {
+        pub fn method49() -> Func0<()> {
             Func0::new(move || Ui::closure25((), ()))
         }
-        pub fn method46(v0_1: Box<dyn Fn()>) -> Box<dyn Fn()> {
+        pub fn method50(v0_1: Box<dyn Fn()>) -> Box<dyn Fn()> {
             v0_1
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
@@ -1289,8 +1331,8 @@ mod module_d5f62357 {
                 if let Ui::US0::US0_1(v9_1_0) = &v9 {
                     Ui::method0()
                 } else {
-                    let v15 = Ui::method45();
-                    let v18: Box<dyn Fn()> = Ui::method46(Box::new(move || v15()));
+                    let v15 = Ui::method49();
+                    let v18: Box<dyn Fn()> = Ui::method50(Box::new(move || v15()));
                     let v20: wasm_bindgen::closure::Closure<dyn Fn()> =
                         wasm_bindgen::closure::Closure::wrap(v18);
                     let v22: &wasm_bindgen::JsValue = wasm_bindgen::closure::Closure::as_ref(&v20);

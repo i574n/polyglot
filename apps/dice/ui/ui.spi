@@ -2,6 +2,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Details\")>] type leptos_html_Details = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
@@ -50,6 +51,7 @@ nominal async t = $"Async<`t>"
 nominal event = $"leptos_ev_Event"
 nominal mouse_event = $"leptos_ev_MouseEvent"
 nominal button = $"leptos_html_Button"
+nominal details = $"leptos_html_Details"
 nominal div = $"leptos_html_Div"
 nominal input = $"leptos_html_Input"
 nominal label = $"leptos_html_Label"
@@ -565,8 +567,34 @@ inl content () =
     inl dark_mode_toggle' = dark_mode_toggle ()
     inl dark_mode_toggle' : leptos_html_element label = $"!dark_mode_toggle' |> unbox"
 
+    inl title = "view"
+    inl children =
+        $'"<div class=\\\"flex items-center\\\"><div>dark_mode:</div>{!dark_mode_toggle'}</div>"'
+        |> to_view
+    inl children : leptos_html_element div = $"!children |> unbox"
+
+    inl title = title |> to_std_string
+    inl children = join children
+    inl accordion' =
+        $'"<details class=\\\"group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children}</details>"'
+        |> to_view
+    inl view_accordion' : leptos_html_element details = $"!accordion' |> unbox"
+
+    inl title = "connection"
+    inl children =
+        $'"<div class=\\\"flex items-baseline\\\" style=\\\"align-items: baseline;\\\"><div>explorer_backend_host:</div>{!explorer_backend_host_input'}</div>"'
+        |> to_view
+    inl children : leptos_html_element div = $"!children |> unbox"
+
+    inl title = title |> to_std_string
+    inl children = join children
+    inl accordion' =
+        $'"<details class=\\\"group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children}</details>"'
+        |> to_view
+    inl connection_accordion' : leptos_html_element details = $"!accordion' |> unbox"
+
     inl result : leptos_html_element div =
-        !\\(font_size, $'"leptos::view\! { <div class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px;\\\"><div class=\\\"flex items-baseline\\\" style=\\\"align-items: baseline;\\\"><div>explorer_backend_host:</div>{!explorer_backend_host_input'}</div><div class=\\\"flex items-center\\\"><div>dark_mode:</div>{!dark_mode_toggle'}</div></div> }"')
+        !\\(font_size, $'"leptos::view\! { <div class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px;\\\">{!view_accordion'}{!connection_accordion'}</div> }"')
     $"!result |> unbox" : impl into_view
 
 inl home () =
