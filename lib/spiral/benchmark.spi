@@ -18,7 +18,7 @@ inl am'_transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
     $"!array |> Array.transpose"
 
 inl am'_try_item forall dim el. (i : i32) (array : a dim el) : option el =
-    $"!array |> Array.tryItem !i" |> optionm'.from_fsharp
+    $"!array |> Array.tryItem !i" |> optionm'.unbox
 
 nominal console_color = $"System.ConsoleColor"
 

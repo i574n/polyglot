@@ -88,18 +88,18 @@ None |> iter fn
 
 #!markdown
 
-## option_fsharp
+## option'
 
 #!spiral
 
-nominal option_fsharp t = $"`t option"
+nominal option' t = $"`t option"
 
-inl from_fsharp forall t. (x : option_fsharp t) : option t =
+inl unbox forall t. (x : option' t) : option t =
     inl some x : option t = Some x
     inl none : option t = None
     $"!x |> Option.map !some |> Option.defaultValue !none"
 
-inl to_fsharp forall t. (x : option t) : option_fsharp t =
+inl box forall t. (x : option t) : option' t =
     match x with
     | Some x => $"Some !x"
     | None => $"None"
@@ -110,6 +110,6 @@ inl to_fsharp forall t. (x : option t) : option_fsharp t =
 
 inl x = Some 3i32
 inl y : option i32 = None
-inl x' = x |> to_fsharp |> from_fsharp
-inl y' = y |> to_fsharp |> from_fsharp
+inl x' = x |> box |> unbox
+inl y' = y |> box |> unbox
 (x', y') |> _equal (x, y)

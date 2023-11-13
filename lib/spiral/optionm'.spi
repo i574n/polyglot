@@ -21,16 +21,16 @@ inl iter fn = function
     | Some x => fn x
     | None => ()
 
-// // ## option_fsharp
+// // ## option'
 
-nominal option_fsharp t = $"`t option"
+nominal option' t = $"`t option"
 
-inl from_fsharp forall t. (x : option_fsharp t) : option t =
+inl unbox forall t. (x : option' t) : option t =
     inl some x : option t = Some x
     inl none : option t = None
     $"!x |> Option.map !some |> Option.defaultValue !none"
 
-inl to_fsharp forall t. (x : option t) : option_fsharp t =
+inl box forall t. (x : option t) : option' t =
     match x with
     | Some x => $"Some !x"
     | None => $"None"

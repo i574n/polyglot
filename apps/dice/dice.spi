@@ -139,22 +139,22 @@ inl main () =
         create_sequential_roller
 
     inl roll_progressively' :
-        (optionm'.option_fsharp (string -> ()) -> (() -> u8)
+        (optionm'.option' (string -> ()) -> (() -> u8)
         -> bool
         -> u64
         -> u64)
         =
-        optionm'.from_fsharp >> roll_progressively
+        optionm'.unbox >> roll_progressively
 
     inl roll_within_bounds' :
-        optionm'.option_fsharp (string -> ())
+        optionm'.option' (string -> ())
         -> u64
         -> list u8
-        -> optionm'.option_fsharp u64
+        -> optionm'.option' u64
         =
         fun a b c =>
-            (optionm'.from_fsharp >> roll_within_bounds) a b c
-            |> optionm'.to_fsharp
+            (optionm'.unbox >> roll_within_bounds) a b c
+            |> optionm'.box
 
     $"let rotate_numbers x = !rotate_numbers' x" : ()
     $"let create_sequential_roller x = !create_sequential_roller' x" : ()
