@@ -3,4 +3,12 @@ packages:
     |core-
     spiral-
 modules:
+    src/
+        state
+        components/
+            explorer_backend_host_input
+            dark_mode_toggle
+            content
+            home
+            app
     ui

@@ -173,122 +173,120 @@ and method13 (v0 : US3) : US3 =
 and closure6 () (v0 : rexie_Rexie option) : std_pin_Pin<Box<Dyn<Future<US3>>>> =
     let v1 : string = "let __future_init = Box::pin(async { //"
     Fable.Core.RustInterop.emitRustExpr () v1
-    let v2 : string = @$"format!(""{{:?}}"", $0)"
-    let v3 : std_string_String = Fable.Core.RustInterop.emitRustExpr v0 v2
-    let v4 : string = "ui.dark_mode_toggle () / dark_mode create_local_resource / database: " + string v3 + ""
-    let v5 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-    Fable.Core.RustInterop.emitRustExpr v4 v5
-    let v6 : (rexie_Rexie -> US4) = closure7()
-    let v7 : US4 = US4_0
-    let v8 : US4 = v0 |> Option.map v6 |> Option.defaultValue v7
-    let v95 : US3 =
-        match v8 with
+    let v2 : string = $"%A{v0}"
+    let v3 : string = "ui.dark_mode_toggle () / dark_mode create_local_resource / database: " + string v2 + ""
+    let v4 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+    Fable.Core.RustInterop.emitRustExpr v3 v4
+    let v5 : (rexie_Rexie -> US4) = closure7()
+    let v6 : US4 = US4_0
+    let v7 : US4 = v0 |> Option.map v5 |> Option.defaultValue v6
+    let v93 : US3 =
+        match v7 with
         | US4_0 -> (* None *)
             US3_0
-        | US4_1(v9) -> (* Some *)
-            let v10 : string = "ui.get_dark_mode ()"
-            let v11 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-            Fable.Core.RustInterop.emitRustExpr v10 v11
-            let v12 : rexie_Rexie = method8(v9)
-            let v13 : string = "let __future_init = Box::pin(async { //"
-            Fable.Core.RustInterop.emitRustExpr () v13
-            let v14 : string = "v12.transaction(&[\"store\"], rexie::TransactionMode::ReadOnly)?"
-            let v15 : rexie_Transaction = Fable.Core.RustInterop.emitRustExpr () v14
-            let v16 : string = "v15.store(\"store\")?"
-            let v17 : rexie_Store = Fable.Core.RustInterop.emitRustExpr () v16
-            let v18 : string = "data"
-            let v19 : string = "r#\"" + v18 + "\"#"
-            let v20 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v19
-            let v21 : string = "$0.into()"
-            let v22 : Ref<wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr v20 v21
-            let v23 : string = $"Box::pin(rexie::Store::get(&v17, v22))"
-            let v24 : std_pin_Pin<Box<Dyn<Future<Result<wasm_bindgen_JsValue, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v23
-            let v25 : string = "v24.await"
-            let v26 : Result<wasm_bindgen_JsValue, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v25
-            let v27 : string = "v26?"
-            let v28 : wasm_bindgen_JsValue = Fable.Core.RustInterop.emitRustExpr () v27
-            let v29 : string = "serde_wasm_bindgen::from_value(v28).unwrap()"
-            let v30 : serde_json_Value option = Fable.Core.RustInterop.emitRustExpr () v29
-            let v31 : (serde_json_Value -> US5) = closure8()
-            let v32 : US5 = US5_0
-            let v33 : US5 = v30 |> Option.map v31 |> Option.defaultValue v32
-            let v77 : US6 =
-                match v33 with
+        | US4_1(v8) -> (* Some *)
+            let v9 : string = "ui.get_dark_mode ()"
+            let v10 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+            Fable.Core.RustInterop.emitRustExpr v9 v10
+            let v11 : rexie_Rexie = method8(v8)
+            let v12 : string = "let __future_init = Box::pin(async { //"
+            Fable.Core.RustInterop.emitRustExpr () v12
+            let v13 : string = "v11.transaction(&[\"store\"], rexie::TransactionMode::ReadOnly)?"
+            let v14 : rexie_Transaction = Fable.Core.RustInterop.emitRustExpr () v13
+            let v15 : string = "v14.store(\"store\")?"
+            let v16 : rexie_Store = Fable.Core.RustInterop.emitRustExpr () v15
+            let v17 : string = "data"
+            let v18 : string = "r#\"" + v17 + "\"#"
+            let v19 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v18
+            let v20 : string = "$0.into()"
+            let v21 : Ref<wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr v19 v20
+            let v22 : string = $"Box::pin(rexie::Store::get(&v16, v21))"
+            let v23 : std_pin_Pin<Box<Dyn<Future<Result<wasm_bindgen_JsValue, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v22
+            let v24 : string = "v23.await"
+            let v25 : Result<wasm_bindgen_JsValue, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v24
+            let v26 : string = "v25?"
+            let v27 : wasm_bindgen_JsValue = Fable.Core.RustInterop.emitRustExpr () v26
+            let v28 : string = "serde_wasm_bindgen::from_value(v27).unwrap()"
+            let v29 : serde_json_Value option = Fable.Core.RustInterop.emitRustExpr () v28
+            let v30 : (serde_json_Value -> US5) = closure8()
+            let v31 : US5 = US5_0
+            let v32 : US5 = v29 |> Option.map v30 |> Option.defaultValue v31
+            let v75 : US6 =
+                match v32 with
                 | US5_0 -> (* None *)
-                    let v74 : US3 = US3_0
-                    US6_1(v74)
-                | US5_1(v34) -> (* Some *)
-                    let v35 : serde_json_Value = method9(v34)
-                    let v36 : string = "serde_json::from_value(v35).unwrap()"
-                    let v37 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr () v36
-                    let v38 : string = @$"format!(""{{:?}}"", $0)"
-                    let v39 : std_string_String = Fable.Core.RustInterop.emitRustExpr v37 v38
-                    let v40 : string = "ui.get_dark_mode () / data: " + string v39 + ""
-                    let v41 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-                    Fable.Core.RustInterop.emitRustExpr v40 v41
-                    let v42 : Vec<uint8> = method10(v37)
-                    let v43 : string = "borsh::BorshDeserialize::deserialize(&mut v42.as_slice()).unwrap()"
-                    let v44 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v43
-                    let v45 : string = "ui.get_dark_mode () / json: " + string v44 + ""
-                    let v46 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-                    Fable.Core.RustInterop.emitRustExpr v45 v46
-                    let v47 : std_string_String = method11(v44)
-                    let v48 : string = "fable_library_rust::String_::fromString(v47)"
-                    let v49 : string = Fable.Core.RustInterop.emitRustExpr () v48
-                    let v50 : string = method1(v49)
-                    let v51 : string = $"fable_library_rust::String_::LrcStr::as_str(&v50)"
-                    let v52 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v51
-                    let v53 : string = $"String::from(v52)"
-                    let v54 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v53
-                    let v55 : string = "serde_json::from_str(&v54)"
-                    let v56 : Result<serde_json_Value, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v55
-                    let v57 : string = "v56.ok()"
-                    let v58 : serde_json_Value option = Fable.Core.RustInterop.emitRustExpr () v57
-                    let v59 : US5 = US5_0
-                    let v60 : US5 = v58 |> Option.map v31 |> Option.defaultValue v59
-                    let v64 : serde_json_Value =
-                        match v60 with
+                    let v72 : US3 = US3_0
+                    US6_1(v72)
+                | US5_1(v33) -> (* Some *)
+                    let v34 : serde_json_Value = method9(v33)
+                    let v35 : string = "serde_json::from_value(v34).unwrap()"
+                    let v36 : Vec<uint8> = Fable.Core.RustInterop.emitRustExpr () v35
+                    let v37 : string = $"%A{v36}"
+                    let v38 : string = "ui.get_dark_mode () / data: " + string v37 + ""
+                    let v39 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+                    Fable.Core.RustInterop.emitRustExpr v38 v39
+                    let v40 : Vec<uint8> = method10(v36)
+                    let v41 : string = "borsh::BorshDeserialize::deserialize(&mut v40.as_slice()).unwrap()"
+                    let v42 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v41
+                    let v43 : string = "ui.get_dark_mode () / json: " + string v42 + ""
+                    let v44 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+                    Fable.Core.RustInterop.emitRustExpr v43 v44
+                    let v45 : std_string_String = method11(v42)
+                    let v46 : string = "fable_library_rust::String_::fromString(v45)"
+                    let v47 : string = Fable.Core.RustInterop.emitRustExpr () v46
+                    let v48 : string = method1(v47)
+                    let v49 : string = $"fable_library_rust::String_::LrcStr::as_str(&v48)"
+                    let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v49
+                    let v51 : string = $"String::from(v50)"
+                    let v52 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v51
+                    let v53 : string = "serde_json::from_str(&v52)"
+                    let v54 : Result<serde_json_Value, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v53
+                    let v55 : string = "v54.ok()"
+                    let v56 : serde_json_Value option = Fable.Core.RustInterop.emitRustExpr () v55
+                    let v57 : US5 = US5_0
+                    let v58 : US5 = v56 |> Option.map v30 |> Option.defaultValue v57
+                    let v62 : serde_json_Value =
+                        match v58 with
                         | US5_0 -> (* None *)
                             failwith<serde_json_Value> "Option does not have a value."
-                        | US5_1(v61) -> (* Some *)
-                            v61
-                    let v65 : string = "dark-mode"
-                    let v66 : string = "r#\"" + v65 + "\"#"
-                    let v67 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v66
-                    let v68 : string = "v64[v67].as_bool()"
-                    let v69 : bool option = Fable.Core.RustInterop.emitRustExpr () v68
-                    let v70 : (bool -> US3) = closure9()
-                    let v71 : US3 = US3_0
-                    let v72 : US3 = v69 |> Option.map v70 |> Option.defaultValue v71
-                    US6_1(v72)
-            let v83 : Result<US3, rexie_Error> =
-                match v77 with
-                | US6_0(v80) -> (* Error *)
-                    let v81 : Result<US3, rexie_Error> = Error v80
-                    v81
-                | US6_1(v78) -> (* Ok *)
-                    let v79 : Result<US3, rexie_Error> = Ok v78
+                        | US5_1(v59) -> (* Some *)
+                            v59
+                    let v63 : string = "dark-mode"
+                    let v64 : string = "r#\"" + v63 + "\"#"
+                    let v65 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v64
+                    let v66 : string = "v62[v65].as_bool()"
+                    let v67 : bool option = Fable.Core.RustInterop.emitRustExpr () v66
+                    let v68 : (bool -> US3) = closure9()
+                    let v69 : US3 = US3_0
+                    let v70 : US3 = v67 |> Option.map v68 |> Option.defaultValue v69
+                    US6_1(v70)
+            let v81 : Result<US3, rexie_Error> =
+                match v75 with
+                | US6_0(v78) -> (* Error *)
+                    let v79 : Result<US3, rexie_Error> = Error v78
                     v79
-            let v84 : Result<US3, rexie_Error> = method12(v83)
-            let v85 : string = "v84 }})"
-            Fable.Core.RustInterop.emitRustExpr () v85
-            let v86 : string = "{ // "
-            Fable.Core.RustInterop.emitRustExpr () v86
-            let v87 : string = "__future_init"
-            let v88 : std_pin_Pin<Box<Dyn<Future<Result<US3, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v87
-            let v89 : string = "v88.await"
-            let v90 : Result<US3, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v89
-            let v91 : string = "v90.unwrap()"
-            let v92 : US3 = Fable.Core.RustInterop.emitRustExpr () v91
-            v92
-    let v96 : US3 = method13(v95)
-    let v97 : string = "v96 }}})"
-    Fable.Core.RustInterop.emitRustExpr () v97
-    let v98 : string = "{ { // "
-    Fable.Core.RustInterop.emitRustExpr () v98
-    let v99 : string = "__future_init"
-    let v100 : std_pin_Pin<Box<Dyn<Future<US3>>>> = Fable.Core.RustInterop.emitRustExpr () v99
-    v100
+                | US6_1(v76) -> (* Ok *)
+                    let v77 : Result<US3, rexie_Error> = Ok v76
+                    v77
+            let v82 : Result<US3, rexie_Error> = method12(v81)
+            let v83 : string = "v82 }})"
+            Fable.Core.RustInterop.emitRustExpr () v83
+            let v84 : string = "{ // "
+            Fable.Core.RustInterop.emitRustExpr () v84
+            let v85 : string = "__future_init"
+            let v86 : std_pin_Pin<Box<Dyn<Future<Result<US3, rexie_Error>>>>> = Fable.Core.RustInterop.emitRustExpr () v85
+            let v87 : string = "v86.await"
+            let v88 : Result<US3, rexie_Error> = Fable.Core.RustInterop.emitRustExpr () v87
+            let v89 : string = "v88.unwrap()"
+            let v90 : US3 = Fable.Core.RustInterop.emitRustExpr () v89
+            v90
+    let v94 : US3 = method13(v93)
+    let v95 : string = "v94 }}})"
+    Fable.Core.RustInterop.emitRustExpr () v95
+    let v96 : string = "{ { // "
+    Fable.Core.RustInterop.emitRustExpr () v96
+    let v97 : string = "__future_init"
+    let v98 : std_pin_Pin<Box<Dyn<Future<US3>>>> = Fable.Core.RustInterop.emitRustExpr () v97
+    v98
 and method15 () : web_sys_Window =
     let v0 : string = "leptos::leptos_dom::window()"
     let v1 : web_sys_Window = Fable.Core.RustInterop.emitRustExpr () v0
@@ -355,156 +353,154 @@ and closure10 (v0 : Heap0, v1 : leptos_Resource<rexie_Rexie option, US3>) () : u
             let v23 : (US3 -> US10) = closure14()
             let v24 : US10 = US10_0
             let v25 : US10 = v22 |> Option.map v23 |> Option.defaultValue v24
-            let v26 : string = @$"format!(""{{:?}}"", $0)"
-            let v27 : std_string_String = Fable.Core.RustInterop.emitRustExpr v25 v26
-            let v28 : string = "ui.dark_mode_toggle () / dark_mode effect 0 / ##1.1 / dark_mode1: " + string v27 + ""
-            let v29 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-            Fable.Core.RustInterop.emitRustExpr v28 v29
-            let v142 : US3 =
+            let v26 : string = $"%A{v25}"
+            let v27 : string = "ui.dark_mode_toggle () / dark_mode effect 0 / ##1.1 / dark_mode1: " + string v26 + ""
+            let v28 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+            Fable.Core.RustInterop.emitRustExpr v27 v28
+            let v141 : US3 =
                 match v25 with
-                | US10_1(v30) -> (* Some *)
-                    match v30 with
-                    | US3_1(v31) -> (* Some *)
-                        US3_1(v31)
+                | US10_1(v29) -> (* Some *)
+                    match v29 with
+                    | US3_1(v30) -> (* Some *)
+                        US3_1(v30)
                     | _ ->
-                        let v33 : web_sys_Storage = method19(v19)
-                        let v34 : string = method20()
-                        let v35 : string = $"fable_library_rust::String_::LrcStr::as_str(&v34)"
-                        let v36 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v35
-                        let v37 : string = $"web_sys::Storage::get_item(&v33, v36)"
-                        let v38 : Result<std_string_String option, wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr () v37
-                        let v39 : string = "v38.ok()"
-                        let v40 : std_string_String option option = Fable.Core.RustInterop.emitRustExpr () v39
-                        let v41 : (std_string_String option -> US11) = closure15()
-                        let v42 : US11 = US11_0
-                        let v43 : US11 = v40 |> Option.map v41 |> Option.defaultValue v42
-                        let v51 : US12 =
-                            match v43 with
+                        let v32 : web_sys_Storage = method19(v19)
+                        let v33 : string = method20()
+                        let v34 : string = $"fable_library_rust::String_::LrcStr::as_str(&v33)"
+                        let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34
+                        let v36 : string = $"web_sys::Storage::get_item(&v32, v35)"
+                        let v37 : Result<std_string_String option, wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr () v36
+                        let v38 : string = "v37.ok()"
+                        let v39 : std_string_String option option = Fable.Core.RustInterop.emitRustExpr () v38
+                        let v40 : (std_string_String option -> US11) = closure15()
+                        let v41 : US11 = US11_0
+                        let v42 : US11 = v39 |> Option.map v40 |> Option.defaultValue v41
+                        let v50 : US12 =
+                            match v42 with
                             | US11_0 -> (* None *)
                                 US12_0
-                            | US11_1(v44) -> (* Some *)
-                                let v45 : (std_string_String -> US13) = closure16()
-                                let v46 : US13 = US13_0
-                                let v47 : US13 = v44 |> Option.map v45 |> Option.defaultValue v46
-                                US12_1(v47)
-                        let v58 : US13 =
-                            match v51 with
-                            | US12_1(v52) -> (* Some *)
-                                match v52 with
-                                | US13_1(v53) -> (* Some *)
-                                    US13_1(v53)
+                            | US11_1(v43) -> (* Some *)
+                                let v44 : (std_string_String -> US13) = closure16()
+                                let v45 : US13 = US13_0
+                                let v46 : US13 = v43 |> Option.map v44 |> Option.defaultValue v45
+                                US12_1(v46)
+                        let v57 : US13 =
+                            match v50 with
+                            | US12_1(v51) -> (* Some *)
+                                match v51 with
+                                | US13_1(v52) -> (* Some *)
+                                    US13_1(v52)
                                 | _ ->
                                     US13_0
                             | _ ->
                                 US13_0
-                        let v79 : US10 =
-                            match v58 with
+                        let v78 : US10 =
+                            match v57 with
                             | US13_0 -> (* None *)
                                 US10_0
-                            | US13_1(v59) -> (* Some *)
-                                let v60 : std_string_String = method21(v59)
-                                let v61 : std_string_String = method11(v60)
-                                let v62 : string = "fable_library_rust::String_::fromString(v61)"
-                                let v63 : string = Fable.Core.RustInterop.emitRustExpr () v62
-                                let v64 : string = method1(v63)
-                                let v65 : string = $"fable_library_rust::String_::LrcStr::as_str(&v64)"
-                                let v66 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v65
-                                let v67 : string = $"String::from(v66)"
-                                let v68 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v67
-                                let v69 : string = "serde_json::from_str(&v68)"
-                                let v70 : Result<bool, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v69
-                                let v71 : string = "v70.ok()"
-                                let v72 : bool option = Fable.Core.RustInterop.emitRustExpr () v71
-                                let v73 : (bool -> US3) = closure9()
-                                let v74 : US3 = US3_0
-                                let v75 : US3 = v72 |> Option.map v73 |> Option.defaultValue v74
-                                US10_1(v75)
-                        match v79 with
-                        | US10_1(v80) -> (* Some *)
-                            match v80 with
-                            | US3_1(v81) -> (* Some *)
-                                US3_1(v81)
+                            | US13_1(v58) -> (* Some *)
+                                let v59 : std_string_String = method21(v58)
+                                let v60 : std_string_String = method11(v59)
+                                let v61 : string = "fable_library_rust::String_::fromString(v60)"
+                                let v62 : string = Fable.Core.RustInterop.emitRustExpr () v61
+                                let v63 : string = method1(v62)
+                                let v64 : string = $"fable_library_rust::String_::LrcStr::as_str(&v63)"
+                                let v65 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v64
+                                let v66 : string = $"String::from(v65)"
+                                let v67 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v66
+                                let v68 : string = "serde_json::from_str(&v67)"
+                                let v69 : Result<bool, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v68
+                                let v70 : string = "v69.ok()"
+                                let v71 : bool option = Fable.Core.RustInterop.emitRustExpr () v70
+                                let v72 : (bool -> US3) = closure9()
+                                let v73 : US3 = US3_0
+                                let v74 : US3 = v71 |> Option.map v72 |> Option.defaultValue v73
+                                US10_1(v74)
+                        match v78 with
+                        | US10_1(v79) -> (* Some *)
+                            match v79 with
+                            | US3_1(v80) -> (* Some *)
+                                US3_1(v80)
                             | _ ->
                                 US3_0
                         | _ ->
                             US3_0
                 | _ ->
-                    let v88 : web_sys_Storage = method19(v19)
-                    let v89 : string = method20()
-                    let v90 : string = $"fable_library_rust::String_::LrcStr::as_str(&v89)"
-                    let v91 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v90
-                    let v92 : string = $"web_sys::Storage::get_item(&v88, v91)"
-                    let v93 : Result<std_string_String option, wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr () v92
-                    let v94 : string = "v93.ok()"
-                    let v95 : std_string_String option option = Fable.Core.RustInterop.emitRustExpr () v94
-                    let v96 : (std_string_String option -> US11) = closure15()
-                    let v97 : US11 = US11_0
-                    let v98 : US11 = v95 |> Option.map v96 |> Option.defaultValue v97
-                    let v106 : US12 =
-                        match v98 with
+                    let v87 : web_sys_Storage = method19(v19)
+                    let v88 : string = method20()
+                    let v89 : string = $"fable_library_rust::String_::LrcStr::as_str(&v88)"
+                    let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v89
+                    let v91 : string = $"web_sys::Storage::get_item(&v87, v90)"
+                    let v92 : Result<std_string_String option, wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr () v91
+                    let v93 : string = "v92.ok()"
+                    let v94 : std_string_String option option = Fable.Core.RustInterop.emitRustExpr () v93
+                    let v95 : (std_string_String option -> US11) = closure15()
+                    let v96 : US11 = US11_0
+                    let v97 : US11 = v94 |> Option.map v95 |> Option.defaultValue v96
+                    let v105 : US12 =
+                        match v97 with
                         | US11_0 -> (* None *)
                             US12_0
-                        | US11_1(v99) -> (* Some *)
-                            let v100 : (std_string_String -> US13) = closure16()
-                            let v101 : US13 = US13_0
-                            let v102 : US13 = v99 |> Option.map v100 |> Option.defaultValue v101
-                            US12_1(v102)
-                    let v113 : US13 =
-                        match v106 with
-                        | US12_1(v107) -> (* Some *)
-                            match v107 with
-                            | US13_1(v108) -> (* Some *)
-                                US13_1(v108)
+                        | US11_1(v98) -> (* Some *)
+                            let v99 : (std_string_String -> US13) = closure16()
+                            let v100 : US13 = US13_0
+                            let v101 : US13 = v98 |> Option.map v99 |> Option.defaultValue v100
+                            US12_1(v101)
+                    let v112 : US13 =
+                        match v105 with
+                        | US12_1(v106) -> (* Some *)
+                            match v106 with
+                            | US13_1(v107) -> (* Some *)
+                                US13_1(v107)
                             | _ ->
                                 US13_0
                         | _ ->
                             US13_0
-                    let v134 : US10 =
-                        match v113 with
+                    let v133 : US10 =
+                        match v112 with
                         | US13_0 -> (* None *)
                             US10_0
-                        | US13_1(v114) -> (* Some *)
-                            let v115 : std_string_String = method21(v114)
-                            let v116 : std_string_String = method11(v115)
-                            let v117 : string = "fable_library_rust::String_::fromString(v116)"
-                            let v118 : string = Fable.Core.RustInterop.emitRustExpr () v117
-                            let v119 : string = method1(v118)
-                            let v120 : string = $"fable_library_rust::String_::LrcStr::as_str(&v119)"
-                            let v121 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v120
-                            let v122 : string = $"String::from(v121)"
-                            let v123 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v122
-                            let v124 : string = "serde_json::from_str(&v123)"
-                            let v125 : Result<bool, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v124
-                            let v126 : string = "v125.ok()"
-                            let v127 : bool option = Fable.Core.RustInterop.emitRustExpr () v126
-                            let v128 : (bool -> US3) = closure9()
-                            let v129 : US3 = US3_0
-                            let v130 : US3 = v127 |> Option.map v128 |> Option.defaultValue v129
-                            US10_1(v130)
-                    match v134 with
-                    | US10_1(v135) -> (* Some *)
-                        match v135 with
-                        | US3_1(v136) -> (* Some *)
-                            US3_1(v136)
+                        | US13_1(v113) -> (* Some *)
+                            let v114 : std_string_String = method21(v113)
+                            let v115 : std_string_String = method11(v114)
+                            let v116 : string = "fable_library_rust::String_::fromString(v115)"
+                            let v117 : string = Fable.Core.RustInterop.emitRustExpr () v116
+                            let v118 : string = method1(v117)
+                            let v119 : string = $"fable_library_rust::String_::LrcStr::as_str(&v118)"
+                            let v120 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v119
+                            let v121 : string = $"String::from(v120)"
+                            let v122 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v121
+                            let v123 : string = "serde_json::from_str(&v122)"
+                            let v124 : Result<bool, serde_json_Error> = Fable.Core.RustInterop.emitRustExpr () v123
+                            let v125 : string = "v124.ok()"
+                            let v126 : bool option = Fable.Core.RustInterop.emitRustExpr () v125
+                            let v127 : (bool -> US3) = closure9()
+                            let v128 : US3 = US3_0
+                            let v129 : US3 = v126 |> Option.map v127 |> Option.defaultValue v128
+                            US10_1(v129)
+                    match v133 with
+                    | US10_1(v134) -> (* Some *)
+                        match v134 with
+                        | US3_1(v135) -> (* Some *)
+                            US3_1(v135)
                         | _ ->
                             US3_0
                     | _ ->
                         US3_0
-            let v143 : string = @$"format!(""{{:?}}"", $0)"
-            let v144 : std_string_String = Fable.Core.RustInterop.emitRustExpr v142 v143
-            let v145 : string = "ui.dark_mode_toggle () / dark_mode effect 0 / ##1.1 / dark_mode2: " + string v144 + ""
-            let v146 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-            Fable.Core.RustInterop.emitRustExpr v145 v146
-            match v142 with
-            | US3_1(v147) -> (* Some *)
-                let v148 : leptos_RwSignal<leptos_RwSignal<bool>> = v0.l1
-                let v149 : leptos_RwSignal<leptos_RwSignal<bool>> = method22(v148)
-                let v150 : string = $"leptos::SignalGetUntracked::get_untracked(&v149)"
-                let v151 : leptos_RwSignal<bool> = Fable.Core.RustInterop.emitRustExpr () v150
-                let v152 : bool = method23(v147)
-                let v153 : leptos_RwSignal<bool> = method24(v151)
-                let v154 : string = $"leptos::SignalSet::set(&v153, v152)"
-                Fable.Core.RustInterop.emitRustExpr () v154
+            let v142 : string = $"%A{v141}"
+            let v143 : string = "ui.dark_mode_toggle () / dark_mode effect 0 / ##1.1 / dark_mode2: " + string v142 + ""
+            let v144 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+            Fable.Core.RustInterop.emitRustExpr v143 v144
+            match v141 with
+            | US3_1(v145) -> (* Some *)
+                let v146 : leptos_RwSignal<leptos_RwSignal<bool>> = v0.l1
+                let v147 : leptos_RwSignal<leptos_RwSignal<bool>> = method22(v146)
+                let v148 : string = $"leptos::SignalGetUntracked::get_untracked(&v147)"
+                let v149 : leptos_RwSignal<bool> = Fable.Core.RustInterop.emitRustExpr () v148
+                let v150 : bool = method23(v145)
+                let v151 : leptos_RwSignal<bool> = method24(v149)
+                let v152 : string = $"leptos::SignalSet::set(&v151, v150)"
+                Fable.Core.RustInterop.emitRustExpr () v152
                 ()
             | _ ->
                 ()
@@ -901,29 +897,28 @@ and closure0 () (v0 : (string [])) : int32 =
     let v7 : (web_sys_HtmlElement -> US0) = closure1()
     let v8 : US0 = US0_0
     let v9 : US0 = v6 |> Option.map v7 |> Option.defaultValue v8
-    let v10 : string = @$"format!(""{{:?}}"", $0)"
-    let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr v9 v10
-    let v12 : string = "main / mount_to_body / body: " + string v11 + ""
-    let v13 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-    Fable.Core.RustInterop.emitRustExpr v12 v13
+    let v10 : string = $"%A{v9}"
+    let v11 : string = "main / mount_to_body / body: " + string v10 + ""
+    let v12 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+    Fable.Core.RustInterop.emitRustExpr v11 v12
     match v9 with
-    | US0_1(v14) -> (* Some *)
+    | US0_1(v13) -> (* Some *)
         method0()
     | _ ->
-        let v15 : (unit -> unit) = method49()
-        let v16 : string = "Box::new(move || v15())"
-        let v17 : Box<Dyn<FnUnit>> = Fable.Core.RustInterop.emitRustExpr () v16
-        let v18 : Box<Dyn<FnUnit>> = method50(v17)
-        let v19 : string = "wasm_bindgen::closure::Closure::wrap(v18)"
-        let v20 : wasm_bindgen_closure_Closure<Dyn<FnUnit>> = Fable.Core.RustInterop.emitRustExpr () v19
-        let v21 : string = "wasm_bindgen::closure::Closure::as_ref(&v20)"
-        let v22 : Ref<wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr () v21
-        let v23 : string = "wasm_bindgen::JsCast::unchecked_ref(v22)"
-        let v24 : Ref<js_sys_Function> = Fable.Core.RustInterop.emitRustExpr () v23
-        let v25 : string = "leptos::document().add_event_listener_with_callback(\"DOMContentLoaded\", v24).unwrap()"
+        let v14 : (unit -> unit) = method49()
+        let v15 : string = "Box::new(move || v14())"
+        let v16 : Box<Dyn<FnUnit>> = Fable.Core.RustInterop.emitRustExpr () v15
+        let v17 : Box<Dyn<FnUnit>> = method50(v16)
+        let v18 : string = "wasm_bindgen::closure::Closure::wrap(v17)"
+        let v19 : wasm_bindgen_closure_Closure<Dyn<FnUnit>> = Fable.Core.RustInterop.emitRustExpr () v18
+        let v20 : string = "wasm_bindgen::closure::Closure::as_ref(&v19)"
+        let v21 : Ref<wasm_bindgen_JsValue> = Fable.Core.RustInterop.emitRustExpr () v20
+        let v22 : string = "wasm_bindgen::JsCast::unchecked_ref(v21)"
+        let v23 : Ref<js_sys_Function> = Fable.Core.RustInterop.emitRustExpr () v22
+        let v24 : string = "leptos::document().add_event_listener_with_callback(\"DOMContentLoaded\", v23).unwrap()"
+        Fable.Core.RustInterop.emitRustExpr () v24
+        let v25 : string = "v19.forget()"
         Fable.Core.RustInterop.emitRustExpr () v25
-        let v26 : string = "v20.forget()"
-        Fable.Core.RustInterop.emitRustExpr () v26
         ()
     0
 let v0 : ((string []) -> int32) = closure0()

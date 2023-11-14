@@ -5,3 +5,74 @@
 inl emit_expr forall a t. (args : a) (code : string) : t =
     real
         $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
+
+nominal async t = $"Async<`t>"
+nominal rexie = $"rexie_Rexie"
+nominal rexie_store = $"rexie_Store"
+nominal rexie_transaction = $"rexie_Transaction"
+nominal rexie_error = $"rexie_Error"
+nominal json_value = $"serde_json_Value"
+nominal json_error = $"serde_json_Error"
+nominal js_value = $"wasm_bindgen_JsValue"
+nominal closure t = $"wasm_bindgen_closure_Closure<`t>"
+nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
+nominal rc t = $"std_rc_Rc<`t>"
+nominal box t = $"Box<`t>"
+nominal pin t = $"std_pin_Pin<`t>"
+nominal arc t = $"std_sync_Arc<`t>"
+nominal std_string = $"std_string_String"
+nominal js_function = $"js_sys_Function"
+nominal window = $"web_sys_Window"
+nominal document = $"web_sys_Document"
+nominal html_element = $"web_sys_HtmlElement"
+nominal storage = $"web_sys_Storage"
+nominal dyn' t = $"Dyn<`t>"
+nominal fn' t = $"Fn<`t>"
+nominal fn_once t = $"FnOnce<`t>"
+nominal fn_unit = $"FnUnit"
+nominal future t = $"Future<`t>"
+nominal impl t = $"Impl<`t>"
+nominal ref' t = $"Ref<`t>"
+nominal str = $"Str"
+nominal vec t = $"Vec<`t>"
+
+inl (~!\) forall t. (code : string) : t =
+    emit_expr () code
+
+inl (~!\\) forall t u. ((args : t), (code : string)) : u =
+    emit_expr args code
+
+inl raw_string_literal (s : string) : ref' str =
+    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+
+inl (~#) (s : string) : ref' str =
+    raw_string_literal s
+
+inl new_box forall t. (x : t) : box t =
+    inl x = join x
+    !\($'"Box::new(!x)"')
+
+inl closure_wrap forall t. (x : box t) : closure t =
+    inl x = join x
+    !\($'"wasm_bindgen::closure::Closure::wrap(!x)"')
+
+inl box_fn forall t. (x : () -> ()) : box t =
+    inl x = join x
+    !\($'"Box::new(move || !x())"')
+
+inl closure_forget forall t. (closure : closure t) =
+    !\($'"!closure.forget()"') : ()
+
+inl new_pin forall t. (x : t) : pin (box t) =
+    inl x = join x
+    !\($'"Box::pin(!x)"')
+
+inl as_ref forall t. (closure : closure t) : ref' js_value =
+    !\($'"wasm_bindgen::closure::Closure::as_ref(&!closure)"')
+
+inl unchecked_ref (ref : ref' js_value) : ref' js_function =
+    !\($'"wasm_bindgen::JsCast::unchecked_ref(!ref)"')
+
+inl deref forall t. (ref : ref' t) : t =
+    inl ref = join ref
+    !\($'"*!ref"')

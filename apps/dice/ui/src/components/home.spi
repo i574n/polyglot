@@ -1,0 +1,16 @@
+inl home () =
+    leptos.log $'"ui.home ()"'
+
+    inl global_state : state.global_state = leptos.use_context ()
+
+    inl content' = content.content ()
+    inl content' : leptos.html_element leptos.div = $"!content' |> unbox"
+
+    inl get_dark_mode () =
+        global_state.state |> leptos.rw_signal_get
+        |> fun state => state.dark_mode |> leptos.rw_signal_get
+
+    inl get_dark_mode = join get_dark_mode
+
+    $'"<div class=\\\"flex flex-1\\\" class:dark={move || !get_dark_mode()}>{!content'}</div>"'
+    |> leptos.to_view

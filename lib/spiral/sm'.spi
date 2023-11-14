@@ -1,0 +1,26 @@
+open rust_operators
+
+inl as_str (s : string) : rust.ref' rust.str =
+    inl s = join s
+    !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')
+
+inl from_std_string (str : rust.std_string) : string =
+    inl str = join str
+    !\($'"fable_library_rust::String_::fromString(!str)"')
+
+inl to_std_string (s : string) : rust.std_string =
+    inl s = s |> as_str
+    !\($'$"String::from(!s)"')
+
+inl format x : rust.std_string =
+    !\\(x, $'@@$"format\!(""{{}}"", $0)"')
+
+inl format_debug x : rust.std_string =
+    !\\(x, $'@@$"format\!(""{{:?}}"", $0)"')
+
+inl format_pretty x : rust.std_string =
+    !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+
+inl deserialize forall t. (json : string) : resultm.result' t rust.json_error =
+    inl json : rust.std_string = json |> to_std_string
+    !\($'"serde_json::from_str(&!json)"')

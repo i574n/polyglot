@@ -314,33 +314,32 @@ mod module_d5f62357 {
             let __future_init = Box::pin(async {
                 //;
                 {
-                    let v4: string =
+                    let v3: string =
                     append(append(string("ui.dark_mode_toggle () / dark_mode create_local_resource / database: "),
-                                  toString(format!("{:?}", &v0_1))),
-                           string(""));
-                    leptos::logging::log!("{}", &v4);
+                                  sprintf!("{:?}", &v0_1)), string(""));
+                    leptos::logging::log!("{}", &v3);
                     {
-                        let v8: Ui::US4 = defaultValue(
+                        let v7: Ui::US4 = defaultValue(
                             Ui::US4::US4_0,
                             map(Func1::new(move |v: rexie::Rexie| Ui::closure7((), v)), v0_1),
                         );
-                        let v96: Ui::US3 = Ui::method13(match &v8 {
-                            Ui::US4::US4_1(v8_1_0) => {
+                        let v94: Ui::US3 = Ui::method13(match &v7 {
+                            Ui::US4::US4_1(v7_1_0) => {
                                 leptos::logging::log!("{}", &string("ui.get_dark_mode ()"));
                                 {
-                                    let v12: rexie::Rexie = Ui::method8(v8_1_0.clone());
+                                    let v11: rexie::Rexie = Ui::method8(v7_1_0.clone());
                                     let __future_init = Box::pin(async {
                                         //;
                                         {
-                                            let v15: rexie::Transaction = v12.transaction(
+                                            let v14: rexie::Transaction = v11.transaction(
                                                 &["store"],
                                                 rexie::TransactionMode::ReadOnly,
                                             )?;
-                                            let v17: rexie::Store = v15.store("store")?;
-                                            let v19: string = string("r#\"data\"#");
-                                            let v20: &str = r#"data"#;
-                                            let v22: &wasm_bindgen::JsValue = &v20.into();
-                                            let v24: std::pin::Pin<
+                                            let v16: rexie::Store = v14.store("store")?;
+                                            let v18: string = string("r#\"data\"#");
+                                            let v19: &str = r#"data"#;
+                                            let v21: &wasm_bindgen::JsValue = &v19.into();
+                                            let v23: std::pin::Pin<
                                                 Box<
                                                     dyn std::future::Future<
                                                         Output = Result<
@@ -349,92 +348,92 @@ mod module_d5f62357 {
                                                         >,
                                                     >,
                                                 >,
-                                            > = Box::pin(rexie::Store::get(&v17, v22));
-                                            let v26: Result<wasm_bindgen::JsValue, rexie::Error> =
-                                                v24.await;
-                                            let v28: wasm_bindgen::JsValue = v26?;
-                                            fn v31(v_1: serde_json::Value) -> Ui::US5 {
+                                            > = Box::pin(rexie::Store::get(&v16, v21));
+                                            let v25: Result<wasm_bindgen::JsValue, rexie::Error> =
+                                                v23.await;
+                                            let v27: wasm_bindgen::JsValue = v25?;
+                                            fn v30(v_1: serde_json::Value) -> Ui::US5 {
                                                 Ui::closure8((), v_1)
                                             }
-                                            let v33: Ui::US5 = defaultValue(
+                                            let v32: Ui::US5 = defaultValue(
                                                 Ui::US5::US5_0,
                                                 map(
-                                                    Func1::from(v31),
-                                                    serde_wasm_bindgen::from_value(v28).unwrap(),
+                                                    Func1::from(v30),
+                                                    serde_wasm_bindgen::from_value(v27).unwrap(),
                                                 ),
                                             );
-                                            let v77: Ui::US6 = match &v33 {
-                                                Ui::US5::US5_1(v33_1_0) => {
-                                                    let v35: serde_json::Value =
-                                                        Ui::method9(v33_1_0.clone());
-                                                    let v37: Vec<u8> =
-                                                        serde_json::from_value(v35).unwrap();
-                                                    let v40: string = append(
+                                            let v75: Ui::US6 = match &v32 {
+                                                Ui::US5::US5_1(v32_1_0) => {
+                                                    let v34: serde_json::Value =
+                                                        Ui::method9(v32_1_0.clone());
+                                                    let v36: Vec<u8> =
+                                                        serde_json::from_value(v34).unwrap();
+                                                    let v38: string = append(
                                                         append(
                                                             string("ui.get_dark_mode () / data: "),
-                                                            toString(format!("{:?}", &v37)),
+                                                            sprintf!("{:?}", &v36),
                                                         ),
                                                         string(""),
                                                     );
-                                                    leptos::logging::log!("{}", &v40);
+                                                    leptos::logging::log!("{}", &v38);
                                                     {
-                                                        let v42: Vec<u8> = Ui::method10(v37);
-                                                        let v44: std::string::String =
+                                                        let v40: Vec<u8> = Ui::method10(v36);
+                                                        let v42: std::string::String =
                                                             borsh::BorshDeserialize::deserialize(
-                                                                &mut v42.as_slice(),
+                                                                &mut v40.as_slice(),
                                                             )
                                                             .unwrap();
-                                                        let v45: string = append(
+                                                        let v43: string = append(
                                                             append(
                                                                 string(
                                                                     "ui.get_dark_mode () / json: ",
                                                                 ),
-                                                                toString(v44.clone()),
+                                                                toString(v42.clone()),
                                                             ),
                                                             string(""),
                                                         );
-                                                        leptos::logging::log!("{}", &v45);
+                                                        leptos::logging::log!("{}", &v43);
                                                         {
-                                                            let v47: std::string::String =
-                                                                Ui::method11(v44);
-                                                            let v50:
+                                                            let v45: std::string::String =
+                                                                Ui::method11(v42);
+                                                            let v48:
                                                                                  string =
-                                                                             Ui::method1(fable_library_rust::String_::fromString(v47));
-                                                            let v52:
+                                                                             Ui::method1(fable_library_rust::String_::fromString(v45));
+                                                            let v50:
                                                                                  &str =
-                                                                             fable_library_rust::String_::LrcStr::as_str(&v50);
-                                                            let v54: std::string::String =
-                                                                String::from(v52);
-                                                            let v56: Result<
+                                                                             fable_library_rust::String_::LrcStr::as_str(&v48);
+                                                            let v52: std::string::String =
+                                                                String::from(v50);
+                                                            let v54: Result<
                                                                 serde_json::Value,
                                                                 serde_json::Error,
-                                                            > = serde_json::from_str(&v54);
-                                                            let v60: Ui::US5 = defaultValue(
+                                                            > = serde_json::from_str(&v52);
+                                                            let v58: Ui::US5 = defaultValue(
                                                                 Ui::US5::US5_0,
-                                                                map(Func1::from(v31), v56.ok()),
+                                                                map(Func1::from(v30), v54.ok()),
                                                             );
-                                                            let v64:
+                                                            let v62:
                                                                                  serde_json::Value =
-                                                                             match &v60
+                                                                             match &v58
                                                                                  {
-                                                                                 Ui::US5::US5_1(v60_1_0)
+                                                                                 Ui::US5::US5_1(v58_1_0)
                                                                                  =>
-                                                                                 v60_1_0.clone(),
+                                                                                 v58_1_0.clone(),
                                                                                  _
                                                                                  =>
                                                                                  panic!("{}",
                                                                                         string("Option does not have a value."),),
                                                                              };
-                                                            let v66: string =
+                                                            let v64: string =
                                                                 string("r#\"dark-mode\"#");
-                                                            let v67: &str = r#"dark-mode"#;
+                                                            let v65: &str = r#"dark-mode"#;
                                                             Ui::US6::US6_1(defaultValue(
                                                                 Ui::US3::US3_0,
                                                                 map(
                                                                     Func1::new(move |v_2: bool| {
                                                                         Ui::closure9((), v_2)
                                                                     }),
-                                                                    v64[v67].as_bool(),
+                                                                    v62[v65].as_bool(),
                                                                 ),
                                                             ))
                                                         }
@@ -442,33 +441,33 @@ mod module_d5f62357 {
                                                 }
                                                 _ => Ui::US6::US6_1(Ui::US3::US3_0),
                                             };
-                                            let v84: Result<Ui::US3, rexie::Error> =
-                                                Ui::method12(match &v77 {
-                                                    Ui::US6::US6_1(v77_1_0) => Ok(v77_1_0.clone()),
-                                                    Ui::US6::US6_0(v77_0_0) => Err(v77_0_0.clone()),
+                                            let v82: Result<Ui::US3, rexie::Error> =
+                                                Ui::method12(match &v75 {
+                                                    Ui::US6::US6_1(v75_1_0) => Ok(v75_1_0.clone()),
+                                                    Ui::US6::US6_0(v75_0_0) => Err(v75_0_0.clone()),
                                                 });
-                                            v84
+                                            v82
                                         }
                                     });
                                     {
                                         // ;
                                         {
-                                            let v88: std::pin::Pin<
+                                            let v86: std::pin::Pin<
                                                 Box<
                                                     dyn std::future::Future<
                                                         Output = Result<Ui::US3, rexie::Error>,
                                                     >,
                                                 >,
                                             > = __future_init;
-                                            let v90: Result<Ui::US3, rexie::Error> = v88.await;
-                                            v90.unwrap()
+                                            let v88: Result<Ui::US3, rexie::Error> = v86.await;
+                                            v88.unwrap()
                                         }
                                     }
                                 }
                             }
                             _ => Ui::US3::US3_0,
                         });
-                        v96
+                        v94
                     }
                 }
             });
@@ -578,61 +577,61 @@ mod module_d5f62357 {
                                 leptos::SignalGet::get(&v20),
                             ),
                         );
-                        let v28: string =
+                        let v27: string =
                             append(append(string("ui.dark_mode_toggle () / dark_mode effect 0 / ##1.1 / dark_mode1: "),
-                                          toString(format!("{:?}", &v25))),
+                                          sprintf!("{:?}", &v25)),
                                    string(""));
-                        leptos::logging::log!("{}", &v28);
+                        leptos::logging::log!("{}", &v27);
                         {
-                            let v142: Ui::US3 = if let Ui::US10::US10_1(v25_1_0) = &v25 {
-                                let v30: Ui::US3 = match &v25 {
+                            let v141: Ui::US3 = if let Ui::US10::US10_1(v25_1_0) = &v25 {
+                                let v29: Ui::US3 = match &v25 {
                                     Ui::US10::US10_1(x) => x.clone(),
                                     _ => unreachable!(),
                                 };
-                                if let Ui::US3::US3_1(v30_1_0) = &v30 {
-                                    Ui::US3::US3_1(match &v30 {
+                                if let Ui::US3::US3_1(v29_1_0) = &v29 {
+                                    Ui::US3::US3_1(match &v29 {
                                         Ui::US3::US3_1(x) => x.clone(),
                                         _ => unreachable!(),
                                     })
                                 } else {
-                                    let v33: web_sys::Storage = Ui::method19(v19.clone());
-                                    let v34: string = Ui::method20();
-                                    let v36: &str =
-                                        fable_library_rust::String_::LrcStr::as_str(&v34);
-                                    let v38: Result<
+                                    let v32: web_sys::Storage = Ui::method19(v19.clone());
+                                    let v33: string = Ui::method20();
+                                    let v35: &str =
+                                        fable_library_rust::String_::LrcStr::as_str(&v33);
+                                    let v37: Result<
                                         Option<std::string::String>,
                                         wasm_bindgen::JsValue,
-                                    > = web_sys::Storage::get_item(&v33, v36);
-                                    let v43: Ui::US11 = defaultValue(
+                                    > = web_sys::Storage::get_item(&v32, v35);
+                                    let v42: Ui::US11 = defaultValue(
                                         Ui::US11::US11_0,
                                         map(
                                             Func1::new(move |v_4: Option<std::string::String>| {
                                                 Ui::closure15((), v_4)
                                             }),
-                                            v38.ok(),
+                                            v37.ok(),
                                         ),
                                     );
-                                    let v51: Ui::US12 = match &v43 {
-                                        Ui::US11::US11_1(v43_1_0) => {
+                                    let v50: Ui::US12 = match &v42 {
+                                        Ui::US11::US11_1(v42_1_0) => {
                                             Ui::US12::US12_1(defaultValue(
                                                 Ui::US13::US13_0,
                                                 map(
                                                     Func1::new(move |v_5: std::string::String| {
                                                         Ui::closure16((), v_5)
                                                     }),
-                                                    v43_1_0.clone(),
+                                                    v42_1_0.clone(),
                                                 ),
                                             ))
                                         }
                                         _ => Ui::US12::US12_0,
                                     };
-                                    let v58: Ui::US13 = if let Ui::US12::US12_1(v51_1_0) = &v51 {
-                                        let v52: Ui::US13 = match &v51 {
+                                    let v57: Ui::US13 = if let Ui::US12::US12_1(v50_1_0) = &v50 {
+                                        let v51: Ui::US13 = match &v50 {
                                             Ui::US12::US12_1(x) => x.clone(),
                                             _ => unreachable!(),
                                         };
-                                        if let Ui::US13::US13_1(v52_1_0) = &v52 {
-                                            Ui::US13::US13_1(match &v52 {
+                                        if let Ui::US13::US13_1(v51_1_0) = &v51 {
+                                            Ui::US13::US13_1(match &v51 {
                                                 Ui::US13::US13_1(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
@@ -642,37 +641,37 @@ mod module_d5f62357 {
                                     } else {
                                         Ui::US13::US13_0
                                     };
-                                    let v79: Ui::US10 = match &v58 {
-                                        Ui::US13::US13_1(v58_1_0) => {
-                                            let v61: std::string::String =
-                                                Ui::method11(Ui::method21(v58_1_0.clone()));
-                                            let v64: string = Ui::method1(
-                                                fable_library_rust::String_::fromString(v61),
+                                    let v78: Ui::US10 = match &v57 {
+                                        Ui::US13::US13_1(v57_1_0) => {
+                                            let v60: std::string::String =
+                                                Ui::method11(Ui::method21(v57_1_0.clone()));
+                                            let v63: string = Ui::method1(
+                                                fable_library_rust::String_::fromString(v60),
                                             );
-                                            let v66: &str =
-                                                fable_library_rust::String_::LrcStr::as_str(&v64);
-                                            let v68: std::string::String = String::from(v66);
-                                            let v70: Result<bool, serde_json::Error> =
-                                                serde_json::from_str(&v68);
+                                            let v65: &str =
+                                                fable_library_rust::String_::LrcStr::as_str(&v63);
+                                            let v67: std::string::String = String::from(v65);
+                                            let v69: Result<bool, serde_json::Error> =
+                                                serde_json::from_str(&v67);
                                             Ui::US10::US10_1(defaultValue(
                                                 Ui::US3::US3_0,
                                                 map(
                                                     Func1::new(move |v_6: bool| {
                                                         Ui::closure9((), v_6)
                                                     }),
-                                                    v70.ok(),
+                                                    v69.ok(),
                                                 ),
                                             ))
                                         }
                                         _ => Ui::US10::US10_0,
                                     };
-                                    if let Ui::US10::US10_1(v79_1_0) = &v79 {
-                                        let v80: Ui::US3 = match &v79 {
+                                    if let Ui::US10::US10_1(v78_1_0) = &v78 {
+                                        let v79: Ui::US3 = match &v78 {
                                             Ui::US10::US10_1(x) => x.clone(),
                                             _ => unreachable!(),
                                         };
-                                        if let Ui::US3::US3_1(v80_1_0) = &v80 {
-                                            Ui::US3::US3_1(match &v80 {
+                                        if let Ui::US3::US3_1(v79_1_0) = &v79 {
+                                            Ui::US3::US3_1(match &v79 {
                                                 Ui::US3::US3_1(x) => x.clone(),
                                                 _ => unreachable!(),
                                             })
@@ -684,41 +683,41 @@ mod module_d5f62357 {
                                     }
                                 }
                             } else {
-                                let v88: web_sys::Storage = Ui::method19(v19);
-                                let v89: string = Ui::method20();
-                                let v91: &str = fable_library_rust::String_::LrcStr::as_str(&v89);
-                                let v93: Result<
+                                let v87: web_sys::Storage = Ui::method19(v19);
+                                let v88: string = Ui::method20();
+                                let v90: &str = fable_library_rust::String_::LrcStr::as_str(&v88);
+                                let v92: Result<
                                     Option<std::string::String>,
                                     wasm_bindgen::JsValue,
-                                > = web_sys::Storage::get_item(&v88, v91);
-                                let v98: Ui::US11 = defaultValue(
+                                > = web_sys::Storage::get_item(&v87, v90);
+                                let v97: Ui::US11 = defaultValue(
                                     Ui::US11::US11_0,
                                     map(
                                         Func1::new(move |v_7: Option<std::string::String>| {
                                             Ui::closure15((), v_7)
                                         }),
-                                        v93.ok(),
+                                        v92.ok(),
                                     ),
                                 );
-                                let v106: Ui::US12 = match &v98 {
-                                    Ui::US11::US11_1(v98_1_0) => Ui::US12::US12_1(defaultValue(
+                                let v105: Ui::US12 = match &v97 {
+                                    Ui::US11::US11_1(v97_1_0) => Ui::US12::US12_1(defaultValue(
                                         Ui::US13::US13_0,
                                         map(
                                             Func1::new(move |v_8: std::string::String| {
                                                 Ui::closure16((), v_8)
                                             }),
-                                            v98_1_0.clone(),
+                                            v97_1_0.clone(),
                                         ),
                                     )),
                                     _ => Ui::US12::US12_0,
                                 };
-                                let v113: Ui::US13 = if let Ui::US12::US12_1(v106_1_0) = &v106 {
-                                    let v107: Ui::US13 = match &v106 {
+                                let v112: Ui::US13 = if let Ui::US12::US12_1(v105_1_0) = &v105 {
+                                    let v106: Ui::US13 = match &v105 {
                                         Ui::US12::US12_1(x) => x.clone(),
                                         _ => unreachable!(),
                                     };
-                                    if let Ui::US13::US13_1(v107_1_0) = &v107 {
-                                        Ui::US13::US13_1(match &v107 {
+                                    if let Ui::US13::US13_1(v106_1_0) = &v106 {
+                                        Ui::US13::US13_1(match &v106 {
                                             Ui::US13::US13_1(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
@@ -728,35 +727,35 @@ mod module_d5f62357 {
                                 } else {
                                     Ui::US13::US13_0
                                 };
-                                let v134: Ui::US10 = match &v113 {
-                                    Ui::US13::US13_1(v113_1_0) => {
-                                        let v116: std::string::String =
-                                            Ui::method11(Ui::method21(v113_1_0.clone()));
-                                        let v119: string = Ui::method1(
-                                            fable_library_rust::String_::fromString(v116),
+                                let v133: Ui::US10 = match &v112 {
+                                    Ui::US13::US13_1(v112_1_0) => {
+                                        let v115: std::string::String =
+                                            Ui::method11(Ui::method21(v112_1_0.clone()));
+                                        let v118: string = Ui::method1(
+                                            fable_library_rust::String_::fromString(v115),
                                         );
-                                        let v121: &str =
-                                            fable_library_rust::String_::LrcStr::as_str(&v119);
-                                        let v123: std::string::String = String::from(v121);
-                                        let v125: Result<bool, serde_json::Error> =
-                                            serde_json::from_str(&v123);
+                                        let v120: &str =
+                                            fable_library_rust::String_::LrcStr::as_str(&v118);
+                                        let v122: std::string::String = String::from(v120);
+                                        let v124: Result<bool, serde_json::Error> =
+                                            serde_json::from_str(&v122);
                                         Ui::US10::US10_1(defaultValue(
                                             Ui::US3::US3_0,
                                             map(
                                                 Func1::new(move |v_9: bool| Ui::closure9((), v_9)),
-                                                v125.ok(),
+                                                v124.ok(),
                                             ),
                                         ))
                                     }
                                     _ => Ui::US10::US10_0,
                                 };
-                                if let Ui::US10::US10_1(v134_1_0) = &v134 {
-                                    let v135: Ui::US3 = match &v134 {
+                                if let Ui::US10::US10_1(v133_1_0) = &v133 {
+                                    let v134: Ui::US3 = match &v133 {
                                         Ui::US10::US10_1(x) => x.clone(),
                                         _ => unreachable!(),
                                     };
-                                    if let Ui::US3::US3_1(v135_1_0) = &v135 {
-                                        Ui::US3::US3_1(match &v135 {
+                                    if let Ui::US3::US3_1(v134_1_0) = &v134 {
+                                        Ui::US3::US3_1(match &v134 {
                                             Ui::US3::US3_1(x) => x.clone(),
                                             _ => unreachable!(),
                                         })
@@ -767,22 +766,22 @@ mod module_d5f62357 {
                                     Ui::US3::US3_0
                                 }
                             };
-                            let v145: string =
+                            let v143: string =
                                 append(append(string("ui.dark_mode_toggle () / dark_mode effect 0 / ##1.1 / dark_mode2: "),
-                                              toString(format!("{:?}", &v142))),
+                                              sprintf!("{:?}", &v141)),
                                        string(""));
-                            leptos::logging::log!("{}", &v145);
-                            if let Ui::US3::US3_1(v142_1_0) = &v142 {
-                                let v149: leptos::RwSignal<leptos::RwSignal<bool>> =
+                            leptos::logging::log!("{}", &v143);
+                            if let Ui::US3::US3_1(v141_1_0) = &v141 {
+                                let v147: leptos::RwSignal<leptos::RwSignal<bool>> =
                                     Ui::method22(v0_1.l1.clone());
-                                let v151: leptos::RwSignal<bool> =
-                                    leptos::SignalGetUntracked::get_untracked(&v149);
-                                let v152: bool = Ui::method23(match &v142 {
+                                let v149: leptos::RwSignal<bool> =
+                                    leptos::SignalGetUntracked::get_untracked(&v147);
+                                let v150: bool = Ui::method23(match &v141 {
                                     Ui::US3::US3_1(x) => x.clone(),
                                     _ => unreachable!(),
                                 });
-                                let v153: leptos::RwSignal<bool> = Ui::method24(v151);
-                                leptos::SignalSet::set(&v153, v152);
+                                let v151: leptos::RwSignal<bool> = Ui::method24(v149);
+                                leptos::SignalSet::set(&v151, v150);
                                 ()
                             }
                         }
@@ -1320,27 +1319,27 @@ mod module_d5f62357 {
                         leptos::document().body(),
                     ),
                 );
-                let v12: string = append(
+                let v11: string = append(
                     append(
                         string("main / mount_to_body / body: "),
-                        toString(format!("{:?}", &v9)),
+                        sprintf!("{:?}", &v9),
                     ),
                     string(""),
                 );
-                leptos::logging::log!("{}", &v12);
+                leptos::logging::log!("{}", &v11);
                 if let Ui::US0::US0_1(v9_1_0) = &v9 {
                     Ui::method0()
                 } else {
-                    let v15 = Ui::method49();
-                    let v18: Box<dyn Fn()> = Ui::method50(Box::new(move || v15()));
-                    let v20: wasm_bindgen::closure::Closure<dyn Fn()> =
-                        wasm_bindgen::closure::Closure::wrap(v18);
-                    let v22: &wasm_bindgen::JsValue = wasm_bindgen::closure::Closure::as_ref(&v20);
-                    let v24: &js_sys::Function = wasm_bindgen::JsCast::unchecked_ref(v22);
+                    let v14 = Ui::method49();
+                    let v17: Box<dyn Fn()> = Ui::method50(Box::new(move || v14()));
+                    let v19: wasm_bindgen::closure::Closure<dyn Fn()> =
+                        wasm_bindgen::closure::Closure::wrap(v17);
+                    let v21: &wasm_bindgen::JsValue = wasm_bindgen::closure::Closure::as_ref(&v19);
+                    let v23: &js_sys::Function = wasm_bindgen::JsCast::unchecked_ref(v21);
                     leptos::document()
-                        .add_event_listener_with_callback("DOMContentLoaded", v24)
+                        .add_event_listener_with_callback("DOMContentLoaded", v23)
                         .unwrap();
-                    v20.forget();
+                    v19.forget();
                     ()
                 }
                 0_i32

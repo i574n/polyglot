@@ -1,0 +1,8 @@
+open rust_operators
+
+inl new_hash_map () : rust.hash_map _ _ =
+    !\($'"std::collections::HashMap::new()"')
+
+inl get forall k v. (key : k) (map : rust.hash_map k v) : optionm'.option' v =
+    inl key = join key
+    !\($'"std::collections::HashMap::get(&!map, &!key).map(|x| *x)"')

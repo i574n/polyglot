@@ -1,0 +1,128 @@
+open rust_operators
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Details\")>] type leptos_html_Details = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>] type leptos_ReadSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>] type leptos_Memo<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Store\")>] type rexie_Store = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::closure::Closure<$0>\")>] type wasm_bindgen_closure_Closure<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::Function\")>] type js_sys_Function = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Window\")>] type web_sys_Window = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Document\")>] type web_sys_Document = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Storage\")>] type web_sys_Storage = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::HtmlElement\")>] type web_sys_HtmlElement = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
+
+type state =
+    {
+        dark_mode : leptos.rw_signal bool
+    }
+
+type global_state =
+    heap {
+        state : leptos.rw_signal state
+        loading : leptos.rw_signal (rust.hash_map string (leptos.rw_signal bool))
+    }
+
+inl build_database () : rust.pin (rust.box (rust.dyn' (rust.future (result rust.rexie rust.rexie_error)))) =
+    leptos.log $'"ui.build_database ()"'
+
+    fun () =>
+        inl rexie : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.rexie rust.rexie_error)))) = !\($'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"')
+        inl rexie : resultm.result' rust.rexie rust.rexie_error = rexie |> async.await
+        inl rexie : rust.rexie = rexie |> resultm.unwrap
+        Ok rexie
+    |> async.future_init 1 0
+
+inl get_dark_mode_key () =
+    "dark-mode"
+
+inl get_dark_mode (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' (option bool) rust.rexie_error)))) =
+    leptos.log $'"ui.get_dark_mode ()"'
+    inl rexie = join rexie
+    fun () =>
+        inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadOnly)?"')
+        inl rexie_store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
+        inl mode_value : resultm.result' rust.js_value rust.rexie_error = rexie_store |> store.store_get "data" |> async.await
+        inl mode_value : rust.js_value = mode_value |> resultm.try
+        inl mode_data : optionm'.option' rust.json_value = !\($'"serde_wasm_bindgen::from_value(!mode_value).unwrap()"')
+        match mode_data |> optionm'.unbox with
+        | Some mode_data =>
+            inl mode_data = join mode_data
+            inl data : rust.vec u8 = !\($'"serde_json::from_value(!mode_data).unwrap()"')
+            inl data_log = data |> format_debug
+            leptos.log $'"ui.get_dark_mode () / data: " + string !data_log + ""'
+            inl data = join data
+            inl json : rust.std_string = !\($'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).unwrap()"')
+            leptos.log $'"ui.get_dark_mode () / json: " + string !json + ""'
+
+            inl obj : rust.json_value =
+                json
+                |> sm'.from_std_string
+                |> sm'.deserialize
+                |> resultm.ok
+                |> optionm'.unbox
+                |> optionm.value
+            inl dark_mode_key = get_dark_mode_key ()
+            inl dark_mode_key = #dark_mode_key
+            inl dark_mode : optionm'.option' bool = !\($'"!obj[!dark_mode_key].as_bool()"')
+            inl dark_mode = dark_mode |> optionm'.unbox
+            Ok dark_mode
+        | None => Ok None
+        |> resultm.box
+    |> async.future_init 2 0
+
+inl set_dark_mode (mode : bool) (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' () rust.rexie_error)))) =
+    leptos.log $'"ui.set_dark_mode () / mode: " + string !mode + ""'
+    inl rexie = join rexie
+    fun () =>
+        inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
+        inl store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
+        inl dark_mode_key = get_dark_mode_key ()
+        inl dark_mode_key = #dark_mode_key
+        inl mode_value : rust.std_string = !\($'"serde_json::json!!({ !dark_mode_key: !mode }).to_string()"')
+
+        !\($'"let mut data = Vec::new()"')
+        !\($'"borsh::BorshSerialize::serialize(&!mode_value, &mut data).unwrap()"')
+        inl data : rust.vec u8 = !\($'"data"')
+
+        inl mode_js_value : rust.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
+        !\($'"!store.put(&!mode_js_value, Some(&\\\"data\\\".into())).await?"')
+        !\($'"!transaction.done().await?"')
+
+        Ok () |> resultm.box
+    |> async.future_init 4 0

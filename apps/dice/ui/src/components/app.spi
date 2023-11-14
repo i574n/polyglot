@@ -1,0 +1,27 @@
+open rust_operators
+
+inl app () =
+    leptos.log $'"ui.app ()"'
+
+    !\($'"leptos_meta::provide_meta_context()"')
+
+    inl global_state : state.global_state =
+        heap {
+            state =
+                leptos.create_rw_signal
+                    {
+                        dark_mode = leptos.create_rw_signal true
+                    }
+            loading = mapm.new_hash_map () |> leptos.create_rw_signal
+        }
+
+    fun () =>
+        open state
+        !\($'$"leptos::provide_context::<std::rc::Rc<`global_state>>(!global_state)"')
+    |> fun x => x ()
+
+    inl home' = home.home ()
+    inl home' : leptos.html_element leptos.div = $"!home' |> unbox"
+    inl home' : leptos.view = !\($'"leptos::IntoView::into_view(!home')"')
+
+    $"!home' |> unbox" : rust.impl leptos.into_view

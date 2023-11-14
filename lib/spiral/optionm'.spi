@@ -1,5 +1,7 @@
 // // # optionm
 
+open rust_operators
+
 // // ## default_value
 
 inl default_value d = optionm.defaultWith d
@@ -34,3 +36,15 @@ inl box forall t. (x : option t) : option' t =
     match x with
     | Some x => $"Some !x"
     | None => $"None"
+
+// // ## map
+
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    !\\(fn, $'"!x.map(|x| $0(x))"')
+
+// // ## flatten
+
+inl flatten x =
+    match x with
+    | Some (Some x) => Some x
+    | _ => None

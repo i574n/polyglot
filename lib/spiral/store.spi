@@ -1,0 +1,21 @@
+open rust_operators
+
+inl storage_get forall t. (key : string) (storage : rust.storage) : resultm.result' (optionm'.option' t) rust.js_value =
+    inl storage = join storage
+    inl key = key |> sm'.as_str
+    !\($'$"web_sys::Storage::get_item(&!storage, !key)"')
+
+inl storage_set forall t. (key : string) (value : t) (storage : rust.storage) =
+    inl storage = join storage
+    inl key = key |> sm'.as_str
+    inl value = value |> sm'.format |> sm'.from_std_string |> sm'.as_str
+    !\($'$"web_sys::Storage::set(&!storage, !key, !value).unwrap()"') : ()
+
+let local_storage (window : rust.window) : resultm.result' (optionm'.option' rust.storage) rust.js_value =
+    inl window = join window
+    !\($'"!window.local_storage()"')
+
+inl store_get forall t. (key : string) (store : rust.rexie_store) : rust.pin (rust.box (rust.dyn' (rust.future t))) =
+    inl key = #key
+    inl key : rust.ref' rust.js_value = !\\(key, $'"$0.into()"')
+    !\($'$"Box::pin(rexie::Store::get(&!store, !key))"')

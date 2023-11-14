@@ -1,0 +1,8 @@
+open rust_operators
+
+inl explorer_backend_host_input () =
+    inl (explorer_backend_host, set_explorer_backend_host) = leptos.create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> sm'.to_std_string)
+
+    inl input' : leptos.html_element leptos.input =
+        !\\((explorer_backend_host, set_explorer_backend_host), $'$"leptos::view\! {{ <input class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\" prop:value=$0 on:keyup=move |event: web_sys::KeyboardEvent| {{ $1(leptos::event_target_value(&event)) }} /> }}"')
+    $"!input' |> unbox" : rust.impl leptos.into_view

@@ -2,15 +2,22 @@ packages:
     |core-
 modules:
     testing
+    rust
+    rust_operators
+    async
+    optionm'
+    resultm
+    mapm
     common-
+    sm'
     console
     math
-    optionm'
     am'
     listm'
     benchmark
     stream
     seq
     util
-    rust
     physics
+    leptos
+    store

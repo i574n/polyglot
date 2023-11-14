@@ -1,0 +1,112 @@
+open rust_operators
+
+nominal event = $"leptos_ev_Event"
+nominal mouse_event = $"leptos_ev_MouseEvent"
+nominal button = $"leptos_html_Button"
+nominal details = $"leptos_html_Details"
+nominal div = $"leptos_html_Div"
+nominal input = $"leptos_html_Input"
+nominal label = $"leptos_html_Label"
+nominal action t u = $"leptos_Action<`t, `u>"
+nominal fragment = $"leptos_Fragment"
+nominal html_element t = $"leptos_HtmlElement<`t>"
+nominal into_view = $"leptos_IntoView"
+nominal memo t = $"leptos_Memo<`t>"
+nominal rw_signal t = $"leptos_RwSignal<`t>"
+nominal read_signal t = $"leptos_ReadSignal<`t>"
+nominal write_signal t = $"leptos_WriteSignal<`t>"
+nominal resource t u = $"leptos_Resource<`t, `u>"
+nominal view = $"leptos_View"
+
+inl log_string (text : string) =
+    !\\((), $'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
+
+inl log (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{}}"", $0)"') : ()
+
+inl log_debug (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"') : ()
+
+inl log_pretty (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"') : ()
+
+inl mount_to_body (view_fn : () -> rust.impl into_view) =
+    !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
+
+inl to_view (macro : string) : rust.impl into_view =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl to_fragment (macro : string) : fragment =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl fragment_to_view (fragment : fragment) : rust.impl into_view =
+    !\($'"leptos::IntoView::into_view(!fragment)"')
+
+inl to_view' (macro : html_element div) : rust.impl into_view =
+    !\($'"leptos::view\! { {!macro} }"')
+
+inl create_signal forall t. (value : t) : read_signal t * write_signal t =
+    !\($'$"leptos::create_signal(!value)"')
+
+inl create_rw_signal forall t. (value : t) : rw_signal t =
+    !\($'$"leptos::create_rw_signal(!value)"')
+
+inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : resource t u =
+    inl source = join source
+    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
+
+inl create_action forall t u. (action_fn : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : action t u =
+    inl action_fn = join action_fn
+    !\($'"leptos::create_action(move |value: &`t| !action_fn(*value))"')
+
+inl action_dispatch forall t. (value : t) (action : action t ()) =
+    inl value = join value
+    !\($'"leptos::Action::dispatch(&!action, !value)"')
+
+inl use_context forall t. () : t =
+    !\($'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"')
+
+inl rw_signal_get forall t. (signal : rw_signal t) : t =
+    inl signal = join signal
+    !\($'$"leptos::SignalGet::get(&!signal)"')
+
+inl signal_get forall t. (signal : read_signal t) : t =
+    inl signal = join signal
+    !\($'$"leptos::SignalGet::get(&!signal)"')
+
+inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
+    inl fn = join fn
+    inl signal = join signal
+    !\($'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"') : ()
+
+inl signal_get_untracked forall t. (signal : rw_signal t) : t =
+    inl signal = join signal
+    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
+
+inl rw_signal_set forall t. (value : t) (signal : rw_signal t) =
+    inl value = join value
+    inl signal = join signal
+    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
+
+inl signal_set forall t. (value : t) (signal : write_signal t) =
+    inl value = join value
+    inl signal = join signal
+    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
+
+inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
+    inl resource = join resource
+    !\($'$"leptos::SignalGet::get(&!resource)"')
+
+inl create_effect (fn : () -> ()) : () =
+    inl fn = join fn
+    !\($'"leptos::create_effect(move |_| { !fn() })"')
+
+inl create_memo forall t. (fn : () -> t) : memo t =
+    inl fn = join fn
+    !\($'"leptos::create_memo(move |_| { !fn() })"')
+
+let window () : rust.window =
+    !\($'"leptos::leptos_dom::window()"')
+
+inl memo_get forall t. (memo : memo t) : t =
+    !\($'$"!memo()"')

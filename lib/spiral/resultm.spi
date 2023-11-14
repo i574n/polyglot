@@ -1,0 +1,32 @@
+open rust_operators
+
+nominal result' t u = $"Result<`t, `u>"
+
+inl get forall t e. (source : result t e) : t =
+    match source with
+    | Ok x => x
+    | Error x => failwith $'$"Result value was Error: {!x}"'
+
+inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
+    match source with
+    | Ok x => fn x |> Ok
+    | Error x => Error x
+
+inl unbox forall t u. (x : result' t u) : result t u =
+    inl ok x : result t u = Ok x
+    inl error x : result t u = Error x
+    $"match !x with Ok x -> !ok x | Error x -> !error x"
+
+inl box forall t u. (x : result t u) : result' t u =
+    match x with
+    | Ok x => $"Ok !x"
+    | Error err => $"Error !err"
+
+inl try forall t u. (x : result' t u) : t =
+    !\($'"!x?"')
+
+inl unwrap forall t u. (x : result' t u) : t =
+    !\($'"!x.unwrap()"')
+
+inl ok forall t. (x : result' t _) : optionm'.option' t =
+    !\($'"!x.ok()"')
