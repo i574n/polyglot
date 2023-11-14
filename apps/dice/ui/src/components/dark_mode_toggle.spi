@@ -1,5 +1,9 @@
+open rust_operators
+
 inl dark_mode_toggle () =
     leptos.log $'"ui.dark_mode_toggle ()"'
+
+    inl dark_mode_key = state.get_dark_mode_key ()
     inl global_state : state.global_state = leptos.use_context ()
 
     inl database : leptos.resource (option ()) rust.rexie =
@@ -40,7 +44,7 @@ inl dark_mode_toggle () =
                     Some dark_mode
                 | _ =>
                     storage
-                    |> store.storage_get (state.get_dark_mode_key ())
+                    |> store.storage_get dark_mode_key
                     |> resultm.ok
                     |> optionm'.unbox
                     |> optionm.map optionm'.unbox
@@ -92,7 +96,7 @@ inl dark_mode_toggle () =
         inl dark_mode_loading =
             loading
             |> leptos.memo_get
-            |> mapm.get (state.get_dark_mode_key ())
+            |> mapm.get dark_mode_key
             |> optionm'.unbox
             |> optionm.map leptos.rw_signal_get
             |> optionm'.default_value false
@@ -108,21 +112,16 @@ inl dark_mode_toggle () =
                 match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
                 | Ok (Some storage) =>
                     set_dark_mode_action |> leptos.action_dispatch dark_mode
-                    storage |> store.storage_set (state.get_dark_mode_key ()) dark_mode
+                    storage |> store.storage_set dark_mode_key dark_mode
                 | _ => ()
 
-    inl on_click (_event : leptos.event) =
+    inl on_change (_event : leptos.event) =
         global_state.state |> leptos.rw_signal_get
         |> fun state => state.dark_mode |> leptos.signal_update fun x =>
             not x
-
-    inl on_click = join on_click
 
     inl get_dark_mode () =
         global_state.state |> leptos.rw_signal_get
         |> fun state => state.dark_mode |> leptos.rw_signal_get
 
-    inl get_dark_mode = join get_dark_mode
-
-    $'"<label for=\\\"AcceptConditions\\\" class=\\\"relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id=\\\"AcceptConditions\\\" class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_click(event) prop:checked={move || !get_dark_mode()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-green-600\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500\\\"></span></label>"'
-    |> leptos.to_view
+    leptos.toggle { id=dark_mode_key; on_change get_value=get_dark_mode }

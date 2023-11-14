@@ -9,6 +9,7 @@ nominal input = $"leptos_html_Input"
 nominal label = $"leptos_html_Label"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal fragment = $"leptos_Fragment"
+nominal text = $"leptos_dom_Text"
 nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
 nominal memo t = $"leptos_Memo<`t>"
@@ -33,17 +34,70 @@ inl log_pretty (text : string) =
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
-inl to_view (macro : string) : rust.impl into_view =
+inl to_view_trait_macro (macro : string) : rust.impl into_view =
     !\($'"leptos::view\! { " + !macro + " }"')
+
+inl to_fragment_macro_wrap (macro : string) : fragment =
+    !\($'"leptos::view\! { <>" + !macro + "</> }"')
+
+inl to_fragment_macro (macro : string) : fragment =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl to_view (view : html_element _) : view =
+    inl view = join view
+    !\($'"leptos::IntoView::into_view(!view)"')
+
+inl to_element (view : rust.impl into_view) : html_element _ =
+    $"!view |> unbox"
+
+inl to_element_view (view : html_element _) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_view_element (view : string) : html_element _ =
+    view |> to_view_trait_macro |> to_element
+
+inl fragment_to_view (fragment : fragment) : view =
+    !\($'"leptos::IntoView::into_view(!fragment)"')
 
 inl to_fragment (macro : string) : fragment =
     !\($'"leptos::view\! { " + !macro + " }"')
 
-inl fragment_to_view (fragment : fragment) : rust.impl into_view =
-    !\($'"leptos::IntoView::into_view(!fragment)"')
+inl text_to_view (x : text) : view =
+    !\($'"leptos::IntoView::into_view(!x)"')
+
+inl text_view (text : string) : view =
+    inl text = #text
+    inl text : text = !\($'"leptos::html::text(!text)"')
+    text |> text_to_view
+
+inl to_fragment_into (macro : string) : fragment =
+    !\($'"leptos::view\! { " + !macro + " }.into()"')
+
+inl to_fragment' (x : _) : fragment =
+    $"!x |> unbox"
 
 inl to_view' (macro : html_element div) : rust.impl into_view =
     !\($'"leptos::view\! { {!macro} }"')
+
+inl new_fragment (view : view) : fragment =
+    !\($'"leptos::Fragment::new(vec\![!view])"')
+
+inl new_fragment_array (view : a _ view) : fragment =
+    !\($'"leptos::Fragment::new(!view.to_vec())"')
+
+inl views_fragment (items : array view) : view =
+    inl items =
+        items
+        |> fun x => a x : a u64 _
+        |> new_fragment_array
+    items
+    |> fragment_to_view
+
+inl provide_meta_context () =
+    !\($'"leptos_meta::provide_meta_context()"') : ()
+
+inl provide_context_rc forall t. (x : t) =
+    !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     !\($'$"leptos::create_signal(!value)"')
@@ -110,3 +164,57 @@ let window () : rust.window =
 
 inl memo_get forall t. (memo : memo t) : t =
     !\($'$"!memo()"')
+
+inl bool_prop (prop : string) (fn : () -> bool) : string =
+    inl fn = join fn
+    $'"" + !prop + "={move || !fn()}"'
+
+inl concat_props props =
+    ("", props)
+    ||> listm.fold fun acc (x : string) =>
+        $'" " + !x + !acc + ""'
+
+inl tag { tag props children } : html_element _ =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    inl children : () -> view = join children
+    $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
+    |> to_view_element
+
+inl tag_closed { tag props } : html_element _ =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    $'"<" + !tag + " " + !props + " />"'
+    |> to_view_element
+
+inl div { props children } : _ div =
+    tag { tag = "div"; props children }
+
+inl input { props } : _ input =
+    tag_closed { tag = "input"; props }
+
+inl accordion { title children } : _ details =
+    inl title = join title
+    inl title = title |> sm'.to_std_string
+    inl children : () -> html_element _ = join children
+    $'"<details class=\\\"group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children()}</details>"'
+    |> to_view_element
+
+inl input forall t. { getter setter } : _ input =
+    inl getter : read_signal t = join getter
+    inl setter : write_signal t = join setter
+    input {
+        props = [
+            $'"class=\\\"bg-gray-50 dark:bg-gray-900 flex-1 h-8\\\""'
+            $'"prop:value=!getter"'
+            $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
+        ]
+    }
+
+inl toggle { id on_change get_value } : _ label =
+    inl id = #id
+    inl on_change : event -> () = join on_change
+    inl get_value : () -> bool = join get_value
+
+    $'"<label for={!id} class=\\\"relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-green-600\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-green-500\\\"></span></label>"'
+    |> to_view_element

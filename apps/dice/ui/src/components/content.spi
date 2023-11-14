@@ -1,42 +1,66 @@
 open rust_operators
 
-inl content () =
+inl content () : _ leptos.div =
+    inl view_accordion = leptos.accordion {
+        title = "view"
+        children = fun () =>
+            leptos.div {
+                props = [
+                    $'"class=\\\"flex items-center\\\""'
+                ]
+                children = join fun () =>
+                    ;[
+                        leptos.div {
+                            props = []
+                            children = join fun () =>
+                                "dark_mode:" |> leptos.text_view
+                        }
+                        |> leptos.to_view
+
+                        dark_mode_toggle.dark_mode_toggle ()
+                        |> leptos.to_view
+                    ]
+                    |> leptos.views_fragment
+            }
+    }
+
+    inl connection_accordion = leptos.accordion {
+        title = "connection"
+        children = fun () =>
+            leptos.div {
+                props = [
+                    $'"class=\\\"flex items-baseline\\\""'
+                    $'"style=\\\"align-items: baseline;\\\""'
+                ]
+                children = join fun () =>
+                    ;[
+                        leptos.div {
+                            props = []
+                            children = join fun () =>
+                                "explorer_backend_host:" |> leptos.text_view
+                        }
+                        |> leptos.to_view
+
+                        explorer_backend_host_input.explorer_backend_host_input ()
+                        |> leptos.to_view
+                    ]
+                    |> leptos.views_fragment
+            }
+    }
+
     inl font_size = 14i32
     inl font_size : string = $"string !font_size"
     inl font_size = font_size |> sm'.as_str
 
-    inl explorer_backend_host_input' = explorer_backend_host_input.explorer_backend_host_input ()
-    inl explorer_backend_host_input' : leptos.html_element leptos.input = $"!explorer_backend_host_input' |> unbox"
-
-    inl dark_mode_toggle' = dark_mode_toggle.dark_mode_toggle ()
-    inl dark_mode_toggle' : leptos.html_element leptos.label = $"!dark_mode_toggle' |> unbox"
-
-    inl title = "view"
-    inl children =
-        $'"<div class=\\\"flex items-center\\\"><div>dark_mode:</div>{!dark_mode_toggle'}</div>"'
-        |> leptos.to_view
-    inl children : leptos.html_element leptos.div = $"!children |> unbox"
-
-    inl title = title |> sm'.to_std_string
-    inl children = join children
-    inl accordion' =
-        $'"<details class=\\\"group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children}</details>"'
-        |> leptos.to_view
-    inl view_accordion' : leptos.html_element leptos.details = $"!accordion' |> unbox"
-
-    inl title = "connection"
-    inl children =
-        $'"<div class=\\\"flex items-baseline\\\" style=\\\"align-items: baseline;\\\"><div>explorer_backend_host:</div>{!explorer_backend_host_input'}</div>"'
-        |> leptos.to_view
-    inl children : leptos.html_element leptos.div = $"!children |> unbox"
-
-    inl title = title |> sm'.to_std_string
-    inl children = join children
-    inl accordion' =
-        $'"<details class=\\\"group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children}</details>"'
-        |> leptos.to_view
-    inl connection_accordion' : leptos.html_element leptos.details = $"!accordion' |> unbox"
-
-    inl result : leptos.html_element leptos.div =
-        !\\(font_size, $'"leptos::view\! { <div class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\\\" style=\\\"font-size: \\\".to_owned() + *$0 + \\\"px;\\\">{!view_accordion'}{!connection_accordion'}</div> }"')
-    $"!result |> unbox" : rust.impl leptos.into_view
+    leptos.div {
+        props = [
+            $'"class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\\\""'
+            $'"style=\\\"font-size: \\\".to_owned() + !font_size + \\\"px;\\\""'
+        ]
+        children = join fun () =>
+            ;[
+                view_accordion |> leptos.to_view
+                connection_accordion |> leptos.to_view
+            ]
+            |> leptos.views_fragment
+    }
