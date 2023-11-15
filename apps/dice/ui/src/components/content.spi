@@ -2,49 +2,42 @@ open rust_operators
 
 inl content () : _ leptos.div =
     inl view_accordion = leptos.accordion {
-        title = "view"
+        title = "View"
         children = fun () =>
-            leptos.div {
-                props = [
-                    $'"class=\\\"flex items-center\\\""'
-                ]
-                children = join fun () =>
-                    ;[
-                        leptos.div {
-                            props = []
-                            children = join fun () =>
-                                "dark_mode:" |> leptos.text_view
-                        }
-                        |> leptos.to_view
-
-                        dark_mode_toggle.dark_mode_toggle ()
-                        |> leptos.to_view
-                    ]
-                    |> leptos.views_fragment
+            leptos.view_map_grid {
+                children = fun () =>
+                    leptos.grid_pair {
+                        class = $'"items-center"'
+                        props = [
+                            $'"style=\\\"align-items: center\\\""'
+                        ]
+                        left =
+                            "Dark Mode" |> leptos.text_view
+                        right =
+                            dark_mode_toggle.dark_mode_toggle ()
+                            |> leptos.to_view
+                    }
+                    |> leptos.to_view
             }
     }
 
     inl connection_accordion = leptos.accordion {
-        title = "connection"
+        title = "Connection"
         children = fun () =>
-            leptos.div {
-                props = [
-                    $'"class=\\\"flex items-baseline\\\""'
-                    $'"style=\\\"align-items: baseline;\\\""'
-                ]
-                children = join fun () =>
-                    ;[
-                        leptos.div {
-                            props = []
-                            children = join fun () =>
-                                "explorer_backend_host:" |> leptos.text_view
-                        }
-                        |> leptos.to_view
-
-                        explorer_backend_host_input.explorer_backend_host_input ()
-                        |> leptos.to_view
-                    ]
-                    |> leptos.views_fragment
+            leptos.view_map_grid {
+                children = fun () =>
+                    leptos.grid_pair {
+                        class = $'"items-baseline"'
+                        props = [
+                            $'"style=\\\"align-items: baseline\\\""'
+                        ]
+                        left =
+                            "Explorer Backend Host" |> leptos.text_view
+                        right =
+                            explorer_backend_host_input.explorer_backend_host_input ()
+                            |> leptos.to_view
+                    }
+                    |> leptos.to_view
             }
     }
 
@@ -54,7 +47,7 @@ inl content () : _ leptos.div =
 
     leptos.div {
         props = [
-            $'"class=\\\"bg-gray-50 dark:bg-gray-900 flex flex-1 flex-col items-stretch min-h-screen min-w-full text-gray-700 dark:text-gray-200 text-sm\\\""'
+            $'"class=\\\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\\\""'
             $'"style=\\\"font-size: \\\".to_owned() + !font_size + \\\"px;\\\""'
         ]
         children = join fun () =>

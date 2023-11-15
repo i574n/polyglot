@@ -28,8 +28,10 @@ if (!$fast) {
     Remove-Item ./target/trunk -Recurse -Force -ErrorAction Ignore
     Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 
-    npx -y tailwindcss -i input.css -o target/tailwind.css
+    { pnpm install --frozen-lockfile } | Invoke-Block
 }
+
+{ pnpm build-css } | Invoke-Block
 
 { trunk build $($fast ? $() : '--release') --dist="target/trunk" --public-url="./dist" } | Invoke-Block
 
