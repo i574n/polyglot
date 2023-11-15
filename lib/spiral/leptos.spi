@@ -244,20 +244,18 @@ inl dt { children } : _ dt =
     tag {
         tag = "dt"
         props = [
-            $'"class=\\\"whitespace-nowrap font-medium text-gray-700\\\""'
+            $'"class=\\\"font-medium text-gray-700\\\""'
         ]
         children
     }
 
-inl grid_pair { class left right props } : _ div =
+inl grid_pair { class left right } : _ div =
     inl class : string = class
     inl left = join left
     inl right = join right
-    inl props = props |> concat_props
     div {
         props = [
-            $'"class=\\\"grid grid-cols-1 [grid-template:none] gap-1 even:bg-gray-50 md:grid-cols-3 md:gap-4 flex-1 [inline-size:max-content] mt-[10px] mr-[14px] md:mr-[14px] mb-[11px] ml-[12px] " + !class + "\\\""'
-            $'"" + !props + ""'
+            $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] " + !class + "\\\""'
         ]
         children = fun () =>
             ;[

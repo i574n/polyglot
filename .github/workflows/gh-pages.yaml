@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    timeout-minutes: 180
+    timeout-minutes: 240
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -21,7 +21,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.100-rc.1.23463.5'
+          dotnet-version: 8
 
       - uses: ATiltedTree/setup-rust@v1
         with:

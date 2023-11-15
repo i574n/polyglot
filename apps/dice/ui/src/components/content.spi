@@ -8,9 +8,6 @@ inl content () : _ leptos.div =
                 children = fun () =>
                     leptos.grid_pair {
                         class = $'"items-center"'
-                        props = [
-                            $'"style=\\\"align-items: center\\\""'
-                        ]
                         left =
                             "Dark Mode" |> leptos.text_view
                         right =
@@ -28,9 +25,6 @@ inl content () : _ leptos.div =
                 children = fun () =>
                     leptos.grid_pair {
                         class = $'"items-baseline"'
-                        props = [
-                            $'"style=\\\"align-items: baseline\\\""'
-                        ]
                         left =
                             "Explorer Backend Host" |> leptos.text_view
                         right =
