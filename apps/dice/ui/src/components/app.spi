@@ -10,7 +10,7 @@ inl app () =
             state =
                 leptos.create_rw_signal
                     {
-                        dark_mode = leptos.create_rw_signal true
+                        dark_mode = leptos.create_rw_signal false
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }
