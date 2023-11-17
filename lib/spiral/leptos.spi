@@ -15,6 +15,7 @@ nominal fragment = $"leptos_Fragment"
 nominal text = $"leptos_dom_Text"
 nominal transparent = $"leptos_dom_Transparent"
 nominal route = $"leptos_router_Route"
+nominal route_definition = $"leptos_router_RouteDefinition"
 nominal router = $"leptos_router_Router"
 nominal routes = $"leptos_router_Routes"
 nominal html_element t = $"leptos_HtmlElement<`t>"
@@ -41,6 +42,24 @@ inl log_pretty (text : string) =
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
+inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
+    $"!view |> unbox"
+
+inl view_trait_to_route_definition (view : rust.impl into_view) : route_definition =
+    $"!view |> unbox"
+
+inl to_element_view (view : html_element _) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_view_trait (view : view) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_fragment_unbox view : fragment =
+    $"!view |> unbox"
+
+inl from_fragment_unbox (fragment : fragment) =
+    $"!fragment |> unbox"
+
 inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
     !\($'"leptos::view\! { {!macro} }"')
 
@@ -50,8 +69,8 @@ inl macro_to_view_trait (macro : string) : rust.impl into_view =
 inl macro_to_fragment (macro : string) : fragment =
     !\($'"leptos::view\! { " + !macro + " }"')
 
-inl macro_to_transparent (macro : string) : transparent =
-    !\($'"leptos::leptos_dom::Transparent::new(leptos::view\! { " + !macro + " })"')
+inl new_transparent x : transparent =
+    !\($'"leptos::leptos_dom::Transparent::new(!x)"')
 
 inl fragment_to_view (fragment : fragment) : view =
     !\($'"leptos::IntoView::into_view(!fragment)"')
@@ -60,6 +79,7 @@ inl view_to_fragment (view : view) : fragment =
     !\($'"leptos::Fragment::new(vec\![!view])"')
 
 inl array_to_fragment (view : a _ view) : fragment =
+    inl view = join view
     !\($'"leptos::Fragment::new(!view.to_vec())"')
 
 inl vec_to_fragment (view : rust.vec view) : fragment =
@@ -91,21 +111,6 @@ inl transparent_to_fragment (transparent : transparent) : fragment =
     |> transparent_to_view
     |> view_to_fragment
 
-inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
-    $"!view |> unbox"
-
-inl to_element_view (view : html_element _) : rust.impl into_view =
-    $"!view |> unbox"
-
-inl to_view_trait (view : view) : rust.impl into_view =
-    $"!view |> unbox"
-
-inl to_fragment_unbox view : fragment =
-    $"!view |> unbox"
-
-inl from_fragment_unbox (fragment : fragment) =
-    $"!fragment |> unbox"
-
 inl macro_to_element (view : string) : html_element _ =
     view |> macro_to_view_trait |> view_trait_to_element
 
@@ -114,20 +119,26 @@ inl transparents_fragment (items : array transparent) : fragment =
         inl x = join x
         x |> transparent_to_view
     inl transparent_to_view = join transparent_to_view
-    items
-    |> fun x => a x : _ u64 _
-    |> fun x => !\($'"!x.iter().map(|x| !transparent_to_view(x.clone())).collect()"') : rust.vec view
-    |> vec_to_fragment
+    !\($'"!items.to_vec().iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
 
 inl views_fragment (items : array view) : fragment =
     items
     |> fun x => a x : a u64 _
     |> array_to_fragment
 
-inl text_view (text : string) : view =
+inl new_text (text : string) : text =
     inl text = #text
-    inl text : text = !\($'"leptos::html::text(!text)"')
-    text |> text_to_view
+    !\($'"leptos::html::text(!text)"')
+
+inl text_view (text : string) : view =
+    text
+    |> new_text
+    |> text_to_view
+
+inl text_fragment (text : string) : fragment =
+    text
+    |> text_view
+    |> view_to_fragment
 
 inl provide_meta_context () =
     !\($'"leptos_meta::provide_meta_context()"') : ()
@@ -216,14 +227,9 @@ inl tag_raw { tag props children } =
     inl children : () -> fragment = join children
     $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
 
-inl tag { tag props children } : html_element _ =
+inl tag_element { tag props children } : html_element _ =
     tag_raw { tag props children }
     |> macro_to_element
-
-inl tag_transparent { tag props children } : view =
-    tag_raw { tag props children }
-    |> macro_to_transparent
-    |> transparent_to_view
 
 inl tag_closed_raw { tag props } =
     inl tag : string = tag
@@ -234,28 +240,26 @@ inl tag_closed { tag props } : html_element _ =
     tag_closed_raw { tag props }
     |> macro_to_element
 
-inl tag_closed_transparent { tag props } : transparent =
-    tag_closed_raw { tag props }
-    |> macro_to_transparent
-
 inl div { props children } : _ div =
-    tag { tag = "div"; props children }
+    tag_element { tag = "div"; props children }
 
-inl route { path children } : transparent =
+inl route { path view children } : view =
     inl path = join path
     inl path = path |> sm'.to_std_string
     inl children : () -> fragment = join children
-    tag_closed_transparent {
+    inl view : () -> fragment = join view
+    tag_closed_raw {
         tag = "leptos_router::Route"
         props = [
             $'"path=!path"'
-            $'"view=move || !children()"'
+            $'"view=move || !view()"'
         ]
     }
+    |> macro_to_view
 
 inl router { children } : view =
     inl children = join children
-    inl children : () -> fragment = children
+    inl children : () -> fragment = join children
     tag_closed_raw {
         tag = "leptos_router::Router"
         props = [
@@ -305,7 +309,7 @@ inl toggle { id on_change get_value } : _ label =
     |> macro_to_element
 
 inl dd { children } : _ dd =
-    tag {
+    tag_element {
         tag = "dd"
         props = [
             $'"class=\\\"text-gray-700 md:col-span-2 flex flex-1\\\""'
@@ -314,7 +318,7 @@ inl dd { children } : _ dd =
     }
 
 inl dl { children } : _ dl =
-    tag {
+    tag_element {
         tag = "dl"
         props = [
             $'"class=\\\"flex flex-1 divide-y divide-gray-100 text-sm\\\""'
@@ -323,7 +327,7 @@ inl dl { children } : _ dl =
     }
 
 inl dt { children } : _ dt =
-    tag {
+    tag_element {
         tag = "dt"
         props = [
             $'"class=\\\"font-medium text-gray-700\\\""'
