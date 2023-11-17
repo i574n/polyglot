@@ -15,7 +15,7 @@ inl main (args : array string) =
     let mount () =
         fun () =>
             src.components.app.app ()
-            |> leptos.to_element_view
+            |> leptos.to_view_trait
         |> leptos.mount_to_body
 
     match body with

@@ -20,4 +20,40 @@ inl app () =
         real leptos.provide_context_rc `global_state global_state
     |> fun x => x ()
 
-    home.home ()
+    let run () =
+        leptos.router {
+            children = fun () =>
+                leptos.routes {
+                    children = fun () =>
+                        ;[
+                            leptos.route {
+                                path = ""; children = fun () => home.home { router = 1 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "/"; children = fun () => home.home { router = 2 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "#"; children = fun () => home.home { router = 3 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "?"; children = fun () => home.home { router = 4 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "/*"; children = fun () => home.home { router = 5 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "***"; children = fun () => home.home { router = 6 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "**"; children = fun () => home.home { router = 7 } |> leptos.element_to_fragment
+                            }
+                            leptos.route {
+                                path = "*"; children = fun () => home.home { router = 8 } |> leptos.element_to_fragment
+                            }
+                        ]
+                        |> leptos.transparents_fragment
+                }
+                |> leptos.view_to_fragment
+        }
+
+    home.home { router = 1 } |> leptos.element_to_view

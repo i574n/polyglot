@@ -1163,16 +1163,16 @@ mod module_d5f62357 {
         ) -> leptos::HtmlElement<leptos::html::Label> {
             v0_1
         }
-        pub fn method50(v0_1: leptos::View) -> leptos::View {
+        pub fn method50(v0_1: leptos::Fragment) -> leptos::Fragment {
             v0_1
         }
-        pub fn method51(v0_1: leptos::View) -> leptos::View {
+        pub fn method51(v0_1: leptos::Fragment) -> leptos::Fragment {
             v0_1
         }
-        pub fn closure30(v0_1: leptos::View, unitVar: ()) -> leptos::View {
+        pub fn closure30(v0_1: leptos::Fragment, unitVar: ()) -> leptos::Fragment {
             v0_1
         }
-        pub fn method53(v0_1: leptos::View) -> Func0<leptos::View> {
+        pub fn method53(v0_1: leptos::Fragment) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 move || Ui::closure30(v0_1.clone(), ())
@@ -1183,10 +1183,10 @@ mod module_d5f62357 {
         ) -> leptos::HtmlElement<leptos::html::Dt> {
             v0_1
         }
-        pub fn closure31(v0_1: leptos::View, unitVar: ()) -> leptos::View {
+        pub fn closure31(v0_1: leptos::Fragment, unitVar: ()) -> leptos::Fragment {
             v0_1
         }
-        pub fn method55(v0_1: leptos::View) -> Func0<leptos::View> {
+        pub fn method55(v0_1: leptos::Fragment) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 move || Ui::closure31(v0_1.clone(), ())
@@ -1197,7 +1197,11 @@ mod module_d5f62357 {
         ) -> leptos::HtmlElement<leptos::html::Dd> {
             v0_1
         }
-        pub fn closure29(v0_1: leptos::View, v1: leptos::View, unitVar: ()) -> leptos::View {
+        pub fn closure29(
+            v0_1: leptos::Fragment,
+            v1: leptos::Fragment,
+            unitVar: (),
+        ) -> leptos::Fragment {
             let v4: string = string(" class=\"font-medium text-gray-700\"");
             let v5 = Ui::method53(v0_1);
             let v8: string = append(
@@ -1235,10 +1239,9 @@ mod module_d5f62357 {
                 leptos::view! { <dd  class="text-gray-700 md:col-span-2 flex flex-1">{v16()}</dd> },
             );
             let v25: Array<leptos::View> = new_array(&[v13, leptos::IntoView::into_view(v22)]);
-            let v27: leptos::Fragment = leptos::Fragment::new(v25.to_vec());
-            leptos::IntoView::into_view(v27)
+            leptos::Fragment::new(v25.to_vec())
         }
-        pub fn method52(v0_1: leptos::View, v1: leptos::View) -> Func0<leptos::View> {
+        pub fn method52(v0_1: leptos::Fragment, v1: leptos::Fragment) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v1 = v1.clone();
@@ -1250,72 +1253,74 @@ mod module_d5f62357 {
         ) -> leptos::HtmlElement<leptos::html::Div> {
             v0_1
         }
-        pub fn closure7(unitVar: (), unitVar_1: ()) -> leptos::View {
+        pub fn closure7(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string("r#\"Dark Mode\"#");
             let v3: &str = r#"Dark Mode"#;
             let v5: leptos::leptos_dom::Text = leptos::html::text(v3);
             let v7: leptos::View = leptos::IntoView::into_view(v5);
+            let v9: leptos::Fragment = leptos::Fragment::new(vec![v7]);
             leptos::logging::log!("{}", &string("ui.dark_mode_toggle ()"));
             {
-                let v11: LrcPtr<Ui::Heap0> =
+                let v13: LrcPtr<Ui::Heap0> =
                     leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into();
-                let v12 = Ui::method10();
-                let v15: leptos::Resource<Ui::US1, rexie::Rexie> = leptos::create_local_resource(
-                    move || v12(),
+                let v14 = Ui::method10();
+                let v17: leptos::Resource<Ui::US1, rexie::Rexie> = leptos::create_local_resource(
+                    move || v14(),
                     |x| async move { Func1::new(move |v: Ui::US1| Ui::closure9((), v))(x).await },
                 );
-                let v16 = Ui::method13(v15.clone());
-                let v20 = Ui::method21(
-                    v11.clone(),
+                let v18 = Ui::method13(v17.clone());
+                let v22 = Ui::method21(
+                    v13.clone(),
                     leptos::create_local_resource(
-                        move || v16(),
+                        move || v18(),
                         |x| async move {
                             Func1::new(move |v_1: Option<rexie::Rexie>| Ui::closure11((), v_1))(x)
                                 .await
                         },
                     ),
                 );
-                leptos::create_effect(move |_| v20());
+                leptos::create_effect(move |_| v22());
                 {
-                    let v22 = Ui::method32(v15);
-                    let v24: leptos::Action<bool, ()> =
-                        leptos::create_action(move |value: &bool| v22(*value));
-                    let v25 = Ui::method36(v11.clone());
-                    let v27: leptos::Memo<
+                    let v24 = Ui::method32(v17);
+                    let v26: leptos::Action<bool, ()> =
+                        leptos::create_action(move |value: &bool| v24(*value));
+                    let v27 = Ui::method36(v13.clone());
+                    let v29: leptos::Memo<
                         std::collections::HashMap<string, leptos::RwSignal<bool>>,
-                    > = leptos::create_memo(move |_| v25());
+                    > = leptos::create_memo(move |_| v27());
                     let patternInput: (leptos::ReadSignal<bool>, leptos::WriteSignal<bool>) =
                         leptos::create_signal(false);
-                    let v31 = Ui::method38(
-                        v11.clone(),
-                        v24,
-                        v27,
+                    let v33 = Ui::method38(
+                        v13.clone(),
+                        v26,
+                        v29,
                         patternInput.1.clone(),
                         patternInput.0.clone(),
                     );
-                    leptos::create_effect(move |_| v31());
+                    leptos::create_effect(move |_| v33());
                     {
-                        let v34: string = string("r#\"dark-mode\"#");
-                        let v35: &str = r#"dark-mode"#;
-                        let v36 = Ui::method45(v11.clone());
-                        let v37 = Ui::method48(v11);
-                        let v38: string =
-                            string("<label for={v35} class=\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\"><input type=\"checkbox\" id={v35} class=\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\" on:change=move |event| v36(event) prop:checked={move || v37()} /><span class=\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\"><svg data-unchecked-icon xmlns=\"http://www.w3.org/2000/svg\" class=\"h-4 w-4\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg><svg data-checked-icon xmlns=\"http://www.w3.org/2000/svg\" class=\"hidden h-4 w-4\" viewBox=\"0 0 20 20\" fill=\"currentColor\"> <path fill-rule=\"evenodd\" d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\" clip-rule=\"evenodd\" /></svg></span><span class=\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\"></span></label>");
-                        let v39: string =
-                            append(append(string("leptos::view! { "), v38), string(" }"));
-                        let v42: leptos::HtmlElement<leptos::html::Label> = Ui::method49(
-                            leptos::view! { <label for={v35} class="block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"><input type="checkbox" id={v35} class="peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden" on:change=move |event| v36(event) prop:checked={move || v37()} /><span class="absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200"><svg data-unchecked-icon xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg><svg data-checked-icon xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></span><span class="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200"></span></label> },
+                        let v36: string = string("r#\"dark-mode\"#");
+                        let v37: &str = r#"dark-mode"#;
+                        let v38 = Ui::method45(v13.clone());
+                        let v39 = Ui::method48(v13);
+                        let v40: string =
+                            string("<label for={v37} class=\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\"><input type=\"checkbox\" id={v37} class=\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\" on:change=move |event| v38(event) prop:checked={move || v39()} /><span class=\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\"><svg data-unchecked-icon xmlns=\"http://www.w3.org/2000/svg\" class=\"h-4 w-4\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg><svg data-checked-icon xmlns=\"http://www.w3.org/2000/svg\" class=\"hidden h-4 w-4\" viewBox=\"0 0 20 20\" fill=\"currentColor\"> <path fill-rule=\"evenodd\" d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\" clip-rule=\"evenodd\" /></svg></span><span class=\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\"></span></label>");
+                        let v41: string =
+                            append(append(string("leptos::view! { "), v40), string(" }"));
+                        let v44: leptos::HtmlElement<leptos::html::Label> = Ui::method49(
+                            leptos::view! { <label for={v37} class="block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"><input type="checkbox" id={v37} class="peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden" on:change=move |event| v38(event) prop:checked={move || v39()} /><span class="absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200"><svg data-unchecked-icon xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg><svg data-checked-icon xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></span><span class="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200"></span></label> },
                         );
-                        let v44: leptos::View = leptos::IntoView::into_view(v42);
-                        let v49: string =
+                        let v46: leptos::View = leptos::IntoView::into_view(v44);
+                        let v48: leptos::Fragment = leptos::Fragment::new(vec![v46]);
+                        let v53: string =
                             string(" class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] items-center\"");
-                        let v50 = Ui::method52(Ui::method50(v7), Ui::method51(v44));
-                        let v53: string = append(
+                        let v54 = Ui::method52(Ui::method50(v9), Ui::method51(v48));
+                        let v57: string = append(
                             append(
                                 string("leptos::view! { "),
                                 append(
                                     append(
-                                        append(append(string("<div "), v49), string(">{v50()}</")),
+                                        append(append(string("<div "), v53), string(">{v54()}</")),
                                         string("div"),
                                     ),
                                     string(">"),
@@ -1323,15 +1328,16 @@ mod module_d5f62357 {
                             ),
                             string(" }"),
                         );
-                        let v56: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
-                            leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] items-center">{v50()}</div> },
+                        let v60: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
+                            leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] items-center">{v54()}</div> },
                         );
-                        leptos::IntoView::into_view(v56)
+                        let v62: leptos::View = leptos::IntoView::into_view(v60);
+                        leptos::Fragment::new(vec![v62])
                     }
                 }
             }
         }
-        pub fn method9() -> Func0<leptos::View> {
+        pub fn method9() -> Func0<leptos::Fragment> {
             Func0::new(move || Ui::closure7((), ()))
         }
         pub fn method58(
@@ -1339,7 +1345,7 @@ mod module_d5f62357 {
         ) -> leptos::HtmlElement<leptos::html::Dl> {
             v0_1
         }
-        pub fn closure6(unitVar: (), unitVar_1: ()) -> leptos::View {
+        pub fn closure6(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string(" class=\"flex flex-1 divide-y divide-gray-100 text-sm\"");
             let v3 = Ui::method9();
             let v6: string = append(
@@ -1358,9 +1364,10 @@ mod module_d5f62357 {
             let v9: leptos::HtmlElement<leptos::html::Dl> = Ui::method58(
                 leptos::view! { <dl  class="flex flex-1 divide-y divide-gray-100 text-sm">{v3()}</dl> },
             );
-            leptos::IntoView::into_view(v9)
+            let v11: leptos::View = leptos::IntoView::into_view(v9);
+            leptos::Fragment::new(vec![v11])
         }
-        pub fn method8() -> Func0<leptos::View> {
+        pub fn method8() -> Func0<leptos::Fragment> {
             Func0::new(move || Ui::closure6((), ()))
         }
         pub fn closure5(unitVar: (), unitVar_1: ()) -> leptos::HtmlElement<leptos::html::Div> {
@@ -1405,36 +1412,38 @@ mod module_d5f62357 {
         ) -> leptos::HtmlElement<leptos::html::Input> {
             v0_1
         }
-        pub fn closure34(unitVar: (), unitVar_1: ()) -> leptos::View {
+        pub fn closure34(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string("r#\"Explorer Backend Host\"#");
             let v3: &str = r#"Explorer Backend Host"#;
             let v5: leptos::leptos_dom::Text = leptos::html::text(v3);
             let v7: leptos::View = leptos::IntoView::into_view(v5);
-            let v8: string = Ui::method63();
-            let v10: &str = fable_library_rust::String_::LrcStr::as_str(&v8);
-            let v12: std::string::String = String::from(v10);
+            let v9: leptos::Fragment = leptos::Fragment::new(vec![v7]);
+            let v10: string = Ui::method63();
+            let v12: &str = fable_library_rust::String_::LrcStr::as_str(&v10);
+            let v14: std::string::String = String::from(v12);
             let patternInput: (
                 leptos::ReadSignal<std::string::String>,
                 leptos::WriteSignal<std::string::String>,
-            ) = leptos::create_signal(v12);
-            let v16: leptos::ReadSignal<std::string::String> = Ui::method64(patternInput.0.clone());
-            let v17: leptos::WriteSignal<std::string::String> =
+            ) = leptos::create_signal(v14);
+            let v18: leptos::ReadSignal<std::string::String> = Ui::method64(patternInput.0.clone());
+            let v19: leptos::WriteSignal<std::string::String> =
                 Ui::method65(patternInput.1.clone());
-            let v27: string =
-                string("leptos::view! { <input  on:keyup=move |event: web_sys::KeyboardEvent| v17(leptos::event_target_value(&event)) prop:value=v16 class=\"bg-gray-50 flex-1 h-[27px]\" /> }");
-            let v30: leptos::HtmlElement<leptos::html::Input> = Ui::method66(
-                leptos::view! { <input  on:keyup=move |event: web_sys::KeyboardEvent| v17(leptos::event_target_value(&event)) prop:value=v16 class="bg-gray-50 flex-1 h-[27px]" /> },
+            let v29: string =
+                string("leptos::view! { <input  on:keyup=move |event: web_sys::KeyboardEvent| v19(leptos::event_target_value(&event)) prop:value=v18 class=\"bg-gray-50 flex-1 h-[27px]\" /> }");
+            let v32: leptos::HtmlElement<leptos::html::Input> = Ui::method66(
+                leptos::view! { <input  on:keyup=move |event: web_sys::KeyboardEvent| v19(leptos::event_target_value(&event)) prop:value=v18 class="bg-gray-50 flex-1 h-[27px]" /> },
             );
-            let v32: leptos::View = leptos::IntoView::into_view(v30);
-            let v36: string =
+            let v34: leptos::View = leptos::IntoView::into_view(v32);
+            let v36: leptos::Fragment = leptos::Fragment::new(vec![v34]);
+            let v40: string =
                 string(" class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] items-baseline\"");
-            let v37 = Ui::method52(Ui::method50(v7), Ui::method51(v32));
-            let v40: string = append(
+            let v41 = Ui::method52(Ui::method50(v9), Ui::method51(v36));
+            let v44: string = append(
                 append(
                     string("leptos::view! { "),
                     append(
                         append(
-                            append(append(string("<div "), v36), string(">{v37()}</")),
+                            append(append(string("<div "), v40), string(">{v41()}</")),
                             string("div"),
                         ),
                         string(">"),
@@ -1442,15 +1451,16 @@ mod module_d5f62357 {
                 ),
                 string(" }"),
             );
-            let v43: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
-                leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] items-baseline">{v37()}</div> },
+            let v47: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
+                leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] items-baseline">{v41()}</div> },
             );
-            leptos::IntoView::into_view(v43)
+            let v49: leptos::View = leptos::IntoView::into_view(v47);
+            leptos::Fragment::new(vec![v49])
         }
-        pub fn method62() -> Func0<leptos::View> {
+        pub fn method62() -> Func0<leptos::Fragment> {
             Func0::new(move || Ui::closure34((), ()))
         }
-        pub fn closure33(unitVar: (), unitVar_1: ()) -> leptos::View {
+        pub fn closure33(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string(" class=\"flex flex-1 divide-y divide-gray-100 text-sm\"");
             let v3 = Ui::method62();
             let v6: string = append(
@@ -1469,9 +1479,10 @@ mod module_d5f62357 {
             let v9: leptos::HtmlElement<leptos::html::Dl> = Ui::method58(
                 leptos::view! { <dl  class="flex flex-1 divide-y divide-gray-100 text-sm">{v3()}</dl> },
             );
-            leptos::IntoView::into_view(v9)
+            let v11: leptos::View = leptos::IntoView::into_view(v9);
+            leptos::Fragment::new(vec![v11])
         }
-        pub fn method61() -> Func0<leptos::View> {
+        pub fn method61() -> Func0<leptos::Fragment> {
             Func0::new(move || Ui::closure33((), ()))
         }
         pub fn closure32(unitVar: (), unitVar_1: ()) -> leptos::HtmlElement<leptos::html::Div> {
@@ -1495,16 +1506,17 @@ mod module_d5f62357 {
         pub fn method60() -> Func0<leptos::HtmlElement<leptos::html::Div>> {
             Func0::new(move || Ui::closure32((), ()))
         }
-        pub fn closure35(unitVar: (), unitVar_1: ()) -> leptos::View {
+        pub fn closure35(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v0_1: string =
                 string("<div class=\"flex flex-1 [align-items:flex-end]\"><div class=\"hidden\"><label for=\"Tab\" class=\"sr-only\">Tab</label><select id=\"Tab\" class=\"w-full rounded-md border-gray-200\"><option>History</option><option select>Settings</option></select></div><div class=\"flex flex-1 [overflow-x:auto] [overflow-y:hidden]\"><div class=\"flex flex-1 border-t border-gray-200\"><nav class=\"-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]\" aria-label=\"Tabs\"><a href=\"#\" class=\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 border-transparent [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z\"/></svg>History</a><a href=\"#\" class=\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 border-grey-200 [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium text-grey-900\" aria-current=\"page\"><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 24 24\" stroke-width=\"1.5\" stroke=\"currentColor\" class=\"h-5 w-5\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z\"/><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\"/></svg>Settings</a></nav></div></div></div>");
             let v1: string = append(append(string("leptos::view! { "), v0_1), string(" }"));
             let v4: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
                 leptos::view! { <div class="flex flex-1 [align-items:flex-end]"><div class="hidden"><label for="Tab" class="sr-only">Tab</label><select id="Tab" class="w-full rounded-md border-gray-200"><option>History</option><option select>Settings</option></select></div><div class="flex flex-1 [overflow-x:auto] [overflow-y:hidden]"><div class="flex flex-1 border-t border-gray-200"><nav class="-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]" aria-label="Tabs"><a href="#" class="inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 border-transparent [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z"/></svg>History</a><a href="#" class="inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 border-grey-200 [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium text-grey-900" aria-current="page"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Settings</a></nav></div></div></div> },
             );
-            leptos::IntoView::into_view(v4)
+            let v6: leptos::View = leptos::IntoView::into_view(v4);
+            leptos::Fragment::new(vec![v6])
         }
-        pub fn method67() -> Func0<leptos::View> {
+        pub fn method67() -> Func0<leptos::Fragment> {
             Func0::new(move || Ui::closure35((), ()))
         }
         pub fn method69(
@@ -1517,21 +1529,20 @@ mod module_d5f62357 {
             v1: leptos::HtmlElement<leptos::html::Details>,
             v2: leptos::HtmlElement<leptos::html::Div>,
             unitVar: (),
-        ) -> leptos::View {
+        ) -> leptos::Fragment {
             let v3: leptos::HtmlElement<leptos::html::Details> = Ui::method69(v0_1);
             let v5: leptos::View = leptos::IntoView::into_view(v3);
             let v6: leptos::HtmlElement<leptos::html::Details> = Ui::method69(v1);
             let v8: leptos::View = leptos::IntoView::into_view(v6);
             let v9: leptos::HtmlElement<leptos::html::Div> = Ui::method57(v2);
             let v12: Array<leptos::View> = new_array(&[v5, v8, leptos::IntoView::into_view(v9)]);
-            let v14: leptos::Fragment = leptos::Fragment::new(v12.to_vec());
-            leptos::IntoView::into_view(v14)
+            leptos::Fragment::new(v12.to_vec())
         }
         pub fn method68(
             v0_1: leptos::HtmlElement<leptos::html::Details>,
             v1: leptos::HtmlElement<leptos::html::Details>,
             v2: leptos::HtmlElement<leptos::html::Div>,
-        ) -> Func0<leptos::View> {
+        ) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v1 = v1.clone();
@@ -1539,10 +1550,7 @@ mod module_d5f62357 {
                 move || Ui::closure36(v0_1.clone(), v1.clone(), v2.clone(), ())
             })
         }
-        pub fn method70(v0_1: Func0<leptos::View>) -> Func0<leptos::View> {
-            v0_1
-        }
-        pub fn closure4(unitVar: (), unitVar_1: ()) -> leptos::View {
+        pub fn closure4(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v1: string = Ui::method6(Ui::method5());
             let v3: &str = fable_library_rust::String_::LrcStr::as_str(&v1);
             let v5: std::string::String = String::from(v3);
@@ -1578,15 +1586,15 @@ mod module_d5f62357 {
                 leptos::view! { <div  class="flex flex-1">{v25()}</div> };
             let v32: string = Ui::method6(toString(14_i32));
             let v34: &str = fable_library_rust::String_::LrcStr::as_str(&v32);
-            let v39: string =
+            let v38: string =
                 string(" style=\"font-size: \".to_owned() + v34 + \"px;\" class=\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\"");
-            let v40 = Ui::method70(Ui::method68(v10, v21, v30));
-            let v42: string = append(
+            let v39 = Ui::method68(v10, v21, v30);
+            let v41: string = append(
                 append(
                     string("leptos::view! { "),
                     append(
                         append(
-                            append(append(string("<div "), v39), string(">{v40()}</")),
+                            append(append(string("<div "), v38), string(">{v39()}</")),
                             string("div"),
                         ),
                         string(">"),
@@ -1594,12 +1602,13 @@ mod module_d5f62357 {
                 ),
                 string(" }"),
             );
-            let v45: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
-                leptos::view! { <div  style="font-size: ".to_owned() + v34 + "px;" class="bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm">{v40()}</div> },
+            let v44: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
+                leptos::view! { <div  style="font-size: ".to_owned() + v34 + "px;" class="bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm">{v39()}</div> },
             );
-            leptos::IntoView::into_view(v45)
+            let v46: leptos::View = leptos::IntoView::into_view(v44);
+            leptos::Fragment::new(vec![v46])
         }
-        pub fn method4() -> Func0<leptos::View> {
+        pub fn method4() -> Func0<leptos::Fragment> {
             Func0::new(move || Ui::closure4((), ()))
         }
         pub fn closure2(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
@@ -1615,26 +1624,37 @@ mod module_d5f62357 {
                     l1: v6,
                 });
                 leptos::provide_context::<std::rc::Rc<Heap0>>(v11);
-                leptos::logging::log!("{}", &string("ui.home ()"));
                 {
-                    let v18 =
-                        Ui::method1(leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into());
-                    let v23: string = string(" class:dark={move || v18()} class=\"flex flex-1\"");
-                    let v24 = Ui::method4();
-                    let v27: string = append(
-                        append(
-                            string("leptos::view! { "),
-                            append(
-                                append(
-                                    append(append(string("<div "), v23), string(">{v24()}</")),
-                                    string("div"),
-                                ),
-                                string(">"),
-                            ),
-                        ),
-                        string(" }"),
+                    let v13: string = append(
+                        append(string("ui.home () / router: "), toString(1_i32)),
+                        string(""),
                     );
-                    leptos::view! { <div  class:dark={move || v18()} class="flex flex-1">{v24()}</div> }
+                    leptos::logging::log!("{}", &v13);
+                    {
+                        let v18 = Ui::method1(
+                            leptos::use_context::<std::rc::Rc<Heap0>>().unwrap().into(),
+                        );
+                        let v23: string =
+                            string(" class:dark={move || v18()} class=\"flex flex-1\"");
+                        let v24 = Ui::method4();
+                        let v27: string = append(
+                            append(
+                                string("leptos::view! { "),
+                                append(
+                                    append(
+                                        append(append(string("<div "), v23), string(">{v24()}</")),
+                                        string("div"),
+                                    ),
+                                    string(">"),
+                                ),
+                            ),
+                            string(" }"),
+                        );
+                        let v30: leptos::HtmlElement<leptos::html::Div> = Ui::method57(
+                            leptos::view! { <div  class:dark={move || v18()} class="flex flex-1">{v24()}</div> },
+                        );
+                        leptos::IntoView::into_view(v30)
+                    }
                 }
             }
         }
@@ -1645,10 +1665,10 @@ mod module_d5f62357 {
         pub fn closure37(unitVar: (), unitVar_1: ()) {
             Ui::method0();
         }
-        pub fn method71() -> Func0<()> {
+        pub fn method70() -> Func0<()> {
             Func0::new(move || Ui::closure37((), ()))
         }
-        pub fn method72(v0_1: Box<dyn Fn()>) -> Box<dyn Fn()> {
+        pub fn method71(v0_1: Box<dyn Fn()>) -> Box<dyn Fn()> {
             v0_1
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
@@ -1675,8 +1695,8 @@ mod module_d5f62357 {
                 if let Ui::US0::US0_1(v9_1_0) = &v9 {
                     Ui::method0()
                 } else {
-                    let v14 = Ui::method71();
-                    let v17: Box<dyn Fn()> = Ui::method72(Box::new(move || v14()));
+                    let v14 = Ui::method70();
+                    let v17: Box<dyn Fn()> = Ui::method71(Box::new(move || v14()));
                     let v19: wasm_bindgen::closure::Closure<dyn Fn()> =
                         wasm_bindgen::closure::Closure::wrap(v17);
                     let v21: &wasm_bindgen::JsValue = wasm_bindgen::closure::Closure::as_ref(&v19);
