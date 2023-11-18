@@ -1,65 +1,143 @@
 open rust_operators
 
+union menu_tab =
+    | History
+    | Settings
+
 inl content () : _ leptos.div =
-    inl view_accordion = leptos.accordion {
-        title = "View"
-        children = fun () =>
-            leptos.view_map_grid {
-                children = fun () =>
-                    leptos.grid_pair {
-                        class = $'"items-center"'
-                        left =
-                            "Dark Mode" |> leptos.text_view |> leptos.view_to_fragment
-                        right =
-                            dark_mode_toggle.dark_mode_toggle ()
-                            |> leptos.element_to_fragment
-                    }
-                    |> leptos.element_to_fragment
-            }
-    }
-
-    inl connection_accordion = leptos.accordion {
-        title = "Connection"
-        children = fun () =>
-            leptos.view_map_grid {
-                children = fun () =>
-                    leptos.grid_pair {
-                        class = $'"items-baseline"'
-                        left =
-                            "Explorer Backend Host" |> leptos.text_view |> leptos.view_to_fragment
-                        right =
-                            explorer_backend_host_input.explorer_backend_host_input ()
-                            |> leptos.element_to_fragment
-                    }
-                    |> leptos.element_to_fragment
-            }
-    }
-
-    inl tabs = leptos.div {
-        props = [
-            $'"class=\\\"flex flex-1\\\""'
-        ]
-        children = fun () =>
-            $'"<div class=\\\"flex flex-1 [align-items:flex-end]\\\"><div class=\\\"hidden\\\"><label for=\\\"Tab\\\" class=\\\"sr-only\\\">Tab</label><select id=\\\"Tab\\\" class=\\\"w-full rounded-md border-gray-200\\\"><option>History</option><option select>Settings</option></select></div><div class=\\\"flex flex-1 [overflow-x:auto] [overflow-y:hidden]\\\"><div class=\\\"flex flex-1 border-t border-gray-200\\\"><nav class=\\\"-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]\\\" aria-label=\\\"Tabs\\\"><a href=\\\"#\\\" class=\\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 border-transparent [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z\\\"/></svg>History</a><a href=\\\"#\\\" class=\\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 border-grey-200 [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium text-grey-900\\\" aria-current=\\\"page\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z\\\"/><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\\\"/></svg>Settings</a></nav></div></div></div>"'|> leptos.macro_to_element
-            |> fun (x : _ leptos.div) => x
+    inl view_accordion = leptos.accordion "View" fun () =>
+        leptos.view_map_grid fun () =>
+            leptos.grid_pair
+                { class = $'"items-center"' }
+                ("Dark Mode" |> leptos.text_view |> leptos.view_to_fragment)
+                (dark_mode_toggle.dark_mode_toggle () |> leptos.element_to_fragment)
             |> leptos.element_to_fragment
-    }
 
+    inl connection_accordion = leptos.accordion "Connection" fun () =>
+        leptos.view_map_grid fun () =>
+            leptos.grid_pair
+                { class = $'"items-baseline"' }
+                ("Explorer Backend Host" |> leptos.text_view |> leptos.view_to_fragment)
+                (explorer_backend_host_input.explorer_backend_host_input () |> leptos.element_to_fragment)
+            |> leptos.element_to_fragment
 
-    inl font_size = 14i32
-    inl font_size : string = $"string !font_size"
-    inl font_size = font_size |> sm'.as_str
+    inl history () =
+        "" |> leptos.text_view
 
-    leptos.div {
-        props = [
-            $'"class=\\\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\\\""'
-            $'"style=\\\"font-size: \\\".to_owned() + !font_size + \\\"px;\\\""'
+    inl settings () =
+        ;[
+            view_accordion |> leptos.element_to_view
+            connection_accordion |> leptos.element_to_view
         ]
-        children = fun () =>
+        |> leptos.views_to_view
+
+    inl location = leptos.use_location ()
+
+    let (args, set_args) =
+        { tab = History }
+        |> leptos.create_signal
+
+    leptos.create_effect fun () =>
+        inl args_log = args |> leptos.signal_get |> sm'.format_pretty
+
+        leptos.log $'"ui.content () / effect / args: " + string !args_log + ""'
+
+    leptos.create_effect fun () =>
+        inl hash = location |> leptos.location_hash |> leptos.memo_get
+        inl hash = hash |> sm'.strip_prefix '#' |> optionm'.unwrap_or #""
+        inl hash_url = hash |> leptos.url_try_from
+
+        inl hash_url = hash_url |> resultm.unwrap
+
+        inl hash_url_log = hash_url |> sm'.format_pretty
+        leptos.log $'"ui.content () / effect / hash_url: " + string !hash_url_log + ""'
+
+        inl tab =
+            if hash_url |> leptos.url_pathname |> sm'.starts_with ("/settings" |> sm'.to_std_string)
+            then Settings
+            else History
+        inl tab_log = tab |> sm'.format_pretty
+
+        leptos.log $'"ui.content () / effect / new_tab: " + string !tab_log + ""'
+
+        { tab } |> leptos.signal_set set_args
+
+    inl nav tab : _ leptos.nav =
+        leptos.nav [
+            $'"class=\\\"-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]\\\""'
+            $'"aria-label=\\\"Tabs\\\""'
+        ] fun () =>
             ;[
-                view_accordion |> leptos.element_to_view
-                connection_accordion |> leptos.element_to_view
-                tabs |> leptos.element_to_view
+                leptos.tab_link "#/history" (leptos.history_svg ()) "History" (fun () => tab () = History)
+                |> leptos.element_to_view
+
+                leptos.tab_link "#/settings" (leptos.settings_svg ()) "Settings" (fun () => tab () = Settings)
+                |> leptos.element_to_view
             ]
-            |> leptos.views_fragment
-    }
+            |> leptos.views_to_fragment
+
+    inl tabs_label tab =
+        leptos.div [
+            $'"class=\\\"hidden\\\""'
+        ] fun () =>
+            ;[
+                leptos.label [
+                    $'"for=\\\"Tab\\\""'
+                    $'"class=\\\"sr-only\\\""'
+                ] fun () =>
+                    "Tab" |> leptos.text_fragment
+                |> leptos.element_to_view
+
+                leptos.select [
+                    $'"id=\\\"Tab\\\""'
+                    $'"class=\\\"w-full rounded-md border-gray-200\\\""'
+                ] fun () =>
+                    ;[
+                        leptos.option' (fun () => tab () = History) "History" |> leptos.element_to_view
+                        leptos.option' (fun () => tab () = Settings) "Settings" |> leptos.element_to_view
+                    ]
+                    |> leptos.views_to_fragment
+                |> leptos.element_to_view
+            ]
+            |> leptos.views_to_fragment
+
+    inl tabs tab =
+        leptos.div [
+            $'"class=\\\"flex flex-1\\\""'
+        ] fun () =>
+            leptos.div [
+                $'"class=\\\"flex flex-1 [align-items:flex-end]\\\""'
+            ] fun () =>
+                ;[
+                    tabs_label tab |> leptos.element_to_view
+
+                    leptos.div [
+                        $'"class=\\\"flex flex-1 [overflow-x:auto] [overflow-y:hidden]\\\""'
+                    ] fun () =>
+                        leptos.div [
+                            $'"class=\\\"flex flex-1 border-t border-gray-200\\\""'
+                        ] fun () =>
+                            nav tab
+                            |> leptos.element_to_fragment
+                        |> leptos.element_to_fragment
+                    |> leptos.element_to_view
+                ]
+                |> leptos.views_to_fragment
+            |> leptos.element_to_fragment
+
+    leptos.div [
+        $'"class=\\\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\\\""'
+    ] fun () =>
+        inl tab () =
+            leptos.signal_get args .tab
+        ;[
+            rust.move tab fun tab =>
+                match tab with
+                | History => history ()
+                | Settings => settings ()
+                | _ => ;[] |> leptos.views_to_view
+            |> leptos.closure_to_view
+
+            tabs tab |> leptos.element_to_view
+        ]
+        |> leptos.views_to_fragment

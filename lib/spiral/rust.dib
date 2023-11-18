@@ -51,6 +51,7 @@ nominal fn_unit = $"FnUnit"
 nominal future t = $"Future<`t>"
 nominal impl t = $"Impl<`t>"
 nominal ref' t = $"Ref<`t>"
+nominal static_ref' t = $"StaticRef<`t>"
 nominal str = $"Str"
 nominal vec t = $"Vec<`t>"
 
@@ -65,8 +66,14 @@ inl (~!\\) forall t u. ((args : t), (code : string)) : u =
 inl raw_string_literal (s : string) : ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
 
+inl raw_string_literal_static (s : string) : static_ref' str =
+    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+
 inl (~#) (s : string) : ref' str =
     raw_string_literal s
+
+inl (~##) (s : string) : static_ref' str =
+    raw_string_literal_static s
 
 inl new_box forall t. (x : t) : box t =
     inl x = join x
@@ -96,3 +103,8 @@ inl unchecked_ref (ref : ref' js_value) : ref' js_function =
 inl deref forall t. (ref : ref' t) : t =
     inl ref = join ref
     !\($'"*!ref"')
+
+inl move forall t u. (x : () -> t) (fn : t -> u) : () -> u =
+    inl x = join x
+    inl fn = join fn
+    !\($'"move || !fn(!x())"')

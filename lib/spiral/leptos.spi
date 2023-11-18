@@ -1,5 +1,6 @@
 open rust_operators
 
+nominal a' = $"leptos_html_A"
 nominal event = $"leptos_ev_Event"
 nominal mouse_event = $"leptos_ev_MouseEvent"
 nominal button = $"leptos_html_Button"
@@ -10,6 +11,10 @@ nominal dl = $"leptos_html_Dl"
 nominal dt = $"leptos_html_Dt"
 nominal input = $"leptos_html_Input"
 nominal label = $"leptos_html_Label"
+nominal nav = $"leptos_html_Nav"
+nominal option' = $"leptos_html_Option"
+nominal select = $"leptos_html_Select"
+nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal fragment = $"leptos_Fragment"
 nominal text = $"leptos_dom_Text"
@@ -20,6 +25,8 @@ nominal router = $"leptos_router_Router"
 nominal routes = $"leptos_router_Routes"
 nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
+nominal location = $"leptos_router_Location"
+nominal url = $"leptos_router_Url"
 nominal memo t = $"leptos_Memo<`t>"
 nominal rw_signal t = $"leptos_RwSignal<`t>"
 nominal read_signal t = $"leptos_ReadSignal<`t>"
@@ -75,6 +82,9 @@ inl new_transparent x : transparent =
 inl fragment_to_view (fragment : fragment) : view =
     !\($'"leptos::IntoView::into_view(!fragment)"')
 
+inl closure_to_view (closure : () -> view) : view =
+    !\($'"leptos::IntoView::into_view(move || !closure(()))"')
+
 inl view_to_fragment (view : view) : fragment =
     !\($'"leptos::Fragment::new(vec\![!view])"')
 
@@ -90,6 +100,11 @@ inl to_fragment x : fragment =
 
 inl text_to_view (text : text) : view =
     !\($'"leptos::IntoView::into_view(!text)"')
+
+inl text_to_fragment (text : text) : fragment =
+    text
+    |> text_to_view
+    |> view_to_fragment
 
 inl element_to_view (view : html_element _) : view =
     inl view = join view
@@ -121,10 +136,15 @@ inl transparents_fragment (items : array transparent) : fragment =
     inl transparent_to_view = join transparent_to_view
     !\($'"!items.to_vec().iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
 
-inl views_fragment (items : array view) : fragment =
+inl views_to_fragment (items : array view) : fragment =
     items
     |> fun x => a x : a u64 _
     |> array_to_fragment
+
+inl views_to_view (items : array view) : view =
+    items
+    |> views_to_fragment
+    |> fragment_to_view
 
 inl new_text (text : string) : text =
     inl text = #text
@@ -147,6 +167,7 @@ inl provide_context_rc forall t. (x : t) =
     !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
+    inl value = join value
     !\($'$"leptos::create_signal(!value)"')
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
@@ -184,12 +205,12 @@ inl signal_get_untracked forall t. (signal : rw_signal t) : t =
     inl signal = join signal
     !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
 
-inl rw_signal_set forall t. (value : t) (signal : rw_signal t) =
+inl rw_signal_set forall t. (signal : rw_signal t) (value : t) =
     inl value = join value
     inl signal = join signal
     !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
 
-inl signal_set forall t. (value : t) (signal : write_signal t) =
+inl signal_set forall t. (signal : write_signal t) (value : t) =
     inl value = join value
     inl signal = join signal
     !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
@@ -221,84 +242,110 @@ inl concat_props props =
     ||> listm.fold fun acc (x : string) =>
         $'" " + !x + !acc + ""'
 
-inl tag_raw { tag props children } =
+inl tag_raw tag props children =
     inl tag : string = tag
     inl props = props |> concat_props
     inl children : () -> fragment = join children
     $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
 
-inl tag_element { tag props children } : html_element _ =
-    tag_raw { tag props children }
+inl tag_element tag props children : html_element _ =
+    tag_raw tag props children
     |> macro_to_element
 
-inl tag_closed_raw { tag props } =
+inl tag_closed_raw tag props =
     inl tag : string = tag
     inl props = props |> concat_props
     $'"<" + !tag + " " + !props + " />"'
 
-inl tag_closed { tag props } : html_element _ =
-    tag_closed_raw { tag props }
+inl tag_closed tag props : html_element _ =
+    tag_closed_raw tag props
     |> macro_to_element
 
-inl div { props children } : _ div =
-    tag_element { tag = "div"; props children }
+inl div props children : _ div =
+    tag_element "div" props children
 
-inl route { path view children } : view =
+inl label props children : _ label =
+    tag_element "label" props children
+
+inl select props children : _ select =
+    tag_element "select" props children
+
+inl option' props children : _ option' =
+    tag_element "option" props children
+
+inl option' select children : _ option' =
+    inl select : () -> bool = join select
+    option' [
+        $'"select=!select()"'
+
+    ] fun () =>
+        children |> new_text |> text_to_fragment
+
+inl nav props children : _ nav =
+    tag_element "nav" props children
+
+inl a' props children : _ a' =
+    tag_element "a" props children
+
+inl use_location () : location =
+    !\($'"leptos_router::use_location()"')
+
+inl location_hash (location : location) : memo rust.std_string =
+    inl location = join location
+    !\($'"!location.hash"')
+
+inl url_try_from (s : rust.ref' rust.str) : resultm.result' url rust.std_string =
+    inl s = join s
+    !\($'"leptos_router::Url::try_from(!s)"')
+
+inl url_pathname (url : url) : rust.std_string =
+    !\($'"!url.pathname"')
+
+inl route path view children : view =
     inl path = join path
     inl path = path |> sm'.to_std_string
-    inl children : () -> fragment = join children
     inl view : () -> fragment = join view
-    tag_closed_raw {
-        tag = "leptos_router::Route"
-        props = [
-            $'"path=!path"'
-            $'"view=move || !view()"'
-        ]
-    }
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Route" [
+        $'"path=!path"'
+        $'"view=move || !view()"'
+    ]
     |> macro_to_view
 
-inl router { children } : view =
+inl router children : view =
     inl children = join children
     inl children : () -> fragment = join children
-    tag_closed_raw {
-        tag = "leptos_router::Router"
-        props = [
-            $'"children=Box::new(move || !children())"'
-        ]
-    }
+    tag_closed_raw "leptos_router::Router" [
+        $'"children=Box::new(move || !children())"'
+    ]
     |> macro_to_view
 
-inl routes { children } : view =
+inl routes children : view =
     inl children = join children
     inl children : () -> fragment = join children
-    tag_closed_raw {
-        tag = "leptos_router::Routes"
-        props = [
-            $'"children=Box::new(move || !children())"'
-        ]
-    }
+    tag_closed_raw "leptos_router::Routes" [
+        $'"children=Box::new(move || !children())"'
+    ]
     |> macro_to_view
 
-inl input { props } : _ input =
-    tag_closed { tag = "input"; props }
+inl input props : _ input =
+    tag_closed "input" props
 
-inl accordion { title children } : _ details =
+inl accordion title children : _ details =
     inl title = join title
     inl title = title |> sm'.to_std_string
     inl children : () -> html_element _ = join children
     $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children()}</details>"'
     |> macro_to_element
 
-inl input forall t. { getter setter } : _ input =
+inl input forall t. getter setter : _ input =
     inl getter : read_signal t = join getter
     inl setter : write_signal t = join setter
-    input {
-        props = [
-            $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\""'
-            $'"prop:value=!getter"'
-            $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
-        ]
-    }
+    input [
+        $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\""'
+        $'"prop:value=!getter"'
+        $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
+    ]
 
 inl toggle { id on_change get_value } : _ label =
     inl id = #id
@@ -308,66 +355,68 @@ inl toggle { id on_change get_value } : _ label =
     $'"<label for={!id} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\\\"></span></label>"'
     |> macro_to_element
 
-inl dd { children } : _ dd =
-    tag_element {
-        tag = "dd"
-        props = [
-            $'"class=\\\"text-gray-700 md:col-span-2 flex flex-1\\\""'
-        ]
-        children
-    }
+inl dd children : _ dd =
+    tag_element "dd" [
+        $'"class=\\\"text-gray-700 md:col-span-2 flex flex-1\\\""'
+    ] children
 
-inl dl { children } : _ dl =
-    tag_element {
-        tag = "dl"
-        props = [
-            $'"class=\\\"flex flex-1 divide-y divide-gray-100 text-sm\\\""'
-        ]
-        children
-    }
+inl dl children : _ dl =
+    tag_element "dl" [
+        $'"class=\\\"flex flex-1 divide-y divide-gray-100 text-sm\\\""'
+    ] children
 
-inl dt { children } : _ dt =
-    tag_element {
-        tag = "dt"
-        props = [
-            $'"class=\\\"font-medium text-gray-700\\\""'
-        ]
-        children
-    }
+inl dt children : _ dt =
+    tag_element "dt" [
+        $'"class=\\\"font-medium text-gray-700\\\""'
+    ] children
 
-inl grid_pair { class left right } : _ div =
+inl grid_pair { class } left right : _ div =
     inl class : string = class
     inl left = join left
     inl right = join right
-    div {
-        props = [
-            $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] " + !class + "\\\""'
-        ]
-        children = fun () =>
-            ;[
-                dt {
-                    children = fun () =>
-                        left
-                }
-                |> element_to_view
+    div [
+        $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] " + !class + "\\\""'
+    ] fun () =>
+    ;[
+        dt fun () => left
+        |> element_to_view
 
-                dd {
-                    children = fun () =>
-                        right
-                }
-                |> element_to_view
-            ]
-            |> views_fragment
-    }
+        dd fun () => right
+        |> element_to_view
+    ] |> views_to_fragment
 
-inl view_map_grid { children } : _ div =
-    div {
-        props = [
-            $'"class=\\\"flow-root\\\""'
-        ]
-        children = fun () =>
-            dl {
-                children
-            }
+inl view_map_grid children : _ div =
+    div [
+        $'"class=\\\"flow-root\\\""'
+    ] fun () =>
+        dl
+            children
             |> element_to_fragment
-    }
+
+inl history_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z\\\"/></svg>"'
+    |> macro_to_element
+
+inl settings_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z\\\"/><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\\\"/></svg>"'
+    |> macro_to_element
+
+inl tab_link href icon label select : _ a' =
+    inl href = href |> sm'.to_std_string
+    inl select = join select
+    inl select_class () : rust.static_ref' rust.str =
+        if select ()
+        then ##"border-grey-200 text-grey-900"
+        else ##"border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+    inl select = join select
+    inl select_class = join select_class
+    a' [
+        $'"href=!href"'
+        $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium \\\".to_owned() + !select_class()}"'
+        $'"aria-current={move || if !select() { \\\"page\\\" } else { \\\"\\\" }}"'
+    ] fun () =>
+        ;[
+            icon |> element_to_view
+            label |> text_view
+        ]
+        |> views_to_fragment

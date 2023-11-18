@@ -59,9 +59,8 @@ inl dark_mode_toggle () =
 
             match dark_mode with
             | Some dark_mode =>
-                global_state.state |> leptos.signal_get_untracked
-                |> fun state => state.dark_mode
-                |> leptos.rw_signal_set dark_mode
+                dark_mode
+                |> leptos.rw_signal_set (leptos.signal_get_untracked global_state.state .dark_mode)
             | _ => ()
         | _ => ()
 
@@ -105,7 +104,7 @@ inl dark_mode_toggle () =
 
         if not dark_mode_loading then
             if not loaded
-            then set_loaded |> leptos.signal_set true
+            then true |> leptos.signal_set set_loaded
             else
                 leptos.log $'"ui.dark_mode_toggle () / create_effect 2 / ##4 / dark_mode: " + string !dark_mode + ""'
 

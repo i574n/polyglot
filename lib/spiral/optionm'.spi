@@ -48,3 +48,13 @@ inl flatten x =
     match x with
     | Some (Some x) => Some x
     | _ => None
+
+// // ## unwrap
+
+inl unwrap forall t. (x : option' t) : t =
+    !\($'"!x.unwrap()"')
+
+// // ## unwrap_or
+
+inl unwrap_or forall t. (def : t) (x : option' t) : t =
+    !\($'"!x.unwrap_or(!def)"')

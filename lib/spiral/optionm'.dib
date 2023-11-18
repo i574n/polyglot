@@ -137,3 +137,21 @@ inl flatten x =
     match x with
     | Some (Some x) => Some x
     | _ => None
+
+#!markdown
+
+## unwrap
+
+#!spiral
+
+inl unwrap forall t. (x : option' t) : t =
+    !\($'"!x.unwrap()"')
+
+#!markdown
+
+## unwrap_or
+
+#!spiral
+
+inl unwrap_or forall t. (def : t) (x : option' t) : t =
+    !\($'"!x.unwrap_or(!def)"')

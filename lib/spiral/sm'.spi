@@ -12,6 +12,10 @@ inl to_std_string (s : string) : rust.std_string =
     inl s = s |> as_str
     !\($'$"String::from(!s)"')
 
+inl as_str_std (s : rust.std_string) : rust.ref' rust.str =
+    inl s = join s
+    !\($'"!s.as_str()"')
+
 inl format x : rust.std_string =
     !\\(x, $'@@$"format\!(""{{}}"", $0)"')
 
@@ -24,3 +28,11 @@ inl format_pretty x : rust.std_string =
 inl deserialize forall t. (json : string) : resultm.result' t rust.json_error =
     inl json : rust.std_string = json |> to_std_string
     !\($'"serde_json::from_str(&!json)"')
+
+inl strip_prefix (prefix : char) (s : rust.std_string) : optionm'.option' (rust.ref' rust.str) =
+    inl s = join s
+    !\($'"!s.strip_prefix(!prefix)"')
+
+inl starts_with (value : rust.std_string) (s : rust.std_string) : bool =
+    inl s = join s
+    !\($'"!s.starts_with(&!value)"')

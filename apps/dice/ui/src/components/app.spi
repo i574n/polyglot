@@ -21,25 +21,20 @@ inl app () =
     |> fun x => x ()
 
     inl route' path view =
-        leptos.route {
+        leptos.route
             path
-            view = fun () =>
+            fun () =>
                 view () |> leptos.element_to_fragment
-            children = fun () =>
-                ;[] |> leptos.views_fragment
-        }
+            fun () =>
+                ;[] |> leptos.views_to_fragment
 
-    leptos.router {
-        children = fun () =>
-            leptos.routes {
-                children = fun () =>
-                    ;[
-                        route' "" fun () => home.home { router = 1 }
-                        route' "/" fun () => home.home { router = 2 }
-                        route' "/*" fun () => home.home { router = 3 }
-                        route' "*" fun () => home.home { router = 4 }
-                    ]
-                    |> leptos.views_fragment
-            }
-            |> leptos.view_to_fragment
-    }
+    leptos.router fun () =>
+        leptos.routes fun () =>
+            ;[
+                route' "" fun () => home.home { router = 1 }
+                route' "/" fun () => home.home { router = 2 }
+                route' "/*" fun () => home.home { router = 3 }
+                route' "*" fun () => home.home { router = 4 }
+            ]
+            |> leptos.views_to_fragment
+        |> leptos.view_to_fragment
