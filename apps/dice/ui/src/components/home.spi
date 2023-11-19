@@ -4,13 +4,13 @@ inl render { router } =
     inl router : i32 = router
     leptos.log $'"home.render () / router: " + string !router + ""'
 
-    inl global_state : state.global_state = leptos.use_context ()
+    inl _database = state.use_database ()
 
-    inl get_dark_mode () =
-        global_state.state |> leptos.rw_signal_get
-        |> fun state => state.dark_mode |> leptos.rw_signal_get
+    inl global_state : state.global_state = leptos.use_context ()
 
     leptos.div [
         $'"class=\\\"flex flex-1\\\""'
-        get_dark_mode |> leptos.bool_prop "class:dark"
+        leptos.bool_prop "class:dark" fun () =>
+            leptos.rw_signal_get global_state.state .dark_mode
+            |> leptos.rw_signal_get
     ] (content.render >> leptos.element_to_fragment)

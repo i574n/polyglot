@@ -8,9 +8,10 @@ inl render () =
     inl global_state : state.global_state =
         heap {
             state =
-                leptos.create_rw_signal
-                    {
+                leptos.create_rw_signal <|
+                    heap {
                         dark_mode = leptos.create_rw_signal false
+                        url_hash = leptos.create_rw_signal ""
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }

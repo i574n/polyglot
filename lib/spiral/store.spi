@@ -1,14 +1,21 @@
 open rust_operators
 
-inl storage_get forall t. (key : string) (storage : rust.storage) : resultm.result' (optionm'.option' t) rust.js_value =
+inl storage_get forall t. (key : string) (storage : rust.storage) : result (option t) rust.js_value =
     inl storage = join storage
     inl key = key |> sm'.as_str
-    !\($'$"web_sys::Storage::get_item(&!storage, !key)"')
+    inl result = !\($'$"web_sys::Storage::get_item(&!storage, !key)"')
+    inl result : result (optionm'.option' rust.std_string) rust.js_value = result |> resultm.unbox
+    result |> resultm.map fun result =>
+        inl result = join result
+        inl result = !\($'"serde_json::from_value(!result.into()).unwrap()"')
+        result |> optionm'.unbox
 
 inl storage_set forall t. (key : string) (value : t) (storage : rust.storage) =
     inl storage = join storage
     inl key = key |> sm'.as_str
-    inl value = value |> sm'.format |> sm'.from_std_string |> sm'.as_str
+    inl value = join value
+    inl value : rust.std_string = !\($'"serde_json::json!!(!value).to_string()"')
+    inl value = value |> sm'.as_str_std
     !\($'$"web_sys::Storage::set(&!storage, !key, !value).unwrap()"') : ()
 
 let local_storage (window : rust.window) : resultm.result' (optionm'.option' rust.storage) rust.js_value =

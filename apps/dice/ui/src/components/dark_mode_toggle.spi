@@ -6,10 +6,7 @@ inl render () =
     inl global_state : state.global_state = leptos.use_context ()
 
     leptos.toggle
-        (state.get_dark_mode_key ())
-        fun (_event : leptos.event) =>
-            global_state.state |> leptos.rw_signal_get
-            |> fun state => state.dark_mode |> leptos.signal_update not
+        fun _ =>
+            leptos.rw_signal_get global_state.state .dark_mode |> leptos.signal_update not
         fun () =>
-            global_state.state |> leptos.rw_signal_get
-            |> fun state => state.dark_mode |> leptos.rw_signal_get
+            leptos.rw_signal_get global_state.state .dark_mode |> leptos.rw_signal_get

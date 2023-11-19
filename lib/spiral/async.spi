@@ -8,11 +8,17 @@ inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : rust.pin (rus
     inl x' = join x'
     if depth = 4 || depth = 5
     then !\($'"!x' }}}})"')
+    elif depth = 6
+    then !\($'"!x' }}}}); { { { //"')
     elif depth = 3
     then !\($'"!x' }}})"')
+    elif depth = 7
+    then !\($'"!x' })"')
     else !\($'"!x' }})"')
     if depth = 0 || depth = 3
     then !\($'"{ { // "')
+    elif depth = 7
+    then !\($'"// "')
     elif depth = 2
     then !\($'"{ // "')
     elif depth = 5

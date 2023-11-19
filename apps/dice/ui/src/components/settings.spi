@@ -1,0 +1,20 @@
+inl render () =
+    ;[
+        leptos.accordion "View" fun () =>
+            leptos.view_map_grid fun () =>
+                leptos.grid_pair
+                    { class = $'"items-center"' }
+                    ("Dark Mode" |> leptos.text_view |> leptos.view_to_fragment)
+                    (dark_mode_toggle.render () |> leptos.element_to_fragment)
+                |> leptos.element_to_fragment
+        |> leptos.element_to_view
+
+        leptos.accordion "Connection" fun () =>
+            leptos.view_map_grid fun () =>
+                leptos.grid_pair
+                    { class = $'"items-baseline"' }
+                    ("Explorer Backend Host" |> leptos.text_view |> leptos.view_to_fragment)
+                    (explorer_backend_host_input.render () |> leptos.element_to_fragment)
+                |> leptos.element_to_fragment
+        |> leptos.element_to_view
+    ]

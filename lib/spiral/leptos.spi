@@ -171,6 +171,7 @@ inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     !\($'$"leptos::create_signal(!value)"')
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
+    inl value = join value
     !\($'$"leptos::create_rw_signal(!value)"')
 
 inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : resource t u =
@@ -179,9 +180,9 @@ inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> rust.pi
 
 inl create_action forall t u. (action_fn : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : action t u =
     inl action_fn = join action_fn
-    !\($'"leptos::create_action(move |value: &`t| !action_fn(*value))"')
+    !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn((*value).clone().into()))"')
 
-inl action_dispatch forall t. (value : t) (action : action t ()) =
+inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
     inl value = join value
     !\($'"leptos::Action::dispatch(&!action, !value)"')
 
@@ -205,7 +206,7 @@ inl signal_get_untracked forall t. (signal : rw_signal t) : t =
     inl signal = join signal
     !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
 
-inl rw_signal_set forall t. (signal : rw_signal t) (value : t) =
+inl rw_signal_set forall t. (value : t) (signal : rw_signal t) =
     inl value = join value
     inl signal = join signal
     !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
@@ -309,6 +310,17 @@ inl url_try_from (s : rust.ref' rust.str) : resultm.result' url rust.std_string 
 inl url_pathname (url : url) : rust.std_string =
     !\($'"!url.pathname"')
 
+inl use_url () : string =
+    inl location = use_location ()
+
+    inl url_pathname = location |> location_pathname |> memo_get |> sm'.from_std_string
+    inl url_search = location |> location_search |> memo_get |> sm'.from_std_string
+    inl url_search =
+        if url_search = ""
+        then ""
+        else $'$"?{!url_search}"'
+    $"!url_pathname + !url_search"
+
 inl route path view children : view =
     inl path = join path
     inl path = path |> sm'.to_std_string
@@ -355,12 +367,12 @@ inl input forall t. getter setter : _ input =
         $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
     ]
 
-inl toggle id on_change get_value : _ label =
-    inl id = #id
+inl toggle on_change get_value : _ label =
     inl on_change : event -> () = join on_change
     inl get_value : () -> bool = join get_value
+    inl id = $"nameof !on_change" |> sm'.to_std_string
 
-    $'"<label for={!id} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\\\"></span></label>"'
+    $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\\\"></span></label>"'
     |> macro_to_element
 
 inl dd children : _ dd =

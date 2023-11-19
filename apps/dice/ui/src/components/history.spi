@@ -1,0 +1,2 @@
+inl render () =
+    "" |> leptos.text_view

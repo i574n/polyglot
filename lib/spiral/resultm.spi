@@ -28,5 +28,10 @@ inl try forall t u. (x : result' t u) : t =
 inl unwrap forall t u. (x : result' t u) : t =
     !\($'"!x.unwrap()"')
 
-inl ok forall t. (x : result' t _) : optionm'.option' t =
+inl ok' forall t. (x : result' t _) : optionm'.option' t =
     !\($'"!x.ok()"')
+
+inl ok forall t. (x : result t _) : option t =
+    match x with
+    | Ok x => Some x
+    | Error _ => None

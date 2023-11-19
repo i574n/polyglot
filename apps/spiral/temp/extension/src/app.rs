@@ -237,8 +237,6 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
                     global_state_json: <pre>{move || global_state_json}</pre>
                 </div>
             </div>
-
-
         </>
     }
 }

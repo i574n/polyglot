@@ -18,6 +18,7 @@ Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Forc
 (Get-Content target/rs/ui.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
+    -replace "pub struct Heap2 {", "#[derive(serde::Serialize, serde::Deserialize)] pub struct Heap2 {" `
     -replace "/Common.rs", "/CommonWasm.rs" `
 | Set-Content ui_wasm.rs
 
