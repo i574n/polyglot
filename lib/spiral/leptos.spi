@@ -26,6 +26,7 @@ nominal routes = $"leptos_router_Routes"
 nominal html_element t = $"leptos_HtmlElement<`t>"
 nominal into_view = $"leptos_IntoView"
 nominal location = $"leptos_router_Location"
+nominal navigate_options = $"leptos_router_NavigateOptions"
 nominal url = $"leptos_router_Url"
 nominal memo t = $"leptos_Memo<`t>"
 nominal rw_signal t = $"leptos_RwSignal<`t>"
@@ -202,7 +203,11 @@ inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl signal = join signal
     !\($'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"') : ()
 
-inl signal_get_untracked forall t. (signal : rw_signal t) : t =
+inl signal_get_untracked forall t. (signal : read_signal t) : t =
+    inl signal = join signal
+    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
+
+inl rw_signal_get_untracked forall t. (signal : rw_signal t) : t =
     inl signal = join signal
     !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
 
@@ -290,6 +295,13 @@ inl a' props children : _ a' =
 
 inl use_location () : location =
     !\($'"leptos_router::use_location()"')
+
+inl use_navigate () : string -> () =
+    inl navigate : rust.arc (rust.dyn' (rust.action_fn2 (rust.ref' rust.str) navigate_options)) =
+        !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
+    fun url =>
+        inl url = url |> sm'.as_str
+        !\($'"!navigate(!url, Default::default())"')
 
 inl location_hash (location : location) : memo rust.std_string =
     inl location = join location

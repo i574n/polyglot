@@ -26,6 +26,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::HtmlElement<$0>")>] type leptos_HtmlElement<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::IntoView")>] type leptos_IntoView = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos_router::Location")>] type leptos_router_Location = class end
+[<Fable.Core.Erase; Fable.Core.Emit("leptos_router::NavigateOptions")>] type leptos_router_NavigateOptions = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos_router::Url")>] type leptos_router_Url = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::Memo<$0>")>] type leptos_Memo<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos::RwSignal<$0>")>] type leptos_RwSignal<'T> = class end
@@ -39,6 +40,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("rexie::Transaction")>] type rexie_Transaction = class end
 [<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>] type serde_json_Error = class end
 [<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>] type serde_json_Value = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>] type std_any_Any = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::collections::HashMap<$0, $1>")>] type std_collections_HashMap<'K, 'V> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>] type Future<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>] type std_pin_Pin<'T> = class end
@@ -56,6 +58,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
 [<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("&$0")>] type Ref<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>] type StaticRef<'T> = class end
@@ -835,40 +838,77 @@ and method58 () : US17 =
     US17_0
 and method60 (v0 : leptos_router_Location) : leptos_router_Location =
     v0
-and closure27 (v0 : leptos_router_Location, v1 : string, v2 : Heap1) () : unit =
-    let v3 : leptos_router_Location = method60(v0)
-    let v4 : string = "v3.hash"
-    let v5 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v4
-    let v6 : string = $"v5()"
-    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v6
-    let v8 : string = $"{v1}{v7}"
-    let v9 : string = "content.render () / effect / new_url_hash: " + v8 + ""
-    let v10 : string = @$"leptos::logging::log!(""{{}}"", $0)"
-    Fable.Core.RustInterop.emitRustExpr v9 v10
-    let v11 : leptos_RwSignal<Heap0> = v2.l1
-    let v12 : leptos_RwSignal<Heap0> = method54(v11)
-    let v13 : string = $"leptos::SignalGet::get(&v12)"
-    let v14 : Heap0 = Fable.Core.RustInterop.emitRustExpr () v13
-    let v15 : leptos_RwSignal<string> = v14.l1
-    let v16 : string = method33(v8)
-    let v17 : leptos_RwSignal<string> = method34(v15)
-    let v18 : string = $"leptos::SignalSet::set(&v17, v16)"
-    Fable.Core.RustInterop.emitRustExpr () v18
-    ()
-and method59 (v0 : leptos_router_Location, v1 : string, v2 : Heap1) : (unit -> unit) =
-    closure27(v0, v1, v2)
-and method62 (v0 : std_string_String) : std_string_String =
+and method61 (v0 : std_string_String) : std_string_String =
     v0
-and method63 (v0 : Ref<Str>) : Ref<Str> =
+and closure27 (v0 : leptos_router_Location, v1 : std_sync_Arc<Dyn<ActionFn2<Ref<Str>, leptos_router_NavigateOptions>>>, v2 : string, v3 : Heap1, v4 : leptos_WriteSignal<bool>, v5 : leptos_ReadSignal<bool>) () : unit =
+    let v6 : leptos_ReadSignal<bool> = method43(v5)
+    let v7 : string = $"leptos::SignalGet::get(&v6)"
+    let v8 : bool = Fable.Core.RustInterop.emitRustExpr () v7
+    let v9 : leptos_router_Location = method60(v0)
+    let v10 : string = "v9.hash"
+    let v11 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v10
+    let v12 : string = $"v11()"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v12
+    let v14 : string = $"{v2}{v13}"
+    let v15 : string = "content.render () / effect / new_url_hash: " + v14 + " / loaded: " + string v8 + ""
+    let v16 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+    Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v17 : bool = v8 = false
+    if v17 then
+        let v18 : std_string_String = method61(v13)
+        let v19 : string = "v18 == \"\""
+        let v20 : bool = Fable.Core.RustInterop.emitRustExpr () v19
+        if v20 then
+            let v21 : leptos_RwSignal<Heap0> = v3.l1
+            let v22 : leptos_RwSignal<Heap0> = method30(v21)
+            let v23 : string = $"leptos::SignalGetUntracked::get_untracked(&v22)"
+            let v24 : Heap0 = Fable.Core.RustInterop.emitRustExpr () v23
+            let v25 : leptos_RwSignal<string> = v24.l1
+            let v26 : leptos_RwSignal<string> = method45(v25)
+            let v27 : string = $"leptos::SignalGet::get(&v26)"
+            let v28 : string = Fable.Core.RustInterop.emitRustExpr () v27
+            let v29 : string = "content.render () / effect / url_hash: " + v28 + ""
+            let v30 : string = @$"leptos::logging::log!(""{{}}"", $0)"
+            Fable.Core.RustInterop.emitRustExpr v29 v30
+            let v31 : string = "#"
+            let v32 : bool = v28.Contains v31
+            if v32 then
+                let v33 : string = method8(v28)
+                let v34 : string = $"fable_library_rust::String_::LrcStr::as_str(&v33)"
+                let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34
+                let v36 : string = "v1(v35, Default::default())"
+                Fable.Core.RustInterop.emitRustExpr () v36
+                ()
+        let v37 : bool = method47()
+        let v38 : leptos_WriteSignal<bool> = method48(v4)
+        let v39 : string = $"leptos::SignalSet::set(&v38, v37)"
+        Fable.Core.RustInterop.emitRustExpr () v39
+        ()
+    else
+        let v40 : leptos_RwSignal<Heap0> = v3.l1
+        let v41 : leptos_RwSignal<Heap0> = method54(v40)
+        let v42 : string = $"leptos::SignalGet::get(&v41)"
+        let v43 : Heap0 = Fable.Core.RustInterop.emitRustExpr () v42
+        let v44 : leptos_RwSignal<string> = v43.l1
+        let v45 : string = method33(v14)
+        let v46 : leptos_RwSignal<string> = method34(v44)
+        let v47 : string = $"leptos::SignalSet::set(&v46, v45)"
+        Fable.Core.RustInterop.emitRustExpr () v47
+        ()
+and method59 (v0 : leptos_router_Location, v1 : std_sync_Arc<Dyn<ActionFn2<Ref<Str>, leptos_router_NavigateOptions>>>, v2 : string, v3 : Heap1, v4 : leptos_WriteSignal<bool>, v5 : leptos_ReadSignal<bool>) : (unit -> unit) =
+    closure27(v0, v1, v2, v3, v4, v5)
+and method63 (v0 : std_string_String) : std_string_String =
     v0
-and method64 () : string =
+and method64 (v0 : Ref<Str>) : Ref<Str> =
+    v0
+and method65 () : string =
     let v0 : string = "/settings"
     v0
-and method65 (v0 : std_string_String) : std_string_String =
+and method66 (v0 : std_string_String) : std_string_String =
     v0
-and method66 (v0 : US17) : US17 =
+and method67 (v0 : US17) : US17 =
     v0
-and method67 (v0 : leptos_WriteSignal<US17>) : leptos_WriteSignal<US17> =
+and method68 (v0 : leptos_WriteSignal<US17>) : leptos_WriteSignal<US17> =
     v0
 and closure28 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) () : unit =
     let v2 : leptos_router_Location = method60(v0)
@@ -876,7 +916,7 @@ and closure28 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) () : 
     let v4 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v3
     let v5 : string = $"v4()"
     let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v5
-    let v7 : std_string_String = method62(v6)
+    let v7 : std_string_String = method63(v6)
     let v8 : string = "v7.strip_prefix('#')"
     let v9 : Ref<Str> option = Fable.Core.RustInterop.emitRustExpr () v8
     let v10 : string = ""
@@ -884,7 +924,7 @@ and closure28 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) () : 
     let v12 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v11
     let v13 : string = "v9.unwrap_or(v12)"
     let v14 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v13
-    let v15 : Ref<Str> = method63(v14)
+    let v15 : Ref<Str> = method64(v14)
     let v16 : string = "leptos_router::Url::try_from(v15)"
     let v17 : Result<leptos_router_Url, std_string_String> = Fable.Core.RustInterop.emitRustExpr () v16
     let v18 : string = "v17.unwrap()"
@@ -896,12 +936,12 @@ and closure28 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) () : 
     Fable.Core.RustInterop.emitRustExpr v22 v23
     let v24 : string = "v19.pathname"
     let v25 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v24
-    let v26 : string = method64()
+    let v26 : string = method65()
     let v27 : string = $"fable_library_rust::String_::LrcStr::as_str(&v26)"
     let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v27
     let v29 : string = $"String::from(v28)"
     let v30 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v29
-    let v31 : std_string_String = method65(v25)
+    let v31 : std_string_String = method66(v25)
     let v32 : string = "v31.starts_with(&v30)"
     let v33 : bool = Fable.Core.RustInterop.emitRustExpr () v32
     let v36 : US17 =
@@ -914,28 +954,28 @@ and closure28 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) () : 
     let v39 : string = "content.render () / effect / new_tab: " + string v38 + ""
     let v40 : string = @$"leptos::logging::log!(""{{}}"", $0)"
     Fable.Core.RustInterop.emitRustExpr v39 v40
-    let v41 : US17 = method66(v36)
-    let v42 : leptos_WriteSignal<US17> = method67(v1)
+    let v41 : US17 = method67(v36)
+    let v42 : leptos_WriteSignal<US17> = method68(v1)
     let v43 : string = $"leptos::SignalSet::set(&v42, v41)"
     Fable.Core.RustInterop.emitRustExpr () v43
     ()
-and method61 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) : (unit -> unit) =
+and method62 (v0 : leptos_router_Location, v1 : leptos_WriteSignal<US17>) : (unit -> unit) =
     closure28(v0, v1)
 and closure30 (v0 : leptos_ReadSignal<US17>) () : leptos_ReadSignal<US17> =
     v0
-and method69 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_ReadSignal<US17>) =
+and method70 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_ReadSignal<US17>) =
     closure30(v0)
-and method71 (v0 : leptos_ReadSignal<US17>) : leptos_ReadSignal<US17> =
+and method72 (v0 : leptos_ReadSignal<US17>) : leptos_ReadSignal<US17> =
     v0
-and method72 () : string =
+and method73 () : string =
     let v0 : string = "View"
     v0
 and closure36 () (v0 : bool) : bool =
     let v1 : bool = v0 = false
     v1
-and method77 () : (bool -> bool) =
+and method78 () : (bool -> bool) =
     closure36()
-and method78 (v0 : leptos_RwSignal<bool>) : leptos_RwSignal<bool> =
+and method79 (v0 : leptos_RwSignal<bool>) : leptos_RwSignal<bool> =
     v0
 and closure35 (v0 : Heap1) (v1 : leptos_ev_Event) : unit =
     let v2 : leptos_RwSignal<Heap0> = v0.l1
@@ -943,12 +983,12 @@ and closure35 (v0 : Heap1) (v1 : leptos_ev_Event) : unit =
     let v4 : string = $"leptos::SignalGet::get(&v3)"
     let v5 : Heap0 = Fable.Core.RustInterop.emitRustExpr () v4
     let v6 : leptos_RwSignal<bool> = v5.l0
-    let v7 : (bool -> bool) = method77()
-    let v8 : leptos_RwSignal<bool> = method78(v6)
+    let v7 : (bool -> bool) = method78()
+    let v8 : leptos_RwSignal<bool> = method79(v6)
     let v9 : string = $"leptos::SignalUpdate::update(&v8, |x| *x = v7(*x))"
     Fable.Core.RustInterop.emitRustExpr () v9
     ()
-and method76 (v0 : Heap1) : (leptos_ev_Event -> unit) =
+and method77 (v0 : Heap1) : (leptos_ev_Event -> unit) =
     closure35(v0)
 and closure37 (v0 : Heap1) () : bool =
     let v1 : leptos_RwSignal<Heap0> = v0.l1
@@ -960,60 +1000,60 @@ and closure37 (v0 : Heap1) () : bool =
     let v7 : string = $"leptos::SignalGet::get(&v6)"
     let v8 : bool = Fable.Core.RustInterop.emitRustExpr () v7
     v8
-and method79 (v0 : Heap1) : (unit -> bool) =
+and method80 (v0 : Heap1) : (unit -> bool) =
     closure37(v0)
-and method80 (v0 : leptos_HtmlElement<leptos_html_Label>) : leptos_HtmlElement<leptos_html_Label> =
-    v0
-and method81 (v0 : leptos_Fragment) : leptos_Fragment =
+and method81 (v0 : leptos_HtmlElement<leptos_html_Label>) : leptos_HtmlElement<leptos_html_Label> =
     v0
 and method82 (v0 : leptos_Fragment) : leptos_Fragment =
     v0
+and method83 (v0 : leptos_Fragment) : leptos_Fragment =
+    v0
 and closure39 (v0 : leptos_Fragment) () : leptos_Fragment =
     v0
-and method84 (v0 : leptos_Fragment) : (unit -> leptos_Fragment) =
+and method85 (v0 : leptos_Fragment) : (unit -> leptos_Fragment) =
     closure39(v0)
-and method85 (v0 : leptos_HtmlElement<leptos_html_Dt>) : leptos_HtmlElement<leptos_html_Dt> =
+and method86 (v0 : leptos_HtmlElement<leptos_html_Dt>) : leptos_HtmlElement<leptos_html_Dt> =
     v0
 and closure40 (v0 : leptos_Fragment) () : leptos_Fragment =
     v0
-and method86 (v0 : leptos_Fragment) : (unit -> leptos_Fragment) =
+and method87 (v0 : leptos_Fragment) : (unit -> leptos_Fragment) =
     closure40(v0)
-and method87 (v0 : leptos_HtmlElement<leptos_html_Dd>) : leptos_HtmlElement<leptos_html_Dd> =
+and method88 (v0 : leptos_HtmlElement<leptos_html_Dd>) : leptos_HtmlElement<leptos_html_Dd> =
     v0
-and method88 (v0 : (leptos_View [])) : (leptos_View []) =
+and method89 (v0 : (leptos_View [])) : (leptos_View []) =
     v0
 and closure38 (v0 : leptos_Fragment, v1 : leptos_Fragment) () : leptos_Fragment =
     let v2 : string = "class=\"font-medium text-gray-700\""
     let v3 : string = ""
     let v4 : string = " " + v2 + v3 + ""
-    let v5 : (unit -> leptos_Fragment) = method84(v0)
+    let v5 : (unit -> leptos_Fragment) = method85(v0)
     let v6 : string = "dt"
     let v7 : string = "<" + v6 + " " + v4 + ">{v5()}</" + v6 + ">"
     let v8 : string = "leptos::view! { " + v7 + " }"
     let v9 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v8
     let v10 : leptos_HtmlElement<leptos_html_Dt> = v9 |> unbox
-    let v11 : leptos_HtmlElement<leptos_html_Dt> = method85(v10)
+    let v11 : leptos_HtmlElement<leptos_html_Dt> = method86(v10)
     let v12 : string = "leptos::IntoView::into_view(v11)"
     let v13 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v12
     let v14 : string = "class=\"text-gray-700 md:col-span-2 flex flex-1\""
     let v15 : string = " " + v14 + v3 + ""
-    let v16 : (unit -> leptos_Fragment) = method86(v1)
+    let v16 : (unit -> leptos_Fragment) = method87(v1)
     let v17 : string = "dd"
     let v18 : string = "<" + v17 + " " + v15 + ">{v16()}</" + v17 + ">"
     let v19 : string = "leptos::view! { " + v18 + " }"
     let v20 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v19
     let v21 : leptos_HtmlElement<leptos_html_Dd> = v20 |> unbox
-    let v22 : leptos_HtmlElement<leptos_html_Dd> = method87(v21)
+    let v22 : leptos_HtmlElement<leptos_html_Dd> = method88(v21)
     let v23 : string = "leptos::IntoView::into_view(v22)"
     let v24 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v23
     let v25 : (leptos_View []) = [|v13; v24|]
-    let v26 : (leptos_View []) = method88(v25)
+    let v26 : (leptos_View []) = method89(v25)
     let v27 : string = "leptos::Fragment::new(v26.to_vec())"
     let v28 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v27
     v28
-and method83 (v0 : leptos_Fragment, v1 : leptos_Fragment) : (unit -> leptos_Fragment) =
+and method84 (v0 : leptos_Fragment, v1 : leptos_Fragment) : (unit -> leptos_Fragment) =
     closure38(v0, v1)
-and method89 (v0 : leptos_HtmlElement<leptos_html_Div>) : leptos_HtmlElement<leptos_html_Div> =
+and method90 (v0 : leptos_HtmlElement<leptos_html_Div>) : leptos_HtmlElement<leptos_html_Div> =
     v0
 and closure34 () () : leptos_Fragment =
     let v0 : string = "items-center"
@@ -1031,8 +1071,8 @@ and closure34 () () : leptos_Fragment =
     Fable.Core.RustInterop.emitRustExpr v10 v11
     let v12 : string = "leptos::use_context::<std::rc::Rc<Heap1>>().unwrap().into()"
     let v13 : Heap1 = Fable.Core.RustInterop.emitRustExpr () v12
-    let v14 : (leptos_ev_Event -> unit) = method76(v13)
-    let v15 : (unit -> bool) = method79(v13)
+    let v14 : (leptos_ev_Event -> unit) = method77(v13)
+    let v15 : (unit -> bool) = method80(v13)
     let v16 : string = nameof v14
     let v17 : string = method8(v16)
     let v18 : string = $"fable_library_rust::String_::LrcStr::as_str(&v17)"
@@ -1043,78 +1083,78 @@ and closure34 () () : leptos_Fragment =
     let v23 : string = "leptos::view! { " + v22 + " }"
     let v24 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v23
     let v25 : leptos_HtmlElement<leptos_html_Label> = v24 |> unbox
-    let v26 : leptos_HtmlElement<leptos_html_Label> = method80(v25)
+    let v26 : leptos_HtmlElement<leptos_html_Label> = method81(v25)
     let v27 : string = "leptos::IntoView::into_view(v26)"
     let v28 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v27
     let v29 : string = "leptos::Fragment::new(vec![v28])"
     let v30 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v29
-    let v31 : leptos_Fragment = method81(v9)
-    let v32 : leptos_Fragment = method82(v30)
+    let v31 : leptos_Fragment = method82(v9)
+    let v32 : leptos_Fragment = method83(v30)
     let v33 : string = "class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] " + v0 + "\""
     let v34 : string = ""
     let v35 : string = " " + v33 + v34 + ""
-    let v36 : (unit -> leptos_Fragment) = method83(v31, v32)
+    let v36 : (unit -> leptos_Fragment) = method84(v31, v32)
     let v37 : string = "div"
     let v38 : string = "<" + v37 + " " + v35 + ">{v36()}</" + v37 + ">"
     let v39 : string = "leptos::view! { " + v38 + " }"
     let v40 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v39
     let v41 : leptos_HtmlElement<leptos_html_Div> = v40 |> unbox
-    let v42 : leptos_HtmlElement<leptos_html_Div> = method89(v41)
+    let v42 : leptos_HtmlElement<leptos_html_Div> = method90(v41)
     let v43 : string = "leptos::IntoView::into_view(v42)"
     let v44 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v43
     let v45 : string = "leptos::Fragment::new(vec![v44])"
     let v46 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v45
     v46
-and method75 () : (unit -> leptos_Fragment) =
+and method76 () : (unit -> leptos_Fragment) =
     closure34()
-and method90 (v0 : leptos_HtmlElement<leptos_html_Dl>) : leptos_HtmlElement<leptos_html_Dl> =
+and method91 (v0 : leptos_HtmlElement<leptos_html_Dl>) : leptos_HtmlElement<leptos_html_Dl> =
     v0
 and closure33 () () : leptos_Fragment =
     let v0 : string = "class=\"flex flex-1 divide-y divide-gray-100 text-sm\""
     let v1 : string = ""
     let v2 : string = " " + v0 + v1 + ""
-    let v3 : (unit -> leptos_Fragment) = method75()
+    let v3 : (unit -> leptos_Fragment) = method76()
     let v4 : string = "dl"
     let v5 : string = "<" + v4 + " " + v2 + ">{v3()}</" + v4 + ">"
     let v6 : string = "leptos::view! { " + v5 + " }"
     let v7 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v6
     let v8 : leptos_HtmlElement<leptos_html_Dl> = v7 |> unbox
-    let v9 : leptos_HtmlElement<leptos_html_Dl> = method90(v8)
+    let v9 : leptos_HtmlElement<leptos_html_Dl> = method91(v8)
     let v10 : string = "leptos::IntoView::into_view(v9)"
     let v11 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : string = "leptos::Fragment::new(vec![v11])"
     let v13 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v12
     v13
-and method74 () : (unit -> leptos_Fragment) =
+and method75 () : (unit -> leptos_Fragment) =
     closure33()
 and closure32 () () : leptos_HtmlElement<leptos_html_Div> =
     let v0 : string = "class=\"flow-root\""
     let v1 : string = ""
     let v2 : string = " " + v0 + v1 + ""
-    let v3 : (unit -> leptos_Fragment) = method74()
+    let v3 : (unit -> leptos_Fragment) = method75()
     let v4 : string = "div"
     let v5 : string = "<" + v4 + " " + v2 + ">{v3()}</" + v4 + ">"
     let v6 : string = "leptos::view! { " + v5 + " }"
     let v7 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v6
     let v8 : leptos_HtmlElement<leptos_html_Div> = v7 |> unbox
     v8
-and method73 () : (unit -> leptos_HtmlElement<leptos_html_Div>) =
+and method74 () : (unit -> leptos_HtmlElement<leptos_html_Div>) =
     closure32()
-and method91 (v0 : leptos_HtmlElement<leptos_html_Details>) : leptos_HtmlElement<leptos_html_Details> =
+and method92 (v0 : leptos_HtmlElement<leptos_html_Details>) : leptos_HtmlElement<leptos_html_Details> =
     v0
-and method92 () : string =
+and method93 () : string =
     let v0 : string = "Connection"
     v0
-and method96 () : string =
+and method97 () : string =
     let v0 : string = "explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app"
     v0
-and method97 (v0 : std_string_String) : std_string_String =
+and method98 (v0 : std_string_String) : std_string_String =
     v0
-and method98 (v0 : leptos_ReadSignal<std_string_String>) : leptos_ReadSignal<std_string_String> =
+and method99 (v0 : leptos_ReadSignal<std_string_String>) : leptos_ReadSignal<std_string_String> =
     v0
-and method99 (v0 : leptos_WriteSignal<std_string_String>) : leptos_WriteSignal<std_string_String> =
+and method100 (v0 : leptos_WriteSignal<std_string_String>) : leptos_WriteSignal<std_string_String> =
     v0
-and method100 (v0 : leptos_HtmlElement<leptos_html_Input>) : leptos_HtmlElement<leptos_html_Input> =
+and method101 (v0 : leptos_HtmlElement<leptos_html_Input>) : leptos_HtmlElement<leptos_html_Input> =
     v0
 and closure43 () () : leptos_Fragment =
     let v0 : string = "items-baseline"
@@ -1127,16 +1167,16 @@ and closure43 () () : leptos_Fragment =
     let v7 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v6
     let v8 : string = "leptos::Fragment::new(vec![v7])"
     let v9 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v8
-    let v10 : string = method96()
+    let v10 : string = method97()
     let v11 : string = $"fable_library_rust::String_::LrcStr::as_str(&v10)"
     let v12 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v11
     let v13 : string = $"String::from(v12)"
     let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v13
-    let v15 : std_string_String = method97(v14)
+    let v15 : std_string_String = method98(v14)
     let v16 : string = $"leptos::create_signal(v15)"
     let struct (v17 : leptos_ReadSignal<std_string_String>, v18 : leptos_WriteSignal<std_string_String>) = Fable.Core.RustInterop.emitRustExpr () v16
-    let v19 : leptos_ReadSignal<std_string_String> = method98(v17)
-    let v20 : leptos_WriteSignal<std_string_String> = method99(v18)
+    let v19 : leptos_ReadSignal<std_string_String> = method99(v17)
+    let v20 : leptos_WriteSignal<std_string_String> = method100(v18)
     let v21 : string = "class=\"bg-gray-50 flex-1 h-[27px]\""
     let v22 : string = "prop:value=v19"
     let v23 : string = "on:keyup=move |event: web_sys::KeyboardEvent| v20(leptos::event_target_value(&event))"
@@ -1149,62 +1189,62 @@ and closure43 () () : leptos_Fragment =
     let v30 : string = "leptos::view! { " + v29 + " }"
     let v31 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v30
     let v32 : leptos_HtmlElement<leptos_html_Input> = v31 |> unbox
-    let v33 : leptos_HtmlElement<leptos_html_Input> = method100(v32)
+    let v33 : leptos_HtmlElement<leptos_html_Input> = method101(v32)
     let v34 : string = "leptos::IntoView::into_view(v33)"
     let v35 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v34
     let v36 : string = "leptos::Fragment::new(vec![v35])"
     let v37 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v36
-    let v38 : leptos_Fragment = method81(v9)
-    let v39 : leptos_Fragment = method82(v37)
+    let v38 : leptos_Fragment = method82(v9)
+    let v39 : leptos_Fragment = method83(v37)
     let v40 : string = "class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] mt-[10px] mr-[14px] mb-[11px] ml-[12px] " + v0 + "\""
     let v41 : string = " " + v40 + v24 + ""
-    let v42 : (unit -> leptos_Fragment) = method83(v38, v39)
+    let v42 : (unit -> leptos_Fragment) = method84(v38, v39)
     let v43 : string = "div"
     let v44 : string = "<" + v43 + " " + v41 + ">{v42()}</" + v43 + ">"
     let v45 : string = "leptos::view! { " + v44 + " }"
     let v46 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v45
     let v47 : leptos_HtmlElement<leptos_html_Div> = v46 |> unbox
-    let v48 : leptos_HtmlElement<leptos_html_Div> = method89(v47)
+    let v48 : leptos_HtmlElement<leptos_html_Div> = method90(v47)
     let v49 : string = "leptos::IntoView::into_view(v48)"
     let v50 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v49
     let v51 : string = "leptos::Fragment::new(vec![v50])"
     let v52 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v51
     v52
-and method95 () : (unit -> leptos_Fragment) =
+and method96 () : (unit -> leptos_Fragment) =
     closure43()
 and closure42 () () : leptos_Fragment =
     let v0 : string = "class=\"flex flex-1 divide-y divide-gray-100 text-sm\""
     let v1 : string = ""
     let v2 : string = " " + v0 + v1 + ""
-    let v3 : (unit -> leptos_Fragment) = method95()
+    let v3 : (unit -> leptos_Fragment) = method96()
     let v4 : string = "dl"
     let v5 : string = "<" + v4 + " " + v2 + ">{v3()}</" + v4 + ">"
     let v6 : string = "leptos::view! { " + v5 + " }"
     let v7 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v6
     let v8 : leptos_HtmlElement<leptos_html_Dl> = v7 |> unbox
-    let v9 : leptos_HtmlElement<leptos_html_Dl> = method90(v8)
+    let v9 : leptos_HtmlElement<leptos_html_Dl> = method91(v8)
     let v10 : string = "leptos::IntoView::into_view(v9)"
     let v11 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : string = "leptos::Fragment::new(vec![v11])"
     let v13 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v12
     v13
-and method94 () : (unit -> leptos_Fragment) =
+and method95 () : (unit -> leptos_Fragment) =
     closure42()
 and closure41 () () : leptos_HtmlElement<leptos_html_Div> =
     let v0 : string = "class=\"flow-root\""
     let v1 : string = ""
     let v2 : string = " " + v0 + v1 + ""
-    let v3 : (unit -> leptos_Fragment) = method94()
+    let v3 : (unit -> leptos_Fragment) = method95()
     let v4 : string = "div"
     let v5 : string = "<" + v4 + " " + v2 + ">{v3()}</" + v4 + ">"
     let v6 : string = "leptos::view! { " + v5 + " }"
     let v7 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v6
     let v8 : leptos_HtmlElement<leptos_html_Div> = v7 |> unbox
     v8
-and method93 () : (unit -> leptos_HtmlElement<leptos_html_Div>) =
+and method94 () : (unit -> leptos_HtmlElement<leptos_html_Div>) =
     closure41()
 and closure31 () (v0 : leptos_ReadSignal<US17>) : leptos_View =
-    let v1 : leptos_ReadSignal<US17> = method71(v0)
+    let v1 : leptos_ReadSignal<US17> = method72(v0)
     let v2 : string = $"leptos::SignalGet::get(&v1)"
     let v3 : US17 = Fable.Core.RustInterop.emitRustExpr () v2
     match v3 with
@@ -1218,42 +1258,42 @@ and closure31 () (v0 : leptos_ReadSignal<US17>) : leptos_View =
         let v10 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v9
         v10
     | US17_1 -> (* Settings *)
-        let v11 : string = method72()
+        let v11 : string = method73()
         let v12 : string = method8(v11)
         let v13 : string = $"fable_library_rust::String_::LrcStr::as_str(&v12)"
         let v14 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v13
         let v15 : string = $"String::from(v14)"
         let v16 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v15
-        let v17 : (unit -> leptos_HtmlElement<leptos_html_Div>) = method73()
+        let v17 : (unit -> leptos_HtmlElement<leptos_html_Div>) = method74()
         let v18 : string = "<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v16}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v17()}</details>"
         let v19 : string = "leptos::view! { " + v18 + " }"
         let v20 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v19
         let v21 : leptos_HtmlElement<leptos_html_Details> = v20 |> unbox
-        let v22 : leptos_HtmlElement<leptos_html_Details> = method91(v21)
+        let v22 : leptos_HtmlElement<leptos_html_Details> = method92(v21)
         let v23 : string = "leptos::IntoView::into_view(v22)"
         let v24 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v23
-        let v25 : string = method92()
+        let v25 : string = method93()
         let v26 : string = method8(v25)
         let v27 : string = $"fable_library_rust::String_::LrcStr::as_str(&v26)"
         let v28 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v27
         let v29 : string = $"String::from(v28)"
         let v30 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v29
-        let v31 : (unit -> leptos_HtmlElement<leptos_html_Div>) = method93()
+        let v31 : (unit -> leptos_HtmlElement<leptos_html_Div>) = method94()
         let v32 : string = "<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v30}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v31()}</details>"
         let v33 : string = "leptos::view! { " + v32 + " }"
         let v34 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v33
         let v35 : leptos_HtmlElement<leptos_html_Details> = v34 |> unbox
-        let v36 : leptos_HtmlElement<leptos_html_Details> = method91(v35)
+        let v36 : leptos_HtmlElement<leptos_html_Details> = method92(v35)
         let v37 : string = "leptos::IntoView::into_view(v36)"
         let v38 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v37
         let v39 : (leptos_View []) = [|v24; v38|]
-        let v40 : (leptos_View []) = method88(v39)
+        let v40 : (leptos_View []) = method89(v39)
         let v41 : string = "leptos::Fragment::new(v40.to_vec())"
         let v42 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v41
         let v43 : string = "leptos::IntoView::into_view(v42)"
         let v44 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v43
         v44
-and method70 () : (leptos_ReadSignal<US17> -> leptos_View) =
+and method71 () : (leptos_ReadSignal<US17> -> leptos_View) =
     closure31()
 and closure47 () () : leptos_Fragment =
     let v0 : string = "Tab"
@@ -1266,10 +1306,10 @@ and closure47 () () : leptos_Fragment =
     let v7 : string = "leptos::Fragment::new(vec![v6])"
     let v8 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v7
     v8
-and method104 () : (unit -> leptos_Fragment) =
+and method105 () : (unit -> leptos_Fragment) =
     closure47()
 and closure49 (v0 : leptos_ReadSignal<US17>) () : bool =
-    let v1 : leptos_ReadSignal<US17> = method71(v0)
+    let v1 : leptos_ReadSignal<US17> = method72(v0)
     let v2 : string = $"leptos::SignalGet::get(&v1)"
     let v3 : US17 = Fable.Core.RustInterop.emitRustExpr () v2
     match v3 with
@@ -1277,7 +1317,7 @@ and closure49 (v0 : leptos_ReadSignal<US17>) () : bool =
         true
     | _ ->
         false
-and method106 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
+and method107 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
     closure49(v0)
 and closure50 () () : leptos_Fragment =
     let v0 : string = "History"
@@ -1290,12 +1330,12 @@ and closure50 () () : leptos_Fragment =
     let v7 : string = "leptos::Fragment::new(vec![v6])"
     let v8 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v7
     v8
-and method107 () : (unit -> leptos_Fragment) =
+and method108 () : (unit -> leptos_Fragment) =
     closure50()
-and method108 (v0 : leptos_HtmlElement<leptos_html_Option>) : leptos_HtmlElement<leptos_html_Option> =
+and method109 (v0 : leptos_HtmlElement<leptos_html_Option>) : leptos_HtmlElement<leptos_html_Option> =
     v0
 and closure51 (v0 : leptos_ReadSignal<US17>) () : bool =
-    let v1 : leptos_ReadSignal<US17> = method71(v0)
+    let v1 : leptos_ReadSignal<US17> = method72(v0)
     let v2 : string = $"leptos::SignalGet::get(&v1)"
     let v3 : US17 = Fable.Core.RustInterop.emitRustExpr () v2
     match v3 with
@@ -1303,7 +1343,7 @@ and closure51 (v0 : leptos_ReadSignal<US17>) () : bool =
         true
     | _ ->
         false
-and method109 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
+and method110 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
     closure51(v0)
 and closure52 () () : leptos_Fragment =
     let v0 : string = "Settings"
@@ -1316,41 +1356,41 @@ and closure52 () () : leptos_Fragment =
     let v7 : string = "leptos::Fragment::new(vec![v6])"
     let v8 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v7
     v8
-and method110 () : (unit -> leptos_Fragment) =
+and method111 () : (unit -> leptos_Fragment) =
     closure52()
 and closure48 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
-    let v1 : (unit -> bool) = method106(v0)
+    let v1 : (unit -> bool) = method107(v0)
     let v2 : string = "select=v1()"
     let v3 : string = ""
     let v4 : string = " " + v2 + v3 + ""
-    let v5 : (unit -> leptos_Fragment) = method107()
+    let v5 : (unit -> leptos_Fragment) = method108()
     let v6 : string = "option"
     let v7 : string = "<" + v6 + " " + v4 + ">{v5()}</" + v6 + ">"
     let v8 : string = "leptos::view! { " + v7 + " }"
     let v9 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v8
     let v10 : leptos_HtmlElement<leptos_html_Option> = v9 |> unbox
-    let v11 : leptos_HtmlElement<leptos_html_Option> = method108(v10)
+    let v11 : leptos_HtmlElement<leptos_html_Option> = method109(v10)
     let v12 : string = "leptos::IntoView::into_view(v11)"
     let v13 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v12
-    let v14 : (unit -> bool) = method109(v0)
+    let v14 : (unit -> bool) = method110(v0)
     let v15 : string = "select=v14()"
     let v16 : string = " " + v15 + v3 + ""
-    let v17 : (unit -> leptos_Fragment) = method110()
+    let v17 : (unit -> leptos_Fragment) = method111()
     let v18 : string = "<" + v6 + " " + v16 + ">{v17()}</" + v6 + ">"
     let v19 : string = "leptos::view! { " + v18 + " }"
     let v20 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v19
     let v21 : leptos_HtmlElement<leptos_html_Option> = v20 |> unbox
-    let v22 : leptos_HtmlElement<leptos_html_Option> = method108(v21)
+    let v22 : leptos_HtmlElement<leptos_html_Option> = method109(v21)
     let v23 : string = "leptos::IntoView::into_view(v22)"
     let v24 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v23
     let v25 : (leptos_View []) = [|v13; v24|]
-    let v26 : (leptos_View []) = method88(v25)
+    let v26 : (leptos_View []) = method89(v25)
     let v27 : string = "leptos::Fragment::new(v26.to_vec())"
     let v28 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v27
     v28
-and method105 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
+and method106 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
     closure48(v0)
-and method111 (v0 : leptos_HtmlElement<leptos_html_Select>) : leptos_HtmlElement<leptos_html_Select> =
+and method112 (v0 : leptos_HtmlElement<leptos_html_Select>) : leptos_HtmlElement<leptos_html_Select> =
     v0
 and closure46 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
     let v1 : string = "for=\"Tab\""
@@ -1358,37 +1398,37 @@ and closure46 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
     let v3 : string = ""
     let v4 : string = " " + v1 + v3 + ""
     let v5 : string = " " + v2 + v4 + ""
-    let v6 : (unit -> leptos_Fragment) = method104()
+    let v6 : (unit -> leptos_Fragment) = method105()
     let v7 : string = "label"
     let v8 : string = "<" + v7 + " " + v5 + ">{v6()}</" + v7 + ">"
     let v9 : string = "leptos::view! { " + v8 + " }"
     let v10 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v9
     let v11 : leptos_HtmlElement<leptos_html_Label> = v10 |> unbox
-    let v12 : leptos_HtmlElement<leptos_html_Label> = method80(v11)
+    let v12 : leptos_HtmlElement<leptos_html_Label> = method81(v11)
     let v13 : string = "leptos::IntoView::into_view(v12)"
     let v14 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v13
     let v15 : string = "id=\"Tab\""
     let v16 : string = "class=\"w-full rounded-md border-gray-200\""
     let v17 : string = " " + v15 + v3 + ""
     let v18 : string = " " + v16 + v17 + ""
-    let v19 : (unit -> leptos_Fragment) = method105(v0)
+    let v19 : (unit -> leptos_Fragment) = method106(v0)
     let v20 : string = "select"
     let v21 : string = "<" + v20 + " " + v18 + ">{v19()}</" + v20 + ">"
     let v22 : string = "leptos::view! { " + v21 + " }"
     let v23 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v22
     let v24 : leptos_HtmlElement<leptos_html_Select> = v23 |> unbox
-    let v25 : leptos_HtmlElement<leptos_html_Select> = method111(v24)
+    let v25 : leptos_HtmlElement<leptos_html_Select> = method112(v24)
     let v26 : string = "leptos::IntoView::into_view(v25)"
     let v27 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v26
     let v28 : (leptos_View []) = [|v14; v27|]
-    let v29 : (leptos_View []) = method88(v28)
+    let v29 : (leptos_View []) = method89(v28)
     let v30 : string = "leptos::Fragment::new(v29.to_vec())"
     let v31 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v30
     v31
-and method103 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
+and method104 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
     closure46(v0)
 and closure56 (v0 : leptos_ReadSignal<US17>) () : bool =
-    let v1 : leptos_ReadSignal<US17> = method71(v0)
+    let v1 : leptos_ReadSignal<US17> = method72(v0)
     let v2 : string = $"leptos::SignalGet::get(&v1)"
     let v3 : US17 = Fable.Core.RustInterop.emitRustExpr () v2
     match v3 with
@@ -1396,9 +1436,9 @@ and closure56 (v0 : leptos_ReadSignal<US17>) () : bool =
         true
     | _ ->
         false
-and method115 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
+and method116 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
     closure56(v0)
-and method116 (v0 : (unit -> bool)) : (unit -> bool) =
+and method117 (v0 : (unit -> bool)) : (unit -> bool) =
     v0
 and closure57 (v0 : (unit -> bool)) () : StaticRef<Str> =
     let v1 : bool = v0 ()
@@ -1412,12 +1452,12 @@ and closure57 (v0 : (unit -> bool)) () : StaticRef<Str> =
         let v6 : string = "r#\"" + v5 + "\"#"
         let v7 : StaticRef<Str> = Fable.Core.RustInterop.emitRustExpr () v6
         v7
-and method117 (v0 : (unit -> bool)) : (unit -> StaticRef<Str>) =
+and method118 (v0 : (unit -> bool)) : (unit -> StaticRef<Str>) =
     closure57(v0)
-and method119 (v0 : leptos_HtmlElement<leptos_svg_Svg>) : leptos_HtmlElement<leptos_svg_Svg> =
+and method120 (v0 : leptos_HtmlElement<leptos_svg_Svg>) : leptos_HtmlElement<leptos_svg_Svg> =
     v0
 and closure58 (v0 : leptos_HtmlElement<leptos_svg_Svg>) () : leptos_Fragment =
-    let v1 : leptos_HtmlElement<leptos_svg_Svg> = method119(v0)
+    let v1 : leptos_HtmlElement<leptos_svg_Svg> = method120(v0)
     let v2 : string = "leptos::IntoView::into_view(v1)"
     let v3 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v2
     let v4 : string = "History"
@@ -1428,16 +1468,16 @@ and closure58 (v0 : leptos_HtmlElement<leptos_svg_Svg>) () : leptos_Fragment =
     let v9 : string = "leptos::IntoView::into_view(v8)"
     let v10 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v9
     let v11 : (leptos_View []) = [|v3; v10|]
-    let v12 : (leptos_View []) = method88(v11)
+    let v12 : (leptos_View []) = method89(v11)
     let v13 : string = "leptos::Fragment::new(v12.to_vec())"
     let v14 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v13
     v14
-and method118 (v0 : leptos_HtmlElement<leptos_svg_Svg>) : (unit -> leptos_Fragment) =
+and method119 (v0 : leptos_HtmlElement<leptos_svg_Svg>) : (unit -> leptos_Fragment) =
     closure58(v0)
-and method120 (v0 : leptos_HtmlElement<leptos_html_A>) : leptos_HtmlElement<leptos_html_A> =
+and method121 (v0 : leptos_HtmlElement<leptos_html_A>) : leptos_HtmlElement<leptos_html_A> =
     v0
 and closure59 (v0 : leptos_ReadSignal<US17>) () : bool =
-    let v1 : leptos_ReadSignal<US17> = method71(v0)
+    let v1 : leptos_ReadSignal<US17> = method72(v0)
     let v2 : string = $"leptos::SignalGet::get(&v1)"
     let v3 : US17 = Fable.Core.RustInterop.emitRustExpr () v2
     match v3 with
@@ -1445,10 +1485,10 @@ and closure59 (v0 : leptos_ReadSignal<US17>) () : bool =
         true
     | _ ->
         false
-and method121 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
+and method122 (v0 : leptos_ReadSignal<US17>) : (unit -> bool) =
     closure59(v0)
 and closure60 (v0 : leptos_HtmlElement<leptos_svg_Svg>) () : leptos_Fragment =
-    let v1 : leptos_HtmlElement<leptos_svg_Svg> = method119(v0)
+    let v1 : leptos_HtmlElement<leptos_svg_Svg> = method120(v0)
     let v2 : string = "leptos::IntoView::into_view(v1)"
     let v3 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v2
     let v4 : string = "Settings"
@@ -1459,11 +1499,11 @@ and closure60 (v0 : leptos_HtmlElement<leptos_svg_Svg>) () : leptos_Fragment =
     let v9 : string = "leptos::IntoView::into_view(v8)"
     let v10 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v9
     let v11 : (leptos_View []) = [|v3; v10|]
-    let v12 : (leptos_View []) = method88(v11)
+    let v12 : (leptos_View []) = method89(v11)
     let v13 : string = "leptos::Fragment::new(v12.to_vec())"
     let v14 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v13
     v14
-and method122 (v0 : leptos_HtmlElement<leptos_svg_Svg>) : (unit -> leptos_Fragment) =
+and method123 (v0 : leptos_HtmlElement<leptos_svg_Svg>) : (unit -> leptos_Fragment) =
     closure60(v0)
 and closure55 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v2 : string = v1 + "#/history"
@@ -1476,9 +1516,9 @@ and closure55 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v9 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v8
     let v10 : string = $"String::from(v9)"
     let v11 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v10
-    let v12 : (unit -> bool) = method115(v0)
-    let v13 : (unit -> bool) = method116(v12)
-    let v14 : (unit -> StaticRef<Str>) = method117(v12)
+    let v12 : (unit -> bool) = method116(v0)
+    let v13 : (unit -> bool) = method117(v12)
+    let v14 : (unit -> StaticRef<Str>) = method118(v12)
     let v15 : string = "href=v11"
     let v16 : string = "class={move || \"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium \".to_owned() + v14()}"
     let v17 : string = "aria-current={move || if v13() { \"page\" } else { \"\" }}"
@@ -1486,13 +1526,13 @@ and closure55 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v19 : string = " " + v15 + v18 + ""
     let v20 : string = " " + v16 + v19 + ""
     let v21 : string = " " + v17 + v20 + ""
-    let v22 : (unit -> leptos_Fragment) = method118(v6)
+    let v22 : (unit -> leptos_Fragment) = method119(v6)
     let v23 : string = "a"
     let v24 : string = "<" + v23 + " " + v21 + ">{v22()}</" + v23 + ">"
     let v25 : string = "leptos::view! { " + v24 + " }"
     let v26 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v25
     let v27 : leptos_HtmlElement<leptos_html_A> = v26 |> unbox
-    let v28 : leptos_HtmlElement<leptos_html_A> = method120(v27)
+    let v28 : leptos_HtmlElement<leptos_html_A> = method121(v27)
     let v29 : string = "leptos::IntoView::into_view(v28)"
     let v30 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v29
     let v31 : string = v1 + "#/settings"
@@ -1505,31 +1545,31 @@ and closure55 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v38 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v37
     let v39 : string = $"String::from(v38)"
     let v40 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v39
-    let v41 : (unit -> bool) = method121(v0)
-    let v42 : (unit -> bool) = method116(v41)
-    let v43 : (unit -> StaticRef<Str>) = method117(v41)
+    let v41 : (unit -> bool) = method122(v0)
+    let v42 : (unit -> bool) = method117(v41)
+    let v43 : (unit -> StaticRef<Str>) = method118(v41)
     let v44 : string = "href=v40"
     let v45 : string = "class={move || \"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] pt-[8px] pr-[10px] pb-[11px] pl-[10px] text-sm font-medium \".to_owned() + v43()}"
     let v46 : string = "aria-current={move || if v42() { \"page\" } else { \"\" }}"
     let v47 : string = " " + v44 + v18 + ""
     let v48 : string = " " + v45 + v47 + ""
     let v49 : string = " " + v46 + v48 + ""
-    let v50 : (unit -> leptos_Fragment) = method122(v35)
+    let v50 : (unit -> leptos_Fragment) = method123(v35)
     let v51 : string = "<" + v23 + " " + v49 + ">{v50()}</" + v23 + ">"
     let v52 : string = "leptos::view! { " + v51 + " }"
     let v53 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v52
     let v54 : leptos_HtmlElement<leptos_html_A> = v53 |> unbox
-    let v55 : leptos_HtmlElement<leptos_html_A> = method120(v54)
+    let v55 : leptos_HtmlElement<leptos_html_A> = method121(v54)
     let v56 : string = "leptos::IntoView::into_view(v55)"
     let v57 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v56
     let v58 : (leptos_View []) = [|v30; v57|]
-    let v59 : (leptos_View []) = method88(v58)
+    let v59 : (leptos_View []) = method89(v58)
     let v60 : string = "leptos::Fragment::new(v59.to_vec())"
     let v61 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v60
     v61
-and method114 (v0 : leptos_ReadSignal<US17>, v1 : string) : (unit -> leptos_Fragment) =
+and method115 (v0 : leptos_ReadSignal<US17>, v1 : string) : (unit -> leptos_Fragment) =
     closure55(v0, v1)
-and method123 (v0 : leptos_HtmlElement<leptos_html_Nav>) : leptos_HtmlElement<leptos_html_Nav> =
+and method124 (v0 : leptos_HtmlElement<leptos_html_Nav>) : leptos_HtmlElement<leptos_html_Nav> =
     v0
 and closure54 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v2 : string = "class=\"-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]\""
@@ -1537,37 +1577,37 @@ and closure54 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v4 : string = ""
     let v5 : string = " " + v2 + v4 + ""
     let v6 : string = " " + v3 + v5 + ""
-    let v7 : (unit -> leptos_Fragment) = method114(v0, v1)
+    let v7 : (unit -> leptos_Fragment) = method115(v0, v1)
     let v8 : string = "nav"
     let v9 : string = "<" + v8 + " " + v6 + ">{v7()}</" + v8 + ">"
     let v10 : string = "leptos::view! { " + v9 + " }"
     let v11 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : leptos_HtmlElement<leptos_html_Nav> = v11 |> unbox
-    let v13 : leptos_HtmlElement<leptos_html_Nav> = method123(v12)
+    let v13 : leptos_HtmlElement<leptos_html_Nav> = method124(v12)
     let v14 : string = "leptos::IntoView::into_view(v13)"
     let v15 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v14
     let v16 : string = "leptos::Fragment::new(vec![v15])"
     let v17 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v16
     v17
-and method113 (v0 : leptos_ReadSignal<US17>, v1 : string) : (unit -> leptos_Fragment) =
+and method114 (v0 : leptos_ReadSignal<US17>, v1 : string) : (unit -> leptos_Fragment) =
     closure54(v0, v1)
 and closure53 (v0 : leptos_ReadSignal<US17>, v1 : string) () : leptos_Fragment =
     let v2 : string = "class=\"flex flex-1 border-t border-gray-200\""
     let v3 : string = ""
     let v4 : string = " " + v2 + v3 + ""
-    let v5 : (unit -> leptos_Fragment) = method113(v0, v1)
+    let v5 : (unit -> leptos_Fragment) = method114(v0, v1)
     let v6 : string = "div"
     let v7 : string = "<" + v6 + " " + v4 + ">{v5()}</" + v6 + ">"
     let v8 : string = "leptos::view! { " + v7 + " }"
     let v9 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v8
     let v10 : leptos_HtmlElement<leptos_html_Div> = v9 |> unbox
-    let v11 : leptos_HtmlElement<leptos_html_Div> = method89(v10)
+    let v11 : leptos_HtmlElement<leptos_html_Div> = method90(v10)
     let v12 : string = "leptos::IntoView::into_view(v11)"
     let v13 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v12
     let v14 : string = "leptos::Fragment::new(vec![v13])"
     let v15 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v14
     v15
-and method112 (v0 : leptos_ReadSignal<US17>, v1 : string) : (unit -> leptos_Fragment) =
+and method113 (v0 : leptos_ReadSignal<US17>, v1 : string) : (unit -> leptos_Fragment) =
     closure53(v0, v1)
 and closure45 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
     let v1 : string = "leptos_router::use_location()"
@@ -1600,53 +1640,53 @@ and closure45 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
     let v25 : string = "class=\"hidden\""
     let v26 : string = ""
     let v27 : string = " " + v25 + v26 + ""
-    let v28 : (unit -> leptos_Fragment) = method103(v0)
+    let v28 : (unit -> leptos_Fragment) = method104(v0)
     let v29 : string = "div"
     let v30 : string = "<" + v29 + " " + v27 + ">{v28()}</" + v29 + ">"
     let v31 : string = "leptos::view! { " + v30 + " }"
     let v32 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v31
     let v33 : leptos_HtmlElement<leptos_html_Div> = v32 |> unbox
-    let v34 : leptos_HtmlElement<leptos_html_Div> = method89(v33)
+    let v34 : leptos_HtmlElement<leptos_html_Div> = method90(v33)
     let v35 : string = "leptos::IntoView::into_view(v34)"
     let v36 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v35
     let v37 : string = "class=\"flex flex-1 [overflow-x:auto] [overflow-y:hidden]\""
     let v38 : string = " " + v37 + v26 + ""
-    let v39 : (unit -> leptos_Fragment) = method112(v0, v24)
+    let v39 : (unit -> leptos_Fragment) = method113(v0, v24)
     let v40 : string = "<" + v29 + " " + v38 + ">{v39()}</" + v29 + ">"
     let v41 : string = "leptos::view! { " + v40 + " }"
     let v42 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v41
     let v43 : leptos_HtmlElement<leptos_html_Div> = v42 |> unbox
-    let v44 : leptos_HtmlElement<leptos_html_Div> = method89(v43)
+    let v44 : leptos_HtmlElement<leptos_html_Div> = method90(v43)
     let v45 : string = "leptos::IntoView::into_view(v44)"
     let v46 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v45
     let v47 : (leptos_View []) = [|v36; v46|]
-    let v48 : (leptos_View []) = method88(v47)
+    let v48 : (leptos_View []) = method89(v47)
     let v49 : string = "leptos::Fragment::new(v48.to_vec())"
     let v50 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v49
     v50
-and method102 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
+and method103 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
     closure45(v0)
 and closure44 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
     let v1 : string = "class=\"flex flex-1 [align-items:flex-end]\""
     let v2 : string = ""
     let v3 : string = " " + v1 + v2 + ""
-    let v4 : (unit -> leptos_Fragment) = method102(v0)
+    let v4 : (unit -> leptos_Fragment) = method103(v0)
     let v5 : string = "div"
     let v6 : string = "<" + v5 + " " + v3 + ">{v4()}</" + v5 + ">"
     let v7 : string = "leptos::view! { " + v6 + " }"
     let v8 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v7
     let v9 : leptos_HtmlElement<leptos_html_Div> = v8 |> unbox
-    let v10 : leptos_HtmlElement<leptos_html_Div> = method89(v9)
+    let v10 : leptos_HtmlElement<leptos_html_Div> = method90(v9)
     let v11 : string = "leptos::IntoView::into_view(v10)"
     let v12 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v11
     let v13 : string = "leptos::Fragment::new(vec![v12])"
     let v14 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v13
     v14
-and method101 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
+and method102 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
     closure44(v0)
 and closure29 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
-    let v1 : (unit -> leptos_ReadSignal<US17>) = method69(v0)
-    let v2 : (leptos_ReadSignal<US17> -> leptos_View) = method70()
+    let v1 : (unit -> leptos_ReadSignal<US17>) = method70(v0)
+    let v2 : (leptos_ReadSignal<US17> -> leptos_View) = method71()
     let v3 : string = "move || v2(v1())"
     let v4 : (unit -> leptos_View) = Fable.Core.RustInterop.emitRustExpr () v3
     let v5 : string = "leptos::IntoView::into_view(move || v4(()))"
@@ -1654,21 +1694,21 @@ and closure29 (v0 : leptos_ReadSignal<US17>) () : leptos_Fragment =
     let v7 : string = "class=\"flex flex-1 min-w-max\""
     let v8 : string = ""
     let v9 : string = " " + v7 + v8 + ""
-    let v10 : (unit -> leptos_Fragment) = method101(v0)
+    let v10 : (unit -> leptos_Fragment) = method102(v0)
     let v11 : string = "div"
     let v12 : string = "<" + v11 + " " + v9 + ">{v10()}</" + v11 + ">"
     let v13 : string = "leptos::view! { " + v12 + " }"
     let v14 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v13
     let v15 : leptos_HtmlElement<leptos_html_Div> = v14 |> unbox
-    let v16 : leptos_HtmlElement<leptos_html_Div> = method89(v15)
+    let v16 : leptos_HtmlElement<leptos_html_Div> = method90(v15)
     let v17 : string = "leptos::IntoView::into_view(v16)"
     let v18 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v17
     let v19 : (leptos_View []) = [|v6; v18|]
-    let v20 : (leptos_View []) = method88(v19)
+    let v20 : (leptos_View []) = method89(v19)
     let v21 : string = "leptos::Fragment::new(v20.to_vec())"
     let v22 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v21
     v22
-and method68 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
+and method69 (v0 : leptos_ReadSignal<US17>) : (unit -> leptos_Fragment) =
     closure29(v0)
 and closure26 () () : leptos_Fragment =
     let v0 : string = "content.render ()"
@@ -1676,59 +1716,64 @@ and closure26 () () : leptos_Fragment =
     Fable.Core.RustInterop.emitRustExpr v0 v1
     let v2 : string = "leptos_router::use_location()"
     let v3 : leptos_router_Location = Fable.Core.RustInterop.emitRustExpr () v2
-    let v4 : string = "leptos_router::use_location()"
-    let v5 : leptos_router_Location = Fable.Core.RustInterop.emitRustExpr () v4
-    let v6 : leptos_router_Location = method56(v5)
-    let v7 : string = "v6.pathname"
-    let v8 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = $"v8()"
-    let v10 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v9
-    let v11 : std_string_String = method18(v10)
-    let v12 : string = "fable_library_rust::String_::fromString(v11)"
-    let v13 : string = Fable.Core.RustInterop.emitRustExpr () v12
-    let v14 : leptos_router_Location = method57(v5)
-    let v15 : string = "v14.search"
-    let v16 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v15
-    let v17 : string = $"v16()"
-    let v18 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v17
-    let v19 : std_string_String = method18(v18)
-    let v20 : string = "fable_library_rust::String_::fromString(v19)"
-    let v21 : string = Fable.Core.RustInterop.emitRustExpr () v20
-    let v23 : bool = v21 = ""
-    let v26 : string =
-        if v23 then
-            let v24 : string = ""
-            v24
+    let v4 : string = "std::sync::Arc::new(leptos_router::use_navigate())"
+    let v5 : std_sync_Arc<Dyn<ActionFn2<Ref<Str>, leptos_router_NavigateOptions>>> = Fable.Core.RustInterop.emitRustExpr () v4
+    let v6 : string = "leptos_router::use_location()"
+    let v7 : leptos_router_Location = Fable.Core.RustInterop.emitRustExpr () v6
+    let v8 : leptos_router_Location = method56(v7)
+    let v9 : string = "v8.pathname"
+    let v10 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v9
+    let v11 : string = $"v10()"
+    let v12 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v11
+    let v13 : std_string_String = method18(v12)
+    let v14 : string = "fable_library_rust::String_::fromString(v13)"
+    let v15 : string = Fable.Core.RustInterop.emitRustExpr () v14
+    let v16 : leptos_router_Location = method57(v7)
+    let v17 : string = "v16.search"
+    let v18 : leptos_Memo<std_string_String> = Fable.Core.RustInterop.emitRustExpr () v17
+    let v19 : string = $"v18()"
+    let v20 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v19
+    let v21 : std_string_String = method18(v20)
+    let v22 : string = "fable_library_rust::String_::fromString(v21)"
+    let v23 : string = Fable.Core.RustInterop.emitRustExpr () v22
+    let v25 : bool = v23 = ""
+    let v28 : string =
+        if v25 then
+            let v26 : string = ""
+            v26
         else
-            let v25 : string = $"?{v21}"
-            v25
-    let v27 : string = v13 + v26
-    let v28 : string = "leptos::use_context::<std::rc::Rc<Heap1>>().unwrap().into()"
-    let v29 : Heap1 = Fable.Core.RustInterop.emitRustExpr () v28
-    let v30 : US17 = method58()
-    let v31 : string = $"leptos::create_signal(v30)"
-    let struct (v32 : leptos_ReadSignal<US17>, v33 : leptos_WriteSignal<US17>) = Fable.Core.RustInterop.emitRustExpr () v31
-    let v34 : (unit -> unit) = method59(v3, v27, v29)
-    let v35 : string = "leptos::create_effect(move |_| { v34() })"
-    Fable.Core.RustInterop.emitRustExpr () v35
-    let v36 : (unit -> unit) = method61(v3, v33)
-    let v37 : string = "leptos::create_effect(move |_| { v36() })"
-    Fable.Core.RustInterop.emitRustExpr () v37
-    let v38 : string = "class=\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\""
-    let v39 : string = ""
-    let v40 : string = " " + v38 + v39 + ""
-    let v41 : (unit -> leptos_Fragment) = method68(v32)
-    let v42 : string = "div"
-    let v43 : string = "<" + v42 + " " + v40 + ">{v41()}</" + v42 + ">"
-    let v44 : string = "leptos::view! { " + v43 + " }"
-    let v45 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v44
-    let v46 : leptos_HtmlElement<leptos_html_Div> = v45 |> unbox
-    let v47 : leptos_HtmlElement<leptos_html_Div> = method89(v46)
-    let v48 : string = "leptos::IntoView::into_view(v47)"
-    let v49 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v48
-    let v50 : string = "leptos::Fragment::new(vec![v49])"
-    let v51 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v50
-    v51
+            let v27 : string = $"?{v23}"
+            v27
+    let v29 : string = v15 + v28
+    let v30 : string = "leptos::use_context::<std::rc::Rc<Heap1>>().unwrap().into()"
+    let v31 : Heap1 = Fable.Core.RustInterop.emitRustExpr () v30
+    let v32 : US17 = method58()
+    let v33 : string = $"leptos::create_signal(v32)"
+    let struct (v34 : leptos_ReadSignal<US17>, v35 : leptos_WriteSignal<US17>) = Fable.Core.RustInterop.emitRustExpr () v33
+    let v36 : bool = method41()
+    let v37 : string = $"leptos::create_signal(v36)"
+    let struct (v38 : leptos_ReadSignal<bool>, v39 : leptos_WriteSignal<bool>) = Fable.Core.RustInterop.emitRustExpr () v37
+    let v40 : (unit -> unit) = method59(v3, v5, v29, v31, v39, v38)
+    let v41 : string = "leptos::create_effect(move |_| { v40() })"
+    Fable.Core.RustInterop.emitRustExpr () v41
+    let v42 : (unit -> unit) = method62(v3, v35)
+    let v43 : string = "leptos::create_effect(move |_| { v42() })"
+    Fable.Core.RustInterop.emitRustExpr () v43
+    let v44 : string = "class=\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\""
+    let v45 : string = ""
+    let v46 : string = " " + v44 + v45 + ""
+    let v47 : (unit -> leptos_Fragment) = method69(v34)
+    let v48 : string = "div"
+    let v49 : string = "<" + v48 + " " + v46 + ">{v47()}</" + v48 + ">"
+    let v50 : string = "leptos::view! { " + v49 + " }"
+    let v51 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v50
+    let v52 : leptos_HtmlElement<leptos_html_Div> = v51 |> unbox
+    let v53 : leptos_HtmlElement<leptos_html_Div> = method90(v52)
+    let v54 : string = "leptos::IntoView::into_view(v53)"
+    let v55 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v54
+    let v56 : string = "leptos::Fragment::new(vec![v55])"
+    let v57 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v56
+    v57
 and method55 () : (unit -> leptos_Fragment) =
     closure26()
 and closure5 () () : leptos_Fragment =
@@ -1775,7 +1820,7 @@ and closure5 () () : leptos_Fragment =
     let v38 : string = "leptos::view! { " + v37 + " }"
     let v39 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v38
     let v40 : leptos_HtmlElement<leptos_html_Div> = v39 |> unbox
-    let v41 : leptos_HtmlElement<leptos_html_Div> = method89(v40)
+    let v41 : leptos_HtmlElement<leptos_html_Div> = method90(v40)
     let v42 : string = "leptos::IntoView::into_view(v41)"
     let v43 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v42
     let v44 : string = "leptos::Fragment::new(vec![v43])"
@@ -1785,13 +1830,13 @@ and method9 () : (unit -> leptos_Fragment) =
     closure5()
 and closure61 () () : leptos_Fragment =
     let v0 : (leptos_View []) = [||]
-    let v1 : (leptos_View []) = method88(v0)
+    let v1 : (leptos_View []) = method89(v0)
     let v2 : string = "leptos::Fragment::new(v1.to_vec())"
     let v3 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v2
     v3
-and method124 () : (unit -> leptos_Fragment) =
+and method125 () : (unit -> leptos_Fragment) =
     closure61()
-and method125 () : string =
+and method126 () : string =
     let v0 : string = "/"
     v0
 and closure62 () () : leptos_Fragment =
@@ -1838,15 +1883,15 @@ and closure62 () () : leptos_Fragment =
     let v38 : string = "leptos::view! { " + v37 + " }"
     let v39 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v38
     let v40 : leptos_HtmlElement<leptos_html_Div> = v39 |> unbox
-    let v41 : leptos_HtmlElement<leptos_html_Div> = method89(v40)
+    let v41 : leptos_HtmlElement<leptos_html_Div> = method90(v40)
     let v42 : string = "leptos::IntoView::into_view(v41)"
     let v43 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v42
     let v44 : string = "leptos::Fragment::new(vec![v43])"
     let v45 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v44
     v45
-and method126 () : (unit -> leptos_Fragment) =
+and method127 () : (unit -> leptos_Fragment) =
     closure62()
-and method127 () : string =
+and method128 () : string =
     let v0 : string = "/*"
     v0
 and closure63 () () : leptos_Fragment =
@@ -1893,15 +1938,15 @@ and closure63 () () : leptos_Fragment =
     let v38 : string = "leptos::view! { " + v37 + " }"
     let v39 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v38
     let v40 : leptos_HtmlElement<leptos_html_Div> = v39 |> unbox
-    let v41 : leptos_HtmlElement<leptos_html_Div> = method89(v40)
+    let v41 : leptos_HtmlElement<leptos_html_Div> = method90(v40)
     let v42 : string = "leptos::IntoView::into_view(v41)"
     let v43 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v42
     let v44 : string = "leptos::Fragment::new(vec![v43])"
     let v45 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v44
     v45
-and method128 () : (unit -> leptos_Fragment) =
+and method129 () : (unit -> leptos_Fragment) =
     closure63()
-and method129 () : string =
+and method130 () : string =
     let v0 : string = "*"
     v0
 and closure64 () () : leptos_Fragment =
@@ -1948,13 +1993,13 @@ and closure64 () () : leptos_Fragment =
     let v38 : string = "leptos::view! { " + v37 + " }"
     let v39 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v38
     let v40 : leptos_HtmlElement<leptos_html_Div> = v39 |> unbox
-    let v41 : leptos_HtmlElement<leptos_html_Div> = method89(v40)
+    let v41 : leptos_HtmlElement<leptos_html_Div> = method90(v40)
     let v42 : string = "leptos::IntoView::into_view(v41)"
     let v43 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v42
     let v44 : string = "leptos::Fragment::new(vec![v43])"
     let v45 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v44
     v45
-and method130 () : (unit -> leptos_Fragment) =
+and method131 () : (unit -> leptos_Fragment) =
     closure64()
 and closure4 () () : leptos_Fragment =
     let v0 : string = method7()
@@ -1964,7 +2009,7 @@ and closure4 () () : leptos_Fragment =
     let v4 : string = $"String::from(v3)"
     let v5 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v4
     let v6 : (unit -> leptos_Fragment) = method9()
-    let v7 : (unit -> leptos_Fragment) = method124()
+    let v7 : (unit -> leptos_Fragment) = method125()
     let v8 : string = "path=v5"
     let v9 : string = "view=move || v6()"
     let v10 : string = ""
@@ -1974,14 +2019,14 @@ and closure4 () () : leptos_Fragment =
     let v14 : string = "<" + v13 + " " + v12 + " />"
     let v15 : string = "leptos::IntoView::into_view(leptos::view! { " + v14 + " })"
     let v16 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v15
-    let v17 : string = method125()
+    let v17 : string = method126()
     let v18 : string = method8(v17)
     let v19 : string = $"fable_library_rust::String_::LrcStr::as_str(&v18)"
     let v20 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v19
     let v21 : string = $"String::from(v20)"
     let v22 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v21
-    let v23 : (unit -> leptos_Fragment) = method126()
-    let v24 : (unit -> leptos_Fragment) = method124()
+    let v23 : (unit -> leptos_Fragment) = method127()
+    let v24 : (unit -> leptos_Fragment) = method125()
     let v25 : string = "path=v22"
     let v26 : string = "view=move || v23()"
     let v27 : string = " " + v25 + v10 + ""
@@ -1989,14 +2034,14 @@ and closure4 () () : leptos_Fragment =
     let v29 : string = "<" + v13 + " " + v28 + " />"
     let v30 : string = "leptos::IntoView::into_view(leptos::view! { " + v29 + " })"
     let v31 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v30
-    let v32 : string = method127()
+    let v32 : string = method128()
     let v33 : string = method8(v32)
     let v34 : string = $"fable_library_rust::String_::LrcStr::as_str(&v33)"
     let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v34
     let v36 : string = $"String::from(v35)"
     let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v36
-    let v38 : (unit -> leptos_Fragment) = method128()
-    let v39 : (unit -> leptos_Fragment) = method124()
+    let v38 : (unit -> leptos_Fragment) = method129()
+    let v39 : (unit -> leptos_Fragment) = method125()
     let v40 : string = "path=v37"
     let v41 : string = "view=move || v38()"
     let v42 : string = " " + v40 + v10 + ""
@@ -2004,14 +2049,14 @@ and closure4 () () : leptos_Fragment =
     let v44 : string = "<" + v13 + " " + v43 + " />"
     let v45 : string = "leptos::IntoView::into_view(leptos::view! { " + v44 + " })"
     let v46 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v45
-    let v47 : string = method129()
+    let v47 : string = method130()
     let v48 : string = method8(v47)
     let v49 : string = $"fable_library_rust::String_::LrcStr::as_str(&v48)"
     let v50 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v49
     let v51 : string = $"String::from(v50)"
     let v52 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v51
-    let v53 : (unit -> leptos_Fragment) = method130()
-    let v54 : (unit -> leptos_Fragment) = method124()
+    let v53 : (unit -> leptos_Fragment) = method131()
+    let v54 : (unit -> leptos_Fragment) = method125()
     let v55 : string = "path=v52"
     let v56 : string = "view=move || v53()"
     let v57 : string = " " + v55 + v10 + ""
@@ -2020,17 +2065,17 @@ and closure4 () () : leptos_Fragment =
     let v60 : string = "leptos::IntoView::into_view(leptos::view! { " + v59 + " })"
     let v61 : leptos_View = Fable.Core.RustInterop.emitRustExpr () v60
     let v62 : (leptos_View []) = [|v16; v31; v46; v61|]
-    let v63 : (leptos_View []) = method88(v62)
+    let v63 : (leptos_View []) = method89(v62)
     let v64 : string = "leptos::Fragment::new(v63.to_vec())"
     let v65 : leptos_Fragment = Fable.Core.RustInterop.emitRustExpr () v64
     v65
 and method6 () : (unit -> leptos_Fragment) =
     closure4()
-and method131 (v0 : (unit -> leptos_Fragment)) : (unit -> leptos_Fragment) =
+and method132 (v0 : (unit -> leptos_Fragment)) : (unit -> leptos_Fragment) =
     v0
 and closure3 () () : leptos_Fragment =
     let v0 : (unit -> leptos_Fragment) = method6()
-    let v1 : (unit -> leptos_Fragment) = method131(v0)
+    let v1 : (unit -> leptos_Fragment) = method132(v0)
     let v2 : string = "children=Box::new(move || v1())"
     let v3 : string = ""
     let v4 : string = " " + v2 + v3 + ""
@@ -2043,7 +2088,7 @@ and closure3 () () : leptos_Fragment =
     v10
 and method5 () : (unit -> leptos_Fragment) =
     closure3()
-and method132 (v0 : (unit -> leptos_Fragment)) : (unit -> leptos_Fragment) =
+and method133 (v0 : (unit -> leptos_Fragment)) : (unit -> leptos_Fragment) =
     v0
 and closure2 () () : Impl<leptos_IntoView> =
     let v0 : string = "app.render ()"
@@ -2070,7 +2115,7 @@ and closure2 () () : Impl<leptos_IntoView> =
     let v19 : string = $"leptos::provide_context::<std::rc::Rc<Heap1>>(v18)"
     Fable.Core.RustInterop.emitRustExpr () v19
     let v20 : (unit -> leptos_Fragment) = method5()
-    let v21 : (unit -> leptos_Fragment) = method132(v20)
+    let v21 : (unit -> leptos_Fragment) = method133(v20)
     let v22 : string = "children=Box::new(move || v21())"
     let v23 : string = ""
     let v24 : string = " " + v22 + v23 + ""
@@ -2087,9 +2132,9 @@ and method0 () : unit =
     ()
 and closure65 () () : unit =
     method0()
-and method133 () : (unit -> unit) =
+and method134 () : (unit -> unit) =
     closure65()
-and method134 (v0 : Box<Dyn<FnUnit>>) : Box<Dyn<FnUnit>> =
+and method135 (v0 : Box<Dyn<FnUnit>>) : Box<Dyn<FnUnit>> =
     v0
 and closure0 () (v0 : (string [])) : int32 =
     let v1 : string = "main / args: " + string v0 + ""
@@ -2112,10 +2157,10 @@ and closure0 () (v0 : (string [])) : int32 =
     | US0_1(v13) -> (* Some *)
         method0()
     | _ ->
-        let v14 : (unit -> unit) = method133()
+        let v14 : (unit -> unit) = method134()
         let v15 : string = "Box::new(move || v14())"
         let v16 : Box<Dyn<FnUnit>> = Fable.Core.RustInterop.emitRustExpr () v15
-        let v17 : Box<Dyn<FnUnit>> = method134(v16)
+        let v17 : Box<Dyn<FnUnit>> = method135(v16)
         let v18 : string = "wasm_bindgen::closure::Closure::wrap(v17)"
         let v19 : wasm_bindgen_closure_Closure<Dyn<FnUnit>> = Fable.Core.RustInterop.emitRustExpr () v18
         let v20 : string = "wasm_bindgen::closure::Closure::as_ref(&v19)"

@@ -29,6 +29,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Location\")>] type leptos_router_Location = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NavigateOptions\")>] type leptos_router_NavigateOptions = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>] type leptos_router_Url = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>] type leptos_Memo<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
@@ -42,6 +43,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>] type std_any_Any = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
@@ -59,6 +61,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>] type ActionFn2<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
@@ -209,10 +212,10 @@ inl use_database () =
 
             match state_data with
             | Some state_data =>
-                leptos.signal_get_untracked global_state.state .dark_mode
+                leptos.rw_signal_get_untracked global_state.state .dark_mode
                 |> leptos.rw_signal_set state_data.dark_mode
 
-                leptos.signal_get_untracked global_state.state .url_hash
+                leptos.rw_signal_get_untracked global_state.state .url_hash
                 |> leptos.rw_signal_set (state_data.url_hash |> sm'.from_std_string)
             | _ => ()
         | _ => ()
@@ -232,7 +235,7 @@ inl use_database () =
 
     let loading = leptos.create_memo fun () =>
         leptos.log $'"state.use_database () / loading create_memo"'
-        global_state.loading |> leptos.signal_get_untracked
+        global_state.loading |> leptos.rw_signal_get_untracked
 
     let (loaded, set_loaded) = leptos.create_signal false
 
@@ -242,8 +245,8 @@ inl use_database () =
 
         inl new_state_data =
             heap {
-                dark_mode = leptos.signal_get_untracked global_state.state .dark_mode |> leptos.rw_signal_get
-                url_hash = leptos.signal_get_untracked global_state.state .url_hash |> leptos.rw_signal_get |> sm'.to_std_string
+                dark_mode = leptos.rw_signal_get_untracked global_state.state .dark_mode |> leptos.rw_signal_get
+                url_hash = leptos.rw_signal_get_untracked global_state.state .url_hash |> leptos.rw_signal_get |> sm'.to_std_string
             }
 
         inl new_state_data_log = new_state_data |> sm'.format_debug

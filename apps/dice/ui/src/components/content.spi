@@ -4,17 +4,35 @@ inl render () : _ leptos.div =
     leptos.log $'"content.render ()"'
 
     inl location = leptos.use_location ()
+    inl navigate = leptos.use_navigate ()
     inl url = leptos.use_url ()
     inl global_state : state.global_state = leptos.use_context ()
-    let (tab, set_tab) = menu_tabs.History |> leptos.create_signal
+    inl (tab, set_tab) = menu_tabs.History |> leptos.create_signal
+
+    inl (loaded, set_loaded) = false |> leptos.create_signal
 
     leptos.create_effect fun () =>
+        inl loaded = loaded |> leptos.signal_get
+
         inl hash = location |> leptos.location_hash |> leptos.memo_get
         inl new_url_hash : string = $'$"{!url}{!hash}"'
+        leptos.log $'"content.render () / effect / new_url_hash: " + !new_url_hash + " / loaded: " + string !loaded + ""'
 
-        leptos.log $'"content.render () / effect / new_url_hash: " + !new_url_hash + ""'
+        if not loaded then
+            inl hash = join hash
+            if !\($'"!hash == \\\"\\\""') then
+                inl url_hash =
+                    leptos.rw_signal_get_untracked global_state.state .url_hash
+                    |> leptos.rw_signal_get
 
-        leptos.rw_signal_get global_state.state .url_hash |> leptos.rw_signal_set new_url_hash
+                leptos.log $'"content.render () / effect / url_hash: " + !url_hash + ""'
+
+                if url_hash |> sm'.contains "#" then
+                    navigate url_hash
+
+            true |> leptos.signal_set set_loaded
+        else
+            leptos.rw_signal_get global_state.state .url_hash |> leptos.rw_signal_set new_url_hash
 
     leptos.create_effect fun () =>
         inl hash = location |> leptos.location_hash |> leptos.memo_get
@@ -57,7 +75,6 @@ inl render () : _ leptos.div =
                     menu_tabs.render tab
                     |> leptos.views_to_fragment
                 |> leptos.element_to_fragment
-
             |> leptos.element_to_view
         ]
         |> leptos.views_to_fragment
