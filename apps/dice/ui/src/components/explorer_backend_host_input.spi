@@ -1,6 +1,6 @@
 open rust_operators
 
-inl explorer_backend_host_input () =
+inl render () =
     inl (explorer_backend_host, set_explorer_backend_host) = leptos.create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> sm'.to_std_string)
 
     leptos.input explorer_backend_host set_explorer_backend_host

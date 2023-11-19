@@ -294,6 +294,14 @@ inl location_hash (location : location) : memo rust.std_string =
     inl location = join location
     !\($'"!location.hash"')
 
+inl location_pathname (location : location) : memo rust.std_string =
+    inl location = join location
+    !\($'"!location.pathname"')
+
+inl location_search (location : location) : memo rust.std_string =
+    inl location = join location
+    !\($'"!location.search"')
+
 inl url_try_from (s : rust.ref' rust.str) : resultm.result' url rust.std_string =
     inl s = join s
     !\($'"leptos_router::Url::try_from(!s)"')
@@ -347,7 +355,7 @@ inl input forall t. getter setter : _ input =
         $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
     ]
 
-inl toggle { id on_change get_value } : _ label =
+inl toggle id on_change get_value : _ label =
     inl id = #id
     inl on_change : event -> () = join on_change
     inl get_value : () -> bool = join get_value

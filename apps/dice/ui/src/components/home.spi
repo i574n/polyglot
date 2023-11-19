@@ -1,8 +1,8 @@
 open rust_operators
 
-inl home { router } =
+inl render { router } =
     inl router : i32 = router
-    leptos.log $'"ui.home () / router: " + string !router + ""'
+    leptos.log $'"home.render () / router: " + string !router + ""'
 
     inl global_state : state.global_state = leptos.use_context ()
 
@@ -13,4 +13,4 @@ inl home { router } =
     leptos.div [
         $'"class=\\\"flex flex-1\\\""'
         get_dark_mode |> leptos.bool_prop "class:dark"
-    ] (content.content >> leptos.element_to_fragment)
+    ] (content.render >> leptos.element_to_fragment)

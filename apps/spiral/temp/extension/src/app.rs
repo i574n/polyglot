@@ -192,7 +192,7 @@ fn Home(window: &'static web_sys::Window) -> impl IntoView {
         crate::timer::set_albums().unwrap();
 
         log!(
-            "Home () / location4.state.get(): {:#?} / new_location_href: {:#?}",
+            "Home () / create_effect all url changes / location4.state.get(): {:#?} / new_location_href: {:#?}",
             location4.state.get(),
             new_location_href
         );

@@ -77,7 +77,7 @@ type global_state =
     }
 
 inl build_database () : rust.pin (rust.box (rust.dyn' (rust.future (result rust.rexie rust.rexie_error)))) =
-    leptos.log $'"ui.build_database ()"'
+    leptos.log $'"state.build_database ()"'
 
     fun () =>
         inl rexie : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.rexie rust.rexie_error)))) = !\($'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"')
@@ -90,7 +90,7 @@ inl get_dark_mode_key () =
     "dark-mode"
 
 inl get_dark_mode (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' (option bool) rust.rexie_error)))) =
-    leptos.log $'"ui.get_dark_mode ()"'
+    leptos.log $'"state.get_dark_mode ()"'
     inl rexie = join rexie
     fun () =>
         inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadOnly)?"')
@@ -103,10 +103,10 @@ inl get_dark_mode (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.fut
             inl mode_data = join mode_data
             inl data : rust.vec u8 = !\($'"serde_json::from_value(!mode_data).unwrap()"')
             inl data_log = data |> format_debug
-            leptos.log $'"ui.get_dark_mode () / data: " + string !data_log + ""'
+            leptos.log $'"state.get_dark_mode () / data: " + string !data_log + ""'
             inl data = join data
             inl json : rust.std_string = !\($'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).unwrap()"')
-            leptos.log $'"ui.get_dark_mode () / json: " + string !json + ""'
+            leptos.log $'"state.get_dark_mode () / json: " + string !json + ""'
 
             inl obj : rust.json_value =
                 json
@@ -125,7 +125,7 @@ inl get_dark_mode (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.fut
     |> async.future_init 2 0
 
 inl set_dark_mode (mode : bool) (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' () rust.rexie_error)))) =
-    leptos.log $'"ui.set_dark_mode () / mode: " + string !mode + ""'
+    leptos.log $'"state.set_dark_mode () / mode: " + string !mode + ""'
     inl rexie = join rexie
     fun () =>
         inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
@@ -144,3 +144,117 @@ inl set_dark_mode (mode : bool) (rexie : rust.rexie) : rust.pin (rust.box (rust.
 
         Ok () |> resultm.box
     |> async.future_init 4 0
+
+inl use_database () =
+    inl dark_mode_key = get_dark_mode_key ()
+    inl global_state : global_state = leptos.use_context ()
+
+    inl database : leptos.resource (option ()) rust.rexie =
+        leptos.create_local_resource
+            fun () => None
+            fun _ =>
+                fun () =>
+                    leptos.log $'"state.use_database () / database create_local_resource"'
+                    build_database () |> async.await |> resultm.get
+                |> async.future_init 0 0
+
+    inl dark_mode : leptos.resource (optionm'.option' rust.rexie) (option bool) =
+        leptos.create_local_resource
+            fun () =>
+                database
+                |> leptos.resource_get
+            fun (database : optionm'.option' rust.rexie) =>
+                fun () =>
+                    inl database_log = database |> format_debug
+                    leptos.log $'"state.use_database () / dark_mode create_local_resource / database: " + string !database_log + ""'
+                    match database |> optionm'.unbox with
+                    | Some database => database |> get_dark_mode |> async.await |> resultm.unwrap
+                    | None => None
+                |> async.future_init 3 0
+
+    leptos.create_effect fun () =>
+        leptos.log $'"state.use_database () / create_effect 1 / ##1"'
+
+        match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
+        | Ok (Some storage) =>
+            inl dark_mode = dark_mode |> leptos.resource_get |> optionm'.unbox
+            inl dark_mode_log = dark_mode |> format_debug
+            leptos.log $'"state.use_database () / dark_mode effect 0 / ##1.1 / dark_mode1: " + string !dark_mode_log + ""'
+
+            inl dark_mode =
+                match dark_mode with
+                | Some (Some dark_mode) =>
+                    Some dark_mode
+                | _ =>
+                    storage
+                    |> store.storage_get dark_mode_key
+                    |> resultm.ok
+                    |> optionm'.unbox
+                    |> optionm.map optionm'.unbox
+                    |> optionm'.flatten
+                    |> optionm.map fun (value : rust.std_string) =>
+                        inl value = join value
+                        value |> sm'.from_std_string |> sm'.deserialize |> resultm.ok |> optionm'.unbox
+                    |> optionm'.flatten
+
+            inl dark_mode_log = dark_mode |> format_debug
+            leptos.log $'"state.use_database () / dark_mode effect 0 / ##1.1 / dark_mode2: " + string !dark_mode_log + ""'
+
+            match dark_mode with
+            | Some dark_mode =>
+                dark_mode
+                |> leptos.rw_signal_set (leptos.signal_get_untracked global_state.state .dark_mode)
+            | _ => ()
+        | _ => ()
+
+    inl set_dark_mode_action = leptos.create_action fun value =>
+        leptos.log $'"state.use_database () / set_dark_mode_action / value: " + string !value + ""'
+        inl database =
+            database
+            |> leptos.resource_get
+            |> optionm'.unbox
+            |> optionm.value
+        fun () =>
+            database |> set_dark_mode value |> async.await |> resultm.unwrap
+        |> async.future_init 5 1
+
+    let loading = leptos.create_memo fun () =>
+        leptos.log $'"state.use_database () / loading create_memo"'
+        global_state.loading |> leptos.signal_get_untracked
+
+    let (loaded, set_loaded) = leptos.create_signal false
+
+    leptos.create_effect fun () =>
+        inl loaded = loaded |> leptos.signal_get
+        leptos.log $'"state.use_database () / create_effect 2 / ##1 / loaded: " + string !loaded + ""'
+
+        inl dark_mode =
+            global_state.state |> leptos.signal_get_untracked
+            |> fun state => state.dark_mode
+            |> leptos.rw_signal_get
+
+        leptos.log $'"state.use_database () / create_effect 2 / ##2 / dark_mode: " + string !dark_mode + ""'
+
+        inl dark_mode_loading =
+            loading
+            |> leptos.memo_get
+            |> mapm.get dark_mode_key
+            |> optionm'.unbox
+            |> optionm.map leptos.rw_signal_get
+            |> optionm'.default_value false
+
+        leptos.log $'"state.use_database () / create_effect 2 / ##3 / dark_mode_loading: " + string !dark_mode_loading + ""'
+
+        if not dark_mode_loading then
+            if not loaded
+            then true |> leptos.signal_set set_loaded
+            else
+                leptos.log $'"state.use_database () / create_effect 2 / ##4 / dark_mode: " + string !dark_mode + ""'
+
+                match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
+                | Ok (Some storage) =>
+                    set_dark_mode_action |> leptos.action_dispatch dark_mode
+                    storage |> store.storage_set dark_mode_key dark_mode
+                | _ => ()
+
+    database

@@ -1,7 +1,7 @@
 open rust_operators
 
-inl app () =
-    leptos.log $'"ui.app ()"'
+inl render () =
+    leptos.log $'"app.render ()"'
 
     leptos.provide_meta_context ()
 
@@ -31,10 +31,10 @@ inl app () =
     leptos.router fun () =>
         leptos.routes fun () =>
             ;[
-                route' "" fun () => home.home { router = 1 }
-                route' "/" fun () => home.home { router = 2 }
-                route' "/*" fun () => home.home { router = 3 }
-                route' "*" fun () => home.home { router = 4 }
+                route' "" fun () => home.render { router = 1 }
+                route' "/" fun () => home.render { router = 2 }
+                route' "/*" fun () => home.render { router = 3 }
+                route' "*" fun () => home.render { router = 4 }
             ]
             |> leptos.views_to_fragment
         |> leptos.view_to_fragment

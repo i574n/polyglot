@@ -14,7 +14,7 @@ inl main (args : array string) =
 
     let mount () =
         fun () =>
-            src.components.app.app ()
+            src.components.app.render ()
             |> leptos.to_view_trait
         |> leptos.mount_to_body
 
