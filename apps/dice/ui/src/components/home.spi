@@ -11,6 +11,6 @@ inl render { router } =
     leptos.div [
         $'"class=\\\"flex flex-1\\\""'
         leptos.bool_prop "class:dark" fun () =>
-            leptos.rw_signal_get global_state.state .dark_mode
+            leptos.rw_signal_get global_state.core_state .dark_mode
             |> leptos.rw_signal_get
     ] (content.render >> leptos.element_to_fragment)

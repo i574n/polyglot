@@ -37,6 +37,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>] type borsh_io_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Store\")>] type rexie_Store = class end"
@@ -68,20 +69,32 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
 
-type state =
+type core_state =
     {
         dark_mode : leptos.rw_signal bool
         url_hash : leptos.rw_signal string
     }
 
-type state_data =
+type core_state_data =
     heap {
         dark_mode : bool
         url_hash : rust.std_string
     }
 
+type state =
+    {
+        explorer_backend_host : leptos.rw_signal string
+    }
+
+type state_data =
+    heap {
+        explorer_backend_host : rust.std_string
+    }
+
+
 type global_state =
     heap {
+        core_state : leptos.rw_signal (heap core_state)
         state : leptos.rw_signal (heap state)
         loading : leptos.rw_signal (rust.hash_map string (leptos.rw_signal bool))
     }
@@ -99,8 +112,8 @@ inl build_database () : rust.pin (rust.box (rust.dyn' (rust.future (result rust.
 inl get_state_data_key () =
     "state-data"
 
-inl get_state_data (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' (option state_data) rust.rexie_error)))) =
-    leptos.log $'"state.get_state_data ()"'
+inl get_core_state_data (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' (option core_state_data) rust.rexie_error)))) =
+    leptos.log $'"state.get_core_state_data ()"'
     inl rexie = join rexie
     fun () =>
         inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadOnly)?"')
@@ -113,45 +126,30 @@ inl get_state_data (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.fu
             inl mode_data = join mode_data
             inl data : rust.vec u8 = !\($'"serde_json::from_value(!mode_data).unwrap()"')
             inl data_log = data |> format_debug
-            leptos.log $'"state.get_state_data () / data: " + string !data_log + ""'
+            leptos.log $'"state.get_core_state_data () / data: " + string !data_log + ""'
             inl data = join data
-            inl json : rust.std_string = !\($'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).unwrap()"')
-            leptos.log $'"state.get_state_data () / json: " + string !json + ""'
-
-            inl obj : rust.json_value =
-                json
-                |> sm'.from_std_string
-                |> sm'.deserialize
-                |> resultm.ok'
-                |> optionm'.unbox
-                |> optionm.value
-            inl state_data_key = get_state_data_key ()
-            inl state_data_key = #state_data_key
-            inl value : rust.ref' rust.json_value = !\($'"&!obj[!state_data_key]"')
-            inl state_data : optionm'.option' state_data = !\($'"serde_json::from_value(!value.clone()).unwrap()"')
-            inl state_data = state_data |> optionm'.unbox
-            Ok state_data
+            inl core_state_data : resultm.result' core_state_data (rust.arc rust.borsh_io_error) = !\($'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).map_err(|x| std::sync::Arc::new(x))"')
+            inl core_state_data_log = core_state_data |> sm'.format_pretty
+            leptos.log $'"state.get_core_state_data () / core_state_data: " + string !core_state_data_log + ""'
+            core_state_data |> resultm.ok' |> optionm'.unbox |> Ok
         | None => Ok None
         |> resultm.box
     |> async.future_init 2 0
 
-inl set_state_data (state_data : state_data) (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' () rust.rexie_error)))) =
-    inl state_data_log = state_data |> sm'.format_debug
-    leptos.log $'"state.set_state_data () / state_data: " + string !state_data_log + ""'
+inl set_core_state_data (core_state_data : core_state_data) (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' () rust.rexie_error)))) =
+    inl core_state_data_log = core_state_data |> sm'.format_debug
+    leptos.log $'"state.set_core_state_data () / core_state_data: " + string !core_state_data_log + ""'
     inl rexie = join rexie
     fun () =>
         inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
         inl store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
-        inl state_data_key = get_state_data_key ()
-        inl state_data_key = #state_data_key
-        inl state_data_value : rust.std_string = !\($'"serde_json::json!!({ !state_data_key: !state_data }).to_string()"')
 
         !\($'"let mut data = Vec::new()"')
-        !\($'"borsh::BorshSerialize::serialize(&!state_data_value, &mut data).unwrap()"')
+        !\($'"borsh::BorshSerialize::serialize(&*!core_state_data, &mut data).unwrap()"')
         inl data : rust.vec u8 = !\($'"data"')
 
-        inl state_data_js_value : rust.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
-        !\($'"!store.put(&!state_data_js_value, Some(&\\\"data\\\".into())).await?"')
+        inl core_state_data_js_value : rust.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
+        !\($'"!store.put(&!core_state_data_js_value, Some(&\\\"data\\\".into())).await?"')
         !\($'"!transaction.done().await?"')
 
         Ok () |> resultm.box
@@ -170,7 +168,7 @@ inl use_database () =
                     build_database () |> async.await |> resultm.get
                 |> async.future_init 0 0
 
-    inl state_data : leptos.resource (optionm'.option' rust.rexie) (option state_data) =
+    inl core_state_data : leptos.resource (optionm'.option' rust.rexie) (option core_state_data) =
         leptos.create_local_resource
             fun () =>
                 database
@@ -178,9 +176,9 @@ inl use_database () =
             fun (database : optionm'.option' rust.rexie) =>
                 fun () =>
                     inl database_log = database |> format_debug
-                    leptos.log $'"state.use_database () / state_data create_local_resource / database: " + string !database_log + ""'
+                    leptos.log $'"state.use_database () / core_state_data create_local_resource / database: " + string !database_log + ""'
                     match database |> optionm'.unbox with
-                    | Some database => database |> get_state_data |> async.await |> resultm.unwrap
+                    | Some database => database |> get_core_state_data |> async.await |> resultm.unwrap
                     | None => None
                 |> async.future_init 3 0
 
@@ -189,14 +187,14 @@ inl use_database () =
 
         match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
         | Ok (Some storage) =>
-            inl state_data = state_data |> leptos.resource_get |> optionm'.unbox
-            inl state_data_log = state_data |> format_debug
-            leptos.log $'"state.use_database () / state_data effect 0 / ##1.1 / state_data1: " + string !state_data_log + ""'
+            inl core_state_data = core_state_data |> leptos.resource_get |> optionm'.unbox
+            inl core_state_data_log = core_state_data |> format_debug
+            leptos.log $'"state.use_database () / core_state_data effect 0 / ##1.1 / core_state_data1: " + string !core_state_data_log + ""'
 
-            inl state_data =
-                match state_data with
-                | Some (Some state_data) =>
-                    Some state_data
+            inl core_state_data =
+                match core_state_data with
+                | Some (Some core_state_data) =>
+                    Some core_state_data
                 | _ =>
                     storage
                     |> store.storage_get state_data_key
@@ -207,30 +205,30 @@ inl use_database () =
                         value |> sm'.from_std_string |> sm'.deserialize |> resultm.ok' |> optionm'.unbox
                     |> optionm'.flatten
 
-            inl state_data_log = state_data |> format_debug
-            leptos.log $'"state.use_database () / state_data effect 0 / ##1.1 / state_data2: " + string !state_data_log + ""'
+            inl core_state_data_log = core_state_data |> format_debug
+            leptos.log $'"state.use_database () / core_state_data effect 0 / ##1.1 / core_state_data2: " + string !core_state_data_log + ""'
 
-            match state_data with
-            | Some state_data =>
-                leptos.rw_signal_get_untracked global_state.state .dark_mode
-                |> leptos.rw_signal_set state_data.dark_mode
+            match core_state_data with
+            | Some core_state_data =>
+                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                |> leptos.rw_signal_set core_state_data.dark_mode
 
-                leptos.rw_signal_get_untracked global_state.state .url_hash
-                |> leptos.rw_signal_set (state_data.url_hash |> sm'.from_std_string)
+                leptos.rw_signal_get_untracked global_state.core_state .url_hash
+                |> leptos.rw_signal_set (core_state_data.url_hash |> sm'.from_std_string)
             | _ => ()
         | _ => ()
 
-    inl set_state_data_action = leptos.create_action fun value =>
+    inl set_core_state_data_action = leptos.create_action fun value =>
         inl value_log = value |> sm'.format_debug
-        leptos.log $'"state.use_database () / set_state_data_action / value: " + string !value_log + ""'
+        leptos.log $'"state.use_database () / set_core_state_data_action / value: " + string !value_log + ""'
         inl database =
             database
             |> leptos.resource_get
             |> optionm'.unbox
         fun () =>
             match database with
-            | Some database => database |> set_state_data value |> async.await |> resultm.unwrap
-            | None => leptos.log $'"state.use_database () / set_state_data_action / database=None"'
+            | Some database => database |> set_core_state_data value |> async.await |> resultm.unwrap
+            | None => leptos.log $'"state.use_database () / set_core_state_data_action / database=None"'
         |> async.future_init 7 1
 
     let loading = leptos.create_memo fun () =>
@@ -243,15 +241,21 @@ inl use_database () =
         inl loaded = loaded |> leptos.signal_get
         leptos.log $'"state.use_database () / create_effect 2 / ##1 / loaded: " + string !loaded + ""'
 
-        inl new_state_data =
+        inl new_core_state_data =
             heap {
-                dark_mode = leptos.rw_signal_get_untracked global_state.state .dark_mode |> leptos.rw_signal_get
-                url_hash = leptos.rw_signal_get_untracked global_state.state .url_hash |> leptos.rw_signal_get |> sm'.to_std_string
+                dark_mode =
+                    leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                    |> leptos.rw_signal_get
+
+                url_hash =
+                    leptos.rw_signal_get_untracked global_state.core_state .url_hash
+                    |> leptos.rw_signal_get
+                    |> sm'.to_std_string
             }
 
-        inl new_state_data_log = new_state_data |> sm'.format_debug
+        inl new_core_state_data_log = new_core_state_data |> sm'.format_debug
 
-        leptos.log $'"state.use_database () / create_effect 2 / ##2 / new_state_data: " + string !new_state_data_log + ""'
+        leptos.log $'"state.use_database () / create_effect 2 / ##2 / new_core_state_data: " + string !new_core_state_data_log + ""'
 
         inl dark_mode_loading =
             loading
@@ -271,8 +275,8 @@ inl use_database () =
 
                 match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
                 | Ok (Some storage) =>
-                    set_state_data_action |> leptos.action_dispatch new_state_data
-                    storage |> store.storage_set state_data_key new_state_data
+                    set_core_state_data_action |> leptos.action_dispatch new_core_state_data
+                    storage |> store.storage_set state_data_key new_core_state_data
                 | _ => ()
 
     database

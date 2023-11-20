@@ -1,6 +1,19 @@
 open rust_operators
 
 inl render () =
-    inl (explorer_backend_host, set_explorer_backend_host) = leptos.create_signal("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> sm'.to_std_string)
+    inl global_state : state.global_state = leptos.use_context ()
 
-    leptos.input explorer_backend_host set_explorer_backend_host
+    leptos.input
+        fun () =>
+            leptos.rw_signal_get global_state.state .explorer_backend_host
+            |> leptos.read_only
+            |> leptos.signal_get
+            |> sm'.to_std_string
+
+        fun value =>
+            value
+            |> sm'.from_std_string
+            |> leptos.signal_set (
+                leptos.rw_signal_get global_state.state .explorer_backend_host
+                |> leptos.write_only
+            )

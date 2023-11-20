@@ -175,6 +175,14 @@ inl create_rw_signal forall t. (value : t) : rw_signal t =
     inl value = join value
     !\($'$"leptos::create_rw_signal(!value)"')
 
+inl read_only forall t. (value : rw_signal t) : read_signal t =
+    inl value = join value
+    !\($'$"leptos::RwSignal::read_only(&!value)"')
+
+inl write_only forall t. (value : rw_signal t) : write_signal t =
+    inl value = join value
+    !\($'$"leptos::RwSignal::write_only(&!value)"')
+
 inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : resource t u =
     inl source = join source
     !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
@@ -371,11 +379,11 @@ inl accordion title children : _ details =
     |> macro_to_element
 
 inl input forall t. getter setter : _ input =
-    inl getter : read_signal t = join getter
-    inl setter : write_signal t = join setter
+    inl getter : () -> t = join getter
+    inl setter : t -> () = join setter
     input [
         $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\""'
-        $'"prop:value=!getter"'
+        $'"prop:value=move || !getter()"'
         $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
     ]
 

@@ -26,6 +26,7 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 
 nominal any = $"std_any_Any"
 nominal async t = $"Async<`t>"
+nominal borsh_io_error = $"borsh_io_Error"
 nominal rexie = $"rexie_Rexie"
 nominal rexie_store = $"rexie_Store"
 nominal rexie_transaction = $"rexie_Transaction"

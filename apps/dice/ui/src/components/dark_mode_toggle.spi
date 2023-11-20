@@ -7,6 +7,6 @@ inl render () =
 
     leptos.toggle
         fun _ =>
-            leptos.rw_signal_get global_state.state .dark_mode |> leptos.signal_update not
+            leptos.rw_signal_get global_state.core_state .dark_mode |> leptos.signal_update not
         fun () =>
-            leptos.rw_signal_get global_state.state .dark_mode |> leptos.rw_signal_get
+            leptos.rw_signal_get global_state.core_state .dark_mode |> leptos.rw_signal_get

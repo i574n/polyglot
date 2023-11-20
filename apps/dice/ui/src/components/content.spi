@@ -22,7 +22,7 @@ inl render () : _ leptos.div =
             inl hash = join hash
             if !\($'"!hash == \\\"\\\""') then
                 inl url_hash =
-                    leptos.rw_signal_get_untracked global_state.state .url_hash
+                    leptos.rw_signal_get_untracked global_state.core_state .url_hash
                     |> leptos.rw_signal_get
 
                 leptos.log $'"content.render () / effect / url_hash: " + !url_hash + ""'
@@ -32,7 +32,7 @@ inl render () : _ leptos.div =
 
             true |> leptos.signal_set set_loaded
         else
-            leptos.rw_signal_get global_state.state .url_hash |> leptos.rw_signal_set new_url_hash
+            leptos.rw_signal_get global_state.core_state .url_hash |> leptos.rw_signal_set new_url_hash
 
     leptos.create_effect fun () =>
         inl hash = location |> leptos.location_hash |> leptos.memo_get

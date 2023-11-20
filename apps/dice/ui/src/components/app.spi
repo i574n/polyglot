@@ -7,11 +7,16 @@ inl render () =
 
     inl global_state : state.global_state =
         heap {
-            state =
+            core_state =
                 leptos.create_rw_signal <|
                     heap {
                         dark_mode = leptos.create_rw_signal false
                         url_hash = leptos.create_rw_signal ""
+                    }
+            state =
+                leptos.create_rw_signal <|
+                    heap {
+                        explorer_backend_host = leptos.create_rw_signal "explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app"
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }
