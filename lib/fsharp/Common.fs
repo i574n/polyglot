@@ -49,6 +49,12 @@ module Common =
         let inline trimStart (trimChars : char array) (input : string) =
             input.TrimStart trimChars
 
+
+        let ellipsis max value =
+            if value |> String.length <= max
+            then value
+            else $"{value |> substring 0 max}..."
+
     type TicksGuid = System.Guid
     type DateTimeGuid = System.Guid
 

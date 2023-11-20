@@ -227,7 +227,7 @@ module Supervisor =
                     | _ -> fsxContentResult, errors, typeErrorCount
             )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent} / errors: {errors} / typeErrorCount: {typeErrorCount}") getLocals
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> String.ellipsis 750} / errors: {errors} / typeErrorCount: {typeErrorCount}") getLocals
                 match fsxContent, errors with
                 | None, [] when typeErrorCount > 2 -> false
                 | None, [] -> true
