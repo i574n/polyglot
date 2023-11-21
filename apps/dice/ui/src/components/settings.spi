@@ -15,7 +15,7 @@ inl global_state_log_render () : _ leptos.pre =
         | Error error => $'"Error: " + string !error + ""'
 
     leptos.pre [
-        $'"class=\\\"[overflow:auto] [padding:7px] [font-size:11px] [line-height:11px]\\\""'
+        $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px]\\\""'
     ] fun () =>
         rust.move (fun () => global_state_json) fun json =>
             global_state_json |> leptos.memo_get |> leptos.text_fragment
@@ -27,7 +27,7 @@ inl render () =
             leptos.view_map_grid fun () =>
                 leptos.grid_pair
                     { class = $'"items-center"' }
-                    ("Dark Mode" |> leptos.text_view |> leptos.view_to_fragment)
+                    ("Dark Mode" |> leptos.text_fragment)
                     (dark_mode_toggle.render () |> leptos.element_to_fragment)
                 |> leptos.element_to_fragment
             |> leptos.element_to_fragment
@@ -37,7 +37,7 @@ inl render () =
             leptos.view_map_grid fun () =>
                 leptos.grid_pair
                     { class = $'"items-baseline"' }
-                    ("Explorer Backend Host" |> leptos.text_view |> leptos.view_to_fragment)
+                    ("Explorer Backend Host" |> leptos.text_fragment)
                     (explorer_backend_host_input.render () |> leptos.element_to_fragment)
                 |> leptos.element_to_fragment
             |> leptos.element_to_fragment

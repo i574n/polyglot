@@ -9,7 +9,7 @@ inl render { router } =
     inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
 
     leptos.div [
-        $'"class=\\\"flex flex-1\\\""'
+        $'"class=\\\"flex flex-1 max-[100px]:[overflow-x:auto]\\\""'
         leptos.bool_prop "class:dark" fun () =>
             leptos.rw_signal_get_untracked global_state.core_state .dark_mode
             |> leptos.rw_signal_get

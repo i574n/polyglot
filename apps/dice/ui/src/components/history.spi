@@ -1,2 +1,4 @@
 inl render () =
-    "" |> leptos.text_view
+    leptos.accordion "History" fun () =>
+        "" |> leptos.text_view |> leptos.view_to_fragment
+    |> leptos.element_to_view

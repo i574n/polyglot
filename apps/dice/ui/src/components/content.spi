@@ -57,19 +57,24 @@ inl render () : _ leptos.div =
         tab |> leptos.signal_set set_tab
 
     leptos.div [
-        $'"class=\\\"bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\\\""'
+        $'"class=\\\"[max-width:100vw] max-[100px]:[min-width:800px] bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\\\""'
     ] fun () =>
         ;[
-            rust.move (fun () => tab) fun tab =>
-                open menu_tabs
-                match tab |> leptos.signal_get with
-                | History => history.render ()
-                | Settings => settings.render () |> leptos.views_to_view
-                | _ => ;[] |> leptos.views_to_view
-            |> leptos.closure_to_view
+            leptos.div [
+                $'"class=\\\"flex flex-1 flex-col\\\""'
+            ] fun () =>
+                rust.move (fun () => tab) fun tab =>
+                    open menu_tabs
+                    match tab |> leptos.signal_get with
+                    | History => history.render ()
+                    | Settings => settings.render () |> leptos.views_to_view
+                    | _ => ;[] |> leptos.views_to_view
+                    |> leptos.view_to_fragment
+                |> leptos.closure_to_fragment
+            |> leptos.element_to_view
 
             leptos.div [
-                $'"class=\\\"flex flex-1 min-w-max\\\""'
+                $'"class=\\\"flex flex-1\\\""'
             ] fun () =>
                 leptos.div [
                     $'"class=\\\"flex flex-1 [align-items:flex-end]\\\""'
