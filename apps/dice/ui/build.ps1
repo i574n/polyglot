@@ -9,6 +9,10 @@ $ErrorActionPreference = "Stop"
 
 { . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file ui.spi ui.fsx --timeout 10000 } | Invoke-Block
 
+(Get-Content ui.fsx) `
+    -replace "and Heap2 =", "and  Heap2 =" `
+| Set-Content ui.fsx
+
 { . ../../builder/dist/Builder$(GetExecutableSuffix) ui.fsx $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) $($fast ? @("--persist-only") : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
 
 { dotnet fable target/ui.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define WASM } | Invoke-Block
@@ -18,6 +22,9 @@ Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Forc
 (Get-Content target/rs/ui.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
+    -replace "pub struct Heap0 {", "#[derive(serde::Serialize)] pub struct Heap0 {" `
+    -replace "pub struct Heap1 {", "#[derive(serde::Serialize)] pub struct Heap1 {" `
+    -replace "pub struct Heap2 {", "#[derive(serde::Serialize, PartialEq)] pub struct Heap2 {" `
     -replace "pub struct Heap3 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap3 {" `
     -replace "pub struct Heap4 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap4 {" `
     -replace "/Common.rs", "/CommonWasm.rs" `

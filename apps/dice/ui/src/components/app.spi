@@ -11,19 +11,19 @@ inl render () =
                 leptos.create_rw_signal <|
                     heap {
                         dark_mode = leptos.create_rw_signal false
-                        url_hash = leptos.create_rw_signal ""
+                        url_hash = leptos.create_rw_signal ("" |> sm'.to_std_string)
                     }
             state =
                 leptos.create_rw_signal <|
                     heap {
-                        explorer_backend_host = leptos.create_rw_signal "explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app"
+                        explorer_backend_host = leptos.create_rw_signal ("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> sm'.to_std_string)
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }
 
     fun () =>
         open state
-        real leptos.provide_context_rc `global_state global_state
+        real leptos.provide_context `global_state global_state
     |> fun x => x ()
 
     inl route' path view =

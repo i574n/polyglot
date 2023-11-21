@@ -24,7 +24,7 @@ inl main (args : array string) =
     | _ =>
         inl fn : rust.box (rust.dyn' rust.fn_unit) = rust.box_fn mount
         inl fn_closure = fn |> rust.closure_wrap
-        inl fn = fn_closure |> rust.as_ref |> rust.unchecked_ref
+        inl fn = fn_closure |> rust.closure_as_ref |> rust.unchecked_ref
 
         !\($'"leptos::document().add_event_listener_with_callback(\\\"DOMContentLoaded\\\", !fn).unwrap()"')
 

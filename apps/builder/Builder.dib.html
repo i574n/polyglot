@@ -7346,7 +7346,7 @@ a.anchor-link {
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.3.1/mermaid.esm.min.mjs")).default;
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs")).default;
     const parser = new DOMParser();
 
     mermaid.initialize({
@@ -7763,29 +7763,27 @@ a.anchor-link {
   WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
   CancellationToken = None
   OnLine = None }
-00:00:00 #4 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
+00:00:00 #4 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
 00:00:00 #5 [Verbose] &gt;   Determining projects to restore...
-00:00:06 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 4.77 sec).
-00:00:06 #7 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:07 #8 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:08 #9 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:08 #10 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\linux-x64\test.dll
-00:00:09 #11 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
-00:00:09 #12 [Debug] executeAsync / exitCode: 0 / output.Length: 1242
-00:00:09 #13 [Debug] executeAsync / options: { Command =
+00:00:01 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 431 ms).
+00:00:03 #7 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
+00:00:03 #8 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
+00:00:03 #9 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\linux-x64\test.dll
+00:00:05 #10 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
+00:00:05 #11 [Debug] executeAsync / exitCode: 0 / output.Length: 916
+00:00:05 #12 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime win-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
   CancellationToken = None
   OnLine = None }
-00:00:10 #14 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:10 #15 [Verbose] &gt;   Determining projects to restore...
-00:00:11 #16 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 315 ms).
-00:00:11 #17 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:13 #18 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:13 #19 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:13 #20 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\win-x64\test.dll
-00:00:16 #21 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
-00:00:16 #22 [Debug] executeAsync / exitCode: 0 / output.Length: 1238
+00:00:05 #13 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:05 #14 [Verbose] &gt;   Determining projects to restore...
+00:00:06 #15 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 328 ms).
+00:00:08 #16 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
+00:00:08 #17 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
+00:00:08 #18 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\win-x64\test.dll
+00:00:11 #19 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
+00:00:11 #20 [Debug] executeAsync / exitCode: 0 / output.Length: 914
 FSharpOption&lt;Int32&gt;
       Value: 0
 </pre>
@@ -7821,30 +7819,28 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:17 #23 [Debug] persistCodeProject / packages: [] / modules: [] / dir: C:\home\git\polyglot\apps\builder\target/test / name: test / code.Length: 5
-00:00:17 #24 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj
-00:00:17 #25 [Debug] executeAsync / options: { Command =
+<pre>00:00:12 #21 [Debug] persistCodeProject / packages: [] / modules: [] / dir: C:\home\git\polyglot\apps\builder\target/test / name: test / code.Length: 5
+00:00:12 #22 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj
+00:00:12 #23 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime linux-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
   CancellationToken = None
   OnLine = None }
-00:00:17 #26 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:18 #27 [Verbose] &gt;   Determining projects to restore...
-00:00:18 #28 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 311 ms).
-00:00:18 #29 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:20 #30 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:20 #31 [Debug] executeAsync / exitCode: 1 / output.Length: 684
-00:00:20 #32 [Debug] executeAsync / options: { Command =
+00:00:12 #24 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:13 #25 [Verbose] &gt;   Determining projects to restore...
+00:00:13 #26 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 308 ms).
+00:00:15 #27 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
+00:00:15 #28 [Debug] executeAsync / exitCode: 1 / output.Length: 360
+00:00:15 #29 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime win-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
   CancellationToken = None
   OnLine = None }
-00:00:20 #33 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:21 #34 [Verbose] &gt;   Determining projects to restore...
-00:00:22 #35 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 398 ms).
-00:00:22 #36 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:24 #37 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:24 #38 [Debug] executeAsync / exitCode: 1 / output.Length: 684
+00:00:15 #30 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:16 #31 [Verbose] &gt;   Determining projects to restore...
+00:00:16 #32 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 312 ms).
+00:00:18 #33 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
+00:00:18 #34 [Debug] executeAsync / exitCode: 1 / output.Length: 360
 FSharpOption&lt;Int32&gt;
       Value: 2
 </pre>
@@ -7880,9 +7876,10 @@ FSharpOption&lt;Int32&gt;
         <span class="n">fun</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="s2">"[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
     <span class="p">)</span>
 
+    <span class="n">let</span> <span class="n">codeTrim</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trimEnd</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
     <span class="k">return</span>
-        <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="n">then</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">substring</span> <span class="mi">0</span> <span class="p">((</span><span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()"</span>
+        <span class="n">then</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">substring</span> <span class="mi">0</span> <span class="p">((</span><span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">else</span> <span class="n">code</span>
 <span class="p">}</span>
 </pre></div>
@@ -8015,8 +8012,7 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>USAGE: dotnet.exe [--help] [--packages [&lt;packages&gt;...]]
-                  [--modules [&lt;modules&gt;...]] [--runtime &lt;runtime&gt;]
+<pre>USAGE: dotnet.exe [--help] [--packages [&lt;packages&gt;...]] [--modules [&lt;modules&gt;...]] [--runtime &lt;runtime&gt;]
                   [--persist-only] &lt;path&gt;
 
 PATH:
@@ -8161,32 +8157,30 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:26 #39 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/fsharp/Common.fs; lib/fsharp/CommonFSharp.fs; lib/fsharp/Async.fs; ... ] / dir: C:\home\git\polyglot\apps\builder / name: Builder / code.Length: 6948
-00:00:26 #40 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\Builder.fsproj
-00:00:26 #41 [Debug] executeAsync / options: { Command =
+<pre>00:00:20 #35 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/fsharp/Common.fs; lib/fsharp/CommonFSharp.fs; lib/fsharp/Async.fs; ... ] / dir: C:\home\git\polyglot\apps\builder / name: Builder / code.Length: 7009
+00:00:20 #36 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\Builder.fsproj
+00:00:20 #37 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\apps\builder\target\Builder.fsproj" --configuration Release --output ../dist --runtime linux-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target"
   CancellationToken = None
   OnLine = None }
-00:00:26 #42 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:27 #43 [Verbose] &gt;   Determining projects to restore...
-00:00:28 #44 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 415 ms).
-00:00:28 #45 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\Builder.fsproj]
-00:00:34 #46 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\linux-x64\Builder.dll
-00:00:35 #47 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:35 #48 [Debug] executeAsync / exitCode: 0 / output.Length: 621
-00:00:35 #49 [Debug] executeAsync / options: { Command =
+00:00:20 #38 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:21 #39 [Verbose] &gt;   Determining projects to restore...
+00:00:22 #40 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 340 ms).
+00:00:28 #41 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\linux-x64\Builder.dll
+00:00:29 #42 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:29 #43 [Debug] executeAsync / exitCode: 0 / output.Length: 306
+00:00:29 #44 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\apps\builder\target\Builder.fsproj" --configuration Release --output ../dist --runtime win-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target"
   CancellationToken = None
   OnLine = None }
-00:00:35 #50 [Verbose] &gt; MSBuild version 17.8.0-preview-23418-03+0125fc9fb for .NET
-00:00:36 #51 [Verbose] &gt;   Determining projects to restore...
-00:00:37 #52 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 391 ms).
-00:00:37 #53 [Verbose] &gt; C:\Program Files\dotnet\sdk\8.0.100-rc.1.23463.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(311,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\apps\builder\target\Builder.fsproj]
-00:00:43 #54 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\win-x64\Builder.dll
-00:00:46 #55 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:46 #56 [Debug] executeAsync / exitCode: 0 / output.Length: 619
+00:00:29 #45 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:30 #46 [Verbose] &gt;   Determining projects to restore...
+00:00:30 #47 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 335 ms).
+00:00:36 #48 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\win-x64\Builder.dll
+00:00:39 #49 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:39 #50 [Debug] executeAsync / exitCode: 0 / output.Length: 304
 </pre>
 </div>
 </div>

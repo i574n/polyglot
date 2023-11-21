@@ -16,6 +16,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Nav\")>] type leptos_html_Nav = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>] type leptos_html_Option = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Svg\")>] type leptos_svg_Svg = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
@@ -64,15 +65,16 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>] type ActionFn2<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>] type Mut<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
 
 type core_state =
-    {
+    heap {
         dark_mode : leptos.rw_signal bool
-        url_hash : leptos.rw_signal string
+        url_hash : leptos.rw_signal rust.std_string
     }
 
 type core_state_data =
@@ -82,8 +84,8 @@ type core_state_data =
     }
 
 type state =
-    {
-        explorer_backend_host : leptos.rw_signal string
+    heap {
+        explorer_backend_host : leptos.rw_signal rust.std_string
     }
 
 type state_data =
@@ -94,9 +96,9 @@ type state_data =
 
 type global_state =
     heap {
-        core_state : leptos.rw_signal (heap core_state)
-        state : leptos.rw_signal (heap state)
-        loading : leptos.rw_signal (rust.hash_map string (leptos.rw_signal bool))
+        core_state : leptos.rw_signal core_state
+        state : leptos.rw_signal state
+        loading : leptos.rw_signal (rust.hash_map rust.std_string (leptos.rw_signal bool))
     }
 
 inl build_database () : rust.pin (rust.box (rust.dyn' (rust.future (result rust.rexie rust.rexie_error)))) =
@@ -148,7 +150,7 @@ inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : rust.pin 
         inl store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
 
         !\($'"let mut data = Vec::new()"')
-        !\($'"borsh::BorshSerialize::serialize(&*!data, &mut data).unwrap()"')
+        !\($'"borsh::BorshSerialize::serialize(&!data, &mut data).unwrap()"')
         inl data : rust.vec u8 = !\($'"data"')
 
         inl data_js_value : rust.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
@@ -233,7 +235,7 @@ inl use_database () =
                 |> leptos.rw_signal_set core_state_data.dark_mode
 
                 leptos.rw_signal_get_untracked global_state.core_state .url_hash
-                |> leptos.rw_signal_set (core_state_data.url_hash |> sm'.from_std_string)
+                |> leptos.rw_signal_set core_state_data.url_hash
             | _ => ()
         | _ => ()
 
@@ -252,7 +254,7 @@ inl use_database () =
             match state_data with
             | Some state_data =>
                 leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                |> leptos.rw_signal_set (state_data.explorer_backend_host |> sm'.from_std_string)
+                |> leptos.rw_signal_set state_data.explorer_backend_host
             | _ => ()
         | _ => ()
 
@@ -301,7 +303,6 @@ inl use_database () =
                 url_hash =
                     leptos.rw_signal_get_untracked global_state.core_state .url_hash
                     |> leptos.rw_signal_get
-                    |> sm'.to_std_string
             }
 
         inl new_core_state_data_log = new_core_state_data |> sm'.format_debug
@@ -310,7 +311,7 @@ inl use_database () =
         inl dark_mode_loading =
             loading
             |> leptos.memo_get
-            |> mapm.get "dark_mode_key"
+            |> mapm.get ("dark_mode_key" |> sm'.to_std_string)
             |> optionm'.unbox
             |> optionm.map leptos.rw_signal_get
             |> optionm'.default_value false
@@ -338,7 +339,6 @@ inl use_database () =
                 explorer_backend_host =
                     leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
                     |> leptos.rw_signal_get
-                    |> sm'.to_std_string
             }
 
         inl new_state_data_log = new_state_data |> sm'.format_debug

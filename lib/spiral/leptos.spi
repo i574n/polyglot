@@ -13,6 +13,7 @@ nominal input = $"leptos_html_Input"
 nominal label = $"leptos_html_Label"
 nominal nav = $"leptos_html_Nav"
 nominal option' = $"leptos_html_Option"
+nominal pre = $"leptos_html_Pre"
 nominal select = $"leptos_html_Select"
 nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
@@ -148,7 +149,8 @@ inl views_to_view (items : array view) : view =
     |> fragment_to_view
 
 inl new_text (text : string) : text =
-    inl text = #text
+    inl text = join text
+    inl text = text |> sm'.to_std_string
     !\($'"leptos::html::text(!text)"')
 
 inl text_view (text : string) : view =
@@ -164,15 +166,15 @@ inl text_fragment (text : string) : fragment =
 inl provide_meta_context () =
     !\($'"leptos_meta::provide_meta_context()"') : ()
 
-inl provide_context_rc forall t. (x : t) =
-    !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
+inl provide_context forall t. (x : t) =
+    inl x = join x
+    !\($'$"leptos::provide_context::<`t>(!x)"') : ()
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     inl value = join value
     !\($'$"leptos::create_signal(!value)"')
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
-    inl value = join value
     !\($'$"leptos::create_rw_signal(!value)"')
 
 inl read_only forall t. (value : rw_signal t) : read_signal t =
@@ -185,18 +187,22 @@ inl write_only forall t. (value : rw_signal t) : write_signal t =
 
 inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : resource t u =
     inl source = join source
-    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
+    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x.into()).await })"')
+
+inl create_local_resource_rc forall t u. (source : () -> heap t) (fetcher : heap t -> rust.pin (rust.box (rust.dyn' (rust.future (heap u))))) : resource (heap t) (heap u) =
+    inl source = join source
+    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x.into()).await })"')
 
 inl create_action forall t u. (action_fn : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : action t u =
     inl action_fn = join action_fn
-    !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn((*value).clone().into()))"')
+    !\($'"leptos::create_action(move |value: &`t| !action_fn(value.clone()))"')
 
 inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
     inl value = join value
     !\($'"leptos::Action::dispatch(&!action, !value)"')
 
 inl use_context forall t. () : t =
-    !\($'"leptos::use_context::<std::rc::Rc<`t>>().unwrap().into()"')
+    !\($'"leptos::use_context::<`t>().unwrap().into()"')
 
 inl rw_signal_get forall t. (signal : rw_signal t) : t =
     inl signal = join signal
@@ -245,6 +251,7 @@ let window () : rust.window =
     !\($'"leptos::leptos_dom::window()"')
 
 inl memo_get forall t. (memo : memo t) : t =
+    inl memo = join memo
     !\($'$"!memo()"')
 
 inl bool_prop (prop : string) (fn : () -> bool) : string =
@@ -280,6 +287,9 @@ inl div props children : _ div =
 
 inl label props children : _ label =
     tag_element "label" props children
+
+inl pre props children : _ pre =
+    tag_element "pre" props children
 
 inl select props children : _ select =
     tag_element "select" props children
@@ -374,7 +384,7 @@ inl input props : _ input =
 inl accordion title children : _ details =
     inl title = join title
     inl title = title |> sm'.to_std_string
-    inl children : () -> html_element _ = join children
+    inl children : () -> fragment = join children
     $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg></span></summary>{!children()}</details>"'
     |> macro_to_element
 

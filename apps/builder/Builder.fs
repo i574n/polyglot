@@ -115,9 +115,10 @@ module Builder =
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
+        let codeTrim = code |> String.trimEnd [||]
         return
-            if code |> String.endsWith "\n()\n"
-            then code |> String.substring 0 ((code |> String.length) - 3)
+            if codeTrim |> String.endsWith "\n()"
+            then codeTrim |> String.substring 0 ((codeTrim |> String.length) - 2)
             else code
     }
 

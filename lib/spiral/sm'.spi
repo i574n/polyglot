@@ -19,6 +19,9 @@ inl as_str_std (s : rust.std_string) : rust.ref' rust.str =
     inl s = join s
     !\($'"!s.as_str()"')
 
+inl into_boxed_str (s : rust.std_string) : rust.box rust.str =
+    !\($'"!s.into_boxed_str()"')
+
 inl format x : rust.std_string =
     !\\(x, $'@@$"format\!(""{{}}"", $0)"')
 

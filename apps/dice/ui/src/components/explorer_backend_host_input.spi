@@ -5,15 +5,13 @@ inl render () =
 
     leptos.input
         fun () =>
-            leptos.rw_signal_get global_state.state .explorer_backend_host
+            leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
             |> leptos.read_only
             |> leptos.signal_get
-            |> sm'.to_std_string
 
         fun value =>
             value
-            |> sm'.from_std_string
             |> leptos.signal_set (
-                leptos.rw_signal_get global_state.state .explorer_backend_host
+                leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
                 |> leptos.write_only
             )
