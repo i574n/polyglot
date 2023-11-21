@@ -1699,7 +1699,7 @@ and closure53 () () : leptos_Fragment =
     let v6 : (unit -> string) = method121(v5)
     let v7 : string = "leptos::create_memo(move |_| { v6() })"
     let v8 : leptos_Memo<string> = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "class=\"[padding:7px] [font-size:11px] [line-height:11px]\""
+    let v9 : string = "class=\"[overflow:auto] [padding:7px] [font-size:11px] [line-height:11px]\""
     let v10 : string = ""
     let v11 : string = " " + v9 + v10 + ""
     let v12 : (unit -> leptos_Fragment) = method123(v8)
@@ -1741,7 +1741,7 @@ and closure38 () (v0 : leptos_ReadSignal<US20>) : leptos_View =
         let v18 : string = $"String::from(v17)"
         let v19 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v18
         let v20 : (unit -> leptos_Fragment) = method86()
-        let v21 : string = "<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v19}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v20()}</details>"
+        let v21 : string = "<details class=\"flex group [max-width:100vw] [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v19}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v20()}</details>"
         let v22 : string = "leptos::view! { " + v21 + " }"
         let v23 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v22
         let v24 : leptos_HtmlElement<leptos_html_Details> = v23 |> unbox
@@ -1755,7 +1755,7 @@ and closure38 () (v0 : leptos_ReadSignal<US20>) : leptos_View =
         let v32 : string = $"String::from(v31)"
         let v33 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v32
         let v34 : (unit -> leptos_Fragment) = method107()
-        let v35 : string = "<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v33}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v34()}</details>"
+        let v35 : string = "<details class=\"flex group [max-width:100vw] [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v33}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v34()}</details>"
         let v36 : string = "leptos::view! { " + v35 + " }"
         let v37 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v36
         let v38 : leptos_HtmlElement<leptos_html_Details> = v37 |> unbox
@@ -1769,7 +1769,7 @@ and closure38 () (v0 : leptos_ReadSignal<US20>) : leptos_View =
         let v46 : string = $"String::from(v45)"
         let v47 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v46
         let v48 : (unit -> leptos_Fragment) = method120()
-        let v49 : string = "<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v47}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v48()}</details>"
+        let v49 : string = "<details class=\"flex group [max-width:100vw] [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v47}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg></span></summary>{v48()}</details>"
         let v50 : string = "leptos::view! { " + v49 + " }"
         let v51 : Impl<leptos_IntoView> = Fable.Core.RustInterop.emitRustExpr () v50
         let v52 : leptos_HtmlElement<leptos_html_Details> = v51 |> unbox
