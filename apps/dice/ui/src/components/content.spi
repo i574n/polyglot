@@ -6,7 +6,7 @@ inl render () : _ leptos.div =
     inl location = leptos.use_location ()
     inl navigate = leptos.use_navigate ()
     inl url = leptos.use_url ()
-    inl global_state : state.global_state = leptos.use_context ()
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
     inl (tab, set_tab) = menu_tabs.History |> leptos.create_signal
 
     inl (loaded, set_loaded) = false |> leptos.create_signal
@@ -16,7 +16,7 @@ inl render () : _ leptos.div =
 
         inl hash = location |> leptos.location_hash |> leptos.memo_get
         inl new_url_hash : string = $'$"{!url}{!hash}"'
-        leptos.log $'"content.render () / effect / new_url_hash: " + !new_url_hash + " / loaded: " + string !loaded + ""'
+        leptos.log $'"content.render () / effect 1 / new_url_hash: " + !new_url_hash + " / loaded: " + string !loaded + ""'
 
         if not loaded then
             inl hash = join hash
@@ -26,7 +26,7 @@ inl render () : _ leptos.div =
                     |> leptos.rw_signal_get
                     |> sm'.from_std_string
 
-                leptos.log $'"content.render () / effect / url_hash: " + !url_hash + ""'
+                leptos.log $'"content.render () / effect 1 / url_hash: " + !url_hash + ""'
 
                 if url_hash |> sm'.contains "#" then
                     navigate url_hash
@@ -44,7 +44,7 @@ inl render () : _ leptos.div =
         inl hash_url = hash_url |> resultm.unwrap
 
         inl hash_url_log = hash_url |> sm'.format_pretty
-        leptos.log $'"content.render () / effect / hash_url: " + string !hash_url_log + ""'
+        leptos.log $'"content.render () / effect 2 / hash_url: " + string !hash_url_log + ""'
 
         inl tab =
             if hash_url |> leptos.url_pathname |> sm'.starts_with ("/settings" |> sm'.to_std_string)
@@ -52,7 +52,7 @@ inl render () : _ leptos.div =
             else menu_tabs.History
 
         inl tab_log = tab |> sm'.format_pretty
-        leptos.log $'"content.render () / effect / new_tab: " + string !tab_log + ""'
+        leptos.log $'"content.render () / effect 2 / new_tab: " + string !tab_log + ""'
 
         tab |> leptos.signal_set set_tab
 

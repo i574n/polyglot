@@ -1,40 +1,25 @@
 open rust_operators
 
 inl global_state_log_render () : _ leptos.pre =
-    inl global_state : state.global_state = leptos.use_context ()
+    leptos.log $'"settings.global_state_log_render ()"'
 
-    inl global_state_resource : leptos.resource state.global_state state.global_state =
-        leptos.create_local_resource_rc
-            fun () => global_state
-            fun global_state =>
-                fun () =>
-                    leptos.log $'"settings.global_state_log_render () / global_state_resource create_local_resource"'
-                    // open state
-                    // inl global_state : global_state = global_state
-                    // inl global_state : rust.rc global_state = $"!global_state |> unbox"
-                    // inl global_state : rust.rc (rust.rc global_state) = $"!global_state |> unbox"
-                    // inl global_state : rust.rc (rust.rc (rust.rc global_state)) = $"!global_state |> unbox"
-                    // inl global_state : $"`global_state" = $"!global_state |> unbox"
-                    global_state
-                |> async.future_init 2 0
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
 
     inl global_state_json = leptos.create_memo fun () =>
-        match global_state_resource |> leptos.resource_get |> optionm'.unbox with
-        | Some global_state =>
-        //     // inl json : resultm.result' rust.std_string rust.std_string = !\($'"serde_json::to_string_pretty(&!global_state).map_err(|x| x.to_string())"')
-        //     // match json |> resultm.unbox with
-        //     // | Ok global_state => global_state |> sm'.from_std_string
-        //     // | Error error => $'"Error: " + string !error + ""'
-            "{}"
-        | None => "Loading..."
+        leptos.log $'"settings.global_state_log_render () / global_state_json memo"'
 
-    inl global_state_json = leptos.create_memo fun () =>
-        global_state_json |> leptos.memo_get
+        inl global_state = join global_state
+        inl json : resultm.result' rust.std_string rust.std_string = !\($'"serde_json::to_string_pretty(&!global_state).map_err(|x| x.to_string())"')
+        match json |> resultm.unbox with
+        | Ok json => json |> sm'.from_std_string
+        | Error error => $'"Error: " + string !error + ""'
 
     leptos.pre [
         $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px]\\\""'
     ] fun () =>
-        global_state_json |> leptos.memo_get |> leptos.text_fragment
+        rust.move (fun () => global_state_json) fun json =>
+            global_state_json |> leptos.memo_get |> leptos.text_fragment
+        |> leptos.closure_to_fragment
 
 inl render () =
     ;[
@@ -58,8 +43,8 @@ inl render () =
             |> leptos.element_to_fragment
         |> leptos.element_to_view
 
-        // leptos.accordion "Global State" fun () =>
-        //     global_state_log_render ()
-        //     |> leptos.element_to_fragment
-        // |> leptos.element_to_view
+        leptos.accordion "Global State" fun () =>
+            global_state_log_render ()
+            |> leptos.element_to_fragment
+        |> leptos.element_to_view
     ]

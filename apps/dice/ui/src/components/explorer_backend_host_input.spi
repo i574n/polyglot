@@ -1,7 +1,7 @@
 open rust_operators
 
 inl render () =
-    inl global_state : state.global_state = leptos.use_context ()
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
 
     leptos.input
         fun () =>

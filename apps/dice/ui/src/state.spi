@@ -162,9 +162,11 @@ inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : rust.pin 
     |> async.future_init 6 0
 
 inl use_database () =
+    leptos.log $'"state.use_database ()"'
+
     inl core_state_data_key = get_core_state_data_key ()
     inl state_data_key = get_state_data_key ()
-    inl global_state : global_state = leptos.use_context ()
+    inl global_state : global_state = leptos.use_context () |> optionm'.unwrap
 
     inl database : leptos.resource (option ()) rust.rexie =
         leptos.create_local_resource
@@ -260,27 +262,29 @@ inl use_database () =
 
     inl set_core_state_data_action = leptos.create_action fun value =>
         inl value_log = value |> sm'.format_debug
-        leptos.log $'"state.use_database () / set_core_state_data_action / value: " + string !value_log + ""'
         inl database =
             database
             |> leptos.resource_get
             |> optionm'.unbox
         fun () =>
             match database with
-            | Some database => database |> set_data core_state_data_key value |> async.await |> resultm.unwrap
+            | Some database =>
+                leptos.log $'"state.use_database () / set_core_state_data_action / value: " + string !value_log + ""'
+                database |> set_data core_state_data_key value |> async.await |> resultm.unwrap
             | None => leptos.log $'"state.use_database () / set_core_state_data_action / database=None"'
         |> async.future_init 7 1
 
     inl set_state_data_action = leptos.create_action fun value =>
         inl value_log = value |> sm'.format_debug
-        leptos.log $'"state.use_database () / set_state_data_action / value: " + string !value_log + ""'
         inl database =
             database
             |> leptos.resource_get
             |> optionm'.unbox
         fun () =>
             match database with
-            | Some database => database |> set_data state_data_key value |> async.await |> resultm.unwrap
+            | Some database =>
+                leptos.log $'"state.use_database () / set_state_data_action / database=Some(_) / value: " + string !value_log + ""'
+                database |> set_data state_data_key value |> async.await |> resultm.unwrap
             | None => leptos.log $'"state.use_database () / set_state_data_action / database=None"'
         |> async.future_init 7 1
 

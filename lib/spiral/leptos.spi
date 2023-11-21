@@ -81,14 +81,18 @@ inl macro_to_fragment (macro : string) : fragment =
 inl new_transparent x : transparent =
     !\($'"leptos::leptos_dom::Transparent::new(!x)"')
 
+inl view_to_fragment (view : view) : fragment =
+    !\($'"leptos::Fragment::new(vec\![!view])"')
+
 inl fragment_to_view (fragment : fragment) : view =
     !\($'"leptos::IntoView::into_view(!fragment)"')
 
 inl closure_to_view (closure : () -> view) : view =
     !\($'"leptos::IntoView::into_view(move || !closure(()))"')
 
-inl view_to_fragment (view : view) : fragment =
-    !\($'"leptos::Fragment::new(vec\![!view])"')
+inl closure_to_fragment (closure : () -> fragment) : fragment =
+    !\($'"leptos::IntoView::into_view(move || !closure(()))"')
+    |> view_to_fragment
 
 inl array_to_fragment (view : a _ view) : fragment =
     inl view = join view
@@ -187,11 +191,7 @@ inl write_only forall t. (value : rw_signal t) : write_signal t =
 
 inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : resource t u =
     inl source = join source
-    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x.into()).await })"')
-
-inl create_local_resource_rc forall t u. (source : () -> heap t) (fetcher : heap t -> rust.pin (rust.box (rust.dyn' (rust.future (heap u))))) : resource (heap t) (heap u) =
-    inl source = join source
-    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x.into()).await })"')
+    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
 
 inl create_action forall t u. (action_fn : t -> rust.pin (rust.box (rust.dyn' (rust.future u)))) : action t u =
     inl action_fn = join action_fn
@@ -201,8 +201,8 @@ inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
     inl value = join value
     !\($'"leptos::Action::dispatch(&!action, !value)"')
 
-inl use_context forall t. () : t =
-    !\($'"leptos::use_context::<`t>().unwrap().into()"')
+inl use_context forall t. () : optionm'.option' t =
+    !\($'"leptos::use_context::<`t>()"')
 
 inl rw_signal_get forall t. (signal : rw_signal t) : t =
     inl signal = join signal
@@ -212,7 +212,7 @@ inl signal_get forall t. (signal : read_signal t) : t =
     inl signal = join signal
     !\($'$"leptos::SignalGet::get(&!signal)"')
 
-inl signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
+inl rw_signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl fn = join fn
     inl signal = join signal
     !\($'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"') : ()
@@ -238,6 +238,11 @@ inl signal_set forall t. (signal : write_signal t) (value : t) =
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
     inl resource = join resource
     !\($'$"leptos::SignalGet::get(&!resource)"')
+
+inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
+    inl resource = join resource
+    inl fn = join fn
+    !\($'$"leptos::SignalWith::with(&!resource, |x| !fn(x.clone()))"')
 
 inl create_effect (fn : () -> ()) : () =
     inl fn = join fn
