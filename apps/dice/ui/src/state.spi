@@ -2,6 +2,7 @@ open rust_operators
 
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::Function\")>] type js_sys_Function = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>] type js_sys_JsString = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::A\")>] type leptos_html_A = class end"
@@ -107,7 +108,7 @@ inl build_database () : rust.pin (rust.box (rust.dyn' (rust.future (result rust.
     fun () =>
         inl rexie : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.rexie rust.rexie_error)))) = !\($'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"')
         inl rexie : resultm.result' rust.rexie rust.rexie_error = rexie |> async.await
-        inl rexie : rust.rexie = rexie |> resultm.unwrap
+        inl rexie : rust.rexie = rexie |> resultm.unbox |> resultm.get
         Ok rexie
     |> async.future_init 1 0
 
@@ -124,7 +125,7 @@ inl get_data forall t. (id : string) (rexie : rust.rexie) : rust.pin (rust.box (
         inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadOnly)?"')
         inl rexie_store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
         inl mode_value : resultm.result' rust.js_value rust.rexie_error = rexie_store |> store.store_get id |> async.await
-        inl mode_value : rust.js_value = mode_value |> resultm.try
+        inl mode_value : rust.js_value = mode_value |> resultm.try'
         inl mode_data : optionm'.option' rust.json_value = !\($'"serde_wasm_bindgen::from_value(!mode_value).unwrap()"')
         match mode_data |> optionm'.unbox with
         | Some mode_data =>
@@ -187,7 +188,12 @@ inl use_database () =
                     inl database_log = database |> format_debug
                     leptos.log $'"state.use_database () / core_state_data create_local_resource / database: " + string !database_log + ""'
                     match database |> optionm'.unbox with
-                    | Some database => database |> get_data core_state_data_key |> async.await |> resultm.unwrap
+                    | Some database =>
+                        database
+                        |> get_data core_state_data_key
+                        |> async.await
+                        |> resultm.unbox
+                        |> resultm.get
                     | None => None
                 |> async.future_init 3 0
 
@@ -201,7 +207,12 @@ inl use_database () =
                     inl database_log = database |> format_debug
                     leptos.log $'"state.use_database () / state_data create_local_resource / database: " + string !database_log + ""'
                     match database |> optionm'.unbox with
-                    | Some database => database |> get_data state_data_key |> async.await |> resultm.unwrap
+                    | Some database =>
+                        database
+                        |> get_data state_data_key
+                        |> async.await
+                        |> resultm.unbox
+                        |> resultm.get
                     | None => None
                 |> async.future_init 3 0
 
@@ -270,7 +281,11 @@ inl use_database () =
             match database with
             | Some database =>
                 leptos.log $'"state.use_database () / set_core_state_data_action / value: " + string !value_log + ""'
-                database |> set_data core_state_data_key value |> async.await |> resultm.unwrap
+                database
+                |> set_data core_state_data_key value
+                |> async.await
+                |> resultm.unbox
+                |> resultm.get
             | None => leptos.log $'"state.use_database () / set_core_state_data_action / database=None"'
         |> async.future_init 7 1
 
@@ -284,7 +299,11 @@ inl use_database () =
             match database with
             | Some database =>
                 leptos.log $'"state.use_database () / set_state_data_action / database=Some(_) / value: " + string !value_log + ""'
-                database |> set_data state_data_key value |> async.await |> resultm.unwrap
+                database
+                |> set_data state_data_key value
+                |> async.await
+                |> resultm.unbox
+                |> resultm.get
             | None => leptos.log $'"state.use_database () / set_state_data_action / database=None"'
         |> async.future_init 7 1
 

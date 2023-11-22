@@ -42,6 +42,7 @@ nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
 nominal std_string = $"std_string_String"
 nominal js_function = $"js_sys_Function"
+nominal js_string = $"js_sys_JsString"
 nominal window = $"web_sys_Window"
 nominal document = $"web_sys_Document"
 nominal html_element = $"web_sys_HtmlElement"
@@ -82,6 +83,14 @@ inl (~##) (s : string) : static_ref' str =
 inl new_box forall t. (x : t) : box t =
     inl x = join x
     !\($'"Box::new(!x)"')
+
+inl new_rc forall t. (x : t) : rc t =
+    inl x = join x
+    !\($'"std::rc::Rc::new(!x)"')
+
+inl new_arc forall t. (x : t) : arc t =
+    inl x = join x
+    !\($'"std::sync::Arc::new(!x)"')
 
 inl closure_wrap forall t. (x : box t) : closure t =
     inl x = join x

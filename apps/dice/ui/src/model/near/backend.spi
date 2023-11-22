@@ -1,0 +1,60 @@
+open rust_operators
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::IdInput\")>] type crate_model_near_backend_IdInput = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::InputData\")>] type crate_model_near_backend_InputData = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransactionCursor\")>] type crate_model_near_backend_TransactionCursor = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransactionListByAccountIdInput\")>] type crate_model_near_backend_TransactionListByAccountIdInput = class end"
+
+nominal id_input' = $"crate_model_near_backend_IdInput"
+nominal input_data' = $"crate_model_near_backend_InputData"
+nominal transaction_cursor' = $"crate_model_near_backend_TransactionCursor"
+nominal transaction_list_by_account_id_input' = $"crate_model_near_backend_TransactionListByAccountIdInput"
+
+type id_input =
+    {
+        id : string
+    }
+
+inl id_input_box ({ id } : id_input) : id_input' =
+    inl id = id |> sm'.to_std_string
+    !\($'"dice_ui::model::near::backend::IdInput { id: !id }"')
+
+type transaction_cursor =
+    {
+        timestamp : string
+        index_in_chunk : u8
+    }
+
+inl transaction_cursor_box ({ timestamp index_in_chunk } : transaction_cursor) : transaction_cursor' =
+    inl timestamp = timestamp |> sm'.to_std_string
+    !\($'"dice_ui::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
+
+type transaction_list_by_account_id_input =
+    {
+        account_id : string
+        limit : i32
+        cursor : option transaction_cursor
+    }
+
+inl transaction_list_by_account_id_input_box
+    ({ account_id limit cursor } : transaction_list_by_account_id_input)
+    : transaction_list_by_account_id_input'
+    =
+    inl account_id = account_id |> sm'.to_std_string
+    inl cursor = cursor |> optionm.map transaction_cursor_box |> optionm'.box
+    inl cursor = join cursor
+    !\($'"dice_ui::model::near::backend::TransactionListByAccountIdInput { account_id: !account_id, limit: !limit, cursor: !cursor }"')
+
+union input_data =
+    | IdInput : id_input
+    | TransactionListByAccountIdInput : transaction_list_by_account_id_input
+
+inl input_data_box (x : input_data) : input_data' =
+    match x with
+    | IdInput x =>
+        inl x = x |> id_input_box
+        !\($'"dice_ui::model::near::backend::InputData::IdInput(!x)"')
+    | TransactionListByAccountIdInput x =>
+        inl x = x |> transaction_list_by_account_id_input_box
+        !\($'"dice_ui::model::near::backend::InputData::TransactionListByAccountIdInput(!x)"')

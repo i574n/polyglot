@@ -1,4 +1,81 @@
+open rust_operators
+open model.near.backend
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>] type reqwest_Error = class end"
+
+nominal reqwest_response = $"reqwest_Response"
+nominal reqwest_error = $"reqwest_Error"
+
 inl render () =
+    leptos.log $'"history.render ()"'
+
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
+
+    inl url = leptos.create_memo fun () =>
+        inl id = "i574n.near"
+
+        inl input_obj : rust.hash_map rust.std_string (rust.rc input_data') =
+            ;[
+                "0" |> sm'.to_std_string,
+                IdInput { id } |> input_data_box |> rust.new_rc
+
+                "1" |> sm'.to_std_string,
+                IdInput { id } |> input_data_box |> rust.new_rc
+
+                "2" |> sm'.to_std_string,
+                TransactionListByAccountIdInput
+                    {
+                        account_id = id
+                        limit = 10
+                        cursor = None
+                    }
+                |> input_data_box |> rust.new_rc
+            ]
+            |> mapm.from_array
+
+        inl input_json : resultm.result' rust.std_string rust.json_error = !\($'"serde_json::to_string(&!input_obj)"')
+        inl input_json = input_json |> resultm.unwrap'
+        inl input : rust.js_string = !\($'"js_sys::encode_uri_component(&!input_json)"')
+        inl explorer_backend_host =
+            leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+            |> leptos.rw_signal_get
+
+        inl url : string = $'"https://" + string !explorer_backend_host + "/trpc/account.transactionsCount,contract.byId,transaction.listByAccountId?batch=1&input=" + string !input + ""'
+
+        leptos.log $'"history.render () / url: " + !url + ""'
+
+        inl url = url |> sm'.to_std_string
+        url
+
+    inl response : leptos.resource rust.std_string (resultm.result' rust.std_string rust.std_string) =
+        leptos.create_local_resource
+            fun () => url |> leptos.memo_get
+            fun url =>
+                leptos.log $'"history.render () / response create_local_resource"'
+                inl url = join url
+                inl request : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' reqwest_response reqwest_error)))) = !\($'"Box::pin(reqwest_wasm::Client::builder().build().unwrap().get(!url).send())"')
+                fun () =>
+                    inl response_text (response : reqwest_response) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.std_string reqwest_error)))) =
+                        !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')
+
+                    inl response = request |> async.await
+                    inl response = response |> resultm.map_error' sm'.format
+                    inl response = response |> resultm.try'
+                    inl response = response |> response_text
+                    inl response = response |> async.await
+                    inl response = response |> resultm.map_error' sm'.format
+                    inl response = response |> resultm.try'
+                    leptos.log $'"history.render () / response create_local_resource / end"'
+                    Ok response |> resultm.box
+                |> async.future_init 3 0
+
+    inl response = leptos.create_memo fun () =>
+        response |> leptos.resource_get |> sm'.format_pretty |> sm'.from_std_string
+
     leptos.accordion "History" fun () =>
-        "" |> leptos.text_view |> leptos.view_to_fragment
+        rust.move (fun () => response) fun response =>
+            response |> leptos.memo_get |> leptos.text_view |> leptos.view_to_fragment
+        |> leptos.closure_to_fragment
     |> leptos.element_to_view

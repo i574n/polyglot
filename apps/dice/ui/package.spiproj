@@ -4,6 +4,9 @@ packages:
     spiral-
 modules:
     src/
+        model/
+            near/
+                backend
         state
         components/
             history

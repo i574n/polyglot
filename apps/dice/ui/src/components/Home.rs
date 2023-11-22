@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
 use crate::components::DarkModeButton::*;
-use crate::near::backend::*;
-use crate::near::rpc::*;
+use crate::model::near::backend::*;
+use crate::model::near::rpc::*;
 use crate::state::*;
 
 use leptos::{logging::log, *};
@@ -244,7 +244,7 @@ pub fn Home(router: i32) -> impl IntoView {
                                                                 <pre>
                                                                     {status.result.as_ref().unwrap().receipts_outcome.iter().map(|outcome| {
 
-                                                                            let status = &outcome.outcome.status;
+                                                                            let status : &HashMap<String, String> = &outcome.outcome.status;
                                                                             let value = status.get("SuccessValue").unwrap().to_owned();
 
                                                                             let value = base64::Engine::decode(&base64::engine::general_purpose::STANDARD, value).unwrap();

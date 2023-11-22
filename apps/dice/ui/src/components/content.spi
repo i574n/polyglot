@@ -41,7 +41,7 @@ inl render () : _ leptos.div =
         inl hash = hash |> sm'.strip_prefix '#' |> optionm'.unwrap_or #""
         inl hash_url = hash |> leptos.url_try_from
 
-        inl hash_url = hash_url |> resultm.unwrap
+        inl hash_url = hash_url |> resultm.unbox |> resultm.get
 
         inl hash_url_log = hash_url |> sm'.format_pretty
         leptos.log $'"content.render () / effect 2 / hash_url: " + string !hash_url_log + ""'

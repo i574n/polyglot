@@ -9,8 +9,17 @@ inl get forall t e. (source : result t e) : t =
 
 inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
     match source with
-    | Ok x => fn x |> Ok
+    | Ok x => x |> fn |> Ok
     | Error x => Error x
+
+inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
+    match source with
+    | Ok x => Ok x
+    | Error x => x |> fn |> Error
+
+inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
+    inl fn = join fn
+    !\($'"!source.map_err(|x| !fn(x))"')
 
 inl unbox forall t u. (x : result' t u) : result t u =
     inl ok x : result t u = Ok x
@@ -22,10 +31,13 @@ inl box forall t u. (x : result t u) : result' t u =
     | Ok x => $"Ok !x"
     | Error err => $"Error !err"
 
-inl try forall t u. (x : result' t u) : t =
+inl try forall t u. (x : result t u) : t =
     !\($'"!x?"')
 
-inl unwrap forall t u. (x : result' t u) : t =
+inl try' forall t u. (x : result' t u) : t =
+    !\($'"!x?"')
+
+inl unwrap' forall t u. (x : result' t u) : t =
     !\($'"!x.unwrap()"')
 
 inl ok' forall t. (x : result' t _) : optionm'.option' t =

@@ -34,5 +34,7 @@ inl main (args : array string) =
 
 inl main () =
     src.state.types ()
+    src.model.near.backend.types ()
+    src.components.history.types ()
 
     $"let main args = !main args" : ()

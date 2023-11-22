@@ -152,7 +152,7 @@ pub struct TransactionListByAccountIdInput {
     pub cursor: Option<TransactionCursor>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum InputData {
     IdInput(IdInput),
