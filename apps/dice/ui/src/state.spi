@@ -245,10 +245,10 @@ inl use_database () =
             match core_state_data with
             | Some core_state_data =>
                 leptos.rw_signal_get_untracked global_state.core_state .dark_mode
-                |> leptos.rw_signal_set core_state_data.dark_mode
+                |> leptos.rw_signal_update fun _ => core_state_data.dark_mode
 
                 leptos.rw_signal_get_untracked global_state.core_state .url_hash
-                |> leptos.rw_signal_set core_state_data.url_hash
+                |> leptos.rw_signal_update fun _ => core_state_data.url_hash
             | _ => ()
         | _ => ()
 
@@ -267,7 +267,7 @@ inl use_database () =
             match state_data with
             | Some state_data =>
                 leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                |> leptos.rw_signal_set state_data.explorer_backend_host
+                |> leptos.rw_signal_update fun _ => state_data.explorer_backend_host
             | _ => ()
         | _ => ()
 

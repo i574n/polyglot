@@ -7,7 +7,7 @@ inl render () : _ leptos.div =
     inl navigate = leptos.use_navigate ()
     inl url = leptos.use_url ()
     inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
-    inl (tab, set_tab) = menu_tabs.History |> leptos.create_signal
+    inl (tab, set_tab) = menu_tabs.Blank |> leptos.create_signal
 
     inl (loaded, set_loaded) = false |> leptos.create_signal
 
@@ -34,7 +34,7 @@ inl render () : _ leptos.div =
             true |> leptos.signal_set set_loaded
         else
             leptos.rw_signal_get_untracked global_state.core_state .url_hash
-            |> leptos.rw_signal_set (new_url_hash |> sm'.to_std_string)
+            |> leptos.rw_signal_update fun _ => (new_url_hash |> sm'.to_std_string)
 
     leptos.create_effect fun () =>
         inl hash = location |> leptos.location_hash |> leptos.memo_get
@@ -54,34 +54,38 @@ inl render () : _ leptos.div =
         inl tab_log = tab |> sm'.format_pretty
         leptos.log $'"content.render () / effect 2 / new_tab: " + string !tab_log + ""'
 
-        tab |> leptos.signal_set set_tab
+        set_tab |> leptos.signal_update fun _ => tab
 
     leptos.div [
-        $'"class=\\\"[max-width:100vw] max-[100px]:[min-width:800px] bg-gray-50 flex flex-1 flex-col items-stretch min-h-screen text-gray-700 text-sm\\\""'
+        $'"class=\\\"flex flex-1 max-[100px]:[overflow-x:auto]\\\""'
     ] fun () =>
-        ;[
-            leptos.div [
-                $'"class=\\\"flex flex-1 flex-col\\\""'
-            ] fun () =>
-                rust.move (fun () => tab) fun tab =>
-                    open menu_tabs
-                    match tab |> leptos.signal_get with
-                    | History => history.render ()
-                    | Settings => settings.render () |> leptos.views_to_view
-                    | _ => ;[] |> leptos.views_to_view
-                    |> leptos.view_to_fragment
-                |> leptos.closure_to_fragment
-            |> leptos.element_to_view
-
-            leptos.div [
-                $'"class=\\\"flex flex-1\\\""'
-            ] fun () =>
+        leptos.div [
+            $'"class=\\\"[width:100vw] [max-width:100vw] max-[100px]:[min-width:800px] [height:100vh] [max-height:100vh] max-[60px]:[min-height:600px] bg-gray-50 flex flex-1 flex-col items-stretch text-gray-700 text-sm\\\""'
+        ] fun () =>
+            ;[
                 leptos.div [
-                    $'"class=\\\"flex flex-1 [align-items:flex-end]\\\""'
+                    $'"class=\\\"flex flex-100 flex-col [overflow-y:auto]\\\""'
                 ] fun () =>
-                    menu_tabs.render tab
-                    |> leptos.views_to_fragment
-                |> leptos.element_to_fragment
-            |> leptos.element_to_view
-        ]
-        |> leptos.views_to_fragment
+                    rust.move (fun () => tab) fun tab =>
+                        open menu_tabs
+                        match tab |> leptos.signal_get with
+                        | History => history.render ()
+                        | Settings => settings.render () |> leptos.views_to_view
+                        | _ => ;[] |> leptos.views_to_view
+                        |> leptos.view_to_fragment
+                    |> leptos.closure_to_fragment
+                |> leptos.element_to_view
+
+                leptos.div [
+                    $'"class=\\\"flex flex-1\\\""'
+                ] fun () =>
+                    leptos.div [
+                        $'"class=\\\"flex flex-1 [align-items:flex-end]\\\""'
+                    ] fun () =>
+                        menu_tabs.render tab
+                        |> leptos.views_to_fragment
+                    |> leptos.element_to_fragment
+                |> leptos.element_to_view
+            ]
+            |> leptos.views_to_fragment
+        |> leptos.element_to_fragment

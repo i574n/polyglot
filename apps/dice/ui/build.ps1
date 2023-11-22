@@ -7,19 +7,19 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file ui.spi ui.fsx --timeout 10000 } | Invoke-Block
+{ . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file dice_ui.spi dice_ui.fsx --timeout 10000 } | Invoke-Block
 
-(Get-Content ui.fsx) `
+(Get-Content dice_ui.fsx) `
     -replace "and Heap2 =", "and  Heap2 =" `
-| Set-Content ui.fsx
+| Set-Content dice_ui.fsx
 
-{ . ../../builder/dist/Builder$(GetExecutableSuffix) ui.fsx $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) $($fast ? @("--persist-only") : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
+{ . ../../builder/dist/Builder$(GetExecutableSuffix) dice_ui.fsx $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) $($fast ? @("--persist-only") : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
 
-{ dotnet fable target/ui.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define WASM } | Invoke-Block
+{ dotnet fable target/dice_ui.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define WASM } | Invoke-Block
 
 Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Force
 
-(Get-Content target/rs/ui.rs) `
+(Get-Content target/rs/dice_ui.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
     -replace "pub struct Heap0 {", "#[derive(serde::Serialize)] pub struct Heap0 {" `
@@ -28,10 +28,10 @@ Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Forc
     -replace "pub struct Heap3 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap3 {" `
     -replace "pub struct Heap4 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap4 {" `
     -replace "/Common.rs", "/CommonWasm.rs" `
-| Set-Content ui_wasm.rs
+| Set-Content dice_ui_wasm.rs
 
 cargo fmt --
-leptosfmt ./ui_wasm.rs
+leptosfmt ./dice_ui_wasm.rs
 
 if (!$fast) {
     Remove-Item ./target/trunk -Recurse -Force -ErrorAction Ignore

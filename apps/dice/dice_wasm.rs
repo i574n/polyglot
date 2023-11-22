@@ -212,7 +212,7 @@ mod module_a51efde0 {
         }
         pub fn closure6(
             v0_1: LrcPtr<Dice::UH0>,
-            v1_1: LrcPtr<Dice::Mut0>,
+            v1_1: Dice::Mut0,
             unitVar: (),
         ) -> LrcPtr<Dice::UH0> {
             let v2_1: Dice::US0 = v1_1.l0.get().clone();
@@ -236,9 +236,9 @@ mod module_a51efde0 {
             v0_1: LrcPtr<Dice::UH0>,
             v1_1: Func0<LrcPtr<Dice::UH0>>,
         ) -> Func0<LrcPtr<Dice::UH0>> {
-            let v3_1: LrcPtr<Dice::Mut0> = LrcPtr::new(Dice::Mut0 {
+            let v3_1: Dice::Mut0 = Dice::Mut0 {
                 l0: MutCell::new(Dice::US0::US0_1(v1_1)),
-            });
+            };
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v3_1 = v3_1.clone();
@@ -267,14 +267,14 @@ mod module_a51efde0 {
         }
         pub fn method5(
             v0_1: Func0<LrcPtr<Dice::UH0>>,
-            v1_1: LrcPtr<Dice::Mut1>,
-            v2_1: LrcPtr<Dice::Mut1>,
-            v3_1: LrcPtr<Dice::Mut1>,
+            v1_1: Dice::Mut1,
+            v2_1: Dice::Mut1,
+            v3_1: Dice::Mut1,
         ) -> u8 {
             let v0_1 = MutCell::new(v0_1.clone());
-            let v1_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v1_1.clone());
-            let v2_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v2_1.clone());
-            let v3_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v3_1.clone());
+            let v1_1: MutCell<Dice::Mut1> = MutCell::new(v1_1.clone());
+            let v2_1: MutCell<Dice::Mut1> = MutCell::new(v2_1.clone());
+            let v3_1: MutCell<Dice::Mut1> = MutCell::new(v3_1.clone());
             '_method5: loop {
                 break '_method5 ({
                     let v4_1: LrcPtr<Dice::UH0> = v0_1();
@@ -303,9 +303,9 @@ mod module_a51efde0 {
                                     v1_1.l0.set(v20);
                                     {
                                         let v0_1_temp = v0_1.get();
-                                        let v1_1_temp: LrcPtr<Dice::Mut1> = v1_1.get();
-                                        let v2_1_temp: LrcPtr<Dice::Mut1> = v2_1.get();
-                                        let v3_1_temp: LrcPtr<Dice::Mut1> = v3_1.get();
+                                        let v1_1_temp: Dice::Mut1 = v1_1.get();
+                                        let v2_1_temp: Dice::Mut1 = v2_1.get();
+                                        let v3_1_temp: Dice::Mut1 = v3_1.get();
                                         v0_1.set(v0_1_temp);
                                         v1_1.set(v1_1_temp);
                                         v2_1.set(v2_1_temp);
@@ -321,9 +321,9 @@ mod module_a51efde0 {
         }
         pub fn closure7(
             v0_1: Func0<LrcPtr<Dice::UH0>>,
-            v1_1: LrcPtr<Dice::Mut1>,
-            v2_1: LrcPtr<Dice::Mut1>,
-            v3_1: LrcPtr<Dice::Mut1>,
+            v1_1: Dice::Mut1,
+            v2_1: Dice::Mut1,
+            v3_1: Dice::Mut1,
             unitVar: (),
         ) -> u8 {
             Dice::method5(v0_1, v1_1, v2_1, v3_1)
@@ -343,15 +343,15 @@ mod module_a51efde0 {
                     move || Dice::closure5(v5.clone(), ())
                 }),
             );
-            let v8: LrcPtr<Dice::Mut1> = LrcPtr::new(Dice::Mut1 {
+            let v8: Dice::Mut1 = Dice::Mut1 {
                 l0: MutCell::new(0_i64),
-            });
-            let v9: LrcPtr<Dice::Mut1> = LrcPtr::new(Dice::Mut1 {
+            };
+            let v9: Dice::Mut1 = Dice::Mut1 {
                 l0: MutCell::new(1_i64),
-            });
-            let v10: LrcPtr<Dice::Mut1> = LrcPtr::new(Dice::Mut1 {
+            };
+            let v10: Dice::Mut1 = Dice::Mut1 {
                 l0: MutCell::new(-1_i64),
-            });
+            };
             Func0::new({
                 let v10 = v10.clone();
                 let v7 = v7.clone();

@@ -19,13 +19,22 @@ $GLOBALS['nl'] = '
 $GLOBALS['q'] = '"';
 
 #2
+function String_ellipsis($max, $value) {
+    if ($value->length <= $max) {
+        return $value;
+    } else {
+        return NULL;
+    }
+}
+
+#3
 abstract class TraceLevel implements FSharpUnion {
     static function allCases() {
         return [ '\\Polyglot\\Common\\TraceLevel_Verbose', '\\Polyglot\\Common\\TraceLevel_Debug', '\\Polyglot\\Common\\TraceLevel_Info', '\\Polyglot\\Common\\TraceLevel_Warning', '\\Polyglot\\Common\\TraceLevel_Critical' ];
     }
 }
 
-#2
+#3
 class TraceLevel_Verbose extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -41,7 +50,7 @@ class TraceLevel_Verbose extends TraceLevel implements IComparable {
     }
 }
 
-#2
+#3
 class TraceLevel_Debug extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -57,7 +66,7 @@ class TraceLevel_Debug extends TraceLevel implements IComparable {
     }
 }
 
-#2
+#3
 class TraceLevel_Info extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -73,7 +82,7 @@ class TraceLevel_Info extends TraceLevel implements IComparable {
     }
 }
 
-#2
+#3
 class TraceLevel_Warning extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -89,7 +98,7 @@ class TraceLevel_Warning extends TraceLevel implements IComparable {
     }
 }
 
-#2
+#3
 class TraceLevel_Critical extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -105,19 +114,19 @@ class TraceLevel_Critical extends TraceLevel implements IComparable {
     }
 }
 
-#3
+#4
 $GLOBALS['traceEnabled'] = true;
 
-#4
+#5
 $GLOBALS['traceCount'] = 0;
 
-#5
+#6
 $GLOBALS['traceLevel'] = new TraceLevel_Verbose();
 
-#6
+#7
 $GLOBALS['traceDump'] = false;
 
-#7
+#8
 function testTraceLevel($level) {
     if ($GLOBALS['traceEnabled']) {
         return \Util\compare($level, $GLOBALS['traceLevel']) >= 0;
@@ -126,7 +135,7 @@ function testTraceLevel($level) {
     }
 }
 
-#8
+#9
 function traceRaw($level, $fn) {
     if (testTraceLevel($level)) {
         $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
@@ -137,12 +146,12 @@ function traceRaw($level, $fn) {
     }
 }
 
-#9
+#10
 function replStart($unitVar) {
     return NULL;
 }
 
-#10
+#11
 function trace($level, $fn, $getLocals) {
     return traceRaw($level, function ($unitVar) use ($fn, $getLocals, $level, $replStart, $traceCount) { 
         $trimChars_2 = [ ' ', '/' ];

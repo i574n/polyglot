@@ -8,6 +8,14 @@ const nl = '\n';
 
 const q = '\"';
 
+String String_ellipsis(int max, String value) {
+    if (value.length <= max) {
+        return value;
+    } else {
+        return '${value.substring(0, 0 + max)}...';
+    }
+}
+
 class TraceLevel implements types.Union, Comparable<TraceLevel> {
     final int tag;
     const TraceLevel(this.tag);

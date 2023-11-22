@@ -1,6 +1,6 @@
-#[path = "../ui_wasm.rs"]
-mod ui_wasm;
+#[path = "../dice_ui_wasm.rs"]
+mod dice_ui_wasm;
 
 pub fn main() {
-    ui_wasm::main()
+    dice_ui_wasm::main()
 }

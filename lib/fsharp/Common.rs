@@ -24,6 +24,18 @@ pub mod Polyglot {
             static q: MutCell<Option<string>> = MutCell::new(None);
             q.get_or_init(|| string("\""))
         }
+        pub mod String_ {
+            use super::*;
+            use fable_library_rust::String_::length as length_1;
+            use fable_library_rust::String_::substring2;
+            pub fn ellipsis(max: i32, value: string) -> string {
+                if length_1(value.clone()) <= max {
+                    value.clone()
+                } else {
+                    sprintf!("{}...", &substring2(value, 0_i32, max))
+                }
+            }
+        }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
         pub enum TraceLevel {
             Verbose,

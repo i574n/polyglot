@@ -17,4 +17,4 @@ modules:
             content
             home
             app
-    ui
+    dice_ui

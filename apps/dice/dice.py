@@ -196,7 +196,7 @@ def method0(v0_1: int64, v1_1: UH0, v2_1: UH0) -> UH0:
         return v2_1
 
     else: 
-        v6: UH0 = method0(v0_1, v1_1.fields[1](), v2_1)
+        v6: UH0 = method0(v0_1, v1_1.fields[1](None), v2_1)
         v11: int64 = op_addition(op_modulus(op_addition(op_subtraction(from_integer(v1_1.fields[0], False, 4), int64(1)), v0_1), v0_1), int64(1))
         def v13(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> UH0:
             return closure2(v6, None)
@@ -263,7 +263,7 @@ def closure5(v0_1: UH0, unit_var: None) -> UH0:
 def closure6(v0_1: UH0, v1_1: Mut0, unit_var: None) -> UH0:
     v2_1: US0 = v1_1.l0
     if v2_1.tag == 1:
-        v5: UH0 = v2_1.fields[0]()
+        v5: UH0 = v2_1.fields[0](None)
         v12: UH0 = UH0(1) if (v5.tag == 1) else UH0(0, v5.fields[0], method4(v0_1, v5.fields[1]))
         v1_1.l0 = US0(0, v12)
         return v12
@@ -292,7 +292,7 @@ def method6(v0_1_mut: int64, v1_1_mut: UH0) -> US1:
 
         else: 
             v0_1_mut = op_subtraction(v0_1, int64(1))
-            v1_1_mut = v1_1.fields[1]()
+            v1_1_mut = v1_1.fields[1](None)
             continue
 
         break
@@ -301,7 +301,7 @@ def method6(v0_1_mut: int64, v1_1_mut: UH0) -> US1:
 def method5(v0_1_mut: Callable[[], UH0], v1_1_mut: Mut1, v2_1_mut: Mut1, v3_1_mut: Mut1) -> uint8:
     while True:
         (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
-        v4_1: UH0 = v0_1()
+        v4_1: UH0 = v0_1(None)
         v6: US1 = method6(v1_1.l0, v4_1)
         if v6.tag == 1:
             v9: int64 = op_addition(v1_1.l0, int64(1))
@@ -836,7 +836,7 @@ def method10(v0_1_mut: int8, v1_1_mut: UH2) -> US4:
 
         else: 
             v0_1_mut = v0_1 - int8(1)
-            v1_1_mut = v1_1.fields[1]()
+            v1_1_mut = v1_1.fields[1](None)
             continue
 
         break
@@ -895,7 +895,7 @@ def method9(v0_1_mut: US2, v1_1_mut: int8, v2_1_mut: UH1, v3_1_mut: uint64) -> U
 
 def method11(v0_1: int8, v1_1: Callable[[], uint8], v2_1: int8) -> UH1:
     if v2_1 < v0_1:
-        return UH1(0, v1_1(), method11(v0_1, v1_1, v2_1 + int8(1)))
+        return UH1(0, v1_1(None), method11(v0_1, v1_1, v2_1 + int8(1)))
 
     else: 
         return UH1(1)
@@ -907,7 +907,7 @@ def method12(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_
         (v0_1, v1_1, v2_1, v3_1, v4_1, v5) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut, v5_mut)
         v6: int8 = (v4_1 + int8(1)) or 0
         if v4_1 < v6:
-            return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(), v5), v6)
+            return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(None), v5), v6)
 
         else: 
             v12: US3 = method9(v0_1, v4_1, v5, uint64(0))
@@ -926,7 +926,7 @@ def method12(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_
                     continue
 
                 else: 
-                    return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(), v5), v6)
+                    return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(None), v5), v6)
 
 
             elif v2_1:
@@ -939,7 +939,7 @@ def method12(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_
                 continue
 
             else: 
-                return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(), v5), v6)
+                return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1(0, v1_1(None), v5), v6)
 
 
         break
@@ -954,7 +954,7 @@ def method8(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_m
             v2_1_mut = v2_1
             v3_1_mut = v3_1
             v4_1_mut = v4_1
-            v5_mut = UH1(0, v1_1(), v5)
+            v5_mut = UH1(0, v1_1(None), v5)
             v6_mut = v6 + int8(1)
             continue
 
@@ -974,7 +974,7 @@ def method8(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_m
                     v2_1_mut = v2_1
                     v3_1_mut = v3_1
                     v4_1_mut = v4_1
-                    v5_mut = UH1(0, v1_1(), v5)
+                    v5_mut = UH1(0, v1_1(None), v5)
                     v6_mut = v6 + int8(1)
                     continue
 
@@ -988,7 +988,7 @@ def method8(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_m
                 v2_1_mut = v2_1
                 v3_1_mut = v3_1
                 v4_1_mut = v4_1
-                v5_mut = UH1(0, v1_1(), v5)
+                v5_mut = UH1(0, v1_1(None), v5)
                 v6_mut = v6 + int8(1)
                 continue
 

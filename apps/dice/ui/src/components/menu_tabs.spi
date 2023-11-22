@@ -1,4 +1,5 @@
 union menu_tab =
+    | Blank
     | History
     | Settings
 

@@ -212,10 +212,15 @@ inl signal_get forall t. (signal : read_signal t) : t =
     inl signal = join signal
     !\($'$"leptos::SignalGet::get(&!signal)"')
 
+inl signal_update forall t. (fn : t -> t) (signal : write_signal t) =
+    inl fn = join fn
+    inl signal = join signal
+    !\($'"leptos::SignalUpdate::update(&!signal, |x| { let result = !fn(x.clone()); if result \!= *x { *x = result } })"') : ()
+
 inl rw_signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
     inl fn = join fn
     inl signal = join signal
-    !\($'$"leptos::SignalUpdate::update(&!signal, |x| *x = !fn(*x))"') : ()
+    !\($'"leptos::SignalUpdate::update(&!signal, |x| { let result = !fn(x.clone()); if result \!= *x { *x = result } })"') : ()
 
 inl signal_get_untracked forall t. (signal : read_signal t) : t =
     inl signal = join signal
