@@ -10,8 +10,6 @@ modules:
         state
         components/
             history
-            explorer_backend_host_input
-            dark_mode_toggle
             settings
             menu_tabs
             content

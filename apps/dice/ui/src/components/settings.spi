@@ -20,14 +20,39 @@ inl global_state_log_render () : _ leptos.pre =
         global_state_json |> leptos.move_to_fragment (leptos.memo_get >> leptos.text_fragment)
 
 inl render () =
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
+
     ;[
         leptos.accordion "View" true fun () =>
             leptos.view_map_grid fun () =>
-                leptos.grid_pair
-                    { class = $'"items-center"' }
-                    ("Dark Mode" |> leptos.text_fragment)
-                    (dark_mode_toggle.render () |> leptos.element_to_fragment)
-                |> leptos.element_to_fragment
+                ;[
+                    leptos.grid_pair
+                        { class = $'"items-center"' }
+                        ("Dark Mode" |> leptos.text_fragment)
+                        (leptos.toggle
+                            fun _ =>
+                                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                                |> leptos.rw_signal_update not
+                            fun () =>
+                                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                                |> leptos.rw_signal_get
+                            |> leptos.element_to_fragment)
+                    |> leptos.element_to_view
+
+                    leptos.grid_pair
+                        { class = $'"items-center"' }
+                        ("Debug" |> leptos.text_fragment)
+                        (leptos.toggle
+                            fun _ =>
+                                leptos.rw_signal_get_untracked global_state.core_state .debug
+                                |> leptos.rw_signal_update not
+                            fun () =>
+                                leptos.rw_signal_get_untracked global_state.core_state .debug
+                                |> leptos.rw_signal_get
+                            |> leptos.element_to_fragment)
+                    |> leptos.element_to_view
+                ]
+                |> leptos.views_to_fragment
             |> leptos.element_to_fragment
         |> leptos.element_to_view
 
@@ -36,13 +61,30 @@ inl render () =
                 leptos.grid_pair
                     { class = $'"items-baseline"' }
                     ("Explorer Backend Host" |> leptos.text_fragment)
-                    (explorer_backend_host_input.render () |> leptos.element_to_fragment)
+                    (leptos.input
+                        fun () =>
+                            leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+                            |> leptos.read_only
+                            |> leptos.signal_get
+
+                        fun value =>
+                            value
+                            |> leptos.signal_set (
+                                leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+                                |> leptos.write_only
+                            )
+                        |> leptos.element_to_fragment)
                 |> leptos.element_to_fragment
             |> leptos.element_to_fragment
         |> leptos.element_to_view
 
-        leptos.accordion "Global State" false fun () =>
-            global_state_log_render ()
-            |> leptos.element_to_fragment
-        |> leptos.element_to_view
+        if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
+            leptos.accordion "Debug" true fun () =>
+                leptos.grid_pair
+                    { class = "" }
+                    ("Global State" |> leptos.text_fragment)
+                    (global_state_log_render () |> leptos.element_to_fragment)
+                |> leptos.element_to_fragment
+            |> leptos.element_to_view
+        else ;[] |> leptos.views_to_view
     ]

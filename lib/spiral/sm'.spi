@@ -11,10 +11,12 @@ inl from_std_string (str : rust.std_string) : string =
     inl str = join str
     !\($'"fable_library_rust::String_::fromString(!str)"')
 
+inl ref_to_std_string (str : rust.ref' rust.str) : rust.std_string =
+    !\($'"String::from(!str)"')
+
 inl to_std_string (s : string) : rust.std_string =
     inl s = join s
-    inl s = s |> as_str
-    !\($'$"String::from(!s)"')
+    s |> as_str |> ref_to_std_string
 
 inl as_str_std (s : rust.std_string) : rust.ref' rust.str =
     inl s = join s

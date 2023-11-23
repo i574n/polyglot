@@ -76,12 +76,14 @@ inl types () =
 type core_state =
     heap {
         dark_mode : leptos.rw_signal bool
+        debug : leptos.rw_signal bool
         url_hash : leptos.rw_signal rust.std_string
     }
 
 type core_state_data =
     heap {
         dark_mode : bool
+        debug : bool
         url_hash : rust.std_string
     }
 
@@ -248,6 +250,9 @@ inl use_database () =
                 leptos.rw_signal_get_untracked global_state.core_state .dark_mode
                 |> leptos.rw_signal_update fun _ => core_state_data.dark_mode
 
+                leptos.rw_signal_get_untracked global_state.core_state .debug
+                |> leptos.rw_signal_update fun _ => core_state_data.debug
+
                 leptos.rw_signal_get_untracked global_state.core_state .url_hash
                 |> leptos.rw_signal_update fun _ => core_state_data.url_hash
             | _ => ()
@@ -322,6 +327,10 @@ inl use_database () =
             heap {
                 dark_mode =
                     leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                    |> leptos.rw_signal_get
+
+                debug =
+                    leptos.rw_signal_get_untracked global_state.core_state .debug
                     |> leptos.rw_signal_get
 
                 url_hash =

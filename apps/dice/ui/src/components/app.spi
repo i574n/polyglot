@@ -11,12 +11,16 @@ inl render () =
                 leptos.create_rw_signal <|
                     heap {
                         dark_mode = leptos.create_rw_signal false
+                        debug = leptos.create_rw_signal false
                         url_hash = leptos.create_rw_signal ("" |> sm'.to_std_string)
                     }
             state =
                 leptos.create_rw_signal <|
                     heap {
-                        explorer_backend_host = leptos.create_rw_signal ("explorer-backend-mainnet-prod-24ktefolwq-uc.a.run.app" |> sm'.to_std_string)
+                        explorer_backend_host =
+                            !\($'"include_str\!(\\\"explorer_backend_host.txt\\\")"')
+                            |> sm'.ref_to_std_string
+                            |> leptos.create_rw_signal
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }

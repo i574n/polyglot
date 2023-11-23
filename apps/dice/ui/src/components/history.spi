@@ -100,36 +100,39 @@ inl render () =
             "{}" |> leptos.text_fragment
         |> leptos.element_to_view
 
-        leptos.accordion "Debug" true fun () =>
-            ;[
-                leptos.grid_pair
-                    { class = "" }
-                    ("JSON" |> leptos.text_fragment)
-                    (json |> leptos.move_to_fragment fun json =>
-                        json
-                        |> leptos.resource_get
-                        |> sm'.format_pretty
-                        |> sm'.from_std_string
-                        |> leptos.text_fragment
-                        |> leptos.text_block_pre
-                        |> leptos.element_to_fragment)
-                |> leptos.element_to_view
+        if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
+            leptos.accordion "Debug" true fun () =>
+                ;[
+                    leptos.grid_pair
+                        { class = "" }
+                        ("JSON" |> leptos.text_fragment)
+                        (json |> leptos.move_to_fragment fun json =>
+                            json
+                            |> leptos.resource_get
+                            |> sm'.format_pretty
+                            |> sm'.from_std_string
+                            |> leptos.text_fragment
+                            |> leptos.text_block_pre
+                            |> leptos.element_to_fragment)
+                    |> leptos.element_to_view
 
-                leptos.grid_pair
-                    { class = "" }
-                    ("Result Wrapper" |> leptos.text_fragment)
-                    (result_wrapper |> leptos.move_to_fragment fun result_wrapper =>
-                        result_wrapper
-                        |> leptos.memo_get
-                        |> resultm.unbox
-                        |> resultm.map (am.map result_wrapper_unbox)
-                        |> sm'.format_pretty
-                        |> sm'.from_std_string
-                        |> leptos.text_fragment
-                        |> leptos.text_block_pre
-                        |> leptos.element_to_fragment)
-                |> leptos.element_to_view
-            ]
-            |> leptos.views_to_fragment
-        |> leptos.element_to_view
+
+                    leptos.grid_pair
+                        { class = "" }
+                        ("Result Wrapper" |> leptos.text_fragment)
+                        (result_wrapper |> leptos.move_to_fragment fun result_wrapper =>
+                            result_wrapper
+                            |> leptos.memo_get
+                            |> resultm.unbox
+                            |> resultm.map (am.map result_wrapper_unbox)
+                            |> sm'.format_pretty
+                            |> sm'.from_std_string
+                            |> leptos.text_fragment
+                            |> leptos.text_block_pre
+                            |> leptos.element_to_fragment)
+                    |> leptos.element_to_view
+                ]
+                |> leptos.views_to_fragment
+            |> leptos.element_to_view
+        else ;[] |> leptos.views_to_view
     ]

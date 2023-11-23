@@ -435,7 +435,7 @@ inl dd children : _ dd =
 
 inl dl children : _ dl =
     tag_element "dl" [
-        $'"class=\\\"flex flex-1 divide-y divide-gray-100 text-sm\\\""'
+        $'"class=\\\"flex flex-1 text-sm\\\""'
     ] children
 
 inl dt children : _ dt =
