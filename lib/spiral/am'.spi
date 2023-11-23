@@ -1,5 +1,7 @@
 // // # am
 
+open rust_operators
+
 // // ## sum
 
 inl sum (a' : a _ _) =
@@ -25,3 +27,16 @@ inl indexed (array : a _ _) =
     |> fst
     |> listm.rev
     |> listm.toArray
+
+// // ## from_vec
+
+inl from_vec forall dim el. (vec : rust.vec el) : a dim el =
+    inl vec = join vec
+    !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
+
+// // ## map_base
+
+inl map_base forall t u. (fn : t -> u) (x : array t) : array u =
+    a x
+    |> am.map fn
+    |> fun (a x : _ i64 _) => x

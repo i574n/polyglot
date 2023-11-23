@@ -17,13 +17,11 @@ inl global_state_log_render () : _ leptos.pre =
     leptos.pre [
         $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px]\\\""'
     ] fun () =>
-        rust.move (fun () => global_state_json) fun json =>
-            global_state_json |> leptos.memo_get |> leptos.text_fragment
-        |> leptos.closure_to_fragment
+        global_state_json |> leptos.move_to_fragment (leptos.memo_get >> leptos.text_fragment)
 
 inl render () =
     ;[
-        leptos.accordion "View" fun () =>
+        leptos.accordion "View" true fun () =>
             leptos.view_map_grid fun () =>
                 leptos.grid_pair
                     { class = $'"items-center"' }
@@ -33,7 +31,7 @@ inl render () =
             |> leptos.element_to_fragment
         |> leptos.element_to_view
 
-        leptos.accordion "Connection" fun () =>
+        leptos.accordion "Connection" true fun () =>
             leptos.view_map_grid fun () =>
                 leptos.grid_pair
                     { class = $'"items-baseline"' }
@@ -43,7 +41,7 @@ inl render () =
             |> leptos.element_to_fragment
         |> leptos.element_to_view
 
-        leptos.accordion "Global State" fun () =>
+        leptos.accordion "Global State" false fun () =>
             global_state_log_render ()
             |> leptos.element_to_fragment
         |> leptos.element_to_view

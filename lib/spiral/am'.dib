@@ -12,6 +12,10 @@
 
 open testing
 
+#!spiral
+
+open rust_operators
+
 #!markdown
 
 ## sum
@@ -84,3 +88,24 @@ inl indexed (array : a _ _) =
 am.init 3i32 ((*) 2)
 |> indexed
 |> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
+
+#!markdown
+
+## from_vec
+
+#!spiral
+
+inl from_vec forall dim el. (vec : rust.vec el) : a dim el =
+    inl vec = join vec
+    !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
+
+#!markdown
+
+## map_base
+
+#!spiral
+
+inl map_base forall t u. (fn : t -> u) (x : array t) : array u =
+    a x
+    |> am.map fn
+    |> fun (a x : _ i64 _) => x

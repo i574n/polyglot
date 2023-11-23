@@ -47,3 +47,13 @@ inl ok forall t. (x : result t _) : option t =
     match x with
     | Ok x => Some x
     | Error _ => None
+
+inl flatten_option forall t. (x : option (result t string)) : result t string =
+    match x with
+    | None => Error "Option does not have a value."
+    | Some x => x
+
+inl flatten forall t u. (x : result (result t u) u) : result t u =
+    match x with
+    | Ok x => x
+    | Error x => Error x

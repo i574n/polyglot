@@ -66,14 +66,13 @@ inl render () : _ leptos.div =
                 leptos.div [
                     $'"class=\\\"flex flex-100 flex-col [overflow-y:auto]\\\""'
                 ] fun () =>
-                    rust.move (fun () => tab) fun tab =>
+                    tab |> leptos.move_to_fragment fun tab =>
                         open menu_tabs
                         match tab |> leptos.signal_get with
-                        | History => history.render ()
+                        | History => history.render () |> leptos.views_to_view
                         | Settings => settings.render () |> leptos.views_to_view
                         | _ => ;[] |> leptos.views_to_view
                         |> leptos.view_to_fragment
-                    |> leptos.closure_to_fragment
                 |> leptos.element_to_view
 
                 leptos.div [

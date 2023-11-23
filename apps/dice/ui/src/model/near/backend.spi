@@ -49,19 +49,19 @@ nominal transfer_args' = $"crate_model_near_backend_TransferArgs"
 
 type transfer_args =
     {
-        deposit : string
+        deposit : rust.std_string
     }
 
 type deploy_contract_args =
     {
-        code : string
+        code : rust.std_string
     }
 
 type permission =
     {
-        permission_type : string
-        contract_id : option string
-        method_names : option (a i32 string)
+        permission_type : rust.std_string
+        contract_id : option rust.std_string
+        method_names : option (array rust.std_string)
     }
 
 type access_key =
@@ -72,16 +72,16 @@ type access_key =
 
 type add_key_args =
     {
-        public_key : string
+        public_key : rust.std_string
         access_key : access_key
     }
 
 type function_call_args =
     {
-        method_name : string
-        args : string
+        method_name : rust.std_string
+        args : rust.std_string
         gas : u64
-        deposit : string
+        deposit : rust.std_string
     }
 
 union transaction_action =
@@ -92,31 +92,31 @@ union transaction_action =
 
 type transaction =
     {
-        hash : string
-        signer_id : string
-        receiver_id : string
-        block_hash : string
+        hash : rust.std_string
+        signer_id : rust.std_string
+        receiver_id : rust.std_string
+        block_hash : rust.std_string
         block_timestamp : u64
-        actions : a i32 transaction_action
-        status : string
+        actions : array transaction_action
+        status : rust.std_string
     }
 
 type transaction_cursor =
     {
-        timestamp : string
+        timestamp : rust.std_string
         index_in_chunk : u8
     }
 
 type transaction_list_by_account_id =
     {
-        items : a i32 transaction
+        items : array transaction
         cursor : option transaction_cursor
     }
 
 type contract_by_id =
     {
-        code_hash : string
-        transaction_hash : string
+        code_hash : rust.std_string
+        transaction_hash : rust.std_string
         timestamp : u64
         locked : bool
     }
@@ -139,14 +139,14 @@ type data_wrapper =
 
 type error_data_inner =
     {
-        code : string
+        code : rust.std_string
         http_status : u32
-        path : string
+        path : rust.std_string
     }
 
 type error_data =
     {
-        message : string
+        message : rust.std_string
         code : i32
         data : error_data_inner
     }
@@ -168,18 +168,18 @@ type result_wrapper =
 
 type id_input =
     {
-        id : string
+        id : rust.std_string
     }
 
 type transaction_cursor =
     {
-        timestamp : string
+        timestamp : rust.std_string
         index_in_chunk : u8
     }
 
 type transaction_list_by_account_id_input =
     {
-        account_id : string
+        account_id : rust.std_string
         limit : i32
         cursor : option transaction_cursor
     }
@@ -190,47 +190,25 @@ union input_data =
 
 
 
-inl am'_from_vec forall dim el. (vec : rust.vec el) : a dim (rust.rc el) =
-    !\($'"fable_library_rust::NativeArray_::array_from(!vec.into_iter().map(std::rc::Rc::new).collect())"')
-
-inl am'_from_vec' forall dim el. (vec : rust.vec el) : a dim el =
-    inl vec = join vec
-    !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
-
-
-
 inl transfer_args_box ({ deposit } : transfer_args) : transfer_args' =
-    inl deposit = deposit |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::TransferArgs { deposit: !deposit }"')
 
 inl deploy_contract_args_box ({ code } : deploy_contract_args) : deploy_contract_args' =
-    inl code = code |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::DeployContractArgs { code: !code }"')
 
 inl permission_box ({ permission_type contract_id method_names } : permission) : permission' =
-    inl permission_type = permission_type |> sm'.to_std_string
-    inl contract_id = contract_id |> optionm.map sm'.to_std_string |> optionm'.box
-    inl contract_id = join contract_id
-    inl method_names =
-        method_names
-        |> optionm.map (fun x => x |> am.map sm'.to_std_string : _ i32 _)
-        |> optionm'.box
-    inl method_names = join method_names
+    inl contract_id = contract_id |> optionm'.box
+    inl method_names = method_names |> optionm'.box
     !\($'"dice_ui::model::near::backend::Permission { permission_type: !permission_type, contract_id: !contract_id, method_names: !method_names }"')
 
 inl access_key_box ({ nonce permission } : access_key) : access_key' =
-    inl permission = permission |> permission_box
     !\($'"dice_ui::model::near::backend::AccessKey { nonce: !nonce, permission: !permission }"')
 
 inl add_key_args_box ({ public_key access_key } : add_key_args) : add_key_args' =
-    inl public_key = public_key |> sm'.to_std_string
     inl access_key = access_key |> access_key_box
     !\($'"dice_ui::model::near::backend::AddKeyArgs { public_key: !public_key, access_key: !access_key }"')
 
 inl function_call_args_box ({ method_name args gas deposit } : function_call_args) : function_call_args' =
-    inl method_name = method_name |> sm'.to_std_string
-    inl args = args |> sm'.to_std_string
-    inl deposit = deposit |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::FunctionCallArgs { method_name: !method_name, args: !args, gas: !gas, deposit: !deposit }"')
 
 inl transaction_action_box (x : transaction_action) : transaction_action' =
@@ -249,29 +227,18 @@ inl transaction_action_box (x : transaction_action) : transaction_action' =
         !\($'"dice_ui::model::near::backend::TransactionAction::Transfer(!x)"')
 
 inl transaction_box ({ hash signer_id receiver_id block_hash block_timestamp actions status } : transaction) : transaction' =
-    inl hash = hash |> sm'.to_std_string
-    inl signer_id = signer_id |> sm'.to_std_string
-    inl receiver_id = receiver_id |> sm'.to_std_string
-    inl block_hash = block_hash |> sm'.to_std_string
-    inl actions = actions |> (am.map transaction_action_box : _ -> _ i32 _)
-    inl actions = join actions
-    inl status = status |> sm'.to_std_string
+    inl actions = actions |> am'.map_base transaction_action_box
     !\($'"dice_ui::model::near::backend::Transaction { hash: !hash, signer_id: !signer_id, receiver_id: !receiver_id, block_hash: !block_hash, block_timestamp: !block_timestamp, actions: !actions, status: !status }"')
 
 inl transaction_cursor_box ({ timestamp index_in_chunk } : transaction_cursor) : transaction_cursor' =
-    inl timestamp = timestamp |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
 
 inl transaction_list_by_account_id_box ({ items cursor } : transaction_list_by_account_id) : transaction_list_by_account_id' =
-    inl items = items |> (am.map transaction_box : _ -> _ i32 _)
-    inl items = join items
+    inl items = items |> am'.map_base transaction_box
     inl cursor = cursor |> optionm.map transaction_cursor_box |> optionm'.box
-    inl cursor = join cursor
     !\($'"dice_ui::model::near::backend::TransactionListByAccountId { items: !items, cursor: !cursor }"')
 
 inl contract_by_id_box ({ code_hash transaction_hash timestamp locked } : contract_by_id) : contract_by_id' =
-    inl code_hash = code_hash |> sm'.to_std_string
-    inl transaction_hash = transaction_hash |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::ContractById { code_hash: !code_hash, transaction_hash: !transaction_hash, timestamp: !timestamp, locked: !locked }"')
 
 inl account_transactions_count_box ({ in_transactions_count out_transactions_count } : account_transactions_count) : account_transactions_count' =
@@ -294,12 +261,9 @@ inl data_wrapper_box ({ data } : data_wrapper) : data_wrapper' =
     !\($'"dice_ui::model::near::backend::DataWrapper { data: !data }"')
 
 inl error_data_inner_box ({ code http_status path } : error_data_inner) : error_data_inner' =
-    inl code = code |> sm'.to_std_string
-    inl path = path |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::ErrorDataInner { code: !code, http_status: !http_status, path: !path }"')
 
 inl error_data_box ({ message code data } : error_data) : error_data' =
-    inl message = message |> sm'.to_std_string
     inl data = data |> error_data_inner_box
     !\($'"dice_ui::model::near::backend::ErrorData { message: !message, code: !code, data: !data }"')
 
@@ -316,27 +280,20 @@ inl error_wrapper_enum_box (x : error_wrapper_enum) : error_wrapper_enum' =
         inl x = x |> error_data_box
         !\($'"dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(!x)"')
 
-inl result_wrapper_box
-    ({ result error } : result_wrapper)
-    : result_wrapper'
-    =
+inl result_wrapper_box ({ result error } : result_wrapper) : result_wrapper' =
     inl result = result |> optionm.map data_wrapper_box |> optionm'.box
-    inl result = join result
     !\($'"dice_ui::model::near::backend::ResultWrapper { result: !result, error: !error }"')
 
 inl id_input_box ({ id } : id_input) : id_input' =
-    inl id = id |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::IdInput { id: !id }"')
 
 inl transaction_cursor_box ({ timestamp index_in_chunk } : transaction_cursor) : transaction_cursor' =
-    inl timestamp = timestamp |> sm'.to_std_string
     !\($'"dice_ui::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
 
 inl transaction_list_by_account_id_input_box
     ({ account_id limit cursor } : transaction_list_by_account_id_input)
     : transaction_list_by_account_id_input'
     =
-    inl account_id = account_id |> sm'.to_std_string
     inl cursor = cursor |> optionm.map transaction_cursor_box |> optionm'.box
     inl cursor = join cursor
     !\($'"dice_ui::model::near::backend::TransactionListByAccountIdInput { account_id: !account_id, limit: !limit, cursor: !cursor }"')
@@ -352,23 +309,24 @@ inl input_data_box (x : input_data) : input_data' =
 
 inl transfer_args_unbox (x : transfer_args') : transfer_args =
     inl x = join x
-    inl deposit = !\($'"!x.deposit"') |> sm'.from_std_string
+    inl deposit = !\($'"!x.deposit"')
     { deposit }
 
 inl deploy_contract_args_unbox (x : deploy_contract_args') : deploy_contract_args =
     inl x = join x
-    inl code = !\($'"!x.code"') |> sm'.from_std_string
+    inl code = !\($'"!x.code"')
     { code }
 
 inl permission_unbox (x : permission') : permission =
     inl x = join x
-    inl permission_type = !\($'"!x.permission_type"') |> sm'.from_std_string
-    inl contract_id = !\($'"!x.contract_id"') |> optionm'.unbox |> optionm.map sm'.from_std_string
+    inl permission_type = !\($'"!x.permission_type"')
+    inl contract_id = !\($'"!x.contract_id"') |> optionm'.unbox
     inl contract_id = join contract_id
     inl method_names =
         !\($'"!x.method_names"')
         |> optionm'.unbox
-        |> optionm.map (am'_from_vec' >> am.map sm'.from_std_string)
+        |> optionm.map am'.from_vec
+        |> optionm.map fun (a x : _ i32 _) => x
     inl method_names = join method_names
     { permission_type contract_id method_names }
 
@@ -380,16 +338,16 @@ inl access_key_unbox (x : access_key') : access_key =
 
 inl add_key_args_unbox (x : add_key_args') : add_key_args =
     inl x = join x
-    inl public_key = !\($'"!x.public_key"') |> sm'.from_std_string
+    inl public_key = !\($'"!x.public_key"')
     inl access_key = !\($'"!x.access_key"') |> access_key_unbox
     { public_key access_key }
 
 inl function_call_args_unbox (x : function_call_args') : function_call_args =
     inl x = join x
-    inl method_name = !\($'"!x.method_name"') |> sm'.from_std_string
-    inl args = !\($'"!x.args"') |> sm'.from_std_string
+    inl method_name = !\($'"!x.method_name"')
+    inl args = !\($'"!x.args"')
     inl gas = !\($'"!x.gas"')
-    inl deposit = !\($'"!x.deposit"') |> sm'.from_std_string
+    inl deposit = !\($'"!x.deposit"')
     { method_name args gas deposit }
 
 inl transaction_action_unbox (x : transaction_action') : transaction_action =
@@ -410,34 +368,40 @@ inl transaction_action_unbox (x : transaction_action') : transaction_action =
 
 inl transaction_unbox (x : transaction') : transaction =
     inl x = join x
-    inl hash = !\($'"!x.hash.clone()"') |> sm'.from_std_string
-    inl signer_id = !\($'"!x.signer_id.clone()"') |> sm'.from_std_string
-    inl receiver_id = !\($'"!x.receiver_id.clone()"') |> sm'.from_std_string
-    inl block_hash = !\($'"!x.block_hash.clone()"') |> sm'.from_std_string
+    inl hash = !\($'"!x.hash.clone()"')
+    inl signer_id = !\($'"!x.signer_id.clone()"')
+    inl receiver_id = !\($'"!x.receiver_id.clone()"')
+    inl block_hash = !\($'"!x.block_hash.clone()"')
     inl block_timestamp = !\($'"!x.block_timestamp.clone()"')
     inl transaction_action_unbox = join transaction_action_unbox
-    inl actions = !\($'"!x.actions.into_iter().map(|x| !transaction_action_unbox(x)).collect()"') |> am'_from_vec'
-    inl status = !\($'"!x.status.clone()"') |> sm'.from_std_string
+    inl actions =
+        !\($'"!x.actions.into_iter().map(|x| !transaction_action_unbox(x)).collect()"')
+        |> am'.from_vec
+        |> fun (a x : _ i32 _) => x
+    inl status = !\($'"!x.status.clone()"')
     { hash signer_id receiver_id block_hash block_timestamp actions status }
 
 inl transaction_cursor_unbox (x : transaction_cursor') : transaction_cursor =
     inl x = join x
-    inl timestamp = !\($'"!x.timestamp"') |> sm'.from_std_string
+    inl timestamp = !\($'"!x.timestamp"')
     inl index_in_chunk = !\($'"!x.index_in_chunk"')
     { timestamp index_in_chunk }
 
 inl transaction_list_by_account_id_unbox (x : transaction_list_by_account_id') : transaction_list_by_account_id =
     inl x = join x
     inl transaction_unbox = join transaction_unbox
-    inl items = !\($'"!x.items.into_iter().map(|x| !transaction_unbox(x)).collect()"') |> am'_from_vec'
+    inl items =
+        !\($'"!x.items.into_iter().map(|x| !transaction_unbox(x)).collect()"')
+        |> am'.from_vec
+        |> fun (a x : _ i32 _) => x
     inl cursor = !\($'"!x.cursor"') |> optionm'.unbox |> optionm.map transaction_cursor_unbox
     inl cursor = join cursor
     { items cursor }
 
 inl contract_by_id_unbox (x : contract_by_id') : contract_by_id =
     inl x = join x
-    inl code_hash = !\($'"!x.code_hash"') |> sm'.from_std_string
-    inl transaction_hash = !\($'"!x.transaction_hash"') |> sm'.from_std_string
+    inl code_hash = !\($'"!x.code_hash"')
+    inl transaction_hash = !\($'"!x.transaction_hash"')
     inl timestamp = !\($'"!x.timestamp"')
     inl locked = !\($'"!x.locked"')
     { code_hash transaction_hash timestamp locked }
@@ -467,14 +431,14 @@ inl data_wrapper_unbox (x : data_wrapper') : data_wrapper =
     { data }
 
 inl error_data_inner_unbox (x : error_data_inner') : error_data_inner =
-    inl code = !\($'"!x.code"') |> sm'.from_std_string
+    inl code = !\($'"!x.code"')
     inl http_status = !\($'"!x.http_status"')
-    inl path = !\($'"!x.path"') |> sm'.from_std_string
+    inl path = !\($'"!x.path"')
     { code http_status path }
 
 inl error_data_unbox (x : error_data') : error_data =
     inl x = join x
-    inl message = !\($'"!x.message"') |> sm'.from_std_string
+    inl message = !\($'"!x.message"')
     inl code = !\($'"!x.code"')
     inl data = !\($'"!x.data"') |> error_data_inner_unbox
     { message code data }
@@ -494,23 +458,23 @@ inl error_wrapper_enum_unbox (x : error_wrapper_enum') : error_wrapper_enum =
     inl _ErrorData = join _ErrorData
     !\($'"match !x { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => !_ErrorWrapper(!error_wrapper_unbox(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => !_ErrorData(!error_data_unbox(x)) }"')
 
-inl result_wrapper_unbox (x : rust.rc result_wrapper') : result_wrapper =
+inl result_wrapper_unbox (x : result_wrapper') : result_wrapper =
     inl x = join x
     inl result = !\($'"!x.result.clone()"') |> optionm'.unbox |> optionm.map data_wrapper_unbox
     inl error = !\($'"!x.error.clone()"') |> optionm'.unbox |> optionm.map error_wrapper_enum_unbox
     { result error }
 
 inl id_input_unbox (x : id_input') : id_input =
-    inl id = !\($'"!x.id"') |> sm'.from_std_string
+    inl id = !\($'"!x.id"')
     { id }
 
 inl transaction_cursor_unbox (x : transaction_cursor') : transaction_cursor =
-    inl timestamp = !\($'"!x.timestamp"') |> sm'.from_std_string
+    inl timestamp = !\($'"!x.timestamp"')
     inl index_in_chunk = !\($'"!x.index_in_chunk"')
     { timestamp index_in_chunk }
 
 inl transaction_list_by_account_id_input_unbox (x : transaction_list_by_account_id_input') : transaction_list_by_account_id_input =
-    inl account_id = !\($'"!x.account_id"') |> sm'.from_std_string
+    inl account_id = !\($'"!x.account_id"')
     inl limit = !\($'"!x.limit"')
     inl cursor = !\($'"!x.cursor"') |> optionm'.unbox |> optionm.map transaction_cursor_unbox
     inl cursor = join cursor

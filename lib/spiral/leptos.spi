@@ -403,11 +403,12 @@ inl arrow_down_svg () : _ svg =
     $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg>"'
     |> macro_to_element
 
-inl accordion title children : _ details =
+inl accordion title open' children : _ details =
     inl title = title |> sm'.to_std_string
+    inl open' : bool = open'
     inl children : () -> fragment = join children
     inl arrow_down_svg = arrow_down_svg ()
-    $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\">{!arrow_down_svg}</span></summary><div class=\\\"[display:flex] [flex:1] [overflow:auto]\\\">{!children()}</div></details>"'
+    $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open=!open'><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\">{!arrow_down_svg}</span></summary><div class=\\\"[display:flex] [flex:1] [flex-direction:column] [overflow:auto]\\\">{!children()}</div></details>"'
     |> macro_to_element
 
 inl input forall t. getter setter : _ input =
@@ -429,7 +430,7 @@ inl toggle on_change get_value : _ label =
 
 inl dd children : _ dd =
     tag_element "dd" [
-        $'"class=\\\"text-gray-700 md:col-span-2 flex flex-1\\\""'
+        $'"class=\\\"[max-height:50vh] [overflow:auto] text-gray-700 md:col-span-2 flex flex-1\\\""'
     ] children
 
 inl dl children : _ dl =
@@ -445,7 +446,7 @@ inl dt children : _ dt =
 inl grid_pair { class } left right : _ div =
     inl class : string = class
     div [
-        $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] " + !class + "\\\""'
+        $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] [width:100%] " + !class + "\\\""'
     ] fun () =>
     ;[
         dt fun () => left
@@ -482,3 +483,14 @@ inl tab_link href icon label select : _ a' =
             label |> text_view
         ]
         |> views_to_fragment
+
+inl text_block_pre children =
+    pre [
+        $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px]\\\""'
+    ] fun () =>
+        children
+
+inl move_to_fragment fn deps =
+    rust.move (fun () => deps) fun deps =>
+        fn deps
+    |> closure_to_fragment
