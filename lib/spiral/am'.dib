@@ -12,9 +12,69 @@
 
 open testing
 
+prototype append t : t -> t -> t
+
 #!spiral
 
 open rust_operators
+
+#!markdown
+
+## append
+
+#!spiral
+
+instance append a dim {int; number} t =
+    am.append
+
+#!markdown
+
+## /@
+
+#!spiral
+
+inl (/@) a b =
+    b |> append a
+
+#!spiral
+
+// // test
+
+a ;[ "a"; "b" ] /@ a ;[ "c"; "d" ]
+|> _equal (a ;[ "a"; "b"; "c"; "d" ] : _ i32 _)
+
+#!markdown
+
+## collect
+
+#!spiral
+
+inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
+    items
+    |> am.map fn
+    |> am.fold (/@) (a ;[])
+
+#!markdown
+
+## choose
+
+#!spiral
+
+inl choose f l =
+    (l, [])
+    ||> am.foldBack fun x acc =>
+        match f x with
+        | Some y => y :: acc
+        | None => acc
+    |> listm.toArray
+
+#!spiral
+
+// // test
+
+(am.init 10i32 id : a _ _)
+|> choose (fun x => if x % 2 = 0 then Some x else None)
+|> _equal (a ;[ 0; 2; 4; 6; 8 ] : _ i32 _)
 
 #!markdown
 

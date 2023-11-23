@@ -1,9 +1,14 @@
 // // # listm
 
+// // ## append
+
+instance append list t =
+    listm.append
+
 // // ## /@
 
 inl (/@) a b =
-    b |> listm.append a
+    b |> append a
 
 // // ## init_series
 

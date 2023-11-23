@@ -87,11 +87,13 @@ inl view_to_fragment (view : view) : fragment =
 inl fragment_to_view (fragment : fragment) : view =
     !\($'"leptos::IntoView::into_view(!fragment)"')
 
-inl closure_to_view (closure : () -> view) : view =
-    !\($'"leptos::IntoView::into_view(move || !closure(()))"')
+inl closure_to_view (closure : rust.func0 view) : view =
+    inl closure = join closure
+    !\($'"leptos::IntoView::into_view(move || !closure())"')
 
-inl closure_to_fragment (closure : () -> fragment) : fragment =
-    !\($'"leptos::IntoView::into_view(move || !closure(()))"')
+inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
+    inl closure = join closure
+    !\($'"leptos::IntoView::into_view(move || !closure())"')
     |> view_to_fragment
 
 inl array_to_fragment (view : a _ view) : fragment =

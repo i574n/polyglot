@@ -23,6 +23,8 @@ inl render () =
     inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
 
     inl url_input = leptos.create_memo fun () =>
+        leptos.log $'"history.render () / url_input create_memo"'
+
         inl id = "i574n.near"
 
         inl input_obj : rust.hash_map rust.std_string (rust.rc input_data') =
@@ -50,6 +52,8 @@ inl render () =
         input |> sm'.format
 
     inl url = leptos.create_memo fun () =>
+        leptos.log $'"history.render () / url create_memo"'
+
         inl explorer_backend_host =
             leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
             |> leptos.rw_signal_get
@@ -65,7 +69,7 @@ inl render () =
             fun () => url |> leptos.memo_get
             fun url =>
                 fun () =>
-                    leptos.log $'"history.render () / response create_local_resource"'
+                    leptos.log $'"history.render () / json create_local_resource"'
                     url
                     |> new_request_get
                     |> async.await
@@ -82,6 +86,8 @@ inl render () =
 
     inl result_wrapper : leptos.memo (resultm.result' (a i32 result_wrapper') string) =
         leptos.create_memo fun () =>
+            leptos.log $'"history.render () / result_wrapper create_memo"'
+
             json
             |> leptos.resource_get
             |> optionm'.unbox
@@ -95,6 +101,32 @@ inl render () =
                 |> am'.from_vec
             |> resultm.box
 
+    inl result_wrapper : rust.func0 (result (a i32 result_wrapper) string) =
+        rust.move (fun () => result_wrapper |> leptos.memo_get) fun result_wrapper =>
+            leptos.log $'"history.render () / result_wrapper move"'
+
+            result_wrapper
+            |> resultm.unbox
+            |> resultm.map (am.map result_wrapper_unbox)
+
+    inl transaction_list : rust.func0 (result (list transaction_list_by_account_id) string) =
+        rust.move (fun () => result_wrapper |> rust.func0_get) fun result_wrapper =>
+            leptos.log $'"history.render () / transaction_list move"'
+
+            result_wrapper
+            |> resultm.map fun result =>
+                result
+                |> am.toList
+                |> listm.map fun result =>
+                    result.result
+                    |> optionm.map fun result =>
+                        match result.data with
+                        | TransactionListByAccountId transaction_list_by_account_id =>
+                            Some transaction_list_by_account_id
+                        | _ => None
+                    |> optionm'.flatten
+                |> listm'.choose id
+
     ;[
         leptos.accordion "History" true fun () =>
             "{}" |> leptos.text_fragment
@@ -105,10 +137,10 @@ inl render () =
                 ;[
                     leptos.grid_pair
                         { class = "" }
-                        ("JSON" |> leptos.text_fragment)
-                        (json |> leptos.move_to_fragment fun json =>
-                            json
-                            |> leptos.resource_get
+                        ("Transaction List" |> leptos.text_fragment)
+                        (transaction_list |> leptos.move_to_fragment fun transaction_list =>
+                            transaction_list
+                            |> rust.func0_get
                             |> sm'.format_pretty
                             |> sm'.from_std_string
                             |> leptos.text_fragment
@@ -116,15 +148,25 @@ inl render () =
                             |> leptos.element_to_fragment)
                     |> leptos.element_to_view
 
-
                     leptos.grid_pair
                         { class = "" }
                         ("Result Wrapper" |> leptos.text_fragment)
                         (result_wrapper |> leptos.move_to_fragment fun result_wrapper =>
                             result_wrapper
-                            |> leptos.memo_get
-                            |> resultm.unbox
-                            |> resultm.map (am.map result_wrapper_unbox)
+                            |> rust.func0_get
+                            |> sm'.format_pretty
+                            |> sm'.from_std_string
+                            |> leptos.text_fragment
+                            |> leptos.text_block_pre
+                            |> leptos.element_to_fragment)
+                    |> leptos.element_to_view
+
+                    leptos.grid_pair
+                        { class = "" }
+                        ("JSON" |> leptos.text_fragment)
+                        (json |> leptos.move_to_fragment fun json =>
+                            json
+                            |> leptos.resource_get
                             |> sm'.format_pretty
                             |> sm'.from_std_string
                             |> leptos.text_fragment

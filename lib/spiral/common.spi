@@ -1,5 +1,9 @@
 // // # common
 
+// // ## append
+
+prototype append t : t -> t -> t
+
 // // ## pair
 
 inl pair x y =

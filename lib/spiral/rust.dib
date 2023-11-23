@@ -54,6 +54,8 @@ nominal action_fn2 t u = $"ActionFn2<`t, `u>"
 nominal fn_once t = $"FnOnce<`t>"
 nominal fn_unit = $"FnUnit"
 nominal future t = $"Future<`t>"
+nominal func0 t = $"Func0<`t>"
+nominal func1 t u = $"Func0<`t, `u>"
 nominal impl t = $"Impl<`t>"
 nominal mut' t = $"Mut<`t>"
 nominal ref' t = $"Ref<`t>"
@@ -118,10 +120,14 @@ inl deref forall t. (ref : ref' t) : t =
     inl ref = join ref
     !\($'"*!ref"')
 
-inl move forall t u. (x : () -> t) (fn : t -> u) : () -> u =
+inl func0_get forall t. (x : func0 t) : t =
+    inl x = join x
+    !\($'"!x()"')
+
+inl move forall t u. (x : () -> t) (fn : t -> u) : func0 u =
     inl x = join x
     inl fn = join fn
-    !\($'"move || !fn(!x())"')
+    !\($'"Func0::new(move || !fn(!x()))"')
 
 inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
     $"!x |> unbox"

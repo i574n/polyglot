@@ -2,6 +2,33 @@
 
 open rust_operators
 
+// // ## append
+
+instance append a dim {int; number} t =
+    am.append
+
+// // ## /@
+
+inl (/@) a b =
+    b |> append a
+
+// // ## collect
+
+inl collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
+    items
+    |> am.map fn
+    |> am.fold (/@) (a ;[])
+
+// // ## choose
+
+inl choose f l =
+    (l, [])
+    ||> am.foldBack fun x acc =>
+        match f x with
+        | Some y => y :: acc
+        | None => acc
+    |> listm.toArray
+
 // // ## sum
 
 inl sum (a' : a _ _) =

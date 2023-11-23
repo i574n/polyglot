@@ -12,6 +12,17 @@
 
 open testing
 
+prototype append t : t -> t -> t
+
+#!markdown
+
+## append
+
+#!spiral
+
+instance append list t =
+    listm.append
+
 #!markdown
 
 ## /@
@@ -19,7 +30,7 @@ open testing
 #!spiral
 
 inl (/@) a b =
-    b |> listm.append a
+    b |> append a
 
 #!spiral
 
