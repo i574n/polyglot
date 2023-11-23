@@ -445,7 +445,7 @@ inl dt children : _ dt =
 inl grid_pair { class } left right : _ div =
     inl class : string = class
     div [
-        $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[11px] pl-[12px] " + !class + "\\\""'
+        $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] " + !class + "\\\""'
     ] fun () =>
     ;[
         dt fun () => left

@@ -1268,6 +1268,7 @@ version = "0.0.1"
 dependencies = [
  "base64 0.21.5",
  "borsh 1.2.0",
+ "chrono",
  "console_error_panic_hook",
  "console_log",
  "fable_library_rust",

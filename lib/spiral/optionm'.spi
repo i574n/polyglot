@@ -40,7 +40,9 @@ inl box forall t. (x : option t) : option' t =
 // // ## map
 
 inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    !\\(fn, $'"!x.map(|x| $0(x))"')
+    inl x = join x
+    inl fn = join fn
+    !\($'"!x.map(|x| !fn(x))"')
 
 // // ## flatten
 

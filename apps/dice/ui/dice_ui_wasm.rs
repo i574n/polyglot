@@ -13,9 +13,12 @@ use fable_library_rust::String_::fromString;
 mod module_eef1bd43 {
     pub mod Dice_ui {
         use super::*;
+        use fable_library_rust::NativeArray_::count;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
+        use fable_library_rust::NativeArray_::new_init;
         use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::Native_::defaultOf;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
@@ -326,12 +329,155 @@ mod module_eef1bd43 {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
-        #[derive(Clone, Debug)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US24 {
+            US24_0(i32, string, u32, string, string),
+            US24_1(i32, string, u32, string, string),
+        }
+        impl core::fmt::Display for Dice_ui::US24 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
         pub enum US23 {
-            US23_0(std::string::String),
-            US23_1(std::string::String),
+            US23_0,
+            US23_1(Dice_ui::US24),
         }
         impl core::fmt::Display for Dice_ui::US23 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US27 {
+            US27_0,
+            US27_1(u8, string),
+        }
+        impl core::fmt::Display for Dice_ui::US27 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US29 {
+            US29_0,
+            US29_1(string),
+        }
+        impl core::fmt::Display for Dice_ui::US29 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US30 {
+            US30_0,
+            US30_1(Array<string>),
+        }
+        impl core::fmt::Display for Dice_ui::US30 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US28 {
+            US28_0(u8, Dice_ui::US29, Dice_ui::US30, string, string),
+            US28_1(string),
+            US28_2(string, string, u64, string),
+            US28_3(string),
+        }
+        impl core::fmt::Display for Dice_ui::US28 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US26 {
+            US26_0(u64, u64),
+            US26_1(string, bool, u64, string),
+            US26_2(
+                Dice_ui::US27,
+                Array<(
+                    Array<Dice_ui::US28>,
+                    string,
+                    u64,
+                    string,
+                    string,
+                    string,
+                    string,
+                )>,
+            ),
+        }
+        impl core::fmt::Display for Dice_ui::US26 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub enum US25 {
+            US25_0,
+            US25_1(Dice_ui::US26),
+        }
+        impl core::fmt::Display for Dice_ui::US25 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub struct Mut0 {
+            pub l0: MutCell<i32>,
+        }
+        impl core::fmt::Display for Dice_ui::Mut0 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US31 {
+            US31_0,
+            US31_1(dice_ui::model::near::backend::DataWrapper),
+        }
+        impl core::fmt::Display for Dice_ui::US31 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US32 {
+            US32_0,
+            US32_1(Vec<std::string::String>),
+        }
+        impl core::fmt::Display for Dice_ui::US32 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US33 {
+            US33_0,
+            US33_1(dice_ui::model::near::backend::TransactionCursor),
+        }
+        impl core::fmt::Display for Dice_ui::US33 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US34 {
+            US34_0,
+            US34_1(dice_ui::model::near::backend::ErrorWrapperEnum),
+        }
+        impl core::fmt::Display for Dice_ui::US34 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
+        pub enum US35 {
+            US35_0(std::string::String),
+            US35_1(std::string::String),
+        }
+        impl core::fmt::Display for Dice_ui::US35 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
@@ -2378,16 +2524,684 @@ mod module_eef1bd43 {
         pub fn method102() -> Func1<reqwest_wasm::Error, std::string::String> {
             Func1::new(move |v: reqwest_wasm::Error| Dice_ui::closure60((), v))
         }
-        pub fn method103(
-            v0_1: Result<std::string::String, std::string::String>,
-        ) -> Result<std::string::String, std::string::String> {
+        pub fn closure61(unitVar: (), v0_1: serde_json::Error) -> std::string::String {
+            format!("{}", &v0_1)
+        }
+        pub fn method103() -> Func1<serde_json::Error, std::string::String> {
+            Func1::new(move |v: serde_json::Error| Dice_ui::closure61((), v))
+        }
+        pub fn method104(v0_1: i32, v1: Dice_ui::Mut0) -> bool {
+            v1.l0.get() < v0_1
+        }
+        pub fn method105(
+            v0_1: std::rc::Rc<dice_ui::model::near::backend::ResultWrapper>,
+        ) -> std::rc::Rc<dice_ui::model::near::backend::ResultWrapper> {
+            v0_1
+        }
+        pub fn closure62(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::DataWrapper,
+        ) -> Dice_ui::US31 {
+            Dice_ui::US31::US31_1(v0_1)
+        }
+        pub fn method106(
+            v0_1: dice_ui::model::near::backend::DataWrapper,
+        ) -> dice_ui::model::near::backend::DataWrapper {
+            v0_1
+        }
+        pub fn method107(
+            v0_1: dice_ui::model::near::backend::ResultData,
+        ) -> dice_ui::model::near::backend::ResultData {
+            v0_1
+        }
+        pub fn method109(
+            v0_1: dice_ui::model::near::backend::AccountTransactionsCount,
+        ) -> dice_ui::model::near::backend::AccountTransactionsCount {
+            v0_1
+        }
+        pub fn closure63(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::AccountTransactionsCount,
+        ) -> (u64, u64) {
+            let v1: dice_ui::model::near::backend::AccountTransactionsCount =
+                Dice_ui::method109(v0_1);
+            (v1.in_transactions_count, v1.out_transactions_count)
+        }
+        pub fn method108(
+        ) -> Func1<dice_ui::model::near::backend::AccountTransactionsCount, (u64, u64)> {
+            Func1::new(
+                move |v: dice_ui::model::near::backend::AccountTransactionsCount| {
+                    Dice_ui::closure63((), v)
+                },
+            )
+        }
+        pub fn method111(
+            v0_1: dice_ui::model::near::backend::ContractById,
+        ) -> dice_ui::model::near::backend::ContractById {
+            v0_1
+        }
+        pub fn closure64(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::ContractById,
+        ) -> (string, bool, u64, string) {
+            let v1: dice_ui::model::near::backend::ContractById = Dice_ui::method111(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.code_hash);
+            let v6: string = fable_library_rust::String_::fromString(v4);
+            let v9: std::string::String = Dice_ui::method32(v1.transaction_hash);
+            let v11: string = fable_library_rust::String_::fromString(v9);
+            let v13: u64 = v1.timestamp;
+            (v6, v1.locked, v13, v11)
+        }
+        pub fn method110(
+        ) -> Func1<dice_ui::model::near::backend::ContractById, (string, bool, u64, string)>
+        {
+            Func1::new(move |v: dice_ui::model::near::backend::ContractById| {
+                Dice_ui::closure64((), v)
+            })
+        }
+        pub fn method113(
+            v0_1: dice_ui::model::near::backend::TransactionListByAccountId,
+        ) -> dice_ui::model::near::backend::TransactionListByAccountId {
+            v0_1
+        }
+        pub fn method115(
+            v0_1: dice_ui::model::near::backend::Transaction,
+        ) -> dice_ui::model::near::backend::Transaction {
+            v0_1
+        }
+        pub fn method117(
+            v0_1: dice_ui::model::near::backend::TransactionAction,
+        ) -> dice_ui::model::near::backend::TransactionAction {
+            v0_1
+        }
+        pub fn method119(
+            v0_1: dice_ui::model::near::backend::FunctionCallArgs,
+        ) -> dice_ui::model::near::backend::FunctionCallArgs {
+            v0_1
+        }
+        pub fn closure68(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::FunctionCallArgs,
+        ) -> (string, string, u64, string) {
+            let v1: dice_ui::model::near::backend::FunctionCallArgs = Dice_ui::method119(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.method_name);
+            let v6: string = fable_library_rust::String_::fromString(v4);
+            let v9: std::string::String = Dice_ui::method32(v1.args);
+            let v11: string = fable_library_rust::String_::fromString(v9);
+            let v13: u64 = v1.gas;
+            let v16: std::string::String = Dice_ui::method32(v1.deposit);
+            (v11, fable_library_rust::String_::fromString(v16), v13, v6)
+        }
+        pub fn method118(
+        ) -> Func1<dice_ui::model::near::backend::FunctionCallArgs, (string, string, u64, string)>
+        {
+            Func1::new(move |v: dice_ui::model::near::backend::FunctionCallArgs| {
+                Dice_ui::closure68((), v)
+            })
+        }
+        pub fn method121(
+            v0_1: dice_ui::model::near::backend::AddKeyArgs,
+        ) -> dice_ui::model::near::backend::AddKeyArgs {
+            v0_1
+        }
+        pub fn method122(
+            v0_1: dice_ui::model::near::backend::AccessKey,
+        ) -> dice_ui::model::near::backend::AccessKey {
+            v0_1
+        }
+        pub fn method123(
+            v0_1: dice_ui::model::near::backend::Permission,
+        ) -> dice_ui::model::near::backend::Permission {
+            v0_1
+        }
+        pub fn method124(v0_1: Dice_ui::US29) -> Dice_ui::US29 {
+            v0_1
+        }
+        pub fn closure70(unitVar: (), v0_1: Vec<std::string::String>) -> Dice_ui::US32 {
+            Dice_ui::US32::US32_1(v0_1)
+        }
+        pub fn method125(v0_1: Vec<std::string::String>) -> Vec<std::string::String> {
+            v0_1
+        }
+        pub fn method126(v0_1: Dice_ui::US30) -> Dice_ui::US30 {
+            v0_1
+        }
+        pub fn closure69(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::AddKeyArgs,
+        ) -> (u8, Dice_ui::US29, Dice_ui::US30, string, string) {
+            let v1: dice_ui::model::near::backend::AddKeyArgs = Dice_ui::method121(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.public_key);
+            let v6: string = fable_library_rust::String_::fromString(v4);
+            let v9: dice_ui::model::near::backend::AccessKey = Dice_ui::method122(v1.access_key);
+            let v11: u8 = v9.nonce;
+            let v14: dice_ui::model::near::backend::Permission = Dice_ui::method123(v9.permission);
+            let v17: std::string::String = Dice_ui::method32(v14.permission_type);
+            let v19: string = fable_library_rust::String_::fromString(v17);
+            let v24: Dice_ui::US15 = defaultValue(
+                Dice_ui::US15::US15_0,
+                map(
+                    Func1::new(move |v: std::string::String| Dice_ui::closure29((), v)),
+                    v14.contract_id,
+                ),
+            );
+            let v33: Dice_ui::US29 = Dice_ui::method124(match &v24 {
+                Dice_ui::US15::US15_1(v24_1_0) => {
+                    let v26: std::string::String = Dice_ui::method32(v24_1_0.clone());
+                    Dice_ui::US29::US29_1(fable_library_rust::String_::fromString(v26))
+                }
+                _ => Dice_ui::US29::US29_0,
+            });
+            let v38: Dice_ui::US32 = defaultValue(
+                Dice_ui::US32::US32_0,
+                map(
+                    Func1::new(move |v_1: Vec<std::string::String>| Dice_ui::closure70((), v_1)),
+                    v14.method_names,
+                ),
+            );
+            (
+                v11,
+                v33,
+                Dice_ui::method126(match &v38 {
+                    Dice_ui::US32::US32_1(v38_1_0) => {
+                        let v40: Vec<std::string::String> = Dice_ui::method125(v38_1_0.clone());
+                        let v42: Array<std::string::String> =
+                            fable_library_rust::NativeArray_::array_from(v40);
+                        let v43: i32 = count(v42.clone());
+                        let v44: Array<string> = new_init(&string(""), v43);
+                        let v45: Dice_ui::Mut0 = Dice_ui::Mut0 {
+                            l0: MutCell::new(0_i32),
+                        };
+                        while Dice_ui::method104(v43, v45.clone()) {
+                            let v47: i32 = v45.l0.get();
+                            let v49: std::string::String = Dice_ui::method32(v42[v47].clone());
+                            let v51: string = fable_library_rust::String_::fromString(v49);
+                            v44.get_mut()[v47 as usize] = v51;
+                            {
+                                let v52: i32 = v47 + 1_i32;
+                                v45.l0.set(v52);
+                                ()
+                            }
+                        }
+                        Dice_ui::US30::US30_1(v44.clone())
+                    }
+                    _ => Dice_ui::US30::US30_0,
+                }),
+                v19,
+                v6,
+            )
+        }
+        pub fn method120() -> Func1<
+            dice_ui::model::near::backend::AddKeyArgs,
+            (u8, Dice_ui::US29, Dice_ui::US30, string, string),
+        > {
+            Func1::new(move |v: dice_ui::model::near::backend::AddKeyArgs| {
+                Dice_ui::closure69((), v)
+            })
+        }
+        pub fn method128(
+            v0_1: dice_ui::model::near::backend::DeployContractArgs,
+        ) -> dice_ui::model::near::backend::DeployContractArgs {
+            v0_1
+        }
+        pub fn closure71(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::DeployContractArgs,
+        ) -> string {
+            let v1: dice_ui::model::near::backend::DeployContractArgs = Dice_ui::method128(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.code);
+            fable_library_rust::String_::fromString(v4)
+        }
+        pub fn method127() -> Func1<dice_ui::model::near::backend::DeployContractArgs, string> {
+            Func1::new(
+                move |v: dice_ui::model::near::backend::DeployContractArgs| {
+                    Dice_ui::closure71((), v)
+                },
+            )
+        }
+        pub fn method130(
+            v0_1: dice_ui::model::near::backend::TransferArgs,
+        ) -> dice_ui::model::near::backend::TransferArgs {
+            v0_1
+        }
+        pub fn closure72(unitVar: (), v0_1: dice_ui::model::near::backend::TransferArgs) -> string {
+            let v1: dice_ui::model::near::backend::TransferArgs = Dice_ui::method130(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.deposit);
+            fable_library_rust::String_::fromString(v4)
+        }
+        pub fn method129() -> Func1<dice_ui::model::near::backend::TransferArgs, string> {
+            Func1::new(move |v: dice_ui::model::near::backend::TransferArgs| {
+                Dice_ui::closure72((), v)
+            })
+        }
+        pub fn closure73(unitVar: (), _arg: (string, string, u64, string)) -> Dice_ui::US28 {
+            Dice_ui::US28::US28_2(
+                _arg.0.clone(),
+                _arg.1.clone(),
+                _arg.2.clone(),
+                _arg.3.clone(),
+            )
+        }
+        pub fn method131() -> Func1<(string, string, u64, string), Dice_ui::US28> {
+            Func1::new(move |arg10_0040: (string, string, u64, string)| {
+                Dice_ui::closure73((), arg10_0040)
+            })
+        }
+        pub fn closure74(
+            unitVar: (),
+            _arg: (u8, Dice_ui::US29, Dice_ui::US30, string, string),
+        ) -> Dice_ui::US28 {
+            Dice_ui::US28::US28_0(
+                _arg.0.clone(),
+                _arg.1.clone(),
+                _arg.2.clone(),
+                _arg.3.clone(),
+                _arg.4.clone(),
+            )
+        }
+        pub fn method132(
+        ) -> Func1<(u8, Dice_ui::US29, Dice_ui::US30, string, string), Dice_ui::US28> {
+            Func1::new(
+                move |arg10_0040: (u8, Dice_ui::US29, Dice_ui::US30, string, string)| {
+                    Dice_ui::closure74((), arg10_0040)
+                },
+            )
+        }
+        pub fn closure75(unitVar: (), v0_1: string) -> Dice_ui::US28 {
+            Dice_ui::US28::US28_1(v0_1)
+        }
+        pub fn method133() -> Func1<string, Dice_ui::US28> {
+            Func1::new(move |v: string| Dice_ui::closure75((), v))
+        }
+        pub fn closure76(unitVar: (), v0_1: string) -> Dice_ui::US28 {
+            Dice_ui::US28::US28_3(v0_1)
+        }
+        pub fn method134() -> Func1<string, Dice_ui::US28> {
+            Func1::new(move |v: string| Dice_ui::closure76((), v))
+        }
+        pub fn closure67(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::TransactionAction,
+        ) -> Dice_ui::US28 {
+            let v1: dice_ui::model::near::backend::TransactionAction = Dice_ui::method117(v0_1);
+            let v2 = Dice_ui::method118();
+            let v3 = Dice_ui::method120();
+            let v4 = Dice_ui::method127();
+            let v5 = Dice_ui::method129();
+            let v6 = Dice_ui::method131();
+            let v7 = Dice_ui::method132();
+            let v8 = Dice_ui::method133();
+            let v9 = Dice_ui::method134();
+            let v10: string =
+                string("match v1 { dice_ui::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)), dice_ui::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)), dice_ui::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)), dice_ui::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)) }");
+            match v1 {
+                dice_ui::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)),
+                dice_ui::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)),
+                dice_ui::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)),
+                dice_ui::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)),
+            }
+        }
+        pub fn method116() -> Func1<dice_ui::model::near::backend::TransactionAction, Dice_ui::US28>
+        {
+            Func1::new(move |v: dice_ui::model::near::backend::TransactionAction| {
+                Dice_ui::closure67((), v)
+            })
+        }
+        pub fn method135(v0_1: Vec<Dice_ui::US28>) -> Vec<Dice_ui::US28> {
+            v0_1
+        }
+        pub fn closure66(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::Transaction,
+        ) -> (
+            Array<Dice_ui::US28>,
+            string,
+            u64,
+            string,
+            string,
+            string,
+            string,
+        ) {
+            let v1: dice_ui::model::near::backend::Transaction = Dice_ui::method115(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.hash.clone());
+            let v6: string = fable_library_rust::String_::fromString(v4);
+            let v9: std::string::String = Dice_ui::method32(v1.signer_id.clone());
+            let v11: string = fable_library_rust::String_::fromString(v9);
+            let v14: std::string::String = Dice_ui::method32(v1.receiver_id.clone());
+            let v16: string = fable_library_rust::String_::fromString(v14);
+            let v19: std::string::String = Dice_ui::method32(v1.block_hash.clone());
+            let v21: string = fable_library_rust::String_::fromString(v19);
+            let v23: u64 = v1.block_timestamp.clone();
+            let v24 = Dice_ui::method116();
+            let v27: Vec<Dice_ui::US28> =
+                Dice_ui::method135(v1.actions.into_iter().map(|x| v24(x)).collect());
+            let v29: Array<Dice_ui::US28> = fable_library_rust::NativeArray_::array_from(v27);
+            let v32: std::string::String = Dice_ui::method32(v1.status.clone());
+            (
+                v29,
+                v21,
+                v23,
+                v6,
+                v16,
+                v11,
+                fable_library_rust::String_::fromString(v32),
+            )
+        }
+        pub fn method114() -> Func1<
+            dice_ui::model::near::backend::Transaction,
+            (
+                Array<Dice_ui::US28>,
+                string,
+                u64,
+                string,
+                string,
+                string,
+                string,
+            ),
+        > {
+            Func1::new(move |v: dice_ui::model::near::backend::Transaction| {
+                Dice_ui::closure66((), v)
+            })
+        }
+        pub fn method136(
+            v0_1: Vec<(
+                Array<Dice_ui::US28>,
+                string,
+                u64,
+                string,
+                string,
+                string,
+                string,
+            )>,
+        ) -> Vec<(
+            Array<Dice_ui::US28>,
+            string,
+            u64,
+            string,
+            string,
+            string,
+            string,
+        )> {
+            v0_1
+        }
+        pub fn closure77(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::TransactionCursor,
+        ) -> Dice_ui::US33 {
+            Dice_ui::US33::US33_1(v0_1)
+        }
+        pub fn method137(
+            v0_1: dice_ui::model::near::backend::TransactionCursor,
+        ) -> dice_ui::model::near::backend::TransactionCursor {
+            v0_1
+        }
+        pub fn method138(v0_1: Dice_ui::US27) -> Dice_ui::US27 {
+            v0_1
+        }
+        pub fn closure65(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::TransactionListByAccountId,
+        ) -> (
+            Dice_ui::US27,
+            Array<(
+                Array<Dice_ui::US28>,
+                string,
+                u64,
+                string,
+                string,
+                string,
+                string,
+            )>,
+        ) {
+            let v1: dice_ui::model::near::backend::TransactionListByAccountId =
+                Dice_ui::method113(v0_1);
+            let v2 = Dice_ui::method114();
+            let v5: Vec<(
+                Array<Dice_ui::US28>,
+                string,
+                u64,
+                string,
+                string,
+                string,
+                string,
+            )> = Dice_ui::method136(v1.items.into_iter().map(|x| v2(x)).collect());
+            let v7: Array<(
+                Array<Dice_ui::US28>,
+                string,
+                u64,
+                string,
+                string,
+                string,
+                string,
+            )> = fable_library_rust::NativeArray_::array_from(v5);
+            let v12: Dice_ui::US33 = defaultValue(
+                Dice_ui::US33::US33_0,
+                map(
+                    Func1::new(move |v: dice_ui::model::near::backend::TransactionCursor| {
+                        Dice_ui::closure77((), v)
+                    }),
+                    v1.cursor,
+                ),
+            );
+            (
+                Dice_ui::method138(match &v12 {
+                    Dice_ui::US33::US33_1(v12_1_0) => {
+                        let v14: dice_ui::model::near::backend::TransactionCursor =
+                            Dice_ui::method137(v12_1_0.clone());
+                        let v17: std::string::String = Dice_ui::method32(v14.timestamp);
+                        let v19: string = fable_library_rust::String_::fromString(v17);
+                        Dice_ui::US27::US27_1(v14.index_in_chunk, v19)
+                    }
+                    _ => Dice_ui::US27::US27_0,
+                }),
+                v7,
+            )
+        }
+        pub fn method112() -> Func1<
+            dice_ui::model::near::backend::TransactionListByAccountId,
+            (
+                Dice_ui::US27,
+                Array<(
+                    Array<Dice_ui::US28>,
+                    string,
+                    u64,
+                    string,
+                    string,
+                    string,
+                    string,
+                )>,
+            ),
+        > {
+            Func1::new(
+                move |v: dice_ui::model::near::backend::TransactionListByAccountId| {
+                    Dice_ui::closure65((), v)
+                },
+            )
+        }
+        pub fn closure78(unitVar: (), _arg: (u64, u64)) -> Dice_ui::US26 {
+            Dice_ui::US26::US26_0(_arg.0.clone(), _arg.1.clone())
+        }
+        pub fn method139() -> Func1<(u64, u64), Dice_ui::US26> {
+            Func1::new(move |arg10_0040: (u64, u64)| Dice_ui::closure78((), arg10_0040))
+        }
+        pub fn closure79(unitVar: (), _arg: (string, bool, u64, string)) -> Dice_ui::US26 {
+            Dice_ui::US26::US26_1(
+                _arg.0.clone(),
+                _arg.1.clone(),
+                _arg.2.clone(),
+                _arg.3.clone(),
+            )
+        }
+        pub fn method140() -> Func1<(string, bool, u64, string), Dice_ui::US26> {
+            Func1::new(move |arg10_0040: (string, bool, u64, string)| {
+                Dice_ui::closure79((), arg10_0040)
+            })
+        }
+        pub fn closure80(
+            unitVar: (),
+            _arg: (
+                Dice_ui::US27,
+                Array<(
+                    Array<Dice_ui::US28>,
+                    string,
+                    u64,
+                    string,
+                    string,
+                    string,
+                    string,
+                )>,
+            ),
+        ) -> Dice_ui::US26 {
+            Dice_ui::US26::US26_2(_arg.0.clone(), _arg.1.clone())
+        }
+        pub fn method141() -> Func1<
+            (
+                Dice_ui::US27,
+                Array<(
+                    Array<Dice_ui::US28>,
+                    string,
+                    u64,
+                    string,
+                    string,
+                    string,
+                    string,
+                )>,
+            ),
+            Dice_ui::US26,
+        > {
+            Func1::new(
+                move |arg10_0040: (
+                    Dice_ui::US27,
+                    Array<(
+                        Array<Dice_ui::US28>,
+                        string,
+                        u64,
+                        string,
+                        string,
+                        string,
+                        string,
+                    )>,
+                )| Dice_ui::closure80((), arg10_0040),
+            )
+        }
+        pub fn closure81(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::ErrorWrapperEnum,
+        ) -> Dice_ui::US34 {
+            Dice_ui::US34::US34_1(v0_1)
+        }
+        pub fn method142(
+            v0_1: dice_ui::model::near::backend::ErrorWrapperEnum,
+        ) -> dice_ui::model::near::backend::ErrorWrapperEnum {
+            v0_1
+        }
+        pub fn method144(
+            v0_1: dice_ui::model::near::backend::ErrorWrapper,
+        ) -> dice_ui::model::near::backend::ErrorWrapper {
+            v0_1
+        }
+        pub fn method145(
+            v0_1: dice_ui::model::near::backend::ErrorData,
+        ) -> dice_ui::model::near::backend::ErrorData {
+            v0_1
+        }
+        pub fn closure82(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::ErrorWrapper,
+        ) -> (i32, string, u32, string, string) {
+            let v1: dice_ui::model::near::backend::ErrorWrapper = Dice_ui::method144(v0_1);
+            let v4: dice_ui::model::near::backend::ErrorData = Dice_ui::method145(v1.error);
+            let v7: std::string::String = Dice_ui::method32(v4.message);
+            let v9: string = fable_library_rust::String_::fromString(v7);
+            let v11: i32 = v4.code;
+            let v13: dice_ui::model::near::backend::ErrorDataInner = v4.data;
+            let v16: std::string::String = Dice_ui::method32(v13.code);
+            let v18: string = fable_library_rust::String_::fromString(v16);
+            let v20: u32 = v13.http_status;
+            let v23: std::string::String = Dice_ui::method32(v13.path);
+            (
+                v11,
+                v18,
+                v20,
+                fable_library_rust::String_::fromString(v23),
+                v9,
+            )
+        }
+        pub fn method143(
+        ) -> Func1<dice_ui::model::near::backend::ErrorWrapper, (i32, string, u32, string, string)>
+        {
+            Func1::new(move |v: dice_ui::model::near::backend::ErrorWrapper| {
+                Dice_ui::closure82((), v)
+            })
+        }
+        pub fn closure83(
+            unitVar: (),
+            v0_1: dice_ui::model::near::backend::ErrorData,
+        ) -> (i32, string, u32, string, string) {
+            let v1: dice_ui::model::near::backend::ErrorData = Dice_ui::method145(v0_1);
+            let v4: std::string::String = Dice_ui::method32(v1.message);
+            let v6: string = fable_library_rust::String_::fromString(v4);
+            let v8: i32 = v1.code;
+            let v10: dice_ui::model::near::backend::ErrorDataInner = v1.data;
+            let v13: std::string::String = Dice_ui::method32(v10.code);
+            let v15: string = fable_library_rust::String_::fromString(v13);
+            let v17: u32 = v10.http_status;
+            let v20: std::string::String = Dice_ui::method32(v10.path);
+            (
+                v8,
+                v15,
+                v17,
+                fable_library_rust::String_::fromString(v20),
+                v6,
+            )
+        }
+        pub fn method146(
+        ) -> Func1<dice_ui::model::near::backend::ErrorData, (i32, string, u32, string, string)>
+        {
+            Func1::new(move |v: dice_ui::model::near::backend::ErrorData| Dice_ui::closure83((), v))
+        }
+        pub fn closure84(unitVar: (), _arg: (i32, string, u32, string, string)) -> Dice_ui::US24 {
+            Dice_ui::US24::US24_1(
+                _arg.0.clone(),
+                _arg.1.clone(),
+                _arg.2.clone(),
+                _arg.3.clone(),
+                _arg.4.clone(),
+            )
+        }
+        pub fn method147() -> Func1<(i32, string, u32, string, string), Dice_ui::US24> {
+            Func1::new(move |arg10_0040: (i32, string, u32, string, string)| {
+                Dice_ui::closure84((), arg10_0040)
+            })
+        }
+        pub fn closure85(unitVar: (), _arg: (i32, string, u32, string, string)) -> Dice_ui::US24 {
+            Dice_ui::US24::US24_0(
+                _arg.0.clone(),
+                _arg.1.clone(),
+                _arg.2.clone(),
+                _arg.3.clone(),
+                _arg.4.clone(),
+            )
+        }
+        pub fn method148() -> Func1<(i32, string, u32, string, string), Dice_ui::US24> {
+            Func1::new(move |arg10_0040: (i32, string, u32, string, string)| {
+                Dice_ui::closure85((), arg10_0040)
+            })
+        }
+        pub fn method149(
+            v0_1: Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+        ) -> Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String> {
             v0_1
         }
         pub fn closure59(
             unitVar: (),
             v0_1: string,
         ) -> std::pin::Pin<
-            Box<dyn std::future::Future<Output = Result<std::string::String, std::string::String>>>,
+            Box<
+                dyn std::future::Future<
+                    Output = Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+                >,
+            >,
         > {
             let __future_init = Box::pin(async {
                 //;
@@ -2408,7 +3222,7 @@ mod module_eef1bd43 {
                     > = Box::pin(
                         reqwest_wasm::Client::builder()
                             .build()
-                            .unwrap()
+                            .map_err(|err| err.to_string())?
                             .get(v11)
                             .send(),
                     );
@@ -2428,15 +3242,105 @@ mod module_eef1bd43 {
                     let v25 = Dice_ui::method102();
                     let v27: Result<std::string::String, std::string::String> =
                         v24.map_err(|x| v25(x));
-                    let v29: std::string::String = v27?;
+                    let v30: std::string::String = Dice_ui::method32(v27?);
+                    let v34: string = Dice_ui::method2(Dice_ui::method8(
+                        fable_library_rust::String_::fromString(v30),
+                    ));
+                    let v36: &str = fable_library_rust::String_::LrcStr::as_str(&v34);
+                    let v38: std::string::String = String::from(v36);
+                    let v40: Result<
+                        Vec<dice_ui::model::near::backend::ResultWrapper>,
+                        serde_json::Error,
+                    > = serde_json::from_str(&v38);
+                    let v41 = Dice_ui::method103();
+                    let v43: Result<
+                        Vec<dice_ui::model::near::backend::ResultWrapper>,
+                        std::string::String,
+                    > = v40.map_err(|x| v41(x));
+                    let v45: Vec<dice_ui::model::near::backend::ResultWrapper> = v43?;
+                    let v47: Array<std::rc::Rc<dice_ui::model::near::backend::ResultWrapper>> =
+                        fable_library_rust::NativeArray_::array_from(
+                            v45.into_iter().map(std::rc::Rc::new).collect(),
+                        );
+                    let v48: i32 = count(v47.clone());
+                    let v49: Array<(Dice_ui::US23, Dice_ui::US25)> =
+                        new_init(&defaultOf::<(Dice_ui::US23, Dice_ui::US25)>(), v48);
+                    let v50: Dice_ui::Mut0 = Dice_ui::Mut0 {
+                        l0: MutCell::new(0_i32),
+                    };
+                    while Dice_ui::method104(v48, v50.clone()) {
+                        let v52: i32 = v50.l0.get();
+                        let v54: std::rc::Rc<dice_ui::model::near::backend::ResultWrapper> =
+                            Dice_ui::method105(v47[v52].clone());
+                        let v59: Dice_ui::US31 = defaultValue(
+                            Dice_ui::US31::US31_0,
+                            map(
+                                Func1::new(move |v: dice_ui::model::near::backend::DataWrapper| {
+                                    Dice_ui::closure62((), v)
+                                }),
+                                v54.result.clone(),
+                            ),
+                        );
+                        let v76: Dice_ui::US25 = match &v59 {
+                            Dice_ui::US31::US31_1(v59_1_0) => {
+                                let v61: dice_ui::model::near::backend::DataWrapper =
+                                    Dice_ui::method106(v59_1_0.clone());
+                                let v64: dice_ui::model::near::backend::ResultData =
+                                    Dice_ui::method107(v61.data);
+                                let v65 = Dice_ui::method108();
+                                let v66 = Dice_ui::method110();
+                                let v67 = Dice_ui::method112();
+                                let v68 = Dice_ui::method139();
+                                let v69 = Dice_ui::method140();
+                                let v70 = Dice_ui::method141();
+                                let v71: string =
+                                    string("match v64 { dice_ui::model::near::backend::ResultData::AccountTransactionsCount(x) => v68(v65(x)), dice_ui::model::near::backend::ResultData::ContractById(x) => v69(v66(x)), dice_ui::model::near::backend::ResultData::TransactionListByAccountId(x) => v70(v67(x)) }");
+                                Dice_ui::US25::US25_1(match v64 { dice_ui::model::near::backend::ResultData::AccountTransactionsCount(x) => v68(v65(x)), dice_ui::model::near::backend::ResultData::ContractById(x) => v69(v66(x)), dice_ui::model::near::backend::ResultData::TransactionListByAccountId(x) => v70(v67(x)) })
+                            }
+                            _ => Dice_ui::US25::US25_0,
+                        };
+                        let v81: Dice_ui::US34 = defaultValue(
+                            Dice_ui::US34::US34_0,
+                            map(
+                                Func1::new(
+                                    move |v_1: dice_ui::model::near::backend::ErrorWrapperEnum| {
+                                        Dice_ui::closure81((), v_1)
+                                    },
+                                ),
+                                v54.error.clone(),
+                            ),
+                        );
+                        let v93: Dice_ui::US23 = match &v81 {
+                            Dice_ui::US34::US34_1(v81_1_0) => {
+                                let v83: dice_ui::model::near::backend::ErrorWrapperEnum =
+                                    Dice_ui::method142(v81_1_0.clone());
+                                let v84 = Dice_ui::method143();
+                                let v85 = Dice_ui::method146();
+                                let v86 = Dice_ui::method147();
+                                let v87 = Dice_ui::method148();
+                                let v88: string =
+                                    string("match v83 { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v86(v84(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v87(v85(x)) }");
+                                Dice_ui::US23::US23_1(match v83 { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v86(v84(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v87(v85(x)) })
+                            }
+                            _ => Dice_ui::US23::US23_0,
+                        };
+                        v49.get_mut()[v52 as usize] = (v93, v76);
+                        {
+                            let v94: i32 = v52 + 1_i32;
+                            v50.l0.set(v94);
+                            ()
+                        }
+                    }
                     leptos::logging::log!(
                         "{}",
                         &string("history.render () / response create_local_resource / end")
                     );
                     {
-                        let v33: Result<std::string::String, std::string::String> =
-                            Dice_ui::method103(Ok(v29));
-                        v33
+                        let v98: Result<
+                            Array<(Dice_ui::US23, Dice_ui::US25)>,
+                            std::string::String,
+                        > = Dice_ui::method149(Ok(v49.clone()));
+                        v98
                     }
                 }
             });
@@ -2447,60 +3351,74 @@ mod module_eef1bd43 {
                 }
             }
         }
-        pub fn method105(
-            v0_1: leptos::Resource<string, Result<std::string::String, std::string::String>>,
-        ) -> leptos::Resource<string, Result<std::string::String, std::string::String>> {
+        pub fn method151(
+            v0_1: leptos::Resource<
+                string,
+                Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+            >,
+        ) -> leptos::Resource<
+            string,
+            Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+        > {
             v0_1
         }
-        pub fn closure61(
-            v0_1: leptos::Resource<string, Result<std::string::String, std::string::String>>,
+        pub fn closure86(
+            v0_1: leptos::Resource<
+                string,
+                Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+            >,
             unitVar: (),
         ) -> string {
-            let v1: leptos::Resource<string, Result<std::string::String, std::string::String>> =
-                Dice_ui::method105(v0_1);
-            let v3: Option<Result<std::string::String, std::string::String>> =
+            let v1: leptos::Resource<
+                string,
+                Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+            > = Dice_ui::method151(v0_1);
+            let v3: Option<Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>> =
                 leptos::SignalGet::get(&v1);
             let v6: std::string::String = Dice_ui::method32(format!("{:#?}", &v3));
             fable_library_rust::String_::fromString(v6)
         }
-        pub fn method104(
-            v0_1: leptos::Resource<string, Result<std::string::String, std::string::String>>,
+        pub fn method150(
+            v0_1: leptos::Resource<
+                string,
+                Result<Array<(Dice_ui::US23, Dice_ui::US25)>, std::string::String>,
+            >,
         ) -> Func0<string> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure61(v0_1.clone(), ())
+                move || Dice_ui::closure86(v0_1.clone(), ())
             })
         }
-        pub fn method106() -> string {
+        pub fn method152() -> string {
             string("History")
         }
-        pub fn closure64(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Memo<string> {
+        pub fn closure89(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Memo<string> {
             v0_1
         }
-        pub fn method109(v0_1: leptos::Memo<string>) -> Func0<leptos::Memo<string>> {
+        pub fn method155(v0_1: leptos::Memo<string>) -> Func0<leptos::Memo<string>> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure64(v0_1.clone(), ())
+                move || Dice_ui::closure89(v0_1.clone(), ())
             })
         }
-        pub fn method111(v0_1: string) -> string {
+        pub fn method157(v0_1: string) -> string {
             v0_1
         }
-        pub fn closure65(unitVar: (), v0_1: leptos::Memo<string>) -> leptos::Fragment {
+        pub fn closure90(unitVar: (), v0_1: leptos::Memo<string>) -> leptos::Fragment {
             let v1: leptos::Memo<string> = Dice_ui::method99(v0_1);
-            let v6: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method111(v1())));
+            let v6: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method157(v1())));
             let v8: &str = fable_library_rust::String_::LrcStr::as_str(&v6);
             let v10: std::string::String = String::from(v8);
             let v12: leptos::leptos_dom::Text = leptos::html::text(v10);
             let v14: leptos::View = leptos::IntoView::into_view(v12);
             leptos::Fragment::new(vec![v14])
         }
-        pub fn method110() -> Func1<leptos::Memo<string>, leptos::Fragment> {
-            Func1::new(move |v: leptos::Memo<string>| Dice_ui::closure65((), v))
+        pub fn method156() -> Func1<leptos::Memo<string>, leptos::Fragment> {
+            Func1::new(move |v: leptos::Memo<string>| Dice_ui::closure90((), v))
         }
-        pub fn closure63(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Fragment {
-            let v1 = Dice_ui::method109(v0_1);
-            let v2 = Dice_ui::method110();
+        pub fn closure88(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Fragment {
+            let v1 = Dice_ui::method155(v0_1);
+            let v2 = Dice_ui::method156();
             let v4 = {
                 let clo = move || v2(v1());
                 Func1::new({
@@ -2511,20 +3429,20 @@ mod module_eef1bd43 {
             let v6: leptos::View = leptos::IntoView::into_view(move || v4(()));
             leptos::Fragment::new(vec![v6])
         }
-        pub fn method108(v0_1: leptos::Memo<string>) -> Func0<leptos::Fragment> {
+        pub fn method154(v0_1: leptos::Memo<string>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure63(v0_1.clone(), ())
+                move || Dice_ui::closure88(v0_1.clone(), ())
             })
         }
-        pub fn method112(
+        pub fn method158(
             v0_1: leptos::HtmlElement<leptos::html::Pre>,
         ) -> leptos::HtmlElement<leptos::html::Pre> {
             v0_1
         }
-        pub fn closure62(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Fragment {
+        pub fn closure87(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Fragment {
             let v3: string = string(" class=\"[padding:7px] [font-size:11px] [line-height:11px]\"");
-            let v4 = Dice_ui::method108(v0_1);
+            let v4 = Dice_ui::method154(v0_1);
             let v7: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2538,39 +3456,39 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v10: leptos::HtmlElement<leptos::html::Pre> = Dice_ui::method112(
+            let v10: leptos::HtmlElement<leptos::html::Pre> = Dice_ui::method158(
                 leptos::view! { <pre  class="[padding:7px] [font-size:11px] [line-height:11px]">{v4()}</pre> },
             );
             let v12: leptos::View = leptos::IntoView::into_view(v10);
             leptos::Fragment::new(vec![v12])
         }
-        pub fn method107(v0_1: leptos::Memo<string>) -> Func0<leptos::Fragment> {
+        pub fn method153(v0_1: leptos::Memo<string>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure62(v0_1.clone(), ())
+                move || Dice_ui::closure87(v0_1.clone(), ())
             })
         }
-        pub fn method113(
+        pub fn method159(
             v0_1: leptos::HtmlElement<leptos::html::Details>,
         ) -> leptos::HtmlElement<leptos::html::Details> {
             v0_1
         }
-        pub fn method114() -> string {
+        pub fn method160() -> string {
             string("View")
         }
-        pub fn method118() -> string {
+        pub fn method164() -> string {
             string("Dark Mode")
         }
-        pub fn closure70(unitVar: (), v0_1: bool) -> bool {
+        pub fn closure95(unitVar: (), v0_1: bool) -> bool {
             v0_1 == false
         }
-        pub fn method120() -> Func1<bool, bool> {
-            Func1::new(move |v: bool| Dice_ui::closure70((), v))
+        pub fn method166() -> Func1<bool, bool> {
+            Func1::new(move |v: bool| Dice_ui::closure95((), v))
         }
-        pub fn closure69(v0_1: Dice_ui::Heap2, v1: leptos::ev::Event) {
+        pub fn closure94(v0_1: Dice_ui::Heap2, v1: leptos::ev::Event) {
             let v3: leptos::RwSignal<Dice_ui::Heap0> = Dice_ui::method33(v0_1.l0.clone());
             let v5: Dice_ui::Heap0 = leptos::SignalGetUntracked::get_untracked(&v3);
-            let v7 = Dice_ui::method120();
+            let v7 = Dice_ui::method166();
             let v8: leptos::RwSignal<bool> = Dice_ui::method35(v5.l0.clone());
             let v9: string =
                 string("leptos::SignalUpdate::update(&v8, |x| { let result = v7(x.clone()); if result != *x { *x = result } })");
@@ -2582,67 +3500,67 @@ mod module_eef1bd43 {
             });
             ()
         }
-        pub fn method119(v0_1: Dice_ui::Heap2) -> Func1<leptos::ev::Event, ()> {
+        pub fn method165(v0_1: Dice_ui::Heap2) -> Func1<leptos::ev::Event, ()> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::ev::Event| Dice_ui::closure69(v0_1.clone(), v)
+                move |v: leptos::ev::Event| Dice_ui::closure94(v0_1.clone(), v)
             })
         }
-        pub fn closure71(v0_1: Dice_ui::Heap2, unitVar: ()) -> bool {
+        pub fn closure96(v0_1: Dice_ui::Heap2, unitVar: ()) -> bool {
             let v2: leptos::RwSignal<Dice_ui::Heap0> = Dice_ui::method33(v0_1.l0.clone());
             let v6: leptos::RwSignal<bool> =
                 Dice_ui::method53((leptos::SignalGetUntracked::get_untracked(&v2)).l0.clone());
             leptos::SignalGet::get(&v6)
         }
-        pub fn method121(v0_1: Dice_ui::Heap2) -> Func0<bool> {
+        pub fn method167(v0_1: Dice_ui::Heap2) -> Func0<bool> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure71(v0_1.clone(), ())
+                move || Dice_ui::closure96(v0_1.clone(), ())
             })
         }
-        pub fn method122(
+        pub fn method168(
             v0_1: leptos::HtmlElement<leptos::html::Label>,
         ) -> leptos::HtmlElement<leptos::html::Label> {
             v0_1
         }
-        pub fn closure73(v0_1: leptos::Fragment, unitVar: ()) -> leptos::Fragment {
+        pub fn closure98(v0_1: leptos::Fragment, unitVar: ()) -> leptos::Fragment {
             v0_1
         }
-        pub fn method124(v0_1: leptos::Fragment) -> Func0<leptos::Fragment> {
+        pub fn method170(v0_1: leptos::Fragment) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure73(v0_1.clone(), ())
+                move || Dice_ui::closure98(v0_1.clone(), ())
             })
         }
-        pub fn method125(
+        pub fn method171(
             v0_1: leptos::HtmlElement<leptos::html::Dt>,
         ) -> leptos::HtmlElement<leptos::html::Dt> {
             v0_1
         }
-        pub fn closure74(v0_1: leptos::Fragment, unitVar: ()) -> leptos::Fragment {
+        pub fn closure99(v0_1: leptos::Fragment, unitVar: ()) -> leptos::Fragment {
             v0_1
         }
-        pub fn method126(v0_1: leptos::Fragment) -> Func0<leptos::Fragment> {
+        pub fn method172(v0_1: leptos::Fragment) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure74(v0_1.clone(), ())
+                move || Dice_ui::closure99(v0_1.clone(), ())
             })
         }
-        pub fn method127(
+        pub fn method173(
             v0_1: leptos::HtmlElement<leptos::html::Dd>,
         ) -> leptos::HtmlElement<leptos::html::Dd> {
             v0_1
         }
-        pub fn method128(v0_1: Array<leptos::View>) -> Array<leptos::View> {
+        pub fn method174(v0_1: Array<leptos::View>) -> Array<leptos::View> {
             v0_1
         }
-        pub fn closure72(
+        pub fn closure97(
             v0_1: leptos::Fragment,
             v1: leptos::Fragment,
             unitVar: (),
         ) -> leptos::Fragment {
             let v4: string = string(" class=\"font-medium text-gray-700\"");
-            let v5 = Dice_ui::method124(v0_1);
+            let v5 = Dice_ui::method170(v0_1);
             let v8: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2656,12 +3574,12 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v11: leptos::HtmlElement<leptos::html::Dt> = Dice_ui::method125(
+            let v11: leptos::HtmlElement<leptos::html::Dt> = Dice_ui::method171(
                 leptos::view! { <dt  class="font-medium text-gray-700">{v5()}</dt> },
             );
             let v13: leptos::View = leptos::IntoView::into_view(v11);
             let v15: string = string(" class=\"text-gray-700 md:col-span-2 flex flex-1\"");
-            let v16 = Dice_ui::method126(v1);
+            let v16 = Dice_ui::method172(v1);
             let v19: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2675,27 +3593,27 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v22: leptos::HtmlElement<leptos::html::Dd> = Dice_ui::method127(
+            let v22: leptos::HtmlElement<leptos::html::Dd> = Dice_ui::method173(
                 leptos::view! { <dd  class="text-gray-700 md:col-span-2 flex flex-1">{v16()}</dd> },
             );
             let v26: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v13, leptos::IntoView::into_view(v22)]));
+                Dice_ui::method174(new_array(&[v13, leptos::IntoView::into_view(v22)]));
             leptos::Fragment::new(v26.to_vec())
         }
-        pub fn method123(v0_1: leptos::Fragment, v1: leptos::Fragment) -> Func0<leptos::Fragment> {
+        pub fn method169(v0_1: leptos::Fragment, v1: leptos::Fragment) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v1 = v1.clone();
-                move || Dice_ui::closure72(v0_1.clone(), v1.clone(), ())
+                move || Dice_ui::closure97(v0_1.clone(), v1.clone(), ())
             })
         }
-        pub fn method129(
+        pub fn method175(
             v0_1: leptos::HtmlElement<leptos::html::Div>,
         ) -> leptos::HtmlElement<leptos::html::Div> {
             v0_1
         }
-        pub fn closure68(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v3: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method118()));
+        pub fn closure93(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+            let v3: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method164()));
             let v5: &str = fable_library_rust::String_::LrcStr::as_str(&v3);
             let v7: std::string::String = String::from(v5);
             let v9: leptos::leptos_dom::Text = leptos::html::text(v7);
@@ -2705,21 +3623,21 @@ mod module_eef1bd43 {
             {
                 let v17: Option<Dice_ui::Heap2> = leptos::use_context::<Heap2>();
                 let v19: Dice_ui::Heap2 = v17.unwrap();
-                let v20 = Dice_ui::method119(v19.clone());
-                let v21 = Dice_ui::method121(v19);
+                let v20 = Dice_ui::method165(v19.clone());
+                let v21 = Dice_ui::method167(v19);
                 let v24: string = Dice_ui::method2(Dice_ui::method8(string("v20")));
                 let v26: &str = fable_library_rust::String_::LrcStr::as_str(&v24);
                 let v28: std::string::String = String::from(v26);
                 let v29: string =
                     string("<label for={v28.clone()} class=\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\"><input type=\"checkbox\" id={v28} class=\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\" on:change=move |event| v20(event) prop:checked={move || v21()} /><span class=\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\"><svg data-unchecked-icon xmlns=\"http://www.w3.org/2000/svg\" class=\"h-4 w-4\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg><svg data-checked-icon xmlns=\"http://www.w3.org/2000/svg\" class=\"hidden h-4 w-4\" viewBox=\"0 0 20 20\" fill=\"currentColor\"> <path fill-rule=\"evenodd\" d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\" clip-rule=\"evenodd\" /></svg></span><span class=\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\"></span></label>");
                 let v30: string = append(append(string("leptos::view! { "), v29), string(" }"));
-                let v33: leptos::HtmlElement<leptos::html::Label> = Dice_ui::method122(
+                let v33: leptos::HtmlElement<leptos::html::Label> = Dice_ui::method168(
                     leptos::view! { <label for={v28.clone()} class="block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]"><input type="checkbox" id={v28} class="peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden" on:change=move |event| v20(event) prop:checked={move || v21()} /><span class="absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200"><svg data-unchecked-icon xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg><svg data-checked-icon xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 20 20" fill="currentColor"> <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg></span><span class="absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200"></span></label> },
                 );
                 let v35: leptos::View = leptos::IntoView::into_view(v33);
                 let v40: string =
-                    string(" class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[11px] pl-[12px] items-center\"");
-                let v41 = Dice_ui::method123(v13, leptos::Fragment::new(vec![v35]));
+                    string(" class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] items-center\"");
+                let v41 = Dice_ui::method169(v13, leptos::Fragment::new(vec![v35]));
                 let v44: string = append(
                     append(
                         string("leptos::view! { "),
@@ -2733,24 +3651,24 @@ mod module_eef1bd43 {
                     ),
                     string(" }"),
                 );
-                let v47: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
-                    leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[11px] pl-[12px] items-center">{v41()}</div> },
+                let v47: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
+                    leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] items-center">{v41()}</div> },
                 );
                 let v49: leptos::View = leptos::IntoView::into_view(v47);
                 leptos::Fragment::new(vec![v49])
             }
         }
-        pub fn method117() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure68((), ()))
+        pub fn method163() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure93((), ()))
         }
-        pub fn method130(
+        pub fn method176(
             v0_1: leptos::HtmlElement<leptos::html::Dl>,
         ) -> leptos::HtmlElement<leptos::html::Dl> {
             v0_1
         }
-        pub fn closure67(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure92(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string(" class=\"flex flex-1 divide-y divide-gray-100 text-sm\"");
-            let v3 = Dice_ui::method117();
+            let v3 = Dice_ui::method163();
             let v6: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2764,18 +3682,18 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v9: leptos::HtmlElement<leptos::html::Dl> = Dice_ui::method130(
+            let v9: leptos::HtmlElement<leptos::html::Dl> = Dice_ui::method176(
                 leptos::view! { <dl  class="flex flex-1 divide-y divide-gray-100 text-sm">{v3()}</dl> },
             );
             let v11: leptos::View = leptos::IntoView::into_view(v9);
             leptos::Fragment::new(vec![v11])
         }
-        pub fn method116() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure67((), ()))
+        pub fn method162() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure92((), ()))
         }
-        pub fn closure66(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure91(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string(" class=\"[flex:1] flow-root\"");
-            let v3 = Dice_ui::method116();
+            let v3 = Dice_ui::method162();
             let v6: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2790,79 +3708,79 @@ mod module_eef1bd43 {
                 string(" }"),
             );
             let v9: leptos::HtmlElement<leptos::html::Div> =
-                Dice_ui::method129(leptos::view! { <div  class="[flex:1] flow-root">{v3()}</div> });
+                Dice_ui::method175(leptos::view! { <div  class="[flex:1] flow-root">{v3()}</div> });
             let v11: leptos::View = leptos::IntoView::into_view(v9);
             leptos::Fragment::new(vec![v11])
         }
-        pub fn method115() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure66((), ()))
+        pub fn method161() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure91((), ()))
         }
-        pub fn method131() -> string {
+        pub fn method177() -> string {
             string("Connection")
         }
-        pub fn method135() -> string {
+        pub fn method181() -> string {
             string("Explorer Backend Host")
         }
-        pub fn method137(
+        pub fn method183(
             v0_1: leptos::RwSignal<std::string::String>,
         ) -> leptos::RwSignal<std::string::String> {
             v0_1
         }
-        pub fn method138(
+        pub fn method184(
             v0_1: leptos::ReadSignal<std::string::String>,
         ) -> leptos::ReadSignal<std::string::String> {
             v0_1
         }
-        pub fn closure78(v0_1: Dice_ui::Heap2, unitVar: ()) -> std::string::String {
+        pub fn closure103(v0_1: Dice_ui::Heap2, unitVar: ()) -> std::string::String {
             let v2: leptos::RwSignal<Dice_ui::Heap1> = Dice_ui::method40(v0_1.l2.clone());
             let v6: leptos::RwSignal<std::string::String> =
-                Dice_ui::method137((leptos::SignalGetUntracked::get_untracked(&v2)).l0.clone());
+                Dice_ui::method183((leptos::SignalGetUntracked::get_untracked(&v2)).l0.clone());
             let v9: leptos::ReadSignal<std::string::String> =
-                Dice_ui::method138(leptos::RwSignal::read_only(&v6));
+                Dice_ui::method184(leptos::RwSignal::read_only(&v6));
             leptos::SignalGet::get(&v9)
         }
-        pub fn method136(v0_1: Dice_ui::Heap2) -> Func0<std::string::String> {
+        pub fn method182(v0_1: Dice_ui::Heap2) -> Func0<std::string::String> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure78(v0_1.clone(), ())
+                move || Dice_ui::closure103(v0_1.clone(), ())
             })
         }
-        pub fn method140(
+        pub fn method186(
             v0_1: leptos::RwSignal<std::string::String>,
         ) -> leptos::RwSignal<std::string::String> {
             v0_1
         }
-        pub fn method141(v0_1: std::string::String) -> std::string::String {
+        pub fn method187(v0_1: std::string::String) -> std::string::String {
             v0_1
         }
-        pub fn method142(
+        pub fn method188(
             v0_1: leptos::WriteSignal<std::string::String>,
         ) -> leptos::WriteSignal<std::string::String> {
             v0_1
         }
-        pub fn closure79(v0_1: Dice_ui::Heap2, v1: std::string::String) {
+        pub fn closure104(v0_1: Dice_ui::Heap2, v1: std::string::String) {
             let v3: leptos::RwSignal<Dice_ui::Heap1> = Dice_ui::method40(v0_1.l2.clone());
             let v7: leptos::RwSignal<std::string::String> =
-                Dice_ui::method140((leptos::SignalGetUntracked::get_untracked(&v3)).l0.clone());
+                Dice_ui::method186((leptos::SignalGetUntracked::get_untracked(&v3)).l0.clone());
             let v9: leptos::WriteSignal<std::string::String> = leptos::RwSignal::write_only(&v7);
-            let v10: std::string::String = Dice_ui::method141(v1);
-            let v11: leptos::WriteSignal<std::string::String> = Dice_ui::method142(v9);
+            let v10: std::string::String = Dice_ui::method187(v1);
+            let v11: leptos::WriteSignal<std::string::String> = Dice_ui::method188(v9);
             leptos::SignalSet::set(&v11, v10);
             ()
         }
-        pub fn method139(v0_1: Dice_ui::Heap2) -> Func1<std::string::String, ()> {
+        pub fn method185(v0_1: Dice_ui::Heap2) -> Func1<std::string::String, ()> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: std::string::String| Dice_ui::closure79(v0_1.clone(), v)
+                move |v: std::string::String| Dice_ui::closure104(v0_1.clone(), v)
             })
         }
-        pub fn method143(
+        pub fn method189(
             v0_1: leptos::HtmlElement<leptos::html::Input>,
         ) -> leptos::HtmlElement<leptos::html::Input> {
             v0_1
         }
-        pub fn closure77(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v3: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method135()));
+        pub fn closure102(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+            let v3: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method181()));
             let v5: &str = fable_library_rust::String_::LrcStr::as_str(&v3);
             let v7: std::string::String = String::from(v5);
             let v9: leptos::leptos_dom::Text = leptos::html::text(v7);
@@ -2870,17 +3788,17 @@ mod module_eef1bd43 {
             let v13: leptos::Fragment = leptos::Fragment::new(vec![v11]);
             let v15: Option<Dice_ui::Heap2> = leptos::use_context::<Heap2>();
             let v17: Dice_ui::Heap2 = v15.unwrap();
-            let v18 = Dice_ui::method136(v17.clone());
-            let v19 = Dice_ui::method139(v17);
+            let v18 = Dice_ui::method182(v17.clone());
+            let v19 = Dice_ui::method185(v17);
             let v29: string =
                 string("leptos::view! { <input  on:keyup=move |event: web_sys::KeyboardEvent| v19(leptos::event_target_value(&event)) prop:value=move || v18() class=\"bg-gray-50 flex-1 h-[27px]\" /> }");
-            let v32: leptos::HtmlElement<leptos::html::Input> = Dice_ui::method143(
+            let v32: leptos::HtmlElement<leptos::html::Input> = Dice_ui::method189(
                 leptos::view! { <input  on:keyup=move |event: web_sys::KeyboardEvent| v19(leptos::event_target_value(&event)) prop:value=move || v18() class="bg-gray-50 flex-1 h-[27px]" /> },
             );
             let v34: leptos::View = leptos::IntoView::into_view(v32);
             let v38: string =
-                string(" class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[11px] pl-[12px] items-baseline\"");
-            let v39 = Dice_ui::method123(v13, leptos::Fragment::new(vec![v34]));
+                string(" class=\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] items-baseline\"");
+            let v39 = Dice_ui::method169(v13, leptos::Fragment::new(vec![v34]));
             let v42: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2894,18 +3812,18 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v45: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
-                leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[11px] pl-[12px] items-baseline">{v39()}</div> },
+            let v45: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
+                leptos::view! { <div  class="grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] items-baseline">{v39()}</div> },
             );
             let v47: leptos::View = leptos::IntoView::into_view(v45);
             leptos::Fragment::new(vec![v47])
         }
-        pub fn method134() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure77((), ()))
+        pub fn method180() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure102((), ()))
         }
-        pub fn closure76(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure101(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string(" class=\"flex flex-1 divide-y divide-gray-100 text-sm\"");
-            let v3 = Dice_ui::method134();
+            let v3 = Dice_ui::method180();
             let v6: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2919,18 +3837,18 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v9: leptos::HtmlElement<leptos::html::Dl> = Dice_ui::method130(
+            let v9: leptos::HtmlElement<leptos::html::Dl> = Dice_ui::method176(
                 leptos::view! { <dl  class="flex flex-1 divide-y divide-gray-100 text-sm">{v3()}</dl> },
             );
             let v11: leptos::View = leptos::IntoView::into_view(v9);
             leptos::Fragment::new(vec![v11])
         }
-        pub fn method133() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure76((), ()))
+        pub fn method179() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure101((), ()))
         }
-        pub fn closure75(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure100(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = string(" class=\"[flex:1] flow-root\"");
-            let v3 = Dice_ui::method133();
+            let v3 = Dice_ui::method179();
             let v6: string = append(
                 append(
                     string("leptos::view! { "),
@@ -2945,85 +3863,88 @@ mod module_eef1bd43 {
                 string(" }"),
             );
             let v9: leptos::HtmlElement<leptos::html::Div> =
-                Dice_ui::method129(leptos::view! { <div  class="[flex:1] flow-root">{v3()}</div> });
+                Dice_ui::method175(leptos::view! { <div  class="[flex:1] flow-root">{v3()}</div> });
             let v11: leptos::View = leptos::IntoView::into_view(v9);
             leptos::Fragment::new(vec![v11])
         }
-        pub fn method132() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure75((), ()))
+        pub fn method178() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure100((), ()))
         }
-        pub fn method144() -> string {
+        pub fn method190() -> string {
             string("Global State")
         }
-        pub fn method147(v0_1: Dice_ui::Heap2) -> Dice_ui::Heap2 {
+        pub fn method193(v0_1: Dice_ui::Heap2) -> Dice_ui::Heap2 {
             v0_1
         }
-        pub fn closure82(unitVar: (), v0_1: std::string::String) -> Dice_ui::US23 {
-            Dice_ui::US23::US23_1(v0_1)
+        pub fn closure107(unitVar: (), v0_1: std::string::String) -> Dice_ui::US35 {
+            Dice_ui::US35::US35_1(v0_1)
         }
-        pub fn closure83(unitVar: (), v0_1: std::string::String) -> Dice_ui::US23 {
-            Dice_ui::US23::US23_0(v0_1)
+        pub fn closure108(unitVar: (), v0_1: std::string::String) -> Dice_ui::US35 {
+            Dice_ui::US35::US35_0(v0_1)
         }
-        pub fn closure81(v0_1: Dice_ui::Heap2, unitVar: ()) -> string {
+        pub fn closure106(v0_1: Dice_ui::Heap2, unitVar: ()) -> string {
             leptos::logging::log!(
                 "{}",
                 &string("settings.global_state_log_render () / global_state_json memo")
             );
             {
-                let v3: Dice_ui::Heap2 = Dice_ui::method147(v0_1);
+                let v3: Dice_ui::Heap2 = Dice_ui::method193(v0_1);
                 let v5: Result<std::string::String, std::string::String> =
                     serde_json::to_string_pretty(&v3).map_err(|x| x.to_string());
-                let v8: Dice_ui::US23 = match &v5 {
-                    Err(v5_1_0) => Dice_ui::closure83((), v5_1_0.clone()),
-                    Ok(v5_0_0) => Dice_ui::closure82((), v5_0_0.clone()),
+                let v8: Dice_ui::US35 = match &v5 {
+                    Err(v5_1_0) => Dice_ui::closure108((), v5_1_0.clone()),
+                    Ok(v5_0_0) => Dice_ui::closure107((), v5_0_0.clone()),
                 };
                 match &v8 {
-                    Dice_ui::US23::US23_1(v8_1_0) => {
+                    Dice_ui::US35::US35_1(v8_1_0) => {
                         let v10: std::string::String = Dice_ui::method32(v8_1_0.clone());
                         fable_library_rust::String_::fromString(v10)
                     }
-                    Dice_ui::US23::US23_0(v8_0_0) => append(
+                    Dice_ui::US35::US35_0(v8_0_0) => append(
                         append(string("Error: "), toString(v8_0_0.clone())),
                         string(""),
                     ),
                 }
             }
         }
-        pub fn method146(v0_1: Dice_ui::Heap2) -> Func0<string> {
+        pub fn method192(v0_1: Dice_ui::Heap2) -> Func0<string> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure81(v0_1.clone(), ())
+                move || Dice_ui::closure106(v0_1.clone(), ())
             })
         }
-        pub fn closure85(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Memo<string> {
+        pub fn closure110(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Memo<string> {
             v0_1
         }
-        pub fn method149(v0_1: leptos::Memo<string>) -> Func0<leptos::Memo<string>> {
+        pub fn method195(v0_1: leptos::Memo<string>) -> Func0<leptos::Memo<string>> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure85(v0_1.clone(), ())
+                move || Dice_ui::closure110(v0_1.clone(), ())
             })
         }
-        pub fn closure86(v0_1: leptos::Memo<string>, v1: leptos::Memo<string>) -> leptos::Fragment {
+        pub fn closure111(
+            v0_1: leptos::Memo<string>,
+            v1: leptos::Memo<string>,
+        ) -> leptos::Fragment {
             let v2: leptos::Memo<string> = Dice_ui::method99(v0_1);
-            let v7: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method111(v2())));
+            let v7: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method157(v2())));
             let v9: &str = fable_library_rust::String_::LrcStr::as_str(&v7);
             let v11: std::string::String = String::from(v9);
             let v13: leptos::leptos_dom::Text = leptos::html::text(v11);
             let v15: leptos::View = leptos::IntoView::into_view(v13);
             leptos::Fragment::new(vec![v15])
         }
-        pub fn method150(
+        pub fn method196(
             v0_1: leptos::Memo<string>,
         ) -> Func1<leptos::Memo<string>, leptos::Fragment> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: leptos::Memo<string>| Dice_ui::closure86(v0_1.clone(), v)
+                move |v: leptos::Memo<string>| Dice_ui::closure111(v0_1.clone(), v)
             })
         }
-        pub fn closure84(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Fragment {
-            let v1 = Dice_ui::method149(v0_1.clone());
-            let v2 = Dice_ui::method150(v0_1);
+        pub fn closure109(v0_1: leptos::Memo<string>, unitVar: ()) -> leptos::Fragment {
+            let v1 = Dice_ui::method195(v0_1.clone());
+            let v2 = Dice_ui::method196(v0_1);
             let v4 = {
                 let clo = move || v2(v1());
                 Func1::new({
@@ -3034,20 +3955,20 @@ mod module_eef1bd43 {
             let v6: leptos::View = leptos::IntoView::into_view(move || v4(()));
             leptos::Fragment::new(vec![v6])
         }
-        pub fn method148(v0_1: leptos::Memo<string>) -> Func0<leptos::Fragment> {
+        pub fn method194(v0_1: leptos::Memo<string>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure84(v0_1.clone(), ())
+                move || Dice_ui::closure109(v0_1.clone(), ())
             })
         }
-        pub fn closure80(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure105(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             leptos::logging::log!("{}", &string("settings.global_state_log_render ()"));
             {
                 let v3: Option<Dice_ui::Heap2> = leptos::use_context::<Heap2>();
-                let v6 = Dice_ui::method146(v3.unwrap());
+                let v6 = Dice_ui::method192(v3.unwrap());
                 let v11: string =
                     string(" class=\"[padding:7px] [font-size:11px] [line-height:11px]\"");
-                let v12 = Dice_ui::method148(leptos::create_memo(move |_| v6()));
+                let v12 = Dice_ui::method194(leptos::create_memo(move |_| v6()));
                 let v15: string = append(
                     append(
                         string("leptos::view! { "),
@@ -3061,15 +3982,15 @@ mod module_eef1bd43 {
                     ),
                     string(" }"),
                 );
-                let v18: leptos::HtmlElement<leptos::html::Pre> = Dice_ui::method112(
+                let v18: leptos::HtmlElement<leptos::html::Pre> = Dice_ui::method158(
                     leptos::view! { <pre  class="[padding:7px] [font-size:11px] [line-height:11px]">{v12()}</pre> },
                 );
                 let v20: leptos::View = leptos::IntoView::into_view(v18);
                 leptos::Fragment::new(vec![v20])
             }
         }
-        pub fn method145() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure80((), ()))
+        pub fn method191() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure105((), ()))
         }
         pub fn closure55(unitVar: (), v0_1: leptos::ReadSignal<Dice_ui::US21>) -> leptos::Fragment {
             let v1: leptos::ReadSignal<Dice_ui::US21> = Dice_ui::method88(v0_1);
@@ -3083,17 +4004,17 @@ mod module_eef1bd43 {
                         let v10 = Dice_ui::method89();
                         let v13 = Dice_ui::method97(v9, leptos::create_memo(move |_| v10()));
                         let v16 = Dice_ui::method98(leptos::create_memo(move |_| v13()));
-                        let v20 = Dice_ui::method104(leptos::create_local_resource(
+                        let v20 = Dice_ui::method150(leptos::create_local_resource(
                             move || v16(),
                             |x| async move {
                                 Func1::new(move |v: string| Dice_ui::closure59((), v))(x).await
                             },
                         ));
                         let v22: leptos::Memo<string> = leptos::create_memo(move |_| v20());
-                        let v24: string = Dice_ui::method2(Dice_ui::method106());
+                        let v24: string = Dice_ui::method2(Dice_ui::method152());
                         let v26: &str = fable_library_rust::String_::LrcStr::as_str(&v24);
                         let v28: std::string::String = String::from(v26);
-                        let v29 = Dice_ui::method107(v22);
+                        let v29 = Dice_ui::method153(v22);
                         let v30: string =
                                 string("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg>");
                         let v31: string =
@@ -3103,17 +4024,17 @@ mod module_eef1bd43 {
                                 string("<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v28}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\">{v33}</span></summary><div class=\"[display:flex] [flex:1] [overflow:auto]\">{v29()}</div></details>");
                         let v35: string =
                             append(append(string("leptos::view! { "), v34), string(" }"));
-                        let v38: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method113(
+                        let v38: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method159(
                             leptos::view! { <details class="flex group [&_summary::-webkit-details-marker]:hidden" open><summary class="group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700"><div class="flex items-center gap-2"><span class="text-sm font-medium">{v28}</span></div><span class="shrink-0 transition duration-300 group-open:-rotate-180">{v33}</span></summary><div class="[display:flex] [flex:1] [overflow:auto]">{v29()}</div></details> },
                         );
                         leptos::IntoView::into_view(v38)
                     }
                 }
                 Dice_ui::US21::US21_2 => {
-                    let v42: string = Dice_ui::method2(Dice_ui::method114());
+                    let v42: string = Dice_ui::method2(Dice_ui::method160());
                     let v44: &str = fable_library_rust::String_::LrcStr::as_str(&v42);
                     let v46: std::string::String = String::from(v44);
-                    let v47 = Dice_ui::method115();
+                    let v47 = Dice_ui::method161();
                     let v48: string =
                             string("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg>");
                     let v49: string = append(append(string("leptos::view! { "), v48), string(" }"));
@@ -3121,14 +4042,14 @@ mod module_eef1bd43 {
                     let v52: string =
                             string("<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v46}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\">{v51}</span></summary><div class=\"[display:flex] [flex:1] [overflow:auto]\">{v47()}</div></details>");
                     let v53: string = append(append(string("leptos::view! { "), v52), string(" }"));
-                    let v56: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method113(
+                    let v56: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method159(
                         leptos::view! { <details class="flex group [&_summary::-webkit-details-marker]:hidden" open><summary class="group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700"><div class="flex items-center gap-2"><span class="text-sm font-medium">{v46}</span></div><span class="shrink-0 transition duration-300 group-open:-rotate-180">{v51}</span></summary><div class="[display:flex] [flex:1] [overflow:auto]">{v47()}</div></details> },
                     );
                     let v58: leptos::View = leptos::IntoView::into_view(v56);
-                    let v60: string = Dice_ui::method2(Dice_ui::method131());
+                    let v60: string = Dice_ui::method2(Dice_ui::method177());
                     let v62: &str = fable_library_rust::String_::LrcStr::as_str(&v60);
                     let v64: std::string::String = String::from(v62);
-                    let v65 = Dice_ui::method132();
+                    let v65 = Dice_ui::method178();
                     let v66: string =
                             string("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg>");
                     let v67: string = append(append(string("leptos::view! { "), v66), string(" }"));
@@ -3136,14 +4057,14 @@ mod module_eef1bd43 {
                     let v70: string =
                             string("<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v64}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\">{v69}</span></summary><div class=\"[display:flex] [flex:1] [overflow:auto]\">{v65()}</div></details>");
                     let v71: string = append(append(string("leptos::view! { "), v70), string(" }"));
-                    let v74: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method113(
+                    let v74: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method159(
                         leptos::view! { <details class="flex group [&_summary::-webkit-details-marker]:hidden" open><summary class="group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700"><div class="flex items-center gap-2"><span class="text-sm font-medium">{v64}</span></div><span class="shrink-0 transition duration-300 group-open:-rotate-180">{v69}</span></summary><div class="[display:flex] [flex:1] [overflow:auto]">{v65()}</div></details> },
                     );
                     let v76: leptos::View = leptos::IntoView::into_view(v74);
-                    let v78: string = Dice_ui::method2(Dice_ui::method144());
+                    let v78: string = Dice_ui::method2(Dice_ui::method190());
                     let v80: &str = fable_library_rust::String_::LrcStr::as_str(&v78);
                     let v82: std::string::String = String::from(v80);
-                    let v83 = Dice_ui::method145();
+                    let v83 = Dice_ui::method191();
                     let v84: string =
                             string("<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-5 w-5\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\" clip-rule=\"evenodd\" /></svg>");
                     let v85: string = append(append(string("leptos::view! { "), v84), string(" }"));
@@ -3151,10 +4072,10 @@ mod module_eef1bd43 {
                     let v88: string =
                             string("<details class=\"flex group [&_summary::-webkit-details-marker]:hidden\" open><summary class=\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\"><div class=\"flex items-center gap-2\"><span class=\"text-sm font-medium\">{v82}</span></div><span class=\"shrink-0 transition duration-300 group-open:-rotate-180\">{v87}</span></summary><div class=\"[display:flex] [flex:1] [overflow:auto]\">{v83()}</div></details>");
                     let v89: string = append(append(string("leptos::view! { "), v88), string(" }"));
-                    let v92: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method113(
+                    let v92: leptos::HtmlElement<leptos::html::Details> = Dice_ui::method159(
                         leptos::view! { <details class="flex group [&_summary::-webkit-details-marker]:hidden" open><summary class="group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700"><div class="flex items-center gap-2"><span class="text-sm font-medium">{v82}</span></div><span class="shrink-0 transition duration-300 group-open:-rotate-180">{v87}</span></summary><div class="[display:flex] [flex:1] [overflow:auto]">{v83()}</div></details> },
                     );
-                    let v96: Array<leptos::View> = Dice_ui::method128(new_array(&[
+                    let v96: Array<leptos::View> = Dice_ui::method174(new_array(&[
                         v58,
                         v76,
                         leptos::IntoView::into_view(v92),
@@ -3163,7 +4084,7 @@ mod module_eef1bd43 {
                     leptos::IntoView::into_view(v98)
                 }
                 _ => {
-                    let v102: Array<leptos::View> = Dice_ui::method128(new_empty::<leptos::View>());
+                    let v102: Array<leptos::View> = Dice_ui::method174(new_empty::<leptos::View>());
                     let v104: leptos::Fragment = leptos::Fragment::new(v102.to_vec());
                     leptos::IntoView::into_view(v104)
                 }
@@ -3192,21 +4113,21 @@ mod module_eef1bd43 {
                 move || Dice_ui::closure53(v0_1.clone(), ())
             })
         }
-        pub fn method155() -> string {
+        pub fn method201() -> string {
             string("Tab")
         }
-        pub fn closure90(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method155()));
+        pub fn closure115(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+            let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method201()));
             let v4: &str = fable_library_rust::String_::LrcStr::as_str(&v2);
             let v6: std::string::String = String::from(v4);
             let v8: leptos::leptos_dom::Text = leptos::html::text(v6);
             let v10: leptos::View = leptos::IntoView::into_view(v8);
             leptos::Fragment::new(vec![v10])
         }
-        pub fn method154() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure90((), ()))
+        pub fn method200() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure115((), ()))
         }
-        pub fn closure92(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
+        pub fn closure117(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
             let v1: leptos::ReadSignal<Dice_ui::US21> = Dice_ui::method88(v0_1);
             if let Dice_ui::US21::US21_1 = &leptos::SignalGet::get(&v1) {
                 true
@@ -3214,32 +4135,32 @@ mod module_eef1bd43 {
                 false
             }
         }
-        pub fn method157(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
+        pub fn method203(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure92(v0_1.clone(), ())
+                move || Dice_ui::closure117(v0_1.clone(), ())
             })
         }
-        pub fn method159() -> string {
+        pub fn method205() -> string {
             string("History")
         }
-        pub fn closure93(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method159()));
+        pub fn closure118(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+            let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method205()));
             let v4: &str = fable_library_rust::String_::LrcStr::as_str(&v2);
             let v6: std::string::String = String::from(v4);
             let v8: leptos::leptos_dom::Text = leptos::html::text(v6);
             let v10: leptos::View = leptos::IntoView::into_view(v8);
             leptos::Fragment::new(vec![v10])
         }
-        pub fn method158() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure93((), ()))
+        pub fn method204() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure118((), ()))
         }
-        pub fn method160(
+        pub fn method206(
             v0_1: leptos::HtmlElement<leptos::html::Option_>,
         ) -> leptos::HtmlElement<leptos::html::Option_> {
             v0_1
         }
-        pub fn closure94(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
+        pub fn closure119(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
             let v1: leptos::ReadSignal<Dice_ui::US21> = Dice_ui::method88(v0_1);
             if let Dice_ui::US21::US21_2 = &leptos::SignalGet::get(&v1) {
                 true
@@ -3247,30 +4168,33 @@ mod module_eef1bd43 {
                 false
             }
         }
-        pub fn method161(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
+        pub fn method207(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure94(v0_1.clone(), ())
+                move || Dice_ui::closure119(v0_1.clone(), ())
             })
         }
-        pub fn method163() -> string {
+        pub fn method209() -> string {
             string("Settings")
         }
-        pub fn closure95(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method163()));
+        pub fn closure120(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+            let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method209()));
             let v4: &str = fable_library_rust::String_::LrcStr::as_str(&v2);
             let v6: std::string::String = String::from(v4);
             let v8: leptos::leptos_dom::Text = leptos::html::text(v6);
             let v10: leptos::View = leptos::IntoView::into_view(v8);
             leptos::Fragment::new(vec![v10])
         }
-        pub fn method162() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure95((), ()))
+        pub fn method208() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure120((), ()))
         }
-        pub fn closure91(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> leptos::Fragment {
-            let v1 = Dice_ui::method157(v0_1.clone());
+        pub fn closure116(
+            v0_1: leptos::ReadSignal<Dice_ui::US21>,
+            unitVar: (),
+        ) -> leptos::Fragment {
+            let v1 = Dice_ui::method203(v0_1.clone());
             let v4: string = string(" select=v1()");
-            let v5 = Dice_ui::method158();
+            let v5 = Dice_ui::method204();
             let v8: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3285,11 +4209,11 @@ mod module_eef1bd43 {
                 string(" }"),
             );
             let v11: leptos::HtmlElement<leptos::html::Option_> =
-                Dice_ui::method160(leptos::view! { <option  select=v1()>{v5()}</option> });
+                Dice_ui::method206(leptos::view! { <option  select=v1()>{v5()}</option> });
             let v13: leptos::View = leptos::IntoView::into_view(v11);
-            let v14 = Dice_ui::method161(v0_1);
+            let v14 = Dice_ui::method207(v0_1);
             let v16: string = string(" select=v14()");
-            let v17 = Dice_ui::method162();
+            let v17 = Dice_ui::method208();
             let v19: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3304,25 +4228,28 @@ mod module_eef1bd43 {
                 string(" }"),
             );
             let v22: leptos::HtmlElement<leptos::html::Option_> =
-                Dice_ui::method160(leptos::view! { <option  select=v14()>{v17()}</option> });
+                Dice_ui::method206(leptos::view! { <option  select=v14()>{v17()}</option> });
             let v26: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v13, leptos::IntoView::into_view(v22)]));
+                Dice_ui::method174(new_array(&[v13, leptos::IntoView::into_view(v22)]));
             leptos::Fragment::new(v26.to_vec())
         }
-        pub fn method156(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
+        pub fn method202(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure91(v0_1.clone(), ())
+                move || Dice_ui::closure116(v0_1.clone(), ())
             })
         }
-        pub fn method164(
+        pub fn method210(
             v0_1: leptos::HtmlElement<leptos::html::Select>,
         ) -> leptos::HtmlElement<leptos::html::Select> {
             v0_1
         }
-        pub fn closure89(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> leptos::Fragment {
+        pub fn closure114(
+            v0_1: leptos::ReadSignal<Dice_ui::US21>,
+            unitVar: (),
+        ) -> leptos::Fragment {
             let v5: string = string(" class=\"sr-only\" for=\"Tab\"");
-            let v6 = Dice_ui::method154();
+            let v6 = Dice_ui::method200();
             let v9: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3336,12 +4263,12 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v12: leptos::HtmlElement<leptos::html::Label> = Dice_ui::method122(
+            let v12: leptos::HtmlElement<leptos::html::Label> = Dice_ui::method168(
                 leptos::view! { <label  class="sr-only" for="Tab">{v6()}</label> },
             );
             let v14: leptos::View = leptos::IntoView::into_view(v12);
             let v18: string = string(" class=\"w-full rounded-md border-gray-200\" id=\"Tab\"");
-            let v19 = Dice_ui::method156(v0_1);
+            let v19 = Dice_ui::method202(v0_1);
             let v22: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3355,20 +4282,20 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v25: leptos::HtmlElement<leptos::html::Select> = Dice_ui::method164(
+            let v25: leptos::HtmlElement<leptos::html::Select> = Dice_ui::method210(
                 leptos::view! { <select  class="w-full rounded-md border-gray-200" id="Tab">{v19()}</select> },
             );
             let v29: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v14, leptos::IntoView::into_view(v25)]));
+                Dice_ui::method174(new_array(&[v14, leptos::IntoView::into_view(v25)]));
             leptos::Fragment::new(v29.to_vec())
         }
-        pub fn method153(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
+        pub fn method199(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure89(v0_1.clone(), ())
+                move || Dice_ui::closure114(v0_1.clone(), ())
             })
         }
-        pub fn closure99(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
+        pub fn closure124(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
             let v1: leptos::ReadSignal<Dice_ui::US21> = Dice_ui::method88(v0_1);
             if let Dice_ui::US21::US21_1 = &leptos::SignalGet::get(&v1) {
                 true
@@ -3376,16 +4303,16 @@ mod module_eef1bd43 {
                 false
             }
         }
-        pub fn method168(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
+        pub fn method214(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure99(v0_1.clone(), ())
+                move || Dice_ui::closure124(v0_1.clone(), ())
             })
         }
-        pub fn method169(v0_1: Func0<bool>) -> Func0<bool> {
+        pub fn method215(v0_1: Func0<bool>) -> Func0<bool> {
             v0_1
         }
-        pub fn closure100(v0_1: Func0<bool>, unitVar: ()) -> &'static str {
+        pub fn closure125(v0_1: Func0<bool>, unitVar: ()) -> &'static str {
             if v0_1() {
                 let v3: string = string("r#\"border-grey-200 text-grey-900\"#");
                 r#"border-grey-200 text-grey-900"#
@@ -3395,43 +4322,43 @@ mod module_eef1bd43 {
                 r#"border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"#
             }
         }
-        pub fn method170(v0_1: Func0<bool>) -> Func0<&'static str> {
+        pub fn method216(v0_1: Func0<bool>) -> Func0<&'static str> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure100(v0_1.clone(), ())
+                move || Dice_ui::closure125(v0_1.clone(), ())
             })
         }
-        pub fn method172(
+        pub fn method218(
             v0_1: leptos::HtmlElement<leptos::svg::Svg>,
         ) -> leptos::HtmlElement<leptos::svg::Svg> {
             v0_1
         }
-        pub fn closure101(
+        pub fn closure126(
             v0_1: leptos::HtmlElement<leptos::svg::Svg>,
             unitVar: (),
         ) -> leptos::Fragment {
-            let v1: leptos::HtmlElement<leptos::svg::Svg> = Dice_ui::method172(v0_1);
+            let v1: leptos::HtmlElement<leptos::svg::Svg> = Dice_ui::method218(v0_1);
             let v3: leptos::View = leptos::IntoView::into_view(v1);
-            let v6: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method159()));
+            let v6: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method205()));
             let v8: &str = fable_library_rust::String_::LrcStr::as_str(&v6);
             let v10: std::string::String = String::from(v8);
             let v12: leptos::leptos_dom::Text = leptos::html::text(v10);
             let v16: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v3, leptos::IntoView::into_view(v12)]));
+                Dice_ui::method174(new_array(&[v3, leptos::IntoView::into_view(v12)]));
             leptos::Fragment::new(v16.to_vec())
         }
-        pub fn method171(v0_1: leptos::HtmlElement<leptos::svg::Svg>) -> Func0<leptos::Fragment> {
+        pub fn method217(v0_1: leptos::HtmlElement<leptos::svg::Svg>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure101(v0_1.clone(), ())
+                move || Dice_ui::closure126(v0_1.clone(), ())
             })
         }
-        pub fn method173(
+        pub fn method219(
             v0_1: leptos::HtmlElement<leptos::html::A>,
         ) -> leptos::HtmlElement<leptos::html::A> {
             v0_1
         }
-        pub fn closure102(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
+        pub fn closure127(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> bool {
             let v1: leptos::ReadSignal<Dice_ui::US21> = Dice_ui::method88(v0_1);
             if let Dice_ui::US21::US21_2 = &leptos::SignalGet::get(&v1) {
                 true
@@ -3439,33 +4366,33 @@ mod module_eef1bd43 {
                 false
             }
         }
-        pub fn method174(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
+        pub fn method220(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<bool> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure102(v0_1.clone(), ())
+                move || Dice_ui::closure127(v0_1.clone(), ())
             })
         }
-        pub fn closure103(
+        pub fn closure128(
             v0_1: leptos::HtmlElement<leptos::svg::Svg>,
             unitVar: (),
         ) -> leptos::Fragment {
-            let v1: leptos::HtmlElement<leptos::svg::Svg> = Dice_ui::method172(v0_1);
+            let v1: leptos::HtmlElement<leptos::svg::Svg> = Dice_ui::method218(v0_1);
             let v3: leptos::View = leptos::IntoView::into_view(v1);
-            let v6: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method163()));
+            let v6: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method209()));
             let v8: &str = fable_library_rust::String_::LrcStr::as_str(&v6);
             let v10: std::string::String = String::from(v8);
             let v12: leptos::leptos_dom::Text = leptos::html::text(v10);
             let v16: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v3, leptos::IntoView::into_view(v12)]));
+                Dice_ui::method174(new_array(&[v3, leptos::IntoView::into_view(v12)]));
             leptos::Fragment::new(v16.to_vec())
         }
-        pub fn method175(v0_1: leptos::HtmlElement<leptos::svg::Svg>) -> Func0<leptos::Fragment> {
+        pub fn method221(v0_1: leptos::HtmlElement<leptos::svg::Svg>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure103(v0_1.clone(), ())
+                move || Dice_ui::closure128(v0_1.clone(), ())
             })
         }
-        pub fn closure98(
+        pub fn closure123(
             v0_1: leptos::ReadSignal<Dice_ui::US21>,
             v1: string,
             unitVar: (),
@@ -3478,9 +4405,9 @@ mod module_eef1bd43 {
             let v8: string = Dice_ui::method2(Dice_ui::method8(v2));
             let v10: &str = fable_library_rust::String_::LrcStr::as_str(&v8);
             let v12: std::string::String = String::from(v10);
-            let v13 = Dice_ui::method168(v0_1.clone());
-            let v14 = Dice_ui::method169(v13.clone());
-            let v15 = Dice_ui::method170(v13);
+            let v13 = Dice_ui::method214(v0_1.clone());
+            let v14 = Dice_ui::method215(v13.clone());
+            let v15 = Dice_ui::method216(v13);
             let v17: string =
                 string("class={move || \"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium \".to_owned() + v15()}");
             let v22: string = append(
@@ -3493,7 +4420,7 @@ mod module_eef1bd43 {
                 ),
                 string(""),
             );
-            let v23 = Dice_ui::method171(v6);
+            let v23 = Dice_ui::method217(v6);
             let v26: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3507,7 +4434,7 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v29: leptos::HtmlElement<leptos::html::A> = Dice_ui::method173(
+            let v29: leptos::HtmlElement<leptos::html::A> = Dice_ui::method219(
                 leptos::view! { <a  aria-current={move || if v14() { "page" } else { "" }} class={move || "inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium ".to_owned() + v15()} href=v12>{v23()}</a> },
             );
             let v31: leptos::View = leptos::IntoView::into_view(v29);
@@ -3519,9 +4446,9 @@ mod module_eef1bd43 {
             let v38: string = Dice_ui::method2(Dice_ui::method8(v32));
             let v40: &str = fable_library_rust::String_::LrcStr::as_str(&v38);
             let v42: std::string::String = String::from(v40);
-            let v43 = Dice_ui::method174(v0_1);
-            let v44 = Dice_ui::method169(v43.clone());
-            let v45 = Dice_ui::method170(v43);
+            let v43 = Dice_ui::method220(v0_1);
+            let v44 = Dice_ui::method215(v43.clone());
+            let v45 = Dice_ui::method216(v43);
             let v47: string =
                 string("class={move || \"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium \".to_owned() + v45()}");
             let v51: string = append(
@@ -3534,7 +4461,7 @@ mod module_eef1bd43 {
                 ),
                 string(""),
             );
-            let v52 = Dice_ui::method175(v36);
+            let v52 = Dice_ui::method221(v36);
             let v54: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3548,29 +4475,29 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v57: leptos::HtmlElement<leptos::html::A> = Dice_ui::method173(
+            let v57: leptos::HtmlElement<leptos::html::A> = Dice_ui::method219(
                 leptos::view! { <a  aria-current={move || if v44() { "page" } else { "" }} class={move || "inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium ".to_owned() + v45()} href=v42>{v52()}</a> },
             );
             let v61: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v31, leptos::IntoView::into_view(v57)]));
+                Dice_ui::method174(new_array(&[v31, leptos::IntoView::into_view(v57)]));
             leptos::Fragment::new(v61.to_vec())
         }
-        pub fn method167(
+        pub fn method213(
             v0_1: leptos::ReadSignal<Dice_ui::US21>,
             v1: string,
         ) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v1 = v1.clone();
-                move || Dice_ui::closure98(v0_1.clone(), v1.clone(), ())
+                move || Dice_ui::closure123(v0_1.clone(), v1.clone(), ())
             })
         }
-        pub fn method176(
+        pub fn method222(
             v0_1: leptos::HtmlElement<leptos::html::Nav>,
         ) -> leptos::HtmlElement<leptos::html::Nav> {
             v0_1
         }
-        pub fn closure97(
+        pub fn closure122(
             v0_1: leptos::ReadSignal<Dice_ui::US21>,
             v1: string,
             unitVar: (),
@@ -3584,7 +4511,7 @@ mod module_eef1bd43 {
                 ),
                 string(""),
             );
-            let v7 = Dice_ui::method167(v0_1, v1);
+            let v7 = Dice_ui::method213(v0_1, v1);
             let v10: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3598,29 +4525,29 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v13: leptos::HtmlElement<leptos::html::Nav> = Dice_ui::method176(
+            let v13: leptos::HtmlElement<leptos::html::Nav> = Dice_ui::method222(
                 leptos::view! { <nav  aria-label="Tabs" class="-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]">{v7()}</nav> },
             );
             let v15: leptos::View = leptos::IntoView::into_view(v13);
             leptos::Fragment::new(vec![v15])
         }
-        pub fn method166(
+        pub fn method212(
             v0_1: leptos::ReadSignal<Dice_ui::US21>,
             v1: string,
         ) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v1 = v1.clone();
-                move || Dice_ui::closure97(v0_1.clone(), v1.clone(), ())
+                move || Dice_ui::closure122(v0_1.clone(), v1.clone(), ())
             })
         }
-        pub fn closure96(
+        pub fn closure121(
             v0_1: leptos::ReadSignal<Dice_ui::US21>,
             v1: string,
             unitVar: (),
         ) -> leptos::Fragment {
             let v4: string = string(" class=\"flex flex-1 border-t border-gray-200\"");
-            let v5 = Dice_ui::method166(v0_1, v1);
+            let v5 = Dice_ui::method212(v0_1, v1);
             let v8: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3634,23 +4561,26 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v11: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
+            let v11: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
                 leptos::view! { <div  class="flex flex-1 border-t border-gray-200">{v5()}</div> },
             );
             let v13: leptos::View = leptos::IntoView::into_view(v11);
             leptos::Fragment::new(vec![v13])
         }
-        pub fn method165(
+        pub fn method211(
             v0_1: leptos::ReadSignal<Dice_ui::US21>,
             v1: string,
         ) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v1 = v1.clone();
-                move || Dice_ui::closure96(v0_1.clone(), v1.clone(), ())
+                move || Dice_ui::closure121(v0_1.clone(), v1.clone(), ())
             })
         }
-        pub fn closure88(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> leptos::Fragment {
+        pub fn closure113(
+            v0_1: leptos::ReadSignal<Dice_ui::US21>,
+            unitVar: (),
+        ) -> leptos::Fragment {
             let v2: leptos_router::Location = leptos_router::use_location();
             let v3: leptos_router::Location = Dice_ui::method68(v2.clone());
             let v6: leptos::Memo<std::string::String> = Dice_ui::method69(v3.pathname);
@@ -3669,7 +4599,7 @@ mod module_eef1bd43 {
                 }),
             );
             let v29: string = string(" class=\"hidden\"");
-            let v30 = Dice_ui::method153(v0_1.clone());
+            let v30 = Dice_ui::method199(v0_1.clone());
             let v33: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3684,11 +4614,11 @@ mod module_eef1bd43 {
                 string(" }"),
             );
             let v36: leptos::HtmlElement<leptos::html::Div> =
-                Dice_ui::method129(leptos::view! { <div  class="hidden">{v30()}</div> });
+                Dice_ui::method175(leptos::view! { <div  class="hidden">{v30()}</div> });
             let v38: leptos::View = leptos::IntoView::into_view(v36);
             let v40: string =
                 string(" class=\"flex flex-1 [overflow-x:auto] [overflow-y:hidden]\"");
-            let v41 = Dice_ui::method165(v0_1, v26);
+            let v41 = Dice_ui::method211(v0_1, v26);
             let v43: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3702,22 +4632,25 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v46: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
+            let v46: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
                 leptos::view! { <div  class="flex flex-1 [overflow-x:auto] [overflow-y:hidden]">{v41()}</div> },
             );
             let v50: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v38, leptos::IntoView::into_view(v46)]));
+                Dice_ui::method174(new_array(&[v38, leptos::IntoView::into_view(v46)]));
             leptos::Fragment::new(v50.to_vec())
         }
-        pub fn method152(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
+        pub fn method198(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure88(v0_1.clone(), ())
+                move || Dice_ui::closure113(v0_1.clone(), ())
             })
         }
-        pub fn closure87(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> leptos::Fragment {
+        pub fn closure112(
+            v0_1: leptos::ReadSignal<Dice_ui::US21>,
+            unitVar: (),
+        ) -> leptos::Fragment {
             let v3: string = string(" class=\"flex flex-1 [align-items:flex-end]\"");
-            let v4 = Dice_ui::method152(v0_1);
+            let v4 = Dice_ui::method198(v0_1);
             let v7: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3731,16 +4664,16 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v10: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
+            let v10: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
                 leptos::view! { <div  class="flex flex-1 [align-items:flex-end]">{v4()}</div> },
             );
             let v12: leptos::View = leptos::IntoView::into_view(v10);
             leptos::Fragment::new(vec![v12])
         }
-        pub fn method151(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
+        pub fn method197(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
             Func0::new({
                 let v0_1 = v0_1.clone();
-                move || Dice_ui::closure87(v0_1.clone(), ())
+                move || Dice_ui::closure112(v0_1.clone(), ())
             })
         }
         pub fn closure52(v0_1: leptos::ReadSignal<Dice_ui::US21>, unitVar: ()) -> leptos::Fragment {
@@ -3759,12 +4692,12 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v10: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
+            let v10: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
                 leptos::view! { <div  class="flex flex-100 flex-col [overflow-y:auto]">{v4()}</div> },
             );
             let v12: leptos::View = leptos::IntoView::into_view(v10);
             let v14: string = string(" class=\"flex flex-1\"");
-            let v15 = Dice_ui::method151(v0_1);
+            let v15 = Dice_ui::method197(v0_1);
             let v17: string = append(
                 append(
                     string("leptos::view! { "),
@@ -3779,9 +4712,9 @@ mod module_eef1bd43 {
                 string(" }"),
             );
             let v20: leptos::HtmlElement<leptos::html::Div> =
-                Dice_ui::method129(leptos::view! { <div  class="flex flex-1">{v15()}</div> });
+                Dice_ui::method175(leptos::view! { <div  class="flex flex-1">{v15()}</div> });
             let v24: Array<leptos::View> =
-                Dice_ui::method128(new_array(&[v12, leptos::IntoView::into_view(v20)]));
+                Dice_ui::method174(new_array(&[v12, leptos::IntoView::into_view(v20)]));
             leptos::Fragment::new(v24.to_vec())
         }
         pub fn method84(v0_1: leptos::ReadSignal<Dice_ui::US21>) -> Func0<leptos::Fragment> {
@@ -3808,7 +4741,7 @@ mod module_eef1bd43 {
                 ),
                 string(" }"),
             );
-            let v10: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
+            let v10: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
                 leptos::view! { <div  class="[width:100vw] [max-width:100vw] max-[100px]:[min-width:800px] [height:100vh] [max-height:100vh] max-[60px]:[min-height:600px] bg-gray-50 flex flex-1 flex-col items-stretch text-gray-700 text-sm">{v4()}</div> },
             );
             let v12: leptos::View = leptos::IntoView::into_view(v10);
@@ -3882,7 +4815,7 @@ mod module_eef1bd43 {
                             ),
                             string(" }"),
                         );
-                        let v57: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method129(
+                        let v57: leptos::HtmlElement<leptos::html::Div> = Dice_ui::method175(
                             leptos::view! { <div  class="flex flex-1 max-[100px]:[overflow-x:auto]">{v51()}</div> },
                         );
                         let v59: leptos::View = leptos::IntoView::into_view(v57);
@@ -3985,7 +4918,7 @@ mod module_eef1bd43 {
                                     string(" }"),
                                 );
                                 let v58: leptos::HtmlElement<leptos::html::Div> =
-                                    Dice_ui::method129(
+                                    Dice_ui::method175(
                                         leptos::view! { <div  class:dark={move || v46()} class="flex flex-1">{v52()}</div> },
                                     );
                                 let v60: leptos::View = leptos::IntoView::into_view(v58);
@@ -3999,17 +4932,17 @@ mod module_eef1bd43 {
         pub fn method9() -> Func0<leptos::Fragment> {
             Func0::new(move || Dice_ui::closure5((), ()))
         }
-        pub fn closure104(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v1: Array<leptos::View> = Dice_ui::method128(new_empty::<leptos::View>());
+        pub fn closure129(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+            let v1: Array<leptos::View> = Dice_ui::method174(new_empty::<leptos::View>());
             leptos::Fragment::new(v1.to_vec())
         }
-        pub fn method177() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure104((), ()))
+        pub fn method223() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure129((), ()))
         }
-        pub fn method178() -> string {
+        pub fn method224() -> string {
             string("/")
         }
-        pub fn closure105(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure130(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v0_1: string = append(
                 append(string("home.render () / router: "), toString(2_i32)),
                 string(""),
@@ -4100,7 +5033,7 @@ mod module_eef1bd43 {
                                     string(" }"),
                                 );
                                 let v58: leptos::HtmlElement<leptos::html::Div> =
-                                    Dice_ui::method129(
+                                    Dice_ui::method175(
                                         leptos::view! { <div  class:dark={move || v46()} class="flex flex-1">{v52()}</div> },
                                     );
                                 let v60: leptos::View = leptos::IntoView::into_view(v58);
@@ -4111,13 +5044,13 @@ mod module_eef1bd43 {
                 }
             }
         }
-        pub fn method179() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure105((), ()))
+        pub fn method225() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure130((), ()))
         }
-        pub fn method180() -> string {
+        pub fn method226() -> string {
             string("/*")
         }
-        pub fn closure106(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure131(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v0_1: string = append(
                 append(string("home.render () / router: "), toString(3_i32)),
                 string(""),
@@ -4208,7 +5141,7 @@ mod module_eef1bd43 {
                                     string(" }"),
                                 );
                                 let v58: leptos::HtmlElement<leptos::html::Div> =
-                                    Dice_ui::method129(
+                                    Dice_ui::method175(
                                         leptos::view! { <div  class:dark={move || v46()} class="flex flex-1">{v52()}</div> },
                                     );
                                 let v60: leptos::View = leptos::IntoView::into_view(v58);
@@ -4219,13 +5152,13 @@ mod module_eef1bd43 {
                 }
             }
         }
-        pub fn method181() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure106((), ()))
+        pub fn method227() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure131((), ()))
         }
-        pub fn method182() -> string {
+        pub fn method228() -> string {
             string("*")
         }
-        pub fn closure107(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
+        pub fn closure132(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v0_1: string = append(
                 append(string("home.render () / router: "), toString(4_i32)),
                 string(""),
@@ -4316,7 +5249,7 @@ mod module_eef1bd43 {
                                     string(" }"),
                                 );
                                 let v58: leptos::HtmlElement<leptos::html::Div> =
-                                    Dice_ui::method129(
+                                    Dice_ui::method175(
                                         leptos::view! { <div  class:dark={move || v46()} class="flex flex-1">{v52()}</div> },
                                     );
                                 let v60: leptos::View = leptos::IntoView::into_view(v58);
@@ -4327,48 +5260,48 @@ mod module_eef1bd43 {
                 }
             }
         }
-        pub fn method183() -> Func0<leptos::Fragment> {
-            Func0::new(move || Dice_ui::closure107((), ()))
+        pub fn method229() -> Func0<leptos::Fragment> {
+            Func0::new(move || Dice_ui::closure132((), ()))
         }
         pub fn closure4(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
             let v2: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method7()));
             let v4: &str = fable_library_rust::String_::LrcStr::as_str(&v2);
             let v6: std::string::String = String::from(v4);
             let v7 = Dice_ui::method9();
-            let v8 = Dice_ui::method177();
+            let v8 = Dice_ui::method223();
             let v16: string =
                 string("leptos::IntoView::into_view(leptos::view! { <leptos_router::Route  view=move || v7() path=v6 /> })");
             let v17: leptos::View = leptos::IntoView::into_view(
                 leptos::view! { <leptos_router::Route  view=move || v7() path=v6 /> },
             );
-            let v20: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method178()));
+            let v20: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method224()));
             let v22: &str = fable_library_rust::String_::LrcStr::as_str(&v20);
             let v24: std::string::String = String::from(v22);
-            let v25 = Dice_ui::method179();
-            let v26 = Dice_ui::method177();
+            let v25 = Dice_ui::method225();
+            let v26 = Dice_ui::method223();
             let v32: string =
                 string("leptos::IntoView::into_view(leptos::view! { <leptos_router::Route  view=move || v25() path=v24 /> })");
             let v33: leptos::View = leptos::IntoView::into_view(
                 leptos::view! { <leptos_router::Route  view=move || v25() path=v24 /> },
             );
-            let v36: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method180()));
+            let v36: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method226()));
             let v38: &str = fable_library_rust::String_::LrcStr::as_str(&v36);
             let v40: std::string::String = String::from(v38);
-            let v41 = Dice_ui::method181();
-            let v42 = Dice_ui::method177();
+            let v41 = Dice_ui::method227();
+            let v42 = Dice_ui::method223();
             let v48: string =
                 string("leptos::IntoView::into_view(leptos::view! { <leptos_router::Route  view=move || v41() path=v40 /> })");
             let v49: leptos::View = leptos::IntoView::into_view(
                 leptos::view! { <leptos_router::Route  view=move || v41() path=v40 /> },
             );
-            let v52: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method182()));
+            let v52: string = Dice_ui::method2(Dice_ui::method8(Dice_ui::method228()));
             let v54: &str = fable_library_rust::String_::LrcStr::as_str(&v52);
             let v56: std::string::String = String::from(v54);
-            let v57 = Dice_ui::method183();
-            let v58 = Dice_ui::method177();
+            let v57 = Dice_ui::method229();
+            let v58 = Dice_ui::method223();
             let v64: string =
                 string("leptos::IntoView::into_view(leptos::view! { <leptos_router::Route  view=move || v57() path=v56 /> })");
-            let v67: Array<leptos::View> = Dice_ui::method128(new_array(&[
+            let v67: Array<leptos::View> = Dice_ui::method174(new_array(&[
                 v17,
                 v33,
                 v49,
@@ -4381,11 +5314,11 @@ mod module_eef1bd43 {
         pub fn method6() -> Func0<leptos::Fragment> {
             Func0::new(move || Dice_ui::closure4((), ()))
         }
-        pub fn method184(v0_1: Func0<leptos::Fragment>) -> Func0<leptos::Fragment> {
+        pub fn method230(v0_1: Func0<leptos::Fragment>) -> Func0<leptos::Fragment> {
             v0_1
         }
         pub fn closure3(unitVar: (), unitVar_1: ()) -> leptos::Fragment {
-            let v1 = Dice_ui::method184(Dice_ui::method6());
+            let v1 = Dice_ui::method230(Dice_ui::method6());
             let v7: string =
                 string("leptos::IntoView::into_view(leptos::view! { <leptos_router::Routes  children=Box::new(move || v1()) /> })");
             let v8: leptos::View = leptos::IntoView::into_view(
@@ -4396,7 +5329,7 @@ mod module_eef1bd43 {
         pub fn method5() -> Func0<leptos::Fragment> {
             Func0::new(move || Dice_ui::closure3((), ()))
         }
-        pub fn method185(v0_1: Func0<leptos::Fragment>) -> Func0<leptos::Fragment> {
+        pub fn method231(v0_1: Func0<leptos::Fragment>) -> Func0<leptos::Fragment> {
             v0_1
         }
         pub fn closure2(unitVar: (), unitVar_1: ()) -> impl leptos::IntoView {
@@ -4428,7 +5361,7 @@ mod module_eef1bd43 {
                 });
                 leptos::provide_context::<Heap2>(v32);
                 {
-                    let v35 = Dice_ui::method185(Dice_ui::method5());
+                    let v35 = Dice_ui::method231(Dice_ui::method5());
                     let v41: string =
                         string("leptos::IntoView::into_view(leptos::view! { <leptos_router::Router  children=Box::new(move || v35()) /> })");
                     leptos::IntoView::into_view(
@@ -4441,13 +5374,13 @@ mod module_eef1bd43 {
             leptos::mount_to_body(|| Func0::new(move || Dice_ui::closure2((), ()))());
             ()
         }
-        pub fn closure108(unitVar: (), unitVar_1: ()) {
+        pub fn closure133(unitVar: (), unitVar_1: ()) {
             Dice_ui::method0();
         }
-        pub fn method186() -> Func0<()> {
-            Func0::new(move || Dice_ui::closure108((), ()))
+        pub fn method232() -> Func0<()> {
+            Func0::new(move || Dice_ui::closure133((), ()))
         }
-        pub fn method187(v0_1: Box<dyn Fn()>) -> Box<dyn Fn()> {
+        pub fn method233(v0_1: Box<dyn Fn()>) -> Box<dyn Fn()> {
             v0_1
         }
         pub fn closure0(unitVar: (), v0_1: Array<string>) -> i32 {
@@ -4474,8 +5407,8 @@ mod module_eef1bd43 {
                 if let Dice_ui::US0::US0_1(v9_1_0) = &v9 {
                     Dice_ui::method0()
                 } else {
-                    let v14 = Dice_ui::method186();
-                    let v17: Box<dyn Fn()> = Dice_ui::method187(Box::new(move || v14()));
+                    let v14 = Dice_ui::method232();
+                    let v17: Box<dyn Fn()> = Dice_ui::method233(Box::new(move || v14()));
                     let v19: wasm_bindgen::closure::Closure<dyn Fn()> =
                         wasm_bindgen::closure::Closure::wrap(v17);
                     let v21: &wasm_bindgen::JsValue = wasm_bindgen::closure::Closure::as_ref(&v19);

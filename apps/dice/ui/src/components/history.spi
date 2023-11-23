@@ -12,10 +12,13 @@ inl new_request_get (url : string) : rust.pin (rust.box (rust.dyn' (rust.future 
     inl url = join url
     inl url = url |> sm'.to_std_string
     inl url = join url
-    !\($'"Box::pin(reqwest_wasm::Client::builder().build().unwrap().get(!url).send())"')
+    !\($'"Box::pin(reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url).send())"')
 
 inl response_text (response : reqwest_response) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.std_string reqwest_error)))) =
     !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')
+
+inl am'_from_vec forall dim el. (vec : rust.vec el) : a dim (rust.rc el) =
+    !\($'"fable_library_rust::NativeArray_::array_from(!vec.into_iter().map(std::rc::Rc::new).collect())"')
 
 inl render () =
     leptos.log $'"history.render ()"'
@@ -60,7 +63,7 @@ inl render () =
         leptos.log $'"history.render () / url: " + !url + ""'
         url
 
-    inl response : leptos.resource string (resultm.result' rust.std_string rust.std_string) =
+    inl response : leptos.resource string (resultm.result' (a i32 result_wrapper) rust.std_string) =
         leptos.create_local_resource
             fun () => url |> leptos.memo_get
             fun url =>
@@ -76,8 +79,20 @@ inl render () =
                         |> async.await
                         |> resultm.map_error' sm'.format
                         |> resultm.try'
+                        |> sm'.from_std_string
+
+                    inl result : _ (rust.vec result_wrapper') _ = response |> sm'.deserialize
+
+                    inl result =
+                        result
+                        |> resultm.map_error' sm'.format
+                        |> resultm.try'
+                        |> am'_from_vec
+                        |> am.map result_wrapper_unbox
+
                     leptos.log $'"history.render () / response create_local_resource / end"'
-                    Ok response |> resultm.box
+
+                    result |> Ok |> resultm.box
                 |> async.future_init 3 0
 
     inl response = leptos.create_memo fun () =>

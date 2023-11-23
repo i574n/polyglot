@@ -7,6 +7,7 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
         $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
 
 nominal any = $"std_any_Any"
+nominal ref_cell t = $"std_cell_RefCell<`t>"
 nominal async t = $"Async<`t>"
 nominal borsh_io_error = $"borsh_io_Error"
 nominal rexie = $"rexie_Rexie"
