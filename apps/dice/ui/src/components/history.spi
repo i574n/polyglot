@@ -17,6 +17,25 @@ inl new_request_get (url : string) : rust.pin (rust.box (rust.dyn' (rust.future 
 inl response_text (response : reqwest_response) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.std_string reqwest_error)))) =
     !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')
 
+inl date_time_from_timestamp forall t {int}. (timestamp : t) : option rust.naive_date_time =
+    inl timestamp = join timestamp
+    inl result : optionm'.option' rust.naive_date_time =
+        !\($'"chrono::NaiveDateTime::from_timestamp_millis(!timestamp.try_into().unwrap())"')
+    result |> optionm'.unbox
+
+inl transaction_render (transaction : transaction) : _ leptos.pre =
+    inl block_timestamp = transaction.block_timestamp
+
+    inl block_date =
+        block_timestamp
+        |> date_time_from_timestamp
+
+    block_date
+    |> sm'.format_pretty
+    |> sm'.from_std_string
+    |> leptos.text_fragment
+    |> leptos.text_block_pre
+
 inl render () =
     leptos.log $'"history.render ()"'
 
@@ -109,7 +128,7 @@ inl render () =
             |> resultm.unbox
             |> resultm.map (am.map result_wrapper_unbox)
 
-    inl transaction_list : rust.func0 (result (list transaction_list_by_account_id) string) =
+    inl transaction_list : rust.func0 (result transaction_list_by_account_id string) =
         rust.move (fun () => result_wrapper |> rust.func0_get) fun result_wrapper =>
             leptos.log $'"history.render () / transaction_list move"'
 
@@ -117,7 +136,7 @@ inl render () =
             |> resultm.map fun result =>
                 result
                 |> am.toList
-                |> listm.map fun result =>
+                |> listm'.try_pick fun result =>
                     result.result
                     |> optionm.map fun result =>
                         match result.data with
@@ -125,11 +144,38 @@ inl render () =
                             Some transaction_list_by_account_id
                         | _ => None
                     |> optionm'.flatten
-                |> listm'.choose id
+                |> resultm.from_option
+            |> resultm.flatten
+
+    inl cursor : rust.func0 (result transaction_cursor string) =
+        rust.move (fun () => transaction_list |> rust.func0_get) fun transaction_list =>
+            leptos.log $'"history.render () / transaction_cursor move"'
+
+            transaction_list
+            |> resultm.map fun result =>
+                result.cursor
+                |> resultm.from_option
+            |> resultm.flatten
+
+    inl transactions : rust.func0 (result (array transaction) string) =
+        rust.move (fun () => transaction_list |> rust.func0_get) fun transaction_list =>
+            leptos.log $'"history.render () / transactions move"'
+
+            transaction_list
+            |> resultm.map fun result =>
+                result.items
 
     ;[
         leptos.accordion "History" true fun () =>
-            "{}" |> leptos.text_fragment
+            transactions |> leptos.move_to_fragment fun transactions =>
+                match transactions |> rust.func0_get with
+                | Ok transactions =>
+                    leptos.for
+                        transactions
+                        (fun transaction => transaction.hash)
+                        (transaction_render >> leptos.element_to_fragment)
+                    |> leptos.view_to_fragment
+                | Error error => $'"Error: " + string !error + ""' |> leptos.text_fragment
         |> leptos.element_to_view
 
         if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then

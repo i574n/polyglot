@@ -17,6 +17,7 @@ nominal pre = $"leptos_html_Pre"
 nominal select = $"leptos_html_Select"
 nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
+nominal for = $"leptos_For"
 nominal fragment = $"leptos_Fragment"
 nominal text = $"leptos_dom_Text"
 nominal transparent = $"leptos_dom_Transparent"
@@ -297,6 +298,10 @@ inl tag_closed tag props : html_element _ =
 inl div props children : _ div =
     tag_element "div" props children
 
+inl for props : view =
+    tag_closed_raw "leptos::For" props
+    |> macro_to_view
+
 inl label props children : _ label =
     tag_element "label" props children
 
@@ -316,6 +321,17 @@ inl option' select children : _ option' =
 
     ] fun () =>
         children |> new_text |> text_to_fragment
+
+inl for forall t u. (array : array t) (key_fn : t -> u) (children' : t -> fragment) : view =
+    inl array = join array
+    inl key_fn = join key_fn
+    inl children' = join children'
+    for [
+        $'"each=move || !array.to_vec()"'
+        $'"key=move |x| !key_fn(x.to_owned())"'
+        $'"let:x"'
+        $'"children=move |x| !children'(x)"'
+    ]
 
 inl nav props children : _ nav =
     tag_element "nav" props children

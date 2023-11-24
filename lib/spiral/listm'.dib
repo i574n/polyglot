@@ -446,3 +446,27 @@ inl last list =
 listm.init 10i32 id
 |> last
 |> _equal 9
+
+#!markdown
+
+## try_pick
+
+#!spiral
+
+inl try_pick fn list =
+    inl rec body = function
+        | [] => None
+        | x :: xs =>
+            match fn x with
+            | Some y => Some y
+            | None => loop xs
+    and inl loop list = join_body_unit body list list
+    loop list
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> try_pick (fun x => if x = 5i32 then Some x else None)
+|> _equal (Some 5i32)

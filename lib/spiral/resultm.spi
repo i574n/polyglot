@@ -2,6 +2,24 @@ open rust_operators
 
 nominal result' t u = $"Result<`t, `u>"
 
+inl from_option_error error opt =
+    match opt with
+    | Some x => Ok x
+    | None => Error error
+
+inl from_option opt =
+    opt |> from_option_error "Option does not have a value."
+
+inl flatten_option forall t. (x : option (result t string)) : result t string =
+    match x with
+    | Some x => x
+    | None => Error "Option does not have a value."
+
+inl flatten forall t u. (x : result (result t u) u) : result t u =
+    match x with
+    | Ok x => x
+    | Error x => Error x
+
 inl get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
@@ -47,13 +65,3 @@ inl ok forall t. (x : result t _) : option t =
     match x with
     | Ok x => Some x
     | Error _ => None
-
-inl flatten_option forall t. (x : option (result t string)) : result t string =
-    match x with
-    | None => Error "Option does not have a value."
-    | Some x => x
-
-inl flatten forall t u. (x : result (result t u) u) : result t u =
-    match x with
-    | Ok x => x
-    | Error x => Error x

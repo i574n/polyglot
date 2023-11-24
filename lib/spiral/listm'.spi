@@ -199,3 +199,15 @@ inl last list =
     list
     |> listm.rev
     |> item 0i32
+
+// // ## try_pick
+
+inl try_pick fn list =
+    inl rec body = function
+        | [] => None
+        | x :: xs =>
+            match fn x with
+            | Some y => Some y
+            | None => loop xs
+    and inl loop list = join_body_unit body list list
+    loop list
