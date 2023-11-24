@@ -4,16 +4,19 @@ modules:
     testing
     rust
     rust_operators
-    async
     optionm'
+    optionm'_operators
     resultm
     mapm
+    date_time
     common-
     sm'
     console
     math
     am'
     listm'
+    async
+    networking
     benchmark
     stream
     seq

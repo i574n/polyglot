@@ -1,40 +1,21 @@
 open rust_operators
 open model.near.backend
 
-inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>] type reqwest_Error = class end"
-
-nominal reqwest_response = $"reqwest_Response"
-nominal reqwest_error = $"reqwest_Error"
-
-inl new_request_get (url : string) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' reqwest_response reqwest_error)))) =
-    inl url = join url
-    inl url = url |> sm'.to_std_string
-    inl url = join url
-    !\($'"Box::pin(reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url).send())"')
-
-inl response_text (response : reqwest_response) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.std_string reqwest_error)))) =
-    !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')
-
-inl date_time_from_timestamp forall t {int}. (timestamp : t) : option rust.naive_date_time =
-    inl timestamp = join timestamp
-    inl result : optionm'.option' rust.naive_date_time =
-        !\($'"chrono::NaiveDateTime::from_timestamp_millis(!timestamp.try_into().unwrap())"')
-    result |> optionm'.unbox
-
-inl transaction_render (transaction : transaction) : _ leptos.pre =
+inl transaction_render (transaction : transaction) : _ leptos.div =
     inl block_timestamp = transaction.block_timestamp
 
-    inl block_date =
+    inl block_date_time =
         block_timestamp
-        |> date_time_from_timestamp
+        |> date_time.from_timestamp'
+        |> optionm.map (date_time.format' "%Y-%m-%d %H:%M:%S" >> sm'.from_std_string)
 
-    block_date
-    |> sm'.format_pretty
-    |> sm'.from_std_string
-    |> leptos.text_fragment
-    |> leptos.text_block_pre
+    leptos.grid_pair
+        { class = "" }
+        ("Block Timestamp" |> leptos.text_fragment)
+        (block_date_time
+            |> resultm.from_option
+            |> to_string
+            |> leptos.text_fragment)
 
 inl render () =
     leptos.log $'"history.render ()"'
@@ -68,7 +49,7 @@ inl render () =
         inl input_json : resultm.result' rust.std_string rust.json_error = !\($'"serde_json::to_string(&!input_obj)"')
         inl input_json = input_json |> resultm.unwrap'
         inl input : rust.js_string = !\($'"js_sys::encode_uri_component(&!input_json)"')
-        input |> sm'.format
+        input |> sm'.format'
 
     inl url = leptos.create_memo fun () =>
         leptos.log $'"history.render () / url create_memo"'
@@ -90,13 +71,13 @@ inl render () =
                 fun () =>
                     leptos.log $'"history.render () / json create_local_resource"'
                     url
-                    |> new_request_get
+                    |> networking.new_request_get
                     |> async.await
-                    |> resultm.map_error' sm'.format
+                    |> resultm.map_error' sm'.format'
                     |> resultm.try'
-                    |> response_text
+                    |> networking.response_text
                     |> async.await
-                    |> resultm.map_error' sm'.format
+                    |> resultm.map_error' sm'.format'
                     |> resultm.try'
                     |> sm'.from_std_string
                     |> Ok
@@ -115,7 +96,7 @@ inl render () =
             |> resultm.map fun json =>
                 json
                 |> sm'.deserialize
-                |> resultm.map_error' sm'.format
+                |> resultm.map_error' sm'.format'
                 |> resultm.try'
                 |> am'.from_vec
             |> resultm.box
@@ -187,7 +168,7 @@ inl render () =
                         (transaction_list |> leptos.move_to_fragment fun transaction_list =>
                             transaction_list
                             |> rust.func0_get
-                            |> sm'.format_pretty
+                            |> sm'.format_pretty'
                             |> sm'.from_std_string
                             |> leptos.text_fragment
                             |> leptos.text_block_pre
@@ -200,7 +181,7 @@ inl render () =
                         (result_wrapper |> leptos.move_to_fragment fun result_wrapper =>
                             result_wrapper
                             |> rust.func0_get
-                            |> sm'.format_pretty
+                            |> sm'.format_pretty'
                             |> sm'.from_std_string
                             |> leptos.text_fragment
                             |> leptos.text_block_pre
@@ -213,7 +194,7 @@ inl render () =
                         (json |> leptos.move_to_fragment fun json =>
                             json
                             |> leptos.resource_get
-                            |> sm'.format_pretty
+                            |> sm'.format_pretty'
                             |> sm'.from_std_string
                             |> leptos.text_fragment
                             |> leptos.text_block_pre

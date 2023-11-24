@@ -8,7 +8,7 @@ inl main (args : array string) =
 
     inl body : optionm'.option' rust.html_element = !\($'"leptos::document().body()"')
     inl body = body |> optionm'.unbox
-    inl body_log = body |> format_debug
+    inl body_log = body |> sm'.format_debug
 
     leptos.log $'"main / mount_to_body / body: " + string !body_log + ""'
 
@@ -33,8 +33,8 @@ inl main (args : array string) =
     0i32
 
 inl main () =
-    src.state.types ()
+    rust.types ()
+    leptos.types ()
     src.model.near.backend.types ()
-    src.components.history.types ()
 
     $"let main args = !main args" : ()

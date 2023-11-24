@@ -5,7 +5,7 @@
     "build-css": "tailwindcss -i input.css -o target/tailwind.css"
   },
   "devDependencies": {
-    "@types/node": "~20.8",
+    "@types/node": "~20.9",
     "npm-check-updates": "~16.14",
     "tailwindcss": "~3.3",
     "nightwind": "~1.1",

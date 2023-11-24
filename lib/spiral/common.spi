@@ -1,17 +1,83 @@
 // // # common
 
-// // ## append
+// // ## types
 
+nominal any = $"obj"
+
+nominal disposable = $"System.IDisposable"
+
+nominal exn = $"exn"
+
+nominal guid = $"System.Guid"
+
+// // ## prototype
+
+prototype (~:?>) r : forall t. t -> r
 prototype append t : t -> t -> t
+prototype of_string t : string -> t
+prototype to_string t : t -> string
+
+// // ## null
+
+inl null forall t. () : t =
+    $"null |> unbox<`t>"
+
+// // ## pair
+
+type pair a b = $"(`a * `b)"
+
+inl new_pair forall a b. (a : a) (b : b) : pair a b =
+    $"!a, !b"
+
+// // ## log_level_type
+
+union log_level_type =
+    | Verbose
+    | Debug
+    | Info
+    | Warning
+    | Critical
+
+instance to_string log_level_type = function
+    | Verbose => "Verbose"
+    | Debug => "Debug"
+    | Info => "Info"
+    | Warning => "Warning"
+    | Critical => "Critical"
+
+instance of_string log_level_type = function
+    | "Verbose" => Verbose
+    | "Debug" => Debug
+    | "Info" => Info
+    | "Warning" => Warning
+    | "Critical" => Critical
+
+// // ## to_any
+
+inl to_any forall t. (obj : t) : any =
+    $"!obj"
+
+instance (~:?>) any = to_any
+
+// // ## (/@)
+
+inl (/@) a b =
+    b |> append a
+
+// // ## (/+)
+
+inl (/+) forall t. (a : t) (b : t) : t =
+    $"!a + !b"
 
 // // ## pair
 
 inl pair x y =
     x, y
 
-// // ## ||>
+// // ## (||>)
 
-inl (||>) (arg1, arg2) fn = arg2 |> fn arg1
+inl (||>) (arg1, arg2) fn =
+    arg2 |> fn arg1
 
 // // ## flip
 
@@ -60,20 +126,10 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"|> fun x -> result <- Some x"
     $"result |> Option.get"
 
-// // ## format_debug
-
-inl format_debug x =
-    $"$\"%A{!x}\"" : string
-
 // // ## nameof
 
 inl nameof x : string =
     $"nameof !x"
-
-// // ## obj_to_string
-
-inl obj_to_string x : string =
-    $"!x.ToString ()"
 
 // // ## get_environment_variable
 

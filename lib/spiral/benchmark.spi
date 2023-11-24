@@ -87,7 +87,7 @@ inl run forall input expected.
     ((input, expected) : (input * expected))
     : test_case_result
     =
-    inl input_str = input |> format_debug
+    inl input_str = input |> sm'.format_debug
 
     printfn ""
     printfn ($"$\"Solution: {!input_str}  \"" : string)
@@ -120,8 +120,8 @@ inl run forall input expected.
 
     {
         Input = input_str
-        Expected = expected |> format_debug
-        Result = results_with_time |> am.map fst |> fun array => index array 0 |> format_debug
+        Expected = expected |> sm'.format_debug
+        Result = results_with_time |> am.map fst |> fun array => index array 0 |> sm'.format_debug
         TimeList = results_with_time |> am.map snd
     }
 
@@ -154,7 +154,7 @@ inl sort_result_list results =
                         i + 1i64, time
                     |> am'_sort_by snd
                     |> fun array => index array 0i32
-                    |> format_debug
+                    |> sm'.format_debug
                 inl row =
                     [
                         result.Input

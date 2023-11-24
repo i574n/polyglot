@@ -43,7 +43,7 @@ inl render () : _ leptos.div =
 
         inl hash_url = hash_url |> resultm.unbox |> resultm.get
 
-        inl hash_url_log = hash_url |> sm'.format_pretty
+        inl hash_url_log = hash_url |> sm'.format_pretty'
         leptos.log $'"content.render () / effect 2 / hash_url: " + string !hash_url_log + ""'
 
         inl tab =
@@ -51,7 +51,7 @@ inl render () : _ leptos.div =
             then menu_tabs.Settings
             else menu_tabs.History
 
-        inl tab_log = tab |> sm'.format_pretty
+        inl tab_log = tab |> sm'.format_pretty'
         leptos.log $'"content.render () / effect 2 / new_tab: " + string !tab_log + ""'
 
         set_tab |> leptos.signal_update fun _ => tab

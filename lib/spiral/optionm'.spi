@@ -4,11 +4,18 @@ open rust_operators
 
 // // ## default_value
 
-inl default_value d = optionm.defaultWith d
+inl default_value d =
+    optionm.defaultWith d
+
+// // ## (/??)
+
+inl (/??) a b =
+    a |> default_value b
 
 // // ## default_with
 
-inl default_with fn = function Some x => x | None => fn ()
+inl default_with fn =
+    function Some x => x | None => fn ()
 
 // // ## choose
 

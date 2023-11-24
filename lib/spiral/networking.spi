@@ -1,0 +1,13 @@
+open rust_operators
+
+nominal reqwest_response = $"reqwest_Response"
+nominal reqwest_error = $"reqwest_Error"
+
+inl new_request_get (url : string) : async.future_pin (resultm.result' reqwest_response reqwest_error) =
+    inl url = join url
+    inl url = url |> sm'.to_std_string
+    inl url = join url
+    !\($'"Box::pin(reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url).send())"')
+
+inl response_text (response : reqwest_response) : async.future_pin (resultm.result' rust.std_string reqwest_error) =
+    !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')

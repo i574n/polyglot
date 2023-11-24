@@ -1,82 +1,5 @@
 open rust_operators
 
-inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::Function\")>] type js_sys_Function = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>] type js_sys_JsString = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::A\")>] type leptos_html_A = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::AnyElement\")>] type leptos_html_AnyElement = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Details\")>] type leptos_html_Details = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dd\")>] type leptos_html_Dd = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dl\")>] type leptos_html_Dl = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dt\")>] type leptos_html_Dt = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Nav\")>] type leptos_html_Nav = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>] type leptos_html_Option = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Svg\")>] type leptos_svg_Svg = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>] type leptos_dom_Transparent = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Route\")>] type leptos_router_Route = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::RouteDefinition\")>] type leptos_router_RouteDefinition = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Router\")>] type leptos_router_Router = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Routes\")>] type leptos_router_Routes = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::For\")>] type leptos_For = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Location\")>] type leptos_router_Location = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NavigateOptions\")>] type leptos_router_NavigateOptions = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>] type leptos_router_Url = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>] type leptos_Memo<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>] type leptos_ReadSignal<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>] type chrono_NaiveDateTime = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>] type borsh_io_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Store\")>] type rexie_Store = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>] type std_any_Any = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>] type std_cell_RefCell<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>] type Func0<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>] type Func0<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::closure::Closure<$0>\")>] type wasm_bindgen_closure_Closure<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Document\")>] type web_sys_Document = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::HtmlElement\")>] type web_sys_HtmlElement = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Storage\")>] type web_sys_Storage = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Window\")>] type web_sys_Window = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn($0, $1)\")>] type ActionFn2<'T, 'U> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>] type Mut<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
-
 type core_state =
     heap {
         dark_mode : leptos.rw_signal bool
@@ -109,11 +32,12 @@ type global_state =
         loading : leptos.rw_signal (rust.hash_map rust.std_string (leptos.rw_signal bool))
     }
 
-inl build_database () : rust.pin (rust.box (rust.dyn' (rust.future (result rust.rexie rust.rexie_error)))) =
+inl build_database () : async.future_pin (result rust.rexie rust.rexie_error) =
     leptos.log $'"state.build_database ()"'
 
     fun () =>
-        inl rexie : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' rust.rexie rust.rexie_error)))) = !\($'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"')
+        inl rexie : async.future_pin (resultm.result' rust.rexie rust.rexie_error) =
+            !\($'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"')
         inl rexie : resultm.result' rust.rexie rust.rexie_error = rexie |> async.await
         inl rexie : rust.rexie = rexie |> resultm.unbox |> resultm.get
         Ok rexie
@@ -125,7 +49,7 @@ inl get_core_state_data_key () =
 inl get_state_data_key () =
     "state-data"
 
-inl get_data forall t. (id : string) (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' (option t) rust.rexie_error)))) =
+inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (resultm.result' (option t) rust.rexie_error) =
     leptos.log $'"state.get_data () / id: " + !id + ""'
     inl rexie = join rexie
     fun () =>
@@ -138,18 +62,18 @@ inl get_data forall t. (id : string) (rexie : rust.rexie) : rust.pin (rust.box (
         | Some mode_data =>
             inl mode_data = join mode_data
             inl data : rust.vec u8 = !\($'"serde_json::from_value(!mode_data).unwrap()"')
-            inl data_log = data |> format_debug
-            leptos.log $'"state.get_data () / data: " + string !data_log + ""'
+            inl data_log = data |> sm'.format_debug
+            leptos.log $'"state.get_data () / data: " + !data_log + ""'
             inl data = join data
             inl data : resultm.result' t (rust.arc rust.borsh_io_error) = !\($'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).map_err(|x| std::sync::Arc::new(x))"')
-            inl data_log = data |> sm'.format_pretty
+            inl data_log = data |> sm'.format_pretty'
             leptos.log $'"state.get_data () / data: " + string !data_log + ""'
             data |> resultm.ok' |> optionm'.unbox |> Ok
         | None => Ok None
         |> resultm.box
     |> async.future_init 2 0
 
-inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : rust.pin (rust.box (rust.dyn' (rust.future (resultm.result' () rust.rexie_error)))) =
+inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : async.future_pin (resultm.result' () rust.rexie_error) =
     inl data_log = data |> sm'.format_debug
     leptos.log $'"state.set_data () / data: " + string !data_log + ""'
     inl rexie = join rexie
@@ -192,8 +116,8 @@ inl use_database () =
                 |> leptos.resource_get
             fun (database : optionm'.option' rust.rexie) =>
                 fun () =>
-                    inl database_log = database |> format_debug
-                    leptos.log $'"state.use_database () / core_state_data create_local_resource / database: " + string !database_log + ""'
+                    inl database_log = database |> sm'.format_debug
+                    leptos.log $'"state.use_database () / core_state_data create_local_resource / database: " + !database_log + ""'
                     match database |> optionm'.unbox with
                     | Some database =>
                         database
@@ -211,8 +135,8 @@ inl use_database () =
                 |> leptos.resource_get
             fun (database : optionm'.option' rust.rexie) =>
                 fun () =>
-                    inl database_log = database |> format_debug
-                    leptos.log $'"state.use_database () / state_data create_local_resource / database: " + string !database_log + ""'
+                    inl database_log = database |> sm'.format_debug
+                    leptos.log $'"state.use_database () / state_data create_local_resource / database: " + !database_log + ""'
                     match database |> optionm'.unbox with
                     | Some database =>
                         database
@@ -229,8 +153,8 @@ inl use_database () =
         match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
         | Ok (Some storage) =>
             inl core_state_data = core_state_data |> leptos.resource_get |> optionm'.unbox
-            inl core_state_data_log = core_state_data |> format_debug
-            leptos.log $'"state.use_database () / effect core_state_data / ##2 / core_state_data: " + string !core_state_data_log + ""'
+            inl core_state_data_log = core_state_data |> sm'.format_debug
+            leptos.log $'"state.use_database () / effect core_state_data / ##2 / core_state_data: " + !core_state_data_log + ""'
 
             inl core_state_data =
                 match core_state_data with
@@ -246,8 +170,8 @@ inl use_database () =
                         value |> sm'.from_std_string |> sm'.deserialize |> resultm.ok' |> optionm'.unbox
                     |> optionm'.flatten
 
-            inl core_state_data_log = core_state_data |> format_debug
-            leptos.log $'"state.use_database () / effect core_state_data / ##3 / core_state_data: " + string !core_state_data_log + ""'
+            inl core_state_data_log = core_state_data |> sm'.format_debug
+            leptos.log $'"state.use_database () / effect core_state_data / ##3 / core_state_data: " + !core_state_data_log + ""'
 
             match core_state_data with
             | Some core_state_data =>
@@ -268,11 +192,11 @@ inl use_database () =
         match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
         | Ok (Some _storage) =>
             inl state_data = state_data |> leptos.resource_get |> optionm'.unbox |> optionm'.flatten
-            inl state_data_log = state_data |> format_debug
-            leptos.log $'"state.use_database () / effect state_data / ##2 / state_data: " + string !state_data_log + ""'
+            inl state_data_log = state_data |> sm'.format_debug
+            leptos.log $'"state.use_database () / effect state_data / ##2 / state_data: " + !state_data_log + ""'
 
-            inl state_data_log = state_data |> format_debug
-            leptos.log $'"state.use_database () / effect state_data / ##3 / state_data: " + string !state_data_log + ""'
+            inl state_data_log = state_data |> sm'.format_debug
+            leptos.log $'"state.use_database () / effect state_data / ##3 / state_data: " + !state_data_log + ""'
 
             match state_data with
             | Some state_data =>

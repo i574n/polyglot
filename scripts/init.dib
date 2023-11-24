@@ -53,11 +53,11 @@ npm install -g @chialab/rna-bundler
 
 #!pwsh
 
-npm install -g @playwright/test@1.38.0-beta-1691778350000
+npm install -g @playwright/test@1.40.0
 
 #!pwsh
 
-npx -y playwright@1.38.0-beta-1691778350000 install
+npx -y playwright@1.40.0 install
 
 #!pwsh
 

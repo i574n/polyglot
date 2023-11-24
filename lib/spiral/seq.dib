@@ -349,3 +349,22 @@ inl iterate' f x0 num_steps =
 
 10i32 |> iterate' ((*) 2) 1i32
 |> _equal 1024
+
+#!markdown
+
+## find_last
+
+#!spiral
+
+inl find_last forall item result. fold_fn fn target : option result =
+    fold_fn (fun (item : item) (result : option result) =>
+        match result with
+        | None => fn item
+        | result => result
+    ) target (None : option result)
+
+inl array_find_last forall item result. (fn : item -> option result) (target : a i32 item) : option result =
+    find_last am.foldBack fn target
+
+inl list_find_last forall item result. (fn : item -> option result) (target : list item) : option result =
+    find_last listm.foldBack fn target

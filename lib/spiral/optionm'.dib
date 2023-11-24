@@ -22,7 +22,8 @@ open rust_operators
 
 #!spiral
 
-inl default_value d = optionm.defaultWith d
+inl default_value d =
+    optionm.defaultWith d
 
 #!spiral
 
@@ -34,11 +35,28 @@ None
 
 #!markdown
 
+## (/??)
+
+#!spiral
+
+inl (/??) a b =
+    a |> default_value b
+
+#!spiral
+
+// // test
+
+None /?? 3i32
+|> _equal 3i32
+
+#!markdown
+
 ## default_with
 
 #!spiral
 
-inl default_with fn = function Some x => x | None => fn ()
+inl default_with fn =
+    function Some x => x | None => fn ()
 
 #!spiral
 

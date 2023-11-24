@@ -1,6 +1,10 @@
 open rust_operators
 
-inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : rust.pin (rust.box (rust.dyn' (rust.future t))) =
+nominal async t = $"Async<`t>"
+nominal future t = $"Future<`t>"
+type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
+
+inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : future_pin t =
     if flag = 1
     then !\($'"let __future_init = Box::pin(async move { //"')
     else !\($'"let __future_init = Box::pin(async { //"')
@@ -25,5 +29,5 @@ inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : rust.pin (rus
     then !\($'"{ { { { { { // "')
     !\($'"__future_init"')
 
-inl await forall t. (x : rust.pin (rust.box (rust.dyn' (rust.future t)))) : t =
+inl await forall t. (x : future_pin t) : t =
     !\($'"!x.await"')

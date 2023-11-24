@@ -1,5 +1,8 @@
 open rust_operators
 
+inl include_str (path : string) : rust.ref' rust.str =
+    !\($'"include_str\!(\\\"" + !path + "\\\")"')
+
 inl contains (value : string) (input : string) : bool =
     $"!input.Contains !value"
 
@@ -25,14 +28,31 @@ inl as_str_std (s : rust.std_string) : rust.ref' rust.str =
 inl into_boxed_str (s : rust.std_string) : rust.box rust.str =
     !\($'"!s.into_boxed_str()"')
 
-inl format x : rust.std_string =
+inl format' x : rust.std_string =
     !\\(x, $'@@$"format\!(""{{}}"", $0)"')
 
-inl format_debug x : rust.std_string =
+inl format_debug x : string =
+    $"$\"%A{!x}\""
+
+inl format_debug' x : rust.std_string =
     !\\(x, $'@@$"format\!(""{{:?}}"", $0)"')
 
-inl format_pretty x : rust.std_string =
+inl format_pretty' x : rust.std_string =
     !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+
+inl obj_to_string x : string =
+    $"!x.ToString ()"
+
+instance to_string any =
+    obj_to_string
+
+instance to_string result t u = fun x => real
+    typecase (t * u) with
+    | string * string =>
+        match x with
+        | Ok x => x
+        | Error x => x
+    | _ => x |> obj_to_string
 
 inl deserialize forall t. (json : string) : resultm.result' t rust.json_error =
     inl json : rust.std_string = json |> to_std_string

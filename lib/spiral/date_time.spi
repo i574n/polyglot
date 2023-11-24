@@ -1,0 +1,16 @@
+open rust_operators
+
+type ticks = i64
+nominal date_time = $"System.DateTime"
+nominal naive_date_time = $"chrono_NaiveDateTime"
+
+inl from_timestamp' forall t {int}. (timestamp : t) : option naive_date_time =
+    inl timestamp = join timestamp
+    inl result : optionm'.option' naive_date_time =
+        !\($'"chrono::NaiveDateTime::from_timestamp_millis(!timestamp.try_into().unwrap())"')
+    result |> optionm'.unbox
+
+inl format' (format : string) (date_time : naive_date_time) : rust.std_string =
+    inl format = #format
+    inl date_time = join date_time
+    !\($'"!date_time.format(!format).to_string()"')

@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@playwright/test':
-    specifier: 1.38.0-beta-1691778350000
-    version: 1.38.0-beta-1691778350000
+    specifier: 1.40.0
+    version: 1.40.0
   npm-check-updates:
     specifier: ~16.14
     version: 16.14.4
@@ -118,15 +118,12 @@ packages:
     dev: true
     optional: true
 
-  /@playwright/test@1.38.0-beta-1691778350000:
-    resolution: {integrity: sha512-dd3ZN66Qba1Q78A1fu4HjGBdC6SU5/mCc7eV+1HvAkObASNRsVKvPF8sZJxSyTSo6iTrIqZyOgc4rETfR6C2oQ==}
+  /@playwright/test@1.40.0:
+    resolution: {integrity: sha512-PdW+kn4eV99iP5gxWNSDQCbhMaDVej+RXL5xr6t04nbKLCBwYtA046t7ofoczHOm8u6c+45hpDKQVZqtqwkeQg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      '@types/node': 20.5.7
-      playwright-core: 1.38.0-beta-1691778350000
-    optionalDependencies:
-      fsevents: 2.3.2
+      playwright: 1.40.0
     dev: true
 
   /@pnpm/config.env-replace@1.1.0:
@@ -215,10 +212,6 @@ packages:
 
   /@types/http-cache-semantics@4.0.1:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
-    dev: true
-
-  /@types/node@20.5.7:
-    resolution: {integrity: sha512-dP7f3LdZIysZnmvP3ANJYTSwg+wLLl8p7RqniVlV7j+oXSXAbt9h0WIBFmJy5inWZoX9wZN6eXx+YXd9Rh3RBA==}
     dev: true
 
   /abbrev@1.1.1:
@@ -1479,10 +1472,20 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /playwright-core@1.38.0-beta-1691778350000:
-    resolution: {integrity: sha512-UWy/3HB9lqDRiRYpdONCogdmbBvR1lXcKaGHi5xba79VKQgxbTKW8Cff4vCLy6xj5LMJFEojh3PTlDOggtgrFQ==}
+  /playwright-core@1.40.0:
+    resolution: {integrity: sha512-fvKewVJpGeca8t0ipM56jkVSU6Eo0RmFvQ/MaCQNDYm+sdvKkMBBWTE1FdeMqIdumRaXXjZChWHvIzCGM/tA/Q==}
     engines: {node: '>=16'}
     hasBin: true
+    dev: true
+
+  /playwright@1.40.0:
+    resolution: {integrity: sha512-gyHAgQjiDf1m34Xpwzaqb76KgfzYrhK7iih+2IzcOCoZWr/8ZqmdBw+t0RU85ZmfJMgtgAiNtBQ/KS2325INXw==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      playwright-core: 1.40.0
+    optionalDependencies:
+      fsevents: 2.3.2
     dev: true
 
   /proc-log@3.0.0:
