@@ -55,6 +55,15 @@ inl indexed (array : a _ _) =
     |> listm.rev
     |> listm.toArray
 
+// // ## try_pick
+
+inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
+    (array, None)
+    ||> am.foldBack fun x acc =>
+        match acc with
+        | Some _ => acc
+        | None => x |> fn
+
 // // ## from_vec
 
 inl from_vec forall dim el. (vec : rust.vec el) : a dim el =

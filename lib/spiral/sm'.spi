@@ -54,9 +54,15 @@ instance to_string result t u = fun x => real
         | Error x => x
     | _ => x |> obj_to_string
 
+inl serialize forall t. (x : t) : resultm.result' rust.std_string rust.json_error =
+    !\($'"serde_json::to_string(&!x)"')
+
 inl deserialize forall t. (json : string) : resultm.result' t rust.json_error =
     inl json : rust.std_string = json |> to_std_string
     !\($'"serde_json::from_str(&!json)"')
+
+inl encode_uri_component (s : rust.std_string) : rust.js_string =
+    !\($'"js_sys::encode_uri_component(&!s)"')
 
 inl strip_prefix (prefix : char) (s : rust.std_string) : optionm'.option' (rust.ref' rust.str) =
     inl s = join s
@@ -65,3 +71,6 @@ inl strip_prefix (prefix : char) (s : rust.std_string) : optionm'.option' (rust.
 inl starts_with (value : rust.std_string) (s : rust.std_string) : bool =
     inl s = join s
     !\($'"!s.starts_with(&!value)"')
+
+open rust
+instance to_string std_string = from_std_string

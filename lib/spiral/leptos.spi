@@ -28,6 +28,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>] type leptos_html_Option = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Span\")>] type leptos_html_Span = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>] type leptos_dom_Transparent = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Svg\")>] type leptos_svg_Svg = class end"
@@ -54,6 +55,7 @@ nominal nav = $"leptos_html_Nav"
 nominal option' = $"leptos_html_Option"
 nominal pre = $"leptos_html_Pre"
 nominal select = $"leptos_html_Select"
+nominal span = $"leptos_html_Span"
 nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal for = $"leptos_For"
@@ -334,32 +336,15 @@ inl tag_closed tag props : html_element _ =
     tag_closed_raw tag props
     |> macro_to_element
 
+inl a' props children : _ a' =
+    tag_element "a" props children
+
 inl div props children : _ div =
     tag_element "div" props children
 
 inl for props : view =
     tag_closed_raw "leptos::For" props
     |> macro_to_view
-
-inl label props children : _ label =
-    tag_element "label" props children
-
-inl pre props children : _ pre =
-    tag_element "pre" props children
-
-inl select props children : _ select =
-    tag_element "select" props children
-
-inl option' props children : _ option' =
-    tag_element "option" props children
-
-inl option' select children : _ option' =
-    inl select : () -> bool = join select
-    option' [
-        $'"select=!select()"'
-
-    ] fun () =>
-        children |> new_text |> text_to_fragment
 
 inl for forall t u. (array : array t) (key_fn : t -> u) (children' : t -> fragment) : view =
     inl array = join array
@@ -372,11 +357,31 @@ inl for forall t u. (array : array t) (key_fn : t -> u) (children' : t -> fragme
         $'"children=move |x| !children'(x)"'
     ]
 
+inl label props children : _ label =
+    tag_element "label" props children
+
 inl nav props children : _ nav =
     tag_element "nav" props children
 
-inl a' props children : _ a' =
-    tag_element "a" props children
+inl option' props children : _ option' =
+    tag_element "option" props children
+
+inl option' select children : _ option' =
+    inl select : () -> bool = join select
+    option' [
+        $'"select=!select()"'
+
+    ] fun () =>
+        children |> new_text |> text_to_fragment
+
+inl pre props children : _ pre =
+    tag_element "pre" props children
+
+inl select props children : _ select =
+    tag_element "select" props children
+
+inl span props children : _ span =
+    tag_element "span" props children
 
 inl use_location () : location =
     !\($'"leptos_router::use_location()"')
@@ -448,8 +453,16 @@ inl routes children : view =
 inl input props : _ input =
     tag_closed "input" props
 
+inl x_red_svg () : _ svg =
+    $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"[height:100%] text-red-700\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M6 18L18 6M6 6l12 12\\\" /></svg>"'
+    |> macro_to_element
+
 inl history_svg () : _ svg =
     $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z\\\"/></svg>"'
+    |> macro_to_element
+
+inl loading_svg () : _ svg =
+    $'"<svg version=\\\"1.1\\\" id=\\\"Layer_1\\\" xmlns=\\\"http://www.w3.org/2000/svg\\\" xmlns:xlink=\\\"http://www.w3.org/1999/xlink\\\" x=\\\"0px\\\" y=\\\"0px\\\" width=\\\"24px\\\" height=\\\"30px\\\" viewBox=\\\"0 0 24 30\\\" style=\\\"enable-background:new 0 0 50 50;\\\" xml:space=\\\"preserve\\\"><rect x=\\\"0\\\" y=\\\"10\\\" width=\\\"4\\\" height=\\\"10\\\" fill=\\\"#333\\\" opacity=\\\"0.2\\\"><animate attributeName=\\\"opacity\\\" attributeType=\\\"XML\\\" values=\\\"0.2; 1; .2\\\" begin=\\\"0s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"height\\\" attributeType=\\\"XML\\\" values=\\\"10; 20; 10\\\" begin=\\\"0s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"y\\\" attributeType=\\\"XML\\\" values=\\\"10; 5; 10\\\" begin=\\\"0s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /></rect><rect x=\\\"8\\\" y=\\\"10\\\" width=\\\"4\\\" height=\\\"10\\\" fill=\\\"#333\\\"  opacity=\\\"0.2\\\"><animate attributeName=\\\"opacity\\\" attributeType=\\\"XML\\\" values=\\\"0.2; 1; .2\\\" begin=\\\"0.15s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"height\\\" attributeType=\\\"XML\\\" values=\\\"10; 20; 10\\\" begin=\\\"0.15s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"y\\\" attributeType=\\\"XML\\\" values=\\\"10; 5; 10\\\" begin=\\\"0.15s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /></rect><rect x=\\\"16\\\" y=\\\"10\\\" width=\\\"4\\\" height=\\\"10\\\" fill=\\\"#333\\\"  opacity=\\\"0.2\\\"><animate attributeName=\\\"opacity\\\" attributeType=\\\"XML\\\" values=\\\"0.2; 1; .2\\\" begin=\\\"0.3s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"height\\\" attributeType=\\\"XML\\\" values=\\\"10; 20; 10\\\" begin=\\\"0.3s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /><animate attributeName=\\\"y\\\" attributeType=\\\"XML\\\" values=\\\"10; 5; 10\\\" begin=\\\"0.3s\\\" dur=\\\"0.6s\\\" repeatCount=\\\"indefinite\\\" /></rect></svg>"'
     |> macro_to_element
 
 inl settings_svg () : _ svg =
@@ -468,6 +481,11 @@ inl accordion title open' children : _ details =
     $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open=!open'><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\">{!arrow_down_svg}</span></summary><div class=\\\"[display:flex] [flex:1] [flex-direction:column] [overflow:auto]\\\">{!children()}</div></details>"'
     |> macro_to_element
 
+inl divider children : _ span =
+    inl children : () -> fragment = join children
+    $'"<span class=\\\"flex items-center pb-[2px]\\\"><span class=\\\"pr-6 [font-size:14px]\\\">{!children()}</span><span class=\\\"h-px flex-1 bg-gray-300\\\"></span></span>"'
+    |> macro_to_element
+
 inl input forall t. getter setter : _ input =
     inl getter : () -> t = join getter
     inl setter : t -> () = join setter
@@ -477,10 +495,11 @@ inl input forall t. getter setter : _ input =
         $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
     ]
 
-inl toggle on_change get_value : _ label =
+inl toggle (id : string) on_change get_value : _ label =
+    inl id = id |> sm'.to_std_string
+
     inl on_change : event -> () = join on_change
     inl get_value : () -> bool = join get_value
-    inl id = $"nameof !on_change" |> sm'.to_std_string
 
     $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\\\"></span></label>"'
     |> macro_to_element
@@ -492,24 +511,32 @@ inl dd children : _ dd =
 
 inl dl children : _ dl =
     tag_element "dl" [
-        $'"class=\\\"flex flex-1 text-sm\\\""'
+        $'"class=\\\"flex flex-1\\\""'
     ] children
 
 inl dt children : _ dt =
     tag_element "dt" [
-        $'"class=\\\"font-medium text-gray-700\\\""'
+        $'"class=\\\"[font-size:11px] text-gray-400\\\""'
     ] children
 
-inl grid_pair { class } left right : _ div =
+inl grid_pair_padding_class () =
+    "pt-[8px] pr-[10px] pb-[10px] pl-[10px]"
+
+inl grid_pair { padding class } left right : _ div =
     inl class : string = class
+    inl padding = padding |> optionm'.default_value (grid_pair_padding_class ())
+    inl left : () -> fragment = join left
+    inl right : () -> fragment = join right
+    inl class : string = $'"grid gap-[1px] md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] [width:100%] " + !padding + " " + !class + ""'
+
     div [
-        $'"class=\\\"grid gap-1 md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] pt-[10px] pr-[12px] pb-[12px] pl-[12px] [width:100%] " + !class + "\\\""'
+        $'"class=\\\"" + !class + "\\\""'
     ] fun () =>
     ;[
-        dt fun () => left
+        dt left
         |> element_to_view
 
-        dd fun () => right
+        dd right
         |> element_to_view
     ] |> views_to_fragment
 
@@ -543,7 +570,7 @@ inl tab_link href icon label select : _ a' =
 
 inl text_block_pre children =
     pre [
-        $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px]\\\""'
+        $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\\\""'
     ] fun () =>
         children
 

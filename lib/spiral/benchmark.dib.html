@@ -7346,7 +7346,7 @@ a.anchor-link {
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.3.1/mermaid.esm.min.mjs")).default;
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs")).default;
     const parser = new DOMParser();
 
     mermaid.initialize({
@@ -7583,7 +7583,7 @@ a.anchor-link {
     <span class="err">$</span><span class="s2">"!array |&gt; Array.transpose"</span>
 
 <span class="n">inl</span> <span class="n">am</span><span class="s1">'_try_item forall dim el. (i : i32) (array : a dim el) : option el =</span>
-    <span class="err">$</span><span class="s2">"!array |&gt; Array.tryItem !i"</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.from_fsharp</span>
+    <span class="err">$</span><span class="s2">"!array |&gt; Array.tryItem !i"</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
 
 <span class="n">nominal</span> <span class="n">console_color</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.ConsoleColor"</span>
 
@@ -7722,7 +7722,7 @@ a.anchor-link {
     <span class="p">((</span><span class="nb">input</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="nb">input</span> <span class="o">*</span> <span class="n">expected</span><span class="p">))</span>
     <span class="p">:</span> <span class="n">test_case_result</span>
     <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">format_debug</span>
+    <span class="n">inl</span> <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
 
     <span class="n">printfn</span> <span class="s2">""</span>
     <span class="n">printfn</span> <span class="p">(</span><span class="err">$</span><span class="s2">"$</span><span class="se">\"</span><span class="s2">Solution: {!input_str}  </span><span class="se">\"</span><span class="s2">"</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
@@ -7755,8 +7755,8 @@ a.anchor-link {
 
     <span class="p">{</span>
         <span class="n">Input</span> <span class="o">=</span> <span class="n">input_str</span>
-        <span class="n">Expected</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">|&gt;</span> <span class="n">format_debug</span>
-        <span class="n">Result</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">array</span> <span class="o">=&gt;</span> <span class="n">index</span> <span class="n">array</span> <span class="mi">0</span> <span class="o">|&gt;</span> <span class="n">format_debug</span>
+        <span class="n">Expected</span> <span class="o">=</span> <span class="n">expected</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
+        <span class="n">Result</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fst</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">array</span> <span class="o">=&gt;</span> <span class="n">index</span> <span class="n">array</span> <span class="mi">0</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
         <span class="n">TimeList</span> <span class="o">=</span> <span class="n">results_with_time</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
     <span class="p">}</span>
 </pre></div>
@@ -7859,7 +7859,7 @@ a.anchor-link {
                         <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="n">i64</span><span class="p">,</span> <span class="n">time</span>
                     <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'_sort_by snd</span>
                     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">array</span> <span class="o">=&gt;</span> <span class="n">index</span> <span class="n">array</span> <span class="mi">0</span><span class="n">i32</span>
-                    <span class="o">|&gt;</span> <span class="n">format_debug</span>
+                    <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format_debug</span>
                 <span class="n">inl</span> <span class="n">row</span> <span class="o">=</span>
                     <span class="p">[</span>
                         <span class="n">result</span><span class="o">.</span><span class="n">Input</span>
@@ -9273,21 +9273,21 @@ method0()
 Test: v0
 
 Solution: struct ("a", "a")  
-Test case 1. A. Time: 113  
-Test case 2. B. Time: 94  
+Test case 1. A. Time: 179  
+Test case 2. B. Time: 127  
 
 Solution: struct ("b", "b")  
-Test case 1. A. Time: 97  
-Test case 2. B. Time: 110  
+Test case 1. A. Time: 134  
+Test case 2. B. Time: 137  
 
-Input            	| Expected	| Result	| Best            
----              	| ---     	| ---   	| ---             
-struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 94L)
-struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 97L)
+Input            	| Expected	| Result	| Best             
+---              	| ---     	| ---   	| ---              
+struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 127L)
+struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 134L)
 
 Average Ranking  
-Test case 2. Average Time: 102L  
-Test case 1. Average Time: 105L  
+Test case 2. Average Time: 132L  
+Test case 1. Average Time: 156L  
 </pre>
 </div>
 </div>
@@ -10579,22 +10579,22 @@ method0()
 Test: v0
 
 Solution: 0.0  
-Test case 1. A. Time: 23  
+Test case 1. A. Time: 40  
 
 Solution: 2.0  
-Test case 1. A. Time: 10  
+Test case 1. A. Time: 14  
 
 Solution: 5.0  
-Test case 1. A. Time: 10  
+Test case 1. A. Time: 25  
 
 Input	| Expected	| Result	| Best            
 ---  	| ---     	| ---   	| ---             
-0.0  	| 1.0     	| 1.0   	| struct (1L, 23L)
-2.0  	| 3.0     	| 3.0   	| struct (1L, 10L)
-5.0  	| 6.0     	| 6.0   	| struct (1L, 10L)
+0.0  	| 1.0     	| 1.0   	| struct (1L, 40L)
+2.0  	| 3.0     	| 3.0   	| struct (1L, 14L)
+5.0  	| 6.0     	| 6.0   	| struct (1L, 25L)
 
 Average Ranking  
-Test case 1. Average Time: 14L  
+Test case 1. Average Time: 26L  
 </pre>
 </div>
 </div>

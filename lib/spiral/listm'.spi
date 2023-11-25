@@ -203,11 +203,17 @@ inl last list =
 // // ## try_pick
 
 inl try_pick fn list =
-    inl rec body = function
+    inl rec body fn = function
         | [] => None
         | x :: xs =>
             match fn x with
             | Some y => Some y
             | None => loop xs
-    and inl loop list = join_body_unit body list list
+    and inl loop list =
+        if var_is list |> not
+        then body fn list
+        else
+            inl fn = join fn
+            inl list = dyn list
+            join body fn list
     loop list

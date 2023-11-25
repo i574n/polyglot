@@ -10,10 +10,10 @@ inl from_option_error error opt =
 inl from_option opt =
     opt |> from_option_error "Option does not have a value."
 
-inl flatten_option forall t. (x : option (result t string)) : result t string =
+inl flatten_option forall t. (x : option (result (option t) string)) : option (result t string) =
     match x with
-    | Some x => x
-    | None => Error "Option does not have a value."
+    | Some (Ok (Some x)) => Some (Ok (x))
+    | _ => None
 
 inl flatten forall t u. (x : result (result t u) u) : result t u =
     match x with
@@ -34,6 +34,11 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
     match source with
     | Ok x => Ok x
     | Error x => x |> fn |> Error
+
+inl map' forall t e u. (fn : e -> u) (source : result' t e) : result' u e =
+    inl fn = join fn
+    inl source = join source
+    !\($'"!source.map(|x| !fn(x))"')
 
 inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
     inl fn = join fn
