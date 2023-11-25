@@ -90,17 +90,28 @@ inl rotate_numbers max items =
 
 // // ## create_sequential_roller
 
-inl create_sequential_roller list =
+inl create_sequential_roller (log : option (string -> ())) list =
+    log |> optionm'.iter ((|>) $"$\"create_sequential_roller ()\"")
     inl s = list |> listm.rev |> listm.append list |> stream.from_list |> stream.memoize
     inl current_index = mut 0i64
     inl acc = mut 1
     inl len = mut -1
+    inl last_item = mut None
     let rec loop () =
+        fun () =>
+            inl current_index = *current_index
+            inl acc = *acc
+            inl len = *len
+            inl last_item = *last_item
+            log |> optionm'.iter ((|>) $"$\"create_sequential_roller / roll / current_index: {!current_index} / acc: {!acc} / len: {!len} / last_item: %A{!last_item}\"")
+        |> fun x => x ()
         match s () |> stream.try_item *current_index with
         | Some item =>
             current_index <- *current_index + 1
+            last_item <- Some item
             item
         | None =>
+            log |> optionm'.iter ((|>) $"$\"create_sequential_roller / roll / None\"")
             if *len = -1
             then len <- *current_index
             acc <-
@@ -108,6 +119,7 @@ inl create_sequential_roller list =
                 then 1
                 else *acc + 1
             current_index <- *acc - 1
+            last_item <- None
             loop ()
     loop
 
@@ -135,14 +147,19 @@ inl main () =
     inl rotate_numbers' : i64 -> stream.stream u8 -> stream.stream u8 =
         rotate_numbers
 
-    inl create_sequential_roller' : (list u8 -> () -> u8) =
-        create_sequential_roller
+    inl create_sequential_roller' :
+        optionm'.option' (string -> ())
+        -> list u8 
+        -> (() -> u8)
+        =
+        optionm'.unbox >> create_sequential_roller
 
     inl roll_progressively' :
-        (optionm'.option' (string -> ()) -> (() -> u8)
+        optionm'.option' (string -> ()) 
+        -> (() -> u8)
         -> bool
         -> u64
-        -> u64)
+        -> u64
         =
         optionm'.unbox >> roll_progressively
 

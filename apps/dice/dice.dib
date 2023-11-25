@@ -209,17 +209,28 @@ listm'.init_series -1 14 1i32
 
 #!spiral
 
-inl create_sequential_roller list =
+inl create_sequential_roller (log : option (string -> ())) list =
+    log |> optionm'.iter ((|>) $"$\"create_sequential_roller ()\"")
     inl s = list |> listm.rev |> listm.append list |> stream.from_list |> stream.memoize
     inl current_index = mut 0i64
     inl acc = mut 1
     inl len = mut -1
+    inl last_item = mut None
     let rec loop () =
+        fun () =>
+            inl current_index = *current_index
+            inl acc = *acc
+            inl len = *len
+            inl last_item = *last_item
+            log |> optionm'.iter ((|>) $"$\"create_sequential_roller / roll / current_index: {!current_index} / acc: {!acc} / len: {!len} / last_item: %A{!last_item}\"")
+        |> fun x => x ()
         match s () |> stream.try_item *current_index with
         | Some item =>
             current_index <- *current_index + 1
+            last_item <- Some item
             item
         | None =>
+            log |> optionm'.iter ((|>) $"$\"create_sequential_roller / roll / None\"")
             if *len = -1
             then len <- *current_index
             acc <-
@@ -227,6 +238,7 @@ inl create_sequential_roller list =
                 then 1
                 else *acc + 1
             current_index <- *acc - 1
+            last_item <- None
             loop ()
     loop
 
@@ -234,10 +246,11 @@ inl create_sequential_roller list =
 
 // // test
 
-inl sequential_roll = create_sequential_roller [ 1i32; 2; 3; 4 ]
+inl sequential_roll = create_sequential_roller (Some console.write_line) [ 1i32; 2; 3; 4 ]
 
-am.init 20i32 (ignore >> sequential_roll)
-|> _equal (a ;[ 1; 2; 3; 4; 4; 3; 2; 1; 2; 3; 4; 4; 3; 2; 1; 3; 4; 4; 3; 2 ] : a i32 i32)
+am.init 50i32 (ignore >> sequential_roll)
+|> _equal (a ;[ 1; 2; 3; 4; 4; 3; 2; 1; 2; 3; 4; 4; 3; 2; 1; 3; 4; 4; 3; 2; 1; 4; 4; 3; 2; 1;
+4; 3; 2; 1; 3; 2; 1; 2; 1; 1; 1; 2; 3; 4; 4; 3; 2; 1; 2; 3; 4; 4; 3; 2 ] : a i32 i32)
 
 #!markdown
 
@@ -267,7 +280,7 @@ roll_progressively None roll_dice false 1
 
 // // test
 
-inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 1 ]
+inl sequential_roll = create_sequential_roller (Some console.write_line) [ 5; 4; 4; 5; 1 ]
 
 roll_progressively (Some console.write_line) sequential_roll false 2000i32
 |> _equal 995
@@ -276,7 +289,7 @@ roll_progressively (Some console.write_line) sequential_roll false 2000i32
 
 // // test
 
-inl sequential_roll = create_sequential_roller [ 5; 4; 4; 5; 2 ]
+inl sequential_roll = create_sequential_roller (Some console.write_line) [ 5; 4; 4; 5; 2 ]
 
 roll_progressively (Some console.write_line) sequential_roll false 2000i32
 |> _equal 1678
@@ -285,7 +298,7 @@ roll_progressively (Some console.write_line) sequential_roll false 2000i32
 
 // // test
 
-listm'.init_series 1i32 40 1
+join dyn listm'.init_series 1i32 10000 1
 |> listm.map (fun _ => roll_progressively None roll_dice false 10i32)
 |> listm'.group_by id
 |> listm.map (fun (k, v) => k, (listm.length v : i32))
@@ -298,13 +311,28 @@ listm'.init_series 1i32 40 1
 // // test
 // // print_code=false
 
-listm'.init_series 1i32 40 1
+join dyn listm'.init_series 1i32 10000 1
 |> listm.map (fun _ => roll_progressively None roll_dice true 10i32)
 |> listm'.group_by id
 |> listm.map (fun (k, v) => k, (listm.length v : i32))
 |> listm.toArray
 |> fun (ar : a i32 _) =>
     $"!ar |> Array.sortBy (fun (struct (a, b)) -> a)" : a i32 $"struct (int32 * int32)"
+
+#!spiral
+
+// // test
+// // timeout=60000
+
+join dyn listm'.init_series 1i32 100 1
+|> listm.iter fun n =>
+    listm'.init_series 0i32 1 1
+    |> listm.iter fun reroll =>
+        join dyn listm'.init_series 1i32 3500 1
+        |> listm.map fun _ => roll_progressively None roll_dice (reroll = 1) n
+        |> listm'.group_by id
+        |> listm.length
+        |> _equal n
 
 #!markdown
 
@@ -321,14 +349,19 @@ inl main () =
     inl rotate_numbers' : i64 -> stream.stream u8 -> stream.stream u8 =
         rotate_numbers
 
-    inl create_sequential_roller' : (list u8 -> () -> u8) =
-        create_sequential_roller
+    inl create_sequential_roller' :
+        optionm'.option' (string -> ())
+        -> list u8 
+        -> (() -> u8)
+        =
+        optionm'.unbox >> create_sequential_roller
 
     inl roll_progressively' :
-        (optionm'.option' (string -> ()) -> (() -> u8)
+        optionm'.option' (string -> ()) 
+        -> (() -> u8)
         -> bool
         -> u64
-        -> u64)
+        -> u64
         =
         optionm'.unbox >> roll_progressively
 

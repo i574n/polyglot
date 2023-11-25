@@ -95,6 +95,7 @@ async fn main() -> anyhow::Result<()> {
     let result = contract
         .call("generate_random_number")
         .args_json(json!({
+            "key": "key",
             "proof": "proof",
             "max": 2000,
         }))

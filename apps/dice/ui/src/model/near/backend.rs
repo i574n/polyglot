@@ -81,8 +81,8 @@ pub struct TransactionListByAccountId {
 #[serde(rename_all = "camelCase")]
 pub struct ContractById {
     pub code_hash: String,
-    pub transaction_hash: String,
-    pub timestamp: u64,
+    pub transaction_hash: Option<String>,
+    pub timestamp: Option<u64>,
     pub locked: bool,
 }
 

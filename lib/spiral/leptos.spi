@@ -215,8 +215,7 @@ inl provide_meta_context () =
     !\($'"leptos_meta::provide_meta_context()"') : ()
 
 inl provide_context forall t. (x : t) =
-    inl x = join x
-    !\($'$"leptos::provide_context::<`t>(!x)"') : ()
+    !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     inl value = join value
@@ -239,14 +238,14 @@ inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> async.f
 
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
     inl action_fn = join action_fn
-    !\($'"leptos::create_action(move |value: &`t| !action_fn(value.clone()))"')
+    !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn(value.clone()))"')
 
 inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
     inl value = join value
     !\($'"leptos::Action::dispatch(&!action, !value)"')
 
 inl use_context forall t. () : optionm'.option' t =
-    !\($'"leptos::use_context::<`t>()"')
+    !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
 
 inl rw_signal_get forall t. (signal : rw_signal t) : t =
     inl signal = join signal

@@ -7346,7 +7346,7 @@ a.anchor-link {
     if (!diagrams.length) {
       return;
     }
-    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.3.1/mermaid.esm.min.mjs")).default;
+    const mermaid = (await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.0/mermaid.esm.min.mjs")).default;
     const parser = new DOMParser();
 
     mermaid.initialize({
@@ -7591,6 +7591,12 @@ a.anchor-link {
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">trimStart</span> <span class="p">(</span><span class="n">trimChars</span> <span class="p">:</span> <span class="n">char</span> <span class="n">array</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
         <span class="nb">input</span><span class="o">.</span><span class="n">TrimStart</span> <span class="n">trimChars</span>
+
+
+    <span class="n">let</span> <span class="n">ellipsis</span> <span class="nb">max</span> <span class="n">value</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="nb">max</span>
+        <span class="n">then</span> <span class="n">value</span>
+        <span class="k">else</span> <span class="err">$</span><span class="s2">"{value |&gt; substring 0 max}..."</span>
 </pre></div>
 </div>
 </div>

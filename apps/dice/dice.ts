@@ -1,8 +1,9 @@
 import { Record, Union } from "./fable_modules/fable-library-ts/Types.js";
 import { int32, int8, uint8 } from "./fable_modules/fable-library-ts/Int32.js";
-import { uint64_type, string_type, int64_type, record_type, union_type, lambda_type, unit_type, uint8_type, TypeInfo } from "./fable_modules/fable-library-ts/Reflection.js";
+import { uint64_type, int64_type, record_type, string_type, union_type, lambda_type, unit_type, uint8_type, TypeInfo } from "./fable_modules/fable-library-ts/Reflection.js";
 import { op_Multiply, toUInt64, equals, compare, toUInt8, fromUInt8, op_Subtraction, op_Modulus, op_Addition, toInt64, uint64, int64 } from "./fable_modules/fable-library-ts/BigInt.js";
 import { IComparable, IEquatable } from "./fable_modules/fable-library-ts/Util.js";
+import { interpolate, toText } from "./fable_modules/fable-library-ts/String.js";
 import { value as value_47, Option, map, defaultArg } from "./fable_modules/fable-library-ts/Option.js";
 import { nonSeeded } from "./fable_modules/fable-library-ts/Random.js";
 
@@ -71,15 +72,15 @@ export type US0_$union =
     | US0<1>
 
 export type US0_$cases = {
-    0: ["US0_0", [UH0_$union]],
-    1: ["US0_1", [(() => UH0_$union)]]
+    0: ["US0_0", []],
+    1: ["US0_1", [((arg0: string) => void)]]
 }
 
-export function US0_US0_0(f0_0: UH0_$union) {
-    return new US0<0>(0, [f0_0]);
+export function US0_US0_0() {
+    return new US0<0>(0, []);
 }
 
-export function US0_US0_1(f1_0: (() => UH0_$union)) {
+export function US0_US0_1(f1_0: ((arg0: string) => void)) {
     return new US0<1>(1, [f1_0]);
 }
 
@@ -93,19 +94,49 @@ export class US0<Tag extends keyof US0_$cases> extends Union<Tag, US0_$cases[Tag
 }
 
 export function US0_$reflection(): TypeInfo {
-    return union_type("Dice.US0", [], US0, () => [[["f0_0", UH0_$reflection()]], [["f1_0", lambda_type(unit_type, UH0_$reflection())]]]);
+    return union_type("Dice.US0", [], US0, () => [[], [["f1_0", lambda_type(string_type, unit_type)]]]);
+}
+
+export type US1_$union = 
+    | US1<0>
+    | US1<1>
+
+export type US1_$cases = {
+    0: ["US1_0", [UH0_$union]],
+    1: ["US1_1", [(() => UH0_$union)]]
+}
+
+export function US1_US1_0(f0_0: UH0_$union) {
+    return new US1<0>(0, [f0_0]);
+}
+
+export function US1_US1_1(f1_0: (() => UH0_$union)) {
+    return new US1<1>(1, [f1_0]);
+}
+
+export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag][0]> {
+    constructor(readonly tag: Tag, readonly fields: US1_$cases[Tag][1]) {
+        super();
+    }
+    cases() {
+        return ["US1_0", "US1_1"];
+    }
+}
+
+export function US1_$reflection(): TypeInfo {
+    return union_type("Dice.US1", [], US1, () => [[["f0_0", UH0_$reflection()]], [["f1_0", lambda_type(unit_type, UH0_$reflection())]]]);
 }
 
 export class Mut0 extends Record {
-    l0: US0_$union;
-    constructor(l0: US0_$union) {
+    l0: US1_$union;
+    constructor(l0: US1_$union) {
         super();
         this.l0 = l0;
     }
 }
 
 export function Mut0_$reflection(): TypeInfo {
-    return record_type("Dice.Mut0", [], Mut0, () => [["l0", US0_$reflection()]]);
+    return record_type("Dice.Mut0", [], Mut0, () => [["l0", US1_$reflection()]]);
 }
 
 export class Mut1 extends Record implements IEquatable<Mut1>, IComparable<Mut1> {
@@ -120,50 +151,20 @@ export function Mut1_$reflection(): TypeInfo {
     return record_type("Dice.Mut1", [], Mut1, () => [["l0", int64_type]]);
 }
 
-export type US1_$union = 
-    | US1<0>
-    | US1<1>
-
-export type US1_$cases = {
-    0: ["US1_0", []],
-    1: ["US1_1", [uint8]]
-}
-
-export function US1_US1_0() {
-    return new US1<0>(0, []);
-}
-
-export function US1_US1_1(f1_0: uint8) {
-    return new US1<1>(1, [f1_0]);
-}
-
-export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag][0]> {
-    constructor(readonly tag: Tag, readonly fields: US1_$cases[Tag][1]) {
-        super();
-    }
-    cases() {
-        return ["US1_0", "US1_1"];
-    }
-}
-
-export function US1_$reflection(): TypeInfo {
-    return union_type("Dice.US1", [], US1, () => [[], [["f1_0", uint8_type]]]);
-}
-
 export type US2_$union = 
     | US2<0>
     | US2<1>
 
 export type US2_$cases = {
     0: ["US2_0", []],
-    1: ["US2_1", [((arg0: string) => void)]]
+    1: ["US2_1", [uint8]]
 }
 
 export function US2_US2_0() {
     return new US2<0>(0, []);
 }
 
-export function US2_US2_1(f1_0: ((arg0: string) => void)) {
+export function US2_US2_1(f1_0: uint8) {
     return new US2<1>(1, [f1_0]);
 }
 
@@ -177,7 +178,19 @@ export class US2<Tag extends keyof US2_$cases> extends Union<Tag, US2_$cases[Tag
 }
 
 export function US2_$reflection(): TypeInfo {
-    return union_type("Dice.US2", [], US2, () => [[], [["f1_0", lambda_type(string_type, unit_type)]]]);
+    return union_type("Dice.US2", [], US2, () => [[], [["f1_0", uint8_type]]]);
+}
+
+export class Mut2 extends Record implements IEquatable<Mut2>, IComparable<Mut2> {
+    l0: US2_$union;
+    constructor(l0: US2_$union) {
+        super();
+        this.l0 = l0;
+    }
+}
+
+export function Mut2_$reflection(): TypeInfo {
+    return record_type("Dice.Mut2", [], Mut2, () => [["l0", US2_$reflection()]]);
 }
 
 export type US3_$union = 
@@ -324,6 +337,10 @@ export function closure0(unitVar: void, v0_1: int64): ((arg0: UH0_$union) => UH0
     return (v: UH0_$union): UH0_$union => closure1(v0_1, v);
 }
 
+export function closure4(unitVar: void, v0_1: ((arg0: string) => void)): US0_$union {
+    return US0_US0_1(v0_1);
+}
+
 export function method1(v0_1_mut: UH1_$union, v1_1_mut: UH1_$union): UH1_$union {
     method1:
     while (true) {
@@ -349,7 +366,7 @@ export function method2(v0_1: UH1_$union, v1_1: UH1_$union): UH1_$union {
     }
 }
 
-export function closure4(v0_1: UH0_$union, unitVar: void): UH0_$union {
+export function closure6(v0_1: UH0_$union, unitVar: void): UH0_$union {
     return v0_1;
 }
 
@@ -360,20 +377,20 @@ export function method3(v0_1: UH1_$union, v1_1: UH0_$union): UH0_$union {
     else {
         const v2_1: uint8 = v0_1.fields[0];
         const v4_1: UH0_$union = method3(v0_1.fields[1], v1_1);
-        return UH0_UH0_0(v2_1, (): UH0_$union => closure4(v4_1, void 0));
+        return UH0_UH0_0(v2_1, (): UH0_$union => closure6(v4_1, void 0));
     }
 }
 
-export function closure5(v0_1: UH0_$union, unitVar: void): UH0_$union {
+export function closure7(v0_1: UH0_$union, unitVar: void): UH0_$union {
     return v0_1;
 }
 
-export function closure6(v0_1: UH0_$union, v1_1: Mut0, unitVar: void): UH0_$union {
-    const v2_1: US0_$union = v1_1.l0;
-    if (v2_1.tag === /* US0_1 */ 1) {
+export function closure8(v0_1: UH0_$union, v1_1: Mut0, unitVar: void): UH0_$union {
+    const v2_1: US1_$union = v1_1.l0;
+    if (v2_1.tag === /* US1_1 */ 1) {
         const v5: UH0_$union = v2_1.fields[0]();
         const v12: UH0_$union = (v5.tag === /* UH0_1 */ 1) ? UH0_UH0_1() : UH0_UH0_0(v5.fields[0], method4(v0_1, v5.fields[1]));
-        v1_1.l0 = US0_US0_0(v12);
+        v1_1.l0 = US1_US1_0(v12);
         return v12;
     }
     else {
@@ -382,22 +399,22 @@ export function closure6(v0_1: UH0_$union, v1_1: Mut0, unitVar: void): UH0_$unio
 }
 
 export function method4(v0_1: UH0_$union, v1_1: (() => UH0_$union)): (() => UH0_$union) {
-    const v3_1: Mut0 = new Mut0(US0_US0_1(v1_1));
-    return (): UH0_$union => closure6(v0_1, v3_1, void 0);
+    const v3_1: Mut0 = new Mut0(US1_US1_1(v1_1));
+    return (): UH0_$union => closure8(v0_1, v3_1, void 0);
 }
 
-export function method6(v0_1_mut: int64, v1_1_mut: UH0_$union): US1_$union {
+export function method6(v0_1_mut: int64, v1_1_mut: UH0_$union): US2_$union {
     method6:
     while (true) {
         const v0_1: int64 = v0_1_mut, v1_1: UH0_$union = v1_1_mut;
         if (v1_1.tag === /* UH0_1 */ 1) {
-            return US1_US1_0();
+            return US2_US2_0();
         }
         else {
             const v3_1: (() => UH0_$union) = v1_1.fields[1];
             const v2_1: uint8 = v1_1.fields[0];
             if (compare(v0_1, 0n) <= 0) {
-                return US1_US1_1(v2_1);
+                return US2_US2_1(v2_1);
             }
             else {
                 v0_1_mut = toInt64(op_Subtraction(v0_1, 1n));
@@ -409,58 +426,74 @@ export function method6(v0_1_mut: int64, v1_1_mut: UH0_$union): US1_$union {
     }
 }
 
-export function method5(v0_1_mut: (() => UH0_$union), v1_1_mut: Mut1, v2_1_mut: Mut1, v3_1_mut: Mut1): uint8 {
+export function method5(v0_1_mut: US0_$union, v1_1_mut: (() => UH0_$union), v2_1_mut: Mut1, v3_1_mut: Mut1, v4_1_mut: Mut1, v5_mut: Mut2): uint8 {
     method5:
     while (true) {
-        const v0_1: (() => UH0_$union) = v0_1_mut, v1_1: Mut1 = v1_1_mut, v2_1: Mut1 = v2_1_mut, v3_1: Mut1 = v3_1_mut;
-        const v4_1: UH0_$union = v0_1();
-        const v6: US1_$union = method6(v1_1.l0, v4_1);
-        if (v6.tag === /* US1_1 */ 1) {
-            const v7: uint8 = v6.fields[0];
-            const v9: int64 = toInt64(op_Addition(v1_1.l0, 1n));
-            v1_1.l0 = v9;
-            return v7;
+        const v0_1: US0_$union = v0_1_mut, v1_1: (() => UH0_$union) = v1_1_mut, v2_1: Mut1 = v2_1_mut, v3_1: Mut1 = v3_1_mut, v4_1: Mut1 = v4_1_mut, v5: Mut2 = v5_mut;
+        const v10: string = toText(interpolate("create_sequential_roller / roll / current_index: %P() / acc: %P() / len: %P() / last_item: %A%P()", [v2_1.l0, v3_1.l0, v4_1.l0, v5.l0]));
+        if (v0_1.tag === /* US0_1 */ 1) {
+            v0_1.fields[0](v10);
+        }
+        const v12: UH0_$union = v1_1();
+        const v14: US2_$union = method6(v2_1.l0, v12);
+        if (v14.tag === /* US2_1 */ 1) {
+            const v15: uint8 = v14.fields[0];
+            const v17: int64 = toInt64(op_Addition(v2_1.l0, 1n));
+            v2_1.l0 = v17;
+            v5.l0 = US2_US2_1(v15);
+            return v15;
         }
         else {
-            if (equals(v3_1.l0, -1n)) {
-                const v12: int64 = v1_1.l0;
-                v3_1.l0 = v12;
+            if (v0_1.tag === /* US0_1 */ 1) {
+                v0_1.fields[0]("create_sequential_roller / roll / None");
             }
-            const v18: int64 = (compare(v2_1.l0, v3_1.l0) >= 0) ? (1n) : toInt64(op_Addition(v2_1.l0, 1n));
-            v2_1.l0 = v18;
-            const v20: int64 = toInt64(op_Subtraction(v2_1.l0, 1n));
-            v1_1.l0 = v20;
+            if (equals(v4_1.l0, -1n)) {
+                const v23: int64 = v2_1.l0;
+                v4_1.l0 = v23;
+            }
+            const v29: int64 = (compare(v3_1.l0, v4_1.l0) >= 0) ? (1n) : toInt64(op_Addition(v3_1.l0, 1n));
+            v3_1.l0 = v29;
+            const v31: int64 = toInt64(op_Subtraction(v3_1.l0, 1n));
+            v2_1.l0 = v31;
+            v5.l0 = US2_US2_0();
             v0_1_mut = v0_1;
             v1_1_mut = v1_1;
             v2_1_mut = v2_1;
             v3_1_mut = v3_1;
+            v4_1_mut = v4_1;
+            v5_mut = v5;
             continue method5;
         }
         break;
     }
 }
 
-export function closure7(v0_1: (() => UH0_$union), v1_1: Mut1, v2_1: Mut1, v3_1: Mut1, unitVar: void): uint8 {
-    return method5(v0_1, v1_1, v2_1, v3_1);
+export function closure9(v0_1: US0_$union, v1_1: (() => UH0_$union), v2_1: Mut1, v3_1: Mut1, v4_1: Mut1, v5: Mut2, unitVar: void): uint8 {
+    return method5(v0_1, v1_1, v2_1, v3_1, v4_1, v5);
 }
 
-export function closure3(unitVar: void, v0_1: UH1_$union): (() => uint8) {
-    const v5: UH0_$union = method3(method2(v0_1, method1(v0_1, UH1_UH1_1())), UH0_UH0_1());
-    const v7: (() => UH0_$union) = method4(v5, (): UH0_$union => closure5(v5, void 0));
-    const v8: Mut1 = new Mut1(0n);
-    const v9: Mut1 = new Mut1(1n);
-    const v10: Mut1 = new Mut1(-1n);
-    return (): uint8 => closure7(v7, v8, v9, v10, void 0);
+export function closure5(v0_1: US0_$union, v1_1: UH1_$union): (() => uint8) {
+    if (v0_1.tag === /* US0_1 */ 1) {
+        v0_1.fields[0]("create_sequential_roller ()");
+    }
+    const v8: UH0_$union = method3(method2(v1_1, method1(v1_1, UH1_UH1_1())), UH0_UH0_1());
+    const v10: (() => UH0_$union) = method4(v8, (): UH0_$union => closure7(v8, void 0));
+    const v11: Mut1 = new Mut1(0n);
+    const v12: Mut1 = new Mut1(1n);
+    const v13: Mut1 = new Mut1(-1n);
+    const v15: Mut2 = new Mut2(US2_US2_0());
+    return (): uint8 => closure9(v0_1, v10, v11, v12, v13, v15, void 0);
 }
 
-export function closure9(unitVar: void, v0_1: ((arg0: string) => void)): US2_$union {
-    return US2_US2_1(v0_1);
+export function closure3(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: UH1_$union) => (() => uint8)) {
+    const v3_1: US0_$union = defaultArg(map<((arg0: string) => void), US0_$union>((v: ((arg0: string) => void)): US0_$union => closure4(void 0, v), v0_1), US0_US0_0());
+    return (v_1: UH1_$union): (() => uint8) => closure5(v3_1, v_1);
 }
 
-export function method7(v0_1_mut: US2_$union, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64): int8 {
+export function method7(v0_1_mut: US0_$union, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64): int8 {
     method7:
     while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1_1: uint64 = v1_1_mut, v2_1: int8 = v2_1_mut, v3_1: uint64 = v3_1_mut;
+        const v0_1: US0_$union = v0_1_mut, v1_1: uint64 = v1_1_mut, v2_1: int8 = v2_1_mut, v3_1: uint64 = v3_1_mut;
         if (compare(v3_1, v1_1) < 0) {
             const v5: uint64 = toUInt64(op_Multiply(v3_1, 6n));
             if (compare(v5, v3_1) > 0) {
@@ -472,7 +505,7 @@ export function method7(v0_1_mut: US2_$union, v1_1_mut: uint64, v2_1_mut: int8, 
             }
             else {
                 const v9 = `calculate_dice_count / max: ${v1_1} / n: ${v2_1} / p: ${v3_1}`;
-                if (v0_1.tag === /* US2_1 */ 1) {
+                if (v0_1.tag === /* US0_1 */ 1) {
                     v0_1.fields[0](v9);
                 }
                 return v2_1 | 0;
@@ -480,7 +513,7 @@ export function method7(v0_1_mut: US2_$union, v1_1_mut: uint64, v2_1_mut: int8, 
         }
         else {
             const v12 = `calculate_dice_count / max: ${v1_1} / n: ${v2_1} / p: ${v3_1}`;
-            if (v0_1.tag === /* US2_1 */ 1) {
+            if (v0_1.tag === /* US0_1 */ 1) {
                 v0_1.fields[0](v12);
             }
             return v2_1 | 0;
@@ -489,260 +522,260 @@ export function method7(v0_1_mut: US2_$union, v1_1_mut: uint64, v2_1_mut: int8, 
     }
 }
 
+export function closure77(unitVar: void, unitVar_1: void): UH2_$union {
+    return UH2_UH2_0(0n, (): UH2_$union => closure77(void 0, void 0));
+}
+
 export function closure76(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(0n, (): UH2_$union => closure76(void 0, void 0));
+    return UH2_UH2_0(9223372036854775808n, (): UH2_$union => closure77(void 0, void 0));
 }
 
 export function closure75(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(9223372036854775808n, (): UH2_$union => closure76(void 0, void 0));
+    return UH2_UH2_0(4611686018427387904n, (): UH2_$union => closure76(void 0, void 0));
 }
 
 export function closure74(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(4611686018427387904n, (): UH2_$union => closure75(void 0, void 0));
+    return UH2_UH2_0(6917529027641081856n, (): UH2_$union => closure75(void 0, void 0));
 }
 
 export function closure73(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(6917529027641081856n, (): UH2_$union => closure74(void 0, void 0));
+    return UH2_UH2_0(1152921504606846976n, (): UH2_$union => closure74(void 0, void 0));
 }
 
 export function closure72(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(1152921504606846976n, (): UH2_$union => closure73(void 0, void 0));
+    return UH2_UH2_0(15564440312192434176n, (): UH2_$union => closure73(void 0, void 0));
 }
 
 export function closure71(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(15564440312192434176n, (): UH2_$union => closure72(void 0, void 0));
+    return UH2_UH2_0(11817445422220181504n, (): UH2_$union => closure72(void 0, void 0));
 }
 
 export function closure70(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(11817445422220181504n, (): UH2_$union => closure71(void 0, void 0));
+    return UH2_UH2_0(5044031582654955520n, (): UH2_$union => closure71(void 0, void 0));
 }
 
 export function closure69(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(5044031582654955520n, (): UH2_$union => closure70(void 0, void 0));
+    return UH2_UH2_0(6989586621679009792n, (): UH2_$union => closure70(void 0, void 0));
 }
 
 export function closure68(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(6989586621679009792n, (): UH2_$union => closure69(void 0, void 0));
+    return UH2_UH2_0(16537217831704461312n, (): UH2_$union => closure69(void 0, void 0));
 }
 
 export function closure67(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(16537217831704461312n, (): UH2_$union => closure68(void 0, void 0));
+    return UH2_UH2_0(11979575008805519360n, (): UH2_$union => closure68(void 0, void 0));
 }
 
 export function closure66(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(11979575008805519360n, (): UH2_$union => closure67(void 0, void 0));
+    return UH2_UH2_0(14294425217273954304n, (): UH2_$union => closure67(void 0, void 0));
 }
 
 export function closure65(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(14294425217273954304n, (): UH2_$union => closure66(void 0, void 0));
+    return UH2_UH2_0(2382404202878992384n, (): UH2_$union => closure66(void 0, void 0));
 }
 
 export function closure64(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(2382404202878992384n, (): UH2_$union => closure65(void 0, void 0));
+    return UH2_UH2_0(6545982058383015936n, (): UH2_$union => closure65(void 0, void 0));
 }
 
 export function closure63(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(6545982058383015936n, (): UH2_$union => closure64(void 0, void 0));
+    return UH2_UH2_0(10314369046585278464n, (): UH2_$union => closure64(void 0, void 0));
 }
 
 export function closure62(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(10314369046585278464n, (): UH2_$union => closure63(void 0, void 0));
+    return UH2_UH2_0(4793518853382471680n, (): UH2_$union => closure63(void 0, void 0));
 }
 
 export function closure61(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(4793518853382471680n, (): UH2_$union => closure62(void 0, void 0));
+    return UH2_UH2_0(3873377154515337216n, (): UH2_$union => closure62(void 0, void 0));
 }
 
 export function closure60(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(3873377154515337216n, (): UH2_$union => closure61(void 0, void 0));
+    return UH2_UH2_0(645562859085889536n, (): UH2_$union => closure61(void 0, void 0));
 }
 
 export function closure59(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(645562859085889536n, (): UH2_$union => closure60(void 0, void 0));
+    return UH2_UH2_0(107593809847648256n, (): UH2_$union => closure60(void 0, void 0));
 }
 
 export function closure58(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(107593809847648256n, (): UH2_$union => closure59(void 0, void 0));
+    return UH2_UH2_0(3092389647259533312n, (): UH2_$union => closure59(void 0, void 0));
 }
 
 export function closure57(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(3092389647259533312n, (): UH2_$union => closure58(void 0, void 0));
+    return UH2_UH2_0(9738770311398031360n, (): UH2_$union => closure58(void 0, void 0));
 }
 
 export function closure56(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(9738770311398031360n, (): UH2_$union => closure57(void 0, void 0));
+    return UH2_UH2_0(16995415113324298240n, (): UH2_$union => closure57(void 0, void 0));
 }
 
 export function closure55(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(16995415113324298240n, (): UH2_$union => closure56(void 0, void 0));
+    return UH2_UH2_0(8981483876790566912n, (): UH2_$union => closure56(void 0, void 0));
 }
 
 export function closure54(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(8981483876790566912n, (): UH2_$union => closure55(void 0, void 0));
+    return UH2_UH2_0(13794743361938128896n, (): UH2_$union => closure55(void 0, void 0));
 }
 
 export function closure53(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(13794743361938128896n, (): UH2_$union => closure54(void 0, void 0));
+    return UH2_UH2_0(2299123893656354816n, (): UH2_$union => closure54(void 0, void 0));
 }
 
 export function closure52(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(2299123893656354816n, (): UH2_$union => closure53(void 0, void 0));
+    return UH2_UH2_0(3457644661227651072n, (): UH2_$union => closure53(void 0, void 0));
 }
 
 export function closure51(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(3457644661227651072n, (): UH2_$union => closure52(void 0, void 0));
+    return UH2_UH2_0(576274110204608512n, (): UH2_$union => closure52(void 0, void 0));
 }
 
 export function closure50(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(576274110204608512n, (): UH2_$union => closure51(void 0, void 0));
+    return UH2_UH2_0(6244960376270618624n, (): UH2_$union => closure51(void 0, void 0));
 }
 
 export function closure49(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(6244960376270618624n, (): UH2_$union => closure50(void 0, void 0));
+    return UH2_UH2_0(13338656111851470848n, (): UH2_$union => closure50(void 0, void 0));
 }
 
 export function closure48(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(13338656111851470848n, (): UH2_$union => closure49(void 0, void 0));
+    return UH2_UH2_0(14520938734448279552n, (): UH2_$union => closure49(void 0, void 0));
 }
 
 export function closure47(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(14520938734448279552n, (): UH2_$union => closure48(void 0, void 0));
+    return UH2_UH2_0(14717985838214414336n, (): UH2_$union => closure48(void 0, void 0));
 }
 
 export function closure46(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(14717985838214414336n, (): UH2_$union => closure47(void 0, void 0));
+    return UH2_UH2_0(5527454985320660992n, (): UH2_$union => closure47(void 0, void 0));
 }
 
 export function closure45(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(5527454985320660992n, (): UH2_$union => closure46(void 0, void 0));
+    return UH2_UH2_0(16293529225644736512n, (): UH2_$union => closure46(void 0, void 0));
 }
 
 export function closure44(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(16293529225644736512n, (): UH2_$union => closure45(void 0, void 0));
+    return UH2_UH2_0(11938960241128898560n, (): UH2_$union => closure45(void 0, void 0));
 }
 
 export function closure43(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(11938960241128898560n, (): UH2_$union => closure44(void 0, void 0));
+    return UH2_UH2_0(8138741398091333632n, (): UH2_$union => closure44(void 0, void 0));
 }
 
 export function closure42(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(8138741398091333632n, (): UH2_$union => closure43(void 0, void 0));
+    return UH2_UH2_0(7505371590918406144n, (): UH2_$union => closure43(void 0, void 0));
 }
 
 export function closure41(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(7505371590918406144n, (): UH2_$union => closure42(void 0, void 0));
+    return UH2_UH2_0(16623181993244360704n, (): UH2_$union => closure42(void 0, void 0));
 }
 
 export function closure40(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(16623181993244360704n, (): UH2_$union => closure41(void 0, void 0));
+    return UH2_UH2_0(8919445023443910656n, (): UH2_$union => closure41(void 0, void 0));
 }
 
 export function closure39(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(8919445023443910656n, (): UH2_$union => closure40(void 0, void 0));
+    return UH2_UH2_0(4561031516192243712n, (): UH2_$union => closure40(void 0, void 0));
 }
 
 export function closure38(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(4561031516192243712n, (): UH2_$union => closure39(void 0, void 0));
+    return UH2_UH2_0(9983543956220149760n, (): UH2_$union => closure39(void 0, void 0));
 }
 
 export function closure37(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(9983543956220149760n, (): UH2_$union => closure38(void 0, void 0));
+    return UH2_UH2_0(4738381338321616896n, (): UH2_$union => closure38(void 0, void 0));
 }
 
 export function closure36(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(4738381338321616896n, (): UH2_$union => closure37(void 0, void 0));
+    return UH2_UH2_0(789730223053602816n, (): UH2_$union => closure37(void 0, void 0));
 }
 
 export function closure35(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(789730223053602816n, (): UH2_$union => closure36(void 0, void 0));
+    return UH2_UH2_0(131621703842267136n, (): UH2_$union => closure36(void 0, void 0));
 }
 
 export function closure34(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(131621703842267136n, (): UH2_$union => closure35(void 0, void 0));
+    return UH2_UH2_0(21936950640377856n, (): UH2_$union => closure35(void 0, void 0));
 }
 
 export function closure33(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(21936950640377856n, (): UH2_$union => closure34(void 0, void 0));
+    return UH2_UH2_0(3656158440062976n, (): UH2_$union => closure34(void 0, void 0));
 }
 
 export function closure32(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(3656158440062976n, (): UH2_$union => closure33(void 0, void 0));
+    return UH2_UH2_0(609359740010496n, (): UH2_$union => closure33(void 0, void 0));
 }
 
 export function closure31(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(609359740010496n, (): UH2_$union => closure32(void 0, void 0));
+    return UH2_UH2_0(101559956668416n, (): UH2_$union => closure32(void 0, void 0));
 }
 
 export function closure30(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(101559956668416n, (): UH2_$union => closure31(void 0, void 0));
+    return UH2_UH2_0(16926659444736n, (): UH2_$union => closure31(void 0, void 0));
 }
 
 export function closure29(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(16926659444736n, (): UH2_$union => closure30(void 0, void 0));
+    return UH2_UH2_0(2821109907456n, (): UH2_$union => closure30(void 0, void 0));
 }
 
 export function closure28(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(2821109907456n, (): UH2_$union => closure29(void 0, void 0));
+    return UH2_UH2_0(470184984576n, (): UH2_$union => closure29(void 0, void 0));
 }
 
 export function closure27(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(470184984576n, (): UH2_$union => closure28(void 0, void 0));
+    return UH2_UH2_0(78364164096n, (): UH2_$union => closure28(void 0, void 0));
 }
 
 export function closure26(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(78364164096n, (): UH2_$union => closure27(void 0, void 0));
+    return UH2_UH2_0(13060694016n, (): UH2_$union => closure27(void 0, void 0));
 }
 
 export function closure25(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(13060694016n, (): UH2_$union => closure26(void 0, void 0));
+    return UH2_UH2_0(2176782336n, (): UH2_$union => closure26(void 0, void 0));
 }
 
 export function closure24(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(2176782336n, (): UH2_$union => closure25(void 0, void 0));
+    return UH2_UH2_0(362797056n, (): UH2_$union => closure25(void 0, void 0));
 }
 
 export function closure23(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(362797056n, (): UH2_$union => closure24(void 0, void 0));
+    return UH2_UH2_0(60466176n, (): UH2_$union => closure24(void 0, void 0));
 }
 
 export function closure22(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(60466176n, (): UH2_$union => closure23(void 0, void 0));
+    return UH2_UH2_0(10077696n, (): UH2_$union => closure23(void 0, void 0));
 }
 
 export function closure21(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(10077696n, (): UH2_$union => closure22(void 0, void 0));
+    return UH2_UH2_0(1679616n, (): UH2_$union => closure22(void 0, void 0));
 }
 
 export function closure20(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(1679616n, (): UH2_$union => closure21(void 0, void 0));
+    return UH2_UH2_0(279936n, (): UH2_$union => closure21(void 0, void 0));
 }
 
 export function closure19(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(279936n, (): UH2_$union => closure20(void 0, void 0));
+    return UH2_UH2_0(46656n, (): UH2_$union => closure20(void 0, void 0));
 }
 
 export function closure18(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(46656n, (): UH2_$union => closure19(void 0, void 0));
+    return UH2_UH2_0(7776n, (): UH2_$union => closure19(void 0, void 0));
 }
 
 export function closure17(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(7776n, (): UH2_$union => closure18(void 0, void 0));
+    return UH2_UH2_0(1296n, (): UH2_$union => closure18(void 0, void 0));
 }
 
 export function closure16(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(1296n, (): UH2_$union => closure17(void 0, void 0));
+    return UH2_UH2_0(216n, (): UH2_$union => closure17(void 0, void 0));
 }
 
 export function closure15(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(216n, (): UH2_$union => closure16(void 0, void 0));
+    return UH2_UH2_0(36n, (): UH2_$union => closure16(void 0, void 0));
 }
 
 export function closure14(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(36n, (): UH2_$union => closure15(void 0, void 0));
-}
-
-export function closure13(unitVar: void, unitVar_1: void): UH2_$union {
-    return UH2_UH2_0(6n, (): UH2_$union => closure14(void 0, void 0));
+    return UH2_UH2_0(6n, (): UH2_$union => closure15(void 0, void 0));
 }
 
 export function method10(v0_1_mut: int8, v1_1_mut: UH2_$union): US4_$union {
@@ -764,13 +797,13 @@ export function method10(v0_1_mut: int8, v1_1_mut: UH2_$union): US4_$union {
     }
 }
 
-export function method9(v0_1_mut: US2_$union, v1_1_mut: int8, v2_1_mut: UH1_$union, v3_1_mut: uint64): US3_$union {
+export function method9(v0_1_mut: US0_$union, v1_1_mut: int8, v2_1_mut: UH1_$union, v3_1_mut: uint64): US3_$union {
     method9:
     while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1_1: int8 = v1_1_mut, v2_1: UH1_$union = v2_1_mut, v3_1: uint64 = v3_1_mut;
+        const v0_1: US0_$union = v0_1_mut, v1_1: int8 = v1_1_mut, v2_1: UH1_$union = v2_1_mut, v3_1: uint64 = v3_1_mut;
         if (v1_1 < 0) {
             const v5 = `accumulate_dice_rolls / power: ${v1_1} / acc: ${v3_1}`;
-            if (v0_1.tag === /* US2_1 */ 1) {
+            if (v0_1.tag === /* US0_1 */ 1) {
                 v0_1.fields[0](v5);
             }
             return US3_US3_1(toUInt64(op_Addition(v3_1, 1n)), v2_1);
@@ -782,7 +815,7 @@ export function method9(v0_1_mut: US2_$union, v1_1_mut: int8, v2_1_mut: UH1_$uni
             const v11: UH1_$union = v2_1.fields[1];
             const v10: uint8 = v2_1.fields[0];
             if (v10 > 1) {
-                const v16: US4_$union = method10(v1_1, UH2_UH2_0(1n, (): UH2_$union => closure13(void 0, void 0)));
+                const v16: US4_$union = method10(v1_1, UH2_UH2_0(1n, (): UH2_$union => closure14(void 0, void 0)));
                 let v20: uint64;
                 if (v16.tag === /* US4_1 */ 1) {
                     v20 = v16.fields[0];
@@ -792,7 +825,7 @@ export function method9(v0_1_mut: US2_$union, v1_1_mut: int8, v2_1_mut: UH1_$uni
                 }
                 const v23: uint64 = toUInt64(op_Multiply(toUInt64(fromUInt8(v10 - 1)), v20));
                 const v24 = `accumulate_dice_rolls / power: ${v1_1} / acc: ${v3_1} / roll: ${v10} / value: ${v23}`;
-                if (v0_1.tag === /* US2_1 */ 1) {
+                if (v0_1.tag === /* US0_1 */ 1) {
                     v0_1.fields[0](v24);
                 }
                 v0_1_mut = v0_1;
@@ -803,7 +836,7 @@ export function method9(v0_1_mut: US2_$union, v1_1_mut: int8, v2_1_mut: UH1_$uni
             }
             else {
                 const v29 = `accumulate_dice_rolls / power: ${v1_1} / acc: ${v3_1} / roll: ${v10}`;
-                if (v0_1.tag === /* US2_1 */ 1) {
+                if (v0_1.tag === /* US0_1 */ 1) {
                     v0_1.fields[0](v29);
                 }
                 v0_1_mut = v0_1;
@@ -826,10 +859,10 @@ export function method11(v0_1: int8, v1_1: (() => uint8), v2_1: int8): UH1_$unio
     }
 }
 
-export function method12(v0_1_mut: US2_$union, v1_1_mut: (() => uint8), v2_1_mut: boolean, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1_$union): uint64 {
+export function method12(v0_1_mut: US0_$union, v1_1_mut: (() => uint8), v2_1_mut: boolean, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1_$union): uint64 {
     method12:
     while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1_1: (() => uint8) = v1_1_mut, v2_1: boolean = v2_1_mut, v3_1: uint64 = v3_1_mut, v4_1: int8 = v4_1_mut, v5: UH1_$union = v5_mut;
+        const v0_1: US0_$union = v0_1_mut, v1_1: (() => uint8) = v1_1_mut, v2_1: boolean = v2_1_mut, v3_1: uint64 = v3_1_mut, v4_1: int8 = v4_1_mut, v5: UH1_$union = v5_mut;
         const v6: int8 = (v4_1 + 1) | 0;
         if (v4_1 < v6) {
             return method8(v0_1, v1_1, v2_1, v3_1, v4_1, UH1_UH1_0(v1_1(), v5), v6);
@@ -872,10 +905,10 @@ export function method12(v0_1_mut: US2_$union, v1_1_mut: (() => uint8), v2_1_mut
     }
 }
 
-export function method8(v0_1_mut: US2_$union, v1_1_mut: (() => uint8), v2_1_mut: boolean, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1_$union, v6_mut: int8): uint64 {
+export function method8(v0_1_mut: US0_$union, v1_1_mut: (() => uint8), v2_1_mut: boolean, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1_$union, v6_mut: int8): uint64 {
     method8:
     while (true) {
-        const v0_1: US2_$union = v0_1_mut, v1_1: (() => uint8) = v1_1_mut, v2_1: boolean = v2_1_mut, v3_1: uint64 = v3_1_mut, v4_1: int8 = v4_1_mut, v5: UH1_$union = v5_mut, v6: int8 = v6_mut;
+        const v0_1: US0_$union = v0_1_mut, v1_1: (() => uint8) = v1_1_mut, v2_1: boolean = v2_1_mut, v3_1: uint64 = v3_1_mut, v4_1: int8 = v4_1_mut, v5: UH1_$union = v5_mut, v6: int8 = v6_mut;
         if (v6 < (v4_1 + 1)) {
             v0_1_mut = v0_1;
             v1_1_mut = v1_1;
@@ -926,21 +959,21 @@ export function method8(v0_1_mut: US2_$union, v1_1_mut: (() => uint8), v2_1_mut:
     }
 }
 
-export function closure12(v0_1: US2_$union, v1_1: (() => uint8), v2_1: boolean, v3_1: uint64): uint64 {
+export function closure13(v0_1: US0_$union, v1_1: (() => uint8), v2_1: boolean, v3_1: uint64): uint64 {
     return method8(v0_1, v1_1, v2_1, v3_1, (equals(v3_1, 1n) ? 1 : method7(v0_1, v3_1, 0, 1n)) - 1, UH1_UH1_1(), 0);
 }
 
-export function closure11(v0_1: US2_$union, v1_1: (() => uint8), v2_1: boolean): ((arg0: uint64) => uint64) {
-    return (v: uint64): uint64 => closure12(v0_1, v1_1, v2_1, v);
+export function closure12(v0_1: US0_$union, v1_1: (() => uint8), v2_1: boolean): ((arg0: uint64) => uint64) {
+    return (v: uint64): uint64 => closure13(v0_1, v1_1, v2_1, v);
 }
 
-export function closure10(v0_1: US2_$union, v1_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) {
-    return (v: boolean): ((arg0: uint64) => uint64) => closure11(v0_1, v1_1, v);
+export function closure11(v0_1: US0_$union, v1_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) {
+    return (v: boolean): ((arg0: uint64) => uint64) => closure12(v0_1, v1_1, v);
 }
 
-export function closure8(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) {
-    const v3_1: US2_$union = defaultArg(map<((arg0: string) => void), US2_$union>((v: ((arg0: string) => void)): US2_$union => closure9(void 0, v), v0_1), US2_US2_0());
-    return (v_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) => closure10(v3_1, v_1);
+export function closure10(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) {
+    const v3_1: US0_$union = defaultArg(map<((arg0: string) => void), US0_$union>((v: ((arg0: string) => void)): US0_$union => closure4(void 0, v), v0_1), US0_US0_0());
+    return (v_1: (() => uint8)): ((arg0: boolean) => ((arg0: uint64) => uint64)) => closure11(v3_1, v_1);
 }
 
 export function method13(v0_1_mut: UH1_$union, v1_1_mut: int8): int8 {
@@ -960,8 +993,8 @@ export function method13(v0_1_mut: UH1_$union, v1_1_mut: int8): int8 {
     }
 }
 
-export function closure79(v0_1: Option<((arg0: string) => void)>, v1_1: uint64, v2_1: UH1_$union): Option<uint64> {
-    const v10: US3_$union = method9(defaultArg(map<((arg0: string) => void), US2_$union>((v: ((arg0: string) => void)): US2_$union => closure9(void 0, v), v0_1), US2_US2_0()), method13(v2_1, 0) - 1, v2_1, 0n);
+export function closure80(v0_1: Option<((arg0: string) => void)>, v1_1: uint64, v2_1: UH1_$union): Option<uint64> {
+    const v10: US3_$union = method9(defaultArg(map<((arg0: string) => void), US0_$union>((v: ((arg0: string) => void)): US0_$union => closure4(void 0, v), v0_1), US0_US0_0()), method13(v2_1, 0) - 1, v2_1, 0n);
     let v20: US4_$union;
     if (v10.tag === /* US3_1 */ 1) {
         const v12: UH1_$union = v10.fields[1];
@@ -979,12 +1012,12 @@ export function closure79(v0_1: Option<((arg0: string) => void)>, v1_1: uint64, 
     }
 }
 
-export function closure78(v0_1: Option<((arg0: string) => void)>, v1_1: uint64): ((arg0: UH1_$union) => Option<uint64>) {
-    return (v: UH1_$union): Option<uint64> => closure79(v0_1, v1_1, v);
+export function closure79(v0_1: Option<((arg0: string) => void)>, v1_1: uint64): ((arg0: UH1_$union) => Option<uint64>) {
+    return (v: UH1_$union): Option<uint64> => closure80(v0_1, v1_1, v);
 }
 
-export function closure77(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) {
-    return (v: uint64): ((arg0: UH1_$union) => Option<uint64>) => closure78(v0_1, v);
+export function closure78(unitVar: void, v0_1: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) {
+    return (v: uint64): ((arg0: UH1_$union) => Option<uint64>) => closure79(v0_1, v);
 }
 
 export function method39(v0_1: UH1_$union, v1_1: int64): US5_$union {
@@ -1809,7 +1842,7 @@ export function method14(v0_1_mut: UH1_$union, v1_1_mut: int8): int64 {
     }
 }
 
-export function closure80(unitVar: void, v0_1: string[]): int32 {
+export function closure81(unitVar: void, v0_1: string[]): int32 {
     const v1_1 = `calculate_dice_count / max: ${9223372036854775807n} / n: ${24} / p: ${4738381338321616896n}`;
     console.log(v1_1);
     const v5 = `result: ${method14(UH1_UH1_1(), 0)}`;
@@ -1823,25 +1856,25 @@ export function rotate_numbers(x: int64): ((arg0: UH0_$union) => UH0_$union) {
     return v0(x);
 }
 
-export const v1 = (v: UH1_$union): (() => uint8) => closure3(void 0, v);
+export const v1 = (v: Option<((arg0: string) => void)>): ((arg0: UH1_$union) => (() => uint8)) => closure3(void 0, v);
 
-export function create_sequential_roller(x: UH1_$union): (() => uint8) {
+export function create_sequential_roller(x: Option<((arg0: string) => void)>): ((arg0: UH1_$union) => (() => uint8)) {
     return v1(x);
 }
 
-export const v2 = (v: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) => closure8(void 0, v);
+export const v2 = (v: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) => closure10(void 0, v);
 
 export function roll_progressively(x: Option<((arg0: string) => void)>): ((arg0: (() => uint8)) => ((arg0: boolean) => ((arg0: uint64) => uint64))) {
     return v2(x);
 }
 
-export const v3 = (v: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) => closure77(void 0, v);
+export const v3 = (v: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) => closure78(void 0, v);
 
 export function roll_within_bounds(x: Option<((arg0: string) => void)>): ((arg0: uint64) => ((arg0: UH1_$union) => Option<uint64>)) {
     return v3(x);
 }
 
-export const v4 = (v: string[]): int32 => closure80(void 0, v);
+export const v4 = (v: string[]): int32 => closure81(void 0, v);
 
 (v4)(typeof process === 'object' ? process.argv.slice(2) : []);
 

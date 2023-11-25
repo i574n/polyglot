@@ -9,8 +9,8 @@ devDependencies:
     specifier: ~0.5
     version: 0.5.10(tailwindcss@3.3.5)
   '@types/node':
-    specifier: ~20.9
-    version: 20.9.5
+    specifier: ~20.10
+    version: 20.10.0
   nightwind:
     specifier: ~1.1
     version: 1.1.13(tailwindcss@3.3.5)
@@ -284,8 +284,8 @@ packages:
     resolution: {integrity: sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==}
     dev: true
 
-  /@types/node@20.9.5:
-    resolution: {integrity: sha512-Uq2xbNq0chGg+/WQEU0LJTSs/1nKxz6u1iemLcGomkSnKokbW1fbLqc3HOqCf2JP7KjlL4QkS7oZZTrOQHQYgQ==}
+  /@types/node@20.10.0:
+    resolution: {integrity: sha512-D0WfRmU9TQ8I9PFx9Yc+EBHw+vSpIub4IDvQivcp26PtPrdMGAq5SDcpXEo/epqa/DXotVpekHiLNTg3iaKXBQ==}
     dependencies:
       undici-types: 5.26.5
     dev: true

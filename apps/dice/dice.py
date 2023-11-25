@@ -4,7 +4,8 @@ import sys
 from typing import (Any, Callable)
 from fable_modules.fable_library.long import (op_addition, op_modulus, op_subtraction, from_integer, to_int, op_multiply)
 from fable_modules.fable_library.option import (default_arg, map, value as value_47)
-from fable_modules.fable_library.reflection import (TypeInfo, uint8_type, unit_type, lambda_type, union_type, record_type, int64_type, string_type, uint64_type)
+from fable_modules.fable_library.reflection import (TypeInfo, uint8_type, unit_type, lambda_type, union_type, string_type, record_type, int64_type, uint64_type)
+from fable_modules.fable_library.string_ import (to_text, interpolate)
 from fable_modules.fable_library.types import (Array, Union, Record, int64, uint8, uint64, int8)
 from fable_modules.fable_library.util import randint
 
@@ -43,7 +44,7 @@ class UH1(Union):
 UH1_reflection = _expr3
 
 def _expr4() -> TypeInfo:
-    return union_type("Dice.US0", [], US0, lambda: [[("f0_0", UH0_reflection())], [("f1_0", lambda_type(unit_type, UH0_reflection()))]])
+    return union_type("Dice.US0", [], US0, lambda: [[], [("f1_0", lambda_type(string_type, unit_type))]])
 
 
 class US0(Union):
@@ -61,27 +62,7 @@ class US0(Union):
 US0_reflection = _expr4
 
 def _expr5() -> TypeInfo:
-    return record_type("Dice.Mut0", [], Mut0, lambda: [("l0", US0_reflection())])
-
-
-@dataclass(eq = False, repr = False)
-class Mut0(Record):
-    l0: US0
-
-Mut0_reflection = _expr5
-
-def _expr6() -> TypeInfo:
-    return record_type("Dice.Mut1", [], Mut1, lambda: [("l0", int64_type)])
-
-
-@dataclass(eq = False, repr = False)
-class Mut1(Record):
-    l0: int64
-
-Mut1_reflection = _expr6
-
-def _expr7() -> TypeInfo:
-    return union_type("Dice.US1", [], US1, lambda: [[], [("f1_0", uint8_type)]])
+    return union_type("Dice.US1", [], US1, lambda: [[("f0_0", UH0_reflection())], [("f1_0", lambda_type(unit_type, UH0_reflection()))]])
 
 
 class US1(Union):
@@ -96,10 +77,30 @@ class US1(Union):
         return ["US1_0", "US1_1"]
 
 
-US1_reflection = _expr7
+US1_reflection = _expr5
+
+def _expr6() -> TypeInfo:
+    return record_type("Dice.Mut0", [], Mut0, lambda: [("l0", US1_reflection())])
+
+
+@dataclass(eq = False, repr = False)
+class Mut0(Record):
+    l0: US1
+
+Mut0_reflection = _expr6
+
+def _expr7() -> TypeInfo:
+    return record_type("Dice.Mut1", [], Mut1, lambda: [("l0", int64_type)])
+
+
+@dataclass(eq = False, repr = False)
+class Mut1(Record):
+    l0: int64
+
+Mut1_reflection = _expr7
 
 def _expr8() -> TypeInfo:
-    return union_type("Dice.US2", [], US2, lambda: [[], [("f1_0", lambda_type(string_type, unit_type))]])
+    return union_type("Dice.US2", [], US2, lambda: [[], [("f1_0", uint8_type)]])
 
 
 class US2(Union):
@@ -117,6 +118,16 @@ class US2(Union):
 US2_reflection = _expr8
 
 def _expr9() -> TypeInfo:
+    return record_type("Dice.Mut2", [], Mut2, lambda: [("l0", US2_reflection())])
+
+
+@dataclass(eq = False, repr = False)
+class Mut2(Record):
+    l0: US2
+
+Mut2_reflection = _expr9
+
+def _expr10() -> TypeInfo:
     return union_type("Dice.US3", [], US3, lambda: [[], [("f1_0", uint64_type), ("f1_1", UH1_reflection())]])
 
 
@@ -132,9 +143,9 @@ class US3(Union):
         return ["US3_0", "US3_1"]
 
 
-US3_reflection = _expr9
+US3_reflection = _expr10
 
-def _expr10() -> TypeInfo:
+def _expr11() -> TypeInfo:
     return union_type("Dice.UH2", [], UH2, lambda: [[("Item1", uint64_type), ("Item2", lambda_type(unit_type, UH2_reflection()))], []])
 
 
@@ -149,9 +160,9 @@ class UH2(Union):
         return ["UH2_0", "UH2_1"]
 
 
-UH2_reflection = _expr10
+UH2_reflection = _expr11
 
-def _expr11() -> TypeInfo:
+def _expr12() -> TypeInfo:
     return union_type("Dice.US4", [], US4, lambda: [[], [("f1_0", uint64_type)]])
 
 
@@ -167,9 +178,9 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr11
+US4_reflection = _expr12
 
-def _expr12() -> TypeInfo:
+def _expr13() -> TypeInfo:
     return union_type("Dice.US5", [], US5, lambda: [[], [("f1_0", int64_type), ("f1_1", UH1_reflection())]])
 
 
@@ -185,7 +196,7 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr12
+US5_reflection = _expr13
 
 def closure2(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
@@ -210,10 +221,14 @@ def closure1(v0_1: int64, v1_1: UH0) -> UH0:
 
 
 def closure0(unit_var: None, v0_1: int64) -> Callable[[UH0], UH0]:
-    def _arrow13(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
+    def _arrow14(v: UH0, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
         return closure1(v0_1, v)
 
-    return _arrow13
+    return _arrow14
+
+
+def closure4(unit_var: None, v0_1: Callable[[str], None]) -> US0:
+    return US0(1, v0_1)
 
 
 def method1(v0_1_mut: UH1, v1_1_mut: UH1) -> UH1:
@@ -239,7 +254,7 @@ def method2(v0_1: UH1, v1_1: UH1) -> UH1:
 
 
 
-def closure4(v0_1: UH0, unit_var: None) -> UH0:
+def closure6(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
 
 
@@ -250,22 +265,22 @@ def method3(v0_1: UH1, v1_1: UH0) -> UH0:
     else: 
         v4_1: UH0 = method3(v0_1.fields[1], v1_1)
         def v5(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> UH0:
-            return closure4(v4_1, None)
+            return closure6(v4_1, None)
 
         return UH0(0, v0_1.fields[0], v5)
 
 
 
-def closure5(v0_1: UH0, unit_var: None) -> UH0:
+def closure7(v0_1: UH0, unit_var: None) -> UH0:
     return v0_1
 
 
-def closure6(v0_1: UH0, v1_1: Mut0, unit_var: None) -> UH0:
-    v2_1: US0 = v1_1.l0
+def closure8(v0_1: UH0, v1_1: Mut0, unit_var: None) -> UH0:
+    v2_1: US1 = v1_1.l0
     if v2_1.tag == 1:
         v5: UH0 = v2_1.fields[0](None)
         v12: UH0 = UH0(1) if (v5.tag == 1) else UH0(0, v5.fields[0], method4(v0_1, v5.fields[1]))
-        v1_1.l0 = US0(0, v12)
+        v1_1.l0 = US1(0, v12)
         return v12
 
     else: 
@@ -274,21 +289,21 @@ def closure6(v0_1: UH0, v1_1: Mut0, unit_var: None) -> UH0:
 
 
 def method4(v0_1: UH0, v1_1: Callable[[], UH0]) -> Callable[[], UH0]:
-    v3_1: Mut0 = Mut0(US0(1, v1_1))
-    def _arrow14(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> UH0:
-        return closure6(v0_1, v3_1, None)
+    v3_1: Mut0 = Mut0(US1(1, v1_1))
+    def _arrow15(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> UH0:
+        return closure8(v0_1, v3_1, None)
 
-    return _arrow14
+    return _arrow15
 
 
-def method6(v0_1_mut: int64, v1_1_mut: UH0) -> US1:
+def method6(v0_1_mut: int64, v1_1_mut: UH0) -> US2:
     while True:
         (v0_1, v1_1) = (v0_1_mut, v1_1_mut)
         if v1_1.tag == 1:
-            return US1(0)
+            return US2(0)
 
         elif v0_1 <= int64(0):
-            return US1(1, v1_1.fields[0])
+            return US2(1, v1_1.fields[0])
 
         else: 
             v0_1_mut = op_subtraction(v0_1, int64(1))
@@ -298,58 +313,81 @@ def method6(v0_1_mut: int64, v1_1_mut: UH0) -> US1:
         break
 
 
-def method5(v0_1_mut: Callable[[], UH0], v1_1_mut: Mut1, v2_1_mut: Mut1, v3_1_mut: Mut1) -> uint8:
+def method5(v0_1_mut: US0, v1_1_mut: Callable[[], UH0], v2_1_mut: Mut1, v3_1_mut: Mut1, v4_1_mut: Mut1, v5_mut: Mut2) -> uint8:
     while True:
-        (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
-        v4_1: UH0 = v0_1(None)
-        v6: US1 = method6(v1_1.l0, v4_1)
-        if v6.tag == 1:
-            v9: int64 = op_addition(v1_1.l0, int64(1))
-            v1_1.l0 = v9
-            return v6.fields[0]
+        (v0_1, v1_1, v2_1, v3_1, v4_1, v5) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut, v5_mut)
+        v10: str = to_text(interpolate("create_sequential_roller / roll / current_index: %P() / acc: %P() / len: %P() / last_item: %A%P()", [v2_1.l0, v3_1.l0, v4_1.l0, v5.l0]))
+        if v0_1.tag == 1:
+            v0_1.fields[0](v10)
+
+        v12: UH0 = v1_1(None)
+        v14: US2 = method6(v2_1.l0, v12)
+        if v14.tag == 1:
+            v15: uint8 = v14.fields[0]
+            v17: int64 = op_addition(v2_1.l0, int64(1))
+            v2_1.l0 = v17
+            v5.l0 = US2(1, v15)
+            return v15
 
         else: 
-            if v3_1.l0 == int64(-1):
-                v12: int64 = v1_1.l0
-                v3_1.l0 = v12
+            if v0_1.tag == 1:
+                v0_1.fields[0]("create_sequential_roller / roll / None")
 
-            v18: int64 = int64(1) if (v2_1.l0 >= v3_1.l0) else op_addition(v2_1.l0, int64(1))
-            v2_1.l0 = v18
-            v20: int64 = op_subtraction(v2_1.l0, int64(1))
-            v1_1.l0 = v20
+            if v4_1.l0 == int64(-1):
+                v23: int64 = v2_1.l0
+                v4_1.l0 = v23
+
+            v29: int64 = int64(1) if (v3_1.l0 >= v4_1.l0) else op_addition(v3_1.l0, int64(1))
+            v3_1.l0 = v29
+            v31: int64 = op_subtraction(v3_1.l0, int64(1))
+            v2_1.l0 = v31
+            v5.l0 = US2(0)
             v0_1_mut = v0_1
             v1_1_mut = v1_1
             v2_1_mut = v2_1
             v3_1_mut = v3_1
+            v4_1_mut = v4_1
+            v5_mut = v5
             continue
 
         break
 
 
-def closure7(v0_1: Callable[[], UH0], v1_1: Mut1, v2_1: Mut1, v3_1: Mut1, unit_var: None) -> uint8:
-    return method5(v0_1, v1_1, v2_1, v3_1)
+def closure9(v0_1: US0, v1_1: Callable[[], UH0], v2_1: Mut1, v3_1: Mut1, v4_1: Mut1, v5: Mut2, unit_var: None) -> uint8:
+    return method5(v0_1, v1_1, v2_1, v3_1, v4_1, v5)
 
 
-def closure3(unit_var: None, v0_1: UH1) -> Callable[[], uint8]:
-    v5: UH0 = method3(method2(v0_1, method1(v0_1, UH1(1))), UH0(1))
-    def v6(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> UH0:
-        return closure5(v5, None)
+def closure5(v0_1: US0, v1_1: UH1) -> Callable[[], uint8]:
+    if v0_1.tag == 1:
+        v0_1.fields[0]("create_sequential_roller ()")
 
-    v7: Callable[[], UH0] = method4(v5, v6)
-    v8: Mut1 = Mut1(int64(0))
-    v9: Mut1 = Mut1(int64(1))
-    v10: Mut1 = Mut1(int64(-1))
-    def _arrow15(__unit: None=None, unit_var: Any=unit_var, v0_1: Any=v0_1) -> uint8:
-        return closure7(v7, v8, v9, v10, None)
+    v8: UH0 = method3(method2(v1_1, method1(v1_1, UH1(1))), UH0(1))
+    def v9(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> UH0:
+        return closure7(v8, None)
 
-    return _arrow15
+    v10: Callable[[], UH0] = method4(v8, v9)
+    v11: Mut1 = Mut1(int64(0))
+    v12: Mut1 = Mut1(int64(1))
+    v13: Mut1 = Mut1(int64(-1))
+    v15: Mut2 = Mut2(US2(0))
+    def _arrow16(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1) -> uint8:
+        return closure9(v0_1, v10, v11, v12, v13, v15, None)
+
+    return _arrow16
 
 
-def closure9(unit_var: None, v0_1: Callable[[str], None]) -> US2:
-    return US2(1, v0_1)
+def closure3(unit_var: None, v0_1: Callable[[str], None] | None=None) -> Callable[[UH1, None], uint8]:
+    def v1_1(v: Callable[[str], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> US0:
+        return closure4(None, v)
+
+    v3_1: US0 = default_arg(map(v1_1, v0_1), US0(0))
+    def _arrow17(v_1: UH1, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[], uint8]:
+        return closure5(v3_1, v_1)
+
+    return _arrow17
 
 
-def method7(v0_1_mut: US2, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64) -> int8:
+def method7(v0_1_mut: US0, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64) -> int8:
     while True:
         (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
         if v3_1 < v1_1:
@@ -377,450 +415,450 @@ def method7(v0_1_mut: US2, v1_1_mut: uint64, v2_1_mut: int8, v3_1_mut: uint64) -
         break
 
 
-def closure76(unit_var: None, unit_var_1: None) -> UH2:
+def closure77(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
-        return closure76(None, None)
+        return closure77(None, None)
 
     return UH2(0, uint64(0), v0_1)
+
+
+def closure76(unit_var: None, unit_var_1: None) -> UH2:
+    def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
+        return closure77(None, None)
+
+    return UH2(0, uint64(9223372036854775808), v0_1)
 
 
 def closure75(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure76(None, None)
 
-    return UH2(0, uint64(9223372036854775808), v0_1)
+    return UH2(0, uint64(4611686018427387904), v0_1)
 
 
 def closure74(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure75(None, None)
 
-    return UH2(0, uint64(4611686018427387904), v0_1)
+    return UH2(0, uint64(6917529027641081856), v0_1)
 
 
 def closure73(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure74(None, None)
 
-    return UH2(0, uint64(6917529027641081856), v0_1)
+    return UH2(0, uint64(1152921504606846976), v0_1)
 
 
 def closure72(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure73(None, None)
 
-    return UH2(0, uint64(1152921504606846976), v0_1)
+    return UH2(0, uint64(15564440312192434176), v0_1)
 
 
 def closure71(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure72(None, None)
 
-    return UH2(0, uint64(15564440312192434176), v0_1)
+    return UH2(0, uint64(11817445422220181504), v0_1)
 
 
 def closure70(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure71(None, None)
 
-    return UH2(0, uint64(11817445422220181504), v0_1)
+    return UH2(0, uint64(5044031582654955520), v0_1)
 
 
 def closure69(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure70(None, None)
 
-    return UH2(0, uint64(5044031582654955520), v0_1)
+    return UH2(0, uint64(6989586621679009792), v0_1)
 
 
 def closure68(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure69(None, None)
 
-    return UH2(0, uint64(6989586621679009792), v0_1)
+    return UH2(0, uint64(16537217831704461312), v0_1)
 
 
 def closure67(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure68(None, None)
 
-    return UH2(0, uint64(16537217831704461312), v0_1)
+    return UH2(0, uint64(11979575008805519360), v0_1)
 
 
 def closure66(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure67(None, None)
 
-    return UH2(0, uint64(11979575008805519360), v0_1)
+    return UH2(0, uint64(14294425217273954304), v0_1)
 
 
 def closure65(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure66(None, None)
 
-    return UH2(0, uint64(14294425217273954304), v0_1)
+    return UH2(0, uint64(2382404202878992384), v0_1)
 
 
 def closure64(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure65(None, None)
 
-    return UH2(0, uint64(2382404202878992384), v0_1)
+    return UH2(0, uint64(6545982058383015936), v0_1)
 
 
 def closure63(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure64(None, None)
 
-    return UH2(0, uint64(6545982058383015936), v0_1)
+    return UH2(0, uint64(10314369046585278464), v0_1)
 
 
 def closure62(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure63(None, None)
 
-    return UH2(0, uint64(10314369046585278464), v0_1)
+    return UH2(0, uint64(4793518853382471680), v0_1)
 
 
 def closure61(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure62(None, None)
 
-    return UH2(0, uint64(4793518853382471680), v0_1)
+    return UH2(0, uint64(3873377154515337216), v0_1)
 
 
 def closure60(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure61(None, None)
 
-    return UH2(0, uint64(3873377154515337216), v0_1)
+    return UH2(0, uint64(645562859085889536), v0_1)
 
 
 def closure59(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure60(None, None)
 
-    return UH2(0, uint64(645562859085889536), v0_1)
+    return UH2(0, uint64(107593809847648256), v0_1)
 
 
 def closure58(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure59(None, None)
 
-    return UH2(0, uint64(107593809847648256), v0_1)
+    return UH2(0, uint64(3092389647259533312), v0_1)
 
 
 def closure57(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure58(None, None)
 
-    return UH2(0, uint64(3092389647259533312), v0_1)
+    return UH2(0, uint64(9738770311398031360), v0_1)
 
 
 def closure56(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure57(None, None)
 
-    return UH2(0, uint64(9738770311398031360), v0_1)
+    return UH2(0, uint64(16995415113324298240), v0_1)
 
 
 def closure55(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure56(None, None)
 
-    return UH2(0, uint64(16995415113324298240), v0_1)
+    return UH2(0, uint64(8981483876790566912), v0_1)
 
 
 def closure54(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure55(None, None)
 
-    return UH2(0, uint64(8981483876790566912), v0_1)
+    return UH2(0, uint64(13794743361938128896), v0_1)
 
 
 def closure53(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure54(None, None)
 
-    return UH2(0, uint64(13794743361938128896), v0_1)
+    return UH2(0, uint64(2299123893656354816), v0_1)
 
 
 def closure52(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure53(None, None)
 
-    return UH2(0, uint64(2299123893656354816), v0_1)
+    return UH2(0, uint64(3457644661227651072), v0_1)
 
 
 def closure51(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure52(None, None)
 
-    return UH2(0, uint64(3457644661227651072), v0_1)
+    return UH2(0, uint64(576274110204608512), v0_1)
 
 
 def closure50(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure51(None, None)
 
-    return UH2(0, uint64(576274110204608512), v0_1)
+    return UH2(0, uint64(6244960376270618624), v0_1)
 
 
 def closure49(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure50(None, None)
 
-    return UH2(0, uint64(6244960376270618624), v0_1)
+    return UH2(0, uint64(13338656111851470848), v0_1)
 
 
 def closure48(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure49(None, None)
 
-    return UH2(0, uint64(13338656111851470848), v0_1)
+    return UH2(0, uint64(14520938734448279552), v0_1)
 
 
 def closure47(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure48(None, None)
 
-    return UH2(0, uint64(14520938734448279552), v0_1)
+    return UH2(0, uint64(14717985838214414336), v0_1)
 
 
 def closure46(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure47(None, None)
 
-    return UH2(0, uint64(14717985838214414336), v0_1)
+    return UH2(0, uint64(5527454985320660992), v0_1)
 
 
 def closure45(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure46(None, None)
 
-    return UH2(0, uint64(5527454985320660992), v0_1)
+    return UH2(0, uint64(16293529225644736512), v0_1)
 
 
 def closure44(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure45(None, None)
 
-    return UH2(0, uint64(16293529225644736512), v0_1)
+    return UH2(0, uint64(11938960241128898560), v0_1)
 
 
 def closure43(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure44(None, None)
 
-    return UH2(0, uint64(11938960241128898560), v0_1)
+    return UH2(0, uint64(8138741398091333632), v0_1)
 
 
 def closure42(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure43(None, None)
 
-    return UH2(0, uint64(8138741398091333632), v0_1)
+    return UH2(0, uint64(7505371590918406144), v0_1)
 
 
 def closure41(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure42(None, None)
 
-    return UH2(0, uint64(7505371590918406144), v0_1)
+    return UH2(0, uint64(16623181993244360704), v0_1)
 
 
 def closure40(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure41(None, None)
 
-    return UH2(0, uint64(16623181993244360704), v0_1)
+    return UH2(0, uint64(8919445023443910656), v0_1)
 
 
 def closure39(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure40(None, None)
 
-    return UH2(0, uint64(8919445023443910656), v0_1)
+    return UH2(0, uint64(4561031516192243712), v0_1)
 
 
 def closure38(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure39(None, None)
 
-    return UH2(0, uint64(4561031516192243712), v0_1)
+    return UH2(0, uint64(9983543956220149760), v0_1)
 
 
 def closure37(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure38(None, None)
 
-    return UH2(0, uint64(9983543956220149760), v0_1)
+    return UH2(0, uint64(4738381338321616896), v0_1)
 
 
 def closure36(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure37(None, None)
 
-    return UH2(0, uint64(4738381338321616896), v0_1)
+    return UH2(0, uint64(789730223053602816), v0_1)
 
 
 def closure35(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure36(None, None)
 
-    return UH2(0, uint64(789730223053602816), v0_1)
+    return UH2(0, uint64(131621703842267136), v0_1)
 
 
 def closure34(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure35(None, None)
 
-    return UH2(0, uint64(131621703842267136), v0_1)
+    return UH2(0, uint64(21936950640377856), v0_1)
 
 
 def closure33(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure34(None, None)
 
-    return UH2(0, uint64(21936950640377856), v0_1)
+    return UH2(0, uint64(3656158440062976), v0_1)
 
 
 def closure32(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure33(None, None)
 
-    return UH2(0, uint64(3656158440062976), v0_1)
+    return UH2(0, uint64(609359740010496), v0_1)
 
 
 def closure31(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure32(None, None)
 
-    return UH2(0, uint64(609359740010496), v0_1)
+    return UH2(0, uint64(101559956668416), v0_1)
 
 
 def closure30(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure31(None, None)
 
-    return UH2(0, uint64(101559956668416), v0_1)
+    return UH2(0, uint64(16926659444736), v0_1)
 
 
 def closure29(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure30(None, None)
 
-    return UH2(0, uint64(16926659444736), v0_1)
+    return UH2(0, uint64(2821109907456), v0_1)
 
 
 def closure28(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure29(None, None)
 
-    return UH2(0, uint64(2821109907456), v0_1)
+    return UH2(0, uint64(470184984576), v0_1)
 
 
 def closure27(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure28(None, None)
 
-    return UH2(0, uint64(470184984576), v0_1)
+    return UH2(0, uint64(78364164096), v0_1)
 
 
 def closure26(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure27(None, None)
 
-    return UH2(0, uint64(78364164096), v0_1)
+    return UH2(0, uint64(13060694016), v0_1)
 
 
 def closure25(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure26(None, None)
 
-    return UH2(0, uint64(13060694016), v0_1)
+    return UH2(0, uint64(2176782336), v0_1)
 
 
 def closure24(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure25(None, None)
 
-    return UH2(0, uint64(2176782336), v0_1)
+    return UH2(0, uint64(362797056), v0_1)
 
 
 def closure23(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure24(None, None)
 
-    return UH2(0, uint64(362797056), v0_1)
+    return UH2(0, uint64(60466176), v0_1)
 
 
 def closure22(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure23(None, None)
 
-    return UH2(0, uint64(60466176), v0_1)
+    return UH2(0, uint64(10077696), v0_1)
 
 
 def closure21(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure22(None, None)
 
-    return UH2(0, uint64(10077696), v0_1)
+    return UH2(0, uint64(1679616), v0_1)
 
 
 def closure20(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure21(None, None)
 
-    return UH2(0, uint64(1679616), v0_1)
+    return UH2(0, uint64(279936), v0_1)
 
 
 def closure19(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure20(None, None)
 
-    return UH2(0, uint64(279936), v0_1)
+    return UH2(0, uint64(46656), v0_1)
 
 
 def closure18(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure19(None, None)
 
-    return UH2(0, uint64(46656), v0_1)
+    return UH2(0, uint64(7776), v0_1)
 
 
 def closure17(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure18(None, None)
 
-    return UH2(0, uint64(7776), v0_1)
+    return UH2(0, uint64(1296), v0_1)
 
 
 def closure16(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure17(None, None)
 
-    return UH2(0, uint64(1296), v0_1)
+    return UH2(0, uint64(216), v0_1)
 
 
 def closure15(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure16(None, None)
 
-    return UH2(0, uint64(216), v0_1)
+    return UH2(0, uint64(36), v0_1)
 
 
 def closure14(unit_var: None, unit_var_1: None) -> UH2:
     def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
         return closure15(None, None)
-
-    return UH2(0, uint64(36), v0_1)
-
-
-def closure13(unit_var: None, unit_var_1: None) -> UH2:
-    def v0_1(__unit: None=None, unit_var: Any=unit_var, unit_var_1: Any=unit_var_1) -> UH2:
-        return closure14(None, None)
 
     return UH2(0, uint64(6), v0_1)
 
@@ -842,7 +880,7 @@ def method10(v0_1_mut: int8, v1_1_mut: UH2) -> US4:
         break
 
 
-def method9(v0_1_mut: US2, v1_1_mut: int8, v2_1_mut: UH1, v3_1_mut: uint64) -> US3:
+def method9(v0_1_mut: US0, v1_1_mut: int8, v2_1_mut: UH1, v3_1_mut: uint64) -> US3:
     while True:
         (v0_1, v1_1, v2_1, v3_1) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut)
         if v1_1 < int8(0):
@@ -859,7 +897,7 @@ def method9(v0_1_mut: US2, v1_1_mut: int8, v2_1_mut: UH1, v3_1_mut: uint64) -> U
             v10: uint8 = v2_1.fields[0]
             if v10 > uint8(1):
                 def v14(__unit: None=None, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1, v3_1: Any=v3_1) -> UH2:
-                    return closure13(None, None)
+                    return closure14(None, None)
 
                 v16: US4 = method10(v1_1, UH2(0, uint64(1), v14))
                 v20: uint64
@@ -902,7 +940,7 @@ def method11(v0_1: int8, v1_1: Callable[[], uint8], v2_1: int8) -> UH1:
 
 
 
-def method12(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1) -> uint64:
+def method12(v0_1_mut: US0, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1) -> uint64:
     while True:
         (v0_1, v1_1, v2_1, v3_1, v4_1, v5) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut, v5_mut)
         v6: int8 = (v4_1 + int8(1)) or 0
@@ -945,7 +983,7 @@ def method12(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_
         break
 
 
-def method8(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1, v6_mut: int8) -> uint64:
+def method8(v0_1_mut: US0, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_mut: uint64, v4_1_mut: int8, v5_mut: UH1, v6_mut: int8) -> uint64:
     while True:
         (v0_1, v1_1, v2_1, v3_1, v4_1, v5, v6) = (v0_1_mut, v1_1_mut, v2_1_mut, v3_1_mut, v4_1_mut, v5_mut, v6_mut)
         if v6 < (v4_1 + int8(1)):
@@ -996,33 +1034,33 @@ def method8(v0_1_mut: US2, v1_1_mut: Callable[[], uint8], v2_1_mut: bool, v3_1_m
         break
 
 
-def closure12(v0_1: US2, v1_1: Callable[[], uint8], v2_1: bool, v3_1: uint64) -> uint64:
+def closure13(v0_1: US0, v1_1: Callable[[], uint8], v2_1: bool, v3_1: uint64) -> uint64:
     return method8(v0_1, v1_1, v2_1, v3_1, (int8(1) if (v3_1 == uint64(1)) else method7(v0_1, v3_1, int8(0), uint64(1))) - int8(1), UH1(1), int8(0))
 
 
-def closure11(v0_1: US2, v1_1: Callable[[], uint8], v2_1: bool) -> Callable[[uint64], uint64]:
-    def _arrow16(v: uint64, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> uint64:
-        return closure12(v0_1, v1_1, v2_1, v)
-
-    return _arrow16
-
-
-def closure10(v0_1: US2, v1_1: Callable[[], uint8]) -> Callable[[bool, uint64], uint64]:
-    def _arrow17(v: bool, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Callable[[uint64], uint64]:
-        return closure11(v0_1, v1_1, v)
-
-    return _arrow17
-
-
-def closure8(unit_var: None, v0_1: Callable[[str], None] | None=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
-    def v1_1(v: Callable[[str], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> US2:
-        return closure9(None, v)
-
-    v3_1: US2 = default_arg(map(v1_1, v0_1), US2(0))
-    def _arrow18(v_1: Callable[[], uint8], unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[bool, uint64], uint64]:
-        return closure10(v3_1, v_1)
+def closure12(v0_1: US0, v1_1: Callable[[], uint8], v2_1: bool) -> Callable[[uint64], uint64]:
+    def _arrow18(v: uint64, v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> uint64:
+        return closure13(v0_1, v1_1, v2_1, v)
 
     return _arrow18
+
+
+def closure11(v0_1: US0, v1_1: Callable[[], uint8]) -> Callable[[bool, uint64], uint64]:
+    def _arrow19(v: bool, v0_1: Any=v0_1, v1_1: Any=v1_1) -> Callable[[uint64], uint64]:
+        return closure12(v0_1, v1_1, v)
+
+    return _arrow19
+
+
+def closure10(unit_var: None, v0_1: Callable[[str], None] | None=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
+    def v1_1(v: Callable[[str], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> US0:
+        return closure4(None, v)
+
+    v3_1: US0 = default_arg(map(v1_1, v0_1), US0(0))
+    def _arrow20(v_1: Callable[[], uint8], unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[bool, uint64], uint64]:
+        return closure11(v3_1, v_1)
+
+    return _arrow20
 
 
 def method13(v0_1_mut: UH1, v1_1_mut: int8) -> int8:
@@ -1039,11 +1077,11 @@ def method13(v0_1_mut: UH1, v1_1_mut: int8) -> int8:
         break
 
 
-def closure79(v0_1: Callable[[str], None] | None, v1_1: uint64, v2_1: UH1) -> uint64 | None:
-    def v3_1(v: Callable[[str], None], v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> US2:
-        return closure9(None, v)
+def closure80(v0_1: Callable[[str], None] | None, v1_1: uint64, v2_1: UH1) -> uint64 | None:
+    def v3_1(v: Callable[[str], None], v0_1: Any=v0_1, v1_1: Any=v1_1, v2_1: Any=v2_1) -> US0:
+        return closure4(None, v)
 
-    v10: US3 = method9(default_arg(map(v3_1, v0_1), US2(0)), method13(v2_1, int8(0)) - int8(1), v2_1, uint64(0))
+    v10: US3 = method9(default_arg(map(v3_1, v0_1), US0(0)), method13(v2_1, int8(0)) - int8(1), v2_1, uint64(0))
     v20: US4
     if v10.tag == 1:
         v11: uint64 = v10.fields[0]
@@ -1060,18 +1098,18 @@ def closure79(v0_1: Callable[[str], None] | None, v1_1: uint64, v2_1: UH1) -> ui
 
 
 
-def closure78(v0_1: Callable[[str], None] | None, v1_1: uint64) -> Callable[[UH1], uint64 | None]:
-    def _arrow19(v: UH1, v0_1: Any=v0_1, v1_1: Any=v1_1) -> uint64 | None:
-        return closure79(v0_1, v1_1, v)
+def closure79(v0_1: Callable[[str], None] | None, v1_1: uint64) -> Callable[[UH1], uint64 | None]:
+    def _arrow21(v: UH1, v0_1: Any=v0_1, v1_1: Any=v1_1) -> uint64 | None:
+        return closure80(v0_1, v1_1, v)
 
-    return _arrow19
+    return _arrow21
 
 
-def closure77(unit_var: None, v0_1: Callable[[str], None] | None=None) -> Callable[[uint64, UH1], uint64 | None]:
-    def _arrow20(v: uint64, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[UH1], uint64 | None]:
-        return closure78(v0_1, v)
+def closure78(unit_var: None, v0_1: Callable[[str], None] | None=None) -> Callable[[uint64, UH1], uint64 | None]:
+    def _arrow22(v: uint64, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[UH1], uint64 | None]:
+        return closure79(v0_1, v)
 
-    return _arrow20
+    return _arrow22
 
 
 def method39(v0_1: UH1, v1_1: int64) -> US5:
@@ -1844,57 +1882,57 @@ def method14(v0_1_mut: UH1, v1_1_mut: int8) -> int64:
         break
 
 
-def closure80(unit_var: None, v0_1: Array[str]) -> int:
+def closure81(unit_var: None, v0_1: Array[str]) -> int:
     print(((((("calculate_dice_count / max: " + str(int64(9223372036854775807))) + " / n: ") + str(int8(24))) + " / p: ") + str(int64(4738381338321616896))) + "")
     print(("result: " + str(method14(UH1(1), int8(0)))) + "")
     return 0
 
 
-def _arrow21(v: int64) -> Callable[[UH0], UH0]:
+def _arrow23(v: int64) -> Callable[[UH0], UH0]:
     return closure0(None, v)
 
 
-v0: Callable[[int64, UH0], UH0] = _arrow21
+v0: Callable[[int64, UH0], UH0] = _arrow23
 
 def rotate_numbers(x: int64) -> Callable[[UH0], UH0]:
     return v0(x)
 
 
-def _arrow22(v: UH1) -> Callable[[], uint8]:
+def _arrow24(v: Callable[[str], None] | None=None) -> Callable[[UH1, None], uint8]:
     return closure3(None, v)
 
 
-v1: Callable[[UH1, None], uint8] = _arrow22
+v1: Callable[[Callable[[str], None] | None, UH1, None], uint8] = _arrow24
 
-def create_sequential_roller(x: UH1) -> Callable[[], uint8]:
+def create_sequential_roller(x: Callable[[str], None] | None=None) -> Callable[[UH1, None], uint8]:
     return v1(x)
 
 
-def _arrow23(v: Callable[[str], None] | None=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
-    return closure8(None, v)
+def _arrow25(v: Callable[[str], None] | None=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
+    return closure10(None, v)
 
 
-v2: Callable[[Callable[[str], None] | None, Callable[[], uint8], bool, uint64], uint64] = _arrow23
+v2: Callable[[Callable[[str], None] | None, Callable[[], uint8], bool, uint64], uint64] = _arrow25
 
 def roll_progressively(x: Callable[[str], None] | None=None) -> Callable[[Callable[[], uint8], bool, uint64], uint64]:
     return v2(x)
 
 
-def _arrow24(v: Callable[[str], None] | None=None) -> Callable[[uint64, UH1], uint64 | None]:
-    return closure77(None, v)
+def _arrow26(v: Callable[[str], None] | None=None) -> Callable[[uint64, UH1], uint64 | None]:
+    return closure78(None, v)
 
 
-v3: Callable[[Callable[[str], None] | None, uint64, UH1], uint64 | None] = _arrow24
+v3: Callable[[Callable[[str], None] | None, uint64, UH1], uint64 | None] = _arrow26
 
 def roll_within_bounds(x: Callable[[str], None] | None=None) -> Callable[[uint64, UH1], uint64 | None]:
     return v3(x)
 
 
-def _arrow25(v: Array[str]) -> int:
-    return closure80(None, v)
+def _arrow27(v: Array[str]) -> int:
+    return closure81(None, v)
 
 
-v4: Callable[[Array[str]], int] = _arrow25
+v4: Callable[[Array[str]], int] = _arrow27
 
 def main(args: Array[str]) -> int:
     return v4(args)

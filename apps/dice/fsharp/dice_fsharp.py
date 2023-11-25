@@ -146,7 +146,7 @@ def roll_progressively(log: Callable[[str], None] | None, roll: Callable[[], int
         while True:
             (rolls, size) = (rolls_mut, size_mut)
             if size < (power + 1):
-                rolls_mut = cons(roll(), rolls)
+                rolls_mut = cons(roll(None), rolls)
                 size_mut = size + 1
                 continue
 
@@ -176,14 +176,14 @@ def roll_progressively(log: Callable[[str], None] | None, roll: Callable[[], int
 
                 elif pattern_matching_result == 1:
                     def _arrow5(_arg: int, rolls: Any=rolls, size: Any=size) -> int:
-                        return roll()
+                        return roll(None)
 
                     rolls_mut = initialize(power, _arrow5)
                     size_mut = power
                     continue
 
                 elif pattern_matching_result == 2:
-                    rolls_mut = cons(roll(), rolls)
+                    rolls_mut = cons(roll(None), rolls)
                     size_mut = size + 1
                     continue
 

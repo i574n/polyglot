@@ -5,25 +5,25 @@ use near_sdk::{env, log, near_bindgen, PanicOnDefault};
 pub struct Util {}
 
 impl Util {
-    fn stream_u8_to_u64(
+    fn stream_u8_to_list(
         s: fable_library_rust::Native_::LrcPtr<dice::Dice::UH0>,
     ) -> dice::Dice::UH1 {
         match s.as_ref() {
             dice::Dice::UH0::UH0_0(n, f) => {
-                dice::Dice::UH1::UH1_0(*n, Self::stream_u8_to_u64(f()).into())
+                dice::Dice::UH1::UH1_0(*n, Self::stream_u8_to_list(f()).into())
             }
             dice::Dice::UH0::UH0_1 => dice::Dice::UH1::UH1_1,
         }
     }
 
-    fn stream_u8_to_vec(s: dice::Dice::UH1) -> Vec<u8> {
-        match s {
+    fn list_u8_to_vec(s: fable_library_rust::Native_::LrcPtr<dice::Dice::UH1>) -> Vec<u8> {
+        match s.as_ref() {
             dice::Dice::UH1::UH1_0(n, f) => {
-                let mut v = Self::stream_u8_to_vec(f.as_ref().clone());
-                v.push(n);
+                let mut v = Self::list_u8_to_vec(f.clone());
+                v.insert(0, *n);
                 v
             }
-            dice::Dice::UH1::UH1_1 => Vec::new(),
+            dice::Dice::UH1::UH1_1 => vec![],
         }
     }
 
@@ -100,7 +100,7 @@ impl State {
         fable_library_rust::Native_::Func1::new(closure)
     }
 
-    pub fn generate_random_number(&mut self, proof: String, max: u64) -> u64 {
+    pub fn generate_random_number(&mut self, key: String, proof: String, max: u64) -> u64 {
         let seed = env::random_seed();
         let block_timestamp = env::block_timestamp();
         let signer_account_id = env::signer_account_id();
@@ -116,6 +116,7 @@ impl State {
             account_balance.to_le_bytes().to_vec(),
             signer_account_id.as_bytes().to_vec(),
             self.seeds.iter().map(|x| *x).collect::<Vec<u8>>(),
+            key.clone().into_bytes(),
             proof.clone().into_bytes(),
         ]
         .concat();
@@ -124,19 +125,19 @@ impl State {
         self.contribute_seed(hash_u8.clone());
 
         let hash_stream = Util::vec_u8_to_stream(hash_u8.clone());
-        let rolls_stream =
-            Util::stream_u8_to_u64(dice::Dice::rotate_numbers(6)(hash_stream.into()));
+        let rolls_list = Util::stream_u8_to_list(dice::Dice::rotate_numbers(6)(hash_stream.into()));
 
         {
-            let rolls_stream_log = Util::stream_u8_to_vec(rolls_stream.clone());
+            let rolls_list_log = Util::list_u8_to_vec(rolls_list.clone().into());
             let signer_account_id_log = signer_account_id.as_str();
-            log!(format!("generate_random_number / max: {max:#?} / proof: {proof:?} / block_timestamp: {block_timestamp:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / account_balance: {account_balance:#?} / signer_account_id: {signer_account_id_log:?} / seed: {seed:?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_stream: {rolls_stream_log:?}"));
+            log!(format!("generate_random_number / max: {max:#?} / key: {key:?} / proof: {proof:?} / block_timestamp: {block_timestamp:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / account_balance: {account_balance:#?} / signer_account_id: {signer_account_id_log:?} / seed: {seed:?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_list: {rolls_list_log:?}"));
         }
 
-        let sequential_roll = dice::Dice::create_sequential_roller(rolls_stream.into());
         let logger = Self::get_logger();
+        let sequential_roll =
+            dice::Dice::create_sequential_roller(Some(logger.clone()))(rolls_list.into());
         let result =
-            dice::Dice::roll_progressively(Some(logger.clone()))(sequential_roll)(false)(max);
+            dice::Dice::roll_progressively(Some(logger.clone()))(sequential_roll)(true)(max);
         logger("".into());
         result as u64
     }

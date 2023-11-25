@@ -267,7 +267,7 @@ rollProgressively (Some (printfn "%s")) rollDice true 2000
 
 //// ignore
 
-[ 1 .. 1000 ]
+[ 1 .. 10000 ]
 |> List.map (fun _ -> rollProgressively None rollDice false 10)
 |> List.groupBy id
 |> List.map (fun (k, v) -> k, v.Length)
@@ -277,7 +277,7 @@ rollProgressively (Some (printfn "%s")) rollDice true 2000
 
 //// ignore
 
-[ 1 .. 1000 ]
+[ 1 .. 10000 ]
 |> List.map (fun _ -> rollProgressively None rollDice true 10)
 |> List.groupBy id
 |> List.map (fun (k, v) -> k, v.Length)

@@ -46,8 +46,8 @@ mod module_a51efde0 {
         }
         #[derive(Clone, Debug)]
         pub enum US0 {
-            US0_0(LrcPtr<Dice::UH0>),
-            US0_1(Func0<LrcPtr<Dice::UH0>>),
+            US0_0,
+            US0_1(Func1<string, ()>),
         }
         impl core::fmt::Display for Dice::US0 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -55,8 +55,18 @@ mod module_a51efde0 {
             }
         }
         #[derive(Clone, Debug)]
+        pub enum US1 {
+            US1_0(LrcPtr<Dice::UH0>),
+            US1_1(Func0<LrcPtr<Dice::UH0>>),
+        }
+        impl core::fmt::Display for Dice::US1 {
+            fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+                write!(f, "{}", core::any::type_name::<Self>())
+            }
+        }
+        #[derive(Clone, Debug)]
         pub struct Mut0 {
-            pub l0: MutCell<Dice::US0>,
+            pub l0: MutCell<Dice::US1>,
         }
         impl core::fmt::Display for Dice::Mut0 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -73,21 +83,20 @@ mod module_a51efde0 {
             }
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
-        pub enum US1 {
-            US1_0,
-            US1_1(u8),
+        pub enum US2 {
+            US2_0,
+            US2_1(u8),
         }
-        impl core::fmt::Display for Dice::US1 {
+        impl core::fmt::Display for Dice::US2 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
-        #[derive(Clone, Debug)]
-        pub enum US2 {
-            US2_0,
-            US2_1(Func1<string, ()>),
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        pub struct Mut2 {
+            pub l0: MutCell<Dice::US2>,
         }
-        impl core::fmt::Display for Dice::US2 {
+        impl core::fmt::Display for Dice::Mut2 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
@@ -163,6 +172,9 @@ mod module_a51efde0 {
                 move |v: LrcPtr<Dice::UH0>| Dice::closure1(v0_1, v)
             })
         }
+        pub fn closure4(unitVar: (), v0_1: Func1<string, ()>) -> Dice::US0 {
+            Dice::US0::US0_1(v0_1)
+        }
         pub fn method1(v0_1: LrcPtr<Dice::UH1>, v1_1: LrcPtr<Dice::UH1>) -> LrcPtr<Dice::UH1> {
             let v0_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v1_1.clone());
@@ -189,7 +201,7 @@ mod module_a51efde0 {
                 )),
             }
         }
-        pub fn closure4(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
+        pub fn closure6(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
             v0_1
         }
         pub fn method3(v0_1: LrcPtr<Dice::UH1>, v1_1: LrcPtr<Dice::UH0>) -> LrcPtr<Dice::UH0> {
@@ -201,23 +213,23 @@ mod module_a51efde0 {
                         v0_1_0_0.clone(),
                         Func0::new({
                             let v4_1 = v4_1.clone();
-                            move || Dice::closure4(v4_1.clone(), ())
+                            move || Dice::closure6(v4_1.clone(), ())
                         }),
                     ))
                 }
             }
         }
-        pub fn closure5(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
+        pub fn closure7(v0_1: LrcPtr<Dice::UH0>, unitVar: ()) -> LrcPtr<Dice::UH0> {
             v0_1
         }
-        pub fn closure6(
+        pub fn closure8(
             v0_1: LrcPtr<Dice::UH0>,
-            v1_1: Dice::Mut0,
+            v1_1: LrcPtr<Dice::Mut0>,
             unitVar: (),
         ) -> LrcPtr<Dice::UH0> {
-            let v2_1: Dice::US0 = v1_1.l0.get().clone();
+            let v2_1: Dice::US1 = v1_1.l0.get().clone();
             match &v2_1 {
-                Dice::US0::US0_1(v2_1_1_0) => {
+                Dice::US1::US1_1(v2_1_1_0) => {
                     let v5: LrcPtr<Dice::UH0> = (v2_1_1_0)();
                     let v12: LrcPtr<Dice::UH0> = match v5.as_ref() {
                         Dice::UH0::UH0_1 => LrcPtr::new(Dice::UH0::UH0_1),
@@ -226,34 +238,34 @@ mod module_a51efde0 {
                             Dice::method4(v0_1, v5_0_1.clone()),
                         )),
                     };
-                    v1_1.l0.set(Dice::US0::US0_0(v12.clone()));
+                    v1_1.l0.set(Dice::US1::US1_0(v12.clone()));
                     v12
                 }
-                Dice::US0::US0_0(v2_1_0_0) => v2_1_0_0.clone(),
+                Dice::US1::US1_0(v2_1_0_0) => v2_1_0_0.clone(),
             }
         }
         pub fn method4(
             v0_1: LrcPtr<Dice::UH0>,
             v1_1: Func0<LrcPtr<Dice::UH0>>,
         ) -> Func0<LrcPtr<Dice::UH0>> {
-            let v3_1: Dice::Mut0 = Dice::Mut0 {
-                l0: MutCell::new(Dice::US0::US0_1(v1_1)),
-            };
+            let v3_1: LrcPtr<Dice::Mut0> = LrcPtr::new(Dice::Mut0 {
+                l0: MutCell::new(Dice::US1::US1_1(v1_1)),
+            });
             Func0::new({
                 let v0_1 = v0_1.clone();
                 let v3_1 = v3_1.clone();
-                move || Dice::closure6(v0_1.clone(), v3_1.clone(), ())
+                move || Dice::closure8(v0_1.clone(), v3_1.clone(), ())
             })
         }
-        pub fn method6(v0_1: i64, v1_1: LrcPtr<Dice::UH0>) -> Dice::US1 {
+        pub fn method6(v0_1: i64, v1_1: LrcPtr<Dice::UH0>) -> Dice::US2 {
             let v0_1: MutCell<i64> = MutCell::new(v0_1);
             let v1_1: MutCell<LrcPtr<Dice::UH0>> = MutCell::new(v1_1.clone());
             '_method6: loop {
                 break '_method6 (match v1_1.get().as_ref() {
-                    Dice::UH0::UH0_1 => Dice::US1::US1_0,
+                    Dice::UH0::UH0_1 => Dice::US2::US2_0,
                     Dice::UH0::UH0_0(v1_1_0_0, v1_1_0_1) => {
                         if v0_1.get() <= 0_i64 {
-                            Dice::US1::US1_1(v1_1_0_0.clone())
+                            Dice::US2::US2_1(v1_1_0_0.clone())
                         } else {
                             let v0_1_temp: i64 = v0_1.get() - 1_i64;
                             let v1_1_temp: LrcPtr<Dice::UH0> = (v1_1_0_1)();
@@ -266,51 +278,78 @@ mod module_a51efde0 {
             }
         }
         pub fn method5(
-            v0_1: Func0<LrcPtr<Dice::UH0>>,
-            v1_1: Dice::Mut1,
-            v2_1: Dice::Mut1,
-            v3_1: Dice::Mut1,
+            v0_1: Dice::US0,
+            v1_1: Func0<LrcPtr<Dice::UH0>>,
+            v2_1: LrcPtr<Dice::Mut1>,
+            v3_1: LrcPtr<Dice::Mut1>,
+            v4_1: LrcPtr<Dice::Mut1>,
+            v5: LrcPtr<Dice::Mut2>,
         ) -> u8 {
-            let v0_1 = MutCell::new(v0_1.clone());
-            let v1_1: MutCell<Dice::Mut1> = MutCell::new(v1_1.clone());
-            let v2_1: MutCell<Dice::Mut1> = MutCell::new(v2_1.clone());
-            let v3_1: MutCell<Dice::Mut1> = MutCell::new(v3_1.clone());
+            let v0_1: MutCell<Dice::US0> = MutCell::new(v0_1.clone());
+            let v1_1 = MutCell::new(v1_1.clone());
+            let v2_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v2_1.clone());
+            let v3_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v3_1.clone());
+            let v4_1: MutCell<LrcPtr<Dice::Mut1>> = MutCell::new(v4_1.clone());
+            let v5: MutCell<LrcPtr<Dice::Mut2>> = MutCell::new(v5.clone());
             '_method5: loop {
                 break '_method5 ({
-                    let v4_1: LrcPtr<Dice::UH0> = v0_1();
-                    let v6: Dice::US1 = Dice::method6(v1_1.l0.get(), v4_1);
-                    match &v6 {
-                        Dice::US1::US1_1(v6_1_0) => {
-                            let v9: i64 = v1_1.l0.get() + 1_i64;
-                            v1_1.l0.set(v9);
-                            v6_1_0.clone()
-                        }
-                        _ => {
-                            if v3_1.l0.get() == -1_i64 {
-                                let v12: i64 = v1_1.l0.get();
-                                v3_1.l0.set(v12);
-                                ()
+                    let v10: string =
+                                 sprintf!("create_sequential_roller / roll / current_index: {} / acc: {} / len: {} / last_item: {:?}",
+                                          &v2_1.l0.get(), &v3_1.l0.get(),
+                                          &v4_1.l0.get(), &v5.l0.get());
+                    match &v0_1.get() {
+                        Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(v10),
+                        _ => (),
+                    }
+                    {
+                        let v12: LrcPtr<Dice::UH0> = v1_1();
+                        let v14: Dice::US2 = Dice::method6(v2_1.l0.get(), v12);
+                        match &v14 {
+                            Dice::US2::US2_1(v14_1_0) => {
+                                let v15: u8 = v14_1_0.clone();
+                                let v17: i64 = v2_1.l0.get() + 1_i64;
+                                v2_1.l0.set(v17);
+                                v5.l0.set(Dice::US2::US2_1(v15));
+                                v15
                             }
-                            {
-                                let v18: i64 = if v2_1.l0.get() >= v3_1.l0.get() {
-                                    1_i64
-                                } else {
-                                    v2_1.l0.get() + 1_i64
-                                };
-                                v2_1.l0.set(v18);
+                            _ => {
+                                match &v0_1.get() {
+                                    Dice::US0::US0_1(v0_1_1_0) => {
+                                        (v0_1_1_0)(string("create_sequential_roller / roll / None"))
+                                    }
+                                    _ => (),
+                                }
+                                if v4_1.l0.get() == -1_i64 {
+                                    let v23: i64 = v2_1.l0.get();
+                                    v4_1.l0.set(v23);
+                                    ()
+                                }
                                 {
-                                    let v20: i64 = v2_1.l0.get() - 1_i64;
-                                    v1_1.l0.set(v20);
+                                    let v29: i64 = if v3_1.l0.get() >= v4_1.l0.get() {
+                                        1_i64
+                                    } else {
+                                        v3_1.l0.get() + 1_i64
+                                    };
+                                    v3_1.l0.set(v29);
                                     {
-                                        let v0_1_temp = v0_1.get();
-                                        let v1_1_temp: Dice::Mut1 = v1_1.get();
-                                        let v2_1_temp: Dice::Mut1 = v2_1.get();
-                                        let v3_1_temp: Dice::Mut1 = v3_1.get();
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method5;
+                                        let v31: i64 = v3_1.l0.get() - 1_i64;
+                                        v2_1.l0.set(v31);
+                                        v5.l0.set(Dice::US2::US2_0);
+                                        {
+                                            let v0_1_temp: Dice::US0 = v0_1.get();
+                                            let v1_1_temp = v1_1.get();
+                                            let v2_1_temp: LrcPtr<Dice::Mut1> = v2_1.get();
+                                            let v3_1_temp: LrcPtr<Dice::Mut1> = v3_1.get();
+                                            let v4_1_temp: LrcPtr<Dice::Mut1> = v4_1.get();
+                                            let v5_temp: LrcPtr<Dice::Mut2> = v5.get();
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            v4_1.set(v4_1_temp);
+                                            v5.set(v5_temp);
+                                            continue '_method5;
+                                        }
                                     }
                                 }
                             }
@@ -319,52 +358,88 @@ mod module_a51efde0 {
                 });
             }
         }
-        pub fn closure7(
-            v0_1: Func0<LrcPtr<Dice::UH0>>,
-            v1_1: Dice::Mut1,
-            v2_1: Dice::Mut1,
-            v3_1: Dice::Mut1,
+        pub fn closure9(
+            v0_1: Dice::US0,
+            v1_1: Func0<LrcPtr<Dice::UH0>>,
+            v2_1: LrcPtr<Dice::Mut1>,
+            v3_1: LrcPtr<Dice::Mut1>,
+            v4_1: LrcPtr<Dice::Mut1>,
+            v5: LrcPtr<Dice::Mut2>,
             unitVar: (),
         ) -> u8 {
-            Dice::method5(v0_1, v1_1, v2_1, v3_1)
+            Dice::method5(v0_1, v1_1, v2_1, v3_1, v4_1, v5)
         }
-        pub fn closure3(unitVar: (), v0_1: LrcPtr<Dice::UH1>) -> Func0<u8> {
-            let v5: LrcPtr<Dice::UH0> = Dice::method3(
-                Dice::method2(
-                    v0_1.clone(),
-                    Dice::method1(v0_1, LrcPtr::new(Dice::UH1::UH1_1)),
-                ),
-                LrcPtr::new(Dice::UH0::UH0_1),
-            );
-            let v7 = Dice::method4(
-                v5.clone(),
+        pub fn closure5(v0_1: Dice::US0, v1_1: LrcPtr<Dice::UH1>) -> Func0<u8> {
+            match &v0_1 {
+                Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(string("create_sequential_roller ()")),
+                _ => (),
+            }
+            {
+                let v8: LrcPtr<Dice::UH0> = Dice::method3(
+                    Dice::method2(
+                        v1_1.clone(),
+                        Dice::method1(v1_1, LrcPtr::new(Dice::UH1::UH1_1)),
+                    ),
+                    LrcPtr::new(Dice::UH0::UH0_1),
+                );
+                let v10 = Dice::method4(
+                    v8.clone(),
+                    Func0::new({
+                        let v8 = v8.clone();
+                        move || Dice::closure7(v8.clone(), ())
+                    }),
+                );
+                let v11: LrcPtr<Dice::Mut1> = LrcPtr::new(Dice::Mut1 {
+                    l0: MutCell::new(0_i64),
+                });
+                let v12: LrcPtr<Dice::Mut1> = LrcPtr::new(Dice::Mut1 {
+                    l0: MutCell::new(1_i64),
+                });
+                let v13: LrcPtr<Dice::Mut1> = LrcPtr::new(Dice::Mut1 {
+                    l0: MutCell::new(-1_i64),
+                });
+                let v15: LrcPtr<Dice::Mut2> = LrcPtr::new(Dice::Mut2 {
+                    l0: MutCell::new(Dice::US2::US2_0),
+                });
                 Func0::new({
-                    let v5 = v5.clone();
-                    move || Dice::closure5(v5.clone(), ())
-                }),
+                    let v0_1 = v0_1.clone();
+                    let v10 = v10.clone();
+                    let v11 = v11.clone();
+                    let v12 = v12.clone();
+                    let v13 = v13.clone();
+                    let v15 = v15.clone();
+                    move || {
+                        Dice::closure9(
+                            v0_1.clone(),
+                            v10.clone(),
+                            v11.clone(),
+                            v12.clone(),
+                            v13.clone(),
+                            v15.clone(),
+                            (),
+                        )
+                    }
+                })
+            }
+        }
+        pub fn closure3(
+            unitVar: (),
+            v0_1: Option<Func1<string, ()>>,
+        ) -> Func1<LrcPtr<Dice::UH1>, Func0<u8>> {
+            let v3_1: Dice::US0 = defaultValue(
+                Dice::US0::US0_0,
+                map(
+                    Func1::new(move |v: Func1<string, ()>| Dice::closure4((), v)),
+                    v0_1,
+                ),
             );
-            let v8: Dice::Mut1 = Dice::Mut1 {
-                l0: MutCell::new(0_i64),
-            };
-            let v9: Dice::Mut1 = Dice::Mut1 {
-                l0: MutCell::new(1_i64),
-            };
-            let v10: Dice::Mut1 = Dice::Mut1 {
-                l0: MutCell::new(-1_i64),
-            };
-            Func0::new({
-                let v10 = v10.clone();
-                let v7 = v7.clone();
-                let v8 = v8.clone();
-                let v9 = v9.clone();
-                move || Dice::closure7(v7.clone(), v8.clone(), v9.clone(), v10.clone(), ())
+            Func1::new({
+                let v3_1 = v3_1.clone();
+                move |v_1: LrcPtr<Dice::UH1>| Dice::closure5(v3_1.clone(), v_1)
             })
         }
-        pub fn closure9(unitVar: (), v0_1: Func1<string, ()>) -> Dice::US2 {
-            Dice::US2::US2_1(v0_1)
-        }
-        pub fn method7(v0_1: Dice::US2, v1_1: u64, v2_1: i8, v3_1: u64) -> i8 {
-            let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
+        pub fn method7(v0_1: Dice::US0, v1_1: u64, v2_1: i8, v3_1: u64) -> i8 {
+            let v0_1: MutCell<Dice::US0> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<u64> = MutCell::new(v1_1);
             let v2_1: MutCell<i8> = MutCell::new(v2_1);
             let v3_1: MutCell<u64> = MutCell::new(v3_1);
@@ -372,7 +447,7 @@ mod module_a51efde0 {
                 break '_method7 (if v3_1.get() < v1_1.get() {
                     let v5: u64 = v3_1.get() * 6_u64;
                     if v5 > v3_1.get() {
-                        let v0_1_temp: Dice::US2 = v0_1.get();
+                        let v0_1_temp: Dice::US0 = v0_1.get();
                         let v1_1_temp: u64 = v1_1.get();
                         let v2_1_temp: i8 = v2_1.get() + 1_i8;
                         let v3_1_temp: u64 = v5;
@@ -389,7 +464,7 @@ mod module_a51efde0 {
                             &v3_1.get()
                         );
                         match &v0_1.get() {
-                            Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v9),
+                            Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(v9),
                             _ => (),
                         }
                         v2_1.get()
@@ -402,395 +477,395 @@ mod module_a51efde0 {
                         &v3_1.get()
                     );
                     match &v0_1.get() {
-                        Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v12),
+                        Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(v12),
                         _ => (),
                     }
                     v2_1.get()
                 });
             }
         }
-        pub fn closure76(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
+        pub fn closure77(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
                 0_u64,
-                Func0::new(move || Dice::closure76((), ())),
+                Func0::new(move || Dice::closure77((), ())),
+            ))
+        }
+        pub fn closure76(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
+            LrcPtr::new(Dice::UH2::UH2_0(
+                9223372036854775808_u64,
+                Func0::new(move || Dice::closure77((), ())),
             ))
         }
         pub fn closure75(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                9223372036854775808_u64,
+                4611686018427387904_u64,
                 Func0::new(move || Dice::closure76((), ())),
             ))
         }
         pub fn closure74(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                4611686018427387904_u64,
+                6917529027641081856_u64,
                 Func0::new(move || Dice::closure75((), ())),
             ))
         }
         pub fn closure73(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                6917529027641081856_u64,
+                1152921504606846976_u64,
                 Func0::new(move || Dice::closure74((), ())),
             ))
         }
         pub fn closure72(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                1152921504606846976_u64,
+                15564440312192434176_u64,
                 Func0::new(move || Dice::closure73((), ())),
             ))
         }
         pub fn closure71(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                15564440312192434176_u64,
+                11817445422220181504_u64,
                 Func0::new(move || Dice::closure72((), ())),
             ))
         }
         pub fn closure70(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                11817445422220181504_u64,
+                5044031582654955520_u64,
                 Func0::new(move || Dice::closure71((), ())),
             ))
         }
         pub fn closure69(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                5044031582654955520_u64,
+                6989586621679009792_u64,
                 Func0::new(move || Dice::closure70((), ())),
             ))
         }
         pub fn closure68(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                6989586621679009792_u64,
+                16537217831704461312_u64,
                 Func0::new(move || Dice::closure69((), ())),
             ))
         }
         pub fn closure67(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                16537217831704461312_u64,
+                11979575008805519360_u64,
                 Func0::new(move || Dice::closure68((), ())),
             ))
         }
         pub fn closure66(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                11979575008805519360_u64,
+                14294425217273954304_u64,
                 Func0::new(move || Dice::closure67((), ())),
             ))
         }
         pub fn closure65(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                14294425217273954304_u64,
+                2382404202878992384_u64,
                 Func0::new(move || Dice::closure66((), ())),
             ))
         }
         pub fn closure64(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                2382404202878992384_u64,
+                6545982058383015936_u64,
                 Func0::new(move || Dice::closure65((), ())),
             ))
         }
         pub fn closure63(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                6545982058383015936_u64,
+                10314369046585278464_u64,
                 Func0::new(move || Dice::closure64((), ())),
             ))
         }
         pub fn closure62(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                10314369046585278464_u64,
+                4793518853382471680_u64,
                 Func0::new(move || Dice::closure63((), ())),
             ))
         }
         pub fn closure61(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                4793518853382471680_u64,
+                3873377154515337216_u64,
                 Func0::new(move || Dice::closure62((), ())),
             ))
         }
         pub fn closure60(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                3873377154515337216_u64,
+                645562859085889536_u64,
                 Func0::new(move || Dice::closure61((), ())),
             ))
         }
         pub fn closure59(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                645562859085889536_u64,
+                107593809847648256_u64,
                 Func0::new(move || Dice::closure60((), ())),
             ))
         }
         pub fn closure58(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                107593809847648256_u64,
+                3092389647259533312_u64,
                 Func0::new(move || Dice::closure59((), ())),
             ))
         }
         pub fn closure57(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                3092389647259533312_u64,
+                9738770311398031360_u64,
                 Func0::new(move || Dice::closure58((), ())),
             ))
         }
         pub fn closure56(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                9738770311398031360_u64,
+                16995415113324298240_u64,
                 Func0::new(move || Dice::closure57((), ())),
             ))
         }
         pub fn closure55(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                16995415113324298240_u64,
+                8981483876790566912_u64,
                 Func0::new(move || Dice::closure56((), ())),
             ))
         }
         pub fn closure54(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                8981483876790566912_u64,
+                13794743361938128896_u64,
                 Func0::new(move || Dice::closure55((), ())),
             ))
         }
         pub fn closure53(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                13794743361938128896_u64,
+                2299123893656354816_u64,
                 Func0::new(move || Dice::closure54((), ())),
             ))
         }
         pub fn closure52(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                2299123893656354816_u64,
+                3457644661227651072_u64,
                 Func0::new(move || Dice::closure53((), ())),
             ))
         }
         pub fn closure51(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                3457644661227651072_u64,
+                576274110204608512_u64,
                 Func0::new(move || Dice::closure52((), ())),
             ))
         }
         pub fn closure50(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                576274110204608512_u64,
+                6244960376270618624_u64,
                 Func0::new(move || Dice::closure51((), ())),
             ))
         }
         pub fn closure49(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                6244960376270618624_u64,
+                13338656111851470848_u64,
                 Func0::new(move || Dice::closure50((), ())),
             ))
         }
         pub fn closure48(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                13338656111851470848_u64,
+                14520938734448279552_u64,
                 Func0::new(move || Dice::closure49((), ())),
             ))
         }
         pub fn closure47(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                14520938734448279552_u64,
+                14717985838214414336_u64,
                 Func0::new(move || Dice::closure48((), ())),
             ))
         }
         pub fn closure46(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                14717985838214414336_u64,
+                5527454985320660992_u64,
                 Func0::new(move || Dice::closure47((), ())),
             ))
         }
         pub fn closure45(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                5527454985320660992_u64,
+                16293529225644736512_u64,
                 Func0::new(move || Dice::closure46((), ())),
             ))
         }
         pub fn closure44(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                16293529225644736512_u64,
+                11938960241128898560_u64,
                 Func0::new(move || Dice::closure45((), ())),
             ))
         }
         pub fn closure43(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                11938960241128898560_u64,
+                8138741398091333632_u64,
                 Func0::new(move || Dice::closure44((), ())),
             ))
         }
         pub fn closure42(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                8138741398091333632_u64,
+                7505371590918406144_u64,
                 Func0::new(move || Dice::closure43((), ())),
             ))
         }
         pub fn closure41(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                7505371590918406144_u64,
+                16623181993244360704_u64,
                 Func0::new(move || Dice::closure42((), ())),
             ))
         }
         pub fn closure40(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                16623181993244360704_u64,
+                8919445023443910656_u64,
                 Func0::new(move || Dice::closure41((), ())),
             ))
         }
         pub fn closure39(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                8919445023443910656_u64,
+                4561031516192243712_u64,
                 Func0::new(move || Dice::closure40((), ())),
             ))
         }
         pub fn closure38(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                4561031516192243712_u64,
+                9983543956220149760_u64,
                 Func0::new(move || Dice::closure39((), ())),
             ))
         }
         pub fn closure37(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                9983543956220149760_u64,
+                4738381338321616896_u64,
                 Func0::new(move || Dice::closure38((), ())),
             ))
         }
         pub fn closure36(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                4738381338321616896_u64,
+                789730223053602816_u64,
                 Func0::new(move || Dice::closure37((), ())),
             ))
         }
         pub fn closure35(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                789730223053602816_u64,
+                131621703842267136_u64,
                 Func0::new(move || Dice::closure36((), ())),
             ))
         }
         pub fn closure34(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                131621703842267136_u64,
+                21936950640377856_u64,
                 Func0::new(move || Dice::closure35((), ())),
             ))
         }
         pub fn closure33(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                21936950640377856_u64,
+                3656158440062976_u64,
                 Func0::new(move || Dice::closure34((), ())),
             ))
         }
         pub fn closure32(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                3656158440062976_u64,
+                609359740010496_u64,
                 Func0::new(move || Dice::closure33((), ())),
             ))
         }
         pub fn closure31(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                609359740010496_u64,
+                101559956668416_u64,
                 Func0::new(move || Dice::closure32((), ())),
             ))
         }
         pub fn closure30(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                101559956668416_u64,
+                16926659444736_u64,
                 Func0::new(move || Dice::closure31((), ())),
             ))
         }
         pub fn closure29(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                16926659444736_u64,
+                2821109907456_u64,
                 Func0::new(move || Dice::closure30((), ())),
             ))
         }
         pub fn closure28(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                2821109907456_u64,
+                470184984576_u64,
                 Func0::new(move || Dice::closure29((), ())),
             ))
         }
         pub fn closure27(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                470184984576_u64,
+                78364164096_u64,
                 Func0::new(move || Dice::closure28((), ())),
             ))
         }
         pub fn closure26(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                78364164096_u64,
+                13060694016_u64,
                 Func0::new(move || Dice::closure27((), ())),
             ))
         }
         pub fn closure25(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                13060694016_u64,
+                2176782336_u64,
                 Func0::new(move || Dice::closure26((), ())),
             ))
         }
         pub fn closure24(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                2176782336_u64,
+                362797056_u64,
                 Func0::new(move || Dice::closure25((), ())),
             ))
         }
         pub fn closure23(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                362797056_u64,
+                60466176_u64,
                 Func0::new(move || Dice::closure24((), ())),
             ))
         }
         pub fn closure22(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                60466176_u64,
+                10077696_u64,
                 Func0::new(move || Dice::closure23((), ())),
             ))
         }
         pub fn closure21(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                10077696_u64,
+                1679616_u64,
                 Func0::new(move || Dice::closure22((), ())),
             ))
         }
         pub fn closure20(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                1679616_u64,
+                279936_u64,
                 Func0::new(move || Dice::closure21((), ())),
             ))
         }
         pub fn closure19(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                279936_u64,
+                46656_u64,
                 Func0::new(move || Dice::closure20((), ())),
             ))
         }
         pub fn closure18(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                46656_u64,
+                7776_u64,
                 Func0::new(move || Dice::closure19((), ())),
             ))
         }
         pub fn closure17(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                7776_u64,
+                1296_u64,
                 Func0::new(move || Dice::closure18((), ())),
             ))
         }
         pub fn closure16(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                1296_u64,
+                216_u64,
                 Func0::new(move || Dice::closure17((), ())),
             ))
         }
         pub fn closure15(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                216_u64,
+                36_u64,
                 Func0::new(move || Dice::closure16((), ())),
             ))
         }
         pub fn closure14(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
             LrcPtr::new(Dice::UH2::UH2_0(
-                36_u64,
-                Func0::new(move || Dice::closure15((), ())),
-            ))
-        }
-        pub fn closure13(unitVar: (), unitVar_1: ()) -> LrcPtr<Dice::UH2> {
-            LrcPtr::new(Dice::UH2::UH2_0(
                 6_u64,
-                Func0::new(move || Dice::closure14((), ())),
+                Func0::new(move || Dice::closure15((), ())),
             ))
         }
         pub fn method10(v0_1: i8, v1_1: LrcPtr<Dice::UH2>) -> Dice::US4 {
@@ -813,8 +888,8 @@ mod module_a51efde0 {
                 });
             }
         }
-        pub fn method9(v0_1: Dice::US2, v1_1: i8, v2_1: LrcPtr<Dice::UH1>, v3_1: u64) -> Dice::US3 {
-            let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
+        pub fn method9(v0_1: Dice::US0, v1_1: i8, v2_1: LrcPtr<Dice::UH1>, v3_1: u64) -> Dice::US3 {
+            let v0_1: MutCell<Dice::US0> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<i8> = MutCell::new(v1_1);
             let v2_1: MutCell<LrcPtr<Dice::UH1>> = MutCell::new(v2_1.clone());
             let v3_1: MutCell<u64> = MutCell::new(v3_1);
@@ -826,7 +901,7 @@ mod module_a51efde0 {
                         &v3_1.get()
                     );
                     match &v0_1.get() {
-                        Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v5),
+                        Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(v5),
                         _ => (),
                     }
                     Dice::US3::US3_1(v3_1.get() + 1_u64, v2_1.get())
@@ -841,7 +916,7 @@ mod module_a51efde0 {
                                     v1_1.get(),
                                     LrcPtr::new(Dice::UH2::UH2_0(
                                         1_u64,
-                                        Func0::new(move || Dice::closure13((), ())),
+                                        Func0::new(move || Dice::closure14((), ())),
                                     )),
                                 );
                                 let v23: u64 = (v10 - 1_u8) as u64
@@ -855,11 +930,11 @@ mod module_a51efde0 {
                                                       &v3_1.get(), &v10,
                                                       &v23);
                                 match &v0_1.get() {
-                                    Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v24),
+                                    Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(v24),
                                     _ => (),
                                 }
                                 {
-                                    let v0_1_temp: Dice::US2 = v0_1.get();
+                                    let v0_1_temp: Dice::US0 = v0_1.get();
                                     let v1_1_temp: i8 = v1_1.get() - 1_i8;
                                     let v2_1_temp: LrcPtr<Dice::UH1> = v11;
                                     let v3_1_temp: u64 = v3_1.get() + v23;
@@ -877,11 +952,11 @@ mod module_a51efde0 {
                                     &v10
                                 );
                                 match &v0_1.get() {
-                                    Dice::US2::US2_1(v0_1_1_0) => (v0_1_1_0)(v29),
+                                    Dice::US0::US0_1(v0_1_1_0) => (v0_1_1_0)(v29),
                                     _ => (),
                                 }
                                 {
-                                    let v0_1_temp: Dice::US2 = v0_1.get();
+                                    let v0_1_temp: Dice::US0 = v0_1.get();
                                     let v1_1_temp: i8 = v1_1.get() - 1_i8;
                                     let v2_1_temp: LrcPtr<Dice::UH1> = v11.clone();
                                     let v3_1_temp: u64 = v3_1.get();
@@ -908,14 +983,14 @@ mod module_a51efde0 {
             }
         }
         pub fn method12(
-            v0_1: Dice::US2,
+            v0_1: Dice::US0,
             v1_1: Func0<u8>,
             v2_1: bool,
             v3_1: u64,
             v4_1: i8,
             v5: LrcPtr<Dice::UH1>,
         ) -> u64 {
-            let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
+            let v0_1: MutCell<Dice::US0> = MutCell::new(v0_1.clone());
             let v1_1 = MutCell::new(v1_1.clone());
             let v2_1: MutCell<bool> = MutCell::new(v2_1);
             let v3_1: MutCell<u64> = MutCell::new(v3_1);
@@ -945,7 +1020,7 @@ mod module_a51efde0 {
                                 v13
                             } else {
                                 if v2_1.get() {
-                                    let v0_1_temp: Dice::US2 = v0_1.get();
+                                    let v0_1_temp: Dice::US0 = v0_1.get();
                                     let v1_1_temp = v1_1.get();
                                     let v2_1_temp: bool = v2_1.get();
                                     let v3_1_temp: u64 = v3_1.get();
@@ -973,7 +1048,7 @@ mod module_a51efde0 {
                             }
                         } else {
                             if v2_1.get() {
-                                let v0_1_temp: Dice::US2 = v0_1.get();
+                                let v0_1_temp: Dice::US0 = v0_1.get();
                                 let v1_1_temp = v1_1.get();
                                 let v2_1_temp: bool = v2_1.get();
                                 let v3_1_temp: u64 = v3_1.get();
@@ -1004,7 +1079,7 @@ mod module_a51efde0 {
             }
         }
         pub fn method8(
-            v0_1: Dice::US2,
+            v0_1: Dice::US0,
             v1_1: Func0<u8>,
             v2_1: bool,
             v3_1: u64,
@@ -1012,7 +1087,7 @@ mod module_a51efde0 {
             v5: LrcPtr<Dice::UH1>,
             v6: i8,
         ) -> u64 {
-            let v0_1: MutCell<Dice::US2> = MutCell::new(v0_1.clone());
+            let v0_1: MutCell<Dice::US0> = MutCell::new(v0_1.clone());
             let v1_1 = MutCell::new(v1_1.clone());
             let v2_1: MutCell<bool> = MutCell::new(v2_1);
             let v3_1: MutCell<u64> = MutCell::new(v3_1);
@@ -1021,7 +1096,7 @@ mod module_a51efde0 {
             let v6: MutCell<i8> = MutCell::new(v6);
             '_method8: loop {
                 break '_method8 (if v6.get() < v4_1.get() + 1_i8 {
-                    let v0_1_temp: Dice::US2 = v0_1.get();
+                    let v0_1_temp: Dice::US0 = v0_1.get();
                     let v1_1_temp = v1_1.get();
                     let v2_1_temp: bool = v2_1.get();
                     let v3_1_temp: u64 = v3_1.get();
@@ -1057,7 +1132,7 @@ mod module_a51efde0 {
                                     Dice::method11(v4_1.get(), v1_1.get(), 0_i8),
                                 )
                             } else {
-                                let v0_1_temp: Dice::US2 = v0_1.get();
+                                let v0_1_temp: Dice::US0 = v0_1.get();
                                 let v1_1_temp = v1_1.get();
                                 let v2_1_temp: bool = v2_1.get();
                                 let v3_1_temp: u64 = v3_1.get();
@@ -1086,7 +1161,7 @@ mod module_a51efde0 {
                                 Dice::method11(v4_1.get(), v1_1.get(), 0_i8),
                             )
                         } else {
-                            let v0_1_temp: Dice::US2 = v0_1.get();
+                            let v0_1_temp: Dice::US0 = v0_1.get();
                             let v1_1_temp = v1_1.get();
                             let v2_1_temp: bool = v2_1.get();
                             let v3_1_temp: u64 = v3_1.get();
@@ -1107,7 +1182,7 @@ mod module_a51efde0 {
                 });
             }
         }
-        pub fn closure12(v0_1: Dice::US2, v1_1: Func0<u8>, v2_1: bool, v3_1: u64) -> u64 {
+        pub fn closure13(v0_1: Dice::US0, v1_1: Func0<u8>, v2_1: bool, v3_1: u64) -> u64 {
             Dice::method8(
                 v0_1.clone(),
                 v1_1,
@@ -1122,35 +1197,35 @@ mod module_a51efde0 {
                 0_i8,
             )
         }
-        pub fn closure11(v0_1: Dice::US2, v1_1: Func0<u8>, v2_1: bool) -> Func1<u64, u64> {
+        pub fn closure12(v0_1: Dice::US0, v1_1: Func0<u8>, v2_1: bool) -> Func1<u64, u64> {
             Func1::new({
                 let v0_1 = v0_1.clone();
                 let v1_1 = v1_1.clone();
                 let v2_1 = v2_1.clone();
-                move |v: u64| Dice::closure12(v0_1.clone(), v1_1.clone(), v2_1, v)
+                move |v: u64| Dice::closure13(v0_1.clone(), v1_1.clone(), v2_1, v)
             })
         }
-        pub fn closure10(v0_1: Dice::US2, v1_1: Func0<u8>) -> Func1<bool, Func1<u64, u64>> {
+        pub fn closure11(v0_1: Dice::US0, v1_1: Func0<u8>) -> Func1<bool, Func1<u64, u64>> {
             Func1::new({
                 let v0_1 = v0_1.clone();
                 let v1_1 = v1_1.clone();
-                move |v: bool| Dice::closure11(v0_1.clone(), v1_1.clone(), v)
+                move |v: bool| Dice::closure12(v0_1.clone(), v1_1.clone(), v)
             })
         }
-        pub fn closure8(
+        pub fn closure10(
             unitVar: (),
             v0_1: Option<Func1<string, ()>>,
         ) -> Func1<Func0<u8>, Func1<bool, Func1<u64, u64>>> {
-            let v3_1: Dice::US2 = defaultValue(
-                Dice::US2::US2_0,
+            let v3_1: Dice::US0 = defaultValue(
+                Dice::US0::US0_0,
                 map(
-                    Func1::new(move |v: Func1<string, ()>| Dice::closure9((), v)),
+                    Func1::new(move |v: Func1<string, ()>| Dice::closure4((), v)),
                     v0_1,
                 ),
             );
             Func1::new({
                 let v3_1 = v3_1.clone();
-                move |v_1: Func0<u8>| Dice::closure10(v3_1.clone(), v_1)
+                move |v_1: Func0<u8>| Dice::closure11(v3_1.clone(), v_1)
             })
         }
         pub fn method13(v0_1: LrcPtr<Dice::UH1>, v1_1: i8) -> i8 {
@@ -1169,16 +1244,16 @@ mod module_a51efde0 {
                 });
             }
         }
-        pub fn closure79(
+        pub fn closure80(
             v0_1: Option<Func1<string, ()>>,
             v1_1: u64,
             v2_1: LrcPtr<Dice::UH1>,
         ) -> Option<u64> {
             let v10: Dice::US3 = Dice::method9(
                 defaultValue(
-                    Dice::US2::US2_0,
+                    Dice::US0::US0_0,
                     map(
-                        Func1::new(move |v: Func1<string, ()>| Dice::closure9((), v)),
+                        Func1::new(move |v: Func1<string, ()>| Dice::closure4((), v)),
                         v0_1,
                     ),
                 ),
@@ -1204,23 +1279,23 @@ mod module_a51efde0 {
                 _ => None::<u64>,
             }
         }
-        pub fn closure78(
+        pub fn closure79(
             v0_1: Option<Func1<string, ()>>,
             v1_1: u64,
         ) -> Func1<LrcPtr<Dice::UH1>, Option<u64>> {
             Func1::new({
                 let v0_1 = v0_1.clone();
                 let v1_1 = v1_1.clone();
-                move |v: LrcPtr<Dice::UH1>| Dice::closure79(v0_1.clone(), v1_1, v)
+                move |v: LrcPtr<Dice::UH1>| Dice::closure80(v0_1.clone(), v1_1, v)
             })
         }
-        pub fn closure77(
+        pub fn closure78(
             unitVar: (),
             v0_1: Option<Func1<string, ()>>,
         ) -> Func1<u64, Func1<LrcPtr<Dice::UH1>, Option<u64>>> {
             Func1::new({
                 let v0_1 = v0_1.clone();
-                move |v: u64| Dice::closure78(v0_1.clone(), v)
+                move |v: u64| Dice::closure79(v0_1.clone(), v)
             })
         }
         pub fn method39(v0_1: LrcPtr<Dice::UH1>, v1_1: i64) -> Dice::US5 {
@@ -2644,7 +2719,7 @@ mod module_a51efde0 {
                 });
             }
         }
-        pub fn closure80(unitVar: (), v0_1: Array<string>) -> i32 {
+        pub fn closure81(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1_1: string = sprintf!(
                 "calculate_dice_count / max: {} / n: {} / p: {}",
                 &i64::MAX,
@@ -2669,11 +2744,15 @@ mod module_a51efde0 {
         pub fn rotate_numbers(x: i64) -> Func1<LrcPtr<Dice::UH0>, LrcPtr<Dice::UH0>> {
             (Dice::v0())(x)
         }
-        pub fn v1() -> Func1<LrcPtr<Dice::UH1>, Func0<u8>> {
-            static v1: MutCell<Option<Func1<LrcPtr<Dice::UH1>, Func0<u8>>>> = MutCell::new(None);
-            v1.get_or_init(|| Func1::new(move |v: LrcPtr<Dice::UH1>| Dice::closure3((), v)))
+        pub fn v1() -> Func1<Option<Func1<string, ()>>, Func1<LrcPtr<Dice::UH1>, Func0<u8>>> {
+            static v1: MutCell<
+                Option<Func1<Option<Func1<string, ()>>, Func1<LrcPtr<Dice::UH1>, Func0<u8>>>>,
+            > = MutCell::new(None);
+            v1.get_or_init(|| Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure3((), v)))
         }
-        pub fn create_sequential_roller(x: LrcPtr<Dice::UH1>) -> Func0<u8> {
+        pub fn create_sequential_roller(
+            x: Option<Func1<string, ()>>,
+        ) -> Func1<LrcPtr<Dice::UH1>, Func0<u8>> {
             (Dice::v1())(x)
         }
         pub fn v2(
@@ -2687,7 +2766,9 @@ mod module_a51efde0 {
                     >,
                 >,
             > = MutCell::new(None);
-            v2.get_or_init(|| Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure8((), v)))
+            v2.get_or_init(|| {
+                Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure10((), v))
+            })
         }
         pub fn roll_progressively(
             x: Option<Func1<string, ()>>,
@@ -2706,7 +2787,7 @@ mod module_a51efde0 {
                 >,
             > = MutCell::new(None);
             v3.get_or_init(|| {
-                Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure77((), v))
+                Func1::new(move |v: Option<Func1<string, ()>>| Dice::closure78((), v))
             })
         }
         pub fn roll_within_bounds(
@@ -2716,7 +2797,7 @@ mod module_a51efde0 {
         }
         pub fn v4() -> Func1<Array<string>, i32> {
             static v4: MutCell<Option<Func1<Array<string>, i32>>> = MutCell::new(None);
-            v4.get_or_init(|| Func1::new(move |v: Array<string>| Dice::closure80((), v)))
+            v4.get_or_init(|| Func1::new(move |v: Array<string>| Dice::closure81((), v)))
         }
         pub fn main(args: Array<string>) -> i32 {
             (Dice::v4())(args)

@@ -8465,11 +8465,146 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="from_vec">from_vec<a class="anchor-link" href="#from_vec">¶</a></h2>
+<h2 id="try_pick">try_pick<a class="anchor-link" href="#try_pick">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_pick</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">option</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="n">array</span> <span class="p">:</span> <span class="n">a</span> <span class="n">_</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="n">u</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="o">||&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
+        <span class="k">match</span> <span class="n">acc</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">Some</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">acc</span>
+        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">fn</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">am</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
+<span class="o">|&gt;</span> <span class="n">try_pick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">then</span> <span class="n">Some</span> <span class="n">x</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+and Mut1 = {mutable l0 : int32; mutable l1 : US0}
+let rec method1 (v0 : Mut0) : bool =
+    let v1 : int32 = v0.l0
+    let v2 : bool = v1 &lt; 10
+    v2
+and method2 (v0 : int32, v1 : Mut1) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 &lt; v0
+    v3
+and method0 () : unit =
+    let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (10)
+    let v1 : Mut0 = {l0 = 0} : Mut0
+    while method1(v1) do
+        let v3 : int32 = v1.l0
+        v0.[int v3] &lt;- v3
+        let v4 : int32 = v3 + 1
+        v1.l0 &lt;- v4
+        ()
+    let v5 : int32 = v0.Length
+    let v6 : US0 = US0_0
+    let v7 : Mut1 = {l0 = 0; l1 = v6} : Mut1
+    while method2(v5, v7) do
+        let v9 : int32 = v7.l0
+        let v10 : int32 =  -v9
+        let v11 : int32 = v10 + v5
+        let v12 : int32 = v11 - 1
+        let v13 : US0 = v7.l1
+        let v14 : int32 = v0.[int v12]
+        let v21 : US0 =
+            match v13 with
+            | US0_0 -&gt; (* None *)
+                let v16 : bool = v14 = 5
+                if v16 then
+                    US0_1(v14)
+                else
+                    US0_0
+            | US0_1(v15) -&gt; (* Some *)
+                v13
+        let v22 : int32 = v9 + 1
+        v7.l0 &lt;- v22
+        v7.l1 &lt;- v21
+        ()
+    let v23 : US0 = v7.l1
+    let v27 : bool =
+        match v23 with
+        | US0_1(v25) -&gt; (* Some *)
+            let v26 : bool = v25 = 5
+            v26
+        | _ -&gt;
+            false
+    let v28 : US0 = US0_1(5)
+    let v29 : string = $"_equal / actual: %A{v23} / expected: %A{v28}"
+    let v30 : bool = v27 = false
+    if v30 then
+        failwith&lt;unit&gt; v29
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="from_vec">from_vec<a class="anchor-link" href="#from_vec">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8500,7 +8635,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8510,7 +8645,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

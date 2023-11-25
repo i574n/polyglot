@@ -116,8 +116,8 @@ type transaction_list_by_account_id =
 type contract_by_id =
     {
         code_hash : rust.std_string
-        transaction_hash : rust.std_string
-        timestamp : u64
+        transaction_hash : option rust.std_string
+        timestamp : option u64
         locked : bool
     }
 
@@ -239,6 +239,8 @@ inl transaction_list_by_account_id_box ({ items cursor } : transaction_list_by_a
     !\($'"dice_ui::model::near::backend::TransactionListByAccountId { items: !items, cursor: !cursor }"')
 
 inl contract_by_id_box ({ code_hash transaction_hash timestamp locked } : contract_by_id) : contract_by_id' =
+    inl transaction_hash = transaction_hash |> optionm'.box
+    inl timestamp = timestamp |> optionm'.box
     !\($'"dice_ui::model::near::backend::ContractById { code_hash: !code_hash, transaction_hash: !transaction_hash, timestamp: !timestamp, locked: !locked }"')
 
 inl account_transactions_count_box ({ in_transactions_count out_transactions_count } : account_transactions_count) : account_transactions_count' =
@@ -401,8 +403,8 @@ inl transaction_list_by_account_id_unbox (x : transaction_list_by_account_id') :
 inl contract_by_id_unbox (x : contract_by_id') : contract_by_id =
     inl x = join x
     inl code_hash = !\($'"!x.code_hash"')
-    inl transaction_hash = !\($'"!x.transaction_hash"')
-    inl timestamp = !\($'"!x.timestamp"')
+    inl transaction_hash = !\($'"!x.transaction_hash"') |> optionm'.unbox
+    inl timestamp = !\($'"!x.timestamp"') |> optionm'.unbox
     inl locked = !\($'"!x.locked"')
     { code_hash transaction_hash timestamp locked }
 
