@@ -3,6 +3,7 @@ open rust_operators
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::For\")>] type leptos_For = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Show\")>] type leptos_Show = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
@@ -59,6 +60,7 @@ nominal span = $"leptos_html_Span"
 nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal for = $"leptos_For"
+nominal show = $"leptos_Show"
 nominal fragment = $"leptos_Fragment"
 nominal text = $"leptos_dom_Text"
 nominal transparent = $"leptos_dom_Transparent"
@@ -142,6 +144,10 @@ inl array_to_fragment (view : a _ view) : fragment =
     inl view = join view
     !\($'"leptos::Fragment::new(!view.to_vec())"')
 
+inl array_to_view (view : a _ view) : view =
+    inl view = join view
+    !\($'"leptos::CollectView::collect_view(!view.to_vec())"')
+
 inl vec_to_fragment (view : rust.vec view) : fragment =
     !\($'"leptos::Fragment::new(!view)"')
 
@@ -179,22 +185,26 @@ inl transparent_to_fragment (transparent : transparent) : fragment =
 inl macro_to_element (view : string) : html_element _ =
     view |> macro_to_view_trait |> view_trait_to_element
 
-inl transparents_fragment (items : array transparent) : fragment =
+inl transparents_fragment (items : array_base transparent) : fragment =
     inl transparent_to_view x =
         inl x = join x
         x |> transparent_to_view
     inl transparent_to_view = join transparent_to_view
     !\($'"!items.to_vec().iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
 
-inl views_to_fragment (items : array view) : fragment =
+inl views_to_view (items : array_base view) : view =
+    inl items = join items
     items
+    // |> fun x => a (join x) : a u64 _
+    |> fun x => a x : a u64 _
+    |> array_to_view
+
+inl views_to_fragment (items : array_base view) : fragment =
+    inl items = join items
+    items
+    // |> fun x => a (join x) : a u64 _
     |> fun x => a x : a u64 _
     |> array_to_fragment
-
-inl views_to_view (items : array view) : view =
-    items
-    |> views_to_fragment
-    |> fragment_to_view
 
 inl new_text (text : string) : text =
     inl text = join text
@@ -323,6 +333,7 @@ inl tag_raw tag props children =
     $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
 
 inl tag_element tag props children : html_element _ =
+    inl children = join children
     tag_raw tag props children
     |> macro_to_element
 
@@ -345,7 +356,7 @@ inl for props : view =
     tag_closed_raw "leptos::For" props
     |> macro_to_view
 
-inl for forall t u. (array : array t) (key_fn : t -> u) (children' : t -> fragment) : view =
+inl for forall t u. (array : array_base t) (key_fn : t -> u) (children' : t -> fragment) : view =
     inl array = join array
     inl key_fn = join key_fn
     inl children' = join children'
@@ -354,6 +365,21 @@ inl for forall t u. (array : array t) (key_fn : t -> u) (children' : t -> fragme
         $'"key=move |x| !key_fn(x.to_owned())"'
         $'"let:x"'
         $'"children=move |x| !children'(x)"'
+    ]
+
+inl show props : view =
+    tag_closed_raw "leptos::Show" props
+    |> macro_to_view
+
+inl show (when_fn : () -> bool) (fallback : () -> view) (children : () -> fragment) : view =
+    inl when_fn = join when_fn
+    inl when_fn = join when_fn
+    inl fallback = join fallback
+    inl children = join children
+    show [
+        $'"when=move || !when_fn()"'
+        $'"fallback=move || !fallback()"'
+        $'"children=std::rc::Rc::new(move || !children())"'
     ]
 
 inl label props children : _ label =
@@ -526,18 +552,19 @@ inl grid_pair { padding class } left right : _ div =
     inl padding = padding |> optionm'.default_value (grid_pair_padding_class ())
     inl left : () -> fragment = join left
     inl right : () -> fragment = join right
-    inl class : string = $'"grid gap-[1px] md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] [width:100%] " + !padding + " " + !class + ""'
+    inl class : string = $'"grid items-center gap-[1px] md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] [width:100%] " + !padding + " " + !class + ""'
 
     div [
         $'"class=\\\"" + !class + "\\\""'
     ] fun () =>
-    ;[
-        dt left
-        |> element_to_view
+        ;[
+            dt left
+            |> element_to_view
 
-        dd right
-        |> element_to_view
-    ] |> views_to_fragment
+            dd right
+            |> element_to_view
+        ]
+        |> views_to_fragment
 
 inl view_map_grid children : _ div =
     div [

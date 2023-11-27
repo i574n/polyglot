@@ -22,12 +22,12 @@ type seq dim el = dim -> option el
 
 #!markdown
 
-## item
+## try_item
 
 #!spiral
 
-inl item n seq =
-    seq n
+inl try_item n s =
+    n |> s
 
 #!markdown
 
@@ -37,7 +37,8 @@ inl item n seq =
 
 inl from_list list =
     fun n =>
-        list |> listm'.try_item n
+        list
+        |> listm'.try_item n
 
 #!spiral
 
@@ -45,8 +46,87 @@ inl from_list list =
 
 listm.init 10i32 print_and_return
 |> from_list
-|> item 5i32
+|> try_item 5i32
 |> _equal (Some 5i32)
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map fn
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> map ((*) 2)
+|> try_item 5i32
+|> _equal (Some 10i32)
+
+#!markdown
+
+## mapi
+
+#!spiral
+
+inl mapi fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map (fn n)
+
+#!spiral
+
+// // test
+
+listm.init 10i32 print_and_return
+|> from_list
+|> mapi fun i x => i + x
+|> try_item 5i32
+|> _equal (Some 10i32)
+
+#!markdown
+
+## choose
+
+#!spiral
+
+inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq dim u =
+    fun n =>
+        inl rec body fn s i i' =
+            match i |> s with
+            | None => None
+            | Some x =>
+                match x |> fn with
+                | Some x when n = i' => Some x
+                | Some _ => loop (i + 1) (i' + 1)
+                | _ => loop (i + 1) i'
+        and inl loop i i' =
+            if n |> var_is |> not
+            then body fn s i i'
+            else
+                inl fn = join fn
+                inl s = join s
+                join body fn s i i'
+        loop 0 0
+
+#!spiral
+
+// // test
+
+listm.init 10i32 print_and_return
+|> from_list
+|> choose (fun x => if x % 2 = 0 then Some x else None)
+|> try_item 1i32
+|> _equal (Some 2i32)
 
 #!markdown
 
@@ -56,7 +136,9 @@ listm.init 10i32 print_and_return
 
 inl indexed s =
     fun n =>
-        s |> item n |> optionm.map (fun x => n, x)
+        s
+        |> map fun x =>
+            n, x
 
 #!spiral
 
@@ -65,7 +147,7 @@ inl indexed s =
 listm.init 10i32 ((*) 2)
 |> from_list
 |> indexed
-|> item 5i32
+|> try_item 5i32
 |> _equal (Some (5i32, 10i32))
 
 #!markdown
@@ -101,7 +183,7 @@ inl zip_with fn seq1 seq2 =
 
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip_with (optionm'.choose (+))
-|> item 2i32
+|> try_item 2i32
 |> _equal (Some 6)
 
 #!markdown
@@ -171,6 +253,57 @@ listm.init 10i32 id
 |> fun f (n : i32) => f n
 |> to_list
 |> _equal (listm.init 10i32 id)
+
+#!markdown
+
+## from_array
+
+#!spiral
+
+inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
+    fun n =>
+        if n >= length array
+        then None
+        else index array n |> Some
+
+#!spiral
+
+// // test
+
+a ;[ 1; 2; 3 ]
+|> from_array
+|> item 1i32
+|> _equal (Some 2i32)
+
+#!markdown
+
+## to_array
+
+#!spiral
+
+inl to_array seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+inl to_array_ seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold_ fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+#!spiral
+
+// // test
+
+listm.init 10i32 id
+|> from_list
+|> fun (x : i32 -> _) => x
+|> to_array
+|> _equal (a ;[ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] : _ i32 _)
 
 #!markdown
 

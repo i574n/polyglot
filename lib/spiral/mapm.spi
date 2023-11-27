@@ -7,7 +7,7 @@ inl get forall k v. (key : k) (map : rust.hash_map k v) : optionm'.option' v =
     inl key = join key
     !\($'"std::collections::HashMap::get(&!map, &!key).map(|x| *x)"')
 
-inl from_array forall k v. (array : array (k * v)) : rust.hash_map k v =
+inl from_array forall k v. (array : array_base (k * v)) : rust.hash_map k v =
     inl array = join array
     !\($'"std::collections::HashMap::from_iter(!array.to_vec())"')
 

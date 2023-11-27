@@ -46,13 +46,19 @@ inl obj_to_string x : string =
 instance to_string any =
     obj_to_string
 
-instance to_string result t u = fun x => real
-    typecase (t * u) with
-    | string * string =>
-        match x with
-        | Ok x => x
-        | Error x => x
-    | _ => x |> obj_to_string
+instance to_string result t u = fun x =>
+    real
+        open rust
+        typecase (t * u) with
+        | string * string =>
+            match x with
+            | Ok x => x
+            | Error x => $'"Error: " + !x + ""' : string
+        | std_string * std_string =>
+            match x with
+            | Ok x => from_std_string x
+            | Error x => $'"Error: " + string !x + ""' : string
+        | _ => obj_to_string `u x
 
 inl serialize forall t. (x : t) : resultm.result' rust.std_string rust.json_error =
     !\($'"serde_json::to_string(&!x)"')
@@ -71,6 +77,23 @@ inl strip_prefix (prefix : char) (s : rust.std_string) : optionm'.option' (rust.
 inl starts_with (value : rust.std_string) (s : rust.std_string) : bool =
     inl s = join s
     !\($'"!s.starts_with(&!value)"')
+
+inl base64_decode (s : rust.std_string) : result rust.std_string rust.std_string =
+    fun () =>
+        inl s = join s
+        inl bytes : resultm.result' (rust.vec u8) rust.base64_decode_error =
+            !\($'"base64::Engine::decode(&base64::engine::general_purpose::STANDARD, !s)"')
+        inl bytes =
+            bytes
+            |> resultm.map_error' format'
+            |> resultm.try'
+        inl result : resultm.result' rust.std_string rust.utf8_error =
+            !\($'"std::str::from_utf8(&!bytes).map(String::from)"')
+        result
+        |> resultm.map_error' format'
+    |> fun x =>
+        join x ()
+        |> resultm.unbox
 
 open rust
 instance to_string std_string = from_std_string

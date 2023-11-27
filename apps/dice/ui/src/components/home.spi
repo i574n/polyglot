@@ -2,6 +2,7 @@ open rust_operators
 
 inl render { router } =
     inl router : i32 = router
+    print_static "<home.render>"
     leptos.log $'"home.render () / router: " + string !router + ""'
 
     inl _database = state.use_database ()

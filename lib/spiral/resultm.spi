@@ -35,7 +35,7 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
     | Ok x => Ok x
     | Error x => x |> fn |> Error
 
-inl map' forall t e u. (fn : e -> u) (source : result' t e) : result' u e =
+inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
     inl fn = join fn
     inl source = join source
     !\($'"!source.map(|x| !fn(x))"')

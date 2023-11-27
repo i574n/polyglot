@@ -7,6 +7,8 @@ nominal disposable = $"System.IDisposable"
 nominal exn = $"exn"
 nominal guid = $"System.Guid"
 
+let array x = x
+
 // // ## prototype
 
 prototype (~:?>) r : forall t. t -> r

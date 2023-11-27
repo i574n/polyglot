@@ -1,6 +1,6 @@
 open rust_operators
 
-inl main (args : array string) =
+inl main (args : array_base string) =
     leptos.log $'"main / args: " + string !args + ""'
 
     !\($'"let _ = console_log::init_with_level(log::Level::Debug)"')
@@ -33,8 +33,10 @@ inl main (args : array string) =
     0i32
 
 inl main () =
+    print_static "<dice_ui>"
     rust.types ()
     leptos.types ()
     src.model.near.backend.types ()
 
     $"let main args = !main args" : ()
+    print_static "</dice_ui>"

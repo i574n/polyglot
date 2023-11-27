@@ -4,6 +4,9 @@ union menu_tab =
     | Settings
 
 inl render tab =
+    print_static "<menu_tabs.render>"
+    leptos.log $'"menu_tabs.render ()"'
+
     let url = leptos.use_url ()
     ;[
         leptos.div [

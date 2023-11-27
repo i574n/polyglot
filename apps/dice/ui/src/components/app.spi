@@ -1,6 +1,7 @@
 open rust_operators
 
 inl render () =
+    print_static "<app.render>"
     leptos.log $'"app.render ()"'
 
     leptos.provide_meta_context ()

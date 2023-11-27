@@ -40,10 +40,20 @@ inl init_series start end inc =
     inl total = conv ((end - start) / inc) + 1
     am.init total (conv >> (*) inc >> (+) start) : a i32 _
 
+// // ## head
+
+inl head (ar : a _ _) =
+    if length ar > 0
+    then index ar 0
+    else error_type "The length of the array should be greater than 0."
+
 // // ## last
 
-inl last (array : a _ _) =
-    index array (length array - 1)
+inl last (ar : a _ _) =
+    inl len = length ar
+    if len > 0
+    then index ar (len - 1)
+    else error_type "The length of the array should be greater than 0."
 
 // // ## indexed
 
@@ -70,9 +80,17 @@ inl from_vec forall dim el. (vec : rust.vec el) : a dim el =
     inl vec = join vec
     !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
 
+// // ## map_vec
+
+inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
+    inl fn = join fn
+    inl ar = join ar
+    !\($'"!ar.to_vec().iter().map(|x| !fn(x.clone())).collect()"')
+    |> from_vec
+
 // // ## map_base
 
-inl map_base forall t u. (fn : t -> u) (x : array t) : array u =
+inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     a x
     |> am.map fn
     |> fun (a x : _ i64 _) => x

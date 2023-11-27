@@ -1,6 +1,7 @@
 open rust_operators
 
 inl render () : _ leptos.div =
+    print_static "<content.render>"
     leptos.log $'"content.render ()"'
 
     inl location = leptos.use_location ()

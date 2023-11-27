@@ -61,7 +61,7 @@ type permission =
     {
         permission_type : rust.std_string
         contract_id : option rust.std_string
-        method_names : option (array rust.std_string)
+        method_names : option (array_base rust.std_string)
     }
 
 type access_key =
@@ -97,7 +97,7 @@ type transaction =
         receiver_id : rust.std_string
         block_hash : rust.std_string
         block_timestamp : u64
-        actions : array transaction_action
+        actions : array_base transaction_action
         status : rust.std_string
     }
 
@@ -109,7 +109,7 @@ type transaction_cursor =
 
 type transaction_list_by_account_id =
     {
-        items : array transaction
+        items : array_base transaction
         cursor : option transaction_cursor
     }
 
@@ -328,7 +328,7 @@ inl permission_unbox (x : permission') : permission =
         !\($'"!x.method_names"')
         |> optionm'.unbox
         |> optionm.map am'.from_vec
-        |> optionm.map fun (a x : _ i32 _) => x
+        |> optionm.map fun (a x : _ i32 _) => join x
     inl method_names = join method_names
     { permission_type contract_id method_names }
 
@@ -379,7 +379,8 @@ inl transaction_unbox (x : transaction') : transaction =
     inl actions =
         !\($'"!x.actions.into_iter().map(|x| !transaction_action_unbox(x)).collect()"')
         |> am'.from_vec
-        |> fun (a x : _ i32 _) => x
+        |> fun (a x : _ i32 _) => join x
+
     inl status = !\($'"!x.status.clone()"')
     { hash signer_id receiver_id block_hash block_timestamp actions status }
 
@@ -395,7 +396,7 @@ inl transaction_list_by_account_id_unbox (x : transaction_list_by_account_id') :
     inl items =
         !\($'"!x.items.into_iter().map(|x| !transaction_unbox(x)).collect()"')
         |> am'.from_vec
-        |> fun (a x : _ i32 _) => x
+        |> fun (a x : _ i32 _) => join x
     inl cursor = !\($'"!x.cursor"') |> optionm'.unbox |> optionm.map transaction_cursor_unbox
     inl cursor = join cursor
     { items cursor }

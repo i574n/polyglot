@@ -4,22 +4,62 @@
 
 type seq dim el = dim -> option el
 
-// // ## item
+// // ## try_item
 
-inl item n seq =
-    seq n
+inl try_item n s =
+    n |> s
 
 // // ## from_list
 
 inl from_list list =
     fun n =>
-        list |> listm'.try_item n
+        list
+        |> listm'.try_item n
+
+// // ## map
+
+inl map fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map fn
+
+// // ## mapi
+
+inl mapi fn s =
+    fun n =>
+        n
+        |> s
+        |> optionm.map (fn n)
+
+// // ## choose
+
+inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq dim u =
+    fun n =>
+        inl rec body fn s i i' =
+            match i |> s with
+            | None => None
+            | Some x =>
+                match x |> fn with
+                | Some x when n = i' => Some x
+                | Some _ => loop (i + 1) (i' + 1)
+                | _ => loop (i + 1) i'
+        and inl loop i i' =
+            if n |> var_is |> not
+            then body fn s i i'
+            else
+                inl fn = join fn
+                inl s = join s
+                join body fn s i i'
+        loop 0 0
 
 // // ## indexed
 
 inl indexed s =
     fun n =>
-        s |> item n |> optionm.map (fun x => n, x)
+        s
+        |> map fun x =>
+            n, x
 
 // // ## zip
 
@@ -67,6 +107,30 @@ inl to_list_ seq =
     seq
     |> fold_ (fun acc x => x :: acc) []
     |> listm.rev
+
+// // ## from_array
+
+inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
+    fun n =>
+        if n >= length array
+        then None
+        else index array n |> Some
+
+// // ## to_array
+
+inl to_array seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
+
+inl to_array_ seq =
+    inl ar = a ;[] |> mut
+    ((), seq)
+    ||> fold_ fun _ x =>
+        ar <- *ar /@ a ;[x]
+    *ar
 
 // // ## take_while
 

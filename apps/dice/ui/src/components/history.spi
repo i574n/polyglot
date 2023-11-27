@@ -2,6 +2,8 @@ open rust_operators
 open model.near.backend
 
 inl transaction_render (transaction : transaction) : _ leptos.div =
+    print_static "<history.transaction_render>"
+
     leptos.div [
         $'"class=\\\"flex flex-1 flex-col\\\""'
     ] fun () =>
@@ -20,7 +22,9 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                         fun () =>
                             transaction.block_timestamp
                             |> date_time.from_timestamp'
-                            |> optionm.map (date_time.format' "%Y-%m-%d %H:%M:%S" >> sm'.from_std_string)
+                            |> optionm.map (
+                                date_time.to_local
+                                >> date_time.format'' "%Y-%m-%d %H:%M:%S" >> sm'.from_std_string)
                             |> resultm.from_option
                             |> to_string
                             |> leptos.text_fragment
@@ -48,53 +52,58 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                         { padding = Some ""; class = "" }
                         fun () => "Actions" |> leptos.text_fragment
                         fun () =>
-                            // (a transaction.actions : _ i32 _)
-                            // |> am'.try_pick function
-                            //     | FunctionCall { method_name args gas deposit } as x =>
-                            //         inl method_name = join method_name
-                            //         inl args = join args
-                            //         inl call = $'"" + !method_name "(" + !args + ")"'
-
-                            //         leptos.grid_pair
-                            //             { padding = Some ""; class = "" }
-                            //             fun () => "Function Call" |> leptos.text_fragment
-                            //             fun () => call |> leptos.text_fragment
-                            //         |> leptos.element_to_fragment
-                            //         |> Some
-                            //     | AddKey { public_key access_key } as x =>
-                            //         x
-                            //         |> sm'.format_pretty'
-                            //         |> sm'.from_std_string
-                            //         |> leptos.text_fragment
-                            //         |> Some
-                            //     | DeployContract { code } as x =>
-                            //         x
-                            //         |> sm'.format_pretty'
-                            //         |> sm'.from_std_string
-                            //         |> leptos.text_fragment
-                            //         |> Some
-                            //     | Transfer { deposit } as x =>
-                            //         x
-                            //         |> sm'.format_pretty'
-                            //         |> sm'.from_std_string
-                            //         |> leptos.text_fragment
-                            //         |> Some
-                            //     | _ => None
-                            // |> optionm'.default_with fun () =>
+                            a transaction.actions
+                            |> am'.map_vec function
+                                | FunctionCall { method_name args gas deposit } =>
+                                    leptos.grid_pair
+                                        { padding = Some ""; class = "" }
+                                        fun () => "Function Call" |> leptos.text_fragment
+                                        fun () =>
+                                            inl args = args |> sm'.base64_decode |> to_string
+                                            inl call : string = $'"" + string !method_name + "(" + !args + ")"'
+                                            call |> leptos.text_fragment
+                                    |> leptos.element_to_view
+                                | AddKey { public_key access_key } =>
+                                    leptos.grid_pair
+                                        { padding = Some ""; class = "" }
+                                        fun () => "Add Key" |> leptos.text_fragment
+                                        fun () =>
+                                            inl text : string = $'"Public Key: " + string !public_key + ""'
+                                            text |> leptos.text_fragment
+                                    |> leptos.element_to_view
+                                | DeployContract { code } =>
+                                    leptos.grid_pair
+                                        { padding = Some ""; class = "" }
+                                        fun () => "Contract Deploy" |> leptos.text_fragment
+                                        fun () =>
+                                            code |> sm'.from_std_string |> leptos.text_fragment
+                                    |> leptos.element_to_view
+                                | Transfer { deposit } =>
+                                    leptos.grid_pair
+                                        { padding = Some ""; class = "" }
+                                        fun () => "Transfer" |> leptos.text_fragment
+                                        fun () =>
+                                            deposit |> sm'.from_std_string |> leptos.text_fragment
+                                    |> leptos.element_to_view
+                                | _ =>
                                     leptos.span [
                                         $'"class=\\\"flex items-center\\\""'
                                     ] fun () =>
                                         ;[
                                             leptos.x_red_svg () |> leptos.element_to_view
                                             "None" |> leptos.text_view
-                                        ] |> leptos.views_to_fragment
-                                    |> leptos.element_to_fragment
+                                        ]
+                                        |> leptos.views_to_fragment
+                                    |> leptos.element_to_view
+                            |> fun (a x : _ i32 _) => x
+                            |> leptos.views_to_fragment
                     |> leptos.element_to_view
 
                     leptos.grid_pair
                         { padding = Some ""; class = "" }
                         fun () => "Status" |> leptos.text_fragment
                         fun () =>
+                            print_static "##16"
                             transaction.status
                             |> to_string
                             |> leptos.text_fragment
@@ -106,6 +115,7 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
         |> leptos.views_to_fragment
 
 inl render () =
+    print_static "<history.render>"
     leptos.log $'"history.render ()"'
 
     inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
@@ -139,10 +149,11 @@ inl render () =
         |> resultm.unwrap'
         |> sm'.encode_uri_component
         |> sm'.format'
+        |> fun x =>
+            leptos.log $'"history.render () / url_input create_memo / result: " + string !x + ""'
+            x
 
     inl url = leptos.create_memo fun () =>
-        leptos.log $'"history.render () / url create_memo"'
-
         inl explorer_backend_host =
             leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
             |> leptos.rw_signal_get
@@ -150,15 +161,17 @@ inl render () =
         inl url_input = url_input |> leptos.memo_get
 
         inl url : string = $'"https://" + string !explorer_backend_host + "/trpc/account.transactionsCount,contract.byId,transaction.listByAccountId?batch=1&input=" + string !url_input + ""'
-        leptos.log $'"history.render () / url: " + !url + ""'
+
+        leptos.log $'"history.render () / url create_memo / url: " + !url + ""'
+
         url
 
     inl json : leptos.resource string (resultm.result' string string) =
         leptos.create_local_resource
             fun () => url |> leptos.memo_get
             fun url =>
+                leptos.log $'"history.render () / json create_local_resource / url.len: " + (!url |> String.length |> string) + ""'
                 fun () =>
-                    leptos.log $'"history.render () / json create_local_resource"'
                     url
                     |> networking.new_request_get
                     |> async.await
@@ -175,8 +188,6 @@ inl render () =
 
     inl result_wrapper : leptos.memo (option (resultm.result' (a i32 result_wrapper') string)) =
         leptos.create_memo fun () =>
-            leptos.log $'"history.render () / result_wrapper create_memo"'
-
             json
             |> leptos.resource_get
             |> optionm'.map fun json =>
@@ -190,22 +201,26 @@ inl render () =
                     |> am'.from_vec
                 |> resultm.box
             |> optionm'.unbox
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / result_wrapper create_memo / result: " + string !x_log + ""'
+                x
 
     inl result_wrapper : rust.func0 (option (result (a i32 result_wrapper) string)) =
         rust.move (fun () => result_wrapper) fun result_wrapper' =>
-            leptos.log $'"history.render () / result_wrapper move"'
-
             result_wrapper
             |> leptos.memo_get
             |> optionm.map fun result_wrapper =>
                 result_wrapper
                 |> resultm.unbox
                 |> resultm.map (am.map result_wrapper_unbox)
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / result_wrapper move / result: " + string !x_log + ""'
+                x
 
     inl result_data : rust.func0 (option (result result_data string)) =
         rust.move (fun () => result_wrapper) fun result_wrapper =>
-            leptos.log $'"history.render () / result_data move"'
-
             result_wrapper
             |> rust.func0_get
             |> optionm.map fun result_wrapper =>
@@ -218,11 +233,13 @@ inl render () =
                             result.data
                     |> resultm.from_option
                 |> resultm.flatten
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / result_data move / result: " + string !x_log + ""'
+                x
 
     inl transactions_count : rust.func0 (option (result account_transactions_count string)) =
         rust.move (fun () => result_data) fun result_data' =>
-            leptos.log $'"history.render () / transaction_count move"'
-
             result_data
             |> rust.func0_get
             |> optionm.map (resultm.map function
@@ -230,11 +247,13 @@ inl render () =
                     Some account_transactions_count
                 | _ => None)
             |> resultm.flatten_option
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / transaction_count move / result: " + string !x_log + ""'
+                x
 
     inl transaction_list : rust.func0 (option (result transaction_list_by_account_id string)) =
         rust.move (fun () => result_data) fun result_data' =>
-            leptos.log $'"history.render () / transaction_list move"'
-
             result_data
             |> rust.func0_get
             |> optionm.map (resultm.map function
@@ -242,11 +261,13 @@ inl render () =
                     Some transaction_list_by_account_id
                 | _ => None)
             |> resultm.flatten_option
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / transaction_list move / result: " + string !x_log + ""'
+                x
 
     inl cursor : rust.func0 (option (result transaction_cursor string)) =
         rust.move (fun () => transaction_list) fun transaction_list' =>
-            leptos.log $'"history.render () / cursor move"'
-
             transaction_list
             |> rust.func0_get
             |> optionm.map fun transaction_list =>
@@ -255,17 +276,23 @@ inl render () =
                     result.cursor
                     |> resultm.from_option
                 |> resultm.flatten
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / cursor move / result: " + string !x_log + ""'
+                x
 
-    inl transactions : rust.func0 (option (result (array transaction) string)) =
+    inl transactions : rust.func0 (option (result (array_base transaction) string)) =
         rust.move (fun () => 0i32) fun transaction_list' =>
-            leptos.log $'"history.render () / transactions move"'
-
             transaction_list
             |> rust.func0_get
             |> optionm.map fun transaction_list =>
                 transaction_list
                 |> resultm.map fun result =>
                     result.items
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"history.render () / transactions move / result: " + string !x_log + ""'
+                x
 
     ;[
         leptos.accordion "History" true fun () =>
@@ -277,8 +304,11 @@ inl render () =
                     ] fun () =>
                         leptos.for
                             transactions
-                            (fun transaction => transaction.hash)
-                            (transaction_render >> leptos.element_to_fragment)
+                            fun transaction => transaction.hash
+                            fun transaction =>
+                                transaction
+                                |> transaction_render
+                                |> leptos.element_to_fragment
                         |> leptos.view_to_fragment
                     |> leptos.element_to_fragment
                 | Some (Error error) =>

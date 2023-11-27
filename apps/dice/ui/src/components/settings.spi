@@ -20,6 +20,9 @@ inl global_state_log_render () : _ leptos.pre =
         global_state_json |> leptos.move_to_fragment (leptos.memo_get >> leptos.text_fragment)
 
 inl render () =
+    print_static "<settings.render>"
+    leptos.log $'"settings.render ()"'
+
     inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
 
     ;[

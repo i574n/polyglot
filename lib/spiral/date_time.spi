@@ -2,7 +2,14 @@ open rust_operators
 
 type ticks = i64
 nominal date_time = $"System.DateTime"
+nominal date_time' t = $"chrono_DateTime<`t>"
+nominal local = $"chrono_Local"
 nominal naive_date_time = $"chrono_NaiveDateTime"
+nominal utc = $"chrono_Utc"
+
+inl to_local (date_time : naive_date_time) : date_time' local =
+    inl date_time = join date_time
+    !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!date_time)"')
 
 inl from_timestamp' forall t {int}. (timestamp : t) : option naive_date_time =
     inl timestamp = join timestamp
@@ -11,6 +18,11 @@ inl from_timestamp' forall t {int}. (timestamp : t) : option naive_date_time =
     result |> optionm'.unbox
 
 inl format' (format : string) (date_time : naive_date_time) : rust.std_string =
+    inl format = #format
+    inl date_time = join date_time
+    !\($'"!date_time.format(!format).to_string()"')
+
+inl format'' (format : string) (date_time : date_time' _) : rust.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
