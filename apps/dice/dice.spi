@@ -138,7 +138,7 @@ inl roll_progressively (log : option (string -> ())) roll reroll max =
 
 // // ## main
 
-inl main (_args : array string) =
+inl main (_args : array_base string) =
     inl result = roll_progressively (Some console.write_line) roll_dice true (limit.max : i64)
     console.write_line ($"$\"result: {!result}\"" : string)
     0i32

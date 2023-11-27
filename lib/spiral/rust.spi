@@ -152,10 +152,9 @@ inl func0_get forall t. (x : func0 t) : t =
     inl x = join x
     !\($'"!x()"')
 
-inl move forall t u. (x : () -> t) (fn : t -> u) : func0 u =
-    inl x = join x
+inl move forall t. (fn : () -> t) : func0 t =
     inl fn = join fn
-    !\($'"Func0::new(move || !fn(!x()))"')
+    !\($'"Func0::new(move || !fn())"')
 
 inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
     $"!x |> unbox"

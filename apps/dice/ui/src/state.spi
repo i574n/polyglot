@@ -128,25 +128,6 @@ inl use_database () =
                     | None => None
                 |> async.future_init 3 0
 
-    inl state_data : leptos.resource (optionm'.option' rust.rexie) (option state_data) =
-        leptos.create_local_resource
-            fun () =>
-                database
-                |> leptos.resource_get
-            fun (database : optionm'.option' rust.rexie) =>
-                fun () =>
-                    inl database_log = database |> sm'.format_debug
-                    leptos.log $'"state.use_database () / state_data create_local_resource / database: " + !database_log + ""'
-                    match database |> optionm'.unbox with
-                    | Some database =>
-                        database
-                        |> get_data state_data_key
-                        |> async.await
-                        |> resultm.unbox
-                        |> resultm.get
-                    | None => None
-                |> async.future_init 3 0
-
     leptos.create_effect fun () =>
         leptos.log $'"state.use_database () / effect core_state_data / ##1"'
 
@@ -186,6 +167,25 @@ inl use_database () =
             | _ => ()
         | _ => ()
 
+    inl state_data : leptos.resource (optionm'.option' rust.rexie) (option state_data) =
+        leptos.create_local_resource
+            fun () =>
+                database
+                |> leptos.resource_get
+            fun (database : optionm'.option' rust.rexie) =>
+                fun () =>
+                    inl database_log = database |> sm'.format_debug
+                    leptos.log $'"state.use_database () / state_data create_local_resource / database: " + !database_log + ""'
+                    match database |> optionm'.unbox with
+                    | Some database =>
+                        database
+                        |> get_data state_data_key
+                        |> async.await
+                        |> resultm.unbox
+                        |> resultm.get
+                    | None => None
+                |> async.future_init 3 0
+
     leptos.create_effect fun () =>
         leptos.log $'"state.use_database () / effect state_data / ##1"'
 
@@ -221,24 +221,6 @@ inl use_database () =
                 |> resultm.unbox
                 |> resultm.get
             | None => leptos.log $'"state.use_database () / set_core_state_data_action / database=None"'
-        |> async.future_init 7 1
-
-    inl set_state_data_action = leptos.create_action fun value =>
-        inl value_log = value |> sm'.format_debug
-        inl database =
-            database
-            |> leptos.resource_get
-            |> optionm'.unbox
-        fun () =>
-            match database with
-            | Some database =>
-                leptos.log $'"state.use_database () / set_state_data_action / database=Some(_) / value: " + string !value_log + ""'
-                database
-                |> set_data state_data_key value
-                |> async.await
-                |> resultm.unbox
-                |> resultm.get
-            | None => leptos.log $'"state.use_database () / set_state_data_action / database=None"'
         |> async.future_init 7 1
 
     let loading = leptos.create_memo fun () =>
@@ -290,6 +272,24 @@ inl use_database () =
                     set_core_state_data_action |> leptos.action_dispatch new_core_state_data
                     storage |> store.storage_set core_state_data_key new_core_state_data
                 | _ => ()
+
+    inl set_state_data_action = leptos.create_action fun value =>
+        inl value_log = value |> sm'.format_debug
+        inl database =
+            database
+            |> leptos.resource_get
+            |> optionm'.unbox
+        fun () =>
+            match database with
+            | Some database =>
+                leptos.log $'"state.use_database () / set_state_data_action / database=Some(_) / value: " + string !value_log + ""'
+                database
+                |> set_data state_data_key value
+                |> async.await
+                |> resultm.unbox
+                |> resultm.get
+            | None => leptos.log $'"state.use_database () / set_state_data_action / database=None"'
+        |> async.future_init 7 1
 
     leptos.create_effect fun () =>
         inl loaded = loaded |> leptos.signal_get

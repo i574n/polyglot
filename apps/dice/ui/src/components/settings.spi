@@ -17,7 +17,7 @@ inl global_state_log_render () : _ leptos.pre =
     leptos.pre [
         $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px]\\\""'
     ] fun () =>
-        global_state_json |> leptos.move_to_fragment (leptos.memo_get >> leptos.text_fragment)
+        global_state_json |> leptos.memo_get |> leptos.text_fragment
 
 inl render () =
     print_static "<settings.render>"

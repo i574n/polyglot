@@ -326,9 +326,15 @@ inl concat_props props =
     ||> listm.fold fun acc (x : string) =>
         $'" " + !x + !acc + ""'
 
+inl move_to_fragment fn =
+    rust.move fn
+    |> closure_to_fragment
+
 inl tag_raw tag props children =
     inl tag : string = tag
     inl props = props |> concat_props
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
     $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
 
@@ -456,6 +462,7 @@ inl route path view children : view =
     tag_closed_raw "leptos_router::Route" [
         $'"path=!path"'
         $'"view=move || !view()"'
+        $'"children=Box::new(move || !children())"'
     ]
     |> macro_to_view
 
@@ -501,12 +508,16 @@ inl arrow_down_svg () : _ svg =
 inl accordion title open' children : _ details =
     inl title = title |> sm'.to_std_string
     inl open' : bool = open'
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
     inl arrow_down_svg = arrow_down_svg ()
     $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open=!open'><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\">{!arrow_down_svg}</span></summary><div class=\\\"[display:flex] [flex:1] [flex-direction:column] [overflow:auto]\\\">{!children()}</div></details>"'
     |> macro_to_element
 
 inl divider children : _ span =
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
     $'"<span class=\\\"flex items-center pb-[2px]\\\"><span class=\\\"pr-6 [font-size:14px]\\\">{!children()}</span><span class=\\\"h-px flex-1 bg-gray-300\\\"></span></span>"'
     |> macro_to_element
@@ -594,13 +605,9 @@ inl tab_link href icon label select : _ a' =
         ]
         |> views_to_fragment
 
-inl text_block_pre children =
+inl text_block_pre text =
     pre [
         $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\\\""'
     ] fun () =>
-        children
-
-inl move_to_fragment fn deps =
-    rust.move (fun () => deps) fun deps =>
-        fn deps
-    |> closure_to_fragment
+        text
+        |> text_fragment

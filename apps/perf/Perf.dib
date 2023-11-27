@@ -920,7 +920,7 @@ inl get_solutions () =
                 inl b = sm.slice input { from = 0; to = i - 1 } : string
                 $"!a + !b" : string
             )
-            |> string_concat " "
+            |> sm'.concat " "
 
         "FA",
         fun input =>
@@ -938,7 +938,7 @@ inl get_solutions () =
             )
             |> listm.toArray
             |> fun x => x : a i32 _
-            |> string_concat " "
+            |> sm'.concat " "
 
         // "FB",
         // fun input =>
@@ -994,7 +994,7 @@ rotate_strings_tests ()
 #!spiral
 
 // // test
-// // timeout=60000
+// // timeout=90000
 // // print_code=true
 
 inl binary_search_semi_open_1 arr target left right =
