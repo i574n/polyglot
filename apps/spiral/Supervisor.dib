@@ -486,8 +486,8 @@ Fails to satisfy: number"
         None,
         [
             "main.spi:
-Unbound variable.
-Unbound variable."
+Unbound variable: x.
+Unbound variable: y."
         ]
     )
 )

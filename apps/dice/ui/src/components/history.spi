@@ -103,7 +103,6 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                         { padding = Some ""; class = "" }
                         fun () => "Status" |> leptos.text_fragment
                         fun () =>
-                            print_static "##16"
                             transaction.status
                             |> to_string
                             |> leptos.text_fragment
