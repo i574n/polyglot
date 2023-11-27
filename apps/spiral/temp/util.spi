@@ -56,7 +56,7 @@ instance (~!!) any = to_any
 inl empty_list forall t. () : list t = Nil
 inl none forall t. () : option t = None
 inl some forall t. (x : t) : option t = Some x
-inl get_locals () : array any = ;[]
+inl get_locals () : array_base any = ;[]
 inl null forall t. () : t = $"null |> unbox<`t>"
 
 type pair a b = $"(`a * `b)"

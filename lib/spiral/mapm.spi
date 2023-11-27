@@ -1,5 +1,13 @@
 open rust_operators
 
+nominal map k v = $"Map<`k, `v>"
+
+inl item forall k v. (k : k) (map : map k v) : v =
+    $"!map.[!k]"
+
+inl of_array forall k v. (array : a _ (k * v)) : map k v =
+    $"!array |> Array.map (fun (struct (a, b)) -> a, b) |> Map.ofArray"
+
 inl new_hash_map () : rust.hash_map _ _ =
     !\($'"std::collections::HashMap::new()"')
 

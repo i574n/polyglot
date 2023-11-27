@@ -7806,15 +7806,15 @@ a.anchor-link {
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v18 : UH0 = UH0_1
-    let v19 : UH0 = UH0_0(0, v18)
-    let v20 : UH0 = UH0_0(1, v19)
-    let v21 : UH0 = UH0_0(2, v20)
-    let v22 : UH0 = UH0_1
-    let v23 : UH0 = UH0_0(0, v22)
-    let v24 : UH0 = UH0_0(1, v23)
-    let v25 : UH0 = UH0_0(2, v24)
-    let v26 : string = $"_equal / actual: %A{v21} / expected: %A{v25}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(0, v0)
+    let v2 : UH0 = UH0_0(1, v1)
+    let v3 : UH0 = UH0_0(2, v2)
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = UH0_0(0, v4)
+    let v6 : UH0 = UH0_0(1, v5)
+    let v7 : UH0 = UH0_0(2, v6)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
     ()
 method0()
 
@@ -7904,7 +7904,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{9} / expected: %A{9}"
+    let v0 : string = $"__expect / actual: %A{9} / expected: %A{9}"
     ()
 method0()
 
@@ -7991,7 +7991,7 @@ method0()
     printfn $"print_and_return / x: {2}"
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
-    let v0 : string = $"_equal / actual: %A{4} / expected: %A{4}"
+    let v0 : string = $"__expect / actual: %A{4} / expected: %A{4}"
     ()
 method0()
 
@@ -8251,11 +8251,11 @@ and method0 () : unit =
             failwith&lt;int32&gt; "Option does not have a value."
         | US1_1(v21) -&gt; (* Some *)
             v21
-    let v25 : bool = v24 = 3
-    let v26 : string = $"_equal / actual: %A{v24} / expected: %A{3}"
-    let v27 : bool = v25 = false
+    let v25 : string = $"__expect / actual: %A{v24} / expected: %A{3}"
+    let v26 : bool = v24 = 3
+    let v27 : bool = v26 = false
     if v27 then
-        failwith&lt;unit&gt; v26
+        failwith&lt;unit&gt; v25
     let v28 : US0 = v2.l0
     let v43 : UH0 =
         match v28 with
@@ -8283,11 +8283,11 @@ and method0 () : unit =
             failwith&lt;int32&gt; "Option does not have a value."
         | US1_1(v46) -&gt; (* Some *)
             v46
-    let v50 : bool = v49 = 5
-    let v51 : string = $"_equal / actual: %A{v49} / expected: %A{5}"
-    let v52 : bool = v50 = false
+    let v50 : string = $"__expect / actual: %A{v49} / expected: %A{5}"
+    let v51 : bool = v49 = 5
+    let v52 : bool = v51 = false
     if v52 then
-        failwith&lt;unit&gt; v51
+        failwith&lt;unit&gt; v50
 method0()
 
 print_and_return / x: 0
@@ -8398,11 +8398,11 @@ and method0 () : unit =
             failwith&lt;int32&gt; "Option does not have a value."
         | US1_1(v7) -&gt; (* Some *)
             v7
-    let v11 : bool = v10 = 3
-    let v12 : string = $"_equal / actual: %A{v10} / expected: %A{3}"
-    let v13 : bool = v11 = false
+    let v11 : string = $"__expect / actual: %A{v10} / expected: %A{3}"
+    let v12 : bool = v10 = 3
+    let v13 : bool = v12 = false
     if v13 then
-        failwith&lt;unit&gt; v12
+        failwith&lt;unit&gt; v11
     let v14 : UH0 = v3 ()
     let v15 : int32 = 5
     let v16 : US1 = method3(v15, v14)
@@ -8412,11 +8412,11 @@ and method0 () : unit =
             failwith&lt;int32&gt; "Option does not have a value."
         | US1_1(v17) -&gt; (* Some *)
             v17
-    let v21 : bool = v20 = 5
-    let v22 : string = $"_equal / actual: %A{v20} / expected: %A{5}"
-    let v23 : bool = v21 = false
+    let v21 : string = $"__expect / actual: %A{v20} / expected: %A{5}"
+    let v22 : bool = v20 = 5
+    let v23 : bool = v22 = false
     if v23 then
-        failwith&lt;unit&gt; v22
+        failwith&lt;unit&gt; v21
 method0()
 
 print_and_return / x: 0
@@ -8541,7 +8541,7 @@ print_and_return / x: 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
     ()
 method0()
 
@@ -8661,7 +8661,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{45} / expected: %A{45}"
+    let v0 : string = $"__expect / actual: %A{45} / expected: %A{45}"
     ()
 method0()
 
@@ -8703,7 +8703,7 @@ method0()
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
     printfn $"print_and_return / x: {5}"
-    let v0 : string = $"_equal / actual: %A{10} / expected: %A{10}"
+    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
     ()
 method0()
 
@@ -8751,7 +8751,7 @@ print_and_return / x: 5
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
     printfn $"print_and_return / x: {5}"
-    let v0 : string = $"_equal / actual: %A{10} / expected: %A{10}"
+    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
     ()
 method0()
 
@@ -8796,25 +8796,25 @@ print_and_return / x: 5
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v63 : UH0 = UH0_1
-    let v64 : UH0 = UH0_0(279936, v63)
-    let v65 : UH0 = UH0_0(46656, v64)
-    let v66 : UH0 = UH0_0(7776, v65)
-    let v67 : UH0 = UH0_0(1296, v66)
-    let v68 : UH0 = UH0_0(216, v67)
-    let v69 : UH0 = UH0_0(36, v68)
-    let v70 : UH0 = UH0_0(6, v69)
-    let v71 : UH0 = UH0_0(1, v70)
-    let v72 : UH0 = UH0_1
-    let v73 : UH0 = UH0_0(279936, v72)
-    let v74 : UH0 = UH0_0(46656, v73)
-    let v75 : UH0 = UH0_0(7776, v74)
-    let v76 : UH0 = UH0_0(1296, v75)
-    let v77 : UH0 = UH0_0(216, v76)
-    let v78 : UH0 = UH0_0(36, v77)
-    let v79 : UH0 = UH0_0(6, v78)
-    let v80 : UH0 = UH0_0(1, v79)
-    let v81 : string = $"_equal / actual: %A{v71} / expected: %A{v80}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(279936, v0)
+    let v2 : UH0 = UH0_0(46656, v1)
+    let v3 : UH0 = UH0_0(7776, v2)
+    let v4 : UH0 = UH0_0(1296, v3)
+    let v5 : UH0 = UH0_0(216, v4)
+    let v6 : UH0 = UH0_0(36, v5)
+    let v7 : UH0 = UH0_0(6, v6)
+    let v8 : UH0 = UH0_0(1, v7)
+    let v9 : UH0 = UH0_1
+    let v10 : UH0 = UH0_0(279936, v9)
+    let v11 : UH0 = UH0_0(46656, v10)
+    let v12 : UH0 = UH0_0(7776, v11)
+    let v13 : UH0 = UH0_0(1296, v12)
+    let v14 : UH0 = UH0_0(216, v13)
+    let v15 : UH0 = UH0_0(36, v14)
+    let v16 : UH0 = UH0_0(6, v15)
+    let v17 : UH0 = UH0_0(1, v16)
+    let v18 : string = $"__expect / actual: %A{v8} / expected: %A{v17}"
     ()
 method0()
 
@@ -8895,7 +8895,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
+    let v0 : string = $"__expect / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
     ()
 method0()
 
@@ -8974,7 +8974,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{10} / expected: %A{10}"
+    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
     ()
 method0()
 
@@ -9063,7 +9063,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{6} / expected: %A{6}"
+    let v0 : string = $"__expect / actual: %A{6} / expected: %A{6}"
     ()
 method0()
 
@@ -9142,7 +9142,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
+    let v0 : string = $"__expect / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
     ()
 method0()
 
@@ -9236,8 +9236,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{45} / expected: %A{45}"
-    let v1 : string = $"_equal / actual: %A{45} / expected: %A{45}"
+    let v0 : string = $"__expect / actual: %A{45} / expected: %A{45}"
+    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
     ()
 method0()
 

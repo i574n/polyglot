@@ -7625,7 +7625,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{3} / expected: %A{3}"
+    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
     ()
 method0()
 
@@ -7699,7 +7699,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{3} / expected: %A{3}"
+    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
     ()
 method0()
 
@@ -7774,7 +7774,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{3} / expected: %A{3}"
+    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
     ()
 method0()
 
@@ -7854,9 +7854,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(5)
-    let v4 : US0 = US0_1(5)
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(5)
+    let v1 : US0 = US0_1(5)
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
     ()
 method0()
 
@@ -7943,11 +7943,11 @@ let rec method0 () : unit =
     let v2 : int32 = v1 + 1
     v0.l0 &lt;- v2
     let v3 : int32 = v0.l0
-    let v4 : bool = v3 = 2
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{2}"
-    let v6 : bool = v4 = false
+    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
+    let v5 : bool = v3 = 2
+    let v6 : bool = v5 = false
     if v6 then
-        failwith&lt;unit&gt; v5
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8044,15 +8044,18 @@ and method0 () : unit =
     let v4 : int32 option = None
     let v5 : US0 = US0_0
     let v6 : US0 = v4 |&gt; Option.map v1 |&gt; Option.defaultValue v5
-    let v11 : bool =
+    let v7 : US0 = US0_1(3)
+    let v8 : US0 = US0_0
+    let v9 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v7, v8)}"
+    let v14 : bool =
         match v3 with
-        | US0_1(v9) -&gt; (* Some *)
-            let v10 : bool = v9 = 3
-            v10
+        | US0_1(v12) -&gt; (* Some *)
+            let v13 : bool = v12 = 3
+            v13
         | _ -&gt;
             false
-    let v13 : bool =
-        if v11 then
+    let v16 : bool =
+        if v14 then
             match v6 with
             | US0_0 -&gt; (* None *)
                 true
@@ -8060,12 +8063,9 @@ and method0 () : unit =
                 false
         else
             false
-    let v14 : US0 = US0_1(3)
-    let v15 : US0 = US0_0
-    let v16 : string = $"_equal / actual: %A{struct (v3, v6)} / expected: %A{struct (v14, v15)}"
-    let v17 : bool = v13 = false
+    let v17 : bool = v16 = false
     if v17 then
-        failwith&lt;unit&gt; v16
+        failwith&lt;unit&gt; v9
 method0()
 
 </pre>

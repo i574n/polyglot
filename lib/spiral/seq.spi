@@ -56,10 +56,9 @@ inl choose forall dim {number} t u. (fn : t -> option u) (s : seq dim t) : seq d
 // // ## indexed
 
 inl indexed s =
-    fun n =>
-        s
-        |> map fun x =>
-            n, x
+    s
+    |> mapi fun i x =>
+        i, x
 
 // // ## zip
 

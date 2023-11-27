@@ -94,7 +94,7 @@ nominal html_style_element = $"Types.web_sys.HtmlStyleElement"
 inl emit_expr forall a t. (args : a) (code : string) : t =
     $"Fable.Core.RustInterop.emitRustExpr !args !code"
 
-inl deref_array forall t. (x : ref' (array t)) : vec t =
+inl deref_array forall t. (x : ref' (array_base t)) : vec t =
     // emit_expr x "core::ops::Deref::deref($0)"
     emit_expr () $"\"***core::ops::Deref::deref(!x)\""
 
@@ -237,7 +237,7 @@ inl rec to_ref_emit_arg forall t. (x : t) : ref' t =
     real
         inl result : ref' t =
             typecase t with
-            | array _ =>
+            | array_base _ =>
                 emit_expr `t `(ref' t) x ($"\"$0\"" : string)
             | _ -> _ =>
                 inl result = emit_expr `t `(ref' t) x ($"\"$0\"" : string)
@@ -327,7 +327,7 @@ inl format forall t. (x : t) : std_string =
             | std_string => x
             | colored_string => format' `t x false
             | log_item => format' `t x false
-            | array _ =>
+            | array_base _ =>
                 // inl x = join x
                 inl x : ref' t = to_ref_emit_arg `t x
                 inl x : ref' t = deref `t x
@@ -650,9 +650,9 @@ inl real_core_union_tag log_level : i32 =
 inl new_log
     (target : rust_target)
     (get_log_level : () -> log_level_type)
-    (ext_locals_fn : () -> array log_item)
+    (ext_locals_fn : () -> array_base log_item)
     (color : string)
-    : log_level_type -> array log_item -> ()
+    : log_level_type -> array_base log_item -> ()
     =
     inl clean_log (text : log_item) : log_item =
         inl text =
@@ -667,7 +667,7 @@ inl new_log
 
     inl env : env = get_env ()
     inl start_timestamp = ticks ()
-    fun log_level (args : array log_item) : () =>
+    fun log_level (args : array_base log_item) : () =>
         join
             if ((real real_core_union_tag (get_log_level ())) : i32) <= real real_core_union_tag log_level then
                 inl new_timestamp () = ticks () - start_timestamp

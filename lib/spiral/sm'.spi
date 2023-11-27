@@ -95,5 +95,14 @@ inl base64_decode (s : rust.std_string) : result rust.std_string rust.std_string
         join x ()
         |> resultm.unbox
 
+inl concat (a : string) (b : a _ _) : string =
+    $"!b |> String.concat !a"
+
+inl join' (concat : string) (s : a _ string) : string =
+    $"System.String.Join (!concat, !s)"
+
+inl pad_right (pad : i32) (s : string) : string =
+    $"!s.PadRight !pad"
+
 open rust
 instance to_string std_string = from_std_string

@@ -7554,6 +7554,8 @@ a.anchor-link {
 <span class="n">nominal</span> <span class="n">disposable</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.IDisposable"</span>
 <span class="n">nominal</span> <span class="n">exn</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"exn"</span>
 <span class="n">nominal</span> <span class="n">guid</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.Guid"</span>
+
+<span class="n">let</span> <span class="n">array</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
 </pre></div>
 </div>
 </div>
@@ -7942,7 +7944,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
+    let v0 : string = $"__expect / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
     ()
 method0()
 
@@ -8017,7 +8019,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{1} / expected: %A{1}"
+    let v0 : string = $"__expect / actual: %A{1} / expected: %A{1}"
     ()
 method0()
 
@@ -8092,7 +8094,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
+    let v0 : string = $"__expect / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
     ()
 method0()
 
@@ -8209,11 +8211,11 @@ and method0 () : unit =
     let v1 : int32 = 9 + v0
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{15}"
-    let v6 : bool = v4 = false
+    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v5 : bool = v3 = 15
+    let v6 : bool = v5 = false
     if v6 then
-        failwith&lt;unit&gt; v5
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8257,11 +8259,11 @@ and method0 () : unit =
     let v2 : int32 = method2(v0, v1)
     let v3 : int32 = v2 + 2
     let v4 : int32 = v3 + 1
-    let v5 : bool = v4 = 15
-    let v6 : string = $"_equal / actual: %A{v4} / expected: %A{15}"
-    let v7 : bool = v5 = false
+    let v5 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
+    let v6 : bool = v4 = 15
+    let v7 : bool = v6 = false
     if v7 then
-        failwith&lt;unit&gt; v6
+        failwith&lt;unit&gt; v5
 method0()
 
 </pre>
@@ -8348,11 +8350,11 @@ and method0 () : unit =
     let v1 : int32 = method2(v0)
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{15}"
-    let v6 : bool = v4 = false
+    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v5 : bool = v3 = 15
+    let v6 : bool = v5 = false
     if v6 then
-        failwith&lt;unit&gt; v5
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8462,11 +8464,11 @@ method0()
     #endif
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
-    let v4 : bool = v3 = 1uy
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{1uy}"
-    let v6 : bool = v4 = false
+    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
+    let v5 : bool = v3 = 1uy
+    let v6 : bool = v5 = false
     if v6 then
-        failwith&lt;unit&gt; v5
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8530,7 +8532,7 @@ let rec method0 () : unit =
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
     let v4 : bool = 2uy = v3
-    let v5 : string = $"_equal / actual: %A{v4} / expected: %A{true}"
+    let v5 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
     let v6 : bool = v4 = false
     if v6 then
         failwith&lt;unit&gt; v5
@@ -8562,7 +8564,7 @@ mod module_3acfb8b4 {
                 let v4: bool = 2_u8 == getValue(result.get());
                 if v4 == false {
                     panic!("{}",
-                           sprintf!("_equal / actual: {:?} / expected: {:?}", &amp;v4, &amp;true));
+                           sprintf!("__expect / actual: {:?} / expected: {:?}", &amp;v4, &amp;true));
                 }
             }
         }
@@ -8570,6 +8572,9 @@ mod module_3acfb8b4 {
     }
 }
 pub use module_3acfb8b4::*;
+
+
+pub fn main() -&gt; Result&lt;(), String&gt; {{ Ok(()) }}
 
 </pre>
 </div>

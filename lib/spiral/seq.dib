@@ -135,10 +135,9 @@ listm.init 10i32 print_and_return
 #!spiral
 
 inl indexed s =
-    fun n =>
-        s
-        |> map fun x =>
-            n, x
+    s
+    |> mapi fun i x =>
+        i, x
 
 #!spiral
 
@@ -272,7 +271,7 @@ inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
 
 a ;[ 1; 2; 3 ]
 |> from_array
-|> item 1i32
+|> try_item 1i32
 |> _equal (Some 2i32)
 
 #!markdown

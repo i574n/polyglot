@@ -7556,7 +7556,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{3.1622776601683795} / expected: %A{3.1622776601683795}"
+    let v0 : string = $"__expect / actual: %A{3.1622776601683795} / expected: %A{3.1622776601683795}"
     ()
 method0()
 
@@ -7590,7 +7590,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{0.6666666666666666} / expected: %A{0.6666666666666666}"
+    let v0 : string = $"__expect / actual: %A{0.6666666666666666} / expected: %A{0.6666666666666666}"
     ()
 method0()
 
@@ -7624,7 +7624,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{0.6931471805599453} / expected: %A{0.6931471805599453}"
+    let v0 : string = $"__expect / actual: %A{0.6931471805599453} / expected: %A{0.6931471805599453}"
     ()
 method0()
 
@@ -7658,7 +7658,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{3.141592653589793} / expected: %A{3.141592653589793}"
+    let v0 : string = $"__expect / actual: %A{3.141592653589793} / expected: %A{3.141592653589793}"
     ()
 method0()
 
@@ -7692,7 +7692,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{-1.0} / expected: %A{-1.0}"
+    let v0 : string = $"__expect / actual: %A{-1.0} / expected: %A{-1.0}"
     ()
 method0()
 
@@ -7728,7 +7728,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{-0.5} / expected: %A{-0.5}"
+    let v0 : string = $"__expect / actual: %A{-0.5} / expected: %A{-0.5}"
     ()
 method0()
 
@@ -7762,7 +7762,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{6.123233995736766E-17} / expected: %A{6.123233995736766E-17}"
+    let v0 : string = $"__expect / actual: %A{6.123233995736766E-17} / expected: %A{6.123233995736766E-17}"
     ()
 method0()
 
@@ -7837,11 +7837,11 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
     let v0 : float = System.Math.Atan2 (1.0, 0.0)
-    let v1 : bool = v0 = 1.5707963267948966
-    let v2 : string = $"_equal / actual: %A{v0} / expected: %A{1.5707963267948966}"
-    let v3 : bool = v1 = false
+    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{1.5707963267948966}"
+    let v2 : bool = v0 = 1.5707963267948966
+    let v3 : bool = v2 = false
     if v3 then
-        failwith&lt;unit&gt; v2
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -7955,11 +7955,11 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
     let v0 : float = floor 0.6
-    let v1 : bool = v0 = 0.0
-    let v2 : string = $"_equal / actual: %A{v0} / expected: %A{0.0}"
-    let v3 : bool = v1 = false
+    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
+    let v2 : bool = v0 = 0.0
+    let v3 : bool = v2 = false
     if v3 then
-        failwith&lt;unit&gt; v2
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -8033,11 +8033,11 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
     let v0 : float = System.Math.Log (100.0, 10.0)
-    let v1 : bool = v0 = 2.0
-    let v2 : string = $"_equal / actual: %A{v0} / expected: %A{2.0}"
-    let v3 : bool = v1 = false
+    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{2.0}"
+    let v2 : bool = v0 = 2.0
+    let v3 : bool = v2 = false
     if v3 then
-        failwith&lt;unit&gt; v2
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -8111,11 +8111,11 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
     let v0 : float = round 0.5
-    let v1 : bool = v0 = 0.0
-    let v2 : string = $"_equal / actual: %A{v0} / expected: %A{0.0}"
-    let v3 : bool = v1 = false
+    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
+    let v2 : bool = v0 = 0.0
+    let v3 : bool = v2 = false
     if v3 then
-        failwith&lt;unit&gt; v2
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -8149,11 +8149,11 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
     let v0 : float = round 0.6
-    let v1 : bool = v0 = 1.0
-    let v2 : string = $"_equal / actual: %A{v0} / expected: %A{1.0}"
-    let v3 : bool = v1 = false
+    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{1.0}"
+    let v2 : bool = v0 = 1.0
+    let v3 : bool = v2 = false
     if v3 then
-        failwith&lt;unit&gt; v2
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -8228,7 +8228,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{5.000000000000001} / expected: %A{5.0}"
+    let v0 : string = $"__expect / actual: %A{5.000000000000001} / expected: %A{5.0}"
     ()
 method0()
 
@@ -8262,7 +8262,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{7.3890560989306495} / expected: %A{7.3890560989306495}"
+    let v0 : string = $"__expect / actual: %A{7.3890560989306495} / expected: %A{7.3890560989306495}"
     ()
 method0()
 

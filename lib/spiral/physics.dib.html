@@ -7940,6 +7940,8 @@ and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method3 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (601)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -7965,9 +7967,10 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v16 : string = "square"
     let v17 : (struct (string * (float []) * (float [])) []) = [|struct (v16, v0, v9)|]
-    let v18 : string = "x"
-    let v19 : string = "y"
-    struct (v16, v18, v19, v17)
+    let v18 : (struct (string * (float []) * (float [])) []) = method3(v17)
+    let v19 : string = "x"
+    let v20 : string = "y"
+    struct (v16, v19, v20, v18)
 method0()
 
 </pre>
@@ -8255,6 +8258,8 @@ and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method3 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (201)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8291,10 +8296,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v23 : string = "sin"
     let v24 : string = "cos"
     let v25 : (struct (string * (float []) * (float [])) []) = [|struct (v23, v0, v9); struct (v24, v0, v16)|]
-    let v26 : string = "sin cos"
-    let v27 : string = "x"
-    let v28 : string = "y"
-    struct (v26, v27, v28, v25)
+    let v26 : (struct (string * (float []) * (float [])) []) = method3(v25)
+    let v27 : string = "sin cos"
+    let v28 : string = "x"
+    let v29 : string = "y"
+    struct (v27, v28, v29, v26)
 method0()
 
 </pre>
@@ -8625,6 +8631,8 @@ and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method3 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (501)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8653,10 +8661,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v19 : string = "height of projectile (m)"
     let v20 : (struct (string * (float []) * (float [])) []) = [|struct (v19, v0, v8)|]
-    let v21 : string = "projectile motion"
-    let v22 : string = "time (s)"
-    let v23 : string = ""
-    struct (v21, v22, v23, v20)
+    let v21 : (struct (string * (float []) * (float [])) []) = method3(v20)
+    let v22 : string = "projectile motion"
+    let v23 : string = "time (s)"
+    let v24 : string = ""
+    struct (v22, v23, v24, v21)
 method0()
 
 </pre>
@@ -8743,8 +8752,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{0.6} / expected: %A{0.6}"
-    let v1 : string = $"_equal / actual: %A{0.2} / expected: %A{0.2}"
+    let v0 : string = $"__expect / actual: %A{0.6} / expected: %A{0.6}"
+    let v1 : string = $"__expect / actual: %A{0.2} / expected: %A{0.2}"
     ()
 method0()
 
@@ -9054,6 +9063,8 @@ and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method3 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (41)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -9079,10 +9090,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v16 : string = "velocity of car (m/s)"
     let v17 : (struct (string * (float []) * (float [])) []) = [|struct (v16, v0, v8)|]
-    let v18 : string = "car on an air track"
-    let v19 : string = "time (s)"
-    let v20 : string = ""
-    struct (v18, v19, v20, v17)
+    let v18 : (struct (string * (float []) * (float [])) []) = method3(v17)
+    let v19 : string = "car on an air track"
+    let v20 : string = "time (s)"
+    let v21 : string = ""
+    struct (v19, v20, v21, v18)
 method0()
 
 </pre>
@@ -9176,13 +9188,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{0.25} / expected: %A{0.25}"
-    let v1 : string = $"_almost_equal / actual: %A{2.499998827953931E-07} / expected: %A{2.499998827953931E-07}"
-    let v2 : string = $"_almost_equal / actual: %A{1.000088900582341E-12} / expected: %A{1.000088900582341E-12}"
-    let v3 : string = $"_almost_equal / actual: %A{8.274037099909037E-08} / expected: %A{8.274037099909037E-08}"
-    let v4 : string = $"_almost_equal / actual: %A{8.890058234101161E-05} / expected: %A{8.890058234101161E-05}"
-    let v5 : string = $"_almost_equal / actual: %A{-0.0007992778373592246} / expected: %A{-0.0007992778373592246}"
-    let v6 : string = $"_almost_equal / actual: %A{-1.0} / expected: %A{-1.0}"
+    let v0 : string = $"__expect / actual: %A{0.25} / expected: %A{0.25}"
+    let v1 : string = $"__expect / actual: %A{2.499998827953931E-07} / expected: %A{2.499998827953931E-07}"
+    let v2 : string = $"__expect / actual: %A{1.000088900582341E-12} / expected: %A{1.000088900582341E-12}"
+    let v3 : string = $"__expect / actual: %A{8.274037099909037E-08} / expected: %A{8.274037099909037E-08}"
+    let v4 : string = $"__expect / actual: %A{8.890058234101161E-05} / expected: %A{8.890058234101161E-05}"
+    let v5 : string = $"__expect / actual: %A{-0.0007992778373592246} / expected: %A{-0.0007992778373592246}"
+    let v6 : string = $"__expect / actual: %A{-1.0} / expected: %A{-1.0}"
     ()
 method0()
 
@@ -9264,7 +9276,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{0.3333250000000004} / expected: %A{0.33332500000000004}"
+    let v0 : string = $"__expect / actual: %A{0.3333250000000004} / expected: %A{0.33332500000000004}"
     ()
 method0()
 
@@ -9330,7 +9342,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{0.3325000000000001} / expected: %A{0.33249999999999996}"
+    let v0 : string = $"__expect / actual: %A{0.3325000000000001} / expected: %A{0.33249999999999996}"
     ()
 method0()
 
@@ -9445,19 +9457,19 @@ and method0 () : unit =
         v18.l1 &lt;- v23
         ()
     let v25 : float = v18.l1
-    let v26 : float = 0.3333250000000004 - v25
-    let v27 : float =  -v26
-    let v28 : bool = v26 &gt;= v27
-    let v29 : float =
-        if v28 then
-            v26
-        else
+    let v26 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
+    let v27 : float = 0.3333250000000004 - v25
+    let v28 : float =  -v27
+    let v29 : bool = v27 &gt;= v28
+    let v30 : float =
+        if v29 then
             v27
-    let v30 : bool = v29 &lt; 1E-08
-    let v31 : string = $"_almost_equal / actual: %A{v25} / expected: %A{0.3333250000000004}"
-    let v32 : bool = v30 = false
+        else
+            v28
+    let v31 : bool = v30 &lt; 1E-08
+    let v32 : bool = v31 = false
     if v32 then
-        failwith&lt;unit&gt; v31
+        failwith&lt;unit&gt; v26
 method0()
 
 </pre>
@@ -9894,6 +9906,8 @@ and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method3 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (501)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -9935,10 +9949,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v24 : string = "force on bike (N)"
     let v25 : (struct (string * (float []) * (float [])) []) = [|struct (v24, v0, v9)|]
-    let v26 : string = "child pedaling then coasting"
-    let v27 : string = "time (s)"
-    let v28 : string = ""
-    struct (v26, v27, v28, v25)
+    let v26 : (struct (string * (float []) * (float [])) []) = method3(v25)
+    let v27 : string = "child pedaling then coasting"
+    let v28 : string = "time (s)"
+    let v29 : string = ""
+    struct (v27, v28, v29, v26)
 method0()
 
 </pre>
@@ -10322,6 +10337,8 @@ and method4 (v0 : UH0, v1 : UH0) : UH0 =
         UH0_0(v15, v4)
     | UH0_1 -&gt; (* Nil *)
         v1
+and method7 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (51)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -10355,10 +10372,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v24 : string = "position of bike (m)"
     let v25 : (struct (string * (float []) * (float [])) []) = [|struct (v24, v0, v8)|]
-    let v26 : string = "child pedaling then coasting"
-    let v27 : string = "time (s)"
-    let v28 : string = ""
-    struct (v26, v27, v28, v25)
+    let v26 : (struct (string * (float []) * (float [])) []) = method7(v25)
+    let v27 : string = "child pedaling then coasting"
+    let v28 : string = "time (s)"
+    let v29 : string = ""
+    struct (v27, v28, v29, v26)
 method0()
 
 </pre>
@@ -11184,6 +11202,8 @@ and method3 (v0 : float, v1 : UH0) : US0 =
             method3(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
         US0_0
+and method4 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (121)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -11225,10 +11245,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v25 : string = "velocity of bike (m/s)"
     let v26 : (struct (string * (float []) * (float [])) []) = [|struct (v25, v0, v8)|]
-    let v27 : string = "bike velocity"
-    let v28 : string = "time (s)"
-    let v29 : string = ""
-    struct (v27, v28, v29, v26)
+    let v27 : (struct (string * (float []) * (float [])) []) = method4(v26)
+    let v28 : string = "bike velocity"
+    let v29 : string = "time (s)"
+    let v30 : string = ""
+    struct (v28, v29, v30, v27)
 method0()
 
 </pre>
@@ -11681,6 +11702,8 @@ and method4 (v0 : float, v1 : UH0) : US0 =
             method4(v7, v8)
     | UH0_1 -&gt; (* StreamNil *)
         US0_0
+and method5 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (1001)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -11732,10 +11755,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v36 : string = "velocity of bike (m/s)"
     let v37 : (struct (string * (float []) * (float [])) []) = [|struct (v36, v0, v10)|]
-    let v38 : string = "pedaling and coasting with air"
-    let v39 : string = "time (s)"
-    let v40 : string = ""
-    struct (v38, v39, v40, v37)
+    let v38 : (struct (string * (float []) * (float [])) []) = method5(v37)
+    let v39 : string = "pedaling and coasting with air"
+    let v40 : string = "time (s)"
+    let v41 : string = ""
+    struct (v39, v40, v41, v38)
 method0()
 
 </pre>
@@ -12209,6 +12233,8 @@ and method3 (v0 : float, v1 : float, v2 : float, v3 : float) : struct (float * f
         let v19 : float = v2 + v18
         let v20 : float = v3 - 1.0
         method3(v15, v17, v19, v20)
+and method4 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (301)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -12256,10 +12282,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v40 : string = "position (m)"
     let v41 : (struct (string * (float []) * (float [])) []) = [|struct (v40, v0, v8)|]
-    let v42 : string = "ping pong ball on a slinky"
-    let v43 : string = "time (s)"
-    let v44 : string = ""
-    struct (v42, v43, v44, v41)
+    let v42 : (struct (string * (float []) * (float [])) []) = method4(v41)
+    let v43 : string = "ping pong ball on a slinky"
+    let v44 : string = "time (s)"
+    let v45 : string = ""
+    struct (v43, v44, v45, v42)
 method0()
 
 </pre>
@@ -12661,6 +12688,8 @@ and method3 (v0 : float, v1 : float, v2 : float, v3 : float) : struct (float * f
         let v19 : float = v2 + v18
         let v20 : float = v3 - 1.0
         method3(v15, v17, v19, v20)
+and method4 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (301)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -12708,10 +12737,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v40 : string = "velocity (m/s)"
     let v41 : (struct (string * (float []) * (float [])) []) = [|struct (v40, v0, v8)|]
-    let v42 : string = "ping pong ball on a slinky"
-    let v43 : string = "time (s)"
-    let v44 : string = ""
-    struct (v42, v43, v44, v41)
+    let v42 : (struct (string * (float []) * (float [])) []) = method4(v41)
+    let v43 : string = "ping pong ball on a slinky"
+    let v44 : string = "time (s)"
+    let v45 : string = ""
+    struct (v43, v44, v45, v42)
 method0()
 
 </pre>
@@ -12847,9 +12877,9 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)} / expected: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
-    let v1 : string = $"_equal / actual: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)} / expected: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
-    let v2 : string = $"_equal / actual: %A{struct (8.0, 2894.789038540849, 2894.789038540849)} / expected: %A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
+    let v0 : string = $"__expect / actual: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)} / expected: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
+    let v1 : string = $"__expect / actual: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)} / expected: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
+    let v2 : string = $"__expect / actual: %A{struct (8.0, 2894.789038540849, 2894.789038540849)} / expected: %A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
     ()
 method0()
 
@@ -12930,7 +12960,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{3.0} / expected: %A{3.0}"
+    let v0 : string = $"__expect / actual: %A{3.0} / expected: %A{3.0}"
     ()
 method0()
 
@@ -13046,7 +13076,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
     ()
 method0()
 
@@ -13121,7 +13151,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
     ()
 method0()
 
@@ -13195,7 +13225,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
     ()
 method0()
 
@@ -13229,7 +13259,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (3.0, 0.0, 4.0)} / expected: %A{struct (3.0, 0.0, 4.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (3.0, 0.0, 4.0)} / expected: %A{struct (3.0, 0.0, 4.0)}"
     ()
 method0()
 
@@ -13303,7 +13333,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
     ()
 method0()
 
@@ -13377,7 +13407,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (0.2, 0.4, 0.6)} / expected: %A{struct (0.2, 0.4, 0.6)}"
+    let v0 : string = $"__expect / actual: %A{struct (0.2, 0.4, 0.6)} / expected: %A{struct (0.2, 0.4, 0.6)}"
     ()
 method0()
 
@@ -13452,7 +13482,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (-1.0, -2.0, -3.0)} / expected: %A{struct (-1.0, -2.0, -3.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (-1.0, -2.0, -3.0)} / expected: %A{struct (-1.0, -2.0, -3.0)}"
     ()
 method0()
 
@@ -13526,7 +13556,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (-3.0, -3.0, -3.0)} / expected: %A{struct (-3.0, -3.0, -3.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (-3.0, -3.0, -3.0)} / expected: %A{struct (-3.0, -3.0, -3.0)}"
     ()
 method0()
 
@@ -13600,7 +13630,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{32.0} / expected: %A{32.0}"
+    let v0 : string = $"__expect / actual: %A{32.0} / expected: %A{32.0}"
     ()
 method0()
 
@@ -13677,7 +13707,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (-3.0, 6.0, -3.0)} / expected: %A{struct (-3.0, 6.0, -3.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (-3.0, 6.0, -3.0)} / expected: %A{struct (-3.0, 6.0, -3.0)}"
     ()
 method0()
 
@@ -13752,7 +13782,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{3.7416573867739413} / expected: %A{3.7416573867739413}"
+    let v0 : string = $"__expect / actual: %A{3.7416573867739413} / expected: %A{3.7416573867739413}"
     ()
 method0()
 
@@ -13826,7 +13856,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{struct (2.0, 6.0, 6.0)} / expected: %A{struct (2.0, 6.0, 6.0)}"
+    let v0 : string = $"__expect / actual: %A{struct (2.0, 6.0, 6.0)} / expected: %A{struct (2.0, 6.0, 6.0)}"
     ()
 method0()
 
@@ -13903,7 +13933,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_almost_equal / actual: %A{11.999999999999744} / expected: %A{11.999999999999744}"
+    let v0 : string = $"__expect / actual: %A{11.999999999999744} / expected: %A{11.999999999999744}"
     ()
 method0()
 
@@ -14584,6 +14614,8 @@ and method7 (v0 : UH1, v1 : float) : float =
         method7(v4, v2)
     | UH1_1 -&gt; (* Nil *)
         v1
+and method8 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (71)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -14620,10 +14652,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
         ()
     let v27 : string = "horizontal range (m)"
     let v28 : (struct (string * (float []) * (float [])) []) = [|struct (v27, v0, v8)|]
-    let v29 : string = "range for a baseball hit at 45 m/s"
-    let v30 : string = "angle above horizontal (degrees)"
-    let v31 : string = ""
-    struct (v29, v30, v31, v28)
+    let v29 : (struct (string * (float []) * (float [])) []) = method8(v28)
+    let v30 : string = "range for a baseball hit at 45 m/s"
+    let v31 : string = "angle above horizontal (degrees)"
+    let v32 : string = ""
+    struct (v30, v31, v32, v29)
 method0()
 
 </pre>
@@ -14781,17 +14814,17 @@ and method0 () : unit =
     let v1 : float = 0.0
     let v2 : float = 30.0
     let struct (v3 : float, v4 : float) = method1(v0, v2, v1)
-    let v5 : bool = v3 = 116.77499158246208
-    let v7 : bool =
-        if v5 then
-            let v6 : bool = v4 = 41.0
-            v6
+    let v5 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
+    let v6 : bool = v3 = 116.77499158246208
+    let v8 : bool =
+        if v6 then
+            let v7 : bool = v4 = 41.0
+            v7
         else
             false
-    let v8 : string = $"_equal / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
-    let v9 : bool = v7 = false
+    let v9 : bool = v8 = false
     if v9 then
-        failwith&lt;unit&gt; v8
+        failwith&lt;unit&gt; v5
 method0()
 
 </pre>
@@ -15434,6 +15467,8 @@ and method9 (v0 : UH2) : (float []) =
     let v4 : int32 = 0
     let v5 : int32 = method11(v3, v0, v4)
     v3
+and method12 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : ((struct (float * float * float * float * float * float * float * float * float) -&gt; struct (float * float * float * float * float * float * float * float * float)) -&gt; (struct (float * float * float * float * float * float * float * float * float) -&gt; struct (float * float * float * float * float * float * float * float * float))) = closure0()
     let v1 : (struct (float * float * float * float * float * float * float * float * float) -&gt; struct (float * float * float * float * float * float * float * float * float)) = closure2()
@@ -15470,10 +15505,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v34 : string = "newtonian"
     let v35 : string = "relativistic"
     let v36 : (struct (string * (float []) * (float [])) []) = [|struct (v34, v31, v32); struct (v35, v31, v33)|]
-    let v37 : string = "response to a constant force"
-    let v38 : string = "time (years)"
-    let v39 : string = "velocity (multiples of c)"
-    struct (v37, v38, v39, v36)
+    let v37 : (struct (string * (float []) * (float [])) []) = method12(v36)
+    let v38 : string = "response to a constant force"
+    let v39 : string = "time (years)"
+    let v40 : string = "velocity (multiples of c)"
+    struct (v38, v39, v40, v37)
 method0()
 
 </pre>
@@ -16191,6 +16227,8 @@ and method9 (v0 : UH2) : (float []) =
     let v4 : int32 = 0
     let v5 : int32 = method11(v3, v0, v4)
     v3
+and method12 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : ((struct (float * float * float * float * float * float * float * float * float) -&gt; struct (float * float * float * float * float * float * float * float * float)) -&gt; (struct (float * float * float * float * float * float * float * float * float) -&gt; struct (float * float * float * float * float * float * float * float * float))) = closure0()
     let v1 : (struct (float * float * float * float * float * float * float * float * float) -&gt; struct (float * float * float * float * float * float * float * float * float)) = closure2()
@@ -16228,10 +16266,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v35 : string = "newtonian"
     let v36 : string = "relativistic"
     let v37 : (struct (string * (float []) * (float [])) []) = [|struct (v35, v31, v32); struct (v36, v33, v34)|]
-    let v38 : string = "proton in a 1-t magnetic field"
-    let v39 : string = "x (m)"
-    let v40 : string = "y (m)"
-    struct (v38, v39, v40, v37)
+    let v38 : (struct (string * (float []) * (float [])) []) = method12(v37)
+    let v39 : string = "proton in a 1-t magnetic field"
+    let v40 : string = "x (m)"
+    let v41 : string = "y (m)"
+    struct (v39, v40, v41, v38)
 method0()
 
 </pre>
@@ -17166,6 +17205,8 @@ and method20 (v0 : UH6) : (float []) =
     let v4 : int32 = 0
     let v5 : int32 = method22(v3, v0, v4)
     v3
+and method23 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float -&gt; ((UH0 -&gt; UH1) -&gt; (UH0 -&gt; UH0))) = closure0()
     let v1 : ((UH0 -&gt; UH1) -&gt; (UH0 -&gt; UH0)) = v0 0.03
@@ -17205,10 +17246,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v37 : string = "euler-cromer"
     let v38 : string = "runge-kutta 4"
     let v39 : (struct (string * (float []) * (float [])) []) = [|struct (v37, v33, v34); struct (v38, v35, v36)|]
-    let v40 : string = "system kinetic energy versus time"
-    let v41 : string = "time (s)"
-    let v42 : string = "system kinetic energy (j)"
-    struct (v40, v41, v42, v39)
+    let v40 : (struct (string * (float []) * (float [])) []) = method23(v39)
+    let v41 : string = "system kinetic energy versus time"
+    let v42 : string = "time (s)"
+    let v43 : string = "system kinetic energy (j)"
+    struct (v41, v42, v43, v40)
 method0()
 
 </pre>
@@ -17953,6 +17995,8 @@ and method5 (v0 : UH1) : (struct ((float []) * (float [])) []) =
     let v4 : int32 = 0
     let v5 : int32 = method7(v3, v0, v4)
     v3
+and method8 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : float = 0.0
     let v1 : float = 1.0
@@ -17981,10 +18025,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let struct (v24 : (float []), v25 : (float [])) = v23.[int 0]
     let v26 : string = $"{0}"
     let v27 : (struct (string * (float []) * (float [])) []) = [|struct (v26, v24, v25)|]
-    let v28 : string = "wave"
-    let v29 : string = "position (m)"
-    let v30 : string = "displacement (m)"
-    struct (v28, v29, v30, v27)
+    let v28 : (struct (string * (float []) * (float [])) []) = method8(v27)
+    let v29 : string = "wave"
+    let v30 : string = "position (m)"
+    let v31 : string = "displacement (m)"
+    struct (v29, v30, v31, v28)
 method0()
 
 </pre>
@@ -19224,6 +19269,8 @@ and method18 (v0 : UH9) : (float []) =
     let v4 : int32 = 0
     let v5 : int32 = method20(v3, v0, v4)
     v3
+and method21 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and method0 () : struct (string * string * string * (struct (string * (float []) * (float [])) [])) =
     let v0 : (float -&gt; ((UH0 -&gt; UH1) -&gt; (UH0 -&gt; UH0))) = closure0()
     let v1 : ((UH0 -&gt; UH1) -&gt; (UH0 -&gt; UH0)) = v0 0.03
@@ -19267,10 +19314,11 @@ and method0 () : struct (string * string * string * (struct (string * (float [])
     let v41 : string = "euler-cromer"
     let v42 : string = "runge-kutta 4"
     let v43 : (struct (string * (float []) * (float [])) []) = [|struct (v41, v37, v38); struct (v42, v39, v40)|]
-    let v44 : string = "system kinetic energy versus time"
-    let v45 : string = "time (s)"
-    let v46 : string = "system kinetic energy (j)"
-    struct (v44, v45, v46, v43)
+    let v44 : (struct (string * (float []) * (float [])) []) = method21(v43)
+    let v45 : string = "system kinetic energy versus time"
+    let v46 : string = "time (s)"
+    let v47 : string = "system kinetic energy (j)"
+    struct (v45, v46, v47, v44)
 method0()
 
 </pre>
@@ -41253,6 +41301,8 @@ and method24 (v0 : UH13, v1 : UH13) : UH13 =
         method24(v6, v8)
     | UH13_1 -&gt; (* StreamNil *)
         v1
+and method26 (v0 : (struct (string * (float []) * (float [])) [])) : (struct (string * (float []) * (float [])) []) =
+    v0
 and closure156 (v0 : UH14) () : UH14 =
     v0
 and method25 (v0 : UH13, v1 : UH14) : UH14 =
@@ -41262,42 +41312,43 @@ and method25 (v0 : UH13, v1 : UH14) : UH14 =
         let v7 : UH14 = method25(v6, v1)
         let v8 : string = $"{v2}"
         let v9 : (struct (string * (float []) * (float [])) []) = [|struct (v8, v3, v4)|]
-        let v10 : string = "wave"
-        let v11 : string = "position (m)"
-        let v12 : string = "displacement (m)"
-        let v13 : (unit -&gt; UH14) = closure156(v7)
-        UH14_0(v10, v11, v12, v9, v13)
+        let v10 : (struct (string * (float []) * (float [])) []) = method26(v9)
+        let v11 : string = "wave"
+        let v12 : string = "position (m)"
+        let v13 : string = "displacement (m)"
+        let v14 : (unit -&gt; UH14) = closure156(v7)
+        UH14_0(v11, v12, v13, v10, v14)
     | UH13_1 -&gt; (* StreamNil *)
         v1
-and method26 (v0 : UH14, v1 : UH15) : UH15 =
+and method27 (v0 : UH14, v1 : UH15) : UH15 =
     match v0 with
     | UH14_0(v2, v3, v4, v5, v6) -&gt; (* StreamCons *)
         let v7 : UH14 = v6 ()
-        let v8 : UH15 = method26(v7, v1)
+        let v8 : UH15 = method27(v7, v1)
         UH15_0(v2, v3, v4, v5, v8)
     | UH14_1 -&gt; (* StreamNil *)
         v1
-and method28 (v0 : UH15, v1 : int32) : int32 =
+and method29 (v0 : UH15, v1 : int32) : int32 =
     match v0 with
     | UH15_0(v2, v3, v4, v5, v6) -&gt; (* Cons *)
         let v7 : int32 = v1 + 1
-        method28(v6, v7)
+        method29(v6, v7)
     | UH15_1 -&gt; (* Nil *)
         v1
-and method29 (v0 : (struct (string * string * string * (struct (string * (float []) * (float [])) [])) []), v1 : UH15, v2 : int32) : int32 =
+and method30 (v0 : (struct (string * string * string * (struct (string * (float []) * (float [])) [])) []), v1 : UH15, v2 : int32) : int32 =
     match v1 with
     | UH15_0(v3, v4, v5, v6, v7) -&gt; (* Cons *)
         v0.[int v2] &lt;- struct (v3, v4, v5, v6)
         let v8 : int32 = v2 + 1
-        method29(v0, v7, v8)
+        method30(v0, v7, v8)
     | UH15_1 -&gt; (* Nil *)
         v2
-and method27 (v0 : UH15) : (struct (string * string * string * (struct (string * (float []) * (float [])) [])) []) =
+and method28 (v0 : UH15) : (struct (string * string * string * (struct (string * (float []) * (float [])) [])) []) =
     let v1 : int32 = 0
-    let v2 : int32 = method28(v0, v1)
+    let v2 : int32 = method29(v0, v1)
     let v3 : (struct (string * string * string * (struct (string * (float []) * (float [])) [])) []) = Array.zeroCreate&lt;struct (string * string * string * (struct (string * (float []) * (float [])) []))&gt; (v2)
     let v4 : int32 = 0
-    let v5 : int32 = method29(v3, v0, v4)
+    let v5 : int32 = method30(v3, v0, v4)
     v3
 and method0 () : (struct (string * string * string * (struct (string * (float []) * (float [])) [])) []) =
     let v0 : float = 0.0
@@ -41324,8 +41375,8 @@ and method0 () : (struct (string * string * string * (struct (string * (float []
     let v22 : UH14 = UH14_1
     let v23 : UH14 = method25(v21, v22)
     let v24 : UH15 = UH15_1
-    let v25 : UH15 = method26(v23, v24)
-    method27(v25)
+    let v25 : UH15 = method27(v23, v24)
+    method28(v25)
 method0()
 
 </pre>

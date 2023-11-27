@@ -43,7 +43,7 @@ inl init_series start end inc =
 // // ## head
 
 inl head (ar : a _ _) =
-    if length ar > 0
+    if var_is ar || length ar > 0
     then index ar 0
     else error_type "The length of the array should be greater than 0."
 
@@ -51,7 +51,7 @@ inl head (ar : a _ _) =
 
 inl last (ar : a _ _) =
     inl len = length ar
-    if len > 0
+    if var_is ar || len > 0
     then index ar (len - 1)
     else error_type "The length of the array should be greater than 0."
 
@@ -94,3 +94,21 @@ inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     a x
     |> am.map fn
     |> fun (a x : _ i64 _) => x
+
+inl average forall el {number}. (array : a _ el) : el =
+    $"!array |> Array.average"
+
+inl parallel_map forall dim el el'. (fn : el -> el') (array : a dim el) : a dim el' =
+    $"!array |> Array.Parallel.map !fn"
+
+inl sort_by forall dim el. (fn : el -> _) (array : a dim el) : a dim el =
+    $"!array |> Array.sortBy !fn"
+
+inl sort_descending forall dim el. (array : a dim el) : a dim el =
+    $"!array |> Array.sortDescending"
+
+inl transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
+    $"!array |> Array.transpose"
+
+inl try_item forall dim el. (i : i32) (array : a dim el) : option el =
+    $"!array |> Array.tryItem !i" |> optionm'.unbox

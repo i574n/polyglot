@@ -18,49 +18,11 @@ inl (/@) x = listm'.(/@) x
 
 #!spiral
 
-inl am'_average forall el {number}. (array : a _ el) : el =
-    $"!array |> Array.average"
-
-inl am'_parallel_map forall dim el el'. (fn : el -> el') (array : a dim el) : a dim el' =
-    $"!array |> Array.Parallel.map !fn"
-
-inl am'_sort_by forall dim el. (fn : el -> _) (array : a dim el) : a dim el =
-    $"!array |> Array.sortBy !fn"
-
-inl am'_sort_descending forall dim el. (array : a dim el) : a dim el =
-    $"!array |> Array.sortDescending"
-
-inl am'_transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
-    $"!array |> Array.transpose"
-
-inl am'_try_item forall dim el. (i : i32) (array : a dim el) : option el =
-    $"!array |> Array.tryItem !i" |> optionm'.unbox
-
-nominal console_color = $"System.ConsoleColor"
-
-inl console_reset_color () : () =
-    run_target function
-        | Fsharp => fun () => $"System.Console.ResetColor ()"
-        | _ => fun () => ()
-
-inl console_set_foreground_color (color : console_color) : () =
-    run_target function
-        | Fsharp => fun () => $"System.Console.ForegroundColor <- !color"
-        | _ => fun () => ()
-
 inl gc_collect () =
     run_target function
         | Fsharp => fun () => $"System.GC.Collect ()"
         | _ => fun () => ()
-
-nominal map k v = $"Map<`k, `v>"
-
-inl map_item forall k v. (k : k) (map : map k v) : v =
-    $"!map.[!k]"
-
-inl map_of_array forall k v. (array : a _ (k * v)) : map k v =
-    $"!array |> Array.map (fun (struct (a, b)) -> a, b) |> Map.ofArray"
-
+        
 inl printfn x =
     console.write_line x
 
@@ -74,16 +36,6 @@ inl stopwatch_elapsed_milliseconds (stopwatch : stopwatch) : i64 =
 
 inl stopwatch_start (stopwatch : stopwatch) : () =
     $"!stopwatch.Start ()"
-
-inl string_concat (a : string) (b : a _ _) : string =
-    $"!b |> String.concat !a"
-
-inl string_join (concat : string) (s : a _ string) : string =
-    $"System.String.Join (!concat, !s)"
-
-
-inl string_pad_right (pad : i32) (s : string) : string =
-    $"!s.PadRight !pad"
 
 #!markdown
 
@@ -123,7 +75,7 @@ inl run forall input expected.
         inl time1 = stopwatch |> stopwatch_elapsed_milliseconds
         inl result : expected =
             am'.init_series 0 count 1i32
-            |> am'_parallel_map fun _n => fn ()
+            |> am'.parallel_map fun _n => fn ()
             |> am'.last
         inl time2 = (stopwatch |> stopwatch_elapsed_milliseconds) - time1
         result, time2
@@ -184,7 +136,7 @@ inl sort_result_list results =
                     |> am'.indexed
                     |> am.map fun (i, time) =>
                         i + 1i64, time
-                    |> am'_sort_by snd
+                    |> am'.sort_by snd
                     |> fun array => index array 0i32
                     |> sm'.format_debug
                 inl row =
@@ -194,7 +146,8 @@ inl sort_result_list results =
                         result.Result
                         best
                     ]
-                inl color : option console_color =
+                inl color : option console.console_color =
+                    open console
                     match result.Expected = result.Result with
                     | true => Some $"`console_color.DarkGreen"
                     | false => Some $"`console_color.DarkRed"
@@ -220,26 +173,26 @@ inl sort_result_list results =
         rows |> am.append header
 
     inl formattedTable =
-        inl lengthMap : map i32 i64 =
+        inl lengthMap : mapm.map i32 i64 =
             table
             |> am.map (fst >> listm.toArray)
-            |> am'_transpose
+            |> am'.transpose
             |> am.map fun column =>
                 column
                 |> am.map sm.length
-                |> am'_sort_descending
-                |> am'_try_item 0i32
+                |> am'.sort_descending
+                |> am'.try_item 0i32
                 |> optionm'.default_value 0i64
             |> am'.indexed
             |> fun (x : a i32 _) => x
-            |> map_of_array
+            |> mapm.of_array
         table
         |> am.map fun (row, color) =>
             inl newRow =
                 row
                 |> listm'.indexed
                 |> listm.map fun (i, cell) =>
-                    cell |> string_pad_right (lengthMap |> map_item i |> conv)
+                    cell |> sm'.pad_right (lengthMap |> mapm.item i |> conv)
                 |> listm.toArray
             newRow, color
 
@@ -247,27 +200,27 @@ inl sort_result_list results =
     formattedTable
     |> am.iter fun ((row : a i32 string), color) =>
         match color with
-        | Some color => color |> console_set_foreground_color
-        | None => console_reset_color ()
+        | Some color => color |> console.set_foreground_color
+        | None => console.reset_color ()
 
-        printfn (row |> string_join "\t| ")
+        printfn (row |> sm'.join' "\t| ")
 
-        console_reset_color ()
+        console.reset_color ()
 
     inl averages : a u64 _ =
         results
         |> am.map fun result =>
             result.TimeList
             |> am.map ($"float" : i64 -> f64)
-        |> am'_transpose
-        |> am.map am'_average
+        |> am'.transpose
+        |> am.map am'.average
         |> am.map ($"int64" : f64 -> i64)
         |> am'.indexed
 
     printfn ""
     printfn "Average Ranking  "
     averages
-    |> am'_sort_by snd
+    |> am'.sort_by snd
     |> am.iter fun ((i : i32), avg) =>
         printfn ($"$\"Test case %d{!i + 1}. Average Time: %A{!avg}  \"" : string)
 

@@ -7641,21 +7641,21 @@ a.anchor-link {
     | UH0_0 of string * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v43 : string = "a"
-    let v44 : string = "b"
-    let v45 : string = "c"
-    let v46 : string = "d"
-    let v47 : UH0 = UH0_1
-    let v48 : UH0 = UH0_0(v46, v47)
-    let v49 : UH0 = UH0_0(v45, v48)
-    let v50 : UH0 = UH0_0(v44, v49)
-    let v51 : UH0 = UH0_0(v43, v50)
-    let v52 : UH0 = UH0_1
-    let v53 : UH0 = UH0_0(v46, v52)
-    let v54 : UH0 = UH0_0(v45, v53)
-    let v55 : UH0 = UH0_0(v44, v54)
-    let v56 : UH0 = UH0_0(v43, v55)
-    let v57 : string = $"_equal / actual: %A{v51} / expected: %A{v56}"
+    let v0 : string = "a"
+    let v1 : string = "b"
+    let v2 : string = "c"
+    let v3 : string = "d"
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = UH0_0(v3, v4)
+    let v6 : UH0 = UH0_0(v2, v5)
+    let v7 : UH0 = UH0_0(v1, v6)
+    let v8 : UH0 = UH0_0(v0, v7)
+    let v9 : UH0 = UH0_1
+    let v10 : UH0 = UH0_0(v3, v9)
+    let v11 : UH0 = UH0_0(v2, v10)
+    let v12 : UH0 = UH0_0(v1, v11)
+    let v13 : UH0 = UH0_0(v0, v12)
+    let v14 : string = $"__expect / actual: %A{v8} / expected: %A{v13}"
     ()
 method0()
 
@@ -7733,15 +7733,15 @@ method0()
     | UH0_0 of float * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v18 : UH0 = UH0_1
-    let v19 : UH0 = UH0_0(1.0, v18)
-    let v20 : UH0 = UH0_0(0.5, v19)
-    let v21 : UH0 = UH0_0(0.0, v20)
-    let v22 : UH0 = UH0_1
-    let v23 : UH0 = UH0_0(1.0, v22)
-    let v24 : UH0 = UH0_0(0.5, v23)
-    let v25 : UH0 = UH0_0(0.0, v24)
-    let v26 : string = $"_equal / actual: %A{v21} / expected: %A{v25}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(1.0, v0)
+    let v2 : UH0 = UH0_0(0.5, v1)
+    let v3 : UH0 = UH0_0(0.0, v2)
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = UH0_0(1.0, v4)
+    let v6 : UH0 = UH0_0(0.5, v5)
+    let v7 : UH0 = UH0_0(0.0, v6)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
     ()
 method0()
 
@@ -7821,9 +7821,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(9)
-    let v4 : US0 = US0_1(9)
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(9)
+    let v1 : US0 = US0_1(9)
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
     ()
 method0()
 
@@ -7861,9 +7861,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_0
-    let v4 : US0 = US0_0
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_0
+    let v1 : US0 = US0_0
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
     ()
 method0()
 
@@ -7938,7 +7938,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{9} / expected: %A{9}"
+    let v0 : string = $"__expect / actual: %A{9} / expected: %A{9}"
     ()
 method0()
 
@@ -7988,19 +7988,19 @@ and method0 () : unit =
     let v1 : US0 = US0_0
     let v2 : (string -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; v2 ex.Message
-    let v8 : bool =
+    let v4 : string = "Option does not have a value."
+    let v5 : US0 = US0_1(v4)
+    let v6 : string = $"__expect / actual: %A{v3} / expected: %A{v5}"
+    let v10 : bool =
         match v3 with
-        | US0_1(v6) -&gt; (* Some *)
-            let v7 : bool = v6 = "Option does not have a value."
-            v7
+        | US0_1(v8) -&gt; (* Some *)
+            let v9 : bool = v8 = "Option does not have a value."
+            v9
         | _ -&gt;
             false
-    let v9 : string = "Option does not have a value."
-    let v10 : US0 = US0_1(v9)
-    let v11 : string = $"_equal / actual: %A{v3} / expected: %A{v10}"
-    let v12 : bool = v8 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+    let v11 : bool = v10 = false
+    if v11 then
+        failwith&lt;unit&gt; v6
 method0()
 
 </pre>
@@ -8156,7 +8156,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{45} / expected: %A{45}"
+    let v0 : string = $"__expect / actual: %A{45} / expected: %A{45}"
     ()
 method0()
 
@@ -8241,8 +8241,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{45} / expected: %A{45}"
-    let v1 : string = $"_equal / actual: %A{45} / expected: %A{45}"
+    let v0 : string = $"__expect / actual: %A{45} / expected: %A{45}"
+    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
     ()
 method0()
 
@@ -8358,7 +8358,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{5} / expected: %A{5}"
+    let v0 : string = $"__expect / actual: %A{5} / expected: %A{5}"
     ()
 method0()
 
@@ -8396,9 +8396,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_0
-    let v4 : US0 = US0_0
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_0
+    let v1 : US0 = US0_0
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
     ()
 method0()
 
@@ -8491,9 +8491,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(5)
-    let v4 : US0 = US0_1(5)
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(5)
+    let v1 : US0 = US0_1(5)
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
     ()
 method0()
 
@@ -8560,7 +8560,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{5} / expected: %A{5}"
+    let v0 : string = $"__expect / actual: %A{5} / expected: %A{5}"
     ()
 method0()
 
@@ -8642,19 +8642,19 @@ method0()
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v33 : UH0 = UH0_1
-    let v34 : UH0 = UH0_0(8, v33)
-    let v35 : UH0 = UH0_0(6, v34)
-    let v36 : UH0 = UH0_0(4, v35)
-    let v37 : UH0 = UH0_0(2, v36)
-    let v38 : UH0 = UH0_0(0, v37)
-    let v39 : UH0 = UH0_1
-    let v40 : UH0 = UH0_0(8, v39)
-    let v41 : UH0 = UH0_0(6, v40)
-    let v42 : UH0 = UH0_0(4, v41)
-    let v43 : UH0 = UH0_0(2, v42)
-    let v44 : UH0 = UH0_0(0, v43)
-    let v45 : string = $"_equal / actual: %A{v38} / expected: %A{v44}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(8, v0)
+    let v2 : UH0 = UH0_0(6, v1)
+    let v3 : UH0 = UH0_0(4, v2)
+    let v4 : UH0 = UH0_0(2, v3)
+    let v5 : UH0 = UH0_0(0, v4)
+    let v6 : UH0 = UH0_1
+    let v7 : UH0 = UH0_0(8, v6)
+    let v8 : UH0 = UH0_0(6, v7)
+    let v9 : UH0 = UH0_0(4, v8)
+    let v10 : UH0 = UH0_0(2, v9)
+    let v11 : UH0 = UH0_0(0, v10)
+    let v12 : string = $"__expect / actual: %A{v5} / expected: %A{v11}"
     ()
 method0()
 
@@ -8745,15 +8745,15 @@ method0()
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v18 : UH0 = UH0_1
-    let v19 : UH0 = UH0_0(9, v18)
-    let v20 : UH0 = UH0_0(7, v19)
-    let v21 : UH0 = UH0_0(5, v20)
-    let v22 : UH0 = UH0_1
-    let v23 : UH0 = UH0_0(9, v22)
-    let v24 : UH0 = UH0_0(7, v23)
-    let v25 : UH0 = UH0_0(5, v24)
-    let v26 : string = $"_equal / actual: %A{v21} / expected: %A{v25}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(9, v0)
+    let v2 : UH0 = UH0_0(7, v1)
+    let v3 : UH0 = UH0_0(5, v2)
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = UH0_0(9, v4)
+    let v6 : UH0 = UH0_0(7, v5)
+    let v7 : UH0 = UH0_0(5, v6)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
     ()
 method0()
 
@@ -8834,15 +8834,15 @@ method0()
     | UH0_0 of int32 * int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v18 : UH0 = UH0_1
-    let v19 : UH0 = UH0_0(3, 6, v18)
-    let v20 : UH0 = UH0_0(2, 5, v19)
-    let v21 : UH0 = UH0_0(1, 4, v20)
-    let v22 : UH0 = UH0_1
-    let v23 : UH0 = UH0_0(3, 6, v22)
-    let v24 : UH0 = UH0_0(2, 5, v23)
-    let v25 : UH0 = UH0_0(1, 4, v24)
-    let v26 : string = $"_equal / actual: %A{v21} / expected: %A{v25}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(3, 6, v0)
+    let v2 : UH0 = UH0_0(2, 5, v1)
+    let v3 : UH0 = UH0_0(1, 4, v2)
+    let v4 : UH0 = UH0_1
+    let v5 : UH0 = UH0_0(3, 6, v4)
+    let v6 : UH0 = UH0_0(2, 5, v5)
+    let v7 : UH0 = UH0_0(1, 4, v6)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
     ()
 method0()
 
@@ -8924,19 +8924,19 @@ method0()
     | UH0_0 of int32 * int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v33 : UH0 = UH0_1
-    let v34 : UH0 = UH0_0(4, 8, v33)
-    let v35 : UH0 = UH0_0(3, 6, v34)
-    let v36 : UH0 = UH0_0(2, 4, v35)
-    let v37 : UH0 = UH0_0(1, 2, v36)
-    let v38 : UH0 = UH0_0(0, 0, v37)
-    let v39 : UH0 = UH0_1
-    let v40 : UH0 = UH0_0(4, 8, v39)
-    let v41 : UH0 = UH0_0(3, 6, v40)
-    let v42 : UH0 = UH0_0(2, 4, v41)
-    let v43 : UH0 = UH0_0(1, 2, v42)
-    let v44 : UH0 = UH0_0(0, 0, v43)
-    let v45 : string = $"_equal / actual: %A{v38} / expected: %A{v44}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(4, 8, v0)
+    let v2 : UH0 = UH0_0(3, 6, v1)
+    let v3 : UH0 = UH0_0(2, 4, v2)
+    let v4 : UH0 = UH0_0(1, 2, v3)
+    let v5 : UH0 = UH0_0(0, 0, v4)
+    let v6 : UH0 = UH0_1
+    let v7 : UH0 = UH0_0(4, 8, v6)
+    let v8 : UH0 = UH0_0(3, 6, v7)
+    let v9 : UH0 = UH0_0(2, 4, v8)
+    let v10 : UH0 = UH0_0(1, 2, v9)
+    let v11 : UH0 = UH0_0(0, 0, v10)
+    let v12 : string = $"__expect / actual: %A{v5} / expected: %A{v11}"
     ()
 method0()
 
@@ -9028,37 +9028,37 @@ and UH1 =
     | UH1_0 of bool * UH0 * UH1
     | UH1_1
 let rec method0 () : unit =
-    let v96 : UH0 = UH0_1
-    let v97 : UH0 = UH0_0(8, v96)
-    let v98 : UH0 = UH0_0(6, v97)
-    let v99 : UH0 = UH0_0(4, v98)
-    let v100 : UH0 = UH0_0(2, v99)
-    let v101 : UH0 = UH0_0(0, v100)
-    let v102 : UH0 = UH0_1
-    let v103 : UH0 = UH0_0(9, v102)
-    let v104 : UH0 = UH0_0(7, v103)
-    let v105 : UH0 = UH0_0(5, v104)
-    let v106 : UH0 = UH0_0(3, v105)
-    let v107 : UH0 = UH0_0(1, v106)
-    let v108 : UH1 = UH1_1
-    let v109 : UH1 = UH1_0(false, v107, v108)
-    let v110 : UH1 = UH1_0(true, v101, v109)
-    let v111 : UH0 = UH0_1
-    let v112 : UH0 = UH0_0(8, v111)
-    let v113 : UH0 = UH0_0(6, v112)
-    let v114 : UH0 = UH0_0(4, v113)
-    let v115 : UH0 = UH0_0(2, v114)
-    let v116 : UH0 = UH0_0(0, v115)
-    let v117 : UH0 = UH0_1
-    let v118 : UH0 = UH0_0(9, v117)
-    let v119 : UH0 = UH0_0(7, v118)
-    let v120 : UH0 = UH0_0(5, v119)
-    let v121 : UH0 = UH0_0(3, v120)
-    let v122 : UH0 = UH0_0(1, v121)
-    let v123 : UH1 = UH1_1
-    let v124 : UH1 = UH1_0(false, v122, v123)
-    let v125 : UH1 = UH1_0(true, v116, v124)
-    let v126 : string = $"_equal / actual: %A{v110} / expected: %A{v125}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(8, v0)
+    let v2 : UH0 = UH0_0(6, v1)
+    let v3 : UH0 = UH0_0(4, v2)
+    let v4 : UH0 = UH0_0(2, v3)
+    let v5 : UH0 = UH0_0(0, v4)
+    let v6 : UH0 = UH0_1
+    let v7 : UH0 = UH0_0(9, v6)
+    let v8 : UH0 = UH0_0(7, v7)
+    let v9 : UH0 = UH0_0(5, v8)
+    let v10 : UH0 = UH0_0(3, v9)
+    let v11 : UH0 = UH0_0(1, v10)
+    let v12 : UH1 = UH1_1
+    let v13 : UH1 = UH1_0(false, v11, v12)
+    let v14 : UH1 = UH1_0(true, v5, v13)
+    let v15 : UH0 = UH0_1
+    let v16 : UH0 = UH0_0(8, v15)
+    let v17 : UH0 = UH0_0(6, v16)
+    let v18 : UH0 = UH0_0(4, v17)
+    let v19 : UH0 = UH0_0(2, v18)
+    let v20 : UH0 = UH0_0(0, v19)
+    let v21 : UH0 = UH0_1
+    let v22 : UH0 = UH0_0(9, v21)
+    let v23 : UH0 = UH0_0(7, v22)
+    let v24 : UH0 = UH0_0(5, v23)
+    let v25 : UH0 = UH0_0(3, v24)
+    let v26 : UH0 = UH0_0(1, v25)
+    let v27 : UH1 = UH1_1
+    let v28 : UH1 = UH1_0(false, v26, v27)
+    let v29 : UH1 = UH1_0(true, v20, v28)
+    let v30 : string = $"__expect / actual: %A{v14} / expected: %A{v29}"
     ()
 method0()
 
@@ -9135,7 +9135,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{true} / expected: %A{true}"
+    let v0 : string = $"__expect / actual: %A{true} / expected: %A{true}"
     ()
 method0()
 
@@ -9212,7 +9212,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"_equal / actual: %A{9} / expected: %A{9}"
+    let v0 : string = $"__expect / actual: %A{9} / expected: %A{9}"
     ()
 method0()
 
@@ -9303,9 +9303,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(5)
-    let v4 : US0 = US0_1(5)
-    let v5 : string = $"_equal / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(5)
+    let v1 : US0 = US0_1(5)
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
     ()
 method0()
 
