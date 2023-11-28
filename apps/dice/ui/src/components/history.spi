@@ -13,7 +13,7 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
             |> leptos.element_to_view
 
             leptos.div [
-                $'"class=\\\"grid flex-1\\\""'
+                $'"class=\\\"grid flex-1 [gap:5px]\\\""'
             ] fun () =>
                 ;[
                     leptos.grid_pair
@@ -49,14 +49,14 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = Some ""; class = "" }
+                        { padding = Some "sm:pr-[10px]"; class = "items-center" }
                         fun () => "Actions" |> leptos.text_fragment
                         fun () =>
                             a transaction.actions
                             |> am'.map_vec function
                                 | FunctionCall { method_name args gas deposit } =>
                                     leptos.grid_pair
-                                        { padding = Some ""; class = "" }
+                                        { padding = Some "items-center"; class = "" }
                                         fun () => "Function Call" |> leptos.text_fragment
                                         fun () =>
                                             inl args = args |> sm'.base64_decode |> to_string
@@ -65,7 +65,7 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                                     |> leptos.element_to_view
                                 | AddKey { public_key access_key } =>
                                     leptos.grid_pair
-                                        { padding = Some ""; class = "" }
+                                        { padding = Some "items-center"; class = "" }
                                         fun () => "Add Key" |> leptos.text_fragment
                                         fun () =>
                                             inl text : string = $'"Public Key: " + string !public_key + ""'
@@ -73,27 +73,17 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                                     |> leptos.element_to_view
                                 | DeployContract { code } =>
                                     leptos.grid_pair
-                                        { padding = Some ""; class = "" }
+                                        { padding = Some "items-center"; class = "" }
                                         fun () => "Contract Deploy" |> leptos.text_fragment
                                         fun () =>
                                             code |> sm'.from_std_string |> leptos.text_fragment
                                     |> leptos.element_to_view
                                 | Transfer { deposit } =>
                                     leptos.grid_pair
-                                        { padding = Some ""; class = "" }
+                                        { padding = Some "items-center"; class = "" }
                                         fun () => "Transfer" |> leptos.text_fragment
                                         fun () =>
                                             deposit |> sm'.from_std_string |> leptos.text_fragment
-                                    |> leptos.element_to_view
-                                | _ =>
-                                    leptos.span [
-                                        $'"class=\\\"flex items-center\\\""'
-                                    ] fun () =>
-                                        ;[
-                                            leptos.x_red_svg () |> leptos.element_to_view
-                                            "None" |> leptos.text_view
-                                        ]
-                                        |> leptos.views_to_fragment
                                     |> leptos.element_to_view
                             |> fun (a x : _ i32 _) => x
                             |> leptos.views_to_fragment
@@ -220,7 +210,7 @@ inl render () =
             |> resultm.box
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / result_wrapper create_memo / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / result_wrapper create_memo / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     inl result_wrapper : rust.func0 (option (result (a i32 result_wrapper) string)) =
@@ -238,7 +228,7 @@ inl render () =
                 | _ => None
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / result_wrapper move / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / result_wrapper move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     inl result_data : rust.func0 (option (result result_data string)) =
@@ -257,7 +247,7 @@ inl render () =
                 |> resultm.flatten
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / result_data move / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / result_data move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     inl transactions_count : rust.func0 (option (result account_transactions_count string)) =
@@ -271,7 +261,7 @@ inl render () =
             |> resultm.flatten_option
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / transaction_count move / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / transaction_count move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     inl transaction_list : rust.func0 (option (result transaction_list_by_account_id string)) =
@@ -285,7 +275,7 @@ inl render () =
             |> resultm.flatten_option
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / transaction_list move / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / transaction_list move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     inl cursor : rust.func0 (option (result transaction_cursor string)) =
@@ -300,7 +290,7 @@ inl render () =
                 |> resultm.flatten
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / cursor move / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / cursor move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     inl transactions : rust.func0 (option (result (array_base transaction) string)) =
@@ -313,7 +303,7 @@ inl render () =
                     result.items
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
-                leptos.log $'"history.render () / transactions move / result: " + string !x_log + ""'
+                leptos.log $'"history.render () / transactions move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
     ;[
@@ -321,7 +311,7 @@ inl render () =
             match transactions |> rust.func0_get with
             | Some (Ok transactions) =>
                 leptos.div [
-                    $'"class=\\\"grid flex-1 p-[10px] [gap:10px] [grid-template-columns:repeat(auto-fill,minmax(400px,1fr))]\\\""'
+                    $'"class=\\\"grid flex-1 p-[10px] [gap:15px] sm:[grid-template-columns:repeat(auto-fill,minmax(400px,1fr))]\\\""'
                 ] fun () =>
                     leptos.for
                         transactions

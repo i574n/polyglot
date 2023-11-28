@@ -519,7 +519,7 @@ inl divider children : _ span =
     inl children = join children
     inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
-    $'"<span class=\\\"flex items-center pb-[2px]\\\"><span class=\\\"pr-6 [font-size:14px]\\\">{!children()}</span><span class=\\\"h-px flex-1 bg-gray-300\\\"></span></span>"'
+    $'"<span class=\\\"flex items-center pb-[6px]\\\"><span class=\\\"pr-[15px] [font-size:14px]\\\">{!children()}</span><span class=\\\"h-px flex-1 bg-gray-300\\\"></span></span>"'
     |> macro_to_element
 
 inl input forall t. getter setter : _ input =
@@ -542,7 +542,7 @@ inl toggle (id : string) on_change get_value : _ label =
 
 inl dd children : _ dd =
     tag_element "dd" [
-        $'"class=\\\"[max-height:50vh] [overflow:auto] text-gray-700 md:col-span-2 flex flex-1\\\""'
+        $'"class=\\\"[max-height:50vh] [overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
     ] children
 
 inl dl children : _ dl =
@@ -556,14 +556,14 @@ inl dt children : _ dt =
     ] children
 
 inl grid_pair_padding_class () =
-    "pt-[8px] pr-[10px] pb-[10px] pl-[10px]"
+    "pt-[9px] pr-[10px] pb-[9px] pl-[10px]"
 
 inl grid_pair { padding class } left right : _ div =
     inl class : string = class
     inl padding = padding |> optionm'.default_value (grid_pair_padding_class ())
     inl left : () -> fragment = join left
     inl right : () -> fragment = join right
-    inl class : string = $'"grid items-center gap-[1px] md:gap-4 flex-1 even:bg-gray-50 md:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] [width:100%] " + !padding + " " + !class + ""'
+    inl class : string = $'"grid gap-[1px] sm:gap-4 flex-1 even:bg-gray-50 sm:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] [width:100%] " + !padding + " " + !class + ""'
 
     div [
         $'"class=\\\"" + !class + "\\\""'
