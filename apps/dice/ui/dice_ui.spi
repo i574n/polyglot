@@ -19,7 +19,9 @@ inl main (args : array_base string) =
         |> leptos.mount_to_body
 
     match body with
-    | Some _ =>
+    | Some body =>
+        body |> leptos.set_inner_html ""
+
         mount ()
     | _ =>
         inl fn : rust.box (rust.dyn' rust.fn_unit) = rust.box_fn mount

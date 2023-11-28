@@ -42,11 +42,10 @@ inl render () =
 
     leptos.router fun () =>
         leptos.routes fun () =>
-            ;[
+            :>(;[
                 route' "" fun () => home.render { router = 1 }
                 route' "/" fun () => home.render { router = 2 }
                 route' "/*" fun () => home.render { router = 3 }
                 route' "*" fun () => home.render { router = 4 }
-            ]
-            |> leptos.views_to_fragment
+            ])
         |> leptos.view_to_fragment

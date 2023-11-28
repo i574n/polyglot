@@ -63,7 +63,7 @@ inl render () : _ leptos.div =
         leptos.div [
             $'"class=\\\"[width:100vw] [max-width:100vw] max-[100px]:[min-width:800px] [height:100vh] [max-height:100vh] max-[60px]:[min-height:600px] bg-gray-50 flex flex-1 flex-col items-stretch text-gray-700 text-sm\\\""'
         ] fun () =>
-            ;[
+            :>(;[
                 leptos.div [
                     $'"class=\\\"flex flex-100 flex-col [overflow-y:auto]\\\""'
                 ] fun () =>
@@ -82,9 +82,7 @@ inl render () : _ leptos.div =
                         $'"class=\\\"flex flex-1 [align-items:flex-end]\\\""'
                     ] fun () =>
                         menu_tabs.render tab
-                        |> leptos.views_to_fragment
                     |> leptos.element_to_fragment
                 |> leptos.element_to_view
-            ]
-            |> leptos.views_to_fragment
+            ])
         |> leptos.element_to_fragment

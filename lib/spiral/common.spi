@@ -11,7 +11,7 @@ let array x = x
 
 // // ## prototype
 
-prototype (~:?>) r : forall t. t -> r
+prototype (~:>) r : forall t. t -> r
 prototype append t : t -> t -> t
 prototype of_string t : string -> t
 prototype to_string t : t -> string
@@ -56,7 +56,7 @@ instance of_string log_level_type = function
 inl to_any forall t. (obj : t) : any =
     $"!obj"
 
-instance (~:?>) any = to_any
+instance (~:>) any = to_any
 
 // // ## (/@)
 

@@ -8,11 +8,11 @@ inl render tab =
     leptos.log $'"menu_tabs.render ()"'
 
     let url = leptos.use_url ()
-    ;[
+    :>(;[
         leptos.div [
             $'"class=\\\"hidden\\\""'
         ] fun () =>
-            ;[
+            :>(;[
                 leptos.label [
                     $'"for=\\\"Tab\\\""'
                     $'"class=\\\"sr-only\\\""'
@@ -24,22 +24,17 @@ inl render tab =
                     $'"id=\\\"Tab\\\""'
                     $'"class=\\\"w-full rounded-md border-gray-200\\\""'
                 ] fun () =>
-                    ;[
+                    :>(;[
                         leptos.option'
                             (fun () => (tab |> leptos.signal_get) = History)
                             "History"
-                            |> leptos.element_to_view
 
                         leptos.option'
                             (fun () => (tab |> leptos.signal_get) = Settings)
                             "Settings"
-                            |> leptos.element_to_view
-                    ]
-                    |> leptos.views_to_fragment
+                    ])
                 |> leptos.element_to_view
-            ]
-            |> leptos.views_to_fragment
-        |> leptos.element_to_view
+            ])
 
         leptos.div [
             $'"class=\\\"flex flex-1 [overflow-x:auto] [overflow-y:hidden]\\\""'
@@ -51,23 +46,19 @@ inl render tab =
                     $'"class=\\\"-mb-px flex [flex-flow:wrap] [flex-grow:1] [flex-shrink:0] gap-[3px] [overflow-wrap:anywhere]\\\""'
                     $'"aria-label=\\\"Tabs\\\""'
                 ] fun () =>
-                    ;[
+                    :>(;[
                         leptos.tab_link
                             $'!url + "#/history"'
                             (leptos.history_svg ())
                             "History"
                             (fun () => (tab |> leptos.signal_get) = History)
-                        |> leptos.element_to_view
 
                         leptos.tab_link
                             $'!url + "#/settings"'
                             (leptos.settings_svg ())
                             "Settings"
                             (fun () => (tab |> leptos.signal_get) = Settings)
-                        |> leptos.element_to_view
-                    ]
-                    |> leptos.views_to_fragment
+                    ])
                 |> leptos.element_to_fragment
             |> leptos.element_to_fragment
-        |> leptos.element_to_view
-    ]
+    ])

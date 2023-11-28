@@ -95,6 +95,46 @@ inl log_pretty (text : string) =
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
+inl array_to_fragment (view : a _ view) : fragment =
+    inl view = join view
+    !\($'"leptos::Fragment::new(!view.to_vec())"')
+
+inl views_to_fragment (items : array_base view) : fragment =
+    inl items = join items
+    items
+    // |> fun x => a (join x) : a u64 _
+    |> fun x => a x : a i64 _
+    |> array_to_fragment
+
+inl element_to_view (view : html_element _) : view =
+    inl view = join view
+    !\($'"leptos::IntoView::into_view(!view)"')
+
+inl view_to_fragment (view : view) : fragment =
+    !\($'"leptos::Fragment::new(vec\![!view])"')
+
+inl element_to_fragment (view : html_element _) : fragment =
+    view
+    |> element_to_view
+    |> view_to_fragment
+
+instance (~:>) fragment = fun x =>
+    real
+        typecase t with
+        | array_base view => views_to_fragment x
+        | array_base (html_element ~el) =>
+            inl x = a `i32 `(html_element el) x
+            inl x = am'.map_vec `i32 `(html_element el) `view (element_to_view `el) x
+            inl (a x) = x
+            views_to_fragment x
+        | _ => x
+
+instance (~:>) view = fun x =>
+    real
+        typecase t with
+        | html_element _ => element_to_view x
+        | _ => x
+
 inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
     $"!view |> unbox"
 
@@ -125,9 +165,6 @@ inl macro_to_fragment (macro : string) : fragment =
 inl new_transparent x : transparent =
     !\($'"leptos::leptos_dom::Transparent::new(!x)"')
 
-inl view_to_fragment (view : view) : fragment =
-    !\($'"leptos::Fragment::new(vec\![!view])"')
-
 inl fragment_to_view (fragment : fragment) : view =
     !\($'"leptos::IntoView::into_view(!fragment)"')
 
@@ -139,10 +176,6 @@ inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
     inl closure = join closure
     !\($'"leptos::IntoView::into_view(move || !closure())"')
     |> view_to_fragment
-
-inl array_to_fragment (view : a _ view) : fragment =
-    inl view = join view
-    !\($'"leptos::Fragment::new(!view.to_vec())"')
 
 inl array_to_view (view : a _ view) : view =
     inl view = join view
@@ -160,15 +193,6 @@ inl text_to_view (text : text) : view =
 inl text_to_fragment (text : text) : fragment =
     text
     |> text_to_view
-    |> view_to_fragment
-
-inl element_to_view (view : html_element _) : view =
-    inl view = join view
-    !\($'"leptos::IntoView::into_view(!view)"')
-
-inl element_to_fragment (view : html_element _) : fragment =
-    view
-    |> element_to_view
     |> view_to_fragment
 
 inl macro_to_view (macro : string) : view =
@@ -198,13 +222,6 @@ inl views_to_view (items : array_base view) : view =
     // |> fun x => a (join x) : a u64 _
     |> fun x => a x : a u64 _
     |> array_to_view
-
-inl views_to_fragment (items : array_base view) : fragment =
-    inl items = join items
-    items
-    // |> fun x => a (join x) : a u64 _
-    |> fun x => a x : a u64 _
-    |> array_to_fragment
 
 inl new_text (text : string) : text =
     inl text = join text
@@ -537,7 +554,7 @@ inl toggle (id : string) on_change get_value : _ label =
     inl on_change : event -> () = join on_change
     inl get_value : () -> bool = join get_value
 
-    $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white text-gray-400 transition-all peer-checked:start-6 peer-checked:text-gray-200\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-300 transition peer-checked:bg-gray-200\\\"></span></label>"'
+    $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-400 peer-checked:bg-white text-gray-200 transition-all peer-checked:start-6 peer-checked:text-gray-400\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-200 transition peer-checked:bg-gray-300\\\"></span></label>"'
     |> macro_to_element
 
 inl dd children : _ dd =
@@ -569,14 +586,13 @@ inl grid_pair { padding cols class } left right : _ div =
     div [
         $'"class=\\\"" + !class + "\\\""'
     ] fun () =>
-        ;[
+        :>(;[
             dt left
             |> element_to_view
 
             dd right
             |> element_to_view
-        ]
-        |> views_to_fragment
+        ])
 
 inl tab_link href icon label select : _ a' =
     inl href = href |> sm'.to_std_string
@@ -592,11 +608,10 @@ inl tab_link href icon label select : _ a' =
         $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium \\\".to_owned() + !select_class()}"'
         $'"aria-current={move || if !select() { \\\"page\\\" } else { \\\"\\\" }}"'
     ] fun () =>
-        ;[
+        :>(;[
             icon |> element_to_view
             label |> text_view
-        ]
-        |> views_to_fragment
+        ])
 
 inl text_block_pre text =
     pre [
@@ -604,3 +619,8 @@ inl text_block_pre text =
     ] fun () =>
         text
         |> text_fragment
+
+inl set_inner_html (html : string) (el : rust.html_element) =
+    inl html = html |> sm'.as_str
+    inl el = join el
+    !\($'"!el.set_inner_html(!html)"')
