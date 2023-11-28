@@ -13,11 +13,11 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
             |> leptos.element_to_view
 
             leptos.div [
-                $'"class=\\\"grid flex-1 [gap:5px]\\\""'
+                $'"class=\\\"grid flex-1 divide-y-[1px] divide-gray-200/[.15]\\\""'
             ] fun () =>
                 ;[
                     leptos.grid_pair
-                        { padding = Some ""; class = "" }
+                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
                         fun () => "Block Timestamp" |> leptos.text_fragment
                         fun () =>
                             transaction.block_timestamp
@@ -31,7 +31,7 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = Some ""; class = "" }
+                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
                         fun () => "Signer" |> leptos.text_fragment
                         fun () =>
                             transaction.signer_id
@@ -40,7 +40,7 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = Some ""; class = "" }
+                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
                         fun () => "Receiver" |> leptos.text_fragment
                         fun () =>
                             transaction.receiver_id
@@ -49,23 +49,64 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = Some "sm:pr-[10px]"; class = "items-center" }
+                        { padding = Some "sm:pr-[10px]"; cols = None; class = "items-center py-[4px]" }
                         fun () => "Actions" |> leptos.text_fragment
                         fun () =>
                             a transaction.actions
                             |> am'.map_vec function
                                 | FunctionCall { method_name args gas deposit } =>
                                     leptos.grid_pair
-                                        { padding = Some "items-center"; class = "" }
+                                        { padding = Some "items-center"; cols = Some ""; class = "" }
                                         fun () => "Function Call" |> leptos.text_fragment
                                         fun () =>
-                                            inl args = args |> sm'.base64_decode |> to_string
-                                            inl call : string = $'"" + string !method_name + "(" + !args + ")"'
-                                            call |> leptos.text_fragment
+                                            leptos.div [
+                                                $'"class=\\\"flex flex-1 flex-col\\\""'
+                                            ] fun () =>
+                                                ;[
+                                                    leptos.grid_pair
+                                                        { padding = Some ""; cols = None; class = "" }
+                                                        fun () => "Method" |> leptos.text_fragment
+                                                        fun () =>
+                                                            method_name
+                                                            |> to_string
+                                                            |> leptos.text_fragment
+                                                    |> leptos.element_to_view
+
+                                                    leptos.grid_pair
+                                                        { padding = Some ""; cols = None; class = "" }
+                                                        fun () => "Args" |> leptos.text_fragment
+                                                        fun () =>
+                                                            args
+                                                            |> sm'.base64_decode
+                                                            |> to_string
+                                                            |> leptos.text_fragment
+                                                    |> leptos.element_to_view
+
+                                                    leptos.grid_pair
+                                                        { padding = Some ""; cols = None; class = "" }
+                                                        fun () => "Gas" |> leptos.text_fragment
+                                                        fun () =>
+                                                            gas
+                                                            |> sm'.format'
+                                                            |> to_string
+                                                            |> leptos.text_fragment
+                                                    |> leptos.element_to_view
+
+                                                    leptos.grid_pair
+                                                        { padding = Some ""; cols = None; class = "" }
+                                                        fun () => "Deposit" |> leptos.text_fragment
+                                                        fun () =>
+                                                            deposit
+                                                            |> to_string
+                                                            |> leptos.text_fragment
+                                                    |> leptos.element_to_view
+                                                ]
+                                                |> leptos.views_to_fragment
+                                            |> leptos.element_to_fragment
                                     |> leptos.element_to_view
                                 | AddKey { public_key access_key } =>
                                     leptos.grid_pair
-                                        { padding = Some "items-center"; class = "" }
+                                        { padding = Some "items-center"; cols = None; class = "" }
                                         fun () => "Add Key" |> leptos.text_fragment
                                         fun () =>
                                             inl text : string = $'"Public Key: " + string !public_key + ""'
@@ -73,14 +114,28 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                                     |> leptos.element_to_view
                                 | DeployContract { code } =>
                                     leptos.grid_pair
-                                        { padding = Some "items-center"; class = "" }
+                                        { padding = Some "items-center"; cols = Some ""; class = "" }
                                         fun () => "Contract Deploy" |> leptos.text_fragment
                                         fun () =>
-                                            code |> sm'.from_std_string |> leptos.text_fragment
+                                            leptos.div [
+                                                $'"class=\\\"flex flex-1 flex-col\\\""'
+                                            ] fun () =>
+                                                ;[
+                                                    leptos.grid_pair
+                                                        { padding = Some ""; cols = None; class = "" }
+                                                        fun () => "Code Hash" |> leptos.text_fragment
+                                                        fun () =>
+                                                            code
+                                                            |> sm'.from_std_string
+                                                            |> leptos.text_fragment
+                                                    |> leptos.element_to_view
+                                                ]
+                                                |> leptos.views_to_fragment
+                                            |> leptos.element_to_fragment
                                     |> leptos.element_to_view
                                 | Transfer { deposit } =>
                                     leptos.grid_pair
-                                        { padding = Some "items-center"; class = "" }
+                                        { padding = Some "items-center"; cols = None; class = "" }
                                         fun () => "Transfer" |> leptos.text_fragment
                                         fun () =>
                                             deposit |> sm'.from_std_string |> leptos.text_fragment
@@ -90,10 +145,28 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = Some ""; class = "" }
+                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
                         fun () => "Status" |> leptos.text_fragment
                         fun () =>
                             transaction.status
+                            |> to_string
+                            |> leptos.text_fragment
+                    |> leptos.element_to_view
+
+                    leptos.grid_pair
+                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
+                        fun () => "Hash" |> leptos.text_fragment
+                        fun () =>
+                            transaction.hash
+                            |> to_string
+                            |> leptos.text_fragment
+                    |> leptos.element_to_view
+
+                    leptos.grid_pair
+                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
+                        fun () => "Block Hash" |> leptos.text_fragment
+                        fun () =>
+                            transaction.block_hash
                             |> to_string
                             |> leptos.text_fragment
                     |> leptos.element_to_view
@@ -311,7 +384,7 @@ inl render () =
             match transactions |> rust.func0_get with
             | Some (Ok transactions) =>
                 leptos.div [
-                    $'"class=\\\"grid flex-1 p-[10px] [gap:15px] sm:[grid-template-columns:repeat(auto-fill,minmax(400px,1fr))]\\\""'
+                    $'"class=\\\"grid flex-1 py-[10px] px-[12px] [gap:15px] sm:[grid-template-columns:repeat(auto-fill,minmax(500px,1fr))]\\\""'
                 ] fun () =>
                     leptos.for
                         transactions
@@ -348,7 +421,7 @@ inl render () =
             leptos.accordion "Debug" true fun () =>
                 ;[
                     leptos.grid_pair
-                        { padding = None; class = "" }
+                        { padding = None; cols = None; class = "" }
                         fun () => "JSON" |> leptos.text_fragment
                         fun () =>
                             json
@@ -360,7 +433,7 @@ inl render () =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = None; class = "" }
+                        { padding = None; cols = None; class = "" }
                         fun () => "Result Wrapper" |> leptos.text_fragment
                         fun () =>
                             result_wrapper
@@ -372,7 +445,7 @@ inl render () =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = None; class = "" }
+                        { padding = None; cols = None; class = "" }
                         fun () => "Transactions Count" |> leptos.text_fragment
                         fun () =>
                             transactions_count
@@ -384,7 +457,7 @@ inl render () =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = None; class = "" }
+                        { padding = None; cols = None; class = "" }
                         fun () => "Cursor" |> leptos.text_fragment
                         fun () =>
                             cursor
@@ -396,7 +469,7 @@ inl render () =
                     |> leptos.element_to_view
 
                     leptos.grid_pair
-                        { padding = None; class = "" }
+                        { padding = None; cols = None; class = "" }
                         fun () => "Transactions" |> leptos.text_fragment
                         fun () =>
                             transaction_list

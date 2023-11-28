@@ -558,12 +558,13 @@ inl dt children : _ dt =
 inl grid_pair_padding_class () =
     "pt-[9px] pr-[10px] pb-[9px] pl-[10px]"
 
-inl grid_pair { padding class } left right : _ div =
+inl grid_pair { padding cols class } left right : _ div =
     inl class : string = class
     inl padding = padding |> optionm'.default_value (grid_pair_padding_class ())
+    inl cols_class = cols |> optionm'.default_value "sm:grid-cols-[150px_repeat(2,minmax(0,1fr))]"
     inl left : () -> fragment = join left
     inl right : () -> fragment = join right
-    inl class : string = $'"grid gap-[1px] sm:gap-4 flex-1 even:bg-gray-50 sm:grid-cols-[150px_repeat(2,minmax(0,1fr))] [inline-size:max-content] [width:100%] " + !padding + " " + !class + ""'
+    inl class : string = $'"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] " + !cols_class + " " + !padding + " " + !class + ""'
 
     div [
         $'"class=\\\"" + !class + "\\\""'
@@ -576,14 +577,6 @@ inl grid_pair { padding class } left right : _ div =
             |> element_to_view
         ]
         |> views_to_fragment
-
-inl view_map_grid children : _ div =
-    div [
-        $'"class=\\\"[flex:1] flow-root\\\""'
-    ] fun () =>
-        dl
-            children
-            |> element_to_fragment
 
 inl tab_link href icon label select : _ a' =
     inl href = href |> sm'.to_std_string

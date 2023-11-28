@@ -27,70 +27,66 @@ inl render () =
 
     ;[
         leptos.accordion "View" true fun () =>
-            leptos.view_map_grid fun () =>
-                inl grid_pair_padding_class = leptos.grid_pair_padding_class ()
-                ;[
-                    leptos.grid_pair
-                        { padding = None; class = $'"items-center"' }
-                        fun () => "Dark Mode" |> leptos.text_fragment
-                        fun () =>
-                            leptos.toggle
-                                "dark-mode"
-                                fun _ =>
-                                    leptos.rw_signal_get_untracked global_state.core_state .dark_mode
-                                    |> leptos.rw_signal_update not
-                                fun () =>
-                                    leptos.rw_signal_get_untracked global_state.core_state .dark_mode
-                                    |> leptos.rw_signal_get
-                                |> leptos.element_to_fragment
-                    |> leptos.element_to_view
+            inl grid_pair_padding_class = leptos.grid_pair_padding_class ()
+            ;[
+                leptos.grid_pair
+                    { padding = None; cols = None; class = $'"items-center"' }
+                    fun () => "Dark Mode" |> leptos.text_fragment
+                    fun () =>
+                        leptos.toggle
+                            "dark-mode"
+                            fun _ =>
+                                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                                |> leptos.rw_signal_update not
+                            fun () =>
+                                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                                |> leptos.rw_signal_get
+                            |> leptos.element_to_fragment
+                |> leptos.element_to_view
 
-                    leptos.grid_pair
-                        { padding = None; class = $'"items-center"' }
-                        fun () => "Debug" |> leptos.text_fragment
-                        fun () =>
-                            leptos.toggle
-                                "debug"
-                                fun _ =>
-                                    leptos.rw_signal_get_untracked global_state.core_state .debug
-                                    |> leptos.rw_signal_update not
-                                fun () =>
-                                    leptos.rw_signal_get_untracked global_state.core_state .debug
-                                    |> leptos.rw_signal_get
-                                |> leptos.element_to_fragment
-                    |> leptos.element_to_view
-                ]
-                |> leptos.views_to_fragment
-            |> leptos.element_to_fragment
+                leptos.grid_pair
+                    { padding = None; cols = None; class = $'"items-center"' }
+                    fun () => "Debug" |> leptos.text_fragment
+                    fun () =>
+                        leptos.toggle
+                            "debug"
+                            fun _ =>
+                                leptos.rw_signal_get_untracked global_state.core_state .debug
+                                |> leptos.rw_signal_update not
+                            fun () =>
+                                leptos.rw_signal_get_untracked global_state.core_state .debug
+                                |> leptos.rw_signal_get
+                            |> leptos.element_to_fragment
+                |> leptos.element_to_view
+            ]
+            |> leptos.views_to_fragment
         |> leptos.element_to_view
 
         leptos.accordion "Connection" true fun () =>
-            leptos.view_map_grid fun () =>
-                leptos.grid_pair
-                    { padding = None; class = $'"items-baseline"' }
-                    fun () => "Explorer Backend Host" |> leptos.text_fragment
-                    fun () =>
-                        leptos.input
-                            fun () =>
-                                leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                                |> leptos.read_only
-                                |> leptos.signal_get
+            leptos.grid_pair
+                { padding = None; cols = None; class = $'"items-baseline"' }
+                fun () => "Explorer Backend Host" |> leptos.text_fragment
+                fun () =>
+                    leptos.input
+                        fun () =>
+                            leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+                            |> leptos.read_only
+                            |> leptos.signal_get
 
-                            fun value =>
-                                value
-                                |> leptos.signal_set (
-                                    leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                                    |> leptos.write_only
-                                )
-                            |> leptos.element_to_fragment
-                |> leptos.element_to_fragment
+                        fun value =>
+                            value
+                            |> leptos.signal_set (
+                                leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+                                |> leptos.write_only
+                            )
+                        |> leptos.element_to_fragment
             |> leptos.element_to_fragment
         |> leptos.element_to_view
 
         if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
             leptos.accordion "Debug" true fun () =>
                 leptos.grid_pair
-                    { padding = None; class = "" }
+                    { padding = None; cols = None; class = "" }
                     fun () => "Global State" |> leptos.text_fragment
                     fun () => global_state_log_render () |> leptos.element_to_fragment
                 |> leptos.element_to_fragment
