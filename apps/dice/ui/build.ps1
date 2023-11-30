@@ -37,7 +37,7 @@ cargo fmt --
 leptosfmt ./src/dice_ui_wasm.rs
 
 if (!$fast) {
-    Remove-Item ./$targetDir/trunk -Recurse -Force -ErrorAction Ignore
+    Remove-Item $targetDir/trunk -Recurse -Force -ErrorAction Ignore
     Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 
     { pnpm install --frozen-lockfile } | Invoke-Block

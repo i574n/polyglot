@@ -65,15 +65,15 @@ npx -y playwright@1.40.0 install
 
 #!pwsh
 
-Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser
+{ Install-Module -Name PowerShellGet -Force -AllowClobber -Scope CurrentUser } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+{ Set-PSRepository -Name PSGallery -InstallationPolicy Trusted } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-Install-Module -Name PSToml -Scope CurrentUser
+{ Install-Module -Name PSToml -Scope CurrentUser -WhatIf } | Invoke-Block -OnError Continue
 
 #!pwsh
 

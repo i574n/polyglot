@@ -33,7 +33,7 @@ function Search-DotnetSdk($version) {
 
 if (!(Search-DotnetSdk "8")) {
     if (!$IsWindows) {
-        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.100-rc.1.23463.5
+        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.100
     }
 }
 
