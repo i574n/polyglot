@@ -17,7 +17,3 @@ if (!$fast) {
 
     { ../../../target/release/dice_contract_tests } | Invoke-Block -Linux -EnvironmentVariables @{ "NEAR_RPC_TIMEOUT_SECS" = 100; "NEAR_SANDBOX_BIN_PATH" = $nearSandboxExe }
 }
-
-if ($env:CI) {
-    Remove-Item ./target -Recurse -Force -ErrorAction Ignore
-}

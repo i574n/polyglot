@@ -15,4 +15,4 @@ modules:
             content
             home
             app
-    dice_ui
+        dice_ui

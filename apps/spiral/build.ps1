@@ -15,6 +15,8 @@ if (!$fast) {
 
 { . ../builder/dist/Builder$(GetExecutableSuffix) Supervisor.fs $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FSharp.Control.AsyncSeq FSharp.Json Microsoft.AspNetCore.SignalR.Client System.CommandLine System.Reactive.Linq --modules lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Threading.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Networking.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
 
+$targetDir = "../../target/polyglot/builder/Supervisor"
+
 if (!$fast) {
     { . ./dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Tasks.dib -Retries 3`"" } | Invoke-Block
 
@@ -22,5 +24,5 @@ if (!$fast) {
 }
 
 if ($env:CI) {
-    Remove-Item ./target -Recurse -Force -ErrorAction Ignore
+    Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
 }

@@ -9,7 +9,7 @@ module Builder =
 
     /// ## buildProject
 
-    let inline buildProject runtime path = async {
+    let inline buildProject runtime outputDir path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let fileDir = fullPath |> System.IO.Path.GetDirectoryName
         let extension = fullPath |> System.IO.Path.GetExtension
@@ -26,13 +26,15 @@ module Builder =
             |> Option.map List.singleton
             |> Option.defaultValue [ "linux-x64"; "win-x64" ]
 
+        let outputDir = outputDir |> Option.defaultValue "dist"
+
         return!
             runtimes
             |> List.map (fun runtime -> async {
                 let! exitCode, _result =
                     Runtime.executeWithOptionsAsync
                         {
-                            Command = $@"dotnet publish ""{path}"" --configuration Release --output ../dist --runtime {runtime}"
+                            Command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
                             CancellationToken = None
                             OnLine = None
                             WorkingDirectory = Some fileDir
@@ -46,17 +48,17 @@ module Builder =
 
     /// ## persistCodeProject
 
-    let inline persistCodeProject packages modules dir name code = async {
-        let getLocals () = $"packages: {packages} / modules: {modules} / dir: {dir} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
+    let inline persistCodeProject packages modules name code = async {
+        let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
         trace Debug (fun () -> "persistCodeProject") getLocals
 
-        let targetDir = dir </> "target"
+        let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+
+        let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
         System.IO.Directory.CreateDirectory targetDir |> ignore
 
         let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
         do! code |> FileSystem.writeAllTextExists filePath
-
-        let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
         let modulesCode =
             modules
@@ -99,9 +101,9 @@ module Builder =
 
     /// ## buildCode
 
-    let inline buildCode runtime packages modules dir name code = async {
-        let! fsprojPath = code |> persistCodeProject packages modules dir name
-        return! fsprojPath |> buildProject runtime
+    let inline buildCode runtime packages modules outputDir name code = async {
+        let! fsprojPath = code |> persistCodeProject packages modules name
+        return! fsprojPath |> buildProject runtime outputDir
     }
 
     /// ## readFile
@@ -129,17 +131,16 @@ module Builder =
         let dir = fullPath |> System.IO.Path.GetDirectoryName
         let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
         let! code = fullPath |> readFile
-        return! code |> buildCode runtime packages modules dir name
+        return! code |> buildCode runtime packages modules (dir </> "dist" |> Some) name
     }
 
     /// ## persistFile
 
     let inline persistFile packages modules path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
-        let dir = fullPath |> System.IO.Path.GetDirectoryName
         let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
         let! code = fullPath |> readFile
-        return! code |> persistCodeProject packages modules dir name
+        return! code |> persistCodeProject packages modules name
     }
 
     /// ## Arguments

@@ -356,7 +356,7 @@ mod module_eef1bd43 {
         #[derive(Clone, Debug)]
         pub enum US26 {
             US26_0,
-            US26_1(Array<dice_ui::model::near::backend::ResultWrapper>),
+            US26_1(Array<crate::model::near::backend::ResultWrapper>),
         }
         impl core::fmt::Display for Dice_ui::US26 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -386,7 +386,7 @@ mod module_eef1bd43 {
         #[derive(Clone, Debug)]
         pub enum US28 {
             US28_0(string),
-            US28_1(Option<Array<dice_ui::model::near::backend::ResultWrapper>>),
+            US28_1(Option<Array<crate::model::near::backend::ResultWrapper>>),
         }
         impl core::fmt::Display for Dice_ui::US28 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -562,7 +562,7 @@ mod module_eef1bd43 {
         #[derive(Clone, Debug)]
         pub enum US41 {
             US41_0,
-            US41_1(dice_ui::model::near::backend::DataWrapper),
+            US41_1(crate::model::near::backend::DataWrapper),
         }
         impl core::fmt::Display for Dice_ui::US41 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -592,7 +592,7 @@ mod module_eef1bd43 {
         #[derive(Clone, Debug)]
         pub enum US44 {
             US44_0,
-            US44_1(dice_ui::model::near::backend::TransactionCursor),
+            US44_1(crate::model::near::backend::TransactionCursor),
         }
         impl core::fmt::Display for Dice_ui::US44 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -602,7 +602,7 @@ mod module_eef1bd43 {
         #[derive(Clone, Debug)]
         pub enum US45 {
             US45_0,
-            US45_1(dice_ui::model::near::backend::ErrorWrapperEnum),
+            US45_1(crate::model::near::backend::ErrorWrapperEnum),
         }
         impl core::fmt::Display for Dice_ui::US45 {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -2795,8 +2795,8 @@ mod module_eef1bd43 {
             string("i574n.near")
         }
         pub fn method91(
-            v0_1: dice_ui::model::near::backend::InputData,
-        ) -> dice_ui::model::near::backend::InputData {
+            v0_1: crate::model::near::backend::InputData,
+        ) -> crate::model::near::backend::InputData {
             v0_1
         }
         pub fn method92() -> string {
@@ -2806,29 +2806,29 @@ mod module_eef1bd43 {
             string("2")
         }
         pub fn method94(
-            v0_1: Option<dice_ui::model::near::backend::TransactionCursor>,
-        ) -> Option<dice_ui::model::near::backend::TransactionCursor> {
+            v0_1: Option<crate::model::near::backend::TransactionCursor>,
+        ) -> Option<crate::model::near::backend::TransactionCursor> {
             v0_1
         }
         pub fn method95(
             v0_1: Array<(
                 std::string::String,
-                std::rc::Rc<dice_ui::model::near::backend::InputData>,
+                std::rc::Rc<crate::model::near::backend::InputData>,
             )>,
         ) -> Array<(
             std::string::String,
-            std::rc::Rc<dice_ui::model::near::backend::InputData>,
+            std::rc::Rc<crate::model::near::backend::InputData>,
         )> {
             v0_1
         }
         pub fn method96(
             v0_1: Array<(
                 std::string::String,
-                std::rc::Rc<dice_ui::model::near::backend::InputData>,
+                std::rc::Rc<crate::model::near::backend::InputData>,
             )>,
         ) -> Array<(
             std::string::String,
-            std::rc::Rc<dice_ui::model::near::backend::InputData>,
+            std::rc::Rc<crate::model::near::backend::InputData>,
         )> {
             v0_1
         }
@@ -2841,11 +2841,11 @@ mod module_eef1bd43 {
                 let v9: string = Dice_ui::method4(Dice_ui::method90());
                 let v11: &str = fable_library_rust::String_::LrcStr::as_str(&v9);
                 let v13: std::string::String = String::from(v11);
-                let v15: dice_ui::model::near::backend::IdInput =
-                    dice_ui::model::near::backend::IdInput { id: v13 };
-                let v18: dice_ui::model::near::backend::InputData =
-                    Dice_ui::method91(dice_ui::model::near::backend::InputData::IdInput(v15));
-                let v20: std::rc::Rc<dice_ui::model::near::backend::InputData> =
+                let v15: crate::model::near::backend::IdInput =
+                    crate::model::near::backend::IdInput { id: v13 };
+                let v18: crate::model::near::backend::InputData =
+                    Dice_ui::method91(crate::model::near::backend::InputData::IdInput(v15));
+                let v20: std::rc::Rc<crate::model::near::backend::InputData> =
                     std::rc::Rc::new(v18);
                 let v22: string = Dice_ui::method4(Dice_ui::method92());
                 let v24: &str = fable_library_rust::String_::LrcStr::as_str(&v22);
@@ -2853,11 +2853,11 @@ mod module_eef1bd43 {
                 let v28: string = Dice_ui::method4(Dice_ui::method90());
                 let v30: &str = fable_library_rust::String_::LrcStr::as_str(&v28);
                 let v32: std::string::String = String::from(v30);
-                let v34: dice_ui::model::near::backend::IdInput =
-                    dice_ui::model::near::backend::IdInput { id: v32 };
-                let v37: dice_ui::model::near::backend::InputData =
-                    Dice_ui::method91(dice_ui::model::near::backend::InputData::IdInput(v34));
-                let v39: std::rc::Rc<dice_ui::model::near::backend::InputData> =
+                let v34: crate::model::near::backend::IdInput =
+                    crate::model::near::backend::IdInput { id: v32 };
+                let v37: crate::model::near::backend::InputData =
+                    Dice_ui::method91(crate::model::near::backend::InputData::IdInput(v34));
+                let v39: std::rc::Rc<crate::model::near::backend::InputData> =
                     std::rc::Rc::new(v37);
                 let v41: string = Dice_ui::method4(Dice_ui::method93());
                 let v43: &str = fable_library_rust::String_::LrcStr::as_str(&v41);
@@ -2865,22 +2865,22 @@ mod module_eef1bd43 {
                 let v47: string = Dice_ui::method4(Dice_ui::method90());
                 let v49: &str = fable_library_rust::String_::LrcStr::as_str(&v47);
                 let v51: std::string::String = String::from(v49);
-                let v53: Option<dice_ui::model::near::backend::TransactionCursor> =
-                    Dice_ui::method94(None::<dice_ui::model::near::backend::TransactionCursor>);
+                let v53: Option<crate::model::near::backend::TransactionCursor> =
+                    Dice_ui::method94(None::<crate::model::near::backend::TransactionCursor>);
                 let v54: string =
-                    string("dice_ui::model::near::backend::TransactionListByAccountIdInput { account_id: v51, limit: 10, cursor: v53 }");
-                let v55: dice_ui::model::near::backend::TransactionListByAccountIdInput =
-                    dice_ui::model::near::backend::TransactionListByAccountIdInput {
+                    string("crate::model::near::backend::TransactionListByAccountIdInput { account_id: v51, limit: 10, cursor: v53 }");
+                let v55: crate::model::near::backend::TransactionListByAccountIdInput =
+                    crate::model::near::backend::TransactionListByAccountIdInput {
                         account_id: v51,
                         limit: 10,
                         cursor: v53,
                     };
-                let v58: dice_ui::model::near::backend::InputData = Dice_ui::method91(
-                    dice_ui::model::near::backend::InputData::TransactionListByAccountIdInput(v55),
+                let v58: crate::model::near::backend::InputData = Dice_ui::method91(
+                    crate::model::near::backend::InputData::TransactionListByAccountIdInput(v55),
                 );
                 let v63: Array<(
                     std::string::String,
-                    std::rc::Rc<dice_ui::model::near::backend::InputData>,
+                    std::rc::Rc<crate::model::near::backend::InputData>,
                 )> = Dice_ui::method96(Dice_ui::method95(new_array(&[
                     (v7, v20),
                     (v26, v39),
@@ -2888,7 +2888,7 @@ mod module_eef1bd43 {
                 ])));
                 let v65: std::collections::HashMap<
                     std::string::String,
-                    std::rc::Rc<dice_ui::model::near::backend::InputData>,
+                    std::rc::Rc<crate::model::near::backend::InputData>,
                 > = std::collections::HashMap::from_iter(v63.to_vec());
                 let v67: Result<std::string::String, serde_json::Error> =
                     serde_json::to_string(&v65);
@@ -3091,14 +3091,14 @@ mod module_eef1bd43 {
             Func1::new(move |v: serde_json::Error| Dice_ui::closure65((), v))
         }
         pub fn method108(
-            v0_1: Vec<dice_ui::model::near::backend::ResultWrapper>,
-        ) -> Vec<dice_ui::model::near::backend::ResultWrapper> {
+            v0_1: Vec<crate::model::near::backend::ResultWrapper>,
+        ) -> Vec<crate::model::near::backend::ResultWrapper> {
             v0_1
         }
         pub fn closure61(
             v0_1: leptos::Resource<Option<string>, Result<Option<string>, string>>,
             unitVar: (),
-        ) -> Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string> {
+        ) -> Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string> {
             let v1: leptos::Resource<Option<string>, Result<Option<string>, string>> =
                 Dice_ui::method106(v0_1);
             let v6: Dice_ui::US24 = defaultValue(
@@ -3132,15 +3132,15 @@ mod module_eef1bd43 {
                                         fable_library_rust::String_::LrcStr::as_str(&v19);
                                     let v23: std::string::String = String::from(v21);
                                     let v25: Result<
-                                        Vec<dice_ui::model::near::backend::ResultWrapper>,
+                                        Vec<crate::model::near::backend::ResultWrapper>,
                                         serde_json::Error,
                                     > = serde_json::from_str(&v23);
                                     let v26 = Dice_ui::method107();
                                     let v28: Result<
-                                        Vec<dice_ui::model::near::backend::ResultWrapper>,
+                                        Vec<crate::model::near::backend::ResultWrapper>,
                                         std::string::String,
                                     > = v25.map_err(|x| v26(x));
-                                    let v31: Vec<dice_ui::model::near::backend::ResultWrapper> =
+                                    let v31: Vec<crate::model::near::backend::ResultWrapper> =
                                         Dice_ui::method108(v28?);
                                     Dice_ui::US26::US26_1(
                                         fable_library_rust::NativeArray_::array_from(v31),
@@ -3159,12 +3159,12 @@ mod module_eef1bd43 {
                     let v45: Dice_ui::US26 = v44_1_0.clone();
                     Dice_ui::US28::US28_1(match &v45 {
                         Dice_ui::US26::US26_1(v45_1_0) => Some(v45_1_0.clone()),
-                        _ => None::<Array<dice_ui::model::near::backend::ResultWrapper>>,
+                        _ => None::<Array<crate::model::near::backend::ResultWrapper>>,
                     })
                 }
                 Dice_ui::US25::US25_0(v44_0_0) => Dice_ui::US28::US28_0(v44_0_0.clone()),
             };
-            let v61: Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string> =
+            let v61: Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string> =
                 match &v55 {
                     Dice_ui::US28::US28_1(v55_1_0) => Ok(v55_1_0.clone()),
                     Dice_ui::US28::US28_0(v55_0_0) => Err(v55_0_0.clone()),
@@ -3181,7 +3181,7 @@ mod module_eef1bd43 {
         }
         pub fn method105(
             v0_1: leptos::Resource<Option<string>, Result<Option<string>, string>>,
-        ) -> Func0<Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string>>
+        ) -> Func0<Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string>>
         {
             Func0::new({
                 let v0_1 = v0_1.clone();
@@ -3190,15 +3190,15 @@ mod module_eef1bd43 {
         }
         pub fn method110(
             v0_1: leptos::Memo<
-                Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string>,
+                Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string>,
             >,
-        ) -> leptos::Memo<Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string>>
+        ) -> leptos::Memo<Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string>>
         {
             v0_1
         }
         pub fn closure67(
             unitVar: (),
-            v0_1: Option<Array<dice_ui::model::near::backend::ResultWrapper>>,
+            v0_1: Option<Array<crate::model::near::backend::ResultWrapper>>,
         ) -> Dice_ui::US28 {
             Dice_ui::US28::US28_1(v0_1)
         }
@@ -3207,7 +3207,7 @@ mod module_eef1bd43 {
         }
         pub fn closure69(
             unitVar: (),
-            v0_1: Array<dice_ui::model::near::backend::ResultWrapper>,
+            v0_1: Array<crate::model::near::backend::ResultWrapper>,
         ) -> Dice_ui::US26 {
             Dice_ui::US26::US26_1(v0_1)
         }
@@ -3215,50 +3215,50 @@ mod module_eef1bd43 {
             v1.l0.get() < v0_1
         }
         pub fn method112(
-            v0_1: dice_ui::model::near::backend::ResultWrapper,
-        ) -> dice_ui::model::near::backend::ResultWrapper {
+            v0_1: crate::model::near::backend::ResultWrapper,
+        ) -> crate::model::near::backend::ResultWrapper {
             v0_1
         }
         pub fn closure70(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::DataWrapper,
+            v0_1: crate::model::near::backend::DataWrapper,
         ) -> Dice_ui::US41 {
             Dice_ui::US41::US41_1(v0_1)
         }
         pub fn method113(
-            v0_1: dice_ui::model::near::backend::DataWrapper,
-        ) -> dice_ui::model::near::backend::DataWrapper {
+            v0_1: crate::model::near::backend::DataWrapper,
+        ) -> crate::model::near::backend::DataWrapper {
             v0_1
         }
         pub fn method114(
-            v0_1: dice_ui::model::near::backend::ResultData,
-        ) -> dice_ui::model::near::backend::ResultData {
+            v0_1: crate::model::near::backend::ResultData,
+        ) -> crate::model::near::backend::ResultData {
             v0_1
         }
         pub fn method116(
-            v0_1: dice_ui::model::near::backend::AccountTransactionsCount,
-        ) -> dice_ui::model::near::backend::AccountTransactionsCount {
+            v0_1: crate::model::near::backend::AccountTransactionsCount,
+        ) -> crate::model::near::backend::AccountTransactionsCount {
             v0_1
         }
         pub fn closure71(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::AccountTransactionsCount,
+            v0_1: crate::model::near::backend::AccountTransactionsCount,
         ) -> (u64, u64) {
-            let v1: dice_ui::model::near::backend::AccountTransactionsCount =
+            let v1: crate::model::near::backend::AccountTransactionsCount =
                 Dice_ui::method116(v0_1);
             (v1.in_transactions_count, v1.out_transactions_count)
         }
         pub fn method115(
-        ) -> Func1<dice_ui::model::near::backend::AccountTransactionsCount, (u64, u64)> {
+        ) -> Func1<crate::model::near::backend::AccountTransactionsCount, (u64, u64)> {
             Func1::new(
-                move |v: dice_ui::model::near::backend::AccountTransactionsCount| {
+                move |v: crate::model::near::backend::AccountTransactionsCount| {
                     Dice_ui::closure71((), v)
                 },
             )
         }
         pub fn method118(
-            v0_1: dice_ui::model::near::backend::ContractById,
-        ) -> dice_ui::model::near::backend::ContractById {
+            v0_1: crate::model::near::backend::ContractById,
+        ) -> crate::model::near::backend::ContractById {
             v0_1
         }
         pub fn closure73(unitVar: (), v0_1: u64) -> Dice_ui::US35 {
@@ -3266,9 +3266,9 @@ mod module_eef1bd43 {
         }
         pub fn closure72(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::ContractById,
+            v0_1: crate::model::near::backend::ContractById,
         ) -> (std::string::String, bool, Dice_ui::US35, Dice_ui::US13) {
-            let v1: dice_ui::model::near::backend::ContractById = Dice_ui::method118(v0_1);
+            let v1: crate::model::near::backend::ContractById = Dice_ui::method118(v0_1);
             let v3: std::string::String = v1.code_hash;
             let v8: Dice_ui::US13 = defaultValue(
                 Dice_ui::US13::US13_0,
@@ -3287,50 +3287,50 @@ mod module_eef1bd43 {
             (v3, v1.locked, v13, v8)
         }
         pub fn method117() -> Func1<
-            dice_ui::model::near::backend::ContractById,
+            crate::model::near::backend::ContractById,
             (std::string::String, bool, Dice_ui::US35, Dice_ui::US13),
         > {
-            Func1::new(move |v: dice_ui::model::near::backend::ContractById| {
+            Func1::new(move |v: crate::model::near::backend::ContractById| {
                 Dice_ui::closure72((), v)
             })
         }
         pub fn method120(
-            v0_1: dice_ui::model::near::backend::TransactionListByAccountId,
-        ) -> dice_ui::model::near::backend::TransactionListByAccountId {
+            v0_1: crate::model::near::backend::TransactionListByAccountId,
+        ) -> crate::model::near::backend::TransactionListByAccountId {
             v0_1
         }
         pub fn method122(
-            v0_1: dice_ui::model::near::backend::Transaction,
-        ) -> dice_ui::model::near::backend::Transaction {
+            v0_1: crate::model::near::backend::Transaction,
+        ) -> crate::model::near::backend::Transaction {
             v0_1
         }
         pub fn method124(
-            v0_1: dice_ui::model::near::backend::TransactionAction,
-        ) -> dice_ui::model::near::backend::TransactionAction {
+            v0_1: crate::model::near::backend::TransactionAction,
+        ) -> crate::model::near::backend::TransactionAction {
             v0_1
         }
         pub fn method126(
-            v0_1: dice_ui::model::near::backend::FunctionCallArgs,
-        ) -> dice_ui::model::near::backend::FunctionCallArgs {
+            v0_1: crate::model::near::backend::FunctionCallArgs,
+        ) -> crate::model::near::backend::FunctionCallArgs {
             v0_1
         }
         pub fn closure77(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::FunctionCallArgs,
+            v0_1: crate::model::near::backend::FunctionCallArgs,
         ) -> (
             std::string::String,
             std::string::String,
             u64,
             std::string::String,
         ) {
-            let v1: dice_ui::model::near::backend::FunctionCallArgs = Dice_ui::method126(v0_1);
+            let v1: crate::model::near::backend::FunctionCallArgs = Dice_ui::method126(v0_1);
             let v3: std::string::String = v1.method_name;
             let v5: std::string::String = v1.args;
             let v7: u64 = v1.gas;
             (v5, v1.deposit, v7, v3)
         }
         pub fn method125() -> Func1<
-            dice_ui::model::near::backend::FunctionCallArgs,
+            crate::model::near::backend::FunctionCallArgs,
             (
                 std::string::String,
                 std::string::String,
@@ -3338,23 +3338,23 @@ mod module_eef1bd43 {
                 std::string::String,
             ),
         > {
-            Func1::new(move |v: dice_ui::model::near::backend::FunctionCallArgs| {
+            Func1::new(move |v: crate::model::near::backend::FunctionCallArgs| {
                 Dice_ui::closure77((), v)
             })
         }
         pub fn method128(
-            v0_1: dice_ui::model::near::backend::AddKeyArgs,
-        ) -> dice_ui::model::near::backend::AddKeyArgs {
+            v0_1: crate::model::near::backend::AddKeyArgs,
+        ) -> crate::model::near::backend::AddKeyArgs {
             v0_1
         }
         pub fn method129(
-            v0_1: dice_ui::model::near::backend::AccessKey,
-        ) -> dice_ui::model::near::backend::AccessKey {
+            v0_1: crate::model::near::backend::AccessKey,
+        ) -> crate::model::near::backend::AccessKey {
             v0_1
         }
         pub fn method130(
-            v0_1: dice_ui::model::near::backend::Permission,
-        ) -> dice_ui::model::near::backend::Permission {
+            v0_1: crate::model::near::backend::Permission,
+        ) -> crate::model::near::backend::Permission {
             v0_1
         }
         pub fn method131(v0_1: Dice_ui::US13) -> Dice_ui::US13 {
@@ -3374,7 +3374,7 @@ mod module_eef1bd43 {
         }
         pub fn closure78(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::AddKeyArgs,
+            v0_1: crate::model::near::backend::AddKeyArgs,
         ) -> (
             u8,
             Dice_ui::US13,
@@ -3382,11 +3382,11 @@ mod module_eef1bd43 {
             std::string::String,
             std::string::String,
         ) {
-            let v1: dice_ui::model::near::backend::AddKeyArgs = Dice_ui::method128(v0_1);
+            let v1: crate::model::near::backend::AddKeyArgs = Dice_ui::method128(v0_1);
             let v3: std::string::String = v1.public_key;
-            let v6: dice_ui::model::near::backend::AccessKey = Dice_ui::method129(v1.access_key);
+            let v6: crate::model::near::backend::AccessKey = Dice_ui::method129(v1.access_key);
             let v8: u8 = v6.nonce;
-            let v11: dice_ui::model::near::backend::Permission = Dice_ui::method130(v6.permission);
+            let v11: crate::model::near::backend::Permission = Dice_ui::method130(v6.permission);
             let v13: std::string::String = v11.permission_type;
             let v19: Dice_ui::US13 = Dice_ui::method131(defaultValue(
                 Dice_ui::US13::US13_0,
@@ -3423,7 +3423,7 @@ mod module_eef1bd43 {
             )
         }
         pub fn method127() -> Func1<
-            dice_ui::model::near::backend::AddKeyArgs,
+            crate::model::near::backend::AddKeyArgs,
             (
                 u8,
                 Dice_ui::US13,
@@ -3432,45 +3432,41 @@ mod module_eef1bd43 {
                 std::string::String,
             ),
         > {
-            Func1::new(move |v: dice_ui::model::near::backend::AddKeyArgs| {
-                Dice_ui::closure78((), v)
-            })
+            Func1::new(move |v: crate::model::near::backend::AddKeyArgs| Dice_ui::closure78((), v))
         }
         pub fn method136(
-            v0_1: dice_ui::model::near::backend::DeployContractArgs,
-        ) -> dice_ui::model::near::backend::DeployContractArgs {
+            v0_1: crate::model::near::backend::DeployContractArgs,
+        ) -> crate::model::near::backend::DeployContractArgs {
             v0_1
         }
         pub fn closure80(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::DeployContractArgs,
+            v0_1: crate::model::near::backend::DeployContractArgs,
         ) -> std::string::String {
-            let v1: dice_ui::model::near::backend::DeployContractArgs = Dice_ui::method136(v0_1);
+            let v1: crate::model::near::backend::DeployContractArgs = Dice_ui::method136(v0_1);
             v1.code
         }
         pub fn method135(
-        ) -> Func1<dice_ui::model::near::backend::DeployContractArgs, std::string::String> {
-            Func1::new(
-                move |v: dice_ui::model::near::backend::DeployContractArgs| {
-                    Dice_ui::closure80((), v)
-                },
-            )
+        ) -> Func1<crate::model::near::backend::DeployContractArgs, std::string::String> {
+            Func1::new(move |v: crate::model::near::backend::DeployContractArgs| {
+                Dice_ui::closure80((), v)
+            })
         }
         pub fn method138(
-            v0_1: dice_ui::model::near::backend::TransferArgs,
-        ) -> dice_ui::model::near::backend::TransferArgs {
+            v0_1: crate::model::near::backend::TransferArgs,
+        ) -> crate::model::near::backend::TransferArgs {
             v0_1
         }
         pub fn closure81(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::TransferArgs,
+            v0_1: crate::model::near::backend::TransferArgs,
         ) -> std::string::String {
-            let v1: dice_ui::model::near::backend::TransferArgs = Dice_ui::method138(v0_1);
+            let v1: crate::model::near::backend::TransferArgs = Dice_ui::method138(v0_1);
             v1.deposit
         }
-        pub fn method137() -> Func1<dice_ui::model::near::backend::TransferArgs, std::string::String>
+        pub fn method137() -> Func1<crate::model::near::backend::TransferArgs, std::string::String>
         {
-            Func1::new(move |v: dice_ui::model::near::backend::TransferArgs| {
+            Func1::new(move |v: crate::model::near::backend::TransferArgs| {
                 Dice_ui::closure81((), v)
             })
         }
@@ -3560,9 +3556,9 @@ mod module_eef1bd43 {
         }
         pub fn closure76(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::TransactionAction,
+            v0_1: crate::model::near::backend::TransactionAction,
         ) -> Dice_ui::US37 {
-            let v1: dice_ui::model::near::backend::TransactionAction = Dice_ui::method124(v0_1);
+            let v1: crate::model::near::backend::TransactionAction = Dice_ui::method124(v0_1);
             let v2 = Dice_ui::method125();
             let v3 = Dice_ui::method127();
             let v4 = Dice_ui::method135();
@@ -3572,17 +3568,16 @@ mod module_eef1bd43 {
             let v8 = Dice_ui::method141();
             let v9 = Dice_ui::method142();
             let v10: string =
-                string("match v1 { dice_ui::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)), dice_ui::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)), dice_ui::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)), dice_ui::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)) }");
+                string("match v1 { crate::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)), crate::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)), crate::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)), crate::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)) }");
             match v1 {
-                dice_ui::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)),
-                dice_ui::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)),
-                dice_ui::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)),
-                dice_ui::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)),
+                crate::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)),
+                crate::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)),
+                crate::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)),
+                crate::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)),
             }
         }
-        pub fn method123() -> Func1<dice_ui::model::near::backend::TransactionAction, Dice_ui::US37>
-        {
-            Func1::new(move |v: dice_ui::model::near::backend::TransactionAction| {
+        pub fn method123() -> Func1<crate::model::near::backend::TransactionAction, Dice_ui::US37> {
+            Func1::new(move |v: crate::model::near::backend::TransactionAction| {
                 Dice_ui::closure76((), v)
             })
         }
@@ -3594,7 +3589,7 @@ mod module_eef1bd43 {
         }
         pub fn closure75(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::Transaction,
+            v0_1: crate::model::near::backend::Transaction,
         ) -> (
             Array<Dice_ui::US37>,
             std::string::String,
@@ -3604,7 +3599,7 @@ mod module_eef1bd43 {
             std::string::String,
             std::string::String,
         ) {
-            let v1: dice_ui::model::near::backend::Transaction = Dice_ui::method122(v0_1);
+            let v1: crate::model::near::backend::Transaction = Dice_ui::method122(v0_1);
             let v3: std::string::String = v1.hash.clone();
             let v5: std::string::String = v1.signer_id.clone();
             let v7: std::string::String = v1.receiver_id.clone();
@@ -3624,7 +3619,7 @@ mod module_eef1bd43 {
             )
         }
         pub fn method121() -> Func1<
-            dice_ui::model::near::backend::Transaction,
+            crate::model::near::backend::Transaction,
             (
                 Array<Dice_ui::US37>,
                 std::string::String,
@@ -3635,9 +3630,7 @@ mod module_eef1bd43 {
                 std::string::String,
             ),
         > {
-            Func1::new(move |v: dice_ui::model::near::backend::Transaction| {
-                Dice_ui::closure75((), v)
-            })
+            Func1::new(move |v: crate::model::near::backend::Transaction| Dice_ui::closure75((), v))
         }
         pub fn method145(
             v0_1: Vec<(
@@ -3683,13 +3676,13 @@ mod module_eef1bd43 {
         }
         pub fn closure86(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::TransactionCursor,
+            v0_1: crate::model::near::backend::TransactionCursor,
         ) -> Dice_ui::US44 {
             Dice_ui::US44::US44_1(v0_1)
         }
         pub fn method147(
-            v0_1: dice_ui::model::near::backend::TransactionCursor,
-        ) -> dice_ui::model::near::backend::TransactionCursor {
+            v0_1: crate::model::near::backend::TransactionCursor,
+        ) -> crate::model::near::backend::TransactionCursor {
             v0_1
         }
         pub fn method148(v0_1: Dice_ui::US36) -> Dice_ui::US36 {
@@ -3697,7 +3690,7 @@ mod module_eef1bd43 {
         }
         pub fn closure74(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::TransactionListByAccountId,
+            v0_1: crate::model::near::backend::TransactionListByAccountId,
         ) -> (
             Dice_ui::US36,
             Array<(
@@ -3710,7 +3703,7 @@ mod module_eef1bd43 {
                 std::string::String,
             )>,
         ) {
-            let v1: dice_ui::model::near::backend::TransactionListByAccountId =
+            let v1: crate::model::near::backend::TransactionListByAccountId =
                 Dice_ui::method120(v0_1);
             let v2 = Dice_ui::method121();
             let v5: Vec<(
@@ -3734,7 +3727,7 @@ mod module_eef1bd43 {
             let v13: Dice_ui::US44 = defaultValue(
                 Dice_ui::US44::US44_0,
                 map(
-                    Func1::new(move |v: dice_ui::model::near::backend::TransactionCursor| {
+                    Func1::new(move |v: crate::model::near::backend::TransactionCursor| {
                         Dice_ui::closure86((), v)
                     }),
                     v1.cursor,
@@ -3743,7 +3736,7 @@ mod module_eef1bd43 {
             (
                 Dice_ui::method148(match &v13 {
                     Dice_ui::US44::US44_1(v13_1_0) => {
-                        let v15: dice_ui::model::near::backend::TransactionCursor =
+                        let v15: crate::model::near::backend::TransactionCursor =
                             Dice_ui::method147(v13_1_0.clone());
                         let v17: std::string::String = v15.timestamp;
                         Dice_ui::US36::US36_1(v15.index_in_chunk, v17)
@@ -3754,7 +3747,7 @@ mod module_eef1bd43 {
             )
         }
         pub fn method119() -> Func1<
-            dice_ui::model::near::backend::TransactionListByAccountId,
+            crate::model::near::backend::TransactionListByAccountId,
             (
                 Dice_ui::US36,
                 Array<(
@@ -3769,7 +3762,7 @@ mod module_eef1bd43 {
             ),
         > {
             Func1::new(
-                move |v: dice_ui::model::near::backend::TransactionListByAccountId| {
+                move |v: crate::model::near::backend::TransactionListByAccountId| {
                     Dice_ui::closure74((), v)
                 },
             )
@@ -3849,28 +3842,28 @@ mod module_eef1bd43 {
         }
         pub fn closure90(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::ErrorWrapperEnum,
+            v0_1: crate::model::near::backend::ErrorWrapperEnum,
         ) -> Dice_ui::US45 {
             Dice_ui::US45::US45_1(v0_1)
         }
         pub fn method152(
-            v0_1: dice_ui::model::near::backend::ErrorWrapperEnum,
-        ) -> dice_ui::model::near::backend::ErrorWrapperEnum {
+            v0_1: crate::model::near::backend::ErrorWrapperEnum,
+        ) -> crate::model::near::backend::ErrorWrapperEnum {
             v0_1
         }
         pub fn method154(
-            v0_1: dice_ui::model::near::backend::ErrorWrapper,
-        ) -> dice_ui::model::near::backend::ErrorWrapper {
+            v0_1: crate::model::near::backend::ErrorWrapper,
+        ) -> crate::model::near::backend::ErrorWrapper {
             v0_1
         }
         pub fn method155(
-            v0_1: dice_ui::model::near::backend::ErrorData,
-        ) -> dice_ui::model::near::backend::ErrorData {
+            v0_1: crate::model::near::backend::ErrorData,
+        ) -> crate::model::near::backend::ErrorData {
             v0_1
         }
         pub fn closure91(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::ErrorWrapper,
+            v0_1: crate::model::near::backend::ErrorWrapper,
         ) -> (
             i32,
             std::string::String,
@@ -3878,15 +3871,15 @@ mod module_eef1bd43 {
             std::string::String,
             std::string::String,
         ) {
-            let v1: dice_ui::model::near::backend::ErrorWrapper = Dice_ui::method154(v0_1);
-            let v4: dice_ui::model::near::backend::ErrorData = Dice_ui::method155(v1.error);
+            let v1: crate::model::near::backend::ErrorWrapper = Dice_ui::method154(v0_1);
+            let v4: crate::model::near::backend::ErrorData = Dice_ui::method155(v1.error);
             let v6: std::string::String = v4.message;
             let v8: i32 = v4.code;
-            let v10: dice_ui::model::near::backend::ErrorDataInner = v4.data;
+            let v10: crate::model::near::backend::ErrorDataInner = v4.data;
             (v8, v10.code, v10.http_status, v10.path, v6)
         }
         pub fn method153() -> Func1<
-            dice_ui::model::near::backend::ErrorWrapper,
+            crate::model::near::backend::ErrorWrapper,
             (
                 i32,
                 std::string::String,
@@ -3895,13 +3888,13 @@ mod module_eef1bd43 {
                 std::string::String,
             ),
         > {
-            Func1::new(move |v: dice_ui::model::near::backend::ErrorWrapper| {
+            Func1::new(move |v: crate::model::near::backend::ErrorWrapper| {
                 Dice_ui::closure91((), v)
             })
         }
         pub fn closure92(
             unitVar: (),
-            v0_1: dice_ui::model::near::backend::ErrorData,
+            v0_1: crate::model::near::backend::ErrorData,
         ) -> (
             i32,
             std::string::String,
@@ -3909,14 +3902,14 @@ mod module_eef1bd43 {
             std::string::String,
             std::string::String,
         ) {
-            let v1: dice_ui::model::near::backend::ErrorData = Dice_ui::method155(v0_1);
+            let v1: crate::model::near::backend::ErrorData = Dice_ui::method155(v0_1);
             let v3: std::string::String = v1.message;
             let v5: i32 = v1.code;
-            let v7: dice_ui::model::near::backend::ErrorDataInner = v1.data;
+            let v7: crate::model::near::backend::ErrorDataInner = v1.data;
             (v5, v7.code, v7.http_status, v7.path, v3)
         }
         pub fn method156() -> Func1<
-            dice_ui::model::near::backend::ErrorData,
+            crate::model::near::backend::ErrorData,
             (
                 i32,
                 std::string::String,
@@ -3925,7 +3918,7 @@ mod module_eef1bd43 {
                 std::string::String,
             ),
         > {
-            Func1::new(move |v: dice_ui::model::near::backend::ErrorData| Dice_ui::closure92((), v))
+            Func1::new(move |v: crate::model::near::backend::ErrorData| Dice_ui::closure92((), v))
         }
         pub fn closure93(
             unitVar: (),
@@ -4005,14 +3998,14 @@ mod module_eef1bd43 {
         }
         pub fn closure66(
             v0_1: leptos::Memo<
-                Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string>,
+                Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string>,
             >,
             unitVar: (),
         ) -> Dice_ui::US29 {
             let v1: leptos::Memo<
-                Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string>,
+                Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string>,
             > = Dice_ui::method110(v0_1);
-            let v3: Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string> =
+            let v3: Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string> =
                 v1();
             let v6: Dice_ui::US28 = match &v3 {
                 Err(v3_1_0) => Dice_ui::closure68((), v3_1_0.clone()),
@@ -4024,7 +4017,7 @@ mod module_eef1bd43 {
                         Dice_ui::US26::US26_0,
                         map(
                             Func1::new(
-                                move |v_2: Array<dice_ui::model::near::backend::ResultWrapper>| {
+                                move |v_2: Array<crate::model::near::backend::ResultWrapper>| {
                                     Dice_ui::closure69((), v_2)
                                 },
                             ),
@@ -4033,7 +4026,7 @@ mod module_eef1bd43 {
                     );
                     Dice_ui::US39::US39_1(match &v10 {
                         Dice_ui::US26::US26_1(v10_1_0) => {
-                            let v11: Array<dice_ui::model::near::backend::ResultWrapper> =
+                            let v11: Array<crate::model::near::backend::ResultWrapper> =
                                 v10_1_0.clone();
                             let v12: i32 = count(v11.clone());
                             let v13: Array<(Dice_ui::US31, Dice_ui::US33)> =
@@ -4043,22 +4036,24 @@ mod module_eef1bd43 {
                             });
                             while Dice_ui::method111(v12, v14.clone()) {
                                 let v16: i32 = v14.l0.get();
-                                let v18: dice_ui::model::near::backend::ResultWrapper =
+                                let v18: crate::model::near::backend::ResultWrapper =
                                     Dice_ui::method112(v11[v16].clone());
-                                let v23:
-                                                                  Dice_ui::US41 =
-                                                              defaultValue(Dice_ui::US41::US41_0,
-                                                                           map(Func1::new(move
-                                                                                              |v_3:
-                                                                                                   dice_ui::model::near::backend::DataWrapper|
-                                                                                              Dice_ui::closure70((),
-                                                                                                                 v_3)),
-                                                                               v18.result.clone()));
+                                let v23: Dice_ui::US41 = defaultValue(
+                                    Dice_ui::US41::US41_0,
+                                    map(
+                                        Func1::new(
+                                            move |v_3: crate::model::near::backend::DataWrapper| {
+                                                Dice_ui::closure70((), v_3)
+                                            },
+                                        ),
+                                        v18.result.clone(),
+                                    ),
+                                );
                                 let v40: Dice_ui::US33 = match &v23 {
                                     Dice_ui::US41::US41_1(v23_1_0) => {
-                                        let v25: dice_ui::model::near::backend::DataWrapper =
+                                        let v25: crate::model::near::backend::DataWrapper =
                                             Dice_ui::method113(v23_1_0.clone());
-                                        let v28: dice_ui::model::near::backend::ResultData =
+                                        let v28: crate::model::near::backend::ResultData =
                                             Dice_ui::method114(v25.data);
                                         let v29 = Dice_ui::method115();
                                         let v30 = Dice_ui::method117();
@@ -4068,8 +4063,8 @@ mod module_eef1bd43 {
                                         let v34 = Dice_ui::method151();
                                         let v35:
                                                                               string =
-                                                                          string("match v28 { dice_ui::model::near::backend::ResultData::AccountTransactionsCount(x) => v32(v29(x)), dice_ui::model::near::backend::ResultData::ContractById(x) => v33(v30(x)), dice_ui::model::near::backend::ResultData::TransactionListByAccountId(x) => v34(v31(x)) }");
-                                        Dice_ui::US33::US33_1(match v28 { dice_ui::model::near::backend::ResultData::AccountTransactionsCount(x) => v32(v29(x)), dice_ui::model::near::backend::ResultData::ContractById(x) => v33(v30(x)), dice_ui::model::near::backend::ResultData::TransactionListByAccountId(x) => v34(v31(x)) })
+                                                                          string("match v28 { crate::model::near::backend::ResultData::AccountTransactionsCount(x) => v32(v29(x)), crate::model::near::backend::ResultData::ContractById(x) => v33(v30(x)), crate::model::near::backend::ResultData::TransactionListByAccountId(x) => v34(v31(x)) }");
+                                        Dice_ui::US33::US33_1(match v28 { crate::model::near::backend::ResultData::AccountTransactionsCount(x) => v32(v29(x)), crate::model::near::backend::ResultData::ContractById(x) => v33(v30(x)), crate::model::near::backend::ResultData::TransactionListByAccountId(x) => v34(v31(x)) })
                                     }
                                     _ => Dice_ui::US33::US33_0,
                                 };
@@ -4078,13 +4073,13 @@ mod module_eef1bd43 {
                                                               defaultValue(Dice_ui::US45::US45_0,
                                                                            map(Func1::new(move
                                                                                               |v_4:
-                                                                                                   dice_ui::model::near::backend::ErrorWrapperEnum|
+                                                                                                   crate::model::near::backend::ErrorWrapperEnum|
                                                                                               Dice_ui::closure90((),
                                                                                                                  v_4)),
                                                                                v18.error.clone()));
                                 let v57: Dice_ui::US31 = match &v45 {
                                     Dice_ui::US45::US45_1(v45_1_0) => {
-                                        let v47: dice_ui::model::near::backend::ErrorWrapperEnum =
+                                        let v47: crate::model::near::backend::ErrorWrapperEnum =
                                             Dice_ui::method152(v45_1_0.clone());
                                         let v48 = Dice_ui::method153();
                                         let v49 = Dice_ui::method156();
@@ -4092,8 +4087,8 @@ mod module_eef1bd43 {
                                         let v51 = Dice_ui::method158();
                                         let v52:
                                                                               string =
-                                                                          string("match v47 { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v50(v48(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v51(v49(x)) }");
-                                        Dice_ui::US31::US31_1(match v47 { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v50(v48(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v51(v49(x)) })
+                                                                          string("match v47 { crate::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v50(v48(x)), crate::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v51(v49(x)) }");
+                                        Dice_ui::US31::US31_1(match v47 { crate::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v50(v48(x)), crate::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v51(v49(x)) })
                                     }
                                     _ => Dice_ui::US31::US31_0,
                                 };
@@ -4139,7 +4134,7 @@ mod module_eef1bd43 {
         }
         pub fn method109(
             v0_1: leptos::Memo<
-                Result<Option<Array<dice_ui::model::near::backend::ResultWrapper>>, string>,
+                Result<Option<Array<crate::model::near::backend::ResultWrapper>>, string>,
             >,
         ) -> Func0<Dice_ui::US29> {
             Func0::new({
@@ -8867,8 +8862,9 @@ mod module_eef1bd43 {
                     l2: leptos::create_rw_signal(v12),
                 });
                 let v17: leptos::RwSignal<LrcPtr<Dice_ui::Heap0>> = leptos::create_rw_signal(v15);
-                let v19: string = string("include_str!(\"../../near/explorer_backend_host.txt\")");
-                let v20: &str = include_str!("../../near/explorer_backend_host.txt");
+                let v19: string =
+                    string("include_str!(\"../../../near/explorer_backend_host.txt\")");
+                let v20: &str = include_str!("../../../near/explorer_backend_host.txt");
                 let v22: std::string::String = String::from(v20);
                 let v25: LrcPtr<Dice_ui::Heap1> = LrcPtr::new(Dice_ui::Heap1 {
                     l0: leptos::create_rw_signal(v22),

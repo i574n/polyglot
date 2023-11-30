@@ -82,28 +82,28 @@
 [<Fable.Core.Erase; Fable.Core.Emit("leptos_router::Location")>] type leptos_router_Location = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos_router::NavigateOptions")>] type leptos_router_NavigateOptions = class end
 [<Fable.Core.Erase; Fable.Core.Emit("leptos_router::Url")>] type leptos_router_Url = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::AccessKey")>] type crate_model_near_backend_AccessKey = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::AccountTransactionsCount")>] type crate_model_near_backend_AccountTransactionsCount = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::AddKeyArgs")>] type crate_model_near_backend_AddKeyArgs = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ContractById")>] type crate_model_near_backend_ContractById = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::DataWrapper")>] type crate_model_near_backend_DataWrapper = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::DeployContractArgs")>] type crate_model_near_backend_DeployContractArgs = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ErrorData")>] type crate_model_near_backend_ErrorData = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ErrorDataInner")>] type crate_model_near_backend_ErrorDataInner = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ErrorWrapper")>] type crate_model_near_backend_ErrorWrapper = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ErrorWrapperEnum")>] type crate_model_near_backend_ErrorWrapperEnum = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::FunctionCallArgs")>] type crate_model_near_backend_FunctionCallArgs = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::IdInput")>] type crate_model_near_backend_IdInput = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::InputData")>] type crate_model_near_backend_InputData = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::Permission")>] type crate_model_near_backend_Permission = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ResultData")>] type crate_model_near_backend_ResultData = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::ResultWrapper")>] type crate_model_near_backend_ResultWrapper = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::Transaction")>] type crate_model_near_backend_Transaction = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::TransactionAction")>] type crate_model_near_backend_TransactionAction = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::TransactionCursor")>] type crate_model_near_backend_TransactionCursor = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::TransactionListByAccountId")>] type crate_model_near_backend_TransactionListByAccountId = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::TransactionListByAccountIdInput")>] type crate_model_near_backend_TransactionListByAccountIdInput = class end
-[<Fable.Core.Erase; Fable.Core.Emit("dice_ui::model::near::backend::TransferArgs")>] type crate_model_near_backend_TransferArgs = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::AccessKey")>] type crate_model_near_backend_AccessKey = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::AccountTransactionsCount")>] type crate_model_near_backend_AccountTransactionsCount = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::AddKeyArgs")>] type crate_model_near_backend_AddKeyArgs = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ContractById")>] type crate_model_near_backend_ContractById = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::DataWrapper")>] type crate_model_near_backend_DataWrapper = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::DeployContractArgs")>] type crate_model_near_backend_DeployContractArgs = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ErrorData")>] type crate_model_near_backend_ErrorData = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ErrorDataInner")>] type crate_model_near_backend_ErrorDataInner = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ErrorWrapper")>] type crate_model_near_backend_ErrorWrapper = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ErrorWrapperEnum")>] type crate_model_near_backend_ErrorWrapperEnum = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::FunctionCallArgs")>] type crate_model_near_backend_FunctionCallArgs = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::IdInput")>] type crate_model_near_backend_IdInput = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::InputData")>] type crate_model_near_backend_InputData = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::Permission")>] type crate_model_near_backend_Permission = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ResultData")>] type crate_model_near_backend_ResultData = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::ResultWrapper")>] type crate_model_near_backend_ResultWrapper = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::Transaction")>] type crate_model_near_backend_Transaction = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::TransactionAction")>] type crate_model_near_backend_TransactionAction = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::TransactionCursor")>] type crate_model_near_backend_TransactionCursor = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::TransactionListByAccountId")>] type crate_model_near_backend_TransactionListByAccountId = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::TransactionListByAccountIdInput")>] type crate_model_near_backend_TransactionListByAccountIdInput = class end
+[<Fable.Core.Erase; Fable.Core.Emit("crate::model::near::backend::TransferArgs")>] type crate_model_near_backend_TransferArgs = class end
 type [<Struct>] US0 =
     | US0_0
     | US0_1 of f1_0 : web_sys_HtmlElement
@@ -1594,9 +1594,9 @@ and closure55 () () : std_string_String option =
     let v11 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : string = "String::from(v11)"
     let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v12
-    let v14 : string = "dice_ui::model::near::backend::IdInput { id: v13 }"
+    let v14 : string = "crate::model::near::backend::IdInput { id: v13 }"
     let v15 : crate_model_near_backend_IdInput = Fable.Core.RustInterop.emitRustExpr () v14
-    let v16 : string = "dice_ui::model::near::backend::InputData::IdInput(v15)"
+    let v16 : string = "crate::model::near::backend::InputData::IdInput(v15)"
     let v17 : crate_model_near_backend_InputData = Fable.Core.RustInterop.emitRustExpr () v16
     let v18 : crate_model_near_backend_InputData = method91(v17)
     let v19 : string = "std::rc::Rc::new(v18)"
@@ -1613,9 +1613,9 @@ and closure55 () () : std_string_String option =
     let v30 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v29
     let v31 : string = "String::from(v30)"
     let v32 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v31
-    let v33 : string = "dice_ui::model::near::backend::IdInput { id: v32 }"
+    let v33 : string = "crate::model::near::backend::IdInput { id: v32 }"
     let v34 : crate_model_near_backend_IdInput = Fable.Core.RustInterop.emitRustExpr () v33
-    let v35 : string = "dice_ui::model::near::backend::InputData::IdInput(v34)"
+    let v35 : string = "crate::model::near::backend::InputData::IdInput(v34)"
     let v36 : crate_model_near_backend_InputData = Fable.Core.RustInterop.emitRustExpr () v35
     let v37 : crate_model_near_backend_InputData = method91(v36)
     let v38 : string = "std::rc::Rc::new(v37)"
@@ -1634,9 +1634,9 @@ and closure55 () () : std_string_String option =
     let v51 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v50
     let v52 : crate_model_near_backend_TransactionCursor option = None
     let v53 : crate_model_near_backend_TransactionCursor option = method94(v52)
-    let v54 : string = "dice_ui::model::near::backend::TransactionListByAccountIdInput { account_id: v51, limit: 10, cursor: v53 }"
+    let v54 : string = "crate::model::near::backend::TransactionListByAccountIdInput { account_id: v51, limit: 10, cursor: v53 }"
     let v55 : crate_model_near_backend_TransactionListByAccountIdInput = Fable.Core.RustInterop.emitRustExpr () v54
-    let v56 : string = "dice_ui::model::near::backend::InputData::TransactionListByAccountIdInput(v55)"
+    let v56 : string = "crate::model::near::backend::InputData::TransactionListByAccountIdInput(v55)"
     let v57 : crate_model_near_backend_InputData = Fable.Core.RustInterop.emitRustExpr () v56
     let v58 : crate_model_near_backend_InputData = method91(v57)
     let v59 : string = "std::rc::Rc::new(v58)"
@@ -2056,7 +2056,7 @@ and closure76 () (v0 : crate_model_near_backend_TransactionAction) : US37 =
     let v7 : (struct (uint8 * US13 * US38 * std_string_String * std_string_String) -> US37) = method140()
     let v8 : (std_string_String -> US37) = method141()
     let v9 : (std_string_String -> US37) = method142()
-    let v10 : string = "match v1 { dice_ui::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)), dice_ui::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)), dice_ui::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)), dice_ui::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)) }"
+    let v10 : string = "match v1 { crate::model::near::backend::TransactionAction::FunctionCall(x) => v6(v2(x)), crate::model::near::backend::TransactionAction::AddKey(x) => v7(v3(x)), crate::model::near::backend::TransactionAction::DeployContract(x) => v8(v4(x)), crate::model::near::backend::TransactionAction::Transfer(x) => v9(v5(x)) }"
     let v11 : US37 = Fable.Core.RustInterop.emitRustExpr () v10
     v11
 and method123 () : (crate_model_near_backend_TransactionAction -> US37) =
@@ -2240,7 +2240,7 @@ and closure66 (v0 : leptos_Memo<Result<(crate_model_near_backend_ResultWrapper [
                                 let v32 : (struct (uint64 * uint64) -> US34) = method149()
                                 let v33 : (struct (std_string_String * bool * US35 * US13) -> US34) = method150()
                                 let v34 : (struct (US36 * (struct ((US37 []) * std_string_String * uint64 * std_string_String * std_string_String * std_string_String * std_string_String) [])) -> US34) = method151()
-                                let v35 : string = "match v28 { dice_ui::model::near::backend::ResultData::AccountTransactionsCount(x) => v32(v29(x)), dice_ui::model::near::backend::ResultData::ContractById(x) => v33(v30(x)), dice_ui::model::near::backend::ResultData::TransactionListByAccountId(x) => v34(v31(x)) }"
+                                let v35 : string = "match v28 { crate::model::near::backend::ResultData::AccountTransactionsCount(x) => v32(v29(x)), crate::model::near::backend::ResultData::ContractById(x) => v33(v30(x)), crate::model::near::backend::ResultData::TransactionListByAccountId(x) => v34(v31(x)) }"
                                 let v36 : US34 = Fable.Core.RustInterop.emitRustExpr () v35
                                 US33_1(v36)
                         let v41 : string = "v18.error.clone()"
@@ -2258,7 +2258,7 @@ and closure66 (v0 : leptos_Memo<Result<(crate_model_near_backend_ResultWrapper [
                                 let v49 : (crate_model_near_backend_ErrorData -> struct (int32 * std_string_String * uint32 * std_string_String * std_string_String)) = method156()
                                 let v50 : (struct (int32 * std_string_String * uint32 * std_string_String * std_string_String) -> US32) = method157()
                                 let v51 : (struct (int32 * std_string_String * uint32 * std_string_String * std_string_String) -> US32) = method158()
-                                let v52 : string = "match v47 { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v50(v48(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v51(v49(x)) }"
+                                let v52 : string = "match v47 { crate::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => v50(v48(x)), crate::model::near::backend::ErrorWrapperEnum::ErrorData(x) => v51(v49(x)) }"
                                 let v53 : US32 = Fable.Core.RustInterop.emitRustExpr () v52
                                 US31_1(v53)
                         v13.[int v16] <- struct (v57, v40)
@@ -5904,7 +5904,7 @@ and closure2 () () : Impl<leptos_IntoView> =
     let v15 : Heap0 = {l0 = v4; l1 = v6; l2 = v14} : Heap0
     let v16 : string = $"leptos::create_rw_signal(v15)"
     let v17 : leptos_RwSignal<Heap0> = Fable.Core.RustInterop.emitRustExpr () v16
-    let v18 : string = "../../near/explorer_backend_host.txt"
+    let v18 : string = "../../../near/explorer_backend_host.txt"
     let v19 : string = "include_str!(\"" + v18 + "\")"
     let v20 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v19
     let v21 : string = "String::from(v20)"

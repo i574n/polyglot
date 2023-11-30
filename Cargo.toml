@@ -11,6 +11,12 @@ edition = "2021"
 repository = "https://github.com/i574n/polyglot"
 license-file = "../LICENSE"
 
+[[workspace.metadata.leptos]]
+name = "dice_ui"
+bin-package = "dice_ui"
+lib-package = "dice_ui"
+output-name = "ui"
+
 [dependencies]
 
 [dev-dependencies]

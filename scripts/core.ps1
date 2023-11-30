@@ -48,8 +48,8 @@ function Invoke-Block {
     }
 
     while ($Retries -gt 0) {
-        $Error.Clear()
         try {
+            $Error.Clear()
             $exitcode = 0
             if ($Linux -and $IsWindows) {
                 Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""

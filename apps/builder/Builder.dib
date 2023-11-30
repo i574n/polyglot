@@ -39,7 +39,7 @@ open FileSystem.Operators
 
 #!fsharp
 
-let inline buildProject runtime path = async {
+let inline buildProject runtime outputDir path = async {
     let fullPath = path |> System.IO.Path.GetFullPath
     let fileDir = fullPath |> System.IO.Path.GetDirectoryName
     let extension = fullPath |> System.IO.Path.GetExtension
@@ -55,6 +55,8 @@ let inline buildProject runtime path = async {
         runtime
         |> Option.map List.singleton
         |> Option.defaultValue [ "linux-x64"; "win-x64" ]
+    
+    let outputDir = outputDir |> Option.defaultValue "dist"
 
     return!
         runtimes
@@ -62,7 +64,7 @@ let inline buildProject runtime path = async {
             let! exitCode, _result =
                 Runtime.executeWithOptionsAsync
                     {
-                        Command = $@"dotnet publish ""{path}"" --configuration Release --output ../dist --runtime {runtime}"
+                        Command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
                         CancellationToken = None
                         OnLine = None
                         WorkingDirectory = Some fileDir
@@ -80,17 +82,17 @@ let inline buildProject runtime path = async {
 
 #!fsharp
 
-let inline persistCodeProject packages modules dir name code = async {
-    let getLocals () = $"packages: {packages} / modules: {modules} / dir: {dir} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
+let inline persistCodeProject packages modules name code = async {
+    let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
     trace Debug (fun () -> "persistCodeProject") getLocals
 
-    let targetDir = dir </> "target"
+    let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+
+    let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
     System.IO.Directory.CreateDirectory targetDir |> ignore
 
     let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
     do! code |> FileSystem.writeAllTextExists filePath
-
-    let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
     let modulesCode =
         modules
@@ -137,19 +139,17 @@ let inline persistCodeProject packages modules dir name code = async {
 
 #!fsharp
 
-let inline buildCode runtime packages modules dir name code = async {
-    let! fsprojPath = code |> persistCodeProject packages modules dir name
-    return! fsprojPath |> buildProject runtime
+let inline buildCode runtime packages modules outputDir name code = async {
+    let! fsprojPath = code |> persistCodeProject packages modules name
+    return! fsprojPath |> buildProject runtime outputDir
 }
 
 #!fsharp
 
 //// test
 
-let tempFolder = FileSystem.getSourceDirectory () </> "target/test"
-
 "1 + 1"
-|> buildCode None [] [] tempFolder "test"
+|> buildCode None [] [] None "test1"
 |> Async.runWithTimeout 60000
 |> _equal (Some 0)
 
@@ -157,10 +157,8 @@ let tempFolder = FileSystem.getSourceDirectory () </> "target/test"
 
 //// test
 
-let tempFolder = FileSystem.getSourceDirectory () </> "target/test"
-
 "1 + a"
-|> buildCode None [] [] tempFolder "test"
+|> buildCode None [] [] None "test2"
 |> Async.runWithTimeout 60000
 |> _equal (Some 2)
 
@@ -197,7 +195,7 @@ let inline buildFile runtime packages modules path = async {
     let dir = fullPath |> System.IO.Path.GetDirectoryName
     let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
     let! code = fullPath |> readFile
-    return! code |> buildCode runtime packages modules dir name
+    return! code |> buildCode runtime packages modules (dir </> "dist" |> Some) name
 }
 
 #!markdown
@@ -208,10 +206,9 @@ let inline buildFile runtime packages modules path = async {
 
 let inline persistFile packages modules path = async {
     let fullPath = path |> System.IO.Path.GetFullPath
-    let dir = fullPath |> System.IO.Path.GetDirectoryName
     let name = fullPath |> System.IO.Path.GetFileNameWithoutExtension
     let! code = fullPath |> readFile
-    return! code |> persistCodeProject packages modules dir name
+    return! code |> persistCodeProject packages modules name
 }
 
 #!markdown

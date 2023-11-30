@@ -14,7 +14,7 @@ inl main (args : array_base string) =
 
     let mount () =
         fun () =>
-            src.components.app.render ()
+            components.app.render ()
             |> leptos.to_view_trait
         |> leptos.mount_to_body
 
@@ -38,7 +38,7 @@ inl main () =
     print_static "<dice_ui>"
     rust.types ()
     leptos.types ()
-    src.model.near.backend.types ()
+    model.near.backend.types ()
 
     $"let main args = !main args" : ()
     print_static "</dice_ui>"

@@ -7587,7 +7587,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">outputDir</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
     <span class="n">let</span> <span class="n">fileDir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
     <span class="n">let</span> <span class="n">extension</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetExtension</span>
@@ -7603,6 +7603,8 @@ a.anchor-link {
         <span class="n">runtime</span>
         <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="n">List</span><span class="o">.</span><span class="n">singleton</span>
         <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">[</span> <span class="s2">"linux-x64"</span><span class="p">;</span> <span class="s2">"win-x64"</span> <span class="p">]</span>
+    
+    <span class="n">let</span> <span class="n">outputDir</span> <span class="o">=</span> <span class="n">outputDir</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="s2">"dist"</span>
 
     <span class="k">return</span><span class="err">!</span>
         <span class="n">runtimes</span>
@@ -7610,7 +7612,7 @@ a.anchor-link {
             <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">_result</span> <span class="o">=</span>
                 <span class="n">Runtime</span><span class="o">.</span><span class="n">executeWithOptionsAsync</span>
                     <span class="p">{</span>
-                        <span class="n">Command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet publish ""</span><span class="si">{path}</span><span class="s2">"" --configuration Release --output ../dist --runtime </span><span class="si">{runtime}</span><span class="s2">"</span>
+                        <span class="n">Command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet publish ""</span><span class="si">{path}</span><span class="s2">"" --configuration Release --output ""</span><span class="si">{outputDir}</span><span class="s2">"" --runtime </span><span class="si">{runtime}</span><span class="s2">"</span>
                         <span class="n">CancellationToken</span> <span class="o">=</span> <span class="kc">None</span>
                         <span class="n">OnLine</span> <span class="o">=</span> <span class="kc">None</span>
                         <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">fileDir</span>
@@ -7645,17 +7647,17 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="nb">dir</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / dir: </span><span class="si">{dir}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {getLocals ()}"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"persistCodeProject"</span><span class="p">)</span> <span class="n">getLocals</span>
 
-    <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="nb">dir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target"</span>
+    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
+
+    <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/polyglot/builder"</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span>
     <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">targetDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 
     <span class="n">let</span> <span class="n">filePath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fs"</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">filePath</span>
-
-    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
 
     <span class="n">let</span> <span class="n">modulesCode</span> <span class="o">=</span>
         <span class="n">modules</span>
@@ -7719,9 +7721,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="nb">dir</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="nb">dir</span> <span class="n">name</span>
-    <span class="k">return</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">|&gt;</span> <span class="n">buildProject</span> <span class="n">runtime</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">outputDir</span> <span class="n">name</span> <span class="n">code</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span>
+    <span class="k">return</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">|&gt;</span> <span class="n">buildProject</span> <span class="n">runtime</span> <span class="n">outputDir</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -7738,10 +7740,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/test"</span>
-
 <span class="s2">"1 + 1"</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="n">tempFolder</span> <span class="s2">"test"</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="kc">None</span> <span class="s2">"test1"</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">60000</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -7756,34 +7756,30 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] persistCodeProject / packages: [] / modules: [] / dir: C:\home\git\polyglot\apps\builder\target/test / name: test / code.Length: 5
-00:00:00 #2 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj
+<pre>00:00:00 #1 [Debug] persistCodeProject / packages: [] / modules: [] / name: test1 / code.Length: 5
+00:00:00 #2 [Debug] buildProject / fullPath: C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj
 00:00:00 #3 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime linux-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
+   "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime linux-x64"
+  WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\test1"
   CancellationToken = None
   OnLine = None }
 00:00:00 #4 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
 00:00:00 #5 [Verbose] &gt;   Determining projects to restore...
-00:00:01 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 431 ms).
-00:00:03 #7 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:03 #8 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:03 #9 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\linux-x64\test.dll
-00:00:05 #10 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
-00:00:05 #11 [Debug] executeAsync / exitCode: 0 / output.Length: 916
-00:00:05 #12 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime win-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
+00:00:01 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj (in 395 ms).
+00:00:02 #7 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\bin\Release\net8.0\linux-x64\test1.dll
+00:00:03 #8 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\dist\
+00:00:03 #9 [Debug] executeAsync / exitCode: 0 / output.Length: 335
+00:00:03 #10 [Debug] executeAsync / options: { Command =
+   "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64"
+  WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\test1"
   CancellationToken = None
   OnLine = None }
-00:00:05 #13 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
-00:00:05 #14 [Verbose] &gt;   Determining projects to restore...
-00:00:06 #15 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 328 ms).
-00:00:08 #16 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,1): warning FS0020: The result of this expression has type 'int' and is implicitly ignored. Consider using 'ignore' to discard this value explicitly, e.g. 'expr |&gt; ignore', or 'let' to bind the result to a name, e.g. 'let result = expr'. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:08 #17 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,6): warning FS0988: Main module of program is empty: nothing will happen when it is run [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:08 #18 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\target\bin\Release\net8.0\win-x64\test.dll
-00:00:11 #19 [Verbose] &gt;   test -&gt; C:\home\git\polyglot\apps\builder\target\test\dist\
-00:00:11 #20 [Debug] executeAsync / exitCode: 0 / output.Length: 914
+00:00:03 #11 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:04 #12 [Verbose] &gt;   Determining projects to restore...
+00:00:05 #13 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj (in 295 ms).
+00:00:05 #14 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\bin\Release\net8.0\win-x64\test1.dll
+00:00:08 #15 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\dist\
+00:00:08 #16 [Debug] executeAsync / exitCode: 0 / output.Length: 333
 FSharpOption&lt;Int32&gt;
       Value: 0
 </pre>
@@ -7801,10 +7797,8 @@ FSharpOption&lt;Int32&gt;
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/test"</span>
-
 <span class="s2">"1 + a"</span>
-<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="n">tempFolder</span> <span class="s2">"test"</span>
+<span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="kc">None</span> <span class="p">[]</span> <span class="p">[]</span> <span class="kc">None</span> <span class="s2">"test2"</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">60000</span>
 <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
@@ -7819,28 +7813,28 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:12 #21 [Debug] persistCodeProject / packages: [] / modules: [] / dir: C:\home\git\polyglot\apps\builder\target/test / name: test / code.Length: 5
-00:00:12 #22 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj
-00:00:12 #23 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime linux-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
+<pre>00:00:09 #17 [Debug] persistCodeProject / packages: [] / modules: [] / name: test2 / code.Length: 5
+00:00:09 #18 [Debug] buildProject / fullPath: C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj
+00:00:09 #19 [Debug] executeAsync / options: { Command =
+   "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime linux-x64"
+  WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\test2"
   CancellationToken = None
   OnLine = None }
-00:00:12 #24 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
-00:00:13 #25 [Verbose] &gt;   Determining projects to restore...
-00:00:13 #26 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 308 ms).
-00:00:15 #27 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:15 #28 [Debug] executeAsync / exitCode: 1 / output.Length: 360
-00:00:15 #29 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target/test\target\test.fsproj" --configuration Release --output ../dist --runtime win-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target\test\target"
+00:00:09 #20 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:09 #21 [Verbose] &gt;   Determining projects to restore...
+00:00:10 #22 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj (in 313 ms).
+00:00:12 #23 [Verbose] &gt; C:\home\git\polyglot\target\polyglot\builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
+00:00:12 #24 [Debug] executeAsync / exitCode: 1 / output.Length: 357
+00:00:12 #25 [Debug] executeAsync / options: { Command =
+   "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64"
+  WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\test2"
   CancellationToken = None
   OnLine = None }
-00:00:15 #30 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
-00:00:16 #31 [Verbose] &gt;   Determining projects to restore...
-00:00:16 #32 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj (in 312 ms).
-00:00:18 #33 [Verbose] &gt; C:\home\git\polyglot\apps\builder\target\test\target\test.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\apps\builder\target\test\target\test.fsproj]
-00:00:18 #34 [Debug] executeAsync / exitCode: 1 / output.Length: 360
+00:00:12 #26 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:13 #27 [Verbose] &gt;   Determining projects to restore...
+00:00:13 #28 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj (in 278 ms).
+00:00:15 #29 [Verbose] &gt; C:\home\git\polyglot\target\polyglot\builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
+00:00:15 #30 [Debug] executeAsync / exitCode: 1 / output.Length: 357
 FSharpOption&lt;Int32&gt;
       Value: 2
 </pre>
@@ -7911,7 +7905,7 @@ FSharpOption&lt;Int32&gt;
     <span class="n">let</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
     <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">code</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readFile</span>
-    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="nb">dir</span> <span class="n">name</span>
+    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">buildCode</span> <span class="n">runtime</span> <span class="n">packages</span> <span class="n">modules</span> <span class="p">(</span><span class="nb">dir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"dist"</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span> <span class="n">name</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -7939,10 +7933,9 @@ FSharpOption&lt;Int32&gt;
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">persistFile</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
-    <span class="n">let</span> <span class="nb">dir</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetDirectoryName</span>
     <span class="n">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileNameWithoutExtension</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">code</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readFile</span>
-    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="nb">dir</span> <span class="n">name</span>
+    <span class="k">return</span><span class="err">!</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">persistCodeProject</span> <span class="n">packages</span> <span class="n">modules</span> <span class="n">name</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -8012,8 +8005,8 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>USAGE: dotnet.exe [--help] [--packages [&lt;packages&gt;...]] [--modules [&lt;modules&gt;...]] [--runtime &lt;runtime&gt;]
-                  [--persist-only] &lt;path&gt;
+<pre>USAGE: dotnet.exe [--help] [--packages [&lt;packages&gt;...]] [--modules [&lt;modules&gt;...]]
+                  [--runtime &lt;runtime&gt;] [--persist-only] &lt;path&gt;
 
 PATH:
 
@@ -8157,30 +8150,30 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:20 #35 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/fsharp/Common.fs; lib/fsharp/CommonFSharp.fs; lib/fsharp/Async.fs; ... ] / dir: C:\home\git\polyglot\apps\builder / name: Builder / code.Length: 7009
-00:00:20 #36 [Debug] buildProject / fullPath: C:\home\git\polyglot\apps\builder\target\Builder.fsproj
-00:00:20 #37 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target\Builder.fsproj" --configuration Release --output ../dist --runtime linux-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target"
+<pre>00:00:18 #31 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/fsharp/Common.fs; lib/fsharp/CommonFSharp.fs; lib/fsharp/Async.fs; ... ] / name: Builder / code.Length: 7079
+00:00:18 #32 [Debug] buildProject / fullPath: C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj
+00:00:18 #33 [Debug] executeAsync / options: { Command =
+   "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64"
+  WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\Builder"
   CancellationToken = None
   OnLine = None }
-00:00:20 #38 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
-00:00:21 #39 [Verbose] &gt;   Determining projects to restore...
-00:00:22 #40 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 340 ms).
-00:00:28 #41 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\linux-x64\Builder.dll
-00:00:29 #42 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:29 #43 [Debug] executeAsync / exitCode: 0 / output.Length: 306
-00:00:29 #44 [Debug] executeAsync / options: { Command =
-   "dotnet publish "C:\home\git\polyglot\apps\builder\target\Builder.fsproj" --configuration Release --output ../dist --runtime win-x64"
-  WorkingDirectory = Some "C:\home\git\polyglot\apps\builder\target"
+00:00:18 #34 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:19 #35 [Verbose] &gt;   Determining projects to restore...
+00:00:19 #36 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj (in 342 ms).
+00:00:25 #37 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\target\polyglot\builder\Builder\bin\Release\net8.0\linux-x64\Builder.dll
+00:00:26 #38 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:26 #39 [Debug] executeAsync / exitCode: 0 / output.Length: 330
+00:00:26 #40 [Debug] executeAsync / options: { Command =
+   "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64"
+  WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\Builder"
   CancellationToken = None
   OnLine = None }
-00:00:29 #45 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
-00:00:30 #46 [Verbose] &gt;   Determining projects to restore...
-00:00:30 #47 [Verbose] &gt;   Restored C:\home\git\polyglot\apps\builder\target\Builder.fsproj (in 335 ms).
-00:00:36 #48 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\target\bin\Release\net8.0\win-x64\Builder.dll
-00:00:39 #49 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:00:39 #50 [Debug] executeAsync / exitCode: 0 / output.Length: 304
+00:00:26 #41 [Verbose] &gt; MSBuild version 17.8.3+195e7f5a3 for .NET
+00:00:27 #42 [Verbose] &gt;   Determining projects to restore...
+00:00:28 #43 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj (in 320 ms).
+00:00:34 #44 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\target\polyglot\builder\Builder\bin\Release\net8.0\win-x64\Builder.dll
+00:00:36 #45 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:36 #46 [Debug] executeAsync / exitCode: 0 / output.Length: 328
 </pre>
 </div>
 </div>

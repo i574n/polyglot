@@ -7,19 +7,21 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file dice_ui.spi dice_ui.fsx --timeout 10000 } | Invoke-Block
+{ . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file src/dice_ui.spi src/dice_ui.fsx --timeout 10000 } | Invoke-Block
 
-(Get-Content dice_ui.fsx) `
+(Get-Content src/dice_ui.fsx) `
     -replace "and Heap2 =", "and  Heap2 =" `
-| Set-Content dice_ui.fsx
+| Set-Content src/dice_ui.fsx
 
-{ . ../../builder/dist/Builder$(GetExecutableSuffix) dice_ui.fsx $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) $($fast ? @("--persist-only") : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
+{ . ../../builder/dist/Builder$(GetExecutableSuffix) src/dice_ui.fsx $($fast ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) $($fast ? @("--persist-only") : @()) --packages Fable.Core --modules lib/fsharp/Common.fs } | Invoke-Block
 
-{ dotnet fable target/dice_ui.fsproj --optimize --lang rs --extension .rs --outDir target/rs --define WASM } | Invoke-Block
+$targetDir = "../../../target/polyglot/builder/dice_ui"
 
-Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Force
+{ dotnet fable $targetDir/dice_ui.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/rs --define WASM } | Invoke-Block
 
-(Get-Content target/rs/dice_ui.rs) `
+Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Force
+
+(Get-Content $targetDir/rs/dice_ui.rs) `
     -replace "../../../lib/fsharp", "../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
     -replace "pub struct Heap0 {", "#[derive(serde::Serialize)] pub struct Heap0 {" `
@@ -29,13 +31,13 @@ Copy-Item target/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Forc
     -replace "pub struct Heap4 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap4 {" `
     -replace "pub struct Heap5 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap5 {" `
     -replace "/Common.rs", "/CommonWasm.rs" `
-| Set-Content dice_ui_wasm.rs
+| Set-Content src/dice_ui_wasm.rs
 
 cargo fmt --
-leptosfmt ./dice_ui_wasm.rs
+leptosfmt ./src/dice_ui_wasm.rs
 
 if (!$fast) {
-    Remove-Item ./target/trunk -Recurse -Force -ErrorAction Ignore
+    Remove-Item ./$targetDir/trunk -Recurse -Force -ErrorAction Ignore
     Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 
     { pnpm install --frozen-lockfile } | Invoke-Block
@@ -43,9 +45,10 @@ if (!$fast) {
 
 { pnpm build-css } | Invoke-Block
 
-{ trunk build $($fast ? $() : '--release') --dist="target/trunk" --public-url="./dist" } | Invoke-Block
+{ trunk build $($fast ? $() : '--release') --dist="$targetDir/trunk" --public-url="./dist" } | Invoke-Block -EnvironmentVariables @{ "TRUNK_TOOLS_WASM_BINDGEN" = "0.2.89" }
+# { cargo leptos build --release } | Invoke-Block
 
-$path = "target/trunk/index.html"
+$path = "$targetDir/trunk/index.html"
 $html = Get-Content $path
 $oldModule = ($html | Select-String -Pattern "import init from '/./dist/(.*?)'").Matches[0].Groups[1].Value
 $html `
@@ -53,7 +56,7 @@ $html `
     -replace "import init from '([^']+)';init\(", "import init from './$oldModule';init(" `
 | Set-Content $path
 
-{ rna build --bundle --minify --no-map --assetNames "[name]" target/trunk/index.html --output dist } | Invoke-Block
+{ rna build --bundle --minify --no-map --assetNames "[name]" $path --output dist } | Invoke-Block
 
 $path = "dist/index.html"
 $html = Get-Content $path -Raw
@@ -84,5 +87,5 @@ if (!$fast) {
 }
 
 if ($env:CI) {
-    Remove-Item ./target -Recurse -Force -ErrorAction Ignore
+    Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
 }

@@ -16,6 +16,8 @@ if ($fast -and (Test-Path $dibParserExe)) {
 
 Invoke-Dib Builder.dib -EnvironmentVariables @{ "ARGS" = "Builder.fs --packages Argu FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs" }
 
+$targetDir = "../../target/polyglot/builder/Builder"
+
 if ($env:CI) {
-    Remove-Item ./target -Recurse -Force -ErrorAction Ignore
+    Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
 }

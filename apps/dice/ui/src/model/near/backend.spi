@@ -1,28 +1,28 @@
 open rust_operators
 
 inl types () =
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::AccessKey\")>] type crate_model_near_backend_AccessKey = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::AccountTransactionsCount\")>] type crate_model_near_backend_AccountTransactionsCount = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::AddKeyArgs\")>] type crate_model_near_backend_AddKeyArgs = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ContractById\")>] type crate_model_near_backend_ContractById = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::DataWrapper\")>] type crate_model_near_backend_DataWrapper = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::DeployContractArgs\")>] type crate_model_near_backend_DeployContractArgs = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ErrorData\")>] type crate_model_near_backend_ErrorData = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ErrorDataInner\")>] type crate_model_near_backend_ErrorDataInner = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ErrorWrapper\")>] type crate_model_near_backend_ErrorWrapper = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ErrorWrapperEnum\")>] type crate_model_near_backend_ErrorWrapperEnum = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::FunctionCallArgs\")>] type crate_model_near_backend_FunctionCallArgs = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::IdInput\")>] type crate_model_near_backend_IdInput = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::InputData\")>] type crate_model_near_backend_InputData = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::Permission\")>] type crate_model_near_backend_Permission = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ResultData\")>] type crate_model_near_backend_ResultData = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::ResultWrapper\")>] type crate_model_near_backend_ResultWrapper = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::Transaction\")>] type crate_model_near_backend_Transaction = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransactionAction\")>] type crate_model_near_backend_TransactionAction = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransactionCursor\")>] type crate_model_near_backend_TransactionCursor = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransactionListByAccountId\")>] type crate_model_near_backend_TransactionListByAccountId = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransactionListByAccountIdInput\")>] type crate_model_near_backend_TransactionListByAccountIdInput = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"dice_ui::model::near::backend::TransferArgs\")>] type crate_model_near_backend_TransferArgs = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::AccessKey\")>] type crate_model_near_backend_AccessKey = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::AccountTransactionsCount\")>] type crate_model_near_backend_AccountTransactionsCount = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::AddKeyArgs\")>] type crate_model_near_backend_AddKeyArgs = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ContractById\")>] type crate_model_near_backend_ContractById = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::DataWrapper\")>] type crate_model_near_backend_DataWrapper = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::DeployContractArgs\")>] type crate_model_near_backend_DeployContractArgs = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ErrorData\")>] type crate_model_near_backend_ErrorData = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ErrorDataInner\")>] type crate_model_near_backend_ErrorDataInner = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ErrorWrapper\")>] type crate_model_near_backend_ErrorWrapper = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ErrorWrapperEnum\")>] type crate_model_near_backend_ErrorWrapperEnum = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::FunctionCallArgs\")>] type crate_model_near_backend_FunctionCallArgs = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::IdInput\")>] type crate_model_near_backend_IdInput = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::InputData\")>] type crate_model_near_backend_InputData = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::Permission\")>] type crate_model_near_backend_Permission = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ResultData\")>] type crate_model_near_backend_ResultData = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::ResultWrapper\")>] type crate_model_near_backend_ResultWrapper = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::Transaction\")>] type crate_model_near_backend_Transaction = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::TransactionAction\")>] type crate_model_near_backend_TransactionAction = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::TransactionCursor\")>] type crate_model_near_backend_TransactionCursor = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::TransactionListByAccountId\")>] type crate_model_near_backend_TransactionListByAccountId = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::TransactionListByAccountIdInput\")>] type crate_model_near_backend_TransactionListByAccountIdInput = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"crate::model::near::backend::TransferArgs\")>] type crate_model_near_backend_TransferArgs = class end"
 
 nominal access_key' = $"crate_model_near_backend_AccessKey"
 nominal account_transactions_count' = $"crate_model_near_backend_AccountTransactionsCount"
@@ -191,106 +191,106 @@ union input_data =
 
 
 inl transfer_args_box ({ deposit } : transfer_args) : transfer_args' =
-    !\($'"dice_ui::model::near::backend::TransferArgs { deposit: !deposit }"')
+    !\($'"crate::model::near::backend::TransferArgs { deposit: !deposit }"')
 
 inl deploy_contract_args_box ({ code } : deploy_contract_args) : deploy_contract_args' =
-    !\($'"dice_ui::model::near::backend::DeployContractArgs { code: !code }"')
+    !\($'"crate::model::near::backend::DeployContractArgs { code: !code }"')
 
 inl permission_box ({ permission_type contract_id method_names } : permission) : permission' =
     inl contract_id = contract_id |> optionm'.box
     inl method_names = method_names |> optionm'.box
-    !\($'"dice_ui::model::near::backend::Permission { permission_type: !permission_type, contract_id: !contract_id, method_names: !method_names }"')
+    !\($'"crate::model::near::backend::Permission { permission_type: !permission_type, contract_id: !contract_id, method_names: !method_names }"')
 
 inl access_key_box ({ nonce permission } : access_key) : access_key' =
-    !\($'"dice_ui::model::near::backend::AccessKey { nonce: !nonce, permission: !permission }"')
+    !\($'"crate::model::near::backend::AccessKey { nonce: !nonce, permission: !permission }"')
 
 inl add_key_args_box ({ public_key access_key } : add_key_args) : add_key_args' =
     inl access_key = access_key |> access_key_box
-    !\($'"dice_ui::model::near::backend::AddKeyArgs { public_key: !public_key, access_key: !access_key }"')
+    !\($'"crate::model::near::backend::AddKeyArgs { public_key: !public_key, access_key: !access_key }"')
 
 inl function_call_args_box ({ method_name args gas deposit } : function_call_args) : function_call_args' =
-    !\($'"dice_ui::model::near::backend::FunctionCallArgs { method_name: !method_name, args: !args, gas: !gas, deposit: !deposit }"')
+    !\($'"crate::model::near::backend::FunctionCallArgs { method_name: !method_name, args: !args, gas: !gas, deposit: !deposit }"')
 
 inl transaction_action_box (x : transaction_action) : transaction_action' =
     match x with
     | FunctionCall x =>
         inl x = x |> function_call_args_box
-        !\($'"dice_ui::model::near::backend::TransactionAction::FunctionCall(!x)"')
+        !\($'"crate::model::near::backend::TransactionAction::FunctionCall(!x)"')
     | AddKey x =>
         inl x = x |> add_key_args_box
-        !\($'"dice_ui::model::near::backend::TransactionAction::AddKey(!x)"')
+        !\($'"crate::model::near::backend::TransactionAction::AddKey(!x)"')
     | DeployContract x =>
         inl x = x |> deploy_contract_args_box
-        !\($'"dice_ui::model::near::backend::TransactionAction::DeployContract(!x)"')
+        !\($'"crate::model::near::backend::TransactionAction::DeployContract(!x)"')
     | Transfer x =>
         inl x = x |> transfer_args_box
-        !\($'"dice_ui::model::near::backend::TransactionAction::Transfer(!x)"')
+        !\($'"crate::model::near::backend::TransactionAction::Transfer(!x)"')
 
 inl transaction_box ({ hash signer_id receiver_id block_hash block_timestamp actions status } : transaction) : transaction' =
     inl actions = actions |> am'.map_base transaction_action_box
-    !\($'"dice_ui::model::near::backend::Transaction { hash: !hash, signer_id: !signer_id, receiver_id: !receiver_id, block_hash: !block_hash, block_timestamp: !block_timestamp, actions: !actions, status: !status }"')
+    !\($'"crate::model::near::backend::Transaction { hash: !hash, signer_id: !signer_id, receiver_id: !receiver_id, block_hash: !block_hash, block_timestamp: !block_timestamp, actions: !actions, status: !status }"')
 
 inl transaction_cursor_box ({ timestamp index_in_chunk } : transaction_cursor) : transaction_cursor' =
-    !\($'"dice_ui::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
+    !\($'"crate::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
 
 inl transaction_list_by_account_id_box ({ items cursor } : transaction_list_by_account_id) : transaction_list_by_account_id' =
     inl items = items |> am'.map_base transaction_box
     inl cursor = cursor |> optionm.map transaction_cursor_box |> optionm'.box
-    !\($'"dice_ui::model::near::backend::TransactionListByAccountId { items: !items, cursor: !cursor }"')
+    !\($'"crate::model::near::backend::TransactionListByAccountId { items: !items, cursor: !cursor }"')
 
 inl contract_by_id_box ({ code_hash transaction_hash timestamp locked } : contract_by_id) : contract_by_id' =
     inl transaction_hash = transaction_hash |> optionm'.box
     inl timestamp = timestamp |> optionm'.box
-    !\($'"dice_ui::model::near::backend::ContractById { code_hash: !code_hash, transaction_hash: !transaction_hash, timestamp: !timestamp, locked: !locked }"')
+    !\($'"crate::model::near::backend::ContractById { code_hash: !code_hash, transaction_hash: !transaction_hash, timestamp: !timestamp, locked: !locked }"')
 
 inl account_transactions_count_box ({ in_transactions_count out_transactions_count } : account_transactions_count) : account_transactions_count' =
-    !\($'"dice_ui::model::near::backend::AccountTransactionsCount { in_transactions_count: !in_transactions_count, out_transactions_count: !out_transactions_count }"')
+    !\($'"crate::model::near::backend::AccountTransactionsCount { in_transactions_count: !in_transactions_count, out_transactions_count: !out_transactions_count }"')
 
 inl result_data_box (x : result_data) : result_data' =
     match x with
     | AccountTransactionsCount x =>
         inl x = x |> account_transactions_count_box
-        !\($'"dice_ui::model::near::backend::ResultData::AccountTransactionsCount(!x)"')
+        !\($'"crate::model::near::backend::ResultData::AccountTransactionsCount(!x)"')
     | ContractById x =>
         inl x = x |> contract_by_id_box
-        !\($'"dice_ui::model::near::backend::ResultData::ContractById(!x)"')
+        !\($'"crate::model::near::backend::ResultData::ContractById(!x)"')
     | TransactionListByAccountId x =>
         inl x = x |> transaction_list_by_account_id_box
-        !\($'"dice_ui::model::near::backend::ResultData::TransactionListByAccountId(!x)"')
+        !\($'"crate::model::near::backend::ResultData::TransactionListByAccountId(!x)"')
 
 inl data_wrapper_box ({ data } : data_wrapper) : data_wrapper' =
     inl data = data |> result_data_box
-    !\($'"dice_ui::model::near::backend::DataWrapper { data: !data }"')
+    !\($'"crate::model::near::backend::DataWrapper { data: !data }"')
 
 inl error_data_inner_box ({ code http_status path } : error_data_inner) : error_data_inner' =
-    !\($'"dice_ui::model::near::backend::ErrorDataInner { code: !code, http_status: !http_status, path: !path }"')
+    !\($'"crate::model::near::backend::ErrorDataInner { code: !code, http_status: !http_status, path: !path }"')
 
 inl error_data_box ({ message code data } : error_data) : error_data' =
     inl data = data |> error_data_inner_box
-    !\($'"dice_ui::model::near::backend::ErrorData { message: !message, code: !code, data: !data }"')
+    !\($'"crate::model::near::backend::ErrorData { message: !message, code: !code, data: !data }"')
 
 inl error_wrapper_box ({ error } : error_wrapper) : error_wrapper' =
     inl error = error |> error_data_box
-    !\($'"dice_ui::model::near::backend::ErrorWrapper { error: !error }"')
+    !\($'"crate::model::near::backend::ErrorWrapper { error: !error }"')
 
 inl error_wrapper_enum_box (x : error_wrapper_enum) : error_wrapper_enum' =
     match x with
     | ErrorWrapper x =>
         inl x = x |> error_wrapper_box
-        !\($'"dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(!x)"')
+        !\($'"crate::model::near::backend::ErrorWrapperEnum::ErrorWrapper(!x)"')
     | ErrorData x =>
         inl x = x |> error_data_box
-        !\($'"dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(!x)"')
+        !\($'"crate::model::near::backend::ErrorWrapperEnum::ErrorData(!x)"')
 
 inl result_wrapper_box ({ result error } : result_wrapper) : result_wrapper' =
     inl result = result |> optionm.map data_wrapper_box |> optionm'.box
-    !\($'"dice_ui::model::near::backend::ResultWrapper { result: !result, error: !error }"')
+    !\($'"crate::model::near::backend::ResultWrapper { result: !result, error: !error }"')
 
 inl id_input_box ({ id } : id_input) : id_input' =
-    !\($'"dice_ui::model::near::backend::IdInput { id: !id }"')
+    !\($'"crate::model::near::backend::IdInput { id: !id }"')
 
 inl transaction_cursor_box ({ timestamp index_in_chunk } : transaction_cursor) : transaction_cursor' =
-    !\($'"dice_ui::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
+    !\($'"crate::model::near::backend::TransactionCursor { timestamp: !timestamp, index_in_chunk: !index_in_chunk }"')
 
 inl transaction_list_by_account_id_input_box
     ({ account_id limit cursor } : transaction_list_by_account_id_input)
@@ -298,16 +298,16 @@ inl transaction_list_by_account_id_input_box
     =
     inl cursor = cursor |> optionm.map transaction_cursor_box |> optionm'.box
     inl cursor = join cursor
-    !\($'"dice_ui::model::near::backend::TransactionListByAccountIdInput { account_id: !account_id, limit: !limit, cursor: !cursor }"')
+    !\($'"crate::model::near::backend::TransactionListByAccountIdInput { account_id: !account_id, limit: !limit, cursor: !cursor }"')
 
 inl input_data_box (x : input_data) : input_data' =
     match x with
     | IdInput x =>
         inl x = x |> id_input_box
-        !\($'"dice_ui::model::near::backend::InputData::IdInput(!x)"')
+        !\($'"crate::model::near::backend::InputData::IdInput(!x)"')
     | TransactionListByAccountIdInput x =>
         inl x = x |> transaction_list_by_account_id_input_box
-        !\($'"dice_ui::model::near::backend::InputData::TransactionListByAccountIdInput(!x)"')
+        !\($'"crate::model::near::backend::InputData::TransactionListByAccountIdInput(!x)"')
 
 inl transfer_args_unbox (x : transfer_args') : transfer_args =
     inl x = join x
@@ -366,7 +366,7 @@ inl transaction_action_unbox (x : transaction_action') : transaction_action =
     inl _AddKey = join _AddKey
     inl _DeployContract = join _DeployContract
     inl _Transfer = join _Transfer
-    !\($'"match !x { dice_ui::model::near::backend::TransactionAction::FunctionCall(x) => !_FunctionCall(!function_call_args_unbox(x)), dice_ui::model::near::backend::TransactionAction::AddKey(x) => !_AddKey(!add_key_args_unbox(x)), dice_ui::model::near::backend::TransactionAction::DeployContract(x) => !_DeployContract(!deploy_contract_args_unbox(x)), dice_ui::model::near::backend::TransactionAction::Transfer(x) => !_Transfer(!transfer_args_unbox(x)) }"')
+    !\($'"match !x { crate::model::near::backend::TransactionAction::FunctionCall(x) => !_FunctionCall(!function_call_args_unbox(x)), crate::model::near::backend::TransactionAction::AddKey(x) => !_AddKey(!add_key_args_unbox(x)), crate::model::near::backend::TransactionAction::DeployContract(x) => !_DeployContract(!deploy_contract_args_unbox(x)), crate::model::near::backend::TransactionAction::Transfer(x) => !_Transfer(!transfer_args_unbox(x)) }"')
 
 inl transaction_unbox (x : transaction') : transaction =
     inl x = join x
@@ -426,7 +426,7 @@ inl result_data_unbox (x : result_data') : result_data =
     inl _AccountTransactionsCount = join _AccountTransactionsCount
     inl _ContractById = join _ContractById
     inl _TransactionListByAccountId = join _TransactionListByAccountId
-    !\($'"match !x { dice_ui::model::near::backend::ResultData::AccountTransactionsCount(x) => !_AccountTransactionsCount(!account_transactions_count_unbox(x)), dice_ui::model::near::backend::ResultData::ContractById(x) => !_ContractById(!contract_by_id_unbox(x)), dice_ui::model::near::backend::ResultData::TransactionListByAccountId(x) => !_TransactionListByAccountId(!transaction_list_by_account_id_unbox(x)) }"')
+    !\($'"match !x { crate::model::near::backend::ResultData::AccountTransactionsCount(x) => !_AccountTransactionsCount(!account_transactions_count_unbox(x)), crate::model::near::backend::ResultData::ContractById(x) => !_ContractById(!contract_by_id_unbox(x)), crate::model::near::backend::ResultData::TransactionListByAccountId(x) => !_TransactionListByAccountId(!transaction_list_by_account_id_unbox(x)) }"')
 
 inl data_wrapper_unbox (x : data_wrapper') : data_wrapper =
     inl x = join x
@@ -459,7 +459,7 @@ inl error_wrapper_enum_unbox (x : error_wrapper_enum') : error_wrapper_enum =
     inl _ErrorData x = ErrorData x
     inl _ErrorWrapper = join _ErrorWrapper
     inl _ErrorData = join _ErrorData
-    !\($'"match !x { dice_ui::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => !_ErrorWrapper(!error_wrapper_unbox(x)), dice_ui::model::near::backend::ErrorWrapperEnum::ErrorData(x) => !_ErrorData(!error_data_unbox(x)) }"')
+    !\($'"match !x { crate::model::near::backend::ErrorWrapperEnum::ErrorWrapper(x) => !_ErrorWrapper(!error_wrapper_unbox(x)), crate::model::near::backend::ErrorWrapperEnum::ErrorData(x) => !_ErrorData(!error_data_unbox(x)) }"')
 
 inl result_wrapper_unbox (x : result_wrapper') : result_wrapper =
     inl x = join x
@@ -484,4 +484,4 @@ inl transaction_list_by_account_id_input_unbox (x : transaction_list_by_account_
     { account_id limit cursor }
 
 inl input_data_unbox (x : input_data') : input_data =
-    !\($'"match !x { dice_ui::model::near::backend::InputData::IdInput(x) => dice_ui::model::near::backend::InputData::IdInput(!id_input_unbox(x)), dice_ui::model::near::backend::InputData::TransactionListByAccountIdInput(x) => dice_ui::model::near::backend::InputData::TransactionListByAccountIdInput(!transaction_list_by_account_id_input_unbox(x)) }"')
+    !\($'"match !x { crate::model::near::backend::InputData::IdInput(x) => crate::model::near::backend::InputData::IdInput(!id_input_unbox(x)), crate::model::near::backend::InputData::TransactionListByAccountIdInput(x) => crate::model::near::backend::InputData::TransactionListByAccountIdInput(!transaction_list_by_account_id_input_unbox(x)) }"')
