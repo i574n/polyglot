@@ -1,4 +1,5 @@
 param(
+    $fast,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -26,7 +27,9 @@ function UpdateJson {
 }
 
 
-{ dotnet paket update } | Invoke-Block
+if (!$fast) {
+    { dotnet paket update } | Invoke-Block
+}
 
 { cargo update } | Invoke-Block
 
@@ -39,6 +42,8 @@ UpdateToml "../apps/dice/contract/tests/Cargo.toml"
 UpdateToml "../apps/dice/ui/Cargo.toml"
 UpdateToml "../apps/plot/Cargo.toml"
 
-UpdateJson "../apps/spiral/temp/extension"
-UpdateJson "../apps/ipfs"
-UpdateJson ".."
+if (!$fast) {
+    UpdateJson "../apps/spiral/temp/extension"
+    UpdateJson "../apps/ipfs"
+    UpdateJson ".."
+}

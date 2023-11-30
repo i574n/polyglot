@@ -65,7 +65,7 @@ inl render () : _ leptos.div =
         ] fun () =>
             :>(;[
                 leptos.div [
-                    $'"class=\\\"flex flex-100 flex-col [overflow-y:auto]\\\""'
+                    $'"class=\\\"flex [flex:100%] flex-col [overflow-y:auto]\\\""'
                 ] fun () =>
                     open menu_tabs
                     match tab |> leptos.signal_get with

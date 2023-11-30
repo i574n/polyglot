@@ -3912,7 +3912,7 @@ and closure156 (v0 : leptos_Resource<string option, Result<string option, string
     let v6 : std_string_String = method29(v5)
     let v7 : string = "fable_library_rust::String_::fromString(v6)"
     let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "class=\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
+    let v9 : string = "class=\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
     let v10 : (unit -> leptos_Fragment) = method267(v8)
     let v11 : string = ""
     let v12 : string = " " + v9 + v11 + ""
@@ -3960,7 +3960,7 @@ and closure159 (v0 : Func0<US29>) () : leptos_Fragment =
     let v6 : std_string_String = method29(v5)
     let v7 : string = "fable_library_rust::String_::fromString(v6)"
     let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "class=\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
+    let v9 : string = "class=\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
     let v10 : (unit -> leptos_Fragment) = method267(v8)
     let v11 : string = ""
     let v12 : string = " " + v9 + v11 + ""
@@ -4010,7 +4010,7 @@ and closure161 (v0 : Func0<US50>) () : leptos_Fragment =
     let v6 : std_string_String = method29(v5)
     let v7 : string = "fable_library_rust::String_::fromString(v6)"
     let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "class=\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
+    let v9 : string = "class=\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
     let v10 : (unit -> leptos_Fragment) = method267(v8)
     let v11 : string = ""
     let v12 : string = " " + v9 + v11 + ""
@@ -4060,7 +4060,7 @@ and closure163 (v0 : Func0<US60>) () : leptos_Fragment =
     let v6 : std_string_String = method29(v5)
     let v7 : string = "fable_library_rust::String_::fromString(v6)"
     let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "class=\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
+    let v9 : string = "class=\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
     let v10 : (unit -> leptos_Fragment) = method267(v8)
     let v11 : string = ""
     let v12 : string = " " + v9 + v11 + ""
@@ -4108,7 +4108,7 @@ and closure165 (v0 : Func0<US55>) () : leptos_Fragment =
     let v6 : std_string_String = method29(v5)
     let v7 : string = "fable_library_rust::String_::fromString(v6)"
     let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
-    let v9 : string = "class=\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
+    let v9 : string = "class=\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\""
     let v10 : (unit -> leptos_Fragment) = method267(v8)
     let v11 : string = ""
     let v12 : string = " " + v9 + v11 + ""
@@ -5338,7 +5338,7 @@ and closure186 (v0 : leptos_ReadSignal<US21>) () : leptos_Fragment =
 and method322 (v0 : leptos_ReadSignal<US21>) : (unit -> leptos_Fragment) =
     closure186(v0)
 and closure53 (v0 : leptos_ReadSignal<US21>) () : leptos_Fragment =
-    let v1 : string = "class=\"flex flex-100 flex-col [overflow-y:auto]\""
+    let v1 : string = "class=\"flex [flex:100%] flex-col [overflow-y:auto]\""
     let v2 : (unit -> leptos_Fragment) = method86(v0)
     let v3 : string = ""
     let v4 : string = " " + v1 + v3 + ""

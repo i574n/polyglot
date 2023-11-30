@@ -615,7 +615,7 @@ inl tab_link href icon label select : _ a' =
 
 inl text_block_pre text =
     pre [
-        $'"class=\\\"[padding:7px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\\\""'
+        $'"class=\\\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\\\""'
     ] fun () =>
         text
         |> text_fragment

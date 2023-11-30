@@ -3,10 +3,9 @@ framework: net8.0
 storage: none
 source https://api.nuget.org/v3/index.json
 
-
 nuget Argu ~> 6.1
 nuget Expecto ~> 10.1
-nuget Expecto.FsCheck ~> 10.1.0-fscheck3
+nuget Expecto.FsCheck ~> 10.1.0-fscheck3 prerelease
 nuget Fable.Core ~> 4.1
 nuget Falco.Markup ~> 1.0
 nuget FParsec ~> 2.0 prerelease
