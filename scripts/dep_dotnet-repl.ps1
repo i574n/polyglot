@@ -23,4 +23,6 @@ Write-Output "Tool path: $netVersion"
 
 Copy-Item "../deps/dotnet-repl/src/dotnet-repl/bin/Release/net8.0/**" $netVersion -Recurse -Force
 
-Remove-Item "../deps/dotnet-repl/src/dotnet-repl/bin" -Recurse -Force -ErrorAction Ignore
+if ($env:CI) {
+    Remove-Item "../deps/dotnet-repl/src/dotnet-repl/bin" -Recurse -Force -ErrorAction Ignore
+}

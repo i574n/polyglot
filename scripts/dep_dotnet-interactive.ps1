@@ -34,4 +34,6 @@ if (!$fast) {
 
 Copy-Item "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net8.0/**" $netVersion -Recurse -Force
 
-Remove-Item "../deps/dotnet-interactive/artifacts" -Recurse -Force -ErrorAction Ignore
+if ($env:CI) {
+    Remove-Item "../deps/dotnet-interactive/artifacts" -Recurse -Force -ErrorAction Ignore
+}
