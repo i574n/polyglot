@@ -39,7 +39,7 @@ if (!$fast) {
 }
 
 (Get-Content $targetDir/rs/dice.rs) `
-    -replace "../../../lib/fsharp", "../../lib/fsharp" `
+    -replace "../../../../lib/fsharp", "../../lib/fsharp" `
     | Set-Content dice.rs
 if (!$fast) {
     Copy-Item -Force $targetDir/ts/dice.ts dice.ts
@@ -53,7 +53,7 @@ if (!$fast) {
 Copy-Item -Force $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonWasm.rs
 
 (Get-Content $targetDir/rs/dice.rs) `
-    -replace "../../../lib/fsharp", "../../lib/fsharp" `
+    -replace "../../../../lib/fsharp", "../../lib/fsharp" `
     -replace "/Common.rs", "/CommonWasm.rs" `
     | Set-Content dice_wasm.rs
 

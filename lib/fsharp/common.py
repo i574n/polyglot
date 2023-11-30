@@ -1,10 +1,10 @@
 from __future__ import annotations
 from typing import (Any, Callable)
-from fable_modules.fable_library.date import (to_string, now, get_ticks, create)
+from fable_modules.fable_library.date import (to_string, now, get_ticks, create as create_1)
 from fable_modules.fable_library.long import op_subtraction
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
 from fable_modules.fable_library.string_ import (substring, trim_end, trim_start, to_text, interpolate)
-from fable_modules.fable_library.time_span import (from_ticks, hours, minutes, seconds, milliseconds, microseconds)
+from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds, microseconds)
 from fable_modules.fable_library.types import (Array, Union, int64)
 from fable_modules.fable_library.util import (create_atom, compare)
 
@@ -76,8 +76,8 @@ def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str
 
             else: 
                 repl_start_1: int64 = match_value
-                t: Any = from_ticks(op_subtraction(get_ticks(now()), repl_start_1))
-                return create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t))
+                t: Any = create(op_subtraction(get_ticks(now()), repl_start_1))
+                return create_1(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t))
 
 
         return trim_end(trim_start(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [to_string(_arrow1(), "HH:mm:ss"), trace_count(), level, fn(None), get_locals(None)]))), *trim_chars_2)

@@ -7778,10 +7778,9 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x()"'</span><span class="p">)</span>
 
-<span class="n">inl</span> <span class="n">move</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">:</span> <span class="n">func0</span> <span class="n">u</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
+<span class="n">inl</span> <span class="n">move</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">func0</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Func0::new(move || !fn(!x()))"'</span><span class="p">)</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Func0::new(move || !fn())"'</span><span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">to_static_ref_unbox</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' t) : static_ref'</span> <span class="n">t</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"!x |&gt; unbox"</span>

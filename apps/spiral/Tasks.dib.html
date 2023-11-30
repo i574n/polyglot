@@ -7759,15 +7759,15 @@ method0()
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
-mod module_3acfb8b4 {
-    pub mod Repl_main {
+mod module_e32d1f60 {
+    pub mod Fs_rs {
         use super::*;
         use fable_library_rust::Native_::on_startup;
         pub fn method0() { (); }
-        on_startup!(Repl_main::method0());
+        on_startup!(Fs_rs::method0());
     }
 }
-pub use module_3acfb8b4::*;
+pub use module_e32d1f60::*;
 
 </pre>
 </div>
@@ -7947,8 +7947,8 @@ method0()
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
-mod module_3acfb8b4 {
-    pub mod Repl_main {
+mod module_e32d1f60 {
+    pub mod Fs_rs {
         use super::*;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::LrcPtr;
@@ -7969,46 +7969,45 @@ mod module_3acfb8b4 {
             US0_10,
             US0_11,
         }
-        impl core::fmt::Display for Repl_main::US0 {
+        impl core::fmt::Display for Fs_rs::US0 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum US2 { US2_0, US2_1, }
-        impl core::fmt::Display for Repl_main::US2 {
+        impl core::fmt::Display for Fs_rs::US2 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-        pub enum US1 { US1_0(Repl_main::US2), }
-        impl core::fmt::Display for Repl_main::US1 {
+        pub enum US1 { US1_0(Fs_rs::US2), }
+        impl core::fmt::Display for Fs_rs::US1 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum UH0 {
-            UH0_0(i32, Repl_main::US0, i32, Repl_main::US1,
-                  LrcPtr&lt;Repl_main::UH0&gt;),
+            UH0_0(i32, Fs_rs::US0, i32, Fs_rs::US1, LrcPtr&lt;Fs_rs::UH0&gt;),
             UH0_1,
         }
-        impl core::fmt::Display for Repl_main::UH0 {
+        impl core::fmt::Display for Fs_rs::UH0 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum US3 { US3_0, US3_1, }
-        impl core::fmt::Display for Repl_main::US3 {
+        impl core::fmt::Display for Fs_rs::US3 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum US7 { US7_0, US7_1, US7_2, US7_3, US7_4, US7_5, US7_6, }
-        impl core::fmt::Display for Repl_main::US7 {
+        impl core::fmt::Display for Fs_rs::US7 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
@@ -8016,72 +8015,71 @@ mod module_3acfb8b4 {
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum US6 {
             US6_0(i32),
-            US6_1(Repl_main::US7),
-            US6_2(i32, Repl_main::US0),
+            US6_1(Fs_rs::US7),
+            US6_2(i32, Fs_rs::US0),
         }
-        impl core::fmt::Display for Repl_main::US6 {
+        impl core::fmt::Display for Fs_rs::US6 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-        pub enum UH1 { UH1_0(Repl_main::US6, LrcPtr&lt;Repl_main::UH1&gt;), UH1_1, }
-        impl core::fmt::Display for Repl_main::UH1 {
+        pub enum UH1 { UH1_0(Fs_rs::US6, LrcPtr&lt;Fs_rs::UH1&gt;), UH1_1, }
+        impl core::fmt::Display for Fs_rs::UH1 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum US8 { US8_0(i32), US8_1(i32), US8_2(i32), }
-        impl core::fmt::Display for Repl_main::US8 {
+        impl core::fmt::Display for Fs_rs::US8 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-        pub enum US5 { US5_0(LrcPtr&lt;Repl_main::UH1&gt;), US5_1(Repl_main::US8), }
-        impl core::fmt::Display for Repl_main::US5 {
+        pub enum US5 { US5_0(LrcPtr&lt;Fs_rs::UH1&gt;), US5_1(Fs_rs::US8), }
+        impl core::fmt::Display for Fs_rs::US5 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
-        pub enum US4 { US4_0(Repl_main::US3), US4_1(Repl_main::US5), }
-        impl core::fmt::Display for Repl_main::US4 {
+        pub enum US4 { US4_0(Fs_rs::US3), US4_1(Fs_rs::US5), }
+        impl core::fmt::Display for Fs_rs::US4 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
         pub enum UH2 {
-            UH2_0(LrcPtr&lt;Repl_main::UH0&gt;, string, Repl_main::US4,
-                  LrcPtr&lt;Repl_main::UH2&gt;),
+            UH2_0(LrcPtr&lt;Fs_rs::UH0&gt;, string, Fs_rs::US4, LrcPtr&lt;Fs_rs::UH2&gt;),
             UH2_1,
         }
-        impl core::fmt::Display for Repl_main::UH2 {
+        impl core::fmt::Display for Fs_rs::UH2 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
         pub fn method0() {
             let v17: std::string::String =
-                format!("{:#?}", &amp;LrcPtr::new(Repl_main::UH2::UH2_0(LrcPtr::new(Repl_main::UH0::UH0_1),
-                                                                    string("01"),
-                                                                    Repl_main::US4::US4_0(Repl_main::US3::US3_0),
-                                                                    LrcPtr::new(Repl_main::UH2::UH2_0(LrcPtr::new(Repl_main::UH0::UH0_1),
-                                                                                                      string("02"),
-                                                                                                      Repl_main::US4::US4_0(Repl_main::US3::US3_0),
-                                                                                                      LrcPtr::new(Repl_main::UH2::UH2_0(LrcPtr::new(Repl_main::UH0::UH0_1),
-                                                                                                                                        string("03"),
-                                                                                                                                        Repl_main::US4::US4_0(Repl_main::US3::US3_0),
-                                                                                                                                        LrcPtr::new(Repl_main::UH2::UH2_1))))))));
+                format!("{:#?}", &amp;LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
+                                                                string("01"),
+                                                                Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
+                                                                LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
+                                                                                              string("02"),
+                                                                                              Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
+                                                                                              LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
+                                                                                                                            string("03"),
+                                                                                                                            Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
+                                                                                                                            LrcPtr::new(Fs_rs::UH2::UH2_1))))))));
             println!("{0}", &amp;v17,);
             ()
         }
-        on_startup!(Repl_main::method0());
+        on_startup!(Fs_rs::method0());
     }
 }
-pub use module_3acfb8b4::*;
+pub use module_e32d1f60::*;
 
 </pre>
 </div>
@@ -8142,8 +8140,8 @@ method0()
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
-mod module_3acfb8b4 {
-    pub mod Repl_main {
+mod module_e32d1f60 {
+    pub mod Fs_rs {
         use super::*;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::on_startup;
@@ -8155,10 +8153,10 @@ mod module_3acfb8b4 {
                          &amp;string("01"), &amp;string("01"));
             ()
         }
-        on_startup!(Repl_main::method0());
+        on_startup!(Fs_rs::method0());
     }
 }
-pub use module_3acfb8b4::*;
+pub use module_e32d1f60::*;
 
 </pre>
 </div>

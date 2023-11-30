@@ -36,7 +36,9 @@ class UH0_UH0_0 extends UH0 implements IComparable {
   (Unit,
    DeclaredType
      ({ FullName = "Dice.UH0"
-        Path = SourcePath "C:/home/git/polyglot/apps/dice/target/dice.fs" }, []))\'';
+        Path =
+         SourcePath "C:/home/git/polyglot/target/polyglot/builder/dice/dice.fs" },
+      []))\'';
     }
     function get_Tag() {
         return 0;
@@ -234,7 +236,9 @@ class US1_US1_1 extends US1 implements IComparable {
   (Unit,
    DeclaredType
      ({ FullName = "Dice.UH0"
-        Path = SourcePath "C:/home/git/polyglot/apps/dice/target/dice.fs" }, []))\'';
+        Path =
+         SourcePath "C:/home/git/polyglot/target/polyglot/builder/dice/dice.fs" },
+      []))\'';
     }
     function get_Tag() {
         return 1;
@@ -443,7 +447,9 @@ class UH2_UH2_0 extends UH2 implements IComparable {
   (Unit,
    DeclaredType
      ({ FullName = "Dice.UH2"
-        Path = SourcePath "C:/home/git/polyglot/apps/dice/target/dice.fs" }, []))\'';
+        Path =
+         SourcePath "C:/home/git/polyglot/target/polyglot/builder/dice/dice.fs" },
+      []))\'';
     }
     function get_Tag() {
         return 0;

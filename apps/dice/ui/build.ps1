@@ -22,7 +22,7 @@ $targetDir = "../../../target/polyglot/builder/dice_ui"
 Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -Force
 
 (Get-Content $targetDir/rs/dice_ui.rs) `
-    -replace "../../../lib/fsharp", "../../lib/fsharp" `
+    -replace "../../../../lib/fsharp", "../../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
     -replace "pub struct Heap0 {", "#[derive(serde::Serialize)] pub struct Heap0 {" `
     -replace "pub struct Heap1 {", "#[derive(serde::Serialize)] pub struct Heap1 {" `
