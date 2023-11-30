@@ -85,7 +85,7 @@ def roll_within_bounds(log: Callable[[str], None] | None, max: int, rolls: FShar
 
 
 
-random: Any = None
+random: Any = {}
 
 def roll_dice(__unit: None=None) -> int:
     return randint(1, 7)

@@ -26,10 +26,10 @@ $releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
-Copy-Item -Recurse -Force "$releasePath/$dotnetVersion/**" $toolVersionPath
+Copy-Item "$releasePath/$dotnetVersion/**" $toolVersionPath -Recurse -Force
 
 
-Copy-Item -Recurse -Force "../deps/Fable/src/fable-library**" "$tools/.."
+Copy-Item "../deps/Fable/src/fable-library**" "$tools/.." -Recurse -Force
 
 
 $path = "$HOME/.nuget/packages/fable.core"
@@ -46,4 +46,4 @@ $releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.core.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
-Copy-Item -Recurse -Force "$releasePath/$dotnetVersion/**" $libVersionPath
+Copy-Item "$releasePath/$dotnetVersion/**" $libVersionPath -Recurse -Force

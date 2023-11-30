@@ -25,27 +25,27 @@ if (!$fast) {
     { dotnet fable $targetDir/dice_fsharp.fsproj --optimize --lang dart --extension .dart --outDir $targetDir/dart } | Invoke-Block -OnError Continue
 }
 
-Copy-Item -Force $targetDir/rs/lib/fsharp/Common.rs ../../../lib/fsharp/Common.rs
+Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../../lib/fsharp/Common.rs -Force
 if (!$fast) {
-    Copy-Item -Force $targetDir/ts/lib/fsharp/Common.ts ../../../lib/fsharp/Common.ts
-    Copy-Item -Force $targetDir/py/lib/fsharp/common.py ../../../lib/fsharp/common.py
-    Copy-Item -Force $targetDir/php/lib/fsharp/Common.php ../../../lib/fsharp/Common.php
-    Copy-Item -Force $targetDir/dart/lib/fsharp/Common.dart ../../../lib/fsharp/Common.dart
+    Copy-Item $targetDir/ts/lib/fsharp/Common.ts ../../../lib/fsharp/Common.ts -Force
+    Copy-Item $targetDir/py/lib/fsharp/common.py ../../../lib/fsharp/common.py -Force
+    Copy-Item $targetDir/php/lib/fsharp/Common.php ../../../lib/fsharp/Common.php -Force
+    Copy-Item $targetDir/dart/lib/fsharp/Common.dart ../../../lib/fsharp/Common.dart -Force
 }
 
 (Get-Content $targetDir/rs/dice_fsharp.rs) `
     -replace "../../../../lib/fsharp", "../../../lib/fsharp" `
     | Set-Content dice_fsharp.rs
 if (!$fast) {
-    Copy-Item -Force $targetDir/ts/dice_fsharp.ts dice_fsharp.ts
-    Copy-Item -Force $targetDir/py/dice_fsharp.py dice_fsharp.py
-    Copy-Item -Force $targetDir/php/dice_fsharp.php dice_fsharp.php
-    Copy-Item -Force $targetDir/dart/dice_fsharp.dart dice_fsharp.dart
+    Copy-Item $targetDir/ts/dice_fsharp.ts dice_fsharp.ts -Force
+    Copy-Item $targetDir/py/dice_fsharp.py dice_fsharp.py -Force
+    Copy-Item $targetDir/php/dice_fsharp.php dice_fsharp.php -Force
+    Copy-Item $targetDir/dart/dice_fsharp.dart dice_fsharp.dart -Force
 }
 
 { dotnet fable $targetDir/dice_fsharp.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/rs --define WASM } | Invoke-Block
 
-Copy-Item -Force $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonWasm.rs
+Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonWasm.rs -Force
 
 (Get-Content $targetDir/rs/dice_fsharp.rs) `
     -replace "../../../../lib/fsharp", "../../../lib/fsharp" `

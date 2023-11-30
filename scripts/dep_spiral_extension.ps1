@@ -40,7 +40,7 @@ if ($extensionsPath.Count -gt 0) {
 
     Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction Ignore
 
-    Copy-Item -Recurse -Force "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler"
+    Copy-Item "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler" -Recurse -Force
 
     Set-Location $extensionSrcPath
     npm install

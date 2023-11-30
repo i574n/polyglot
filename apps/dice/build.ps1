@@ -30,27 +30,27 @@ if (!$fast) {
     { dotnet fable $targetDir/dice.fsproj --optimize --lang dart --extension .dart --outDir $targetDir/dart } | Invoke-Block -OnError Continue
 }
 
-Copy-Item -Force $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/Common.rs
+Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/Common.rs -Force
 if (!$fast) {
-    Copy-Item -Force $targetDir/ts/lib/fsharp/Common.ts ../../lib/fsharp/Common.ts
-    Copy-Item -Force $targetDir/py/lib/fsharp/common.py ../../lib/fsharp/common.py
-    Copy-Item -Force $targetDir/php/lib/fsharp/Common.php ../../lib/fsharp/Common.php
-    Copy-Item -Force $targetDir/dart/lib/fsharp/Common.dart ../../lib/fsharp/Common.dart
+    Copy-Item $targetDir/ts/lib/fsharp/Common.ts ../../lib/fsharp/Common.ts -Force
+    Copy-Item $targetDir/py/lib/fsharp/common.py ../../lib/fsharp/common.py -Force
+    Copy-Item $targetDir/php/lib/fsharp/Common.php ../../lib/fsharp/Common.php -Force
+    Copy-Item $targetDir/dart/lib/fsharp/Common.dart ../../lib/fsharp/Common.dart -Force
 }
 
 (Get-Content $targetDir/rs/dice.rs) `
     -replace "../../../../lib/fsharp", "../../lib/fsharp" `
     | Set-Content dice.rs
 if (!$fast) {
-    Copy-Item -Force $targetDir/ts/dice.ts dice.ts
-    Copy-Item -Force $targetDir/py/dice.py dice.py
-    Copy-Item -Force $targetDir/php/dice.php dice.php
-    Copy-Item -Force $targetDir/dart/dice.dart dice.dart
+    Copy-Item $targetDir/ts/dice.ts dice.ts -Force
+    Copy-Item $targetDir/py/dice.py dice.py -Force
+    Copy-Item $targetDir/php/dice.php dice.php -Force
+    Copy-Item $targetDir/dart/dice.dart dice.dart -Force
 }
 
 { dotnet fable $targetDir/dice.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/rs --define WASM } | Invoke-Block
 
-Copy-Item -Force $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonWasm.rs
+Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/CommonWasm.rs -Force
 
 (Get-Content $targetDir/rs/dice.rs) `
     -replace "../../../../lib/fsharp", "../../lib/fsharp" `

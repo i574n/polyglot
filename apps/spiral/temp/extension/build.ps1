@@ -15,7 +15,7 @@ if (!$fast) {
 
 Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 { esbuild --bundle --minify --loader:.wasm=file --outdir=dist content_script.ts service_worker.ts devtools.ts } | Invoke-Block
-{ Copy-Item -Recurse -Force ./public/* ./dist } | Invoke-Block
+{ Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block
 
 if (!$fast) {
     { pnpm test:e2e } | Invoke-Block
