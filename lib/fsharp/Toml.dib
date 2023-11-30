@@ -12,7 +12,7 @@
 
 #!fsharp
 
-#r @"../../../../../../../.nuget/packages/tomlyn/0.16.2/lib/net6.0/Tomlyn.dll"
+#r @"../../../../../../../.nuget/packages/tomlyn/0.17.0/lib/net7.0/Tomlyn.dll"
 
 #!fsharp
 
