@@ -1,7 +1,7 @@
 open rust_operators
 open model.near.backend
 
-inl transaction_render (transaction : transaction) : _ leptos.div =
+inl transaction_render (index : i64) (transaction : transaction) : _ leptos.div =
     print_static "<history.transaction_render>"
 
     leptos.div [
@@ -9,7 +9,7 @@ inl transaction_render (transaction : transaction) : _ leptos.div =
     ] fun () =>
         :>(;[
             leptos.divider fun () =>
-                "Transaction" |> leptos.text_fragment
+                $'"Transaction " + string (!index + 1L) + ""' |> leptos.text_fragment
             |> leptos.element_to_view
 
             leptos.div [
@@ -354,14 +354,16 @@ inl render () =
                 leptos.log $'"history.render () / cursor move / result length: " + (!x_log |> string |> String.length |> string) + ""'
                 x
 
-    inl transactions : rust.func0 (option (result (array_base transaction) string)) =
+    inl transactions : rust.func0 (option (result (array_base (unativeint * transaction)) string)) =
         rust.move fun () =>
             transaction_list
             |> rust.func0_get
             |> optionm.map fun transaction_list =>
                 transaction_list
                 |> resultm.map fun result =>
-                    result.items
+                    (a result.items : _ i32 _)
+                    |> am'.enumerate
+                    |> fun (a x : _ i32 _) => x
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
                 leptos.log $'"history.render () / transactions move / result length: " + (!x_log |> string |> String.length |> string) + ""'
@@ -376,10 +378,10 @@ inl render () =
                 ] fun () =>
                     leptos.for
                         transactions
-                        fun transaction => transaction.hash
-                        fun transaction =>
+                        fun _, transaction => transaction.hash
+                        fun index, transaction =>
                             transaction
-                            |> transaction_render
+                            |> transaction_render (index |> i64)
                             |> leptos.element_to_fragment
                     |> leptos.view_to_fragment
                 |> leptos.element_to_fragment

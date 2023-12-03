@@ -22,8 +22,12 @@ nominal any = $"obj"
 nominal disposable = $"System.IDisposable"
 nominal exn = $"exn"
 nominal guid = $"System.Guid"
+nominal unativeint = $"unativeint"
 
 let array x = x
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
 
 #!markdown
 
@@ -45,6 +49,11 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+#!spiral
+
+inl i64 forall t. (x : t) : i64 =
+    $"int64 !x"
+
 #!markdown
 
 ## pair
@@ -53,8 +62,49 @@ inl null forall t. () : t =
 
 type pair a b = $"(`a * `b)"
 
+inl pair x y =
+    x, y
+
+#!spiral
+
+// // test
+
+pair 1i32 2i32
+|> _equal (1, 2)
+
+#!markdown
+
+## new_pair
+
+#!spiral
+
 inl new_pair forall a b. (a : a) (b : b) : pair a b =
     $"!a, !b"
+
+#!markdown
+
+## from_pair
+
+#!spiral
+
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $"let (a, b) = !pair"
+    $"a", $"b"
+
+#!spiral
+
+// // test
+
+new_pair "a" 1i32
+|> from_pair
+|> _equal ("a", 1i32)
+
+#!spiral
+
+// // test
+
+new_pair "a" (new_pair 1i32 "b")
+|> from_pair
 
 #!markdown
 
@@ -105,28 +155,21 @@ inl (/@) a b =
 
 #!markdown
 
+## unbox
+
+#!spiral
+
+inl unbox forall t u. (x : t) : u =
+    $"!x |> unbox<`u>"
+
+#!markdown
+
 ## (/+)
 
 #!spiral
 
 inl (/+) forall t. (a : t) (b : t) : t =
     $"!a + !b"
-
-#!markdown
-
-## pair
-
-#!spiral
-
-inl pair x y =
-    x, y
-
-#!spiral
-
-// // test
-
-pair 1i32 2i32
-|> _equal (1, 2)
 
 #!markdown
 

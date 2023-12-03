@@ -143,28 +143,6 @@ am.init 10i32 id
 
 #!markdown
 
-## indexed
-
-#!spiral
-
-inl indexed (array : a _ _) =
-    (([], 0), array)
-    ||> am.fold fun (acc, i) x =>
-        (i, x) :: acc, i + 1
-    |> fst
-    |> listm.rev
-    |> listm.toArray
-
-#!spiral
-
-// // test
-
-am.init 3i32 ((*) 2)
-|> indexed
-|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
-
-#!markdown
-
 ## try_pick
 
 #!spiral
@@ -236,3 +214,57 @@ inl transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
 
 inl try_item forall dim el. (i : i32) (array : a dim el) : option el =
     $"!array |> Array.tryItem !i" |> optionm'.unbox
+
+#!markdown
+
+## indexed
+
+#!spiral
+
+inl indexed (array : a _ _) =
+    (([], 0), array)
+    ||> am.fold fun (acc, i) x =>
+        (i, x) :: acc, i + 1
+    |> fst
+    |> listm.rev
+    |> listm.toArray
+
+#!spiral
+
+// // test
+
+am.init 3i32 ((*) 2)
+|> indexed
+|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
+
+#!markdown
+
+## enumerate
+
+#!spiral
+
+inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+    inl ar = join ar
+    !\($'"!ar.to_vec().into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    |> from_vec
+    |> map_vec from_pair
+
+#!markdown
+
+## indexed'
+
+#!spiral
+
+inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
+    ((0, a ;[]), ar)
+    ||> am.fold fun (i, acc) x =>
+        i + 1, acc /@ a ;[i, x]
+    |> snd
+
+#!spiral
+
+// // test
+
+am.init 3i32 ((*) 2)
+|> indexed'
+|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)

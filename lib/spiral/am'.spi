@@ -55,16 +55,6 @@ inl last (ar : a _ _) =
     then index ar (len - 1)
     else error_type "The length of the array should be greater than 0."
 
-// // ## indexed
-
-inl indexed (array : a _ _) =
-    (([], 0), array)
-    ||> am.fold fun (acc, i) x =>
-        (i, x) :: acc, i + 1
-    |> fst
-    |> listm.rev
-    |> listm.toArray
-
 // // ## try_pick
 
 inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
@@ -112,3 +102,29 @@ inl transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
 
 inl try_item forall dim el. (i : i32) (array : a dim el) : option el =
     $"!array |> Array.tryItem !i" |> optionm'.unbox
+
+// // ## indexed
+
+inl indexed (array : a _ _) =
+    (([], 0), array)
+    ||> am.fold fun (acc, i) x =>
+        (i, x) :: acc, i + 1
+    |> fst
+    |> listm.rev
+    |> listm.toArray
+
+// // ## enumerate
+
+inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+    inl ar = join ar
+    !\($'"!ar.to_vec().into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    |> from_vec
+    |> map_vec from_pair
+
+// // ## indexed'
+
+inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
+    ((0, a ;[]), ar)
+    ||> am.fold fun (i, acc) x =>
+        i + 1, acc /@ a ;[i, x]
+    |> snd

@@ -21,9 +21,9 @@ function DownloadNearSandbox {
 
         $retryCount = 0
         Write-Host "## 1"
-        while ($retryCount -lt 5) {
+        while ($retryCount -lt 20) {
             if ($retryCount -gt 0) {
-                Write-Host "Retrying download of $url - $retryCount ($Error)"
+                Write-Host "Retrying download of $url - $retryCount"
             }
             $Error.Clear()
             Write-Host "## 2"

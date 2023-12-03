@@ -6,8 +6,12 @@ nominal any = $"obj"
 nominal disposable = $"System.IDisposable"
 nominal exn = $"exn"
 nominal guid = $"System.Guid"
+nominal unativeint = $"unativeint"
 
 let array x = x
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
 
 // // ## prototype
 
@@ -21,12 +25,26 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+inl i64 forall t. (x : t) : i64 =
+    $"int64 !x"
+
 // // ## pair
 
 type pair a b = $"(`a * `b)"
 
+inl pair x y =
+    x, y
+
+// // ## new_pair
+
 inl new_pair forall a b. (a : a) (b : b) : pair a b =
     $"!a, !b"
+
+// // ## from_pair
+
+inl from_pair forall a b. (pair : pair a b) : a * b =
+    $"let (a, b) = !pair"
+    $"a", $"b"
 
 // // ## log_level_type
 
@@ -63,15 +81,15 @@ instance (~:>) any = to_any
 inl (/@) a b =
     b |> append a
 
+// // ## unbox
+
+inl unbox forall t u. (x : t) : u =
+    $"!x |> unbox<`u>"
+
 // // ## (/+)
 
 inl (/+) forall t. (a : t) (b : t) : t =
     $"!a + !b"
-
-// // ## pair
-
-inl pair x y =
-    x, y
 
 // // ## (||>)
 

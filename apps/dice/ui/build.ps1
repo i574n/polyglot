@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 . ../../../scripts/core.ps1
 
 
-{ . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file src/dice_ui.spi src/dice_ui.fsx --timeout 10000 } | Invoke-Block
+{ . ../../spiral/dist/Supervisor$(GetExecutableSuffix) --build-file src/dice_ui.spi src/dice_ui.fsx --timeout 20000 } | Invoke-Block
 
 (Get-Content src/dice_ui.fsx) `
     -replace "and Heap2 =", "and  Heap2 =" `
