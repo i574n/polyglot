@@ -6,7 +6,7 @@ modules:
     src/
         model/
             near/
-                backend
+                nearblocks
         state
         components/
             history

@@ -18,11 +18,6 @@ inl render () =
             state =
                 leptos.create_rw_signal <|
                     heap {
-                        explorer_backend_host =
-                            "../../../near/explorer_backend_host.txt"
-                            |> sm'.include_str
-                            |> sm'.ref_to_std_string
-                            |> leptos.create_rw_signal
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }

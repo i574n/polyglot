@@ -59,26 +59,26 @@ inl render () =
             ])
         |> leptos.element_to_view
 
-        leptos.accordion "Connection" true fun () =>
-            leptos.grid_pair
-                { padding = None; cols = None; class = $'"items-baseline"' }
-                fun () => "Explorer Backend Host" |> leptos.text_fragment
-                fun () =>
-                    leptos.input
-                        fun () =>
-                            leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                            |> leptos.read_only
-                            |> leptos.signal_get
+        // leptos.accordion "Connection" true fun () =>
+        //     leptos.grid_pair
+        //         { padding = None; cols = None; class = $'"items-baseline"' }
+        //         fun () => "Explorer Backend Host" |> leptos.text_fragment
+        //         fun () =>
+        //             leptos.input
+        //                 fun () =>
+        //                     leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+        //                     |> leptos.read_only
+        //                     |> leptos.signal_get
 
-                        fun value =>
-                            value
-                            |> leptos.signal_set (
-                                leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                                |> leptos.write_only
-                            )
-                        |> leptos.element_to_fragment
-            |> leptos.element_to_fragment
-        |> leptos.element_to_view
+        //                 fun value =>
+        //                     value
+        //                     |> leptos.signal_set (
+        //                         leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+        //                         |> leptos.write_only
+        //                     )
+        //                 |> leptos.element_to_fragment
+        //     |> leptos.element_to_fragment
+        // |> leptos.element_to_view
 
         if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
             leptos.accordion "Debug" true fun () =>

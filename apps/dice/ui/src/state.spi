@@ -16,12 +16,12 @@ type core_state_data =
 
 type state =
     heap {
-        explorer_backend_host : leptos.rw_signal rust.std_string
+        // explorer_backend_host : leptos.rw_signal rust.std_string
     }
 
 type state_data =
     heap {
-        explorer_backend_host : rust.std_string
+        // explorer_backend_host : rust.std_string
     }
 
 
@@ -200,8 +200,9 @@ inl use_database () =
 
             match state_data with
             | Some state_data =>
-                leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                |> leptos.rw_signal_update fun _ => state_data.explorer_backend_host
+                // leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+                // |> leptos.rw_signal_update fun _ => state_data.explorer_backend_host
+                ()
             | _ => ()
         | _ => ()
 
@@ -297,9 +298,9 @@ inl use_database () =
 
         inl new_state_data =
             heap {
-                explorer_backend_host =
-                    leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                    |> leptos.rw_signal_get
+                // explorer_backend_host =
+                //     leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+                //     |> leptos.rw_signal_get
             }
 
         inl new_state_data_log = new_state_data |> sm'.format_debug

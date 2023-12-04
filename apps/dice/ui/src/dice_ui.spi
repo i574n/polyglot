@@ -38,7 +38,7 @@ inl main () =
     print_static "<dice_ui>"
     rust.types ()
     leptos.types ()
-    model.near.backend.types ()
+    model.near.nearblocks.types ()
 
     $"let main args = !main args" : ()
     print_static "</dice_ui>"

@@ -104,5 +104,8 @@ inl join' (concat : string) (s : a _ string) : string =
 inl pad_right (pad : i32) (s : string) : string =
     $"!s.PadRight !pad"
 
+inl replace (old_value : string) (new_value : string) (input : string) : string =
+    $"!input.Replace (!old_value, !new_value)"
+
 open rust
 instance to_string std_string = from_std_string

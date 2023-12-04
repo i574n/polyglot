@@ -11,10 +11,10 @@ inl to_local (date_time : naive_date_time) : date_time' local =
     inl date_time = join date_time
     !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!date_time)"')
 
-inl from_timestamp' forall t {int}. (timestamp : t) : option naive_date_time =
+inl from_timestamp' forall t {number; int}. (timestamp : t) : option naive_date_time =
     inl timestamp = join timestamp
     inl result : optionm'.option' naive_date_time =
-        !\($'"chrono::NaiveDateTime::from_timestamp_millis(!timestamp.try_into().unwrap())"')
+        !\($'"chrono::NaiveDateTime::from_timestamp_micros(!timestamp / 1000i64)"')
     result |> optionm'.unbox
 
 inl format' (format : string) (date_time : naive_date_time) : rust.std_string =
