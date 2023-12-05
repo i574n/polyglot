@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Block {
-    pub block_height: i64,
+    pub block_height: u32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -13,7 +13,7 @@ pub struct Action {
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ActionsAgg {
-    pub deposit: i64,
+    pub deposit: u64,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

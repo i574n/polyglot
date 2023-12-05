@@ -15,7 +15,7 @@ inl transaction_render (index : i64) (transaction : txn) : _ leptos.div =
             |> leptos.element_to_view
 
             leptos.div [
-                $'"class=\\\"grid flex-1 divide-y-[1px] divide-gray-500/[.10] [max-height:70vh] [overflow:auto]\\\""'
+                $'"class=\\\"grid flex-1 divide-y-[1px] divide-gray-500/[.10]\\\""'
             ] fun () =>
                 :>(;[
                     leptos.grid_pair
@@ -152,17 +152,20 @@ inl transaction_render (index : i64) (transaction : txn) : _ leptos.div =
                     |> leptos.element_to_view
 
                     if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
-                        leptos.grid_pair
-                            { padding = Some ""; cols = None; class = "items-center py-[4px]" }
-                            fun () => "Logs" |> leptos.text_fragment
-                            fun () =>
-                                (a transaction.logs : _ i32 _)
-                                |> am'.map_vec sm'.from_std_string
-                                |> sm'.concat "\n"
-                                |> sm'.replace "\\n" "\n"
-                                |> leptos.text_block_pre
-                                |> leptos.element_to_fragment
-                        |> leptos.element_to_view
+                        match transaction.logs with
+                        | ;[] => ;[] |> leptos.views_to_view
+                        | _ =>
+                            leptos.grid_pair
+                                { padding = Some ""; cols = None; class = "items-center py-[4px]" }
+                                fun () => "Logs" |> leptos.text_fragment
+                                fun () =>
+                                    (a transaction.logs : _ i32 _)
+                                    |> am'.map_vec sm'.from_std_string
+                                    |> sm'.concat "\n"
+                                    |> sm'.replace "\\n" "\n"
+                                    |> leptos.text_block_pre "[max-height:20vh]"
+                                    |> leptos.element_to_fragment
+                            |> leptos.element_to_view
                     else ;[] |> leptos.views_to_view
                 ])
             |> leptos.element_to_view
@@ -319,7 +322,7 @@ inl render () =
                             |> leptos.resource_get
                             |> sm'.format_pretty'
                             |> sm'.from_std_string
-                            |> leptos.text_block_pre
+                            |> leptos.text_block_pre "[max-height:70vh]"
                             |> leptos.element_to_fragment
 
                     leptos.grid_pair
@@ -330,7 +333,7 @@ inl render () =
                             |> rust.func0_get
                             |> sm'.format_pretty'
                             |> sm'.from_std_string
-                            |> leptos.text_block_pre
+                            |> leptos.text_block_pre "[max-height:70vh]"
                             |> leptos.element_to_fragment
                 ])
             |> leptos.element_to_view

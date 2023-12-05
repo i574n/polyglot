@@ -21,7 +21,7 @@ nominal root' = $"crate_model_near_nearblocks_Root"
 
 type block =
     {
-        block_height : i64
+        block_height : u32
     }
 
 type action =
@@ -32,7 +32,7 @@ type action =
 
 type actions_agg =
     {
-        deposit : i64
+        deposit : u64
     }
 
 type outcomes =

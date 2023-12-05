@@ -559,7 +559,7 @@ inl toggle (id : string) on_change get_value : _ label =
 
 inl dd children : _ dd =
     tag_element "dd" [
-        $'"class=\\\"[max-height:50vh] [overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
+        $'"class=\\\"[overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
     ] children
 
 inl dl children : _ dl =
@@ -613,9 +613,9 @@ inl tab_link href icon label select : _ a' =
             label |> text_view
         ])
 
-inl text_block_pre text =
+inl text_block_pre (class : string) text =
     pre [
-        $'"class=\\\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty]\\\""'
+        $'"class=\\\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty] " + !class + "\\\""'
     ] fun () =>
         text
         |> text_fragment

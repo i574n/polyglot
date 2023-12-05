@@ -130,7 +130,7 @@ impl State {
         {
             let rolls_list_log = Util::list_u8_to_vec(rolls_list.clone().into());
             let signer_account_id_log = signer_account_id.as_str();
-            log!(format!("generate_random_number / max: {max:#?} / key: {key:?} / proof: {proof:?} / block_timestamp: {block_timestamp:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / account_balance: {account_balance:#?} / signer_account_id: {signer_account_id_log:?} / seed: {seed:?} / entropy: {entropy:?} / hash_u8: {hash_u8:?} / rolls_list: {rolls_list_log:?}"));
+            log!(format!("generate_random_number / max: {max:#?} / key: {key:?} / proof: {proof:?} / block_timestamp: {block_timestamp:#?} / block_height: {block_height:#?} / epoch_height: {epoch_height:#?} / account_balance: {account_balance:#?} / signer_account_id: {signer_account_id_log:?}\n / seed: {seed:?}\n / entropy: {entropy:?}\n / hash_u8: {hash_u8:?}\n / rolls_list: {rolls_list_log:?}"));
         }
 
         let logger = Self::get_logger();
