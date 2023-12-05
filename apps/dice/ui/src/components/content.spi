@@ -50,7 +50,7 @@ inl render () : _ leptos.div =
         inl tab =
             if hash_url |> leptos.url_pathname |> sm'.starts_with ("/settings" |> sm'.to_std_string)
             then menu_tabs.Settings
-            else menu_tabs.History
+            else menu_tabs.Transactions
 
         inl tab_log = tab |> sm'.format_pretty'
         leptos.log $'"content.render () / effect 2 / new_tab: " + string !tab_log + ""'
@@ -69,11 +69,11 @@ inl render () : _ leptos.div =
                 ] fun () =>
                     open menu_tabs
                     match tab |> leptos.signal_get with
-                    | History =>
+                    | Transactions =>
                         leptos.div [
                             $'"class=\\\"flex flex-1 flex-col [overflow-y:auto]\\\""'
                         ] fun () =>
-                            history.render ()
+                            transactions.render ()
                             |> leptos.views_to_fragment
                         |> leptos.element_to_view
                     | Settings =>

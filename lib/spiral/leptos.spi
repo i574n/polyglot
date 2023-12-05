@@ -172,6 +172,10 @@ inl closure_to_view (closure : rust.func0 view) : view =
     inl closure = join closure
     !\($'"leptos::IntoView::into_view(move || !closure())"')
 
+inl batch (fn : rust.func0 ()) : () =
+    inl fn = join fn
+    !\($'"leptos::batch(move || !fn())"')
+
 inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
     inl closure = join closure
     !\($'"leptos::IntoView::into_view(move || !closure())"')
@@ -249,6 +253,7 @@ inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     !\($'$"leptos::create_signal(!value)"')
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
+    inl value = join value
     !\($'$"leptos::create_rw_signal(!value)"')
 
 inl read_only forall t. (value : rw_signal t) : read_signal t =
@@ -506,7 +511,7 @@ inl x_red_svg () : _ svg =
     $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"[height:100%] text-red-700\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M6 18L18 6M6 6l12 12\\\" /></svg>"'
     |> macro_to_element
 
-inl history_svg () : _ svg =
+inl inbox_svg () : _ svg =
     $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" class=\\\"h-5 w-5\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z\\\"/></svg>"'
     |> macro_to_element
 
@@ -624,3 +629,80 @@ inl set_inner_html (html : string) (el : rust.html_element) =
     inl html = html |> sm'.as_str
     inl el = join el
     !\($'"!el.set_inner_html(!html)"')
+
+inl use_request forall t u.
+    (url : () -> optionm'.option' string)
+    (map : u -> t)
+    : rust.func0 (option (result t string))
+    =
+
+    inl json : resource (optionm'.option' string) (resultm.result' (optionm'.option' string) string) =
+        create_local_resource
+            url
+            fun url =>
+                log $'"use_request () / json create_local_resource"'
+                fun () =>
+                    match url |> optionm'.unbox with
+                    | Some url =>
+                        url
+                        |> networking.new_request_get
+                        |> async.await
+                        |> resultm.map_error' sm'.format'
+                        |> resultm.try'
+                        |> networking.response_text
+                        |> async.await
+                        |> resultm.map_error' sm'.format'
+                        |> resultm.try'
+                        |> sm'.from_std_string
+                        |> Some
+                    | None => None
+                    |> optionm'.box
+                    |> Ok
+                    |> resultm.box
+                |> async.future_init 2 1
+
+    inl result : memo (resultm.result' (optionm'.option' u) string) =
+        create_memo fun () =>
+            json
+            |> resource_get
+            |> optionm'.unbox
+            |> function
+                | None => Ok None
+                | Some json =>
+                    json
+                    |> resultm.unbox
+                    |> resultm.map fun json =>
+                        match json |> optionm'.unbox with
+                        | Some json =>
+                            json
+                            |> sm'.deserialize
+                            |> resultm.map_error' sm'.format'
+                            |> resultm.try'
+                            |> Some
+                        | None => None
+            |> resultm.map optionm'.box
+            |> resultm.box
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                log $'"use_request () / result create_memo / result length: " + (!x_log |> string |> String.length |> string) + ""'
+                x
+
+    inl result : rust.func0 (option (result t string)) =
+        rust.move fun () =>
+            result
+            |> memo_get
+            |> resultm.unbox
+            |> resultm.map fun result =>
+                result
+                |> optionm'.unbox
+                |> optionm.map map
+            |> function
+                | Ok (Some x) => Some (Ok x)
+                | Error x => Some (Error x)
+                | _ => None
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                log $'"use_request () / result move / result length: " + (!x_log |> string |> String.length |> string) + ""'
+                x
+
+    result

@@ -15,6 +15,11 @@ inl get forall k v. (key : k) (map : rust.hash_map k v) : optionm'.option' v =
     inl key = join key
     !\($'"std::collections::HashMap::get(&!map, &!key).map(|x| *x)"')
 
+inl map forall k v w. (fn : v -> w) (map : rust.hash_map k v) : rust.hash_map k w =
+    inl fn = join fn
+    inl map = join map
+    !\($'"!map.into_iter().map(|(k, v)| (k, !fn(v))).collect()"')
+
 inl from_array forall k v. (array : array_base (k * v)) : rust.hash_map k v =
     inl array = join array
     !\($'"std::collections::HashMap::from_iter(!array.to_vec())"')

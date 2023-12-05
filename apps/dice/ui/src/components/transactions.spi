@@ -1,0 +1,93 @@
+open rust_operators
+
+
+inl render () =
+    print_static "<transactions.render>"
+    leptos.log $'"transactions.render ()"'
+
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
+
+    inl url = leptos.create_memo fun () =>
+        inl account = "i574n.near"
+
+        $'"https://api2.nearblocks.io/v1/account/" + !account + "/txns?&order=desc&page=1&per_page=25"'
+        |> Some
+        |> optionm'.box
+        |> fun x =>
+            inl x_log = x |> sm'.format_debug
+            leptos.log $'"transactions.render () / url create_memo / result: " + string !x_log + ""'
+            x
+
+    inl root : rust.func0 (option (result model.near.nearblocks.root string)) =
+        leptos.use_request (fun () => url |> leptos.memo_get) model.near.nearblocks.root_unbox
+
+    inl txns : rust.func0 (option (result (array_base (unativeint * heap model.near.nearblocks.txn)) string)) =
+        rust.move fun () =>
+            root
+            |> rust.func0_get
+            |> optionm.map fun result =>
+                result
+                |> resultm.map fun result =>
+                    (a result.txns : _ i32 _)
+                    |> am'.enumerate
+                    |> am'.map_vec fun i, x => i, heap x
+                    |> fun (a x : _ i32 _) => x
+                    |> Some
+            |> resultm.flatten_option
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"transactions.render () / txns move / result length: " + (!x_log |> string |> String.length |> string) + ""'
+                x
+
+    ;[
+        leptos.accordion "Transactions" true fun () =>
+            match txns |> rust.func0_get with
+            | Some (Ok transactions) =>
+                leptos.div [
+                    $'"class=\\\"grid flex-1 py-[10px] px-[12px] [gap:15px] sm:[grid-template-columns:repeat(auto-fill,minmax(500px,1fr))]\\\""'
+                ] fun () =>
+                    leptos.for
+                        transactions
+                        fun _, transaction => transaction.transaction_hash
+                        fun index, transaction' =>
+                            !transaction'
+                            |> transaction.render (index |> i64)
+                            |> leptos.element_to_fragment
+                    |> leptos.view_to_fragment
+                |> leptos.element_to_fragment
+            | Some (Error error) =>
+                :>(;[
+                    leptos.x_red_svg () |> leptos.element_to_view
+                    error |> leptos.text_view
+                ])
+            | _ =>
+                leptos.div [
+                    $'"class=\\\"grid place-content-center py-[10vh]\\\""'
+                ] fun () =>
+                    leptos.div [
+                        $'"class=\\\"flex flex-1 [gap:4px] items-center\\\""'
+                    ] fun () => :>(;[
+                        leptos.loading_svg () |> leptos.element_to_view
+                        $'"Loading..."' |> leptos.text_view
+                    ])
+                    |> leptos.element_to_fragment
+                |> leptos.element_to_fragment
+        |> leptos.element_to_view
+
+        if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
+            leptos.accordion "Debug" true fun () =>
+                :>(;[
+                    leptos.grid_pair
+                        { padding = None; cols = None; class = "" }
+                        fun () => "Transactions" |> leptos.text_fragment
+                        fun () =>
+                            txns
+                            |> rust.func0_get
+                            |> sm'.format_pretty'
+                            |> sm'.from_std_string
+                            |> leptos.text_block_pre "[max-height:70vh]"
+                            |> leptos.element_to_fragment
+                ])
+            |> leptos.element_to_view
+        else ;[] |> leptos.views_to_view
+    ]

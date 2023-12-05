@@ -9,7 +9,8 @@ inl global_state_log_render () : _ leptos.pre =
         leptos.log $'"settings.global_state_log_render () / global_state_json memo"'
 
         inl global_state = join global_state
-        inl json : resultm.result' rust.std_string rust.std_string = !\($'"serde_json::to_string_pretty(&!global_state).map_err(|x| x.to_string())"')
+        inl json : resultm.result' rust.std_string rust.std_string =
+            !\($'"serde_json::to_string_pretty(&!global_state).map_err(|x| x.to_string())"')
         match json |> resultm.unbox with
         | Ok json => json |> sm'.from_std_string
         | Error error => $'"Error: " + string !error + ""'
@@ -27,7 +28,6 @@ inl render () =
 
     ;[
         leptos.accordion "View" true fun () =>
-            inl grid_pair_padding_class = leptos.grid_pair_padding_class ()
             :>(;[
                 leptos.grid_pair
                     { padding = None; cols = None; class = $'"items-center"' }

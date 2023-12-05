@@ -16,12 +16,12 @@ type core_state_data =
 
 type state =
     heap {
-        // explorer_backend_host : leptos.rw_signal rust.std_string
+        cache : leptos.rw_signal (rust.hash_map rust.std_string (leptos.rw_signal rust.std_string))
     }
 
 type state_data =
     heap {
-        // explorer_backend_host : rust.std_string
+        cache : rust.hash_map rust.std_string rust.std_string
     }
 
 
@@ -156,14 +156,16 @@ inl use_database () =
 
             match core_state_data with
             | Some core_state_data =>
-                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
-                |> leptos.rw_signal_update fun _ => core_state_data.dark_mode
+                rust.move fun () =>
+                    leptos.rw_signal_get_untracked global_state.core_state .dark_mode
+                    |> leptos.rw_signal_update fun _ => core_state_data.dark_mode
 
-                leptos.rw_signal_get_untracked global_state.core_state .debug
-                |> leptos.rw_signal_update fun _ => core_state_data.debug
+                    leptos.rw_signal_get_untracked global_state.core_state .debug
+                    |> leptos.rw_signal_update fun _ => core_state_data.debug
 
-                leptos.rw_signal_get_untracked global_state.core_state .url_hash
-                |> leptos.rw_signal_update fun _ => core_state_data.url_hash
+                    leptos.rw_signal_get_untracked global_state.core_state .url_hash
+                    |> leptos.rw_signal_update fun _ => core_state_data.url_hash
+                |> leptos.batch
             | _ => ()
         | _ => ()
 
@@ -200,9 +202,14 @@ inl use_database () =
 
             match state_data with
             | Some state_data =>
-                // leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                // |> leptos.rw_signal_update fun _ => state_data.explorer_backend_host
-                ()
+                rust.move fun () =>
+                    leptos.rw_signal_get_untracked global_state.state .cache
+                    |> leptos.rw_signal_update fun _ =>
+                        state_data.cache
+                        |> mapm.map fun x =>
+                            inl x = join x
+                            x |> leptos.create_rw_signal
+                |> leptos.batch
             | _ => ()
         | _ => ()
 
@@ -234,7 +241,7 @@ inl use_database () =
         inl loaded = loaded |> leptos.signal_get
         leptos.log $'"state.use_database () / effect new_core_state_data / ##1 / loaded: " + string !loaded + ""'
 
-        inl new_core_state_data =
+        inl new_core_state_data : core_state_data =
             heap {
                 dark_mode =
                     leptos.rw_signal_get_untracked global_state.core_state .dark_mode
@@ -296,11 +303,12 @@ inl use_database () =
         inl loaded = loaded |> leptos.signal_get
         leptos.log $'"state.use_database () / effect new_state_data / ##1 / loaded: " + string !loaded + ""'
 
-        inl new_state_data =
+        inl new_state_data : state_data =
             heap {
-                // explorer_backend_host =
-                //     leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
-                //     |> leptos.rw_signal_get
+                cache =
+                    leptos.rw_signal_get_untracked global_state.state .cache
+                    |> leptos.rw_signal_get
+                    |> mapm.map leptos.rw_signal_get
             }
 
         inl new_state_data_log = new_state_data |> sm'.format_debug

@@ -25,9 +25,10 @@ Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../../lib/fsharp/CommonWasm.rs -
     -replace "../../../../lib/fsharp", "../../../lib/fsharp" `
     -replace "pub use crate::module_", "// pub use crate::module_" `
     -replace "pub struct Heap0 {", "#[derive(serde::Serialize)] pub struct Heap0 {" `
-    -replace "pub struct Heap1 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap1 {" `
+    -replace "pub struct Heap1 {", "#[derive(serde::Serialize, serde::Deserialize)] pub struct Heap1 {" `
     -replace "pub struct Heap2 {", "#[derive(serde::Serialize)] pub struct Heap2 {" `
     -replace "pub struct Heap3 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap3 {" `
+    -replace "pub struct Heap4 {", "#[derive(serde::Serialize, serde::Deserialize, borsh::BorshSerialize, borsh::BorshDeserialize)] pub struct Heap4 {" `
     -replace "/Common.rs", "/CommonWasm.rs" `
 | Set-Content src/dice_ui_wasm.rs
 

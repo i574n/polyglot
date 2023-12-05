@@ -1,6 +1,6 @@
 union menu_tab =
     | Blank
-    | History
+    | Transactions
     | Settings
 
 inl render tab =
@@ -26,8 +26,8 @@ inl render tab =
                 ] fun () =>
                     :>(;[
                         leptos.option'
-                            (fun () => (tab |> leptos.signal_get) = History)
-                            "History"
+                            (fun () => (tab |> leptos.signal_get) = Transactions)
+                            "Transactions"
 
                         leptos.option'
                             (fun () => (tab |> leptos.signal_get) = Settings)
@@ -48,10 +48,10 @@ inl render tab =
                 ] fun () =>
                     :>(;[
                         leptos.tab_link
-                            $'!url + "#/history"'
-                            (leptos.history_svg ())
-                            "History"
-                            (fun () => (tab |> leptos.signal_get) = History)
+                            $'!url + "#/transactions"'
+                            (leptos.inbox_svg ())
+                            "Transactions"
+                            (fun () => (tab |> leptos.signal_get) = Transactions)
 
                         leptos.tab_link
                             $'!url + "#/settings"'
