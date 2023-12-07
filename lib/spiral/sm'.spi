@@ -63,9 +63,10 @@ instance to_string result t u = fun x =>
 inl serialize forall t. (x : t) : resultm.result' rust.std_string rust.json_error =
     !\($'"serde_json::to_string(&!x)"')
 
-inl deserialize forall t. (json : string) : resultm.result' t rust.json_error =
-    inl json : rust.std_string = json |> to_std_string
+inl deserialize forall t. (json : string) : resultm.result' t rust.std_string =
+    inl json = json |> as_str
     !\($'"serde_json::from_str(&!json)"')
+    |> resultm.map_error' fun (x : rust.json_error) => x |> format'
 
 inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
     inl x = x |> am'.to_vec
