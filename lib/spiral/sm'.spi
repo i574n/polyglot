@@ -67,6 +67,27 @@ inl deserialize forall t. (json : string) : resultm.result' t rust.json_error =
     inl json : rust.std_string = json |> to_std_string
     !\($'"serde_json::from_str(&!json)"')
 
+inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
+    inl x = x |> am'.to_vec
+    !\($'"!x.as_slice()"')
+
+inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t rust.std_string =
+    inl data = data |> as_slice
+    !\($'"let mut !data = !data"')
+    inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
+    result
+    |> resultm.map_error' fun (x : rust.borsh_io_error) => x |> format'
+
+inl deserialize_vec (value : rust.json_value) : resultm.result' (rust.vec u8) rust.std_string =
+    inl value = join value
+    !\($'"serde_json::from_value(!value)"')
+    |> resultm.map_error' fun (x : rust.json_error) => x |> format'
+
+inl wasm_from_value (value : rust.js_value) : resultm.result' (optionm'.option' rust.json_value) rust.std_string =
+    inl value = join value
+    !\($'"serde_wasm_bindgen::from_value(!value)"')
+    |> resultm.map_error' fun (x : rust.serde_wasm_bindgen_error) => x |> format'
+
 inl encode_uri_component (s : rust.std_string) : rust.js_string =
     !\($'"js_sys::encode_uri_component(&!s)"')
 

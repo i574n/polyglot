@@ -41,7 +41,7 @@ inl build_database () : async.future_pin (result rust.rexie rust.rexie_error) =
         inl rexie : resultm.result' rust.rexie rust.rexie_error = rexie |> async.await
         inl rexie : rust.rexie = rexie |> resultm.unbox |> resultm.get
         Ok rexie
-    |> async.future_init 1 0
+    |> async.future_init 2 0
 
 inl get_core_state_data_key () =
     "core-state-data"
@@ -49,29 +49,45 @@ inl get_core_state_data_key () =
 inl get_state_data_key () =
     "state-data"
 
-inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (resultm.result' (option t) rust.rexie_error) =
+inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (resultm.result' (option t) rust.std_string) =
     leptos.log $'"state.get_data () / id: " + !id + ""'
-    inl rexie = join rexie
     fun () =>
-        inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadOnly)?"')
-        inl rexie_store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
-        inl mode_value : resultm.result' rust.js_value rust.rexie_error = rexie_store |> store.store_get id |> async.await
-        inl mode_value : rust.js_value = mode_value |> resultm.try'
-        inl mode_data : optionm'.option' rust.json_value = !\($'"serde_wasm_bindgen::from_value(!mode_value).unwrap()"')
+        inl store_name = "store"
+        inl store_names = ;[ store_name ]
+        inl transaction =
+            rexie
+            |> store.transaction_read_only store_names
+            |> resultm.try'
+        inl rexie_store =
+            transaction
+            |> store.transaction_store store_name
+            |> resultm.try'
+        inl mode_value : rust.js_value =
+            rexie_store
+            |> store.store_get id
+            |> async.await
+            |> resultm.map_error' fun (x : rust.rexie_error) => x |> sm'.format'
+            |> resultm.try'
+        inl mode_data =
+            mode_value
+            |> sm'.wasm_from_value
+            |> resultm.try'
         match mode_data |> optionm'.unbox with
         | Some mode_data =>
-            inl mode_data = join mode_data
-            inl data : rust.vec u8 = !\($'"serde_json::from_value(!mode_data).unwrap()"')
-            inl data_log = data |> sm'.format_debug
-            leptos.log $'"state.get_data () / data: " + !data_log + ""'
-            inl data = join data
-            inl data : resultm.result' t (rust.arc rust.borsh_io_error) = !\($'"borsh::BorshDeserialize::deserialize(&mut !data.as_slice()).map_err(|x| std::sync::Arc::new(x))"')
-            inl data_log = data |> sm'.format_pretty'
-            leptos.log $'"state.get_data () / data: " + string !data_log + ""'
-            data |> resultm.ok' |> optionm'.unbox |> Ok
-        | None => Ok None
-        |> resultm.box
-    |> async.future_init 2 0
+            inl data =
+                mode_data
+                |> sm'.deserialize_vec
+                |> resultm.try'
+                |> am'.from_vec
+            inl data_len = length data
+            leptos.log $'"state.get_data () / data_len: " + string !data_len + ""'
+            inl data = data |> fun (a x : _ i32 _) => x
+            inl data : resultm.result' t rust.std_string = data |> sm'.borsh_deserialize
+            inl data = data |> resultm.try'
+            Some data
+        | None => None
+        |> Ok |> resultm.box
+    |> async.future_init 3 0
 
 inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : async.future_pin (resultm.result' () rust.rexie_error) =
     inl data_log = data |> sm'.format_debug
@@ -91,7 +107,7 @@ inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : async.fut
         !\($'"!transaction.done().await?"')
 
         Ok () |> resultm.box
-    |> async.future_init 6 0
+    |> async.future_init 5 0
 
 inl use_database () =
     leptos.log $'"state.use_database ()"'
@@ -107,7 +123,7 @@ inl use_database () =
                 fun () =>
                     leptos.log $'"state.use_database () / database create_local_resource"'
                     build_database () |> async.await |> resultm.get
-                |> async.future_init 0 0
+                |> async.future_init 6 0
 
     inl core_state_data : leptos.resource (optionm'.option' rust.rexie) (option core_state_data) =
         leptos.create_local_resource
@@ -126,7 +142,7 @@ inl use_database () =
                         |> resultm.unbox
                         |> resultm.get
                     | None => None
-                |> async.future_init 3 0
+                |> async.future_init 4 0
 
     leptos.create_effect fun () =>
         leptos.log $'"state.use_database () / effect core_state_data / ##1"'
@@ -186,7 +202,7 @@ inl use_database () =
                         |> resultm.unbox
                         |> resultm.get
                     | None => None
-                |> async.future_init 3 0
+                |> async.future_init 4 0
 
     leptos.create_effect fun () =>
         leptos.log $'"state.use_database () / effect state_data / ##1"'
@@ -229,7 +245,7 @@ inl use_database () =
                 |> resultm.unbox
                 |> resultm.get
             | None => leptos.log $'"state.use_database () / set_core_state_data_action / database=None"'
-        |> async.future_init 7 1
+        |> async.future_init 1 1
 
     let loading = leptos.create_memo fun () =>
         leptos.log $'"state.use_database () / loading create_memo"'
@@ -297,7 +313,7 @@ inl use_database () =
                 |> resultm.unbox
                 |> resultm.get
             | None => leptos.log $'"state.use_database () / set_state_data_action / database=None"'
-        |> async.future_init 7 1
+        |> async.future_init 1 1
 
     leptos.create_effect fun () =>
         inl loaded = loaded |> leptos.signal_get

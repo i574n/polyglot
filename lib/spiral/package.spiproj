@@ -7,14 +7,14 @@ modules:
     optionm'
     optionm'_operators
     resultm
-    mapm
     date_time
     common-
+    am'
+    listm'
+    mapm
     sm'
     console
     math
-    am'
-    listm'
     async
     networking
     benchmark

@@ -8,25 +8,22 @@ inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : future_pin t 
     if flag = 1
     then !\($'"let __future_init = Box::pin(async move { //"')
     else !\($'"let __future_init = Box::pin(async { //"')
+
     let x' = x ()
     inl x' = join x'
-    if depth = 4 || depth = 5
-    then !\($'"!x' }}}})"')
-    elif depth = 6
-    then !\($'"!x' }}}}); { { { //"')
-    elif depth = 3
-    then !\($'"!x' }}})"')
-    elif depth = 7
+
+    if depth = 1
     then !\($'"!x' })"')
-    else !\($'"!x' }})"')
-    if depth = 0 || depth = 3
-    then !\($'"{ { // "')
-    elif depth = 7
-    then !\($'"// "')
     elif depth = 2
-    then !\($'"{ // "')
+    then !\($'"!x' }})"')
+    elif depth = 3
+    then !\($'"!x' }}); { //"')
+    elif depth = 4
+    then !\($'"!x' }}}); {{ //"')
     elif depth = 5
-    then !\($'"{ { { { { { // "')
+    then !\($'"!x' }}}}); {{{ //"')
+    elif depth = 6
+    then !\($'"!x' }}}}); {{{{ //"')
     !\($'"__future_init"')
 
 inl await forall t. (x : future_pin t) : t =

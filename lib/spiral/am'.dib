@@ -174,14 +174,25 @@ inl from_vec forall dim el. (vec : rust.vec el) : a dim el =
 
 #!markdown
 
+## to_vec
+
+#!spiral
+
+inl to_vec forall t. (ar : array_base t) : rust.vec t =
+    inl ar = join ar
+    !\($'"!ar.to_vec()"')
+
+#!markdown
+
 ## map_vec
 
 #!spiral
 
 inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
     inl fn = join fn
-    inl ar = join ar
-    !\($'"!ar.to_vec().iter().map(|x| !fn(x.clone())).collect()"')
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
     |> from_vec
 
 #!markdown
@@ -199,6 +210,9 @@ inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
 
 inl average forall el {number}. (array : a _ el) : el =
     $"!array |> Array.average"
+
+inl length forall dim el {number}. (array : a dim el) : dim =
+    $"!array |> Array.length"
 
 inl parallel_map forall dim el el'. (fn : el -> el') (array : a dim el) : a dim el' =
     $"!array |> Array.Parallel.map !fn"
@@ -244,8 +258,9 @@ am.init 3i32 ((*) 2)
 #!spiral
 
 inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
-    inl ar = join ar
-    !\($'"!ar.to_vec().into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
     |> from_vec
     |> map_vec from_pair
 

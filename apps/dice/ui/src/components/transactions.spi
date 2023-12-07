@@ -1,6 +1,130 @@
 open rust_operators
 
 
+
+inl use_request forall t u.
+    (url : () -> optionm'.option' string)
+    (map : u -> t)
+    : rust.func0 (option (result t string))
+    =
+
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
+
+    inl json_cache =
+        rust.move fun () =>
+            match url () |> optionm'.unbox with
+            | Some url =>
+                inl data =
+                    leptos.rw_signal_get_untracked global_state.state .cache |> leptos.rw_signal_get
+                    |> mapm.get (url |> sm'.to_std_string)
+                    |> optionm'.map leptos.rw_signal_get
+                Some { url data }
+            | None => None
+            |> optionm'.box
+
+    inl json
+        : leptos.resource
+            (optionm'.option' { url : string; data : optionm'.option' rust.std_string })
+            (resultm.result' (optionm'.option' string) string)
+        =
+        leptos.create_local_resource
+            fun () => json_cache |> rust.func0_get
+            fun json_cache =>
+                leptos.log $'"use_request () / json create_local_resource"'
+                fun () =>
+                    match json_cache |> optionm'.unbox with
+                    | Some { url data } =>
+                        data
+                        |> optionm'.unbox
+                        |> optionm.map sm'.from_std_string
+                        |> optionm'.default_with fun () =>
+                            url
+                            |> networking.new_request_get
+                            |> async.await
+                            |> resultm.map_error' sm'.format'
+                            |> resultm.try'
+                            |> networking.response_text
+                            |> async.await
+                            |> resultm.map_error' sm'.format'
+                            |> resultm.try'
+                            |> sm'.from_std_string
+                        |> Some
+                    | None => None
+                    |> optionm'.box
+                    |> Ok
+                    |> resultm.box
+                |> async.future_init 3 1
+
+    leptos.create_effect fun () =>
+        inl json =
+            json
+            |> leptos.resource_get
+            |> optionm'.unbox
+            |> optionm.map resultm.unbox
+            |> optionm.map (resultm.map optionm'.unbox)
+            |> resultm.flatten_option
+        match json, url () |> optionm'.unbox with
+        | Some (Ok json), Some url =>
+            inl cache =
+                leptos.rw_signal_get_untracked global_state.state .cache |> leptos.rw_signal_get_untracked
+            cache
+            |> mapm.insert
+                (url |> sm'.to_std_string)
+                (json |> sm'.to_std_string |> leptos.create_rw_signal)
+            |> ignore
+            leptos.rw_signal_get_untracked global_state.state .cache
+            |> leptos.rw_signal_set cache
+        | _ => ()
+
+    inl result : leptos.memo (resultm.result' (optionm'.option' u) string) =
+        leptos.create_memo fun () =>
+            json
+            |> leptos.resource_get
+            |> optionm'.unbox
+            |> function
+                | None => Ok None
+                | Some json =>
+                    json
+                    |> resultm.unbox
+                    |> resultm.map fun json =>
+                        match json |> optionm'.unbox with
+                        | Some json =>
+                            json
+                            |> sm'.deserialize
+                            |> resultm.map_error' sm'.format'
+                            |> resultm.try'
+                            |> Some
+                        | None => None
+            |> resultm.map optionm'.box
+            |> resultm.box
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"use_request () / result create_memo / result length: " + (!x_log |> string |> String.length |> string) + ""'
+                x
+
+    inl result : rust.func0 (option (result t string)) =
+        rust.move fun () =>
+            result
+            |> leptos.memo_get
+            |> resultm.unbox
+            |> resultm.map fun result =>
+                result
+                |> optionm'.unbox
+                |> optionm.map map
+            |> function
+                | Ok (Some x) => Some (Ok x)
+                | Error x => Some (Error x)
+                | _ => None
+            |> fun x =>
+                inl x_log = x |> sm'.format_debug
+                leptos.log $'"use_request () / result move / result length: " + (!x_log |> string |> String.length |> string) + ""'
+                x
+
+    result
+
+
+
+
 inl render () =
     print_static "<transactions.render>"
     leptos.log $'"transactions.render ()"'
@@ -19,7 +143,7 @@ inl render () =
             x
 
     inl root : rust.func0 (option (result model.near.nearblocks.root string)) =
-        leptos.use_request (fun () => url |> leptos.memo_get) model.near.nearblocks.root_unbox
+        use_request (fun () => url |> leptos.memo_get) model.near.nearblocks.root_unbox
 
     inl txns : rust.func0 (option (result (array_base (unativeint * heap model.near.nearblocks.txn)) string)) =
         rust.move fun () =>

@@ -26,3 +26,17 @@ inl store_get forall t. (key : string) (store : rust.rexie_store) : async.future
     inl key = #key
     inl key : rust.ref' rust.js_value = !\\(key, $'"$0.into()"')
     !\($'$"Box::pin(rexie::Store::get(&!store, !key))"')
+
+inl transaction_read_only (store_names : array_base string) (rexie : rust.rexie) : resultm.result' rust.rexie_transaction rust.std_string =
+    inl store_names =
+        (a store_names : _ i32 _)
+        |> am'.map_vec sm'.to_std_string
+        |> fun (a x) => x
+    inl rexie = join rexie
+    !\($'"!rexie.transaction(&!store_names, rexie::TransactionMode::ReadOnly)"')
+    |> resultm.map_error' fun (x : rust.rexie_error) => x |> sm'.format'
+
+inl transaction_store (store_name : string) (transaction : rust.rexie_transaction) : resultm.result' rust.rexie_store rust.std_string =
+    inl store_name = store_name |> sm'.as_str
+    !\($'"!transaction.store(!store_name)"')
+    |> resultm.map_error' fun (x : rust.rexie_error) => x |> sm'.format'

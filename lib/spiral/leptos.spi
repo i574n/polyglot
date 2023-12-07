@@ -84,7 +84,8 @@ inl log_string (text : string) =
     !\\((), $'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
 
 inl log (text : string) =
-    !\\(text, $'@@$"leptos::logging::log\!(""{{}}"", $0)"') : ()
+    inl text = join text
+    (!\($'@@$"leptos::logging::log\!(""{{}}"", !text)"') : ())
 
 inl log_debug (text : string) =
     !\\(text, $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"') : ()
@@ -95,16 +96,9 @@ inl log_pretty (text : string) =
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
-inl array_to_fragment (view : a _ view) : fragment =
-    inl view = join view
-    !\($'"leptos::Fragment::new(!view.to_vec())"')
-
-inl views_to_fragment (items : array_base view) : fragment =
-    inl items = join items
-    items
-    // |> fun x => a (join x) : a u64 _
-    |> fun x => a x : a i64 _
-    |> array_to_fragment
+inl views_to_fragment (views : array_base view) : fragment =
+    inl views = views |> am'.to_vec
+    !\($'"leptos::Fragment::new(!views)"')
 
 inl element_to_view (view : html_element _) : view =
     inl view = join view
@@ -218,7 +212,8 @@ inl transparents_fragment (items : array_base transparent) : fragment =
         inl x = join x
         x |> transparent_to_view
     inl transparent_to_view = join transparent_to_view
-    !\($'"!items.to_vec().iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
+    inl items = items |> am'.to_vec
+    !\($'"!items.iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
 
 inl views_to_view (items : array_base view) : view =
     inl items = join items
@@ -629,80 +624,3 @@ inl set_inner_html (html : string) (el : rust.html_element) =
     inl html = html |> sm'.as_str
     inl el = join el
     !\($'"!el.set_inner_html(!html)"')
-
-inl use_request forall t u.
-    (url : () -> optionm'.option' string)
-    (map : u -> t)
-    : rust.func0 (option (result t string))
-    =
-
-    inl json : resource (optionm'.option' string) (resultm.result' (optionm'.option' string) string) =
-        create_local_resource
-            url
-            fun url =>
-                log $'"use_request () / json create_local_resource"'
-                fun () =>
-                    match url |> optionm'.unbox with
-                    | Some url =>
-                        url
-                        |> networking.new_request_get
-                        |> async.await
-                        |> resultm.map_error' sm'.format'
-                        |> resultm.try'
-                        |> networking.response_text
-                        |> async.await
-                        |> resultm.map_error' sm'.format'
-                        |> resultm.try'
-                        |> sm'.from_std_string
-                        |> Some
-                    | None => None
-                    |> optionm'.box
-                    |> Ok
-                    |> resultm.box
-                |> async.future_init 2 1
-
-    inl result : memo (resultm.result' (optionm'.option' u) string) =
-        create_memo fun () =>
-            json
-            |> resource_get
-            |> optionm'.unbox
-            |> function
-                | None => Ok None
-                | Some json =>
-                    json
-                    |> resultm.unbox
-                    |> resultm.map fun json =>
-                        match json |> optionm'.unbox with
-                        | Some json =>
-                            json
-                            |> sm'.deserialize
-                            |> resultm.map_error' sm'.format'
-                            |> resultm.try'
-                            |> Some
-                        | None => None
-            |> resultm.map optionm'.box
-            |> resultm.box
-            |> fun x =>
-                inl x_log = x |> sm'.format_debug
-                log $'"use_request () / result create_memo / result length: " + (!x_log |> string |> String.length |> string) + ""'
-                x
-
-    inl result : rust.func0 (option (result t string)) =
-        rust.move fun () =>
-            result
-            |> memo_get
-            |> resultm.unbox
-            |> resultm.map fun result =>
-                result
-                |> optionm'.unbox
-                |> optionm.map map
-            |> function
-                | Ok (Some x) => Some (Ok x)
-                | Error x => Some (Error x)
-                | _ => None
-            |> fun x =>
-                inl x_log = x |> sm'.format_debug
-                log $'"use_request () / result move / result length: " + (!x_log |> string |> String.length |> string) + ""'
-                x
-
-    result
