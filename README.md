@@ -74,7 +74,7 @@ Polyglot exemplifies a paradigmatic shift in the utilization of the Spiral langu
 
 —
 
-This technical overview encapsulates Polyglot’s architecture, highlighting its multifarious components, interoperability, and advanced programming techniques. It is designed to provide computer scientists, software engineers, and developers with a deep understanding of the repository’s technical intricacies and the potential of Spiral in varied domains. ### Long-Term Value of the Polyglot Repository Approach
+This technical overview encapsulates Polyglot’s architecture, highlighting its multifarious components, interoperability, and advanced programming techniques. It is designed to provide computer scientists, software engineers, and developers with a deep understanding of the repository’s technical intricacies and the potential of Spiral in varied domains. 
 
 # Strategic Advantages and Future Implications
 
