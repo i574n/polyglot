@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.40.0",
-    "@types/chrome": "~0.0.253",
+    "@types/chrome": "~0.0.259",
     "npm-check-updates": "~16.14"
   }
 }

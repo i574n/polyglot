@@ -351,7 +351,7 @@ inl use_request forall t u.
             match url () |> optionm'.unbox with
             | Some url =>
                 inl data =
-                    leptos.rw_signal_get global_state.state .cache |> leptos.rw_signal_get
+                    leptos.rw_signal_get_untracked global_state.state .cache |> leptos.rw_signal_get
                     |> mapm.get (url |> sm'.to_std_string)
                     |> optionm'.map leptos.rw_signal_get
                 data
