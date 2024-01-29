@@ -113,7 +113,7 @@ impl State {
             block_timestamp.to_le_bytes().to_vec(),
             block_height.to_le_bytes().to_vec(),
             epoch_height.to_le_bytes().to_vec(),
-            account_balance.to_le_bytes().to_vec(),
+            account_balance.as_yoctonear().to_le_bytes().to_vec(),
             signer_account_id.as_bytes().to_vec(),
             self.seeds.iter().map(|x| *x).collect::<Vec<u8>>(),
             key.clone().into_bytes(),

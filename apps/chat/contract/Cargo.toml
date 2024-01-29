@@ -11,8 +11,8 @@ license-file.workspace = true
 crate-type = ["cdylib"]
 
 [dependencies]
-near-sdk = "~5.0.0-alpha.2"
-
-sha2 = "~0.10"
+borsh = "~1.3"
 multibase = "~0.9"
+near-sdk = "~5.0.0-alpha.2"
+sha2 = "~0.10"
 unsigned-varint = "~0.8"

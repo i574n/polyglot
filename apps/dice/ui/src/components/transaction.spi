@@ -150,22 +150,20 @@ inl render (index : i64) (transaction : txn) : _ leptos.div =
                     |> leptos.text_fragment
             |> leptos.element_to_view
 
-            if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
-                match transaction.logs with
-                | ;[] => ;[] |> leptos.views_to_view
-                | _ =>
-                    leptos.grid_pair
-                        { padding = Some ""; cols = None; class = "items-center py-[4px]" }
-                        fun () => "Logs" |> leptos.text_fragment
-                        fun () =>
-                            (a transaction.logs : _ i32 _)
-                            |> am'.map_vec sm'.from_std_string
-                            |> sm'.concat "\n"
-                            |> sm'.replace "\\n" "\n"
-                            |> leptos.text_block_pre "[max-height:20vh]"
-                            |> leptos.element_to_fragment
-                    |> leptos.element_to_view
-            else ;[] |> leptos.views_to_view
+            match transaction.logs with
+            | ;[] => ;[] |> leptos.views_to_view
+            | _ =>
+                leptos.grid_pair
+                    { padding = Some ""; cols = None; class = "items-center py-[4px]" }
+                    fun () => "Logs" |> leptos.text_fragment
+                    fun () =>
+                        (a transaction.logs : _ i32 _)
+                        |> am'.map_vec sm'.from_std_string
+                        |> sm'.concat "\n"
+                        |> sm'.replace "\\n" "\n"
+                        |> leptos.text_block_pre "[max-height:20vh]"
+                        |> leptos.element_to_fragment
+                |> leptos.element_to_view
         ])
         |> leptos.element_to_view
     ])
