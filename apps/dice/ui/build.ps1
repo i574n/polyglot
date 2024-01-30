@@ -44,38 +44,13 @@ if (!$fast) {
 
 { pnpm build-css } | Invoke-Block
 
-{ trunk build $($fast ? $() : '--release') --dist="$targetDir/trunk" --public-url="./dist" } | Invoke-Block -EnvironmentVariables @{ "TRUNK_TOOLS_WASM_BINDGEN" = "0.2.89" }
+{ trunk build $($fast ? $() : '--release') --dist="$targetDir/trunk" --public-url="./" --no-sri } | Invoke-Block -EnvironmentVariables @{ "TRUNK_TOOLS_WASM_BINDGEN" = "0.2.89" }
 # { cargo leptos build --release } | Invoke-Block
 
 $path = "$targetDir/trunk/index.html"
-$html = Get-Content $path
-$oldModule = ($html | Select-String -Pattern "import init from '/./dist/(.*?)'").Matches[0].Groups[1].Value
-$html `
-    -replace "/./dist/", "./" `
-    -replace "import init from '([^']+)';init\(", "import init from './$oldModule';init(" `
-| Set-Content $path
-
 { rna build --bundle --minify --no-map --assetNames "[name]" $path --output dist } | Invoke-Block
 
 $path = "dist/index.html"
-$html = Get-Content $path -Raw
-
-$oldModule = $html | Select-String -Pattern '<link rel="modulepreload" href="([^"]+)">' -AllMatches
-if ($oldModule.Matches.Count -gt 0) {
-    $oldModule.Matches | ForEach-Object { Remove-Item "dist/$($_.Groups[1].Value)" -Force }
-    $newModule = $html | Select-String -Pattern "import './(.*?)'"
-    $newModule = $newModule.Matches[0].Groups[1].Value
-    $html `
-        -replace '<link rel="modulepreload" href="([^"]+)">', "<script type=`"text/javascript`" src=`"$newModule`"></script>" `
-        -replace "\n        import './$newModule'\n    ", '' `
-    | Set-Content $path
-
-    $jsPath = "dist/$newModule"
-    $text = Get-Content $jsPath
-    $text `
-        -replace "`",import.meta.url\)\);", "`"));" `
-    | Set-Content $jsPath
-}
 
 Move-Item $path dist/popup.html -Force
 Copy-Item public/manifest.json dist/manifest.json -Force
