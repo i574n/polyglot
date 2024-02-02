@@ -80,6 +80,11 @@ nominal write_signal t = $"leptos_WriteSignal<`t>"
 nominal resource t u = $"leptos_Resource<`t, `u>"
 nominal view = $"leptos_View"
 
+prototype signal_get signal t : signal t -> t
+prototype signal_get_untracked signal t : signal t -> t
+prototype signal_update signal t : (t -> t) -> signal t -> ()
+prototype signal_set signal t : t -> signal t -> ()
+
 inl log_string (text : string) =
     !\\((), $'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
 
@@ -259,6 +264,48 @@ inl write_only forall t. (value : rw_signal t) : write_signal t =
     inl value = join value
     !\($'$"leptos::RwSignal::write_only(&!value)"')
 
+inl typecheck_signal forall (t : * -> *) u. (signal : t u) =
+    real
+        typecase t with
+        | rw_signal => ()
+        | read_signal => ()
+        | write_signal => ()
+        | _ => error_type `(()) ("invalid signal", ``(t u))
+
+inl signal_get forall (t : * -> *) u. (signal : t u) : u =
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalGet::get(&!signal)"')
+
+instance signal_get rw_signal = signal_get
+instance signal_get read_signal = signal_get
+
+inl signal_update forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
+    inl fn = join fn
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'"leptos::SignalUpdate::update(&!signal, |x| { let result = !fn(x.clone()); if result \!= *x { *x = result } })"') : ()
+
+instance signal_update rw_signal = signal_update
+instance signal_update read_signal = signal_update
+
+inl signal_get_untracked forall (t : * -> *) u. (signal : t u) : u =
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
+
+instance signal_get_untracked rw_signal = signal_get_untracked
+instance signal_get_untracked read_signal = signal_get_untracked
+
+inl signal_set forall (t : * -> *) u. (value : u) (signal : t u) =
+    inl value = join value
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
+
+instance signal_set rw_signal = signal_set
+instance signal_set read_signal = signal_set
+
 inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
     inl source = join source
     !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
@@ -273,42 +320,6 @@ inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
 
 inl use_context forall t. () : optionm'.option' t =
     !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
-
-inl rw_signal_get forall t. (signal : rw_signal t) : t =
-    inl signal = join signal
-    !\($'$"leptos::SignalGet::get(&!signal)"')
-
-inl signal_get forall t. (signal : read_signal t) : t =
-    inl signal = join signal
-    !\($'$"leptos::SignalGet::get(&!signal)"')
-
-inl signal_update forall t. (fn : t -> t) (signal : write_signal t) =
-    inl fn = join fn
-    inl signal = join signal
-    !\($'"leptos::SignalUpdate::update(&!signal, |x| { let result = !fn(x.clone()); if result \!= *x { *x = result } })"') : ()
-
-inl rw_signal_update forall t. (fn : t -> t) (signal : rw_signal t) =
-    inl fn = join fn
-    inl signal = join signal
-    !\($'"leptos::SignalUpdate::update(&!signal, |x| { let result = !fn(x.clone()); if result \!= *x { *x = result } })"') : ()
-
-inl signal_get_untracked forall t. (signal : read_signal t) : t =
-    inl signal = join signal
-    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
-
-inl rw_signal_get_untracked forall t. (signal : rw_signal t) : t =
-    inl signal = join signal
-    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
-
-inl rw_signal_set forall t. (value : t) (signal : rw_signal t) =
-    inl value = join value
-    inl signal = join signal
-    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
-
-inl signal_set forall t. (signal : write_signal t) (value : t) =
-    inl value = join value
-    inl signal = join signal
-    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
 
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
     inl resource = join resource
@@ -551,7 +562,12 @@ inl input forall t. getter setter : _ input =
 inl toggle (id : string) on_change get_value : _ label =
     inl id = id |> sm'.to_std_string
 
-    inl on_change : event -> () = join on_change
+    inl on_change (event : event) =
+        rust.move fun () =>
+            on_change event
+        |> batch
+    inl on_change = join on_change
+
     inl get_value : () -> bool = join get_value
 
     $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-400 peer-checked:bg-white text-gray-200 transition-all peer-checked:start-6 peer-checked:text-gray-400\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-200 transition peer-checked:bg-gray-300\\\"></span></label>"'

@@ -36,11 +36,11 @@ inl render () =
                         leptos.toggle
                             "dark-mode"
                             fun _ =>
-                                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
-                                |> leptos.rw_signal_update not
+                                leptos.signal_get_untracked global_state.core_state .dark_mode
+                                |> leptos.signal_update not
                             fun () =>
-                                leptos.rw_signal_get_untracked global_state.core_state .dark_mode
-                                |> leptos.rw_signal_get
+                                leptos.signal_get_untracked global_state.core_state .dark_mode
+                                |> leptos.signal_get
                             |> leptos.element_to_fragment
 
                 leptos.grid_pair
@@ -50,11 +50,11 @@ inl render () =
                         leptos.toggle
                             "debug"
                             fun _ =>
-                                leptos.rw_signal_get_untracked global_state.core_state .debug
-                                |> leptos.rw_signal_update not
+                                leptos.signal_get_untracked global_state.core_state .debug
+                                |> leptos.signal_update not
                             fun () =>
-                                leptos.rw_signal_get_untracked global_state.core_state .debug
-                                |> leptos.rw_signal_get
+                                leptos.signal_get_untracked global_state.core_state .debug
+                                |> leptos.signal_get
                             |> leptos.element_to_fragment
             ])
         |> leptos.element_to_view
@@ -66,21 +66,21 @@ inl render () =
         //         fun () =>
         //             leptos.input
         //                 fun () =>
-        //                     leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+        //                     leptos.signal_get_untracked global_state.state .explorer_backend_host
         //                     |> leptos.read_only
         //                     |> leptos.signal_get
 
         //                 fun value =>
         //                     value
         //                     |> leptos.signal_set (
-        //                         leptos.rw_signal_get_untracked global_state.state .explorer_backend_host
+        //                         leptos.signal_get_untracked global_state.state .explorer_backend_host
         //                         |> leptos.write_only
         //                     )
         //                 |> leptos.element_to_fragment
         //     |> leptos.element_to_fragment
         // |> leptos.element_to_view
 
-        if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
+        if leptos.signal_get_untracked global_state.core_state .debug |> leptos.signal_get then
             leptos.accordion "Debug" true fun () =>
                 leptos.grid_pair
                     { padding = None; cols = None; class = "" }

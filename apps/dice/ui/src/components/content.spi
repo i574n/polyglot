@@ -23,8 +23,8 @@ inl render () : _ leptos.div =
             inl hash = join hash
             if !\($'"!hash == \\\"\\\""') then
                 inl url_hash =
-                    leptos.rw_signal_get_untracked global_state.core_state .url_hash
-                    |> leptos.rw_signal_get
+                    leptos.signal_get_untracked global_state.core_state .url_hash
+                    |> leptos.signal_get
                     |> sm'.from_std_string
 
                 leptos.log $'"content.render () / effect 1 / url_hash: " + !url_hash + ""'
@@ -32,10 +32,10 @@ inl render () : _ leptos.div =
                 if url_hash |> sm'.contains "#" then
                     navigate url_hash
 
-            true |> leptos.signal_set set_loaded
+            set_loaded |> leptos.signal_set true
         else
-            leptos.rw_signal_get_untracked global_state.core_state .url_hash
-            |> leptos.rw_signal_update fun _ => (new_url_hash |> sm'.to_std_string)
+            leptos.signal_get_untracked global_state.core_state .url_hash
+            |> leptos.signal_set (new_url_hash |> sm'.to_std_string)
 
     leptos.create_effect fun () =>
         inl hash = location |> leptos.location_hash |> leptos.memo_get
@@ -55,7 +55,7 @@ inl render () : _ leptos.div =
         inl tab_log = tab |> sm'.format_pretty'
         leptos.log $'"content.render () / effect 2 / new_tab: " + string !tab_log + ""'
 
-        set_tab |> leptos.signal_update fun _ => tab
+        set_tab |> leptos.signal_set tab
 
     leptos.div [
         $'"class=\\\"flex flex-1 max-[100px]:[overflow-x:auto]\\\""'

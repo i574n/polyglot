@@ -73,7 +73,7 @@ inl render () =
                 |> leptos.element_to_fragment
         |> leptos.element_to_view
 
-        if leptos.rw_signal_get_untracked global_state.core_state .debug |> leptos.rw_signal_get then
+        if leptos.signal_get_untracked global_state.core_state .debug |> leptos.signal_get then
             leptos.accordion "Debug" true fun () =>
                 :>(;[
                     leptos.grid_pair

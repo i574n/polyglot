@@ -147,6 +147,18 @@ inl new_rc forall t. (x : t) : rc t =
     inl x = join x
     !\($'"std::rc::Rc::new(!x)"')
 
+inl rc_clone forall t. (x : rc t) : rc t =
+    inl x = join x
+    !\($'"std::rc::Rc::clone(&!x)"')
+
+inl new_ref_cell forall t. (x : t) : ref_cell t =
+    inl x = join x
+    !\($'"std::cell::RefCell::new(!x)"')
+
+inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
+    inl x = join x
+    !\($'"*std::cell::RefCell::borrow(&!x)"')
+
 inl new_arc forall t. (x : t) : arc t =
     inl x = join x
     !\($'"std::sync::Arc::new(!x)"')
