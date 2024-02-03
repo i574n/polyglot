@@ -284,7 +284,7 @@ inl signal_update forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
     inl fn = join fn
     inl signal = join signal
     signal |> typecheck_signal
-    !\($'"leptos::SignalUpdate::update(&!signal, |x| { let result = !fn(x.clone()); if result \!= *x { *x = result } })"') : ()
+    !\($'"leptos::SignalUpdate::update(&!signal, |x| { *x = !fn(x.clone()) })"') : ()
 
 instance signal_update rw_signal = signal_update
 instance signal_update read_signal = signal_update

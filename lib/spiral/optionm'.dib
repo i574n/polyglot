@@ -175,3 +175,13 @@ inl unwrap forall t. (x : option' t) : t =
 
 inl unwrap_or forall t. (def : t) (x : option' t) : t =
     !\($'"!x.unwrap_or(!def)"')
+
+#!markdown
+
+## rc_upgrade
+
+#!spiral
+
+inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
+    inl x = join x
+    !\($'"std::rc::Weak::upgrade(&!x)"')

@@ -24,51 +24,6 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
 
 #!spiral
 
-nominal any = $"std_any_Any"
-nominal ref_cell t = $"std_cell_RefCell<`t>"
-nominal async t = $"Async<`t>"
-nominal base64_decode_error = $"base64_DecodeError"
-nominal borsh_io_error = $"borsh_io_Error"
-nominal utf8_error = $"std_str_Utf8Error"
-nominal rexie = $"rexie_Rexie"
-nominal rexie_store = $"rexie_Store"
-nominal rexie_transaction = $"rexie_Transaction"
-nominal rexie_error = $"rexie_Error"
-nominal json_value = $"serde_json_Value"
-nominal json_error = $"serde_json_Error"
-nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
-nominal js_value = $"wasm_bindgen_JsValue"
-nominal closure t = $"wasm_bindgen_closure_Closure<`t>"
-nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
-nominal rc t = $"std_rc_Rc<`t>"
-nominal box t = $"Box<`t>"
-nominal pin t = $"std_pin_Pin<`t>"
-nominal arc t = $"std_sync_Arc<`t>"
-nominal std_string = $"std_string_String"
-nominal js_function = $"js_sys_Function"
-nominal js_string = $"js_sys_JsString"
-nominal window = $"web_sys_Window"
-nominal document = $"web_sys_Document"
-nominal html_element = $"web_sys_HtmlElement"
-nominal storage = $"web_sys_Storage"
-nominal dyn' t = $"Dyn<`t>"
-nominal fn' t = $"Fn<`t>"
-nominal action_fn2 t u = $"ActionFn2<`t, `u>"
-nominal fn_once t = $"FnOnce<`t>"
-nominal fn_unit = $"FnUnit"
-nominal func0 t = $"Func0<`t>"
-nominal func1 t u = $"Func0<`t, `u>"
-nominal impl t = $"Impl<`t>"
-nominal mut' t = $"Mut<`t>"
-nominal ref' t = $"Ref<`t>"
-nominal slice t = $"Slice<`t>"
-nominal slice' t u = $"Slice'<`t, `u>"
-nominal static_ref' t = $"StaticRef<`t>"
-nominal str = $"Str"
-nominal vec t = $"Vec<`t>"
-
-#!spiral
-
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func0<$0>\")>] type Func0<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>] type Func0<'T, 'U> = class end"
@@ -109,6 +64,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>] type std_rc_Weak<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>] type std_str_Utf8Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
@@ -118,6 +74,52 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::HtmlElement\")>] type web_sys_HtmlElement = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Storage\")>] type web_sys_Storage = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Window\")>] type web_sys_Window = class end"
+
+#!spiral
+
+nominal any = $"std_any_Any"
+nominal ref_cell t = $"std_cell_RefCell<`t>"
+nominal async t = $"Async<`t>"
+nominal base64_decode_error = $"base64_DecodeError"
+nominal borsh_io_error = $"borsh_io_Error"
+nominal utf8_error = $"std_str_Utf8Error"
+nominal rexie = $"rexie_Rexie"
+nominal rexie_store = $"rexie_Store"
+nominal rexie_transaction = $"rexie_Transaction"
+nominal rexie_error = $"rexie_Error"
+nominal json_value = $"serde_json_Value"
+nominal json_error = $"serde_json_Error"
+nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
+nominal js_value = $"wasm_bindgen_JsValue"
+nominal closure t = $"wasm_bindgen_closure_Closure<`t>"
+nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
+nominal rc t = $"std_rc_Rc<`t>"
+nominal weak_rc t = $"std_rc_Weak<`t>"
+nominal box t = $"Box<`t>"
+nominal pin t = $"std_pin_Pin<`t>"
+nominal arc t = $"std_sync_Arc<`t>"
+nominal std_string = $"std_string_String"
+nominal js_function = $"js_sys_Function"
+nominal js_string = $"js_sys_JsString"
+nominal window = $"web_sys_Window"
+nominal document = $"web_sys_Document"
+nominal html_element = $"web_sys_HtmlElement"
+nominal storage = $"web_sys_Storage"
+nominal dyn' t = $"Dyn<`t>"
+nominal fn' t = $"Fn<`t>"
+nominal action_fn2 t u = $"ActionFn2<`t, `u>"
+nominal fn_once t = $"FnOnce<`t>"
+nominal fn_unit = $"FnUnit"
+nominal func0 t = $"Func0<`t>"
+nominal func1 t u = $"Func0<`t, `u>"
+nominal impl t = $"Impl<`t>"
+nominal mut' t = $"Mut<`t>"
+nominal ref' t = $"Ref<`t>"
+nominal slice t = $"Slice<`t>"
+nominal slice' t u = $"Slice'<`t, `u>"
+nominal static_ref' t = $"StaticRef<`t>"
+nominal str = $"Str"
+nominal vec t = $"Vec<`t>"
 
 #!spiral
 
@@ -151,13 +153,17 @@ inl rc_clone forall t. (x : rc t) : rc t =
     inl x = join x
     !\($'"std::rc::Rc::clone(&!x)"')
 
+inl rc_downgrade forall t. (x : rc t) : weak_rc t =
+    inl x = join x
+    !\($'"std::rc::Rc::downgrade(&!x)"')
+
 inl new_ref_cell forall t. (x : t) : ref_cell t =
     inl x = join x
     !\($'"std::cell::RefCell::new(!x)"')
 
 inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
     inl x = join x
-    !\($'"*std::cell::RefCell::borrow(&!x)"')
+    !\($'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&!x))"')
 
 inl new_arc forall t. (x : t) : arc t =
     inl x = join x

@@ -219,9 +219,12 @@ inl use_database () =
                     leptos.signal_get_untracked global_state.state .cache
                     |> leptos.signal_update fun _ =>
                         state_data.cache
-                        |> mapm.map fun x =>
-                            inl x = join x
-                            x |> leptos.create_rw_signal |> rust.new_ref_cell |> rust.new_rc
+                        |> mapm.map fun value =>
+                            inl value = join value
+                            value
+                            |> leptos.create_rw_signal
+                            |> rust.new_ref_cell
+                            |> rust.new_rc
                 |> leptos.batch
             | _ => ()
         | _ => ()
@@ -399,11 +402,14 @@ inl use_request forall t u.
                     |> function
                         | Some set_cache =>
                             set_cache
-                            |> rust.rc_clone
                             |> rust.ref_cell_borrow
                             |> leptos.signal_set value
                             set_cache
-                        | None => value |> leptos.create_rw_signal |> rust.new_ref_cell |> rust.new_rc
+                        | None =>
+                            value
+                            |> leptos.create_rw_signal
+                            |> rust.new_ref_cell
+                            |> rust.new_rc
 
                 cache |> mapm.insert key value
                 |> ignore
@@ -419,12 +425,13 @@ inl use_request forall t u.
                 match url () |> optionm'.unbox with
                 | Some url =>
                     leptos.log $'"use_request () / result memo / url: " + string !url + ""'
-                    leptos.signal_get_untracked global_state.state .cache |> leptos.signal_get
+                    leptos.signal_get_untracked global_state.state .cache
+                    |> leptos.signal_get
                     |> mapm.get (url |> sm'.to_std_string)
-                    |> optionm'.map rust.rc_clone
+                    |> optionm'.map rust.ref_cell_borrow
                     |> optionm'.unbox
                     |> optionm.map
-                        (rust.ref_cell_borrow >> leptos.signal_get >> sm'.from_std_string)
+                        (leptos.signal_get >> sm'.from_std_string)
                 | None => None
 
             json_cache
