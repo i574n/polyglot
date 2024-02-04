@@ -18,7 +18,11 @@ inl render () =
             state =
                 leptos.create_rw_signal <|
                     heap {
-                        cache = mapm.new_hash_map () |> leptos.create_rw_signal
+                        cache =
+                            mapm.new_hash_map ()
+                            |> leptos.create_rw_signal
+                            |> rust.new_ref_cell
+                            |> rust.new_rc
                     }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }
