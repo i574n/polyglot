@@ -16,7 +16,7 @@ type core_state_data =
 
 type state =
     heap {
-        cache : rust.rc (rust.ref_cell (leptos.rw_signal (rust.hash_map rust.std_string (rust.weak_rc (rust.ref_cell (leptos.rw_signal rust.std_string))))))
+        cache : leptos.rw_signal (rust.hash_map rust.std_string (rust.weak_rc (rust.ref_cell (leptos.rw_signal rust.std_string))))
     }
 
 type state_data =
@@ -241,7 +241,6 @@ inl use_database () =
             rust.move fun () =>
                 leptos.log $'"state.use_database (7) / effect state_data / ##2"'
                 leptos.signal_get global_state.state .cache
-                |> rust.ref_cell_borrow
                 |> leptos.signal_update fun _ =>
                     new_signal_map
                     |> mapm.map fun value =>
@@ -329,7 +328,7 @@ inl use_database () =
         fun () =>
             match database with
             | Some database =>
-                leptos.log $'"state.use_database (15) / set_state_data_action / database=Some(_) / value: " + string !value_len + ""'
+                leptos.log $'"state.use_database (15) / set_state_data_action / database=Some(_) / value_len: " + string !value_len + ""'
                 database
                 |> set_data state_data_key value
                 |> async.await
@@ -346,7 +345,6 @@ inl use_database () =
             heap {
                 cache =
                     leptos.signal_get global_state.state .cache
-                    |> rust.ref_cell_borrow
                     |> leptos.signal_get
                     |> mapm.map (
                         optionm'.rc_upgrade
@@ -356,7 +354,7 @@ inl use_database () =
             }
 
         inl new_state_data_len : i64 = new_state_data |> sm'.format_debug |> sm.length
-        leptos.log $'"state.use_database (18) / effect new_state_data / ##2 / new_state_data: " + string !new_state_data_len + ""'
+        leptos.log $'"state.use_database (18) / effect new_state_data / ##2 / new_state_data_len: " + string !new_state_data_len + ""'
         if not loaded
         then set_loaded |> leptos.signal_set true
         else
@@ -387,7 +385,8 @@ inl use_request forall t u.
         leptos.create_local_resource
             fun () => url ()
             fun url =>
-                leptos.log $'"use_request (1) / json create_local_resource"'
+                inl url_log = url |> sm'.format_debug
+                leptos.log $'"use_request (1) / json create_local_resource / url: " + string !url_log + ""'
                 fun () =>
                     match url |> optionm'.unbox with
                     | Some url =>
@@ -410,14 +409,14 @@ inl use_request forall t u.
 
     inl signal : leptos.memo (optionm'.option' (rust.rc (rust.ref_cell (leptos.rw_signal rust.std_string)))) =
         leptos.create_memo fun () =>
-            inl url = url () |> optionm'.unbox
-            leptos.log $'"use_request (2) / signal memo / url: " + string !url + ""'
+            inl url = url ()
+            inl url_log = url |> sm'.format_pretty'
+            leptos.log $'"use_request (2) / signal memo / url: " + string !url_log + ""'
 
-            match url with
+            match url |> optionm'.unbox with
             | Some url =>
                 inl cache =
                     leptos.signal_get global_state.state .cache
-                    |> rust.ref_cell_borrow
                     |> leptos.signal_get
                 inl key = url |> sm'.to_std_string
                 cache
@@ -438,8 +437,9 @@ inl use_request forall t u.
             |> optionm'.box
 
     leptos.create_effect fun () =>
-        inl url = url () |> optionm'.unbox
-        leptos.log $'"use_request (2) / effect / url: " + string !url + ""'
+        inl url = url ()
+        inl url_log = url |> sm'.format_pretty'
+        leptos.log $'"use_request (2) / effect / url: " + string !url_log + ""'
 
         inl signal = signal |> leptos.memo_get |> optionm'.unbox
 
@@ -452,14 +452,14 @@ inl use_request forall t u.
             |> resultm.flatten_option
 
         inl signal_log = signal |> sm'.format_debug
-        leptos.log $'"use_request (3) / effect / json length: " + (!json |> string |> String.length |> string) + " / signal: " + !signal_log + ""'
+        inl json_len : i64 = json |> sm'.format_debug |> sm.length
+        leptos.log $'"use_request (3) / effect / json_len: " + string !json_len + " / signal: " + string !signal_log + ""'
 
-        match json, signal, url with
+        match json, signal, url |> optionm'.unbox with
         | Some (Ok json), Some signal, Some url =>
             rust.move fun () =>
                 inl cache =
                     leptos.signal_get global_state.state .cache
-                    |> rust.ref_cell_borrow
                     |> leptos.signal_get
                 inl key = url |> sm'.to_std_string
                 inl value = json |> sm'.to_std_string
@@ -473,22 +473,21 @@ inl use_request forall t u.
                 |> ignore
 
                 leptos.signal_get global_state.state .cache
-                |> rust.ref_cell_borrow
                 |> leptos.signal_set cache
             |> leptos.batch
         | _ => ()
 
     inl result : leptos.memo (resultm.result' (optionm'.option' u) rust.std_string) =
         leptos.create_memo fun () =>
-            inl url = url () |> optionm'.unbox
-            leptos.log $'"use_request (4) / result memo / url: " + string !url + ""'
+            inl url = url ()
+            inl url_log = url |> sm'.format_pretty'
+            leptos.log $'"use_request (4) / result memo / url: " + string !url_log + ""'
 
             inl json_cache =
-                match url with
+                match url |> optionm'.unbox with
                 | Some url =>
                     leptos.log $'"use_request (5) / result memo / url: " + string !url + ""'
                     leptos.signal_get global_state.state .cache
-                    |> rust.ref_cell_borrow
                     |> leptos.signal_get
                     |> mapm.get (url |> sm'.to_std_string)
                     |> optionm'.map (optionm'.rc_upgrade >> optionm.map rust.ref_cell_borrow)
@@ -503,8 +502,8 @@ inl use_request forall t u.
             |> Ok
             |> resultm.box
             |> fun result =>
-                inl result_log = result |> sm'.format_debug
-                leptos.log $'"use_request (6) / result create_memo / result length: " + (!result_log |> string |> String.length |> string) + ""'
+                inl result_len : i64 = result |> sm'.format_debug |> sm.length
+                leptos.log $'"use_request (6) / result create_memo / result_len: " + string !result_len + ""'
                 result
 
     inl result : rust.func0 (option (result t rust.std_string)) =
@@ -522,8 +521,8 @@ inl use_request forall t u.
                 | Error x => Some (Error x)
                 | _ => None
             |> fun result =>
-                inl result_log = result |> sm'.format_debug
-                leptos.log $'"use_request (8) / result move / result length: " + (!result_log |> string |> String.length |> string) + ""'
+                inl result_len : i64 = result |> sm'.format_debug |> sm.length
+                leptos.log $'"use_request (8) / result move / result_len: " + string !result_len + ""'
                 result
 
     result
