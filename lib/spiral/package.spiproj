@@ -24,3 +24,4 @@ modules:
     physics
     leptos
     store
+    state_core
