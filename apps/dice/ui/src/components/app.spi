@@ -15,13 +15,6 @@ inl render () =
                         debug = leptos.create_rw_signal false
                         url_hash = leptos.create_rw_signal ("" |> sm'.to_std_string)
                     }
-            state =
-                leptos.create_rw_signal <|
-                    heap {
-                        cache =
-                            mapm.new_hash_map ()
-                            |> leptos.create_rw_signal
-                    }
             loading = mapm.new_hash_map () |> leptos.create_rw_signal
         }
 

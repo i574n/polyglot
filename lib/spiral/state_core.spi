@@ -18,6 +18,9 @@ inl get_core_state_data_key () =
 inl get_state_data_key () =
     "state-data"
 
+inl get_key_data_key (key : string) =
+    $'"key-data_" + !key + ""' : string
+
 inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (resultm.result' (option t) rust.std_string) =
     leptos.log $'"state.get_data () / id: " + !id + ""'
     fun () =>
@@ -92,16 +95,15 @@ type core_state_data =
         url_hash : rust.std_string
     }
 
-type global_state t =
+type global_state =
     heap {
         core_state : leptos.rw_signal core_state
-        state : leptos.rw_signal t
         loading : leptos.rw_signal (rust.hash_map rust.std_string (leptos.rw_signal bool))
     }
 
 inl use_core_database
     (database : leptos.resource (option ()) rust.rexie)
-    (global_state : global_state _)
+    (global_state : global_state)
     =
     leptos.log $'"state.use_core_database (1)"'
 

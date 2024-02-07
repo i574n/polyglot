@@ -6,6 +6,9 @@ inl include_str (path : string) : rust.ref' rust.str =
 inl contains (value : string) (input : string) : bool =
     $"!input.Contains !value"
 
+inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
+    $"!str.Substring (!start, !len)"
+
 inl as_str (s : string) : rust.ref' rust.str =
     inl s = join s
     !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')

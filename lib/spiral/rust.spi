@@ -143,6 +143,14 @@ inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
     inl x = join x
     !\($'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&!x))"')
 
+inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
+    inl x = join x
+    !\($'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&!x))"')
+
+inl to_mut forall t. (x : t) : mut' t =
+    emit_expr () $"\"let mut !x = !x\""
+    emit_expr () $"\"!x\""
+
 inl new_arc forall t. (x : t) : arc t =
     inl x = join x
     !\($'"std::sync::Arc::new(!x)"')

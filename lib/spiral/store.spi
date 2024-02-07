@@ -24,8 +24,8 @@ let local_storage (window : rust.window) : resultm.result' (optionm'.option' rus
 
 inl store_get forall t. (key : string) (store : rust.rexie_store) : async.future_pin t =
     inl key = #key
-    inl key : rust.ref' rust.js_value = !\\(key, $'"$0.into()"')
-    !\($'$"Box::pin(rexie::Store::get(&!store, !key))"')
+    inl key : rust.js_value = !\($'"wasm_bindgen::JsValue::from_str(!key)"')
+    !\($'$"Box::pin(rexie::Store::get(&!store, &!key))"')
 
 inl transaction_read_only (store_names : array_base string) (rexie : rust.rexie) : resultm.result' rust.rexie_transaction rust.std_string =
     inl store_names =
