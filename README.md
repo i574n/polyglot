@@ -8,6 +8,8 @@
 
 [![깃허브 코드스페이스](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=255818909)
 
+---
+
 - [Updates](#updates)
   - [2024-02-08](#2024-02-08)
     - [The Challenge of State Management](#the-challenge-of-state-management)
@@ -46,6 +48,9 @@
   - [Bridging Literate and Functional Programming](#bridging-literate-and-functional-programming)
   - [Compilation Pipeline Summary](#compilation-pipeline-summary)
 - [Conclusion](#conclusion)
+- [Links](#links)
+  - [Code and Documentation](#code-and-documentation)
+  - [Social](#social)
 
 ## Updates
 
@@ -274,3 +279,47 @@ The Polyglot repository, through its innovative use of Spiral within a unified c
 The repository’s approach, characterized by its innovative integration of Spiral with various technologies and paradigms, presents a pioneering model with substantial long-term value. It not only enhances the current software development landscape but also sets a foundation for future advancements in programming languages and computational models.
 
 This document provides a bird’s-eye view of the Polyglot repository, encapsulating its essence as a hub for Spiral’s exploration and application. If there are specific sections or details you’d like to add or modify, please feel free to provide feedback or suggestions.
+
+---
+
+## Links
+
+### Code and Documentation
+
+- Repository File Tree
+<https://i574n.github.io/polyglot/index.html>
+
+- Initialization Output
+<https://i574n.github.io/polyglot/scripts/init.dib.html>
+
+- Full Build Output
+<https://i574n.github.io/polyglot/scripts/build.dib.html>
+
+- Physics Sample ("Learn Physics with Functional Programming" book)
+<https://i574n.github.io/polyglot/lib/spiral/physics.dib.html>
+
+- Smart Contract Dice Rolls History (Rust WASM frontend, display of on-chain data using NEAR Protocol queried from their Public API)
+<https://i574n.github.io/polyglot/apps/dice/ui/dist/popup.html>
+
+- Dice Core Code
+<https://i574n.github.io/polyglot/apps/dice/dice.dib.html>
+
+- Task Recurrency Domain Modeling Sample
+<https://i574n.github.io/polyglot/apps/spiral/Tasks.dib.html>
+
+- Spiral Supervisor Code
+<https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
+
+- Performance Tests
+<https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>
+
+### Social
+
+- Spiral ChatGPT Pitch Conversation (en-US)
+<https://chat.openai.com/share/62ae3405-4d5f-4cff-a7d9-10ed67cc7cf2>
+
+- Spiral ChatGPT Pitch Conversation (pt-BR)
+<https://chat.openai.com/share/1ad5a1de-ca7a-4d26-8594-f1901c56281c>
+
+- Forum Post (pt-BR): Pitch: A linguagem de programação Spiral
+<https://www.tabnews.com.br/i574n/pitch-a-linguagem-de-programacao-spiral-chatgpt>

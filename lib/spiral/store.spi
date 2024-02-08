@@ -23,7 +23,7 @@ let local_storage (window : rust.window) : resultm.result' (optionm'.option' rus
     !\($'"!window.local_storage()"')
 
 inl store_get forall t. (key : string) (store : rust.rexie_store) : async.future_pin t =
-    inl key = #key
+    inl key = key |> sm'.as_str
     inl key : rust.js_value = !\($'"wasm_bindgen::JsValue::from_str(!key)"')
     !\($'$"Box::pin(rexie::Store::get(&!store, &!key))"')
 
