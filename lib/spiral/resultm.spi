@@ -10,10 +10,10 @@ inl from_option_error error opt =
 inl from_option opt =
     opt |> from_option_error "Option does not have a value."
 
-inl flatten_option forall t u. (x : option (result (option t) u)) : option (result t u) =
+inl flatten_option forall t u. (x : option (result (option t) u)) : result (option t) u =
     match x with
-    | Some (Ok (Some x)) => Some (Ok (x))
-    | _ => None
+    | Some (Ok (Some x)) => Ok (Some x)
+    | _ => Ok None
 
 inl flatten forall t u. (x : result (result t u) u) : result t u =
     match x with

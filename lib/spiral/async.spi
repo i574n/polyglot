@@ -24,6 +24,8 @@ inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : future_pin t 
     then !\($'"!x' }}}}); {{{ //"')
     elif depth = 6
     then !\($'"!x' }}}}); {{{{ //"')
+    elif depth = 7
+    then !\($'"!x' }}}}}); {{{{{ //"')
     !\($'"__future_init"')
 
 inl await forall t. (x : future_pin t) : t =

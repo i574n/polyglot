@@ -17,22 +17,22 @@ inl render () =
             leptos.log $'"transactions.render () / url create_memo / result: " + string !x_log + ""'
             x
 
-    inl root : rust.func0 (option (result model.near.nearblocks.root rust.std_string)) =
+    inl root : rust.func0 (resultm.result' (optionm'.option' model.near.nearblocks.root) rust.std_string) =
         state.use_request url model.near.nearblocks.root_unbox
 
-    inl txns : rust.func0 (option (result (array_base (unativeint * heap model.near.nearblocks.txn)) rust.std_string)) =
+    inl txns : rust.func0 (result (option (array_base (unativeint * heap model.near.nearblocks.txn))) rust.std_string) =
         rust.move fun () =>
             root
             |> rust.func0_get
-            |> optionm.map fun result =>
+            |> resultm.unbox
+            |> resultm.map fun result =>
                 result
-                |> resultm.map fun result =>
+                |> optionm'.unbox
+                |> optionm.map fun result =>
                     (a result.txns : _ i32 _)
                     |> am'.enumerate
                     |> am'.map_vec fun i, x => i, heap x
                     |> fun (a x : _ i32 _) => x
-                    |> Some
-            |> resultm.flatten_option
             |> fun x =>
                 inl x_log = x |> sm'.format_debug
                 leptos.log $'"transactions.render () / txns move / result length: " + (!x_log |> string |> String.length |> string) + ""'
@@ -41,7 +41,7 @@ inl render () =
     ;[
         leptos.accordion "Transactions" true fun () =>
             match txns |> rust.func0_get with
-            | Some (Ok transactions) =>
+            | Ok (Some transactions) =>
                 leptos.div [
                     $'"class=\\\"grid flex-1 py-[10px] px-[12px] [gap:15px] sm:[grid-template-columns:repeat(auto-fill,minmax(500px,1fr))]\\\""'
                 ] fun () =>
@@ -54,7 +54,7 @@ inl render () =
                             |> leptos.element_to_fragment
                     |> leptos.view_to_fragment
                 |> leptos.element_to_fragment
-            | Some (Error error) =>
+            | Error error =>
                 :>(;[
                     leptos.x_red_svg () |> leptos.element_to_view
                     error |> sm'.from_std_string |> leptos.text_view
