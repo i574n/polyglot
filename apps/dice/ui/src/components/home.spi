@@ -5,7 +5,11 @@ inl render { router } =
     print_static "<home.render>"
     leptos.log $'"home.render () / router: " + string !router + ""'
 
-    inl global_state = state.use_database ()
+    inl global_state : state.global_state = leptos.use_context () |> optionm'.unwrap
+
+    inl database = state.use_database ()
+
+    state_core.use_core_database database global_state
 
     leptos.div [
         $'"class=\\\"flex flex-1\\\""'
