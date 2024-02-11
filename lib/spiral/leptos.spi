@@ -266,47 +266,49 @@ inl write_only forall t. (value : rw_signal t) : write_signal t =
     inl value = join value
     !\($'$"leptos::RwSignal::write_only(&!value)"')
 
-inl typecheck_signal forall (t : * -> *) u. (signal : t u) =
+inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
     real
         typecase t with
         | rw_signal => ()
         | read_signal => ()
         | write_signal => ()
+        | memo => ()
         | _ => error_type `(()) ("invalid signal", ``(t u))
 
-inl signal_get forall (t : * -> *) u. (signal : t u) : u =
+inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
     inl signal = join signal
     signal |> typecheck_signal
     !\($'$"leptos::SignalGet::get(&!signal)"')
 
-instance signal_get rw_signal = signal_get
-instance signal_get read_signal = signal_get
+instance signal_get rw_signal = signal_get'
+instance signal_get read_signal = signal_get'
 
-inl signal_update forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
+inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
     inl fn = join fn
     inl signal = join signal
     signal |> typecheck_signal
     !\($'"leptos::SignalUpdate::update(&!signal, |x| { *x = !fn(x.clone()) })"') : ()
 
-instance signal_update rw_signal = signal_update
-instance signal_update read_signal = signal_update
+instance signal_update rw_signal = signal_update'
+instance signal_update write_signal = signal_update'
 
-inl signal_get_untracked forall (t : * -> *) u. (signal : t u) : u =
+inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
     inl signal = join signal
     signal |> typecheck_signal
     !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
 
-instance signal_get_untracked rw_signal = signal_get_untracked
-instance signal_get_untracked read_signal = signal_get_untracked
+instance signal_get_untracked rw_signal = signal_get_untracked'
+instance signal_get_untracked read_signal = signal_get_untracked'
+instance signal_get_untracked memo = signal_get_untracked'
 
-inl signal_set forall (t : * -> *) u. (value : u) (signal : t u) =
+inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
     inl value = join value
     inl signal = join signal
     signal |> typecheck_signal
     !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
 
-instance signal_set rw_signal = signal_set
-instance signal_set read_signal = signal_set
+instance signal_set rw_signal = signal_set'
+instance signal_set write_signal = signal_set'
 
 inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
     inl source = join source
