@@ -186,6 +186,10 @@ inl func0_get forall t. (x : func0 t) : t =
     inl x = join x
     !\($'"!x()"')
 
+inl func0_move forall t. (fn : func0 t) : t =
+    inl fn = join fn
+    !\($'"(move || !fn())()"')
+
 inl move forall t. (fn : () -> t) : func0 t =
     inl fn = join fn
     !\($'"Func0::new(move || !fn())"')

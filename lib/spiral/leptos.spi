@@ -11,6 +11,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>] type leptos_ReadSignal<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Signal<$0>\")>] type leptos_Signal<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
@@ -77,6 +78,7 @@ nominal navigate_options = $"leptos_router_NavigateOptions"
 nominal url = $"leptos_router_Url"
 nominal memo t = $"leptos_Memo<`t>"
 nominal rw_signal t = $"leptos_RwSignal<`t>"
+nominal signal t = $"leptos_Signal<`t>"
 nominal read_signal t = $"leptos_ReadSignal<`t>"
 nominal write_signal t = $"leptos_WriteSignal<`t>"
 nominal resource t u = $"leptos_Resource<`t, `u>"
@@ -269,6 +271,7 @@ inl write_only forall t. (value : rw_signal t) : write_signal t =
 inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
     real
         typecase t with
+        | signal => ()
         | rw_signal => ()
         | read_signal => ()
         | write_signal => ()
@@ -280,8 +283,10 @@ inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
     signal |> typecheck_signal
     !\($'$"leptos::SignalGet::get(&!signal)"')
 
+instance signal_get signal = signal_get'
 instance signal_get rw_signal = signal_get'
 instance signal_get read_signal = signal_get'
+instance signal_get memo = signal_get'
 
 inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
     inl fn = join fn
@@ -314,6 +319,10 @@ inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> async.f
     inl source = join source
     !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
 
+inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+    inl source = join source
+    !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
+
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
     inl action_fn = join action_fn
     !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn(value.clone()))"')
@@ -324,6 +333,10 @@ inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
 
 inl use_context forall t. () : optionm'.option' t =
     !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
+
+inl resource_loading forall t u. (resource : resource t u) : signal bool =
+    inl resource = join resource
+    !\($'$"leptos::Resource::loading(&!resource)"')
 
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
     inl resource = join resource

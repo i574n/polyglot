@@ -132,5 +132,10 @@ inl pad_right (pad : i32) (s : string) : string =
 inl replace (old_value : string) (new_value : string) (input : string) : string =
     $"!input.Replace (!old_value, !new_value)"
 
+inl ellipsis (max : i32) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> substring 0 max |> fun x => $'!x + "..."'
+
 open rust
 instance to_string std_string = from_std_string
