@@ -1,6 +1,0 @@
-packageDir: ../../lib
-packages:
-    |core-
-    spiral-
-modules:
-    dice

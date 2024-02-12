@@ -35,15 +35,8 @@ CheckToml "../Cargo.toml" `-w
 
 CheckToml "../apps/chat/contract/Cargo.toml"
 CheckToml "../apps/chat/contract/tests/Cargo.toml"
-CheckToml "../apps/dice/Cargo.toml"
-CheckToml "../apps/dice/fsharp/Cargo.toml"
-CheckToml "../apps/dice/contract/Cargo.toml"
-CheckToml "../apps/dice/contract/tests/Cargo.toml"
-CheckToml "../apps/dice/ui/Cargo.toml"
 CheckToml "../apps/plot/Cargo.toml"
 
 CheckJson ".."
-CheckJson "../apps/dice/ui"
-CheckJson "../apps/dice/ui/e2e"
 CheckJson "../apps/ipfs"
 CheckJson "../apps/spiral/temp/extension"

@@ -41,14 +41,6 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/dice/build.ps1" } | Invoke-Block
-
-#!pwsh
-
-{ . "$ScriptDir/../apps/dice/fsharp/build.ps1" } | Invoke-Block
-
-#!pwsh
-
 { . "$ScriptDir/../apps/spiral/temp/extension/build.ps1" } | Invoke-Block
 
 #!pwsh

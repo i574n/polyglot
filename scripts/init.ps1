@@ -41,6 +41,8 @@ if ($IsLinux) {
     curl -fsSL https://bun.sh/install | bash
 }
 
+pip install -r requirements.txt
+
 dotnet tool restore
 
 { dotnet paket restore } | Invoke-Block
