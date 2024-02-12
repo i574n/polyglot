@@ -55,10 +55,23 @@ inl render () =
                     |> leptos.view_to_fragment
                 |> leptos.element_to_fragment
             | Error error =>
-                :>(;[
-                    leptos.x_red_svg () |> leptos.element_to_view
-                    error |> sm'.from_std_string |> leptos.text_view
+                leptos.div [
+                    $'"class=\\\"flex flex-1 [gap:4px] [padding:5px]\\\""'
+                ] fun () => :>(;[
+                    leptos.span [
+                        $'"class=\\\"[height:20px]\\\""'
+                    ] fun () => :>(;[
+                        leptos.x_red_svg () |> leptos.element_to_view
+                    ])
+                    |> leptos.element_to_view
+
+                    leptos.pre [
+                        $'"class=\\\"[overflow-y:auto]\\\""'
+                    ] fun () =>
+                        error |> sm'.from_std_string |> leptos.text_fragment
+                    |> leptos.element_to_view
                 ])
+                |> leptos.element_to_fragment
             | _ =>
                 leptos.div [
                     $'"class=\\\"grid place-content-center py-[10vh]\\\""'

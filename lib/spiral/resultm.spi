@@ -12,6 +12,7 @@ inl from_option opt =
 
 inl flatten_option forall t u. (x : option (result (option t) u)) : result (option t) u =
     match x with
+    | Some (Error x) => Error x
     | Some (Ok (Some x)) => Ok (Some x)
     | _ => Ok None
 

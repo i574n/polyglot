@@ -132,7 +132,7 @@ inl pad_right (pad : i32) (s : string) : string =
 inl replace (old_value : string) (new_value : string) (input : string) : string =
     $"!input.Replace (!old_value, !new_value)"
 
-inl ellipsis (max : i32) (s : string) =
+inl ellipsis forall t {int; number}. (max : t) (s : string) =
     if sm.length s <= max
     then s
     else s |> substring 0 max |> fun x => $'!x + "..."'
