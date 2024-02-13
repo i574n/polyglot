@@ -206,7 +206,7 @@ This document provides a bird’s-eye view of the Polyglot repository, encapsula
 ### Code and Documentation
 
 - Repository File Tree
-<https://i574n.github.io/polyglot/index.html>
+<https://i574n.github.io/polyglot>
 
 - Initialization Output
 <https://i574n.github.io/polyglot/scripts/init.dib.html>
