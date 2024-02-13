@@ -8,6 +8,7 @@
 
 #!fsharp
 
+#!import ../../lib/fsharp/Notebooks.dib
 #!import ../../lib/fsharp/Testing.dib
 
 #!fsharp

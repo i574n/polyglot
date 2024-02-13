@@ -8,10 +8,6 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
-
-#!fsharp
-
 //// test
 
 type AssertExceptionFormatter (ex) =
