@@ -31,6 +31,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Span\")>] type leptos_html_Span = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Summary\")>] type leptos_html_Summary = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::helpers::IntervalHandle\")>] type leptos_dom_IntervalHandle = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>] type leptos_dom_Transparent = class end"
@@ -59,6 +60,7 @@ nominal option' = $"leptos_html_Option"
 nominal pre = $"leptos_html_Pre"
 nominal select = $"leptos_html_Select"
 nominal span = $"leptos_html_Span"
+nominal summary = $"leptos_html_Summary"
 nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal for = $"leptos_For"
@@ -114,7 +116,11 @@ inl element_to_view (view : html_element _) : view =
     !\($'"leptos::IntoView::into_view(!view)"')
 
 inl view_to_fragment (view : view) : fragment =
+    inl view = join view
     !\($'"leptos::Fragment::new(vec\![!view])"')
+
+inl fragment_to_view (fragment : fragment) : view =
+    !\($'"leptos::IntoView::into_view(!fragment)"')
 
 inl element_to_fragment (view : html_element _) : fragment =
     view
@@ -167,9 +173,6 @@ inl macro_to_fragment (macro : string) : fragment =
 
 inl new_transparent x : transparent =
     !\($'"leptos::leptos_dom::Transparent::new(!x)"')
-
-inl fragment_to_view (fragment : fragment) : view =
-    !\($'"leptos::IntoView::into_view(!fragment)"')
 
 inl closure_to_view (closure : rust.func0 view) : view =
     inl closure = join closure
@@ -416,6 +419,12 @@ inl tag_closed tag props : html_element _ =
 inl a' props children : _ a' =
     tag_element "a" props children
 
+inl button props children : _ button =
+    tag_element "button" props children
+
+inl details props children : _ details =
+    tag_element "details" props children
+
 inl div props children : _ div =
     tag_element "div" props children
 
@@ -474,6 +483,9 @@ inl select props children : _ select =
 
 inl span props children : _ span =
     tag_element "span" props children
+
+inl summary props children : _ summary =
+    tag_element "summary" props children
 
 inl use_location () : location =
     !\($'"leptos_router::use_location()"')
@@ -566,15 +578,68 @@ inl arrow_down_svg () : _ svg =
     $'"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-5 w-5\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg>"'
     |> macro_to_element
 
-inl accordion title open' children : _ details =
+inl accordion title open' (right_element : option view) children : _ div =
     inl title = title |> sm'.to_std_string
     inl open' : bool = open'
+    inl right_element' =
+        right_element
+        |> optionm'.default_value (;[] |> views_to_view)
     inl children = join children
     inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
     inl arrow_down_svg = arrow_down_svg ()
-    $'"<details class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\" open=!open'><summary class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\"><div class=\\\"flex items-center gap-2\\\"><span class=\\\"text-sm font-medium\\\">{!title}</span></div><span class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\">{!arrow_down_svg}</span></summary><div class=\\\"[display:flex] [flex:1] [flex-direction:column]\\\">{!children()}</div></details>"'
-    |> macro_to_element
+
+    div [
+        $'"class=\\\"[position:relative]\\\""'
+    ] fun () =>
+        :>(;[
+            div [
+                $'"class=\\\"[position:absolute] [right:0] [top:0]\\\""'
+            ] fun () =>
+                right_element'
+                |> view_to_fragment
+            |> element_to_view
+
+            details [
+                $'"class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\""'
+                $'"open=!open'"'
+            ] fun () =>
+                inl summary_margin_right =
+                    if right_element = None
+                    then #""
+                    else #" [margin-right:40px]"
+                :>(;[
+                    summary [
+                        $'"class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\".to_owned() + !summary_margin_right"'
+                    ] fun () =>
+                        :>(;[
+                            div [
+                                $'"class=\\\"flex items-center gap-2\\\""'
+                            ] fun () =>
+                                span [
+                                    $'"class=\\\"text-sm font-medium\\\""'
+                                ] fun () =>
+                                    title |> sm'.from_std_string |> text_fragment
+                                |> element_to_fragment
+                            |> element_to_view
+
+                            span [
+                                $'"class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\""'
+                            ] fun () =>
+                                arrow_down_svg
+                                |> element_to_fragment
+                            |> element_to_view
+                        ])
+                    |> element_to_view
+
+                    div [
+                        $'"class=\\\"[display:flex] [flex:1] [flex-direction:column]\\\""'
+                    ] fun () =>
+                        children ()
+                    |> element_to_view
+                ])
+            |> element_to_view
+        ])
 
 inl divider children : _ span =
     inl children = join children
@@ -660,6 +725,14 @@ inl tab_link href icon label select : _ a' =
         :>(;[
             icon |> element_to_view
             label |> text_view
+        ])
+
+inl icon_button icon : _ button =
+    button [
+        $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] mb-[11px] pt-[7px] pr-[10px] pl-[10px] text-sm font-medium \\\"}"'
+    ] fun () =>
+        :>(;[
+            icon |> element_to_view
         ])
 
 inl text_block_pre (class : string) text =
