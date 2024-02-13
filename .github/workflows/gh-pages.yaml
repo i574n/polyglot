@@ -56,7 +56,7 @@ jobs:
 
       - run: pwsh scripts/publish.ps1
 
-      - run: pwsh dist/scripts/publish-fleek.ps1
+      - run: pwsh dist/scripts/publish-bin.ps1
         env:
             NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
 

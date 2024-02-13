@@ -7657,6 +7657,7 @@ a.anchor-link {
     <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::rc::Weak&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;] type std_rc_Weak&lt;'T&gt; = class end"</span>
     <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::str::Utf8Error</span><span class="se">\"</span><span class="s2">)&gt;] type std_str_Utf8Error = class end"</span>
     <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::string::String</span><span class="se">\"</span><span class="s2">)&gt;] type std_string_String = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::time::Duration</span><span class="se">\"</span><span class="s2">)&gt;] type std_time_Duration = class end"</span>
     <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::sync::Arc&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;] type std_sync_Arc&lt;'T&gt; = class end"</span>
     <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">wasm_bindgen::JsValue</span><span class="se">\"</span><span class="s2">)&gt;] type wasm_bindgen_JsValue = class end"</span>
     <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">wasm_bindgen::closure::Closure&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;] type wasm_bindgen_closure_Closure&lt;'T&gt; = class end"</span>
@@ -7713,6 +7714,7 @@ a.anchor-link {
 <span class="n">nominal</span> <span class="n">pin</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_pin_Pin&lt;`t&gt;"</span>
 <span class="n">nominal</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_sync_Arc&lt;`t&gt;"</span>
 <span class="n">nominal</span> <span class="n">std_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_string_String"</span>
+<span class="n">nominal</span> <span class="n">duration</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"std_time_Duration"</span>
 <span class="n">nominal</span> <span class="n">js_function</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"js_sys_Function"</span>
 <span class="n">nominal</span> <span class="n">js_string</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"js_sys_JsString"</span>
 <span class="n">nominal</span> <span class="n">window</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"web_sys_Window"</span>
@@ -7844,6 +7846,10 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x()"'</span><span class="p">)</span>
 
+<span class="n">inl</span> <span class="n">func0_move</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">func0</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"(move || !fn())()"'</span><span class="p">)</span>
+
 <span class="n">inl</span> <span class="n">move</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">func0</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Func0::new(move || !fn())"'</span><span class="p">)</span>
@@ -7853,6 +7859,14 @@ a.anchor-link {
 
 <span class="n">inl</span> <span class="n">box_leak</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">box</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">static_ref</span><span class="s1">' (mut'</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">Box::leak(!x)</span><span class="se">\"</span><span class="s2">"</span>
+
+<span class="n">inl</span> <span class="n">duration_from_millis</span> <span class="p">(</span><span class="n">ms</span> <span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="p">:</span> <span class="n">duration</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">join</span> <span class="n">ms</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::time::Duration::from_millis(!ms)"'</span><span class="p">)</span>
+    
+<span class="n">inl</span> <span class="n">sleep</span> <span class="p">(</span><span class="n">duration</span> <span class="p">:</span> <span class="n">duration</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">duration</span> <span class="o">=</span> <span class="n">join</span> <span class="n">duration</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::thread::sleep(!duration)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
