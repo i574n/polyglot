@@ -11,6 +11,7 @@ modules:
     common-
     am'
     listm'
+    listm'_operators
     mapm
     sm'
     console

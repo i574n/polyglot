@@ -1,4 +1,5 @@
 open rust_operators
+open listm'_operators
 
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
@@ -645,31 +646,78 @@ inl divider children : _ span =
     inl children = join children
     inl children = fun () => children |> move_to_fragment
     inl children : () -> fragment = join children
-    $'"<span class=\\\"flex items-center pb-[6px]\\\"><span class=\\\"pr-[15px] [font-size:14px]\\\">{!children()}</span><span class=\\\"h-px flex-1 bg-gray-300\\\"></span></span>"'
-    |> macro_to_element
 
-inl input forall t. getter setter : _ input =
+    span [
+        $'"class=\\\"flex items-center pb-[6px]\\\""'
+    ] fun () =>
+        :>(;[
+            span [
+                $'"class=\\\"pr-[15px] [font-size:14px]\\\""'
+            ] fun () =>
+                children ()
+            |> element_to_view
+
+            span [
+                $'"class=\\\"h-px flex-1 bg-gray-300\\\""'
+            ] fun () =>
+                ;[] |> views_to_fragment
+            |> element_to_view
+        ])
+
+inl input' forall t. (class : option string) props getter setter : _ input =
     inl getter : () -> t = join getter
     inl setter : t -> () = join setter
-    input [
-        $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\""'
-        $'"prop:value=move || !getter()"'
-        $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
-    ]
+    inl class = class |> optionm.map sm'.as_str |> optionm'.default_value #""
+    input
+        ([
+            $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\".to_owned() + !class"'
+            $'"prop:value=move || !getter()"'
+            $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
+        ] /@ props)
 
 inl toggle (id : string) on_change get_value : _ label =
-    inl id = id |> sm'.to_std_string
-
     inl on_change (event : event) =
         rust.move fun () =>
             on_change event
         |> batch
-    inl on_change = join on_change
 
     inl get_value : () -> bool = join get_value
 
-    $'"<label for={!id.clone()} class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\"><input type=\\\"checkbox\\\" id={!id} class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\" on:change=move |event| !on_change(event) prop:checked={move || !get_value()} /><span class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-400 peer-checked:bg-white text-gray-200 transition-all peer-checked:start-6 peer-checked:text-gray-400\\\"><svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg><svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg></span><span class=\\\"absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-200 transition peer-checked:bg-gray-300\\\"></span></label>"'
-    |> macro_to_element
+    label [
+        $'"for=\\\"" + !id + "\\\""'
+        $'"class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\""'
+    ] fun () =>
+        inl on_change = join on_change
+        !\($'"let on_change = move |x| !on_change(x)"')
+        !\($'"let get_value = move || !get_value()"')
+        :>(;[
+            input [
+                $'"class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\""'
+                $'"type=\\\"checkbox\\\""'
+                $'"id=\\\"" + !id + "\\\""'
+                $'"on:change=move |event| on_change(event)"'
+                $'"prop:checked={move || get_value()}"'
+            ]
+            |> element_to_view
+
+            span [
+                $'"class=\\\"absolute inset-y-0 start-0 z-10 m-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-gray-400 peer-checked:bg-white text-gray-200 transition-all peer-checked:start-6 peer-checked:text-gray-400\\\""'
+            ] fun () =>
+                :>(;[
+                    $'"<svg data-unchecked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"><path fill-rule=\\\"evenodd\\\" d=\\\"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z\\\" clip-rule=\\\"evenodd\\\" /></svg>"'
+                    |> macro_to_element : _ svg
+
+                    $'"<svg data-checked-icon xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"hidden h-4 w-4\\\" viewBox=\\\"0 0 20 20\\\" fill=\\\"currentColor\\\"> <path fill-rule=\\\"evenodd\\\" d=\\\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\\\" clip-rule=\\\"evenodd\\\" /></svg>"'
+                    |> macro_to_element : _ svg
+                ])
+            |> element_to_view
+
+            span [
+                $'"class=\\\"absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-200 transition peer-checked:bg-gray-300\\\""'
+            ] fun () =>
+                ;[] |> views_to_fragment
+            |> element_to_view
+        ])
 
 inl dd children : _ dd =
     tag_element "dd" [
