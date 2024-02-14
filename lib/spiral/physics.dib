@@ -18,7 +18,7 @@ open testing
 
 #!spiral
 
-inl (/@) x = listm'.(/@) x
+open listm'_operators
 
 #!markdown
 

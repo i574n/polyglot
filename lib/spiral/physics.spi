@@ -1,6 +1,6 @@
 // // # physics
 
-inl (/@) x = listm'.(/@) x
+open listm'_operators
 
 // // ## init_series
 
