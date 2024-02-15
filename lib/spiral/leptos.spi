@@ -714,8 +714,8 @@ inl toggle (id : string) get_value (on_change : event -> _) : _ label =
         $'"class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\""'
     ] fun () =>
         inl on_change = join on_change
-        !\($'"let on_change = move |x| !on_change(x)"')
-        !\($'"let get_value = move || !get_value()"')
+        !\($'"let on_change = !on_change"')
+        !\($'"let get_value = !get_value"')
         :>(;[
             input [
                 $'"class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\""'
@@ -801,11 +801,11 @@ inl tab_link href icon label select : _ a' =
             label |> text_view
         ])
 
-inl icon_button icon (class : option (rust.ref' rust.str)) props : _ button =
-    inl class = class |> optionm'.default_value #""
+inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button =
+    inl class = join class
     button
         ([
-            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] mb-[11px] pt-[7px] pr-[10px] pl-[10px] text-sm font-medium \\\".to_owned() + !class}"'
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[7px] pt-[7px] pr-[11px] pl-[11px] text-sm font-medium \\\".to_owned() + !class()}"'
         ] /@ props)
         fun () =>
             :>(;[
