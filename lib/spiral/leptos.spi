@@ -133,6 +133,7 @@ inl view_to_fragment (view : view) : fragment =
     !\($'"leptos::Fragment::new(vec\![!view])"')
 
 inl fragment_to_view (fragment : fragment) : view =
+    inl fragment = join fragment
     !\($'"leptos::IntoView::into_view(!fragment)"')
 
 inl element_to_fragment (view : html_element _) : fragment =
@@ -805,7 +806,7 @@ inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button 
     inl class = join class
     button
         ([
-            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[7px] pt-[7px] pr-[11px] pl-[11px] text-sm font-medium \\\".to_owned() + !class()}"'
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[7.5px] pt-[7px] pr-[11px] pl-[11px] text-sm font-medium \\\".to_owned() + !class()}"'
         ] /@ props)
         fun () =>
             :>(;[
