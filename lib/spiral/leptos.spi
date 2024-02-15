@@ -33,6 +33,12 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Span\")>] type leptos_html_Span = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Summary\")>] type leptos_html_Summary = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Table\")>] type leptos_html_Table = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Thead\")>] type leptos_html_Thead = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Tbody\")>] type leptos_html_Tbody = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Tr\")>] type leptos_html_Tr = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Th\")>] type leptos_html_Th = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Td\")>] type leptos_html_Td = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::helpers::IntervalHandle\")>] type leptos_dom_IntervalHandle = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>] type leptos_dom_Transparent = class end"
@@ -62,6 +68,12 @@ nominal pre = $"leptos_html_Pre"
 nominal select = $"leptos_html_Select"
 nominal span = $"leptos_html_Span"
 nominal summary = $"leptos_html_Summary"
+nominal table = $"leptos_html_Table"
+nominal thead = $"leptos_html_Thead"
+nominal tbody = $"leptos_html_Tbody"
+nominal tr = $"leptos_html_Tr"
+nominal th = $"leptos_html_Th"
+nominal td = $"leptos_html_Td"
 nominal svg = $"leptos_svg_Svg"
 nominal action t u = $"leptos_Action<`t, `u>"
 nominal for = $"leptos_For"
@@ -488,6 +500,24 @@ inl span props children : _ span =
 inl summary props children : _ summary =
     tag_element "summary" props children
 
+inl table props children : _ table =
+    tag_element "table" props children
+
+inl thead props children : _ thead =
+    tag_element "thead" props children
+
+inl tbody props children : _ tbody =
+    tag_element "tbody" props children
+
+inl tr props children : _ tr =
+    tag_element "tr" props children
+
+inl th props children : _ th =
+    tag_element "th" props children
+
+inl td props children : _ td =
+    tag_element "td" props children
+
 inl use_location () : location =
     !\($'"leptos_router::use_location()"')
 
@@ -634,7 +664,7 @@ inl accordion title open' (right_element : option view) children : _ div =
                     |> element_to_view
 
                     div [
-                        $'"class=\\\"[display:flex] [flex:1] [flex-direction:column]\\\""'
+                        $'"class=\\\"[display:flex] [flex:1] [flex-direction:column] [overflow:auto]\\\""'
                     ] fun () =>
                         children ()
                     |> element_to_view
@@ -675,11 +705,7 @@ inl input' forall t. (class : option string) props getter setter : _ input =
             $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
         ] /@ props)
 
-inl toggle (id : string) on_change get_value : _ label =
-    inl on_change (event : event) =
-        rust.move fun () =>
-            on_change event
-        |> batch
+inl toggle (id : string) get_value (on_change : event -> _) : _ label =
 
     inl get_value : () -> bool = join get_value
 
@@ -775,13 +801,16 @@ inl tab_link href icon label select : _ a' =
             label |> text_view
         ])
 
-inl icon_button icon : _ button =
-    button [
-        $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] mb-[11px] pt-[7px] pr-[10px] pl-[10px] text-sm font-medium \\\"}"'
-    ] fun () =>
-        :>(;[
-            icon |> element_to_view
-        ])
+inl icon_button icon (class : option (rust.ref' rust.str)) props : _ button =
+    inl class = class |> optionm'.default_value #""
+    button
+        ([
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] mb-[11px] pt-[7px] pr-[10px] pl-[10px] text-sm font-medium \\\".to_owned() + !class}"'
+        ] /@ props)
+        fun () =>
+            :>(;[
+                icon |> element_to_view
+            ])
 
 inl text_block_pre (class : string) text =
     pre [
