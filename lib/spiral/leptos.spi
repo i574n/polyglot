@@ -622,7 +622,7 @@ inl accordion title open' (right_element : option view) children : _ div =
     inl arrow_down_svg = arrow_down_svg ()
 
     div [
-        $'"class=\\\"[position:relative]\\\""'
+        $'"class=\\\"flex flex-1 flex-col [position:relative]\\\""'
     ] fun () =>
         :>(;[
             div [
@@ -633,7 +633,7 @@ inl accordion title open' (right_element : option view) children : _ div =
             |> element_to_view
 
             details [
-                $'"class=\\\"flex group [&_summary::-webkit-details-marker]:hidden\\\""'
+                $'"class=\\\"flex flex-1 group [&_summary::-webkit-details-marker]:hidden\\\""'
                 $'"open=!open'"'
             ] fun () =>
                 inl summary_margin_right =
@@ -642,7 +642,7 @@ inl accordion title open' (right_element : option view) children : _ div =
                     else #" [margin-right:40px]"
                 :>(;[
                     summary [
-                        $'"class=\\\"group flex items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\".to_owned() + !summary_margin_right"'
+                        $'"class=\\\"group flex flex-1 items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\".to_owned() + !summary_margin_right"'
                     ] fun () =>
                         :>(;[
                             div [
@@ -665,7 +665,7 @@ inl accordion title open' (right_element : option view) children : _ div =
                     |> element_to_view
 
                     div [
-                        $'"class=\\\"[display:flex] [flex:1] [flex-direction:column] [overflow:auto]\\\""'
+                        $'"class=\\\"flex flex-1 flex-col [overflow:auto]\\\""'
                     ] fun () =>
                         children ()
                     |> element_to_view
