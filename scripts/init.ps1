@@ -31,9 +31,9 @@ function Search-DotnetSdk($version) {
     return $false
 }
 
-if (!(Search-DotnetSdk "8")) {
+if (!(Search-DotnetSdk "9")) {
     if (!$IsWindows) {
-        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version 8.0.100
+        curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version "9.0.100-preview.1.24101.2"
     }
 }
 

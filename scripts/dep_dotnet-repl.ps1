@@ -21,7 +21,7 @@ Write-Output "Tool path: $netVersion"
 
 { dotnet build -c Release "../deps/dotnet-repl/src/dotnet-repl/dotnet-repl.csproj" } | Invoke-Block
 
-Copy-Item "../deps/dotnet-repl/src/dotnet-repl/bin/Release/net8.0/**" $netVersion -Recurse -Force
+Copy-Item "../deps/dotnet-repl/src/dotnet-repl/bin/Release/net9.0/**" $netVersion -Recurse -Force
 
 if ($env:CI) {
     Remove-Item "../deps/dotnet-repl/src/dotnet-repl/bin" -Recurse -Force -ErrorAction Ignore

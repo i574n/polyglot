@@ -73,7 +73,7 @@ module Supervisor =
                 let! exitCode, result =
                     Runtime.executeWithOptionsAsync
                         {
-                            Command = $@"dotnet ""{dllPath}"" port={availablePort}"
+                            Command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
                             CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
