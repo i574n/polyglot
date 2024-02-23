@@ -16,7 +16,7 @@
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
-#r @"../../../../../../../.nuget/packages/argu/6.1.5/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.2.1/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
 
 #!fsharp
@@ -272,9 +272,9 @@ async {
         |> _isBetween
             (if Runtime.isWindows () then 100 else 100)
             (if Runtime.isWindows () then 150 else 200)
-        
+
         text |> _equal "1"
-        
+
         true
     | _ -> false
 |> _equal true
@@ -512,9 +512,9 @@ async {
         |> _isBetween
             (if Runtime.isWindows () then 0 else 100)
             (if Runtime.isWindows () then 0 else 200)
-        
+
         text |> _equal "0"
-        
+
         true
     | _ -> false
 |> _equal true
@@ -982,7 +982,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 
@@ -1035,7 +1035,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 
@@ -1083,7 +1083,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 
@@ -1142,7 +1142,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 

@@ -12,6 +12,7 @@ repository = "https://github.com/i574n/polyglot"
 license-file = "../LICENSE"
 
 [dependencies]
+curve25519-dalek = "=4.1.1"
 
 [dev-dependencies]
 

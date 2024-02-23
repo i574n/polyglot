@@ -1028,9 +1028,9 @@ dependencies = [
 
 [[package]]
 name = "curve25519-dalek"
-version = "4.1.2"
+version = "4.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a677b8922c94e01bdbb12126b0bc852f00447528dee1782229af9c720c3f348"
+checksum = "e89b8c6a2e4b1f45971ad09761aafb85514a84744b67a95e32c3cc1352d1f65c"
 dependencies = [
  "cfg-if 1.0.0",
  "cpufeatures",
@@ -1356,7 +1356,7 @@ dependencies = [
  "console_error_panic_hook",
  "console_log",
  "futures",
- "gloo-net 0.4.0",
+ "gloo-net 0.5.0",
  "js-sys",
  "leptos",
  "leptos_meta",
@@ -1640,27 +1640,6 @@ dependencies = [
  "futures-core",
  "futures-sink",
  "gloo-utils 0.1.7",
- "js-sys",
- "pin-project",
- "serde",
- "serde_json",
- "thiserror",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
-name = "gloo-net"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8ac9e8288ae2c632fa9f8657ac70bfe38a1530f345282d7ba66a1f70b72b7dc4"
-dependencies = [
- "futures-channel",
- "futures-core",
- "futures-sink",
- "gloo-utils 0.2.0",
- "http 0.2.11",
  "js-sys",
  "pin-project",
  "serde",
@@ -3356,6 +3335,7 @@ version = "0.0.1"
 dependencies = [
  "chat_contract",
  "chat_contract_tests",
+ "curve25519-dalek",
  "exercism",
  "extension",
  "plot",
