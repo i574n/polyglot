@@ -17,6 +17,12 @@ dotnet fable --optimize --lang rs --extension .rs
 
 #!pwsh
 
+(Get-Content test.rs) `
+    -replace [regex]::Escape("),);"), "));" `
+| Set-Content test.rs
+
+#!pwsh
+
 cargo fmt --
 
 #!pwsh

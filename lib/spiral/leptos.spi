@@ -649,7 +649,7 @@ inl accordion title open' (right_element : option view) children : _ div =
                                 $'"class=\\\"flex items-center gap-2\\\""'
                             ] fun () =>
                                 span [
-                                    $'"class=\\\"text-sm font-medium\\\""'
+                                    $'"class=\\\"text-base font-medium\\\""'
                                 ] fun () =>
                                     title |> sm'.from_std_string |> text_fragment
                                 |> element_to_fragment
@@ -806,7 +806,7 @@ inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button 
     inl class = join class
     button
         ([
-            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[7.5px] pt-[7px] pr-[11px] pl-[11px] text-sm font-medium \\\".to_owned() + !class()}"'
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8.5px] pt-[9px] pr-[11px] pl-[11px] text-sm font-medium \\\".to_owned() + !class()}"'
         ] /@ props)
         fun () =>
             :>(;[

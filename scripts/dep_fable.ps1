@@ -26,6 +26,8 @@ $releasePath = "$projectPath/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
+Write-Output "fable.dll path: $dllPath"
+
 Copy-Item "$releasePath/$dotnetVersion/**" $toolVersionPath -Recurse -Force
 
 
