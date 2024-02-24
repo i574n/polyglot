@@ -2,7 +2,7 @@ STORAGE: NONE
 RESTRICTION: == net8.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Argu (6.2.1)
+    Argu (6.1.5)
       FSharp.Core (>= 4.3.2)
       System.Configuration.ConfigurationManager (>= 4.4)
     Expecto (10.1)
