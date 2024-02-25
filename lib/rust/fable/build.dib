@@ -1,0 +1,12 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"pwsh","items":[]}}
+
+#!pwsh
+
+. ../../../scripts/nbs_header.ps1
+. ../../../scripts/core.ps1
+
+#!pwsh
+
+dotnet fable --optimize --lang rs --extension .rs

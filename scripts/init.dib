@@ -21,7 +21,7 @@ rustup update
 
 #!pwsh
 
-{ cargo +nightly install cargo-outdated --locked } | Invoke-Block -OnError Continue
+{ cargo +nightly install cargo-outdated } | Invoke-Block -OnError Continue
 
 #!pwsh
 
@@ -29,7 +29,7 @@ rustup update
 
 #!pwsh
 
-{ cargo +nightly install trunk --locked --version 0.19.0-alpha.3 } | Invoke-Block -OnError Continue
+{ cargo +nightly install trunk --version 0.19.0-alpha.3 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
