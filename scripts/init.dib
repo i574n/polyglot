@@ -21,19 +21,19 @@ rustup update
 
 #!pwsh
 
-{ cargo +nightly install cargo-outdated } | Invoke-Block -OnError Continue
+{ cargo +nightly install cargo-outdated --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install wasm-pack } | Invoke-Block -OnError Continue
+{ cargo +nightly install wasm-pack --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install trunk } | Invoke-Block -OnError Continue
+{ cargo +nightly install trunk --locked --version 0.19.0-alpha.3 } | Invoke-Block -OnError Continue
 
 #!pwsh
 
-{ cargo +nightly install --git https://github.com/bram209/leptosfmt.git } | Invoke-Block -OnError Continue
+{ cargo +nightly install --git https://github.com/bram209/leptosfmt.git --locked } | Invoke-Block -OnError Continue
 
 #!pwsh
 

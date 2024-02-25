@@ -25,8 +25,11 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dl\")>] type leptos_html_Dl = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dt\")>] type leptos_html_Dt = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Footer\")>] type leptos_html_Footer = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Header\")>] type leptos_html_Header = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Main\")>] type leptos_html_Main = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Nav\")>] type leptos_html_Nav = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>] type leptos_html_Option = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
@@ -60,8 +63,11 @@ nominal dd = $"leptos_html_Dd"
 nominal div = $"leptos_html_Div"
 nominal dl = $"leptos_html_Dl"
 nominal dt = $"leptos_html_Dt"
+nominal footer = $"leptos_html_Footer"
+nominal header = $"leptos_html_Header"
 nominal input = $"leptos_html_Input"
 nominal label = $"leptos_html_Label"
+nominal main = $"leptos_html_Main"
 nominal nav = $"leptos_html_Nav"
 nominal option' = $"leptos_html_Option"
 nominal pre = $"leptos_html_Pre"
@@ -442,6 +448,12 @@ inl details props children : _ details =
 inl div props children : _ div =
     tag_element "div" props children
 
+inl footer props children : _ footer =
+    tag_element "footer" props children
+
+inl header props children : _ header =
+    tag_element "header" props children
+
 inl for props : view =
     tag_closed_raw "leptos::For" props
     |> macro_to_view
@@ -474,6 +486,9 @@ inl show (when_fn : () -> bool) (fallback : () -> view) (children : () -> fragme
 
 inl label props children : _ label =
     tag_element "label" props children
+
+inl main props children : _ main =
+    tag_element "main" props children
 
 inl nav props children : _ nav =
     tag_element "nav" props children
@@ -649,7 +664,7 @@ inl accordion title open' (right_element : option view) children : _ div =
                                 $'"class=\\\"flex items-center gap-2\\\""'
                             ] fun () =>
                                 span [
-                                    $'"class=\\\"text-base font-medium\\\""'
+                                    $'"class=\\\"[font-size:14px] [line-height:21px]\\\""'
                                 ] fun () =>
                                     title |> sm'.from_std_string |> text_fragment
                                 |> element_to_fragment
@@ -683,7 +698,7 @@ inl divider children : _ span =
     ] fun () =>
         :>(;[
             span [
-                $'"class=\\\"pr-[15px] [font-size:14px]\\\""'
+                $'"class=\\\"pr-[15px] [font-size:13px]\\\""'
             ] fun () =>
                 children ()
             |> element_to_view
@@ -751,20 +766,18 @@ inl dd children : _ dd =
         $'"class=\\\"[overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
     ] children
 
-inl dl children : _ dl =
-    tag_element "dl" [
-        $'"class=\\\"flex flex-1\\\""'
-    ] children
+inl dl props children : _ dl =
+    tag_element "dl" props children
 
 inl dt children : _ dt =
     tag_element "dt" [
-        $'"class=\\\"[font-size:11px] text-gray-400\\\""'
+        $'"class=\\\"[font-size:12px] text-gray-400\\\""'
     ] children
 
 inl grid_pair_padding_class () =
     "pt-[9px] pr-[10px] pb-[9px] pl-[10px]"
 
-inl grid_pair { padding cols class } left right : _ div =
+inl grid_pair { padding cols class } left right : _ dl =
     inl class : string = class
     inl padding = padding |> optionm'.default_value (grid_pair_padding_class ())
     inl cols_class = cols |> optionm'.default_value "sm:grid-cols-[150px_repeat(2,minmax(0,1fr))]"
@@ -772,7 +785,7 @@ inl grid_pair { padding cols class } left right : _ div =
     inl right : () -> fragment = join right
     inl class : string = $'"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] " + !cols_class + " " + !padding + " " + !class + ""'
 
-    div [
+    dl [
         $'"class=\\\"" + !class + "\\\""'
     ] fun () =>
         :>(;[
@@ -806,7 +819,7 @@ inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button 
     inl class = join class
     button
         ([
-            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8.5px] pt-[9px] pr-[11px] pl-[11px] text-sm font-medium \\\".to_owned() + !class()}"'
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[9px] pr-[11px] pl-[11px]\\\".to_owned() + !class()}"'
         ] /@ props)
         fun () =>
             :>(;[
@@ -815,7 +828,7 @@ inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button 
 
 inl text_block_pre (class : string) text =
     pre [
-        $'"class=\\\"[padding:1px] [font-size:11px] [line-height:11px] [text-wrap:pretty] " + !class + "\\\""'
+        $'"class=\\\"[padding:1px] [font-size:12px] [line-height:12px] [text-wrap:pretty] " + !class + "\\\""'
     ] fun () =>
         text
         |> text_fragment
