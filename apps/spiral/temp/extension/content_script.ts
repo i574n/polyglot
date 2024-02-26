@@ -1,5 +1,5 @@
-import * as wasm from "./pkg/extension_bg.wasm"
-import * as extension from "./pkg/extension"
+import * as wasm from "./pkg/spiral_temp_extension_bg.wasm"
+import * as extension from "./pkg/spiral_temp_extension"
 
 /// <reference types="chrome"/>
 

@@ -437,7 +437,7 @@ let inline parse output input =
             |> List.filter (fun block ->
                 block.magic |> kernelOutputs |> List.contains output || block.magic = "markdown"
             )
-        
+
         match blocks with
         | { magic = "markdown"; content = content } :: _
             when output = Fs

@@ -102,7 +102,7 @@ let inline awaitCompiler port cancellationToken = async {
         cancellationToken
         |> Option.defaultValue System.Threading.CancellationToken.None
         |> Async.mergeCancellationTokenWithDefaultAsync
-    
+
     let cts = new System.Threading.CancellationTokenSource ()
 
     let compiler = MailboxProcessor.Start (fun inbox -> async {
@@ -263,7 +263,7 @@ let inline buildFile timeout port cancellationToken path = async {
         |> FSharp.Control.AsyncSeq.map (fun (message, error) ->
             None, Some (message, error)
         )
-    
+
     let timerSeq =
         1000
         |> FSharp.Control.AsyncSeq.intervalMs
@@ -792,7 +792,7 @@ let main args =
             |> List.map (fun (inputPath, outputPath) -> async {
                 let port = port |> Option.defaultWith getCompilerPort
                 let! outputCode, errors = inputPath |> buildFile timeout port None
-                
+
                 errors
                 |> List.map snd
                 |> List.iter (fun error ->
@@ -821,7 +821,7 @@ let main args =
                     return 1
             })
             |> Async.Sequential
-        
+
         let! executeCommandResult =
             executeCommandActions
             |> List.map (fun command -> async {
@@ -832,7 +832,7 @@ let main args =
 
                 let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
                 use _ = disposable
-                
+
                 let! exitCode, result =
                     Runtime.executeWithOptionsAsync
                         {
@@ -847,7 +847,7 @@ let main args =
                 return exitCode
             })
             |> Async.Sequential
-            
+
         return
             [| buildFileResult; fileTokenRangeResult; executeCommandResult |]
             |> Array.collect id

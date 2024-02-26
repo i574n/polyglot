@@ -8,8 +8,8 @@
     "buffer": "~6.0"
   },
   "devDependencies": {
-    "@playwright/test": "1.40.0",
-    "@types/chrome": "~0.0.259",
+    "@playwright/test": "1.41.2",
+    "@types/chrome": "~0.0.261",
     "npm-check-updates": "~16.14"
   }
 }

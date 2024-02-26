@@ -7986,9 +7986,10 @@ mod module_e32d1f60 {
         use super::*;
         use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::string;
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US0 {
             US0_0,
             US0_1,
@@ -8003,92 +8004,292 @@ mod module_e32d1f60 {
             US0_10,
             US0_11,
         }
+        impl Fs_rs::US0 {
+            pub fn get_IsUS0_0(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_1(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_2(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_3(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_4(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_5(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_6(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_7(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_8(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_9(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_10(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS0_11(this_: &amp;MutCell&lt;Fs_rs::US0&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US0 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US2 { US2_0, US2_1, }
+        impl Fs_rs::US2 {
+            pub fn get_IsUS2_0(this_: &amp;MutCell&lt;Fs_rs::US2&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS2_1(this_: &amp;MutCell&lt;Fs_rs::US2&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US2 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US1 { US1_0(Fs_rs::US2), }
+        impl Fs_rs::US1 {
+            pub fn get_IsUS1_0(this_: &amp;MutCell&lt;Fs_rs::US1&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US1 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum UH0 {
             UH0_0(i32, Fs_rs::US0, i32, Fs_rs::US1, LrcPtr&lt;Fs_rs::UH0&gt;),
             UH0_1,
+        }
+        impl Fs_rs::UH0 {
+            pub fn get_IsUH0_0(this_: LrcPtr&lt;Fs_rs::UH0&gt;, unitArg: ())
+             -&gt; bool {
+                if let Fs_rs::UH0::UH0_0(this__0_0, this__0_1, this__0_2,
+                                         this__0_3, this__0_4) =
+                       this_.as_ref() {
+                    true
+                } else { false }
+            }
+            pub fn get_IsUH0_1(this_: LrcPtr&lt;Fs_rs::UH0&gt;, unitArg: ())
+             -&gt; bool {
+                if let Fs_rs::UH0::UH0_1 = this_.as_ref() {
+                    true
+                } else { false }
+            }
         }
         impl core::fmt::Display for Fs_rs::UH0 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US3 { US3_0, US3_1, }
+        impl Fs_rs::US3 {
+            pub fn get_IsUS3_0(this_: &amp;MutCell&lt;Fs_rs::US3&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS3_1(this_: &amp;MutCell&lt;Fs_rs::US3&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US3 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US7 { US7_0, US7_1, US7_2, US7_3, US7_4, US7_5, US7_6, }
+        impl Fs_rs::US7 {
+            pub fn get_IsUS7_0(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_1(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_2(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_3(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_4(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_5(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS7_6(this_: &amp;MutCell&lt;Fs_rs::US7&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US7 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US6 {
             US6_0(i32),
             US6_1(Fs_rs::US7),
             US6_2(i32, Fs_rs::US0),
+        }
+        impl Fs_rs::US6 {
+            pub fn get_IsUS6_0(this_: &amp;MutCell&lt;Fs_rs::US6&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS6_1(this_: &amp;MutCell&lt;Fs_rs::US6&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS6_2(this_: &amp;MutCell&lt;Fs_rs::US6&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
         }
         impl core::fmt::Display for Fs_rs::US6 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum UH1 { UH1_0(Fs_rs::US6, LrcPtr&lt;Fs_rs::UH1&gt;), UH1_1, }
+        impl Fs_rs::UH1 {
+            pub fn get_IsUH1_0(this_: LrcPtr&lt;Fs_rs::UH1&gt;, unitArg: ())
+             -&gt; bool {
+                if let Fs_rs::UH1::UH1_0(this__0_0, this__0_1) =
+                       this_.as_ref() {
+                    true
+                } else { false }
+            }
+            pub fn get_IsUH1_1(this_: LrcPtr&lt;Fs_rs::UH1&gt;, unitArg: ())
+             -&gt; bool {
+                if let Fs_rs::UH1::UH1_1 = this_.as_ref() {
+                    true
+                } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::UH1 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US8 { US8_0(i32), US8_1(i32), US8_2(i32), }
+        impl Fs_rs::US8 {
+            pub fn get_IsUS8_0(this_: &amp;MutCell&lt;Fs_rs::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_1(this_: &amp;MutCell&lt;Fs_rs::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS8_2(this_: &amp;MutCell&lt;Fs_rs::US8&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US8 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US5 { US5_0(LrcPtr&lt;Fs_rs::UH1&gt;), US5_1(Fs_rs::US8), }
+        impl Fs_rs::US5 {
+            pub fn get_IsUS5_0(this_: &amp;MutCell&lt;Fs_rs::US5&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS5_1(this_: &amp;MutCell&lt;Fs_rs::US5&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US5 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US4 { US4_0(Fs_rs::US3), US4_1(Fs_rs::US5), }
+        impl Fs_rs::US4 {
+            pub fn get_IsUS4_0(this_: &amp;MutCell&lt;Fs_rs::US4&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+            pub fn get_IsUS4_1(this_: &amp;MutCell&lt;Fs_rs::US4&gt;, unitArg: ())
+             -&gt; bool {
+                if unreachable!() { true } else { false }
+            }
+        }
         impl core::fmt::Display for Fs_rs::US4 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
                 write!(f, "{}", core::any::type_name::&lt;Self&gt;())
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord,)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum UH2 {
             UH2_0(LrcPtr&lt;Fs_rs::UH0&gt;, string, Fs_rs::US4, LrcPtr&lt;Fs_rs::UH2&gt;),
             UH2_1,
+        }
+        impl Fs_rs::UH2 {
+            pub fn get_IsUH2_0(this_: LrcPtr&lt;Fs_rs::UH2&gt;, unitArg: ())
+             -&gt; bool {
+                if let Fs_rs::UH2::UH2_0(this__0_0, this__0_1, this__0_2,
+                                         this__0_3) = this_.as_ref() {
+                    true
+                } else { false }
+            }
+            pub fn get_IsUH2_1(this_: LrcPtr&lt;Fs_rs::UH2&gt;, unitArg: ())
+             -&gt; bool {
+                if let Fs_rs::UH2::UH2_1 = this_.as_ref() {
+                    true
+                } else { false }
+            }
         }
         impl core::fmt::Display for Fs_rs::UH2 {
             fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {

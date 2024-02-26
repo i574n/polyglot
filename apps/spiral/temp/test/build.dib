@@ -17,6 +17,12 @@ dotnet fable --optimize --lang rs --extension .rs
 
 #!pwsh
 
+(Get-Content test.rs) `
+    -replace [regex]::Escape("),);"), "));" `
+| Set-Content test.rs
+
+#!pwsh
+
 cargo fmt --
 
 #!pwsh
@@ -30,4 +36,4 @@ $env:RUST_LOG="info"
 
 #!pwsh
 
-{ . $ScriptDir/../../../../target/release/test$(GetExecutableSuffix) } | Invoke-Block
+{ . $ScriptDir/../../../../target/release/spiral_temp_test$(GetExecutableSuffix) } | Invoke-Block

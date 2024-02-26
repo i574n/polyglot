@@ -10,17 +10,18 @@ pub mod Polyglot {
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Native_::OnceInit;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         use fable_library_rust::String_::trimEndChars;
         use fable_library_rust::String_::trimStartChars;
         pub fn nl() -> string {
-            static nl: MutCell<Option<string>> = MutCell::new(None);
-            nl.get_or_init(|| string("\n"))
+            static nl: OnceInit<string> = OnceInit::new();
+            nl.get_or_insert_with(|| string("\n")).clone()
         }
         pub fn q() -> string {
-            static q: MutCell<Option<string>> = MutCell::new(None);
-            q.get_or_init(|| string("\""))
+            static q: OnceInit<string> = OnceInit::new();
+            q.get_or_insert_with(|| string("\"")).clone()
         }
         pub mod String_ {
             use super::*;
@@ -34,7 +35,7 @@ pub mod Polyglot {
                 }
             }
         }
-        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq, Ord)]
+        #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum TraceLevel {
             Verbose,
             Debug,
@@ -42,43 +43,91 @@ pub mod Polyglot {
             Warning,
             Critical,
         }
+        impl Polyglot::Common::TraceLevel {
+            pub fn get_IsVerbose(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
+                if let Polyglot::Common::TraceLevel::Verbose = this_.as_ref() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsDebug(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
+                if let Polyglot::Common::TraceLevel::Debug = this_.as_ref() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsInfo(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
+                if let Polyglot::Common::TraceLevel::Info = this_.as_ref() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsWarning(this_: LrcPtr<Polyglot::Common::TraceLevel>, unitArg: ()) -> bool {
+                if let Polyglot::Common::TraceLevel::Warning = this_.as_ref() {
+                    true
+                } else {
+                    false
+                }
+            }
+            pub fn get_IsCritical(
+                this_: LrcPtr<Polyglot::Common::TraceLevel>,
+                unitArg: (),
+            ) -> bool {
+                if let Polyglot::Common::TraceLevel::Critical = this_.as_ref() {
+                    true
+                } else {
+                    false
+                }
+            }
+        }
         impl core::fmt::Display for Polyglot::Common::TraceLevel {
             fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
                 write!(f, "{}", core::any::type_name::<Self>())
             }
         }
         pub fn traceEnabled() -> LrcPtr<MutCell<bool>> {
-            static traceEnabled: MutCell<Option<LrcPtr<MutCell<bool>>>> = MutCell::new(None);
-            traceEnabled.get_or_init(|| LrcPtr::new(MutCell::new(true)))
+            static traceEnabled: OnceInit<LrcPtr<MutCell<bool>>> = OnceInit::new();
+            traceEnabled
+                .get_or_insert_with(|| LrcPtr::new(MutCell::new(true)))
+                .clone()
         }
         pub fn traceCount() -> LrcPtr<MutCell<i32>> {
-            static traceCount: MutCell<Option<LrcPtr<MutCell<i32>>>> = MutCell::new(None);
-            traceCount.get_or_init(|| LrcPtr::new(MutCell::new(0_i32)))
+            static traceCount: OnceInit<LrcPtr<MutCell<i32>>> = OnceInit::new();
+            traceCount
+                .get_or_insert_with(|| LrcPtr::new(MutCell::new(0_i32)))
+                .clone()
         }
         pub fn traceLevel() -> LrcPtr<MutCell<LrcPtr<Polyglot::Common::TraceLevel>>> {
-            static traceLevel: MutCell<
-                Option<LrcPtr<MutCell<LrcPtr<Polyglot::Common::TraceLevel>>>>,
-            > = MutCell::new(None);
-            traceLevel.get_or_init(|| {
-                LrcPtr::new(MutCell::new(LrcPtr::new(
-                    Polyglot::Common::TraceLevel::Verbose,
-                )))
-            })
+            static traceLevel: OnceInit<LrcPtr<MutCell<LrcPtr<Polyglot::Common::TraceLevel>>>> =
+                OnceInit::new();
+            traceLevel
+                .get_or_insert_with(|| {
+                    LrcPtr::new(MutCell::new(LrcPtr::new(
+                        Polyglot::Common::TraceLevel::Verbose,
+                    )))
+                })
+                .clone()
         }
         pub fn traceDump() -> LrcPtr<MutCell<bool>> {
-            static traceDump: MutCell<Option<LrcPtr<MutCell<bool>>>> = MutCell::new(None);
-            traceDump.get_or_init(|| LrcPtr::new(MutCell::new(false)))
+            static traceDump: OnceInit<LrcPtr<MutCell<bool>>> = OnceInit::new();
+            traceDump
+                .get_or_insert_with(|| LrcPtr::new(MutCell::new(false)))
+                .clone()
         }
         pub fn testTraceLevel(level: LrcPtr<Polyglot::Common::TraceLevel>) -> bool {
-            if Polyglot::Common::traceEnabled().get() {
-                compare(level, Polyglot::Common::traceLevel().get()) >= 0_i32
+            if Polyglot::Common::traceEnabled().get().clone() {
+                compare(level, Polyglot::Common::traceLevel().get().clone()) >= 0_i32
             } else {
                 false
             }
         }
         pub fn traceRaw(level: LrcPtr<Polyglot::Common::TraceLevel>, r#fn: Func0<string>) {
             if Polyglot::Common::testTraceLevel(level) {
-                Polyglot::Common::traceCount().set(Polyglot::Common::traceCount().get() + 1_i32);
+                Polyglot::Common::traceCount()
+                    .set(Polyglot::Common::traceCount().get().clone() + 1_i32);
                 {
                     let text: string = sprintf!("{}", &r#fn());
                     println!("{0}", text,)
@@ -104,7 +153,7 @@ pub mod Polyglot {
                             sprintf!(
                                 "{} #{} [{:?}] {} / {}",
                                 &string(""),
-                                &Polyglot::Common::traceCount().get(),
+                                &Polyglot::Common::traceCount().get().clone(),
                                 &level,
                                 &r#fn(),
                                 &getLocals()

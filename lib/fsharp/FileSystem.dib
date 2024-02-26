@@ -272,9 +272,9 @@ async {
         |> _isBetween
             (if Runtime.isWindows () then 100 else 100)
             (if Runtime.isWindows () then 150 else 200)
-        
+
         text |> _equal "1"
-        
+
         true
     | _ -> false
 |> _equal true
@@ -512,9 +512,9 @@ async {
         |> _isBetween
             (if Runtime.isWindows () then 0 else 100)
             (if Runtime.isWindows () then 0 else 200)
-        
+
         text |> _equal "0"
-        
+
         true
     | _ -> false
 |> _equal true
@@ -982,7 +982,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 
@@ -1035,7 +1035,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 
@@ -1083,7 +1083,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 
@@ -1142,7 +1142,7 @@ let inline write path = async {
 
     for i = 1 to n do
         do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
-    
+
     do! Async.Sleep 150
 }
 

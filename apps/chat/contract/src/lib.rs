@@ -1,5 +1,5 @@
-use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
-use near_sdk::store::UnorderedMap;
+use near_sdk::borsh::{BorshDeserialize, BorshSerialize};
+use near_sdk::store::LookupMap;
 use near_sdk::{env, log, near_bindgen, AccountId, PanicOnDefault};
 use std::collections::HashMap;
 
@@ -7,8 +7,8 @@ use std::collections::HashMap;
 #[derive(PanicOnDefault, BorshDeserialize, BorshSerialize)]
 pub struct State {
     version: u32,
-    alias_map: UnorderedMap<String, HashMap<AccountId, (u64, u32)>>,
-    account_map: UnorderedMap<AccountId, String>,
+    alias_map: LookupMap<String, HashMap<AccountId, (u64, u32)>>,
+    account_map: LookupMap<AccountId, String>,
 }
 
 #[near_bindgen]
@@ -17,8 +17,8 @@ impl State {
     pub fn new() -> Self {
         Self {
             version: 1,
-            alias_map: UnorderedMap::new(b"l"),
-            account_map: UnorderedMap::new(b"c"),
+            alias_map: LookupMap::new(b"l"),
+            account_map: LookupMap::new(b"c"),
         }
     }
 

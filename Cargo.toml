@@ -12,19 +12,20 @@ repository = "https://github.com/i574n/polyglot"
 license-file = "../LICENSE"
 
 [dependencies]
+curve25519-dalek = "=4.1.2"
 
 [dev-dependencies]
 
 [build-dependencies]
 chat_contract = { path = "./apps/chat/contract" }
 chat_contract_tests = { path = "./apps/chat/contract/tests" }
-exercism = { path = "./examples/rust/exercism" }
-extension = { path = "./apps/spiral/temp/extension" }
 plot = { path = "./apps/plot" }
-test = { path = "./apps/spiral/temp/test" }
+spiral_temp_extension = { path = "./apps/spiral/temp/extension" }
+spiral_temp_test = { path = "./apps/spiral/temp/test" }
+exercism = { path = "./examples/rust/exercism" }
 
 [lib]
-path = "./apps/spiral/temp/test/test.rs"
+path = "./lib/rust/fable/fable-library-rust.rs"
 
 [profile.release]
 codegen-units = 1

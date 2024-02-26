@@ -56,7 +56,7 @@ let inline buildProject runtime outputDir path = async {
         runtime
         |> Option.map List.singleton
         |> Option.defaultValue [ "linux-x64"; "win-x64" ]
-    
+
     let outputDir = outputDir |> Option.defaultValue "dist"
 
     return!

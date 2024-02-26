@@ -8517,7 +8517,7 @@ let a = 3
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">fun</span> <span class="n">block</span> <span class="o">-&gt;</span>
                 <span class="n">block</span><span class="o">.</span><span class="n">magic</span> <span class="o">|&gt;</span> <span class="n">kernelOutputs</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">contains</span> <span class="n">output</span> <span class="o">||</span> <span class="n">block</span><span class="o">.</span><span class="n">magic</span> <span class="o">=</span> <span class="s2">"markdown"</span>
             <span class="p">)</span>
-        
+
         <span class="k">match</span> <span class="n">blocks</span> <span class="k">with</span>
         <span class="o">|</span> <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"markdown"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="p">}</span> <span class="p">::</span> <span class="n">_</span>
             <span class="n">when</span> <span class="n">output</span> <span class="o">=</span> <span class="n">Fs</span>
