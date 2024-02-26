@@ -2,7 +2,6 @@
 
 use crate::js::log;
 use serde::{Deserialize, Serialize};
-use wasm_bindgen::JsCast;
 use web_sys::HtmlInputElement;
 
 use wasm_bindgen::prelude::*;

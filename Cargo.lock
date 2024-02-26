@@ -1349,30 +1349,6 @@ name = "exercism"
 version = "0.0.1"
 
 [[package]]
-name = "extension"
-version = "0.0.1"
-dependencies = [
- "borsh 1.3.1",
- "console_error_panic_hook",
- "console_log",
- "futures",
- "gloo-net 0.5.0",
- "js-sys",
- "leptos",
- "leptos_meta",
- "leptos_router",
- "log",
- "reqwest-wasm",
- "rexie",
- "serde",
- "serde-wasm-bindgen",
- "serde_json",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
-]
-
-[[package]]
 name = "fable_library_rust"
 version = "0.1.0"
 dependencies = [
@@ -3337,9 +3313,9 @@ dependencies = [
  "chat_contract_tests",
  "curve25519-dalek",
  "exercism",
- "extension",
  "plot",
- "test",
+ "spiral_temp_extension",
+ "spiral_temp_test",
 ]
 
 [[package]]
@@ -4529,6 +4505,42 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
 
 [[package]]
+name = "spiral_temp_extension"
+version = "0.0.1"
+dependencies = [
+ "borsh 1.3.1",
+ "console_error_panic_hook",
+ "console_log",
+ "futures",
+ "gloo-net 0.5.0",
+ "js-sys",
+ "leptos",
+ "leptos_meta",
+ "leptos_router",
+ "log",
+ "reqwest-wasm",
+ "rexie",
+ "serde",
+ "serde-wasm-bindgen",
+ "serde_json",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+]
+
+[[package]]
+name = "spiral_temp_test"
+version = "0.0.1"
+dependencies = [
+ "fable_library_rust",
+ "nom",
+ "proptest",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "stable_deref_trait"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -4756,18 +4768,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "06794f8f6c5c898b3275aebefa6b8a1cb24cd2c6c79397ab15774837a0bc5755"
 dependencies = [
  "winapi-util",
-]
-
-[[package]]
-name = "test"
-version = "0.0.1"
-dependencies = [
- "fable_library_rust",
- "nom",
- "proptest",
- "thiserror",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]

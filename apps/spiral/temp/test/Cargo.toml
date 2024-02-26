@@ -1,11 +1,11 @@
 [package]
-name = "test"
+name = "spiral_temp_test"
 version = "0.0.1"
 edition = "2021"
 workspace = "../../../../"
 
 [dependencies]
-fable_library_rust = { path = "./fable_modules/fable-library-rust", features = ["static_do_bindings"] }
+fable_library_rust = { path = "./fable_modules/fable-library-rust", features = [] }
 tracing = "~0.1"
 tracing-subscriber = "~0.3"
 thiserror = "~1.0"
@@ -13,5 +13,5 @@ proptest = "~1.4"
 nom = "~7.1"
 
 [[bin]]
-name = "test"
+name = "spiral_temp_test"
 path = "./main.rs"

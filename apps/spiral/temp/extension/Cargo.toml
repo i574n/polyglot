@@ -1,5 +1,5 @@
 [package]
-name = "extension"
+name = "spiral_temp_extension"
 version = "0.0.1"
 edition = "2021"
 workspace = "../../../../"

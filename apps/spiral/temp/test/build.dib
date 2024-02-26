@@ -36,4 +36,4 @@ $env:RUST_LOG="info"
 
 #!pwsh
 
-{ . $ScriptDir/../../../../target/release/test$(GetExecutableSuffix) } | Invoke-Block
+{ . $ScriptDir/../../../../target/release/spiral_temp_test$(GetExecutableSuffix) } | Invoke-Block
