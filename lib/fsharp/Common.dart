@@ -27,6 +27,46 @@ class TraceLevel implements types.Union, Comparable<TraceLevel> {
     int compareTo(TraceLevel other) => tag.compareTo(other.tag);
 }
 
+bool TraceLevel__get_IsVerbose(TraceLevel this$, void unitArg) {
+    if (this$.tag == /* Verbose */ 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool TraceLevel__get_IsDebug(TraceLevel this$, void unitArg) {
+    if (this$.tag == /* Debug */ 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool TraceLevel__get_IsInfo(TraceLevel this$, void unitArg) {
+    if (this$.tag == /* Info */ 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool TraceLevel__get_IsWarning(TraceLevel this$, void unitArg) {
+    if (this$.tag == /* Warning */ 3) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool TraceLevel__get_IsCritical(TraceLevel this$, void unitArg) {
+    if (this$.tag == /* Critical */ 4) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 var traceEnabled = true;
 
 var traceCount = 0;

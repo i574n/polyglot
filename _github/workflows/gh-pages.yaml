@@ -47,8 +47,8 @@ jobs:
                 ~/.cargo/registry/cache/
                 ~/.cargo/git/db/
                 target/
-            key: ${{ runner.os }}-cargo-2024-02-26-${{ hashFiles('**/Cargo.lock') }}
-            restore-keys: ${{ runner.os }}-cargo-2024-02-26-
+            key: ${{ runner.os }}-cargo-2024-03-02-${{ hashFiles('**/Cargo.lock') }}
+            restore-keys: ${{ runner.os }}-cargo-2024-03-02-
 
       - run: pwsh scripts/init.ps1
 

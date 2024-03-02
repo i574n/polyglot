@@ -115,18 +115,63 @@ class TraceLevel_Critical extends TraceLevel implements IComparable {
 }
 
 #4
-$GLOBALS['traceEnabled'] = true;
+function TraceLevel__get_IsVerbose($this_, $unitArg) {
+    if ($this_->get_Tag() == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 #5
-$GLOBALS['traceCount'] = 0;
+function TraceLevel__get_IsDebug($this_, $unitArg) {
+    if ($this_->get_Tag() == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 #6
-$GLOBALS['traceLevel'] = new TraceLevel_Verbose();
+function TraceLevel__get_IsInfo($this_, $unitArg) {
+    if ($this_->get_Tag() == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 #7
-$GLOBALS['traceDump'] = false;
+function TraceLevel__get_IsWarning($this_, $unitArg) {
+    if ($this_->get_Tag() == 3) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 #8
+function TraceLevel__get_IsCritical($this_, $unitArg) {
+    if ($this_->get_Tag() == 4) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#9
+$GLOBALS['traceEnabled'] = true;
+
+#10
+$GLOBALS['traceCount'] = 0;
+
+#11
+$GLOBALS['traceLevel'] = new TraceLevel_Verbose();
+
+#12
+$GLOBALS['traceDump'] = false;
+
+#13
 function testTraceLevel($level) {
     if ($GLOBALS['traceEnabled']) {
         return \Util\compare($level, $GLOBALS['traceLevel']) >= 0;
@@ -135,7 +180,7 @@ function testTraceLevel($level) {
     }
 }
 
-#9
+#14
 function traceRaw($level, $fn) {
     if (testTraceLevel($level)) {
         $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
@@ -146,12 +191,12 @@ function traceRaw($level, $fn) {
     }
 }
 
-#10
+#15
 function replStart($unitVar) {
     return NULL;
 }
 
-#11
+#16
 function trace($level, $fn, $getLocals) {
     return traceRaw($level, function ($unitVar) use ($fn, $getLocals, $level, $replStart, $traceCount) { 
         $trimChars_2 = [ ' ', '/' ];

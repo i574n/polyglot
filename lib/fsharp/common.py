@@ -1,6 +1,7 @@
 from __future__ import annotations
-from typing import (Any, Callable)
-from fable_modules.fable_library.date import (to_string, now, get_ticks, create as create_1)
+from collections.abc import Callable
+from typing import Any
+from fable_modules.fable_library.date import (to_string, now, ticks as ticks_1, create as create_1)
 from fable_modules.fable_library.long import op_subtraction
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
 from fable_modules.fable_library.string_ import (substring, trim_end, trim_start, to_text, interpolate)
@@ -38,6 +39,51 @@ class TraceLevel(Union):
 
 TraceLevel_reflection = _expr0
 
+def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
+    if this.tag == 0:
+        return True
+
+    else: 
+        return False
+
+
+
+def TraceLevel__get_IsDebug(this: TraceLevel, unit_arg: None) -> bool:
+    if this.tag == 1:
+        return True
+
+    else: 
+        return False
+
+
+
+def TraceLevel__get_IsInfo(this: TraceLevel, unit_arg: None) -> bool:
+    if this.tag == 2:
+        return True
+
+    else: 
+        return False
+
+
+
+def TraceLevel__get_IsWarning(this: TraceLevel, unit_arg: None) -> bool:
+    if this.tag == 3:
+        return True
+
+    else: 
+        return False
+
+
+
+def TraceLevel__get_IsCritical(this: TraceLevel, unit_arg: None) -> bool:
+    if this.tag == 4:
+        return True
+
+    else: 
+        return False
+
+
+
 trace_enabled: bool = create_atom(True)
 
 trace_count: int = create_atom(0)
@@ -69,18 +115,18 @@ def repl_start(__unit: None=None) -> int64 | None:
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
     def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
         trim_chars_2: Array[str] = [" ", "/"]
-        def _arrow2(__unit: None=None) -> Any:
+        def _arrow1(__unit: None=None) -> Any:
             match_value: int64 | None = repl_start()
             if match_value is None:
                 return now()
 
             else: 
                 repl_start_1: int64 = match_value
-                t: Any = create(op_subtraction(get_ticks(now()), repl_start_1))
+                t: Any = create(op_subtraction(ticks_1(now()), repl_start_1))
                 return create_1(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t), microseconds(t))
 
 
-        return trim_end(trim_start(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [to_string(_arrow2(), "HH:mm:ss"), trace_count(), level, fn(None), get_locals(None)]))), *trim_chars_2)
+        return trim_end(trim_start(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [to_string(_arrow1(), "HH:mm:ss"), trace_count(), level, fn(None), get_locals(None)]))), *trim_chars_2)
 
     trace_raw(level, fn_1)
 
