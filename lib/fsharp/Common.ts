@@ -1,12 +1,12 @@
-import { interpolate, toText, trimStart, trimEnd, substring } from "../../fable_modules/fable-library-ts/String.js";
-import { int32 } from "../../fable_modules/fable-library-ts/Int32.js";
-import { Union } from "../../fable_modules/fable-library-ts/Types.js";
-import { union_type, TypeInfo } from "../../fable_modules/fable-library-ts/Reflection.js";
-import { compare, createAtom } from "../../fable_modules/fable-library-ts/Util.js";
-import { value as value_1, Option } from "../../fable_modules/fable-library-ts/Option.js";
-import { op_Subtraction, toInt64, int64 } from "../../fable_modules/fable-library-ts/BigInt.js";
-import { create, getTicks, now, toString } from "../../fable_modules/fable-library-ts/Date.js";
-import { microseconds, milliseconds, seconds, minutes, hours, fromTicks } from "../../fable_modules/fable-library-ts/TimeSpan.js";
+import { interpolate, toText, trimStart, trimEnd, substring } from "../../fable_modules/fable-library-ts.4.13.0/String.js";
+import { int32 } from "../../fable_modules/fable-library-ts.4.13.0/Int32.js";
+import { Union } from "../../fable_modules/fable-library-ts.4.13.0/Types.js";
+import { union_type, TypeInfo } from "../../fable_modules/fable-library-ts.4.13.0/Reflection.js";
+import { compare, createAtom } from "../../fable_modules/fable-library-ts.4.13.0/Util.js";
+import { value as value_1, Option } from "../../fable_modules/fable-library-ts.4.13.0/Option.js";
+import { op_Subtraction, toInt64, int64 } from "../../fable_modules/fable-library-ts.4.13.0/BigInt.js";
+import { create, getTicks, now, toString } from "../../fable_modules/fable-library-ts.4.13.0/Date.js";
+import { microseconds, milliseconds, seconds, minutes, hours, fromTicks } from "../../fable_modules/fable-library-ts.4.13.0/TimeSpan.js";
 
 export const nl = "\n";
 
@@ -67,6 +67,51 @@ export class TraceLevel<Tag extends keyof TraceLevel_$cases> extends Union<Tag, 
 
 export function TraceLevel_$reflection(): TypeInfo {
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, () => [[], [], [], [], []]);
+}
+
+export function TraceLevel__get_IsVerbose(this$: TraceLevel_$union, unitArg: void): boolean {
+    if (this$.tag === /* Verbose */ 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function TraceLevel__get_IsDebug(this$: TraceLevel_$union, unitArg: void): boolean {
+    if (this$.tag === /* Debug */ 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function TraceLevel__get_IsInfo(this$: TraceLevel_$union, unitArg: void): boolean {
+    if (this$.tag === /* Info */ 2) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function TraceLevel__get_IsWarning(this$: TraceLevel_$union, unitArg: void): boolean {
+    if (this$.tag === /* Warning */ 3) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function TraceLevel__get_IsCritical(this$: TraceLevel_$union, unitArg: void): boolean {
+    if (this$.tag === /* Critical */ 4) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 export let traceEnabled = createAtom<boolean>(true);

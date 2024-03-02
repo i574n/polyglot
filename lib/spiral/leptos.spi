@@ -637,7 +637,7 @@ inl accordion title open' (right_element : option view) children : _ div =
     inl arrow_down_svg = arrow_down_svg ()
 
     div [
-        $'"class=\\\"flex flex-1 flex-col [position:relative]\\\""'
+        $'"class=\\\"flex flex-col [position:relative]\\\""'
     ] fun () =>
         :>(;[
             div [
@@ -680,7 +680,7 @@ inl accordion title open' (right_element : option view) children : _ div =
                     |> element_to_view
 
                     div [
-                        $'"class=\\\"flex flex-1 flex-col [overflow:auto]\\\""'
+                        $'"class=\\\"flex flex-1 flex-col\\\""'
                     ] fun () =>
                         children ()
                     |> element_to_view
@@ -775,7 +775,7 @@ inl dt children : _ dt =
     ] children
 
 inl grid_pair_padding_class () =
-    "pt-[9px] pr-[10px] pb-[9px] pl-[10px]"
+    "pt-[9px] pr-[10px] pb-[11px] pl-[10px]"
 
 inl grid_pair { padding cols class } left right : _ dl =
     inl class : string = class
