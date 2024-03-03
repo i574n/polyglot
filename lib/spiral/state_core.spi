@@ -12,14 +12,8 @@ inl build_database () : async.future_pin (result rust.rexie rust.rexie_error) =
         |> resultm.unbox
     |> async.future_init 2 0
 
-inl get_core_state_data_key () =
-    "core-state-data"
-
-inl get_state_data_key () =
-    "state-data"
-
-inl get_key_data_key (key : string) =
-    $'"key-data_" + !key + ""' : string
+inl get_core_state_heap_key () =
+    "core-state-heap"
 
 inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (resultm.result' (option t) rust.std_string) =
     leptos.log $'"state.get_data () / id: " + !id + ""'
@@ -81,35 +75,39 @@ inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : async.fut
         Ok () |> resultm.box
     |> async.future_init 5 0
 
-type core_state =
+type core_state core_state_data =
     heap {
         dark_mode : leptos.rw_signal bool
         debug : leptos.rw_signal bool
         url_hash : leptos.rw_signal rust.std_string
+        data : leptos.rw_signal core_state_data
     }
 
-type core_state_data =
+type core_state_heap core_state_data =
     heap {
         dark_mode : bool
         debug : bool
         url_hash : rust.std_string
+        data : core_state_data
     }
 
-type global_state =
+type global_state core_state_data =
     heap {
-        core_state : leptos.rw_signal core_state
+        core_state : leptos.rw_signal (core_state core_state_data)
         loading : leptos.rw_signal (rust.hash_map rust.std_string (leptos.rw_signal bool))
     }
 
-inl use_core_database
+inl use_core_database forall core_state_data.
     (database : leptos.resource (option ()) rust.rexie)
-    (global_state : global_state)
+    (global_state : global_state core_state_data)
     =
     leptos.log $'"state.use_core_database (1)"'
 
-    inl core_state_data_key = get_core_state_data_key ()
+    inl core_state_heap_key = get_core_state_heap_key ()
 
-    inl core_state_data : leptos.resource (optionm'.option' rust.rexie) (option core_state_data) =
+    inl core_state_heap
+        : leptos.resource (optionm'.option' rust.rexie) (option (core_state_heap core_state_data))
+        =
         leptos.create_local_resource
             fun () =>
                 database
@@ -117,11 +115,11 @@ inl use_core_database
             fun (database : optionm'.option' rust.rexie) =>
                 fun () =>
                     inl database_log = database |> sm'.format_debug
-                    leptos.log $'"state.use_core_database (2) / core_state_data create_local_resource / database: " + !database_log + ""'
+                    leptos.log $'"state.use_core_database (2) / core_state_heap create_local_resource / database: " + !database_log + ""'
                     match database |> optionm'.unbox with
                     | Some database =>
                         database
-                        |> get_data core_state_data_key
+                        |> get_data core_state_heap_key
                         |> async.await
                         |> resultm.unbox
                         |> resultm.get
@@ -129,21 +127,21 @@ inl use_core_database
                 |> async.future_init 4 0
 
     leptos.create_effect fun () =>
-        leptos.log $'"state.use_core_database (3) / effect core_state_data / ##1"'
+        leptos.log $'"state.use_core_database (3) / effect core_state_heap / ##1"'
 
         match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
         | Ok (Some storage) =>
-            inl core_state_data = core_state_data |> leptos.resource_get |> optionm'.unbox
-            inl core_state_data_log = core_state_data |> sm'.format_debug
-            leptos.log $'"state.use_core_database (4) / effect core_state_data / ##2 / core_state_data: " + !core_state_data_log + ""'
+            inl core_state_heap = core_state_heap |> leptos.resource_get |> optionm'.unbox
+            inl core_state_heap_log = core_state_heap |> sm'.format_debug
+            leptos.log $'"state.use_core_database (4) / effect core_state_heap / ##2 / core_state_heap: " + !core_state_heap_log + ""'
 
-            inl core_state_data =
-                match core_state_data with
-                | Some (Some core_state_data) =>
-                    Some core_state_data
+            inl core_state_heap =
+                match core_state_heap with
+                | Some (Some core_state_heap) =>
+                    Some core_state_heap
                 | _ =>
                     storage
-                    |> store.storage_get core_state_data_key
+                    |> store.storage_get core_state_heap_key
                     |> resultm.ok
                     |> optionm'.flatten
                     |> optionm.map fun (value : rust.std_string) =>
@@ -151,26 +149,31 @@ inl use_core_database
                         value |> sm'.from_std_string |> sm'.deserialize |> resultm.ok' |> optionm'.unbox
                     |> optionm'.flatten
 
-            inl core_state_data_log = core_state_data |> sm'.format_debug
-            leptos.log $'"state.use_core_database (5) / effect core_state_data / ##3 / core_state_data: " + !core_state_data_log + ""'
+            inl core_state_heap_log = core_state_heap |> sm'.format_debug
+            leptos.log $'"state.use_core_database (5) / effect core_state_heap / ##3 / core_state_heap: " + !core_state_heap_log + ""'
 
-            match core_state_data with
-            | Some core_state_data =>
+            match core_state_heap with
+            | Some core_state_heap =>
                 rust.move fun () =>
                     leptos.signal_get_untracked global_state.core_state .dark_mode
                     |> leptos.signal_update fun _ =>
-                        leptos.log $'"state.use_core_database (5.1) / effect core_state_data / dark_mode signal_update"'
-                        core_state_data.dark_mode
+                        leptos.log $'"state.use_core_database (5.1) / effect core_state_heap / dark_mode signal_update"'
+                        core_state_heap.dark_mode
 
                     leptos.signal_get_untracked global_state.core_state .debug
                     |> leptos.signal_update fun _ =>
-                        leptos.log $'"state.use_core_database (5.2) / effect core_state_data / debug signal_update"'
-                        core_state_data.debug
+                        leptos.log $'"state.use_core_database (5.2) / effect core_state_heap / debug signal_update"'
+                        core_state_heap.debug
 
                     leptos.signal_get_untracked global_state.core_state .url_hash
                     |> leptos.signal_update fun _ =>
-                        leptos.log $'"state.use_core_database (5.3) / effect core_state_data / url_hash signal_update"'
-                        core_state_data.url_hash
+                        leptos.log $'"state.use_core_database (5.3) / effect core_state_heap / url_hash signal_update"'
+                        core_state_heap.url_hash
+
+                    leptos.signal_get_untracked global_state.core_state .data
+                    |> leptos.signal_update fun _ =>
+                        leptos.log $'"state.use_core_database (5.3) / effect core_state_heap / data signal_update"'
+                        core_state_heap.data
                 |> leptos.batch
             | _ => ()
         | _ => ()
@@ -181,7 +184,7 @@ inl use_core_database
 
     let (loaded, set_loaded) = leptos.create_signal false
 
-    inl set_core_state_data_action = leptos.create_action fun value =>
+    inl set_core_state_heap_action = leptos.create_action fun value =>
         inl value_log = value |> sm'.format_debug
         inl database =
             database
@@ -190,20 +193,20 @@ inl use_core_database
         fun () =>
             match database with
             | Some database =>
-                leptos.log $'"state.use_core_database (7) / set_core_state_data_action / value: " + string !value_log + ""'
+                leptos.log $'"state.use_core_database (7) / set_core_state_heap_action / value: " + string !value_log + ""'
                 database
-                |> set_data core_state_data_key value
+                |> set_data core_state_heap_key value
                 |> async.await
                 |> resultm.unbox
                 |> resultm.get
-            | None => leptos.log $'"state.use_core_database (8) / set_core_state_data_action / database=None"'
+            | None => leptos.log $'"state.use_core_database (8) / set_core_state_heap_action / database=None"'
         |> async.future_init 1 1
 
     leptos.create_effect fun () =>
         inl loaded = loaded |> leptos.signal_get
-        leptos.log $'"state.use_core_database (9) / effect new_core_state_data / ##1 / loaded: " + string !loaded + ""'
+        leptos.log $'"state.use_core_database (9) / effect new_core_state_heap / ##1 / loaded: " + string !loaded + ""'
 
-        inl new_core_state_data : core_state_data =
+        inl new_core_state_heap : core_state_heap core_state_data =
             heap {
                 dark_mode =
                     leptos.signal_get_untracked global_state.core_state .dark_mode
@@ -216,10 +219,14 @@ inl use_core_database
                 url_hash =
                     leptos.signal_get_untracked global_state.core_state .url_hash
                     |> leptos.signal_get
+
+                data =
+                    leptos.signal_get_untracked global_state.core_state .data
+                    |> leptos.signal_get
             }
 
-        inl new_core_state_data_log = new_core_state_data |> sm'.format_debug
-        leptos.log $'"state.use_core_database (10) / effect new_core_state_data / ##2 / new_core_state_data: " + string !new_core_state_data_log + ""'
+        inl new_core_state_heap_log = new_core_state_heap |> sm'.format_debug
+        leptos.log $'"state.use_core_database (10) / effect new_core_state_heap / ##2 / new_core_state_heap: " + string !new_core_state_heap_log + ""'
 
         inl dark_mode_loading =
             loading
@@ -229,19 +236,416 @@ inl use_core_database
             |> optionm.map leptos.signal_get
             |> optionm'.default_value false
 
-        leptos.log $'"state.use_core_database (11) / effect new_core_state_data / ##3 / dark_mode_loading: " + string !dark_mode_loading + ""'
+        leptos.log $'"state.use_core_database (11) / effect new_core_state_heap / ##3 / dark_mode_loading: " + string !dark_mode_loading + ""'
 
         if not dark_mode_loading then
             if not loaded then
                 set_loaded
                 |> leptos.signal_update fun _ =>
-                    leptos.log $'"state.use_core_database (12) / effect new_core_state_data / set_loaded |> signal_update true"'
+                    leptos.log $'"state.use_core_database (12) / effect new_core_state_heap / set_loaded |> signal_update true"'
                     true
             else
-                leptos.log $'"state.use_core_database (13) / effect new_core_state_data / ##4"'
+                leptos.log $'"state.use_core_database (13) / effect new_core_state_heap / ##4"'
 
                 match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
                 | Ok (Some storage) =>
-                    set_core_state_data_action |> leptos.action_dispatch new_core_state_data
-                    storage |> store.storage_set core_state_data_key new_core_state_data
+                    set_core_state_heap_action |> leptos.action_dispatch new_core_state_heap
+                    storage |> store.storage_set core_state_heap_key new_core_state_heap
                 | _ => ()
+
+inl use_database () =
+    leptos.log $'"state.use_database (1)"'
+
+    inl database : leptos.resource (option ()) rust.rexie =
+        leptos.create_local_resource
+            fun () => None
+            fun _ =>
+                fun () =>
+                    leptos.log $'"state.use_database (2) / database create_local_resource"'
+                    inl result = build_database () |> async.await |> resultm.get
+                    inl result_log = result |> sm'.format_debug
+                    leptos.log $'"state.use_database (3) / database create_local_resource / result: " + string !result_log + ""'
+                    result
+                |> async.future_init 7 1
+
+    database
+
+inl use_request forall t u.
+    (url : leptos.memo (optionm'.option' string))
+    (map : u -> t)
+    : rust.func0 (resultm.result' (optionm'.option' t) rust.std_string)
+    =
+    leptos.log $'"state.use_request (1)"'
+
+    inl json
+        : leptos.resource
+            (optionm'.option' string)
+            (resultm.result' (optionm'.option' string) string)
+        =
+        leptos.create_local_resource
+            fun () => url |> leptos.memo_get
+            fun url =>
+                inl url_log = url |> sm'.format_debug
+                leptos.log $'"state.use_request (2) / json create_local_resource / url: " + string !url_log + ""'
+                fun () =>
+                    match url |> optionm'.unbox with
+                    | Some url =>
+                        url
+                        |> networking.new_request_get
+                        |> async.await
+                        |> resultm.map_error' sm'.format'
+                        |> resultm.try'
+                        |> networking.response_text
+                        |> async.await
+                        |> resultm.map_error' sm'.format'
+                        |> resultm.try'
+                        |> sm'.from_std_string
+                        |> Some
+                        |> optionm'.box
+                        |> Ok
+                    | None => Error "Invalid url"
+                    |> resultm.box
+                |> async.future_init 3 1
+
+    inl database = use_database ()
+
+    inl database_memo : leptos.memo (optionm'.option' rust.rexie) =
+        leptos.create_memo fun () =>
+            leptos.log $'"state.use_request (3) / database_memo"'
+            database |> leptos.resource_get
+
+    inl get_key url =
+        $'"url[" + !url + "]"'
+
+    inl state_data_resource
+        : leptos.resource
+            (optionm'.option' rust.rexie * optionm'.option' string)
+            (optionm'.option' (heap rust.std_string))
+        =
+        leptos.create_resource
+            fun () =>
+                database |> leptos.resource_get, url |> leptos.memo_get
+            fun database, url =>
+                fun () =>
+                    inl database_log = database |> sm'.format_debug
+                    inl url_log = url |> sm'.format_debug
+                    leptos.log $'"state.use_request (4) / state_data_resource create_local_resource / url : " + string !url_log + " / database: " + string !database_log + ""'
+                    match database |> optionm'.unbox, url |> optionm'.unbox with
+                    | Some database, Some url =>
+                        database
+                        |> get_data (get_key url)
+                        |> async.await
+                        |> resultm.unbox
+                        |> resultm.get
+                    | _ => None
+                    |> optionm'.box
+                |> async.future_init 4 1
+
+    // let (loaded, set_loaded) = leptos.create_signal false
+
+    inl state_data_func : rust.func0 (optionm'.option' (heap rust.std_string)) =
+        rust.move fun () =>
+            leptos.log $'"state.use_request (5) / state_data_func"'
+
+
+
+
+            // inl loaded = loaded |> leptos.signal_get
+            // leptos.log $'"state.use_request (4.1) / estate_data_func / loaded: " + string !loaded + ""'
+
+            // if not loaded then
+            //     set_loaded
+            //     |> leptos.signal_update fun _ =>
+            //         leptos.log $'"state.use_request (4.3) / state_data_func / set_loaded |> signal_update true"'
+            //         true
+            //     None
+            // else
+
+
+
+
+
+
+            match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
+            | Ok (Some _storage) =>
+                inl state_data =
+                    state_data_resource
+                    |> leptos.resource_get
+                    |> optionm'.unbox
+                    |> optionm.map optionm'.unbox
+                    |> optionm'.flatten
+                inl state_data_log = state_data |> sm'.format_debug |> sm'.ellipsis 200i32
+                leptos.log $'"state.use_request (7) / new_signal_map memo / state_data: " + string !state_data_log + ""'
+                state_data
+            | _ => None
+            |> optionm'.box
+
+    // leptos.create_effect fun () =>
+    //     leptos.log $'"state.use_database (6) / effect state_data / ##1"'
+
+    //     leptos.log $'"state.use_database (7) / effect state_data / ##2"'
+    //     leptos.signal_get global_state.state .test
+    //     |> leptos.signal_update fun n =>
+    //         leptos.log $'"state.use_database (8) / effect state_data / state.test signal_update / n: " + string !n + ""'
+    //         n + 1
+    //     leptos.log $'"state.use_database (9) / effect state_data / ##3"'
+
+
+    inl set_state_data_action = leptos.create_action fun (value : heap rust.std_string) =>
+        inl value_len : i64 = value |> sm'.format_debug |> sm.length
+        fun () =>
+            leptos.log $'"state.use_request (8) / set_state_data_action / value_len: " + string !value_len + ""'
+            inl database =
+                database_memo
+                |> leptos.signal_get_untracked
+                |> optionm'.unbox
+            inl url = url |> leptos.signal_get_untracked |> optionm'.unbox
+            match database, url with
+            | Some database, Some url =>
+                leptos.log $'"state.use_request (9) / set_state_data_action / database=Some(_) / url: " + !url + ""'
+                database
+                |> set_data (get_key url) value
+                |> async.await
+                |> resultm.unbox
+                |> resultm.get
+            | _ =>
+                leptos.log $'"state.use_request (10) / set_state_data_action / database,url=None"'
+        |> async.future_init 4 1
+
+    leptos.create_effect fun () =>
+        // inl loaded = loaded |> leptos.signal_get
+        // leptos.log $'"state.use_request (8) / effect new_state_data / ##1 / loaded: " + string !loaded + ""'
+
+        leptos.log $'"state.use_request (11) / effect new_state_data / ##2"'
+        // if not loaded then
+        //     set_loaded
+        //     |> leptos.signal_update fun _ =>
+        //         leptos.log $'"state.use_request (9.1) / effect new_state_data / set_loaded |> signal_update true"'
+        //         true
+        // else
+
+
+
+
+        match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
+        | Ok (Some storage) =>
+            inl json : result (option rust.std_string) rust.std_string =
+                json
+                |> leptos.resource_get
+                |> optionm'.unbox
+                |> optionm.map resultm.unbox
+                |> optionm.map (resultm.map optionm'.unbox)
+                |> function
+                    | Some (Ok (Some value)) => value |> sm'.to_std_string |> Some |> Ok
+                    | Some (Error error) => error |> sm'.to_std_string |> Error
+                    | _ => Ok None
+
+            inl json_log = json |> sm'.format_debug |> sm'.ellipsis 200i32
+            leptos.log $'"state.use_request (12) / effect / json: " + string !json_log + ""'
+
+            match json with
+            | Ok (Some json) =>
+                inl new_state_data = heap json
+                set_state_data_action |> leptos.action_dispatch new_state_data
+            | _ => ()
+        | _ => ()
+
+        leptos.log $'"state.use_request (13) / effect new_state_data / ##5"'
+
+    // inl signal : leptos.memo (optionm'.option' (rust.rc (rust.ref_cell (leptos.rw_signal rust.std_string)))) =
+    //     leptos.create_memo fun () =>
+    //         inl url = url ()
+    //         inl url_log = url |> sm'.format_pretty'
+    //         leptos.log $'"use_request (2) / signal memo / url: " + string !url_log + ""'
+
+    //         match url |> optionm'.unbox with
+    //         | Some url =>
+    //             inl cache =
+    //                 leptos.signal_get global_state.state .cache
+    //                 |> leptos.signal_get
+    //             inl key = url |> sm'.to_std_string
+    //             cache
+    //             |> mapm.get key
+    //             |> optionm'.unbox
+    //             |> function
+    //                 | Some set_cache =>
+    //                     leptos.log $'"use_request (2.1) / signal memo / rc_upgrade"'
+    //                     set_cache
+    //                 | None =>
+    //                     leptos.log $'"use_request (2.1) / signal memo / \\\"\\\" |> create_rw_signal"'
+    //                     ""
+    //                     |> sm'.to_std_string
+    //                     |> leptos.create_rw_signal
+    //                     |> rust.new_ref_cell
+    //                     |> rust.new_rc
+    //             |> Some
+    //         | _ => None
+    //         |> optionm'.box
+
+    // leptos.create_effect fun () =>
+    //     inl url = url ()
+    //     inl url_log = url |> sm'.format_pretty'
+    //     leptos.log $'"use_request (3) / effect / url: " + string !url_log + ""'
+
+    //     inl signal = signal |> leptos.memo_get |> optionm'.unbox
+
+    //     inl json =
+    //         json
+    //         |> leptos.resource_get
+    //         |> optionm'.unbox
+    //         |> optionm.map resultm.unbox
+    //         |> optionm.map (resultm.map optionm'.unbox)
+    //         |> resultm.flatten_option
+
+    //     inl signal_log = signal |> sm'.format_debug
+    //     inl json_len : i64 = json |> sm'.format_debug |> sm.length
+    //     leptos.log $'"use_request (4) / effect / json_len: " + string !json_len + " / signal: " + string !signal_log + ""'
+
+    //     match json, signal, url |> optionm'.unbox with
+    //     | Some (Ok json), Some signal, Some url =>
+    //         rust.move fun () =>
+    //             inl cache =
+    //                 leptos.signal_get global_state.state .cache
+    //                 |> leptos.signal_get
+    //             inl key = url |> sm'.to_std_string
+    //             inl value = json |> sm'.to_std_string
+
+    //             signal
+    //             |> rust.ref_cell_borrow
+    //             |> leptos.signal_update fun _ =>
+    //                 leptos.log $'"use_request (5) / effect / signal signal_update"'
+    //                 value
+
+    //             cache
+    //             |> mapm.insert key (signal |> rust.rc_clone)
+    //             |> ignore
+
+    //             leptos.signal_get global_state.state .cache
+    //             |> leptos.signal_update fun _ =>
+    //                 leptos.log $'"use_request (6) / effect / state.cache signal_update"'
+    //                 cache
+    //         |> leptos.batch
+    //     | _ => ()
+
+    inl result_func : rust.func0 (resultm.result' (optionm'.option' u) rust.std_string) =
+        rust.move fun () =>
+            inl url = url |> leptos.memo_get
+            inl url_log = url |> sm'.format_debug
+            leptos.log $'"state.use_request (14) / result memo / url: " + string !url_log + ""'
+
+            inl json_cache_obj : resultm.result' (optionm'.option' u) rust.std_string =
+                match url |> optionm'.unbox with
+                | Some url =>
+                    leptos.log $'"state.use_request (15) / result memo / url: " + string !url + ""'
+
+                    inl state_data = state_data_func |> rust.func0_move |> optionm'.unbox
+
+                    inl state_data_log = state_data |> sm'.format_debug |> sm'.ellipsis 200i32
+                    leptos.log $'"state.use_request (16) / result_memo / state_data: " + string !state_data_log + ""'
+
+                    inl json : result (option string) string =
+                        json
+                        |> leptos.resource_get
+                        |> optionm'.unbox
+                        |> optionm.map resultm.unbox
+                        |> optionm.map (resultm.map optionm'.unbox)
+                        |> resultm.flatten_option
+
+                    inl json_log = json |> sm'.format_debug |> sm'.ellipsis 200i32
+                    leptos.log $'"state.use_request (16.1) / effect / json: " + string !json_log + ""'
+
+                    match json, state_data |> optionm.map fun x => !x |> sm'.from_std_string with
+                    | Ok (Some value), _ | _, Some value =>
+                        value
+                        |> sm'.deserialize
+                        |> resultm.map' (Some >> optionm'.box)
+                    | Error error, _ =>
+                        error |> sm'.to_std_string |> Error |> resultm.box
+                    | value =>
+                        inl value_log = value |> sm'.format_debug
+                        leptos.log $'"state.use_request (17) / json Error / value: " + string !value_log + ""'
+                        None |> optionm'.box |> Ok |> resultm.box
+                | None =>
+                    "Invalid url" |> sm'.to_std_string |> Error |> resultm.box
+
+            inl json_cache_obj_log = json_cache_obj |> sm'.format_debug |> sm'.ellipsis 200i32
+            leptos.log $'"state.use_request (18) / result create_memo / json_cache_obj: " + string !json_cache_obj_log + ""'
+
+            json_cache_obj
+
+    // inl use_interval (interval_millis : leptos.read_signal u64) (fn : () -> ()) =
+
+    //     inl (prev_handle, set_prev_handle) = leptos.create_signal (None : option leptos.interval_handle)
+
+    //     leptos.create_effect fun () =>
+    //         leptos.log $'"use_interval (1) / effect"'
+
+    //         match prev_handle |> leptos.signal_get_untracked with
+    //         | Some prev_handle => prev_handle |> leptos.interval_handle_clear
+    //         | None => ()
+
+    //         inl new_handle =
+    //             leptos.set_interval_with_handle
+    //                 fn
+    //                 (interval_millis |> leptos.signal_get |> rust.duration_from_millis)
+    //             |> resultm.expect #"could not create interval"
+
+    //         set_prev_handle |> leptos.signal_set (new_handle |> Some)
+
+
+    // let (count, set_count) = leptos.create_signal 0_i32
+
+    // let (interval, set_interval) = leptos.create_signal 1000
+
+    // use_interval interval fun () =>
+    //     set_count
+    //     |> leptos.signal_update fun count => count + 1
+
+
+
+    // leptos.create_effect fun () =>
+    //     inl database_loading = database |> leptos.resource_loading |> leptos.signal_get
+
+    //     inl database =
+    //         database_func
+    //         |> rust.func0_move
+    //         |> optionm'.unbox
+
+    //     // inl count = count |> leptos.signal_get
+
+    //     inl database_log = database |> sm'.format_pretty'
+    //     leptos.log $'"state.use_request (20) / result move / count: " + string !count + " / database: " + string !database_log + " / database_loading: " + string !database_loading + ""'
+
+
+    inl result : rust.func0 (resultm.result' (optionm'.option' t) rust.std_string) =
+        rust.move fun () =>
+            inl database_loading = database |> leptos.resource_loading |> leptos.signal_get
+
+            inl state_data_loading = state_data_resource |> leptos.resource_loading |> leptos.signal_get
+
+            inl database =
+                database
+                |> leptos.resource_get
+                |> optionm'.unbox
+
+            inl state_data =
+                state_data_resource
+                |> leptos.resource_get
+                |> optionm'.unbox
+                |> optionm.map optionm'.unbox
+                |> optionm'.flatten
+
+            inl database_log = database |> sm'.format_debug |> sm'.ellipsis 200i32
+            inl state_data_log = state_data |> sm'.format_debug |> sm'.ellipsis 200i32
+
+            leptos.log $'"state.use_request (19) / result move / database: " + string !database_log + " / database_loading: " + string !database_loading + " / state_data: " + string !state_data_log + " / state_data_loading: " + string !state_data_loading + ""'
+
+            result_func
+            |> rust.func0_move
+            |> resultm.map' (optionm'.map map)
+            |> fun result =>
+                inl result_log = result |> sm'.format_debug |> sm'.ellipsis 200i32
+                leptos.log $'"state.use_request (20) / result move / result: " + string !result_log + ""'
+                result
+
+    result
