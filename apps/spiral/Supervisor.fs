@@ -129,7 +129,11 @@ module Supervisor =
 
     /// ## getFileUri
 
-    let inline getFileUri path =
+    let inline getFileUri (path : string) =
+        let path =
+            if Runtime.isWindows () |> not
+            then path
+            else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> String.replace "\\" "/"
         $"file:///{path |> String.trimStart [| '/' |]}"
 
     let inline getFilePathFromUri uri =
