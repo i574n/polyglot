@@ -19,7 +19,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>] type Mut<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>] type Slice<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>] type Slice'<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; 1]\")>] type Slice'<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
@@ -108,6 +108,18 @@ inl (~!\) forall t. (code : string) : t =
 
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
+
+inl slice' forall dim el. (x : option el) : slice' el dim =
+    match x with
+    | Some x => !\($'"[!x]"')
+    | None =>
+        !\($'"[\\\"\\\".to_string()]"') : slice' el dim
+            // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
+            // !\( : string) : slice' el i32 // !\($'"[]"')
+
+inl slice_to_array forall dim el. (x : slice' el dim) : a dim el =
+    inl x = join x
+    !\($'"fable_library_rust::NativeArray_::new_array(&!x)"')
 
 inl raw_string_literal (s : string) : ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
