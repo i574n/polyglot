@@ -132,6 +132,33 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
     |> from_vec
     |> map_vec from_pair
 
+inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
+    inl x = x |> to_vec
+    !\($'"!x.as_slice()"')
+
+// // ## vec_push
+
+inl vec_push forall el. (el : el) (vec : rust.vec el) : rust.vec el =
+    inl vec = join vec
+    !\($'"let mut !vec = !vec"')
+    // inl vec = vec |> rust.to_mut
+    !\($'"!vec.push(!el)"')
+    !\($'"!vec"')
+
+// // ## vec_mapi
+
+inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : rust.vec t) : rust.vec u =
+    inl fn = join fn
+    inl ar = join ar
+    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
+
+// // ## vec_map
+
+inl vec_map forall t u. (fn : t -> u) (ar : rust.vec t) : rust.vec u =
+    inl fn = join fn
+    inl ar = join ar
+    !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
+
 // // ## indexed'
 
 inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =

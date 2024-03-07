@@ -71,12 +71,8 @@ inl deserialize forall t. (json : string) : resultm.result' t rust.std_string =
     !\($'"serde_json::from_str(&!json)"')
     |> resultm.map_error' fun (x : rust.json_error) => x |> format'
 
-inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
-    inl x = x |> am'.to_vec
-    !\($'"!x.as_slice()"')
-
 inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t rust.std_string =
-    inl data = data |> as_slice
+    inl data = data |> am'.as_slice
     !\($'"let mut !data = !data"')
     inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
     result

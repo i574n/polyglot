@@ -7769,6 +7769,14 @@ a.anchor-link {
 <span class="n">inl</span> <span class="p">(</span><span class="o">~</span><span class="err">!</span>\\<span class="p">)</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">((</span><span class="n">args</span> <span class="p">:</span> <span class="n">t</span><span class="p">),</span> <span class="p">(</span><span class="n">code</span> <span class="p">:</span> <span class="n">string</span><span class="p">))</span> <span class="p">:</span> <span class="n">u</span> <span class="o">=</span>
     <span class="n">emit_expr</span> <span class="n">args</span> <span class="n">code</span>
 
+<span class="n">inl</span> <span class="nb">slice</span><span class="s1">' forall dim el. (x : option el) : slice'</span> <span class="n">el</span> <span class="n">dim</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="n">x</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="n">Some</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"[!x]"'</span><span class="p">)</span>
+    <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span>
+        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"[</span><span class="se">\\\"\\\"</span><span class="s1">.to_string()]"'</span><span class="p">)</span> <span class="p">:</span> <span class="nb">slice</span><span class="s1">' el dim</span>
+            <span class="o">//</span> <span class="n">emit_expr</span> <span class="err">`</span><span class="p">(())</span> <span class="err">`</span><span class="p">(</span><span class="nb">slice</span><span class="s1">' el dim) () ($'</span><span class="s2">"[@dim]"</span><span class="s1">' : string) : slice'</span> <span class="n">el</span> <span class="mi">10</span>
+            <span class="o">//</span> <span class="err">!</span>\<span class="p">(</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">slice</span><span class="s1">' el i32 // !\($'</span><span class="s2">"[]"</span><span class="s1">')</span>
+
 <span class="n">inl</span> <span class="n">raw_string_literal</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' str =</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">r#</span><span class="se">\\\"\"</span><span class="s2"> + !s + </span><span class="se">\"\\\"</span><span class="s2">#</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span>
 
@@ -7810,8 +7818,16 @@ a.anchor-link {
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"*std::cell::RefCell::borrow_mut(&amp;std::rc::Rc::clone(&amp;!x))"'</span><span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">to_mut</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">mut</span><span class="s1">' t =</span>
+    <span class="o">//</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let mut !x = !x"'</span><span class="p">)</span>
+    <span class="o">//</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x"'</span><span class="p">)</span>
     <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">let mut !x = !x</span><span class="se">\"</span><span class="s2">"</span>
     <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">!x</span><span class="se">\"</span><span class="s2">"</span>
+
+<span class="n">inl</span> <span class="n">ref_map</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' t) : ref'</span> <span class="n">u</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!fn(!x)"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">from_mut</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">mut</span><span class="s1">' t) : t =</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x"'</span><span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">new_arc</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">arc</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
@@ -7855,6 +7871,9 @@ a.anchor-link {
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"Func0::new(move || !fn())"'</span><span class="p">)</span>
 
 <span class="n">inl</span> <span class="n">to_static_ref_unbox</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">ref</span><span class="s1">' t) : static_ref'</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!x |&gt; unbox"</span>
+
+<span class="n">inl</span> <span class="n">from_static_ref_unbox</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">static_ref</span><span class="s1">' t) : ref'</span> <span class="n">t</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"!x |&gt; unbox"</span>
 
 <span class="n">inl</span> <span class="n">box_leak</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">box</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">static_ref</span><span class="s1">' (mut'</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>

@@ -109,6 +109,14 @@ inl (~!\) forall t. (code : string) : t =
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
 
+inl slice' forall dim el. (x : option el) : slice' el dim =
+    match x with
+    | Some x => !\($'"[!x]"')
+    | None =>
+        !\($'"[\\\"\\\".to_string()]"') : slice' el dim
+            // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
+            // !\( : string) : slice' el i32 // !\($'"[]"')
+
 inl raw_string_literal (s : string) : ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
 
@@ -150,8 +158,16 @@ inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
     !\($'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&!x))"')
 
 inl to_mut forall t. (x : t) : mut' t =
+    // !\($'"let mut !x = !x"')
+    // !\($'"!x"')
     emit_expr () $"\"let mut !x = !x\""
     emit_expr () $"\"!x\""
+
+inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
+    !\($'"!fn(!x)"')
+
+inl from_mut forall t. (x : mut' t) : t =
+    !\($'"!x"')
 
 inl new_arc forall t. (x : t) : arc t =
     inl x = join x
@@ -195,6 +211,9 @@ inl move forall t. (fn : () -> t) : func0 t =
     !\($'"Func0::new(move || !fn())"')
 
 inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
+    $"!x |> unbox"
+
+inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
     $"!x |> unbox"
 
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =

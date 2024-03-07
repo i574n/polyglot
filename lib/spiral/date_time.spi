@@ -7,17 +7,21 @@ nominal local = $"chrono_Local"
 nominal naive_date_time = $"chrono_NaiveDateTime"
 nominal utc = $"chrono_Utc"
 
-inl to_local (date_time : naive_date_time) : date_time' local =
+inl naive_utc (date_time : date_time' utc) : naive_date_time =
     inl date_time = join date_time
-    !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!date_time)"')
+    !\($'"!date_time.naive_utc()"')
 
-inl from_timestamp' forall t {number; int}. (timestamp : t) : option naive_date_time =
+inl to_local (date_time : date_time' utc) : date_time' local =
+    inl naive_date_time = date_time |> naive_utc
+    !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!naive_date_time)"')
+
+inl from_timestamp' forall t {number; int}. (timestamp : t) : option (date_time' utc) =
     inl timestamp = join timestamp
-    inl result : optionm'.option' naive_date_time =
-        !\($'"chrono::NaiveDateTime::from_timestamp_micros(!timestamp / 1000i64)"')
+    inl result : optionm'.option' (date_time' utc) =
+        !\($'"chrono::DateTime::from_timestamp_micros(!timestamp / 1000i64)"')
     result |> optionm'.unbox
 
-inl format' (format : string) (date_time : naive_date_time) : rust.std_string =
+inl format' (format : string) (date_time : date_time' utc) : rust.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
