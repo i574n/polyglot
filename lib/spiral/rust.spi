@@ -117,10 +117,6 @@ inl slice' forall dim el. (x : option el) : slice' el dim =
             // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
             // !\( : string) : slice' el i32 // !\($'"[]"')
 
-inl slice_to_array forall dim el. (x : slice' el dim) : a dim el =
-    inl x = join x
-    !\($'"fable_library_rust::NativeArray_::new_array(&!x)"')
-
 inl raw_string_literal (s : string) : ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
 
@@ -215,7 +211,7 @@ inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
 inl duration_from_millis (ms : u64) : duration =
     inl ms = join ms
     !\($'"std::time::Duration::from_millis(!ms)"')
-    
+
 inl sleep (duration : duration) : () =
     inl duration = join duration
     !\($'"std::thread::sleep(!duration)"')

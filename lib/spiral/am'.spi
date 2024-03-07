@@ -76,6 +76,32 @@ inl to_vec forall t. (ar : array_base t) : rust.vec t =
     inl ar = join ar
     !\($'"!ar.to_vec()"')
 
+inl from_slice forall dim el. (slice : rust.slice' el dim) : a dim el =
+    inl slice = join slice
+    // !\($'"fable_library_rust::NativeArray_::array_from(!slice)"')
+    !\($'"!slice.to_vec().into()"')
+
+inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
+    inl x = x |> to_vec
+    !\($'"!x.as_slice()"')
+
+inl to_slice forall t. (ar : array_base t) : rust.slice' t i32 =
+    inl ar = join ar
+    inl ar = ar |> to_vec
+    inl x : optionm'.option' t = !\($'"!ar.get(0).cloned()"')
+    inl x = join x
+    x
+    |> optionm'.map fun x =>
+        inl x = join x
+        !\($'"[!x]"')
+    |> optionm'.unbox
+    |> optionm'.default_value !\($'"[\\\"\\\".to_string()]"')
+    // fun x => x
+    // x |> optionm'.default_value (;[] |> to_slice)
+    // !\($'"!ar.get(0).map(|x| x.clone()).into()"')
+
+
+
 // // ## map_vec
 
 inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
@@ -83,6 +109,13 @@ inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
     inl (a ar) = ar
     inl ar = ar |> to_vec
     !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
+    |> from_vec
+
+inl mapi_vec forall dim t u. (fn : dim -> t -> u) (ar : a dim t) : a dim u =
+    inl fn = join fn
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
     |> from_vec
 
 // // ## map_base
