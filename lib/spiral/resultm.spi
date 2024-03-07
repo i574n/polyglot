@@ -8,7 +8,7 @@ inl from_option_error error opt =
     | None => Error error
 
 inl from_option opt =
-    opt |> from_option_error "Option does not have a value."
+    opt |> from_option_error "resultm.from_option / Option does not have a value."
 
 inl flatten_option forall t u. (x : option (result (option t) u)) : result (option t) u =
     match x with
@@ -24,7 +24,7 @@ inl flatten forall t u. (x : result (result t u) u) : result t u =
 inl get forall t e. (source : result t e) : t =
     match source with
     | Ok x => x
-    | Error x => failwith $'$"Result value was Error: {!x}"'
+    | Error x => failwith $'$"resultm.get / Result value was Error: {!x}"'
 
 inl map forall t e u. (fn : t -> u) (source : result t e) : result u e =
     match source with

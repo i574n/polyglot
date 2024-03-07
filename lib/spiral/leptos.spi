@@ -126,17 +126,18 @@ inl log_pretty (text : string) =
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
-inl views_to_fragment (views : array_base view) : fragment =
-    inl views = views |> am'.to_vec
-    !\($'"leptos::Fragment::new(!views)"')
+inl view_vec_to_fragment (view : rust.vec view) : fragment =
+    !\($'"leptos::Fragment::new(!view)"')
+
+inl view_array_to_fragment (view : array_base view) : fragment =
+    view |> am'.to_vec |> view_vec_to_fragment
 
 inl element_to_view (view : html_element _) : view =
     inl view = join view
     !\($'"leptos::IntoView::into_view(!view)"')
 
 inl view_to_fragment (view : view) : fragment =
-    inl view = join view
-    !\($'"leptos::Fragment::new(vec\![!view])"')
+    ;[view] |> view_array_to_fragment
 
 inl fragment_to_view (fragment : fragment) : view =
     inl fragment = join fragment
@@ -150,12 +151,12 @@ inl element_to_fragment (view : html_element _) : fragment =
 instance (~:>) fragment = fun x =>
     real
         typecase t with
-        | array_base view => views_to_fragment x
+        | array_base view => view_array_to_fragment x
         | array_base (html_element ~el) =>
             inl x = a `i32 `(html_element el) x
             inl x = am'.map_vec `i32 `(html_element el) `view (element_to_view `el) x
             inl (a x) = x
-            views_to_fragment x
+            view_array_to_fragment x
         | _ => x
 
 instance (~:>) view = fun x =>
@@ -210,9 +211,6 @@ inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
 inl array_to_view (view : a _ view) : view =
     inl view = join view
     !\($'"leptos::CollectView::collect_view(!view.to_vec())"')
-
-inl vec_to_fragment (view : rust.vec view) : fragment =
-    !\($'"leptos::Fragment::new(!view)"')
 
 inl to_fragment x : fragment =
     $"!x |> unbox"
@@ -458,12 +456,13 @@ inl for props : view =
     tag_closed_raw "leptos::For" props
     |> macro_to_view
 
-inl for forall t u. (array : array_base t) (key_fn : t -> u) (children' : t -> fragment) : view =
-    inl array = join array
+inl for forall t u (signal : * -> *). (signal : signal (rust.vec t)) (key_fn : t -> u) (children' : t -> fragment) : view =
+    inl signal = join signal
+    signal |> typecheck_signal
     inl key_fn = join key_fn
     inl children' = join children'
     for [
-        $'"each=move || !array.to_vec()"'
+        $'"each=!signal"'
         $'"key=move |x| !key_fn(x.to_owned())"'
         $'"let:x"'
         $'"children=move |x| !children'(x)"'
@@ -710,7 +709,7 @@ inl divider children : _ span =
             span [
                 $'"class=\\\"h-px flex-1 bg-gray-300\\\""'
             ] fun () =>
-                ;[] |> views_to_fragment
+                ;[] |> view_array_to_fragment
             |> element_to_view
         ])
 
@@ -761,7 +760,7 @@ inl toggle (id : string) get_value (on_change : event -> _) : _ label =
             span [
                 $'"class=\\\"absolute inset-0 rounded-full bg-gray-200 dark:bg-gray-200 transition peer-checked:bg-gray-300\\\""'
             ] fun () =>
-                ;[] |> views_to_fragment
+                ;[] |> view_array_to_fragment
             |> element_to_view
         ])
 
