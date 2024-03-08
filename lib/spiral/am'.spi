@@ -139,10 +139,21 @@ inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
 // // ## vec_push
 
 inl vec_push forall el. (el : el) (vec : rust.vec el) : rust.vec el =
+    inl el = join el
     inl vec = join vec
     !\($'"let mut !vec = !vec"')
     // inl vec = vec |> rust.to_mut
     !\($'"!vec.push(!el)"')
+    !\($'"!vec"')
+
+// // ## vec_retain
+
+inl vec_retain forall el. (fn : el -> bool) (vec : rust.vec el) : rust.vec el =
+    inl vec = join vec
+    inl fn = join fn
+    !\($'"let mut !vec = !vec"')
+    // inl vec = vec |> rust.to_mut
+    !\($'"!vec.retain(|x| !fn(x.clone()))"')
     !\($'"!vec"')
 
 // // ## vec_mapi

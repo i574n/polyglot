@@ -330,3 +330,12 @@ inl nameof x : string =
 
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
+
+#!markdown
+
+## new_raw_guid
+
+#!spiral
+
+inl new_raw_guid () : guid =
+    $"`guid.NewGuid ()"
