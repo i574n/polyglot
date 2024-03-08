@@ -152,3 +152,8 @@ inl nameof x : string =
 
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
+
+// // ## new_raw_guid
+
+inl new_raw_guid () : guid =
+    $"`guid.NewGuid ()"
