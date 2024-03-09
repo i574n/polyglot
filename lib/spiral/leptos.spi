@@ -1064,7 +1064,7 @@ inl divider children : _ span =
             |> element_to_view
         ])
 
-inl input' forall t. (class : option string) props getter setter : _ input =
+inl text_input forall t. (class : option string) props getter setter : _ input =
     inl getter : () -> t = join getter
     inl setter : t -> () = join setter
     inl class = class |> optionm.map sm'.as_str |> optionm'.default_value #""
@@ -1076,23 +1076,26 @@ inl input' forall t. (class : option string) props getter setter : _ input =
         ] /@ props)
 
 inl toggle (id : string) get_value (on_change : event -> _) : _ label =
-
-    inl get_value : () -> bool = join get_value
+    inl id = id |> sm'.to_std_string
+    !\($'"let id = !id.clone()"')
 
     label [
-        $'"for=\\\"" + !id + "\\\""'
+        $'"for=id"'
         $'"class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\""'
     ] fun () =>
         inl on_change = join on_change
         !\($'"let on_change = !on_change"')
+
+        inl get_value : () -> bool = join get_value
         !\($'"let get_value = !get_value"')
+
         :>(;[
             input [
                 $'"class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\""'
                 $'"type=\\\"checkbox\\\""'
-                $'"id=\\\"" + !id + "\\\""'
+                $'"id=!id"'
                 $'"on:change=move |event| on_change(event)"'
-                $'"prop:checked={move || get_value()}"'
+                $'"prop:checked=move || get_value()"'
             ]
             |> element_to_view
 
@@ -1185,7 +1188,7 @@ inl tab_link href icon label select : _ a' =
     inl select_class = join select_class
     a' [
         $'"href=!href"'
-        $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[10px] pl-[10px] text-sm font-medium \\\".to_owned() + !select_class()}"'
+        $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[15px] pl-[15px] text-sm font-medium \\\".to_owned() + !select_class()}"'
         $'"aria-current={move || if !select() { \\\"page\\\" } else { \\\"\\\" }}"'
     ] fun () =>
         :>(;[
@@ -1197,7 +1200,7 @@ inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button 
     inl class = join class
     button
         ([
-            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[9px] pr-[11px] pl-[11px]\\\".to_owned() + !class()}"'
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[9px] px-[12px]\\\".to_owned() + !class()}"'
         ] /@ props)
         fun () =>
             :>(;[
