@@ -356,9 +356,10 @@ inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u
     inl action_fn = join action_fn
     !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn(value.clone()))"')
 
-inl action_dispatch forall t. (value : heap t) (action : action (heap t) ()) =
+inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
     inl value = join value
-    !\($'"leptos::Action::dispatch(&!action, !value)"')
+    inl action = join action
+    !\($'"leptos::Action::dispatch(&!action, !value.clone())"')
 
 inl use_context forall t. () : optionm'.option' t =
     !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')

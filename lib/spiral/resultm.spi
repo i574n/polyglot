@@ -43,6 +43,7 @@ inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
 
 inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
     inl fn = join fn
+    inl source = join source
     !\($'"!source.map_err(|x| !fn(x))"')
 
 inl unbox forall t u. (x : result' t u) : result t u =

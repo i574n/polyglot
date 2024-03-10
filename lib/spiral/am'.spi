@@ -85,6 +85,24 @@ inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
     !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
     |> from_vec
 
+// // ## mapi_vec
+
+inl mapi_vec forall dim t u. (fn : dim -> t -> u) (ar : a dim t) : a dim u =
+    inl fn = join fn
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
+    |> from_vec
+
+// // ## filter_vec
+
+inl filter_vec forall dim t. (fn : t -> bool) (ar : a dim t) : a dim t =
+    inl fn = join fn
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
+    |> from_vec
+
 // // ## map_base
 
 inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
