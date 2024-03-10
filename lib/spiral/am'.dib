@@ -326,6 +326,20 @@ inl vec_retain forall el. (fn : el -> bool) (vec : rust.vec el) : rust.vec el =
 
 #!markdown
 
+## vec_sort_by_key
+
+#!spiral
+
+inl vec_sort_by_key forall el t. (fn : el -> t) (vec : rust.vec el) : rust.vec el =
+    inl vec = join vec
+    inl fn = join fn
+    !\($'"let mut !vec = !vec"')
+    // inl vec = vec |> rust.to_mut
+    !\($'"!vec.sort_by_key(|x| !fn(x.clone()))"')
+    !\($'"!vec"')
+
+#!markdown
+
 ## vec_extend
 
 #!spiral
