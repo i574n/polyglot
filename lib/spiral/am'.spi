@@ -164,6 +164,14 @@ inl vec_push forall el. (el : el) (vec : rust.vec el) : rust.vec el =
     !\($'"!vec.push(!el)"')
     !\($'"!vec"')
 
+// // ## vec_reverse
+
+inl vec_reverse forall el. (vec : rust.vec el) : rust.vec el =
+    inl vec = join vec
+    !\($'"let mut !vec = !vec"')
+    !\($'"!vec.reverse()"')
+    !\($'"!vec"')
+
 // // ## vec_retain
 
 inl vec_retain forall el. (fn : el -> bool) (vec : rust.vec el) : rust.vec el =

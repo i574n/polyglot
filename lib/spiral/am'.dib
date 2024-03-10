@@ -312,6 +312,18 @@ inl vec_push forall el. (el : el) (vec : rust.vec el) : rust.vec el =
 
 #!markdown
 
+## vec_reverse
+
+#!spiral
+
+inl vec_reverse forall el. (vec : rust.vec el) : rust.vec el =
+    inl vec = join vec
+    !\($'"let mut !vec = !vec"')
+    !\($'"!vec.reverse()"')
+    !\($'"!vec"')
+
+#!markdown
+
 ## vec_retain
 
 #!spiral
