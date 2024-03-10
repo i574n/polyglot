@@ -326,6 +326,20 @@ inl vec_retain forall el. (fn : el -> bool) (vec : rust.vec el) : rust.vec el =
 
 #!markdown
 
+## vec_extend
+
+#!spiral
+
+inl vec_extend forall el. (el : rust.vec el) (vec : rust.vec el) : rust.vec el =
+    inl el = join el
+    inl vec = join vec
+    !\($'"let mut !vec = !vec"')
+    // inl vec = vec |> rust.to_mut
+    !\($'"!vec.extend(!el)"')
+    !\($'"!vec"')
+
+#!markdown
+
 ## vec_mapi
 
 #!spiral
