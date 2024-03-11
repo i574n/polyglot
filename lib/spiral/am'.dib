@@ -366,6 +366,34 @@ inl vec_extend forall el. (el : rust.vec el) (vec : rust.vec el) : rust.vec el =
 
 #!markdown
 
+## vec_collect
+
+#!spiral
+
+inl vec_collect vec =
+    ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
+    ||> am.fold fun acc x =>
+        acc |> vec_extend x
+
+#!markdown
+
+## vec_collect'
+
+#!spiral
+
+inl vec_collect' vec =
+    ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
+    ||> am.fold fun acc x =>
+        x
+        |> resultm.unbox
+        |> fun x =>
+            match acc, x |> resultm.map optionm'.unbox with
+            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
+            | _, Error error => error |> Error
+            | _ => acc
+
+#!markdown
+
 ## vec_mapi
 
 #!spiral

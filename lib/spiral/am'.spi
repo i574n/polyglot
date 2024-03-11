@@ -202,6 +202,26 @@ inl vec_extend forall el. (el : rust.vec el) (vec : rust.vec el) : rust.vec el =
     !\($'"!vec.extend(!el)"')
     !\($'"!vec"')
 
+// // ## vec_collect
+
+inl vec_collect vec =
+    ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
+    ||> am.fold fun acc x =>
+        acc |> vec_extend x
+
+// // ## vec_collect'
+
+inl vec_collect' vec =
+    ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
+    ||> am.fold fun acc x =>
+        x
+        |> resultm.unbox
+        |> fun x =>
+            match acc, x |> resultm.map optionm'.unbox with
+            | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
+            | _, Error error => error |> Error
+            | _ => acc
+
 // // ## vec_mapi
 
 inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : rust.vec t) : rust.vec u =
