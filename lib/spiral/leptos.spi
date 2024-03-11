@@ -1009,10 +1009,10 @@ inl accordion title open' (right_element : option view) children : _ div =
                 inl summary_margin_right =
                     if right_element = None
                     then #""
-                    else #" [margin-right:40px]"
+                    else #"[margin-right:40px]"
                 :>(;[
                     summary [
-                        $'"class=\\\"group flex flex-1 items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700\\\".to_owned() + !summary_margin_right"'
+                        $'"class=\\\"group flex flex-1 items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700 \\\".to_owned() + !summary_margin_right"'
                     ] fun () =>
                         :>(;[
                             div [
@@ -1067,11 +1067,11 @@ inl divider children : _ span =
 
 inl text_input forall t. (class : option string) props getter setter : _ input =
     inl getter : () -> t = join getter
-    inl setter : t -> () = join setter
+    inl setter : rust.std_string -> () = join setter
     inl class = class |> optionm.map sm'.as_str |> optionm'.default_value #""
     input
         ([
-            $'"class=\\\"bg-gray-50 flex-1 h-[27px]\\\".to_owned() + !class"'
+            $'"class=\\\"bg-gray-50 h-[27px] \\\".to_owned() + !class"'
             $'"prop:value=move || !getter()"'
             $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
         ] /@ props)
@@ -1201,7 +1201,7 @@ inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button 
     inl class = join class
     button
         ([
-            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[9px] px-[12px]\\\".to_owned() + !class()}"'
+            $'"class={move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[9px] px-[12px] \\\".to_owned() + !class()}"'
         ] /@ props)
         fun () =>
             :>(;[
