@@ -361,14 +361,11 @@ inl use_requests forall t u.
                                 |> get_data (get_key url)
                                 |> async.await
                                 |> resultm.unbox
-                                |> resultm.map optionm'.unbox
-                                |> function
-                                    | Ok (Some x) => Ok x
-                                    | Error error =>
-                                        leptos.log $'"state_core.use_request (4.1) / state_data_resource create_local_resource / error: " + string !error + ""'
-                                        Error error
-                                    | _ => "url error 1" |> sm'.to_std_string |> Error
-                            | _ => "url error 2" |> sm'.to_std_string |> Error
+                                |> fun x =>
+                                    inl x_log = x |> sm'.format_debug |> sm'.ellipsis 200i32
+                                    leptos.log $'"state_core.use_request (4.1) / state_data_resource create_local_resource / x: " + string !x_log + ""'
+                                    x
+                            | _ => "database=None" |> sm'.to_std_string |> Error
                             |> resultm.box
                         |> async.future_init 3 1
                     |> async.try_join_all
@@ -486,44 +483,46 @@ inl use_requests forall t u.
             inl json_log = json |> sm'.format_debug |> sm'.ellipsis 200i32
             leptos.log $'"state_core.use_request (16.1) / effect / json: " + string !json_log + ""'
 
+            inl state_data = state_data_func |> rust.func0_move |> optionm'.unbox
+
+            inl state_data_log = state_data |> sm'.format_debug |> sm'.ellipsis 200i32
+            leptos.log $'"state_core.use_request (16) / result_memo / state_data: " + string !state_data_log + ""'
+
             match json |> resultm.unbox with
             | Ok json =>
                 urls
                 |> am'.mapi_vec fun i url =>
                     leptos.log $'"state_core.use_request (15) / result memo / url: " + string !url + ""'
 
-                    inl state_data = state_data_func |> rust.func0_move |> optionm'.unbox
+                    inl state_data =
+                        state_data
+                        |> optionm.map function
+                            | Ok x =>
+                                x
+                                |> am'.try_item i
+                                |> optionm'.flatten
+                                |> optionm.map fun x =>
+                                    !x |> sm'.from_std_string
+                            | Error error =>
+                                None
+                        |> optionm'.flatten
 
-                    inl state_data_log = state_data |> sm'.format_debug |> sm'.ellipsis 200i32
-                    leptos.log $'"state_core.use_request (16) / result_memo / state_data: " + string !state_data_log + ""'
-                    json
-                    |> am'.try_item i
-                    |> optionm'.flatten
-                    |> fun json =>
-                        inl state_data =
-                            state_data
-                            |> optionm.map function
-                                | Ok x =>
-                                    x
-                                    |> am'.try_item i
-                                    |> optionm'.flatten
-                                    |> optionm.map fun x =>
-                                        !x |> sm'.from_std_string
-                                | Error error =>
-                                    None
-                            |> optionm'.flatten
+                    inl json =
+                        json
+                        |> am'.try_item i
+                        |> optionm'.flatten
 
-                        match json, state_data with
-                        | Some value, _ | _, Some value =>
-                            value
-                            |> sm'.deserialize
-                            |> resultm.map' (Some >> optionm'.box)
-                        // | Error error, _ =>
-                        //     error |> Error |> resultm.box
-                        | value =>
-                            inl value_log = value |> sm'.format_debug
-                            leptos.log $'"state_core.use_request (17) / json Error / value: " + string !value_log + ""'
-                            None |> optionm'.box |> Ok |> resultm.box
+                    match json, state_data with
+                    | Some value, _ | _, Some value =>
+                        value
+                        |> sm'.deserialize
+                        |> resultm.map' (Some >> optionm'.box)
+                    // | Error error, _ =>
+                    //     error |> Error |> resultm.box
+                    | value =>
+                        inl value_log = value |> sm'.format_debug
+                        leptos.log $'"state_core.use_request (17) / json Error / value: " + string !value_log + ""'
+                        None |> optionm'.box |> Ok |> resultm.box
             | Error => a ;[]
             |> fun json_cache_obj =>
                 inl json_cache_obj_log = json_cache_obj |> sm'.format_debug |> sm'.ellipsis 200i32
@@ -545,7 +544,12 @@ inl use_requests forall t u.
                 state_data_resource
                 |> leptos.resource_get
                 |> optionm'.unbox
-                |> optionm.map (resultm.unbox >> resultm.map (am'.from_vec >> fun x => x |> (am'.map_vec optionm'.unbox)))
+                |> optionm.map (
+                    resultm.unbox
+                    >> resultm.map (
+                        am'.from_vec >> (am'.map_vec optionm'.unbox)
+                    )
+                )
 
             inl database_log = database |> sm'.format_debug |> sm'.ellipsis 200i32
             inl state_data_log = state_data |> sm'.format_debug |> sm'.ellipsis 200i32

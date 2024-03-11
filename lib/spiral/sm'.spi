@@ -9,6 +9,12 @@ inl contains (value : string) (input : string) : bool =
 inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
     $"!str.Substring (!start, !len)"
 
+inl split (separator : string) (str : string) : array_base string =
+    $"!str.Split !separator"
+
+inl split_string (separator : array_base string) (str : string) : array_base string =
+    $"!str.Split (!separator, StringSplitOptions.None)"
+
 inl as_str (s : string) : rust.ref' rust.str =
     inl s = join s
     !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')
