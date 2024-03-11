@@ -47,10 +47,10 @@ inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (re
                 |> am'.from_vec
             inl data_len = length data
             leptos.log $'"state_core.get_data () / data_len: " + string !data_len + ""'
-            inl data = data |> fun (a x : _ i32 _) => x
-            inl data : resultm.result' t rust.std_string = data |> sm'.borsh_deserialize
-            inl data = data |> resultm.try'
-            Some data
+            data
+            |> fun (a x : _ i32 _) => x |> sm'.borsh_deserialize : resultm.result' t rust.std_string
+            |> resultm.try'
+            |> Some
         | None => None
         |> optionm'.box
         |> Ok
@@ -370,8 +370,6 @@ inl use_requests forall t u.
                                     | _ => "url error 1" |> sm'.to_std_string |> Error
                             | _ => "url error 2" |> sm'.to_std_string |> Error
                             |> resultm.box
-                            // |> optionm'.flatten
-                            // |> optionm'.box
                         |> async.future_init 3 1
                     |> async.try_join_all
                     |> async.await'
@@ -380,30 +378,9 @@ inl use_requests forall t u.
                     |> resultm.box : _ _ rust.std_string
                 |> async.future_init 4 1
 
-    // let (loaded, set_loaded) = leptos.create_signal false
-
     inl state_data_func : rust.func0 (optionm'.option' (result (a i32 (option (heap rust.std_string))) rust.std_string)) =
         rust.move fun () =>
             leptos.log $'"state_core.use_request (5) / state_data_func"'
-
-
-
-
-            // inl loaded = loaded |> leptos.signal_get
-            // leptos.log $'"state_core.use_request (4.1) / estate_data_func / loaded: " + string !loaded + ""'
-
-            // if not loaded then
-            //     set_loaded
-            //     |> leptos.signal_update fun _ =>
-            //         leptos.log $'"state_core.use_request (4.3) / state_data_func / set_loaded |> signal_update true"'
-            //         true
-            //     None
-            // else
-
-
-
-
-
 
             match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
             | Ok (Some _storage) =>
@@ -417,17 +394,6 @@ inl use_requests forall t u.
                 state_data
             | _ => None
             |> optionm'.box
-
-    // leptos.create_effect fun () =>
-    //     leptos.log $'"state_core.use_database (6) / effect state_data / ##1"'
-
-    //     leptos.log $'"state_core.use_database (7) / effect state_data / ##2"'
-    //     leptos.signal_get global_state.state .test
-    //     |> leptos.signal_update fun n =>
-    //         leptos.log $'"state_core.use_database (8) / effect state_data / state.test signal_update / n: " + string !n + ""'
-    //         n + 1
-    //     leptos.log $'"state_core.use_database (9) / effect state_data / ##3"'
-
 
     inl set_state_data_action = leptos.create_action fun (value : heap rust.std_string) =>
         inl value_len : i64 = value |> sm'.format_debug |> sm.length
@@ -460,28 +426,13 @@ inl use_requests forall t u.
             |> async.try_join_all
             |> async.await'
             |> resultm.try'
-            |> fun x => x // : _ (_ () rust.std_string)
             |> Ok
             |> fun x => x : _ _ rust.std_string
             |> resultm.box
-
-            // (Ok () : _ _ rust.std_string) |> resultm.box
         |> async.future_init 3 1
 
     leptos.create_effect fun () =>
-        // inl loaded = loaded |> leptos.signal_get
-        // leptos.log $'"state_core.use_request (8) / effect new_state_data / ##1 / loaded: " + string !loaded + ""'
-
         leptos.log $'"state_core.use_request (11) / effect new_state_data / ##2"'
-        // if not loaded then
-        //     set_loaded
-        //     |> leptos.signal_update fun _ =>
-        //         leptos.log $'"state_core.use_request (9.1) / effect new_state_data / set_loaded |> signal_update true"'
-        //         true
-        // else
-
-
-
 
         match leptos.window () |> store.local_storage |> resultm.unbox |> resultm.map optionm'.unbox with
         | Ok (Some storage) =>
@@ -490,9 +441,6 @@ inl use_requests forall t u.
                 |> leptos.resource_get
                 |> optionm'.unbox
                 |> optionm.map (resultm.map' (am'.map_vec optionm'.unbox))
-                // |> optionm.map (resultm.map' (am'.map_vec (optionm.map resultm.unbox)))
-                // |> optionm.map (resultm.map' (am'.map_vec (resultm.map optionm'.unbox)))
-                // |> optionm.map (resultm.map' (am'.map_vec (resultm.map' (optionm.map (resultm.map optionm'.unbox)))))
                 |> optionm.map resultm.unbox
                 |> optionm.map fun x =>
                     x
@@ -522,96 +470,18 @@ inl use_requests forall t u.
 
         leptos.log $'"state_core.use_request (13) / effect new_state_data / ##5"'
 
-    // inl signal : leptos.memo (optionm'.option' (rust.rc (rust.ref_cell (leptos.rw_signal rust.std_string)))) =
-    //     leptos.create_memo fun () =>
-    //         inl url = url ()
-    //         inl url_log = url |> sm'.format_pretty'
-    //         leptos.log $'"use_request (2) / signal memo / url: " + string !url_log + ""'
-
-    //         match url |> optionm'.unbox with
-    //         | Some url =>
-    //             inl cache =
-    //                 leptos.signal_get global_state.state .cache
-    //                 |> leptos.signal_get
-    //             inl key = url |> sm'.to_std_string
-    //             cache
-    //             |> mapm.get key
-    //             |> optionm'.unbox
-    //             |> function
-    //                 | Some set_cache =>
-    //                     leptos.log $'"use_request (2.1) / signal memo / rc_upgrade"'
-    //                     set_cache
-    //                 | None =>
-    //                     leptos.log $'"use_request (2.1) / signal memo / \\\"\\\" |> create_rw_signal"'
-    //                     ""
-    //                     |> sm'.to_std_string
-    //                     |> leptos.create_rw_signal
-    //                     |> rust.new_ref_cell
-    //                     |> rust.new_rc
-    //             |> Some
-    //         | _ => None
-    //         |> optionm'.box
-
-    // leptos.create_effect fun () =>
-    //     inl url = url ()
-    //     inl url_log = url |> sm'.format_pretty'
-    //     leptos.log $'"use_request (3) / effect / url: " + string !url_log + ""'
-
-    //     inl signal = signal |> leptos.memo_get |> optionm'.unbox
-
-    //     inl json =
-    //         json
-    //         |> leptos.resource_get
-    //         |> optionm'.unbox
-    //         |> optionm.map resultm.unbox
-    //         |> optionm.map (resultm.map optionm'.unbox)
-    //         |> resultm.flatten_option
-
-    //     inl signal_log = signal |> sm'.format_debug
-    //     inl json_len : i64 = json |> sm'.format_debug |> sm.length
-    //     leptos.log $'"use_request (4) / effect / json_len: " + string !json_len + " / signal: " + string !signal_log + ""'
-
-    //     match json, signal, url |> optionm'.unbox with
-    //     | Some (Ok json), Some signal, Some url =>
-    //         rust.move fun () =>
-    //             inl cache =
-    //                 leptos.signal_get global_state.state .cache
-    //                 |> leptos.signal_get
-    //             inl key = url |> sm'.to_std_string
-    //             inl value = json |> sm'.to_std_string
-
-    //             signal
-    //             |> rust.ref_cell_borrow
-    //             |> leptos.signal_update fun _ =>
-    //                 leptos.log $'"use_request (5) / effect / signal signal_update"'
-    //                 value
-
-    //             cache
-    //             |> mapm.insert key (signal |> rust.rc_clone)
-    //             |> ignore
-
-    //             leptos.signal_get global_state.state .cache
-    //             |> leptos.signal_update fun _ =>
-    //                 leptos.log $'"use_request (6) / effect / state.cache signal_update"'
-    //                 cache
-    //         |> leptos.batch
-    //     | _ => ()
-
     inl result_func : rust.func0 (a i32 (resultm.result' (optionm'.option' u) rust.std_string)) =
         rust.move fun () =>
             inl urls = urls |> leptos.memo_get
             inl urls_log = urls |> sm'.format_debug
             leptos.log $'"state_core.use_request (14) / result memo / urls: " + string !urls_log + ""'
 
-            inl json = // : a i32 (result (option string) string) =
+            inl json =
                 json
                 |> leptos.resource_get
                 |> optionm'.unbox
                 |> optionm.map (resultm.map' (am'.map_vec optionm'.unbox))
-                // |> optionm.map (resultm.map' (am'.map_vec (optionm.map resultm.unbox)))
-                // |> optionm.map (resultm.map' (am'.map_vec (resultm.map optionm'.unbox)))
                 |> optionm'.default_value (a ;[] |> Ok |> resultm.box)
-                // |> optionm.map (am'.map_vec resultm.flatten_option)
 
             inl json_log = json |> sm'.format_debug |> sm'.ellipsis 200i32
             leptos.log $'"state_core.use_request (16.1) / effect / json: " + string !json_log + ""'
@@ -659,50 +529,6 @@ inl use_requests forall t u.
                 inl json_cache_obj_log = json_cache_obj |> sm'.format_debug |> sm'.ellipsis 200i32
                 leptos.log $'"state_core.use_request (18) / result create_memo / json_cache_obj: " + string !json_cache_obj_log + ""'
                 json_cache_obj
-
-    // inl use_interval (interval_millis : leptos.read_signal u64) (fn : () -> ()) =
-
-    //     inl (prev_handle, set_prev_handle) = leptos.create_signal (None : option leptos.interval_handle)
-
-    //     leptos.create_effect fun () =>
-    //         leptos.log $'"use_interval (1) / effect"'
-
-    //         match prev_handle |> leptos.signal_get_untracked with
-    //         | Some prev_handle => prev_handle |> leptos.interval_handle_clear
-    //         | None => ()
-
-    //         inl new_handle =
-    //             leptos.set_interval_with_handle
-    //                 fn
-    //                 (interval_millis |> leptos.signal_get |> rust.duration_from_millis)
-    //             |> resultm.expect #"could not create interval"
-
-    //         set_prev_handle |> leptos.signal_set (new_handle |> Some)
-
-
-    // let (count, set_count) = leptos.create_signal 0_i32
-
-    // let (interval, set_interval) = leptos.create_signal 1000
-
-    // use_interval interval fun () =>
-    //     set_count
-    //     |> leptos.signal_update fun count => count + 1
-
-
-
-    // leptos.create_effect fun () =>
-    //     inl database_loading = database |> leptos.resource_loading |> leptos.signal_get
-
-    //     inl database =
-    //         database_func
-    //         |> rust.func0_move
-    //         |> optionm'.unbox
-
-    //     // inl count = count |> leptos.signal_get
-
-    //     inl database_log = database |> sm'.format_pretty'
-    //     leptos.log $'"state_core.use_request (20) / result move / count: " + string !count + " / database: " + string !database_log + " / database_loading: " + string !database_loading + ""'
-
 
     inl result : rust.func0 (a i32 (resultm.result' (optionm'.option' t) rust.std_string)) =
         rust.move fun () =>

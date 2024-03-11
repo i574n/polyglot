@@ -30,3 +30,15 @@ inl format'' (format : string) (date_time : date_time' _) : rust.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
+
+inl format_timestamp (timestamp : rust.std_string) =
+    inl timestamp = join timestamp
+    timestamp
+    |> fun x => !\($'"!x.parse().unwrap()"') : i64
+    |> from_timestamp'
+    |> optionm.map fun x =>
+        x
+        |> to_local
+        |> format'' "%Y-%m-%d %H:%M:%S"
+        |> sm'.from_std_string
+    |> resultm.from_option
