@@ -7,13 +7,13 @@ modules:
     optionm'
     optionm'_operators
     resultm
-    date_time
     common-
     am'
+    sm'
+    date_time
     listm'
     listm'_operators
     mapm
-    sm'
     console
     math
     async

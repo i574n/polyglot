@@ -8165,27 +8165,25 @@ a.anchor-link {
 00:00:00 #11 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 #12 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 #13 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 #14 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 #15 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:00 #16 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 #17 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:00 #18 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:00 #19 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:00 #20 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:00 #21 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #22 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #23 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///tmp/!dotnet-repl/20240310-2254-4538-3854-3f3c313a6c2e/main.spi"}} / result.Length:
-00:00:00 #24 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2254-4538-3854-3f3c313a6c2e/main.spi"}} / result.Length:
-00:00:01 #25 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2254-4538-3854-3f3c313a6c2e/main.spi
-00:00:01 #26 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:02 #27 [Debug] buildFile / takeWhileInclusive / fsxContent: let rec closure0 () () : int32 =
+00:00:00 #14 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:00 #15 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #16 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:00 #17 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:00 #18 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:00 #19 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:00 #20 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:00 #21 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///tmp/!dotnet-repl/20240311-0510-5207-0726-0bbc8435c6a9/main.spi"}} / result.Length:
+00:00:00 #22 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0510-5207-0726-0bbc8435c6a9/main.spi"}} / result.Length:
+00:00:01 #23 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0510-5207-0726-0bbc8435c6a9/main.spi
+00:00:01 #24 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:02 #25 [Debug] buildFile / takeWhileInclusive / fsxContent: let rec closure0 () () : int32 =
     let v0 : string = "text"
     System.Console.WriteLine v0
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
  / errors: [] / typeErrorCount: 0
-00:00:02 #28 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:02 #26 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: let rec closure0 () () : int32 =
@@ -8227,45 +8225,46 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #29 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #30 [Debug] executeAsync / options: { Command =
+<pre>00:00:02 #27 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #28 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:02 #31 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:02 #32 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #33 [Verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:02 #34 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:02 #29 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:02 #30 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:02 #31 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #32 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:02 #33 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #34 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #35 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #36 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #37 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #38 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #39 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #39 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:02 #40 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #41 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #42 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:03 #43 [Debug] runWithTimeoutAsync / timeout: 500
-00:00:03 #44 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:03 #45 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:03 #46 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:03 #47 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:03 #48 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:03 #49 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///tmp/!dotnet-repl/20240310-2254-4779-7961-75304bc46e66/main.spi"}} / result.Length:
-00:00:03 #50 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2254-4779-7961-75304bc46e66/main.spi"}} / result.Length:
-00:00:03 #51 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2254-4779-7961-75304bc46e66/main.spi
-00:00:04 #52 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:04 #53 [Verbose] &gt; Cannot find `main` in file main.
-00:00:04 #54 [Verbose] &gt; Build skipped for /tmp/!dotnet-repl/20240310-2254-4779-7961-75304bc46e66/main.spi
-00:00:05 #55 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:06 #56 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:07 #57 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:08 #58 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:09 #59 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:10 #60 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #61 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #62 [Debug] runWithTimeoutAsync / timeout: 10000
-00:00:12 #63 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:02 #42 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:02 #43 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:02 #44 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:02 #45 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:02 #46 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:02 #47 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///tmp/!dotnet-repl/20240311-0510-5440-4024-47b03354c560/main.spi"}} / result.Length:
+00:00:02 #48 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0510-5440-4024-47b03354c560/main.spi"}} / result.Length:
+00:00:03 #49 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0510-5440-4024-47b03354c560/main.spi
+00:00:03 #50 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:04 #51 [Verbose] &gt; Cannot find `main` in file main.
+00:00:04 #52 [Verbose] &gt; Build skipped for /tmp/!dotnet-repl/20240311-0510-5440-4024-47b03354c560/main.spi
+00:00:04 #53 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:05 #54 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:06 #55 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:07 #56 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:08 #57 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:09 #58 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:10 #59 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #60 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #61 [Debug] runWithTimeoutAsync / timeout: 10000
+00:00:12 #62 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 &lt;null&gt;
 </pre>
 </div>
@@ -8314,33 +8313,33 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:12 #65 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:12 #66 [Debug] executeAsync / options: { Command =
+<pre>00:00:12 #63 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:12 #64 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:12 #67 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:12 #68 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:12 #69 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
-00:00:12 #70 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:12 #65 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:12 #66 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:12 #67 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:12 #68 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:12 #69 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:12 #70 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:12 #71 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:12 #72 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:12 #73 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:12 #74 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:12 #75 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:12 #75 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:12 #76 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:12 #77 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:12 #78 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:12 #79 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:12 #77 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:12 #80 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
 00:00:12 #81 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
 00:00:12 #82 [Verbose] &gt; Server bound to: http://localhost:13805
 00:00:12 #83 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:12 #84 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #85 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    0i32\n\ninl a = 1\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///tmp/!dotnet-repl/20240310-2254-5792-9209-93e4fbc9b7ef/main.spi"}} / result.Length:
-00:00:13 #86 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2254-5792-9209-93e4fbc9b7ef/main.spi"}} / result.Length:
-00:00:13 #87 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2254-5792-9209-93e4fbc9b7ef/main.spi
+00:00:12 #85 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    0i32\n\ninl a = 1\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-0452-5255-51c54714ab8d/main.spi"}} / result.Length:
+00:00:12 #86 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-0452-5255-51c54714ab8d/main.spi"}} / result.Length:
+00:00:13 #87 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-0452-5255-51c54714ab8d/main.spi
 00:00:13 #88 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
 Global inl/let statements should all return functions known at parse time., ParserErrors
   { errors =
@@ -8349,7 +8348,7 @@ Global inl/let statements should all return functions known at parse time., Pars
                         line = 3 }),
        "Global inl/let statements should all return functions known at parse time.")]
     uri =
-     "file:///tmp/!dotnet-repl/20240310-2254-5792-9209-93e4fbc9b7ef/main.spi" })] / typeErrorCount: 0
+     "file:///tmp/!dotnet-repl/20240311-0511-0452-5255-51c54714ab8d/main.spi" })] / typeErrorCount: 0
 00:00:13 #89 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
@@ -8394,46 +8393,46 @@ Global inl/let statements should all return functions known at parse time. ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:13 #92 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:13 #93 [Debug] executeAsync / options: { Command =
+<pre>00:00:13 #90 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:13 #91 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:13 #94 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:13 #95 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:13 #92 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:13 #93 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:13 #94 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:13 #95 [Verbose] waitForPortAccess / port: 13805 / retry: 0
 00:00:13 #96 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:13 #97 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:13 #97 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:13 #98 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:13 #99 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:13 #100 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:13 #101 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:13 #102 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:13 #102 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:13 #103 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:13 #104 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:13 #105 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:13 #106 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:13 #107 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:13 #108 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:13 #109 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:13 #104 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:13 #106 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:13 #107 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:13 #108 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:13 #109 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:13 #110 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #111 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #112 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///tmp/!dotnet-repl/20240310-2254-5890-9001-9a5ff793058a/main.spi"}} / result.Length:
-00:00:14 #113 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2254-5890-9001-9a5ff793058a/main.spi"}} / result.Length:
-00:00:14 #114 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2254-5890-9001-9a5ff793058a/main.spi
-00:00:14 #116 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:15 #117 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(An attempt to divide by zero has been detected at compile time., TracedError
+00:00:13 #111 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-0551-5131-58a316f3a937/main.spi"}} / result.Length:
+00:00:13 #112 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-0551-5131-58a316f3a937/main.spi"}} / result.Length:
+00:00:14 #113 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-0551-5131-58a316f3a937/main.spi
+00:00:14 #115 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:15 #116 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(An attempt to divide by zero has been detected at compile time., TracedError
   { message = "An attempt to divide by zero has been detected at compile time."
     trace =
-     ["Error trace on line: 1, column: 10 in module: /tmp/!dotnet-repl/20240310-2254-5890-9001-9a5ff793058a/main.spi.
+     ["Error trace on line: 1, column: 10 in module: /tmp/!dotnet-repl/20240311-0511-0551-5131-58a316f3a937/main.spi.
 inl main () =
          ^
 ";
-      "Error trace on line: 2, column: 5 in module: /tmp/!dotnet-repl/20240310-2254-5890-9001-9a5ff793058a/main.spi.
+      "Error trace on line: 2, column: 5 in module: /tmp/!dotnet-repl/20240311-0511-0551-5131-58a316f3a937/main.spi.
     1i32 / 0i32
     ^
 "] })] / typeErrorCount: 0
-00:00:15 #118 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:15 #117 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ An attempt to divide by zero has been detected at compile time. ]
@@ -8481,36 +8480,36 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15 #119 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:15 #120 [Debug] executeAsync / options: { Command =
+<pre>00:00:15 #118 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:15 #119 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:15 #122 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:15 #123 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:15 #124 [Verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:15 #125 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:15 #120 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:15 #121 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:15 #122 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:15 #123 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:15 #124 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:15 #125 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:15 #126 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:15 #127 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:15 #128 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:15 #129 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:15 #130 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:15 #130 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:15 #131 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:15 #132 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:15 #133 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:15 #134 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:15 #135 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:15 #136 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:15 #137 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:15 #138 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:15 #139 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:15 #140 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0075-7502-7d972ed22225/main.spi"}} / result.Length:
-00:00:15 #141 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0075-7502-7d972ed22225/main.spi"}} / result.Length:
-00:00:16 #142 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-0075-7502-7d972ed22225/main.spi
-00:00:16 #144 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:16 #145 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
-00:00:16 #146 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
+00:00:15 #132 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:15 #133 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:15 #134 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:15 #135 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:15 #136 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:15 #137 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:15 #138 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-0737-3738-3aa80585c1f9/main.spi"}} / result.Length:
+00:00:15 #140 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-0737-3738-3aa80585c1f9/main.spi"}} / result.Length:
+00:00:16 #141 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-0737-3738-3aa80585c1f9/main.spi
+00:00:16 #142 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:16 #144 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
+00:00:16 #145 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
 Constraint satisfaction error.
 Got: string
 Fails to satisfy: number, TypeErrors
@@ -8522,8 +8521,8 @@ Fails to satisfy: number, TypeErrors
 Got: string
 Fails to satisfy: number")]
     uri =
-     "file:///tmp/!dotnet-repl/20240310-2255-0075-7502-7d972ed22225/main.spi" })] / typeErrorCount: 1
-00:00:16 #147 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+     "file:///tmp/!dotnet-repl/20240311-0511-0737-3738-3aa80585c1f9/main.spi" })] / typeErrorCount: 1
+00:00:16 #146 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8573,35 +8572,35 @@ Fails to satisfy: number ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:17 #148 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:17 #149 [Debug] executeAsync / options: { Command =
+<pre>00:00:16 #147 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:16 #148 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:17 #150 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:17 #151 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:17 #152 [Verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:17 #153 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:17 #149 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:17 #150 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:17 #151 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:17 #152 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:17 #153 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:17 #154 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:17 #155 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:17 #156 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:17 #157 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:17 #158 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:17 #159 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:17 #160 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:17 #161 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:17 #162 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:17 #163 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:17 #164 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:17 #165 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:17 #166 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:17 #167 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:17 #168 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:17 #169 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0249-4958-458fa7f4f1eb/main.spi"}} / result.Length:
-00:00:17 #170 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0249-4958-458fa7f4f1eb/main.spi"}} / result.Length:
-00:00:17 #171 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-0249-4958-458fa7f4f1eb/main.spi
-00:00:18 #173 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
-00:00:18 #174 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
+00:00:17 #161 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:17 #162 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:17 #163 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:17 #164 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:17 #165 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:17 #166 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:17 #167 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-0903-0315-0fb3a17a613b/main.spi"}} / result.Length:
+00:00:17 #168 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-0903-0315-0fb3a17a613b/main.spi"}} / result.Length:
+00:00:17 #169 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-0903-0315-0fb3a17a613b/main.spi
+00:00:18 #171 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
+00:00:18 #172 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
 Unbound variable: x.
 Unbound variable: y., TypeErrors
   { errors =
@@ -8612,8 +8611,8 @@ Unbound variable: y., TypeErrors
           line = 1 }, { character = 9
                         line = 1 }), "Unbound variable: y.")]
     uri =
-     "file:///tmp/!dotnet-repl/20240310-2255-0249-4958-458fa7f4f1eb/main.spi" })] / typeErrorCount: 1
-00:00:18 #175 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+     "file:///tmp/!dotnet-repl/20240311-0511-0903-0315-0fb3a17a613b/main.spi" })] / typeErrorCount: 1
+00:00:18 #173 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8663,41 +8662,41 @@ Unbound variable: y. ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:18 #176 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:18 #177 [Debug] executeAsync / options: { Command =
+<pre>00:00:18 #174 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:18 #175 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:18 #178 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:18 #180 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
-00:00:18 #179 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:18 #181 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:18 #176 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:18 #177 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:18 #178 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:18 #179 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:18 #180 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:18 #181 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:18 #182 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:18 #183 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:18 #184 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:18 #185 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:18 #186 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:18 #187 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:18 #188 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:18 #187 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:18 #188 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:18 #189 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:18 #190 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:19 #191 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:19 #192 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:19 #193 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:19 #194 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:19 #195 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:19 #196 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"union a =\n    | B\n    | c\n\ninl main () =\n    ()\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0405-0576-08b124f6508f/main.spi"}} / result.Length:
-00:00:19 #197 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0405-0576-08b124f6508f/main.spi"}} / result.Length:
-00:00:19 #198 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-0405-0576-08b124f6508f/main.spi
-00:00:19 #200 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
+00:00:18 #190 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:18 #191 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:18 #192 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:18 #193 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:18 #194 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:18 #195 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"union a =\n    | B\n    | c\n\ninl main () =\n    ()\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-1060-6084-6aa2edadbb02/main.spi"}} / result.Length:
+00:00:19 #196 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-1060-6084-6aa2edadbb02/main.spi"}} / result.Length:
+00:00:19 #197 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-1060-6084-6aa2edadbb02/main.spi
+00:00:19 #198 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
 Expected: uppercase variable, ParserErrors
   { errors = [(({ character = 6
                   line = 2 }, { character = 7
                                 line = 2 }), "Expected: uppercase variable")]
     uri =
-     "file:///tmp/!dotnet-repl/20240310-2255-0405-0576-08b124f6508f/main.spi" })] / typeErrorCount: 0
-00:00:19 #201 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+     "file:///tmp/!dotnet-repl/20240311-0511-1060-6084-6aa2edadbb02/main.spi" })] / typeErrorCount: 0
+00:00:19 #199 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8744,17 +8743,18 @@ Expected: uppercase variable ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:19 #202 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:19 #203 [Debug] executeAsync / options: { Command =
+<pre>00:00:19 #200 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:19 #201 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:19 #204 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:19 #205 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:19 #206 [Verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:19 #207 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
-00:00:19 #208 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:19 #202 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:19 #203 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:19 #204 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:19 #205 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:19 #206 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:19 #207 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:19 #209 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:19 #210 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:19 #211 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8763,20 +8763,20 @@ Expected: uppercase variable ]
 00:00:19 #214 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:19 #215 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:19 #216 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:20 #217 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:20 #218 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:20 #219 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:19 #217 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:19 #218 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:19 #219 [Verbose] &gt; Server bound to: http://localhost:13805
 00:00:20 #220 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:20 #221 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:20 #222 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\n/// abc\ninl main () =\n    ()\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0506-0611-0d812d159b01/main.spi"}} / result.Length:
-00:00:20 #223 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0506-0611-0d812d159b01/main.spi"}} / result.Length:
+00:00:20 #222 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\n/// abc\ninl main () =\n    ()\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-1161-6137-6ed78cf5ffa5/main.spi"}} / result.Length:
+00:00:20 #223 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-1161-6137-6ed78cf5ffa5/main.spi"}} / result.Length:
 00:00:20 #224 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(main.spi:
 Expected: whitespace, TokenizerErrors
   { errors = [(({ character = 2
                   line = 1 }, { character = 3
                                 line = 1 }), "Expected: whitespace")]
     uri =
-     "file:///tmp/!dotnet-repl/20240310-2255-0506-0611-0d812d159b01/main.spi" })] / typeErrorCount: 0
+     "file:///tmp/!dotnet-repl/20240311-0511-1161-6137-6ed78cf5ffa5/main.spi" })] / typeErrorCount: 0
 00:00:20 #225 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
@@ -8827,46 +8827,46 @@ Expected: whitespace ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:20 #227 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:20 #228 [Debug] executeAsync / options: { Command =
+<pre>00:00:20 #226 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:20 #227 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:20 #229 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:20 #228 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:20 #229 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
 00:00:20 #230 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #231 [Verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:20 #232 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:20 #232 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #233 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #234 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #235 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #236 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #237 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:20 #238 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:20 #239 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:20 #238 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:20 #239 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #240 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:20 #241 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:20 #242 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
 00:00:20 #243 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
 00:00:20 #244 [Verbose] &gt; Server bound to: http://localhost:13805
 00:00:20 #245 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:20 #246 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:20 #247 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox ()\n    ()\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0589-8982-8255c6b1928a/main.spi"}} / result.Length:
-00:00:21 #248 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0589-8982-8255c6b1928a/main.spi"}} / result.Length:
-00:00:21 #249 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-0589-8982-8255c6b1928a/main.spi
+00:00:20 #247 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox ()\n    ()\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-1246-4679-4d27c45ddb72/main.spi"}} / result.Length:
+00:00:20 #248 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-1246-4679-4d27c45ddb72/main.spi"}} / result.Length:
+00:00:21 #249 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-1246-4679-4d27c45ddb72/main.spi
 00:00:21 #251 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:22 #252 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(Cannot apply a forall with a term., TracedError
   { message = "Cannot apply a forall with a term."
     trace =
-     ["Error trace on line: 2, column: 10 in module: /tmp/!dotnet-repl/20240310-2255-0589-8982-8255c6b1928a/main.spi.
+     ["Error trace on line: 2, column: 10 in module: /tmp/!dotnet-repl/20240311-0511-1246-4679-4d27c45ddb72/main.spi.
 inl main () =
          ^
 ";
-      "Error trace on line: 4, column: 9 in module: /tmp/!dotnet-repl/20240310-2255-0589-8982-8255c6b1928a/main.spi.
+      "Error trace on line: 4, column: 9 in module: /tmp/!dotnet-repl/20240311-0511-1246-4679-4d27c45ddb72/main.spi.
         inl real_unbox forall a. (obj : a) : a =
         ^
 ";
-      "Error trace on line: 7, column: 9 in module: /tmp/!dotnet-repl/20240310-2255-0589-8982-8255c6b1928a/main.spi.
+      "Error trace on line: 7, column: 9 in module: /tmp/!dotnet-repl/20240311-0511-1246-4679-4d27c45ddb72/main.spi.
         real_unbox ()
         ^
 "] })] / typeErrorCount: 0
@@ -8918,37 +8918,37 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:22 #255 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:22 #256 [Debug] executeAsync / options: { Command =
+<pre>00:00:22 #254 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:22 #255 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:buildCode@3-1005&gt; }
-00:00:22 #257 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:22 #258 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:22 #259 [Verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:22 #260 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:22 #256 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:22 #257 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:22 #258 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:22 #259 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:22 #260 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #261 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #262 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #263 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #264 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #265 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:22 #266 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:22 #267 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:22 #266 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:22 #267 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #268 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:22 #269 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:22 #270 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
 00:00:22 #271 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
 00:00:22 #272 [Verbose] &gt; Server bound to: http://localhost:13805
 00:00:22 #273 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:22 #274 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:22 #275 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox \u0060i32 1\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0782-8244-8c2cb440db7c/main.spi"}} / result.Length:
-00:00:22 #276 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0782-8244-8c2cb440db7c/main.spi"}} / result.Length:
-00:00:23 #277 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-0782-8244-8c2cb440db7c/main.spi
+00:00:22 #275 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox \u0060i32 1\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-1440-4011-4d4b2b195750/main.spi"}} / result.Length:
+00:00:22 #276 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-1440-4011-4d4b2b195750/main.spi"}} / result.Length:
+00:00:23 #277 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-1440-4011-4d4b2b195750/main.spi
 00:00:23 #279 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:24 #280 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(The main function should not have a forall., TracedError { message = "The main function should not have a forall."
+00:00:23 #280 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [(The main function should not have a forall., TracedError { message = "The main function should not have a forall."
               trace = [] })] / typeErrorCount: 0
-00:00:24 #281 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:23 #281 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ The main function should not have a forall. ]
@@ -9014,24 +9014,24 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 00:00:24 #285 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #286 [Verbose] waitForPortAccess / port: 13805 / retry: 0
 00:00:24 #287 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:24 #288 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #289 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #290 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #291 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #292 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #293 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:24 #294 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:24 #295 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:24 #294 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:24 #295 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:24 #296 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:24 #297 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:24 #298 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:24 #299 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:24 #300 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:24 #297 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:24 #298 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:24 #299 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:24 #300 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:24 #301 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:24 #302 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:24 #303 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.1 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-0958-5815-5537750a2dd9/main.spi"}} / result.Length:
-00:00:24 #304 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-0958-5815-5537750a2dd9/main.spi"}} / result.Length:
-00:00:24 #305 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-0958-5815-5537750a2dd9/main.spi
-00:00:25 #307 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:24 #302 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.1 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-1617-1759-186cebdf5957/main.spi"}} / result.Length:
+00:00:24 #303 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-1617-1759-186cebdf5957/main.spi"}} / result.Length:
+00:00:24 #305 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-1617-1759-186cebdf5957/main.spi
+00:00:25 #306 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:25 #308 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.3325000000000001
  / errors: [] / typeErrorCount: 0
 00:00:25 #309 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
@@ -9126,8 +9126,8 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:26 #310 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:26 #311 [Debug] executeAsync / options: { Command =
+<pre>00:00:25 #310 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:25 #311 [Debug] executeAsync / options: { Command =
    "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
@@ -9145,18 +9145,18 @@ table th {
 00:00:26 #322 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
 00:00:26 #323 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:26 #324 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:26 #326 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:26 #327 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:26 #328 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:26 #325 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:26 #326 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:26 #327 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:26 #328 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:26 #329 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:26 #330 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:26 #331 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.01 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///tmp/!dotnet-repl/20240310-2255-1145-4592-45390b466a1c/main.spi"}} / result.Length:
-00:00:26 #332 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240310-2255-1145-4592-45390b466a1c/main.spi"}} / result.Length:
-00:00:26 #333 [Verbose] &gt; Building /tmp/!dotnet-repl/20240310-2255-1145-4592-45390b466a1c/main.spi
-00:00:27 #335 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:27 #336 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.33332500000000004
+00:00:26 #330 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.01 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///tmp/!dotnet-repl/20240311-0511-1805-0557-072d8ee20e2b/main.spi"}} / result.Length:
+00:00:26 #331 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///tmp/!dotnet-repl/20240311-0511-1805-0557-072d8ee20e2b/main.spi"}} / result.Length:
+00:00:26 #332 [Verbose] &gt; Building /tmp/!dotnet-repl/20240311-0511-1805-0557-072d8ee20e2b/main.spi
+00:00:27 #334 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:27 #335 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.33332500000000004
  / errors: [] / typeErrorCount: 0
-00:00:27 #337 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:27 #336 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 </pre>
 </div>
 </div>
@@ -9283,23 +9283,23 @@ table th {
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = Some &lt;fun:it@4-434&gt; }
-00:00:32 #345 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
-00:00:32 #346 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
-00:00:32 #347 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:32 #348 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:32 #344 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral
+00:00:32 #345 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:32 #346 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:32 #347 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:32 #348 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:32 #349 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:32 #350 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:32 #351 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:32 #352 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:32 #353 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:32 #354 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:32 #353 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:32 #354 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:32 #355 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:32 #356 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:32 #357 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
 00:00:32 #358 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
 00:00:32 #359 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:32 #360 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///tmp/!dotnet-repl/20240310-2255-1781-8113-8f717e3a5a6b/main.spi"}} / result.Length:
-00:00:33 #361 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///tmp/!dotnet-repl/20240310-2255-1781-8113-8f717e3a5a6b/main.spi"}} / result.Length: Some(177)
+00:00:32 #360 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///tmp/!dotnet-repl/20240311-0511-2451-5113-57c3869a50fb/main.spi"}} / result.Length:
+00:00:33 #361 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///tmp/!dotnet-repl/20240311-0511-2451-5113-57c3869a50fb/main.spi"}} / result.Length: Some(177)
 FSharpOption&lt;Int32[]&gt;
       Value: [ 0, 0, 3, 7, 0, 0, 4, 4, 0, 0, 0, 5, 1, 8, 0, 0, 1, 1, 8, 0, 0, 2, 1, 4, 0, 0, 2, 1, 8, 0, 0, 1, 1, 8, 0 ]
 </pre>
@@ -9356,8 +9356,8 @@ FSharpOption&lt;Int32[]&gt;
 00:00:35 #378 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
 00:00:35 #379 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
 00:00:35 #380 [Verbose] &gt; Server bound to: http://localhost:13805
-00:00:35 #381 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///tmp/!dotnet-repl/20240310-2255-2038-3810-3721b01ffd8e/main.spi"}} / result.Length:
-00:00:35 #383 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///tmp/!dotnet-repl/20240310-2255-2038-3810-3721b01ffd8e/main.spi"}} / result.Length: Some(178)
+00:00:35 #381 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///tmp/!dotnet-repl/20240311-0511-2706-0672-005b06a6a959/main.spi"}} / result.Length:
+00:00:35 #382 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///tmp/!dotnet-repl/20240311-0511-2706-0672-005b06a6a959/main.spi"}} / result.Length: Some(178)
 FSharpOption&lt;Int32[]&gt;
       Value: [ 0, 0, 3, 7, 0, 0, 4, 4, 0, 0, 0, 5, 1, 8, 0, 0, 1, 1, 8, 0, 0, 2, 1, 4, 0, 0, 2, 1, 3, 0, 0, 1, 3, 12, 0 ]
 </pre>
