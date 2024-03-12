@@ -306,6 +306,7 @@ inl use_requests forall t u.
                         fun () =>
                             url
                             |> networking.new_request_get
+                            |> networking.request_send
                             |> async.await
                             |> resultm.map_error' sm'.format'
                             |> resultm.try'
