@@ -1,9 +1,9 @@
-version 8.0
-framework: net8.0
+version 9.0
+framework: net9.0
 storage: none
 source https://api.nuget.org/v3/index.json
 
-nuget Argu ~> 6.1.0
+nuget Argu = 6.1.4
 nuget Expecto ~> 10.1.0
 nuget Expecto.FsCheck ~> 10.1.0-fscheck3 prerelease
 nuget Fable.Core ~> 4.3.0

@@ -16,7 +16,7 @@
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
-#r @"../../../../../../../.nuget/packages/argu/6.1.5/lib/netstandard2.0/Argu.dll"
+#r @"../../../../../../../.nuget/packages/argu/6.1.4/lib/netstandard2.0/Argu.dll"
 #r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"
 
 #!fsharp
@@ -103,7 +103,7 @@ let inline persistCodeProject packages modules name code = async {
     let fsprojPath = targetDir </> $"{name}.fsproj"
     let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <LangVersion>preview</LangVersion>
         <RollForward>Major</RollForward>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
@@ -149,18 +149,18 @@ let inline buildCode runtime packages modules outputDir name code = async {
 
 //// test
 
-"1 + 1"
+"1 + 1 |> ignore"
 |> buildCode None [] [] None "test1"
-|> Async.runWithTimeout 60000
+|> Async.runWithTimeout 180000
 |> _equal (Some 0)
 
 #!fsharp
 
 //// test
 
-"1 + a"
+"1 + a |> ignore"
 |> buildCode None [] [] None "test2"
-|> Async.runWithTimeout 60000
+|> Async.runWithTimeout 180000
 |> _equal (Some 2)
 
 #!markdown

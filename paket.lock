@@ -1,8 +1,8 @@
 STORAGE: NONE
-RESTRICTION: == net8.0
+RESTRICTION: == net9.0
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Argu (6.1.5)
+    Argu (6.1.4)
       FSharp.Core (>= 4.3.2)
       System.Configuration.ConfigurationManager (>= 4.4)
     Expecto (10.1)
@@ -16,12 +16,12 @@ NUGET
       FSharp.Core (>= 4.5.2)
     FParsec (2.0.0-beta2)
       FSharp.Core (>= 4.3.4)
-    FsCheck (3.0.0-rc2)
+    FsCheck (3.0.0-rc3)
       FSharp.Core (>= 5.0.2)
     FSharp.Control.AsyncSeq (3.2.1)
       FSharp.Core (>= 4.7.2)
       Microsoft.Bcl.AsyncInterfaces (>= 5.0)
-    FSharp.Core (8.0.300-beta.24080.5)
+    FSharp.Core (8.0.300-beta.24154.4)
     FSharp.Json (0.4.1)
       FSharp.Core (>= 4.6.2)
     Microsoft.AspNetCore.Connections.Abstractions (7.0)
@@ -50,14 +50,14 @@ NUGET
     Microsoft.Bcl.AsyncInterfaces (8.0)
     Microsoft.Extensions.DependencyInjection (8.0)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 8.0)
-    Microsoft.Extensions.DependencyInjection.Abstractions (8.0)
+    Microsoft.Extensions.DependencyInjection.Abstractions (8.0.1)
     Microsoft.Extensions.Features (7.0)
     Microsoft.Extensions.Logging (8.0)
       Microsoft.Extensions.DependencyInjection (>= 8.0)
       Microsoft.Extensions.Logging.Abstractions (>= 8.0)
       Microsoft.Extensions.Options (>= 8.0)
-    Microsoft.Extensions.Logging.Abstractions (8.0)
-      Microsoft.Extensions.DependencyInjection.Abstractions (>= 8.0)
+    Microsoft.Extensions.Logging.Abstractions (8.0.1)
+      Microsoft.Extensions.DependencyInjection.Abstractions (>= 8.0.1)
     Microsoft.Extensions.Options (8.0.2)
       Microsoft.Extensions.DependencyInjection.Abstractions (>= 8.0)
       Microsoft.Extensions.Primitives (>= 8.0)
