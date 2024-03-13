@@ -8,9 +8,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
 git clone --recurse-submodules https://github.com/i574n/Paket.git
-Set-Location Paket
-git pull
-Set-Location $ScriptDir
+{ git pull } | Invoke-Block -Location $projectPath -Location Paket
 
 $path = "$HOME/.nuget/packages/paket"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
@@ -19,6 +17,8 @@ $toolVersionPath = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 Write-Output "Tool path: $toolVersionPath"
 
 $projectPath = "../deps/Paket/src/Paket"
+
+{ dotnet paket restore } | Invoke-Block -Location $projectPath
 
 { dotnet build -c Release "$projectPath/Paket.fsproj" } | Invoke-Block
 
