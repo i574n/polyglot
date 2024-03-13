@@ -6,7 +6,6 @@ pub mod Polyglot {
         use fable_library_rust::NativeArray_::new_empty;
         use fable_library_rust::NativeArray_::Array;
         use fable_library_rust::Native_::compare;
-        use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
@@ -31,7 +30,7 @@ pub mod Polyglot {
                 if length_1(value.clone()) <= max {
                     value.clone()
                 } else {
-                    sprintf!("{}...", &substring2(value, 0_i32, max))
+                    sprintf!("{}...", substring2(value, 0_i32, max))
                 }
             }
         }
@@ -129,8 +128,8 @@ pub mod Polyglot {
                 Polyglot::Common::traceCount()
                     .set(Polyglot::Common::traceCount().get().clone() + 1_i32);
                 {
-                    let text: string = sprintf!("{}", &r#fn());
-                    println!("{0}", text,)
+                    let text: string = sprintf!("{}", r#fn());
+                    println!("{}", text)
                 }
             };
         }
@@ -152,11 +151,11 @@ pub mod Polyglot {
                         trimStartChars(
                             sprintf!(
                                 "{} #{} [{:?}] {} / {}",
-                                &string(""),
-                                &Polyglot::Common::traceCount().get().clone(),
-                                &level,
-                                &r#fn(),
-                                &getLocals()
+                                string(""),
+                                Polyglot::Common::traceCount().get().clone(),
+                                level.clone(),
+                                r#fn(),
+                                getLocals()
                             ),
                             new_empty::<char>(),
                         ),

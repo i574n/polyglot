@@ -133,8 +133,12 @@ module Common =
             traceCount <- traceCount + 1
 
             let text = $"%s{fn ()}"
-
+#if FABLE_COMPILER_RUST
+            Fable.Core.RustInterop.emitRustExpr () @"println!(""{}"", text)"
+#else
             System.Console.WriteLine text
+#endif
+
 #if !WASM && !FABLE_COMPILER
             if traceDump then
                 try
