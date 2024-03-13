@@ -2,12 +2,29 @@ open rust_operators
 
 nominal reqwest_response = $"reqwest_Response"
 nominal reqwest_error = $"reqwest_Error"
+nominal request_builder = $"reqwest_RequestBuilder"
 
-inl new_request_get (url : string) : async.future_pin (resultm.result' reqwest_response reqwest_error) =
+inl new_request_get (url : string) : request_builder =
     inl url = join url
     inl url = url |> sm'.to_std_string
     inl url = join url
-    !\($'"Box::pin(reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url).send())"')
+    !\($'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url)"')
+
+inl new_request_post (url : string) : request_builder =
+    inl url = join url
+    inl url = url |> sm'.to_std_string
+    inl url = join url
+    !\($'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.post(!url)"')
+
+inl request_send (request : request_builder) : async.future_pin (resultm.result' reqwest_response reqwest_error) =
+    !\($'"Box::pin(reqwest_wasm::RequestBuilder::send(!request))"')
+
+inl request_body (body : string) (request : request_builder) : request_builder =
+    inl body = body |> sm'.to_std_string
+    !\($'"reqwest_wasm::RequestBuilder::body(!request, !body)"')
+
+inl request_json forall t. (obj : t) (request : request_builder) : request_builder =
+    !\($'"reqwest_wasm::RequestBuilder::json(!request, &!obj)"')
 
 inl response_text (response : reqwest_response) : async.future_pin (resultm.result' rust.std_string reqwest_error) =
     !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')

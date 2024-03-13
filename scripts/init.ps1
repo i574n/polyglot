@@ -45,9 +45,13 @@ pip install -r ../requirements.txt
 
 dotnet tool restore
 
+{ . $ScriptDir/dep_paket.ps1 } | Invoke-Block
+
 { dotnet paket restore } | Invoke-Block
 
 { . $ScriptDir/symlinks.ps1 } | Invoke-Block
+
 { . $ScriptDir/dep_dotnet-interactive.ps1 -fast $($fast ?? '') } | Invoke-Block
 { . $ScriptDir/dep_dotnet-repl.ps1 } | Invoke-Block
+
 Invoke-Dib "$ScriptDir/init.dib"
