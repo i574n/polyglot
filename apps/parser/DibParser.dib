@@ -11,7 +11,7 @@
 #!import ../../lib/fsharp/Notebooks.dib
 #!import ../../lib/fsharp/Testing.dib
 
-#!fsharp
+#!pwsh
 
 ls ~/.nuget/packages/argu
 
