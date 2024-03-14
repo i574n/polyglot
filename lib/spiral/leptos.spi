@@ -361,6 +361,18 @@ inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : 
     inl action = join action
     !\($'"leptos::Action::dispatch(&!action, !value.clone())"')
 
+inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
+    inl action = join action
+    !\($'"leptos::Action::input(&!action)"')
+
+inl action_pending forall t u. (action : action (heap t) u) : read_signal bool =
+    inl action = join action
+    !\($'"leptos::Action::pending(&!action)"')
+
+inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' u) =
+    inl action = join action
+    !\($'"leptos::Action::value(&!action)"')
+
 inl use_context forall t. () : optionm'.option' t =
     !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
 
@@ -711,19 +723,18 @@ inl lists_svg (class : option string) props : _ svg =
 
 
 
-inl loading_svg () : _ svg =
+inl loading_svg (class : option string) : _ svg =
+    inl class = class |> optionm.map sm'.as_str |> optionm'.default_value #""
     svg [
         $'"version=\\\"1.1\\\""'
-        $'"id=\\\"Layer_1\\\""'
         $'"xmlns=\\\"http://www.w3.org/2000/svg\\\""'
         $'"xmlns:xlink=\\\"http://www.w3.org/1999/xlink\\\""'
         $'"x=\\\"0px\\\""'
         $'"y=\\\"0px\\\""'
-        $'"width=\\\"24px\\\""'
-        $'"height=\\\"30px\\\""'
         $'"viewBox=\\\"0 0 24 30\\\""'
         $'"style=\\\"enable-background:new 0 0 50 50;\\\""'
         $'"xml:space=\\\"preserve\\\""'
+        $'"class=\\\" \\\".to_owned() + !class"'
     ] fun () =>
         :>(;[
             rect [
