@@ -16,16 +16,25 @@ $toolVersionPath = Get-LastSortedItem -Path $tools.FullName -Filter "any"
 
 Write-Output "Tool path: $toolVersionPath"
 
-$projectPath = "../deps/Paket/src/Paket"
+$projectPath = "../deps/Paket"
 
 { dotnet paket restore } | Invoke-Block -Location $projectPath
 
-{ dotnet build -c Release "$projectPath/Paket.fsproj" } | Invoke-Block
+if ($IsWindows) {
+    { pwsh -c "./build.cmd MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
 
-$releasePath = "$projectPath/bin/Release"
+    Copy-Item "$projectPath/bin/merged/paket.exe" "$($tools.FullName)/paket.exe" -Recurse -Force
+} else {
+    { pwsh -c "./build.sh MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
+
+    { Get-ChildItem } | Invoke-Block -Location "$projectPath/bin/merged"
+}
+
+$releasePath = "$projectPath/src/Paket/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "paket.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
 Write-Output "paket.dll path: $dllPath"
+
 
 Copy-Item "$releasePath/$dotnetVersion/**" $toolVersionPath -Recurse -Force
