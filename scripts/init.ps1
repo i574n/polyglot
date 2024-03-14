@@ -54,4 +54,4 @@ dotnet tool restore
 { . $ScriptDir/dep_dotnet-interactive.ps1 -fast $($fast ?? '') } | Invoke-Block
 { . $ScriptDir/dep_dotnet-repl.ps1 } | Invoke-Block
 
-Invoke-Dib "$ScriptDir/init.dib"
+Invoke-Dib init.dib
