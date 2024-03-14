@@ -14,12 +14,11 @@ $json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json"
 $vsixName = $json.name + "-" + $json.version + ".vsix"
 $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
-Set-Location $extensionSrcPath
-npm install
 { npm install } | Invoke-Block -Location ../polyglot-notebooks-ui-components
-npm run compile
-npx @vscode/vsce package
-Set-Location $ScriptDir
+
+{ npm install } | Invoke-Block -Location $extensionSrcPath
+{ npm run compile } | Invoke-Block -Location $extensionSrcPath
+{ npx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 
 
 $extensionsPath = @()

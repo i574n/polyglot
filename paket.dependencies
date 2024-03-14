@@ -11,7 +11,7 @@ nuget Falco.Markup ~> 1.0.0
 nuget FParsec ~> 2.0.0 prerelease
 nuget FsCheck ~> 3.0.0 prerelease
 nuget FSharp.Control.AsyncSeq ~> 3.2.0
-nuget FSharp.Core ~> 8.0.0 prerelease
+nuget FSharp.Core == 8.0.300-beta.24080.5
 nuget FSharp.Json ~> 0.4.0
 nuget Microsoft.AspNetCore.Connections.Abstractions == 7.0.0
 nuget Microsoft.AspNetCore.Http.Connections.Common == 7.0.0

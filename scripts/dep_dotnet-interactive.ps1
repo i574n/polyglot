@@ -9,9 +9,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
 git clone --recurse-submodules https://github.com/i574n/interactive.git dotnet-interactive
-Set-Location dotnet-interactive
-git pull
-Set-Location $ScriptDir
+{ git pull } | Invoke-Block -Location dotnet-interactive
 
 $path = "$HOME/.nuget/packages/microsoft.dotnet-interactive"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
