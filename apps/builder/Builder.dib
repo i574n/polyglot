@@ -11,10 +11,6 @@
 #!import ../../lib/fsharp/Notebooks.dib
 #!import ../../lib/fsharp/Testing.dib
 
-#!pwsh
-
-ls ~/.nuget/packages/argu
-
 #!fsharp
 
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
