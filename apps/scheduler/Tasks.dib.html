@@ -7984,10 +7984,10 @@ method0()
 mod module_e32d1f60 {
     pub mod Fs_rs {
         use super::*;
-        use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::string;
         #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq,)]
         pub enum US0 {
@@ -8298,17 +8298,17 @@ mod module_e32d1f60 {
         }
         pub fn method0() {
             let v17: std::string::String =
-                format!("{:#?}", &amp;LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
-                                                                string("01"),
-                                                                Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
-                                                                LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
-                                                                                              string("02"),
-                                                                                              Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
-                                                                                              LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
-                                                                                                                            string("03"),
-                                                                                                                            Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
-                                                                                                                            LrcPtr::new(Fs_rs::UH2::UH2_1))))))));
-            println!("{0}", &amp;v17,);
+                format!("{:#?}", LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
+                                                               string("01"),
+                                                               Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
+                                                               LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
+                                                                                             string("02"),
+                                                                                             Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
+                                                                                             LrcPtr::new(Fs_rs::UH2::UH2_0(LrcPtr::new(Fs_rs::UH0::UH0_1),
+                                                                                                                           string("03"),
+                                                                                                                           Fs_rs::US4::US4_0(Fs_rs::US3::US3_0),
+                                                                                                                           LrcPtr::new(Fs_rs::UH2::UH2_1))))))));
+            printfn!("{0}", v17);
             ()
         }
         on_startup!(Fs_rs::method0());
@@ -8378,14 +8378,13 @@ method0()
 mod module_e32d1f60 {
     pub mod Fs_rs {
         use super::*;
-        use fable_library_rust::Native_::Any;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         pub fn method0() {
             let v1: string =
                 sprintf!("__expect / actual: {:?} / expected: {:?}",
-                         &amp;string("01"), &amp;string("01"));
+                         string("01"), string("01"));
             ()
         }
         on_startup!(Fs_rs::method0());

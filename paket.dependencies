@@ -3,7 +3,7 @@ framework: net9.0
 storage: none
 source https://api.nuget.org/v3/index.json
 
-nuget Argu = 6.1.4
+nuget Argu ~> 6.2.0
 nuget Expecto ~> 10.1.0
 nuget Expecto.FsCheck ~> 10.1.0-fscheck3 prerelease
 nuget Fable.Core ~> 4.3.0

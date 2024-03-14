@@ -22,13 +22,10 @@ $projectPath = "../deps/Paket"
 
 if ($IsWindows) {
     { pwsh -c "./build.cmd MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
-
-    Copy-Item "$projectPath/bin/merged/paket.exe" "$($tools.FullName)/paket.exe" -Recurse -Force
 } else {
     { pwsh -c "./build.sh MergePaketTool SkipDocs" } | Invoke-Block -Location $projectPath
-
-    { Get-ChildItem } | Invoke-Block -Location "$projectPath/bin/merged"
 }
+Copy-Item "$projectPath/bin/merged/paket.exe" "$($tools.FullName)/paket.exe" -Recurse -Force
 
 $releasePath = "$projectPath/src/Paket/bin/Release"
 $dllPath = Get-LastSortedItem -Path $releasePath -Filter "paket.dll"
