@@ -173,7 +173,7 @@ module Common =
                 match replStart () with
                 | Some replStart ->
                     let t = System.DateTime.Now.Ticks - replStart |> System.TimeSpan
-                    System.DateTime (1, 1, 1, t.Hours, t.Minutes, t.Seconds, t.Milliseconds, t.Microseconds)
+                    System.DateTime (1, 1, 1, t.Hours, t.Minutes, t.Seconds, t.Milliseconds)
                 | None -> System.DateTime.Now
                 |> fun dateTime ->
 #if FABLE_COMPILER_RUST
