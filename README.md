@@ -66,11 +66,11 @@
 - Dice Core Code
 <https://i574n.github.io/dice/lib/dice.dib.html>
 
-- Task Recurrency Domain Modeling Sample
-<https://i574n.github.io/polyglot/apps/spiral/Tasks.dib.html>
-
 - Spiral Supervisor Code
 <https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
+
+- Task Recurrency Domain Modeling Sample
+<https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>
 
 - Performance Tests
 <https://i574n.github.io/polyglot/apps/perf/Perf.dib.html>

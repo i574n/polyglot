@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
 git clone --recurse-submodules https://github.com/i574n/Paket.git
-{ git pull } | Invoke-Block -Location $projectPath -Location Paket
+{ git pull } | Invoke-Block -Location Paket
 
 $path = "$HOME/.nuget/packages/paket"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
