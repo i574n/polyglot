@@ -3,7 +3,7 @@ framework: net9.0
 storage: none
 source https://api.nuget.org/v3/index.json
 
-nuget Argu = 6.1.4
+nuget Argu ~> 6.2.0
 nuget Expecto ~> 10.1.0
 nuget Expecto.FsCheck ~> 10.1.0-fscheck3 prerelease
 nuget Fable.Core ~> 4.3.0
@@ -11,7 +11,7 @@ nuget Falco.Markup ~> 1.0.0
 nuget FParsec ~> 2.0.0 prerelease
 nuget FsCheck ~> 3.0.0 prerelease
 nuget FSharp.Control.AsyncSeq ~> 3.2.0
-nuget FSharp.Core ~> 8.0.0 prerelease
+nuget FSharp.Core == 8.0.300-beta.24080.5
 nuget FSharp.Json ~> 0.4.0
 nuget Microsoft.AspNetCore.Connections.Abstractions == 7.0.0
 nuget Microsoft.AspNetCore.Http.Connections.Common == 7.0.0

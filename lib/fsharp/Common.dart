@@ -102,7 +102,7 @@ void trace(TraceLevel level, String Function() fn, String Function() getLocals) 
             tmp_capture = date.now();
         } else {
             final t = time_span.fromTicks(date.getTicks(date.now()) - types.value(matchValue));
-            tmp_capture = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t), time_span.microseconds(t));
+            tmp_capture = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t));
         }
         return string.trimEnd(string.trimStart(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [date.toString(tmp_capture, 'HH:mm:ss'), traceCount, level, fn(), getLocals()])), <int>[]), trimChars_2);
     });

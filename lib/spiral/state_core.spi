@@ -326,7 +326,7 @@ inl use_requests forall t u.
                     |> am'.from_vec
                     |> fun x => x : _ i32 _
                     |> Ok
-                    |> resultm.box // : _ (_ i32 _) rust.std_string
+                    |> resultm.box
                 |> async.future_init 3 1
 
     inl database = use_database ()
@@ -445,7 +445,6 @@ inl use_requests forall t u.
                     |> resultm.map fun x =>
                         x |> am'.map_vec function
                             | Some value => value |> sm'.to_std_string |> Some |> Ok
-                            // | Error error => error |> Error
                             | _ => Ok None
                 |> optionm'.default_value (a ;[] |> Ok)
 
@@ -518,8 +517,6 @@ inl use_requests forall t u.
                         value
                         |> sm'.deserialize
                         |> resultm.map' (Some >> optionm'.box)
-                    // | Error error, _ =>
-                    //     error |> Error |> resultm.box
                     | value =>
                         inl value_log = value |> sm'.format_debug
                         leptos.log $'"state_core.use_request (17) / json Error / value: " + string !value_log + ""'

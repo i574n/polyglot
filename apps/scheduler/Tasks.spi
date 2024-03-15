@@ -1,0 +1,125 @@
+// // ## Tasks (Polyglot)
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
+
+inl emit_expr forall a t. (args : a) (code : string) : t =
+    real
+        $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
+
+
+nominal std_string = $"std_string_String"
+nominal ref' t = $"Ref<`t>"
+nominal str = $"Str"
+
+inl format_debug forall t. (x : t) : std_string =
+    real
+        emit_expr `t `std_string x "format!(\"{:?}\", $0)"
+
+inl format_pretty forall t. (x : t) : std_string =
+    real
+        emit_expr `t `std_string x "format!(\"{:#?}\", $0)"
+
+inl to_std_string (str : ref' str) : std_string =
+    // inl str = join str
+    // // emit_expr () $"\"!str.to_string()\""
+    // // emit_expr () $"\"alloc::string::to_string(!str)\""
+    // emit_expr str "($0).to_string()"
+    emit_expr str $"\"String::from(core::ops::Deref::deref($0))\""
+    // emit_expr str $"\"String::from(*$0)\""
+    // emit_expr () $"\"String::from(!str)\""
+
+inl format forall t. (x : t) : std_string =
+    real
+        inl result : std_string =
+            typecase t with
+            | string => to_std_string x
+            | std_string => x
+            | _ => format_pretty `t x
+        result
+
+inl raw_string_literal (s : string) : ref' str =
+    emit_expr () $"\"r#\\\"\" + !s + \"\\\"#\""
+
+inl (~#) (s : string) : ref' str =
+    raw_string_literal s
+
+nominal task_name = string
+
+union manual_scheduling =
+    | WithSuggestion
+    | WithoutSuggestion
+
+union recurrency_offset =
+    | Days : i32
+    | Weeks : i32
+    | Months : i32
+
+union day_of_week =
+    | Sunday
+    | Monday
+    | Tuesday
+    | Wednesday
+    | Thursday
+    | Friday
+    | Saturday
+
+union month =
+    | January
+    | February
+    | March
+    | April
+    | May
+    | June
+    | July
+    | August
+    | September
+    | October
+    | November
+    | December
+
+nominal day = i32
+nominal year = i32
+
+union fixed_recurrency =
+    | Weekly : day_of_week
+    | Monthly : day
+    | Yearly : day * month
+
+union recurrency =
+    | Offset : recurrency_offset
+    | Fixed : list fixed_recurrency
+
+union scheduling =
+    | Manual : manual_scheduling
+    | Recurrent : recurrency
+
+type task =
+    {
+        name : task_name
+        scheduling : scheduling
+    }
+
+type date =
+    {
+        year : year
+        month : month
+        day : day
+    }
+
+union status =
+    | Postponed : option ()
+
+type event =
+    {
+        date : date
+        status : status
+    }
+
+type task_template =
+    {
+        task : task
+        events : list event
+    }

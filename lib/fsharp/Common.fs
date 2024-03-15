@@ -133,8 +133,12 @@ module Common =
             traceCount <- traceCount + 1
 
             let text = $"%s{fn ()}"
-
+#if FABLE_COMPILER_RUST
+            Fable.Core.RustInterop.emitRustExpr () @"println!(""{}"", text)"
+#else
             System.Console.WriteLine text
+#endif
+
 #if !WASM && !FABLE_COMPILER
             if traceDump then
                 try
@@ -169,7 +173,7 @@ module Common =
                 match replStart () with
                 | Some replStart ->
                     let t = System.DateTime.Now.Ticks - replStart |> System.TimeSpan
-                    System.DateTime (1, 1, 1, t.Hours, t.Minutes, t.Seconds, t.Milliseconds, t.Microseconds)
+                    System.DateTime (1, 1, 1, t.Hours, t.Minutes, t.Seconds, t.Milliseconds)
                 | None -> System.DateTime.Now
                 |> fun dateTime ->
 #if FABLE_COMPILER_RUST

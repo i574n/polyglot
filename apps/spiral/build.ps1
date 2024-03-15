@@ -17,12 +17,6 @@ if (!$fast) {
 
 $targetDir = "../../target/polyglot/builder/Supervisor"
 
-if (!$fast) {
-    { . ./dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 Tasks.dib -Retries 3`"" } | Invoke-Block
-
-    { . ../parser/dist/DibParser$(GetExecutableSuffix) Tasks.dib spi } | Invoke-Block
-}
-
 if ($env:CI) {
     Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
 }

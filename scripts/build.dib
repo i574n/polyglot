@@ -29,6 +29,10 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../apps/scheduler/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
 
 #!pwsh

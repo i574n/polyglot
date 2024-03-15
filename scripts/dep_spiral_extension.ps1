@@ -42,11 +42,9 @@ if ($extensionsPath.Count -gt 0) {
 
     Copy-Item "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler" -Recurse -Force
 
-    Set-Location $extensionSrcPath
-    npm install
-    npx tsc --build
-    npx @vscode/vsce package
-    Set-Location $ScriptDir
+    { npm install } | Invoke-Block -Location $extensionSrcPath
+    { npx tsc --build } | Invoke-Block -Location $extensionSrcPath
+    { npx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 }
 
 foreach ($extensionsPath in $extensionsPath) {

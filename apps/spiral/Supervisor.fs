@@ -144,6 +144,15 @@ module Supervisor =
     let inline getCompilerPort () =
         13805
 
+    /// ## serialize_obj
+
+    let serializeObj obj =
+            obj
+            |> FSharp.Json.Json.serialize
+            |> String.replace "\\\\" "\\"
+            |> String.replace "\\r\\n" "\n"
+            |> String.replace "\\n" "\n"
+
     /// ## buildFile
 
     let inline buildFile timeout port cancellationToken path = async {
@@ -231,7 +240,7 @@ module Supervisor =
                     | _ -> fsxContentResult, errors, typeErrorCount
             )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> String.ellipsis 750} / errors: {errors} / typeErrorCount: {typeErrorCount}") getLocals
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> String.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
                 match fsxContent, errors with
                 | None, [] when typeErrorCount > 2 -> false
                 | None, [] -> true
@@ -254,9 +263,10 @@ module Supervisor =
         return!
             outputChild
             |> Async.map (function
-                | Some (Ok (Some (message, errors, _))) -> message, errors |> List.distinct |> List.rev
+                | Some (Ok (Some (message, errors, _))) ->
+                    message, errors |> List.distinct |> List.rev
                 | Some (Error ex) ->
-                    trace Critical (fun () -> $"buildFile / error: {ex |> printException}") getLocals
+                    trace Critical (fun () -> $"buildFile / error: {ex |> serializeObj}") getLocals
                     None, []
                 | _ -> None, []
             )
@@ -416,7 +426,7 @@ modules:
                     errors
                     |> List.map snd
                     |> List.iter (fun error ->
-                        trace Critical (fun () -> $"main / error: {error}") getLocals
+                        trace Critical (fun () -> $"main / error: {error |> serializeObj}") getLocals
                     )
 
                     match outputCode with

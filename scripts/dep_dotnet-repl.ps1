@@ -8,9 +8,7 @@ $ErrorActionPreference = "Stop"
 
 Set-Location (New-Item -ItemType Directory -Path "../deps" -Force)
 git clone --recurse-submodules https://github.com/i574n/dotnet-repl.git
-Set-Location dotnet-repl
-git pull
-Set-Location $ScriptDir
+{ git pull } | Invoke-Block -Location dotnet-repl
 
 $path = "$HOME/.nuget/packages/dotnet-repl"
 $tools = Get-LastSortedItem -Path $path -Filter "tools"
