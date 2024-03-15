@@ -283,7 +283,7 @@ inl use_database () =
     database
 
 inl use_requests forall t u.
-    (urls : leptos.memo (a i32 string))
+    (requests : leptos.memo (a i32 networking.request))
     (map : u -> t)
     : rust.func0 (a i32 (resultm.result' (optionm'.option' t) rust.std_string))
     =
@@ -291,21 +291,24 @@ inl use_requests forall t u.
 
     inl json
         : leptos.resource
-            (a i32 string)
+            (a i32 networking.request)
             (resultm.result' (a i32 (optionm'.option' string)) rust.std_string)
         =
         leptos.create_local_resource
-            fun () => urls |> leptos.memo_get
-            fun (a urls) =>
-                inl url_log = urls |> sm'.format_debug
-                leptos.log $'"state_core.use_request (2) / json create_local_resource / url: " + string !url_log + ""'
+            fun () => requests |> leptos.memo_get
+            fun (a requests) =>
+                inl requests_log = requests |> sm'.format_debug
+                leptos.log $'"state_core.use_request (2) / json create_local_resource / requests: " + string !requests_log + ""'
                 fun () =>
-                    urls
+                    requests
                     |> am'.to_vec
-                    |> am'.vec_map fun url =>
+                    |> am'.vec_map fun { url request_type } =>
                         fun () =>
-                            url
-                            |> networking.new_request_get
+                            request_type
+                            |> fun request_type =>
+                                match join request_type with
+                                | Get => networking.new_request_get url
+                                | Post => networking.new_request_post url
                             |> networking.request_send
                             |> async.await
                             |> resultm.map_error' sm'.format'
@@ -336,30 +339,30 @@ inl use_requests forall t u.
             leptos.log $'"state_core.use_request (3) / database_memo"'
             database |> leptos.resource_get
 
-    inl get_key url =
-        $'"url[" + !url + "]"'
+    inl get_key ({ url body } : networking.request) =
+        $'"url[" + !url + "](" + $"%A{!body}" + ")"'
 
     inl state_data_resource
         : leptos.resource
-            (optionm'.option' rust.rexie * a i32 string)
+            (optionm'.option' rust.rexie * a i32 networking.request)
             (resultm.result' (rust.vec (optionm'.option' (heap rust.std_string))) rust.std_string)
         =
         leptos.create_resource
             fun () =>
-                database |> leptos.resource_get, urls |> leptos.memo_get
-            fun database, (a urls) =>
+                database |> leptos.resource_get, requests |> leptos.memo_get
+            fun database, (a requests) =>
                 fun () =>
                     inl database_log = database |> sm'.format_debug
-                    inl urls_log = urls |> sm'.format_debug
-                    leptos.log $'"state_core.use_request (4) / state_data_resource create_local_resource / url : " + string !urls_log + " / database: " + string !database_log + ""'
-                    urls
+                    inl requests_log = requests |> sm'.format_debug
+                    leptos.log $'"state_core.use_request (4) / state_data_resource create_local_resource / request : " + string !requests_log + " / database: " + string !database_log + ""'
+                    requests
                     |> am'.to_vec
-                    |> am'.vec_map fun url =>
+                    |> am'.vec_map fun request =>
                         fun () =>
                             match database |> optionm'.unbox with
                             | Some database =>
                                 database
-                                |> get_data (get_key url)
+                                |> get_data (get_key request)
                                 |> async.await
                                 |> resultm.unbox
                                 |> fun x =>
@@ -401,23 +404,23 @@ inl use_requests forall t u.
                 database_memo
                 |> leptos.signal_get_untracked
                 |> optionm'.unbox
-            inl (a urls) = urls |> leptos.signal_get_untracked
-            urls
+            inl (a requests) = requests |> leptos.signal_get_untracked
+            requests
             |> am'.to_vec
-            |> am'.vec_map fun url =>
+            |> am'.vec_map fun ({ url } as request) =>
                 fun () =>
                     match database with
                     | Some database =>
                         leptos.log $'"state_core.use_request (9) / set_state_data_action / database=Some(_) / url: " + !url + ""'
                         database
-                        |> set_data (get_key url) value
+                        |> set_data (get_key request) value
                         |> async.await
                         |> resultm.map_error' sm'.format'
                         |> resultm.try'
                         |> Ok
                         |> fun x => x : _ _ rust.std_string
                     | _ =>
-                        leptos.log $'"state_core.use_request (10) / set_state_data_action / database,url=None"'
+                        leptos.log $'"state_core.use_request (10) / set_state_data_action / database,request=None"'
                         Ok ()
                     |> resultm.box
                 |> async.future_init 3 1
@@ -469,9 +472,9 @@ inl use_requests forall t u.
 
     inl result_func : rust.func0 (a i32 (resultm.result' (optionm'.option' u) rust.std_string)) =
         rust.move fun () =>
-            inl urls = urls |> leptos.memo_get
-            inl urls_log = urls |> sm'.format_debug
-            leptos.log $'"state_core.use_request (14) / result memo / urls: " + string !urls_log + ""'
+            inl requests = requests |> leptos.memo_get
+            inl requests_log = requests |> sm'.format_debug
+            leptos.log $'"state_core.use_request (14) / result memo / requests: " + string !requests_log + ""'
 
             inl json =
                 json
@@ -490,9 +493,10 @@ inl use_requests forall t u.
 
             match json |> resultm.unbox with
             | Ok json =>
-                urls
-                |> am'.mapi_vec fun i url =>
-                    leptos.log $'"state_core.use_request (15) / result memo / url: " + string !url + ""'
+                requests
+                |> am'.mapi_vec fun i request =>
+                    inl request_log = request |> sm'.format_debug |> sm'.ellipsis 200i32
+                    leptos.log $'"state_core.use_request (15) / result memo / request: " + string !request_log + ""'
 
                     inl state_data =
                         state_data
