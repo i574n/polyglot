@@ -4,6 +4,17 @@ nominal reqwest_response = $"reqwest_Response"
 nominal reqwest_error = $"reqwest_Error"
 nominal request_builder = $"reqwest_RequestBuilder"
 
+union request_type =
+    | Get
+    | Post
+
+type request =
+    {
+        url : string
+        request_type : request_type
+        body : string
+    }
+
 inl new_request_get (url : string) : request_builder =
     inl url = join url
     inl url = url |> sm'.to_std_string
@@ -17,6 +28,7 @@ inl new_request_post (url : string) : request_builder =
     !\($'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.post(!url)"')
 
 inl request_send (request : request_builder) : async.future_pin (resultm.result' reqwest_response reqwest_error) =
+    inl request = join request
     !\($'"Box::pin(reqwest_wasm::RequestBuilder::send(!request))"')
 
 inl request_body (body : string) (request : request_builder) : request_builder =
