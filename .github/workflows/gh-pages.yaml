@@ -37,7 +37,7 @@ jobs:
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-2024-02-26-${{ hashFiles('**/paket.lock') }}
-          restore-keys: ${{ runner.os }}-nuget-2024-02-26-
+          restore-keys: ${{ runner.os }}-nuget-2024-03-15-
 
       - uses: actions/cache@v3
         with:
@@ -48,7 +48,7 @@ jobs:
                 ~/.cargo/git/db/
                 target/
             key: ${{ runner.os }}-cargo-2024-03-02-${{ hashFiles('**/Cargo.lock') }}
-            restore-keys: ${{ runner.os }}-cargo-2024-03-02-
+            restore-keys: ${{ runner.os }}-cargo-2024-03-15-
 
       - run: pwsh scripts/init.ps1
 
