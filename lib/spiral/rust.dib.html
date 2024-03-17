@@ -7860,6 +7860,10 @@ a.anchor-link {
     <span class="n">inl</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">join</span> <span class="n">ref</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"*!ref"'</span><span class="p">)</span>
 
+<span class="n">inl</span> <span class="n">ops_deref</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">ref</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">join</span> <span class="n">ref</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"core::ops::Deref::deref(&amp;!ref)"'</span><span class="p">)</span>
+
 <span class="n">inl</span> <span class="n">func0_get</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">func0</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x()"'</span><span class="p">)</span>
@@ -7884,7 +7888,7 @@ a.anchor-link {
 <span class="n">inl</span> <span class="n">duration_from_millis</span> <span class="p">(</span><span class="n">ms</span> <span class="p">:</span> <span class="n">u64</span><span class="p">)</span> <span class="p">:</span> <span class="n">duration</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">join</span> <span class="n">ms</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::time::Duration::from_millis(!ms)"'</span><span class="p">)</span>
-    
+
 <span class="n">inl</span> <span class="n">sleep</span> <span class="p">(</span><span class="n">duration</span> <span class="p">:</span> <span class="n">duration</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">duration</span> <span class="o">=</span> <span class="n">join</span> <span class="n">duration</span>
     <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"std::thread::sleep(!duration)"'</span><span class="p">)</span>
