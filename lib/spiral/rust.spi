@@ -200,6 +200,10 @@ inl deref forall t. (ref : ref' t) : t =
     inl ref = join ref
     !\($'"*!ref"')
 
+inl ops_deref forall t. (ref : t) : t =
+    inl ref = join ref
+    !\($'"core::ops::Deref::deref(&!ref)"')
+
 inl func0_get forall t. (x : func0 t) : t =
     inl x = join x
     !\($'"!x()"')
@@ -224,7 +228,7 @@ inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
 inl duration_from_millis (ms : u64) : duration =
     inl ms = join ms
     !\($'"std::time::Duration::from_millis(!ms)"')
-    
+
 inl sleep (duration : duration) : () =
     inl duration = join duration
     !\($'"std::thread::sleep(!duration)"')
