@@ -9,10 +9,12 @@
 #!spiral
 
 inl __expect fn log b a =
+    inl result = fn a b
+    inl result = join result
     if log
     then $"$\"__expect / actual: %A{!a} / expected: %A{!b}\""
     else "__expect"
-    |> assert (fn a b)
+    |> assert result
 
 inl __almost_equal log b a = __expect (fun a b => abs (b - a) < 0.00000001) log b a
 inl _almost_equal b a = __almost_equal true b a
