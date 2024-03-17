@@ -1,10 +1,10 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"fsharp","items":[]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
 
 #!markdown
 
-# am
+# am'
 
 #!spiral
 
@@ -17,6 +17,19 @@ prototype append t : t -> t -> t
 #!spiral
 
 open rust_operators
+
+#!spiral
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>] type Slice<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>] type Slice'<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
+
+#!spiral
+
+nominal slice t = $"Slice<`t>"
+nominal slice' t u = $"Slice'<`t, `u>"
+nominal vec t = $"Vec<`t>"
 
 #!markdown
 
@@ -164,62 +177,23 @@ am.init 10i32 id
 
 #!markdown
 
-## from_vec
+## indexed'
 
 #!spiral
 
-inl from_vec forall dim el. (vec : rust.vec el) : a dim el =
-    inl vec = join vec
-    !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
-
-#!markdown
-
-## to_vec
+inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
+    ((0, a ;[]), ar)
+    ||> am.fold fun (i, acc) x =>
+        i + 1, acc /@ a ;[i, x]
+    |> snd
 
 #!spiral
 
-inl to_vec forall t. (ar : array_base t) : rust.vec t =
-    inl ar = join ar
-    !\($'"!ar.to_vec()"')
+// // test
 
-#!markdown
-
-## map_vec
-
-#!spiral
-
-inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
-    inl fn = join fn
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
-    |> from_vec
-
-#!markdown
-
-## mapi_vec
-
-#!spiral
-
-inl mapi_vec forall dim t u. (fn : dim -> t -> u) (ar : a dim t) : a dim u =
-    inl fn = join fn
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
-    |> from_vec
-
-#!markdown
-
-## filter_vec
-
-#!spiral
-
-inl filter_vec forall dim t. (fn : t -> bool) (ar : a dim t) : a dim t =
-    inl fn = join fn
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
-    |> from_vec
+am.init 3i32 ((*) 2)
+|> indexed'
+|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
 
 #!markdown
 
@@ -279,22 +253,62 @@ am.init 3i32 ((*) 2)
 
 #!markdown
 
-## enumerate
+## from_vec
 
 #!spiral
 
-inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+inl from_vec forall dim el. (vec : vec el) : a dim el =
+    inl vec = join vec
+    !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
+
+#!markdown
+
+## to_vec
+
+#!spiral
+
+inl to_vec forall t. (ar : array_base t) : vec t =
+    inl ar = join ar
+    !\($'"!ar.to_vec()"')
+
+#!markdown
+
+## map_vec
+
+#!spiral
+
+inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
+    inl fn = join fn
     inl (a ar) = ar
     inl ar = ar |> to_vec
-    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
     |> from_vec
-    |> map_vec from_pair
+
+#!markdown
+
+## mapi_vec
 
 #!spiral
 
-inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
-    inl x = x |> to_vec
-    !\($'"!x.as_slice()"')
+inl mapi_vec forall dim t u. (fn : dim -> t -> u) (ar : a dim t) : a dim u =
+    inl fn = join fn
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
+    |> from_vec
+
+#!markdown
+
+## filter_vec
+
+#!spiral
+
+inl filter_vec forall dim t. (fn : t -> bool) (ar : a dim t) : a dim t =
+    inl fn = join fn
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
+    |> from_vec
 
 #!markdown
 
@@ -302,7 +316,7 @@ inl as_slice forall t. (x : array_base t) : rust.ref' (rust.slice t) =
 
 #!spiral
 
-inl vec_push forall el. (el : el) (vec : rust.vec el) : rust.vec el =
+inl vec_push forall el. (el : el) (vec : vec el) : vec el =
     inl el = join el
     inl vec = join vec
     !\($'"let mut !vec = !vec"')
@@ -316,7 +330,7 @@ inl vec_push forall el. (el : el) (vec : rust.vec el) : rust.vec el =
 
 #!spiral
 
-inl vec_reverse forall el. (vec : rust.vec el) : rust.vec el =
+inl vec_reverse forall el. (vec : vec el) : vec el =
     inl vec = join vec
     !\($'"let mut !vec = !vec"')
     !\($'"!vec.reverse()"')
@@ -328,7 +342,7 @@ inl vec_reverse forall el. (vec : rust.vec el) : rust.vec el =
 
 #!spiral
 
-inl vec_retain forall el. (fn : el -> bool) (vec : rust.vec el) : rust.vec el =
+inl vec_retain forall el. (fn : el -> bool) (vec : vec el) : vec el =
     inl vec = join vec
     inl fn = join fn
     !\($'"let mut !vec = !vec"')
@@ -342,7 +356,7 @@ inl vec_retain forall el. (fn : el -> bool) (vec : rust.vec el) : rust.vec el =
 
 #!spiral
 
-inl vec_sort_by_key forall el t. (fn : el -> t) (vec : rust.vec el) : rust.vec el =
+inl vec_sort_by_key forall el t. (fn : el -> t) (vec : vec el) : vec el =
     inl vec = join vec
     inl fn = join fn
     !\($'"let mut !vec = !vec"')
@@ -356,7 +370,7 @@ inl vec_sort_by_key forall el t. (fn : el -> t) (vec : rust.vec el) : rust.vec e
 
 #!spiral
 
-inl vec_extend forall el. (el : rust.vec el) (vec : rust.vec el) : rust.vec el =
+inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
     inl el = join el
     inl vec = join vec
     !\($'"let mut !vec = !vec"')
@@ -398,7 +412,7 @@ inl vec_collect' vec =
 
 #!spiral
 
-inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : rust.vec t) : rust.vec u =
+inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
     inl fn = join fn
     inl ar = join ar
     !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
@@ -409,27 +423,44 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : rust.vec t) : rust.vec u
 
 #!spiral
 
-inl vec_map forall t u. (fn : t -> u) (ar : rust.vec t) : rust.vec u =
+inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
     inl fn = join fn
     inl ar = join ar
     !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
 
 #!markdown
 
-## indexed'
+## enumerate
 
 #!spiral
 
-inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a dim t) : a dim' (u * t) =
-    ((0, a ;[]), ar)
-    ||> am.fold fun (i, acc) x =>
-        i + 1, acc /@ a ;[i, x]
-    |> snd
+inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+    inl (a ar) = ar
+    inl ar = ar |> to_vec
+    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    |> from_vec
+    |> map_vec from_pair
+
+#!markdown
+
+## slice'
 
 #!spiral
 
-// // test
+inl slice' forall dim el. (x : option el) : slice' el dim =
+    match x with
+    | Some x => !\($'"[!x]"')
+    | None =>
+        !\($'"[\\\"\\\".to_string()]"') : slice' el dim
+            // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
+            // !\( : string) : slice' el i32 // !\($'"[]"')
 
-am.init 3i32 ((*) 2)
-|> indexed'
-|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
+#!markdown
+
+## as_slice
+
+#!spiral
+
+inl as_slice forall t. (x : array_base t) : rust.ref' (slice t) =
+    inl x = x |> to_vec
+    !\($'"!x.as_slice()"')

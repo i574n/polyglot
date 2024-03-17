@@ -1,0 +1,11 @@
+// // # math
+
+inl types () =
+    sm'.types ()
+
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>] type num_complex_Complex<'T> = class end"
+
+nominal complex t = $"num_complex_Complex<`t>"
+
+inl complex forall t. (re : t) (im : t) : complex t =
+    !\($'"num_complex::Complex::new(!re, !im)"')

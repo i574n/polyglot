@@ -1,0 +1,5 @@
+inl (~#) (s : string) : rust.ref' sm'.str =
+    s |> sm'.raw_string_literal
+
+inl (~##) (s : string) : rust.static_ref' sm'.str =
+    s |> sm'.raw_string_literal_static

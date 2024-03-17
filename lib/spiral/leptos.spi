@@ -1,4 +1,5 @@
 open rust_operators
+open sm'_operators
 open listm'_operators
 
 inl types () =
@@ -134,7 +135,7 @@ inl log_pretty (text : string) =
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
-inl view_vec_to_fragment (view : rust.vec view) : fragment =
+inl view_vec_to_fragment (view : am'.vec view) : fragment =
     !\($'"leptos::Fragment::new(!view)"')
 
 inl view_array_to_fragment (view : array_base view) : fragment =
@@ -403,7 +404,7 @@ inl interval_handle_clear (interval_handle : interval_handle) =
 
 inl set_interval_with_handle
     (fn : () -> ())
-    (interval_millis : rust.duration)
+    (interval_millis : date_time.duration)
     : resultm.result' interval_handle rust.js_value
     =
     inl fn = join fn
@@ -477,7 +478,12 @@ inl for props : view =
     tag_closed_raw "leptos::For" props
     |> macro_to_view
 
-inl for forall t u (signal : * -> *). (signal : signal (rust.vec t)) (key_fn : t -> u) (children' : t -> fragment) : view =
+inl for forall t u (signal : * -> *).
+    (signal : signal (am'.vec t))
+    (key_fn : t -> u)
+    (children' : t -> fragment)
+    : view
+    =
     inl signal = join signal
     signal |> typecheck_signal
     inl key_fn = join key_fn
@@ -573,29 +579,29 @@ inl use_location () : location =
     !\($'"leptos_router::use_location()"')
 
 inl use_navigate () : string -> () =
-    inl navigate : rust.arc (rust.dyn' (rust.action_fn2 (rust.ref' rust.str) navigate_options)) =
+    inl navigate : rust.arc (rust.dyn' (rust.action_fn2 (rust.ref' sm'.str) navigate_options)) =
         !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
     fun url =>
         inl url = url |> sm'.as_str
         !\($'"!navigate(!url, Default::default())"')
 
-inl location_hash (location : location) : memo rust.std_string =
+inl location_hash (location : location) : memo sm'.std_string =
     inl location = join location
     !\($'"!location.hash"')
 
-inl location_pathname (location : location) : memo rust.std_string =
+inl location_pathname (location : location) : memo sm'.std_string =
     inl location = join location
     !\($'"!location.pathname"')
 
-inl location_search (location : location) : memo rust.std_string =
+inl location_search (location : location) : memo sm'.std_string =
     inl location = join location
     !\($'"!location.search"')
 
-inl url_try_from (s : rust.ref' rust.str) : resultm.result' url rust.std_string =
+inl url_try_from (s : rust.ref' sm'.str) : resultm.result' url sm'.std_string =
     inl s = join s
     !\($'"leptos_router::Url::try_from(!s)"')
 
-inl url_pathname (url : url) : rust.std_string =
+inl url_pathname (url : url) : sm'.std_string =
     inl url = join url
     !\($'"!url.pathname"')
 
@@ -1078,7 +1084,7 @@ inl divider children : _ span =
 
 inl text_input forall t. (class : option string) props getter setter : _ input =
     inl getter : () -> t = join getter
-    inl setter : rust.std_string -> () = join setter
+    inl setter : sm'.std_string -> () = join setter
     inl class = class |> optionm.map sm'.as_str |> optionm'.default_value #""
     input
         ([
@@ -1192,7 +1198,7 @@ inl grid_pair { padding cols class } left right : _ dl =
 inl tab_link href icon label select : _ a' =
     inl href = href |> sm'.to_std_string
     inl select = join select
-    inl select_class () : rust.static_ref' rust.str =
+    inl select_class () : rust.static_ref' sm'.str =
         if select ()
         then ##"border-grey-200 text-grey-900"
         else ##"border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
@@ -1208,7 +1214,7 @@ inl tab_link href icon label select : _ a' =
             label |> text_view
         ])
 
-inl icon_button icon (class : () -> rust.static_ref' rust.str) props : _ button =
+inl icon_button icon (class : () -> rust.static_ref' sm'.str) props : _ button =
     inl class = join class
     button
         ([

@@ -1,0 +1,51 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# math
+
+#!spiral
+
+// // test
+
+open testing
+open rust_operators
+
+#!spiral
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>] type num_complex_Complex<'T> = class end"
+
+#!spiral
+
+inl types () =
+    sm'.types ()
+    types ()
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+
+#!spiral
+
+nominal complex t = $"num_complex_Complex<`t>"
+
+inl complex forall t. (re : t) (im : t) : complex t =
+    !\($'"num_complex::Complex::new(!re, !im)"')
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+
+complex 0f64 0f64
+|> sm'.format'
+|> sm'.from_std_string
+|> _equal "0+0i"

@@ -36,40 +36,17 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"impl $0\")>] type Impl<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"mut $0\")>] type Mut<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0]\")>] type Slice<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>] type Slice'<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>] type base64_DecodeError = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>] type borsh_io_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>] type chrono_DateTime<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>] type chrono_Local = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>] type chrono_NaiveDateTime = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>] type chrono_Utc = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::Function\")>] type js_sys_Function = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>] type js_sys_JsString = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>] type reqwest_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>] type reqwest_RequestBuilder = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Store\")>] type rexie_Store = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>] type serde_wasm_bindgen_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>] type std_any_Any = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>] type std_cell_RefCell<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::collections::HashMap<$0, $1>\")>] type std_collections_HashMap<'K, 'V> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type TryJoinAll<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>] type std_rc_Weak<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>] type std_str_Utf8Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>] type std_time_Duration = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::closure::Closure<$0>\")>] type wasm_bindgen_closure_Closure<'T> = class end"
@@ -80,31 +57,19 @@ inl types () =
 
 #!spiral
 
-nominal any = $"std_any_Any"
 nominal ref_cell t = $"std_cell_RefCell<`t>"
-nominal async t = $"Async<`t>"
-nominal base64_decode_error = $"base64_DecodeError"
-nominal borsh_io_error = $"borsh_io_Error"
-nominal utf8_error = $"std_str_Utf8Error"
 nominal rexie = $"rexie_Rexie"
 nominal rexie_store = $"rexie_Store"
 nominal rexie_transaction = $"rexie_Transaction"
 nominal rexie_error = $"rexie_Error"
-nominal json_value = $"serde_json_Value"
-nominal json_error = $"serde_json_Error"
-nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
 nominal js_value = $"wasm_bindgen_JsValue"
 nominal closure t = $"wasm_bindgen_closure_Closure<`t>"
-nominal hash_map k v = $"std_collections_HashMap<`k, `v>"
 nominal rc t = $"std_rc_Rc<`t>"
 nominal weak_rc t = $"std_rc_Weak<`t>"
 nominal box t = $"Box<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
-nominal std_string = $"std_string_String"
-nominal duration = $"std_time_Duration"
 nominal js_function = $"js_sys_Function"
-nominal js_string = $"js_sys_JsString"
 nominal window = $"web_sys_Window"
 nominal document = $"web_sys_Document"
 nominal html_element = $"web_sys_HtmlElement"
@@ -119,11 +84,7 @@ nominal func1 t u = $"Func0<`t, `u>"
 nominal impl t = $"Impl<`t>"
 nominal mut' t = $"Mut<`t>"
 nominal ref' t = $"Ref<`t>"
-nominal slice t = $"Slice<`t>"
-nominal slice' t u = $"Slice'<`t, `u>"
 nominal static_ref' t = $"StaticRef<`t>"
-nominal str = $"Str"
-nominal vec t = $"Vec<`t>"
 
 #!spiral
 
@@ -132,26 +93,6 @@ inl (~!\) forall t. (code : string) : t =
 
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
-
-inl slice' forall dim el. (x : option el) : slice' el dim =
-    match x with
-    | Some x => !\($'"[!x]"')
-    | None =>
-        !\($'"[\\\"\\\".to_string()]"') : slice' el dim
-            // emit_expr `(()) `(slice' el dim) () ($'"[@dim]"' : string) : slice' el 10
-            // !\( : string) : slice' el i32 // !\($'"[]"')
-
-inl raw_string_literal (s : string) : ref' str =
-    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
-
-inl raw_string_literal_static (s : string) : static_ref' str =
-    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
-
-inl (~#) (s : string) : ref' str =
-    raw_string_literal s
-
-inl (~##) (s : string) : static_ref' str =
-    raw_string_literal_static s
 
 inl new_box forall t. (x : t) : box t =
     inl x = join x
@@ -246,11 +187,3 @@ inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
 
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
     emit_expr () $"\"Box::leak(!x)\""
-
-inl duration_from_millis (ms : u64) : duration =
-    inl ms = join ms
-    !\($'"std::time::Duration::from_millis(!ms)"')
-
-inl sleep (duration : duration) : () =
-    inl duration = join duration
-    !\($'"std::thread::sleep(!duration)"')

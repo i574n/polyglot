@@ -1,6 +1,15 @@
 open rust_operators
+open sm'_operators
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>] type chrono_DateTime<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Local\")>] type chrono_Local = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::NaiveDateTime\")>] type chrono_NaiveDateTime = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>] type chrono_Utc = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>] type std_time_Duration = class end"
 
 type ticks = i64
+nominal duration = $"std_time_Duration"
 nominal date_time = $"System.DateTime"
 nominal date_time' t = $"chrono_DateTime<`t>"
 nominal local = $"chrono_Local"
@@ -21,17 +30,17 @@ inl from_timestamp' forall t {number; int}. (timestamp : t) : option (date_time'
         !\($'"chrono::DateTime::from_timestamp_micros(!timestamp / 1000i64)"')
     result |> optionm'.unbox
 
-inl format' (format : string) (date_time : date_time' utc) : rust.std_string =
+inl format' (format : string) (date_time : date_time' utc) : sm'.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
 
-inl format'' (format : string) (date_time : date_time' _) : rust.std_string =
+inl format'' (format : string) (date_time : date_time' _) : sm'.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
 
-inl format_timestamp (timestamp : rust.std_string) =
+inl format_timestamp (timestamp : sm'.std_string) =
     inl timestamp = join timestamp
     timestamp
     |> fun x => !\($'"!x.parse().unwrap()"') : i64
@@ -42,3 +51,7 @@ inl format_timestamp (timestamp : rust.std_string) =
         |> format'' "%Y-%m-%d %H:%M:%S"
         |> sm'.from_std_string
     |> resultm.from_option
+
+inl duration_from_millis (ms : u64) : duration =
+    inl ms = join ms
+    !\($'"std::time::Duration::from_millis(!ms)"')

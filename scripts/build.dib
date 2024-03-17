@@ -45,6 +45,10 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../lib/math/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/../apps/chat/build.ps1" } | Invoke-Block
 
 #!pwsh

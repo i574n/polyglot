@@ -1,5 +1,10 @@
 open rust_operators
 
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>] type reqwest_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>] type reqwest_RequestBuilder = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
+
 nominal reqwest_response = $"reqwest_Response"
 nominal reqwest_error = $"reqwest_Error"
 nominal request_builder = $"reqwest_RequestBuilder"
@@ -38,5 +43,5 @@ inl request_body (body : string) (request : request_builder) : request_builder =
 inl request_json forall t. (obj : t) (request : request_builder) : request_builder =
     !\($'"reqwest_wasm::RequestBuilder::json(!request, &!obj)"')
 
-inl response_text (response : reqwest_response) : async.future_pin (resultm.result' rust.std_string reqwest_error) =
+inl response_text (response : reqwest_response) : async.future_pin (resultm.result' sm'.std_string reqwest_error) =
     !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')
