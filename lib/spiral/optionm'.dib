@@ -31,7 +31,7 @@ inl default_value d =
 
 None
 |> default_value 3i32
-|> _equal 3i32
+|> _assert_eq 3i32
 
 #!markdown
 
@@ -47,7 +47,7 @@ inl (/??) a b =
 // // test
 
 None /?? 3i32
-|> _equal 3i32
+|> _assert_eq 3i32
 
 #!markdown
 
@@ -64,7 +64,7 @@ inl default_with fn =
 
 None
 |> default_with (fun () => 3i32)
-|> _equal 3i32
+|> _assert_eq 3i32
 
 #!markdown
 
@@ -83,7 +83,7 @@ inl choose fn a b =
 
 (Some 2i32, Some 3)
 ||> choose (+)
-|> _equal (Some 5)
+|> _assert_eq (Some 5)
 
 #!markdown
 
@@ -106,7 +106,7 @@ inl fn =
 Some 1i32 |> iter fn
 None |> iter fn
 *n
-|> _equal 2i32
+|> _assert_eq 2i32
 
 #!markdown
 
@@ -134,7 +134,7 @@ inl x = Some 3i32
 inl y : option i32 = None
 inl x' = x |> box |> unbox
 inl y' = y |> box |> unbox
-(x', y') |> _equal (x, y)
+(x', y') |> _assert_eq (x, y)
 
 #!markdown
 

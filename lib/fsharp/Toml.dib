@@ -48,4 +48,4 @@ let paths : string seq = tomlModel /./ "extension" /../ "paths"
 
 paths
 |> Seq.toList
-|> _equal [ "/a"; "/b" ]
+|> _assert_eq [ "/a"; "/b" ]

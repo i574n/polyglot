@@ -63,6 +63,7 @@ inl try' forall t u. (x : result' t u) : t =
     !\($'"!x?"')
 
 inl unwrap' forall t u. (x : result' t u) : t =
+    inl x = join x
     !\($'"!x.unwrap()"')
 
 inl expect forall t u. (error : rust.ref' string) (x : result' t u) : t =

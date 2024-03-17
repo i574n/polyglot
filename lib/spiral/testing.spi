@@ -8,23 +8,23 @@ inl __expect fn log b a =
     else "__expect"
     |> assert result
 
-inl __almost_equal log b a = __expect (fun a b => abs (b - a) < 0.00000001) log b a
-inl _almost_equal b a = __almost_equal true b a
+inl __assert_approx_eq log b a e = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log b a
+inl _assert_approx_eq b a = __assert_approx_eq true b a
 
-inl __equal log b a = __expect (=) log b a
-inl _equal b a = __equal true b a
+inl __assert_eq log b a = __expect (=) log b a
+inl _assert_eq b a = __assert_eq true b a
 
-inl __is_greater_than log b a = __expect (>) log b a
-inl _is_greater_than b a = __is_greater_than true b a
+inl __assert_gt log b a = __expect (>) log b a
+inl _assert_gt b a = __assert_gt true b a
 
-inl __is_greater_than_or_equal log b a = __expect (>=) log b a
-inl _is_greater_than_or_equal b a = __is_greater_than_or_equal true b a
+inl __assert_ge log b a = __expect (>=) log b a
+inl _assert_ge b a = __assert_ge true b a
 
-inl __is_less_than log b a = __expect (<) log b a
-inl _is_less_than b a = __is_less_than true b a
+inl __assert_lt log b a = __expect (<) log b a
+inl _assert_lt b a = __assert_lt true b a
 
-inl __is_less_than_or_equal log b a = __expect (<=) log b a
-inl _is_less_than_or_equal b a = __is_less_than_or_equal true b a
+inl __assert_le log b a = __expect (<=) log b a
+inl _assert_le b a = __assert_le true b a
 
 inl _throws (fn : () -> ()) : option string =
     inl none = None : option string

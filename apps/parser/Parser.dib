@@ -68,7 +68,7 @@ let inline fromStr str =
 
 //// test
 
-fromStr "" |> _equal {
+fromStr "" |> _assert_eq {
     lines = [||]
     position = { line = 0; column = 0 }
 }
@@ -77,7 +77,7 @@ fromStr "" |> _equal {
 
 //// test
 
-fromStr "Hello \n World" |> _equal {
+fromStr "Hello \n World" |> _assert_eq {
     lines = [| "Hello "; " World" |]
     position = { line = 0; column = 0 }
 }
@@ -117,11 +117,11 @@ let inline nextChar input =
 
 let newInput, charOpt = fromStr "Hello World" |> nextChar
 
-newInput |> _equal {
+newInput |> _assert_eq {
     lines = [| "Hello World" |]
     position = { line = 0; column = 1 }
 }
-charOpt |> _equal (Some 'H')
+charOpt |> _assert_eq (Some 'H')
 
 #!fsharp
 
@@ -129,11 +129,11 @@ charOpt |> _equal (Some 'H')
 
 let newInput, charOpt = fromStr "Hello\n\nWorld" |> nextChar
 
-newInput |> _equal {
+newInput |> _assert_eq {
     lines = [| "Hello"; ""; "World" |]
     position = { line = 0; column = 1 }
 }
-charOpt |> _equal (Some 'H')
+charOpt |> _assert_eq (Some 'H')
 
 #!markdown
 
@@ -241,7 +241,7 @@ let inline satisfy predicate label =
 
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         'H',
         {
@@ -257,7 +257,7 @@ runOnInput parser input |> _equal (
 
 let input = fromStr "World"
 let parser = satisfy (fun c -> c = 'H') "H"
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Failure (
         "H",
         "Unexpected 'W'",
@@ -291,7 +291,7 @@ let inline (>>=) p f = bindP f p
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = parser >>= fun c -> satisfy (fun c -> c = 'e') "e"
-runOnInput parser2 input |> _equal (
+runOnInput parser2 input |> _assert_eq (
     Success (
         'e',
         {
@@ -308,7 +308,7 @@ runOnInput parser2 input |> _equal (
 let input = fromStr "World"
 let parser = satisfy (fun c -> c = 'W') "W"
 let parser2 = parser >>= fun c -> satisfy (fun c -> c = 'e') "e"
-runOnInput parser2 input |> _equal (
+runOnInput parser2 input |> _assert_eq (
     Failure (
         "e",
         "Unexpected 'o'",
@@ -334,7 +334,7 @@ let inline returnP x =
 
 let input = fromStr "Hello"
 let parser = returnP "Hello"
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         "Hello",
         {
@@ -364,7 +364,7 @@ let inline (|>>) x f = f <!> x
 let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = parser |>> string
-runOnInput parser2 input |> _equal (
+runOnInput parser2 input |> _assert_eq (
     Success (
         "H",
         {
@@ -400,7 +400,7 @@ let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'e') "e"
 let parser3 = lift2 (fun c1 c2 -> string c1 + string c2) parser parser2
-runOnInput parser3 input |> _equal (
+runOnInput parser3 input |> _assert_eq (
     Success (
         "He",
         {
@@ -432,7 +432,7 @@ let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'e') "e"
 let parser3 = parser .>>. parser2
-runOnInput parser3 input |> _equal (
+runOnInput parser3 input |> _assert_eq (
     Success (
         ('H', 'e'),
         {
@@ -465,7 +465,7 @@ let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'h') "h"
 let parser3 = parser <|> parser2
-runOnInput parser3 input |> _equal (
+runOnInput parser3 input |> _assert_eq (
     Success (
         'h',
         {
@@ -488,7 +488,7 @@ let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'h') "h"
 let parser3 = choice [ parser; parser2 ]
-runOnInput parser3 input |> _equal (
+runOnInput parser3 input |> _assert_eq (
     Success (
         'h',
         {
@@ -513,7 +513,7 @@ let input = fromStr "Hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = satisfy (fun c -> c = 'e') "e"
 let parser3 = sequence [ parser; parser2 ]
-runOnInput parser3 input |> _equal (
+runOnInput parser3 input |> _assert_eq (
     Success (
         [ 'H'; 'e' ],
         {
@@ -548,7 +548,7 @@ let inline many parser =
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = many parser
-runOnInput parser2 input |> _equal (
+runOnInput parser2 input |> _assert_eq (
     Success (
         [],
         {
@@ -575,7 +575,7 @@ let inline many1 p =
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = many1 parser
-runOnInput parser2 input |> _equal (
+runOnInput parser2 input |> _assert_eq (
     Failure (
         "many1 H",
         "Unexpected 'h'",
@@ -602,7 +602,7 @@ let inline opt p =
 let input = fromStr "hello"
 let parser = satisfy (fun c -> c = 'H') "H"
 let parser2 = opt parser
-runOnInput parser2 input |> _equal (
+runOnInput parser2 input |> _assert_eq (
     Success (
         None,
         {
@@ -639,7 +639,7 @@ let parser =
         (satisfy (fun c -> c = '[') "[")
         (many (satisfy (fun c -> [ 'a' .. 'z' ] @ [ 'A' .. 'Z' ] |> List.contains c) "letter"))
         (satisfy (fun c -> c = ']') "]")
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         [ 'H'; 'e'; 'l'; 'l'; 'o' ],
         {
@@ -667,7 +667,7 @@ let inline sepBy p sep =
 
 let input = fromStr "Hello,World"
 let parser = sepBy (many (satisfy (fun c -> c <> ',') "not comma")) (satisfy (fun c -> c = ',') "comma")
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         [ [ 'H'; 'e'; 'l'; 'l'; 'o' ]; [ 'W'; 'o'; 'r'; 'l'; 'd'; '\n' ] ],
         {
@@ -696,7 +696,7 @@ let inline anyOf listOfChars =
 
 let input = fromStr "Hello"
 let parser = anyOf [ 'H'; 'e'; 'l'; 'o' ] |> many
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         [ 'H'; 'e'; 'l'; 'l'; 'o' ],
         {
@@ -729,7 +729,7 @@ let inline manyChars1 cp =
 
 let input = fromStr "Hello"
 let parser = manyChars1 (anyOf [ 'H'; 'e'; 'l'; 'o' ])
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         "Hello",
         {
@@ -755,7 +755,7 @@ let inline pstring str =
 
 let input = fromStr "Hello"
 let parser = pstring "Hello"
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         "Hello",
         {
@@ -784,7 +784,7 @@ let spaces1 = many1 whitespaceChar
 
 let input = fromStr "  Hello"
 let parser = spaces1 .>>. pstring "Hello"
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Success (
         ([ ' '; ' ' ], "Hello"),
         {
@@ -805,7 +805,7 @@ let digitChar =
 
 let input = fromStr "Hello"
 let parser = digitChar
-runOnInput parser input |> _equal (
+runOnInput parser input |> _assert_eq (
     Failure (
         "digit",
         "Unexpected 'H'",
@@ -837,7 +837,7 @@ let pint =
 //// test
 
 run pint "-123"
-|> _equal (
+|> _assert_eq (
     Success (
         -123,
         {
@@ -867,7 +867,7 @@ let pfloat =
 //// test
 
 run pfloat "-123.45"
-|> _equal (
+|> _assert_eq (
     Success (
         -123.45,
         {

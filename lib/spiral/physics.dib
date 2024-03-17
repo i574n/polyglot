@@ -77,10 +77,10 @@ inl velocity_cf m v0 fs =
 // // test
 
 velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ] 0
-|> _equal 0.6
+|> _assert_eq 0.6
 
 velocity_cf 0.1f64 0.6 [ 0.04; -0.08 ] 1
-|> _equal 0.2
+|> _assert_eq 0.2
 
 #!spiral
 
@@ -107,25 +107,25 @@ inl derivative dt : derivative =
 // // test
 
 derivative 1 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal 0.25
+|> _assert_approx_eq 0.25
 
 derivative 0.001 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal 0.0000002499998827953931
+|> _assert_approx_eq 0.0000002499998827953931
 
 derivative 0.000001 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal 0.000000000001000088900582341
+|> _assert_approx_eq 0.000000000001000088900582341
 
 derivative 0.000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal 0.00000008274037099909037
+|> _assert_approx_eq 0.00000008274037099909037
 
 derivative 0.000000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal 0.00008890058234101161
+|> _assert_approx_eq 0.00008890058234101161
 
 derivative 0.000000000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal -0.0007992778373592246
+|> _assert_approx_eq -0.0007992778373592246
 
 derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _almost_equal -1
+|> _assert_approx_eq -1
 
 #!markdown
 
@@ -149,7 +149,7 @@ inl integral dt : integration =
 // // test
 
 integral 0.01 math.square 0 1
-|> _almost_equal 0.33332500000000004
+|> _assert_approx_eq 0.33332500000000004
 
 #!spiral
 
@@ -164,7 +164,7 @@ inl integral' dt : integration =
 // // test
 
 integral' 0.1 math.square 0 1
-|> _almost_equal (integral 0.1 math.square 0 1)
+|> _assert_approx_eq (integral 0.1 math.square 0 1)
 
 #!spiral
 
@@ -179,7 +179,7 @@ inl integral'' dt : integration =
 // // test
 
 integral'' 0.01 math.square 0 1
-|> _almost_equal (integral 0.01 math.square 0 1)
+|> _assert_approx_eq (integral 0.01 math.square 0 1)
 
 #!markdown
 
@@ -459,13 +459,13 @@ inl of_state_1d (state_1d (t, x, v)) =
 // // test
 
 solver (euler 0.01) (of_state_1d >> exponential >> state_1d) (state_1d (0, 1, 1)) 800i32
-|> _equal (state_1d (7.999999999999874, 2864.8311229272326, 2864.8311229272326))
+|> _assert_eq (state_1d (7.999999999999874, 2864.8311229272326, 2864.8311229272326))
 
 solver (euler_cromer_1d 0.1) (of_state_1d >> exponential >> rrr) (state_1d (0, 1, 1)) 80i32
-|> _equal (state_1d (7.999999999999988, 3043.379244966009, 2895.0121485099035))
+|> _assert_eq (state_1d (7.999999999999988, 3043.379244966009, 2895.0121485099035))
 
 solver (runge_kutta_4 1) (of_state_1d >> exponential >> rrr) (state_1d (0, 1, 1)) 8i32
-|> _equal (state_1d (8.0, 2894.789038540849, 2894.789038540849))
+|> _assert_eq (state_1d (8.0, 2894.789038540849, 2894.789038540849))
 
 #!markdown
 
@@ -488,7 +488,7 @@ inl vec x y z : vec =
 // // test
 
 vec 1 2 3 .z
-|> _equal 3
+|> _assert_eq 3
 
 #!markdown
 
@@ -515,7 +515,7 @@ inl (^+^) (a : vec) (b : vec) =
 // // test
 
 vec 1 2 3 ^+^ vec 4 5 6
-|> _equal (vec 5 7 9)
+|> _assert_eq (vec 5 7 9)
 
 #!markdown
 
@@ -532,7 +532,7 @@ inl sum_vec vs =
 
 [ vec 1 2 3; vec 4 5 6 ]
 |> sum_vec
-|> _equal (vec 5 7 9)
+|> _assert_eq (vec 5 7 9)
 
 #!markdown
 
@@ -548,14 +548,14 @@ inl (*^) c { x y z } =
 // // test
 
 5 *^ vec 1 2 3
-|> _equal (vec 5 10 15)
+|> _assert_eq (vec 5 10 15)
 
 #!spiral
 
 // // test
 
 3 *^ i_hat () ^+^ 4 *^ k_hat ()
-|> _equal (vec 3 0 4)
+|> _assert_eq (vec 3 0 4)
 
 #!markdown
 
@@ -571,7 +571,7 @@ inl (^*) v c =
 // // test
 
 vec 1 2 3 ^* 5
-|> _equal (vec 5 10 15)
+|> _assert_eq (vec 5 10 15)
 
 #!markdown
 
@@ -587,7 +587,7 @@ inl (^/) { x y z } c =
 // // test
 
 vec 1 2 3 ^/ 5
-|> _equal (vec 0.2 0.4 0.6)
+|> _assert_eq (vec 0.2 0.4 0.6)
 
 #!markdown
 
@@ -604,7 +604,7 @@ inl negate_vec v =
 
 vec 1 2 3
 |> negate_vec
-|> _equal (vec -1 -2 -3)
+|> _assert_eq (vec -1 -2 -3)
 
 #!markdown
 
@@ -620,7 +620,7 @@ inl (^-^) a b =
 // // test
 
 vec 1 2 3 ^-^ vec 4 5 6
-|> _equal (vec -3 -3 -3)
+|> _assert_eq (vec -3 -3 -3)
 
 #!markdown
 
@@ -636,7 +636,7 @@ inl (<.>) { x = ax y = ay z = az } { x = bx y = by z = bz } =
 // // test
 
 vec 1 2 3 <.> vec 4 5 6
-|> _equal 32
+|> _assert_eq 32
 
 #!markdown
 
@@ -655,7 +655,7 @@ inl (><) (a : vec) (b : vec) =
 // // test
 
 vec 1 2 3 >< vec 4 5 6
-|> _equal (vec -3 6 -3)
+|> _assert_eq (vec -3 6 -3)
 
 #!markdown
 
@@ -672,7 +672,7 @@ inl magnitude v =
 
 vec 1 2 3
 |> magnitude
-|> _almost_equal 3.7416573867739413
+|> _assert_approx_eq 3.7416573867739413
 
 #!markdown
 
@@ -688,7 +688,7 @@ inl v1 t =
 // // test
 
 v1 1
-|> _equal (vec 2 6 6)
+|> _assert_eq (vec 2 6 6)
 
 #!markdown
 
@@ -707,7 +707,7 @@ inl vec_derivative dt : vec_derivative =
 // // test
 
 vec_derivative 0.01 v1 3 .x
-|> _almost_equal (derivative 0.01 (v1 >> fun v => v.x) 3)
+|> _assert_approx_eq (derivative 0.01 (v1 >> fun v => v.x) 3)
 
 #!markdown
 
@@ -907,7 +907,7 @@ inl best_angle (min, max) =
     loop min (0f64, min)
 
 best_angle (30f64, 60f64)
-|> _equal (116.77499158246208, 41)
+|> _assert_eq (116.77499158246208, 41)
 
 #!markdown
 

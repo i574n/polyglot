@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
 
 #!markdown
 
@@ -17,10 +17,16 @@ open rust_operators
 
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>] type num_complex_Complex<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::types::PyModule\")>] type pyo3_types_PyModule = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>] type pyo3_Bound<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Python\")>] type pyo3_Python = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyAny\")>] type pyo3_PyAny = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyErr\")>] type pyo3_PyErr = class end"
 
 #!spiral
 
 inl types () =
+    rust.types ()
     sm'.types ()
     types ()
 
@@ -34,8 +40,15 @@ types ()
 #!spiral
 
 nominal complex t = $"num_complex_Complex<`t>"
+nominal bound t = $"pyo3_Bound<`t>"
+nominal python = $"pyo3_Python"
+nominal pymodule = $"pyo3_types_PyModule"
+nominal pyany = $"pyo3_PyAny"
+nominal pyerr = $"pyo3_PyErr"
 
 inl complex forall t. (re : t) (im : t) : complex t =
+    inl re = join re
+    inl im = join im
     !\($'"num_complex::Complex::new(!re, !im)"')
 
 #!spiral
@@ -48,4 +61,189 @@ types ()
 complex 0f64 0f64
 |> sm'.format'
 |> sm'.from_std_string
-|> _equal "0+0i"
+|> _assert_eq "0+0i"
+
+#!spiral
+
+// // test
+// // rust=
+
+;[
+    "1"
+    "2"
+    "3"
+]
+|> fun x =>
+    inl code = (a x : _ i32 _) |> sm'.concat_array_trailing "\n"
+    code
+    |> _assert_eq "1\n2\n3\n"
+
+#!spiral
+
+// // test
+// // rust=
+
+[
+    "1"
+    "2"
+    "3"
+]
+|> fun x =>
+    inl code = (x : _) |> sm'.concat_list_trailing "\n"
+    code
+    |> _assert_eq "1\n2\n3\n"
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+
+[
+    "1"
+    "2"
+    "3"
+]
+|> fun x =>
+    inl code = (x : _) |> sm'.concat_list_heap_trailing "\n"
+    code
+    |> _assert_eq "1\n2\n3\n"
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+inl re forall t. (c : complex t) : t =
+    !\($'"!c.re"')
+
+inl im forall t. (c : complex t) : t =
+    !\($'"!c.im"')
+
+inl module_from_code (py : python) (code : string) : resultm.result' (bound pymodule) pyerr =
+    inl code = code |> sm'.as_str
+    !\($'"pyo3::types::PyModule::from_code_bound(!py, !code, \\"\\", \\"\\")"')
+
+inl use_pyanymethods () =
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse pyo3::prelude::PyAnyMethods;\n//\""
+
+inl getattr (attr : string) (module : bound pymodule) : resultm.result' (bound pyany) pyerr =
+    inl attr = attr |> sm'.as_str
+    inl module = join module
+    use_pyanymethods ()
+    !\($'"!module.getattr(!attr)"')
+
+inl call forall t. (args : t) (module : bound pyany) : resultm.result' (bound pyany) pyerr =
+    inl args = join args
+    inl module = join module
+    !\($'"pyo3::prelude::PyAnyMethods::call(&!module, (*(*!args).0, ()), None)"')
+
+inl extract forall t. (result : bound pyany) : resultm.result' t pyerr =
+    inl result = join result
+    use_pyanymethods ()
+    !\($'"!result.extract()"')
+
+inl gamma_ py s =
+    inl code =
+        ;[
+            "import mpmath"
+            "def fn(s, _):"
+            "    s = complex(*s)"
+            "    s = mpmath.gamma(s)"
+            "    return (s.real, s.imag)"
+        ]
+    inl code = (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
+
+    code
+    |> module_from_code py
+    |> Ok
+    |> fun x => x : _ _ pyerr
+    |> fun x => Ok s
+    |> fun x => x : _ _ pyerr
+    |> resultm.box
+
+inl zeta_ py s =
+    inl code =
+        ;[
+            "import mpmath"
+            "def fn(s, _):"
+            "    s = complex(*s)"
+            "    try:"
+            "        s = mpmath.zeta(s)"
+            "    except ValueError as e:"
+            "        if s.real == 1:"
+            "            s = complex(float('inf'), 0)"
+            "    return (s.real, s.imag)"
+        ]
+    inl code = (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
+
+    inl code =
+        code
+        |> module_from_code py
+        |> resultm.unwrap'
+    inl fn =
+        code
+        |> getattr "fn"
+        |> fun x => x : _ _ pyerr
+        |> resultm.unwrap'
+
+    inl s = new_pair (s |> re) (s |> im)
+    inl args = new_pair s ()
+    inl result =
+        fn
+        |> call args
+    inl re, im =
+        result
+        |> resultm.unwrap'
+        |> extract
+        |> fun x => x : _ _ pyerr
+        |> resultm.unwrap'
+        |> fun x =>
+            x
+    complex re im
+    |> Ok
+    |> fun x => x : _ _ pyerr
+    |> resultm.box
+
+inl run_test (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
+    inl fn_ (py : python) : resultm.result' () pyerr =
+        inl zeta = fun (s : complex f64) =>
+            inl s = zeta_ py s |> resultm.unwrap'
+            s
+        inl gamma = fun (s : complex f64) =>
+            inl s = gamma_ py s |> resultm.unwrap'
+            s
+        fn (zeta, gamma)
+        
+        Ok ()
+        |> resultm.box
+
+    !\($'"pyo3::prepare_freethreaded_python()"') : ()
+
+    !\($'"let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"')
+
+    inl x = fn_
+    let x' = x (!\($'"py"') : python)
+    inl x' = join x'
+    
+    x' |> rust.fix_closure 5i32
+
+    (!\($'"__result"') : _ () pyerr)
+    |> resultm.unwrap'
+
+types ()
+
+run_test fun zeta, gamma =>
+    inl s = complex 2f64 0f64
+    inl result = zeta s
+
+    (result |> im) = 0f64
+    |> _assert_eq true
+
+    inl result = ((result |> re) - (pi ** 2f64) / 6f64) |> abs
+    result
+    |> _assert_lt 0.001f64
+
+    ()

@@ -54,7 +54,7 @@ inl (/@) a b =
 // // test
 
 a ;[ "a"; "b" ] /@ a ;[ "c"; "d" ]
-|> _equal (a ;[ "a"; "b"; "c"; "d" ] : _ i32 _)
+|> _assert_eq (a ;[ "a"; "b"; "c"; "d" ] : _ i32 _)
 
 #!markdown
 
@@ -87,7 +87,7 @@ inl choose f l =
 
 (am.init 10i32 id : a _ _)
 |> choose (fun x => if x % 2 = 0 then Some x else None)
-|> _equal (a ;[ 0; 2; 4; 6; 8 ] : _ i32 _)
+|> _assert_eq (a ;[ 0; 2; 4; 6; 8 ] : _ i32 _)
 
 #!markdown
 
@@ -104,7 +104,7 @@ inl sum (a' : a _ _) =
 
 am.init 10i32 id
 |> sum
-|> _equal 45
+|> _assert_eq 45
 
 #!markdown
 
@@ -121,7 +121,7 @@ inl init_series start end inc =
 // // test
 
 init_series 0 1 0.5
-|> _equal (a ;[0f64; 0.5; 1])
+|> _assert_eq (a ;[0f64; 0.5; 1])
 
 #!markdown
 
@@ -152,7 +152,7 @@ inl last (ar : a _ _) =
 
 am.init 10i32 id
 |> last
-|> _equal 9
+|> _assert_eq 9
 
 #!markdown
 
@@ -173,7 +173,7 @@ inl try_pick forall t u. (fn : t -> option u) (array : a _ t) : option u =
 
 am.init 10i32 id
 |> try_pick (fun x => if x = 5i32 then Some x else None)
-|> _equal (Some 5i32)
+|> _assert_eq (Some 5i32)
 
 #!markdown
 
@@ -193,7 +193,7 @@ inl indexed' forall t dim {int; number} dim' {int; number} u {number}. (ar : a d
 
 am.init 3i32 ((*) 2)
 |> indexed'
-|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
+|> _assert_eq (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
 
 #!markdown
 
@@ -249,7 +249,7 @@ inl indexed (array : a _ _) =
 
 am.init 3i32 ((*) 2)
 |> indexed
-|> _equal (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
+|> _assert_eq (a ;[0i32, 0; 1, 2; 2, 4] : a i32 _)
 
 #!markdown
 

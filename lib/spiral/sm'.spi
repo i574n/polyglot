@@ -149,6 +149,25 @@ inl base64_decode (s : std_string) : result std_string std_string =
         join x ()
         |> resultm.unbox
 
+let concat_array_trailing separator input =
+    ("", input)
+    ||> am.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+let concat_list_trailing separator input =
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+let concat_list_heap_trailing separator input =
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        inl acc = acc |> to_std_string
+        inl x = x |> as_str
+        inl separator = separator |> as_str
+        !\($'"!acc + !x + !separator"')
+        |> from_std_string
+
 inl concat (a : string) (b : a _ _) : string =
     $"!b |> String.concat !a"
 

@@ -85,7 +85,7 @@ listm.init 3i32 id
 |> from_list
 |> rev
 |> to_list
-|> _equal [ 2; 1; 0 ]
+|> _assert_eq [ 2; 1; 0 ]
 
 #!markdown
 
@@ -117,7 +117,7 @@ inl item i =
 listm.init 10i32 id
 |> from_list
 |> item 9i32
-|> _equal 9
+|> _assert_eq 9
 
 #!markdown
 
@@ -141,7 +141,7 @@ inl new_infinite_stream_ fn =
 
 new_infinite_stream print_and_return
 |> item 4i32
-|> _equal 4i32
+|> _assert_eq 4i32
 
 #!markdown
 
@@ -190,11 +190,11 @@ inl memo_stream = new_finite_stream print_and_return 10 |> memoize
 
 memo_stream ()
 |> item 3i32
-|> _equal 3i32
+|> _assert_eq 3i32
 
 memo_stream ()
 |> item 5i32
-|> _equal 5i32
+|> _assert_eq 5i32
 
 #!spiral
 
@@ -204,11 +204,11 @@ inl memo_stream = new_infinite_stream_ print_and_return |> memoize
 
 memo_stream ()
 |> item 3i32
-|> _equal 3i32
+|> _assert_eq 3i32
 
 memo_stream ()
 |> item 5i32
-|> _equal 5i32
+|> _assert_eq 5i32
 
 #!markdown
 
@@ -239,7 +239,7 @@ inl iterate f =
 
 iterate ((*) 2) 1i32
 |> item 10i32
-|> _equal 1024
+|> _assert_eq 1024
 
 #!markdown
 
@@ -270,7 +270,7 @@ inl sum seq =
 listm.init 10i32 id
 |> from_list
 |> sum
-|> _equal 45
+|> _assert_eq 45
 
 #!spiral
 
@@ -279,7 +279,7 @@ listm.init 10i32 id
 new_finite_stream print_and_return 10i32
 |> take_while (fun n (_ : i32) => n < 5)
 |> sum
-|> _equal 10
+|> _assert_eq 10
 
 #!spiral
 
@@ -288,7 +288,7 @@ new_finite_stream print_and_return 10i32
 new_infinite_stream print_and_return
 |> take_while (fun n (_ : i32) => n < 5i32)
 |> sum
-|> _equal 10
+|> _assert_eq 10
 
 #!spiral
 
@@ -297,7 +297,7 @@ new_infinite_stream print_and_return
 iterate ((*) 6) 1i32
 |> take_while (fun _ i => i <= 7i32)
 |> to_list
-|> _equal [ 1i32; 6; 36; 216; 1296; 7776; 46656; 279936 ]
+|> _assert_eq [ 1i32; 6; 36; 216; 1296; 7776; 46656; 279936 ]
 
 #!markdown
 
@@ -320,7 +320,7 @@ listm.init 10i32 ((*) 2)
 |> from_list
 |> indexed
 |> item 5i32
-|> _equal (5i32, 10i32)
+|> _assert_eq (5i32, 10i32)
 
 #!markdown
 
@@ -341,7 +341,7 @@ listm.init 10i32 id
 |> from_list
 |> map ((*) 2)
 |> item 5i32
-|> _equal 10i32
+|> _assert_eq 10i32
 
 #!markdown
 
@@ -372,7 +372,7 @@ inl zip_with_ fn s1 s2 =
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip_with (+)
 |> item 2i32
-|> _equal 6
+|> _assert_eq 6
 
 #!markdown
 
@@ -393,7 +393,7 @@ inl zip_ s1 s2 =
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip
 |> item 5i32
-|> _equal (5, 10)
+|> _assert_eq (5, 10)
 
 #!markdown
 
@@ -426,7 +426,7 @@ listm.init 10i32 id
 |> unzip
 |> fun x, y =>
     x |> sum
-    |> _equal 45
+    |> _assert_eq 45
 
     y |> sum
-    |> _equal 45
+    |> _assert_eq 45

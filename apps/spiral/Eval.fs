@@ -304,7 +304,7 @@ module Eval =
                         then line |> String.split [| '=' |] |> Array.tryItem 1 |> Option.map int
                         else None
                     )
-                    |> Option.defaultValue (if rustArgs |> Option.isSome then 180000 else 15000)
+                    |> Option.defaultValue (60000 * 60)
 
                 let printCode =
                     lines
@@ -441,6 +441,7 @@ edition = "2021"
 fable_library_rust = {{ path = "fable_modules/fable-library-rust", optional = true, default-features = false }}
 clap = {{}}
 num-complex = {{}}
+pyo3 = "~0.21.0-beta.0"
 
 [features]
 default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]
