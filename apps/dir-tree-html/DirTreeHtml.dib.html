@@ -7561,7 +7561,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.1.5/lib/netstandard2.0/Argu.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
 <span class="c1">#r @"../../../../../../../.nuget/packages/falco.markup/1.0.2/lib/netstandard2.0/Falco.Markup.dll"</span>
 </pre></div>
@@ -7754,7 +7754,7 @@ a.anchor-link {
     <span class="o">|&gt;</span> <span class="n">generateHtmlForFileSystem</span>
 
 <span class="n">html</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="s2">"""&lt;!DOCTYPE html&gt;</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"""&lt;!DOCTYPE html&gt;</span>
 <span class="s2">&lt;html lang="en"&gt;</span>
 <span class="s2">&lt;head&gt;</span>
 <span class="s2">  &lt;meta charset="UTF-8"&gt;</span>
@@ -7922,7 +7922,7 @@ details &gt; div {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>USAGE: dotnet.exe [--help] --dir &lt;string&gt; --html &lt;string&gt;
+<pre>USAGE: dotnet-repl [--help] --dir &lt;string&gt; --html &lt;string&gt;
 
 OPTIONS:
 

@@ -7990,7 +7990,7 @@ a.anchor-link {
                     <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'='</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="nb">int</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">)</span>
-                <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span><span class="k">if</span> <span class="n">rustArgs</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">isSome</span> <span class="n">then</span> <span class="mi">180000</span> <span class="k">else</span> <span class="mi">15000</span><span class="p">)</span>
+                <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span><span class="mi">60000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
             <span class="n">let</span> <span class="n">printCode</span> <span class="o">=</span>
                 <span class="n">lines</span>
@@ -8125,6 +8125,9 @@ a.anchor-link {
 
 <span class="s2">[dependencies]</span>
 <span class="s2">fable_library_rust = {{ path = "fable_modules/fable-library-rust", optional = true, default-features = false }}</span>
+<span class="s2">clap = {{}}</span>
+<span class="s2">num-complex = {{}}</span>
+<span class="s2">pyo3 = "~0.21.0-beta.0"</span>
 
 <span class="s2">[features]</span>
 <span class="s2">default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]</span>

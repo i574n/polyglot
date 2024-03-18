@@ -2,7 +2,8 @@
 
 inl __expect fn log b a =
     inl result = fn a b
-    inl result = join result
+    inl result =
+        result || dyn result
     if log
     then $"$\"__expect / actual: %A{!a} / expected: %A{!b}\""
     else "__expect"

@@ -7715,9 +7715,7 @@ a.anchor-link {
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
+let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
     printfn $"print_and_return / x: {2}"
@@ -7728,13 +7726,10 @@ and method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v3 : bool = method1()
+    let v3 : US0 = US0_1(5)
     let v4 : US0 = US0_1(5)
-    let v5 : US0 = US0_1(5)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 print_and_return / x: 0
@@ -7825,16 +7820,11 @@ print_and_return / x: 9
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v3 : bool = method1()
+let rec method0 () : unit =
+    let v3 : US0 = US0_1(10)
     let v4 : US0 = US0_1(10)
-    let v5 : US0 = US0_1(10)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 </pre>
@@ -7915,9 +7905,7 @@ method0()
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
+let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
     printfn $"print_and_return / x: {2}"
@@ -7928,13 +7916,10 @@ and method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v3 : bool = method1()
+    let v3 : US0 = US0_1(10)
     let v4 : US0 = US0_1(10)
-    let v5 : US0 = US0_1(10)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 print_and_return / x: 0
@@ -8038,9 +8023,7 @@ print_and_return / x: 9
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
+let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
     printfn $"print_and_return / x: {2}"
@@ -8051,13 +8034,10 @@ and method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v3 : bool = method1()
+    let v3 : US0 = US0_1(2)
     let v4 : US0 = US0_1(2)
-    let v5 : US0 = US0_1(2)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 print_and_return / x: 0
@@ -8147,16 +8127,11 @@ print_and_return / x: 9
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32 * f1_1 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v3 : bool = method1()
+let rec method0 () : unit =
+    let v3 : US0 = US0_1(5, 10)
     let v4 : US0 = US0_1(5, 10)
-    let v5 : US0 = US0_1(5, 10)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 </pre>
@@ -8232,18 +8207,13 @@ method0()
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v6 : bool = method1()
-    let v7 : US0 = US0_1(5)
-    let v8 : US0 = US0_1(10)
-    let v9 : US0 = US0_1(5)
-    let v10 : US0 = US0_1(10)
-    let v11 : string = $"__expect / actual: %A{struct (v7, v8)} / expected: %A{struct (v9, v10)}"
-    let v12 : bool = v6 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+let rec method0 () : unit =
+    let v6 : US0 = US0_1(5)
+    let v7 : US0 = US0_1(10)
+    let v8 : US0 = US0_1(5)
+    let v9 : US0 = US0_1(10)
+    let v10 : string = $"__expect / actual: %A{struct (v6, v7)} / expected: %A{struct (v8, v9)}"
+    ()
 method0()
 
 </pre>
@@ -8321,16 +8291,11 @@ method0()
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v3 : bool = method1()
+let rec method0 () : unit =
+    let v3 : US0 = US0_1(6)
     let v4 : US0 = US0_1(6)
-    let v5 : US0 = US0_1(6)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 </pre>
@@ -8459,14 +8424,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{45} / expected: %A{45}"
+    ()
 method0()
 
 </pre>
@@ -8551,36 +8511,31 @@ method0()
 <pre>type UH0 =
     | UH0_0 of int32 * UH0
     | UH0_1
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v88 : bool = method1()
-    let v89 : UH0 = UH0_1
-    let v90 : UH0 = UH0_0(9, v89)
-    let v91 : UH0 = UH0_0(8, v90)
-    let v92 : UH0 = UH0_0(7, v91)
-    let v93 : UH0 = UH0_0(6, v92)
-    let v94 : UH0 = UH0_0(5, v93)
-    let v95 : UH0 = UH0_0(4, v94)
-    let v96 : UH0 = UH0_0(3, v95)
-    let v97 : UH0 = UH0_0(2, v96)
-    let v98 : UH0 = UH0_0(1, v97)
-    let v99 : UH0 = UH0_0(0, v98)
-    let v100 : UH0 = UH0_1
-    let v101 : UH0 = UH0_0(9, v100)
-    let v102 : UH0 = UH0_0(8, v101)
-    let v103 : UH0 = UH0_0(7, v102)
-    let v104 : UH0 = UH0_0(6, v103)
-    let v105 : UH0 = UH0_0(5, v104)
-    let v106 : UH0 = UH0_0(4, v105)
-    let v107 : UH0 = UH0_0(3, v106)
-    let v108 : UH0 = UH0_0(2, v107)
-    let v109 : UH0 = UH0_0(1, v108)
-    let v110 : UH0 = UH0_0(0, v109)
-    let v111 : string = $"__expect / actual: %A{v99} / expected: %A{v110}"
-    let v112 : bool = v88 = false
-    if v112 then
-        failwith&lt;unit&gt; v111
+let rec method0 () : unit =
+    let v88 : UH0 = UH0_1
+    let v89 : UH0 = UH0_0(9, v88)
+    let v90 : UH0 = UH0_0(8, v89)
+    let v91 : UH0 = UH0_0(7, v90)
+    let v92 : UH0 = UH0_0(6, v91)
+    let v93 : UH0 = UH0_0(5, v92)
+    let v94 : UH0 = UH0_0(4, v93)
+    let v95 : UH0 = UH0_0(3, v94)
+    let v96 : UH0 = UH0_0(2, v95)
+    let v97 : UH0 = UH0_0(1, v96)
+    let v98 : UH0 = UH0_0(0, v97)
+    let v99 : UH0 = UH0_1
+    let v100 : UH0 = UH0_0(9, v99)
+    let v101 : UH0 = UH0_0(8, v100)
+    let v102 : UH0 = UH0_0(7, v101)
+    let v103 : UH0 = UH0_0(6, v102)
+    let v104 : UH0 = UH0_0(5, v103)
+    let v105 : UH0 = UH0_0(4, v104)
+    let v106 : UH0 = UH0_0(3, v105)
+    let v107 : UH0 = UH0_0(2, v106)
+    let v108 : UH0 = UH0_0(1, v107)
+    let v109 : UH0 = UH0_0(0, v108)
+    let v110 : string = $"__expect / actual: %A{v98} / expected: %A{v109}"
+    ()
 method0()
 
 </pre>
@@ -8662,8 +8617,6 @@ method0()
     | US0_1 of f1_0 : int32
 let rec method1 (v0 : (int32 [])) : (int32 []) =
     v0
-and method2 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = [|1; 2; 3|]
     let v1 : (int32 []) = method1(v0)
@@ -8682,12 +8635,11 @@ and method0 () : unit =
             v10
         | _ -&gt;
             false
-    let v12 : bool = method2(v11)
-    let v13 : US0 = US0_1(2)
-    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v13}"
-    let v15 : bool = v12 = false
-    if v15 then
-        failwith&lt;unit&gt; v14
+    let v12 : US0 = US0_1(2)
+    let v13 : string = $"__expect / actual: %A{v7} / expected: %A{v12}"
+    let v14 : bool = v11 = false
+    if v14 then
+        failwith&lt;unit&gt; v13
 method0()
 
 </pre>
@@ -8795,8 +8747,6 @@ and method3 (v0 : (int32 []), v1 : (int32 []), v2 : int32) : bool =
             false
     else
         true
-and method4 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = [||]
     let v1 : (int32 []) = method1(v0)
@@ -9054,11 +9004,10 @@ and method0 () : unit =
         else
             let v170 : int32 = 0
             method3(v163, v165, v170)
-    let v173 : bool = method4(v172)
-    let v174 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
-    let v175 : bool = v173 = false
-    if v175 then
-        failwith&lt;unit&gt; v174
+    let v173 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
+    let v174 : bool = v172 = false
+    if v174 then
+        failwith&lt;unit&gt; v173
 method0()
 
 </pre>
@@ -9137,14 +9086,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    ()
 method0()
 
 </pre>
@@ -9179,9 +9123,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
+<pre>let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
     printfn $"print_and_return / x: {1}"
@@ -9198,11 +9140,8 @@ and method0 () : unit =
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
     printfn $"print_and_return / x: {5}"
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    ()
 method0()
 
 print_and_return / x: 0
@@ -9354,8 +9293,6 @@ and method5 (v0 : UH1, v1 : int32) : int32 =
         method5(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method6 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
@@ -9365,11 +9302,10 @@ and method0 () : unit =
     let v5 : int32 = 0
     let v6 : int32 = method5(v4, v5)
     let v7 : bool = v6 = 10
-    let v8 : bool = method6(v7)
-    let v9 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v10 : bool = v8 = false
-    if v10 then
-        failwith&lt;unit&gt; v9
+    let v8 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
 print_and_return / x: 0
@@ -9508,8 +9444,6 @@ and method6 (v0 : UH1, v1 : int32) : int32 =
         method6(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method7 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
@@ -9522,11 +9456,10 @@ and method0 () : unit =
     let v8 : int32 = 0
     let v9 : int32 = method6(v7, v8)
     let v10 : bool = v9 = 10
-    let v11 : bool = method7(v10)
-    let v12 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
-    let v13 : bool = v11 = false
-    if v13 then
-        failwith&lt;unit&gt; v12
+    let v11 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
+    let v12 : bool = v10 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
 method0()
 
 print_and_return / x: 0
@@ -9685,8 +9618,6 @@ and method4 (v0 : UH1, v1 : int32) : int32 =
         method4(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method5 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     printfn $"print_and_return / x: {0}"
     let v0 : (unit -&gt; UH0) = closure0()
@@ -9717,11 +9648,10 @@ and method0 () : unit =
     let v22 : int32 = 0
     let v23 : int32 = method4(v21, v22)
     let v24 : bool = v23 = 10
-    let v25 : bool = method5(v24)
-    let v26 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
-    let v27 : bool = v25 = false
-    if v27 then
-        failwith&lt;unit&gt; v26
+    let v25 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
+    let v26 : bool = v24 = false
+    if v26 then
+        failwith&lt;unit&gt; v25
 method0()
 
 print_and_return / x: 0
@@ -9892,9 +9822,7 @@ and method4 (v0 : UH1, v1 : int32) : int32 =
         method4(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method5 (v0 : bool) : bool =
-    v0
-and method6 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
+and method5 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : UH0 = v0.l0
     let v4 : US1 = method2(v2, v3)
     let v12 : US0 =
@@ -9914,7 +9842,7 @@ and method6 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
         if v14 then
             let v15 : UH1 = UH1_0(v13, v1)
             let v16 : int32 = v2 + 1
-            method6(v0, v15, v16)
+            method5(v0, v15, v16)
         else
             let v18 : UH1 = UH1_1
             method3(v1, v18)
@@ -9930,22 +9858,20 @@ and method0 () : unit =
     let v5 : int32 = 0
     let v6 : int32 = method4(v4, v5)
     let v7 : bool = v6 = 10
-    let v8 : bool = method5(v7)
-    let v9 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v10 : bool = v8 = false
-    if v10 then
-        failwith&lt;unit&gt; v9
-    let v11 : UH1 = UH1_1
-    let v12 : int32 = 0
-    let v13 : UH1 = method6(v1, v11, v12)
-    let v14 : int32 = 0
-    let v15 : int32 = method4(v13, v14)
-    let v16 : bool = v15 = 10
-    let v17 : bool = method5(v16)
-    let v18 : string = $"__expect / actual: %A{v15} / expected: %A{10}"
-    let v19 : bool = v17 = false
-    if v19 then
-        failwith&lt;unit&gt; v18
+    let v8 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
+    let v10 : UH1 = UH1_1
+    let v11 : int32 = 0
+    let v12 : UH1 = method5(v1, v10, v11)
+    let v13 : int32 = 0
+    let v14 : int32 = method4(v12, v13)
+    let v15 : bool = v14 = 10
+    let v16 : string = $"__expect / actual: %A{v14} / expected: %A{10}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 print_and_return / x: 0
@@ -10027,14 +9953,9 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    ()
 method0()
 
 </pre>
@@ -10107,18 +10028,15 @@ method0()
         let v3 : int32 = 2 * v0
         let v4 : int32 = v1 - 1
         method1(v3, v4)
-and method2 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 = 1
     let v1 : int32 = 10
     let v2 : int32 = method1(v0, v1)
     let v3 : bool = v2 = 1024
-    let v4 : bool = method2(v3)
-    let v5 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
-    let v6 : bool = v4 = false
-    if v6 then
-        failwith&lt;unit&gt; v5
+    let v4 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -10180,14 +10098,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    ()
 method0()
 
 </pre>

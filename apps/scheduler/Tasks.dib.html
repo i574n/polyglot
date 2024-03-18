@@ -8344,7 +8344,7 @@ pub use module_ccfa04bf::*;
 <span class="n">get_tasks</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">listm</span><span class="s1">'.try_item 0i32</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">Some</span> <span class="n">task</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">task</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">name</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">task_name</span> <span class="s2">"01"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">task_name</span> <span class="s2">"01"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8368,8 +8368,8 @@ pub use module_ccfa04bf::*;
 <pre>
 .fsx:
 let rec method0 () : unit =
-    let v0 : string = "01"
-    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{v0}"
+    let v3 : string = "01"
+    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{v3}"
     ()
 method0()
 
@@ -8391,7 +8391,7 @@ mod module_ccfa04bf {
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         pub fn method0() {
-            let v1: string =
+            let v4: string =
                 sprintf!("__expect / actual: {:?} / expected: {:?}",
                          string("01"), string("01"));
             ()

@@ -7658,14 +7658,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    ()
 method0()
 
 </pre>
@@ -7737,14 +7732,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    ()
 method0()
 
 </pre>
@@ -7817,14 +7807,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    ()
 method0()
 
 </pre>
@@ -7902,16 +7887,11 @@ method0()
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
     | US0_1 of f1_0 : int32
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v3 : bool = method1()
+let rec method0 () : unit =
+    let v3 : US0 = US0_1(5)
     let v4 : US0 = US0_1(5)
-    let v5 : US0 = US0_1(5)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v7 : bool = v3 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    ()
 method0()
 
 </pre>
@@ -7991,20 +7971,17 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type Mut0 = {mutable l0 : int32}
-let rec method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
+let rec method0 () : unit =
     let v0 : Mut0 = {l0 = 1} : Mut0
     let v1 : int32 = v0.l0
     let v2 : int32 = v1 + 1
     v0.l0 &lt;- v2
     let v3 : int32 = v0.l0
     let v4 : bool = v3 = 2
-    let v5 : bool = method1(v4)
-    let v6 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
 method0()
 
 </pre>
@@ -8093,8 +8070,6 @@ method0()
     | US0_1 of f1_0 : int32
 let rec closure0 () (v0 : int32) : US0 =
     US0_1(v0)
-and method1 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 option = Some 3
     let v1 : (int32 -&gt; US0) = closure0()
@@ -8119,13 +8094,12 @@ and method0 () : unit =
                 false
         else
             false
-    let v14 : bool = method1(v13)
-    let v15 : US0 = US0_1(3)
-    let v16 : US0 = US0_0
-    let v17 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v15, v16)}"
-    let v18 : bool = v14 = false
-    if v18 then
-        failwith&lt;unit&gt; v17
+    let v14 : US0 = US0_1(3)
+    let v15 : US0 = US0_0
+    let v16 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v14, v15)}"
+    let v17 : bool = v13 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 </pre>

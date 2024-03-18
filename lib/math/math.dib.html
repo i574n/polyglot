@@ -7772,12 +7772,16 @@ and method0 () : unit =
     let v7 : string = "fable_library_rust::String_::fromString(v6)"
     let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
     let v10 : bool = v8 = "0+0i"
-    let v11 : bool = method4(v10)
-    let v12 : string = "0+0i"
-    let v13 : string = $"__expect / actual: %A{v8} / expected: %A{v12}"
-    let v14 : bool = v11 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+    let v12 : bool =
+        if v10 then
+            v10
+        else
+            method4(v10)
+    let v13 : string = "0+0i"
+    let v14 : string = $"__expect / actual: %A{v8} / expected: %A{v13}"
+    let v15 : bool = v12 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
 method0()
 
 .rs:
@@ -7809,7 +7813,8 @@ mod module_ccfa04bf {
             let v6: std::string::String =
                 Spiral_eval::method3(format!("{}", v3));
             let v8: string = fable_library_rust::String_::fromString(v6);
-            if Spiral_eval::method4(v8.clone() == string("0+0i")) == false {
+            let v10: bool = v8.clone() == string("0+0i");
+            if (if v10 { v10 } else { Spiral_eval::method4(v10) }) == false {
                 panic!("{}",
                        sprintf!("__expect / actual: {:?} / expected: {:?}", v8, string("0+0i")));
             }
@@ -8224,36 +8229,44 @@ and closure0 () () : unit =
     let v67 : string = "v66.im"
     let v68 : float = Fable.Core.RustInterop.emitRustExpr () v67
     let v69 : bool = v68 = 0.0
-    let v70 : bool = method20(v69)
-    let v71 : string = $"__expect / actual: %A{v68} / expected: %A{0.0}"
-    let v72 : bool = v70 = false
-    if v72 then
-        failwith&lt;unit&gt; v71
-    let v73 : string = "v66.re"
-    let v74 : float = Fable.Core.RustInterop.emitRustExpr () v73
-    let v75 : float = v74 - 1.6449340668482264
-    let v76 : float =  -v75
-    let v77 : bool = v75 &gt;= v76
-    let v78 : float =
-        if v77 then
-            v75
+    let v71 : bool =
+        if v69 then
+            v69
         else
+            method20(v69)
+    let v72 : string = $"__expect / actual: %A{v68} / expected: %A{0.0}"
+    let v73 : bool = v71 = false
+    if v73 then
+        failwith&lt;unit&gt; v72
+    let v74 : string = "v66.re"
+    let v75 : float = Fable.Core.RustInterop.emitRustExpr () v74
+    let v76 : float = v75 - 1.6449340668482264
+    let v77 : float =  -v76
+    let v78 : bool = v76 &gt;= v77
+    let v79 : float =
+        if v78 then
             v76
-    let v79 : bool = v78 &lt; 0.001
-    let v80 : bool = method20(v79)
-    let v81 : string = $"__expect / actual: %A{v78} / expected: %A{0.001}"
-    let v82 : bool = v80 = false
-    if v82 then
-        failwith&lt;unit&gt; v81
-    let v83 : Result&lt;unit, pyo3_PyErr&gt; = Ok ()
-    let v84 : Result&lt;unit, pyo3_PyErr&gt; = method21(v83)
-    let v85 : string = "v84 }}}}); {{{ //"
-    Fable.Core.RustInterop.emitRustExpr () v85
-    let v86 : string = "__result"
-    let v87 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v86
-    let v88 : Result&lt;unit, pyo3_PyErr&gt; = method22(v87)
-    let v89 : string = "v88.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr () v89
+        else
+            v77
+    let v80 : bool = v79 &lt; 0.001
+    let v82 : bool =
+        if v80 then
+            v80
+        else
+            method20(v80)
+    let v83 : string = $"__expect / actual: %A{v79} / expected: %A{0.001}"
+    let v84 : bool = v82 = false
+    if v84 then
+        failwith&lt;unit&gt; v83
+    let v85 : Result&lt;unit, pyo3_PyErr&gt; = Ok ()
+    let v86 : Result&lt;unit, pyo3_PyErr&gt; = method21(v85)
+    let v87 : string = "v86 }}}}); {{{ //"
+    Fable.Core.RustInterop.emitRustExpr () v87
+    let v88 : string = "__result"
+    let v89 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v88
+    let v90 : Result&lt;unit, pyo3_PyErr&gt; = method22(v89)
+    let v91 : string = "v90.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr () v91
     ()
 and method1 () : (unit -&gt; unit) =
     closure0()
@@ -8429,26 +8442,30 @@ use pyo3::prelude::PyAnyMethods;
                                                pyo3::PyErr&gt;(num_complex::Complex::new(v59, v60)));
                 let v66: num_complex::Complex&lt;f64&gt; = v64.unwrap();
                 let v68: f64 = v66.im;
-                if Spiral_eval::method20(v68 == 0.0_f64) == false {
+                let v69: bool = v68 == 0.0_f64;
+                if (if v69 { v69 } else { Spiral_eval::method20(v69) }) ==
+                       false {
                     panic!("{}",
                            sprintf!("__expect / actual: {:?} / expected: {:?}", v68, 0.0_f64));
                 }
                 {
-                    let v75: f64 = v66.re - 1.6449340668482264_f64;
-                    let v76: f64 = -v75;
-                    let v78: f64 = if v75 &gt;= v76 { v75 } else { v76 };
-                    if Spiral_eval::method20(v78 &lt; 0.001_f64) == false {
+                    let v76: f64 = v66.re - 1.6449340668482264_f64;
+                    let v77: f64 = -v76;
+                    let v79: f64 = if v76 &gt;= v77 { v76 } else { v77 };
+                    let v80: bool = v79 &lt; 0.001_f64;
+                    if (if v80 { v80 } else { Spiral_eval::method20(v80) }) ==
+                           false {
                         panic!("{}",
-                               sprintf!("__expect / actual: {:?} / expected: {:?}", v78, 0.001_f64));
+                               sprintf!("__expect / actual: {:?} / expected: {:?}", v79, 0.001_f64));
                     }
                     {
-                        let v84: Result&lt;(), pyo3::PyErr&gt; =
+                        let v86: Result&lt;(), pyo3::PyErr&gt; =
                             Spiral_eval::method21(Ok::&lt;(), pyo3::PyErr&gt;(()));
-                        v84 }}}}); {{{ //;
+                        v86 }}}}); {{{ //;
                         {
-                            let v88: Result&lt;(), pyo3::PyErr&gt; =
+                            let v90: Result&lt;(), pyo3::PyErr&gt; =
                                 Spiral_eval::method22(__result);
-                            v88.unwrap();
+                            v90.unwrap();
                             ()
                         }
                     }

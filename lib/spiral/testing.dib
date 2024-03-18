@@ -10,7 +10,8 @@
 
 inl __expect fn log b a =
     inl result = fn a b
-    inl result = join result
+    inl result =
+        result || dyn result
     if log
     then $"$\"__expect / actual: %A{!a} / expected: %A{!b}\""
     else "__expect"
@@ -41,6 +42,20 @@ inl _throws (fn : () -> ()) : option string =
     inl none = None : option string
     inl some (s : string) = Some s
     $"try !fn (); !none with ex -> !some ex.Message"
+
+#!spiral
+
+// // test
+
+1f64
+|> _assert_approx_eq (Some 3) 2
+
+#!spiral
+
+// // test
+
+(dyn 1f64)
+|> _assert_approx_eq (Some 3) 2
 
 #!spiral
 

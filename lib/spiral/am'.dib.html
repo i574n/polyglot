@@ -7781,8 +7781,6 @@ and method3 (v0 : (string []), v1 : (string []), v2 : int32) : bool =
             false
     else
         true
-and method4 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : string = "a"
     let v1 : string = "b"
@@ -7824,11 +7822,10 @@ and method0 () : unit =
         else
             let v27 : int32 = 0
             method3(v11, v22, v27)
-    let v30 : bool = method4(v29)
-    let v31 : string = $"__expect / actual: %A{v11} / expected: %A{v22}"
-    let v32 : bool = v30 = false
-    if v32 then
-        failwith&lt;unit&gt; v31
+    let v30 : string = $"__expect / actual: %A{v11} / expected: %A{v22}"
+    let v31 : bool = v29 = false
+    if v31 then
+        failwith&lt;unit&gt; v30
 method0()
 
 </pre>
@@ -8002,8 +7999,6 @@ and method7 (v0 : (int32 []), v1 : (int32 []), v2 : int32) : bool =
             false
     else
         true
-and method8 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (10)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8054,11 +8049,10 @@ and method0 () : unit =
         else
             let v33 : int32 = 0
             method7(v26, v28, v33)
-    let v36 : bool = method8(v35)
-    let v37 : string = $"__expect / actual: %A{v26} / expected: %A{v28}"
-    let v38 : bool = v36 = false
-    if v38 then
-        failwith&lt;unit&gt; v37
+    let v36 : string = $"__expect / actual: %A{v26} / expected: %A{v28}"
+    let v37 : bool = v35 = false
+    if v37 then
+        failwith&lt;unit&gt; v36
 method0()
 
 </pre>
@@ -8141,8 +8135,6 @@ and method2 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method3 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (10)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8165,11 +8157,10 @@ and method0 () : unit =
         ()
     let v13 : int32 = v6.l1
     let v14 : bool = v13 = 45
-    let v15 : bool = method3(v14)
-    let v16 : string = $"__expect / actual: %A{v13} / expected: %A{45}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+    let v15 : string = $"__expect / actual: %A{v13} / expected: %A{45}"
+    let v16 : bool = v14 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
 </pre>
@@ -8263,8 +8254,6 @@ and method3 (v0 : (float []), v1 : (float []), v2 : int32) : bool =
             false
     else
         true
-and method4 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (3)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8288,11 +8277,10 @@ and method0 () : unit =
         else
             let v13 : int32 = 0
             method3(v0, v8, v13)
-    let v16 : bool = method4(v15)
-    let v17 : string = $"__expect / actual: %A{v0} / expected: %A{v8}"
-    let v18 : bool = v16 = false
-    if v18 then
-        failwith&lt;unit&gt; v17
+    let v16 : string = $"__expect / actual: %A{v0} / expected: %A{v8}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 </pre>
@@ -8415,8 +8403,6 @@ let rec method1 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
     let v2 : bool = v1 &lt; 10
     v2
-and method2 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (10)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8430,11 +8416,10 @@ and method0 () : unit =
     let v6 : int32 = v5 - 1
     let v7 : int32 = v0.[int v6]
     let v8 : bool = v7 = 9
-    let v9 : bool = method2(v8)
-    let v10 : string = $"__expect / actual: %A{v7} / expected: %A{9}"
-    let v11 : bool = v9 = false
-    if v11 then
-        failwith&lt;unit&gt; v10
+    let v9 : string = $"__expect / actual: %A{v7} / expected: %A{9}"
+    let v10 : bool = v8 = false
+    if v10 then
+        failwith&lt;unit&gt; v9
 method0()
 
 </pre>
@@ -8524,8 +8509,6 @@ and method2 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method3 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (10)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8567,12 +8550,11 @@ and method0 () : unit =
             v26
         | _ -&gt;
             false
-    let v28 : bool = method3(v27)
-    let v29 : US0 = US0_1(5)
-    let v30 : string = $"__expect / actual: %A{v23} / expected: %A{v29}"
-    let v31 : bool = v28 = false
-    if v31 then
-        failwith&lt;unit&gt; v30
+    let v28 : US0 = US0_1(5)
+    let v29 : string = $"__expect / actual: %A{v23} / expected: %A{v28}"
+    let v30 : bool = v27 = false
+    if v30 then
+        failwith&lt;unit&gt; v29
 method0()
 
 </pre>
@@ -8684,8 +8666,6 @@ and method5 (v0 : (struct (int32 * int32) []), v1 : (struct (int32 * int32) []),
             false
     else
         true
-and method6 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (3)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -8745,11 +8725,10 @@ and method0 () : unit =
         else
             let v43 : int32 = 0
             method5(v36, v38, v43)
-    let v46 : bool = method6(v45)
-    let v47 : string = $"__expect / actual: %A{v36} / expected: %A{v38}"
-    let v48 : bool = v46 = false
-    if v48 then
-        failwith&lt;unit&gt; v47
+    let v46 : string = $"__expect / actual: %A{v36} / expected: %A{v38}"
+    let v47 : bool = v45 = false
+    if v47 then
+        failwith&lt;unit&gt; v46
 method0()
 
 </pre>
@@ -8980,8 +8959,6 @@ and method8 (v0 : (struct (int32 * int32) []), v1 : (struct (int32 * int32) []),
             false
     else
         true
-and method9 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : (int32 []) = Array.zeroCreate&lt;int32&gt; (3)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -9022,11 +8999,10 @@ and method0 () : unit =
         else
             let v28 : int32 = 0
             method8(v21, v23, v28)
-    let v31 : bool = method9(v30)
-    let v32 : string = $"__expect / actual: %A{v21} / expected: %A{v23}"
-    let v33 : bool = v31 = false
-    if v33 then
-        failwith&lt;unit&gt; v32
+    let v31 : string = $"__expect / actual: %A{v21} / expected: %A{v23}"
+    let v32 : bool = v30 = false
+    if v32 then
+        failwith&lt;unit&gt; v31
 method0()
 
 </pre>

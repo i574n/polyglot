@@ -7790,14 +7790,9 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
+    ()
 method0()
 
 </pre>
@@ -7911,9 +7906,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
+<pre>let rec method0 () : unit =
     let v0 : string = "a"
     let v1 : (string * int32) = v0, 1
     let (a, b) = v1
@@ -7926,11 +7919,10 @@ and method0 () : unit =
             v5
         else
             false
-    let v7 : bool = method1(v6)
-    let v8 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+    let v7 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 </pre>
@@ -8300,14 +8292,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{1} / expected: %A{1}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{1} / expected: %A{1}"
+    ()
 method0()
 
 </pre>
@@ -8380,14 +8367,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
+<pre>let rec method0 () : unit =
+    let v0 : string = $"__expect / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
+    ()
 method0()
 
 </pre>
@@ -8498,19 +8480,16 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method1 () : int32 =
     3
-and method2 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 = method1()
     let v1 : int32 = 9 + v0
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
     let v4 : bool = v3 = 15
-    let v5 : bool = method2(v4)
-    let v6 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
 method0()
 
 </pre>
@@ -8548,8 +8527,6 @@ method0()
 and method2 (v0 : int32, v1 : int32) : int32 =
     let v2 : int32 = v1 + v0
     v2
-and method3 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 = method1()
     let v1 : int32 = 9
@@ -8557,11 +8534,10 @@ and method0 () : unit =
     let v3 : int32 = v2 + 2
     let v4 : int32 = v3 + 1
     let v5 : bool = v4 = 15
-    let v6 : bool = method3(v5)
-    let v7 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
+    let v7 : bool = v5 = false
+    if v7 then
+        failwith&lt;unit&gt; v6
 method0()
 
 </pre>
@@ -8643,19 +8619,16 @@ method0()
 and method2 (v0 : int32) : int32 =
     let v1 : int32 = 9 + v0
     v1
-and method3 (v0 : bool) : bool =
-    v0
 and method0 () : unit =
     let v0 : int32 = method1()
     let v1 : int32 = method2(v0)
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
     let v4 : bool = v3 = 15
-    let v5 : bool = method3(v4)
-    let v6 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
 method0()
 
 </pre>
@@ -8749,9 +8722,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
+<pre>let rec method0 () : unit =
     let mutable result = None
     #if FABLE_COMPILER_RUST
     #if !WASM
@@ -8768,11 +8739,10 @@ and method0 () : unit =
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
     let v4 : bool = v3 = 1uy
-    let v5 : bool = method1(v4)
-    let v6 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
 method0()
 
 </pre>
@@ -8819,9 +8789,7 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .fsx:
-let rec method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
+let rec method0 () : unit =
     let mutable result = None
     #if FABLE_COMPILER_RUST
     #if !WASM
@@ -8838,11 +8806,10 @@ and method0 () : unit =
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
     let v4 : bool = 2uy = v3
-    let v5 : bool = method1(v4)
-    let v6 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+    let v5 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
+    let v6 : bool = v4 = false
+    if v6 then
+        failwith&lt;unit&gt; v5
 method0()
 
 .rs:
@@ -8863,13 +8830,12 @@ mod module_ccfa04bf {
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Option_::getValue;
         use fable_library_rust::String_::sprintf;
-        pub fn method1(v0: bool) -&gt; bool { v0 }
         pub fn method0() {
             let result: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
             result.set(Some(2_u8));
             {
                 let v4: bool = 2_u8 == getValue(result.get().clone());
-                if Spiral_eval::method1(v4) == false {
+                if v4 == false {
                     panic!("{}",
                            sprintf!("__expect / actual: {:?} / expected: {:?}", v4, true));
                 }
