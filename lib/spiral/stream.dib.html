@@ -8253,6 +8253,8 @@ and method1 (v0 : int32, v1 : UH0) : US1 =
             method1(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
         US1_0
+and method2 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     printfn $"print_and_return / x: {0}"
     let v0 : (unit -&gt; UH0) = closure0()
@@ -8286,42 +8288,52 @@ and method0 () : unit =
         | US1_1(v21) -&gt; (* Some *)
             v21
     let v25 : bool = v24 = 3
-    let v26 : string = $"__expect / actual: %A{v24} / expected: %A{3}"
-    let v27 : bool = v25 = false
-    if v27 then
-        failwith&lt;unit&gt; v26
-    let v28 : US0 = v2.l0
-    let v43 : UH0 =
-        match v28 with
-        | US0_0(v29) -&gt; (* Computed *)
-            v29
-        | US0_1(v30) -&gt; (* NotComputed *)
-            let v31 : UH0 = v30 ()
-            let v40 : UH0 =
-                match v31 with
-                | UH0_0(v33, v34) -&gt; (* StreamCons *)
-                    let v35 : US0 = US0_1(v34)
-                    let v36 : Mut0 = {l0 = v35} : Mut0
-                    let v37 : (unit -&gt; UH0) = closure11(v36)
-                    UH0_0(v33, v37)
+    let v27 : bool =
+        if v25 then
+            true
+        else
+            method2(v25)
+    let v28 : string = $"__expect / actual: %A{v24} / expected: %A{3}"
+    let v29 : bool = v27 = false
+    if v29 then
+        failwith&lt;unit&gt; v28
+    let v30 : US0 = v2.l0
+    let v45 : UH0 =
+        match v30 with
+        | US0_0(v31) -&gt; (* Computed *)
+            v31
+        | US0_1(v32) -&gt; (* NotComputed *)
+            let v33 : UH0 = v32 ()
+            let v42 : UH0 =
+                match v33 with
+                | UH0_0(v35, v36) -&gt; (* StreamCons *)
+                    let v37 : US0 = US0_1(v36)
+                    let v38 : Mut0 = {l0 = v37} : Mut0
+                    let v39 : (unit -&gt; UH0) = closure11(v38)
+                    UH0_0(v35, v39)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v41 : US0 = US0_0(v40)
-            v2.l0 &lt;- v41
-            v40
-    let v44 : int32 = 5
-    let v45 : US1 = method1(v44, v43)
-    let v49 : int32 =
-        match v45 with
+            let v43 : US0 = US0_0(v42)
+            v2.l0 &lt;- v43
+            v42
+    let v46 : int32 = 5
+    let v47 : US1 = method1(v46, v45)
+    let v51 : int32 =
+        match v47 with
         | US1_0 -&gt; (* None *)
             failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v46) -&gt; (* Some *)
-            v46
-    let v50 : bool = v49 = 5
-    let v51 : string = $"__expect / actual: %A{v49} / expected: %A{5}"
-    let v52 : bool = v50 = false
-    if v52 then
-        failwith&lt;unit&gt; v51
+        | US1_1(v48) -&gt; (* Some *)
+            v48
+    let v52 : bool = v51 = 5
+    let v54 : bool =
+        if v52 then
+            true
+        else
+            method2(v52)
+    let v55 : string = $"__expect / actual: %A{v51} / expected: %A{5}"
+    let v56 : bool = v54 = false
+    if v56 then
+        failwith&lt;unit&gt; v55
 method0()
 
 print_and_return / x: 0
@@ -8418,6 +8430,8 @@ and method3 (v0 : int32, v1 : UH0) : US1 =
             method3(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
         US1_0
+and method4 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
@@ -8433,24 +8447,34 @@ and method0 () : unit =
         | US1_1(v7) -&gt; (* Some *)
             v7
     let v11 : bool = v10 = 3
-    let v12 : string = $"__expect / actual: %A{v10} / expected: %A{3}"
-    let v13 : bool = v11 = false
-    if v13 then
-        failwith&lt;unit&gt; v12
-    let v14 : UH0 = v3 ()
-    let v15 : int32 = 5
-    let v16 : US1 = method3(v15, v14)
-    let v20 : int32 =
-        match v16 with
+    let v13 : bool =
+        if v11 then
+            true
+        else
+            method4(v11)
+    let v14 : string = $"__expect / actual: %A{v10} / expected: %A{3}"
+    let v15 : bool = v13 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
+    let v16 : UH0 = v3 ()
+    let v17 : int32 = 5
+    let v18 : US1 = method3(v17, v16)
+    let v22 : int32 =
+        match v18 with
         | US1_0 -&gt; (* None *)
             failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v17) -&gt; (* Some *)
-            v17
-    let v21 : bool = v20 = 5
-    let v22 : string = $"__expect / actual: %A{v20} / expected: %A{5}"
-    let v23 : bool = v21 = false
-    if v23 then
-        failwith&lt;unit&gt; v22
+        | US1_1(v19) -&gt; (* Some *)
+            v19
+    let v23 : bool = v22 = 5
+    let v25 : bool =
+        if v23 then
+            true
+        else
+            method4(v23)
+    let v26 : string = $"__expect / actual: %A{v22} / expected: %A{5}"
+    let v27 : bool = v25 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
 method0()
 
 print_and_return / x: 0

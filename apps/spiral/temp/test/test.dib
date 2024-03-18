@@ -1,12 +1,30 @@
-// // # test (Polyglot)
+#!meta
 
-// // ## main
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# test (Polyglot)
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## main
+
+#!spiral
 
 inl main (_args : array_base string) =
     0i32
 
 inl main () =
     $"let main args = !main args" : ()
+
+#!spiral
 
 inl app () =
     "test" |> console.write_line

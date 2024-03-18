@@ -9455,6 +9455,8 @@ and method3 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method4 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (100)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -9500,10 +9502,15 @@ and method0 () : unit =
         else
             v27
     let v30 : bool = v29 &lt; 1E-08
-    let v31 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
-    let v32 : bool = v30 = false
-    if v32 then
-        failwith&lt;unit&gt; v31
+    let v32 : bool =
+        if v30 then
+            true
+        else
+            method4(v30)
+    let v33 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
+    let v34 : bool = v32 = false
+    if v34 then
+        failwith&lt;unit&gt; v33
 method0()
 
 </pre>
@@ -14843,6 +14850,8 @@ and method1 (v0 : float, v1 : float, v2 : float) : struct (float * float) =
             else
                 struct (v2, v1)
         method1(v17, v20, v19)
+and method7 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : float = 30.0
     let v1 : float = 0.0
@@ -14855,10 +14864,15 @@ and method0 () : unit =
             v6
         else
             false
-    let v8 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+    let v9 : bool =
+        if v7 then
+            true
+        else
+            method7(v7)
+    let v10 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
+    let v11 : bool = v9 = false
+    if v11 then
+        failwith&lt;unit&gt; v10
 method0()
 
 </pre>

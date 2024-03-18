@@ -7869,13 +7869,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = System.Math.Atan2 (1.0, 0.0)
     let v1 : bool = v0 = 1.5707963267948966
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{1.5707963267948966}"
-    let v3 : bool = v1 = false
-    if v3 then
-        failwith&lt;unit&gt; v2
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{1.5707963267948966}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -7987,13 +7994,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = floor 0.6
     let v1 : bool = v0 = 0.0
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
-    let v3 : bool = v1 = false
-    if v3 then
-        failwith&lt;unit&gt; v2
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8065,13 +8079,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = System.Math.Log (100.0, 10.0)
     let v1 : bool = v0 = 2.0
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{2.0}"
-    let v3 : bool = v1 = false
-    if v3 then
-        failwith&lt;unit&gt; v2
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{2.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8143,13 +8164,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = round 0.5
     let v1 : bool = v0 = 0.0
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
-    let v3 : bool = v1 = false
-    if v3 then
-        failwith&lt;unit&gt; v2
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8181,13 +8209,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = round 0.6
     let v1 : bool = v0 = 1.0
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{1.0}"
-    let v3 : bool = v1 = false
-    if v3 then
-        failwith&lt;unit&gt; v2
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{1.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>

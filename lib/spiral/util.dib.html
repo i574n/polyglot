@@ -7880,7 +7880,7 @@ and method0 () : unit =
     let v8 : bool = v6 = "1\n2\n3\n"
     let v10 : bool =
         if v8 then
-            v8
+            true
         else
             method4(v8)
     let v11 : string = "1\n2\n3\n"
@@ -7952,7 +7952,7 @@ mod module_ccfa04bf {
                                                                       string("2"),
                                                                       string("3")])));
             let v8: bool = v6.clone() == string("1\n2\n3\n");
-            if (if v8 { v8 } else { Spiral_eval::method4(v8) }) == false {
+            if (if v8 { true } else { Spiral_eval::method4(v8) }) == false {
                 panic!("{}",
                        sprintf!("__expect / actual: {:?} / expected: {:?}", v6, string("1\n2\n3\n")));
             }
@@ -8048,7 +8048,7 @@ and method0 () : unit =
     let v10 : bool = v8 = "1\n2\n3\n"
     let v12 : bool =
         if v10 then
-            v10
+            true
         else
             method3(v10)
     let v13 : string = "1\n2\n3\n"
@@ -8140,7 +8140,7 @@ mod module_ccfa04bf {
                                                                                                              LrcPtr::new(Spiral_eval::UH0::UH0_0(string("3"),
                                                                                                                                                  LrcPtr::new(Spiral_eval::UH0::UH0_1))))))));
             let v10: bool = v8.clone() == string("1\n2\n3\n");
-            if (if v10 { v10 } else { Spiral_eval::method3(v10) }) == false {
+            if (if v10 { true } else { Spiral_eval::method3(v10) }) == false {
                 panic!("{}",
                        sprintf!("__expect / actual: {:?} / expected: {:?}", v8, string("1\n2\n3\n")));
             }
@@ -8288,7 +8288,7 @@ and method0 () : unit =
     let v10 : bool = v8 = "1\n2\n3\n"
     let v12 : bool =
         if v10 then
-            v10
+            true
         else
             method6(v10)
     let v13 : string = "1\n2\n3\n"
@@ -8397,7 +8397,7 @@ mod module_ccfa04bf {
                                                                                                              LrcPtr::new(Spiral_eval::UH0::UH0_0(string("3"),
                                                                                                                                                  LrcPtr::new(Spiral_eval::UH0::UH0_1))))))));
             let v10: bool = v8.clone() == string("1\n2\n3\n");
-            if (if v10 { v10 } else { Spiral_eval::method6(v10) }) == false {
+            if (if v10 { true } else { Spiral_eval::method6(v10) }) == false {
                 panic!("{}",
                        sprintf!("__expect / actual: {:?} / expected: {:?}", v8, string("1\n2\n3\n")));
             }

@@ -8617,6 +8617,8 @@ method0()
     | US0_1 of f1_0 : int32
 let rec method1 (v0 : (int32 [])) : (int32 []) =
     v0
+and method2 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : (int32 []) = [|1; 2; 3|]
     let v1 : (int32 []) = method1(v0)
@@ -8635,11 +8637,16 @@ and method0 () : unit =
             v10
         | _ -&gt;
             false
-    let v12 : US0 = US0_1(2)
-    let v13 : string = $"__expect / actual: %A{v7} / expected: %A{v12}"
-    let v14 : bool = v11 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+    let v13 : bool =
+        if v11 then
+            true
+        else
+            method2(v11)
+    let v14 : US0 = US0_1(2)
+    let v15 : string = $"__expect / actual: %A{v7} / expected: %A{v14}"
+    let v16 : bool = v13 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
 </pre>
@@ -8747,6 +8754,8 @@ and method3 (v0 : (int32 []), v1 : (int32 []), v2 : int32) : bool =
             false
     else
         true
+and method4 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : (int32 []) = [||]
     let v1 : (int32 []) = method1(v0)
@@ -9004,10 +9013,15 @@ and method0 () : unit =
         else
             let v170 : int32 = 0
             method3(v163, v165, v170)
-    let v173 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
-    let v174 : bool = v172 = false
-    if v174 then
-        failwith&lt;unit&gt; v173
+    let v174 : bool =
+        if v172 then
+            true
+        else
+            method4(v172)
+    let v175 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
+    let v176 : bool = v174 = false
+    if v176 then
+        failwith&lt;unit&gt; v175
 method0()
 
 </pre>
@@ -9293,6 +9307,8 @@ and method5 (v0 : UH1, v1 : int32) : int32 =
         method5(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
+and method6 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
@@ -9302,10 +9318,15 @@ and method0 () : unit =
     let v5 : int32 = 0
     let v6 : int32 = method5(v4, v5)
     let v7 : bool = v6 = 10
-    let v8 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+    let v9 : bool =
+        if v7 then
+            true
+        else
+            method6(v7)
+    let v10 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
+    let v11 : bool = v9 = false
+    if v11 then
+        failwith&lt;unit&gt; v10
 method0()
 
 print_and_return / x: 0
@@ -9444,6 +9465,8 @@ and method6 (v0 : UH1, v1 : int32) : int32 =
         method6(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
+and method7 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
@@ -9456,10 +9479,15 @@ and method0 () : unit =
     let v8 : int32 = 0
     let v9 : int32 = method6(v7, v8)
     let v10 : bool = v9 = 10
-    let v11 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
-    let v12 : bool = v10 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+    let v12 : bool =
+        if v10 then
+            true
+        else
+            method7(v10)
+    let v13 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
+    let v14 : bool = v12 = false
+    if v14 then
+        failwith&lt;unit&gt; v13
 method0()
 
 print_and_return / x: 0
@@ -9618,6 +9646,8 @@ and method4 (v0 : UH1, v1 : int32) : int32 =
         method4(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
+and method5 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     printfn $"print_and_return / x: {0}"
     let v0 : (unit -&gt; UH0) = closure0()
@@ -9648,10 +9678,15 @@ and method0 () : unit =
     let v22 : int32 = 0
     let v23 : int32 = method4(v21, v22)
     let v24 : bool = v23 = 10
-    let v25 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
-    let v26 : bool = v24 = false
-    if v26 then
-        failwith&lt;unit&gt; v25
+    let v26 : bool =
+        if v24 then
+            true
+        else
+            method5(v24)
+    let v27 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
+    let v28 : bool = v26 = false
+    if v28 then
+        failwith&lt;unit&gt; v27
 method0()
 
 print_and_return / x: 0
@@ -9822,7 +9857,9 @@ and method4 (v0 : UH1, v1 : int32) : int32 =
         method4(v3, v4)
     | UH1_1 -&gt; (* Nil *)
         v1
-and method5 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
+and method5 (v0 : bool) : bool =
+    v0
+and method6 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : UH0 = v0.l0
     let v4 : US1 = method2(v2, v3)
     let v12 : US0 =
@@ -9842,7 +9879,7 @@ and method5 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
         if v14 then
             let v15 : UH1 = UH1_0(v13, v1)
             let v16 : int32 = v2 + 1
-            method5(v0, v15, v16)
+            method6(v0, v15, v16)
         else
             let v18 : UH1 = UH1_1
             method3(v1, v18)
@@ -9858,20 +9895,30 @@ and method0 () : unit =
     let v5 : int32 = 0
     let v6 : int32 = method4(v4, v5)
     let v7 : bool = v6 = 10
-    let v8 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
-    let v10 : UH1 = UH1_1
-    let v11 : int32 = 0
-    let v12 : UH1 = method5(v1, v10, v11)
+    let v9 : bool =
+        if v7 then
+            true
+        else
+            method5(v7)
+    let v10 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
+    let v11 : bool = v9 = false
+    if v11 then
+        failwith&lt;unit&gt; v10
+    let v12 : UH1 = UH1_1
     let v13 : int32 = 0
-    let v14 : int32 = method4(v12, v13)
-    let v15 : bool = v14 = 10
-    let v16 : string = $"__expect / actual: %A{v14} / expected: %A{10}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+    let v14 : UH1 = method6(v1, v12, v13)
+    let v15 : int32 = 0
+    let v16 : int32 = method4(v14, v15)
+    let v17 : bool = v16 = 10
+    let v19 : bool =
+        if v17 then
+            true
+        else
+            method5(v17)
+    let v20 : string = $"__expect / actual: %A{v16} / expected: %A{10}"
+    let v21 : bool = v19 = false
+    if v21 then
+        failwith&lt;unit&gt; v20
 method0()
 
 print_and_return / x: 0
@@ -10028,15 +10075,22 @@ method0()
         let v3 : int32 = 2 * v0
         let v4 : int32 = v1 - 1
         method1(v3, v4)
+and method2 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = 1
     let v1 : int32 = 10
     let v2 : int32 = method1(v0, v1)
     let v3 : bool = v2 = 1024
-    let v4 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
-    let v5 : bool = v3 = false
-    if v5 then
-        failwith&lt;unit&gt; v4
+    let v5 : bool =
+        if v3 then
+            true
+        else
+            method2(v3)
+    let v6 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
+    let v7 : bool = v5 = false
+    if v7 then
+        failwith&lt;unit&gt; v6
 method0()
 
 </pre>

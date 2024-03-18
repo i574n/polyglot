@@ -8017,6 +8017,8 @@ let rec closure0 () () : unit =
     ()
 and closure1 () (v0 : string) : US0 =
     US0_1(v0)
+and method1 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : (unit -&gt; unit) = closure0()
     let v1 : US0 = US0_0
@@ -8029,12 +8031,17 @@ and method0 () : unit =
             v7
         | _ -&gt;
             false
-    let v9 : string = "Option does not have a value."
-    let v10 : US0 = US0_1(v9)
-    let v11 : string = $"__expect / actual: %A{v3} / expected: %A{v10}"
-    let v12 : bool = v8 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+    let v10 : bool =
+        if v8 then
+            true
+        else
+            method1(v8)
+    let v11 : string = "Option does not have a value."
+    let v12 : US0 = US0_1(v11)
+    let v13 : string = $"__expect / actual: %A{v3} / expected: %A{v12}"
+    let v14 : bool = v10 = false
+    if v14 then
+        failwith&lt;unit&gt; v13
 method0()
 
 </pre>

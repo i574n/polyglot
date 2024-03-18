@@ -7971,17 +7971,24 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type Mut0 = {mutable l0 : int32}
-let rec method0 () : unit =
+let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : Mut0 = {l0 = 1} : Mut0
     let v1 : int32 = v0.l0
     let v2 : int32 = v1 + 1
     v0.l0 &lt;- v2
     let v3 : int32 = v0.l0
     let v4 : bool = v3 = 2
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
-    let v6 : bool = v4 = false
-    if v6 then
-        failwith&lt;unit&gt; v5
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method1(v4)
+    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 </pre>
@@ -8070,6 +8077,8 @@ method0()
     | US0_1 of f1_0 : int32
 let rec closure0 () (v0 : int32) : US0 =
     US0_1(v0)
+and method1 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 option = Some 3
     let v1 : (int32 -&gt; US0) = closure0()
@@ -8094,12 +8103,17 @@ and method0 () : unit =
                 false
         else
             false
-    let v14 : US0 = US0_1(3)
-    let v15 : US0 = US0_0
-    let v16 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v14, v15)}"
-    let v17 : bool = v13 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+    let v15 : bool =
+        if v13 then
+            true
+        else
+            method1(v13)
+    let v16 : US0 = US0_1(3)
+    let v17 : US0 = US0_0
+    let v18 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v16, v17)}"
+    let v19 : bool = v15 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
 </pre>
