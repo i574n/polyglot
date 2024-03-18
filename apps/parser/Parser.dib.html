@@ -7700,7 +7700,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">fromStr</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">{</span>
+<span class="n">fromStr</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">{</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
     <span class="n">position</span> <span class="o">=</span> <span class="p">{</span> <span class="n">line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">}</span>
 <span class="p">}</span>
@@ -7736,7 +7736,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">fromStr</span> <span class="s2">"Hello </span><span class="se">\n</span><span class="s2"> World"</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">{</span>
+<span class="n">fromStr</span> <span class="s2">"Hello </span><span class="se">\n</span><span class="s2"> World"</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">{</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"Hello "</span><span class="p">;</span> <span class="s2">" World"</span> <span class="o">|</span><span class="p">]</span>
     <span class="n">position</span> <span class="o">=</span> <span class="p">{</span> <span class="n">line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">}</span>
 <span class="p">}</span>
@@ -7823,11 +7823,11 @@ a.anchor-link {
 
 <span class="n">let</span> <span class="n">newInput</span><span class="p">,</span> <span class="n">charOpt</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello World"</span> <span class="o">|&gt;</span> <span class="n">nextChar</span>
 
-<span class="n">newInput</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">{</span>
+<span class="n">newInput</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">{</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"Hello World"</span> <span class="o">|</span><span class="p">]</span>
     <span class="n">position</span> <span class="o">=</span> <span class="p">{</span> <span class="n">line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">}</span>
 <span class="p">}</span>
-<span class="n">charOpt</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="s1">'H'</span><span class="p">)</span>
+<span class="n">charOpt</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="s1">'H'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7864,11 +7864,11 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="n">newInput</span><span class="p">,</span> <span class="n">charOpt</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello</span><span class="se">\n\n</span><span class="s2">World"</span> <span class="o">|&gt;</span> <span class="n">nextChar</span>
 
-<span class="n">newInput</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">{</span>
+<span class="n">newInput</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">{</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"Hello"</span><span class="p">;</span> <span class="s2">""</span><span class="p">;</span> <span class="s2">"World"</span> <span class="o">|</span><span class="p">]</span>
     <span class="n">position</span> <span class="o">=</span> <span class="p">{</span> <span class="n">line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">column</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">}</span>
 <span class="p">}</span>
-<span class="n">charOpt</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="s1">'H'</span><span class="p">)</span>
+<span class="n">charOpt</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="s1">'H'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8102,7 +8102,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s1">'H'</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8149,7 +8149,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"World"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Failure</span> <span class="p">(</span>
         <span class="s2">"H"</span><span class="p">,</span>
         <span class="s2">"Unexpected 'W'"</span><span class="p">,</span>
@@ -8234,7 +8234,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">parser</span> <span class="o">&gt;&gt;=</span> <span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'e'</span><span class="p">)</span> <span class="s2">"e"</span>
-<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s1">'e'</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8282,7 +8282,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"World"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'W'</span><span class="p">)</span> <span class="s2">"W"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">parser</span> <span class="o">&gt;&gt;=</span> <span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'e'</span><span class="p">)</span> <span class="s2">"e"</span>
-<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Failure</span> <span class="p">(</span>
         <span class="s2">"e"</span><span class="p">,</span>
         <span class="s2">"Unexpected 'o'"</span><span class="p">,</span>
@@ -8349,7 +8349,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">returnP</span> <span class="s2">"Hello"</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s2">"Hello"</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8440,7 +8440,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">parser</span> <span class="o">|&gt;&gt;</span> <span class="n">string</span>
-<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s2">"H"</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8537,7 +8537,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'e'</span><span class="p">)</span> <span class="s2">"e"</span>
 <span class="n">let</span> <span class="n">parser3</span> <span class="o">=</span> <span class="n">lift2</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c1</span> <span class="n">c2</span> <span class="o">-&gt;</span> <span class="n">string</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">string</span> <span class="n">c2</span><span class="p">)</span> <span class="n">parser</span> <span class="n">parser2</span>
-<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s2">"He"</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8620,7 +8620,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'e'</span><span class="p">)</span> <span class="s2">"e"</span>
 <span class="n">let</span> <span class="n">parser3</span> <span class="o">=</span> <span class="n">parser</span> <span class="o">.&gt;&gt;.</span> <span class="n">parser2</span>
-<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">(</span><span class="s1">'H'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">),</span>
         <span class="p">{</span>
@@ -8704,7 +8704,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'h'</span><span class="p">)</span> <span class="s2">"h"</span>
 <span class="n">let</span> <span class="n">parser3</span> <span class="o">=</span> <span class="n">parser</span> <span class="o">&lt;|&gt;</span> <span class="n">parser2</span>
-<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s1">'h'</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8768,7 +8768,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'h'</span><span class="p">)</span> <span class="s2">"h"</span>
 <span class="n">let</span> <span class="n">parser3</span> <span class="o">=</span> <span class="n">choice</span> <span class="p">[</span> <span class="n">parser</span><span class="p">;</span> <span class="n">parser2</span> <span class="p">]</span>
-<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s1">'h'</span><span class="p">,</span>
         <span class="p">{</span>
@@ -8834,7 +8834,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'e'</span><span class="p">)</span> <span class="s2">"e"</span>
 <span class="n">let</span> <span class="n">parser3</span> <span class="o">=</span> <span class="n">sequence</span> <span class="p">[</span> <span class="n">parser</span><span class="p">;</span> <span class="n">parser2</span> <span class="p">]</span>
-<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser3</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">[</span> <span class="s1">'H'</span><span class="p">;</span> <span class="s1">'e'</span> <span class="p">],</span>
         <span class="p">{</span>
@@ -8920,7 +8920,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">many</span> <span class="n">parser</span>
-<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">[],</span>
         <span class="p">{</span>
@@ -8988,7 +8988,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">many1</span> <span class="n">parser</span>
-<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Failure</span> <span class="p">(</span>
         <span class="s2">"many1 H"</span><span class="p">,</span>
         <span class="s2">"Unexpected 'h'"</span><span class="p">,</span>
@@ -9056,7 +9056,7 @@ FSharpOption&lt;Char&gt;
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'H'</span><span class="p">)</span> <span class="s2">"H"</span>
 <span class="n">let</span> <span class="n">parser2</span> <span class="o">=</span> <span class="n">opt</span> <span class="n">parser</span>
-<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser2</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="p">{</span>
@@ -9154,7 +9154,7 @@ FSharpOption&lt;Char&gt;
         <span class="p">(</span><span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">'['</span><span class="p">)</span> <span class="s2">"["</span><span class="p">)</span>
         <span class="p">(</span><span class="n">many</span> <span class="p">(</span><span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="p">[</span> <span class="s1">'a'</span> <span class="o">..</span> <span class="s1">'z'</span> <span class="p">]</span> <span class="o">@</span> <span class="p">[</span> <span class="s1">'A'</span> <span class="o">..</span> <span class="s1">'Z'</span> <span class="p">]</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">contains</span> <span class="n">c</span><span class="p">)</span> <span class="s2">"letter"</span><span class="p">))</span>
         <span class="p">(</span><span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">']'</span><span class="p">)</span> <span class="s2">"]"</span><span class="p">)</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">[</span> <span class="s1">'H'</span><span class="p">;</span> <span class="s1">'e'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'o'</span> <span class="p">],</span>
         <span class="p">{</span>
@@ -9233,7 +9233,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello,World"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">sepBy</span> <span class="p">(</span><span class="n">many</span> <span class="p">(</span><span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">&lt;&gt;</span> <span class="s1">','</span><span class="p">)</span> <span class="s2">"not comma"</span><span class="p">))</span> <span class="p">(</span><span class="n">satisfy</span> <span class="p">(</span><span class="n">fun</span> <span class="n">c</span> <span class="o">-&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">','</span><span class="p">)</span> <span class="s2">"comma"</span><span class="p">)</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">[</span> <span class="p">[</span> <span class="s1">'H'</span><span class="p">;</span> <span class="s1">'e'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'o'</span> <span class="p">];</span> <span class="p">[</span> <span class="s1">'W'</span><span class="p">;</span> <span class="s1">'o'</span><span class="p">;</span> <span class="s1">'r'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'d'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="p">]</span> <span class="p">],</span>
         <span class="p">{</span>
@@ -9316,7 +9316,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">anyOf</span> <span class="p">[</span> <span class="s1">'H'</span><span class="p">;</span> <span class="s1">'e'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'o'</span> <span class="p">]</span> <span class="o">|&gt;</span> <span class="n">many</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">[</span> <span class="s1">'H'</span><span class="p">;</span> <span class="s1">'e'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'o'</span> <span class="p">],</span>
         <span class="p">{</span>
@@ -9410,7 +9410,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">manyChars1</span> <span class="p">(</span><span class="n">anyOf</span> <span class="p">[</span> <span class="s1">'H'</span><span class="p">;</span> <span class="s1">'e'</span><span class="p">;</span> <span class="s1">'l'</span><span class="p">;</span> <span class="s1">'o'</span> <span class="p">])</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s2">"Hello"</span><span class="p">,</span>
         <span class="p">{</span>
@@ -9477,7 +9477,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">pstring</span> <span class="s2">"Hello"</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="s2">"Hello"</span><span class="p">,</span>
         <span class="p">{</span>
@@ -9567,7 +9567,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"  Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">spaces1</span> <span class="o">.&gt;&gt;.</span> <span class="n">pstring</span> <span class="s2">"Hello"</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">([</span> <span class="s1">' '</span><span class="p">;</span> <span class="s1">' '</span> <span class="p">],</span> <span class="s2">"Hello"</span><span class="p">),</span>
         <span class="p">{</span>
@@ -9630,7 +9630,7 @@ FSharpOption&lt;Char&gt;
 
 <span class="n">let</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">fromStr</span> <span class="s2">"Hello"</span>
 <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">digitChar</span>
-<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="n">runOnInput</span> <span class="n">parser</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Failure</span> <span class="p">(</span>
         <span class="s2">"digit"</span><span class="p">,</span>
         <span class="s2">"Unexpected 'H'"</span><span class="p">,</span>
@@ -9703,7 +9703,7 @@ FSharpOption&lt;Char&gt;
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">run</span> <span class="n">pint</span> <span class="s2">"-123"</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="o">-</span><span class="mi">123</span><span class="p">,</span>
         <span class="p">{</span>
@@ -9774,7 +9774,7 @@ FSharpOption&lt;Char&gt;
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">run</span> <span class="n">pfloat</span> <span class="s2">"-123.45"</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="o">-</span><span class="mf">123.45</span><span class="p">,</span>
         <span class="p">{</span>

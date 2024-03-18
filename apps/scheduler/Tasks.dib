@@ -191,7 +191,7 @@ get_tasks () |> format_pretty |> console.write_line
 get_tasks ()
 |> listm'.try_item 0i32
 |> fun (Some task) => task.task.name
-|> _equal (task_name "01")
+|> _assert_eq (task_name "01")
 
 #!spiral
 

@@ -6,10 +6,12 @@ modules:
     rust_operators
     optionm'
     optionm'_operators
-    resultm
     common-
+    resultm
     am'
     sm'
+    sm'_operators
+    wasm
     date_time
     listm'
     listm'_operators
@@ -26,3 +28,5 @@ modules:
     leptos
     store
     state_core
+    threading
+    lib

@@ -36,8 +36,8 @@ let inline __expect fn log expected actual =
 let inline __contains log expected actual = __expect Expecto.Expect.contains log expected actual
 let inline _contains expected actual = __contains true expected actual
 
-let inline __equal log expected actual = __expect Expecto.Expect.equal log expected actual
-let inline _equal expected actual = __equal true expected actual
+let inline __assert_eq log expected actual = __expect Expecto.Expect.equal log expected actual
+let inline _assert_eq expected actual = __assert_eq true expected actual
 
 let inline __isGreaterThan log expected actual = __expect Expecto.Expect.isGreaterThan log expected actual
 let inline _isGreaterThan expected actual = __isGreaterThan true expected actual

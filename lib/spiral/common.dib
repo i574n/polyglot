@@ -70,7 +70,7 @@ inl pair x y =
 // // test
 
 pair 1i32 2i32
-|> _equal (1, 2)
+|> _assert_eq (1, 2)
 
 #!markdown
 
@@ -97,7 +97,7 @@ inl from_pair forall a b. (pair : pair a b) : a * b =
 
 new_pair "a" 1i32
 |> from_pair
-|> _equal ("a", 1i32)
+|> _assert_eq ("a", 1i32)
 
 #!spiral
 
@@ -186,7 +186,7 @@ inl (||>) (arg1, arg2) fn =
 
 (3i32, 2i32)
 ||> fun a b => a - b
-|> _equal 1
+|> _assert_eq 1
 
 #!markdown
 
@@ -203,7 +203,7 @@ inl flip fn a b =
 
 (1i32, 2i32)
 ||> flip pair
-|> _equal (2, 1)
+|> _assert_eq (2, 1)
 
 #!markdown
 
@@ -232,7 +232,7 @@ inl rec fold_list f s = function
 
 [5i32; 4; join 3; 2; 1]
 |> fold_list (+) 0
-|> _equal 15
+|> _assert_eq 15
 
 #!spiral
 
@@ -240,7 +240,7 @@ inl rec fold_list f s = function
 
 [5i32; 4; join 3; 2; 1]
 |> fold_list (join_body (+)) 0
-|> _equal 15
+|> _assert_eq 15
 
 #!markdown
 
@@ -261,7 +261,7 @@ inl join_body_unit body d x =
 
 [5i32; 4; join 3; 2; 1]
 |> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
-|> _equal 15
+|> _assert_eq 15
 
 #!markdown
 
@@ -299,7 +299,7 @@ run_target function
     | Fsharp => fun () => $"1uy"
     | Rust (Native) => fun () => $"2uy"
     | Rust (Wasm) => fun () => $"3uy"
-|> _equal 1u8
+|> _assert_eq 1u8
 
 #!spiral
 
@@ -311,7 +311,7 @@ run_target function
     | Rust (Native) => fun () => $"2uy"
     | Rust (Wasm) => fun () => $"3uy"
 |> (=) 2u8
-|> _equal true
+|> _assert_eq true
 
 #!markdown
 

@@ -37,7 +37,7 @@ inl (/@) a b =
 // // test
 
 [ "a"; "b" ] /@ [ "c"; "d" ]
-|> _equal [ "a"; "b"; "c"; "d" ]
+|> _assert_eq [ "a"; "b"; "c"; "d" ]
 
 #!markdown
 
@@ -54,7 +54,7 @@ inl init_series start end inc =
 // // test
 
 init_series 0 1 0.5
-|> _equal [ 0f64; 0.5; 1 ]
+|> _assert_eq [ 0f64; 0.5; 1 ]
 
 #!markdown
 
@@ -73,7 +73,7 @@ inl rec try_item i = function
 
 listm.init 10i32 id
 |> try_item 9i32
-|> _equal (Some 9)
+|> _assert_eq (Some 9)
 
 #!spiral
 
@@ -81,7 +81,7 @@ listm.init 10i32 id
 
 listm.init 10i32 id
 |> try_item 10i32
-|> _equal None
+|> _assert_eq None
 
 #!markdown
 
@@ -98,7 +98,7 @@ inl item i =
 
 listm.init 10i32 id
 |> item 9i32
-|> _equal 9
+|> _assert_eq 9
 
 #!spiral
 
@@ -109,7 +109,7 @@ fun () =>
     |> item 10i32
     |> ignore
 |> _throws
-|> _equal (Some "Option does not have a value.")
+|> _assert_eq (Some "Option does not have a value.")
 
 #!markdown
 
@@ -146,7 +146,7 @@ inl sum list =
 
 listm.init 10i32 id
 |> sum
-|> _equal 45
+|> _assert_eq 45
 
 #!markdown
 
@@ -170,10 +170,10 @@ listm.init 10i32 id
 |> unzip
 |> fun x, y =>
     x |> sum
-    |> _equal 45
+    |> _assert_eq 45
 
     y |> sum
-    |> _equal 45
+    |> _assert_eq 45
 
 #!markdown
 
@@ -231,7 +231,7 @@ inl index_of__ item =
 
 listm.init 10i32 id
 |> index_of 5i32
-|> _equal 5i32
+|> _assert_eq 5i32
 
 #!spiral
 
@@ -239,7 +239,7 @@ listm.init 10i32 id
 
 listm.init 10i32 id
 |> try_index_of 10i32
-|> _equal (None : option i32)
+|> _assert_eq (None : option i32)
 
 #!markdown
 
@@ -271,7 +271,7 @@ inl try_find_ fn list =
 
 listm.init 10i32 id
 |> try_find ((=) 5i32)
-|> _equal (Some 5i32)
+|> _assert_eq (Some 5i32)
 
 #!spiral
 
@@ -287,7 +287,7 @@ inl find_ x =
 
 listm.init 10i32 id
 |> find ((=) 5i32)
-|> _equal 5i32
+|> _assert_eq 5i32
 
 #!markdown
 
@@ -308,7 +308,7 @@ inl choose f l =
 
 listm.init 10i32 id
 |> choose (fun x => if x % 2 = 0 then Some x else None)
-|> _equal [ 0; 2; 4; 6; 8 ]
+|> _assert_eq [ 0; 2; 4; 6; 8 ]
 
 #!markdown
 
@@ -338,7 +338,7 @@ inl zip_with_ fn xs ys =
 
 ([ 1i32; 2; 3 ], [ 4; 5; 6 ])
 ||> zip_with (+)
-|> _equal [ 5; 7; 9 ]
+|> _assert_eq [ 5; 7; 9 ]
 
 #!markdown
 
@@ -358,7 +358,7 @@ inl zip_ xs ys =
 
 ([ 1i32; 2; 3 ], [ 4i32; 5; 6 ])
 ||> zip
-|> _equal [ 1, 4; 2, 5; 3, 6 ]
+|> _assert_eq [ 1, 4; 2, 5; 3, 6 ]
 
 #!markdown
 
@@ -379,7 +379,7 @@ inl indexed list =
 
 listm.init 5i32 ((*) 2)
 |> indexed
-|> _equal [ 0i32, 0; 1, 2; 2, 4; 3, 6; 4, 8 ]
+|> _assert_eq [ 0i32, 0; 1, 2; 2, 4; 3, 6; 4, 8 ]
 
 #!markdown
 
@@ -407,7 +407,7 @@ inl group_by fn list =
 
 listm.init 10i32 id
 |> group_by (fun x => x % 2 = 0)
-|> _equal [ true, [ 0; 2; 4; 6; 8 ]; false, [ 1; 3; 5; 7; 9 ] ]
+|> _assert_eq [ true, [ 0; 2; 4; 6; 8 ]; false, [ 1; 3; 5; 7; 9 ] ]
 
 #!markdown
 
@@ -426,7 +426,7 @@ inl forall' fn (head :: tail) =
 
 [ 1i32; 1; 1; 1; 1 ]
 |> forall' ((=) 1i32)
-|> _equal true
+|> _assert_eq true
 
 #!markdown
 
@@ -445,7 +445,7 @@ inl last list =
 
 listm.init 10i32 id
 |> last
-|> _equal 9
+|> _assert_eq 9
 
 #!markdown
 
@@ -475,4 +475,4 @@ inl try_pick fn list =
 
 listm.init 10i32 id
 |> try_pick (fun x => if x = 5i32 then Some x else None)
-|> _equal (Some 5i32)
+|> _assert_eq (Some 5i32)

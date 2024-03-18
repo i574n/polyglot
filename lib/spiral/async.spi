@@ -1,41 +1,32 @@
 open rust_operators
 
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type TryJoinAll<'T> = class end"
+
 nominal async t = $"Async<`t>"
 nominal future t = $"Future<`t>"
 
 type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 nominal try_join_all t = $"TryJoinAll<`t>"
 
-
 inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : future_pin t =
     if flag = 1
-    then !\($'"let __future_init = Box::pin(async move { //"')
-    else !\($'"let __future_init = Box::pin(async { //"')
+    then !\($'"let __result = Box::pin(async move { //"')
+    else !\($'"let __result = Box::pin(async { //"')
 
     let x' = x ()
     inl x' = join x'
 
-    if depth = 1
-    then !\($'"!x' })"')
-    elif depth = 2
-    then !\($'"!x' }})"')
-    elif depth = 3
-    then !\($'"!x' }}); { //"')
-    elif depth = 4
-    then !\($'"!x' }}}); {{ //"')
-    elif depth = 5
-    then !\($'"!x' }}}}); {{{ //"')
-    elif depth = 6
-    then !\($'"!x' }}}}); {{{{ //"')
-    elif depth = 7
-    then !\($'"!x' }}}}}); {{{{{ //"')
-    !\($'"__future_init"')
+    x' |> rust.fix_closure depth
 
-inl try_join_all forall t. (x : rust.vec (future_pin (resultm.result' t rust.std_string))) : try_join_all (future_pin (resultm.result' t rust.std_string)) =
+    !\($'"__result"')
+
+inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_string))) : try_join_all (future_pin (resultm.result' t sm'.std_string)) =
     inl x = join x
     !\($'"futures::future::try_join_all(!x)"')
 
-inl await' forall t. (x : try_join_all (future_pin (resultm.result' t rust.std_string))) : resultm.result' (rust.vec t) rust.std_string =
+inl await' forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_string))) : resultm.result' (am'.vec t) sm'.std_string =
     !\($'"!x.await"')
 
 inl await forall t. (x : future_pin t) : t =

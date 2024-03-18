@@ -7576,7 +7576,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="mf">0.4</span><span class="n">f64</span> <span class="o">|&gt;</span> <span class="n">sqrt</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">3.1622776601683795</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">3.1622776601683795</span>
 </pre></div>
 </div>
 </div>
@@ -7610,7 +7610,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">2</span><span class="n">f64</span> <span class="o">/</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.6666666666666666</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.6666666666666666</span>
 </pre></div>
 </div>
 </div>
@@ -7644,7 +7644,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">2</span><span class="n">f64</span> <span class="o">|&gt;</span> <span class="n">log</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.6931471805599453</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.6931471805599453</span>
 </pre></div>
 </div>
 </div>
@@ -7678,7 +7678,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">pi</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">3.141592653589793</span><span class="n">f64</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">3.141592653589793</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7712,7 +7712,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">pi</span> <span class="o">|&gt;</span> <span class="n">cos</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="o">-</span><span class="mi">1</span><span class="n">f64</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="o">-</span><span class="mi">1</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7748,7 +7748,7 @@ method0()
 <span class="n">pi</span>
 <span class="o">|&gt;</span> <span class="n">cos</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="n">f64</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="o">-</span><span class="mf">0.5</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="o">-</span><span class="mf">0.5</span>
 </pre></div>
 </div>
 </div>
@@ -7782,7 +7782,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">|&gt;</span> <span class="n">cos</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.00000000000000006123233995736766</span><span class="n">f64</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.00000000000000006123233995736766</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7856,7 +7856,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">0</span> <span class="o">|&gt;</span> <span class="n">atan2</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mf">1.5707963267948966</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mf">1.5707963267948966</span>
 </pre></div>
 </div>
 </div>
@@ -7869,13 +7869,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = System.Math.Atan2 (1.0, 0.0)
-    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{1.5707963267948966}"
-    let v2 : bool = v0 = 1.5707963267948966
-    let v3 : bool = v2 = false
-    if v3 then
-        failwith&lt;unit&gt; v1
+    let v1 : bool = v0 = 1.5707963267948966
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{1.5707963267948966}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -7974,7 +7981,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mf">0.6</span> <span class="o">|&gt;</span> <span class="n">floor</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">0</span><span class="n">f64</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7987,13 +7994,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = floor 0.6
-    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
-    let v2 : bool = v0 = 0.0
-    let v3 : bool = v2 = false
-    if v3 then
-        failwith&lt;unit&gt; v1
+    let v1 : bool = v0 = 0.0
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8052,7 +8066,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">100</span> <span class="o">|&gt;</span> <span class="n">log_base</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">2</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
@@ -8065,13 +8079,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = System.Math.Log (100.0, 10.0)
-    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{2.0}"
-    let v2 : bool = v0 = 2.0
-    let v3 : bool = v2 = false
-    if v3 then
-        failwith&lt;unit&gt; v1
+    let v1 : bool = v0 = 2.0
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{2.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8130,7 +8151,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mf">0.5</span> <span class="o">|&gt;</span> <span class="nb">round</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">0</span><span class="n">f64</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -8143,13 +8164,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = round 0.5
-    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
-    let v2 : bool = v0 = 0.0
-    let v3 : bool = v2 = false
-    if v3 then
-        failwith&lt;unit&gt; v1
+    let v1 : bool = v0 = 0.0
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{0.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8168,7 +8196,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mf">0.6</span> <span class="o">|&gt;</span> <span class="nb">round</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span><span class="n">f64</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -8181,13 +8209,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : float = round 0.6
-    let v1 : string = $"__expect / actual: %A{v0} / expected: %A{1.0}"
-    let v2 : bool = v0 = 1.0
-    let v3 : bool = v2 = false
-    if v3 then
-        failwith&lt;unit&gt; v1
+    let v1 : bool = v0 = 1.0
+    let v3 : bool =
+        if v1 then
+            true
+        else
+            method1(v1)
+    let v4 : string = $"__expect / actual: %A{v0} / expected: %A{1.0}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -8248,7 +8283,7 @@ method0()
 <span class="mi">5</span><span class="n">f64</span>
 <span class="o">|&gt;</span> <span class="n">sqrt</span>
 <span class="o">|&gt;</span> <span class="n">square</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mi">5</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -8282,7 +8317,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">e</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">square</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">7.3890560989306495</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">7.3890560989306495</span>
 </pre></div>
 </div>
 </div>

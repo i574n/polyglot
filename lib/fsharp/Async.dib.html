@@ -7758,7 +7758,7 @@ a.anchor-link {
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeout</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -7790,7 +7790,7 @@ a.anchor-link {
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeout</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -7824,7 +7824,7 @@ a.anchor-link {
     <span class="k">raise</span> <span class="p">(</span><span class="n">exn</span> <span class="s2">"error"</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeout</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -7913,7 +7913,7 @@ a.anchor-link {
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeoutChild</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -7945,7 +7945,7 @@ a.anchor-link {
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeoutChild</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -7979,7 +7979,7 @@ a.anchor-link {
     <span class="k">raise</span> <span class="p">(</span><span class="n">exn</span> <span class="s2">"error"</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeoutChild</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -8025,7 +8025,7 @@ a.anchor-link {
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="n">timeout</span>
         <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">getLocals</span>
     <span class="p">}</span>
-    
+
     <span class="n">let</span> <span class="n">task</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="k">try</span>
             <span class="k">return</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">,</span> <span class="n">getLocals</span>
@@ -8077,7 +8077,7 @@ a.anchor-link {
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeoutStrict</span> <span class="mi">10</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -8109,7 +8109,7 @@ a.anchor-link {
 
 <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeoutStrict</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -8143,7 +8143,7 @@ a.anchor-link {
     <span class="k">raise</span> <span class="p">(</span><span class="n">exn</span> <span class="s2">"error"</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">runWithTimeoutStrict</span> <span class="mi">60</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -8232,7 +8232,7 @@ a.anchor-link {
 
 <span class="n">init</span> <span class="mi">1</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -8338,7 +8338,7 @@ a.anchor-link {
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
 <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">mapError</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">Message</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Error</span> <span class="p">(</span><span class="s2">"A task was canceled."</span><span class="p">))</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Error</span> <span class="p">(</span><span class="s2">"A task was canceled."</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>

@@ -40,7 +40,10 @@ if ($extensionsPath.Count -gt 0) {
 
     Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction Ignore
 
-    Copy-Item "$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/" "$extensionSrcPath/compiler" -Recurse -Force
+    $path ="$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/"
+    Write-Output $path
+
+    Copy-Item $path "$extensionSrcPath/compiler" -Recurse -Force
 
     { npm install } | Invoke-Block -Location $extensionSrcPath
     { npx tsc --build } | Invoke-Block -Location $extensionSrcPath

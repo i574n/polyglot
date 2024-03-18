@@ -14,7 +14,7 @@ $json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json"
 $vsixName = $json.name + "-" + $json.version + ".vsix"
 $vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
 
-{ npm install } | Invoke-Block -Location ../polyglot-notebooks-ui-components
+{ npm install } | Invoke-Block -Location "$extensionSrcPath/../polyglot-notebooks-ui-components"
 
 { npm install } | Invoke-Block -Location $extensionSrcPath
 { npm run compile } | Invoke-Block -Location $extensionSrcPath

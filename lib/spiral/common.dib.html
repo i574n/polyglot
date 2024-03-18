@@ -7777,7 +7777,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">pair</span> <span class="mi">1</span><span class="n">i32</span> <span class="mi">2</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7893,7 +7893,7 @@ method0()
 
 <span class="n">new_pair</span> <span class="s2">"a"</span> <span class="mi">1</span><span class="n">i32</span>
 <span class="o">|&gt;</span> <span class="n">from_pair</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7906,23 +7906,30 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let v0 : string = "a"
     let v1 : (string * int32) = v0, 1
     let (a, b) = v1
     let v2 : string = a
     let v3 : int32 = b
-    let v4 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
-    let v5 : bool = v2 = "a"
-    let v7 : bool =
-        if v5 then
-            let v6 : bool = v3 = 1
-            v6
+    let v4 : bool = v2 = "a"
+    let v6 : bool =
+        if v4 then
+            let v5 : bool = v3 = 1
+            v5
         else
             false
-    let v8 : bool = v7 = false
-    if v8 then
-        failwith&lt;unit&gt; v4
+    let v8 : bool =
+        if v6 then
+            true
+        else
+            method1(v6)
+    let v9 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
+    let v10 : bool = v8 = false
+    if v10 then
+        failwith&lt;unit&gt; v9
 method0()
 
 </pre>
@@ -8279,7 +8286,7 @@ method0()
 
 <span class="p">(</span><span class="mi">3</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
 <span class="o">||&gt;</span> <span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -8354,7 +8361,7 @@ method0()
 
 <span class="p">(</span><span class="mi">1</span><span class="n">i32</span><span class="p">,</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
 <span class="o">||&gt;</span> <span class="n">flip</span> <span class="n">pair</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8465,7 +8472,7 @@ method0()
 
 <span class="p">[</span><span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span><span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">15</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">15</span>
 </pre></div>
 </div>
 </div>
@@ -8480,16 +8487,23 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method1 () : int32 =
     3
+and method2 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = method1()
     let v1 : int32 = 9 + v0
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v5 : bool = v3 = 15
-    let v6 : bool = v5 = false
-    if v6 then
-        failwith&lt;unit&gt; v4
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method2(v4)
+    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 </pre>
@@ -8509,7 +8523,7 @@ method0()
 
 <span class="p">[</span><span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span><span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="n">join_body</span> <span class="p">(</span><span class="o">+</span><span class="p">))</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">15</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">15</span>
 </pre></div>
 </div>
 </div>
@@ -8527,17 +8541,24 @@ method0()
 and method2 (v0 : int32, v1 : int32) : int32 =
     let v2 : int32 = v1 + v0
     v2
+and method3 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = method1()
     let v1 : int32 = 9
     let v2 : int32 = method2(v0, v1)
     let v3 : int32 = v2 + 2
     let v4 : int32 = v3 + 1
-    let v5 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
-    let v6 : bool = v4 = 15
-    let v7 : bool = v6 = false
-    if v7 then
-        failwith&lt;unit&gt; v5
+    let v5 : bool = v4 = 15
+    let v7 : bool =
+        if v5 then
+            true
+        else
+            method3(v5)
+    let v8 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
 </pre>
@@ -8601,7 +8622,7 @@ method0()
 
 <span class="p">[</span><span class="mi">5</span><span class="n">i32</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">join</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span><span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">fold_list</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">n</span> <span class="o">=&gt;</span> <span class="n">join_body_unit</span> <span class="p">((</span><span class="o">+</span><span class="p">)</span> <span class="n">acc</span><span class="p">)</span> <span class="n">n</span> <span class="n">n</span><span class="p">)</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">15</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">15</span>
 </pre></div>
 </div>
 </div>
@@ -8619,16 +8640,23 @@ method0()
 and method2 (v0 : int32) : int32 =
     let v1 : int32 = 9 + v0
     v1
+and method3 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : int32 = method1()
     let v1 : int32 = method2(v0)
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v5 : bool = v3 = 15
-    let v6 : bool = v5 = false
-    if v6 then
-        failwith&lt;unit&gt; v4
+    let v4 : bool = v3 = 15
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method3(v4)
+    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 </pre>
@@ -8709,7 +8737,7 @@ method0()
     <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"1uy"</span>
     <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"2uy"</span>
     <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"3uy"</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">1</span><span class="n">u8</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span><span class="n">u8</span>
 </pre></div>
 </div>
 </div>
@@ -8722,7 +8750,9 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let mutable result = None
     #if FABLE_COMPILER_RUST
     #if !WASM
@@ -8738,11 +8768,16 @@ method0()
     #endif
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
-    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
-    let v5 : bool = v3 = 1uy
-    let v6 : bool = v5 = false
-    if v6 then
-        failwith&lt;unit&gt; v4
+    let v4 : bool = v3 = 1uy
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method1(v4)
+    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 </pre>
@@ -8766,7 +8801,7 @@ method0()
     <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"2uy"</span>
     <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Wasm</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s2">"3uy"</span>
 <span class="o">|&gt;</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="mi">2</span><span class="n">u8</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8789,7 +8824,9 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
 .fsx:
-let rec method0 () : unit =
+let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
     let mutable result = None
     #if FABLE_COMPILER_RUST
     #if !WASM
@@ -8806,10 +8843,15 @@ let rec method0 () : unit =
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
     let v4 : bool = 2uy = v3
-    let v5 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
-    let v6 : bool = v4 = false
-    if v6 then
-        failwith&lt;unit&gt; v5
+    let v6 : bool =
+        if v4 then
+            true
+        else
+            method1(v4)
+    let v7 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 .rs:
@@ -8823,28 +8865,30 @@ method0()
 #![allow(unused_macros,)]
 #![allow(unused_parens,)]
 #![allow(unused_variables,)]
-mod module_e32d1f60 {
-    pub mod Fs_rs {
+mod module_ccfa04bf {
+    pub mod Spiral_eval {
         use super::*;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Option_::getValue;
         use fable_library_rust::String_::sprintf;
+        pub fn method1(v0: bool) -&gt; bool { v0 }
         pub fn method0() {
             let result: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
             result.set(Some(2_u8));
             {
                 let v4: bool = 2_u8 == getValue(result.get().clone());
-                if v4 == false {
+                if (if v4 { true } else { Spiral_eval::method1(v4) }) == false
+                   {
                     panic!("{}",
                            sprintf!("__expect / actual: {:?} / expected: {:?}", v4, true));
                 }
             }
         }
-        on_startup!(Fs_rs::method0());
+        on_startup!(Spiral_eval::method0());
     }
 }
-pub use module_e32d1f60::*;
+pub use module_ccfa04bf::*;
 
 </pre>
 </div>

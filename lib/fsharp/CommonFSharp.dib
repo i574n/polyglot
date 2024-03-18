@@ -35,4 +35,4 @@ let inline getUnionCaseName<'T> (x: 'T) =
 
 TraceLevel.Critical
 |> getUnionCaseName
-|> _equal (nameof TraceLevel.Critical)
+|> _assert_eq (nameof TraceLevel.Critical)

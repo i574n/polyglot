@@ -23,6 +23,7 @@ plot = { path = "./apps/plot" }
 spiral_temp_extension = { path = "./apps/spiral/temp/extension" }
 spiral_temp_test = { path = "./apps/spiral/temp/test" }
 exercism = { path = "./examples/rust/exercism" }
+math = { path = "./lib/math" }
 
 [lib]
 path = "./lib/rust/fable/fable-library-rust.rs"

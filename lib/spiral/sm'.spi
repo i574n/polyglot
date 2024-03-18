@@ -1,6 +1,33 @@
 open rust_operators
 
-inl include_str (path : string) : rust.ref' rust.str =
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"str\")>] type Str = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"base64::DecodeError\")>] type base64_DecodeError = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"borsh::io::Error\")>] type borsh_io_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::JsString\")>] type js_sys_JsString = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>] type serde_wasm_bindgen_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>] type std_str_Utf8Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
+
+nominal base64_decode_error = $"base64_DecodeError"
+nominal borsh_io_error = $"borsh_io_Error"
+nominal utf8_error = $"std_str_Utf8Error"
+nominal json_value = $"serde_json_Value"
+nominal json_error = $"serde_json_Error"
+nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
+nominal std_string = $"std_string_String"
+nominal js_string = $"js_sys_JsString"
+nominal str = $"Str"
+
+inl raw_string_literal (s : string) : rust.ref' str =
+    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+
+inl raw_string_literal_static (s : string) : rust.static_ref' str =
+    !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+
+inl include_str (path : string) : rust.ref' str =
     !\($'"include_str\!(\\\"" + !path + "\\\")"')
 
 inl contains (value : string) (input : string) : bool =
@@ -15,38 +42,38 @@ inl split (separator : string) (str : string) : array_base string =
 inl split_string (separator : array_base string) (str : string) : array_base string =
     $"!str.Split (!separator, StringSplitOptions.None)"
 
-inl as_str (s : string) : rust.ref' rust.str =
+inl as_str (s : string) : rust.ref' str =
     inl s = join s
     !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')
 
-inl from_std_string (str : rust.std_string) : string =
+inl from_std_string (str : std_string) : string =
     inl str = join str
     !\($'"fable_library_rust::String_::fromString(!str)"')
 
-inl ref_to_std_string (str : rust.ref' rust.str) : rust.std_string =
+inl ref_to_std_string (str : rust.ref' str) : std_string =
     !\($'"String::from(!str)"')
 
-inl to_std_string (s : string) : rust.std_string =
+inl to_std_string (s : string) : std_string =
     inl s = join s
     s |> as_str |> ref_to_std_string
 
-inl as_str_std (s : rust.std_string) : rust.ref' rust.str =
+inl as_str_std (s : std_string) : rust.ref' str =
     inl s = join s
     !\($'"!s.as_str()"')
 
-inl into_boxed_str (s : rust.std_string) : rust.box rust.str =
+inl into_boxed_str (s : std_string) : rust.box str =
     !\($'"!s.into_boxed_str()"')
 
-inl format' x : rust.std_string =
+inl format' x : std_string =
     !\\(x, $'@@$"format\!(""{{}}"", $0)"')
 
 inl format_debug x : string =
     $"$\"%A{!x}\""
 
-inl format_debug' x : rust.std_string =
+inl format_debug' x : std_string =
     !\\(x, $'@@$"format\!(""{{:?}}"", $0)"')
 
-inl format_pretty' x : rust.std_string =
+inl format_pretty' x : std_string =
     !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
 
 inl obj_to_string x : string =
@@ -69,58 +96,72 @@ instance to_string result t u = fun x =>
             | Error x => $'"Error: " + string !x + ""' : string
         | _ => obj_to_string `u x
 
-inl serialize forall t. (x : t) : resultm.result' rust.std_string rust.json_error =
+inl serialize forall t. (x : t) : resultm.result' std_string json_error =
     !\($'"serde_json::to_string(&!x)"')
 
-inl deserialize forall t. (json : string) : resultm.result' t rust.std_string =
+inl deserialize forall t. (json : string) : resultm.result' t std_string =
     inl json = json |> as_str
     !\($'"serde_json::from_str(&!json)"')
-    |> resultm.map_error' fun (x : rust.json_error) => x |> format'
+    |> resultm.map_error' fun (x : json_error) => x |> format'
 
-inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t rust.std_string =
+inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_string =
     inl data = data |> am'.as_slice
     !\($'"let mut !data = !data"')
     inl result = !\($'"borsh::BorshDeserialize::deserialize(&mut !data)"')
     result
-    |> resultm.map_error' fun (x : rust.borsh_io_error) => x |> format'
+    |> resultm.map_error' fun (x : borsh_io_error) => x |> format'
 
-inl deserialize_vec (value : rust.json_value) : resultm.result' (rust.vec u8) rust.std_string =
+inl deserialize_vec (value : json_value) : resultm.result' (am'.vec u8) std_string =
     inl value = join value
     !\($'"serde_json::from_value(!value)"')
-    |> resultm.map_error' fun (x : rust.json_error) => x |> format'
+    |> resultm.map_error' fun (x : json_error) => x |> format'
 
-inl wasm_from_value (value : rust.js_value) : resultm.result' (optionm'.option' rust.json_value) rust.std_string =
-    inl value = join value
-    !\($'"serde_wasm_bindgen::from_value(!value)"')
-    |> resultm.map_error' fun (x : rust.serde_wasm_bindgen_error) => x |> format'
-
-inl encode_uri_component (s : rust.std_string) : rust.js_string =
+inl encode_uri_component (s : std_string) : js_string =
     !\($'"js_sys::encode_uri_component(&!s)"')
 
-inl strip_prefix (prefix : char) (s : rust.std_string) : optionm'.option' (rust.ref' rust.str) =
+inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' str) =
     inl s = join s
     !\($'"!s.strip_prefix(!prefix)"')
 
-inl starts_with (value : rust.std_string) (s : rust.std_string) : bool =
+inl starts_with (value : std_string) (s : std_string) : bool =
     inl s = join s
     !\($'"!s.starts_with(&!value)"')
 
-inl base64_decode (s : rust.std_string) : result rust.std_string rust.std_string =
+inl base64_decode (s : std_string) : result std_string std_string =
     fun () =>
         inl s = join s
-        inl bytes : resultm.result' (rust.vec u8) rust.base64_decode_error =
+        inl bytes : resultm.result' (am'.vec u8) base64_decode_error =
             !\($'"base64::Engine::decode(&base64::engine::general_purpose::STANDARD, !s)"')
         inl bytes =
             bytes
             |> resultm.map_error' format'
             |> resultm.try'
-        inl result : resultm.result' rust.std_string rust.utf8_error =
+        inl result : resultm.result' std_string utf8_error =
             !\($'"std::str::from_utf8(&!bytes).map(String::from)"')
         result
         |> resultm.map_error' format'
     |> fun x =>
         join x ()
         |> resultm.unbox
+
+let concat_array_trailing separator input =
+    ("", input)
+    ||> am.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+let concat_list_trailing separator input =
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        $'!acc + !x + !separator + ""'
+
+let concat_list_heap_trailing separator input =
+    ("", input)
+    ||> listm.fold fun acc (x : string) =>
+        inl acc = acc |> to_std_string
+        inl x = x |> as_str
+        inl separator = separator |> as_str
+        !\($'"!acc + !x + !separator"')
+        |> from_std_string
 
 inl concat (a : string) (b : a _ _) : string =
     $"!b |> String.concat !a"

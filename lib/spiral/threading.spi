@@ -1,0 +1,5 @@
+open rust_operators
+
+inl sleep (duration : date_time.duration) : () =
+    inl duration = join duration
+    !\($'"std::thread::sleep(!duration)"')

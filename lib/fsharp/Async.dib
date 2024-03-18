@@ -115,7 +115,7 @@ let inline runWithTimeout timeout fn =
 
 Async.Sleep 60
 |> runWithTimeout 10
-|> _equal None
+|> _assert_eq None
 
 #!fsharp
 
@@ -123,7 +123,7 @@ Async.Sleep 60
 
 Async.Sleep 10
 |> runWithTimeout 60
-|> _equal (Some ())
+|> _assert_eq (Some ())
 
 #!fsharp
 
@@ -133,7 +133,7 @@ async {
     raise (exn "error")
 }
 |> runWithTimeout 60
-|> _equal None
+|> _assert_eq None
 
 #!markdown
 
@@ -171,7 +171,7 @@ let inline runWithTimeoutChild timeout fn =
 
 Async.Sleep 60
 |> runWithTimeoutChild 10
-|> _equal None
+|> _assert_eq None
 
 #!fsharp
 
@@ -179,7 +179,7 @@ Async.Sleep 60
 
 Async.Sleep 10
 |> runWithTimeoutChild 60
-|> _equal (Some ())
+|> _assert_eq (Some ())
 
 #!fsharp
 
@@ -189,7 +189,7 @@ async {
     raise (exn "error")
 }
 |> runWithTimeoutChild 60
-|> _equal None
+|> _assert_eq None
 
 #!markdown
 
@@ -204,7 +204,7 @@ let inline runWithTimeoutStrict (timeout : int) fn =
         do! Async.Sleep timeout
         return None, getLocals
     }
-    
+
     let task = async {
         try
             return Async.RunSynchronously (fn, timeout) |> Some, getLocals
@@ -246,7 +246,7 @@ let inline runWithTimeoutStrict (timeout : int) fn =
 
 Async.Sleep 60
 |> runWithTimeoutStrict 10
-|> _equal None
+|> _assert_eq None
 
 #!fsharp
 
@@ -254,7 +254,7 @@ Async.Sleep 60
 
 Async.Sleep 10
 |> runWithTimeoutStrict 60
-|> _equal (Some ())
+|> _assert_eq (Some ())
 
 #!fsharp
 
@@ -264,7 +264,7 @@ async {
     raise (exn "error")
 }
 |> runWithTimeoutStrict 60
-|> _equal None
+|> _assert_eq None
 
 #!markdown
 
@@ -294,7 +294,7 @@ let inline init x = async {
 
 init 1
 |> Async.RunSynchronously
-|> _equal 1
+|> _assert_eq 1
 
 #!markdown
 
@@ -343,7 +343,7 @@ async {
 }
 |> Async.RunSynchronously
 |> Result.mapError (fun x -> x.Message)
-|> _equal (Error ("A task was canceled."))
+|> _assert_eq (Error ("A task was canceled."))
 
 #!markdown
 

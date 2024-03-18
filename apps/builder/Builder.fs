@@ -193,7 +193,7 @@ module Builder =
         if persistOnly
         then path |> persistFile packages modules |> Async.map (fun _ -> 0)
         else path |> buildFile runtime packages modules
-        |> Async.runWithTimeout 60000
+        |> Async.runWithTimeout (60000 * 60)
         |> function
             | Some exitCode -> exitCode
             | None -> 1

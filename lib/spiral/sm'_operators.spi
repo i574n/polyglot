@@ -1,0 +1,5 @@
+inl (~#) s =
+    s |> sm'.raw_string_literal
+
+inl (~##) s =
+    s |> sm'.raw_string_literal_static

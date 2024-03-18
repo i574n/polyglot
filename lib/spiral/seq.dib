@@ -47,7 +47,7 @@ inl from_list list =
 listm.init 10i32 print_and_return
 |> from_list
 |> try_item 5i32
-|> _equal (Some 5i32)
+|> _assert_eq (Some 5i32)
 
 #!markdown
 
@@ -69,7 +69,7 @@ listm.init 10i32 id
 |> from_list
 |> map ((*) 2)
 |> try_item 5i32
-|> _equal (Some 10i32)
+|> _assert_eq (Some 10i32)
 
 #!markdown
 
@@ -91,7 +91,7 @@ listm.init 10i32 print_and_return
 |> from_list
 |> mapi fun i x => i + x
 |> try_item 5i32
-|> _equal (Some 10i32)
+|> _assert_eq (Some 10i32)
 
 #!markdown
 
@@ -126,7 +126,7 @@ listm.init 10i32 print_and_return
 |> from_list
 |> choose (fun x => if x % 2 = 0 then Some x else None)
 |> try_item 1i32
-|> _equal (Some 2i32)
+|> _assert_eq (Some 2i32)
 
 #!markdown
 
@@ -147,7 +147,7 @@ listm.init 10i32 ((*) 2)
 |> from_list
 |> indexed
 |> try_item 5i32
-|> _equal (Some (5i32, 10i32))
+|> _assert_eq (Some (5i32, 10i32))
 
 #!markdown
 
@@ -164,7 +164,7 @@ inl zip n seq1 seq2 =
 
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip 5i32
-|> _equal (Some 5, Some 10)
+|> _assert_eq (Some 5, Some 10)
 
 #!markdown
 
@@ -183,7 +183,7 @@ inl zip_with fn seq1 seq2 =
 ((listm.init 10i32 id |> from_list), (listm.init 10i32 ((*) 2) |> from_list))
 ||> zip_with (optionm'.choose (+))
 |> try_item 2i32
-|> _equal (Some 6)
+|> _assert_eq (Some 6)
 
 #!markdown
 
@@ -225,7 +225,7 @@ listm.init 10i32 id
 |> from_list
 |> fun f (n : i32) => f n
 |> sum
-|> _equal 45
+|> _assert_eq 45
 
 #!markdown
 
@@ -251,7 +251,7 @@ listm.init 10i32 id
 |> from_list
 |> fun f (n : i32) => f n
 |> to_list
-|> _equal (listm.init 10i32 id)
+|> _assert_eq (listm.init 10i32 id)
 
 #!markdown
 
@@ -272,7 +272,7 @@ inl from_array forall dim {number; int} el. (array : a dim el) : seq dim el =
 a ;[ 1; 2; 3 ]
 |> from_array
 |> try_item 1i32
-|> _equal (Some 2i32)
+|> _assert_eq (Some 2i32)
 
 #!markdown
 
@@ -302,7 +302,7 @@ listm.init 10i32 id
 |> from_list
 |> fun (x : i32 -> _) => x
 |> to_array
-|> _equal (a ;[ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] : _ i32 _)
+|> _assert_eq (a ;[ 0; 1; 2; 3; 4; 5; 6; 7; 8; 9 ] : _ i32 _)
 
 #!markdown
 
@@ -325,7 +325,7 @@ listm.init 10i32 id
 |> from_list
 |> take_while (fun n (_ : i32) => n < 5)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 #!spiral
 
@@ -335,7 +335,7 @@ stream.new_finite_stream print_and_return 10i32
 |> flip stream.try_item
 |> take_while (fun n (_ : i32) => n < 5)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 #!markdown
 
@@ -358,7 +358,7 @@ stream.new_infinite_stream_ print_and_return
 |> flip stream.try_item
 |> take_while_ (fun n (_ : i32) => n < 5i32)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 #!spiral
 
@@ -372,7 +372,7 @@ stream.new_infinite_stream_ print_and_return
         list |> stream.try_item n
 |> take_while_ (fun n (_ : i32) => n < 5i32)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 #!spiral
 
@@ -386,7 +386,7 @@ stream.new_finite_stream print_and_return 10i32
         list |> stream.try_item n
 |> take_while_ (fun n (_ : i32) => n < 5)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 #!markdown
 
@@ -426,12 +426,12 @@ inl seq =
 seq
 |> take_while_ (fun n (_ : i32) => n < 5)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 seq
 |> take_while_ (fun n _ => n < 5)
 |> listm'.sum
-|> _equal 10
+|> _assert_eq 10
 
 #!markdown
 
@@ -451,7 +451,7 @@ inl iterate f x0 num_steps =
 // // test
 
 10i32 |> iterate ((*) 2) 1i32
-|> _equal 1024
+|> _assert_eq 1024
 
 #!spiral
 
@@ -467,7 +467,7 @@ inl iterate_ f x0 num_steps =
 // // test
 
 10i32 |> iterate_ ((*) 2) 1i32
-|> _equal 1024
+|> _assert_eq 1024
 
 #!spiral
 
@@ -480,7 +480,7 @@ inl iterate' f x0 num_steps =
 // // test
 
 10i32 |> iterate' ((*) 2) 1i32
-|> _equal 1024
+|> _assert_eq 1024
 
 #!markdown
 

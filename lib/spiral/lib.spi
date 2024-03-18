@@ -1,0 +1,10 @@
+inl types () =
+    rust.types ()
+    wasm.types ()
+    am'.types ()
+    sm'.types ()
+    date_time.types ()
+    mapm.types ()
+    async.types ()
+    networking.types ()
+    leptos.types ()

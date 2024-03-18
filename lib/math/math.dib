@@ -1,0 +1,517 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+
+#!markdown
+
+# math
+
+#!spiral
+
+// // test
+
+open testing
+open rust_operators
+
+#!spiral
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"num_complex::Complex<$0>\")>] type num_complex_Complex<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::types::PyModule\")>] type pyo3_types_PyModule = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Bound<$0>\")>] type pyo3_Bound<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::Python\")>] type pyo3_Python = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyAny\")>] type pyo3_PyAny = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"pyo3::PyErr\")>] type pyo3_PyErr = class end"
+
+#!spiral
+
+inl types () =
+    rust.types ()
+    sm'.types ()
+    types ()
+
+#!markdown
+
+## complex
+
+#!spiral
+
+nominal complex t = $"num_complex_Complex<`t>"
+nominal bound t = $"pyo3_Bound<`t>"
+nominal python = $"pyo3_Python"
+nominal pymodule = $"pyo3_types_PyModule"
+nominal pyany = $"pyo3_PyAny"
+nominal pyerr = $"pyo3_PyErr"
+
+inl complex forall t. ((re : t), (im : t)) : complex t =
+    inl re = join re
+    inl im = join im
+    !\($'"num_complex::Complex::new(!re, !im)"')
+
+#!spiral
+
+// // test
+// // rust=
+
+types ()
+
+complex (0f64, 0f64)
+|> sm'.format'
+|> sm'.from_std_string
+|> _assert_eq "0+0i"
+
+#!markdown
+
+## run_test
+
+#!spiral
+
+inl re forall t. (c : complex t) : t =
+    !\($'"!c.re"')
+
+inl im forall t. (c : complex t) : t =
+    !\($'"!c.im"')
+
+inl complex_unbox forall t. (c : complex t) =
+    c |> re, c |> im
+
+inl powc forall t. (s : complex t) (c : complex t) : complex t =
+    !\($'"num_complex::Complex::powc(!c, !s)"')
+
+inl complex_sub forall t. (a : complex t) (b : complex t) : complex t =
+    !\($'"!a - !b"')
+
+inl complex_mult forall t. (a : complex t) (b : complex t) : complex t =
+    !\($'"!a * !b"')
+
+inl complex_div forall t. (a : complex t) (b : complex t) : complex t =
+    !\($'"!a / !b"')
+
+inl complex_sin forall t. (c : complex t) : complex t =
+    !\($'"!c.sin()"')
+
+inl conj forall t. (c : complex t) : complex t =
+    !\($'"!c.conj()"')
+
+inl module_from_code (py : python) (code : string) : resultm.result' (bound pymodule) pyerr =
+    inl py = join py
+    inl code = code |> sm'.as_str
+    !\($'"pyo3::types::PyModule::from_code_bound(!py, !code, \\"\\", \\"\\")"')
+
+inl use_pyanymethods () =
+    global "Fable.Core.RustInterop.emitRustExpr () \");\nuse pyo3::prelude::PyAnyMethods;\n//\""
+
+inl getattr (attr : string) (module : bound pymodule) : resultm.result' (bound pyany) pyerr =
+    inl attr = attr |> sm'.as_str
+    inl module = join module
+    use_pyanymethods ()
+    !\($'"!module.getattr(!attr)"')
+
+inl call forall t. (args : t) (module : bound pyany) : resultm.result' (bound pyany) pyerr =
+    inl args = join args
+    inl module = join module
+    !\($'"pyo3::prelude::PyAnyMethods::call(&!module, (*(*!args).0, ()), None)"')
+
+inl extract forall t. (result : bound pyany) : resultm.result' t pyerr =
+    inl result = join result
+    use_pyanymethods ()
+    !\($'"!result.extract()"')
+
+inl eval py code args =
+    inl code =
+        code
+        |> module_from_code py
+        |> resultm.unwrap'
+    inl fn =
+        code
+        |> getattr "fn"
+        |> fun x => x : _ _ pyerr
+        |> resultm.unwrap'
+
+    fn
+    |> call args
+    |> resultm.unwrap'
+    |> extract
+    |> fun x => x : _ _ pyerr
+    |> resultm.unwrap'
+    |> complex
+    |> Ok
+    |> fun x => x : _ _ pyerr
+    |> resultm.box
+
+inl gamma_ py s =
+    inl code =
+        ;[
+            "import mpmath"
+            "def fn(s, _):"
+            "    s = complex(*s)"
+            "    s = mpmath.gamma(s)"
+            "    return (s.real, s.imag)"
+        ]
+    inl code = (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
+
+    inl s = new_pair (s |> re) (s |> im)
+    inl args = new_pair s ()
+
+    eval py code args
+
+inl zeta_ py s =
+    inl code =
+        ;[
+            "import mpmath"
+            "def fn(s, _):"
+            "    s = complex(*s)"
+            "    try:"
+            "        s = mpmath.zeta(s)"
+            "    except ValueError as e:"
+            "        if s.real == 1:"
+            "            s = complex(float('inf'), 0)"
+            "    return (s.real, s.imag)"
+        ]
+    inl code = (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
+    
+    inl s = new_pair (s |> re) (s |> im)
+    inl args = new_pair s ()
+
+    eval py code args
+
+inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
+    inl fn_ (py : python) : resultm.result' () pyerr =
+        inl zeta = fun (s : complex f64) =>
+            inl s = zeta_ py s |> resultm.unwrap'
+            s
+        inl gamma = fun (s : complex f64) =>
+            inl s = gamma_ py s |> resultm.unwrap'
+            s
+        fn (zeta, gamma)
+        
+        Ok ()
+        |> resultm.box
+    
+    inl run () =
+        !\($'"pyo3::prepare_freethreaded_python()"') : ()
+
+        !\($'"let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"')
+
+        inl x = fn_
+        let x' = x (!\($'"py"') : python)
+        inl x' = join x'
+        
+        x' |> rust.fix_closure closure_fix
+
+        (!\($'"__result"') : _ () pyerr)
+        |> resultm.unwrap'
+    inl run = join run
+    run ()
+
+#!markdown
+
+## test_zeta_at_2___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=true
+
+types ()
+
+run_test 5i32 fun zeta, gamma =>
+    inl s = complex (2f64, 0f64)
+    inl result = zeta s
+
+    result
+    |> im
+    |> _assert_eq 0f64
+
+    ((result |> re) - (pi ** 2f64) / 6f64) |> abs
+    |> _assert_lt 0.001f64
+
+#!markdown
+
+## test_zeta_at_2_minus2
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 5i32 fun zeta, gamma =>
+    inl s = complex (2f64, -2f64)
+    inl result = zeta s
+
+    ((result |> re) - 0.8673f64) |> abs
+    |> _assert_lt 0.001f64
+
+    ((result |> im) - 0.2750f64) |> abs
+    |> _assert_lt 0.001f64
+
+#!markdown
+
+## test_trivial_zero_at_negative_even___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 3i32 fun zeta, gamma =>
+    (join listm'.init_series -2f64 -20 -2)
+    |> listm.iter fun n =>
+        inl s = complex (n, 0)
+        inl result = zeta s
+
+        result
+        |> re
+        |> _assert_eq 0
+
+        result
+        |> im
+        |> _assert_eq 0
+
+#!markdown
+
+## test_non_trivial_zero___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 4i32 fun zeta, gamma =>
+    ;[
+        complex (0.5, 14.134725)
+        complex (0.5, 21.022040)
+        complex (0.5, 25.010857)
+    ]
+    |> fun x => a x : _ i32 _
+    |> am.iter fun x =>
+            inl result = zeta x
+            result |> re |> abs |> _assert_lt 0.001
+            result |> im |> abs |> _assert_lt 0.001
+
+#!markdown
+
+## test_real_part_greater_than_one___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 4i32 fun zeta, gamma =>
+    inl points = ;[2; 3; 4; 5; 10; 20; 50]
+    (a points : _ i32 _)
+    |> am.iter fun point =>
+        inl s = complex (point, 0)
+        inl result = zeta s
+        result |> re |> _assert_gt 0
+        result |> im |> _assert_eq 0
+
+#!markdown
+
+## test_zeta_at_1___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 5i32 fun zeta, gamma =>
+    inl s = complex (1, 0)
+    inl result = zeta s
+    result |> re |> _assert_eq limit.max
+    result |> im |> _assert_eq 0
+
+#!markdown
+
+## test_symmetry_across_real_axis___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 5i32 fun zeta, gamma =>
+    inl s = complex (2, 10)
+    inl result_positive_im = zeta s
+    inl result_negative_im = complex (s |> re, s |> im |> (~-)) |> zeta
+    inl conj = result_negative_im |> conj
+    result_positive_im |> re |> _assert_eq (conj |> re)
+    result_positive_im |> im |> _assert_eq (conj |> im)
+
+#!markdown
+
+## test_behavior_near_origin___
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 5i32 fun zeta, gamma =>
+    inl s = complex (0.01, 0.01)
+    inl result = zeta s
+    result |> re |> _assert_lt limit.max
+    result |> im |> _assert_lt limit.max
+
+#!markdown
+
+## test_zeta_at_minus_1
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 5i32 fun zeta, gamma =>
+    inl s = complex (-1, 0)
+    inl result = zeta s
+    (result |> re) + 1f64 / 12f64 |> abs |> _assert_lt 0.001
+    result |> im |> _assert_eq 0
+
+#!markdown
+
+## test_imaginary_axis
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 4i32 fun zeta, gamma =>
+    (join a ;[10;20; 30; 40; 50; 60; 70; 80; 90; 100] : _ i32 _)
+    |> am.iter fun s =>
+        inl s = complex (0, s)
+        inl result = zeta s
+        result |> re |> _assert_ne 0
+        result |> im |> _assert_ne 0
+
+#!markdown
+
+## test_critical_strip
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 4i32 fun zeta, gamma =>
+    ;[
+        complex (0.5, 14.134725)
+        complex (0.75, 20.5)
+        complex (1.25, 30.1)
+        complex (0.25, 40.0)
+        complex (1.0, 50.0)
+    ]
+    |> fun x => a x : _ i32 _
+    |> am.iter fun s =>
+        inl result = zeta s
+        result |> re |> _assert_ne 0
+        result |> im |> _assert_ne 0
+
+#!markdown
+
+## test_reflection_formula_for_specific_value
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 4i32 fun zeta, gamma =>
+    ;[
+        complex (3, 4)
+        complex (2.5, -3.5)
+        complex (1.5, 2.5)
+        complex (0.5, 14.134725)
+    ]
+    |> fun x => a x : _ i32 _
+    |> am.iter fun s =>
+        inl lhs = zeta s
+        inl reflection_coefficient =
+            complex_mult
+                (complex_mult
+                    (complex_mult
+                        (complex (2, 0) |> powc s)
+                        (complex (pi, 0) |> powc (complex_sub s (complex (1, 0))))
+                    )
+                    (
+                        (complex_div
+                            (complex_mult
+                                (complex (pi, 0))
+                                s
+                            )
+                            (complex (2, 0))
+                        )
+                        |> complex_sin
+                    )
+                )
+                (gamma (complex_sub (complex (1, 0)) s))
+                
+        inl one_minus_s = complex (1 - (s |> re), -(s |> im))
+        inl rhs_calculated = complex_mult reflection_coefficient (zeta one_minus_s)
+
+        ((lhs |> re) - (rhs_calculated |> re)) |> abs |> _assert_lt 0.01
+        ((lhs |> im) - (rhs_calculated |> im)) |> abs |> _assert_lt 0.01
+
+#!markdown
+
+## test_euler_product_formula
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+
+run_test 4i32 fun zeta, gamma =>
+    inl s_values = ;[2; 3; 4; 5]
+    inl primes = ;[2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
+    (a s_values : _ i32 _)
+    |> am.iter fun s_re =>
+        inl s = complex (s_re, 0)
+        inl product =
+            (1, (a primes : _ i32 _))
+            ||> am.fold fun acc x =>
+                acc * 1 / (1 - x ** -s_re)
+
+        inl result = zeta s
+        ((result |> re) - product) |> abs |> _assert_lt 0.01f64
+        result |> im |> _assert_lt 0.01f64
+        result |> im |> _assert_eq 0f64

@@ -7642,7 +7642,7 @@ a.anchor-link {
 
 <span class="n">testPortOpen</span> <span class="mi">65536</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">120</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="n">false</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7697,7 +7697,7 @@ FSharpOption&lt;Boolean&gt;
 
 <span class="n">testPortOpenTimeout</span> <span class="mi">120</span> <span class="mi">65535</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">false</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">false</span>
 </pre></div>
 </div>
 </div>
@@ -7811,7 +7811,7 @@ False
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -7856,11 +7856,11 @@ False
 00:00:00 #32 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 #33 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:00 #34 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:01 #35 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:01 #36 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:01 #37 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:01 #38 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:01 #39 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #35 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #36 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #37 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #38 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #39 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 #40 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 #41 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 #42 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -7940,11 +7940,11 @@ False
 00:00:01 #116 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 #117 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:01 #118 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #119 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #120 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #121 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #122 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:02 #123 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 #119 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 #120 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 #121 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 #122 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:01 #123 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #124 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #125 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #126 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8023,11 +8023,11 @@ False
 00:00:02 #199 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #200 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:02 #201 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:03 #202 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:03 #203 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:03 #204 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:03 #205 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:03 #206 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #202 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #203 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #204 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #205 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:02 #206 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 #207 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 #208 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 #209 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8108,11 +8108,11 @@ False
 00:00:03 #284 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 #285 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:03 #286 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:04 #287 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:04 #288 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:04 #289 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:04 #290 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:04 #291 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:03 #287 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:03 #288 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:03 #289 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:03 #290 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:03 #291 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 #292 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 #293 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 #294 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8192,11 +8192,11 @@ False
 00:00:04 #368 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 #369 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:04 #370 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:05 #371 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:05 #372 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:05 #373 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:05 #374 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:05 #375 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 #371 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 #372 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 #373 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 #374 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:04 #375 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:05 #376 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:05 #377 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:05 #378 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
@@ -8262,9 +8262,9 @@ False
 416
 416
 416
-167
-167
-167
+166
+166
+166
 True
 </pre>
 </div>
@@ -8325,7 +8325,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8339,8 +8339,8 @@ True
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:08 #438 [Debug] 1
-00:00:08 #440 [Debug] 2
-00:00:08 #439 [Debug] _1
+00:00:08 #439 [Debug] 2
+00:00:08 #440 [Debug] _1
 00:00:08 #441 [Debug] 3
 00:00:08 #442 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
 00:00:08 #443 [Verbose] waitForPortAccess / port: 5555 / retry: 0
@@ -8388,11 +8388,11 @@ True
 00:00:08 #485 [Debug] _3
 00:00:08 #486 [Debug] 4
 00:00:08 #487 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:09 #488 [Debug] _4
-00:00:09 #489 [Debug] _5
-00:00:09 #490 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
-00:00:09 #491 [Debug] 5
-00:00:09 #492 [Debug] 6
+00:00:08 #488 [Debug] _4
+00:00:08 #489 [Debug] _5
+00:00:08 #490 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:08 #491 [Debug] 5
+00:00:08 #492 [Debug] 6
 41
 41
 41
@@ -8484,7 +8484,7 @@ True
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">15000</span>
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">availablePort</span><span class="p">,</span> <span class="n">retries</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
@@ -8493,7 +8493,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8577,7 +8577,7 @@ True
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">1500</span>
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">availablePort</span><span class="p">,</span> <span class="n">retries</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
@@ -8586,7 +8586,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>

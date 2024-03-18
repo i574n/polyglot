@@ -7658,7 +7658,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="p">[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="o">/@</span> <span class="p">[</span> <span class="s2">"c"</span><span class="p">;</span> <span class="s2">"d"</span> <span class="p">]</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">;</span> <span class="s2">"c"</span><span class="p">;</span> <span class="s2">"d"</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">;</span> <span class="s2">"c"</span><span class="p">;</span> <span class="s2">"d"</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -7675,21 +7675,21 @@ a.anchor-link {
     | UH0_0 of string * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v0 : string = "a"
-    let v1 : string = "b"
-    let v2 : string = "c"
-    let v3 : string = "d"
-    let v4 : UH0 = UH0_1
-    let v5 : UH0 = UH0_0(v3, v4)
-    let v6 : UH0 = UH0_0(v2, v5)
-    let v7 : UH0 = UH0_0(v1, v6)
-    let v8 : UH0 = UH0_0(v0, v7)
-    let v9 : UH0 = UH0_1
-    let v10 : UH0 = UH0_0(v3, v9)
-    let v11 : UH0 = UH0_0(v2, v10)
-    let v12 : UH0 = UH0_0(v1, v11)
-    let v13 : UH0 = UH0_0(v0, v12)
-    let v14 : string = $"__expect / actual: %A{v8} / expected: %A{v13}"
+    let v43 : string = "a"
+    let v44 : string = "b"
+    let v45 : string = "c"
+    let v46 : string = "d"
+    let v47 : UH0 = UH0_1
+    let v48 : UH0 = UH0_0(v46, v47)
+    let v49 : UH0 = UH0_0(v45, v48)
+    let v50 : UH0 = UH0_0(v44, v49)
+    let v51 : UH0 = UH0_0(v43, v50)
+    let v52 : UH0 = UH0_1
+    let v53 : UH0 = UH0_0(v46, v52)
+    let v54 : UH0 = UH0_0(v45, v53)
+    let v55 : UH0 = UH0_0(v44, v54)
+    let v56 : UH0 = UH0_0(v43, v55)
+    let v57 : string = $"__expect / actual: %A{v51} / expected: %A{v56}"
     ()
 method0()
 
@@ -7750,7 +7750,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">init_series</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mf">0.5</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">0</span><span class="n">f64</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">0</span><span class="n">f64</span><span class="p">;</span> <span class="mf">0.5</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -7767,15 +7767,15 @@ method0()
     | UH0_0 of float * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(1.0, v0)
-    let v2 : UH0 = UH0_0(0.5, v1)
-    let v3 : UH0 = UH0_0(0.0, v2)
-    let v4 : UH0 = UH0_1
-    let v5 : UH0 = UH0_0(1.0, v4)
-    let v6 : UH0 = UH0_0(0.5, v5)
-    let v7 : UH0 = UH0_0(0.0, v6)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
+    let v18 : UH0 = UH0_1
+    let v19 : UH0 = UH0_0(1.0, v18)
+    let v20 : UH0 = UH0_0(0.5, v19)
+    let v21 : UH0 = UH0_0(0.0, v20)
+    let v22 : UH0 = UH0_1
+    let v23 : UH0 = UH0_0(1.0, v22)
+    let v24 : UH0 = UH0_0(0.5, v23)
+    let v25 : UH0 = UH0_0(0.0, v24)
+    let v26 : string = $"__expect / actual: %A{v21} / expected: %A{v25}"
     ()
 method0()
 
@@ -7838,7 +7838,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">try_item</span> <span class="mi">9</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">9</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7855,9 +7855,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(9)
-    let v1 : US0 = US0_1(9)
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
+    let v3 : US0 = US0_1(9)
+    let v4 : US0 = US0_1(9)
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
     ()
 method0()
 
@@ -7878,7 +7878,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">try_item</span> <span class="mi">10</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -7895,9 +7895,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : US0 = US0_0
-    let v1 : US0 = US0_0
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
+    let v3 : US0 = US0_0
+    let v4 : US0 = US0_0
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
     ()
 method0()
 
@@ -7958,7 +7958,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">9</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">9</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">9</span>
 </pre></div>
 </div>
 </div>
@@ -7996,7 +7996,7 @@ method0()
     <span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">10</span><span class="n">i32</span>
     <span class="o">|&gt;</span> <span class="n">ignore</span>
 <span class="o">|&gt;</span> <span class="n">_throws</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="s2">"Option does not have a value."</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="s2">"Option does not have a value."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8017,24 +8017,31 @@ let rec closure0 () () : unit =
     ()
 and closure1 () (v0 : string) : US0 =
     US0_1(v0)
+and method1 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : (unit -&gt; unit) = closure0()
     let v1 : US0 = US0_0
     let v2 : (string -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; v2 ex.Message
-    let v4 : string = "Option does not have a value."
-    let v5 : US0 = US0_1(v4)
-    let v6 : string = $"__expect / actual: %A{v3} / expected: %A{v5}"
-    let v10 : bool =
+    let v8 : bool =
         match v3 with
-        | US0_1(v8) -&gt; (* Some *)
-            let v9 : bool = v8 = "Option does not have a value."
-            v9
+        | US0_1(v6) -&gt; (* Some *)
+            let v7 : bool = v6 = "Option does not have a value."
+            v7
         | _ -&gt;
             false
-    let v11 : bool = v10 = false
-    if v11 then
-        failwith&lt;unit&gt; v6
+    let v10 : bool =
+        if v8 then
+            true
+        else
+            method1(v8)
+    let v11 : string = "Option does not have a value."
+    let v12 : US0 = US0_1(v11)
+    let v13 : string = $"__expect / actual: %A{v3} / expected: %A{v12}"
+    let v14 : bool = v10 = false
+    if v14 then
+        failwith&lt;unit&gt; v13
 method0()
 
 </pre>
@@ -8176,7 +8183,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="nb">sum</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">45</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
 </pre></div>
 </div>
 </div>
@@ -8258,10 +8265,10 @@ method0()
 <span class="o">|&gt;</span> <span class="n">unzip</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=&gt;</span>
     <span class="n">x</span> <span class="o">|&gt;</span> <span class="nb">sum</span>
-    <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">45</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
 
     <span class="n">y</span> <span class="o">|&gt;</span> <span class="nb">sum</span>
-    <span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">45</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
 </pre></div>
 </div>
 </div>
@@ -8378,7 +8385,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">index_of</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">5</span><span class="n">i32</span>
 </pre></div>
 </div>
 </div>
@@ -8413,7 +8420,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">try_index_of</span> <span class="mi">10</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">i32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8430,9 +8437,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : US0 = US0_0
-    let v1 : US0 = US0_0
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
+    let v3 : US0 = US0_0
+    let v4 : US0 = US0_0
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
     ()
 method0()
 
@@ -8508,7 +8515,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">try_find</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8525,9 +8532,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5)
-    let v1 : US0 = US0_1(5)
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
+    let v3 : US0 = US0_1(5)
+    let v4 : US0 = US0_1(5)
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
     ()
 method0()
 
@@ -8580,7 +8587,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">find</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">5</span><span class="n">i32</span>
 </pre></div>
 </div>
 </div>
@@ -8659,7 +8666,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">choose</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="n">Some</span> <span class="n">x</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">8</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">8</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8676,19 +8683,19 @@ method0()
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(8, v0)
-    let v2 : UH0 = UH0_0(6, v1)
-    let v3 : UH0 = UH0_0(4, v2)
-    let v4 : UH0 = UH0_0(2, v3)
-    let v5 : UH0 = UH0_0(0, v4)
-    let v6 : UH0 = UH0_1
-    let v7 : UH0 = UH0_0(8, v6)
-    let v8 : UH0 = UH0_0(6, v7)
-    let v9 : UH0 = UH0_0(4, v8)
-    let v10 : UH0 = UH0_0(2, v9)
-    let v11 : UH0 = UH0_0(0, v10)
-    let v12 : string = $"__expect / actual: %A{v5} / expected: %A{v11}"
+    let v33 : UH0 = UH0_1
+    let v34 : UH0 = UH0_0(8, v33)
+    let v35 : UH0 = UH0_0(6, v34)
+    let v36 : UH0 = UH0_0(4, v35)
+    let v37 : UH0 = UH0_0(2, v36)
+    let v38 : UH0 = UH0_0(0, v37)
+    let v39 : UH0 = UH0_1
+    let v40 : UH0 = UH0_0(8, v39)
+    let v41 : UH0 = UH0_0(6, v40)
+    let v42 : UH0 = UH0_0(4, v41)
+    let v43 : UH0 = UH0_0(2, v42)
+    let v44 : UH0 = UH0_0(0, v43)
+    let v45 : string = $"__expect / actual: %A{v38} / expected: %A{v44}"
     ()
 method0()
 
@@ -8762,7 +8769,7 @@ method0()
 
 <span class="p">([</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">],</span> <span class="p">[</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span> <span class="p">])</span>
 <span class="o">||&gt;</span> <span class="n">zip_with</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">9</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">9</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8779,15 +8786,15 @@ method0()
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(9, v0)
-    let v2 : UH0 = UH0_0(7, v1)
-    let v3 : UH0 = UH0_0(5, v2)
-    let v4 : UH0 = UH0_1
-    let v5 : UH0 = UH0_0(9, v4)
-    let v6 : UH0 = UH0_0(7, v5)
-    let v7 : UH0 = UH0_0(5, v6)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
+    let v18 : UH0 = UH0_1
+    let v19 : UH0 = UH0_0(9, v18)
+    let v20 : UH0 = UH0_0(7, v19)
+    let v21 : UH0 = UH0_0(5, v20)
+    let v22 : UH0 = UH0_1
+    let v23 : UH0 = UH0_0(9, v22)
+    let v24 : UH0 = UH0_0(7, v23)
+    let v25 : UH0 = UH0_0(5, v24)
+    let v26 : string = $"__expect / actual: %A{v21} / expected: %A{v25}"
     ()
 method0()
 
@@ -8851,7 +8858,7 @@ method0()
 
 <span class="p">([</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">3</span> <span class="p">],</span> <span class="p">[</span> <span class="mi">4</span><span class="n">i32</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">6</span> <span class="p">])</span>
 <span class="o">||&gt;</span> <span class="nb">zip</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8868,15 +8875,15 @@ method0()
     | UH0_0 of int32 * int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(3, 6, v0)
-    let v2 : UH0 = UH0_0(2, 5, v1)
-    let v3 : UH0 = UH0_0(1, 4, v2)
-    let v4 : UH0 = UH0_1
-    let v5 : UH0 = UH0_0(3, 6, v4)
-    let v6 : UH0 = UH0_0(2, 5, v5)
-    let v7 : UH0 = UH0_0(1, 4, v6)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{v7}"
+    let v18 : UH0 = UH0_1
+    let v19 : UH0 = UH0_0(3, 6, v18)
+    let v20 : UH0 = UH0_0(2, 5, v19)
+    let v21 : UH0 = UH0_0(1, 4, v20)
+    let v22 : UH0 = UH0_1
+    let v23 : UH0 = UH0_0(3, 6, v22)
+    let v24 : UH0 = UH0_0(2, 5, v23)
+    let v25 : UH0 = UH0_0(1, 4, v24)
+    let v26 : string = $"__expect / actual: %A{v21} / expected: %A{v25}"
     ()
 method0()
 
@@ -8941,7 +8948,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">5</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">indexed</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="mi">0</span><span class="n">i32</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">0</span><span class="n">i32</span><span class="p">,</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8958,19 +8965,19 @@ method0()
     | UH0_0 of int32 * int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(4, 8, v0)
-    let v2 : UH0 = UH0_0(3, 6, v1)
-    let v3 : UH0 = UH0_0(2, 4, v2)
-    let v4 : UH0 = UH0_0(1, 2, v3)
-    let v5 : UH0 = UH0_0(0, 0, v4)
-    let v6 : UH0 = UH0_1
-    let v7 : UH0 = UH0_0(4, 8, v6)
-    let v8 : UH0 = UH0_0(3, 6, v7)
-    let v9 : UH0 = UH0_0(2, 4, v8)
-    let v10 : UH0 = UH0_0(1, 2, v9)
-    let v11 : UH0 = UH0_0(0, 0, v10)
-    let v12 : string = $"__expect / actual: %A{v5} / expected: %A{v11}"
+    let v33 : UH0 = UH0_1
+    let v34 : UH0 = UH0_0(4, 8, v33)
+    let v35 : UH0 = UH0_0(3, 6, v34)
+    let v36 : UH0 = UH0_0(2, 4, v35)
+    let v37 : UH0 = UH0_0(1, 2, v36)
+    let v38 : UH0 = UH0_0(0, 0, v37)
+    let v39 : UH0 = UH0_1
+    let v40 : UH0 = UH0_0(4, 8, v39)
+    let v41 : UH0 = UH0_0(3, 6, v40)
+    let v42 : UH0 = UH0_0(2, 4, v41)
+    let v43 : UH0 = UH0_0(1, 2, v42)
+    let v44 : UH0 = UH0_0(0, 0, v43)
+    let v45 : string = $"__expect / actual: %A{v38} / expected: %A{v44}"
     ()
 method0()
 
@@ -9042,7 +9049,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">group_by</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">[</span> <span class="n">true</span><span class="p">,</span> <span class="p">[</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">8</span> <span class="p">];</span> <span class="n">false</span><span class="p">,</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">9</span> <span class="p">]</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="n">true</span><span class="p">,</span> <span class="p">[</span> <span class="mi">0</span><span class="p">;</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">8</span> <span class="p">];</span> <span class="n">false</span><span class="p">,</span> <span class="p">[</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">9</span> <span class="p">]</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -9062,37 +9069,37 @@ and UH1 =
     | UH1_0 of bool * UH0 * UH1
     | UH1_1
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(8, v0)
-    let v2 : UH0 = UH0_0(6, v1)
-    let v3 : UH0 = UH0_0(4, v2)
-    let v4 : UH0 = UH0_0(2, v3)
-    let v5 : UH0 = UH0_0(0, v4)
-    let v6 : UH0 = UH0_1
-    let v7 : UH0 = UH0_0(9, v6)
-    let v8 : UH0 = UH0_0(7, v7)
-    let v9 : UH0 = UH0_0(5, v8)
-    let v10 : UH0 = UH0_0(3, v9)
-    let v11 : UH0 = UH0_0(1, v10)
-    let v12 : UH1 = UH1_1
-    let v13 : UH1 = UH1_0(false, v11, v12)
-    let v14 : UH1 = UH1_0(true, v5, v13)
-    let v15 : UH0 = UH0_1
-    let v16 : UH0 = UH0_0(8, v15)
-    let v17 : UH0 = UH0_0(6, v16)
-    let v18 : UH0 = UH0_0(4, v17)
-    let v19 : UH0 = UH0_0(2, v18)
-    let v20 : UH0 = UH0_0(0, v19)
-    let v21 : UH0 = UH0_1
-    let v22 : UH0 = UH0_0(9, v21)
-    let v23 : UH0 = UH0_0(7, v22)
-    let v24 : UH0 = UH0_0(5, v23)
-    let v25 : UH0 = UH0_0(3, v24)
-    let v26 : UH0 = UH0_0(1, v25)
-    let v27 : UH1 = UH1_1
-    let v28 : UH1 = UH1_0(false, v26, v27)
-    let v29 : UH1 = UH1_0(true, v20, v28)
-    let v30 : string = $"__expect / actual: %A{v14} / expected: %A{v29}"
+    let v96 : UH0 = UH0_1
+    let v97 : UH0 = UH0_0(8, v96)
+    let v98 : UH0 = UH0_0(6, v97)
+    let v99 : UH0 = UH0_0(4, v98)
+    let v100 : UH0 = UH0_0(2, v99)
+    let v101 : UH0 = UH0_0(0, v100)
+    let v102 : UH0 = UH0_1
+    let v103 : UH0 = UH0_0(9, v102)
+    let v104 : UH0 = UH0_0(7, v103)
+    let v105 : UH0 = UH0_0(5, v104)
+    let v106 : UH0 = UH0_0(3, v105)
+    let v107 : UH0 = UH0_0(1, v106)
+    let v108 : UH1 = UH1_1
+    let v109 : UH1 = UH1_0(false, v107, v108)
+    let v110 : UH1 = UH1_0(true, v101, v109)
+    let v111 : UH0 = UH0_1
+    let v112 : UH0 = UH0_0(8, v111)
+    let v113 : UH0 = UH0_0(6, v112)
+    let v114 : UH0 = UH0_0(4, v113)
+    let v115 : UH0 = UH0_0(2, v114)
+    let v116 : UH0 = UH0_0(0, v115)
+    let v117 : UH0 = UH0_1
+    let v118 : UH0 = UH0_0(9, v117)
+    let v119 : UH0 = UH0_0(7, v118)
+    let v120 : UH0 = UH0_0(5, v119)
+    let v121 : UH0 = UH0_0(3, v120)
+    let v122 : UH0 = UH0_0(1, v121)
+    let v123 : UH1 = UH1_1
+    let v124 : UH1 = UH1_0(false, v122, v123)
+    let v125 : UH1 = UH1_0(true, v116, v124)
+    let v126 : string = $"__expect / actual: %A{v110} / expected: %A{v125}"
     ()
 method0()
 
@@ -9155,7 +9162,7 @@ method0()
 
 <span class="p">[</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">forall</span><span class="s1">' ((=) 1i32)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -9232,7 +9239,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">last</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">9</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">9</span>
 </pre></div>
 </div>
 </div>
@@ -9320,7 +9327,7 @@ method0()
 
 <span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
 <span class="o">|&gt;</span> <span class="n">try_pick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">then</span> <span class="n">Some</span> <span class="n">x</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9337,9 +9344,9 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5)
-    let v1 : US0 = US0_1(5)
-    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v1}"
+    let v3 : US0 = US0_1(5)
+    let v4 : US0 = US0_1(5)
+    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
     ()
 method0()
 
