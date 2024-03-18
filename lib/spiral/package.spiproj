@@ -11,6 +11,7 @@ modules:
     am'
     sm'
     sm'_operators
+    wasm
     date_time
     listm'
     listm'_operators

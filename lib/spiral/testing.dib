@@ -16,11 +16,14 @@ inl __expect fn log b a =
     else "__expect"
     |> assert result
 
-inl __assert_approx_eq log b a e = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log b a
-inl _assert_approx_eq b a = __assert_approx_eq true b a
+inl __assert_approx_eq log e b a = __expect (fun a b => abs (b - a) < (e |> optionm.defaultWith 0.00000001)) log b a
+inl _assert_approx_eq e b a = __assert_approx_eq true e b a
 
 inl __assert_eq log b a = __expect (=) log b a
 inl _assert_eq b a = __assert_eq true b a
+
+inl __assert_ne log b a = __expect (fun a b => a = b |> fun x => join x |> not) log b a
+inl _assert_ne b a = __assert_ne true b a
 
 inl __assert_gt log b a = __expect (>) log b a
 inl _assert_gt b a = __assert_gt true b a

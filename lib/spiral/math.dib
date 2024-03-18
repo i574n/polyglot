@@ -17,28 +17,28 @@ open testing
 // // test
 
 2 * 2 / 0.4f64 |> sqrt
-|> _assert_approx_eq 3.1622776601683795
+|> _assert_approx_eq None 3.1622776601683795
 
 #!spiral
 
 // // test
 
 2f64 / 3
-|> _assert_approx_eq 0.6666666666666666
+|> _assert_approx_eq None 0.6666666666666666
 
 #!spiral
 
 // // test
 
 2f64 |> log
-|> _assert_approx_eq 0.6931471805599453
+|> _assert_approx_eq None 0.6931471805599453
 
 #!spiral
 
 // // test
 
 pi
-|> _assert_approx_eq 3.141592653589793f64
+|> _assert_approx_eq None 3.141592653589793f64
 
 #!spiral
 
@@ -54,14 +54,14 @@ pi |> cos
 pi
 |> cos
 |> fun n => n / 2f64
-|> _assert_approx_eq -0.5
+|> _assert_approx_eq None -0.5
 
 #!spiral
 
 // // test
 
 pi / 2 |> cos
-|> _assert_approx_eq 0.00000000000000006123233995736766f64
+|> _assert_approx_eq None 0.00000000000000006123233995736766f64
 
 #!markdown
 
@@ -159,11 +159,11 @@ inl square x =
 5f64
 |> sqrt
 |> square
-|> _assert_approx_eq 5
+|> _assert_approx_eq None 5
 
 #!spiral
 
 // // test
 
 e () |> square
-|> _assert_approx_eq 7.3890560989306495
+|> _assert_approx_eq None 7.3890560989306495

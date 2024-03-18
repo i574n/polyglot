@@ -1,11 +1,11 @@
 open rust_operators
 
 
-inl build_database () : async.future_pin (result rust.rexie rust.rexie_error) =
+inl build_database () : async.future_pin (result wasm.rexie wasm.rexie_error) =
     leptos.log $'"state_core.build_database ()"'
 
     fun () =>
-        inl rexie : async.future_pin (resultm.result' rust.rexie rust.rexie_error) =
+        inl rexie : async.future_pin (resultm.result' wasm.rexie wasm.rexie_error) =
             !\($'"Box::pin(rexie::Rexie::builder(\\\"database\\\").version(1).add_object_store(rexie::ObjectStore::new(\\\"store\\\")).build())"')
         rexie
         |> async.await
@@ -15,7 +15,7 @@ inl build_database () : async.future_pin (result rust.rexie rust.rexie_error) =
 inl get_core_state_heap_key () =
     "core-state-heap"
 
-inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (resultm.result' (optionm'.option' t) sm'.std_string) =
+inl get_data forall t. (id : string) (rexie : wasm.rexie) : async.future_pin (resultm.result' (optionm'.option' t) sm'.std_string) =
     leptos.log $'"state_core.get_data () / id: " + !id + ""'
     fun () =>
         inl store_name = "store"
@@ -28,15 +28,15 @@ inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (re
             transaction
             |> store.transaction_store store_name
             |> resultm.try'
-        inl mode_value : rust.js_value =
+        inl mode_value : wasm.js_value =
             rexie_store
             |> store.store_get id
             |> async.await
-            |> resultm.map_error' fun (x : rust.rexie_error) => x |> sm'.format'
+            |> resultm.map_error' fun (x : wasm.rexie_error) => x |> sm'.format'
             |> resultm.try'
         inl mode_data =
             mode_value
-            |> sm'.wasm_from_value
+            |> wasm.from_js_value
             |> resultm.try'
         match mode_data |> optionm'.unbox with
         | Some mode_data =>
@@ -57,21 +57,21 @@ inl get_data forall t. (id : string) (rexie : rust.rexie) : async.future_pin (re
         |> resultm.box
     |> async.future_init 3 0
 
-inl set_data forall t. (id : string) (data : t) (rexie : rust.rexie) : async.future_pin (resultm.result' () rust.rexie_error) =
+inl set_data forall t. (id : string) (data : t) (rexie : wasm.rexie) : async.future_pin (resultm.result' () wasm.rexie_error) =
     inl data_len : i64 = data |> sm'.format_debug |> sm.length
     leptos.log $'"state_core.set_data () / data_len: " + string !data_len + ""'
 
     inl rexie = join rexie
     inl data = join data
     fun () =>
-        inl transaction : rust.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
-        inl store : rust.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
+        inl transaction : wasm.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
+        inl store : wasm.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
 
         !\($'"let mut data = Vec::new()"')
         !\($'"borsh::BorshSerialize::serialize(&!data, &mut data).unwrap()"')
         inl data : am'.vec u8 = !\($'"data"')
 
-        inl data_js_value : rust.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
+        inl data_js_value : wasm.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
         inl id = id |> sm'.as_str
         !\($'"!store.put(&!data_js_value, Some(&!id.into())).await?"')
         !\($'"!transaction.done().await?"')
@@ -102,7 +102,7 @@ type global_state core_state_data =
     }
 
 inl use_core_database forall core_state_data.
-    (database : leptos.resource (option ()) rust.rexie)
+    (database : leptos.resource (option ()) wasm.rexie)
     (global_state : global_state core_state_data)
     =
     leptos.log $'"state_core.use_core_database (1)"'
@@ -110,13 +110,13 @@ inl use_core_database forall core_state_data.
     inl core_state_heap_key = get_core_state_heap_key ()
 
     inl core_state_heap
-        : leptos.resource (optionm'.option' rust.rexie) (option (core_state_heap core_state_data))
+        : leptos.resource (optionm'.option' wasm.rexie) (option (core_state_heap core_state_data))
         =
         leptos.create_local_resource
             fun () =>
                 database
                 |> leptos.resource_get
-            fun (database : optionm'.option' rust.rexie) =>
+            fun (database : optionm'.option' wasm.rexie) =>
                 fun () =>
                     inl database_log = database |> sm'.format_debug
                     leptos.log $'"state_core.use_core_database (2) / core_state_heap create_local_resource / database: " + !database_log + ""'
@@ -268,7 +268,7 @@ inl use_core_database forall core_state_data.
 inl use_database () =
     leptos.log $'"state_core.use_database (1)"'
 
-    inl database : leptos.resource (option ()) rust.rexie =
+    inl database : leptos.resource (option ()) wasm.rexie =
         leptos.create_local_resource
             fun () => None
             fun _ =>
@@ -334,7 +334,7 @@ inl use_requests forall t u.
 
     inl database = use_database ()
 
-    inl database_memo : leptos.memo (optionm'.option' rust.rexie) =
+    inl database_memo : leptos.memo (optionm'.option' wasm.rexie) =
         leptos.create_memo fun () =>
             leptos.log $'"state_core.use_request (3) / database_memo"'
             database |> leptos.resource_get
@@ -344,7 +344,7 @@ inl use_requests forall t u.
 
     inl state_data_resource
         : leptos.resource
-            (optionm'.option' rust.rexie * a i32 networking.request)
+            (optionm'.option' wasm.rexie * a i32 networking.request)
             (resultm.result' (am'.vec (optionm'.option' (heap sm'.std_string))) sm'.std_string)
         =
         leptos.create_resource

@@ -107,25 +107,25 @@ inl derivative dt : derivative =
 // // test
 
 derivative 1 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq 0.25
+|> _assert_approx_eq None 0.25
 
 derivative 0.001 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq 0.0000002499998827953931
+|> _assert_approx_eq None 0.0000002499998827953931
 
 derivative 0.000001 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq 0.000000000001000088900582341
+|> _assert_approx_eq None 0.000000000001000088900582341
 
 derivative 0.000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq 0.00000008274037099909037
+|> _assert_approx_eq None 0.00000008274037099909037
 
 derivative 0.000000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq 0.00008890058234101161
+|> _assert_approx_eq None 0.00008890058234101161
 
 derivative 0.000000000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq -0.0007992778373592246
+|> _assert_approx_eq None -0.0007992778373592246
 
 derivative 0.000000000000000001 (fun x => x ** 4 / 4) 1 - 1
-|> _assert_approx_eq -1
+|> _assert_approx_eq None -1
 
 #!markdown
 
@@ -149,7 +149,7 @@ inl integral dt : integration =
 // // test
 
 integral 0.01 math.square 0 1
-|> _assert_approx_eq 0.33332500000000004
+|> _assert_approx_eq None 0.33332500000000004
 
 #!spiral
 
@@ -164,7 +164,7 @@ inl integral' dt : integration =
 // // test
 
 integral' 0.1 math.square 0 1
-|> _assert_approx_eq (integral 0.1 math.square 0 1)
+|> _assert_approx_eq None (integral 0.1 math.square 0 1)
 
 #!spiral
 
@@ -179,7 +179,7 @@ inl integral'' dt : integration =
 // // test
 
 integral'' 0.01 math.square 0 1
-|> _assert_approx_eq (integral 0.01 math.square 0 1)
+|> _assert_approx_eq None (integral 0.01 math.square 0 1)
 
 #!markdown
 
@@ -672,7 +672,7 @@ inl magnitude v =
 
 vec 1 2 3
 |> magnitude
-|> _assert_approx_eq 3.7416573867739413
+|> _assert_approx_eq None 3.7416573867739413
 
 #!markdown
 
@@ -707,7 +707,7 @@ inl vec_derivative dt : vec_derivative =
 // // test
 
 vec_derivative 0.01 v1 3 .x
-|> _assert_approx_eq (derivative 0.01 (v1 >> fun v => v.x) 3)
+|> _assert_approx_eq None (derivative 0.01 (v1 >> fun v => v.x) 3)
 
 #!markdown
 

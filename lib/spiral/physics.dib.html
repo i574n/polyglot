@@ -7587,7 +7587,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">/@</span><span class="p">)</span> <span class="n">x</span> <span class="o">=</span> <span class="n">listm</span><span class="s1">'.(/@) x</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">listm</span><span class="s1">'_operators</span>
 </pre></div>
 </div>
 </div>
@@ -8769,10 +8769,10 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">velocity_cf</span> <span class="mf">0.1</span><span class="n">f64</span> <span class="mf">0.6</span> <span class="p">[</span> <span class="mf">0.04</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.08</span> <span class="p">]</span> <span class="mi">0</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mf">0.6</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mf">0.6</span>
 
 <span class="n">velocity_cf</span> <span class="mf">0.1</span><span class="n">f64</span> <span class="mf">0.6</span> <span class="p">[</span> <span class="mf">0.04</span><span class="p">;</span> <span class="o">-</span><span class="mf">0.08</span> <span class="p">]</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mf">0.2</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mf">0.2</span>
 </pre></div>
 </div>
 </div>
@@ -8785,10 +8785,19 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.6} / expected: %A{0.6}"
-    let v1 : string = $"__expect / actual: %A{0.2} / expected: %A{0.2}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{0.6} / expected: %A{0.6}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
+    let v3 : bool = method1()
+    let v4 : string = $"__expect / actual: %A{0.2} / expected: %A{0.2}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
 method0()
 
 </pre>
@@ -9190,25 +9199,25 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">derivative</span> <span class="mi">1</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.25</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.25</span>
 
 <span class="n">derivative</span> <span class="mf">0.001</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.0000002499998827953931</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.0000002499998827953931</span>
 
 <span class="n">derivative</span> <span class="mf">0.000001</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.000000000001000088900582341</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.000000000001000088900582341</span>
 
 <span class="n">derivative</span> <span class="mf">0.000000001</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.00000008274037099909037</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.00000008274037099909037</span>
 
 <span class="n">derivative</span> <span class="mf">0.000000000001</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.00008890058234101161</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.00008890058234101161</span>
 
 <span class="n">derivative</span> <span class="mf">0.000000000000001</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="o">-</span><span class="mf">0.0007992778373592246</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="o">-</span><span class="mf">0.0007992778373592246</span>
 
 <span class="n">derivative</span> <span class="mf">0.000000000000000001</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="o">-</span><span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="o">-</span><span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -9221,15 +9230,44 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.25} / expected: %A{0.25}"
-    let v1 : string = $"__expect / actual: %A{2.499998827953931E-07} / expected: %A{2.499998827953931E-07}"
-    let v2 : string = $"__expect / actual: %A{1.000088900582341E-12} / expected: %A{1.000088900582341E-12}"
-    let v3 : string = $"__expect / actual: %A{8.274037099909037E-08} / expected: %A{8.274037099909037E-08}"
-    let v4 : string = $"__expect / actual: %A{8.890058234101161E-05} / expected: %A{8.890058234101161E-05}"
-    let v5 : string = $"__expect / actual: %A{-0.0007992778373592246} / expected: %A{-0.0007992778373592246}"
-    let v6 : string = $"__expect / actual: %A{-1.0} / expected: %A{-1.0}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{0.25} / expected: %A{0.25}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
+    let v3 : bool = method1()
+    let v4 : string = $"__expect / actual: %A{2.499998827953931E-07} / expected: %A{2.499998827953931E-07}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
+    let v6 : bool = method1()
+    let v7 : string = $"__expect / actual: %A{1.000088900582341E-12} / expected: %A{1.000088900582341E-12}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
+    let v9 : bool = method1()
+    let v10 : string = $"__expect / actual: %A{8.274037099909037E-08} / expected: %A{8.274037099909037E-08}"
+    let v11 : bool = v9 = false
+    if v11 then
+        failwith&lt;unit&gt; v10
+    let v12 : bool = method1()
+    let v13 : string = $"__expect / actual: %A{8.890058234101161E-05} / expected: %A{8.890058234101161E-05}"
+    let v14 : bool = v12 = false
+    if v14 then
+        failwith&lt;unit&gt; v13
+    let v15 : bool = method1()
+    let v16 : string = $"__expect / actual: %A{-0.0007992778373592246} / expected: %A{-0.0007992778373592246}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
+    let v18 : bool = method1()
+    let v19 : string = $"__expect / actual: %A{-1.0} / expected: %A{-1.0}"
+    let v20 : bool = v18 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
 </pre>
@@ -9296,7 +9334,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">integral</span> <span class="mf">0.01</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span> <span class="mi">0</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">0.33332500000000004</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">0.33332500000000004</span>
 </pre></div>
 </div>
 </div>
@@ -9309,9 +9347,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.3333250000000004} / expected: %A{0.33332500000000004}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{0.3333250000000004} / expected: %A{0.33332500000000004}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -9362,7 +9405,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">integral</span><span class="s1">' 0.1 math.square 0 1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="p">(</span><span class="n">integral</span> <span class="mf">0.1</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="p">(</span><span class="n">integral</span> <span class="mf">0.1</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9375,9 +9418,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.3325000000000001} / expected: %A{0.33249999999999996}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{0.3325000000000001} / expected: %A{0.33249999999999996}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -9428,7 +9476,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">integral</span><span class="s1">''</span> <span class="mf">0.01</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span> <span class="mi">0</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="p">(</span><span class="n">integral</span> <span class="mf">0.01</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="p">(</span><span class="n">integral</span> <span class="mf">0.01</span> <span class="n">math</span><span class="o">.</span><span class="n">square</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -9455,6 +9503,8 @@ and method3 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
+and method4 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : (float []) = Array.zeroCreate&lt;float&gt; (100)
     let v1 : Mut0 = {l0 = 0} : Mut0
@@ -9491,19 +9541,20 @@ and method0 () : unit =
         v18.l1 &lt;- v23
         ()
     let v25 : float = v18.l1
-    let v26 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
-    let v27 : float = 0.3333250000000004 - v25
-    let v28 : float =  -v27
-    let v29 : bool = v27 &gt;= v28
-    let v30 : float =
-        if v29 then
-            v27
+    let v26 : float = 0.3333250000000004 - v25
+    let v27 : float =  -v26
+    let v28 : bool = v26 &gt;= v27
+    let v29 : float =
+        if v28 then
+            v26
         else
-            v28
-    let v31 : bool = v30 &lt; 1E-08
-    let v32 : bool = v31 = false
-    if v32 then
-        failwith&lt;unit&gt; v26
+            v27
+    let v30 : bool = v29 &lt; 1E-08
+    let v31 : bool = method4(v30)
+    let v32 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
+    let v33 : bool = v31 = false
+    if v33 then
+        failwith&lt;unit&gt; v32
 method0()
 
 </pre>
@@ -12891,13 +12942,13 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">solver</span> <span class="p">(</span><span class="n">euler</span> <span class="mf">0.01</span><span class="p">)</span> <span class="p">(</span><span class="n">of_state_1d</span> <span class="o">&gt;&gt;</span> <span class="n">exponential</span> <span class="o">&gt;&gt;</span> <span class="n">state_1d</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">800</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">7.999999999999874</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">))</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">7.999999999999874</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">,</span> <span class="mf">2864.8311229272326</span><span class="p">))</span>
 
 <span class="n">solver</span> <span class="p">(</span><span class="n">euler_cromer_1d</span> <span class="mf">0.1</span><span class="p">)</span> <span class="p">(</span><span class="n">of_state_1d</span> <span class="o">&gt;&gt;</span> <span class="n">exponential</span> <span class="o">&gt;&gt;</span> <span class="n">rrr</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">80</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">7.999999999999988</span><span class="p">,</span> <span class="mf">3043.379244966009</span><span class="p">,</span> <span class="mf">2895.0121485099035</span><span class="p">))</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">7.999999999999988</span><span class="p">,</span> <span class="mf">3043.379244966009</span><span class="p">,</span> <span class="mf">2895.0121485099035</span><span class="p">))</span>
 
 <span class="n">solver</span> <span class="p">(</span><span class="n">runge_kutta_4</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">of_state_1d</span> <span class="o">&gt;&gt;</span> <span class="n">exponential</span> <span class="o">&gt;&gt;</span> <span class="n">rrr</span><span class="p">)</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">8</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">))</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">state_1d</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">,</span> <span class="mf">2894.789038540849</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -12910,11 +12961,24 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)} / expected: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
-    let v1 : string = $"__expect / actual: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)} / expected: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
-    let v2 : string = $"__expect / actual: %A{struct (8.0, 2894.789038540849, 2894.789038540849)} / expected: %A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)} / expected: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
+    let v3 : bool = method1()
+    let v4 : string = $"__expect / actual: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)} / expected: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
+    let v5 : bool = v3 = false
+    if v5 then
+        failwith&lt;unit&gt; v4
+    let v6 : bool = method1()
+    let v7 : string = $"__expect / actual: %A{struct (8.0, 2894.789038540849, 2894.789038540849)} / expected: %A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
 </pre>
@@ -12980,7 +13044,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">.</span><span class="n">z</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">3</span>
 </pre></div>
 </div>
 </div>
@@ -12993,9 +13057,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3.0} / expected: %A{3.0}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{3.0} / expected: %A{3.0}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13096,7 +13165,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">^+^</span> <span class="n">vec</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13109,9 +13178,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13171,7 +13245,7 @@ method0()
 
 <span class="p">[</span> <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="n">vec</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="p">]</span>
 <span class="o">|&gt;</span> <span class="n">sum_vec</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13184,9 +13258,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13245,7 +13324,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">5</span> <span class="o">*^</span> <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13258,9 +13337,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13279,7 +13363,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="mi">3</span> <span class="o">*^</span> <span class="n">i_hat</span> <span class="p">()</span> <span class="o">^+^</span> <span class="mi">4</span> <span class="o">*^</span> <span class="n">k_hat</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13292,9 +13376,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (3.0, 0.0, 4.0)} / expected: %A{struct (3.0, 0.0, 4.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (3.0, 0.0, 4.0)} / expected: %A{struct (3.0, 0.0, 4.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13353,7 +13442,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">^*</span> <span class="mi">5</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13366,9 +13455,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13427,7 +13521,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">^/</span> <span class="mi">5</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mf">0.2</span> <span class="mf">0.4</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mf">0.2</span> <span class="mf">0.4</span> <span class="mf">0.6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13440,9 +13534,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (0.2, 0.4, 0.6)} / expected: %A{struct (0.2, 0.4, 0.6)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (0.2, 0.4, 0.6)} / expected: %A{struct (0.2, 0.4, 0.6)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13502,7 +13601,7 @@ method0()
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">negate_vec</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13515,9 +13614,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (-1.0, -2.0, -3.0)} / expected: %A{struct (-1.0, -2.0, -3.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (-1.0, -2.0, -3.0)} / expected: %A{struct (-1.0, -2.0, -3.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13576,7 +13680,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">^-^</span> <span class="n">vec</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="mi">3</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13589,9 +13693,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (-3.0, -3.0, -3.0)} / expected: %A{struct (-3.0, -3.0, -3.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (-3.0, -3.0, -3.0)} / expected: %A{struct (-3.0, -3.0, -3.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13650,7 +13759,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">&lt;.&gt;</span> <span class="n">vec</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="mi">32</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">32</span>
 </pre></div>
 </div>
 </div>
@@ -13663,9 +13772,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{32.0} / expected: %A{32.0}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{32.0} / expected: %A{32.0}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13727,7 +13841,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="o">&gt;&lt;</span> <span class="n">vec</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="o">-</span><span class="mi">3</span> <span class="mi">6</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="o">-</span><span class="mi">3</span> <span class="mi">6</span> <span class="o">-</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13740,9 +13854,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (-3.0, 6.0, -3.0)} / expected: %A{struct (-3.0, 6.0, -3.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (-3.0, 6.0, -3.0)} / expected: %A{struct (-3.0, 6.0, -3.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13802,7 +13921,7 @@ method0()
 
 <span class="n">vec</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">magnitude</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="mf">3.7416573867739413</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="mf">3.7416573867739413</span>
 </pre></div>
 </div>
 </div>
@@ -13815,9 +13934,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3.7416573867739413} / expected: %A{3.7416573867739413}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{3.7416573867739413} / expected: %A{3.7416573867739413}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13876,7 +14000,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">v1</span> <span class="mi">1</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">vec</span> <span class="mi">2</span> <span class="mi">6</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13889,9 +14013,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (2.0, 6.0, 6.0)} / expected: %A{struct (2.0, 6.0, 6.0)}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{struct (2.0, 6.0, 6.0)} / expected: %A{struct (2.0, 6.0, 6.0)}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -13953,7 +14082,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">vec_derivative</span> <span class="mf">0.01</span> <span class="n">v1</span> <span class="mi">3</span> <span class="o">.</span><span class="n">x</span>
-<span class="o">|&gt;</span> <span class="n">_almost_equal</span> <span class="p">(</span><span class="n">derivative</span> <span class="mf">0.01</span> <span class="p">(</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="n">fun</span> <span class="n">v</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_approx_eq</span> <span class="kc">None</span> <span class="p">(</span><span class="n">derivative</span> <span class="mf">0.01</span> <span class="p">(</span><span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="n">fun</span> <span class="n">v</span> <span class="o">=&gt;</span> <span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -13966,9 +14095,14 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{11.999999999999744} / expected: %A{11.999999999999744}"
-    ()
+<pre>let rec method1 () : bool =
+    true
+and method0 () : unit =
+    let v0 : bool = method1()
+    let v1 : string = $"__expect / actual: %A{11.999999999999744} / expected: %A{11.999999999999744}"
+    let v2 : bool = v0 = false
+    if v2 then
+        failwith&lt;unit&gt; v1
 method0()
 
 </pre>
@@ -14722,7 +14856,7 @@ method0()
     <span class="n">loop</span> <span class="nb">min</span> <span class="p">(</span><span class="mi">0</span><span class="n">f64</span><span class="p">,</span> <span class="nb">min</span><span class="p">)</span>
 
 <span class="n">best_angle</span> <span class="p">(</span><span class="mi">30</span><span class="n">f64</span><span class="p">,</span> <span class="mi">60</span><span class="n">f64</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_equal</span> <span class="p">(</span><span class="mf">116.77499158246208</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="mf">116.77499158246208</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -14843,22 +14977,25 @@ and method1 (v0 : float, v1 : float, v2 : float) : struct (float * float) =
             else
                 struct (v2, v1)
         method1(v17, v20, v19)
+and method7 (v0 : bool) : bool =
+    v0
 and method0 () : unit =
     let v0 : float = 30.0
     let v1 : float = 0.0
     let v2 : float = 30.0
     let struct (v3 : float, v4 : float) = method1(v0, v2, v1)
-    let v5 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
-    let v6 : bool = v3 = 116.77499158246208
-    let v8 : bool =
-        if v6 then
-            let v7 : bool = v4 = 41.0
-            v7
+    let v5 : bool = v3 = 116.77499158246208
+    let v7 : bool =
+        if v5 then
+            let v6 : bool = v4 = 41.0
+            v6
         else
             false
-    let v9 : bool = v8 = false
-    if v9 then
-        failwith&lt;unit&gt; v5
+    let v8 : bool = method7(v7)
+    let v9 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
+    let v10 : bool = v8 = false
+    if v10 then
+        failwith&lt;unit&gt; v9
 method0()
 
 </pre>

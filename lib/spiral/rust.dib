@@ -38,44 +38,22 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&$0\")>] type Ref<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"&'static $0\")>] type StaticRef<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"MutCell<$0>\")>] type MutCell<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"js_sys::Function\")>] type js_sys_Function = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Error\")>] type rexie_Error = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Rexie\")>] type rexie_Rexie = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Store\")>] type rexie_Store = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"rexie::Transaction\")>] type rexie_Transaction = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::any::Any\")>] type std_any_Any = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::cell::RefCell<$0>\")>] type std_cell_RefCell<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::pin::Pin<$0>\")>] type std_pin_Pin<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Rc<$0>\")>] type std_rc_Rc<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::rc::Weak<$0>\")>] type std_rc_Weak<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::sync::Arc<$0>\")>] type std_sync_Arc<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::JsValue\")>] type wasm_bindgen_JsValue = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"wasm_bindgen::closure::Closure<$0>\")>] type wasm_bindgen_closure_Closure<'T> = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Document\")>] type web_sys_Document = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::HtmlElement\")>] type web_sys_HtmlElement = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Storage\")>] type web_sys_Storage = class end"
-    global "[<Fable.Core.Erase; Fable.Core.Emit(\"web_sys::Window\")>] type web_sys_Window = class end"
 
 #!spiral
 
 nominal ref_cell t = $"std_cell_RefCell<`t>"
-nominal rexie = $"rexie_Rexie"
-nominal rexie_store = $"rexie_Store"
-nominal rexie_transaction = $"rexie_Transaction"
-nominal rexie_error = $"rexie_Error"
-nominal js_value = $"wasm_bindgen_JsValue"
-nominal closure t = $"wasm_bindgen_closure_Closure<`t>"
 nominal rc t = $"std_rc_Rc<`t>"
 nominal weak_rc t = $"std_rc_Weak<`t>"
 nominal box t = $"Box<`t>"
 nominal mut_cell t = $"MutCell<`t>"
 nominal pin t = $"std_pin_Pin<`t>"
 nominal arc t = $"std_sync_Arc<`t>"
-nominal js_function = $"js_sys_Function"
-nominal window = $"web_sys_Window"
-nominal document = $"web_sys_Document"
-nominal html_element = $"web_sys_HtmlElement"
-nominal storage = $"web_sys_Storage"
 nominal dyn' t = $"Dyn<`t>"
 nominal fn' t = $"Fn<`t>"
 nominal action_fn2 t u = $"ActionFn2<`t, `u>"
@@ -140,26 +118,13 @@ inl new_arc forall t. (x : t) : arc t =
     inl x = join x
     !\($'"std::sync::Arc::new(!x)"')
 
-inl closure_wrap forall t. (x : box t) : closure t =
-    inl x = join x
-    !\($'"wasm_bindgen::closure::Closure::wrap(!x)"')
-
 inl box_fn forall t. (x : () -> ()) : box t =
     inl x = join x
     !\($'"Box::new(move || !x())"')
 
-inl closure_forget forall t. (closure : closure t) =
-    !\($'"!closure.forget()"') : ()
-
 inl new_pin forall t. (x : t) : pin (box t) =
     inl x = join x
     !\($'"Box::pin(!x)"')
-
-inl closure_as_ref forall t. (closure : closure t) : ref' js_value =
-    !\($'"wasm_bindgen::closure::Closure::as_ref(&!closure)"')
-
-inl unchecked_ref (ref : ref' js_value) : ref' js_function =
-    !\($'"wasm_bindgen::JsCast::unchecked_ref(!ref)"')
 
 inl deref forall t. (ref : ref' t) : t =
     inl ref = join ref

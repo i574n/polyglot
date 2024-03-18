@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>stream.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>math.dib</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7531,7 +7531,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="stream">stream<a class="anchor-link" href="#stream">¶</a></h1>
+<h1 id="math">math<a class="anchor-link" href="#math">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7546,6 +7546,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="nb">open</span> <span class="n">testing</span>
+<span class="nb">open</span> <span class="n">rust_operators</span>
 </pre></div>
 </div>
 </div>
@@ -7573,9 +7574,13 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">rec</span> <span class="n">stream</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">:</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="n">stream</span> <span class="n">t</span><span class="p">)</span>
-    <span class="o">|</span> <span class="n">StreamNil</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">num_complex::Complex&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;] type num_complex_Complex&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">pyo3::types::PyModule</span><span class="se">\"</span><span class="s2">)&gt;] type pyo3_types_PyModule = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">pyo3::Bound&lt;$0&gt;</span><span class="se">\"</span><span class="s2">)&gt;] type pyo3_Bound&lt;'T&gt; = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">pyo3::Python</span><span class="se">\"</span><span class="s2">)&gt;] type pyo3_Python = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">pyo3::PyAny</span><span class="se">\"</span><span class="s2">)&gt;] type pyo3_PyAny = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">pyo3::PyErr</span><span class="se">\"</span><span class="s2">)&gt;] type pyo3_PyErr = class end"</span>
 </pre></div>
 </div>
 </div>
@@ -7595,18 +7600,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fold">fold<a class="anchor-link" href="#fold">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7614,12 +7608,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fold</span> <span class="n">fn</span> <span class="n">init</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; loop (fn acc st) (fn'</span> <span class="p">())</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">join_body</span> <span class="n">body</span> <span class="n">acc</span>
-    <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">sm</span><span class="s1">'.types ()</span>
+    <span class="n">types</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7640,13 +7632,51 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fold_back">fold_back<a class="anchor-link" href="#fold_back">¶</a></h2>
+<h2 id="complex">complex<a class="anchor-link" href="#complex">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"num_complex_Complex&lt;`t&gt;"</span>
+<span class="n">nominal</span> <span class="n">bound</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"pyo3_Bound&lt;`t&gt;"</span>
+<span class="n">nominal</span> <span class="n">python</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"pyo3_Python"</span>
+<span class="n">nominal</span> <span class="n">pymodule</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"pyo3_types_PyModule"</span>
+<span class="n">nominal</span> <span class="n">pyany</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"pyo3_PyAny"</span>
+<span class="n">nominal</span> <span class="n">pyerr</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"pyo3_PyErr"</span>
+
+<span class="n">inl</span> <span class="nb">complex</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">((</span><span class="n">re</span> <span class="p">:</span> <span class="n">t</span><span class="p">),</span> <span class="p">(</span><span class="n">im</span> <span class="p">:</span> <span class="n">t</span><span class="p">))</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">re</span> <span class="o">=</span> <span class="n">join</span> <span class="n">re</span>
+    <span class="n">inl</span> <span class="n">im</span> <span class="o">=</span> <span class="n">join</span> <span class="n">im</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"num_complex::Complex::new(!re, !im)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -7658,12 +7688,15 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">fold_back</span> <span class="n">fn</span> <span class="n">s</span> <span class="n">init</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="s1">') =&gt; fn st (loop acc (fn'</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">acc</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">join_body</span> <span class="n">body</span> <span class="n">acc</span>
-    <span class="n">loop</span> <span class="n">init</span> <span class="n">s</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="nb">complex</span> <span class="p">(</span><span class="mi">0</span><span class="n">f64</span><span class="p">,</span> <span class="mi">0</span><span class="n">f64</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.format'</span>
+<span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"0+0i"</span>
 </pre></div>
 </div>
 </div>
@@ -7676,7 +7709,115 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
+<pre>.rs output:
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+.fsx:
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;] type Func0&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;] type Func0&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;] type Box&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;] type Dyn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;] type Fn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;] type FnUnit = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;] type FnOnce&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;] type ActionFn2&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;] type Impl&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;] type Mut&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;] type StaticRef&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;] type MutCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;] type std_any_Any = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;] type std_cell_RefCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;] type std_pin_Pin&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;] type std_rc_Rc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;] type std_rc_Weak&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;] type std_sync_Arc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;] type base64_DecodeError = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;] type borsh_io_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;] type js_sys_JsString = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;] type serde_json_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;] type serde_json_Value = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;] type serde_wasm_bindgen_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;] type std_str_Utf8Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("num_complex::Complex&lt;$0&gt;")&gt;] type num_complex_Complex&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::types::PyModule")&gt;] type pyo3_types_PyModule = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::Bound&lt;$0&gt;")&gt;] type pyo3_Bound&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::Python")&gt;] type pyo3_Python = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::PyAny")&gt;] type pyo3_PyAny = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::PyErr")&gt;] type pyo3_PyErr = class end
+let rec method1 () : float =
+    0.0
+and method2 () : float =
+    0.0
+and method3 (v0 : std_string_String) : std_string_String =
+    v0
+and method4 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : float = method1()
+    let v1 : float = method2()
+    let v2 : string = "num_complex::Complex::new(v0, v1)"
+    let v3 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v2
+    let v4 : string = @$"format!(""{{}}"", $0)"
+    let v5 : std_string_String = Fable.Core.RustInterop.emitRustExpr v3 v4
+    let v6 : std_string_String = method3(v5)
+    let v7 : string = "fable_library_rust::String_::fromString(v6)"
+    let v8 : string = Fable.Core.RustInterop.emitRustExpr () v7
+    let v10 : bool = v8 = "0+0i"
+    let v11 : bool = method4(v10)
+    let v12 : string = "0+0i"
+    let v13 : string = $"__expect / actual: %A{v8} / expected: %A{v12}"
+    let v14 : bool = v11 = false
+    if v14 then
+        failwith&lt;unit&gt; v13
+method0()
+
+.rs:
+#![allow(dead_code,)]
+#![allow(non_camel_case_types,)]
+#![allow(non_snake_case,)]
+#![allow(non_upper_case_globals,)]
+#![allow(unreachable_code,)]
+#![allow(unused_attributes,)]
+#![allow(unused_imports,)]
+#![allow(unused_macros,)]
+#![allow(unused_parens,)]
+#![allow(unused_variables,)]
+mod module_ccfa04bf {
+    pub mod Spiral_eval {
+        use super::*;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        pub fn method1() -&gt; f64 { 0.0_f64 }
+        pub fn method2() -&gt; f64 { 0.0_f64 }
+        pub fn method3(v0: std::string::String) -&gt; std::string::String { v0 }
+        pub fn method4(v0: bool) -&gt; bool { v0 }
+        pub fn method0() {
+            let v0: f64 = Spiral_eval::method1();
+            let v1: f64 = Spiral_eval::method2();
+            let v3: num_complex::Complex&lt;f64&gt; =
+                num_complex::Complex::new(v0, v1);
+            let v6: std::string::String =
+                Spiral_eval::method3(format!("{}", v3));
+            let v8: string = fable_library_rust::String_::fromString(v6);
+            if Spiral_eval::method4(v8.clone() == string("0+0i")) == false {
+                panic!("{}",
+                       sprintf!("__expect / actual: {:?} / expected: {:?}", v8, string("0+0i")));
+            }
+        }
+        on_startup!(Spiral_eval::method0());
+    }
+}
+pub use module_ccfa04bf::*;
 
 </pre>
 </div>
@@ -7690,7 +7831,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_list">to_list<a class="anchor-link" href="#to_list">¶</a></h2>
+<h2 id="run_test">run_test<a class="anchor-link" href="#run_test">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7702,10 +7843,143 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_list</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[])</span>
-    <span class="o">||&gt;</span> <span class="n">fold_back</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
-        <span class="n">x</span> <span class="p">::</span> <span class="n">acc</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">re</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!c.re"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">im</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!c.im"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">complex_unbox</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">,</span> <span class="n">c</span> <span class="o">|&gt;</span> <span class="n">im</span>
+
+<span class="n">inl</span> <span class="n">powc</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"num_complex::Complex::powc(!c, !s)"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">complex_sub</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!a - !b"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">complex_mult</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!a * !b"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">complex_div</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!a / !b"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">complex_sin</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!c.sin()"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">conj</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">c</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!c.conj()"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">module_from_code</span> <span class="p">(</span><span class="n">py</span> <span class="p">:</span> <span class="n">python</span><span class="p">)</span> <span class="p">(</span><span class="n">code</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (bound pymodule) pyerr =</span>
+    <span class="n">inl</span> <span class="n">py</span> <span class="o">=</span> <span class="n">join</span> <span class="n">py</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"pyo3::types::PyModule::from_code_bound(!py, !code, </span><span class="se">\\</span><span class="s1">"</span><span class="se">\\</span><span class="s1">", </span><span class="se">\\</span><span class="s1">"</span><span class="se">\\</span><span class="s1">")"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">use_pyanymethods</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"Fable.Core.RustInterop.emitRustExpr () </span><span class="se">\"</span><span class="s2">);</span><span class="se">\n</span><span class="s2">use pyo3::prelude::PyAnyMethods;</span><span class="se">\n</span><span class="s2">//</span><span class="se">\"</span><span class="s2">"</span>
+
+<span class="n">inl</span> <span class="nb">getattr</span> <span class="p">(</span><span class="n">attr</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">module</span> <span class="p">:</span> <span class="n">bound</span> <span class="n">pymodule</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (bound pyany) pyerr =</span>
+    <span class="n">inl</span> <span class="n">attr</span> <span class="o">=</span> <span class="n">attr</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.as_str</span>
+    <span class="n">inl</span> <span class="n">module</span> <span class="o">=</span> <span class="n">join</span> <span class="n">module</span>
+    <span class="n">use_pyanymethods</span> <span class="p">()</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!module.getattr(!attr)"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">call</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">args</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">module</span> <span class="p">:</span> <span class="n">bound</span> <span class="n">pyany</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' (bound pyany) pyerr =</span>
+    <span class="n">inl</span> <span class="n">args</span> <span class="o">=</span> <span class="n">join</span> <span class="n">args</span>
+    <span class="n">inl</span> <span class="n">module</span> <span class="o">=</span> <span class="n">join</span> <span class="n">module</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"pyo3::prelude::PyAnyMethods::call(&amp;!module, (*(*!args).0, ()), None)"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="n">extract</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">result</span> <span class="p">:</span> <span class="n">bound</span> <span class="n">pyany</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' t pyerr =</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">join</span> <span class="n">result</span>
+    <span class="n">use_pyanymethods</span> <span class="p">()</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!result.extract()"'</span><span class="p">)</span>
+
+<span class="n">inl</span> <span class="nb">eval</span> <span class="n">py</span> <span class="n">code</span> <span class="n">args</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span>
+        <span class="n">code</span>
+        <span class="o">|&gt;</span> <span class="n">module_from_code</span> <span class="n">py</span>
+        <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+    <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span>
+        <span class="n">code</span>
+        <span class="o">|&gt;</span> <span class="nb">getattr</span> <span class="s2">"fn"</span>
+        <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">pyerr</span>
+        <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+
+    <span class="n">fn</span>
+    <span class="o">|&gt;</span> <span class="n">call</span> <span class="n">args</span>
+    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+    <span class="o">|&gt;</span> <span class="n">extract</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">pyerr</span>
+    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+    <span class="o">|&gt;</span> <span class="nb">complex</span>
+    <span class="o">|&gt;</span> <span class="n">Ok</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">_</span> <span class="n">pyerr</span>
+    <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
+
+<span class="n">inl</span> <span class="n">gamma_</span> <span class="n">py</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span>
+        <span class="p">;[</span>
+            <span class="s2">"import mpmath"</span>
+            <span class="s2">"def fn(s, _):"</span>
+            <span class="s2">"    s = complex(*s)"</span>
+            <span class="s2">"    s = mpmath.gamma(s)"</span>
+            <span class="s2">"    return (s.real, s.imag)"</span>
+        <span class="p">]</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="n">code</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat_array_trailing "</span><span class="se">\n</span><span class="s1">"</span>
+
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_pair</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">args</span> <span class="o">=</span> <span class="n">new_pair</span> <span class="n">s</span> <span class="p">()</span>
+
+    <span class="nb">eval</span> <span class="n">py</span> <span class="n">code</span> <span class="n">args</span>
+
+<span class="n">inl</span> <span class="n">zeta_</span> <span class="n">py</span> <span class="n">s</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span>
+        <span class="p">;[</span>
+            <span class="s2">"import mpmath"</span>
+            <span class="s2">"def fn(s, _):"</span>
+            <span class="s2">"    s = complex(*s)"</span>
+            <span class="s2">"    try:"</span>
+            <span class="s2">"        s = mpmath.zeta(s)"</span>
+            <span class="s2">"    except ValueError as e:"</span>
+            <span class="s2">"        if s.real == 1:"</span>
+            <span class="s2">"            s = complex(float('inf'), 0)"</span>
+            <span class="s2">"    return (s.real, s.imag)"</span>
+        <span class="p">]</span>
+    <span class="n">inl</span> <span class="n">code</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="n">code</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.concat_array_trailing "</span><span class="se">\n</span><span class="s1">"</span>
+    
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">new_pair</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">args</span> <span class="o">=</span> <span class="n">new_pair</span> <span class="n">s</span> <span class="p">()</span>
+
+    <span class="nb">eval</span> <span class="n">py</span> <span class="n">code</span> <span class="n">args</span>
+
+<span class="n">inl</span> <span class="n">run_test</span> <span class="n">closure_fix</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">(</span><span class="nb">complex</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="nb">complex</span> <span class="n">f64</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">complex</span> <span class="n">f64</span> <span class="o">-&gt;</span> <span class="nb">complex</span> <span class="n">f64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">fn_</span> <span class="p">(</span><span class="n">py</span> <span class="p">:</span> <span class="n">python</span><span class="p">)</span> <span class="p">:</span> <span class="n">resultm</span><span class="o">.</span><span class="n">result</span><span class="s1">' () pyerr =</span>
+        <span class="n">inl</span> <span class="n">zeta</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">zeta_</span> <span class="n">py</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+            <span class="n">s</span>
+        <span class="n">inl</span> <span class="n">gamma</span> <span class="o">=</span> <span class="n">fun</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="nb">complex</span> <span class="n">f64</span><span class="p">)</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="n">gamma_</span> <span class="n">py</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+            <span class="n">s</span>
+        <span class="n">fn</span> <span class="p">(</span><span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
+        
+        <span class="n">Ok</span> <span class="p">()</span>
+        <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
+    
+    <span class="n">inl</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"pyo3::prepare_freethreaded_python()"'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span>
+
+        <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //"'</span><span class="p">)</span>
+
+        <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">fn_</span>
+        <span class="n">let</span> <span class="n">x</span><span class="s1">' = x (!\($'</span><span class="s2">"py"</span><span class="s1">') : python)</span>
+        <span class="n">inl</span> <span class="n">x</span><span class="s1">' = join x'</span>
+        
+        <span class="n">x</span><span class="s1">' |&gt; rust.fix_closure closure_fix</span>
+
+        <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"__result"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="p">()</span> <span class="n">pyerr</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
+    <span class="n">inl</span> <span class="n">run</span> <span class="o">=</span> <span class="n">join</span> <span class="n">run</span>
+    <span class="n">run</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7732,7 +8006,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="rev">rev<a class="anchor-link" href="#rev">¶</a></h2>
+<h2 id="test_zeta_at_2___">test_zeta_at_2___<a class="anchor-link" href="#test_zeta_at_2___">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7744,10 +8018,22 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">rev</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="p">(</span><span class="n">StreamNil</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">fold</span> <span class="n">fun</span> <span class="n">s</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">true</span>
+
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="n">f64</span><span class="p">,</span> <span class="mi">0</span><span class="n">f64</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+
+    <span class="n">result</span>
+    <span class="o">|&gt;</span> <span class="n">im</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">f64</span>
+
+    <span class="p">((</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">pi</span> <span class="o">**</span> <span class="mi">2</span><span class="n">f64</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="n">f64</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">abs</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7760,7 +8046,423 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
+<pre>.rs output:
+
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>
+.fsx:
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;] type Func0&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;] type Func0&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;] type Box&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;] type Dyn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;] type Fn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;] type FnUnit = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;] type FnOnce&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;] type ActionFn2&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;] type Impl&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;] type Mut&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;] type StaticRef&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;] type MutCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;] type std_any_Any = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;] type std_cell_RefCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;] type std_pin_Pin&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;] type std_rc_Rc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;] type std_rc_Weak&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;] type std_sync_Arc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;] type base64_DecodeError = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;] type borsh_io_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;] type js_sys_JsString = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;] type serde_json_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;] type serde_json_Value = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;] type serde_wasm_bindgen_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;] type std_str_Utf8Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("num_complex::Complex&lt;$0&gt;")&gt;] type num_complex_Complex&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::types::PyModule")&gt;] type pyo3_types_PyModule = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::Bound&lt;$0&gt;")&gt;] type pyo3_Bound&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::Python")&gt;] type pyo3_Python = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::PyAny")&gt;] type pyo3_PyAny = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("pyo3::PyErr")&gt;] type pyo3_PyErr = class end
+Fable.Core.RustInterop.emitRustExpr () ");
+use pyo3::prelude::PyAnyMethods;
+//"
+type Mut0 = {mutable l0 : int32; mutable l1 : string}
+let rec method2 () : float =
+    2.0
+and method3 () : float =
+    0.0
+and method4 (v0 : (string [])) : (string []) =
+    v0
+and method6 (v0 : int32, v1 : Mut0) : bool =
+    let v2 : int32 = v1.l0
+    let v3 : bool = v2 &lt; v0
+    v3
+and method5 (v0 : string, v1 : (string [])) : string =
+    let v2 : int32 = v1.Length
+    let v3 : string = ""
+    let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
+    while method6(v2, v4) do
+        let v6 : int32 = v4.l0
+        let v7 : string = v4.l1
+        let v8 : string = v1.[int v6]
+        let v9 : string = v7 + v8 + v0 + ""
+        let v10 : int32 = v6 + 1
+        v4.l0 &lt;- v10
+        v4.l1 &lt;- v9
+        ()
+    let v11 : string = v4.l1
+    v11
+and method7 (v0 : pyo3_Python) : pyo3_Python =
+    v0
+and method8 (v0 : string) : string =
+    v0
+and method9 (v0 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt;) : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; =
+    v0
+and method10 () : string =
+    let v0 : string = "fn"
+    v0
+and method11 (v0 : pyo3_Bound&lt;pyo3_types_PyModule&gt;) : pyo3_Bound&lt;pyo3_types_PyModule&gt; =
+    v0
+and method12 (v0 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt;) : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; =
+    v0
+and method13 (v0 : ((float * float) * unit)) : ((float * float) * unit) =
+    v0
+and method14 (v0 : pyo3_Bound&lt;pyo3_PyAny&gt;) : pyo3_Bound&lt;pyo3_PyAny&gt; =
+    v0
+and method15 (v0 : pyo3_Bound&lt;pyo3_PyAny&gt;) : pyo3_Bound&lt;pyo3_PyAny&gt; =
+    v0
+and method16 (v0 : Result&lt;struct (float * float), pyo3_PyErr&gt;) : Result&lt;struct (float * float), pyo3_PyErr&gt; =
+    v0
+and method17 (v0 : float) : float =
+    v0
+and method18 (v0 : float) : float =
+    v0
+and method19 (v0 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt;) : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; =
+    v0
+and method20 (v0 : bool) : bool =
+    v0
+and method21 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&gt; =
+    v0
+and method22 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&gt; =
+    v0
+and closure0 () () : unit =
+    let v0 : string = "pyo3::prepare_freethreaded_python()"
+    Fable.Core.RustInterop.emitRustExpr () v0
+    let v1 : string = "let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //"
+    Fable.Core.RustInterop.emitRustExpr () v1
+    let v2 : string = "py"
+    let v3 : pyo3_Python = Fable.Core.RustInterop.emitRustExpr () v2
+    let v4 : float = method2()
+    let v5 : float = method3()
+    let v6 : string = "num_complex::Complex::new(v4, v5)"
+    let v7 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v6
+    let v8 : string = "import mpmath"
+    let v9 : string = "def fn(s, _):"
+    let v10 : string = "    s = complex(*s)"
+    let v11 : string = "    try:"
+    let v12 : string = "        s = mpmath.zeta(s)"
+    let v13 : string = "    except ValueError as e:"
+    let v14 : string = "        if s.real == 1:"
+    let v15 : string = "            s = complex(float('inf'), 0)"
+    let v16 : string = "    return (s.real, s.imag)"
+    let v17 : (string []) = [|v8; v9; v10; v11; v12; v13; v14; v15; v16|]
+    let v18 : (string []) = method4(v17)
+    let v19 : string = "\n"
+    let v20 : string = method5(v19, v18)
+    let v21 : string = "v7.re"
+    let v22 : float = Fable.Core.RustInterop.emitRustExpr () v21
+    let v23 : string = "v7.im"
+    let v24 : float = Fable.Core.RustInterop.emitRustExpr () v23
+    let v25 : (float * float) = v22, v24
+    let v26 : ((float * float) * unit) = v25, ()
+    let v27 : pyo3_Python = method7(v3)
+    let v28 : string = method8(v20)
+    let v29 : string = $"fable_library_rust::String_::LrcStr::as_str(&amp;v28)"
+    let v30 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v29
+    let v31 : string = "pyo3::types::PyModule::from_code_bound(v27, v30, \"\", \"\")"
+    let v32 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v31
+    let v33 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; = method9(v32)
+    let v34 : string = "v33.unwrap()"
+    let v35 : pyo3_Bound&lt;pyo3_types_PyModule&gt; = Fable.Core.RustInterop.emitRustExpr () v34
+    let v36 : string = method10()
+    let v37 : string = $"fable_library_rust::String_::LrcStr::as_str(&amp;v36)"
+    let v38 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v37
+    let v39 : pyo3_Bound&lt;pyo3_types_PyModule&gt; = method11(v35)
+    let v40 : string = "v39.getattr(v38)"
+    let v41 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v40
+    let v42 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = method12(v41)
+    let v43 : string = "v42.unwrap()"
+    let v44 : pyo3_Bound&lt;pyo3_PyAny&gt; = Fable.Core.RustInterop.emitRustExpr () v43
+    let v45 : ((float * float) * unit) = method13(v26)
+    let v46 : pyo3_Bound&lt;pyo3_PyAny&gt; = method14(v44)
+    let v47 : string = "pyo3::prelude::PyAnyMethods::call(&amp;v46, (*(*v45).0, ()), None)"
+    let v48 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v47
+    let v49 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = method12(v48)
+    let v50 : string = "v49.unwrap()"
+    let v51 : pyo3_Bound&lt;pyo3_PyAny&gt; = Fable.Core.RustInterop.emitRustExpr () v50
+    let v52 : pyo3_Bound&lt;pyo3_PyAny&gt; = method15(v51)
+    let v53 : string = "v52.extract()"
+    let v54 : Result&lt;struct (float * float), pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v53
+    let v55 : Result&lt;struct (float * float), pyo3_PyErr&gt; = method16(v54)
+    let v56 : string = "v55.unwrap()"
+    let struct (v57 : float, v58 : float) = Fable.Core.RustInterop.emitRustExpr () v56
+    let v59 : float = method17(v57)
+    let v60 : float = method18(v58)
+    let v61 : string = "num_complex::Complex::new(v59, v60)"
+    let v62 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v61
+    let v63 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; = Ok v62
+    let v64 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; = method19(v63)
+    let v65 : string = "v64.unwrap()"
+    let v66 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v65
+    let v67 : string = "v66.im"
+    let v68 : float = Fable.Core.RustInterop.emitRustExpr () v67
+    let v69 : bool = v68 = 0.0
+    let v70 : bool = method20(v69)
+    let v71 : string = $"__expect / actual: %A{v68} / expected: %A{0.0}"
+    let v72 : bool = v70 = false
+    if v72 then
+        failwith&lt;unit&gt; v71
+    let v73 : string = "v66.re"
+    let v74 : float = Fable.Core.RustInterop.emitRustExpr () v73
+    let v75 : float = v74 - 1.6449340668482264
+    let v76 : float =  -v75
+    let v77 : bool = v75 &gt;= v76
+    let v78 : float =
+        if v77 then
+            v75
+        else
+            v76
+    let v79 : bool = v78 &lt; 0.001
+    let v80 : bool = method20(v79)
+    let v81 : string = $"__expect / actual: %A{v78} / expected: %A{0.001}"
+    let v82 : bool = v80 = false
+    if v82 then
+        failwith&lt;unit&gt; v81
+    let v83 : Result&lt;unit, pyo3_PyErr&gt; = Ok ()
+    let v84 : Result&lt;unit, pyo3_PyErr&gt; = method21(v83)
+    let v85 : string = "v84 }}}}); {{{ //"
+    Fable.Core.RustInterop.emitRustExpr () v85
+    let v86 : string = "__result"
+    let v87 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v86
+    let v88 : Result&lt;unit, pyo3_PyErr&gt; = method22(v87)
+    let v89 : string = "v88.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr () v89
+    ()
+and method1 () : (unit -&gt; unit) =
+    closure0()
+and method0 () : unit =
+    let v0 : (unit -&gt; unit) = method1()
+    v0 ()
+method0()
+
+.rs:
+#![allow(dead_code,)]
+#![allow(non_camel_case_types,)]
+#![allow(non_snake_case,)]
+#![allow(non_upper_case_globals,)]
+#![allow(unreachable_code,)]
+#![allow(unused_attributes,)]
+#![allow(unused_imports,)]
+#![allow(unused_macros,)]
+#![allow(unused_parens,)]
+#![allow(unused_variables,)]
+mod module_ccfa04bf {
+    pub mod Spiral_eval {
+        use super::*;
+        use fable_library_rust::Native_::Func0;
+        use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::MutCell;
+        use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::NativeArray_::Array;
+        use fable_library_rust::NativeArray_::count;
+        use fable_library_rust::NativeArray_::new_array;
+        use fable_library_rust::String_::append;
+        use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
+        on_startup!();
+use pyo3::prelude::PyAnyMethods;
+//,);
+        #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq,)]
+        pub struct Mut0 {
+            pub l0: MutCell&lt;i32&gt;,
+            pub l1: MutCell&lt;string&gt;,
+        }
+        impl core::fmt::Display for Spiral_eval::Mut0 {
+            fn fmt(&amp;self, f: &amp;mut core::fmt::Formatter) -&gt; core::fmt::Result {
+                write!(f, "{}", core::any::type_name::&lt;Self&gt;())
+            }
+        }
+        pub fn method2() -&gt; f64 { 2.0_f64 }
+        pub fn method3() -&gt; f64 { 0.0_f64 }
+        pub fn method4(v0: Array&lt;string&gt;) -&gt; Array&lt;string&gt; { v0 }
+        pub fn method6(v0: i32, v1: LrcPtr&lt;Spiral_eval::Mut0&gt;) -&gt; bool {
+            v1.l0.get().clone() &lt; v0
+        }
+        pub fn method5(v0: string, v1: Array&lt;string&gt;) -&gt; string {
+            let v2: i32 = count(v1.clone());
+            let v4: LrcPtr&lt;Spiral_eval::Mut0&gt; =
+                LrcPtr::new(Spiral_eval::Mut0{l0: MutCell::new(0_i32),
+                                              l1: MutCell::new(string("")),});
+            while Spiral_eval::method6(v2, v4.clone()) {
+                let v6: i32 = v4.l0.get().clone();
+                let v9: string =
+                    append(append(append(v4.l1.get().clone(), v1[v6].clone()),
+                                  v0.clone()), string(""));
+                let v10: i32 = v6 + 1_i32;
+                v4.l0.set(v10);
+                v4.l1.set(v9);
+                ()
+            }
+            v4.l1.get().clone()
+        }
+        pub fn method7(v0: pyo3::Python) -&gt; pyo3::Python { v0 }
+        pub fn method8(v0: string) -&gt; string { v0 }
+        pub fn method9(v0:
+                           Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;,
+                                  pyo3::PyErr&gt;)
+         -&gt; Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;, pyo3::PyErr&gt; {
+            v0
+        }
+        pub fn method10() -&gt; string { string("fn") }
+        pub fn method11(v0: pyo3::Bound&lt;pyo3::types::PyModule&gt;)
+         -&gt; pyo3::Bound&lt;pyo3::types::PyModule&gt; {
+            v0
+        }
+        pub fn method12(v0: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt;)
+         -&gt; Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; {
+            v0
+        }
+        pub fn method13(v0_: LrcPtr&lt;(f64, f64)&gt;, v0__1: ())
+         -&gt; LrcPtr&lt;(LrcPtr&lt;(f64, f64)&gt;, ())&gt; {
+            LrcPtr::new((v0_, ()))
+        }
+        pub fn method14(v0: pyo3::Bound&lt;pyo3::PyAny&gt;)
+         -&gt; pyo3::Bound&lt;pyo3::PyAny&gt; {
+            v0
+        }
+        pub fn method15(v0: pyo3::Bound&lt;pyo3::PyAny&gt;)
+         -&gt; pyo3::Bound&lt;pyo3::PyAny&gt; {
+            v0
+        }
+        pub fn method16(v0: Result&lt;(f64, f64), pyo3::PyErr&gt;)
+         -&gt; Result&lt;(f64, f64), pyo3::PyErr&gt; {
+            v0
+        }
+        pub fn method17(v0: f64) -&gt; f64 { v0 }
+        pub fn method18(v0: f64) -&gt; f64 { v0 }
+        pub fn method19(v0: Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt;)
+         -&gt; Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt; {
+            v0
+        }
+        pub fn method20(v0: bool) -&gt; bool { v0 }
+        pub fn method21(v0: Result&lt;(), pyo3::PyErr&gt;)
+         -&gt; Result&lt;(), pyo3::PyErr&gt; {
+            v0
+        }
+        pub fn method22(v0: Result&lt;(), pyo3::PyErr&gt;)
+         -&gt; Result&lt;(), pyo3::PyErr&gt; {
+            v0
+        }
+        pub fn closure0(unitVar: (), unitVar_1: ()) {
+            pyo3::prepare_freethreaded_python();
+            let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //;
+            {
+                let v3: pyo3::Python = py;
+                let v4: f64 = Spiral_eval::method2();
+                let v5: f64 = Spiral_eval::method3();
+                let v7: num_complex::Complex&lt;f64&gt; =
+                    num_complex::Complex::new(v4, v5);
+                let v20: string =
+                    Spiral_eval::method5(string("\n"),
+                                         Spiral_eval::method4(new_array(&amp;[string("import mpmath"),
+                                                                          string("def fn(s, _):"),
+                                                                          string("    s = complex(*s)"),
+                                                                          string("    try:"),
+                                                                          string("        s = mpmath.zeta(s)"),
+                                                                          string("    except ValueError as e:"),
+                                                                          string("        if s.real == 1:"),
+                                                                          string("            s = complex(float(\'inf\'), 0)"),
+                                                                          string("    return (s.real, s.imag)")])));
+                let v22: f64 = v7.re;
+                let v24: f64 = v7.im;
+                let v27: pyo3::Python = Spiral_eval::method7(v3);
+                let v28: string = Spiral_eval::method8(v20);
+                let v30: &amp;str =
+                    fable_library_rust::String_::LrcStr::as_str(&amp;v28);
+                let v33:
+                        Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;,
+                               pyo3::PyErr&gt; =
+                    Spiral_eval::method9(pyo3::types::PyModule::from_code_bound(v27, v30, "", ""));
+                let v35: pyo3::Bound&lt;pyo3::types::PyModule&gt; = v33.unwrap();
+                let v36: string = Spiral_eval::method10();
+                let v38: &amp;str =
+                    fable_library_rust::String_::LrcStr::as_str(&amp;v36);
+                let v39: pyo3::Bound&lt;pyo3::types::PyModule&gt; =
+                    Spiral_eval::method11(v35);
+                let v42: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; =
+                    Spiral_eval::method12(v39.getattr(v38));
+                let v44: pyo3::Bound&lt;pyo3::PyAny&gt; = v42.unwrap();
+                let v45: LrcPtr&lt;(LrcPtr&lt;(f64, f64)&gt;, ())&gt; =
+                    Spiral_eval::method13((LrcPtr::new((LrcPtr::new((v22,
+                                                                     v24)),
+                                                        ()))).0.clone(), ());
+                let v46: pyo3::Bound&lt;pyo3::PyAny&gt; =
+                    Spiral_eval::method14(v44);
+                let v49: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; =
+                    Spiral_eval::method12(pyo3::prelude::PyAnyMethods::call(&amp;v46, (*(*v45).0, ()), None));
+                let v52: pyo3::Bound&lt;pyo3::PyAny&gt; =
+                    Spiral_eval::method15(v49.unwrap());
+                let v55: Result&lt;(f64, f64), pyo3::PyErr&gt; =
+                    Spiral_eval::method16(v52.extract());
+                let patternInput: (f64, f64) = v55.unwrap();
+                let v59: f64 = Spiral_eval::method17(patternInput.0.clone());
+                let v60: f64 = Spiral_eval::method18(patternInput.1.clone());
+                let v64: Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt; =
+                    Spiral_eval::method19(Ok::&lt;num_complex::Complex&lt;f64&gt;,
+                                               pyo3::PyErr&gt;(num_complex::Complex::new(v59, v60)));
+                let v66: num_complex::Complex&lt;f64&gt; = v64.unwrap();
+                let v68: f64 = v66.im;
+                if Spiral_eval::method20(v68 == 0.0_f64) == false {
+                    panic!("{}",
+                           sprintf!("__expect / actual: {:?} / expected: {:?}", v68, 0.0_f64));
+                }
+                {
+                    let v75: f64 = v66.re - 1.6449340668482264_f64;
+                    let v76: f64 = -v75;
+                    let v78: f64 = if v75 &gt;= v76 { v75 } else { v76 };
+                    if Spiral_eval::method20(v78 &lt; 0.001_f64) == false {
+                        panic!("{}",
+                               sprintf!("__expect / actual: {:?} / expected: {:?}", v78, 0.001_f64));
+                    }
+                    {
+                        let v84: Result&lt;(), pyo3::PyErr&gt; =
+                            Spiral_eval::method21(Ok::&lt;(), pyo3::PyErr&gt;(()));
+                        v84 }}}}); {{{ //;
+                        {
+                            let v88: Result&lt;(), pyo3::PyErr&gt; =
+                                Spiral_eval::method22(__result);
+                            v88.unwrap();
+                            ()
+                        }
+                    }
+                }
+            }
+        }
+        pub fn method1() -&gt; Func0&lt;()&gt; {
+            Func0::new(move || Spiral_eval::closure0((), ()))
+        }
+        pub fn method0() { (Spiral_eval::method1())(); }
+        on_startup!(Spiral_eval::method0());
+    }
+}
+pub use module_ccfa04bf::*;
 
 </pre>
 </div>
@@ -7774,7 +8476,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="from_list">from_list<a class="anchor-link" href="#from_list">¶</a></h2>
+<h2 id="test_zeta_at_2_minus2">test_zeta_at_2_minus2<a class="anchor-link" href="#test_zeta_at_2_minus2">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7786,10 +8488,21 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">from_list</span> <span class="nb">list</span> <span class="o">=</span>
-    <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">StreamNil</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">foldBack</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
-        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="n">f64</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="n">f64</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+
+    <span class="p">((</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.8673</span><span class="n">f64</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">abs</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span><span class="n">f64</span>
+
+    <span class="p">((</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2750</span><span class="n">f64</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">abs</span>
+    <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -7802,14 +8515,24 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="test_trivial_zero_at_negative_even___">test_trivial_zero_at_negative_even___<a class="anchor-link" href="#test_trivial_zero_at_negative_even___">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7818,12 +8541,24 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">3</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="n">rev</span>
-<span class="o">|&gt;</span> <span class="n">to_list</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">2</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">0</span> <span class="p">]</span>
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">3</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="n">join</span> <span class="n">listm</span><span class="s1">'.init_series -2f64 -20 -2)</span>
+    <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+
+        <span class="n">result</span>
+        <span class="o">|&gt;</span> <span class="n">re</span>
+        <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
+
+        <span class="n">result</span>
+        <span class="o">|&gt;</span> <span class="n">im</span>
+        <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -7836,83 +8571,20 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * UH0
-    | UH0_1
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v18 : bool = method1()
-    let v19 : UH0 = UH0_1
-    let v20 : UH0 = UH0_0(0, v19)
-    let v21 : UH0 = UH0_0(1, v20)
-    let v22 : UH0 = UH0_0(2, v21)
-    let v23 : UH0 = UH0_1
-    let v24 : UH0 = UH0_0(0, v23)
-    let v25 : UH0 = UH0_0(1, v24)
-    let v26 : UH0 = UH0_0(2, v25)
-    let v27 : string = $"__expect / actual: %A{v22} / expected: %A{v26}"
-    let v28 : bool = v18 = false
-    if v28 then
-        failwith&lt;unit&gt; v27
-method0()
-
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="try_item">try_item<a class="anchor-link" href="#try_item">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">try_item</span> <span class="n">i</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">i</span> <span class="o">=</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="n">when</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="n">x</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="kc">None</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">acc</span> <span class="n">s</span><span class="s1">' =</span>
-        <span class="k">match</span> <span class="n">var_is</span> <span class="n">acc</span><span class="p">,</span> <span class="n">var_is</span> <span class="n">s</span><span class="s1">' with</span>
-        <span class="o">|</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span> <span class="o">=&gt;</span> <span class="n">body</span> <span class="n">acc</span> <span class="n">s</span><span class="s1">'</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">acc</span>
-            <span class="n">inl</span> <span class="n">s</span><span class="s1">' = dyn s'</span>
-            <span class="n">join</span> <span class="n">body</span> <span class="n">acc</span> <span class="n">s</span><span class="s1">'</span>
-    <span class="n">loop</span> <span class="n">i</span> <span class="n">s</span>
-
-<span class="n">inl</span> <span class="n">item</span> <span class="n">i</span> <span class="o">=</span>
-    <span class="n">try_item</span> <span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">value</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
+<h2 id="test_non_trivial_zero___">test_non_trivial_zero___<a class="anchor-link" href="#test_non_trivial_zero___">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7925,11 +8597,22 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">9</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">9</span>
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="p">;[</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">14.134725</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">21.022040</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">25.010857</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">x</span>
+            <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span>
+            <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span>
 </pre></div>
 </div>
 </div>
@@ -7942,16 +8625,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{9} / expected: %A{9}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
+<pre>
 </pre>
 </div>
 </div>
@@ -7964,7 +8638,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="new_infinite_stream">new_infinite_stream<a class="anchor-link" href="#new_infinite_stream">¶</a></h2>
+<h2 id="test_real_part_greater_than_one___">test_real_part_greater_than_one___<a class="anchor-link" href="#test_real_part_greater_than_one___">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7976,15 +8650,20 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_infinite_stream</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="o">=</span>
-        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">n</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">loop</span> <span class="mi">0</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">inl</span> <span class="n">new_infinite_stream_</span> <span class="n">fn</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="o">=</span>
-        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">n</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">loop</span> <span class="mi">0</span>
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">points</span> <span class="o">=</span> <span class="p">;[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">10</span><span class="p">;</span> <span class="mi">20</span><span class="p">;</span> <span class="mi">50</span><span class="p">]</span>
+    <span class="p">(</span><span class="n">a</span> <span class="n">points</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">point</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_gt</span> <span class="mi">0</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -7997,14 +8676,24 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="test_zeta_at_1___">test_zeta_at_1___<a class="anchor-link" href="#test_zeta_at_1___">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8013,10 +8702,16 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">new_infinite_stream</span> <span class="n">print_and_return</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">4</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">4</span><span class="n">i32</span>
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">limit</span><span class="o">.</span><span class="n">max</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8029,43 +8724,24 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    printfn $"print_and_return / x: {0}"
-    printfn $"print_and_return / x: {1}"
-    printfn $"print_and_return / x: {2}"
-    printfn $"print_and_return / x: {3}"
-    printfn $"print_and_return / x: {4}"
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{4} / expected: %A{4}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-print_and_return / x: 0
-print_and_return / x: 1
-print_and_return / x: 2
-print_and_return / x: 3
-print_and_return / x: 4
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="new_finite_stream">new_finite_stream<a class="anchor-link" href="#new_finite_stream">¶</a></h2>
+<h2 id="test_symmetry_across_real_axis___">test_symmetry_across_real_axis___<a class="anchor-link" href="#test_symmetry_across_real_axis___">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8073,12 +8749,19 @@ print_and_return / x: 4
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_finite_stream</span> <span class="n">fn</span> <span class="nb">max</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">n</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="nb">max</span>
-        <span class="n">then</span> <span class="n">StreamNil</span>
-        <span class="k">else</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">n</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">loop</span> <span class="mi">0</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">result_positive_im</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+    <span class="n">inl</span> <span class="n">result_negative_im</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">,</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="o">~-</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">zeta</span>
+    <span class="n">inl</span> <span class="n">conj</span> <span class="o">=</span> <span class="n">result_negative_im</span> <span class="o">|&gt;</span> <span class="n">conj</span>
+    <span class="n">result_positive_im</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">conj</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span>
+    <span class="n">result_positive_im</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">conj</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8091,67 +8774,20 @@ print_and_return / x: 4
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="memoize">memoize<a class="anchor-link" href="#memoize">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">union</span> <span class="n">memoized_stream</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">NotComputed</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">stream</span> <span class="n">t</span>
-    <span class="o">|</span> <span class="n">Computed</span> <span class="p">:</span> <span class="n">stream</span> <span class="n">t</span>
-
-<span class="n">inl</span> <span class="n">memoize</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="n">inl</span> <span class="n">state</span> <span class="o">=</span> <span class="n">mut</span> <span class="p">(</span><span class="n">NotComputed</span> <span class="n">s</span><span class="p">)</span>
-        <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="k">match</span> <span class="o">*</span><span class="n">state</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Computed</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
-            <span class="o">|</span> <span class="n">NotComputed</span> <span class="n">fn</span> <span class="o">=&gt;</span>
-                <span class="n">inl</span> <span class="n">new_state</span> <span class="o">=</span>
-                    <span class="k">match</span> <span class="n">fn</span> <span class="p">()</span> <span class="k">with</span>
-                    <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-                    <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loop</span> <span class="n">fn</span><span class="p">)</span>
-                <span class="n">state</span> <span class="o">&lt;-</span> <span class="n">Computed</span> <span class="n">new_state</span>
-                <span class="n">new_state</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">s</span><span class="s1">' = join_body_unit body s s'</span>
-    <span class="n">loop</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">s</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
+<h2 id="test_behavior_near_origin___">test_behavior_near_origin___<a class="anchor-link" href="#test_behavior_near_origin___">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8164,16 +8800,16 @@ print_and_return / x: 4
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">inl</span> <span class="n">memo_stream</span> <span class="o">=</span> <span class="n">new_finite_stream</span> <span class="n">print_and_return</span> <span class="mi">10</span> <span class="o">|&gt;</span> <span class="n">memoize</span>
+<span class="n">types</span> <span class="p">()</span>
 
-<span class="n">memo_stream</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">3</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">3</span><span class="n">i32</span>
-
-<span class="n">memo_stream</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="n">limit</span><span class="o">.</span><span class="n">max</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="n">limit</span><span class="o">.</span><span class="n">max</span>
 </pre></div>
 </div>
 </div>
@@ -8186,175 +8822,24 @@ print_and_return / x: 4
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * (unit -&gt; UH0)
-    | UH0_1
-and [&lt;Struct&gt;] US0 =
-    | US0_0 of f0_0 : UH0
-    | US0_1 of f1_0 : (unit -&gt; UH0)
-and Mut0 = {mutable l0 : US0}
-and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32
-let rec closure10 () () : UH0 =
-    UH0_1
-and closure9 () () : UH0 =
-    printfn $"print_and_return / x: {9}"
-    let v0 : (unit -&gt; UH0) = closure10()
-    UH0_0(9, v0)
-and closure8 () () : UH0 =
-    printfn $"print_and_return / x: {8}"
-    let v0 : (unit -&gt; UH0) = closure9()
-    UH0_0(8, v0)
-and closure7 () () : UH0 =
-    printfn $"print_and_return / x: {7}"
-    let v0 : (unit -&gt; UH0) = closure8()
-    UH0_0(7, v0)
-and closure6 () () : UH0 =
-    printfn $"print_and_return / x: {6}"
-    let v0 : (unit -&gt; UH0) = closure7()
-    UH0_0(6, v0)
-and closure5 () () : UH0 =
-    printfn $"print_and_return / x: {5}"
-    let v0 : (unit -&gt; UH0) = closure6()
-    UH0_0(5, v0)
-and closure4 () () : UH0 =
-    printfn $"print_and_return / x: {4}"
-    let v0 : (unit -&gt; UH0) = closure5()
-    UH0_0(4, v0)
-and closure3 () () : UH0 =
-    printfn $"print_and_return / x: {3}"
-    let v0 : (unit -&gt; UH0) = closure4()
-    UH0_0(3, v0)
-and closure2 () () : UH0 =
-    printfn $"print_and_return / x: {2}"
-    let v0 : (unit -&gt; UH0) = closure3()
-    UH0_0(2, v0)
-and closure1 () () : UH0 =
-    printfn $"print_and_return / x: {1}"
-    let v0 : (unit -&gt; UH0) = closure2()
-    UH0_0(1, v0)
-and closure0 () () : UH0 =
-    let v0 : (unit -&gt; UH0) = closure1()
-    UH0_0(0, v0)
-and closure11 (v0 : Mut0) () : UH0 =
-    let v1 : US0 = v0.l0
-    match v1 with
-    | US0_0(v2) -&gt; (* Computed *)
-        v2
-    | US0_1(v3) -&gt; (* NotComputed *)
-        let v4 : UH0 = v3 ()
-        let v13 : UH0 =
-            match v4 with
-            | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : US0 = US0_1(v7)
-                let v9 : Mut0 = {l0 = v8} : Mut0
-                let v10 : (unit -&gt; UH0) = closure11(v9)
-                UH0_0(v6, v10)
-            | UH0_1 -&gt; (* StreamNil *)
-                UH0_1
-        let v14 : US0 = US0_0(v13)
-        v0.l0 &lt;- v14
-        v13
-and method1 (v0 : int32, v1 : UH0) : US1 =
-    match v1 with
-    | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : bool = v0 &lt;= 0
-        if v4 then
-            US1_1(v2)
-        else
-            let v6 : int32 = v0 - 1
-            let v7 : UH0 = v3 ()
-            method1(v6, v7)
-    | UH0_1 -&gt; (* StreamNil *)
-        US1_0
-and method2 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    printfn $"print_and_return / x: {0}"
-    let v0 : (unit -&gt; UH0) = closure0()
-    let v1 : US0 = US0_1(v0)
-    let v2 : Mut0 = {l0 = v1} : Mut0
-    let v3 : US0 = v2.l0
-    let v18 : UH0 =
-        match v3 with
-        | US0_0(v4) -&gt; (* Computed *)
-            v4
-        | US0_1(v5) -&gt; (* NotComputed *)
-            let v6 : UH0 = v5 ()
-            let v15 : UH0 =
-                match v6 with
-                | UH0_0(v8, v9) -&gt; (* StreamCons *)
-                    let v10 : US0 = US0_1(v9)
-                    let v11 : Mut0 = {l0 = v10} : Mut0
-                    let v12 : (unit -&gt; UH0) = closure11(v11)
-                    UH0_0(v8, v12)
-                | UH0_1 -&gt; (* StreamNil *)
-                    UH0_1
-            let v16 : US0 = US0_0(v15)
-            v2.l0 &lt;- v16
-            v15
-    let v19 : int32 = 3
-    let v20 : US1 = method1(v19, v18)
-    let v24 : int32 =
-        match v20 with
-        | US1_0 -&gt; (* None *)
-            failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v21) -&gt; (* Some *)
-            v21
-    let v25 : bool = v24 = 3
-    let v26 : bool = method2(v25)
-    let v27 : string = $"__expect / actual: %A{v24} / expected: %A{3}"
-    let v28 : bool = v26 = false
-    if v28 then
-        failwith&lt;unit&gt; v27
-    let v29 : US0 = v2.l0
-    let v44 : UH0 =
-        match v29 with
-        | US0_0(v30) -&gt; (* Computed *)
-            v30
-        | US0_1(v31) -&gt; (* NotComputed *)
-            let v32 : UH0 = v31 ()
-            let v41 : UH0 =
-                match v32 with
-                | UH0_0(v34, v35) -&gt; (* StreamCons *)
-                    let v36 : US0 = US0_1(v35)
-                    let v37 : Mut0 = {l0 = v36} : Mut0
-                    let v38 : (unit -&gt; UH0) = closure11(v37)
-                    UH0_0(v34, v38)
-                | UH0_1 -&gt; (* StreamNil *)
-                    UH0_1
-            let v42 : US0 = US0_0(v41)
-            v2.l0 &lt;- v42
-            v41
-    let v45 : int32 = 5
-    let v46 : US1 = method1(v45, v44)
-    let v50 : int32 =
-        match v46 with
-        | US1_0 -&gt; (* None *)
-            failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v47) -&gt; (* Some *)
-            v47
-    let v51 : bool = v50 = 5
-    let v52 : bool = method2(v51)
-    let v53 : string = $"__expect / actual: %A{v50} / expected: %A{5}"
-    let v54 : bool = v52 = false
-    if v54 then
-        failwith&lt;unit&gt; v53
-method0()
-
-print_and_return / x: 0
-print_and_return / x: 1
-print_and_return / x: 2
-print_and_return / x: 3
-print_and_return / x: 4
-print_and_return / x: 5
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="test_zeta_at_minus_1">test_zeta_at_minus_1<a class="anchor-link" href="#test_zeta_at_minus_1">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8363,16 +8848,16 @@ print_and_return / x: 5
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">inl</span> <span class="n">memo_stream</span> <span class="o">=</span> <span class="n">new_infinite_stream_</span> <span class="n">print_and_return</span> <span class="o">|&gt;</span> <span class="n">memoize</span>
+<span class="n">types</span> <span class="p">()</span>
 
-<span class="n">memo_stream</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">3</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">3</span><span class="n">i32</span>
-
-<span class="n">memo_stream</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">5</span><span class="n">i32</span>
+<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+    <span class="p">(</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">f64</span> <span class="o">/</span> <span class="mi">12</span><span class="n">f64</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8385,120 +8870,24 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * (unit -&gt; UH0)
-    | UH0_1
-and [&lt;Struct&gt;] US0 =
-    | US0_0 of f0_0 : UH0
-    | US0_1 of f1_0 : (unit -&gt; UH0)
-and Mut0 = {mutable l0 : US0}
-and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32
-let rec closure0 (v0 : int32) () : UH0 =
-    let v1 : int32 = v0 + 1
-    method1(v1)
-and method1 (v0 : int32) : UH0 =
-    printfn $"print_and_return / x: {v0}"
-    let v1 : (unit -&gt; UH0) = closure0(v0)
-    UH0_0(v0, v1)
-and closure1 (v0 : UH0) () : UH0 =
-    v0
-and closure2 (v0 : UH0, v1 : Mut0) () : UH0 =
-    let v2 : US0 = v1.l0
-    match v2 with
-    | US0_0(v3) -&gt; (* Computed *)
-        v3
-    | US0_1(v4) -&gt; (* NotComputed *)
-        let v5 : UH0 = v4 ()
-        let v12 : UH0 =
-            match v5 with
-            | UH0_0(v7, v8) -&gt; (* StreamCons *)
-                let v9 : (unit -&gt; UH0) = method2(v0, v8)
-                UH0_0(v7, v9)
-            | UH0_1 -&gt; (* StreamNil *)
-                UH0_1
-        let v13 : US0 = US0_0(v12)
-        v1.l0 &lt;- v13
-        v12
-and method2 (v0 : UH0, v1 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
-    let v2 : US0 = US0_1(v1)
-    let v3 : Mut0 = {l0 = v2} : Mut0
-    closure2(v0, v3)
-and method3 (v0 : int32, v1 : UH0) : US1 =
-    match v1 with
-    | UH0_0(v2, v3) -&gt; (* StreamCons *)
-        let v4 : bool = v0 &lt;= 0
-        if v4 then
-            US1_1(v2)
-        else
-            let v6 : int32 = v0 - 1
-            let v7 : UH0 = v3 ()
-            method3(v6, v7)
-    | UH0_1 -&gt; (* StreamNil *)
-        US1_0
-and method4 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : int32 = 0
-    let v1 : UH0 = method1(v0)
-    let v2 : (unit -&gt; UH0) = closure1(v1)
-    let v3 : (unit -&gt; UH0) = method2(v1, v2)
-    let v4 : UH0 = v3 ()
-    let v5 : int32 = 3
-    let v6 : US1 = method3(v5, v4)
-    let v10 : int32 =
-        match v6 with
-        | US1_0 -&gt; (* None *)
-            failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v7) -&gt; (* Some *)
-            v7
-    let v11 : bool = v10 = 3
-    let v12 : bool = method4(v11)
-    let v13 : string = $"__expect / actual: %A{v10} / expected: %A{3}"
-    let v14 : bool = v12 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
-    let v15 : UH0 = v3 ()
-    let v16 : int32 = 5
-    let v17 : US1 = method3(v16, v15)
-    let v21 : int32 =
-        match v17 with
-        | US1_0 -&gt; (* None *)
-            failwith&lt;int32&gt; "Option does not have a value."
-        | US1_1(v18) -&gt; (* Some *)
-            v18
-    let v22 : bool = v21 = 5
-    let v23 : bool = method4(v22)
-    let v24 : string = $"__expect / actual: %A{v21} / expected: %A{5}"
-    let v25 : bool = v23 = false
-    if v25 then
-        failwith&lt;unit&gt; v24
-method0()
-
-print_and_return / x: 0
-print_and_return / x: 1
-print_and_return / x: 2
-print_and_return / x: 3
-print_and_return / x: 4
-print_and_return / x: 5
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="unfold">unfold<a class="anchor-link" href="#unfold">¶</a></h2>
+<h2 id="test_imaginary_axis">test_imaginary_axis<a class="anchor-link" href="#test_imaginary_axis">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8506,13 +8895,19 @@ print_and_return / x: 5
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unfold</span> <span class="n">f</span> <span class="n">x0</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">x</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">f</span> <span class="n">x</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">x</span><span class="s1">', y) =&gt; StreamCons (x'</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="n">y</span><span class="p">)</span>
-        <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join_body_unit</span> <span class="n">body</span> <span class="n">x0</span> <span class="n">x</span>
-    <span class="n">loop</span> <span class="n">x0</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="n">join</span> <span class="n">a</span> <span class="p">;[</span><span class="mi">10</span><span class="p">;</span><span class="mi">20</span><span class="p">;</span> <span class="mi">30</span><span class="p">;</span> <span class="mi">40</span><span class="p">;</span> <span class="mi">50</span><span class="p">;</span> <span class="mi">60</span><span class="p">;</span> <span class="mi">70</span><span class="p">;</span> <span class="mi">80</span><span class="p">;</span> <span class="mi">90</span><span class="p">;</span> <span class="mi">100</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_ne</span> <span class="mi">0</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_ne</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8525,50 +8920,20 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="iterate">iterate<a class="anchor-link" href="#iterate">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">iterate</span> <span class="n">f</span> <span class="o">=</span>
-    <span class="n">unfold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">Some</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span> <span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
+<h2 id="test_critical_strip">test_critical_strip<a class="anchor-link" href="#test_critical_strip">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8581,10 +8946,24 @@ print_and_return / x: 5
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">10</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1024</span>
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="p">;[</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">14.134725</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">30.1</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">40.0</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_ne</span> <span class="mi">0</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_ne</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8597,16 +8976,7 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
+<pre>
 </pre>
 </div>
 </div>
@@ -8619,7 +8989,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="take_while">take_while<a class="anchor-link" href="#take_while">¶</a></h2>
+<h2 id="test_reflection_formula_for_specific_value">test_reflection_formula_for_specific_value<a class="anchor-link" href="#test_reflection_formula_for_specific_value">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8631,12 +9001,47 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">take_while</span> <span class="n">cond</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">i</span> <span class="o">=</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span> <span class="n">when</span> <span class="n">cond</span> <span class="n">st</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="n">fn</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">i</span> <span class="o">=</span> <span class="n">join_body</span> <span class="n">body</span> <span class="n">i</span>
-    <span class="n">loop</span> <span class="mi">0</span> <span class="n">s</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+
+<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="p">;[</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+        <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">14.134725</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">lhs</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+        <span class="n">inl</span> <span class="n">reflection_coefficient</span> <span class="o">=</span>
+            <span class="n">complex_mult</span>
+                <span class="p">(</span><span class="n">complex_mult</span>
+                    <span class="p">(</span><span class="n">complex_mult</span>
+                        <span class="p">(</span><span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">powc</span> <span class="n">s</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nb">complex</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">powc</span> <span class="p">(</span><span class="n">complex_sub</span> <span class="n">s</span> <span class="p">(</span><span class="nb">complex</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))))</span>
+                    <span class="p">)</span>
+                    <span class="p">(</span>
+                        <span class="p">(</span><span class="n">complex_div</span>
+                            <span class="p">(</span><span class="n">complex_mult</span>
+                                <span class="p">(</span><span class="nb">complex</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                                <span class="n">s</span>
+                            <span class="p">)</span>
+                            <span class="p">(</span><span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                        <span class="p">)</span>
+                        <span class="o">|&gt;</span> <span class="n">complex_sin</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+                <span class="p">(</span><span class="n">gamma</span> <span class="p">(</span><span class="n">complex_sub</span> <span class="p">(</span><span class="nb">complex</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="n">s</span><span class="p">))</span>
+                
+        <span class="n">inl</span> <span class="n">one_minus_s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">),</span> <span class="o">-</span><span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">))</span>
+        <span class="n">inl</span> <span class="n">rhs_calculated</span> <span class="o">=</span> <span class="n">complex_mult</span> <span class="n">reflection_coefficient</span> <span class="p">(</span><span class="n">zeta</span> <span class="n">one_minus_s</span><span class="p">)</span>
+
+        <span class="p">((</span><span class="n">lhs</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">rhs_calculated</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.01</span>
+        <span class="p">((</span><span class="n">lhs</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">rhs_calculated</span> <span class="o">|&gt;</span> <span class="n">im</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.01</span>
 </pre></div>
 </div>
 </div>
@@ -8649,8 +9054,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
@@ -8663,7 +9067,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="sum">sum<a class="anchor-link" href="#sum">¶</a></h2>
+<h2 id="test_euler_product_formula">test_euler_product_formula<a class="anchor-link" href="#test_euler_product_formula">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8675,135 +9079,27 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">sum</span> <span class="n">seq</span> <span class="o">=</span>
-    <span class="n">seq</span> <span class="o">|&gt;</span> <span class="n">fold</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
 
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="nb">sum</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="n">types</span> <span class="p">()</span>
 
-<span class="n">new_finite_stream</span> <span class="n">print_and_return</span> <span class="mi">10</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">n</span> <span class="p">(</span><span class="n">_</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="nb">sum</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">10</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    printfn $"print_and_return / x: {0}"
-    printfn $"print_and_return / x: {1}"
-    printfn $"print_and_return / x: {2}"
-    printfn $"print_and_return / x: {3}"
-    printfn $"print_and_return / x: {4}"
-    printfn $"print_and_return / x: {5}"
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-print_and_return / x: 0
-print_and_return / x: 1
-print_and_return / x: 2
-print_and_return / x: 3
-print_and_return / x: 4
-print_and_return / x: 5
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="n">inl</span> <span class="n">s_values</span> <span class="o">=</span> <span class="p">;[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="n">inl</span> <span class="n">primes</span> <span class="o">=</span> <span class="p">;[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">11</span><span class="p">;</span> <span class="mi">13</span><span class="p">;</span> <span class="mi">17</span><span class="p">;</span> <span class="mi">19</span><span class="p">;</span> <span class="mi">23</span><span class="p">;</span> <span class="mi">29</span><span class="p">;</span> <span class="mi">31</span><span class="p">;</span> <span class="mi">37</span><span class="p">;</span> <span class="mi">41</span><span class="p">;</span> <span class="mi">43</span><span class="p">;</span> <span class="mi">47</span><span class="p">;</span> <span class="mi">53</span><span class="p">;</span> <span class="mi">59</span><span class="p">;</span> <span class="mi">61</span><span class="p">;</span> <span class="mi">67</span><span class="p">;</span> <span class="mi">71</span><span class="p">]</span>
+    <span class="p">(</span><span class="n">a</span> <span class="n">s_values</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+    <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">s_re</span> <span class="o">=&gt;</span>
+        <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="n">s_re</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">inl</span> <span class="n">product</span> <span class="o">=</span>
+            <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span> <span class="n">primes</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">))</span>
+            <span class="o">||&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">fold</span> <span class="n">fun</span> <span class="n">acc</span> <span class="n">x</span> <span class="o">=&gt;</span>
+                <span class="n">acc</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span> <span class="o">**</span> <span class="o">-</span><span class="n">s_re</span><span class="p">)</span>
 
-<span class="n">new_infinite_stream</span> <span class="n">print_and_return</span>
-<span class="o">|&gt;</span> <span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">n</span> <span class="p">(</span><span class="n">_</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="n">i32</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="nb">sum</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">10</span>
+        <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
+        <span class="p">((</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="o">-</span> <span class="n">product</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.01</span><span class="n">f64</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.01</span><span class="n">f64</span>
+        <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">f64</span>
 </pre></div>
 </div>
 </div>
@@ -8816,542 +9112,7 @@ print_and_return / x: 5
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    printfn $"print_and_return / x: {0}"
-    printfn $"print_and_return / x: {1}"
-    printfn $"print_and_return / x: {2}"
-    printfn $"print_and_return / x: {3}"
-    printfn $"print_and_return / x: {4}"
-    printfn $"print_and_return / x: {5}"
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-print_and_return / x: 0
-print_and_return / x: 1
-print_and_return / x: 2
-print_and_return / x: 3
-print_and_return / x: 4
-print_and_return / x: 5
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">iterate</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span> <span class="mi">1</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">take_while</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="n">i</span> <span class="o">=&gt;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="n">i32</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">to_list</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="mi">1</span><span class="n">i32</span><span class="p">;</span> <span class="mi">6</span><span class="p">;</span> <span class="mi">36</span><span class="p">;</span> <span class="mi">216</span><span class="p">;</span> <span class="mi">1296</span><span class="p">;</span> <span class="mi">7776</span><span class="p">;</span> <span class="mi">46656</span><span class="p">;</span> <span class="mi">279936</span> <span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type UH0 =
-    | UH0_0 of int32 * UH0
-    | UH0_1
-let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v63 : bool = method1()
-    let v64 : UH0 = UH0_1
-    let v65 : UH0 = UH0_0(279936, v64)
-    let v66 : UH0 = UH0_0(46656, v65)
-    let v67 : UH0 = UH0_0(7776, v66)
-    let v68 : UH0 = UH0_0(1296, v67)
-    let v69 : UH0 = UH0_0(216, v68)
-    let v70 : UH0 = UH0_0(36, v69)
-    let v71 : UH0 = UH0_0(6, v70)
-    let v72 : UH0 = UH0_0(1, v71)
-    let v73 : UH0 = UH0_1
-    let v74 : UH0 = UH0_0(279936, v73)
-    let v75 : UH0 = UH0_0(46656, v74)
-    let v76 : UH0 = UH0_0(7776, v75)
-    let v77 : UH0 = UH0_0(1296, v76)
-    let v78 : UH0 = UH0_0(216, v77)
-    let v79 : UH0 = UH0_0(36, v78)
-    let v80 : UH0 = UH0_0(6, v79)
-    let v81 : UH0 = UH0_0(1, v80)
-    let v82 : string = $"__expect / actual: %A{v72} / expected: %A{v81}"
-    let v83 : bool = v63 = false
-    if v83 then
-        failwith&lt;unit&gt; v82
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="indexed">indexed<a class="anchor-link" href="#indexed">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">indexed</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="p">((</span><span class="n">StreamNil</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">fold</span> <span class="n">fun</span> <span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="n">x</span> <span class="o">=&gt;</span>
-        <span class="n">StreamCons</span> <span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="p">),</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="o">|&gt;</span> <span class="n">fst</span>
-    <span class="o">|&gt;</span> <span class="n">rev</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="n">indexed</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="mi">5</span><span class="n">i32</span><span class="p">,</span> <span class="mi">10</span><span class="n">i32</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="map">map<a class="anchor-link" href="#map">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span> <span class="n">fn</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">StreamNil</span><span class="p">)</span>
-    <span class="o">||&gt;</span> <span class="n">fold_back</span> <span class="n">fun</span> <span class="n">x</span> <span class="n">acc</span> <span class="o">=&gt;</span>
-        <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">acc</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="nb">map</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">10</span><span class="n">i32</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="zip_with">zip_with<a class="anchor-link" href="#zip_with">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">zip_with</span> <span class="n">fn</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">fn1</span><span class="p">),</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st2</span><span class="p">,</span> <span class="n">fn2</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">st1</span> <span class="n">st2</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">fn1</span> <span class="p">())</span> <span class="p">(</span><span class="n">fn2</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span><span class="p">,</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span>
-
-<span class="n">inl</span> <span class="n">zip_with_</span> <span class="n">fn</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st1</span><span class="p">,</span> <span class="n">fn1</span><span class="p">),</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">st2</span><span class="p">,</span> <span class="n">fn2</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">StreamCons</span> <span class="p">(</span><span class="n">fn</span> <span class="n">st1</span> <span class="n">st2</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">fn1</span> <span class="p">())</span> <span class="p">(</span><span class="n">fn2</span> <span class="p">()))</span>
-        <span class="o">|</span> <span class="n">StreamNil</span><span class="p">,</span> <span class="n">_</span> <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">StreamNil</span>
-    <span class="n">loop</span> <span class="n">s1</span> <span class="n">s2</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">((</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">),</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">))</span>
-<span class="o">||&gt;</span> <span class="n">zip_with</span> <span class="p">(</span><span class="o">+</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">2</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">6</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{6} / expected: %A{6}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="zip">zip<a class="anchor-link" href="#zip">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">zip</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
-    <span class="n">zip_with</span> <span class="n">pair</span> <span class="n">s1</span> <span class="n">s2</span>
-
-<span class="n">inl</span> <span class="n">zip_</span> <span class="n">s1</span> <span class="n">s2</span> <span class="o">=</span>
-    <span class="n">zip_with_</span> <span class="n">pair</span> <span class="n">s1</span> <span class="n">s2</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="p">((</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">),</span> <span class="p">(</span><span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="p">((</span><span class="o">*</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">from_list</span><span class="p">))</span>
-<span class="o">||&gt;</span> <span class="nb">zip</span>
-<span class="o">|&gt;</span> <span class="n">item</span> <span class="mi">5</span><span class="n">i32</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{struct (5, 10)} / expected: %A{struct (5, 10)}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-method0()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="unzip">unzip<a class="anchor-link" href="#unzip">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">unzip</span> <span class="n">s</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">rec</span> <span class="n">body</span> <span class="n">s</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">s</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="n">StreamCons</span> <span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">fn</span><span class="p">)</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">loop</span> <span class="p">(</span><span class="n">fn</span> <span class="p">())</span>
-            <span class="n">StreamCons</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">xs</span><span class="p">),</span> <span class="n">StreamCons</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">ys</span><span class="p">)</span>
-        <span class="o">|</span> <span class="n">StreamNil</span> <span class="o">=&gt;</span> <span class="n">pair</span> <span class="n">StreamNil</span> <span class="n">StreamNil</span>
-    <span class="ow">and</span> <span class="n">inl</span> <span class="n">loop</span> <span class="n">x</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">var_is</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-        <span class="n">then</span> <span class="n">body</span> <span class="n">x</span>
-        <span class="k">else</span>
-            <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">dyn</span> <span class="n">x</span>
-            <span class="n">join</span> <span class="n">body</span> <span class="n">x</span>
-    <span class="n">loop</span> <span class="n">s</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">listm</span><span class="o">.</span><span class="n">init</span> <span class="mi">10</span><span class="n">i32</span> <span class="nb">id</span>
-<span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">from_list</span>
-<span class="o">|&gt;</span> <span class="n">unzip</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=&gt;</span>
-    <span class="n">x</span> <span class="o">|&gt;</span> <span class="nb">sum</span>
-    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
-
-    <span class="n">y</span> <span class="o">|&gt;</span> <span class="nb">sum</span>
-    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">45</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 () : bool =
-    true
-and method0 () : unit =
-    let v0 : bool = method1()
-    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
-    let v2 : bool = v0 = false
-    if v2 then
-        failwith&lt;unit&gt; v1
-    let v3 : bool = method1()
-    let v4 : string = $"__expect / actual: %A{45} / expected: %A{45}"
-    let v5 : bool = v3 = false
-    if v5 then
-        failwith&lt;unit&gt; v4
-method0()
-
+<pre>
 </pre>
 </div>
 </div>

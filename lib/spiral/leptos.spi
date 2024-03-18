@@ -405,7 +405,7 @@ inl interval_handle_clear (interval_handle : interval_handle) =
 inl set_interval_with_handle
     (fn : () -> ())
     (interval_millis : date_time.duration)
-    : resultm.result' interval_handle rust.js_value
+    : resultm.result' interval_handle wasm.js_value
     =
     inl fn = join fn
     !\($'$"leptos::set_interval_with_handle(move || !fn(), !interval_millis)"')
@@ -414,7 +414,7 @@ inl create_memo forall t. (fn : () -> t) : memo t =
     inl fn = join fn
     !\($'"leptos::create_memo(move |_| { !fn() })"')
 
-let window () : rust.window =
+let window () : wasm.window =
     !\($'"leptos::leptos_dom::window()"')
 
 inl memo_get forall t. (memo : memo t) : t =
@@ -1231,8 +1231,3 @@ inl text_block_pre (class : string) text =
     ] fun () =>
         text
         |> text_fragment
-
-inl set_inner_html (html : string) (el : rust.html_element) =
-    inl html = html |> sm'.as_str
-    inl el = join el
-    !\($'"!el.set_inner_html(!html)"')

@@ -116,11 +116,6 @@ inl deserialize_vec (value : json_value) : resultm.result' (am'.vec u8) std_stri
     !\($'"serde_json::from_value(!value)"')
     |> resultm.map_error' fun (x : json_error) => x |> format'
 
-inl wasm_from_value (value : rust.js_value) : resultm.result' (optionm'.option' json_value) std_string =
-    inl value = join value
-    !\($'"serde_wasm_bindgen::from_value(!value)"')
-    |> resultm.map_error' fun (x : serde_wasm_bindgen_error) => x |> format'
-
 inl encode_uri_component (s : std_string) : js_string =
     !\($'"js_sys::encode_uri_component(&!s)"')
 
