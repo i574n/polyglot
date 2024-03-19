@@ -133,18 +133,40 @@ inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
     emit_expr () $"\"Box::leak(!x)\""
 
-inl fix_closure depth x' =
+
+inl fix_closure depth' x' =
+    inl depth = depth' |> fst
     if depth = 1
     then !\($'"!x' })"')
     elif depth = 2
     then !\($'"!x' }})"')
     elif depth = 3
-    then !\($'"!x' }}); { //"')
+    then !\($'"!x' }}})"')
     elif depth = 4
-    then !\($'"!x' }}}); {{ //"')
+    then !\($'"!x' }}}})"')
     elif depth = 5
-    then !\($'"!x' }}}}); {{{ //"')
+    then !\($'"!x' }}}}})"')
+    elif depth = 6 // , 4) // ?
+    then !\($'"!x' }}}}}})"')
+    elif depth = 7 // , 5) // 7
+    then !\($'"!x' }}}}}}})"')
+    elif depth = 8 // , 5) // 7
+    then !\($'"!x' }}}}}}}})"')
+
+    inl depth = depth' |> snd
+    if depth = 1
+    then !\($'" { //"')
+    elif depth = 2
+    then !\($'" {{ //"')
+    elif depth = 3
+    then !\($'" {{{ //"')
+    elif depth = 4
+    then !\($'" {{{{ //"')
+    elif depth = 5
+    then !\($'" {{{{{ //"')
     elif depth = 6
-    then !\($'"!x' }}}}); {{{{ //"')
+    then !\($'"!x' {{{{{{ //"')
     elif depth = 7
-    then !\($'"!x' }}}}}); {{{{{ //"')
+    then !\($'"!x' {{{{{{{ //"')
+    elif depth = 8
+    then !\($'"!x' {{{{{{{{ //"')

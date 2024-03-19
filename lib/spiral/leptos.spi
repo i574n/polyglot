@@ -345,13 +345,34 @@ inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
 instance signal_set rw_signal = signal_set'
 instance signal_set write_signal = signal_set'
 
-inl create_local_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
-    inl source = join source
-    !\\(fetcher, $'"leptos::create_local_resource(move || !source(), |x| async move { $0(x).await })"')
+inl create_local_resource forall t u.
+    closure_fix
+    (source : () -> t)
+    (fetcher : t -> async.future_pin u)
+    : resource t u
+    =
+    // inl fetcher x = rust.move fun () =>
+    //    fetcher x
+    // inl fetcher = join fetcher
+    // !\($'"leptos::create_local_resource(move || !source(), move |x| async move { !fetcher(x)().await })"')
 
-inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
     inl source = join source
-    !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
+    join
+        inl source = join source
+        !\($'"let __result = leptos::create_local_resource(move || !source(), |x| async move { //"')
+
+        inl x = !\($'"x"')
+        inl x' = fetcher x
+        inl x' = join x'
+        inl x' = x' |> async.await
+
+        x' |> rust.fix_closure closure_fix
+
+        !\($'"__result"')
+
+// inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+//     inl source = join source
+//     !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
 
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
     inl action_fn = join action_fn

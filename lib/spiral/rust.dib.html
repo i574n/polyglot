@@ -7793,21 +7793,43 @@ a.anchor-link {
 <span class="n">inl</span> <span class="n">box_leak</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">box</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">static_ref</span><span class="s1">' (mut'</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">emit_expr</span> <span class="p">()</span> <span class="err">$</span><span class="s2">"</span><span class="se">\"</span><span class="s2">Box::leak(!x)</span><span class="se">\"</span><span class="s2">"</span>
 
-<span class="n">inl</span> <span class="n">fix_closure</span> <span class="n">depth</span> <span class="n">x</span><span class="s1">' =</span>
+
+<span class="n">inl</span> <span class="n">fix_closure</span> <span class="n">depth</span><span class="s1">' x'</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span><span class="s1">' |&gt; fst</span>
     <span class="k">if</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">})</span><span class="s2">"')</span>
     <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}})</span><span class="s2">"')</span>
     <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}});</span> <span class="p">{</span> <span class="o">//</span><span class="s2">"')</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}})</span><span class="s2">"')</span>
     <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}});</span> <span class="p">{{</span> <span class="o">//</span><span class="s2">"')</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}})</span><span class="s2">"')</span>
     <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}});</span> <span class="p">{{{</span> <span class="o">//</span><span class="s2">"')</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}}})</span><span class="s2">"')</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">//</span> <span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">//</span> <span class="err">?</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}}}})</span><span class="s2">"')</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">7</span> <span class="o">//</span> <span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">//</span> <span class="mi">7</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}}}}})</span><span class="s2">"')</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">//</span> <span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">//</span> <span class="mi">7</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}}}}}})</span><span class="s2">"')</span>
+
+    <span class="n">inl</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span><span class="s1">' |&gt; snd</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'" { //"'</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'" {{ //"'</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'" {{{ //"'</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'" {{{{ //"'</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'" {{{{{ //"'</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">6</span>
-    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}});</span> <span class="p">{{{{</span> <span class="o">//</span><span class="s2">"')</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">{{{{{{</span> <span class="o">//</span><span class="s2">"')</span>
     <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">7</span>
-    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">}}}}});</span> <span class="p">{{{{{</span> <span class="o">//</span><span class="s2">"')</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">{{{{{{{</span> <span class="o">//</span><span class="s2">"')</span>
+    <span class="k">elif</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">then</span> <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x'</span> <span class="p">{{{{{{{{</span> <span class="o">//</span><span class="s2">"')</span>
 </pre></div>
 </div>
 </div>

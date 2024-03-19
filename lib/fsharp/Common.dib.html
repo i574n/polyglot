@@ -8606,7 +8606,7 @@ System.Exception: test
 
 <span class="n">let</span> <span class="n">mutable</span> <span class="n">newDisposableTest</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">newDisposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">newDisposableTest</span> <span class="o">&lt;-</span> <span class="n">newDisposableTest</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">_</span><span class="o">.</span><span class="n">Dispose</span><span class="p">()</span>
 <span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
 </pre></div>
 </div>

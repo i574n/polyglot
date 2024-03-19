@@ -16,13 +16,3 @@ inl rec eval ski =
     | App (K, x) => App (K, eval x)
     | App (f, x) => eval (App (eval f, x))
     | _ => ski
-
-// // ## sm'.concat_array_trailing
-
-inl types () =
-    rust.types ()
-    sm'.types ()
-
-// // ## sm'.concat_list_trailing
-
-// // ## sm'.concat_list_heap_trailing

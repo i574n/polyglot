@@ -342,7 +342,7 @@ async {
     return! child
 }
 |> Async.RunSynchronously
-|> Result.mapError (fun x -> x.Message)
+|> Result.mapError _.Message
 |> _assert_eq (Error ("A task was canceled."))
 
 #!markdown

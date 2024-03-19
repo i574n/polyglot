@@ -7970,7 +7970,7 @@ pub use module_ccfa04bf::*;
         <span class="n">Ok</span> <span class="p">()</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
     
-    <span class="n">inl</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">join</span>
         <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"pyo3::prepare_freethreaded_python()"'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span>
 
         <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //"'</span><span class="p">)</span>
@@ -7983,8 +7983,6 @@ pub use module_ccfa04bf::*;
 
         <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"__result"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="p">()</span> <span class="n">pyerr</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
-    <span class="n">inl</span> <span class="n">run</span> <span class="o">=</span> <span class="n">join</span> <span class="n">run</span>
-    <span class="n">run</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8029,7 +8027,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">5</span><span class="n">u8</span><span class="p">,</span> <span class="mi">4</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="n">f64</span><span class="p">,</span> <span class="mi">0</span><span class="n">f64</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
 
@@ -8105,59 +8103,44 @@ and method3 () : float =
     0.0
 and method4 (v0 : (string [])) : (string []) =
     v0
-and method6 (v0 : int32, v1 : Mut0) : bool =
+and method5 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method5 (v0 : string, v1 : (string [])) : string =
-    let v2 : int32 = v1.Length
-    let v3 : string = ""
-    let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
-    while method6(v2, v4) do
-        let v6 : int32 = v4.l0
-        let v7 : string = v4.l1
-        let v8 : string = v1.[int v6]
-        let v9 : string = v7 + v8 + v0 + ""
-        let v10 : int32 = v6 + 1
-        v4.l0 &lt;- v10
-        v4.l1 &lt;- v9
-        ()
-    let v11 : string = v4.l1
-    v11
-and method7 (v0 : pyo3_Python) : pyo3_Python =
+and method6 (v0 : pyo3_Python) : pyo3_Python =
     v0
-and method8 (v0 : string) : string =
+and method7 (v0 : string) : string =
     v0
-and method9 (v0 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt;) : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; =
+and method8 (v0 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt;) : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; =
     v0
-and method10 () : string =
+and method9 () : string =
     let v0 : string = "fn"
     v0
-and method11 (v0 : pyo3_Bound&lt;pyo3_types_PyModule&gt;) : pyo3_Bound&lt;pyo3_types_PyModule&gt; =
+and method10 (v0 : pyo3_Bound&lt;pyo3_types_PyModule&gt;) : pyo3_Bound&lt;pyo3_types_PyModule&gt; =
     v0
-and method12 (v0 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt;) : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; =
+and method11 (v0 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt;) : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; =
     v0
-and method13 (v0 : ((float * float) * unit)) : ((float * float) * unit) =
+and method12 (v0 : ((float * float) * unit)) : ((float * float) * unit) =
+    v0
+and method13 (v0 : pyo3_Bound&lt;pyo3_PyAny&gt;) : pyo3_Bound&lt;pyo3_PyAny&gt; =
     v0
 and method14 (v0 : pyo3_Bound&lt;pyo3_PyAny&gt;) : pyo3_Bound&lt;pyo3_PyAny&gt; =
     v0
-and method15 (v0 : pyo3_Bound&lt;pyo3_PyAny&gt;) : pyo3_Bound&lt;pyo3_PyAny&gt; =
+and method15 (v0 : Result&lt;struct (float * float), pyo3_PyErr&gt;) : Result&lt;struct (float * float), pyo3_PyErr&gt; =
     v0
-and method16 (v0 : Result&lt;struct (float * float), pyo3_PyErr&gt;) : Result&lt;struct (float * float), pyo3_PyErr&gt; =
+and method16 (v0 : float) : float =
     v0
 and method17 (v0 : float) : float =
     v0
-and method18 (v0 : float) : float =
+and method18 (v0 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt;) : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; =
     v0
-and method19 (v0 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt;) : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; =
+and method19 (v0 : bool) : bool =
     v0
-and method20 (v0 : bool) : bool =
+and method20 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&gt; =
     v0
 and method21 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&gt; =
     v0
-and method22 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&gt; =
-    v0
-and closure0 () () : unit =
+and method1 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //"
@@ -8179,100 +8162,111 @@ and closure0 () () : unit =
     let v16 : string = "    return (s.real, s.imag)"
     let v17 : (string []) = [|v8; v9; v10; v11; v12; v13; v14; v15; v16|]
     let v18 : (string []) = method4(v17)
-    let v19 : string = "\n"
-    let v20 : string = method5(v19, v18)
-    let v21 : string = "v7.re"
-    let v22 : float = Fable.Core.RustInterop.emitRustExpr () v21
-    let v23 : string = "v7.im"
-    let v24 : float = Fable.Core.RustInterop.emitRustExpr () v23
-    let v25 : (float * float) = v22, v24
-    let v26 : ((float * float) * unit) = v25, ()
-    let v27 : pyo3_Python = method7(v3)
-    let v28 : string = method8(v20)
-    let v29 : string = $"fable_library_rust::String_::LrcStr::as_str(&amp;v28)"
-    let v30 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v29
-    let v31 : string = "pyo3::types::PyModule::from_code_bound(v27, v30, \"\", \"\")"
-    let v32 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v31
-    let v33 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; = method9(v32)
-    let v34 : string = "v33.unwrap()"
-    let v35 : pyo3_Bound&lt;pyo3_types_PyModule&gt; = Fable.Core.RustInterop.emitRustExpr () v34
-    let v36 : string = method10()
-    let v37 : string = $"fable_library_rust::String_::LrcStr::as_str(&amp;v36)"
-    let v38 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v37
-    let v39 : pyo3_Bound&lt;pyo3_types_PyModule&gt; = method11(v35)
-    let v40 : string = "v39.getattr(v38)"
-    let v41 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v40
-    let v42 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = method12(v41)
+    let v19 : int32 = v18.Length
+    let v20 : string = ""
+    let v21 : Mut0 = {l0 = 0; l1 = v20} : Mut0
+    while method5(v19, v21) do
+        let v23 : int32 = v21.l0
+        let v24 : string = v21.l1
+        let v25 : string = v18.[int v23]
+        let v26 : string = "\n"
+        let v27 : string = v24 + v25 + v26 + ""
+        let v28 : int32 = v23 + 1
+        v21.l0 &lt;- v28
+        v21.l1 &lt;- v27
+        ()
+    let v29 : string = v21.l1
+    let v30 : string = "v7.re"
+    let v31 : float = Fable.Core.RustInterop.emitRustExpr () v30
+    let v32 : string = "v7.im"
+    let v33 : float = Fable.Core.RustInterop.emitRustExpr () v32
+    let v34 : (float * float) = v31, v33
+    let v35 : ((float * float) * unit) = v34, ()
+    let v36 : pyo3_Python = method6(v3)
+    let v37 : string = method7(v29)
+    let v38 : string = $"fable_library_rust::String_::LrcStr::as_str(&amp;v37)"
+    let v39 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v38
+    let v40 : string = "pyo3::types::PyModule::from_code_bound(v36, v39, \"\", \"\")"
+    let v41 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v40
+    let v42 : Result&lt;pyo3_Bound&lt;pyo3_types_PyModule&gt;, pyo3_PyErr&gt; = method8(v41)
     let v43 : string = "v42.unwrap()"
-    let v44 : pyo3_Bound&lt;pyo3_PyAny&gt; = Fable.Core.RustInterop.emitRustExpr () v43
-    let v45 : ((float * float) * unit) = method13(v26)
-    let v46 : pyo3_Bound&lt;pyo3_PyAny&gt; = method14(v44)
-    let v47 : string = "pyo3::prelude::PyAnyMethods::call(&amp;v46, (*(*v45).0, ()), None)"
-    let v48 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v47
-    let v49 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = method12(v48)
-    let v50 : string = "v49.unwrap()"
-    let v51 : pyo3_Bound&lt;pyo3_PyAny&gt; = Fable.Core.RustInterop.emitRustExpr () v50
-    let v52 : pyo3_Bound&lt;pyo3_PyAny&gt; = method15(v51)
-    let v53 : string = "v52.extract()"
-    let v54 : Result&lt;struct (float * float), pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v53
-    let v55 : Result&lt;struct (float * float), pyo3_PyErr&gt; = method16(v54)
-    let v56 : string = "v55.unwrap()"
-    let struct (v57 : float, v58 : float) = Fable.Core.RustInterop.emitRustExpr () v56
-    let v59 : float = method17(v57)
-    let v60 : float = method18(v58)
-    let v61 : string = "num_complex::Complex::new(v59, v60)"
-    let v62 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v61
-    let v63 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; = Ok v62
-    let v64 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; = method19(v63)
+    let v44 : pyo3_Bound&lt;pyo3_types_PyModule&gt; = Fable.Core.RustInterop.emitRustExpr () v43
+    let v45 : string = method9()
+    let v46 : string = $"fable_library_rust::String_::LrcStr::as_str(&amp;v45)"
+    let v47 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr () v46
+    let v48 : pyo3_Bound&lt;pyo3_types_PyModule&gt; = method10(v44)
+    let v49 : string = "v48.getattr(v47)"
+    let v50 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v49
+    let v51 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = method11(v50)
+    let v52 : string = "v51.unwrap()"
+    let v53 : pyo3_Bound&lt;pyo3_PyAny&gt; = Fable.Core.RustInterop.emitRustExpr () v52
+    let v54 : ((float * float) * unit) = method12(v35)
+    let v55 : pyo3_Bound&lt;pyo3_PyAny&gt; = method13(v53)
+    let v56 : string = "pyo3::prelude::PyAnyMethods::call(&amp;v55, (*(*v54).0, ()), None)"
+    let v57 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v56
+    let v58 : Result&lt;pyo3_Bound&lt;pyo3_PyAny&gt;, pyo3_PyErr&gt; = method11(v57)
+    let v59 : string = "v58.unwrap()"
+    let v60 : pyo3_Bound&lt;pyo3_PyAny&gt; = Fable.Core.RustInterop.emitRustExpr () v59
+    let v61 : pyo3_Bound&lt;pyo3_PyAny&gt; = method14(v60)
+    let v62 : string = "v61.extract()"
+    let v63 : Result&lt;struct (float * float), pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v62
+    let v64 : Result&lt;struct (float * float), pyo3_PyErr&gt; = method15(v63)
     let v65 : string = "v64.unwrap()"
-    let v66 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v65
-    let v67 : string = "v66.im"
-    let v68 : float = Fable.Core.RustInterop.emitRustExpr () v67
-    let v69 : bool = v68 = 0.0
-    let v71 : bool =
-        if v69 then
-            true
-        else
-            method20(v69)
-    let v72 : string = $"__expect / actual: %A{v68} / expected: %A{0.0}"
-    let v73 : bool = v71 = false
-    if v73 then
-        failwith&lt;unit&gt; v72
-    let v74 : string = "v66.re"
-    let v75 : float = Fable.Core.RustInterop.emitRustExpr () v74
-    let v76 : float = v75 - 1.6449340668482264
-    let v77 : float =  -v76
-    let v78 : bool = v76 &gt;= v77
-    let v79 : float =
+    let struct (v66 : float, v67 : float) = Fable.Core.RustInterop.emitRustExpr () v65
+    let v68 : float = method16(v66)
+    let v69 : float = method17(v67)
+    let v70 : string = "num_complex::Complex::new(v68, v69)"
+    let v71 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v70
+    let v72 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; = Ok v71
+    let v73 : Result&lt;num_complex_Complex&lt;float&gt;, pyo3_PyErr&gt; = method18(v72)
+    let v74 : string = "v73.unwrap()"
+    let v75 : num_complex_Complex&lt;float&gt; = Fable.Core.RustInterop.emitRustExpr () v74
+    let v76 : string = "v75.im"
+    let v77 : float = Fable.Core.RustInterop.emitRustExpr () v76
+    let v78 : bool = v77 = 0.0
+    let v80 : bool =
         if v78 then
-            v76
-        else
-            v77
-    let v80 : bool = v79 &lt; 0.001
-    let v82 : bool =
-        if v80 then
             true
         else
-            method20(v80)
-    let v83 : string = $"__expect / actual: %A{v79} / expected: %A{0.001}"
-    let v84 : bool = v82 = false
-    if v84 then
-        failwith&lt;unit&gt; v83
-    let v85 : Result&lt;unit, pyo3_PyErr&gt; = Ok ()
-    let v86 : Result&lt;unit, pyo3_PyErr&gt; = method21(v85)
-    let v87 : string = "v86 }}}}); {{{ //"
-    Fable.Core.RustInterop.emitRustExpr () v87
-    let v88 : string = "__result"
-    let v89 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v88
-    let v90 : Result&lt;unit, pyo3_PyErr&gt; = method22(v89)
-    let v91 : string = "v90.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr () v91
+            method19(v78)
+    let v81 : string = $"__expect / actual: %A{v77} / expected: %A{0.0}"
+    let v82 : bool = v80 = false
+    if v82 then
+        failwith&lt;unit&gt; v81
+    let v83 : string = "v75.re"
+    let v84 : float = Fable.Core.RustInterop.emitRustExpr () v83
+    let v85 : float = v84 - 1.6449340668482264
+    let v86 : float =  -v85
+    let v87 : bool = v85 &gt;= v86
+    let v88 : float =
+        if v87 then
+            v85
+        else
+            v86
+    let v89 : bool = v88 &lt; 0.001
+    let v91 : bool =
+        if v89 then
+            true
+        else
+            method19(v89)
+    let v92 : string = $"__expect / actual: %A{v88} / expected: %A{0.001}"
+    let v93 : bool = v91 = false
+    if v93 then
+        failwith&lt;unit&gt; v92
+    let v94 : Result&lt;unit, pyo3_PyErr&gt; = Ok ()
+    let v95 : Result&lt;unit, pyo3_PyErr&gt; = method20(v94)
+    let v96 : string = "v95 }}}}})"
+    Fable.Core.RustInterop.emitRustExpr () v96
+    let v97 : string = " {{{{ //"
+    Fable.Core.RustInterop.emitRustExpr () v97
+    let v98 : string = "__result"
+    let v99 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v98
+    let v100 : Result&lt;unit, pyo3_PyErr&gt; = method21(v99)
+    let v101 : string = "v100.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr () v101
     ()
-and method1 () : (unit -&gt; unit) =
-    closure0()
 and method0 () : unit =
-    let v0 : (unit -&gt; unit) = method1()
-    v0 ()
+    method1()
 method0()
 
 .rs:
@@ -8289,7 +8283,6 @@ method0()
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
-        use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::on_startup;
@@ -8315,75 +8308,58 @@ use pyo3::prelude::PyAnyMethods;
         pub fn method2() -&gt; f64 { 2.0_f64 }
         pub fn method3() -&gt; f64 { 0.0_f64 }
         pub fn method4(v0: Array&lt;string&gt;) -&gt; Array&lt;string&gt; { v0 }
-        pub fn method6(v0: i32, v1: LrcPtr&lt;Spiral_eval::Mut0&gt;) -&gt; bool {
+        pub fn method5(v0: i32, v1: LrcPtr&lt;Spiral_eval::Mut0&gt;) -&gt; bool {
             v1.l0.get().clone() &lt; v0
         }
-        pub fn method5(v0: string, v1: Array&lt;string&gt;) -&gt; string {
-            let v2: i32 = count(v1.clone());
-            let v4: LrcPtr&lt;Spiral_eval::Mut0&gt; =
-                LrcPtr::new(Spiral_eval::Mut0{l0: MutCell::new(0_i32),
-                                              l1: MutCell::new(string("")),});
-            while Spiral_eval::method6(v2, v4.clone()) {
-                let v6: i32 = v4.l0.get().clone();
-                let v9: string =
-                    append(append(append(v4.l1.get().clone(), v1[v6].clone()),
-                                  v0.clone()), string(""));
-                let v10: i32 = v6 + 1_i32;
-                v4.l0.set(v10);
-                v4.l1.set(v9);
-                ()
-            }
-            v4.l1.get().clone()
-        }
-        pub fn method7(v0: pyo3::Python) -&gt; pyo3::Python { v0 }
-        pub fn method8(v0: string) -&gt; string { v0 }
-        pub fn method9(v0:
+        pub fn method6(v0: pyo3::Python) -&gt; pyo3::Python { v0 }
+        pub fn method7(v0: string) -&gt; string { v0 }
+        pub fn method8(v0:
                            Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;,
                                   pyo3::PyErr&gt;)
          -&gt; Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;, pyo3::PyErr&gt; {
             v0
         }
-        pub fn method10() -&gt; string { string("fn") }
-        pub fn method11(v0: pyo3::Bound&lt;pyo3::types::PyModule&gt;)
+        pub fn method9() -&gt; string { string("fn") }
+        pub fn method10(v0: pyo3::Bound&lt;pyo3::types::PyModule&gt;)
          -&gt; pyo3::Bound&lt;pyo3::types::PyModule&gt; {
             v0
         }
-        pub fn method12(v0: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt;)
+        pub fn method11(v0: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt;)
          -&gt; Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; {
             v0
         }
-        pub fn method13(v0_: LrcPtr&lt;(f64, f64)&gt;, v0__1: ())
+        pub fn method12(v0_: LrcPtr&lt;(f64, f64)&gt;, v0__1: ())
          -&gt; LrcPtr&lt;(LrcPtr&lt;(f64, f64)&gt;, ())&gt; {
             LrcPtr::new((v0_, ()))
+        }
+        pub fn method13(v0: pyo3::Bound&lt;pyo3::PyAny&gt;)
+         -&gt; pyo3::Bound&lt;pyo3::PyAny&gt; {
+            v0
         }
         pub fn method14(v0: pyo3::Bound&lt;pyo3::PyAny&gt;)
          -&gt; pyo3::Bound&lt;pyo3::PyAny&gt; {
             v0
         }
-        pub fn method15(v0: pyo3::Bound&lt;pyo3::PyAny&gt;)
-         -&gt; pyo3::Bound&lt;pyo3::PyAny&gt; {
-            v0
-        }
-        pub fn method16(v0: Result&lt;(f64, f64), pyo3::PyErr&gt;)
+        pub fn method15(v0: Result&lt;(f64, f64), pyo3::PyErr&gt;)
          -&gt; Result&lt;(f64, f64), pyo3::PyErr&gt; {
             v0
         }
+        pub fn method16(v0: f64) -&gt; f64 { v0 }
         pub fn method17(v0: f64) -&gt; f64 { v0 }
-        pub fn method18(v0: f64) -&gt; f64 { v0 }
-        pub fn method19(v0: Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt;)
+        pub fn method18(v0: Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt;)
          -&gt; Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt; {
             v0
         }
-        pub fn method20(v0: bool) -&gt; bool { v0 }
+        pub fn method19(v0: bool) -&gt; bool { v0 }
+        pub fn method20(v0: Result&lt;(), pyo3::PyErr&gt;)
+         -&gt; Result&lt;(), pyo3::PyErr&gt; {
+            v0
+        }
         pub fn method21(v0: Result&lt;(), pyo3::PyErr&gt;)
          -&gt; Result&lt;(), pyo3::PyErr&gt; {
             v0
         }
-        pub fn method22(v0: Result&lt;(), pyo3::PyErr&gt;)
-         -&gt; Result&lt;(), pyo3::PyErr&gt; {
-            v0
-        }
-        pub fn closure0(unitVar: (), unitVar_1: ()) {
+        pub fn method1() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //;
             {
@@ -8392,90 +8368,112 @@ use pyo3::prelude::PyAnyMethods;
                 let v5: f64 = Spiral_eval::method3();
                 let v7: num_complex::Complex&lt;f64&gt; =
                     num_complex::Complex::new(v4, v5);
-                let v20: string =
-                    Spiral_eval::method5(string("\n"),
-                                         Spiral_eval::method4(new_array(&amp;[string("import mpmath"),
-                                                                          string("def fn(s, _):"),
-                                                                          string("    s = complex(*s)"),
-                                                                          string("    try:"),
-                                                                          string("        s = mpmath.zeta(s)"),
-                                                                          string("    except ValueError as e:"),
-                                                                          string("        if s.real == 1:"),
-                                                                          string("            s = complex(float(\'inf\'), 0)"),
-                                                                          string("    return (s.real, s.imag)")])));
-                let v22: f64 = v7.re;
-                let v24: f64 = v7.im;
-                let v27: pyo3::Python = Spiral_eval::method7(v3);
-                let v28: string = Spiral_eval::method8(v20);
-                let v30: &amp;str =
-                    fable_library_rust::String_::LrcStr::as_str(&amp;v28);
-                let v33:
-                        Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;,
-                               pyo3::PyErr&gt; =
-                    Spiral_eval::method9(pyo3::types::PyModule::from_code_bound(v27, v30, "", ""));
-                let v35: pyo3::Bound&lt;pyo3::types::PyModule&gt; = v33.unwrap();
-                let v36: string = Spiral_eval::method10();
-                let v38: &amp;str =
-                    fable_library_rust::String_::LrcStr::as_str(&amp;v36);
-                let v39: pyo3::Bound&lt;pyo3::types::PyModule&gt; =
-                    Spiral_eval::method11(v35);
-                let v42: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; =
-                    Spiral_eval::method12(v39.getattr(v38));
-                let v44: pyo3::Bound&lt;pyo3::PyAny&gt; = v42.unwrap();
-                let v45: LrcPtr&lt;(LrcPtr&lt;(f64, f64)&gt;, ())&gt; =
-                    Spiral_eval::method13((LrcPtr::new((LrcPtr::new((v22,
-                                                                     v24)),
-                                                        ()))).0.clone(), ());
-                let v46: pyo3::Bound&lt;pyo3::PyAny&gt; =
-                    Spiral_eval::method14(v44);
-                let v49: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; =
-                    Spiral_eval::method12(pyo3::prelude::PyAnyMethods::call(&amp;v46, (*(*v45).0, ()), None));
-                let v52: pyo3::Bound&lt;pyo3::PyAny&gt; =
-                    Spiral_eval::method15(v49.unwrap());
-                let v55: Result&lt;(f64, f64), pyo3::PyErr&gt; =
-                    Spiral_eval::method16(v52.extract());
-                let patternInput: (f64, f64) = v55.unwrap();
-                let v59: f64 = Spiral_eval::method17(patternInput.0.clone());
-                let v60: f64 = Spiral_eval::method18(patternInput.1.clone());
-                let v64: Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt; =
-                    Spiral_eval::method19(Ok::&lt;num_complex::Complex&lt;f64&gt;,
-                                               pyo3::PyErr&gt;(num_complex::Complex::new(v59, v60)));
-                let v66: num_complex::Complex&lt;f64&gt; = v64.unwrap();
-                let v68: f64 = v66.im;
-                let v69: bool = v68 == 0.0_f64;
-                if (if v69 { true } else { Spiral_eval::method20(v69) }) ==
-                       false {
-                    panic!("{}",
-                           sprintf!("__expect / actual: {:?} / expected: {:?}", v68, 0.0_f64));
+                let v18: Array&lt;string&gt; =
+                    Spiral_eval::method4(new_array(&amp;[string("import mpmath"),
+                                                     string("def fn(s, _):"),
+                                                     string("    s = complex(*s)"),
+                                                     string("    try:"),
+                                                     string("        s = mpmath.zeta(s)"),
+                                                     string("    except ValueError as e:"),
+                                                     string("        if s.real == 1:"),
+                                                     string("            s = complex(float(\'inf\'), 0)"),
+                                                     string("    return (s.real, s.imag)")]));
+                let v19: i32 = count(v18.clone());
+                let v21: LrcPtr&lt;Spiral_eval::Mut0&gt; =
+                    LrcPtr::new(Spiral_eval::Mut0{l0: MutCell::new(0_i32),
+                                                  l1:
+                                                      MutCell::new(string("")),});
+                while Spiral_eval::method5(v19, v21.clone()) {
+                    let v23: i32 = v21.l0.get().clone();
+                    let v27: string =
+                        append(append(append(v21.l1.get().clone(),
+                                             v18[v23].clone()), string("\n")),
+                               string(""));
+                    let v28: i32 = v23 + 1_i32;
+                    v21.l0.set(v28);
+                    v21.l1.set(v27);
+                    ()
                 }
                 {
-                    let v76: f64 = v66.re - 1.6449340668482264_f64;
-                    let v77: f64 = -v76;
-                    let v79: f64 = if v76 &gt;= v77 { v76 } else { v77 };
-                    let v80: bool = v79 &lt; 0.001_f64;
-                    if (if v80 { true } else { Spiral_eval::method20(v80) })
+                    let v29: string = v21.l1.get().clone();
+                    let v31: f64 = v7.re;
+                    let v33: f64 = v7.im;
+                    let v36: pyo3::Python = Spiral_eval::method6(v3);
+                    let v37: string = Spiral_eval::method7(v29);
+                    let v39: &amp;str =
+                        fable_library_rust::String_::LrcStr::as_str(&amp;v37);
+                    let v42:
+                            Result&lt;pyo3::Bound&lt;pyo3::types::PyModule&gt;,
+                                   pyo3::PyErr&gt; =
+                        Spiral_eval::method8(pyo3::types::PyModule::from_code_bound(v36, v39, "", ""));
+                    let v44: pyo3::Bound&lt;pyo3::types::PyModule&gt; =
+                        v42.unwrap();
+                    let v45: string = Spiral_eval::method9();
+                    let v47: &amp;str =
+                        fable_library_rust::String_::LrcStr::as_str(&amp;v45);
+                    let v48: pyo3::Bound&lt;pyo3::types::PyModule&gt; =
+                        Spiral_eval::method10(v44);
+                    let v51: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; =
+                        Spiral_eval::method11(v48.getattr(v47));
+                    let v53: pyo3::Bound&lt;pyo3::PyAny&gt; = v51.unwrap();
+                    let v54: LrcPtr&lt;(LrcPtr&lt;(f64, f64)&gt;, ())&gt; =
+                        Spiral_eval::method12((LrcPtr::new((LrcPtr::new((v31,
+                                                                         v33)),
+                                                            ()))).0.clone(),
+                                              ());
+                    let v55: pyo3::Bound&lt;pyo3::PyAny&gt; =
+                        Spiral_eval::method13(v53);
+                    let v58: Result&lt;pyo3::Bound&lt;pyo3::PyAny&gt;, pyo3::PyErr&gt; =
+                        Spiral_eval::method11(pyo3::prelude::PyAnyMethods::call(&amp;v55, (*(*v54).0, ()), None));
+                    let v61: pyo3::Bound&lt;pyo3::PyAny&gt; =
+                        Spiral_eval::method14(v58.unwrap());
+                    let v64: Result&lt;(f64, f64), pyo3::PyErr&gt; =
+                        Spiral_eval::method15(v61.extract());
+                    let patternInput: (f64, f64) = v64.unwrap();
+                    let v68: f64 =
+                        Spiral_eval::method16(patternInput.0.clone());
+                    let v69: f64 =
+                        Spiral_eval::method17(patternInput.1.clone());
+                    let v73: Result&lt;num_complex::Complex&lt;f64&gt;, pyo3::PyErr&gt; =
+                        Spiral_eval::method18(Ok::&lt;num_complex::Complex&lt;f64&gt;,
+                                                   pyo3::PyErr&gt;(num_complex::Complex::new(v68, v69)));
+                    let v75: num_complex::Complex&lt;f64&gt; = v73.unwrap();
+                    let v77: f64 = v75.im;
+                    let v78: bool = v77 == 0.0_f64;
+                    if (if v78 { true } else { Spiral_eval::method19(v78) })
                            == false {
                         panic!("{}",
-                               sprintf!("__expect / actual: {:?} / expected: {:?}", v79, 0.001_f64));
+                               sprintf!("__expect / actual: {:?} / expected: {:?}", v77, 0.0_f64));
                     }
                     {
-                        let v86: Result&lt;(), pyo3::PyErr&gt; =
-                            Spiral_eval::method21(Ok::&lt;(), pyo3::PyErr&gt;(()));
-                        v86 }}}}); {{{ //;
+                        let v85: f64 = v75.re - 1.6449340668482264_f64;
+                        let v86: f64 = -v85;
+                        let v88: f64 = if v85 &gt;= v86 { v85 } else { v86 };
+                        let v89: bool = v88 &lt; 0.001_f64;
+                        if (if v89 {
+                                true
+                            } else { Spiral_eval::method19(v89) }) == false {
+                            panic!("{}",
+                                   sprintf!("__expect / actual: {:?} / expected: {:?}", v88, 0.001_f64));
+                        }
                         {
-                            let v90: Result&lt;(), pyo3::PyErr&gt; =
-                                Spiral_eval::method22(__result);
-                            v90.unwrap();
-                            ()
+                            let v95: Result&lt;(), pyo3::PyErr&gt; =
+                                Spiral_eval::method20(Ok::&lt;(),
+                                                           pyo3::PyErr&gt;(()));
+                            v95 }}}}});
+                             {{{{ //;
+                            {
+                                let v100: Result&lt;(), pyo3::PyErr&gt; =
+                                    Spiral_eval::method21(__result);
+                                v100.unwrap();
+                                ()
+                            }
                         }
                     }
                 }
             }
         }
-        pub fn method1() -&gt; Func0&lt;()&gt; {
-            Func0::new(move || Spiral_eval::closure0((), ()))
-        }
-        pub fn method0() { (Spiral_eval::method1())(); }
+        pub fn method0() { Spiral_eval::method1(); }
         on_startup!(Spiral_eval::method0());
     }
 }
@@ -8511,7 +8509,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">5</span><span class="n">u8</span><span class="p">,</span> <span class="mi">4</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="n">f64</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="n">f64</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
 
@@ -8563,7 +8561,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">3</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">2</span><span class="n">u8</span><span class="p">,</span> <span class="mi">1</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="p">(</span><span class="n">join</span> <span class="n">listm</span><span class="s1">'.init_series -2f64 -20 -2)</span>
     <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">n</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -8619,7 +8617,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">3</span><span class="n">u8</span><span class="p">,</span> <span class="mi">2</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="p">;[</span>
         <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">14.134725</span><span class="p">)</span>
         <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">21.022040</span><span class="p">)</span>
@@ -8673,7 +8671,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">3</span><span class="n">u8</span><span class="p">,</span> <span class="mi">2</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">points</span> <span class="o">=</span> <span class="p">;[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">10</span><span class="p">;</span> <span class="mi">20</span><span class="p">;</span> <span class="mi">50</span><span class="p">]</span>
     <span class="p">(</span><span class="n">a</span> <span class="n">points</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">point</span> <span class="o">=&gt;</span>
@@ -8724,7 +8722,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">5</span><span class="n">u8</span><span class="p">,</span> <span class="mi">4</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
     <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">limit</span><span class="o">.</span><span class="n">max</span>
@@ -8772,7 +8770,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">6</span><span class="n">u8</span><span class="p">,</span> <span class="mi">5</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">result_positive_im</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
     <span class="n">inl</span> <span class="n">result_negative_im</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="n">s</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">,</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">im</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="o">~-</span><span class="p">))</span> <span class="o">|&gt;</span> <span class="n">zeta</span>
@@ -8822,7 +8820,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">5</span><span class="n">u8</span><span class="p">,</span> <span class="mi">4</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
     <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="n">limit</span><span class="o">.</span><span class="n">max</span>
@@ -8870,7 +8868,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">5</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">5</span><span class="n">u8</span><span class="p">,</span> <span class="mi">4</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
     <span class="p">(</span><span class="n">result</span> <span class="o">|&gt;</span> <span class="n">re</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">f64</span> <span class="o">/</span> <span class="mi">12</span><span class="n">f64</span> <span class="o">|&gt;</span> <span class="nb">abs</span> <span class="o">|&gt;</span> <span class="n">_assert_lt</span> <span class="mf">0.001</span>
@@ -8918,8 +8916,8 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
-    <span class="p">(</span><span class="n">join</span> <span class="n">a</span> <span class="p">;[</span><span class="mi">10</span><span class="p">;</span><span class="mi">20</span><span class="p">;</span> <span class="mi">30</span><span class="p">;</span> <span class="mi">40</span><span class="p">;</span> <span class="mi">50</span><span class="p">;</span> <span class="mi">60</span><span class="p">;</span> <span class="mi">70</span><span class="p">;</span> <span class="mi">80</span><span class="p">;</span> <span class="mi">90</span><span class="p">;</span> <span class="mi">100</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">3</span><span class="n">u8</span><span class="p">,</span> <span class="mi">2</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="n">join</span> <span class="n">a</span> <span class="p">;[</span><span class="mi">10</span><span class="p">;</span> <span class="mi">20</span><span class="p">;</span> <span class="mi">30</span><span class="p">;</span> <span class="mi">40</span><span class="p">;</span> <span class="mi">50</span><span class="p">;</span> <span class="mi">60</span><span class="p">;</span> <span class="mi">70</span><span class="p">;</span> <span class="mi">80</span><span class="p">;</span> <span class="mi">90</span><span class="p">;</span> <span class="mi">100</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">iter</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">=&gt;</span>
         <span class="n">inl</span> <span class="n">s</span> <span class="o">=</span> <span class="nb">complex</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
         <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">zeta</span> <span class="n">s</span>
@@ -8968,7 +8966,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">3</span><span class="n">u8</span><span class="p">,</span> <span class="mi">2</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="p">;[</span>
         <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">14.134725</span><span class="p">)</span>
         <span class="nb">complex</span> <span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">)</span>
@@ -9024,7 +9022,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">3</span><span class="n">u8</span><span class="p">,</span> <span class="mi">2</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="p">;[</span>
         <span class="nb">complex</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
         <span class="nb">complex</span> <span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">)</span>
@@ -9102,7 +9100,7 @@ pub use module_ccfa04bf::*;
 
 <span class="n">types</span> <span class="p">()</span>
 
-<span class="n">run_test</span> <span class="mi">4</span><span class="n">i32</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
+<span class="n">run_test</span> <span class="p">(</span><span class="mi">3</span><span class="n">u8</span><span class="p">,</span> <span class="mi">2</span><span class="n">u8</span><span class="p">)</span> <span class="n">fun</span> <span class="n">zeta</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=&gt;</span>
     <span class="n">inl</span> <span class="n">s_values</span> <span class="o">=</span> <span class="p">;[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="mi">5</span><span class="p">]</span>
     <span class="n">inl</span> <span class="n">primes</span> <span class="o">=</span> <span class="p">;[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="mi">7</span><span class="p">;</span> <span class="mi">11</span><span class="p">;</span> <span class="mi">13</span><span class="p">;</span> <span class="mi">17</span><span class="p">;</span> <span class="mi">19</span><span class="p">;</span> <span class="mi">23</span><span class="p">;</span> <span class="mi">29</span><span class="p">;</span> <span class="mi">31</span><span class="p">;</span> <span class="mi">37</span><span class="p">;</span> <span class="mi">41</span><span class="p">;</span> <span class="mi">43</span><span class="p">;</span> <span class="mi">47</span><span class="p">;</span> <span class="mi">53</span><span class="p">;</span> <span class="mi">59</span><span class="p">;</span> <span class="mi">61</span><span class="p">;</span> <span class="mi">67</span><span class="p">;</span> <span class="mi">71</span><span class="p">]</span>
     <span class="p">(</span><span class="n">a</span> <span class="n">s_values</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>

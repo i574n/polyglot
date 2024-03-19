@@ -9,6 +9,14 @@
 
 #!pwsh
 
+{ . ../../../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --execute-command "pwsh -c `"../../../../scripts/invoke-dib.ps1 test.dib`"" } | Invoke-Block -Retries 5
+
+#!pwsh
+
+{ . ../../../../apps/parser/dist/DibParser$(GetExecutableSuffix) test.dib spi } | Invoke-Block
+
+#!pwsh
+
 { . ../../../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file test.spi test.fsx --timeout 10000 } | Invoke-Block
 
 #!pwsh

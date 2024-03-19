@@ -1,3 +1,5 @@
+// // # sm'
+
 open rust_operators
 
 inl types () =
@@ -21,66 +23,106 @@ nominal std_string = $"std_string_String"
 nominal js_string = $"js_sys_JsString"
 nominal str = $"Str"
 
+// // ## raw_string_literal
+
 inl raw_string_literal (s : string) : rust.ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
+
+// // ## raw_string_literal_static
 
 inl raw_string_literal_static (s : string) : rust.static_ref' str =
     !\($"\"r#\\\"\" + !s + \"\\\"#\"")
 
+// // ## include_str
+
 inl include_str (path : string) : rust.ref' str =
     !\($'"include_str\!(\\\"" + !path + "\\\")"')
+
+// // ## contains
 
 inl contains (value : string) (input : string) : bool =
     $"!input.Contains !value"
 
+// // ## substring
+
 inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
     $"!str.Substring (!start, !len)"
+
+// // ## split
 
 inl split (separator : string) (str : string) : array_base string =
     $"!str.Split !separator"
 
+// // ## split_string
+
 inl split_string (separator : array_base string) (str : string) : array_base string =
     $"!str.Split (!separator, StringSplitOptions.None)"
+
+// // ## as_str
 
 inl as_str (s : string) : rust.ref' str =
     inl s = join s
     !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')
 
+// // ## from_std_string
+
 inl from_std_string (str : std_string) : string =
     inl str = join str
     !\($'"fable_library_rust::String_::fromString(!str)"')
 
+// // ## ref_to_std_string
+
 inl ref_to_std_string (str : rust.ref' str) : std_string =
     !\($'"String::from(!str)"')
+
+// // ## to_std_string
 
 inl to_std_string (s : string) : std_string =
     inl s = join s
     s |> as_str |> ref_to_std_string
 
+// // ## as_str_std
+
 inl as_str_std (s : std_string) : rust.ref' str =
     inl s = join s
     !\($'"!s.as_str()"')
 
+// // ## into_boxed_str
+
 inl into_boxed_str (s : std_string) : rust.box str =
     !\($'"!s.into_boxed_str()"')
+
+// // ## format'
 
 inl format' x : std_string =
     !\\(x, $'@@$"format\!(""{{}}"", $0)"')
 
+// // ## format_debug
+
 inl format_debug x : string =
     $"$\"%A{!x}\""
+
+// // ## format_debug'
 
 inl format_debug' x : std_string =
     !\\(x, $'@@$"format\!(""{{:?}}"", $0)"')
 
+// // ## format_pretty'
+
 inl format_pretty' x : std_string =
     !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+
+// // ## obj_to_string
 
 inl obj_to_string x : string =
     $"!x.ToString ()"
 
+// // ## to_string any
+
 instance to_string any =
     obj_to_string
+
+// // ## to_string result t u
 
 instance to_string result t u = fun x =>
     real
@@ -96,13 +138,19 @@ instance to_string result t u = fun x =>
             | Error x => $'"Error: " + string !x + ""' : string
         | _ => obj_to_string `u x
 
+// // ## serialize
+
 inl serialize forall t. (x : t) : resultm.result' std_string json_error =
     !\($'"serde_json::to_string(&!x)"')
+
+// // ## deserialize
 
 inl deserialize forall t. (json : string) : resultm.result' t std_string =
     inl json = json |> as_str
     !\($'"serde_json::from_str(&!json)"')
     |> resultm.map_error' fun (x : json_error) => x |> format'
+
+// // ## borsh_deserialize
 
 inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_string =
     inl data = data |> am'.as_slice
@@ -111,21 +159,31 @@ inl borsh_deserialize forall t. (data : array_base u8) : resultm.result' t std_s
     result
     |> resultm.map_error' fun (x : borsh_io_error) => x |> format'
 
+// // ## deserialize_vec
+
 inl deserialize_vec (value : json_value) : resultm.result' (am'.vec u8) std_string =
     inl value = join value
     !\($'"serde_json::from_value(!value)"')
     |> resultm.map_error' fun (x : json_error) => x |> format'
 
+// // ## encode_uri_component
+
 inl encode_uri_component (s : std_string) : js_string =
     !\($'"js_sys::encode_uri_component(&!s)"')
+
+// // ## strip_prefix
 
 inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' str) =
     inl s = join s
     !\($'"!s.strip_prefix(!prefix)"')
 
+// // ## starts_with
+
 inl starts_with (value : std_string) (s : std_string) : bool =
     inl s = join s
     !\($'"!s.starts_with(&!value)"')
+
+// // ## base64_decode
 
 inl base64_decode (s : std_string) : result std_string std_string =
     fun () =>
@@ -144,17 +202,23 @@ inl base64_decode (s : std_string) : result std_string std_string =
         join x ()
         |> resultm.unbox
 
-let concat_array_trailing separator input =
+// // ## concat_array_trailing
+
+inl concat_array_trailing separator input =
     ("", input)
     ||> am.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'
 
-let concat_list_trailing separator input =
+// // ## concat_list_trailing
+
+inl concat_list_trailing separator input =
     ("", input)
     ||> listm.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'
 
-let concat_list_heap_trailing separator input =
+// // ## concat_list_heap_trailing
+
+inl concat_list_heap_trailing separator input =
     ("", input)
     ||> listm.fold fun acc (x : string) =>
         inl acc = acc |> to_std_string
@@ -163,22 +227,34 @@ let concat_list_heap_trailing separator input =
         !\($'"!acc + !x + !separator"')
         |> from_std_string
 
+// // ## concat
+
 inl concat (a : string) (b : a _ _) : string =
     $"!b |> String.concat !a"
+
+// // ## join'
 
 inl join' (concat : string) (s : a _ string) : string =
     $"System.String.Join (!concat, !s)"
 
+// // ## pad_right
+
 inl pad_right (pad : i32) (s : string) : string =
     $"!s.PadRight !pad"
 
+// // ## replace
+
 inl replace (old_value : string) (new_value : string) (input : string) : string =
     $"!input.Replace (!old_value, !new_value)"
+
+// // ## ellipsis
 
 inl ellipsis forall t {int; number}. (max : t) (s : string) =
     if sm.length s <= max
     then s
     else s |> substring 0 max |> fun x => $'!x + "..."'
+
+// // ## to_string std_string
 
 open rust
 instance to_string std_string = from_std_string

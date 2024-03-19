@@ -8337,7 +8337,7 @@ a.anchor-link {
     <span class="k">return</span><span class="err">!</span> <span class="n">child</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">mapError</span> <span class="p">(</span><span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">Message</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">mapError</span> <span class="n">_</span><span class="o">.</span><span class="n">Message</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Error</span> <span class="p">(</span><span class="s2">"A task was canceled."</span><span class="p">))</span>
 </pre></div>
 </div>

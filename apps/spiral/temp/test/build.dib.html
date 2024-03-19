@@ -7547,6 +7547,558 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">apps</span><span class="o">/</span><span class="n">spiral</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">Supervisor</span><span class="err">$</span><span class="p">(</span><span class="n">GetExecutableSuffix</span><span class="p">)</span> <span class="o">--</span><span class="n">execute</span><span class="o">-</span><span class="n">command</span> <span class="s2">"pwsh -c `"</span><span class="o">../../../../</span><span class="n">scripts</span><span class="o">/</span><span class="n">invoke</span><span class="o">-</span><span class="n">dib</span><span class="o">.</span><span class="n">ps1</span> <span class="n">test</span><span class="o">.</span><span class="n">dib</span><span class="err">`</span><span class="s2">""</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">Retries</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 #1 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #2 [Debug] executeAsync / options: { Command =
+   "dotnet "/home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:main@464-1020&gt; }
+00:00:00 #3 [Verbose] &gt; pwd: /home/runner/work/polyglot/polyglot/apps/spiral/temp/test
+00:00:00 #4 [Verbose] &gt; dll_path: /home/runner/work/polyglot/polyglot/deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release
+00:00:00 #5 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #6 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:00 #7 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #8 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #9 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #10 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #11 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #12 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:00 #13 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #14 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (Connection refused)
+00:00:00 #15 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:00 #16 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:00 #17 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:00 #18 [Debug] executeAsync / options: { Command = "pwsh -c "../../../../scripts/invoke-dib.ps1 test.dib""
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = None }
+00:00:02 #19 [Verbose] &gt;
+00:00:02 #20 [Verbose] &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
+00:00:02 #21 [Verbose] &gt; <span style="color: rgb(135,135,175)">╭──────────────────────────────────────────────────────────────────────────────╮</span>
+00:00:02 #22 [Verbose] &gt; <span style="color: rgb(135,135,175)">│</span> # test (Polyglot)                                                            <span style="color: rgb(135,135,175)">│</span>
+00:00:02 #23 [Verbose] &gt; <span style="color: rgb(135,135,175)">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:02 #24 [Verbose] &gt;
+00:00:02 #25 [Verbose] &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:02 #26 [Verbose] &gt; // // test
+00:00:02 #27 [Verbose] &gt;
+00:00:02 #28 [Verbose] &gt; open testing
+00:00:03 #29 [Verbose] &gt; Building /tmp/!dotnet-repl/20240319-2006-5792-9267-99308d6a0be7/main.spi
+00:00:05 #30 [Verbose] &gt;
+00:00:05 #31 [Verbose] &gt; <span class="ansi-green-fg">╭─[ 3.30s - stdout ]───────────────────────────────────────────────────────────╮</span>
+00:00:05 #32 [Verbose] &gt; <span class="ansi-green-fg">│</span> ()                                                                           <span class="ansi-green-fg">│</span>
+00:00:05 #33 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:05 #34 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:05 #35 [Verbose] &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:05 #36 [Verbose] &gt;
+00:00:05 #37 [Verbose] &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:05 #38 [Verbose] &gt; nominal i = ()
+00:00:05 #39 [Verbose] &gt; nominal e = ()
+00:00:05 #40 [Verbose] &gt; nominal s = ()
+00:00:05 #41 [Verbose] &gt; nominal n = ()
+00:00:05 #42 [Verbose] &gt; nominal t = ()
+00:00:05 #43 [Verbose] &gt; nominal f = ()
+00:00:05 #44 [Verbose] &gt; nominal j = ()
+00:00:05 #45 [Verbose] &gt; nominal p = ()
+00:00:05 #46 [Verbose] &gt;
+00:00:05 #47 [Verbose] &gt; union sensing =
+00:00:05 #48 [Verbose] &gt;     | Si : s * i
+00:00:05 #49 [Verbose] &gt;     | Se : s * e
+00:00:05 #50 [Verbose] &gt;
+00:00:05 #51 [Verbose] &gt; union intuition =
+00:00:05 #52 [Verbose] &gt;     | Ni : n * i
+00:00:05 #53 [Verbose] &gt;     | Ne : n * e
+00:00:05 #54 [Verbose] &gt;
+00:00:05 #55 [Verbose] &gt; union thinking =
+00:00:05 #56 [Verbose] &gt;     | Ti : t * i
+00:00:05 #57 [Verbose] &gt;     | Te : t * e
+00:00:05 #58 [Verbose] &gt;
+00:00:05 #59 [Verbose] &gt; union feeling =
+00:00:05 #60 [Verbose] &gt;     | Fi : f * i
+00:00:05 #61 [Verbose] &gt;     | Fe : f * e
+00:00:05 #62 [Verbose] &gt;
+00:00:05 #63 [Verbose] &gt; union function_stack =
+00:00:05 #64 [Verbose] &gt;     | FS : sensing * intuition * thinking * feeling
+00:00:05 #65 [Verbose] &gt;
+00:00:05 #66 [Verbose] &gt; union personality_type =
+00:00:05 #67 [Verbose] &gt;     | ISTJ : i * s * t * j * function_stack
+00:00:05 #68 [Verbose] &gt;     | ISFJ : i * s * f * j * function_stack
+00:00:05 #69 [Verbose] &gt;     | INFJ : i * n * f * j * function_stack
+00:00:05 #70 [Verbose] &gt;     | INTJ : i * n * t * j * function_stack
+00:00:05 #71 [Verbose] &gt;     | ISTP : i * s * t * p * function_stack
+00:00:05 #72 [Verbose] &gt;     | ISFP : i * s * f * p * function_stack
+00:00:05 #73 [Verbose] &gt;     | INFP : i * n * f * p * function_stack
+00:00:05 #74 [Verbose] &gt;     | INTP : i * n * t * p * function_stack
+00:00:05 #75 [Verbose] &gt;     | ESTP : e * s * t * p * function_stack
+00:00:05 #76 [Verbose] &gt;     | ESFP : e * s * f * p * function_stack
+00:00:05 #77 [Verbose] &gt;     | ENFP : e * n * f * p * function_stack
+00:00:05 #78 [Verbose] &gt;     | ENTP : e * n * t * p * function_stack
+00:00:05 #79 [Verbose] &gt;     | ESTJ : e * s * t * j * function_stack
+00:00:05 #80 [Verbose] &gt;     | ESFJ : e * s * f * j * function_stack
+00:00:05 #81 [Verbose] &gt;     | ENFJ : e * n * f * j * function_stack
+00:00:05 #82 [Verbose] &gt;     | ENTJ : e * n * t * j * function_stack
+00:00:05 #83 [Verbose] &gt;
+00:00:05 #84 [Verbose] &gt;
+00:00:05 #85 [Verbose] &gt; inl main () =
+00:00:05 #86 [Verbose] &gt;     inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))
+00:00:05 #87 [Verbose] &gt;     inl istj_personality = ISTJ (i, s, t, j, istj_stack)
+00:00:05 #88 [Verbose] &gt;     // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))
+00:00:05 #89 [Verbose] &gt;     // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)
+00:00:05 #90 [Verbose] &gt;
+00:00:05 #91 [Verbose] &gt;     ;[[
+00:00:05 #92 [Verbose] &gt;         istj_personality
+00:00:05 #93 [Verbose] &gt;     ]]
+00:00:05 #94 [Verbose] &gt;     |&gt; fun x =&gt; $'$"%A{!x}"' : string
+00:00:05 #95 [Verbose] &gt;     |&gt; console.write_line
+00:00:05 #96 [Verbose] &gt;
+00:00:05 #97 [Verbose] &gt; inl main () =
+00:00:05 #98 [Verbose] &gt;     $"!main ()" : ()
+00:00:05 #99 [Verbose] &gt; Building /tmp/!dotnet-repl/20240319-2007-0019-1985-12506eb8f493/main.spi
+00:00:07 #100 [Verbose] &gt;
+00:00:07 #101 [Verbose] &gt; <span class="ansi-green-fg">╭─[ 1.32s - stdout ]───────────────────────────────────────────────────────────╮</span>
+00:00:07 #102 [Verbose] &gt; <span class="ansi-green-fg">│</span> type [&lt;Struct&gt;] US0 =                                                        <span class="ansi-green-fg">│</span>
+00:00:07 #103 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US0_0                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #104 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US0_1                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #105 [Verbose] &gt; <span class="ansi-green-fg">│</span> and [&lt;Struct&gt;] US1 =                                                         <span class="ansi-green-fg">│</span>
+00:00:07 #106 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US1_0                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #107 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US1_1                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #108 [Verbose] &gt; <span class="ansi-green-fg">│</span> and [&lt;Struct&gt;] US2 =                                                         <span class="ansi-green-fg">│</span>
+00:00:07 #109 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US2_0                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #110 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US2_1                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #111 [Verbose] &gt; <span class="ansi-green-fg">│</span> and [&lt;Struct&gt;] US3 =                                                         <span class="ansi-green-fg">│</span>
+00:00:07 #112 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US3_0                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #113 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US3_1                                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #114 [Verbose] &gt; <span class="ansi-green-fg">│</span> and [&lt;Struct&gt;] US4 =                                                         <span class="ansi-green-fg">│</span>
+00:00:07 #115 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US4_0 of f0_0 : US0 * f0_1 : US1 * f0_2 : US2 * f0_3 : US3             <span class="ansi-green-fg">│</span>
+00:00:07 #116 [Verbose] &gt; <span class="ansi-green-fg">│</span> and [&lt;Struct&gt;] US5 =                                                         <span class="ansi-green-fg">│</span>
+00:00:07 #117 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_0 of f0_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #118 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_1 of f1_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #119 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_2 of f2_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #120 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_3 of f3_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #121 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_4 of f4_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #122 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_5 of f5_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #123 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_6 of f6_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #124 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_7 of f7_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #125 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_8 of f8_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #126 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_9 of f9_0 : US4                                                    <span class="ansi-green-fg">│</span>
+00:00:07 #127 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_10 of f10_0 : US4                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #128 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_11 of f11_0 : US4                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #129 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_12 of f12_0 : US4                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #130 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_13 of f13_0 : US4                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #131 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_14 of f14_0 : US4                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #132 [Verbose] &gt; <span class="ansi-green-fg">│</span>     | US5_15 of f15_0 : US4                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #133 [Verbose] &gt; <span class="ansi-green-fg">│</span> let rec method0 (v0 : (US5 [])) : (US5 []) =                                 <span class="ansi-green-fg">│</span>
+00:00:07 #134 [Verbose] &gt; <span class="ansi-green-fg">│</span>     v0                                                                       <span class="ansi-green-fg">│</span>
+00:00:07 #135 [Verbose] &gt; <span class="ansi-green-fg">│</span> and closure0 () () : unit =                                                  <span class="ansi-green-fg">│</span>
+00:00:07 #136 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v0 : US0 = US0_1                                                     <span class="ansi-green-fg">│</span>
+00:00:07 #137 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v1 : US1 = US1_0                                                     <span class="ansi-green-fg">│</span>
+00:00:07 #138 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v2 : US2 = US2_0                                                     <span class="ansi-green-fg">│</span>
+00:00:07 #139 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v3 : US3 = US3_1                                                     <span class="ansi-green-fg">│</span>
+00:00:07 #140 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v4 : US4 = US4_0(v0, v1, v2, v3)                                     <span class="ansi-green-fg">│</span>
+00:00:07 #141 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v5 : US5 = US5_14(v4)                                                <span class="ansi-green-fg">│</span>
+00:00:07 #142 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v6 : (US5 []) = [|v5|]                                               <span class="ansi-green-fg">│</span>
+00:00:07 #143 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v7 : (US5 []) = method0(v6)                                          <span class="ansi-green-fg">│</span>
+00:00:07 #144 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v8 : string = $"%A{v7}"                                              <span class="ansi-green-fg">│</span>
+00:00:07 #145 [Verbose] &gt; <span class="ansi-green-fg">│</span>     System.Console.WriteLine v8                                              <span class="ansi-green-fg">│</span>
+00:00:07 #146 [Verbose] &gt; <span class="ansi-green-fg">│</span>     ()                                                                       <span class="ansi-green-fg">│</span>
+00:00:07 #147 [Verbose] &gt; <span class="ansi-green-fg">│</span> let v0 : (unit -&gt; unit) = closure0()                                         <span class="ansi-green-fg">│</span>
+00:00:07 #148 [Verbose] &gt; <span class="ansi-green-fg">│</span> v0 ()                                                                        <span class="ansi-green-fg">│</span>
+00:00:07 #149 [Verbose] &gt; <span class="ansi-green-fg">│</span> ()                                                                           <span class="ansi-green-fg">│</span>
+00:00:07 #150 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:07 #151 [Verbose] &gt; <span class="ansi-green-fg">│</span> [|US5_14 (US4_0 (US0_1, US1_0, US2_0, US3_1))|]                              <span class="ansi-green-fg">│</span>
+00:00:07 #152 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:07 #153 [Verbose] &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:07 #154 [Verbose] &gt;
+00:00:07 #155 [Verbose] &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
+00:00:07 #156 [Verbose] &gt; type PhonologicalFeature =
+00:00:07 #157 [Verbose] &gt;     | VowelFeature of
+00:00:07 #158 [Verbose] &gt;         height: Height
+00:00:07 #159 [Verbose] &gt;         * backness: Backness
+00:00:07 #160 [Verbose] &gt;         * roundedness: Roundedness
+00:00:07 #161 [Verbose] &gt;         * tone: Option&lt;Tone&gt;
+00:00:07 #162 [Verbose] &gt;         * stress: Option&lt;Stress&gt;
+00:00:07 #163 [Verbose] &gt;         * length: Option&lt;Length&gt;
+00:00:07 #164 [Verbose] &gt;     | ConsonantFeature of
+00:00:07 #165 [Verbose] &gt;         place: PlaceOfArticulation
+00:00:07 #166 [Verbose] &gt;         * manner: MannerOfArticulation
+00:00:07 #167 [Verbose] &gt;         * voicing: Voicing
+00:00:07 #168 [Verbose] &gt;         * length: Option&lt;Length&gt;
+00:00:07 #169 [Verbose] &gt;     | VowelHarmonyFeature
+00:00:07 #170 [Verbose] &gt;     | PitchAccentFeature
+00:00:07 #171 [Verbose] &gt;
+00:00:07 #172 [Verbose] &gt; and Stress = Primary | Secondary
+00:00:07 #173 [Verbose] &gt; and Length = Long | Short | HalfLong
+00:00:07 #174 [Verbose] &gt;
+00:00:07 #175 [Verbose] &gt; and Height =
+00:00:07 #176 [Verbose] &gt;     | High | NearHigh | HighMid
+00:00:07 #177 [Verbose] &gt;     | Mid | LowMid | NearLow
+00:00:07 #178 [Verbose] &gt;     | Low
+00:00:07 #179 [Verbose] &gt;
+00:00:07 #180 [Verbose] &gt; and Backness = Front | Central | Back
+00:00:07 #181 [Verbose] &gt;
+00:00:07 #182 [Verbose] &gt; and Roundedness = Rounded | Unrounded
+00:00:07 #183 [Verbose] &gt;
+00:00:07 #184 [Verbose] &gt; and PlaceOfArticulation =
+00:00:07 #185 [Verbose] &gt;     | Bilabial | Labiodental | Dental
+00:00:07 #186 [Verbose] &gt;     | Alveolar | Postalveolar | Retroflex
+00:00:07 #187 [Verbose] &gt;     | Palatal | Velar | Uvular
+00:00:07 #188 [Verbose] &gt;     | Pharyngeal | Epiglottal | Glottal
+00:00:07 #189 [Verbose] &gt;
+00:00:07 #190 [Verbose] &gt; and MannerOfArticulation =
+00:00:07 #191 [Verbose] &gt;     | Plosive | Nasal | Trill
+00:00:07 #192 [Verbose] &gt;     | TapOrFlap | Fricative | LateralFricative
+00:00:07 #193 [Verbose] &gt;     | Approximant | LateralApproximant
+00:00:07 #194 [Verbose] &gt;
+00:00:07 #195 [Verbose] &gt; and Voicing = Voiced | Voiceless
+00:00:07 #196 [Verbose] &gt;
+00:00:07 #197 [Verbose] &gt; and SecondaryArticulation =
+00:00:07 #198 [Verbose] &gt;     | Labialization | Palatalization | Velarization
+00:00:07 #199 [Verbose] &gt;     | Pharyngealization | Aspiration
+00:00:07 #200 [Verbose] &gt;
+00:00:07 #201 [Verbose] &gt; and Tone =
+00:00:07 #202 [Verbose] &gt;     | LevelTone of int
+00:00:07 #203 [Verbose] &gt;     | ContourTone of int list
+00:00:07 #204 [Verbose] &gt;
+00:00:07 #205 [Verbose] &gt; and MorphologicalFeature =
+00:00:07 #206 [Verbose] &gt;     | RootFeature of string
+00:00:07 #207 [Verbose] &gt;     | AffixFeature of AffixType * string
+00:00:07 #208 [Verbose] &gt;     | IncorporationFeature of string * MorphologicalFeature
+00:00:07 #209 [Verbose] &gt;     | NonConcatenativePattern of string * string
+00:00:07 #210 [Verbose] &gt;     | AgglutinativeAffixFeature of AgglutinativeAffixType * string
+00:00:07 #211 [Verbose] &gt;     | HonorificFeature of HonorificType * string
+00:00:07 #212 [Verbose] &gt;
+00:00:07 #213 [Verbose] &gt; and AgglutinativeAffixType = Suffix | Prefix
+00:00:07 #214 [Verbose] &gt;
+00:00:07 #215 [Verbose] &gt; and HonorificType = VerbHonorific | NounHonorific
+00:00:07 #216 [Verbose] &gt;
+00:00:07 #217 [Verbose] &gt; and AffixType =
+00:00:07 #218 [Verbose] &gt;     | Prefix | Suffix | Infix
+00:00:07 #219 [Verbose] &gt;     | Circumfix
+00:00:07 #220 [Verbose] &gt;
+00:00:07 #221 [Verbose] &gt; type SyntacticFeature =
+00:00:07 #222 [Verbose] &gt;     | WordFeature of MorphologicalFeature list * LexicalCategory
+00:00:07 #223 [Verbose] &gt;     | PhraseFeature of PhraseType * SyntacticFeature list
+00:00:07 #224 [Verbose] &gt;     | GrammaticalRelation of GrammaticalRelationType * SyntacticFeature list
+00:00:07 #225 [Verbose] &gt;     | SOVOrderFeature
+00:00:07 #226 [Verbose] &gt;     | TopicCommentFeature
+00:00:07 #227 [Verbose] &gt;
+00:00:07 #228 [Verbose] &gt; and GrammaticalRelationType =
+00:00:07 #229 [Verbose] &gt;     | Ergative | Absolutive | Nominative
+00:00:07 #230 [Verbose] &gt;     | Accusative
+00:00:07 #231 [Verbose] &gt;
+00:00:07 #232 [Verbose] &gt; and LexicalCategory =
+00:00:07 #233 [Verbose] &gt;     | Noun | Verb | Adjective
+00:00:07 #234 [Verbose] &gt;     | Adverb | Pronoun | Preposition
+00:00:07 #235 [Verbose] &gt;     | Conjunction | Determiner | Interjection
+00:00:07 #236 [Verbose] &gt;
+00:00:07 #237 [Verbose] &gt; and PhraseType =
+00:00:07 #238 [Verbose] &gt;     | NP | VP | AP
+00:00:07 #239 [Verbose] &gt;     | PP | CP
+00:00:07 #240 [Verbose] &gt;
+00:00:07 #241 [Verbose] &gt; and SemanticFeature =
+00:00:07 #242 [Verbose] &gt;     | Meaning of string
+00:00:07 #243 [Verbose] &gt;     | SemanticRole of SemanticRoleType * SemanticFeature
+00:00:07 #244 [Verbose] &gt;
+00:00:07 #245 [Verbose] &gt; and SemanticRoleType =
+00:00:07 #246 [Verbose] &gt;     | Agent | Patient | Instrument
+00:00:07 #247 [Verbose] &gt;     | Location | Time | Cause
+00:00:07 #248 [Verbose] &gt;
+00:00:07 #249 [Verbose] &gt; and PragmaticFeature =
+00:00:07 #250 [Verbose] &gt;     | UseContext of string
+00:00:07 #251 [Verbose] &gt;     | PolitenessLevel of Politeness
+00:00:07 #252 [Verbose] &gt;     | SpeechAct of SpeechActType
+00:00:07 #253 [Verbose] &gt;     | SpeechLevel of SpeechLevelType
+00:00:07 #254 [Verbose] &gt;
+00:00:07 #255 [Verbose] &gt; and Politeness = Formal | Informal | Neutral
+00:00:07 #256 [Verbose] &gt;
+00:00:07 #257 [Verbose] &gt; and SpeechActType =
+00:00:07 #258 [Verbose] &gt;     | Assertive | Directive | Commissive
+00:00:07 #259 [Verbose] &gt;     | Expressive | Declarative
+00:00:07 #260 [Verbose] &gt;
+00:00:07 #261 [Verbose] &gt; and SpeechLevelType =
+00:00:07 #262 [Verbose] &gt;     | FormalHigh | FormalLow | InformalHigh
+00:00:07 #263 [Verbose] &gt;     | InformalLow | Neutral
+00:00:07 #264 [Verbose] &gt;
+00:00:07 #265 [Verbose] &gt; type LinguisticFeature =
+00:00:07 #266 [Verbose] &gt;     | Phonological of PhonologicalFeature
+00:00:07 #267 [Verbose] &gt;     | Morphological of MorphologicalFeature
+00:00:07 #268 [Verbose] &gt;     | Syntactic of SyntacticFeature
+00:00:07 #269 [Verbose] &gt;     | Semantic of SemanticFeature
+00:00:07 #270 [Verbose] &gt;     | Pragmatic of PragmaticFeature
+00:00:07 #271 [Verbose] &gt;
+00:00:07 #272 [Verbose] &gt; type LanguageConstruct =
+00:00:07 #273 [Verbose] &gt;     | LanguageElement of LinguisticFeature
+00:00:07 #274 [Verbose] &gt;     | LanguageStructure of LanguageConstruct list
+00:00:07 #275 [Verbose] &gt;     | TranslationElement of TranslationFeature
+00:00:07 #276 [Verbose] &gt;
+00:00:07 #277 [Verbose] &gt; and TranslationFeature =
+00:00:07 #278 [Verbose] &gt;     | LinkedPhonological of PhonologicalFeature * PhonologicalFeature
+00:00:07 #279 [Verbose] &gt;     | LinkedMorphological of MorphologicalFeature * MorphologicalFeature
+00:00:07 #280 [Verbose] &gt;     | LinkedSyntactic of SyntacticFeature * SyntacticFeature
+00:00:07 #281 [Verbose] &gt;     | LinkedSemantic of SemanticFeature * SemanticFeature
+00:00:07 #282 [Verbose] &gt;
+00:00:07 #283 [Verbose] &gt; type Discourse = DiscourseUnit of LanguageConstruct list
+00:00:07 #284 [Verbose] &gt;
+00:00:07 #285 [Verbose] &gt; type LanguageModel =
+00:00:07 #286 [Verbose] &gt;     | Model of discourse: Discourse
+00:00:07 #287 [Verbose] &gt;
+00:00:07 #288 [Verbose] &gt; <span style="color: rgb(135,135,175)">── fsharp - import ─────────────────────────────────────────────────────────────</span>
+00:00:07 #289 [Verbose] &gt; #r
+00:00:07 #290 [Verbose] &gt; "/home/runner/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.Asp
+00:00:07 #291 [Verbose] &gt; NetCore.Html.Abstractions.dll"
+00:00:07 #292 [Verbose] &gt; #r
+00:00:07 #293 [Verbose] &gt; "/home/runner/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.Dot
+00:00:07 #294 [Verbose] &gt; Net.Interactive.dll"
+00:00:07 #295 [Verbose] &gt; #r
+00:00:07 #296 [Verbose] &gt; "/home/runner/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.Dot
+00:00:07 #297 [Verbose] &gt; Net.Interactive.FSharp.dll"
+00:00:07 #298 [Verbose] &gt; #r
+00:00:07 #299 [Verbose] &gt; "/home/runner/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.Dot
+00:00:07 #300 [Verbose] &gt; Net.Interactive.Formatting.dll"
+00:00:07 #301 [Verbose] &gt; open System
+00:00:07 #302 [Verbose] &gt; open System.IO
+00:00:07 #303 [Verbose] &gt; open System.Text
+00:00:07 #304 [Verbose] &gt; open Microsoft.DotNet.Interactive.Formatting
+00:00:07 #305 [Verbose] &gt;
+00:00:07 #306 [Verbose] &gt; <span style="color: rgb(135,135,175)">── fsharp - import ─────────────────────────────────────────────────────────────</span>
+00:00:07 #307 [Verbose] &gt; #r
+00:00:07 #308 [Verbose] &gt; "/home/runner/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.Dot
+00:00:07 #309 [Verbose] &gt; Net.Interactive.FSharp.dll"
+00:00:07 #310 [Verbose] &gt; open Microsoft.DotNet.Interactive.FSharp.FSharpKernelHelpers
+00:00:07 #311 [Verbose] &gt; #r
+00:00:07 #312 [Verbose] &gt; "/home/runner/.nuget/packages/dotnet-repl/0.1.204/tools/net7.0/any/Microsoft.Dot
+00:00:07 #313 [Verbose] &gt; Net.Interactive.dll"
+00:00:07 #314 [Verbose] &gt; open type Microsoft.DotNet.Interactive.Kernel
+00:00:07 #315 [Verbose] &gt;
+00:00:07 #316 [Verbose] &gt; <span style="color: rgb(135,135,175)">── fsharp - import ─────────────────────────────────────────────────────────────</span>
+00:00:07 #317 [Verbose] &gt; type PhonologicalFeature =
+00:00:07 #318 [Verbose] &gt;     | VowelFeature of
+00:00:07 #319 [Verbose] &gt;         height: Height
+00:00:07 #320 [Verbose] &gt;         * backness: Backness
+00:00:07 #321 [Verbose] &gt;         * roundedness: Roundedness
+00:00:07 #322 [Verbose] &gt;         * tone: Option&lt;Tone&gt;
+00:00:07 #323 [Verbose] &gt;         * stress: Option&lt;Stress&gt;
+00:00:07 #324 [Verbose] &gt;         * length: Option&lt;Length&gt;
+00:00:07 #325 [Verbose] &gt;     | ConsonantFeature of
+00:00:07 #326 [Verbose] &gt;         place: PlaceOfArticulation
+00:00:07 #327 [Verbose] &gt;         * manner: MannerOfArticulation
+00:00:07 #328 [Verbose] &gt;         * voicing: Voicing
+00:00:07 #329 [Verbose] &gt;         * length: Option&lt;Length&gt;
+00:00:07 #330 [Verbose] &gt;     | VowelHarmonyFeature
+00:00:07 #331 [Verbose] &gt;     | PitchAccentFeature
+00:00:07 #332 [Verbose] &gt;
+00:00:07 #333 [Verbose] &gt; and Stress = Primary | Secondary
+00:00:07 #334 [Verbose] &gt; and Length = Long | Short | HalfLong
+00:00:07 #335 [Verbose] &gt;
+00:00:07 #336 [Verbose] &gt; and Height =
+00:00:07 #337 [Verbose] &gt;     | High | NearHigh | HighMid
+00:00:07 #338 [Verbose] &gt;     | Mid | LowMid | NearLow
+00:00:07 #339 [Verbose] &gt;     | Low
+00:00:07 #340 [Verbose] &gt;
+00:00:07 #341 [Verbose] &gt; and Backness = Front | Central | Back
+00:00:07 #342 [Verbose] &gt;
+00:00:07 #343 [Verbose] &gt; and Roundedness = Rounded | Unrounded
+00:00:07 #344 [Verbose] &gt;
+00:00:07 #345 [Verbose] &gt; and PlaceOfArticulation =
+00:00:07 #346 [Verbose] &gt;     | Bilabial | Labiodental | Dental
+00:00:07 #347 [Verbose] &gt;     | Alv...
+00:00:08 #348 [Verbose] &gt;
+00:00:08 #349 [Verbose] &gt; <span style="color: rgb(135,135,175)">── fsharp ──────────────────────────────────────────────────────────────────────</span>
+00:00:08 #350 [Verbose] &gt; let testEnglish =
+00:00:08 #351 [Verbose] &gt;     Model(
+00:00:08 #352 [Verbose] &gt;         DiscourseUnit [[
+00:00:08 #353 [Verbose] &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:08 #354 [Verbose] &gt; Voiced, Some(HalfLong))));
+00:00:08 #355 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:08 #356 [Verbose] &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:08 #357 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:08 #358 [Verbose] &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:08 #359 [Verbose] &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:08 #360 [Verbose] &gt; Voiceless, Some(HalfLong))));
+00:00:08 #361 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "I"));
+00:00:08 #362 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "see"));
+00:00:08 #363 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "a"));
+00:00:08 #364 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "cat"));
+00:00:08 #365 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:08 #366 [Verbose] &gt; ([[RootFeature "I"]], Pronoun)]])));
+00:00:08 #367 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:08 #368 [Verbose] &gt; ([[RootFeature "see"]], Verb)]])));
+00:00:08 #369 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:08 #370 [Verbose] &gt; ([[RootFeature "a"; RootFeature "cat"]], Noun)]])));
+00:00:08 #371 [Verbose] &gt;             LanguageElement (Semantic (Meaning "Perception act of a feline by
+00:00:08 #372 [Verbose] &gt; the speaker"));
+00:00:08 #373 [Verbose] &gt;             LanguageElement (Pragmatic (UseContext "Statement of an action being
+00:00:08 #374 [Verbose] &gt; observed"))
+00:00:08 #375 [Verbose] &gt;         ]]
+00:00:08 #376 [Verbose] &gt;     )
+00:00:08 #377 [Verbose] &gt;
+00:00:08 #378 [Verbose] &gt; let testPortuguese =
+00:00:08 #379 [Verbose] &gt;     Model(
+00:00:08 #380 [Verbose] &gt;         DiscourseUnit [[
+00:00:08 #381 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (High, Front, Unrounded,
+00:00:08 #382 [Verbose] &gt; Some(LevelTone 1), Some(Primary), Some(Short))));
+00:00:08 #383 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (Low, Front, Unrounded,
+00:00:08 #384 [Verbose] &gt; Some(LevelTone 2), Some(Secondary), Some(Long))));
+00:00:08 #385 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (Mid, Back, Rounded,
+00:00:08 #386 [Verbose] &gt; Some(LevelTone 3), Some(Primary), Some(Short))));
+00:00:08 #387 [Verbose] &gt;             LanguageElement (Phonological (ConsonantFeature (Velar, Plosive,
+00:00:08 #388 [Verbose] &gt; Voiceless, Some(HalfLong))));
+00:00:08 #389 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "Eu"));
+00:00:08 #390 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "ver" |&gt; ignore;
+00:00:08 #391 [Verbose] &gt; AffixFeature (Suffix, "o")));
+00:00:08 #392 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "um"));
+00:00:08 #393 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "gato"));
+00:00:08 #394 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:08 #395 [Verbose] &gt; ([[RootFeature "Eu"]], Pronoun)]])));
+00:00:08 #396 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:08 #397 [Verbose] &gt; ([[RootFeature "vejo"]], Verb)]])));
+00:00:08 #398 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:08 #399 [Verbose] &gt; ([[RootFeature "um"; RootFeature "gato"]], Noun)]])));
+00:00:08 #400 [Verbose] &gt;             LanguageElement (Semantic (Meaning "Ação de percepção de um felino
+00:00:08 #401 [Verbose] &gt; pelo falante"));
+00:00:08 #402 [Verbose] &gt;             LanguageElement (Pragmatic (UseContext "Declaração de uma ação sendo
+00:00:08 #403 [Verbose] &gt; observada"))
+00:00:08 #404 [Verbose] &gt;         ]]
+00:00:08 #405 [Verbose] &gt;     )
+00:00:08 #406 [Verbose] &gt;
+00:00:08 #407 [Verbose] &gt; let testKorean =
+00:00:08 #408 [Verbose] &gt;     Model(
+00:00:08 #409 [Verbose] &gt;         DiscourseUnit [[
+00:00:08 #410 [Verbose] &gt;             LanguageElement (Phonological (ConsonantFeature (Alveolar, Nasal,
+00:00:08 #411 [Verbose] &gt; Voiced, Some(Short))));
+00:00:08 #412 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (High, Back, Rounded,
+00:00:08 #413 [Verbose] &gt; None, None, Some(Short))));
+00:00:08 #414 [Verbose] &gt;             LanguageElement (Phonological (VowelFeature (Mid, Front, Unrounded,
+00:00:08 #415 [Verbose] &gt; None, None, Some(Long))));
+00:00:08 #416 [Verbose] &gt;             LanguageElement (Phonological (ConsonantFeature (Bilabial, Plosive,
+00:00:08 #417 [Verbose] &gt; Voiceless, Some(Short))));
+00:00:08 #418 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "나"));
+00:00:08 #419 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "보다"));
+00:00:08 #420 [Verbose] &gt;             LanguageElement (Morphological (AffixFeature (Suffix, "아")));
+00:00:08 #421 [Verbose] &gt;             LanguageElement (Morphological (RootFeature "고양이"));
+00:00:08 #422 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:08 #423 [Verbose] &gt; ([[RootFeature "나"]], Pronoun)]])));
+00:00:08 #424 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (VP, [[WordFeature
+00:00:08 #425 [Verbose] &gt; ([[RootFeature "보다"; AffixFeature (Suffix, "아")]], Verb)]])));
+00:00:08 #426 [Verbose] &gt;             LanguageElement (Syntactic (PhraseFeature (NP, [[WordFeature
+00:00:08 #427 [Verbose] &gt; ([[RootFeature "고양이"]], Noun)]])));
+00:00:08 #428 [Verbose] &gt;             LanguageElement (Semantic (Meaning "화자에 의한 고양이의 관찰
+00:00:08 #429 [Verbose] &gt; 행위"));
+00:00:08 #430 [Verbose] &gt;             LanguageElement (Pragmatic (UseContext "관찰되고 있는 행동의 진술"))
+00:00:08 #431 [Verbose] &gt;         ]]
+00:00:08 #432 [Verbose] &gt;     )
+00:00:08 #433 [Verbose] &gt;
+00:00:08 #434 [Verbose] &gt; <span style="color: rgb(135,135,175)">── markdown ────────────────────────────────────────────────────────────────────</span>
+00:00:08 #435 [Verbose] &gt; <span style="color: rgb(135,135,175)">╭──────────────────────────────────────────────────────────────────────────────╮</span>
+00:00:08 #436 [Verbose] &gt; <span style="color: rgb(135,135,175)">│</span> ## main                                                                      <span style="color: rgb(135,135,175)">│</span>
+00:00:08 #437 [Verbose] &gt; <span style="color: rgb(135,135,175)">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:08 #438 [Verbose] &gt;
+00:00:08 #439 [Verbose] &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:08 #440 [Verbose] &gt; inl main (_args : array_base string) =
+00:00:08 #441 [Verbose] &gt;     0i32
+00:00:08 #442 [Verbose] &gt;
+00:00:08 #443 [Verbose] &gt; inl main () =
+00:00:08 #444 [Verbose] &gt;     $"let main args = !main args" : ()
+00:00:08 #445 [Verbose] &gt; Building /tmp/!dotnet-repl/20240319-2007-0324-2499-2708527929ad/main.spi
+00:00:08 #446 [Verbose] &gt;
+00:00:08 #447 [Verbose] &gt; <span class="ansi-green-fg">╭─[ 165.00ms - stdout ]────────────────────────────────────────────────────────╮</span>
+00:00:08 #448 [Verbose] &gt; <span class="ansi-green-fg">│</span> let rec closure0 () (v0 : (string [])) : int32 =                             <span class="ansi-green-fg">│</span>
+00:00:08 #449 [Verbose] &gt; <span class="ansi-green-fg">│</span>     0                                                                        <span class="ansi-green-fg">│</span>
+00:00:08 #450 [Verbose] &gt; <span class="ansi-green-fg">│</span> let v0 : ((string []) -&gt; int32) = closure0()                                 <span class="ansi-green-fg">│</span>
+00:00:08 #451 [Verbose] &gt; <span class="ansi-green-fg">│</span> let main args = v0 args                                                      <span class="ansi-green-fg">│</span>
+00:00:08 #452 [Verbose] &gt; <span class="ansi-green-fg">│</span> ()                                                                           <span class="ansi-green-fg">│</span>
+00:00:08 #453 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:08 #454 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:08 #455 [Verbose] &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:08 #456 [Verbose] &gt;
+00:00:08 #457 [Verbose] &gt; <span style="color: rgb(135,135,175)">── spiral ──────────────────────────────────────────────────────────────────────</span>
+00:00:08 #458 [Verbose] &gt; inl app () =
+00:00:08 #459 [Verbose] &gt;     "test" |&gt; console.write_line
+00:00:08 #460 [Verbose] &gt;     0i32
+00:00:08 #461 [Verbose] &gt;
+00:00:08 #462 [Verbose] &gt; inl main () =
+00:00:08 #463 [Verbose] &gt;     print_static "&lt;test&gt;"
+00:00:08 #464 [Verbose] &gt;
+00:00:08 #465 [Verbose] &gt;     app
+00:00:08 #466 [Verbose] &gt;     |&gt; dyn
+00:00:08 #467 [Verbose] &gt;     |&gt; ignore
+00:00:08 #468 [Verbose] &gt;
+00:00:08 #469 [Verbose] &gt;     print_static "&lt;/test&gt;"
+00:00:08 #470 [Verbose] &gt; Building /tmp/!dotnet-repl/20240319-2007-0341-4141-43aadeaa40df/main.spi
+00:00:09 #471 [Verbose] &gt; &lt;test&gt;
+00:00:09 #472 [Verbose] &gt; &lt;/test&gt;
+00:00:09 #473 [Verbose] &gt;
+00:00:09 #474 [Verbose] &gt; <span class="ansi-green-fg">╭─[ 164.20ms - stdout ]────────────────────────────────────────────────────────╮</span>
+00:00:09 #475 [Verbose] &gt; <span class="ansi-green-fg">│</span> let rec closure0 () () : int32 =                                             <span class="ansi-green-fg">│</span>
+00:00:09 #476 [Verbose] &gt; <span class="ansi-green-fg">│</span>     let v0 : string = "test"                                                 <span class="ansi-green-fg">│</span>
+00:00:09 #477 [Verbose] &gt; <span class="ansi-green-fg">│</span>     System.Console.WriteLine v0                                              <span class="ansi-green-fg">│</span>
+00:00:09 #478 [Verbose] &gt; <span class="ansi-green-fg">│</span>     0                                                                        <span class="ansi-green-fg">│</span>
+00:00:09 #479 [Verbose] &gt; <span class="ansi-green-fg">│</span> let v0 : (unit -&gt; int32) = closure0()                                        <span class="ansi-green-fg">│</span>
+00:00:09 #480 [Verbose] &gt; <span class="ansi-green-fg">│</span> ()                                                                           <span class="ansi-green-fg">│</span>
+00:00:09 #481 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:09 #482 [Verbose] &gt; <span class="ansi-green-fg">│</span>                                                                              <span class="ansi-green-fg">│</span>
+00:00:09 #483 [Verbose] &gt; <span class="ansi-green-fg">╰──────────────────────────────────────────────────────────────────────────────╯</span>
+00:00:09 #484 [Verbose] &gt; [NbConvertApp] Converting notebook test.dib.ipynb to html
+00:00:09 #485 [Verbose] &gt; /opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/nbformat/__init__.py:96: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+00:00:09 #486 [Verbose] &gt;   validate(nb)
+00:00:10 #487 [Verbose] &gt; /opt/hostedtoolcache/Python/3.10.13/x64/lib/python3.10/site-packages/nbconvert/filters/highlight.py:71: UserWarning: IPython3 lexer unavailable, falling back on Python 3
+00:00:10 #488 [Verbose] &gt;   return _pygments_highlight(
+00:00:10 #489 [Verbose] &gt; [NbConvertApp] Writing 321585 bytes to test.dib.html
+00:00:10 #490 [Debug] executeAsync / exitCode: 0 / output.Length: 21665
+00:00:10 #491 [Debug] main / executeCommand / exitCode: 0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">apps</span><span class="o">/</span><span class="n">parser</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">DibParser</span><span class="err">$</span><span class="p">(</span><span class="n">GetExecutableSuffix</span><span class="p">)</span> <span class="n">test</span><span class="o">.</span><span class="n">dib</span> <span class="n">spi</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>00:00:00 #1 [Debug] writeDibCode / output: Spi / path: test.dib
+00:00:00 #2 [Debug] parseDibCode / output: Spi / file: test.dib
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">.</span> <span class="o">../../../../</span><span class="n">apps</span><span class="o">/</span><span class="n">spiral</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">Supervisor</span><span class="err">$</span><span class="p">(</span><span class="n">GetExecutableSuffix</span><span class="p">)</span> <span class="o">--</span><span class="n">build</span><span class="o">-</span><span class="n">file</span> <span class="n">test</span><span class="o">.</span><span class="n">spi</span> <span class="n">test</span><span class="o">.</span><span class="n">fsx</span> <span class="o">--</span><span class="n">timeout</span> <span class="mi">10000</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
 </pre></div>
 </div>
@@ -7584,7 +8136,7 @@ a.anchor-link {
 00:00:00 #18 [Verbose] &gt; Server bound to: http://localhost:13805
 00:00:00 #19 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
 00:00:00 #20 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #21 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    \u0022test\u0022 |\u003E console.write_line\n    0i32\n\ninl main () =\n    print_static \u0022\u003Ctest\u003E\u0022\n\n    app\n    |\u003E dyn\n    |\u003E ignore\n\n    print_static \u0022\u003C/test\u003E\u0022\n","uri":"file:///home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi"}} / result.Length:
+00:00:00 #21 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"// // # test (Polyglot)\n\nnominal i = ()\nnominal e = ()\nnominal s = ()\nnominal n = ()\nnominal t = ()\nnominal f = ()\nnominal j = ()\nnominal p = ()\n\nunion sensing =\n    | Si : s * i\n    | Se : s * e\n\nunion intuition =\n    | Ni : n * i\n    | Ne : n * e\n\nunion thinking =\n    | Ti : t * i\n    | Te : t * e\n\nunion feeling =\n    | Fi : f * i\n    | Fe : f * e\n\nunion function_stack =\n    | FS : sensing * intuition * thinking * feeling\n\nunion personality_type =\n    | ISTJ : i * s * t * j * function_stack\n    | ISFJ : i * s * f * j * function_stack\n    | INFJ : i * n * f * j * function_stack\n    | INTJ : i * n * t * j * function_stack\n    | ISTP : i * s * t * p * function_stack\n    | ISFP : i * s * f * p * function_stack\n    | INFP : i * n * f * p * function_stack\n    | INTP : i * n * t * p * function_stack\n    | ESTP : e * s * t * p * function_stack\n    | ESFP : e * s * f * p * function_stack\n    | ENFP : e * n * f * p * function_stack\n    | ENTP : e * n * t * p * function_stack\n    | ESTJ : e * s * t * j * function_stack\n    | ESFJ : e * s * f * j * function_stack\n    | ENFJ : e * n * f * j * function_stack\n    | ENTJ : e * n * t * j * function_stack\n\n\ninl main () =\n    inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))\n    inl istj_personality = ISTJ (i, s, t, j, istj_stack)\n    // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))\n    // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)\n\n    ;[\n        istj_personality\n    ]\n    |\u003E fun x =\u003E $\u0027$\u0022%A{!x}\u0022\u0027 : string\n    |\u003E console.write_line\n\ninl main () =\n    $\u0022!main ()\u0022 : ()\n\n// // ## main\n\ninl main (_args : array_base string) =\n    0i32\n\ninl main () =\n    $\u0022let main args = !main args\u0022 : ()\n\ninl app () =\n    \u0022test\u0022 |\u003E console.write_line\n    0i32\n\ninl main () =\n    print_static \u0022\u003Ctest\u003E\u0022\n\n    app\n    |\u003E dyn\n    |\u003E ignore\n\n    print_static \u0022\u003C/test\u003E\u0022\n","uri":"file:///home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi"}} / result.Length:
 00:00:00 #22 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi"}} / result.Length:
 00:00:01 #23 [Verbose] &gt; Building /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.spi
 00:00:01 #24 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
@@ -7603,7 +8155,7 @@ let v0 : (unit -&gt; int32) = closure0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7626,7 +8178,7 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-white-fg">Fable 4.14.0: F# to Rust compiler (status: alpha)
 </span><span class="ansi-white-fg">
-Thanks to the contributor! @NickDarvey
+Thanks to the contributor! @ctaggart
 </span><span class="ansi-white-fg">Stand with Ukraine! https://standwithukraine.com.ua/
 
 </span><span class="ansi-white-fg">Parsing test.fsproj...
@@ -7639,11 +8191,11 @@ Thanks to the contributor! @NickDarvey
   Restoring /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fable-temp.csproj
   Starting restore process.
   Total time taken: 0 milliseconds
-  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fable-temp.csproj (in 241 ms).
+  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fable-temp.csproj (in 243 ms).
 </span><span class="ansi-white-fg">.&gt; dotnet restore /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fsproj
   Determining projects to restore...
-  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fsproj (in 246 ms).
-</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 4894ms
+  Restored /home/runner/work/polyglot/polyglot/apps/spiral/temp/test/test.fsproj (in 267 ms).
+</span><span class="ansi-white-fg">Project and references (1 source files) parsed in 4913ms
 
 </span><span class="ansi-white-fg">Started Fable compilation...
 </span><span class="ansi-white-fg">
@@ -7655,7 +8207,7 @@ Fable compilation finished in 987ms
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7671,7 +8223,7 @@ Fable compilation finished in 987ms
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7685,7 +8237,7 @@ Fable compilation finished in 987ms
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7706,78 +8258,64 @@ Fable compilation finished in 987ms
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
-<span class="ansi-red-intense-fg ansi-bold"> Downloading crates ...</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded bit-vec v0.6.3</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded bit-set v0.5.3</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded fastrand v2.0.1</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded libm v0.2.8</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded wait-timeout v0.2.0</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded proptest v1.4.0</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded unarray v0.1.4</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded tempfile v3.10.1</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded rusty-fork v0.3.0</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded rand_xorshift v0.3.0</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded nom v7.1.3</span>
-<span class="ansi-red-intense-fg ansi-bold">  Downloaded minimal-lexical v0.2.1</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">   Compiling cfg-if v1.0.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling libc v0.2.153</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling cfg-if v1.0.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling autocfg v1.1.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling libm v0.2.8</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2 v1.0.79</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-ident v1.0.12</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling num-traits v0.2.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-ident v1.0.12</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling quote v1.0.35</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling getrandom v0.2.12</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rustix v0.38.31</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling once_cell v1.19.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling memchr v2.7.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v2.0.53</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand_core v0.6.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v2.0.53</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bitflags v2.4.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling linux-raw-sys v0.4.13</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling regex-syntax v0.8.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling bitflags v2.4.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling aho-corasick v1.1.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-core v0.1.32</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling num-bigint v0.4.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling fastrand v2.0.1</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling lazy_static v1.4.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling rust_decimal v1.34.3</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling ppv-lite86 v0.2.17</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling fastrand v2.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rust_decimal v1.34.3</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tempfile v3.10.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling regex-automata v0.4.6</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand_chacha v0.3.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling regex-automata v0.4.6</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling num-integer v0.1.46</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling wait-timeout v0.2.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling arrayvec v0.7.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling fnv v1.0.7</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling quick-error v1.2.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling bit-vec v0.6.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling log v0.4.21</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.58</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling overload v0.1.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling log v0.4.21</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bit-vec v0.6.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.58</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling fnv v1.0.7</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling iana-time-zone v0.1.60</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rusty-fork v0.3.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling chrono v0.4.35</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror-impl v1.0.58</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-attributes v0.1.27</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror-impl v1.0.58</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling regex v1.10.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling nu-ansi-term v0.46.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling bit-set v0.5.3</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-log v0.2.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling rusty-fork v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling nu-ansi-term v0.46.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand v0.8.5</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling sharded-slab v0.1.7</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand_xorshift v0.3.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling thread_local v1.1.8</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling uuid v1.7.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling smallvec v1.13.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling unarray v0.1.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project-lite v0.2.13</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling minimal-lexical v0.2.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-subscriber v0.3.18</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing v0.1.40</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project-lite v0.2.13</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling unarray v0.1.4</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling smallvec v1.13.1</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling nom v7.1.3</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling proptest v1.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-subscriber v0.3.18</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing v0.1.40</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/fable_modules/fable-library-rust)</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)</span>
 <span class="ansi-red-intense-fg ansi-bold">warning: the item `any` is imported redundantly</span>
@@ -7869,13 +8407,13 @@ Fable compilation finished in 987ms
 <span class="ansi-red-intense-fg ansi-bold">    |    ^^^^^^^^^^^^^^^^</span>
 
 <span class="ansi-red-intense-fg ansi-bold">warning: `spiral_temp_test` (bin "spiral_temp_test") generated 12 warnings (run `cargo fix --bin "spiral_temp_test"` to apply 1 suggestion)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 20.42s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 18.29s</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7902,36 +8440,36 @@ Fable compilation finished in 987ms
 <span class="ansi-red-intense-fg ansi-bold">   Compiling libm v0.2.8</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling memchr v2.7.1</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling once_cell v1.19.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling bitflags v2.4.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling regex-syntax v0.8.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling getrandom v0.2.12</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling num-traits v0.2.18</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand_core v0.6.4</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling linux-raw-sys v0.4.13</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bitflags v2.4.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling aho-corasick v1.1.2</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rustix v0.38.31</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-core v0.1.32</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling lazy_static v1.4.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling ppv-lite86 v0.2.17</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling fastrand v2.0.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling ppv-lite86 v0.2.17</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling lazy_static v1.4.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand_chacha v0.3.1</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tempfile v3.10.1</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling regex-automata v0.4.6</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling num-integer v0.1.46</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling wait-timeout v0.2.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling fnv v1.0.7</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling log v0.4.21</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling quick-error v1.2.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling iana-time-zone v0.1.60</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling overload v0.1.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling fnv v1.0.7</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling bit-vec v0.6.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling overload v0.1.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling quick-error v1.2.3</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling arrayvec v0.7.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling bit-set v0.5.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling chrono v0.4.35</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling rust_decimal v1.34.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-log v0.2.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling nu-ansi-term v0.46.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling iana-time-zone v0.1.60</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rusty-fork v0.3.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling rust_decimal v1.34.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling chrono v0.4.35</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling bit-set v0.5.3</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling nu-ansi-term v0.46.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-log v0.2.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling num-bigint v0.4.4</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand v0.8.5</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling regex v1.10.3</span>
@@ -7939,14 +8477,14 @@ Fable compilation finished in 987ms
 <span class="ansi-red-intense-fg ansi-bold">   Compiling rand_xorshift v0.3.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling uuid v1.7.0</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling thread_local v1.1.8</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project-lite v0.2.13</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling smallvec v1.13.1</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling unarray v0.1.4</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling minimal-lexical v0.2.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling smallvec v1.13.1</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling pin-project-lite v0.2.13</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling proptest v1.4.0</span>
+<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing v0.1.40</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling nom v7.1.3</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling tracing-subscriber v0.3.18</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling tracing v0.1.40</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.58</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling fable_library_rust v0.1.0 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test/fable_modules/fable-library-rust)</span>
 <span class="ansi-red-intense-fg ansi-bold">   Compiling spiral_temp_test v0.0.1 (/home/runner/work/polyglot/polyglot/apps/spiral/temp/test)</span>
@@ -7969,278 +8507,278 @@ Fable compilation finished in 987ms
 <span class="ansi-red-intense-fg ansi-bold">   |     -------------------- the item `Arbitrary` is already imported here</span>
 
 <span class="ansi-red-intense-fg ansi-bold">warning: `spiral_temp_test` (bin "spiral_temp_test" test) generated 2 warnings</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 22.06s</span>
+<span class="ansi-red-intense-fg ansi-bold">    Finished `release` profile [optimized] target(s) in 21.75s</span>
 <span class="ansi-red-intense-fg ansi-bold">     Running unittests main.rs (/home/runner/work/polyglot/polyglot/target/release/deps/spiral_temp_test-6c5193c1fbcacfec)</span>
 
 running 3 tests
-2024-03-18T13:49:44.340630Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(5180720636459014638)
 test test_parse_number ... ok
-2024-03-18T13:49:44.340689Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("ipHk2erKR7eK4M")
-2024-03-18T13:49:44.340718Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("l-EtfG`&amp;-.{-_p")
-2024-03-18T13:49:44.340746Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&lt;.s%O%ct$B,oP*W8/X03")
-2024-03-18T13:49:44.340777Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("iL6SyZX8Inyo68g7u")
-2024-03-18T13:49:44.340809Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.340829Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4306965608194038238)
-2024-03-18T13:49:44.340847Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8286735750887397412)
-2024-03-18T13:49:44.340864Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1544300716285979725)
-2024-03-18T13:49:44.340881Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-5912789771620597117)
-2024-03-18T13:49:44.340900Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(4881423108386694756)
-2024-03-18T13:49:44.340921Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("#L")
-2024-03-18T13:49:44.340940Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.340961Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
-2024-03-18T13:49:44.340980Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.340998Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.341019Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
-2024-03-18T13:49:44.341047Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("qlq#MM?&amp;#*E@XT8sU9n8Y.Pj")
-2024-03-18T13:49:44.341072Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("R32G2J4")
-2024-03-18T13:49:44.341092Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6954571073925518335)
-2024-03-18T13:49:44.341110Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8927021337827541609)
-2024-03-18T13:49:44.341129Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("y$/n")
-2024-03-18T13:49:44.341158Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("OlT4d45IF0rjVSh05Mkm5NDN4RY")
-2024-03-18T13:49:44.341189Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("mSAb7mlyCf1jWpf7RxbuF3sgq1")
-2024-03-18T13:49:44.341220Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("(4|$uk{c*S&gt;hMK{0r{")
-2024-03-18T13:49:44.341251Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("/&amp;)C`I9?p-{WH{MV3'&lt;zx2#")
-2024-03-18T13:49:44.341273Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(3918699556852897714)
-2024-03-18T13:49:44.341309Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(":',,DGD``8c[8'|*.S``V/`/e^|%&gt;?&lt;")
-2024-03-18T13:49:44.341337Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("gZ\"I*/l4E1")
-2024-03-18T13:49:44.341368Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("ymCPW03Io85r6LzN9giNE7LfIK6n")
-2024-03-18T13:49:44.341397Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("/3?V~}`o81{h#z%GArg")
-2024-03-18T13:49:44.341424Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("u4rD527B80KLX4")
-2024-03-18T13:49:44.341452Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("r nLQ'!odZ+&amp;e{/=G:Nlhv")
-2024-03-18T13:49:44.341481Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("WHF76fC5Vj1z2Pvfx45JXCyptS4WZQ")
-2024-03-18T13:49:44.341505Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("rY0dinEdR")
-2024-03-18T13:49:44.341524Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("")
-2024-03-18T13:49:44.341542Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("U")
-2024-03-18T13:49:44.341562Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.341587Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("2Wrt&amp;7e&amp;:*R")
-2024-03-18T13:49:44.341609Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("")
-2024-03-18T13:49:44.341628Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("Qs$")
-2024-03-18T13:49:44.341653Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("HtphGjth{Q_fW")
-2024-03-18T13:49:44.341683Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("YngGT2gUZ9Px7LgW4L4RViLbXpIt1")
-2024-03-18T13:49:44.341711Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(":zt.$:z;/8&lt;;8`/=PV&amp;%F")
-2024-03-18T13:49:44.341740Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("cJMp6yI1Ywk4C2MsVC4T")
-2024-03-18T13:49:44.341770Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(".y}%SPJ_L}:k0n:B#o*'&amp;(I.")
-2024-03-18T13:49:44.341792Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("qWt99C")
-2024-03-18T13:49:44.341810Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(3236562037729454265)
-2024-03-18T13:49:44.341834Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("&amp;@&amp;)h$\"\"$=)'")
-2024-03-18T13:49:44.341852Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-3841648919273887471)
-2024-03-18T13:49:44.341870Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6676179033208754033)
-2024-03-18T13:49:44.341886Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1927229232530630687)
-2024-03-18T13:49:44.341905Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(",")
-2024-03-18T13:49:44.341928Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("E(=B//6t3T")
-2024-03-18T13:49:44.341948Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
-2024-03-18T13:49:44.341976Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("yNdd`\\l3%M(DsH\\fT\\B\\PQh`_")
-2024-03-18T13:49:44.341999Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.342017Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1615159669492590798)
-2024-03-18T13:49:44.342045Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("ivOv$%nsTe/7_T.z';==i3mgby")
-2024-03-18T13:49:44.342067Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1189137383350699281)
-2024-03-18T13:49:44.342085Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.342105Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("xe2c47g")
-2024-03-18T13:49:44.342122Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(4057448124988557726)
-2024-03-18T13:49:44.342142Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
-2024-03-18T13:49:44.342162Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.342182Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.342209Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("4!'ND\\F*mB$)%{{?\"W^K=ab:")
-2024-03-18T13:49:44.342234Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&lt;&amp;`'?eG .9")
-2024-03-18T13:49:44.342253Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-5432228937378629148)
-2024-03-18T13:49:44.342270Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-3030684066580610212)
-2024-03-18T13:49:44.342293Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("0RNTo\"w*%\\,3")
-2024-03-18T13:49:44.342314Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("xP")
-2024-03-18T13:49:44.342335Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Apt0CD")
-2024-03-18T13:49:44.342354Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.342372Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.342393Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("S(',:h@ E")
-2024-03-18T13:49:44.342413Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.342429Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.342451Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("R\"-M`ON_$?I&lt;/BJX\"FFh\\e")
-2024-03-18T13:49:44.342473Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("R")
-2024-03-18T13:49:44.342489Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4079573127385292767)
-2024-03-18T13:49:44.342506Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-2946266840487114280)
-2024-03-18T13:49:44.342524Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.342550Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("kc{&amp;`X:K$&lt;+ZtW7E~%i")
-2024-03-18T13:49:44.342572Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.342592Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("s9")
-2024-03-18T13:49:44.342612Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("$")
-2024-03-18T13:49:44.342633Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("NS415D6gX")
-2024-03-18T13:49:44.342650Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1152673651853069790)
-2024-03-18T13:49:44.342671Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("]E`kP?$")
-2024-03-18T13:49:44.342689Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(3067803849779673900)
-2024-03-18T13:49:44.342707Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.342730Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("/92FZF&amp;&lt;|*q")
-2024-03-18T13:49:44.342750Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
-2024-03-18T13:49:44.342772Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("rFnMdGm8CjgV")
-2024-03-18T13:49:44.342790Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6790229859629762990)
-2024-03-18T13:49:44.342811Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("wa|?`")
-2024-03-18T13:49:44.342840Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("PWZ2XtXM12V4649y57Acy0h2Rw1au79m")
-2024-03-18T13:49:44.342868Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("f3L3vgqL940WOaHyg5s7vt")
-2024-03-18T13:49:44.342889Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.342916Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("MEK8ljdASkZF6bummH6cZJn44Vx")
-2024-03-18T13:49:44.342937Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4598648731240760257)
-2024-03-18T13:49:44.342962Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("wsuei9v97jA9aR19740")
-2024-03-18T13:49:44.342989Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("Oo$&gt;%+M/WZaEGFJ")
-2024-03-18T13:49:44.343008Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6727563270421820385)
-2024-03-18T13:49:44.343028Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("x*{F{UK")
-2024-03-18T13:49:44.343048Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.343065Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(4789904981360097479)
-2024-03-18T13:49:44.343083Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(2532449590979879989)
-2024-03-18T13:49:44.343110Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("qWp} !r")
-2024-03-18T13:49:44.343136Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("cFl]{TV{[0\"9@k::")
-2024-03-18T13:49:44.343174Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("iXNs?W:&lt;N4y6zho=c'*")
-2024-03-18T13:49:44.343198Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
-2024-03-18T13:49:44.343220Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("p&amp;+*b")
-2024-03-18T13:49:44.343244Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("%!Y]&lt;D*.)S*&amp;2")
-2024-03-18T13:49:44.343265Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("U4G")
-2024-03-18T13:49:44.343291Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("$7&lt;hp%L/7Cv=XiNb&amp;:5F2v")
-2024-03-18T13:49:44.343311Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(3568861234212448760)
-2024-03-18T13:49:44.343338Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("{d}g.?SU{}j=&amp;@{~h`)*K/p*x|")
-2024-03-18T13:49:44.343369Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("h74Oz62H8GdN0ScfHrg60OR9doc")
-2024-03-18T13:49:44.343392Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
-2024-03-18T13:49:44.343422Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("[%}yU_~.0{Ri1%&lt;*GrUeaaT=:{AF&lt;/")
-2024-03-18T13:49:44.343444Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.343461Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-7671291123130481947)
-2024-03-18T13:49:44.343482Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("rP3iUfGlR")
-2024-03-18T13:49:44.343503Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
-2024-03-18T13:49:44.343531Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("C*#0j+uo}:Kvq{\"S5{M/N[5`N|zxH")
-2024-03-18T13:49:44.343560Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("%U]%o9s(^{pf1_u=d9g&amp;")
-2024-03-18T13:49:44.343582Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(")J")
-2024-03-18T13:49:44.343605Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("g*SoF'E")
-2024-03-18T13:49:44.343623Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(1515290482725709551)
-2024-03-18T13:49:44.343642Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.343661Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("lQ21")
-2024-03-18T13:49:44.343684Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&lt;g}D}j=zF$&lt;")
-2024-03-18T13:49:44.343709Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(";&amp;1_b%%+.:z*Men")
-2024-03-18T13:49:44.343732Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("/&amp;?mL$=*x''u")
-2024-03-18T13:49:44.343758Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("fFDRTT8uul1sX1tdVz")
-2024-03-18T13:49:44.343778Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("tu")
-2024-03-18T13:49:44.343804Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("UZ{j06n9.#N\"uHg.::41")
-2024-03-18T13:49:44.343830Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("zlPvEzTe1sGiT4cL")
-2024-03-18T13:49:44.343850Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Jd9Bh")
-2024-03-18T13:49:44.343868Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8209603004897528371)
-2024-03-18T13:49:44.343894Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("{``5VjY 6SuOc ;&lt;6{C")
-2024-03-18T13:49:44.343919Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("{Y?g&amp;#{*]F=&amp;")
-2024-03-18T13:49:44.343941Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
-2024-03-18T13:49:44.343969Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&amp;LY0f*[*6'$ )*2I3g:m.%s$&lt;$.`[")
-2024-03-18T13:49:44.344000Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("qAnIwvJhgdz226W3D5S1tpbI9G8")
-2024-03-18T13:49:44.344029Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("=*&lt;nrB`'`B'$J{'^[&lt;d_|")
-2024-03-18T13:49:44.344052Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
-2024-03-18T13:49:44.344075Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("!$.N|3&amp;Zy)")
-2024-03-18T13:49:44.344096Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("d3T832")
-2024-03-18T13:49:44.344116Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
-2024-03-18T13:49:44.344142Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Dk3A8ojGON8JoEi3zEtlH2L")
-2024-03-18T13:49:44.344172Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("X9nz89bPXwRj5u3aLvRtPW51Dm9ZN9aS4")
-2024-03-18T13:49:44.344194Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("")
-2024-03-18T13:49:44.344217Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("JT2PI4HoQ6oTpCP9")
-2024-03-18T13:49:44.344241Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("a\\T`e]Xx?")
-2024-03-18T13:49:44.344271Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("k%0q*%{Ndf&lt;cqe=*G%r.gH.:aj$/w$")
-2024-03-18T13:49:44.344299Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("rJS'?F{&lt;)d*Q'")
-2024-03-18T13:49:44.344318Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(5672675822040554561)
-2024-03-18T13:49:44.344338Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.344357Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("lFa8w")
-2024-03-18T13:49:44.344385Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("kZkB7qUV346nL971IbVca7bCL6QexMl")
-2024-03-18T13:49:44.344411Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("{%$.[&amp;O=^f1{qH^DF?*")
-2024-03-18T13:49:44.344431Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(840626511846882855)
-2024-03-18T13:49:44.344560Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.344593Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(".a5&amp;$-B?%F&gt;'#PXbU`9Fk`")
-2024-03-18T13:49:44.344619Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("U=u\"?=yO6f?$")
-2024-03-18T13:49:44.344638Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-203166280247933333)
-2024-03-18T13:49:44.344659Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
-2024-03-18T13:49:44.344676Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6890511062363901086)
-2024-03-18T13:49:44.344699Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Qd9DYjge7Us0")
-2024-03-18T13:49:44.344725Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("hQ99cPssypUeXa7paYyUGIqA")
-2024-03-18T13:49:44.344753Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(".&lt;$fZOE$.'{''&amp;:/fI-5w`$yy91")
-2024-03-18T13:49:44.344783Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("RA=7&amp;?M^&amp;^kP$&lt; 4n\\B@'d2h:'\":")
-2024-03-18T13:49:44.344809Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("onfWwVTSO5Wv")
-2024-03-18T13:49:44.344831Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
-2024-03-18T13:49:44.344855Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("H8a9B0bLmNu6lR")
-2024-03-18T13:49:44.344873Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4301203048856852413)
-2024-03-18T13:49:44.344891Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
-2024-03-18T13:49:44.344911Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("op23P")
-2024-03-18T13:49:44.344930Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.344947Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.344967Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("q0b")
-2024-03-18T13:49:44.344990Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("{&amp;J&lt;5/*\\H&amp;.jq")
-2024-03-18T13:49:44.345015Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("Eou%wn./H_5/!K")
-2024-03-18T13:49:44.345036Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.345055Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
-2024-03-18T13:49:44.345074Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.345092Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
-2024-03-18T13:49:44.345110Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.345130Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("xXp47")
-2024-03-18T13:49:44.345148Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("")
-2024-03-18T13:49:44.345165Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(5827122736025247865)
-2024-03-18T13:49:44.345193Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("k9$RgzaZw*.8txo*?_3=28J%-JG")
-2024-03-18T13:49:44.345219Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("lu9o6zE488tEaFZ8")
-2024-03-18T13:49:44.345243Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("~:|_m8.}*3.")
-2024-03-18T13:49:44.345262Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6995306835287227069)
-2024-03-18T13:49:44.345284Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("2m/^t?iuv")
-2024-03-18T13:49:44.345304Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.345322Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8668234438688855742)
-2024-03-18T13:49:44.345347Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("EC6W4wv526fMqdwb3S1X0oX")
-2024-03-18T13:49:44.345369Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("y3t")
-2024-03-18T13:49:44.345387Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8167304510184581075)
-2024-03-18T13:49:44.345406Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&amp;b")
-2024-03-18T13:49:44.345426Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("mFh")
-2024-03-18T13:49:44.345443Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(1362134191147157728)
-2024-03-18T13:49:44.345468Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("NY$\\=dInv.i``i%Vycky")
-2024-03-18T13:49:44.345487Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-2100241297932335631)
-2024-03-18T13:49:44.345514Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("Fj}`%2KI?'a.`")
-2024-03-18T13:49:44.345537Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("k:=FqS&gt;Wt9|")
-2024-03-18T13:49:44.345557Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.345581Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("bc3YSHzisR0e19x4")
-2024-03-18T13:49:44.345601Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("xk2")
-2024-03-18T13:49:44.345618Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(9084357746654479063)
-2024-03-18T13:49:44.345635Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(9199797322937841907)
-2024-03-18T13:49:44.345653Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("YP")
-2024-03-18T13:49:44.345676Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("w'c(&amp;nw|\"/!\\1")
-2024-03-18T13:49:44.345708Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("KArAM1l073arWE76DeCtfM4Z7x7wPvOs")
-2024-03-18T13:49:44.345732Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("deZxxMt6Od7q")
-2024-03-18T13:49:44.345754Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
-2024-03-18T13:49:44.345778Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("\"VuwS\"M&lt;UZ\"h`")
-2024-03-18T13:49:44.345797Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-2486395580467021722)
-2024-03-18T13:49:44.345825Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("tN6U2CB04w8hYijxKp5u48Dlpcw1w")
-2024-03-18T13:49:44.345848Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.345875Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("?{e m$1h@-=c&lt;@Z$=/;@$.K")
-2024-03-18T13:49:44.345900Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("+O*3qnzV")
-2024-03-18T13:49:44.345929Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("V):rF$r!`%d0Z~=?FJ-=I}.&amp;hl")
-2024-03-18T13:49:44.345956Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("ej1pfyfJiTy55l0kV76aeVSv")
-2024-03-18T13:49:44.345986Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("sO`xD-g8,'h})a$&amp;q?&lt;E=jFRash%wG")
-2024-03-18T13:49:44.346016Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("OS:Uch]n,{\"L{EX'-&amp;%b\\*@U4g:")
-2024-03-18T13:49:44.346039Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.346060Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("~1")
-2024-03-18T13:49:44.346080Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("{gt")
-2024-03-18T13:49:44.346106Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Z30Sl1UN5c7xIKC8Wx42M0")
-2024-03-18T13:49:44.346126Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1460478783811991703)
-2024-03-18T13:49:44.346145Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.346165Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
-2024-03-18T13:49:44.346192Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("mlTXn$&amp;ZDq!8H[`&amp;{dZq&lt;2N`")
-2024-03-18T13:49:44.346214Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6215800327238991679)
-2024-03-18T13:49:44.346235Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("sQ9HMDEmEWd")
-2024-03-18T13:49:44.346256Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("")
-2024-03-18T13:49:44.346274Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.346299Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("`!:')d*SKg',VH,S-I")
-2024-03-18T13:49:44.346319Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8441515707017824819)
-2024-03-18T13:49:44.346345Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("y$ZE`~QxD&lt;S'P~4?'ex")
-2024-03-18T13:49:44.346370Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("fAr9M7q7aZDj7zOO")
-2024-03-18T13:49:44.346394Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("fAO0SnSWCtJWd5")
-2024-03-18T13:49:44.346414Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6349906946960314746)
-2024-03-18T13:49:44.346433Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
-2024-03-18T13:49:44.346454Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
-2024-03-18T13:49:44.346471Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(651218842072843837)
-2024-03-18T13:49:44.346489Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(7077771154345787737)
-2024-03-18T13:49:44.346512Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("aD{J/&lt;&amp;%o&amp;)*&lt;3?")
-2024-03-18T13:49:44.346533Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4684036189136183860)
-2024-03-18T13:49:44.346556Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("D?8x&lt;zM/Z/yqM`7")
+2024-03-19T20:07:55.746438Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("SwL28Do25wEi")
+2024-03-19T20:07:55.746483Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&lt;B.w|tS%g")
+2024-03-19T20:07:55.746507Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("5&amp;'yWSq;=")
+2024-03-19T20:07:55.746524Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("|~E")
+2024-03-19T20:07:55.746564Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("%A`QvJ-v5wNVf7")
+2024-03-19T20:07:55.746589Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("'07&amp;'&lt;3rH.\\[,gN$S(")
+2024-03-19T20:07:55.746609Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("]ZeDF0`:?&lt;jb&amp;P&amp;:9%")
+2024-03-19T20:07:55.746628Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("azVtRz6qOPU3p08XA0ASWh")
+2024-03-19T20:07:55.746645Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("\\!WF$")
+2024-03-19T20:07:55.746662Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("!:5cOI=|nj]N%-")
+2024-03-19T20:07:55.746688Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("EaDtmf48tFUPxirMJ1kDE7y62I3tWzBc")
+2024-03-19T20:07:55.746703Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4171259257985567157)
+2024-03-19T20:07:55.746715Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6410287428840372160)
+2024-03-19T20:07:55.746727Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8325696043708370961)
+2024-03-19T20:07:55.746739Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(916765538315905485)
+2024-03-19T20:07:55.746761Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.746776Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.746797Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(":$''1zLZ!;/B-}4i,k/%08DFN&lt;=*8")
+2024-03-19T20:07:55.746812Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(7690969232300533412)
+2024-03-19T20:07:55.746827Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.746838Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8286877997254549868)
+2024-03-19T20:07:55.746861Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("AgwZHW$e~QW)ui&amp;;ccR")
+2024-03-19T20:07:55.746879Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.746891Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(3788912455041778287)
+2024-03-19T20:07:55.746905Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.746919Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("lkobK3RtA")
+2024-03-19T20:07:55.746940Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("o=|F{*N4%%g5#:^t/=z$r`1K:\"&amp;[")
+2024-03-19T20:07:55.746955Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4412064040443021141)
+2024-03-19T20:07:55.746975Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("mEq6BSUhzc1Lg4QP65E08bLLSo1")
+2024-03-19T20:07:55.746990Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("")
+2024-03-19T20:07:55.747005Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("NosmzliD4L9Q")
+2024-03-19T20:07:55.747018Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("L")
+2024-03-19T20:07:55.747035Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("B87062g5pt14OjN")
+2024-03-19T20:07:55.747055Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("8A'b6:@U|.0:b!`%Y")
+2024-03-19T20:07:55.747077Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("$K{&gt;|A+`fcMa (.;E&amp;%!-9f:;i&lt;")
+2024-03-19T20:07:55.747091Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-957721432593918075)
+2024-03-19T20:07:55.747108Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("=y")
+2024-03-19T20:07:55.747121Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("")
+2024-03-19T20:07:55.747141Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&gt;YU}`V{=E y`AQZz/&amp;8?vn:|u")
+2024-03-19T20:07:55.747160Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.747181Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6866299116249045248)
+2024-03-19T20:07:55.747206Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
+2024-03-19T20:07:55.747236Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("m&lt;YXt8'qwzDwUJ,Q[&lt;;`*!,@?k.$8R:")
+2024-03-19T20:07:55.747257Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-848433159953591643)
+2024-03-19T20:07:55.747286Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("B5NK7VeynYirIaQA0SlB38oaoseg7")
+2024-03-19T20:07:55.747314Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("~&amp;%w{/Y2noS&lt;/9Q2&lt;'yI{W=(K]`0")
+2024-03-19T20:07:55.747338Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("l:=*{.")
+2024-03-19T20:07:55.747362Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("X162Mg006lHS")
+2024-03-19T20:07:55.747382Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("")
+2024-03-19T20:07:55.747400Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1074120414621113344)
+2024-03-19T20:07:55.747429Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("7':3.&amp;=TMnY#QS!IL:v$%'QPPrajr")
+2024-03-19T20:07:55.747451Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-3366457309871585290)
+2024-03-19T20:07:55.747472Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("/")
+2024-03-19T20:07:55.747500Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("n{UV]I*Ov#Ty&amp;G+?s/ll=1?\\mM&lt;")
+2024-03-19T20:07:55.747523Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
+2024-03-19T20:07:55.747545Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("ry1s:\\k")
+2024-03-19T20:07:55.747565Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.747592Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("$?,zJx;Nw&lt;{S;%~IU&amp;ha$eBK")
+2024-03-19T20:07:55.747621Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("\\;?=$vG=G=@?/ U9t=&amp;.'k)Y?=6V&amp;")
+2024-03-19T20:07:55.747642Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-1321873606977218496)
+2024-03-19T20:07:55.747661Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8011882647383000142)
+2024-03-19T20:07:55.747685Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(2043438484966708273)
+2024-03-19T20:07:55.747710Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(".&amp;:j'[.TV:$+ve.OC*")
+2024-03-19T20:07:55.747735Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("`%/*b")
+2024-03-19T20:07:55.747755Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.747775Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.747792Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(9033831836276516546)
+2024-03-19T20:07:55.747817Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("JQwDvz7l5me2h0dSm")
+2024-03-19T20:07:55.747838Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("A")
+2024-03-19T20:07:55.747861Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("d3ThAtg0cwbFg")
+2024-03-19T20:07:55.747881Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.747909Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("a'7c*Gn&amp;&lt;&lt;r&lt;NW&lt;dT% v7d8!N%")
+2024-03-19T20:07:55.747936Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("(C{[Y%QDut&amp;4uaq+")
+2024-03-19T20:07:55.747964Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("5V4/$&amp;{M^*k{`=}$]cuv$ 02q")
+2024-03-19T20:07:55.747994Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Zduhol91iOH7tUhmvetYs33PIaJ7I4")
+2024-03-19T20:07:55.748021Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("jB2u23NeNwVTS0zB0s4K3")
+2024-03-19T20:07:55.748045Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("B/YUa@ eEnT+")
+2024-03-19T20:07:55.748065Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(345511908661282617)
+2024-03-19T20:07:55.748091Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("xlxnk5DSTbOHuIqk4l9u")
+2024-03-19T20:07:55.748115Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("~4kep#`VyaD?'")
+2024-03-19T20:07:55.748138Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("||dqs")
+2024-03-19T20:07:55.748158Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.748179Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&amp;#/nW{")
+2024-03-19T20:07:55.748208Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("{Y6.w7$h?:[=v``DWQ%&lt;K`")
+2024-03-19T20:07:55.748230Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("U&amp;z45")
+2024-03-19T20:07:55.748252Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
+2024-03-19T20:07:55.748279Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("DT2Kc&lt;HnAcimmif15=9l5&lt;")
+2024-03-19T20:07:55.748300Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Xqw")
+2024-03-19T20:07:55.748328Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("R0JZ4VODR5QZwGk0XI0QK1NYZaqu9")
+2024-03-19T20:07:55.748349Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.748370Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.748389Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.748407Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-762377851747469754)
+2024-03-19T20:07:55.748429Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("88Ld]36u")
+2024-03-19T20:07:55.748451Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("r9ujEdWl")
+2024-03-19T20:07:55.748480Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("BX%'097=lWO*VDE\"n-//&lt;\\~&lt;e7YDB.0B")
+2024-03-19T20:07:55.748503Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.748522Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8222560443152938981)
+2024-03-19T20:07:55.748540Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-2505961161375916504)
+2024-03-19T20:07:55.748561Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("LXHO'oPYo")
+2024-03-19T20:07:55.748588Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("xZ+'?o&amp;D.'O'kJN{u42}H6w")
+2024-03-19T20:07:55.748612Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
+2024-03-19T20:07:55.748635Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("ZqQ4mPhJB5wZ")
+2024-03-19T20:07:55.748658Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(" {REzmbzC")
+2024-03-19T20:07:55.748678Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.748708Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("kF39uclMkFVN7C8CNXS6qm62Ra5R0a")
+2024-03-19T20:07:55.748729Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(1649132126173038076)
+2024-03-19T20:07:55.748748Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6526053445842067672)
+2024-03-19T20:07:55.748769Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
+2024-03-19T20:07:55.748791Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
+2024-03-19T20:07:55.748815Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("dmxyX3ZQsM6ZNx")
+2024-03-19T20:07:55.748834Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(2252499875976800139)
+2024-03-19T20:07:55.748853Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8666141874011093255)
+2024-03-19T20:07:55.748871Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(3744835054358274027)
+2024-03-19T20:07:55.748894Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("j/0V*N{")
+2024-03-19T20:07:55.748915Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.748935Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.748955Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(":v`")
+2024-03-19T20:07:55.748977Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("Pg/({_B")
+2024-03-19T20:07:55.748999Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
+2024-03-19T20:07:55.749020Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("8[")
+2024-03-19T20:07:55.749041Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.749065Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("dGnM]\\'}\\%/{")
+2024-03-19T20:07:55.749087Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.749107Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.749126Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8895554047266076760)
+2024-03-19T20:07:55.749153Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("e{%!r}\\$/BA:tu0|$N?{1Qw.")
+2024-03-19T20:07:55.749177Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("z6M20W1E76sCP9")
+2024-03-19T20:07:55.749197Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4074778049592694714)
+2024-03-19T20:07:55.749215Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("P")
+2024-03-19T20:07:55.749234Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(5627996729569646350)
+2024-03-19T20:07:55.749253Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("QD")
+2024-03-19T20:07:55.749278Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("IK5bH4P11rEPX480gSupjsV")
+2024-03-19T20:07:55.749299Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(7090128611837649044)
+2024-03-19T20:07:55.749317Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6665196625028695597)
+2024-03-19T20:07:55.749346Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("f@=tgQ?tj%DE\\ux$ .`H+:oh=Lk+")
+2024-03-19T20:07:55.749375Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("]PpbiM'?!}!!J^dNgWVQ!n&lt;cdz+vP")
+2024-03-19T20:07:55.749398Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("bp")
+2024-03-19T20:07:55.749419Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.749446Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("!nj'B/`(\\SJ^m\"Sp\\*G&amp;J?K=/r:")
+2024-03-19T20:07:55.749469Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
+2024-03-19T20:07:55.749493Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("#'`EC{`Ad]&amp;&amp;.=UkX2")
+2024-03-19T20:07:55.749522Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("F{Znvmr|(.'&lt;ukI*.&lt;yf9-6j:HT`0")
+2024-03-19T20:07:55.749543Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(2153264135917797238)
+2024-03-19T20:07:55.749567Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Glgh2fx9V9heFDHLMGZ")
+2024-03-19T20:07:55.749587Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(7012732893906055569)
+2024-03-19T20:07:55.749609Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.749637Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&lt;@mg.Dz`xUnxM`O&amp;&lt;A=&amp;8z&amp;fr3wo64%")
+2024-03-19T20:07:55.749659Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(2992579807358586108)
+2024-03-19T20:07:55.749680Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("-h`M&lt;./")
+2024-03-19T20:07:55.749701Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(6956465720262321677)
+2024-03-19T20:07:55.749729Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("m0Xf0U1PpBd85OOuvPsK8jdDIo0D57")
+2024-03-19T20:07:55.749758Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("hOWPqk9UpqkRy6q3Zm02y097CHz")
+2024-03-19T20:07:55.749782Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("p:gx&gt;@J.")
+2024-03-19T20:07:55.749811Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("mykafHag9hMv2lo38u3VR82mBwc7M6n")
+2024-03-19T20:07:55.749838Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("I08Nyv5NtzB0G6t9SZr5Ucf")
+2024-03-19T20:07:55.749865Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("ojzo\\wU|oy+0KSRs\"%s")
+2024-03-19T20:07:55.749886Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-5290037374939008227)
+2024-03-19T20:07:55.749913Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Nv2kMJC0GE3rVUlkFPlQ")
+2024-03-19T20:07:55.749935Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
+2024-03-19T20:07:55.749958Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(".9`&gt;~-/~0")
+2024-03-19T20:07:55.749979Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("SC1Gq68")
+2024-03-19T20:07:55.749998Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-2436758187049480181)
+2024-03-19T20:07:55.750019Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("emcZrXr")
+2024-03-19T20:07:55.750038Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(4322646567056385257)
+2024-03-19T20:07:55.750058Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
+2024-03-19T20:07:55.750088Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("rPYYlq8j1ucEDDnkPvM8xta7nE7HG27")
+2024-03-19T20:07:55.750128Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.750157Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("O~&lt;}&amp;]&amp;{&amp;7`:&amp;I`s_")
+2024-03-19T20:07:55.750182Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("/kY?&amp;zP")
+2024-03-19T20:07:55.750204Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Q16m5op")
+2024-03-19T20:07:55.750226Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.750247Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.750271Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("/r|b[__'m]0.{L.}-")
+2024-03-19T20:07:55.750376Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("h6b98Z75s")
+2024-03-19T20:07:55.750408Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("dvAcf4MctNWA2Wn8jFM1IhOPDG")
+2024-03-19T20:07:55.750432Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.750455Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("IY37rEf7b6P6WJ")
+2024-03-19T20:07:55.750481Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("ne:_*;$\"b\\P&amp;'N\"3YN\\{*'")
+2024-03-19T20:07:55.750504Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.750530Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("&amp;{Jw8&amp;|]&amp;vpasp{&amp;I:*")
+2024-03-19T20:07:55.750560Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("$b=S_$A*Yw &lt;-x.SDQY/#{w4\"\\.v2A=")
+2024-03-19T20:07:55.750588Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("~#\\ru'*I&gt;#$.'=[&lt;p:&amp;|o|")
+2024-03-19T20:07:55.750618Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("a'{LcDt*bY@q&lt;%p6$YC&amp;~m`6ECI&gt;?in")
+2024-03-19T20:07:55.750643Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("pIs8Ghnhtn5vfG1")
+2024-03-19T20:07:55.750665Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
+2024-03-19T20:07:55.750690Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("hF%?5Vrn$$qu$3'/:h'Q")
+2024-03-19T20:07:55.750717Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("YbWJ38I95bjJX6705592S7rQ")
+2024-03-19T20:07:55.750738Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8569566349643280370)
+2024-03-19T20:07:55.750759Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.750783Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("#_O%9_E{J/O**.o")
+2024-03-19T20:07:55.750812Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("/D\"/V|~%M%1\\P$6`r*Pkh\\L-:K8xe=?")
+2024-03-19T20:07:55.750834Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("")
+2024-03-19T20:07:55.750855Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("@`*`$L")
+2024-03-19T20:07:55.751075Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("D`*s~&amp;U}~=&lt;,`u:=$_`?@Z?(j`B&gt;P")
+2024-03-19T20:07:55.751099Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("FBGx8")
+2024-03-19T20:07:55.751227Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Z24E7hUF0FMqlOiR2go9qU")
+2024-03-19T20:07:55.751354Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral(")1h$.x&amp;#z$W2VQ$dXPwN$dY'$ m")
+2024-03-19T20:07:55.751374Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6174162495569832382)
+2024-03-19T20:07:55.751703Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("yI;$a`Y")
+2024-03-19T20:07:55.751724Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("(")
+2024-03-19T20:07:55.751845Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Py9U0LGeSLEdfz")
+2024-03-19T20:07:55.751870Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("'t(/S?&gt;dU`h%{.QSE@)&gt;nD")
+2024-03-19T20:07:55.751987Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("sKXm2r3")
+2024-03-19T20:07:55.752006Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("*")
+2024-03-19T20:07:55.752023Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("cB50pST5XysMPsh")
+2024-03-19T20:07:55.752054Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("`i:W6z:s*s!{u{&gt;.jzC&lt;?-&amp;U")
+2024-03-19T20:07:55.752081Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("XB/]E(tvakY&amp;')&amp;a'=")
+2024-03-19T20:07:55.752101Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(7709668039631949101)
+2024-03-19T20:07:55.752125Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("$F&lt;&amp;)jq\"]\\;s;1")
+2024-03-19T20:07:55.752468Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("i?!4m&lt;|'&lt;j&lt;8k=5*b\\'oq:[{xS0U")
+2024-03-19T20:07:55.752490Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(" 8")
+2024-03-19T20:07:55.752828Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6298340086643959772)
+2024-03-19T20:07:55.752850Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator(")")
+2024-03-19T20:07:55.752977Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("D42tarpWLbAQKaH5nQt336N")
+2024-03-19T20:07:55.753002Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("XJUM05kKt3QWGv4b48gT6")
+2024-03-19T20:07:55.753116Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("ofA8K1X")
+2024-03-19T20:07:55.753145Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("~``*\\dp")
+2024-03-19T20:07:55.753172Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("QRQyvvbrDVy46ID63baP18")
+2024-03-19T20:07:55.753194Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.753220Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("kjiNJ7Fqo1blL400I9k7z39")
+2024-03-19T20:07:55.753244Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("V6ogIIbnRRKI")
+2024-03-19T20:07:55.753579Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("'")
+2024-03-19T20:07:55.753708Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("bgof#jj}`f@huy?qxeR~u]h.s~ax")
+2024-03-19T20:07:55.753745Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("qWJ0cO8BNLEjVW7LL3tWdy")
+2024-03-19T20:07:55.753771Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("x3pM|s9;x")
+2024-03-19T20:07:55.753795Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("`+m~;:M_:aP`]")
+2024-03-19T20:07:55.753825Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("Q1q4yk3sg84NR44Vp1ygt75WJ3fv48Rj")
+2024-03-19T20:07:55.753846Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-8425938151963720806)
+2024-03-19T20:07:55.753965Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("YP]:.Y\\krwV9~u&amp;'+%0")
+2024-03-19T20:07:55.754092Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("W&lt;&lt;?Ky/}?Kp).#.Tg?}g$Cbt/23{%")
+2024-03-19T20:07:55.754131Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-6673470858111948220)
+2024-03-19T20:07:55.754265Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("q6xF=k%3?`J'A=/")
+2024-03-19T20:07:55.754285Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("+")
+2024-03-19T20:07:55.754410Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("=")
+2024-03-19T20:07:55.754429Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.754545Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("/")
+2024-03-19T20:07:55.754665Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("i&amp;8~M'_~=/Z")
+2024-03-19T20:07:55.754682Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-2374648645721194991)
+2024-03-19T20:07:55.754694Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(8697771690269064412)
+2024-03-19T20:07:55.754710Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("{&lt;n:@")
+2024-03-19T20:07:55.754731Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(4884495089282601343)
+2024-03-19T20:07:55.754759Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("TqV}YttlcAsQ_&amp; 8m/i{")
+2024-03-19T20:07:55.754781Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Operator("-")
+2024-03-19T20:07:55.754800Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-5933740817816207690)
+2024-03-19T20:07:55.754823Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=StringLiteral("A3D2?&amp;`")
+2024-03-19T20:07:55.754851Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment(".:'' %/\";%=p`78;M-G4}/")
+2024-03-19T20:07:55.754871Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-4693932356210315838)
+2024-03-19T20:07:55.754898Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("'Cnnr_i}$7&lt;5#mi{=0")
+2024-03-19T20:07:55.754922Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("rhgL3QZH8Q0M7k")
+2024-03-19T20:07:55.754945Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("?c&amp;f/: x")
+2024-03-19T20:07:55.754967Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("a:;[N3")
+2024-03-19T20:07:55.754986Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(2270828563780106586)
+2024-03-19T20:07:55.755015Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Identifier("ID0sw8dE4y3kwh8njqHZ72CJh8OHkitd3")
+2024-03-19T20:07:55.755039Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Comment("'d{'b_i*")
+2024-03-19T20:07:55.755059Z <span class="ansi-green-fg"> INFO</span> spiral_temp_test: input=Integer(-788178851067795700)
 test prop_parse_format_idempotent ... ok
 test adding_and_then_removing_an_item_from_the_cart_leaves_the_cart_unchanged ... ok
 
-test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
 
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
