@@ -11,16 +11,17 @@ type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 nominal try_join_all t = $"TryJoinAll<`t>"
 
 inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
-    if flag = 1
-    then !\($'"let __result = Box::pin(async move { //"')
-    else !\($'"let __result = Box::pin(async { //"')
+    join
+        if flag = 1
+        then !\($'"let __result = Box::pin(async move { //"')
+        else !\($'"let __result = Box::pin(async { //"')
 
-    let x' = x ()
-    inl x' = join x'
+        let x' = x ()
+        inl x' = join x'
 
-    x' |> rust.fix_closure depth
+        x' |> rust.fix_closure depth
 
-    !\($'"__result"')
+        !\($'"__result"')
 
 inl try_join_all forall t. (x : am'.vec (future_pin (resultm.result' t sm'.std_string))) : try_join_all (future_pin (resultm.result' t sm'.std_string)) =
     inl x = join x

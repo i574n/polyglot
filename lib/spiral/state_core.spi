@@ -10,7 +10,7 @@ inl build_database () : async.future_pin (result wasm.rexie wasm.rexie_error) =
         rexie
         |> async.await
         |> resultm.unbox
-    |> async.future_init (2, 0) 0
+    |> async.future_init (2, 1) 0
 
 inl get_core_state_heap_key () =
     "core-state-heap"
@@ -61,9 +61,9 @@ inl set_data forall t. (id : string) (data : t) (rexie : wasm.rexie) : async.fut
     inl data_len : i64 = data |> sm'.format_debug |> sm.length
     leptos.log $'"state_core.set_data () / data_len: " + string !data_len + ""'
 
-    inl rexie = join rexie
     inl data = join data
     fun () =>
+        inl rexie = join rexie
         inl transaction : wasm.rexie_transaction = !\($'"!rexie.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
         inl store : wasm.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
 
@@ -77,7 +77,7 @@ inl set_data forall t. (id : string) (data : t) (rexie : wasm.rexie) : async.fut
         !\($'"!transaction.done().await?"')
 
         Ok () |> resultm.box
-    |> async.future_init (4, 3) 0
+    |> async.future_init (4, 3) 1
 
 type core_state core_state_data =
     heap {
@@ -113,6 +113,7 @@ inl use_core_database forall core_state_data.
         : leptos.resource (optionm'.option' wasm.rexie) (option (core_state_heap core_state_data))
         =
         leptos.create_local_resource
+            (2u8, 1u8)
             fun () =>
                 database
                 |> leptos.resource_get
@@ -270,6 +271,7 @@ inl use_database () =
 
     inl database : leptos.resource (option ()) wasm.rexie =
         leptos.create_local_resource
+            (2u8, 1u8)
             fun () => None
             fun _ =>
                 fun () =>
@@ -278,7 +280,7 @@ inl use_database () =
                     inl result_log = result |> sm'.format_debug
                     leptos.log $'"state_core.use_database (3) / database create_local_resource / result: " + string !result_log + ""'
                     result
-                |> async.future_init (5, 5) 1
+                |> async.future_init (5, 4) 1
 
     database
 
@@ -295,6 +297,7 @@ inl use_requests forall t u.
             (resultm.result' (a i32 (optionm'.option' string)) sm'.std_string)
         =
         leptos.create_local_resource
+            (3u8, 2u8)
             fun () => requests |> leptos.memo_get
             fun (a requests) =>
                 inl requests_log = requests |> sm'.format_debug
@@ -347,7 +350,8 @@ inl use_requests forall t u.
             (optionm'.option' wasm.rexie * a i32 networking.request)
             (resultm.result' (am'.vec (optionm'.option' (heap sm'.std_string))) sm'.std_string)
         =
-        leptos.create_resource
+        leptos.create_local_resource
+            (2u8, 1u8)
             fun () =>
                 database |> leptos.resource_get, requests |> leptos.memo_get
             fun database, (a requests) =>

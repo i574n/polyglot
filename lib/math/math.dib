@@ -188,7 +188,7 @@ inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> co
         Ok ()
         |> resultm.box
     
-    inl run () =
+    join
         !\($'"pyo3::prepare_freethreaded_python()"') : ()
 
         !\($'"let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> { //"')
@@ -201,8 +201,6 @@ inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> co
 
         (!\($'"__result"') : _ () pyerr)
         |> resultm.unwrap'
-    inl run = join run
-    run ()
 
 #!markdown
 
