@@ -216,7 +216,7 @@ inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> co
 
 types ()
 
-run_test 5i32 fun zeta, gamma =>
+run_test (5u8, 4u8) fun zeta, gamma =>
     inl s = complex (2f64, 0f64)
     inl result = zeta s
 
@@ -239,7 +239,7 @@ run_test 5i32 fun zeta, gamma =>
 
 types ()
 
-run_test 5i32 fun zeta, gamma =>
+run_test (5u8, 4u8) fun zeta, gamma =>
     inl s = complex (2f64, -2f64)
     inl result = zeta s
 
@@ -261,7 +261,7 @@ run_test 5i32 fun zeta, gamma =>
 
 types ()
 
-run_test 3i32 fun zeta, gamma =>
+run_test (2u8, 1u8) fun zeta, gamma =>
     (join listm'.init_series -2f64 -20 -2)
     |> listm.iter fun n =>
         inl s = complex (n, 0)
@@ -287,7 +287,7 @@ run_test 3i32 fun zeta, gamma =>
 
 types ()
 
-run_test 4i32 fun zeta, gamma =>
+run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
         complex (0.5, 14.134725)
         complex (0.5, 21.022040)
@@ -311,7 +311,7 @@ run_test 4i32 fun zeta, gamma =>
 
 types ()
 
-run_test 4i32 fun zeta, gamma =>
+run_test (3u8, 2u8) fun zeta, gamma =>
     inl points = ;[2; 3; 4; 5; 10; 20; 50]
     (a points : _ i32 _)
     |> am.iter fun point =>
@@ -332,7 +332,7 @@ run_test 4i32 fun zeta, gamma =>
 
 types ()
 
-run_test 5i32 fun zeta, gamma =>
+run_test (5u8, 4u8) fun zeta, gamma =>
     inl s = complex (1, 0)
     inl result = zeta s
     result |> re |> _assert_eq limit.max
@@ -350,7 +350,7 @@ run_test 5i32 fun zeta, gamma =>
 
 types ()
 
-run_test 5i32 fun zeta, gamma =>
+run_test (6u8, 5u8) fun zeta, gamma =>
     inl s = complex (2, 10)
     inl result_positive_im = zeta s
     inl result_negative_im = complex (s |> re, s |> im |> (~-)) |> zeta
@@ -370,7 +370,7 @@ run_test 5i32 fun zeta, gamma =>
 
 types ()
 
-run_test 5i32 fun zeta, gamma =>
+run_test (5u8, 4u8) fun zeta, gamma =>
     inl s = complex (0.01, 0.01)
     inl result = zeta s
     result |> re |> _assert_lt limit.max
@@ -388,7 +388,7 @@ run_test 5i32 fun zeta, gamma =>
 
 types ()
 
-run_test 5i32 fun zeta, gamma =>
+run_test (5u8, 4u8) fun zeta, gamma =>
     inl s = complex (-1, 0)
     inl result = zeta s
     (result |> re) + 1f64 / 12f64 |> abs |> _assert_lt 0.001
@@ -406,8 +406,8 @@ run_test 5i32 fun zeta, gamma =>
 
 types ()
 
-run_test 4i32 fun zeta, gamma =>
-    (join a ;[10;20; 30; 40; 50; 60; 70; 80; 90; 100] : _ i32 _)
+run_test (3u8, 2u8) fun zeta, gamma =>
+    (join a ;[10; 20; 30; 40; 50; 60; 70; 80; 90; 100] : _ i32 _)
     |> am.iter fun s =>
         inl s = complex (0, s)
         inl result = zeta s
@@ -426,7 +426,7 @@ run_test 4i32 fun zeta, gamma =>
 
 types ()
 
-run_test 4i32 fun zeta, gamma =>
+run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
         complex (0.5, 14.134725)
         complex (0.75, 20.5)
@@ -452,7 +452,7 @@ run_test 4i32 fun zeta, gamma =>
 
 types ()
 
-run_test 4i32 fun zeta, gamma =>
+run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
         complex (3, 4)
         complex (2.5, -3.5)
@@ -500,7 +500,7 @@ run_test 4i32 fun zeta, gamma =>
 
 types ()
 
-run_test 4i32 fun zeta, gamma =>
+run_test (3u8, 2u8) fun zeta, gamma =>
     inl s_values = ;[2; 3; 4; 5]
     inl primes = ;[2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
     (a s_values : _ i32 _)

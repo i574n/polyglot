@@ -10,7 +10,7 @@ nominal future t = $"Future<`t>"
 type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 nominal try_join_all t = $"TryJoinAll<`t>"
 
-inl future_init forall t. (depth : u8) (flag : u8) (x : () -> t) : future_pin t =
+inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
     if flag = 1
     then !\($'"let __result = Box::pin(async move { //"')
     else !\($'"let __result = Box::pin(async { //"')
