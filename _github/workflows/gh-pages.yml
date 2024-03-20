@@ -1,0 +1,85 @@
+name: gh-pages
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    timeout-minutes: 240
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.100-preview.1.24101.2'
+
+      - uses: ATiltedTree/setup-rust@v1
+        with:
+          rust-version: nightly
+          components: clippy rust-src rustfmt
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-2024-03-15-${{ hashFiles('**/paket.lock') }}
+          restore-keys: ${{ runner.os }}-nuget-2024-03-18-
+
+      - uses: actions/cache@v3
+        with:
+            path: |
+                ~/.cargo/bin/
+                ~/.cargo/registry/index/
+                ~/.cargo/registry/cache/
+                ~/.cargo/git/db/
+            key: ${{ runner.os }}-cargo-2024-03-15-${{ hashFiles('**/Cargo.lock') }}
+            restore-keys: ${{ runner.os }}-cargo-2024-03-18-
+
+      - run: pwsh scripts/init.ps1
+
+      - run: pwsh scripts/build.ps1
+
+      - run: pwsh scripts/publish.ps1
+
+      - run: pwsh dist/scripts/publish-bin.ps1
+        env:
+            NFTSTORAGE_API_KEY: ${{ secrets.NFTSTORAGE_API_KEY }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gh-pages
+          path: dist
+          retention-days: 30
+
+  push:
+    needs: build
+    timeout-minutes: 180
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: gh-pages
+          path: gh-pages
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: gh-pages
