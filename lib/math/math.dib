@@ -599,26 +599,14 @@ inl tests () =
 
 #!spiral
 
-inl main' (_args : array_base string) =
+// // rust=
+
+inl main (_args : array_base string) =
     inl value = 1i32
     console.write_line ($"$\"value: {!value}\"" : string)
     0i32
 
-inl main' () =
+inl main () =
     types ()
     $"let tests () = !tests ()" : ()
-    $"let main args = !main' args" : ()
-
-#!spiral
-
-inl main () =
-    main' ()
-
-#!spiral
-
-// // test
-// // rust=
-// // print_code=true
-
-types ()
-main' ()
+    $"let main args = !main args" : ()

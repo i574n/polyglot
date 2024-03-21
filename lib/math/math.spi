@@ -391,15 +391,14 @@ inl tests () =
     !\($'"} #[test] fn test_euler_product_formula() { //"') : ()
     test_euler_product_formula ()
 
-inl main' (_args : array_base string) =
+// // rust=
+
+inl main (_args : array_base string) =
     inl value = 1i32
     console.write_line ($"$\"value: {!value}\"" : string)
     0i32
 
-inl main' () =
+inl main () =
     types ()
     $"let tests () = !tests ()" : ()
-    $"let main args = !main' args" : ()
-
-inl main () =
-    main' ()
+    $"let main args = !main args" : ()
