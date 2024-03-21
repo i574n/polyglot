@@ -1,12 +1,12 @@
 packages:
     |core-
 modules:
-    testing
     rust
     rust_operators
     optionm'
     optionm'_operators
     common-
+    testing
     resultm
     am'
     sm'
