@@ -165,8 +165,8 @@ inl fix_closure depth' x' =
     elif depth = 5
     then !\($'" {{{{{ //"')
     elif depth = 6
-    then !\($'"!x' {{{{{{ //"')
+    then !\($'" {{{{{{ //"')
     elif depth = 7
-    then !\($'"!x' {{{{{{{ //"')
+    then !\($'" {{{{{{{ //"')
     elif depth = 8
-    then !\($'"!x' {{{{{{{{ //"')
+    then !\($'" {{{{{{{{ //"')

@@ -25,8 +25,17 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+inl i32 forall t. (x : t) : i32 =
+    $"int32 !x"
+
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
+
+inl f32 forall t. (x : t) : f32 =
+    $"float32 !x"
+
+inl f64 forall t. (x : t) : f64 =
+    $"float !x"
 
 // // ## pair
 
