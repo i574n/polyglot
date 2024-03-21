@@ -57,7 +57,7 @@
 - Full Build Output
 <https://i574n.github.io/polyglot/scripts/build.dib.html>
 
-- Physics Sample ("Learn Physics with Functional Programming" book)
+- Physics Sample: "Learn Physics with Functional Programming" book
 <https://i574n.github.io/polyglot/lib/spiral/physics.dib.html>
 
 - Smart Contract Dice Rolls History (Rust WASM frontend, display of on-chain data using NEAR Protocol queried from their Public API)
@@ -66,10 +66,13 @@
 - Dice Core Code
 <https://i574n.github.io/dice/lib/dice.dib.html>
 
+- Computational Mathematics: Unit Testing With Spiral, Rust and Python
+<https://i574n.github.io/polyglot/lib/math/math.dib.html>
+
 - Spiral Supervisor Code
 <https://i574n.github.io/polyglot/apps/spiral/Supervisor.dib.html>
 
-- Task Recurrency Domain Modeling Sample
+- Domain Modeling Sample: Scheduling With Recurrency
 <https://i574n.github.io/polyglot/apps/scheduler/Tasks.dib.html>
 
 - Performance Tests
