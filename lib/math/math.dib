@@ -75,23 +75,53 @@ inl im forall t. (c : complex t) : t =
 inl complex_unbox forall t. (c : complex t) =
     c |> re, c |> im
 
-inl powc forall t. (s : complex t) (c : complex t) : complex t =
-    !\($'"num_complex::Complex::powc(!c, !s)"')
+inl (~.^) c = complex c
+
+inl complex_eq forall t. (a : complex t) (b : complex t) : bool =
+    !\($'"!a == !b"')
+
+inl (.=) a b = complex_eq a b
+
+instance equable complex t = complex_eq
+
+inl complex_add forall t. (a : complex t) (b : complex t) : complex t =
+    !\($'"!a + !b"')
+
+inl (.+) a b = complex_add a b
 
 inl complex_sub forall t. (a : complex t) (b : complex t) : complex t =
     !\($'"!a - !b"')
 
+inl (.-) a b = complex_sub a b
+
 inl complex_mult forall t. (a : complex t) (b : complex t) : complex t =
     !\($'"!a * !b"')
 
+inl (.*) a b = complex_mult a b
+
 inl complex_div forall t. (a : complex t) (b : complex t) : complex t =
     !\($'"!a / !b"')
+
+inl (./) a b = complex_div a b
+
+inl powc forall t. (s : complex t) (c : complex t) : complex t =
+    inl c = join c
+    inl s = join s
+    !\($'"num_complex::Complex::powc(!c, !s)"')
+
+inl (.**) a b = powc b a
 
 inl complex_sin forall t. (c : complex t) : complex t =
     !\($'"!c.sin()"')
 
 inl conj forall t. (c : complex t) : complex t =
     !\($'"!c.conj()"')
+
+#!markdown
+
+## eval
+
+#!spiral
 
 inl module_from_code (py : python) (code : string) : resultm.result' (bound pymodule) pyerr =
     inl py = join py
@@ -175,15 +205,64 @@ inl zeta_ py s =
 
     eval py code args
 
+#!markdown
+
+## zeta
+
+#!spiral
+
+inl rec zeta (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
+    join
+        if re s > 1 then
+            am.init 10000i32 id
+            |> fun x => x : a i32 _
+            |> am.fold
+                fun acc n =>
+                    acc .+ .^(1, 0) ./ (.^(f64 n, 0) .** s)
+                .^(0, 0)
+        elif s = .^(-1, 0) then
+            .^(-1 / 12, 0)
+        else
+            inl one_minus_s = .^(1 - re s, -(im s))
+            inl mirror_term =
+                if re one_minus_s > 1
+                then zeta gamma one_minus_s
+                else .^(0, 0)
+            inl gamma_term = gamma (.^(1, 0) .- s)
+            inl sin_term = .^(pi, 0) .* s ./ .^(2, 0) |> complex_sin
+            inl reflection_formula =
+                .^(2, 0) .* (.^(pi, 0) .** s) .* sin_term .* gamma_term .* mirror_term
+            reflection_formula
+
+inl zeta (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
+    .^(0, 0)
+
+#!markdown
+
+## run_test
+
+#!spiral
+
 inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
     inl fn_ (py : python) : resultm.result' () pyerr =
-        inl zeta = fun (s : complex f64) =>
-            inl s = zeta_ py s |> resultm.unwrap'
-            s
-        inl gamma = fun (s : complex f64) =>
+        inl gamma__ = fun (s : complex f64) =>
             inl s = gamma_ py s |> resultm.unwrap'
             s
-        fn (zeta, gamma)
+        inl zeta__ = fun (s : complex f64) =>
+            inl result = zeta_ py s |> resultm.unwrap'
+
+            inl z = zeta gamma__ s
+
+            !\($'"println\!(\\\"zeta / s: {:?} / result: {:?} / z: {:?}\\\", !s, !result, !z)"')
+
+    //             re result - re x |> abs
+    //             |> _assert_lt 0.001
+    //             
+    //             im result - im x |> abs
+    //             |> _assert_lt 0.001
+
+            result
+        fn (zeta__, gamma__)
         
         Ok ()
         |> resultm.box
@@ -210,19 +289,15 @@ inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> co
 
 inl test_zeta_at_known_values_ () = run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
-        complex (2, 0), pi ** 2 / 6
-        complex (-1, 0), -1 / 12
+        .^(2, 0), pi ** 2 / 6
+        .^(-1, 0), -1 / 12
     ]
     |> fun x => a x : _ i32 _
     |> am.iter fun s, e =>
         inl result = zeta s
 
-        result
-        |> im
-        |> _assert_eq 0f64
-
-        (result |> re) - e |> abs
-        |> _assert_lt 0.0001
+        result |> im |> _assert_eq 0
+        re result - e |> abs |> _assert_lt 0.0001
 
 #!spiral
 
@@ -240,15 +315,12 @@ test_zeta_at_known_values_ ()
 
 #!spiral
 
-inl test_zeta_at_2_minus2 () = run_test (5u8, 4u8) fun zeta, gamma =>
-    inl s = complex (2f64, -2f64)
+inl test_zeta_at_2_minus2 () = run_test (6u8, 5u8) fun zeta, gamma =>
+    inl s = .^(2, -2)
     inl result = zeta s
 
-    ((result |> re) - 0.8673f64) |> abs
-    |> _assert_lt 0.001f64
-
-    ((result |> im) - 0.2750f64) |> abs
-    |> _assert_lt 0.001f64
+    (re result - 0.8673) |> abs |> _assert_lt 0.001
+    (im result - 0.2750) |> abs |> _assert_lt 0.001
 
 #!spiral
 
@@ -268,16 +340,11 @@ test_zeta_at_2_minus2 ()
 inl test_trivial_zero_at_negative_even___ () = run_test (2u8, 1u8) fun zeta, gamma =>
     (join listm'.init_series -2f64 -40 -2)
     |> listm.iter fun n =>
-        inl s = complex (n, 0)
+        inl s = .^(n, 0)
         inl result = zeta s
 
-        result
-        |> re
-        |> _assert_eq 0
-
-        result
-        |> im
-        |> _assert_eq 0
+        result |> re |> _assert_eq 0
+        result |> im |> _assert_eq 0
 
 #!spiral
 
@@ -296,12 +363,12 @@ test_trivial_zero_at_negative_even___ ()
 
 inl test_non_trivial_zero___ () = run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
-        complex (0.5, 14.134725)
-        complex (0.5, 21.022040)
-        complex (0.5, 25.010857)
-        complex (0.5, 30.424876)
-        complex (0.5, 32.935062)
-        complex (0.5, 37.586178)
+        .^(0.5, 14.134725)
+        .^(0.5, 21.022040)
+        .^(0.5, 25.010857)
+        .^(0.5, 30.424876)
+        .^(0.5, 32.935062)
+        .^(0.5, 37.586178)
     ]
     |> fun x => a x : _ i32 _
     |> am.iter fun x =>
@@ -328,7 +395,7 @@ inl test_real_part_greater_than_one___ () = run_test (3u8, 2u8) fun zeta, gamma 
     inl points = ;[2; 3; 4; 5; 10; 20; 50]
     (a points : _ i32 _)
     |> am.iter fun point =>
-        inl s = complex (point, 0)
+        inl s = .^(point, 0)
         inl result = zeta s
         result |> re |> _assert_gt 0
         result |> im |> _assert_eq 0
@@ -348,8 +415,8 @@ test_real_part_greater_than_one___ ()
 
 #!spiral
 
-inl test_zeta_at_1___ () = run_test (5u8, 4u8) fun zeta, gamma =>
-    inl s = complex (1, 0)
+inl test_zeta_at_1___ () = run_test (6u8, 5u8) fun zeta, gamma =>
+    inl s = .^(1, 0)
     inl result = zeta s
     result |> re |> _assert_eq limit.max
     result |> im |> _assert_eq 0
@@ -369,10 +436,10 @@ test_zeta_at_1___ ()
 
 #!spiral
 
-inl test_symmetry_across_real_axis___ () = run_test (6u8, 5u8) fun zeta, gamma =>
-    inl s = complex (2, 10)
+inl test_symmetry_across_real_axis___ () = run_test (8u8, 7u8) fun zeta, gamma =>
+    inl s = .^(2, 10)
     inl result_positive_im = zeta s
-    inl result_negative_im = complex (s |> re, s |> im |> (~-)) |> zeta
+    inl result_negative_im = zeta .^(re s, -(im s))
     inl conj = result_negative_im |> conj
     result_positive_im |> re |> _assert_eq (conj |> re)
     result_positive_im |> im |> _assert_eq (conj |> im)
@@ -392,8 +459,8 @@ test_symmetry_across_real_axis___ ()
 
 #!spiral
 
-inl test_behavior_near_origin___ () = run_test (5u8, 4u8) fun zeta, gamma =>
-    inl s = complex (0.01, 0.01)
+inl test_behavior_near_origin___ () = run_test (6u8, 5u8) fun zeta, gamma =>
+    inl s = .^(0.01, 0.01)
     inl result = zeta s
     result |> re |> _assert_lt limit.max
     result |> im |> _assert_lt limit.max
@@ -413,10 +480,10 @@ test_behavior_near_origin___ ()
 
 #!spiral
 
-inl test_zeta_at_minus_1 () = run_test (5u8, 4u8) fun zeta, gamma =>
-    inl s = complex (-1, 0)
+inl test_zeta_at_minus_1 () = run_test (6u8, 5u8) fun zeta, gamma =>
+    inl s = .^(-1, 0)
     inl result = zeta s
-    (result |> re) + 1f64 / 12f64 |> abs |> _assert_lt 0.0001
+    re result + 1 / 12 |> abs |> _assert_lt 0.0001
     result |> im |> _assert_eq 0
 
 #!spiral
@@ -437,7 +504,7 @@ test_zeta_at_minus_1 ()
 inl test_imaginary_axis () = run_test (3u8, 2u8) fun zeta, gamma =>
     (join a ;[10; 20; 30; 40; 50; 60; 70; 80; 90; 100] : _ i32 _)
     |> am.iter fun s =>
-        inl s = complex (0, s)
+        inl s = .^(0, s)
         inl result = zeta s
         result |> re |> _assert_ne 0
         result |> im |> _assert_ne 0
@@ -459,11 +526,11 @@ test_imaginary_axis ()
 
 inl test_critical_strip () = run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
-        complex (0.5, 14.134725)
-        complex (0.75, 20.5)
-        complex (1.25, 30.1)
-        complex (0.25, 40.0)
-        complex (1.0, 50.0)
+        .^(0.5, 14.134725)
+        .^(0.75, 20.5)
+        .^(1.25, 30.1)
+        .^(0.25, 40.0)
+        .^(1.0, 50.0)
     ]
     |> fun x => a x : _ i32 _
     |> am.iter fun s =>
@@ -488,39 +555,25 @@ test_critical_strip ()
 
 inl test_reflection_formula_for_specific_value () = run_test (3u8, 2u8) fun zeta, gamma =>
     ;[
-        complex (3, 4)
-        complex (2.5, -3.5)
-        complex (1.5, 2.5)
-        complex (0.5, 14.134725)
+        .^(3, 4)
+        .^(2.5, -3.5)
+        .^(1.5, 2.5)
+        .^(0.5, 14.134725)
     ]
     |> fun x => a x : _ i32 _
     |> am.iter fun s =>
         inl lhs = zeta s
         inl reflection_coefficient =
-            complex_mult
-                (complex_mult
-                    (complex_mult
-                        (complex (2, 0) |> powc s)
-                        (complex (pi, 0) |> powc (complex_sub s (complex (1, 0))))
-                    )
-                    (
-                        (complex_div
-                            (complex_mult
-                                (complex (pi, 0))
-                                s
-                            )
-                            (complex (2, 0))
-                        )
-                        |> complex_sin
-                    )
-                )
-                (gamma (complex_sub (complex (1, 0)) s))
-                
-        inl one_minus_s = complex (1 - (s |> re), -(s |> im))
-        inl rhs_calculated = complex_mult reflection_coefficient (zeta one_minus_s)
+            (.^(2, 0) .** s)
+            .* (.^(pi, 0) .** (s .- .^(1, 0)))
+            .* (.^(pi, 0) .* s ./ .^(2, 0) |> complex_sin)
+            .* gamma (.^(1, 0) .- s)
 
-        ((lhs |> re) - (rhs_calculated |> re)) |> abs |> _assert_lt 0.0001
-        ((lhs |> im) - (rhs_calculated |> im)) |> abs |> _assert_lt 0.0001
+        inl one_minus_s = .^(1 - re s, -(im s))
+        inl rhs = reflection_coefficient .* zeta one_minus_s
+
+        re lhs - re rhs |> abs |> _assert_lt 0.0001
+        im lhs - im rhs |> abs |> _assert_lt 0.0001
 
 #!spiral
 
@@ -542,15 +595,15 @@ inl test_euler_product_formula () = run_test (3u8, 2u8) fun zeta, gamma =>
     inl primes = ;[2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31; 37; 41; 43; 47; 53; 59; 61; 67; 71]
     (a s_values : _ i32 _)
     |> am.iter fun s_re =>
-        inl s = complex (s_re, 0)
+        inl s = .^(s_re, 0)
         inl product =
             (1, (a primes : _ i32 _))
             ||> am.fold fun acc x =>
                 acc * 1 / (1 - x ** -s_re)
 
         inl result = zeta s
-        ((result |> re) - product) |> abs |> _assert_lt 0.01f64
-        result |> im |> _assert_lt 0.01f64
+        re result - product |> abs |> _assert_lt 0.01
+        result |> im |> _assert_lt 0.01
 
 #!spiral
 
