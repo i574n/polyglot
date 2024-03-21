@@ -206,7 +206,6 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
             inl result = gamma_ log py s |> resultm.unwrap'
             if log then
                 !\($'"println\!(\\\"gamma__ / s: {:?} / result: {:?}\\\", !s, !result)"')
-                !\($'"}} // gamma__[0]"')
             result
         inl zeta__ = fun (s : complex f64) =>
             inl result = zeta_ log py s |> resultm.unwrap'
@@ -215,7 +214,6 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
 
             if log then
                 !\($'"println\!(\\\"zeta__ / s: {:?} / result: {:?} / z: {:?}\\\", !s, !result, !z)"')
-                !\($'"}} // zeta__[0]"')
 
     //             re result - re x |> abs
     //             |> _assert_lt 0.001
