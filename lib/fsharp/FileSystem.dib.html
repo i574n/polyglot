@@ -7695,7 +7695,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-0495-9574-973340b04742
+<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1951-5356-5611-5f0abdd7c196
 </pre>
 </div>
 </div>
@@ -7752,7 +7752,7 @@ a.anchor-link {
 <span class="n">let</span> <span class="n">tempDirectory</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
 
 <span class="n">Directory</span><span class="o">.</span><span class="n">Exists</span> <span class="n">tempDirectory</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -7811,7 +7811,7 @@ a.anchor-link {
 <span class="n">getSourceDirectory</span> <span class="p">()</span>
 <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">DirectoryInfo</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="nb">dir</span><span class="o">.</span><span class="n">Name</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"fsharp"</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"fsharp"</span>
 </pre></div>
 </div>
 </div>
@@ -7878,7 +7878,7 @@ a.anchor-link {
 <span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
 <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">DirectoryInfo</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="nb">dir</span><span class="o">.</span><span class="n">Name</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"polyglot"</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"polyglot"</span>
 </pre></div>
 </div>
 </div>
@@ -7910,7 +7910,7 @@ a.anchor-link {
 <span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">findParent</span> <span class="s2">"paket.dependencies"</span> <span class="n">true</span>
 <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">DirectoryInfo</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="nb">dir</span><span class="o">.</span><span class="n">Name</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"polyglot"</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"polyglot"</span>
 </pre></div>
 </div>
 </div>
@@ -8143,11 +8143,11 @@ a.anchor-link {
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
 
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"1"</span>
+        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"1"</span>
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8166,8 +8166,8 @@ a.anchor-link {
 00:00:00 #4 [Debug] 3
 00:00:00 #5 [Debug] _2
 00:00:00 #6 [Debug] 4
-00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-0580-8045-8d0c6f426a48\test.txt' because it is being used by another process.
-00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-0580-8045-8d0c6f426a48\test.txt' because it is being used by another process.
+00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1951-5456-5652-533d1a775099\test.txt' because it is being used by another process.
+00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1951-5456-5652-533d1a775099\test.txt' because it is being used by another process.
 00:00:02 #9 [Debug] _3
 00:00:02 #10 [Debug] _4
 00:00:02 #11 [Debug] _5
@@ -8175,9 +8175,9 @@ a.anchor-link {
 00:00:02 #13 [Debug] 5
 00:00:02 #14 [Debug] 6
 00:00:02 #15 [Debug] 7
-128
-128
-128
+126
+126
+126
 1
 True
 </pre>
@@ -8318,7 +8318,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8331,20 +8331,20 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #16 [Debug] 1
-00:00:02 #17 [Debug] 2
-00:00:02 #18 [Debug] 3
-00:00:02 #19 [Debug] _1
-00:00:02 #20 [Debug] _2
-00:00:02 #21 [Debug] 4
-00:00:02 #22 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:04 #23 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:04 #24 [Debug] _3
-00:00:04 #25 [Debug] 5
-00:00:04 #26 [Debug] 6
-124
-124
-124
+<pre>00:00:03 #16 [Debug] 1
+00:00:03 #17 [Debug] 2
+00:00:03 #18 [Debug] 3
+00:00:03 #19 [Debug] _1
+00:00:03 #20 [Debug] _2
+00:00:03 #21 [Debug] 4
+00:00:03 #22 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:05 #23 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:05 #24 [Debug] _3
+00:00:05 #25 [Debug] 5
+00:00:05 #26 [Debug] 6
+121
+121
+121
 True
 </pre>
 </div>
@@ -8438,7 +8438,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8455,16 +8455,16 @@ True
 00:00:05 #28 [Debug] 2
 00:00:05 #29 [Debug] 3
 00:00:05 #30 [Debug] _1
-00:00:05 #31 [Debug] _2
-00:00:05 #32 [Debug] 4
-00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-1089-8982-887d1ba2fc04\test.txt' because it is being used by another process.
-00:00:06 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-1089-8982-887d1ba2fc04\test.txt' because it is being used by another process.
+00:00:05 #32 [Debug] _2
+00:00:05 #31 [Debug] 4
+00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-0055-5514-50acabbfee0d\test.txt' because it is being used by another process.
+00:00:07 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-0055-5514-50acabbfee0d\test.txt' because it is being used by another process.
 00:00:07 #35 [Debug] _3
 00:00:07 #36 [Debug] 5
 00:00:07 #37 [Debug] 6
-129
-129
-129
+128
+128
+128
 True
 </pre>
 </div>
@@ -8567,11 +8567,11 @@ True
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
 
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"0"</span>
+        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"0"</span>
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8584,22 +8584,22 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:07 #38 [Debug] 1
-00:00:07 #39 [Debug] 2
-00:00:07 #40 [Debug] 3
-00:00:07 #41 [Debug] _1
-00:00:07 #42 [Debug] _2
-00:00:07 #43 [Debug] 4
-00:00:07 #44 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
+<pre>00:00:08 #38 [Debug] 1
+00:00:08 #39 [Debug] 2
+00:00:08 #40 [Debug] 3
+00:00:08 #41 [Debug] _1
+00:00:08 #42 [Debug] _2
+00:00:08 #43 [Debug] 4
+00:00:08 #44 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
 00:00:09 #45 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:09 #46 [Debug] _3
-00:00:09 #47 [Debug] 5
-00:00:09 #48 [Debug] 6
-00:00:09 #49 [Debug] 7
-00:00:09 #50 [Debug] 8
-128
-128
-128
+00:00:10 #46 [Debug] _3
+00:00:10 #47 [Debug] 5
+00:00:10 #48 [Debug] 6
+00:00:10 #49 [Debug] 7
+00:00:10 #50 [Debug] 8
+129
+129
+129
 0
 0
 0
@@ -8813,7 +8813,7 @@ True
     <span class="k">try</span>
         <span class="n">run</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">60000</span>
-        <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+        <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
     <span class="k">finally</span>
         <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
         <span class="n">deleteDirectoryAsync</span> <span class="n">tempDirectory</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
@@ -8935,7 +8935,7 @@ True
 
 <span class="n">run</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -8950,26 +8950,26 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:17 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:17 #52 [Debug] testEventsRaw / eventsLog: 
-0 / 638463269619165412 / Created ("file1.txt", Some "a1")
-1 / 638463269619165413 / Changed ("file1.txt", Some "a1")
-14542 / 638463269619179955 / Changed ("file1.txt", Some "a1")
-592 / 638463269619180547 / Created ("file2.txt", Some "a2")
-1 / 638463269619180548 / Changed ("file2.txt", Some "a2")
-37 / 638463269619180585 / Changed ("file2.txt", Some "a2")
-2479295 / 638463269621659880 / Changed ("file1.txt", Some "b1")
-1579 / 638463269621661459 / Changed ("file1.txt", Some "b1")
-7136 / 638463269621668595 / Changed ("file2.txt", Some "b2")
-1345 / 638463269621669940 / Changed ("file2.txt", Some "b2")
-2538328 / 638463269624208268 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-13001 / 638463269624221269 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2478007 / 638463269626699276 / Changed ("file_1.txt", Some "c1")
-2461 / 638463269626701737 / Changed ("file_1.txt", Some "c1")
-7537 / 638463269626709274 / Changed ("file_2.txt", Some "c2")
-1934 / 638463269626711208 / Changed ("file_2.txt", Some "c2")
-2527421 / 638463269629238629 / Deleted "file_1.txt"
-5796 / 638463269629244425 / Deleted "file_2.txt"
+00:00:18 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:18 #52 [Debug] testEventsRaw / eventsLog: 
+0 / 638465755321066170 / Created ("file1.txt", Some "a1")
+1 / 638465755321066171 / Changed ("file1.txt", Some "a1")
+15318 / 638465755321081489 / Changed ("file1.txt", Some "a1")
+1034 / 638465755321082523 / Created ("file2.txt", Some "a2")
+1 / 638465755321082524 / Changed ("file2.txt", Some "a2")
+44 / 638465755321082568 / Changed ("file2.txt", Some "a2")
+2618386 / 638465755323700954 / Changed ("file1.txt", Some "b1")
+2328 / 638465755323703282 / Changed ("file1.txt", Some "b1")
+6761 / 638465755323710043 / Changed ("file2.txt", Some "b2")
+1463 / 638465755323711506 / Changed ("file2.txt", Some "b2")
+2670607 / 638465755326382113 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+8568 / 638465755326390681 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2597804 / 638465755328988485 / Changed ("file_1.txt", Some "c1")
+2840 / 638465755328991325 / Changed ("file_1.txt", Some "c1")
+15512 / 638465755329006837 / Changed ("file_2.txt", Some "c2")
+3428 / 638465755329010265 / Changed ("file_2.txt", Some "c2")
+2626501 / 638465755331636766 / Deleted "file_1.txt"
+1634 / 638465755331638400 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9164,7 +9164,7 @@ FSharpOption&lt;Unit&gt;
 
 <span class="n">run</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">5</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -9177,33 +9177,33 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:22 #54 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-2830-3006-31afe0778d50\file2.txt' because it is being used by another process.)
-00:00:22 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-2830-3006-31afe0778d50\file2.txt' because it is being used by another process.)
-00:00:24 #55 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-2830-3006-31afe0778d50\file1.txt' because it is being used by another process.)
-00:00:24 #56 [Debug] waitForFileAccess / path: file1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-2830-3006-31afe0778d50\file1.txt' because it is being used by another process.
-00:00:24 #57 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2249-2830-3006-31afe0778d50\file2.txt' because it is being used by another process.)
+<pre>00:00:27 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file1.txt' because it is being used by another process.)
+00:00:30 #54 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_1.txt' because it is being used by another process.)
+00:00:30 #55 [Debug] waitForFileAccess / path: file_1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_1.txt' because it is being used by another process.
+00:00:30 #56 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_2.txt' because it is being used by another process.)
+00:00:30 #57 [Debug] waitForFileAccess / path: file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_2.txt' because it is being used by another process.
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:30 #58 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:30 #59 [Debug] testEventsRaw / eventsLog: 
-0 / 638463269685679137 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
-1 / 638463269685679138 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
-104894 / 638463269685784032 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-19762 / 638463269685803794 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
-1 / 638463269685803795 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
-103015 / 638463269685906810 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15120272 / 638463269701027082 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
-289374 / 638463269701316456 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-36404 / 638463269701352860 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
-134557 / 638463269701487417 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15201409 / 638463269716688826 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
-63378 / 638463269716752204 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "2222222222222
-15166904 / 638463269731919108 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
-116371 / 638463269732035479 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111
-75680 / 638463269732111159 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-114433 / 638463269732225592 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222
-15192175 / 638463269747417767 / Deleted "file_1.txt"
-4223 / 638463269747421990 / Deleted "file_2.txt"
+00:00:33 #58 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:34 #59 [Debug] testEventsRaw / eventsLog: 
+0 / 638465755406466459 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
+1 / 638465755406466460 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
+56840 / 638465755406523300 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
+23388 / 638465755406546688 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
+1 / 638465755406546689 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
+63281 / 638465755406609970 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+15346598 / 638465755421956568 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
+203599 / 638465755422160167 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
+416802 / 638465755422576969 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+114859 / 638465755422691828 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+15189358 / 638465755437881186 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
+14872 / 638465755437896058 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "2222222222222
+15135998 / 638465755453032056 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
+154486 / 638465755453186542 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111
+34780 / 638465755453221322 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+102779 / 638465755453324101 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222
+15182144 / 638465755468506245 / Deleted "file_1.txt"
+5775 / 638465755468512020 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9377,7 +9377,7 @@ FSharpOption&lt;Unit&gt;
     <span class="k">try</span>
         <span class="n">run</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">5000</span>
-        <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+        <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
     <span class="k">finally</span>
         <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
         <span class="n">deleteDirectoryAsync</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
@@ -9470,7 +9470,7 @@ FSharpOption&lt;Unit&gt;
 
 <span class="n">run</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -9485,7 +9485,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:35 #60 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:39 #60 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9569,7 +9569,7 @@ FSharpOption&lt;Unit&gt;
 
 <span class="n">run</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -9584,7 +9584,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:40 #61 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:44 #61 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9668,7 +9668,7 @@ FSharpOption&lt;Unit&gt;
 
 <span class="n">run</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -9683,7 +9683,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:46 #62 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:50 #62 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9781,7 +9781,7 @@ FSharpOption&lt;Unit&gt;
 
 <span class="n">run</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -9796,7 +9796,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:52 #63 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:01:00 #63 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

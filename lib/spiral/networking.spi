@@ -18,6 +18,7 @@ type request =
         url : string
         request_type : request_type
         body : string
+        json : bool
     }
 
 inl new_request_get (url : string) : request_builder =
@@ -39,6 +40,12 @@ inl request_send (request : request_builder) : async.future_pin (resultm.result'
 inl request_body (body : string) (request : request_builder) : request_builder =
     inl body = body |> sm'.to_std_string
     !\($'"reqwest_wasm::RequestBuilder::body(!request, !body)"')
+
+inl request_header (key : string) (value : string) (request : request_builder) : request_builder =
+    inl request = join request
+    inl key = key |> sm'.to_std_string
+    inl value = value |> sm'.to_std_string
+    !\($'"reqwest_wasm::RequestBuilder::header(!request, !key, !value)"')
 
 inl request_json forall t. (obj : t) (request : request_builder) : request_builder =
     !\($'"reqwest_wasm::RequestBuilder::json(!request, &!obj)"')

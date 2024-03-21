@@ -7812,28 +7812,28 @@ table th {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">splitCommand</span> <span class="s2">""</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
 
 <span class="n">splitCommand</span> <span class="s2">"/a/b/c"</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"/a/b/c"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"/a/b/c"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
 
 <span class="n">splitCommand</span> <span class="s2">"cat file.txt"</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">)</span>
 
 <span class="n">splitCommand</span> <span class="s2">"""..\..</span><span class="se">\f</span><span class="s2">ile.exe file1.txt file2.txt"""</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"../../file.exe"</span><span class="p">,</span> <span class="s2">"file1.txt file2.txt"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"../../file.exe"</span><span class="p">,</span> <span class="s2">"file1.txt file2.txt"</span><span class="p">)</span>
 
 <span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"c:\dir</span><span class="se">\f</span><span class="s2">ile.exe ""file1.txt file2.txt"""</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"c:/dir/file.exe"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"""file1.txt file2.txt"""</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"c:/dir/file.exe"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"""file1.txt file2.txt"""</span><span class="p">)</span>
 
 <span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"""..\..\dir name</span><span class="se">\f</span><span class="s2">ile.exe"" ""file 1.txt"" file2.txt"</span>
-<span class="s2">|&gt; _assert_eq ("../../dir name/file.exe", @"""</span><span class="n">file</span> <span class="mf">1.</span><span class="n">txt</span><span class="s2">""</span> <span class="n">file2</span><span class="o">.</span><span class="n">txt</span><span class="s2">")</span>
+<span class="s2">|&gt; _assertEqual ("../../dir name/file.exe", @"""</span><span class="n">file</span> <span class="mf">1.</span><span class="n">txt</span><span class="s2">""</span> <span class="n">file2</span><span class="o">.</span><span class="n">txt</span><span class="s2">")</span>
 
 <span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"""..\..</span><span class="se">\f</span><span class="s2">ile 1.exe"" -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"../../file 1.exe"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"-c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"../../file 1.exe"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"-c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span><span class="p">)</span>
 
 <span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"..\..</span><span class="se">\f</span><span class="s2">ile 1.exe -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="s2">"../../file"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"1.exe -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"../../file"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"1.exe -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8007,7 +8007,7 @@ table th {
 
 <span class="k">async</span> <span class="p">{</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">executeAsync</span> <span class="o">@</span><span class="err">$</span><span class="s2">"pwsh -c ""Get-Content </span><span class="si">{path}</span><span class="s2">"""</span>
-    <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+    <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
     <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_stringContains</span> <span class="s2">"not exist"</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">path</span>
@@ -8025,12 +8025,12 @@ table th {
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
-        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"0"</span>
+        <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span>
+        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"0"</span>
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8044,18 +8044,18 @@ table th {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 #1 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2250-4794-9416-996b44d93a5e\test.txt""
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1953-4581-8158-8d1585f7d737\test.txt""
   WorkingDirectory = None
   CancellationToken = None
   OnLine = None }
-00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2250-4794-9416-996b44d93a5e\test.txt' because it does not exist.</span>
+00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1953-4581-8158-8d1585f7d737\test.txt' because it does not exist.</span>
 00:00:00 #3 [Debug] executeAsync / exitCode: 1 / output.Length: 171
 1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2250-4794-9416-996b44d93a5e\test.txt' because it does not exist.</span>]
+[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1953-4581-8158-8d1585f7d737\test.txt' because it does not exist.</span>]
 00:00:00 #4 [Debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
   WorkingDirectory =
    Some
-     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2250-4794-9416-996b44d93a5e"
+     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1953-4581-8158-8d1585f7d737"
   CancellationToken = None
   OnLine = None }
 00:00:01 #5 [Verbose] &gt; 0
@@ -8108,12 +8108,12 @@ True
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="o">-</span><span class="mi">2147483648</span>
-        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"System.Threading.Tasks.TaskCanceledException: A task was canceled."</span>
+        <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="o">-</span><span class="mi">2147483648</span>
+        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"System.Threading.Tasks.TaskCanceledException: A task was canceled."</span>
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8126,18 +8126,18 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #7 [Debug] 1
-00:00:02 #9 [Debug] 2
-00:00:02 #8 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240317-2250-5002-0286-0a0497f91b3a\test.txt""
+<pre>00:00:01 #7 [Debug] 1
+00:00:01 #9 [Debug] 2
+00:00:01 #8 [Debug] executeAsync / options: { Command =
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1953-4769-6913-631e58930707\test.txt""
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = None }
-00:00:02 #10 [Debug] 3
-00:00:02 #11 [Debug] 4
-00:00:02 #12 [Warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:02 #13 [Debug] executeAsync / exitCode: -2147483648 / output.Length: 66
-00:00:02 #14 [Debug] 5
+00:00:01 #10 [Debug] 3
+00:00:01 #11 [Debug] 4
+00:00:01 #12 [Warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+00:00:01 #13 [Debug] executeAsync / exitCode: -2147483648 / output.Length: 66
+00:00:01 #14 [Debug] 5
 -2147483648
 System.Threading.Tasks.TaskCanceledException: A task was canceled.
 True
@@ -8186,7 +8186,7 @@ True
 <span class="sd">"""a b "c d" e"""</span>
 <span class="o">|&gt;</span> <span class="n">splitArgs</span>
 <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toArray</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">;</span> <span class="s2">"c d"</span><span class="p">;</span> <span class="s2">"e"</span> <span class="o">|</span><span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">;</span> <span class="s2">"c d"</span><span class="p">;</span> <span class="s2">"e"</span> <span class="o">|</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8386,7 +8386,7 @@ OPTIONS:
             <span class="o">|</span> <span class="n">Paths</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">nameof</span> <span class="n">Paths</span>
 
 <span class="n">parseAllArgs</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"a b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="o">|</span><span class="p">]</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Paths</span> <span class="p">[</span> <span class="s2">"a b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="p">]</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Paths</span> <span class="p">[</span> <span class="s2">"a b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="p">]</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -8435,7 +8435,7 @@ OPTIONS:
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">parseArgsMap</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">|</span> <span class="s2">"a b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="o">|</span><span class="p">]</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="p">[</span> <span class="n">nameof</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Paths</span><span class="p">,</span> <span class="p">[</span> <span class="n">Arguments</span><span class="o">.</span><span class="n">Paths</span> <span class="p">[</span> <span class="s2">"a b"</span><span class="p">;</span> <span class="s2">"c"</span> <span class="p">]</span> <span class="p">]</span> <span class="p">]</span>
     <span class="o">|&gt;</span> <span class="n">Map</span><span class="o">.</span><span class="n">ofList</span>
 <span class="p">)</span>

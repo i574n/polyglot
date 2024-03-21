@@ -7565,8 +7565,357 @@ a.anchor-link {
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">i</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">e</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">s</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">n</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">t</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">f</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">j</span> <span class="o">=</span> <span class="p">()</span>
+<span class="n">nominal</span> <span class="n">p</span> <span class="o">=</span> <span class="p">()</span>
+
+<span class="n">union</span> <span class="n">sensing</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Si</span> <span class="p">:</span> <span class="n">s</span> <span class="o">*</span> <span class="n">i</span>
+    <span class="o">|</span> <span class="n">Se</span> <span class="p">:</span> <span class="n">s</span> <span class="o">*</span> <span class="n">e</span>
+
+<span class="n">union</span> <span class="n">intuition</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Ni</span> <span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">i</span>
+    <span class="o">|</span> <span class="n">Ne</span> <span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="n">e</span>
+
+<span class="n">union</span> <span class="n">thinking</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Ti</span> <span class="p">:</span> <span class="n">t</span> <span class="o">*</span> <span class="n">i</span>
+    <span class="o">|</span> <span class="n">Te</span> <span class="p">:</span> <span class="n">t</span> <span class="o">*</span> <span class="n">e</span>
+
+<span class="n">union</span> <span class="n">feeling</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Fi</span> <span class="p">:</span> <span class="n">f</span> <span class="o">*</span> <span class="n">i</span>
+    <span class="o">|</span> <span class="n">Fe</span> <span class="p">:</span> <span class="n">f</span> <span class="o">*</span> <span class="n">e</span>
+
+<span class="n">union</span> <span class="n">function_stack</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">FS</span> <span class="p">:</span> <span class="n">sensing</span> <span class="o">*</span> <span class="n">intuition</span> <span class="o">*</span> <span class="n">thinking</span> <span class="o">*</span> <span class="n">feeling</span>
+
+<span class="n">union</span> <span class="n">personality_type</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">ISTJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ISFJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">INFJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">INTJ</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ISTP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ISFP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">INFP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">INTP</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ESTP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ESFP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ENFP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ENTP</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ESTJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ESFJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ENFJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+    <span class="o">|</span> <span class="n">ENTJ</span> <span class="p">:</span> <span class="n">e</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">j</span> <span class="o">*</span> <span class="n">function_stack</span>
+
+
+<span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">istj_stack</span> <span class="o">=</span> <span class="n">FS</span> <span class="p">((</span><span class="n">Si</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)),</span> <span class="n">Ne</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="p">(</span><span class="n">Te</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">)),</span> <span class="p">(</span><span class="n">Fi</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>
+    <span class="n">inl</span> <span class="n">istj_personality</span> <span class="o">=</span> <span class="n">ISTJ</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">istj_stack</span><span class="p">)</span>
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">isfj_stack</span> <span class="o">=</span> <span class="n">FS</span> <span class="p">((</span><span class="n">Si</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)),</span> <span class="n">Ne</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="p">(</span><span class="n">Fe</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">e</span><span class="p">)),</span> <span class="p">(</span><span class="n">Ti</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">)))</span>
+    <span class="o">//</span> <span class="n">inl</span> <span class="n">isfj_personality</span> <span class="o">=</span> <span class="n">ISFJ</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">isfj_stack</span><span class="p">)</span>
+
+    <span class="p">;[</span>
+        <span class="n">istj_personality</span>
+    <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'$"%A{!x}"'</span> <span class="p">:</span> <span class="n">string</span>
+    <span class="o">|&gt;</span> <span class="n">console</span><span class="o">.</span><span class="n">write_line</span>
+
+<span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!main ()"</span> <span class="p">:</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1
+and [&lt;Struct&gt;] US2 =
+    | US2_0
+    | US2_1
+and [&lt;Struct&gt;] US3 =
+    | US3_0
+    | US3_1
+and [&lt;Struct&gt;] US4 =
+    | US4_0 of f0_0 : US0 * f0_1 : US1 * f0_2 : US2 * f0_3 : US3
+and [&lt;Struct&gt;] US5 =
+    | US5_0 of f0_0 : US4
+    | US5_1 of f1_0 : US4
+    | US5_2 of f2_0 : US4
+    | US5_3 of f3_0 : US4
+    | US5_4 of f4_0 : US4
+    | US5_5 of f5_0 : US4
+    | US5_6 of f6_0 : US4
+    | US5_7 of f7_0 : US4
+    | US5_8 of f8_0 : US4
+    | US5_9 of f9_0 : US4
+    | US5_10 of f10_0 : US4
+    | US5_11 of f11_0 : US4
+    | US5_12 of f12_0 : US4
+    | US5_13 of f13_0 : US4
+    | US5_14 of f14_0 : US4
+    | US5_15 of f15_0 : US4
+let rec method0 (v0 : (US5 [])) : (US5 []) =
+    v0
+and closure0 () () : unit =
+    let v0 : US0 = US0_1
+    let v1 : US1 = US1_0
+    let v2 : US2 = US2_0
+    let v3 : US3 = US3_1
+    let v4 : US4 = US4_0(v0, v1, v2, v3)
+    let v5 : US5 = US5_14(v4)
+    let v6 : (US5 []) = [|v5|]
+    let v7 : (US5 []) = method0(v6)
+    let v8 : string = $"%A{v7}"
+    System.Console.WriteLine v8
+    ()
+let v0 : (unit -&gt; unit) = closure0()
+v0 ()
+()
+
+[|US5_14 (US4_0 (US0_1, US1_0, US2_0, US3_1))|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">PhonologicalFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">VowelFeature</span> <span class="n">of</span>
+        <span class="n">height</span><span class="p">:</span> <span class="n">Height</span>
+        <span class="o">*</span> <span class="n">backness</span><span class="p">:</span> <span class="n">Backness</span>
+        <span class="o">*</span> <span class="n">roundedness</span><span class="p">:</span> <span class="n">Roundedness</span>
+        <span class="o">*</span> <span class="n">tone</span><span class="p">:</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">Tone</span><span class="o">&gt;</span>
+        <span class="o">*</span> <span class="n">stress</span><span class="p">:</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">Stress</span><span class="o">&gt;</span>
+        <span class="o">*</span> <span class="n">length</span><span class="p">:</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">Length</span><span class="o">&gt;</span>
+    <span class="o">|</span> <span class="n">ConsonantFeature</span> <span class="n">of</span>
+        <span class="n">place</span><span class="p">:</span> <span class="n">PlaceOfArticulation</span>
+        <span class="o">*</span> <span class="n">manner</span><span class="p">:</span> <span class="n">MannerOfArticulation</span>
+        <span class="o">*</span> <span class="n">voicing</span><span class="p">:</span> <span class="n">Voicing</span>
+        <span class="o">*</span> <span class="n">length</span><span class="p">:</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">Length</span><span class="o">&gt;</span>
+    <span class="o">|</span> <span class="n">VowelHarmonyFeature</span>
+    <span class="o">|</span> <span class="n">PitchAccentFeature</span>
+
+<span class="ow">and</span> <span class="n">Stress</span> <span class="o">=</span> <span class="n">Primary</span> <span class="o">|</span> <span class="n">Secondary</span>
+<span class="ow">and</span> <span class="n">Length</span> <span class="o">=</span> <span class="n">Long</span> <span class="o">|</span> <span class="n">Short</span> <span class="o">|</span> <span class="n">HalfLong</span>
+
+<span class="ow">and</span> <span class="n">Height</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">High</span> <span class="o">|</span> <span class="n">NearHigh</span> <span class="o">|</span> <span class="n">HighMid</span>
+    <span class="o">|</span> <span class="n">Mid</span> <span class="o">|</span> <span class="n">LowMid</span> <span class="o">|</span> <span class="n">NearLow</span>
+    <span class="o">|</span> <span class="n">Low</span>
+
+<span class="ow">and</span> <span class="n">Backness</span> <span class="o">=</span> <span class="n">Front</span> <span class="o">|</span> <span class="n">Central</span> <span class="o">|</span> <span class="n">Back</span>
+
+<span class="ow">and</span> <span class="n">Roundedness</span> <span class="o">=</span> <span class="n">Rounded</span> <span class="o">|</span> <span class="n">Unrounded</span>
+
+<span class="ow">and</span> <span class="n">PlaceOfArticulation</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Bilabial</span> <span class="o">|</span> <span class="n">Labiodental</span> <span class="o">|</span> <span class="n">Dental</span>
+    <span class="o">|</span> <span class="n">Alveolar</span> <span class="o">|</span> <span class="n">Postalveolar</span> <span class="o">|</span> <span class="n">Retroflex</span>
+    <span class="o">|</span> <span class="n">Palatal</span> <span class="o">|</span> <span class="n">Velar</span> <span class="o">|</span> <span class="n">Uvular</span>
+    <span class="o">|</span> <span class="n">Pharyngeal</span> <span class="o">|</span> <span class="n">Epiglottal</span> <span class="o">|</span> <span class="n">Glottal</span>
+
+<span class="ow">and</span> <span class="n">MannerOfArticulation</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Plosive</span> <span class="o">|</span> <span class="n">Nasal</span> <span class="o">|</span> <span class="n">Trill</span>
+    <span class="o">|</span> <span class="n">TapOrFlap</span> <span class="o">|</span> <span class="n">Fricative</span> <span class="o">|</span> <span class="n">LateralFricative</span>
+    <span class="o">|</span> <span class="n">Approximant</span> <span class="o">|</span> <span class="n">LateralApproximant</span>
+
+<span class="ow">and</span> <span class="n">Voicing</span> <span class="o">=</span> <span class="n">Voiced</span> <span class="o">|</span> <span class="n">Voiceless</span>
+
+<span class="ow">and</span> <span class="n">SecondaryArticulation</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Labialization</span> <span class="o">|</span> <span class="n">Palatalization</span> <span class="o">|</span> <span class="n">Velarization</span>
+    <span class="o">|</span> <span class="n">Pharyngealization</span> <span class="o">|</span> <span class="n">Aspiration</span>
+
+<span class="ow">and</span> <span class="n">Tone</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">LevelTone</span> <span class="n">of</span> <span class="nb">int</span>
+    <span class="o">|</span> <span class="n">ContourTone</span> <span class="n">of</span> <span class="nb">int</span> <span class="nb">list</span>
+
+<span class="ow">and</span> <span class="n">MorphologicalFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">RootFeature</span> <span class="n">of</span> <span class="n">string</span>
+    <span class="o">|</span> <span class="n">AffixFeature</span> <span class="n">of</span> <span class="n">AffixType</span> <span class="o">*</span> <span class="n">string</span>
+    <span class="o">|</span> <span class="n">IncorporationFeature</span> <span class="n">of</span> <span class="n">string</span> <span class="o">*</span> <span class="n">MorphologicalFeature</span>
+    <span class="o">|</span> <span class="n">NonConcatenativePattern</span> <span class="n">of</span> <span class="n">string</span> <span class="o">*</span> <span class="n">string</span>
+    <span class="o">|</span> <span class="n">AgglutinativeAffixFeature</span> <span class="n">of</span> <span class="n">AgglutinativeAffixType</span> <span class="o">*</span> <span class="n">string</span>
+    <span class="o">|</span> <span class="n">HonorificFeature</span> <span class="n">of</span> <span class="n">HonorificType</span> <span class="o">*</span> <span class="n">string</span>
+
+<span class="ow">and</span> <span class="n">AgglutinativeAffixType</span> <span class="o">=</span> <span class="n">Suffix</span> <span class="o">|</span> <span class="n">Prefix</span>
+
+<span class="ow">and</span> <span class="n">HonorificType</span> <span class="o">=</span> <span class="n">VerbHonorific</span> <span class="o">|</span> <span class="n">NounHonorific</span>
+
+<span class="ow">and</span> <span class="n">AffixType</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Prefix</span> <span class="o">|</span> <span class="n">Suffix</span> <span class="o">|</span> <span class="n">Infix</span>
+    <span class="o">|</span> <span class="n">Circumfix</span>
+
+<span class="nb">type</span> <span class="n">SyntacticFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">WordFeature</span> <span class="n">of</span> <span class="n">MorphologicalFeature</span> <span class="nb">list</span> <span class="o">*</span> <span class="n">LexicalCategory</span>
+    <span class="o">|</span> <span class="n">PhraseFeature</span> <span class="n">of</span> <span class="n">PhraseType</span> <span class="o">*</span> <span class="n">SyntacticFeature</span> <span class="nb">list</span>
+    <span class="o">|</span> <span class="n">GrammaticalRelation</span> <span class="n">of</span> <span class="n">GrammaticalRelationType</span> <span class="o">*</span> <span class="n">SyntacticFeature</span> <span class="nb">list</span>
+    <span class="o">|</span> <span class="n">SOVOrderFeature</span>
+    <span class="o">|</span> <span class="n">TopicCommentFeature</span>
+
+<span class="ow">and</span> <span class="n">GrammaticalRelationType</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Ergative</span> <span class="o">|</span> <span class="n">Absolutive</span> <span class="o">|</span> <span class="n">Nominative</span>
+    <span class="o">|</span> <span class="n">Accusative</span>
+
+<span class="ow">and</span> <span class="n">LexicalCategory</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Noun</span> <span class="o">|</span> <span class="n">Verb</span> <span class="o">|</span> <span class="n">Adjective</span>
+    <span class="o">|</span> <span class="n">Adverb</span> <span class="o">|</span> <span class="n">Pronoun</span> <span class="o">|</span> <span class="n">Preposition</span>
+    <span class="o">|</span> <span class="n">Conjunction</span> <span class="o">|</span> <span class="n">Determiner</span> <span class="o">|</span> <span class="n">Interjection</span>
+
+<span class="ow">and</span> <span class="n">PhraseType</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">NP</span> <span class="o">|</span> <span class="n">VP</span> <span class="o">|</span> <span class="n">AP</span>
+    <span class="o">|</span> <span class="n">PP</span> <span class="o">|</span> <span class="n">CP</span>
+
+<span class="ow">and</span> <span class="n">SemanticFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Meaning</span> <span class="n">of</span> <span class="n">string</span>
+    <span class="o">|</span> <span class="n">SemanticRole</span> <span class="n">of</span> <span class="n">SemanticRoleType</span> <span class="o">*</span> <span class="n">SemanticFeature</span>
+
+<span class="ow">and</span> <span class="n">SemanticRoleType</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Agent</span> <span class="o">|</span> <span class="n">Patient</span> <span class="o">|</span> <span class="n">Instrument</span>
+    <span class="o">|</span> <span class="n">Location</span> <span class="o">|</span> <span class="n">Time</span> <span class="o">|</span> <span class="n">Cause</span>
+
+<span class="ow">and</span> <span class="n">PragmaticFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">UseContext</span> <span class="n">of</span> <span class="n">string</span>
+    <span class="o">|</span> <span class="n">PolitenessLevel</span> <span class="n">of</span> <span class="n">Politeness</span>
+    <span class="o">|</span> <span class="n">SpeechAct</span> <span class="n">of</span> <span class="n">SpeechActType</span>
+    <span class="o">|</span> <span class="n">SpeechLevel</span> <span class="n">of</span> <span class="n">SpeechLevelType</span>
+
+<span class="ow">and</span> <span class="n">Politeness</span> <span class="o">=</span> <span class="n">Formal</span> <span class="o">|</span> <span class="n">Informal</span> <span class="o">|</span> <span class="n">Neutral</span>
+
+<span class="ow">and</span> <span class="n">SpeechActType</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Assertive</span> <span class="o">|</span> <span class="n">Directive</span> <span class="o">|</span> <span class="n">Commissive</span>
+    <span class="o">|</span> <span class="n">Expressive</span> <span class="o">|</span> <span class="n">Declarative</span>
+
+<span class="ow">and</span> <span class="n">SpeechLevelType</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">FormalHigh</span> <span class="o">|</span> <span class="n">FormalLow</span> <span class="o">|</span> <span class="n">InformalHigh</span>
+    <span class="o">|</span> <span class="n">InformalLow</span> <span class="o">|</span> <span class="n">Neutral</span>
+
+<span class="nb">type</span> <span class="n">LinguisticFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Phonological</span> <span class="n">of</span> <span class="n">PhonologicalFeature</span>
+    <span class="o">|</span> <span class="n">Morphological</span> <span class="n">of</span> <span class="n">MorphologicalFeature</span>
+    <span class="o">|</span> <span class="n">Syntactic</span> <span class="n">of</span> <span class="n">SyntacticFeature</span>
+    <span class="o">|</span> <span class="n">Semantic</span> <span class="n">of</span> <span class="n">SemanticFeature</span>
+    <span class="o">|</span> <span class="n">Pragmatic</span> <span class="n">of</span> <span class="n">PragmaticFeature</span>
+
+<span class="nb">type</span> <span class="n">LanguageConstruct</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">LanguageElement</span> <span class="n">of</span> <span class="n">LinguisticFeature</span>
+    <span class="o">|</span> <span class="n">LanguageStructure</span> <span class="n">of</span> <span class="n">LanguageConstruct</span> <span class="nb">list</span>
+    <span class="o">|</span> <span class="n">TranslationElement</span> <span class="n">of</span> <span class="n">TranslationFeature</span>
+
+<span class="ow">and</span> <span class="n">TranslationFeature</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">LinkedPhonological</span> <span class="n">of</span> <span class="n">PhonologicalFeature</span> <span class="o">*</span> <span class="n">PhonologicalFeature</span>
+    <span class="o">|</span> <span class="n">LinkedMorphological</span> <span class="n">of</span> <span class="n">MorphologicalFeature</span> <span class="o">*</span> <span class="n">MorphologicalFeature</span>
+    <span class="o">|</span> <span class="n">LinkedSyntactic</span> <span class="n">of</span> <span class="n">SyntacticFeature</span> <span class="o">*</span> <span class="n">SyntacticFeature</span>
+    <span class="o">|</span> <span class="n">LinkedSemantic</span> <span class="n">of</span> <span class="n">SemanticFeature</span> <span class="o">*</span> <span class="n">SemanticFeature</span>
+
+<span class="nb">type</span> <span class="n">Discourse</span> <span class="o">=</span> <span class="n">DiscourseUnit</span> <span class="n">of</span> <span class="n">LanguageConstruct</span> <span class="nb">list</span>
+
+<span class="nb">type</span> <span class="n">LanguageModel</span> <span class="o">=</span>
+    <span class="o">|</span> <span class="n">Model</span> <span class="n">of</span> <span class="n">discourse</span><span class="p">:</span> <span class="n">Discourse</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">testEnglish</span> <span class="o">=</span>
+    <span class="n">Model</span><span class="p">(</span>
+        <span class="n">DiscourseUnit</span> <span class="p">[</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">ConsonantFeature</span> <span class="p">(</span><span class="n">Alveolar</span><span class="p">,</span> <span class="n">Nasal</span><span class="p">,</span> <span class="n">Voiced</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">HalfLong</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">High</span><span class="p">,</span> <span class="n">Front</span><span class="p">,</span> <span class="n">Unrounded</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">LevelTone</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Primary</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Short</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">Low</span><span class="p">,</span> <span class="n">Front</span><span class="p">,</span> <span class="n">Unrounded</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">LevelTone</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Secondary</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Long</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">ConsonantFeature</span> <span class="p">(</span><span class="n">Velar</span><span class="p">,</span> <span class="n">Plosive</span><span class="p">,</span> <span class="n">Voiceless</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">HalfLong</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"I"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"see"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"a"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"cat"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">NP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"I"</span><span class="p">],</span> <span class="n">Pronoun</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">VP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"see"</span><span class="p">],</span> <span class="n">Verb</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">NP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"a"</span><span class="p">;</span> <span class="n">RootFeature</span> <span class="s2">"cat"</span><span class="p">],</span> <span class="n">Noun</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Semantic</span> <span class="p">(</span><span class="n">Meaning</span> <span class="s2">"Perception act of a feline by the speaker"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Pragmatic</span> <span class="p">(</span><span class="n">UseContext</span> <span class="s2">"Statement of an action being observed"</span><span class="p">))</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">let</span> <span class="n">testPortuguese</span> <span class="o">=</span>
+    <span class="n">Model</span><span class="p">(</span>
+        <span class="n">DiscourseUnit</span> <span class="p">[</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">High</span><span class="p">,</span> <span class="n">Front</span><span class="p">,</span> <span class="n">Unrounded</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">LevelTone</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Primary</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Short</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">Low</span><span class="p">,</span> <span class="n">Front</span><span class="p">,</span> <span class="n">Unrounded</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">LevelTone</span> <span class="mi">2</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Secondary</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Long</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">Mid</span><span class="p">,</span> <span class="n">Back</span><span class="p">,</span> <span class="n">Rounded</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">LevelTone</span> <span class="mi">3</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Primary</span><span class="p">),</span> <span class="n">Some</span><span class="p">(</span><span class="n">Short</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">ConsonantFeature</span> <span class="p">(</span><span class="n">Velar</span><span class="p">,</span> <span class="n">Plosive</span><span class="p">,</span> <span class="n">Voiceless</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">HalfLong</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"Eu"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"ver"</span> <span class="o">|&gt;</span> <span class="n">ignore</span><span class="p">;</span> <span class="n">AffixFeature</span> <span class="p">(</span><span class="n">Suffix</span><span class="p">,</span> <span class="s2">"o"</span><span class="p">)));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"um"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"gato"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">NP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"Eu"</span><span class="p">],</span> <span class="n">Pronoun</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">VP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"vejo"</span><span class="p">],</span> <span class="n">Verb</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">NP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"um"</span><span class="p">;</span> <span class="n">RootFeature</span> <span class="s2">"gato"</span><span class="p">],</span> <span class="n">Noun</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Semantic</span> <span class="p">(</span><span class="n">Meaning</span> <span class="s2">"Ação de percepção de um felino pelo falante"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Pragmatic</span> <span class="p">(</span><span class="n">UseContext</span> <span class="s2">"Declaração de uma ação sendo observada"</span><span class="p">))</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+<span class="n">let</span> <span class="n">testKorean</span> <span class="o">=</span>
+    <span class="n">Model</span><span class="p">(</span>
+        <span class="n">DiscourseUnit</span> <span class="p">[</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">ConsonantFeature</span> <span class="p">(</span><span class="n">Alveolar</span><span class="p">,</span> <span class="n">Nasal</span><span class="p">,</span> <span class="n">Voiced</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">Short</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">High</span><span class="p">,</span> <span class="n">Back</span><span class="p">,</span> <span class="n">Rounded</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">Short</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">VowelFeature</span> <span class="p">(</span><span class="n">Mid</span><span class="p">,</span> <span class="n">Front</span><span class="p">,</span> <span class="n">Unrounded</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">Long</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Phonological</span> <span class="p">(</span><span class="n">ConsonantFeature</span> <span class="p">(</span><span class="n">Bilabial</span><span class="p">,</span> <span class="n">Plosive</span><span class="p">,</span> <span class="n">Voiceless</span><span class="p">,</span> <span class="n">Some</span><span class="p">(</span><span class="n">Short</span><span class="p">))));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"나"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"보다"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">AffixFeature</span> <span class="p">(</span><span class="n">Suffix</span><span class="p">,</span> <span class="s2">"아"</span><span class="p">)));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Morphological</span> <span class="p">(</span><span class="n">RootFeature</span> <span class="s2">"고양이"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">NP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"나"</span><span class="p">],</span> <span class="n">Pronoun</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">VP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"보다"</span><span class="p">;</span> <span class="n">AffixFeature</span> <span class="p">(</span><span class="n">Suffix</span><span class="p">,</span> <span class="s2">"아"</span><span class="p">)],</span> <span class="n">Verb</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Syntactic</span> <span class="p">(</span><span class="n">PhraseFeature</span> <span class="p">(</span><span class="n">NP</span><span class="p">,</span> <span class="p">[</span><span class="n">WordFeature</span> <span class="p">([</span><span class="n">RootFeature</span> <span class="s2">"고양이"</span><span class="p">],</span> <span class="n">Noun</span><span class="p">)])));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Semantic</span> <span class="p">(</span><span class="n">Meaning</span> <span class="s2">"화자에 의한 고양이의 관찰 행위"</span><span class="p">));</span>
+            <span class="n">LanguageElement</span> <span class="p">(</span><span class="n">Pragmatic</span> <span class="p">(</span><span class="n">UseContext</span> <span class="s2">"관찰되고 있는 행동의 진술"</span><span class="p">))</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7576,7 +7925,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7612,7 +7961,7 @@ let main args = v0 args
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

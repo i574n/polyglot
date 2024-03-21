@@ -1,5 +1,67 @@
 // // # test (Polyglot)
 
+nominal i = ()
+nominal e = ()
+nominal s = ()
+nominal n = ()
+nominal t = ()
+nominal f = ()
+nominal j = ()
+nominal p = ()
+
+union sensing =
+    | Si : s * i
+    | Se : s * e
+
+union intuition =
+    | Ni : n * i
+    | Ne : n * e
+
+union thinking =
+    | Ti : t * i
+    | Te : t * e
+
+union feeling =
+    | Fi : f * i
+    | Fe : f * e
+
+union function_stack =
+    | FS : sensing * intuition * thinking * feeling
+
+union personality_type =
+    | ISTJ : i * s * t * j * function_stack
+    | ISFJ : i * s * f * j * function_stack
+    | INFJ : i * n * f * j * function_stack
+    | INTJ : i * n * t * j * function_stack
+    | ISTP : i * s * t * p * function_stack
+    | ISFP : i * s * f * p * function_stack
+    | INFP : i * n * f * p * function_stack
+    | INTP : i * n * t * p * function_stack
+    | ESTP : e * s * t * p * function_stack
+    | ESFP : e * s * f * p * function_stack
+    | ENFP : e * n * f * p * function_stack
+    | ENTP : e * n * t * p * function_stack
+    | ESTJ : e * s * t * j * function_stack
+    | ESFJ : e * s * f * j * function_stack
+    | ENFJ : e * n * f * j * function_stack
+    | ENTJ : e * n * t * j * function_stack
+
+
+inl main () =
+    inl istj_stack = FS ((Si (s, i)), Ne (n, e), (Te (t, e)), (Fi (f, i)))
+    inl istj_personality = ISTJ (i, s, t, j, istj_stack)
+    // inl isfj_stack = FS ((Si (s, i)), Ne (n, e), (Fe (f, e)), (Ti (t, i)))
+    // inl isfj_personality = ISFJ (i, s, f, j, isfj_stack)
+
+    ;[
+        istj_personality
+    ]
+    |> fun x => $'$"%A{!x}"' : string
+    |> console.write_line
+
+inl main () =
+    $"!main ()" : ()
+
 // // ## main
 
 inl main (_args : array_base string) =

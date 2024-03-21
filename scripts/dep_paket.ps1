@@ -35,3 +35,7 @@ Write-Output "paket.dll path: $dllPath"
 
 
 Copy-Item "$releasePath/$dotnetVersion/**" $toolVersionPath -Recurse -Force
+
+if ($env:CI) {
+    Remove-Item $projectPath -Recurse -Force -ErrorAction Ignore
+}

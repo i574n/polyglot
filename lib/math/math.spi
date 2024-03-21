@@ -132,7 +132,7 @@ inl zeta_ py s =
             "    return (s.real, s.imag)"
         ]
     inl code = (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
-
+    
     inl s = new_pair (s |> re) (s |> im)
     inl args = new_pair s ()
 
@@ -147,10 +147,10 @@ inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> co
             inl s = gamma_ py s |> resultm.unwrap'
             s
         fn (zeta, gamma)
-
+        
         Ok ()
         |> resultm.box
-
+    
     join
         !\($'"pyo3::prepare_freethreaded_python()"') : ()
 
@@ -159,12 +159,11 @@ inl run_test closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> co
         inl x = fn_
         let x' = x (!\($'"py"') : python)
         inl x' = join x'
-
+        
         x' |> rust.fix_closure closure_fix
 
         (!\($'"__result"') : _ () pyerr)
         |> resultm.unwrap'
-
 
 // // ## test_zeta_at_2___
 

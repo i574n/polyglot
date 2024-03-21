@@ -133,6 +133,7 @@ inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
     emit_expr () $"\"Box::leak(!x)\""
 
+
 inl fix_closure depth' x' =
     inl depth = depth' |> fst
     if depth = 1

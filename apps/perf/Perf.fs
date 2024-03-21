@@ -58,7 +58,7 @@ let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expec
     {
         Input = inputStr
         Expected = expected.ToString ()
-        Result = resultsWithTime |> Seq.map fst |> Seq.head |> fun x -> x.ToString ()
+        Result = resultsWithTime |> Seq.map fst |> Seq.head |> _.ToString()
         TimeList = resultsWithTime |> List.map snd
     }
 
@@ -86,7 +86,7 @@ let sortResultList resultList =
                     )
                     |> List.sortBy snd
                     |> List.head
-                    |> fun x -> x.ToString ()
+                    |> _.ToString()
                 let row =
                     [
                         result.Input

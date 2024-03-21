@@ -7642,7 +7642,7 @@ a.anchor-link {
 
 <span class="n">testPortOpen</span> <span class="mi">65536</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">120</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="n">false</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="n">false</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7697,7 +7697,7 @@ FSharpOption&lt;Boolean&gt;
 
 <span class="n">testPortOpenTimeout</span> <span class="mi">120</span> <span class="mi">65535</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">false</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">false</span>
 </pre></div>
 </div>
 </div>
@@ -7811,7 +7811,7 @@ False
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -7844,9 +7844,9 @@ False
 2
 2
 2
-120
-120
-120
+117
+117
+117
 True
 </pre>
 </div>
@@ -7907,7 +7907,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -7920,10 +7920,10 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:10 #20 [Debug] 1
-00:00:10 #21 [Debug] 2
-00:00:10 #22 [Debug] _1
-00:00:10 #23 [Debug] 3
+<pre>00:00:11 #20 [Debug] 1
+00:00:11 #22 [Debug] 2
+00:00:11 #22 [Debug] _1
+00:00:11 #23 [Debug] 3
 00:00:11 #24 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:11 #25 [Verbose] waitForPortAccess / port: 5555 / retry: 0
 00:00:11 #26 [Debug] runWithTimeoutAsync / timeout: 60
@@ -7944,9 +7944,9 @@ True
 7
 7
 7
-11
-11
-11
+8
+8
+8
 True
 </pre>
 </div>
@@ -8032,7 +8032,7 @@ True
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">15000</span>
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">availablePort</span><span class="p">,</span> <span class="n">retries</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
@@ -8041,7 +8041,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8070,9 +8070,9 @@ True
 00:00:18 #54 [Debug] 5
 00:00:18 #55 [Debug] 6
 5557
-108
-108
-108
+110
+110
+110
 True
 </pre>
 </div>
@@ -8123,7 +8123,7 @@ True
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">1500</span>
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">availablePort</span><span class="p">,</span> <span class="n">retries</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">port</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
@@ -8132,7 +8132,7 @@ True
 
         <span class="n">true</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
 </pre></div>
 </div>
 </div>
@@ -8160,9 +8160,9 @@ True
 00:00:19 #68 [Debug] 5
 00:00:19 #69 [Debug] 6
 5557
-5
-5
-5
+3
+3
+3
 True
 </pre>
 </div>

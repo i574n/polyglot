@@ -7970,7 +7970,7 @@ pub use module_ccfa04bf::*;
         <span class="n">Ok</span> <span class="p">()</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">box</span>
     
-    <span class="n">inl</span> <span class="n">run</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">join</span>
         <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"pyo3::prepare_freethreaded_python()"'</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span>
 
         <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //"'</span><span class="p">)</span>
@@ -7983,8 +7983,6 @@ pub use module_ccfa04bf::*;
 
         <span class="p">(</span><span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"__result"'</span><span class="p">)</span> <span class="p">:</span> <span class="n">_</span> <span class="p">()</span> <span class="n">pyerr</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">resultm</span><span class="o">.</span><span class="n">unwrap</span><span class="s1">'</span>
-    <span class="n">inl</span> <span class="n">run</span> <span class="o">=</span> <span class="n">join</span> <span class="n">run</span>
-    <span class="n">run</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8142,7 +8140,7 @@ and method20 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&
     v0
 and method21 (v0 : Result&lt;unit, pyo3_PyErr&gt;) : Result&lt;unit, pyo3_PyErr&gt; =
     v0
-and closure0 () () : unit =
+and method1 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
     let v1 : string = "let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //"
@@ -8257,19 +8255,18 @@ and closure0 () () : unit =
         failwith&lt;unit&gt; v92
     let v94 : Result&lt;unit, pyo3_PyErr&gt; = Ok ()
     let v95 : Result&lt;unit, pyo3_PyErr&gt; = method20(v94)
-    let v96 : string = "v95 }}}}}); {{{{ //"
+    let v96 : string = "v95 }}}}})"
     Fable.Core.RustInterop.emitRustExpr () v96
-    let v97 : string = "__result"
-    let v98 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v97
-    let v99 : Result&lt;unit, pyo3_PyErr&gt; = method21(v98)
-    let v100 : string = "v99.unwrap()"
-    Fable.Core.RustInterop.emitRustExpr () v100
+    let v97 : string = " {{{{ //"
+    Fable.Core.RustInterop.emitRustExpr () v97
+    let v98 : string = "__result"
+    let v99 : Result&lt;unit, pyo3_PyErr&gt; = Fable.Core.RustInterop.emitRustExpr () v98
+    let v100 : Result&lt;unit, pyo3_PyErr&gt; = method21(v99)
+    let v101 : string = "v100.unwrap()"
+    Fable.Core.RustInterop.emitRustExpr () v101
     ()
-and method1 () : (unit -&gt; unit) =
-    closure0()
 and method0 () : unit =
-    let v0 : (unit -&gt; unit) = method1()
-    v0 ()
+    method1()
 method0()
 
 .rs:
@@ -8286,7 +8283,6 @@ method0()
 mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
-        use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::on_startup;
@@ -8363,7 +8359,7 @@ use pyo3::prelude::PyAnyMethods;
          -&gt; Result&lt;(), pyo3::PyErr&gt; {
             v0
         }
-        pub fn closure0(unitVar: (), unitVar_1: ()) {
+        pub fn method1() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -&gt; pyo3::PyResult&lt;()&gt; { //;
             {
@@ -8464,11 +8460,12 @@ use pyo3::prelude::PyAnyMethods;
                             let v95: Result&lt;(), pyo3::PyErr&gt; =
                                 Spiral_eval::method20(Ok::&lt;(),
                                                            pyo3::PyErr&gt;(()));
-                            v95 }}}}}); {{{{ //;
+                            v95 }}}}});
+                             {{{{ //;
                             {
-                                let v99: Result&lt;(), pyo3::PyErr&gt; =
+                                let v100: Result&lt;(), pyo3::PyErr&gt; =
                                     Spiral_eval::method21(__result);
-                                v99.unwrap();
+                                v100.unwrap();
                                 ()
                             }
                         }
@@ -8476,10 +8473,7 @@ use pyo3::prelude::PyAnyMethods;
                 }
             }
         }
-        pub fn method1() -&gt; Func0&lt;()&gt; {
-            Func0::new(move || Spiral_eval::closure0((), ()))
-        }
-        pub fn method0() { (Spiral_eval::method1())(); }
+        pub fn method0() { Spiral_eval::method1(); }
         on_startup!(Spiral_eval::method0());
     }
 }

@@ -14,10 +14,5 @@ if ($fast -and (Test-Path $dibParserExe)) {
     { dotnet repl --run ../parser/DibParser.dib --exit-after-run } | Invoke-Block -EnvironmentVariables @{ "ARGS" = "Builder.dib fs" }
 }
 
-Invoke-Dib Builder.dib -EnvironmentVariables @{ "ARGS" = "Builder.fs --packages Argu FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs" }
-
-$targetDir = "../../target/polyglot/builder/Builder"
-
-if ($env:CI) {
-    Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore
-}
+$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
+Invoke-Dib Builder.dib -EnvironmentVariables @{ "ARGS" = "Builder.fs $runtime --packages Argu FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs" }

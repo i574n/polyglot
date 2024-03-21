@@ -7640,7 +7640,7 @@ a.anchor-link {
     <span class="k">match</span> <span class="n">actual</span><span class="p">,</span> <span class="n">expected</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Success</span> <span class="p">(</span><span class="n">_actual</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">Success</span> <span class="n">_expected</span> <span class="o">-&gt;</span>
         <span class="n">printResult</span> <span class="n">actual</span>
-        <span class="n">_actual</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">_expected</span>
+        <span class="n">_actual</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">_expected</span>
     <span class="o">|</span> <span class="n">Failure</span> <span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">e1</span><span class="p">,</span> <span class="n">p1</span><span class="p">),</span> <span class="n">Failure</span> <span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span> <span class="n">when</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">l2</span> <span class="o">&amp;&amp;</span> <span class="n">e1</span> <span class="o">=</span> <span class="n">e2</span> <span class="o">&amp;&amp;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-&gt;</span>
         <span class="n">printResult</span> <span class="n">actual</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span>

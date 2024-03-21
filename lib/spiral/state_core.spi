@@ -305,13 +305,21 @@ inl use_requests forall t u.
                 fun () =>
                     requests
                     |> am'.to_vec
-                    |> am'.vec_map fun { url request_type } =>
+                    |> am'.vec_map fun { url request_type body json } =>
                         fun () =>
-                            request_type
-                            |> fun request_type =>
-                                match join request_type with
-                                | Get => networking.new_request_get url
-                                | Post => networking.new_request_post url
+                            match join request_type with
+                            | Get => networking.new_request_get url
+                            | Post => networking.new_request_post url
+                            |> networking.request_body body
+                            |> fun request =>
+                                if not json
+                                then !\($'"!request"')
+                                else
+                                    inl content_type =
+                                        !\($'"reqwest_wasm::header::CONTENT_TYPE.to_string()"')
+                                        |> sm'.from_std_string
+                                    request
+                                    |> networking.request_header content_type "application/json"
                             |> networking.request_send
                             |> async.await
                             |> resultm.map_error' sm'.format'

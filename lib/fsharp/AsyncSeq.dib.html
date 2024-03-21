@@ -7704,11 +7704,11 @@ a.anchor-link {
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"3"</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 
 <span class="n">testEvent</span><span class="o">.</span><span class="n">Calls</span>
 <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="s2">"1"</span><span class="p">;</span> <span class="s2">"AddHandler"</span><span class="p">;</span> <span class="s2">"2"</span><span class="p">;</span> <span class="s2">"RemoveHandler"</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">[</span> <span class="s2">"1"</span><span class="p">;</span> <span class="s2">"AddHandler"</span><span class="p">;</span> <span class="s2">"2"</span><span class="p">;</span> <span class="s2">"RemoveHandler"</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -7754,10 +7754,10 @@ a.anchor-link {
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"4"</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 
 <span class="n">testEvent</span><span class="o">.</span><span class="n">Calls</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span> <span class="s2">"1"</span><span class="p">;</span> <span class="s2">"AddHandler"</span><span class="p">;</span> <span class="s2">"2"</span><span class="p">;</span> <span class="s2">"IObservable.Subscribe"</span><span class="p">;</span> <span class="s2">"3"</span><span class="p">;</span> <span class="s2">"RemoveHandler"</span><span class="p">;</span> <span class="s2">"IObservable.Dispose"</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">[</span> <span class="s2">"1"</span><span class="p">;</span> <span class="s2">"AddHandler"</span><span class="p">;</span> <span class="s2">"2"</span><span class="p">;</span> <span class="s2">"IObservable.Subscribe"</span><span class="p">;</span> <span class="s2">"3"</span><span class="p">;</span> <span class="s2">"RemoveHandler"</span><span class="p">;</span> <span class="s2">"IObservable.Dispose"</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -7809,10 +7809,10 @@ a.anchor-link {
     <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="s2">"5"</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">300</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 
 <span class="n">testEvent</span><span class="o">.</span><span class="n">Calls</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">[</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">[</span>
     <span class="s2">"1"</span>
     <span class="s2">"AddHandler"</span>
     <span class="s2">"2"</span>
@@ -7906,7 +7906,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>992267
+<pre>1008352
 </pre>
 </div>
 </div>

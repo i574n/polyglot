@@ -7707,7 +7707,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">dateTimeGuidFromDateTime</span> <span class="n">testGuid</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">MinValue</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="s2">"00010101-0000-0000-0000-0a9876543210"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="s2">"00010101-0000-0000-0000-0a9876543210"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7737,7 +7737,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">dateTimeGuidFromDateTime</span> <span class="n">testGuid</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">MaxValue</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="err">$</span><span class="s2">"99991231-2359-5999-9999-9{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="err">$</span><span class="s2">"99991231-2359-5999-9999-9{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7767,7 +7767,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">dateTimeGuidFromDateTime</span> <span class="n">testGuid</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">UnixEpoch</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="err">$</span><span class="s2">"19700101-0000-0000-0000-0{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="err">$</span><span class="s2">"19700101-0000-0000-0000-0{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7824,7 +7824,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">dateTimeFromGuid</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="s2">"00010101-0000-0000-0000-0a9876543210"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">MinValue</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">MinValue</span>
 </pre></div>
 </div>
 </div>
@@ -7854,7 +7854,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">dateTimeFromGuid</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="err">$</span><span class="s2">"99991231-2359-5999-9999-9{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">MaxValue</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">MaxValue</span>
 </pre></div>
 </div>
 </div>
@@ -7884,7 +7884,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">dateTimeFromGuid</span> <span class="p">(</span><span class="n">DateTimeGuid</span> <span class="err">$</span><span class="s2">"19700101-0000-0000-0000-0{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">UnixEpoch</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">UnixEpoch</span>
 </pre></div>
 </div>
 </div>
@@ -7942,7 +7942,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">ticksGuidFromTicks</span> <span class="n">testGuid</span> <span class="mi">0</span><span class="n">L</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">TicksGuid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">TicksGuid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7972,7 +7972,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">ticksGuidFromTicks</span> <span class="n">testGuid</span> <span class="mi">999999999999999999</span><span class="n">L</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">TicksGuid</span> <span class="err">$</span><span class="s2">"99999999-9999-9999-99dc-b{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">TicksGuid</span> <span class="err">$</span><span class="s2">"99999999-9999-9999-99dc-b{(testGuid |&gt; string).[^10..]}"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8029,7 +8029,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">ticksFromGuid</span> <span class="p">(</span><span class="n">TicksGuid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">L</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span><span class="n">L</span>
 </pre></div>
 </div>
 </div>
@@ -8059,7 +8059,7 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
 <span class="n">ticksFromGuid</span> <span class="p">(</span><span class="n">TicksGuid</span> <span class="err">$</span><span class="s2">"99999999-9999-9999-99{(testGuid |&gt; string).[^14..]}"</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">999999999999999999</span><span class="n">L</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">999999999999999999</span><span class="n">L</span>
 </pre></div>
 </div>
 </div>
@@ -8118,7 +8118,7 @@ a.anchor-link {
 <span class="n">newGuidFromDateTime</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span>
 <span class="o">|&gt;</span> <span class="n">dateTimeFromGuid</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">dateTime</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">dateTime</span> <span class="o">-</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span><span class="p">)</span><span class="o">.</span><span class="n">TotalSeconds</span> <span class="o">|&gt;</span> <span class="nb">int</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8177,7 +8177,7 @@ a.anchor-link {
 <span class="n">newGuidFromTicks</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span><span class="o">.</span><span class="n">Ticks</span>
 <span class="o">|&gt;</span> <span class="n">ticksFromGuid</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">ticks</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">ticks</span> <span class="o">-</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span><span class="o">.</span><span class="n">Ticks</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100000</span><span class="n">L</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span><span class="n">L</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span><span class="n">L</span>
 </pre></div>
 </div>
 </div>
@@ -8243,7 +8243,7 @@ a.anchor-link {
 <span class="n">add</span> <span class="p">()</span>
 
 <span class="n">count</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -8301,7 +8301,7 @@ a.anchor-link {
 <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"test"</span>
 <span class="o">|&gt;</span> <span class="n">_throwsC</span> <span class="p">(</span><span class="n">fun</span> <span class="n">ex</span> <span class="n">_</span> <span class="o">-&gt;</span>
     <span class="n">printException</span> <span class="n">ex</span>
-    <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"System.Exception: test"</span>
+    <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"System.Exception: test"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -8606,8 +8606,8 @@ System.Exception: test
 
 <span class="n">let</span> <span class="n">mutable</span> <span class="n">newDisposableTest</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">newDisposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">newDisposableTest</span> <span class="o">&lt;-</span> <span class="n">newDisposableTest</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+<span class="o">|&gt;</span> <span class="n">_</span><span class="o">.</span><span class="n">Dispose</span><span class="p">()</span>
+<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -8642,7 +8642,7 @@ System.Exception: test
     <span class="p">()</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -8677,7 +8677,7 @@ System.Exception: test
     <span class="p">()</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div>
@@ -8712,7 +8712,7 @@ System.Exception: test
     <span class="p">()</span>
 <span class="p">}</span>
 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
-<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">0</span>
+<span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8782,7 +8782,7 @@ System.Exception: test
     <span class="n">retryFnTest</span> <span class="o">&lt;-</span> <span class="n">retryFnTest</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">retryFnTest</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8814,7 +8814,7 @@ System.Exception: test
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="s2">"test"</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="kc">None</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="kc">None</span>
 </pre></div>
 </div>
 </div>
@@ -8854,7 +8854,7 @@ System.Exception: test
         <span class="n">retryFnTest</span> <span class="o">&lt;-</span> <span class="n">retryFnTest</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="n">failwith</span> <span class="s2">"test"</span>
 <span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

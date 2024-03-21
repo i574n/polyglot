@@ -59,4 +59,4 @@ async {
     return counter
 }
 |> Async.RunSynchronously
-|> _assert_eq 11
+|> _assertEqual 11
