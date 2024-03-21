@@ -421,7 +421,7 @@ module Eval =
                                                 else rsCode |> String.replace "),);" "));"
 
                                             if printCode
-                                            then _trace (fun () -> $".rs:\n{rsCode}")
+                                            then _trace (fun () -> $"\n.rs:\n{rsCode}")
 
                                             if not cached
                                             then do!
