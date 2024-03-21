@@ -7,3 +7,7 @@ $ErrorActionPreference = "Stop"
 
 
 Invoke-Dib build.dib
+
+$targetDir = "./fable_modules/fable-library-rust/target"
+
+Remove-Item $targetDir -Recurse -Force -ErrorAction Ignore

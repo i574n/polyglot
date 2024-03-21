@@ -384,18 +384,18 @@ inl vec_extend forall el. (el : vec el) (vec : vec el) : vec el =
 
 #!spiral
 
-inl vec_collect vec =
+inl vec_collect fn vec =
     ((;[] |> to_vec), (vec |> from_vec : _ i32 _))
     ||> am.fold fun acc x =>
-        acc |> vec_extend x
+        acc |> vec_extend (fn x)
 
 #!markdown
 
-## vec_collect'
+## vec_collect_option
 
 #!spiral
 
-inl vec_collect' vec =
+inl vec_collect_option vec =
     ((;[] |> to_vec |> Ok), (vec |> from_vec : _ i32 _))
     ||> am.fold fun acc x =>
         x
@@ -405,6 +405,18 @@ inl vec_collect' vec =
             | Ok acc, Ok (Some x) => acc |> vec_extend x |> Ok
             | _, Error error => error |> Error
             | _ => acc
+
+#!markdown
+
+## vec_collect_into
+
+#!spiral
+
+inl vec_collect_into forall (c : * -> * -> *) t e.
+    (x : vec (c t e))
+    : c (vec t) e
+    =
+    !\($'"!x.into_iter().collect()"')
 
 #!markdown
 

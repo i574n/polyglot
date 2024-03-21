@@ -39,7 +39,7 @@ let hashText (input : string) =
 
 ""
 |> hashText
-|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+|> _assertEqual "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 #!fsharp
 
@@ -47,4 +47,4 @@ let hashText (input : string) =
 
 " "
 |> hashText
-|> _assert_eq "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+|> _assertEqual "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"

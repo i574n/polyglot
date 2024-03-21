@@ -404,7 +404,7 @@ inl main () =
 |> buildCode 15000 None
 |> Async.runWithTimeout 15000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         Some """let rec closure0 () () : int32 =
     let v0 : string = "text"
@@ -424,7 +424,7 @@ let v0 : (unit -> int32) = closure0()
 ""
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
-|> _assert_eq None
+|> _assertEqual None
 
 #!fsharp
 
@@ -443,7 +443,7 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [ "main.spi:
@@ -461,7 +461,7 @@ Global inl/let statements should all return functions known at parse time." ]
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [ "An attempt to divide by zero has been detected at compile time." ]
@@ -478,7 +478,7 @@ Global inl/let statements should all return functions known at parse time." ]
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [
@@ -500,7 +500,7 @@ Fails to satisfy: number"
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [
@@ -525,7 +525,7 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [ "main.spi:
@@ -545,7 +545,7 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [ "main.spi:
@@ -569,7 +569,7 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [ "Cannot apply a forall with a term." ]
@@ -591,7 +591,7 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         None,
         [ "The main function should not have a forall." ]
@@ -621,7 +621,7 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-|> _assert_eq (
+|> _assertEqual (
     Some (
         Some "0.3325000000000001\n",
         []
@@ -651,7 +651,13 @@ inl main () =
 |> buildCode 10000 None
 |> Async.runWithTimeout 10000
 |> Option.map (fun (fsxContent, errors) -> fsxContent, errors |> List.map fst)
-// |> _assert_eq None
+|> _assertEqual (
+    Some (
+        Some "0.33332500000000004\n",
+        []
+    )
+)
+// |> _assertEqual None
 // |> fun x -> printfn $"{x.ToDisplayString ()}"
 
 #!markdown
@@ -715,7 +721,7 @@ let inline getCodeTokenRange cancellationToken code = async {
 |> getCodeTokenRange None
 |> Async.runWithTimeout 10000
 |> Option.flatten
-|> _assert_eq (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
+|> _assertEqual (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
 2; 1; 8; 0; 0; 1; 1; 8; 0 |])
 
 #!fsharp
@@ -726,7 +732,7 @@ let inline getCodeTokenRange cancellationToken code = async {
 |> getCodeTokenRange None
 |> Async.runWithTimeout 10000
 |> Option.flatten
-|> _assert_eq (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
+|> _assertEqual (Some [| 0; 0; 3; 7; 0; 0; 4; 4; 0; 0; 0; 5; 1; 8; 0; 0; 1; 1; 8; 0; 0; 2; 1; 4; 0; 0;
 2; 1; 3; 0; 0; 1; 3; 12; 0 |])
 
 #!markdown

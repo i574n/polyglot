@@ -47,3 +47,7 @@ $dllPath = Get-LastSortedItem -Path $releasePath -Filter "fable.core.dll"
 $dotnetVersion = $dllPath | Split-Path -Parent | Split-Path -Leaf
 
 Copy-Item "$releasePath/$dotnetVersion/**" $libVersionPath -Recurse -Force
+
+if ($env:CI) {
+    Remove-Item "../deps/Fable" -Recurse -Force -ErrorAction Ignore
+}

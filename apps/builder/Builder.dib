@@ -152,7 +152,7 @@ let inline buildCode runtime packages modules outputDir name code = async {
 "1 + 1 |> ignore"
 |> buildCode None [] [] None "test1"
 |> Async.runWithTimeout 180000
-|> _assert_eq (Some 0)
+|> _assertEqual (Some 0)
 
 #!fsharp
 
@@ -161,7 +161,7 @@ let inline buildCode runtime packages modules outputDir name code = async {
 "1 + a |> ignore"
 |> buildCode None [] [] None "test2"
 |> Async.runWithTimeout 180000
-|> _assert_eq (Some 2)
+|> _assertEqual (Some 2)
 
 #!markdown
 

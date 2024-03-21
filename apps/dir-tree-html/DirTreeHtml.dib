@@ -169,7 +169,7 @@ let html =
     |> generateHtmlForFileSystem
 
 html
-|> _assert_eq """<!DOCTYPE html>
+|> _assertEqual """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">

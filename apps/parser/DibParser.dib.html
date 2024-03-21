@@ -7678,7 +7678,7 @@ a.anchor-link {
 
 <span class="err">$</span><span class="s2">"a</span><span class="si">{nl}</span><span class="se">\\</span><span class="s2">#!magic</span><span class="si">{nl}</span><span class="s2">b</span><span class="si">{nl}</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">escapeCell</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="err">$</span><span class="s2">"a</span><span class="si">{nl}</span><span class="s2">#!magic</span><span class="si">{nl}</span><span class="s2">b</span><span class="si">{nl}</span><span class="s2">"</span>
 <span class="p">)</span>
 </pre></div>
@@ -7739,7 +7739,7 @@ b
 
 <span class="s2">"#!magic"</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">magicMarker</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span><span class="s2">"#!"</span><span class="p">,</span> <span class="p">(),</span> <span class="n">Position</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="p">)</span>
 </pre></div>
@@ -7779,7 +7779,7 @@ b
 
 <span class="s2">"##!magic"</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">magicMarker</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Failure</span> <span class="p">(</span>
         <span class="err">$</span><span class="s2">"Error in Ln: 1 Col: 1</span><span class="si">{nl}</span><span class="s2">##!magic</span><span class="si">{nl}</span><span class="s2">^</span><span class="si">{nl}</span><span class="s2">Expecting: '#!'</span><span class="si">{nl}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">ParserError</span> <span class="p">(</span>
@@ -7868,7 +7868,7 @@ Expecting: '#!'
 
 <span class="n">a</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">magicCommand</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span><span class="s2">"magic"</span><span class="p">,</span> <span class="p">(),</span> <span class="n">Position</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="p">)</span>
 </pre></div>
@@ -7910,7 +7910,7 @@ Expecting: '#!'
 
 <span class="n">a</span><span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">magicCommand</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Failure</span> <span class="p">(</span>
         <span class="err">$</span><span class="s2">"Error in Ln: 1 Col: 1</span><span class="si">{nl}</span><span class="s2"> #!magic</span><span class="si">{nl}</span><span class="s2">^</span><span class="si">{nl}</span><span class="s2">Expecting: '#!'</span><span class="si">{nl}</span><span class="s2">"</span><span class="p">,</span>
         <span class="n">ParserError</span> <span class="p">(</span>
@@ -8005,7 +8005,7 @@ Expecting: '#!'
 
 <span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">content</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span><span class="s2">"#!magic</span>
 
 
@@ -8119,7 +8119,7 @@ a
 
 <span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">block</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"magic"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="p">},</span>
         <span class="p">(),</span>
@@ -8202,7 +8202,7 @@ a
 <span class="s2">"</span>
 <span class="o">|&gt;</span> <span class="n">escapeCell</span>
 <span class="o">|&gt;</span> <span class="n">run</span> <span class="n">blocks</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span>
     <span class="n">Success</span> <span class="p">(</span>
         <span class="p">[</span>
             <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"magic1"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="s2">"a"</span> <span class="p">}</span>
@@ -8368,7 +8368,7 @@ a
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Success</span> <span class="p">(</span><span class="n">block</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">formatBlock</span> <span class="n">Fs</span> <span class="n">block</span>
     <span class="o">|</span> <span class="n">Failure</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="n">msg</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"/// a</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"/// a</span>
 <span class="o">///</span>
     <span class="o">///</span> <span class="n">b</span>
 <span class="o">///</span>
@@ -8476,7 +8476,7 @@ a
 <span class="o">|&gt;</span> <span class="n">function</span>
     <span class="o">|</span> <span class="n">Success</span> <span class="p">(</span><span class="n">blocks</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">formatBlocks</span> <span class="n">Fs</span> <span class="n">blocks</span>
     <span class="o">|</span> <span class="n">Failure</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="n">msg</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"/// a</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"/// a</span>
 <span class="o">///</span>
 <span class="o">///</span> <span class="n">b</span>
 
@@ -8761,7 +8761,7 @@ let a = 3
 <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toOption</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
 <span class="o">|&gt;</span> <span class="p">(</span><span class="n">formatBlocks</span> <span class="n">Fs</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="err">$</span><span class="s2">"""#if !INTERACTIVE</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="err">$</span><span class="s2">"""#if !INTERACTIVE</span>
 <span class="s2">namespace TestNamespace</span>
 <span class="s2">#endif</span>
 
@@ -8903,7 +8903,7 @@ a
 <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toOption</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
 <span class="o">|&gt;</span> <span class="p">(</span><span class="n">formatBlocks</span> <span class="n">Md</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"# TestModule (TestNamespace)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"# TestModule (TestNamespace)</span>
 
 <span class="c1">## ParserLibrary</span>
 
@@ -8947,7 +8947,7 @@ a
 <span class="o">|&gt;</span> <span class="n">Result</span><span class="o">.</span><span class="n">toOption</span>
 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">get</span>
 <span class="o">|&gt;</span> <span class="p">(</span><span class="n">formatBlocks</span> <span class="n">Spi</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"// // # TestModule (TestNamespace)</span>
+<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"// // # TestModule (TestNamespace)</span>
 
 <span class="o">//</span> <span class="o">//</span> <span class="c1">## ParserLibrary</span>
 

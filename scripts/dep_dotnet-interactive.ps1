@@ -31,7 +31,3 @@ if (!$fast) {
 { dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block
 
 Copy-Item "../deps/dotnet-interactive/artifacts/bin/dotnet-interactive/Release/net9.0/**" $netVersion -Recurse -Force
-
-if ($env:CI) {
-    Remove-Item "../deps/dotnet-interactive/artifacts" -Recurse -Force -ErrorAction Ignore
-}
