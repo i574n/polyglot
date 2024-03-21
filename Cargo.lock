@@ -2425,6 +2425,7 @@ dependencies = [
 name = "math"
 version = "0.0.1"
 dependencies = [
+ "fable_library_rust",
  "float-cmp",
  "num-complex",
  "pyo3",

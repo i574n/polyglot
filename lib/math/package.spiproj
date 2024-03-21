@@ -1,0 +1,6 @@
+packageDir: ..
+packages:
+    |core-
+    spiral-
+modules:
+    math
