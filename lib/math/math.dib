@@ -216,47 +216,54 @@ inl call1_ log name py s line =
             "import sys"
             "import traceback"
 
+            "count = 0"
             "def trace_calls(frame, event, arg):"
-            "    if event != 'call':"
-            "        return"
-            "    co = frame.f_code"
-            "    func_name = co.co_name"
-            "    func_line_no = frame.f_lineno"
-            "    func_filename = co.co_filename.split('site-packages')[-1]"
-            "    caller = frame.f_back"
-            "    caller_line_no = caller.f_lineno"
-            "    caller_filename = caller.f_code.co_filename.split('site-packages')[-1]"
-            "    args = frame.f_locals"
-            "    args_str = ', '.join([f\"{k}={v}\" for k, v in args.items() if k != 'ctx'])"
+            "  global count"
+            "  if event != 'call':"
+            "    return"
+            "  count += 1"
+            "  co = frame.f_code"
+            "  func_name = co.co_name"
+            "  func_line_no = frame.f_lineno"
+            "  func_filename = co.co_filename.split('site-packages')[-1]"
+            "  caller = frame.f_back"
+            "  caller_line_no = caller.f_lineno"
+            "  caller_filename = caller.f_code.co_filename.split('site-packages')[-1]"
+            "  args = frame.f_locals"
+            "  args_str = ', '.join([f\"{k}={v}\" for k, v in args.items() if k != 'ctx'])"
+            $'$"  if count < 500:"'
             $'$"    print(f\'{!name} / Call to {{func_name}}({{args_str}}) on line {{func_line_no}} of {{func_filename}} from line {{caller_line_no}} of {{caller_filename}}\', flush=True)"'
 
             "def start_trace():"
-            "    sys.settrace(trace_calls)"
+            "  sys.settrace(trace_calls)"
 
             "def stop_trace():"
-            "    sys.settrace(None)"
+            "  sys.settrace(None)"
 
             "import mpmath"
             "def fn(log, s):"
-            "    if log:"
-            $'$"        print(f\'{!name} / s: {{s}}\', flush=True)"'
-            "    s = complex(*s)"
-            "    try:"
-            "        if log: start_trace()"
+            "  global count"
+            "  if log:"
+            $'$"    print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
+            "  s = complex(*s)"
+            "  try:"
+            "    if log: start_trace()"
             line
-            "        if log: stop_trace()"
-            "    except ValueError as e:"
-            "        if s.real == 1:"
-            "            s = complex(float('inf'), 0)"
-            "    return (s.real, s.imag)"
+            "    if log:"
+            "      stop_trace()"
+            $'$"      print(f\'{!name} / count: {{count}}\', flush=True)"'
+            "  except ValueError as e:"
+            "    if s.real == 1:"
+            "      s = complex(float('inf'), 0)"
+            "  return (s.real, s.imag)"
         ]
         |> call1_ log py s
 
 inl gamma_ log py s =
-    call1_ log "gamma_" py s "        s = mpmath.gamma(s)"
+    call1_ log "gamma_" py s "    s = mpmath.gamma(s)"
 
 inl zeta_ log py s =
-    call1_ log "zeta_" py s "        s = mpmath.zeta(s)"
+    call1_ log "zeta_" py s "    s = mpmath.zeta(s)"
 
 #!markdown
 
@@ -639,6 +646,46 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 types ()
 test_euler_product_formula true
+
+#!mermaid
+
+graph TD
+    zeta("zeta()") --> convert
+    zeta --> f["f()"]
+    f --> mpc_f["mpc_zeta()"]
+    f --> mpf_f["mpf_zeta()"]
+    convert --> from_float
+    from_float --> from_man_exp
+    from_man_exp --> python_bitcount
+    python_bitcount --> _normalize
+    _normalize --> make_mpc
+    make_mpc --> mpc_zeta["mpc_zeta()"]
+    mpc_zeta --> mpf_zeta["mpf_zeta()"]
+    mpf_zeta --> to_int
+    to_int --> mpf_zeta_int["mpf_zeta_int()"]
+    mpf_zeta_int --> borwein_coefficients
+    borwein_coefficients --> from_man_exp_2("from_man_exp()")
+    from_man_exp_2 --> python_bitcount_2("python_bitcount()")
+    python_bitcount_2 --> _normalize_2("_normalize()")
+    _normalize_2 --> make_mpc_2("make_mpc()")
+    make_mpc_2 --> stop_trace
+    mpf_zeta_int --> mpf_bernoulli
+    mpf_bernoulli --> bernoulli_size
+    bernoulli_size --> mpf_rdiv_int
+    mpf_rdiv_int --> python_bitcount_3("python_bitcount()")
+    python_bitcount_3 --> _normalize1
+    _normalize1 --> from_man_exp_3("from_man_exp()")
+    from_man_exp_3 --> _normalize_3("_normalize()")
+    _normalize_3 --> mpf_sub
+    mpf_sub --> mpf_add
+    mpf_add --> mpf_neg
+    mpf_neg --> _normalize1_2("_normalize1()")
+    _normalize1_2 --> from_int
+    from_int --> mpf_div
+    mpf_div --> python_bitcount_4("python_bitcount()")
+    python_bitcount_4 --> _normalize1_3("_normalize1()")
+    _normalize1_3 --> make_mpc_3("make_mpc()")
+    make_mpc_3 --> final_stop["stop_trace()"]
 
 #!markdown
 
