@@ -183,32 +183,24 @@ mod module_b7a9935b {
         pub fn method8(
             v0_1: pyo3::Python,
             v1_1: num_complex::Complex<f64>,
+            v2: string,
         ) -> Result<num_complex::Complex<f64>, pyo3::PyErr> {
-            let v43: string =
+            let v34: string =
                 Math::method10(Math::method9(new_array(&[string("import sys"),
                                                          string("import traceback"),
                                                          string("count = 0"),
                                                          string("def trace_calls(frame, event, arg):"),
                                                          string("  global count"),
-                                                         string("  if event != \'call\':"),
-                                                         string("    return"),
                                                          string("  count += 1"),
-                                                         string("  co = frame.f_code"),
-                                                         string("  func_name = co.co_name"),
-                                                         string("  func_line_no = frame.f_lineno"),
-                                                         string("  func_filename = co.co_filename.split(\'site-packages\')[-1]"),
-                                                         string("  caller = frame.f_back"),
-                                                         string("  caller_line_no = caller.f_lineno"),
-                                                         string("  caller_filename = caller.f_code.co_filename.split(\'site-packages\')[-1]"),
-                                                         string("  args = frame.f_locals"),
-                                                         string("  args_str = \', \'.join([f\"{k}={v}\" for k, v in args.items() if k != \'ctx\'])"),
                                                          string("  if count < 500:"),
-                                                         sprintf!("    print(f\'{} / Call to {{func_name}}({{args_str}}) on line {{func_line_no}} of {{func_filename}} from line {{caller_line_no}} of {{caller_filename}}\', flush=True)",
+                                                         string("    try:"),
+                                                         string("      args = {k: v for k, v in frame.f_locals.items() if k != \'ctx\'}"),
+                                                         string("      args_str = \', \'.join([f\"{k}={repr(v)}\" for k, v in args.items()])"),
+                                                         sprintf!("      print(f\'{{event}}({}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{frame.f_back.f_lineno}} / f_back.f_code.co_filename: {{frame.f_back.f_code.co_filename.split(\'site-packages\')[-1]}}\', flush=True)",
                                                                   string("zeta_")),
-                                                         string("def start_trace():"),
-                                                         string("  sys.settrace(trace_calls)"),
-                                                         string("def stop_trace():"),
-                                                         string("  sys.settrace(None)"),
+                                                         string("    except ValueError as e:"),
+                                                         sprintf!("      print(f\'{} / e: {{e}}\', flush=True)",
+                                                                  string("zeta_")),
                                                          string("import mpmath"),
                                                          string("def fn(log, s):"),
                                                          string("  global count"),
@@ -217,45 +209,45 @@ mod module_b7a9935b {
                                                                   string("zeta_")),
                                                          string("  s = complex(*s)"),
                                                          string("  try:"),
-                                                         string("    if log: start_trace()"),
-                                                         string("    s = mpmath.zeta(s)"),
+                                                         string("    if log: sys.settrace(trace_calls)"),
+                                                         v2,
                                                          string("    if log:"),
-                                                         string("      stop_trace()"),
-                                                         sprintf!("      print(f\'{} / count: {{count}}\', flush=True)",
+                                                         string("      sys.settrace(None)"),
+                                                         sprintf!("      print(f\'{} / result: {{s}} / count: {{count}}\', flush=True)",
                                                                   string("zeta_")),
                                                          string("  except ValueError as e:"),
                                                          string("    if s.real == 1:"),
                                                          string("      s = complex(float(\'inf\'), 0)"),
                                                          string("  return (s.real, s.imag)")])));
-            let v44: num_complex::Complex<f64> = Math::method12(v1_1.clone());
-            let v46: f64 = v44.re;
-            let v47: num_complex::Complex<f64> = Math::method13(v1_1);
-            let v51: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                LrcPtr::new((false, LrcPtr::new((v46, v47.im))));
-            let v52: pyo3::Python = Math::method14(v0_1);
-            let v53: string = Math::method15(v43);
-            let v55: &str = fable_library_rust::String_::LrcStr::as_str(&v53);
-            let v58: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                Math::method16(pyo3::types::PyModule::from_code_bound(v52, v55, "", ""));
-            let v60: pyo3::Bound<pyo3::types::PyModule> = v58.unwrap();
-            let v61: string = Math::method17();
-            let v63: &str = fable_library_rust::String_::LrcStr::as_str(&v61);
-            let v64: pyo3::Bound<pyo3::types::PyModule> = Math::method18(v60);
-            let v67: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                Math::method19(v64.getattr(v63));
-            let v69: pyo3::Bound<pyo3::PyAny> = v67.unwrap();
-            let v70: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                Math::method20(v51.0.clone(), v51.1.clone());
-            let v71: pyo3::Bound<pyo3::PyAny> = Math::method21(v69);
-            let v74: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method19(
-                pyo3::prelude::PyAnyMethods::call(&v71, ((*v70).0, *(*v70).1), None),
+            let v35: num_complex::Complex<f64> = Math::method12(v1_1.clone());
+            let v37: f64 = v35.re;
+            let v38: num_complex::Complex<f64> = Math::method13(v1_1);
+            let v42: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                LrcPtr::new((false, LrcPtr::new((v37, v38.im))));
+            let v43: pyo3::Python = Math::method14(v0_1);
+            let v44: string = Math::method15(v34);
+            let v46: &str = fable_library_rust::String_::LrcStr::as_str(&v44);
+            let v49: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                Math::method16(pyo3::types::PyModule::from_code_bound(v43, v46, "", ""));
+            let v51: pyo3::Bound<pyo3::types::PyModule> = v49.unwrap();
+            let v52: string = Math::method17();
+            let v54: &str = fable_library_rust::String_::LrcStr::as_str(&v52);
+            let v55: pyo3::Bound<pyo3::types::PyModule> = Math::method18(v51);
+            let v58: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                Math::method19(v55.getattr(v54));
+            let v60: pyo3::Bound<pyo3::PyAny> = v58.unwrap();
+            let v61: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                Math::method20(v42.0.clone(), v42.1.clone());
+            let v62: pyo3::Bound<pyo3::PyAny> = Math::method21(v60);
+            let v65: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method19(
+                pyo3::prelude::PyAnyMethods::call(&v62, ((*v61).0, *(*v61).1), None),
             );
-            let v77: pyo3::Bound<pyo3::PyAny> = Math::method22(v74.unwrap());
-            let v80: Result<(f64, f64), pyo3::PyErr> = Math::method23(v77.extract());
-            let patternInput: (f64, f64) = v80.unwrap();
-            let v85: f64 = Math::method3(Math::method24(patternInput.0.clone()));
-            let v86: f64 = Math::method25(patternInput.1.clone());
-            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v85, v86))
+            let v68: pyo3::Bound<pyo3::PyAny> = Math::method22(v65.unwrap());
+            let v71: Result<(f64, f64), pyo3::PyErr> = Math::method23(v68.extract());
+            let patternInput: (f64, f64) = v71.unwrap();
+            let v76: f64 = Math::method3(Math::method24(patternInput.0.clone()));
+            let v77: f64 = Math::method25(patternInput.1.clone());
+            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v76, v77))
         }
         pub fn method26(
             v0_1: Result<num_complex::Complex<f64>, pyo3::PyErr>,
@@ -285,36 +277,40 @@ mod module_b7a9935b {
             while Math::method7(v13, v14.clone()) {
                 let v16: i32 = v14.l0.get().clone();
                 let patternInput: (num_complex::Complex<f64>, f64) = v12[v16].clone();
-                let v20: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                    Math::method26(Math::method8(v0_1.clone(), patternInput.0.clone()));
-                let v22: num_complex::Complex<f64> = v20.unwrap();
-                let v24: f64 = Math::method3(Math::method27());
-                let v25: f64 = Math::method4();
-                let v27: num_complex::Complex<f64> = num_complex::Complex::new(v24, v25);
-                let v28: num_complex::Complex<f64> = Math::method13(v22.clone());
-                let v30: f64 = v28.im;
-                let v31: bool = v30 == 0.0_f64;
-                if (if v31 { true } else { Math::method28(v31) }) == false {
+                let v21: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                    Math::method26(Math::method8(
+                        v0_1.clone(),
+                        patternInput.0.clone(),
+                        string("    s = mpmath.zeta(s)"),
+                    ));
+                let v23: num_complex::Complex<f64> = v21.unwrap();
+                let v25: f64 = Math::method3(Math::method27());
+                let v26: f64 = Math::method4();
+                let v28: num_complex::Complex<f64> = num_complex::Complex::new(v25, v26);
+                let v29: num_complex::Complex<f64> = Math::method13(v23.clone());
+                let v31: f64 = v29.im;
+                let v32: bool = v31 == 0.0_f64;
+                if (if v32 { true } else { Math::method28(v32) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v30, 0.0_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v31, 0.0_f64),
                     );
                 }
                 {
-                    let v36: num_complex::Complex<f64> = Math::method12(v22);
-                    let v39: f64 = v36.re - patternInput.1.clone();
-                    let v40: f64 = -v39;
-                    let v42: f64 = if v39 >= v40 { v39 } else { v40 };
-                    let v43: bool = v42 < 0.0001_f64;
-                    if (if v43 { true } else { Math::method28(v43) }) == false {
+                    let v37: num_complex::Complex<f64> = Math::method12(v23);
+                    let v40: f64 = v37.re - patternInput.1.clone();
+                    let v41: f64 = -v40;
+                    let v43: f64 = if v40 >= v41 { v40 } else { v41 };
+                    let v44: bool = v43 < 0.0001_f64;
+                    if (if v44 { true } else { Math::method28(v44) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v42, 0.0001_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v43, 0.0001_f64),
                         );
                     }
                     {
-                        let v48: i32 = v16 + 1_i32;
-                        v14.l0.set(v48);
+                        let v49: i32 = v16 + 1_i32;
+                        v14.l0.set(v49);
                         ()
                     }
                 }
@@ -352,33 +348,36 @@ mod module_b7a9935b {
         pub fn method32(v0_1: pyo3::Python) {
             let v2: f64 = Math::method3(Math::method2());
             let v3: f64 = Math::method33();
-            let v7: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                Math::method26(Math::method8(v0_1, num_complex::Complex::new(v2, v3)));
-            let v9: num_complex::Complex<f64> = v7.unwrap();
-            let v11: f64 = Math::method3(Math::method27());
-            let v12: f64 = Math::method4();
-            let v14: num_complex::Complex<f64> = num_complex::Complex::new(v11, v12);
-            let v15: num_complex::Complex<f64> = Math::method12(v9.clone());
-            let v18: f64 = v15.re - 0.8673_f64;
-            let v19: f64 = -v18;
-            let v21: f64 = if v18 >= v19 { v18 } else { v19 };
-            let v22: bool = v21 < 0.001_f64;
-            if (if v22 { true } else { Math::method28(v22) }) == false {
+            let v8: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(Math::method8(
+                v0_1,
+                num_complex::Complex::new(v2, v3),
+                string("    s = mpmath.zeta(s)"),
+            ));
+            let v10: num_complex::Complex<f64> = v8.unwrap();
+            let v12: f64 = Math::method3(Math::method27());
+            let v13: f64 = Math::method4();
+            let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
+            let v16: num_complex::Complex<f64> = Math::method12(v10.clone());
+            let v19: f64 = v16.re - 0.8673_f64;
+            let v20: f64 = -v19;
+            let v22: f64 = if v19 >= v20 { v19 } else { v20 };
+            let v23: bool = v22 < 0.001_f64;
+            if (if v23 { true } else { Math::method28(v23) }) == false {
                 panic!(
                     "{}",
-                    sprintf!("__expect / actual: {:?} / expected: {:?}", v21, 0.001_f64),
+                    sprintf!("__expect / actual: {:?} / expected: {:?}", v22, 0.001_f64),
                 );
             }
             {
-                let v27: num_complex::Complex<f64> = Math::method13(v9);
-                let v30: f64 = v27.im - 0.275_f64;
-                let v31: f64 = -v30;
-                let v33: f64 = if v30 >= v31 { v30 } else { v31 };
-                let v34: bool = v33 < 0.001_f64;
-                if (if v34 { true } else { Math::method28(v34) }) == false {
+                let v28: num_complex::Complex<f64> = Math::method13(v10);
+                let v31: f64 = v28.im - 0.275_f64;
+                let v32: f64 = -v31;
+                let v34: f64 = if v31 >= v32 { v31 } else { v32 };
+                let v35: bool = v34 < 0.001_f64;
+                if (if v35 { true } else { Math::method28(v35) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v33, 0.001_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v34, 0.001_f64),
                     );
                 }
             }
@@ -434,32 +433,35 @@ mod module_b7a9935b {
                     Math::UH0::UH0_0(v1_1_0_0, v1_1_0_1) => {
                         let v5: f64 = Math::method3(Math::method24(v1_1_0_0.clone()));
                         let v6: f64 = Math::method4();
-                        let v10: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
-                            Math::method8(v0_1.get().clone(), num_complex::Complex::new(v5, v6)),
-                        );
-                        let v12: num_complex::Complex<f64> = v10.unwrap();
-                        let v14: f64 = Math::method3(Math::method27());
-                        let v15: f64 = Math::method4();
-                        let v17: num_complex::Complex<f64> = num_complex::Complex::new(v14, v15);
-                        let v18: num_complex::Complex<f64> = Math::method12(v12.clone());
-                        let v20: f64 = v18.re;
-                        let v21: bool = v20 == 0.0_f64;
-                        if (if v21 { true } else { Math::method28(v21) }) == false {
+                        let v11: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                            Math::method26(Math::method8(
+                                v0_1.get().clone(),
+                                num_complex::Complex::new(v5, v6),
+                                string("    s = mpmath.zeta(s)"),
+                            ));
+                        let v13: num_complex::Complex<f64> = v11.unwrap();
+                        let v15: f64 = Math::method3(Math::method27());
+                        let v16: f64 = Math::method4();
+                        let v18: num_complex::Complex<f64> = num_complex::Complex::new(v15, v16);
+                        let v19: num_complex::Complex<f64> = Math::method12(v13.clone());
+                        let v21: f64 = v19.re;
+                        let v22: bool = v21 == 0.0_f64;
+                        if (if v22 { true } else { Math::method28(v22) }) == false {
                             panic!(
                                 "{}",
-                                sprintf!("__expect / actual: {:?} / expected: {:?}", v20, 0.0_f64),
+                                sprintf!("__expect / actual: {:?} / expected: {:?}", v21, 0.0_f64),
                             );
                         }
                         {
-                            let v26: num_complex::Complex<f64> = Math::method13(v12);
-                            let v28: f64 = v26.im;
-                            let v29: bool = v28 == 0.0_f64;
-                            if (if v29 { true } else { Math::method28(v29) }) == false {
+                            let v27: num_complex::Complex<f64> = Math::method13(v13);
+                            let v29: f64 = v27.im;
+                            let v30: bool = v29 == 0.0_f64;
+                            if (if v30 { true } else { Math::method28(v30) }) == false {
                                 panic!(
                                     "{}",
                                     sprintf!(
                                         "__expect / actual: {:?} / expected: {:?}",
-                                        v28,
+                                        v29,
                                         0.0_f64
                                     ),
                                 );
@@ -556,38 +558,42 @@ mod module_b7a9935b {
             });
             while Math::method7(v33, v34.clone()) {
                 let v36: i32 = v34.l0.get().clone();
-                let v39: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                    Math::method26(Math::method8(v0_1.clone(), v32[v36].clone()));
-                let v41: num_complex::Complex<f64> = v39.unwrap();
-                let v43: f64 = Math::method3(Math::method27());
-                let v44: f64 = Math::method4();
-                let v46: num_complex::Complex<f64> = num_complex::Complex::new(v43, v44);
-                let v47: num_complex::Complex<f64> = Math::method12(v41.clone());
-                let v49: f64 = v47.re;
-                let v50: f64 = -v49;
-                let v52: f64 = if v49 >= v50 { v49 } else { v50 };
-                let v53: bool = v52 < 0.0001_f64;
-                if (if v53 { true } else { Math::method28(v53) }) == false {
+                let v40: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                    Math::method26(Math::method8(
+                        v0_1.clone(),
+                        v32[v36].clone(),
+                        string("    s = mpmath.zeta(s)"),
+                    ));
+                let v42: num_complex::Complex<f64> = v40.unwrap();
+                let v44: f64 = Math::method3(Math::method27());
+                let v45: f64 = Math::method4();
+                let v47: num_complex::Complex<f64> = num_complex::Complex::new(v44, v45);
+                let v48: num_complex::Complex<f64> = Math::method12(v42.clone());
+                let v50: f64 = v48.re;
+                let v51: f64 = -v50;
+                let v53: f64 = if v50 >= v51 { v50 } else { v51 };
+                let v54: bool = v53 < 0.0001_f64;
+                if (if v54 { true } else { Math::method28(v54) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v52, 0.0001_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v53, 0.0001_f64),
                     );
                 }
                 {
-                    let v58: num_complex::Complex<f64> = Math::method13(v41);
-                    let v60: f64 = v58.im;
-                    let v61: f64 = -v60;
-                    let v63: f64 = if v60 >= v61 { v60 } else { v61 };
-                    let v64: bool = v63 < 0.0001_f64;
-                    if (if v64 { true } else { Math::method28(v64) }) == false {
+                    let v59: num_complex::Complex<f64> = Math::method13(v42);
+                    let v61: f64 = v59.im;
+                    let v62: f64 = -v61;
+                    let v64: f64 = if v61 >= v62 { v61 } else { v62 };
+                    let v65: bool = v64 < 0.0001_f64;
+                    if (if v65 { true } else { Math::method28(v65) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v63, 0.0001_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v64, 0.0001_f64),
                         );
                     }
                     {
-                        let v69: i32 = v36 + 1_i32;
-                        v34.l0.set(v69);
+                        let v70: i32 = v36 + 1_i32;
+                        v34.l0.set(v70);
                         ()
                     }
                 }
@@ -628,35 +634,38 @@ mod module_b7a9935b {
                 let v6: i32 = v4.l0.get().clone();
                 let v9: f64 = Math::method3(Math::method24(v2[v6].clone()));
                 let v10: f64 = Math::method4();
-                let v14: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
-                    Math::method8(v0_1.clone(), num_complex::Complex::new(v9, v10)),
-                );
-                let v16: num_complex::Complex<f64> = v14.unwrap();
-                let v18: f64 = Math::method3(Math::method27());
-                let v19: f64 = Math::method4();
-                let v21: num_complex::Complex<f64> = num_complex::Complex::new(v18, v19);
-                let v22: num_complex::Complex<f64> = Math::method12(v16.clone());
-                let v24: f64 = v22.re;
-                let v25: bool = v24 > 0.0_f64;
-                if (if v25 { true } else { Math::method28(v25) }) == false {
+                let v15: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                    Math::method26(Math::method8(
+                        v0_1.clone(),
+                        num_complex::Complex::new(v9, v10),
+                        string("    s = mpmath.zeta(s)"),
+                    ));
+                let v17: num_complex::Complex<f64> = v15.unwrap();
+                let v19: f64 = Math::method3(Math::method27());
+                let v20: f64 = Math::method4();
+                let v22: num_complex::Complex<f64> = num_complex::Complex::new(v19, v20);
+                let v23: num_complex::Complex<f64> = Math::method12(v17.clone());
+                let v25: f64 = v23.re;
+                let v26: bool = v25 > 0.0_f64;
+                if (if v26 { true } else { Math::method28(v26) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v24, 0.0_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v25, 0.0_f64),
                     );
                 }
                 {
-                    let v30: num_complex::Complex<f64> = Math::method13(v16);
-                    let v32: f64 = v30.im;
-                    let v33: bool = v32 == 0.0_f64;
-                    if (if v33 { true } else { Math::method28(v33) }) == false {
+                    let v31: num_complex::Complex<f64> = Math::method13(v17);
+                    let v33: f64 = v31.im;
+                    let v34: bool = v33 == 0.0_f64;
+                    if (if v34 { true } else { Math::method28(v34) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v32, 0.0_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v33, 0.0_f64),
                         );
                     }
                     {
-                        let v38: i32 = v6 + 1_i32;
-                        v4.l0.set(v38);
+                        let v39: i32 = v6 + 1_i32;
+                        v4.l0.set(v39);
                         ()
                     }
                 }
@@ -688,33 +697,36 @@ mod module_b7a9935b {
         pub fn method52(v0_1: pyo3::Python) {
             let v2: f64 = Math::method3(Math::method53());
             let v3: f64 = Math::method4();
-            let v7: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                Math::method26(Math::method8(v0_1, num_complex::Complex::new(v2, v3)));
-            let v9: num_complex::Complex<f64> = v7.unwrap();
-            let v11: f64 = Math::method3(Math::method27());
-            let v12: f64 = Math::method4();
-            let v14: num_complex::Complex<f64> = num_complex::Complex::new(v11, v12);
-            let v15: num_complex::Complex<f64> = Math::method12(v9.clone());
-            let v17: f64 = v15.re;
-            let v18: bool = v17 == f64::INFINITY;
-            if (if v18 { true } else { Math::method28(v18) }) == false {
+            let v8: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(Math::method8(
+                v0_1,
+                num_complex::Complex::new(v2, v3),
+                string("    s = mpmath.zeta(s)"),
+            ));
+            let v10: num_complex::Complex<f64> = v8.unwrap();
+            let v12: f64 = Math::method3(Math::method27());
+            let v13: f64 = Math::method4();
+            let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
+            let v16: num_complex::Complex<f64> = Math::method12(v10.clone());
+            let v18: f64 = v16.re;
+            let v19: bool = v18 == f64::INFINITY;
+            if (if v19 { true } else { Math::method28(v19) }) == false {
                 panic!(
                     "{}",
                     sprintf!(
                         "__expect / actual: {:?} / expected: {:?}",
-                        v17,
+                        v18,
                         f64::INFINITY
                     ),
                 );
             }
             {
-                let v23: num_complex::Complex<f64> = Math::method13(v9);
-                let v25: f64 = v23.im;
-                let v26: bool = v25 == 0.0_f64;
-                if (if v26 { true } else { Math::method28(v26) }) == false {
+                let v24: num_complex::Complex<f64> = Math::method13(v10);
+                let v26: f64 = v24.im;
+                let v27: bool = v26 == 0.0_f64;
+                if (if v27 { true } else { Math::method28(v27) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v25, 0.0_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v26, 0.0_f64),
                     );
                 }
             }
@@ -745,46 +757,53 @@ mod module_b7a9935b {
             let v2: f64 = Math::method3(Math::method2());
             let v3: f64 = Math::method56();
             let v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, v3);
-            let v7: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                Math::method26(Math::method8(v0_1.clone(), v5.clone()));
-            let v9: num_complex::Complex<f64> = v7.unwrap();
-            let v11: f64 = Math::method3(Math::method27());
-            let v12: f64 = Math::method4();
-            let v14: num_complex::Complex<f64> = num_complex::Complex::new(v11, v12);
-            let v15: num_complex::Complex<f64> = Math::method12(v5.clone());
-            let v17: f64 = v15.re;
-            let v18: num_complex::Complex<f64> = Math::method13(v5);
-            let v21: f64 = -v18.im;
-            let v23: f64 = Math::method3(Math::method24(v17));
-            let v24: f64 = Math::method25(v21);
-            let v28: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                Math::method26(Math::method8(v0_1, num_complex::Complex::new(v23, v24)));
-            let v30: num_complex::Complex<f64> = v28.unwrap();
-            let v32: f64 = Math::method3(Math::method27());
-            let v33: f64 = Math::method4();
-            let v35: num_complex::Complex<f64> = num_complex::Complex::new(v32, v33);
-            let v37: num_complex::Complex<f64> = v30.conj();
-            let v38: num_complex::Complex<f64> = Math::method12(v9.clone());
-            let v40: f64 = v38.re;
-            let v41: num_complex::Complex<f64> = Math::method12(v37.clone());
-            let v43: f64 = v41.re;
-            let v44: bool = v40 == v43;
-            if (if v44 { true } else { Math::method28(v44) }) == false {
+            let v8: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(Math::method8(
+                v0_1.clone(),
+                v5.clone(),
+                string("    s = mpmath.zeta(s)"),
+            ));
+            let v10: num_complex::Complex<f64> = v8.unwrap();
+            let v12: f64 = Math::method3(Math::method27());
+            let v13: f64 = Math::method4();
+            let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
+            let v16: num_complex::Complex<f64> = Math::method12(v5.clone());
+            let v18: f64 = v16.re;
+            let v19: num_complex::Complex<f64> = Math::method13(v5);
+            let v22: f64 = -v19.im;
+            let v24: f64 = Math::method3(Math::method24(v18));
+            let v25: f64 = Math::method25(v22);
+            let v30: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                Math::method26(Math::method8(
+                    v0_1,
+                    num_complex::Complex::new(v24, v25),
+                    string("    s = mpmath.zeta(s)"),
+                ));
+            let v32: num_complex::Complex<f64> = v30.unwrap();
+            let v34: f64 = Math::method3(Math::method27());
+            let v35: f64 = Math::method4();
+            let v37: num_complex::Complex<f64> = num_complex::Complex::new(v34, v35);
+            let v39: num_complex::Complex<f64> = v32.conj();
+            let v40: num_complex::Complex<f64> = Math::method12(v10.clone());
+            let v42: f64 = v40.re;
+            let v43: num_complex::Complex<f64> = Math::method12(v39.clone());
+            let v45: f64 = v43.re;
+            let v46: bool = v42 == v45;
+            if (if v46 { true } else { Math::method28(v46) }) == false {
                 panic!(
                     "{}",
-                    sprintf!("__expect / actual: {:?} / expected: {:?}", v40, v43),
+                    sprintf!("__expect / actual: {:?} / expected: {:?}", v42, v45),
                 );
             }
             {
-                let v49: num_complex::Complex<f64> = Math::method13(v9);
-                let v51: f64 = v49.im;
-                let v52: num_complex::Complex<f64> = Math::method13(v37);
-                let v54: f64 = v52.im;
-                let v55: bool = v51 == v54;
-                if (if v55 { true } else { Math::method28(v55) }) == false {
+                let v51: num_complex::Complex<f64> = Math::method13(v10);
+                let v53: f64 = v51.im;
+                let v54: num_complex::Complex<f64> = Math::method13(v39);
+                let v56: f64 = v54.im;
+                let v57: bool = v53 == v56;
+                if (if v57 { true } else { Math::method28(v57) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v51, v54),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v53, v56),
                     );
                 }
             }
@@ -817,35 +836,38 @@ mod module_b7a9935b {
         pub fn method58(v0_1: pyo3::Python) {
             let v2: f64 = Math::method3(Math::method59());
             let v3: f64 = Math::method60();
-            let v7: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                Math::method26(Math::method8(v0_1, num_complex::Complex::new(v2, v3)));
-            let v9: num_complex::Complex<f64> = v7.unwrap();
-            let v11: f64 = Math::method3(Math::method27());
-            let v12: f64 = Math::method4();
-            let v14: num_complex::Complex<f64> = num_complex::Complex::new(v11, v12);
-            let v15: num_complex::Complex<f64> = Math::method12(v9.clone());
-            let v17: f64 = v15.re;
-            let v18: bool = v17 < f64::INFINITY;
-            if (if v18 { true } else { Math::method28(v18) }) == false {
+            let v8: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(Math::method8(
+                v0_1,
+                num_complex::Complex::new(v2, v3),
+                string("    s = mpmath.zeta(s)"),
+            ));
+            let v10: num_complex::Complex<f64> = v8.unwrap();
+            let v12: f64 = Math::method3(Math::method27());
+            let v13: f64 = Math::method4();
+            let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
+            let v16: num_complex::Complex<f64> = Math::method12(v10.clone());
+            let v18: f64 = v16.re;
+            let v19: bool = v18 < f64::INFINITY;
+            if (if v19 { true } else { Math::method28(v19) }) == false {
                 panic!(
                     "{}",
                     sprintf!(
                         "__expect / actual: {:?} / expected: {:?}",
-                        v17,
+                        v18,
                         f64::INFINITY
                     ),
                 );
             }
             {
-                let v23: num_complex::Complex<f64> = Math::method13(v9);
-                let v25: f64 = v23.im;
-                let v26: bool = v25 < f64::INFINITY;
-                if (if v26 { true } else { Math::method28(v26) }) == false {
+                let v24: num_complex::Complex<f64> = Math::method13(v10);
+                let v26: f64 = v24.im;
+                let v27: bool = v26 < f64::INFINITY;
+                if (if v27 { true } else { Math::method28(v27) }) == false {
                     panic!(
                         "{}",
                         sprintf!(
                             "__expect / actual: {:?} / expected: {:?}",
-                            v25,
+                            v26,
                             f64::INFINITY
                         ),
                     );
@@ -874,31 +896,34 @@ mod module_b7a9935b {
         pub fn method62(v0_1: pyo3::Python) {
             let v2: f64 = Math::method3(Math::method5());
             let v3: f64 = Math::method4();
-            let v7: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                Math::method26(Math::method8(v0_1, num_complex::Complex::new(v2, v3)));
-            let v9: num_complex::Complex<f64> = v7.unwrap();
-            let v11: f64 = Math::method3(Math::method27());
-            let v12: f64 = Math::method4();
-            let v14: num_complex::Complex<f64> = num_complex::Complex::new(v11, v12);
-            let v15: num_complex::Complex<f64> = Math::method12(v9.clone());
-            let v18: f64 = v15.re + 0.08333333333333333_f64;
-            let v19: f64 = -v18;
-            let v21: f64 = if v18 >= v19 { v18 } else { v19 };
-            let v22: bool = v21 < 0.0001_f64;
-            if (if v22 { true } else { Math::method28(v22) }) == false {
+            let v8: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(Math::method8(
+                v0_1,
+                num_complex::Complex::new(v2, v3),
+                string("    s = mpmath.zeta(s)"),
+            ));
+            let v10: num_complex::Complex<f64> = v8.unwrap();
+            let v12: f64 = Math::method3(Math::method27());
+            let v13: f64 = Math::method4();
+            let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
+            let v16: num_complex::Complex<f64> = Math::method12(v10.clone());
+            let v19: f64 = v16.re + 0.08333333333333333_f64;
+            let v20: f64 = -v19;
+            let v22: f64 = if v19 >= v20 { v19 } else { v20 };
+            let v23: bool = v22 < 0.0001_f64;
+            if (if v23 { true } else { Math::method28(v23) }) == false {
                 panic!(
                     "{}",
-                    sprintf!("__expect / actual: {:?} / expected: {:?}", v21, 0.0001_f64),
+                    sprintf!("__expect / actual: {:?} / expected: {:?}", v22, 0.0001_f64),
                 );
             }
             {
-                let v27: num_complex::Complex<f64> = Math::method13(v9);
-                let v29: f64 = v27.im;
-                let v30: bool = v29 == 0.0_f64;
-                if (if v30 { true } else { Math::method28(v30) }) == false {
+                let v28: num_complex::Complex<f64> = Math::method13(v10);
+                let v30: f64 = v28.im;
+                let v31: bool = v30 == 0.0_f64;
+                if (if v31 { true } else { Math::method28(v31) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v29, 0.0_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v30, 0.0_f64),
                     );
                 }
             }
@@ -942,35 +967,38 @@ mod module_b7a9935b {
                 let v6: f64 = v1_1[v5].clone();
                 let v8: f64 = Math::method3(Math::method27());
                 let v9: f64 = Math::method25(v6);
-                let v13: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
-                    Math::method8(v0_1.clone(), num_complex::Complex::new(v8, v9)),
-                );
-                let v15: num_complex::Complex<f64> = v13.unwrap();
-                let v17: f64 = Math::method3(Math::method27());
-                let v18: f64 = Math::method4();
-                let v20: num_complex::Complex<f64> = num_complex::Complex::new(v17, v18);
-                let v21: num_complex::Complex<f64> = Math::method12(v15.clone());
-                let v23: f64 = v21.re;
-                let v25: bool = Math::method66(v23 == 0.0_f64);
-                if (if v25 { true } else { Math::method28(v25) }) == false {
+                let v14: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                    Math::method26(Math::method8(
+                        v0_1.clone(),
+                        num_complex::Complex::new(v8, v9),
+                        string("    s = mpmath.zeta(s)"),
+                    ));
+                let v16: num_complex::Complex<f64> = v14.unwrap();
+                let v18: f64 = Math::method3(Math::method27());
+                let v19: f64 = Math::method4();
+                let v21: num_complex::Complex<f64> = num_complex::Complex::new(v18, v19);
+                let v22: num_complex::Complex<f64> = Math::method12(v16.clone());
+                let v24: f64 = v22.re;
+                let v26: bool = Math::method66(v24 == 0.0_f64);
+                if (if v26 { true } else { Math::method28(v26) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v23, 0.0_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v24, 0.0_f64),
                     );
                 }
                 {
-                    let v30: num_complex::Complex<f64> = Math::method13(v15);
-                    let v32: f64 = v30.im;
-                    let v34: bool = Math::method66(v32 == 0.0_f64);
-                    if (if v34 { true } else { Math::method28(v34) }) == false {
+                    let v31: num_complex::Complex<f64> = Math::method13(v16);
+                    let v33: f64 = v31.im;
+                    let v35: bool = Math::method66(v33 == 0.0_f64);
+                    if (if v35 { true } else { Math::method28(v35) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v32, 0.0_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v33, 0.0_f64),
                         );
                     }
                     {
-                        let v39: i32 = v5 + 1_i32;
-                        v3.l0.set(v39);
+                        let v40: i32 = v5 + 1_i32;
+                        v3.l0.set(v40);
                         ()
                     }
                 }
@@ -1045,34 +1073,38 @@ mod module_b7a9935b {
             });
             while Math::method7(v28, v29.clone()) {
                 let v31: i32 = v29.l0.get().clone();
-                let v34: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                    Math::method26(Math::method8(v0_1.clone(), v27[v31].clone()));
-                let v36: num_complex::Complex<f64> = v34.unwrap();
-                let v38: f64 = Math::method3(Math::method27());
-                let v39: f64 = Math::method4();
-                let v41: num_complex::Complex<f64> = num_complex::Complex::new(v38, v39);
-                let v42: num_complex::Complex<f64> = Math::method12(v36.clone());
-                let v44: f64 = v42.re;
-                let v46: bool = Math::method66(v44 == 0.0_f64);
-                if (if v46 { true } else { Math::method28(v46) }) == false {
+                let v35: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                    Math::method26(Math::method8(
+                        v0_1.clone(),
+                        v27[v31].clone(),
+                        string("    s = mpmath.zeta(s)"),
+                    ));
+                let v37: num_complex::Complex<f64> = v35.unwrap();
+                let v39: f64 = Math::method3(Math::method27());
+                let v40: f64 = Math::method4();
+                let v42: num_complex::Complex<f64> = num_complex::Complex::new(v39, v40);
+                let v43: num_complex::Complex<f64> = Math::method12(v37.clone());
+                let v45: f64 = v43.re;
+                let v47: bool = Math::method66(v45 == 0.0_f64);
+                if (if v47 { true } else { Math::method28(v47) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v44, 0.0_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v45, 0.0_f64),
                     );
                 }
                 {
-                    let v51: num_complex::Complex<f64> = Math::method13(v36);
-                    let v53: f64 = v51.im;
-                    let v55: bool = Math::method66(v53 == 0.0_f64);
-                    if (if v55 { true } else { Math::method28(v55) }) == false {
+                    let v52: num_complex::Complex<f64> = Math::method13(v37);
+                    let v54: f64 = v52.im;
+                    let v56: bool = Math::method66(v54 == 0.0_f64);
+                    if (if v56 { true } else { Math::method28(v56) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v53, 0.0_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v54, 0.0_f64),
                         );
                     }
                     {
-                        let v60: i32 = v31 + 1_i32;
-                        v29.l0.set(v60);
+                        let v61: i32 = v31 + 1_i32;
+                        v29.l0.set(v61);
                         ()
                     }
                 }
@@ -1128,32 +1160,24 @@ mod module_b7a9935b {
         pub fn method87(
             v0_1: pyo3::Python,
             v1_1: num_complex::Complex<f64>,
+            v2: string,
         ) -> Result<num_complex::Complex<f64>, pyo3::PyErr> {
-            let v43: string =
+            let v34: string =
                 Math::method10(Math::method9(new_array(&[string("import sys"),
                                                          string("import traceback"),
                                                          string("count = 0"),
                                                          string("def trace_calls(frame, event, arg):"),
                                                          string("  global count"),
-                                                         string("  if event != \'call\':"),
-                                                         string("    return"),
                                                          string("  count += 1"),
-                                                         string("  co = frame.f_code"),
-                                                         string("  func_name = co.co_name"),
-                                                         string("  func_line_no = frame.f_lineno"),
-                                                         string("  func_filename = co.co_filename.split(\'site-packages\')[-1]"),
-                                                         string("  caller = frame.f_back"),
-                                                         string("  caller_line_no = caller.f_lineno"),
-                                                         string("  caller_filename = caller.f_code.co_filename.split(\'site-packages\')[-1]"),
-                                                         string("  args = frame.f_locals"),
-                                                         string("  args_str = \', \'.join([f\"{k}={v}\" for k, v in args.items() if k != \'ctx\'])"),
                                                          string("  if count < 500:"),
-                                                         sprintf!("    print(f\'{} / Call to {{func_name}}({{args_str}}) on line {{func_line_no}} of {{func_filename}} from line {{caller_line_no}} of {{caller_filename}}\', flush=True)",
+                                                         string("    try:"),
+                                                         string("      args = {k: v for k, v in frame.f_locals.items() if k != \'ctx\'}"),
+                                                         string("      args_str = \', \'.join([f\"{k}={repr(v)}\" for k, v in args.items()])"),
+                                                         sprintf!("      print(f\'{{event}}({}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{frame.f_back.f_lineno}} / f_back.f_code.co_filename: {{frame.f_back.f_code.co_filename.split(\'site-packages\')[-1]}}\', flush=True)",
                                                                   string("gamma_")),
-                                                         string("def start_trace():"),
-                                                         string("  sys.settrace(trace_calls)"),
-                                                         string("def stop_trace():"),
-                                                         string("  sys.settrace(None)"),
+                                                         string("    except ValueError as e:"),
+                                                         sprintf!("      print(f\'{} / e: {{e}}\', flush=True)",
+                                                                  string("gamma_")),
                                                          string("import mpmath"),
                                                          string("def fn(log, s):"),
                                                          string("  global count"),
@@ -1162,45 +1186,45 @@ mod module_b7a9935b {
                                                                   string("gamma_")),
                                                          string("  s = complex(*s)"),
                                                          string("  try:"),
-                                                         string("    if log: start_trace()"),
-                                                         string("    s = mpmath.gamma(s)"),
+                                                         string("    if log: sys.settrace(trace_calls)"),
+                                                         v2,
                                                          string("    if log:"),
-                                                         string("      stop_trace()"),
-                                                         sprintf!("      print(f\'{} / count: {{count}}\', flush=True)",
+                                                         string("      sys.settrace(None)"),
+                                                         sprintf!("      print(f\'{} / result: {{s}} / count: {{count}}\', flush=True)",
                                                                   string("gamma_")),
                                                          string("  except ValueError as e:"),
                                                          string("    if s.real == 1:"),
                                                          string("      s = complex(float(\'inf\'), 0)"),
                                                          string("  return (s.real, s.imag)")])));
-            let v44: num_complex::Complex<f64> = Math::method12(v1_1.clone());
-            let v46: f64 = v44.re;
-            let v47: num_complex::Complex<f64> = Math::method13(v1_1);
-            let v51: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                LrcPtr::new((false, LrcPtr::new((v46, v47.im))));
-            let v52: pyo3::Python = Math::method14(v0_1);
-            let v53: string = Math::method15(v43);
-            let v55: &str = fable_library_rust::String_::LrcStr::as_str(&v53);
-            let v58: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                Math::method16(pyo3::types::PyModule::from_code_bound(v52, v55, "", ""));
-            let v60: pyo3::Bound<pyo3::types::PyModule> = v58.unwrap();
-            let v61: string = Math::method17();
-            let v63: &str = fable_library_rust::String_::LrcStr::as_str(&v61);
-            let v64: pyo3::Bound<pyo3::types::PyModule> = Math::method18(v60);
-            let v67: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                Math::method19(v64.getattr(v63));
-            let v69: pyo3::Bound<pyo3::PyAny> = v67.unwrap();
-            let v70: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                Math::method20(v51.0.clone(), v51.1.clone());
-            let v71: pyo3::Bound<pyo3::PyAny> = Math::method21(v69);
-            let v74: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method19(
-                pyo3::prelude::PyAnyMethods::call(&v71, ((*v70).0, *(*v70).1), None),
+            let v35: num_complex::Complex<f64> = Math::method12(v1_1.clone());
+            let v37: f64 = v35.re;
+            let v38: num_complex::Complex<f64> = Math::method13(v1_1);
+            let v42: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                LrcPtr::new((false, LrcPtr::new((v37, v38.im))));
+            let v43: pyo3::Python = Math::method14(v0_1);
+            let v44: string = Math::method15(v34);
+            let v46: &str = fable_library_rust::String_::LrcStr::as_str(&v44);
+            let v49: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                Math::method16(pyo3::types::PyModule::from_code_bound(v43, v46, "", ""));
+            let v51: pyo3::Bound<pyo3::types::PyModule> = v49.unwrap();
+            let v52: string = Math::method17();
+            let v54: &str = fable_library_rust::String_::LrcStr::as_str(&v52);
+            let v55: pyo3::Bound<pyo3::types::PyModule> = Math::method18(v51);
+            let v58: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                Math::method19(v55.getattr(v54));
+            let v60: pyo3::Bound<pyo3::PyAny> = v58.unwrap();
+            let v61: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                Math::method20(v42.0.clone(), v42.1.clone());
+            let v62: pyo3::Bound<pyo3::PyAny> = Math::method21(v60);
+            let v65: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method19(
+                pyo3::prelude::PyAnyMethods::call(&v62, ((*v61).0, *(*v61).1), None),
             );
-            let v77: pyo3::Bound<pyo3::PyAny> = Math::method22(v74.unwrap());
-            let v80: Result<(f64, f64), pyo3::PyErr> = Math::method23(v77.extract());
-            let patternInput: (f64, f64) = v80.unwrap();
-            let v85: f64 = Math::method3(Math::method24(patternInput.0.clone()));
-            let v86: f64 = Math::method25(patternInput.1.clone());
-            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v85, v86))
+            let v68: pyo3::Bound<pyo3::PyAny> = Math::method22(v65.unwrap());
+            let v71: Result<(f64, f64), pyo3::PyErr> = Math::method23(v68.extract());
+            let patternInput: (f64, f64) = v71.unwrap();
+            let v76: f64 = Math::method3(Math::method24(patternInput.0.clone()));
+            let v77: f64 = Math::method25(patternInput.1.clone());
+            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v76, v77))
         }
         pub fn method77(v0_1: pyo3::Python) {
             let v2: f64 = Math::method3(Math::method78());
@@ -1227,90 +1251,95 @@ mod module_b7a9935b {
             while Math::method7(v23, v24.clone()) {
                 let v26: i32 = v24.l0.get().clone();
                 let v27: num_complex::Complex<f64> = v22[v26].clone();
-                let v29: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                    Math::method26(Math::method8(v0_1.clone(), v27.clone()));
-                let v31: num_complex::Complex<f64> = v29.unwrap();
-                let v33: f64 = Math::method3(Math::method27());
-                let v34: f64 = Math::method4();
-                let v36: num_complex::Complex<f64> = num_complex::Complex::new(v33, v34);
-                let v38: f64 = Math::method3(Math::method2());
-                let v39: f64 = Math::method4();
-                let v42: num_complex::Complex<f64> =
-                    Math::method84(num_complex::Complex::new(v38, v39));
-                let v43: num_complex::Complex<f64> = Math::method85(v27.clone());
-                let v45: num_complex::Complex<f64> = num_complex::Complex::powc(v42, v43);
-                let v47: f64 = Math::method3(Math::method86());
-                let v48: f64 = Math::method4();
-                let v50: num_complex::Complex<f64> = num_complex::Complex::new(v47, v48);
-                let v52: f64 = Math::method3(Math::method53());
-                let v53: f64 = Math::method4();
-                let v55: num_complex::Complex<f64> = num_complex::Complex::new(v52, v53);
-                let v57: num_complex::Complex<f64> = v27 - v55;
-                let v58: num_complex::Complex<f64> = Math::method84(v50);
-                let v59: num_complex::Complex<f64> = Math::method85(v57);
-                let v61: num_complex::Complex<f64> = num_complex::Complex::powc(v58, v59);
-                let v63: num_complex::Complex<f64> = v45 * v61;
-                let v65: f64 = Math::method3(Math::method86());
-                let v66: f64 = Math::method4();
-                let v68: num_complex::Complex<f64> = num_complex::Complex::new(v65, v66);
-                let v70: num_complex::Complex<f64> = v68 * v27;
-                let v72: f64 = Math::method3(Math::method2());
-                let v73: f64 = Math::method4();
-                let v75: num_complex::Complex<f64> = num_complex::Complex::new(v72, v73);
-                let v77: num_complex::Complex<f64> = v70 / v75;
-                let v79: num_complex::Complex<f64> = v77.sin();
-                let v81: num_complex::Complex<f64> = v63 * v79;
-                let v83: f64 = Math::method3(Math::method53());
-                let v84: f64 = Math::method4();
-                let v86: num_complex::Complex<f64> = num_complex::Complex::new(v83, v84);
-                let v90: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                    Math::method26(Math::method87(v0_1.clone(), v86 - v27));
-                let v92: num_complex::Complex<f64> = v90.unwrap();
-                let v94: num_complex::Complex<f64> = v81 * v92;
-                let v95: num_complex::Complex<f64> = Math::method12(v27.clone());
-                let v98: f64 = 1.0_f64 - v95.re;
-                let v99: num_complex::Complex<f64> = Math::method13(v27);
-                let v102: f64 = -v99.im;
-                let v104: f64 = Math::method3(Math::method24(v98));
-                let v105: f64 = Math::method25(v102);
-                let v109: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
-                    Math::method8(v0_1.clone(), num_complex::Complex::new(v104, v105)),
+                let v30: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
+                    Math::method8(v0_1.clone(), v27.clone(), string("    s = mpmath.zeta(s)")),
                 );
-                let v111: num_complex::Complex<f64> = v109.unwrap();
-                let v113: f64 = Math::method3(Math::method27());
-                let v114: f64 = Math::method4();
-                let v116: num_complex::Complex<f64> = num_complex::Complex::new(v113, v114);
-                let v118: num_complex::Complex<f64> = v94 * v111;
-                let v119: num_complex::Complex<f64> = Math::method12(v31.clone());
-                let v121: f64 = v119.re;
-                let v122: num_complex::Complex<f64> = Math::method12(v118.clone());
-                let v125: f64 = v121 - v122.re;
-                let v126: f64 = -v125;
-                let v128: f64 = if v125 >= v126 { v125 } else { v126 };
-                let v129: bool = v128 < 0.0001_f64;
-                if (if v129 { true } else { Math::method28(v129) }) == false {
+                let v32: num_complex::Complex<f64> = v30.unwrap();
+                let v34: f64 = Math::method3(Math::method27());
+                let v35: f64 = Math::method4();
+                let v37: num_complex::Complex<f64> = num_complex::Complex::new(v34, v35);
+                let v39: f64 = Math::method3(Math::method2());
+                let v40: f64 = Math::method4();
+                let v43: num_complex::Complex<f64> =
+                    Math::method84(num_complex::Complex::new(v39, v40));
+                let v44: num_complex::Complex<f64> = Math::method85(v27.clone());
+                let v46: num_complex::Complex<f64> = num_complex::Complex::powc(v43, v44);
+                let v48: f64 = Math::method3(Math::method86());
+                let v49: f64 = Math::method4();
+                let v51: num_complex::Complex<f64> = num_complex::Complex::new(v48, v49);
+                let v53: f64 = Math::method3(Math::method53());
+                let v54: f64 = Math::method4();
+                let v56: num_complex::Complex<f64> = num_complex::Complex::new(v53, v54);
+                let v58: num_complex::Complex<f64> = v27 - v56;
+                let v59: num_complex::Complex<f64> = Math::method84(v51);
+                let v60: num_complex::Complex<f64> = Math::method85(v58);
+                let v62: num_complex::Complex<f64> = num_complex::Complex::powc(v59, v60);
+                let v64: num_complex::Complex<f64> = v46 * v62;
+                let v66: f64 = Math::method3(Math::method86());
+                let v67: f64 = Math::method4();
+                let v69: num_complex::Complex<f64> = num_complex::Complex::new(v66, v67);
+                let v71: num_complex::Complex<f64> = v69 * v27;
+                let v73: f64 = Math::method3(Math::method2());
+                let v74: f64 = Math::method4();
+                let v76: num_complex::Complex<f64> = num_complex::Complex::new(v73, v74);
+                let v78: num_complex::Complex<f64> = v71 / v76;
+                let v80: num_complex::Complex<f64> = v78.sin();
+                let v82: num_complex::Complex<f64> = v64 * v80;
+                let v84: f64 = Math::method3(Math::method53());
+                let v85: f64 = Math::method4();
+                let v87: num_complex::Complex<f64> = num_complex::Complex::new(v84, v85);
+                let v92: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
+                    Math::method87(v0_1.clone(), v87 - v27, string("    s = mpmath.gamma(s)")),
+                );
+                let v94: num_complex::Complex<f64> = v92.unwrap();
+                let v96: num_complex::Complex<f64> = v82 * v94;
+                let v97: num_complex::Complex<f64> = Math::method12(v27.clone());
+                let v100: f64 = 1.0_f64 - v97.re;
+                let v101: num_complex::Complex<f64> = Math::method13(v27);
+                let v104: f64 = -v101.im;
+                let v106: f64 = Math::method3(Math::method24(v100));
+                let v107: f64 = Math::method25(v104);
+                let v112: Result<num_complex::Complex<f64>, pyo3::PyErr> =
+                    Math::method26(Math::method8(
+                        v0_1.clone(),
+                        num_complex::Complex::new(v106, v107),
+                        string("    s = mpmath.zeta(s)"),
+                    ));
+                let v114: num_complex::Complex<f64> = v112.unwrap();
+                let v116: f64 = Math::method3(Math::method27());
+                let v117: f64 = Math::method4();
+                let v119: num_complex::Complex<f64> = num_complex::Complex::new(v116, v117);
+                let v121: num_complex::Complex<f64> = v96 * v114;
+                let v122: num_complex::Complex<f64> = Math::method12(v32.clone());
+                let v124: f64 = v122.re;
+                let v125: num_complex::Complex<f64> = Math::method12(v121.clone());
+                let v128: f64 = v124 - v125.re;
+                let v129: f64 = -v128;
+                let v131: f64 = if v128 >= v129 { v128 } else { v129 };
+                let v132: bool = v131 < 0.0001_f64;
+                if (if v132 { true } else { Math::method28(v132) }) == false {
                     panic!(
                         "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v128, 0.0001_f64),
+                        sprintf!("__expect / actual: {:?} / expected: {:?}", v131, 0.0001_f64),
                     );
                 }
                 {
-                    let v134: num_complex::Complex<f64> = Math::method13(v31);
-                    let v136: f64 = v134.im;
-                    let v137: num_complex::Complex<f64> = Math::method13(v118);
-                    let v140: f64 = v136 - v137.im;
-                    let v141: f64 = -v140;
-                    let v143: f64 = if v140 >= v141 { v140 } else { v141 };
-                    let v144: bool = v143 < 0.0001_f64;
-                    if (if v144 { true } else { Math::method28(v144) }) == false {
+                    let v137: num_complex::Complex<f64> = Math::method13(v32);
+                    let v139: f64 = v137.im;
+                    let v140: num_complex::Complex<f64> = Math::method13(v121);
+                    let v143: f64 = v139 - v140.im;
+                    let v144: f64 = -v143;
+                    let v146: f64 = if v143 >= v144 { v143 } else { v144 };
+                    let v147: bool = v146 < 0.0001_f64;
+                    if (if v147 { true } else { Math::method28(v147) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v143, 0.0001_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v146, 0.0001_f64),
                         );
                     }
                     {
-                        let v149: i32 = v26 + 1_i32;
-                        v24.l0.set(v149);
+                        let v152: i32 = v26 + 1_i32;
+                        v24.l0.set(v152);
                         ()
                     }
                 }
@@ -1376,36 +1405,37 @@ mod module_b7a9935b {
                 }
                 {
                     let v26: f64 = v16.l1.get().clone();
-                    let v28: Result<num_complex::Complex<f64>, pyo3::PyErr> =
-                        Math::method26(Math::method8(v0_1.clone(), v14));
-                    let v30: num_complex::Complex<f64> = v28.unwrap();
-                    let v32: f64 = Math::method3(Math::method27());
-                    let v33: f64 = Math::method4();
-                    let v35: num_complex::Complex<f64> = num_complex::Complex::new(v32, v33);
-                    let v36: num_complex::Complex<f64> = Math::method12(v30.clone());
-                    let v39: f64 = v36.re - v26;
-                    let v40: f64 = -v39;
-                    let v42: f64 = if v39 >= v40 { v39 } else { v40 };
-                    let v43: bool = v42 < 0.01_f64;
-                    if (if v43 { true } else { Math::method28(v43) }) == false {
+                    let v29: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method26(
+                        Math::method8(v0_1.clone(), v14, string("    s = mpmath.zeta(s)")),
+                    );
+                    let v31: num_complex::Complex<f64> = v29.unwrap();
+                    let v33: f64 = Math::method3(Math::method27());
+                    let v34: f64 = Math::method4();
+                    let v36: num_complex::Complex<f64> = num_complex::Complex::new(v33, v34);
+                    let v37: num_complex::Complex<f64> = Math::method12(v31.clone());
+                    let v40: f64 = v37.re - v26;
+                    let v41: f64 = -v40;
+                    let v43: f64 = if v40 >= v41 { v40 } else { v41 };
+                    let v44: bool = v43 < 0.01_f64;
+                    if (if v44 { true } else { Math::method28(v44) }) == false {
                         panic!(
                             "{}",
-                            sprintf!("__expect / actual: {:?} / expected: {:?}", v42, 0.01_f64),
+                            sprintf!("__expect / actual: {:?} / expected: {:?}", v43, 0.01_f64),
                         );
                     }
                     {
-                        let v48: num_complex::Complex<f64> = Math::method13(v30);
-                        let v50: f64 = v48.im;
-                        let v51: bool = v50 < 0.01_f64;
-                        if (if v51 { true } else { Math::method28(v51) }) == false {
+                        let v49: num_complex::Complex<f64> = Math::method13(v31);
+                        let v51: f64 = v49.im;
+                        let v52: bool = v51 < 0.01_f64;
+                        if (if v52 { true } else { Math::method28(v52) }) == false {
                             panic!(
                                 "{}",
-                                sprintf!("__expect / actual: {:?} / expected: {:?}", v50, 0.01_f64),
+                                sprintf!("__expect / actual: {:?} / expected: {:?}", v51, 0.01_f64),
                             );
                         }
                         {
-                            let v56: i32 = v8 + 1_i32;
-                            v6.l0.set(v56);
+                            let v57: i32 = v8 + 1_i32;
+                            v6.l0.set(v57);
                             ()
                         }
                     }

@@ -213,57 +213,43 @@ inl call1_ log py s code =
 inl call1_ log name py s line =
     join
         ;[
-            "import sys"
-            "import traceback"
-
-            "count = 0"
-            "def trace_calls(frame, event, arg):"
-            "  global count"
-            "  if event != 'call':"
-            "    return"
-            "  count += 1"
-            "  co = frame.f_code"
-            "  func_name = co.co_name"
-            "  func_line_no = frame.f_lineno"
-            "  func_filename = co.co_filename.split('site-packages')[-1]"
-            "  caller = frame.f_back"
-            "  caller_line_no = caller.f_lineno"
-            "  caller_filename = caller.f_code.co_filename.split('site-packages')[-1]"
-            "  args = frame.f_locals"
-            "  args_str = ', '.join([f\"{k}={v}\" for k, v in args.items() if k != 'ctx'])"
+            $'$"import sys"'
+            $'$"import traceback"'
+            $'$"count = 0"'
+            $'$"def trace_calls(frame, event, arg):"'
+            $'$"  global count"'
+            $'$"  count += 1"'
             $'$"  if count < 500:"'
-            $'$"    print(f\'{!name} / Call to {{func_name}}({{args_str}}) on line {{func_line_no}} of {{func_filename}} from line {{caller_line_no}} of {{caller_filename}}\', flush=True)"'
-
-            "def start_trace():"
-            "  sys.settrace(trace_calls)"
-
-            "def stop_trace():"
-            "  sys.settrace(None)"
-
-            "import mpmath"
-            "def fn(log, s):"
-            "  global count"
-            "  if log:"
+            $'$"    try:"'
+            $'$"      args = {{k: v for k, v in frame.f_locals.items() if k \!= \'ctx\'}}"'
+            $'$"      args_str = \', \'.join([f\\\"{{k}}={{repr(v)}}\\\" for k, v in args.items()])"'
+            $'$"      print(f\'{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{frame.f_back.f_lineno}} / f_back.f_code.co_filename: {{frame.f_back.f_code.co_filename.split(\'site-packages\')[-1]}}\', flush=True)"'
+            $'$"    except ValueError as e:"'
+            $'$"      print(f\'{!name} / e: {{e}}\', flush=True)"'
+            $'$"import mpmath"'
+            $'$"def fn(log, s):"'
+            $'$"  global count"'
+            $'$"  if log:"'
             $'$"    print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
-            "  s = complex(*s)"
-            "  try:"
-            "    if log: start_trace()"
+            $'$"  s = complex(*s)"'
+            $'$"  try:"'
+            $'$"    if log: sys.settrace(trace_calls)"'
             line
-            "    if log:"
-            "      stop_trace()"
-            $'$"      print(f\'{!name} / count: {{count}}\', flush=True)"'
-            "  except ValueError as e:"
-            "    if s.real == 1:"
-            "      s = complex(float('inf'), 0)"
-            "  return (s.real, s.imag)"
+            $'$"    if log:"'
+            $'$"      sys.settrace(None)"'
+            $'$"      print(f\'{!name} / result: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"  except ValueError as e:"'
+            $'$"    if s.real == 1:"'
+            $'$"      s = complex(float(\'inf\'), 0)"'
+            $'$"  return (s.real, s.imag)"'
         ]
         |> call1_ log py s
 
 inl gamma_ log py s =
-    call1_ log "gamma_" py s "    s = mpmath.gamma(s)"
+    call1_ log "gamma_" py s $'$"    s = mpmath.gamma(s)"'
 
 inl zeta_ log py s =
-    call1_ log "zeta_" py s "    s = mpmath.zeta(s)"
+    call1_ log "zeta_" py s $'$"    s = mpmath.zeta(s)"'
 
 #!markdown
 
@@ -647,6 +633,10 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
 types ()
 test_euler_product_formula true
 
+#!markdown
+
+## graph
+
 #!mermaid
 
 graph TD
@@ -686,6 +676,62 @@ graph TD
     python_bitcount_4 --> _normalize1_3("_normalize1()")
     _normalize1_3 --> make_mpc_3("make_mpc()")
     make_mpc_3 --> final_stop["stop_trace()"]
+
+#!mermaid
+
+graph TD
+    zeta_rust("zeta() - Rust") --> num_traits("num-traits")
+    zeta_rust --> num_bigint("num-bigint")
+    zeta_rust --> rust_decimal("rust_decimal for precision")
+    zeta_rust --> error_handling("Rust Error Handling")
+
+    num_traits --> num_traits_usage("Use for common traits")
+    num_bigint --> bigint_operations("Arbitrary-precision arithmetic operations")
+    rust_decimal --> decimal_operations("High-precision decimal operations")
+    error_handling --> result_type("Use Result<T, E> for error handling")
+
+    bigint_operations --> convert_rust("convert() - Rust")
+    bigint_operations --> normalize_rust("_normalize() - Rust")
+
+    convert_rust --> from_float_rust("from_float() - Rust")
+    from_float_rust --> from_man_exp_rust("from_man_exp() - Rust")
+    from_man_exp_rust --> bitcount_rust("bitcount() - Rust")
+    bitcount_rust --> normalize_rust
+    normalize_rust --> mpc_zeta_rust("mpc_zeta() - Rust")
+    mpc_zeta_rust --> mpf_zeta_rust("mpf_zeta() - Rust")
+    mpf_zeta_rust --> to_int_rust("to_int() - Rust")
+    to_int_rust --> mpf_zeta_int_rust("mpf_zeta_int() - Rust")
+
+    mpf_zeta_int_rust --> borwein_coefficients_rust("borwein_coefficients() - Rust")
+    borwein_coefficients_rust --> from_man_exp_rust_2("from_man_exp() - Rust")
+    from_man_exp_rust_2 --> bitcount_rust_2("bitcount() - Rust")
+    bitcount_rust_2 --> normalize_rust_2("_normalize() - Rust")
+    normalize_rust_2 --> make_mpc_rust("make_mpc() - Rust")
+
+    mpf_zeta_int_rust --> mpf_bernoulli_rust("mpf_bernoulli() - Rust")
+    mpf_bernoulli_rust --> bernoulli_size_rust("bernoulli_size() - Rust")
+    bernoulli_size_rust --> mpf_rdiv_int_rust("mpf_rdiv_int() - Rust")
+    mpf_rdiv_int_rust --> bitcount_rust_3("bitcount() - Rust")
+    bitcount_rust_3 --> normalize1_rust("_normalize1() - Rust")
+    normalize1_rust --> from_man_exp_rust_3("from_man_exp() - Rust")
+    from_man_exp_rust_3 --> normalize_rust_3("_normalize() - Rust")
+    normalize_rust_3 --> mpf_sub_rust("mpf_sub() - Rust")
+    mpf_sub_rust --> mpf_add_rust("mpf_add() - Rust")
+    mpf_add_rust --> mpf_neg_rust("mpf_neg() - Rust")
+    mpf_neg_rust --> normalize1_rust_2("_normalize1() - Rust")
+    normalize1_rust_2 --> from_int_rust("from_int() - Rust")
+    from_int_rust --> mpf_div_rust("mpf_div() - Rust")
+    mpf_div_rust --> bitcount_rust_4("bitcount() - Rust")
+    bitcount_rust_4 --> normalize1_rust_3("_normalize1() - Rust")
+
+    style zeta_rust fill:#f9f,stroke:#333,stroke-width:4px
+    style num_traits fill:#bbf,stroke:#333,stroke-width:2px
+    style num_bigint fill:#bbf,stroke:#333,stroke-width:2px
+    style rust_decimal fill:#bbf,stroke:#333,stroke-width:2px
+    style error_handling fill:#bbf,stroke:#333,stroke-width:2px
+    style bigint_operations fill:#bfb,stroke:#333,stroke-width:2px
+    style decimal_operations fill:#bfb,stroke:#333,stroke-width:2px
+    style result_type fill:#bfb,stroke:#333,stroke-width:2px
 
 #!markdown
 

@@ -173,57 +173,43 @@ inl call1_ log py s code =
 inl call1_ log name py s line =
     join
         ;[
-            "import sys"
-            "import traceback"
-
-            "count = 0"
-            "def trace_calls(frame, event, arg):"
-            "  global count"
-            "  if event != 'call':"
-            "    return"
-            "  count += 1"
-            "  co = frame.f_code"
-            "  func_name = co.co_name"
-            "  func_line_no = frame.f_lineno"
-            "  func_filename = co.co_filename.split('site-packages')[-1]"
-            "  caller = frame.f_back"
-            "  caller_line_no = caller.f_lineno"
-            "  caller_filename = caller.f_code.co_filename.split('site-packages')[-1]"
-            "  args = frame.f_locals"
-            "  args_str = ', '.join([f\"{k}={v}\" for k, v in args.items() if k != 'ctx'])"
+            $'$"import sys"'
+            $'$"import traceback"'
+            $'$"count = 0"'
+            $'$"def trace_calls(frame, event, arg):"'
+            $'$"  global count"'
+            $'$"  count += 1"'
             $'$"  if count < 500:"'
-            $'$"    print(f\'{!name} / Call to {{func_name}}({{args_str}}) on line {{func_line_no}} of {{func_filename}} from line {{caller_line_no}} of {{caller_filename}}\', flush=True)"'
-
-            "def start_trace():"
-            "  sys.settrace(trace_calls)"
-
-            "def stop_trace():"
-            "  sys.settrace(None)"
-
-            "import mpmath"
-            "def fn(log, s):"
-            "  global count"
-            "  if log:"
+            $'$"    try:"'
+            $'$"      args = {{k: v for k, v in frame.f_locals.items() if k \!= \'ctx\'}}"'
+            $'$"      args_str = \', \'.join([f\\\"{{k}}={{repr(v)}}\\\" for k, v in args.items()])"'
+            $'$"      print(f\'{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{frame.f_back.f_lineno}} / f_back.f_code.co_filename: {{frame.f_back.f_code.co_filename.split(\'site-packages\')[-1]}}\', flush=True)"'
+            $'$"    except ValueError as e:"'
+            $'$"      print(f\'{!name} / e: {{e}}\', flush=True)"'
+            $'$"import mpmath"'
+            $'$"def fn(log, s):"'
+            $'$"  global count"'
+            $'$"  if log:"'
             $'$"    print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
-            "  s = complex(*s)"
-            "  try:"
-            "    if log: start_trace()"
+            $'$"  s = complex(*s)"'
+            $'$"  try:"'
+            $'$"    if log: sys.settrace(trace_calls)"'
             line
-            "    if log:"
-            "      stop_trace()"
-            $'$"      print(f\'{!name} / count: {{count}}\', flush=True)"'
-            "  except ValueError as e:"
-            "    if s.real == 1:"
-            "      s = complex(float('inf'), 0)"
-            "  return (s.real, s.imag)"
+            $'$"    if log:"'
+            $'$"      sys.settrace(None)"'
+            $'$"      print(f\'{!name} / result: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"  except ValueError as e:"'
+            $'$"    if s.real == 1:"'
+            $'$"      s = complex(float(\'inf\'), 0)"'
+            $'$"  return (s.real, s.imag)"'
         ]
         |> call1_ log py s
 
 inl gamma_ log py s =
-    call1_ log "gamma_" py s "    s = mpmath.gamma(s)"
+    call1_ log "gamma_" py s $'$"    s = mpmath.gamma(s)"'
 
 inl zeta_ log py s =
-    call1_ log "zeta_" py s "    s = mpmath.zeta(s)"
+    call1_ log "zeta_" py s $'$"    s = mpmath.zeta(s)"'
 
 // // ## run_test
 
@@ -432,6 +418,8 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
         inl result = zeta s
         re result - product |> abs |> _assert_lt 0.01
         result |> im |> _assert_lt 0.01
+
+// // ## graph
 
 // // ## tests
 
