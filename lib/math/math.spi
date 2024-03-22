@@ -31,7 +31,7 @@ inl complex forall t. ((re : t), (im : t)) : complex t =
     inl im = join im
     !\($'"num_complex::Complex::new(!re, !im)"')
 
-// // ## run_test
+// // ## complex_sin
 
 inl re forall t. (c : complex t) : t =
     inl c = join c
@@ -88,31 +88,30 @@ inl conj forall t. (c : complex t) : complex t =
 
 // // ## zeta
 
-inl rec zeta (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
-    join
+inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
+    inl rec zeta count gamma s =
+        inl s = join s
+        if log then
+            !\($'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", !count, !s)"')
         if re s > 1 then
-            am.init 10000i32 id
-            |> fun x => x : a i32 _
-            |> am.fold
-                fun acc n =>
-                    acc .+ .^(1, 0) ./ (.^(f64 n, 0) .** s)
-                .^(0, 0)
-        elif s = .^(-1, 0) then
-            .^(-1 / 12, 0)
+            (.^(0, 0), (am.init 10000i32 id : a i32 _))
+            ||> am.fold fun acc n =>
+                acc .+ (.^(1, 0) ./ (.^(f64 n, 0) .** s))
         else
-            inl one_minus_s = .^(1 - re s, -(im s))
-            inl mirror_term =
-                if re one_minus_s > 1
-                then zeta gamma one_minus_s
-                else .^(0, 0)
             inl gamma_term = gamma (.^(1, 0) .- s)
             inl sin_term = .^(pi, 0) .* s ./ .^(2, 0) |> complex_sin
+            inl one_minus_s = .^(1 - re s, -(im s))
+            inl mirror_term =
+                if re one_minus_s <= 1
+                then .^(0, 0)
+                else
+                    if count <= 3
+                    then zeta (count + 1) gamma one_minus_s
+                    else one_minus_s
             inl reflection_formula =
                 .^(2, 0) .* (.^(pi, 0) .** s) .* sin_term .* gamma_term .* mirror_term
             reflection_formula
-
-inl zeta (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
-    .^(0, 0)
+    join zeta 0i32 gamma s
 
 // // ## eval
 
@@ -140,7 +139,7 @@ inl extract forall t. (result : bound pyany) : resultm.result' t pyerr =
     use_pyanymethods ()
     !\($'"!result.extract()"')
 
-inl eval py code args =
+inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) _ =
     inl code =
         code
         |> module_from_code py
@@ -170,33 +169,47 @@ inl call1_ log py s code =
 
     eval py code args
 
+inl call1_ log name py s line =
+    inl s = join s
+    join
+        ;[
+            $'$"import sys"'
+            $'$"import traceback"'
+            $'$"count = 0"'
+            $'$"def trace_calls(frame, event, arg):"'
+            $'$"  global count"'
+            $'$"  count += 1"'
+            $'$"  if count < 300:"'
+            $'$"    try:"'
+            $'$"      args = {{ k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }}"'
+            $'$"      args_str = \', \'.join([ f\\\"{{k}}={{repr(v)}}\\\" for k, v in args.items() ])"'
+            $'$"      print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }}\\\", flush=True)"'
+            $'$"    except ValueError as e:"'
+            $'$"      print(f\'{!name} / e: {{e}}\', flush=True)"'
+            $'$"import mpmath"'
+            $'$"def fn(log, s):"'
+            $'$"  global count"'
+            $'$"  if log:"'
+            $'$"    print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"  s = complex(*s)"'
+            $'$"  try:"'
+            $'$"    if log: sys.settrace(trace_calls)"'
+            line
+            $'$"    if log:"'
+            $'$"      sys.settrace(None)"'
+            $'$"      print(f\'{!name} / result: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"  except ValueError as e:"'
+            $'$"    if s.real == 1:"'
+            $'$"      s = complex(float(\'inf\'), 0)"'
+            $'$"  return (s.real, s.imag)"'
+        ]
+        |> call1_ log py s
+
 inl gamma_ log py s =
-    ;[
-        "import mpmath"
-        "def fn(log, s):"
-        "    if log:"
-        "        print(f'gamma_ / s: {s}', flush=True)"
-        "    s = complex(*s)"
-        "    s = mpmath.gamma(s)"
-        "    return (s.real, s.imag)"
-    ]
-    |> call1_ log py s
+    call1_ log "gamma_" py s $'$"    s = mpmath.gamma(s)"'
 
 inl zeta_ log py s =
-    ;[
-        "import mpmath"
-        "def fn(log, s):"
-        "    if log:"
-        "        print(f'zeta_ / s: {s}', flush=True)"
-        "    s = complex(*s)"
-        "    try:"
-        "        s = mpmath.zeta(s)"
-        "    except ValueError as e:"
-        "        if s.real == 1:"
-        "            s = complex(float('inf'), 0)"
-        "    return (s.real, s.imag)"
-    ]
-    |> call1_ log py s
+    call1_ log "zeta_" py s $'$"    s = mpmath.zeta(s)"'
 
 // // ## run_test
 
@@ -205,19 +218,21 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
         inl gamma__ = fun (s : complex f64) =>
             inl result = gamma_ log py s |> resultm.unwrap'
             if log then
+                inl s = join s
                 !\($'"println\!(\\\"gamma__ / s: {:?} / result: {:?}\\\", !s, !result)"')
             result
         inl zeta__ = fun (s : complex f64) =>
             inl result = zeta_ log py s |> resultm.unwrap'
 
-            inl z = zeta gamma__ s
+            inl z = zeta true gamma__ s
 
             if log then
+                inl s = join s
                 !\($'"println\!(\\\"zeta__ / s: {:?} / result: {:?} / z: {:?}\\\", !s, !result, !z)"')
 
     //             re result - re x |> abs
     //             |> _assert_lt 0.001
-    //             
+
     //             im result - im x |> abs
     //             |> _assert_lt 0.001
 
@@ -403,6 +418,8 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
         inl result = zeta s
         re result - product |> abs |> _assert_lt 0.01
         result |> im |> _assert_lt 0.01
+
+// // ## graph
 
 // // ## tests
 

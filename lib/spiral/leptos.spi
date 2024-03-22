@@ -132,6 +132,12 @@ inl log_debug (text : string) =
 inl log_pretty (text : string) =
     !\\(text, $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"') : ()
 
+inl log_format fn obj =
+    inl obj_log = obj |> sm'.format_debug
+    inl text = fn obj_log |> sm'.ellipsis 200i32
+    log text
+    obj
+
 inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 

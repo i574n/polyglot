@@ -61,7 +61,7 @@ complex (0f64, 0f64)
 
 #!markdown
 
-## run_test
+## complex_sin
 
 #!spiral
 
@@ -124,31 +124,30 @@ inl conj forall t. (c : complex t) : complex t =
 
 #!spiral
 
-inl rec zeta (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
-    join
+inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
+    inl rec zeta count gamma s =
+        inl s = join s
+        if log then
+            !\($'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", !count, !s)"')
         if re s > 1 then
-            am.init 10000i32 id
-            |> fun x => x : a i32 _
-            |> am.fold
-                fun acc n =>
-                    acc .+ .^(1, 0) ./ (.^(f64 n, 0) .** s)
-                .^(0, 0)
-        elif s = .^(-1, 0) then
-            .^(-1 / 12, 0)
+            (.^(0, 0), (am.init 10000i32 id : a i32 _))
+            ||> am.fold fun acc n =>
+                acc .+ (.^(1, 0) ./ (.^(f64 n, 0) .** s))
         else
-            inl one_minus_s = .^(1 - re s, -(im s))
-            inl mirror_term =
-                if re one_minus_s > 1
-                then zeta gamma one_minus_s
-                else .^(0, 0)
             inl gamma_term = gamma (.^(1, 0) .- s)
             inl sin_term = .^(pi, 0) .* s ./ .^(2, 0) |> complex_sin
+            inl one_minus_s = .^(1 - re s, -(im s))
+            inl mirror_term =
+                if re one_minus_s <= 1
+                then .^(0, 0)
+                else
+                    if count <= 3
+                    then zeta (count + 1) gamma one_minus_s
+                    else one_minus_s
             inl reflection_formula =
                 .^(2, 0) .* (.^(pi, 0) .** s) .* sin_term .* gamma_term .* mirror_term
             reflection_formula
-
-inl zeta (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
-    .^(0, 0)
+    join zeta 0i32 gamma s
 
 #!markdown
 
@@ -180,7 +179,7 @@ inl extract forall t. (result : bound pyany) : resultm.result' t pyerr =
     use_pyanymethods ()
     !\($'"!result.extract()"')
 
-inl eval py code args =
+inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) _ =
     inl code =
         code
         |> module_from_code py
@@ -210,33 +209,47 @@ inl call1_ log py s code =
 
     eval py code args
 
+inl call1_ log name py s line =
+    inl s = join s
+    join
+        ;[
+            $'$"import sys"'
+            $'$"import traceback"'
+            $'$"count = 0"'
+            $'$"def trace_calls(frame, event, arg):"'
+            $'$"  global count"'
+            $'$"  count += 1"'
+            $'$"  if count < 300:"'
+            $'$"    try:"'
+            $'$"      args = {{ k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }}"'
+            $'$"      args_str = \', \'.join([ f\\\"{{k}}={{repr(v)}}\\\" for k, v in args.items() ])"'
+            $'$"      print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }}\\\", flush=True)"'
+            $'$"    except ValueError as e:"'
+            $'$"      print(f\'{!name} / e: {{e}}\', flush=True)"'
+            $'$"import mpmath"'
+            $'$"def fn(log, s):"'
+            $'$"  global count"'
+            $'$"  if log:"'
+            $'$"    print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"  s = complex(*s)"'
+            $'$"  try:"'
+            $'$"    if log: sys.settrace(trace_calls)"'
+            line
+            $'$"    if log:"'
+            $'$"      sys.settrace(None)"'
+            $'$"      print(f\'{!name} / result: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"  except ValueError as e:"'
+            $'$"    if s.real == 1:"'
+            $'$"      s = complex(float(\'inf\'), 0)"'
+            $'$"  return (s.real, s.imag)"'
+        ]
+        |> call1_ log py s
+
 inl gamma_ log py s =
-    ;[
-        "import mpmath"
-        "def fn(log, s):"
-        "    if log:"
-        "        print(f'gamma_ / s: {s}', flush=True)"
-        "    s = complex(*s)"
-        "    s = mpmath.gamma(s)"
-        "    return (s.real, s.imag)"
-    ]
-    |> call1_ log py s
+    call1_ log "gamma_" py s $'$"    s = mpmath.gamma(s)"'
 
 inl zeta_ log py s =
-    ;[
-        "import mpmath"
-        "def fn(log, s):"
-        "    if log:"
-        "        print(f'zeta_ / s: {s}', flush=True)"
-        "    s = complex(*s)"
-        "    try:"
-        "        s = mpmath.zeta(s)"
-        "    except ValueError as e:"
-        "        if s.real == 1:"
-        "            s = complex(float('inf'), 0)"
-        "    return (s.real, s.imag)"
-    ]
-    |> call1_ log py s
+    call1_ log "zeta_" py s $'$"    s = mpmath.zeta(s)"'
 
 #!markdown
 
@@ -249,19 +262,21 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
         inl gamma__ = fun (s : complex f64) =>
             inl result = gamma_ log py s |> resultm.unwrap'
             if log then
+                inl s = join s
                 !\($'"println\!(\\\"gamma__ / s: {:?} / result: {:?}\\\", !s, !result)"')
             result
         inl zeta__ = fun (s : complex f64) =>
             inl result = zeta_ log py s |> resultm.unwrap'
 
-            inl z = zeta gamma__ s
+            inl z = zeta true gamma__ s
 
             if log then
+                inl s = join s
                 !\($'"println\!(\\\"zeta__ / s: {:?} / result: {:?} / z: {:?}\\\", !s, !result, !z)"')
 
     //             re result - re x |> abs
     //             |> _assert_lt 0.001
-    //             
+
     //             im result - im x |> abs
     //             |> _assert_lt 0.001
 
@@ -617,6 +632,106 @@ inl test_euler_product_formula log = run_test log (3u8, 2u8) fun zeta, gamma =>
 
 types ()
 test_euler_product_formula true
+
+#!markdown
+
+## graph
+
+#!mermaid
+
+graph TD
+    zeta("zeta()") --> convert
+    zeta --> f["f()"]
+    f --> mpc_f["mpc_zeta()"]
+    f --> mpf_f["mpf_zeta()"]
+    convert --> from_float
+    from_float --> from_man_exp
+    from_man_exp --> python_bitcount
+    python_bitcount --> _normalize
+    _normalize --> make_mpc
+    make_mpc --> mpc_zeta["mpc_zeta()"]
+    mpc_zeta --> mpf_zeta["mpf_zeta()"]
+    mpf_zeta --> to_int
+    to_int --> mpf_zeta_int["mpf_zeta_int()"]
+    mpf_zeta_int --> borwein_coefficients
+    borwein_coefficients --> from_man_exp_2("from_man_exp()")
+    from_man_exp_2 --> python_bitcount_2("python_bitcount()")
+    python_bitcount_2 --> _normalize_2("_normalize()")
+    _normalize_2 --> make_mpc_2("make_mpc()")
+    make_mpc_2 --> stop_trace
+    mpf_zeta_int --> mpf_bernoulli
+    mpf_bernoulli --> bernoulli_size
+    bernoulli_size --> mpf_rdiv_int
+    mpf_rdiv_int --> python_bitcount_3("python_bitcount()")
+    python_bitcount_3 --> _normalize1
+    _normalize1 --> from_man_exp_3("from_man_exp()")
+    from_man_exp_3 --> _normalize_3("_normalize()")
+    _normalize_3 --> mpf_sub
+    mpf_sub --> mpf_add
+    mpf_add --> mpf_neg
+    mpf_neg --> _normalize1_2("_normalize1()")
+    _normalize1_2 --> from_int
+    from_int --> mpf_div
+    mpf_div --> python_bitcount_4("python_bitcount()")
+    python_bitcount_4 --> _normalize1_3("_normalize1()")
+    _normalize1_3 --> make_mpc_3("make_mpc()")
+    make_mpc_3 --> final_stop["stop_trace()"]
+
+#!mermaid
+
+graph TD
+    zeta_rust("zeta() - Rust") --> num_traits("num-traits")
+    zeta_rust --> num_bigint("num-bigint")
+    zeta_rust --> rust_decimal("rust_decimal for precision")
+    zeta_rust --> error_handling("Rust Error Handling")
+
+    num_traits --> num_traits_usage("Use for common traits")
+    num_bigint --> bigint_operations("Arbitrary-precision arithmetic operations")
+    rust_decimal --> decimal_operations("High-precision decimal operations")
+    error_handling --> result_type("Use Result<T, E> for error handling")
+
+    bigint_operations --> convert_rust("convert() - Rust")
+    bigint_operations --> normalize_rust("_normalize() - Rust")
+
+    convert_rust --> from_float_rust("from_float() - Rust")
+    from_float_rust --> from_man_exp_rust("from_man_exp() - Rust")
+    from_man_exp_rust --> bitcount_rust("bitcount() - Rust")
+    bitcount_rust --> normalize_rust
+    normalize_rust --> mpc_zeta_rust("mpc_zeta() - Rust")
+    mpc_zeta_rust --> mpf_zeta_rust("mpf_zeta() - Rust")
+    mpf_zeta_rust --> to_int_rust("to_int() - Rust")
+    to_int_rust --> mpf_zeta_int_rust("mpf_zeta_int() - Rust")
+
+    mpf_zeta_int_rust --> borwein_coefficients_rust("borwein_coefficients() - Rust")
+    borwein_coefficients_rust --> from_man_exp_rust_2("from_man_exp() - Rust")
+    from_man_exp_rust_2 --> bitcount_rust_2("bitcount() - Rust")
+    bitcount_rust_2 --> normalize_rust_2("_normalize() - Rust")
+    normalize_rust_2 --> make_mpc_rust("make_mpc() - Rust")
+
+    mpf_zeta_int_rust --> mpf_bernoulli_rust("mpf_bernoulli() - Rust")
+    mpf_bernoulli_rust --> bernoulli_size_rust("bernoulli_size() - Rust")
+    bernoulli_size_rust --> mpf_rdiv_int_rust("mpf_rdiv_int() - Rust")
+    mpf_rdiv_int_rust --> bitcount_rust_3("bitcount() - Rust")
+    bitcount_rust_3 --> normalize1_rust("_normalize1() - Rust")
+    normalize1_rust --> from_man_exp_rust_3("from_man_exp() - Rust")
+    from_man_exp_rust_3 --> normalize_rust_3("_normalize() - Rust")
+    normalize_rust_3 --> mpf_sub_rust("mpf_sub() - Rust")
+    mpf_sub_rust --> mpf_add_rust("mpf_add() - Rust")
+    mpf_add_rust --> mpf_neg_rust("mpf_neg() - Rust")
+    mpf_neg_rust --> normalize1_rust_2("_normalize1() - Rust")
+    normalize1_rust_2 --> from_int_rust("from_int() - Rust")
+    from_int_rust --> mpf_div_rust("mpf_div() - Rust")
+    mpf_div_rust --> bitcount_rust_4("bitcount() - Rust")
+    bitcount_rust_4 --> normalize1_rust_3("_normalize1() - Rust")
+
+    style zeta_rust fill:#f9f,stroke:#333,stroke-width:4px
+    style num_traits fill:#bbf,stroke:#333,stroke-width:2px
+    style num_bigint fill:#bbf,stroke:#333,stroke-width:2px
+    style rust_decimal fill:#bbf,stroke:#333,stroke-width:2px
+    style error_handling fill:#bbf,stroke:#333,stroke-width:2px
+    style bigint_operations fill:#bfb,stroke:#333,stroke-width:2px
+    style decimal_operations fill:#bfb,stroke:#333,stroke-width:2px
+    style result_type fill:#bfb,stroke:#333,stroke-width:2px
 
 #!markdown
 
