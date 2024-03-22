@@ -61,7 +61,7 @@ complex (0f64, 0f64)
 
 #!markdown
 
-## run_test
+## complex_sin
 
 #!spiral
 
@@ -180,7 +180,7 @@ inl extract forall t. (result : bound pyany) : resultm.result' t pyerr =
     use_pyanymethods ()
     !\($'"!result.extract()"')
 
-inl eval py code args =
+inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) _ =
     inl code =
         code
         |> module_from_code py
@@ -210,33 +210,53 @@ inl call1_ log py s code =
 
     eval py code args
 
+inl call1_ log name py s line =
+    join
+        ;[
+            "import sys"
+            "import traceback"
+
+            "def trace_calls(frame, event, arg):"
+            "    if event != 'call':"
+            "        return"
+            "    co = frame.f_code"
+            "    func_name = co.co_name"
+            "    func_line_no = frame.f_lineno"
+            "    func_filename = co.co_filename.split('site-packages')[-1]"
+            "    caller = frame.f_back"
+            "    caller_line_no = caller.f_lineno"
+            "    caller_filename = caller.f_code.co_filename.split('site-packages')[-1]"
+            "    args = frame.f_locals"
+            "    args_str = ', '.join([f\"{k}={v}\" for k, v in args.items() if k != 'ctx'])"
+            $'$"    print(f\'{!name} / Call to {{func_name}}({{args_str}}) on line {{func_line_no}} of {{func_filename}} from line {{caller_line_no}} of {{caller_filename}}\', flush=True)"'
+
+            "def start_trace():"
+            "    sys.settrace(trace_calls)"
+
+            "def stop_trace():"
+            "    sys.settrace(None)"
+
+            "import mpmath"
+            "def fn(log, s):"
+            "    if log:"
+            $'$"        print(f\'{!name} / s: {{s}}\', flush=True)"'
+            "    s = complex(*s)"
+            "    try:"
+            "        if log: start_trace()"
+            line
+            "        if log: stop_trace()"
+            "    except ValueError as e:"
+            "        if s.real == 1:"
+            "            s = complex(float('inf'), 0)"
+            "    return (s.real, s.imag)"
+        ]
+        |> call1_ log py s
+
 inl gamma_ log py s =
-    ;[
-        "import mpmath"
-        "def fn(log, s):"
-        "    if log:"
-        "        print(f'gamma_ / s: {s}', flush=True)"
-        "    s = complex(*s)"
-        "    s = mpmath.gamma(s)"
-        "    return (s.real, s.imag)"
-    ]
-    |> call1_ log py s
+    call1_ log "gamma_" py s "        s = mpmath.gamma(s)"
 
 inl zeta_ log py s =
-    ;[
-        "import mpmath"
-        "def fn(log, s):"
-        "    if log:"
-        "        print(f'zeta_ / s: {s}', flush=True)"
-        "    s = complex(*s)"
-        "    try:"
-        "        s = mpmath.zeta(s)"
-        "    except ValueError as e:"
-        "        if s.real == 1:"
-        "            s = complex(float('inf'), 0)"
-        "    return (s.real, s.imag)"
-    ]
-    |> call1_ log py s
+    call1_ log "zeta_" py s "        s = mpmath.zeta(s)"
 
 #!markdown
 
@@ -249,6 +269,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
         inl gamma__ = fun (s : complex f64) =>
             inl result = gamma_ log py s |> resultm.unwrap'
             if log then
+                inl s = join s
                 !\($'"println\!(\\\"gamma__ / s: {:?} / result: {:?}\\\", !s, !result)"')
             result
         inl zeta__ = fun (s : complex f64) =>
@@ -257,11 +278,12 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
             inl z = zeta gamma__ s
 
             if log then
+                inl s = join s
                 !\($'"println\!(\\\"zeta__ / s: {:?} / result: {:?} / z: {:?}\\\", !s, !result, !z)"')
 
     //             re result - re x |> abs
     //             |> _assert_lt 0.001
-    //             
+
     //             im result - im x |> abs
     //             |> _assert_lt 0.001
 

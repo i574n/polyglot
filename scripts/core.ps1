@@ -68,7 +68,7 @@ function Invoke-Block {
                 if ($host.Name -match "Interactive") {
                     [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Publish([Microsoft.DotNet.Interactive.Events.CommandFailed]::new([System.Exception]::new($msg), [Microsoft.DotNet.Interactive.KernelInvocationContext]::Current.Command))
                 } else {
-                    exit ($exitcode, $Error.Count | Measure-Object -Maximum).Maximum
+                    exit ([Math]::Abs($exitcode), $Error.Count | Measure-Object -Maximum).Maximum
                 }
             }
             $Error.Clear()
