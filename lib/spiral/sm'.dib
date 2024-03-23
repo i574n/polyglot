@@ -51,6 +51,144 @@ nominal str = $"Str"
 
 #!markdown
 
+## contains
+
+#!spiral
+
+inl contains (value : string) (s : string) : bool =
+    $"!s.Contains !value"
+
+#!markdown
+
+## ends_with
+
+#!spiral
+
+inl ends_with (value : string) (s : string) : bool =
+    $"!s.EndsWith !value"
+
+#!markdown
+
+## pad_left
+
+#!spiral
+
+inl pad_left total_width padding_char (s : string) : string =
+    $"!s.PadLeft (!total_width, !padding_char)"
+
+#!markdown
+
+## pad_right
+
+#!spiral
+
+inl pad_right (pad : i32) (s : string) : string =
+    $"!s.PadRight !pad"
+
+#!markdown
+
+## replace
+
+#!spiral
+
+inl replace (old_value : string) (new_value : string) (s : string) : string =
+    $"!s.Replace (!old_value, !new_value)"
+
+#!markdown
+
+## split
+
+#!spiral
+
+inl split (separator : string) (str : string) : array_base string =
+    $"!str.Split !separator"
+
+#!markdown
+
+## split_string
+
+#!spiral
+
+inl split_string (separator : array_base string) (str : string) : array_base string =
+    $"!str.Split (!separator, StringSplitOptions.None)"
+
+#!markdown
+
+## starts_with
+
+#!spiral
+
+inl starts_with (value : std_string) (s : std_string) : bool =
+    inl s = join s
+    !\($'"!s.starts_with(&!value)"')
+
+#!markdown
+
+## substring
+
+#!spiral
+
+inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
+    $"!str.Substring (!start, !len)"
+
+#!markdown
+
+## to_lower
+
+#!spiral
+
+inl to_lower (input : string) : string =
+    $"!input.ToLower ()"
+
+#!markdown
+
+## to_upper
+
+#!spiral
+
+inl to_upper (input : string) : string =
+    $"!input.ToUpper ()"
+
+#!markdown
+
+## trim
+
+#!spiral
+
+inl trim (input : string) : string =
+    $"!input.Trim ()"
+
+#!markdown
+
+## trim_end
+
+#!spiral
+
+inl trim_end (trim_chars : array_base char) (input : string) : string =
+    $"!input.TrimEnd !trim_chars"
+
+#!markdown
+
+## trim_start
+
+#!spiral
+
+inl trim_start (trim_chars : array_base char) (input : string) : string =
+    $"!input.TrimStart !trim_chars"
+
+#!markdown
+
+## ellipsis
+
+#!spiral
+
+inl ellipsis forall t {int; number}. (max : t) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> substring 0 max |> fun x => $'!x + "..."'
+
+#!markdown
+
 ## raw_string_literal
 
 #!spiral
@@ -75,42 +213,6 @@ inl raw_string_literal_static (s : string) : rust.static_ref' str =
 
 inl include_str (path : string) : rust.ref' str =
     !\($'"include_str\!(\\\"" + !path + "\\\")"')
-
-#!markdown
-
-## contains
-
-#!spiral
-
-inl contains (value : string) (input : string) : bool =
-    $"!input.Contains !value"
-
-#!markdown
-
-## substring
-
-#!spiral
-
-inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
-    $"!str.Substring (!start, !len)"
-
-#!markdown
-
-## split
-
-#!spiral
-
-inl split (separator : string) (str : string) : array_base string =
-    $"!str.Split !separator"
-
-#!markdown
-
-## split_string
-
-#!spiral
-
-inl split_string (separator : array_base string) (str : string) : array_base string =
-    $"!str.Split (!separator, StringSplitOptions.None)"
 
 #!markdown
 
@@ -309,16 +411,6 @@ inl strip_prefix (prefix : char) (s : std_string) : optionm'.option' (rust.ref' 
 
 #!markdown
 
-## starts_with
-
-#!spiral
-
-inl starts_with (value : std_string) (s : std_string) : bool =
-    inl s = join s
-    !\($'"!s.starts_with(&!value)"')
-
-#!markdown
-
 ## base64_decode
 
 #!spiral
@@ -441,35 +533,6 @@ inl concat (a : string) (b : a _ _) : string =
 
 inl join' (concat : string) (s : a _ string) : string =
     $"System.String.Join (!concat, !s)"
-
-#!markdown
-
-## pad_right
-
-#!spiral
-
-inl pad_right (pad : i32) (s : string) : string =
-    $"!s.PadRight !pad"
-
-#!markdown
-
-## replace
-
-#!spiral
-
-inl replace (old_value : string) (new_value : string) (input : string) : string =
-    $"!input.Replace (!old_value, !new_value)"
-
-#!markdown
-
-## ellipsis
-
-#!spiral
-
-inl ellipsis forall t {int; number}. (max : t) (s : string) =
-    if sm.length s <= max
-    then s
-    else s |> substring 0 max |> fun x => $'!x + "..."'
 
 #!markdown
 

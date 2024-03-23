@@ -155,18 +155,18 @@ inl fix_closure depth' x' =
 
     inl depth = depth' |> snd
     if depth = 1
-    then !\($'" { //"')
+    then !\($'"{ //"')
     elif depth = 2
-    then !\($'" {{ //"')
+    then !\($'"{{ //"')
     elif depth = 3
-    then !\($'" {{{ //"')
+    then !\($'"{{{ //"')
     elif depth = 4
-    then !\($'" {{{{ //"')
+    then !\($'"{{{{ //"')
     elif depth = 5
-    then !\($'" {{{{{ //"')
+    then !\($'"{{{{{ //"')
     elif depth = 6
-    then !\($'" {{{{{{ //"')
+    then !\($'"{{{{{{ //"')
     elif depth = 7
-    then !\($'" {{{{{{{ //"')
+    then !\($'"{{{{{{{ //"')
     elif depth = 8
-    then !\($'" {{{{{{{{ //"')
+    then !\($'"{{{{{{{{ //"')

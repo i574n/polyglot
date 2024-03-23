@@ -1024,12 +1024,20 @@ inl arrow_down_svg (class : option string) props : _ svg =
             ]
         ])
 
+type accordion_props =
+    { title : string; open' : bool; right_element : option view; details_class : option string }
 
-inl accordion title open' (right_element : option view) children : _ div =
-    inl title = title |> sm'.to_std_string
-    inl open' : bool = open'
+inl accordion_props () : accordion_props =
+    { title = ""; open' = true; right_element = None; details_class = None }
+
+inl accordion props_fn children : _ div
+    =
+    inl props : accordion_props = accordion_props () |> props_fn
+    inl details_class = props.details_class |> optionm'.default_value "" |> sm'.to_std_string
+    inl title = props.title |> sm'.to_std_string
+    inl open' = props.open'
     inl right_element' =
-        right_element
+        props.right_element
         |> optionm'.default_value (;[] |> views_to_view)
     inl children = join children
     inl children = fun () => children |> move_to_fragment
@@ -1038,6 +1046,7 @@ inl accordion title open' (right_element : option view) children : _ div =
     div [
         $'"class=\\\"flex flex-col [position:relative]\\\""'
     ] fun () =>
+        inl details_class = join details_class
         :>(;[
             div [
                 $'"class=\\\"[position:absolute] [right:0] [top:0]\\\""'
@@ -1047,30 +1056,30 @@ inl accordion title open' (right_element : option view) children : _ div =
             |> element_to_view
 
             details [
-                $'"class=\\\"flex flex-1 group [&_summary::-webkit-details-marker]:hidden\\\""'
+                $'"class=\\\"flex flex-1 [&_summary::-webkit-details-marker]:hidden \\\".to_owned() + &!details_class + \\\" [&>summary>span]:open:-rotate-180\\\""'
                 $'"open=!open'"'
             ] fun () =>
                 inl summary_margin_right =
-                    if right_element = None
-                    then #""
-                    else #"[margin-right:40px]"
+                    if props.right_element = None
+                    then ##""
+                    else ##"[margin-right:40px]"
                 :>(;[
                     summary [
-                        $'"class=\\\"group flex flex-1 items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700 \\\".to_owned() + !summary_margin_right"'
+                        $'"class=\\\"flex flex-1 items-center justify-between px-4 py-2 cursor-pointer text-gray-500 bg-gray-100 hover:bg-gray-200 hover:text-gray-700 \\\".to_owned() + !summary_margin_right"'
                     ] fun () =>
                         :>(;[
                             div [
                                 $'"class=\\\"flex items-center gap-2\\\""'
                             ] fun () =>
                                 span [
-                                    $'"class=\\\"[font-size:14px] [line-height:21px]\\\""'
+                                    $'"class=\\\"[font-size:14px] [line-height:21px] [padding-right:11px]\\\""'
                                 ] fun () =>
                                     title |> sm'.from_std_string |> text_fragment
                                 |> element_to_fragment
                             |> element_to_view
 
                             span [
-                                $'"class=\\\"shrink-0 transition duration-300 group-open:-rotate-180\\\""'
+                                $'"class=\\\"shrink-0 transition duration-300\\\""'
                             ] fun () =>
                                 arrow_down_svg (Some $'"h-5 w-5"') []
                                 |> element_to_fragment
