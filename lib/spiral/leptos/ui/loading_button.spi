@@ -1,0 +1,19 @@
+open svg
+open leptos
+
+inl render label loading' on_click =
+    inl loading' = loading' |> rust.move
+    inl loading'' = join loading'
+    inl on_click = on_click |> rust.move
+    leptos.button [
+        $'"class=\\\"flex gap-[10px] [align-items:center] inline-block rounded border border-gray-400 hover:bg-gray-400 px-4 py-1 text-sm font-medium text-gray-900 bg-transparent hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500\\\""'
+        $'"prop:disabled=move || !loading''()"'
+        $'"on:click=move |_| !on_click()"'
+    ] fun () =>
+        :>(;[
+            label |> leptos.text_view
+
+            if loading' |> rust.func0_get
+            then loading.render (Some $'"[width:15px] [height:14px]"') |> leptos.element_to_view
+            else ;[] |> leptos.views_to_view
+        ])

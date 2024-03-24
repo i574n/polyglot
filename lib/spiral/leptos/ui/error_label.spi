@@ -1,0 +1,20 @@
+open svg
+open leptos
+
+inl render error =
+    leptos.div [
+        $'"class=\\\"flex flex-1 items-center [gap:4px] [padding:5px]\\\""'
+    ] fun () => :>(;[
+        leptos.span [
+            $'"class=\\\"[height:17px]\\\""'
+        ] fun () => :>(;[
+            x_red.render () |> leptos.element_to_view
+        ])
+        |> leptos.element_to_view
+
+        leptos.pre [
+            $'"class=\\\"[overflow-y:auto] [text-wrap:wrap]\\\""'
+        ] fun () =>
+            error |> leptos.text_fragment
+        |> leptos.element_to_view
+    ])

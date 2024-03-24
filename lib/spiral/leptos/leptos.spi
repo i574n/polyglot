@@ -1,0 +1,688 @@
+open rust_operators
+open sm'_operators
+open listm'_operators
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Action<$0, $1>\")>] type leptos_Action<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::For\")>] type leptos_For = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Show\")>] type leptos_Show = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Fragment\")>] type leptos_Fragment = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::HtmlElement<$0>\")>] type leptos_HtmlElement<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::IntoView\")>] type leptos_IntoView = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Memo<$0>\")>] type leptos_Memo<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ReadSignal<$0>\")>] type leptos_ReadSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Resource<$0, $1>\")>] type leptos_Resource<'T, 'U> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::RwSignal<$0>\")>] type leptos_RwSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::Signal<$0>\")>] type leptos_Signal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::View\")>] type leptos_View = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::WriteSignal<$0>\")>] type leptos_WriteSignal<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::Event\")>] type leptos_ev_Event = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::ev::MouseEvent\")>] type leptos_ev_MouseEvent = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::A\")>] type leptos_html_A = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::AnyElement\")>] type leptos_html_AnyElement = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Button\")>] type leptos_html_Button = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Details\")>] type leptos_html_Details = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dd\")>] type leptos_html_Dd = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Div\")>] type leptos_html_Div = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dl\")>] type leptos_html_Dl = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Dt\")>] type leptos_html_Dt = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Footer\")>] type leptos_html_Footer = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Header\")>] type leptos_html_Header = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Input\")>] type leptos_html_Input = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Label\")>] type leptos_html_Label = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Main\")>] type leptos_html_Main = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Nav\")>] type leptos_html_Nav = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Option_\")>] type leptos_html_Option = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Pre\")>] type leptos_html_Pre = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Select\")>] type leptos_html_Select = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Span\")>] type leptos_html_Span = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Summary\")>] type leptos_html_Summary = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Table\")>] type leptos_html_Table = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Thead\")>] type leptos_html_Thead = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Tbody\")>] type leptos_html_Tbody = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Tr\")>] type leptos_html_Tr = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Th\")>] type leptos_html_Th = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::html::Td\")>] type leptos_html_Td = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::helpers::IntervalHandle\")>] type leptos_dom_IntervalHandle = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Text\")>] type leptos_dom_Text = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::leptos_dom::Transparent\")>] type leptos_dom_Transparent = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Svg\")>] type leptos_svg_Svg = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Path\")>] type leptos_svg_Path = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Circle\")>] type leptos_svg_Circle = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Rect\")>] type leptos_svg_Rect = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos::svg::Animate\")>] type leptos_svg_Animate = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Route\")>] type leptos_router_Route = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::RouteDefinition\")>] type leptos_router_RouteDefinition = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Router\")>] type leptos_router_Router = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Routes\")>] type leptos_router_Routes = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Location\")>] type leptos_router_Location = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::NavigateOptions\")>] type leptos_router_NavigateOptions = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"leptos_router::Url\")>] type leptos_router_Url = class end"
+
+nominal a' = $"leptos_html_A"
+nominal event = $"leptos_ev_Event"
+nominal mouse_event = $"leptos_ev_MouseEvent"
+nominal button = $"leptos_html_Button"
+nominal details = $"leptos_html_Details"
+nominal dd = $"leptos_html_Dd"
+nominal div = $"leptos_html_Div"
+nominal dl = $"leptos_html_Dl"
+nominal dt = $"leptos_html_Dt"
+nominal footer = $"leptos_html_Footer"
+nominal header = $"leptos_html_Header"
+nominal input = $"leptos_html_Input"
+nominal label = $"leptos_html_Label"
+nominal main = $"leptos_html_Main"
+nominal nav = $"leptos_html_Nav"
+nominal option' = $"leptos_html_Option"
+nominal pre = $"leptos_html_Pre"
+nominal select = $"leptos_html_Select"
+nominal span = $"leptos_html_Span"
+nominal summary = $"leptos_html_Summary"
+nominal table = $"leptos_html_Table"
+nominal thead = $"leptos_html_Thead"
+nominal tbody = $"leptos_html_Tbody"
+nominal tr = $"leptos_html_Tr"
+nominal th = $"leptos_html_Th"
+nominal td = $"leptos_html_Td"
+nominal svg = $"leptos_svg_Svg"
+nominal path = $"leptos_svg_Path"
+nominal circle = $"leptos_svg_Circle"
+nominal rect = $"leptos_svg_Rect"
+nominal animate = $"leptos_svg_Animate"
+nominal action t u = $"leptos_Action<`t, `u>"
+nominal for = $"leptos_For"
+nominal show = $"leptos_Show"
+nominal fragment = $"leptos_Fragment"
+nominal interval_handle = $"leptos_dom_IntervalHandle"
+nominal text = $"leptos_dom_Text"
+nominal transparent = $"leptos_dom_Transparent"
+nominal route = $"leptos_router_Route"
+nominal route_definition = $"leptos_router_RouteDefinition"
+nominal router = $"leptos_router_Router"
+nominal routes = $"leptos_router_Routes"
+nominal html_element t = $"leptos_HtmlElement<`t>"
+nominal into_view = $"leptos_IntoView"
+nominal location = $"leptos_router_Location"
+nominal navigate_options = $"leptos_router_NavigateOptions"
+nominal url = $"leptos_router_Url"
+nominal memo t = $"leptos_Memo<`t>"
+nominal rw_signal t = $"leptos_RwSignal<`t>"
+nominal signal t = $"leptos_Signal<`t>"
+nominal read_signal t = $"leptos_ReadSignal<`t>"
+nominal write_signal t = $"leptos_WriteSignal<`t>"
+nominal resource t u = $"leptos_Resource<`t, `u>"
+nominal view = $"leptos_View"
+
+prototype signal_get signal t : signal t -> t
+prototype signal_get_untracked signal t : signal t -> t
+prototype signal_update signal t : (t -> t) -> signal t -> ()
+prototype signal_set signal t : t -> signal t -> ()
+
+inl log_string (text : string) =
+    !\\((), $'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
+
+inl log (text : string) =
+    inl text = join text
+    (!\($'@@$"leptos::logging::log\!(""{{}}"", !text)"') : ())
+
+inl log_debug (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"') : ()
+
+inl log_pretty (text : string) =
+    !\\(text, $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"') : ()
+
+inl log_format fn obj =
+    inl obj_log = obj |> sm'.format_debug
+    inl text = fn obj_log |> sm'.ellipsis 200i32
+    log text
+    obj
+
+inl mount_to_body (view_fn : () -> rust.impl into_view) =
+    !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
+
+inl view_vec_to_fragment (view : am'.vec view) : fragment =
+    !\($'"leptos::Fragment::new(!view)"')
+
+inl view_array_to_fragment (view : array_base view) : fragment =
+    view |> am'.to_vec |> view_vec_to_fragment
+
+inl element_to_view (view : html_element _) : view =
+    inl view = join view
+    !\($'"leptos::IntoView::into_view(!view)"')
+
+inl view_to_fragment (view : view) : fragment =
+    ;[view] |> view_array_to_fragment
+
+inl fragment_to_view (fragment : fragment) : view =
+    inl fragment = join fragment
+    !\($'"leptos::IntoView::into_view(!fragment)"')
+
+inl element_to_fragment (view : html_element _) : fragment =
+    view
+    |> element_to_view
+    |> view_to_fragment
+
+instance (~:>) fragment = fun x =>
+    real
+        typecase t with
+        | array_base view => view_array_to_fragment x
+        | array_base (html_element ~el) =>
+            inl x = a `i32 `(html_element el) x
+            inl x = am'.map_vec `i32 `(html_element el) `view (element_to_view `el) x
+            inl (a x) = x
+            view_array_to_fragment x
+        | _ => x
+
+instance (~:>) view = fun x =>
+    real
+        typecase t with
+        | html_element _ => element_to_view x
+        | _ => x
+
+inl view_trait_to_element (view : rust.impl into_view) : html_element _ =
+    $"!view |> unbox"
+
+inl view_trait_to_route_definition (view : rust.impl into_view) : route_definition =
+    $"!view |> unbox"
+
+inl to_element_view (view : html_element _) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_view_trait (view : view) : rust.impl into_view =
+    $"!view |> unbox"
+
+inl to_fragment_unbox view : fragment =
+    $"!view |> unbox"
+
+inl from_fragment_unbox (fragment : fragment) =
+    $"!fragment |> unbox"
+
+inl element_to_view_trait (macro : html_element _) : rust.impl into_view =
+    !\($'"leptos::view\! { {!macro} }"')
+
+inl macro_to_view_trait (macro : string) : rust.impl into_view =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl macro_to_fragment (macro : string) : fragment =
+    !\($'"leptos::view\! { " + !macro + " }"')
+
+inl new_transparent x : transparent =
+    !\($'"leptos::leptos_dom::Transparent::new(!x)"')
+
+inl closure_to_view (closure : rust.func0 view) : view =
+    inl closure = join closure
+    !\($'"leptos::IntoView::into_view(move || !closure())"')
+
+inl batch (fn : rust.func0 ()) : () =
+    inl fn = join fn
+    !\($'"leptos::batch(move || !fn())"')
+
+inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
+    inl closure = join closure
+    !\($'"leptos::IntoView::into_view(move || !closure())"')
+    |> view_to_fragment
+
+inl array_to_view (view : a _ view) : view =
+    inl view = join view
+    !\($'"leptos::CollectView::collect_view(!view.to_vec())"')
+
+inl to_fragment x : fragment =
+    $"!x |> unbox"
+
+inl text_to_view (text : text) : view =
+    !\($'"leptos::IntoView::into_view(!text)"')
+
+inl text_to_fragment (text : text) : fragment =
+    text
+    |> text_to_view
+    |> view_to_fragment
+
+inl macro_to_view (macro : string) : view =
+    !\($'"leptos::IntoView::into_view(leptos::view\! { " + !macro + " })"')
+
+inl transparent_to_view (transparent : transparent) : view =
+    !\($'"leptos::IntoView::into_view(!transparent)"')
+
+inl transparent_to_fragment (transparent : transparent) : fragment =
+    transparent
+    |> transparent_to_view
+    |> view_to_fragment
+
+inl macro_to_element (view : string) : html_element _ =
+    view |> macro_to_view_trait |> view_trait_to_element
+
+inl transparents_fragment (items : array_base transparent) : fragment =
+    inl transparent_to_view x =
+        inl x = join x
+        x |> transparent_to_view
+    inl transparent_to_view = join transparent_to_view
+    inl items = items |> am'.to_vec
+    !\($'"!items.iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
+
+inl views_to_view (items : array_base view) : view =
+    inl items = join items
+    items
+    // |> fun x => a (join x) : a u64 _
+    |> fun x => a x : a u64 _
+    |> array_to_view
+
+inl new_text (text : string) : text =
+    inl text = join text
+    inl text = text |> sm'.to_std_string
+    !\($'"leptos::html::text(!text)"')
+
+inl text_view (text : string) : view =
+    text
+    |> new_text
+    |> text_to_view
+
+inl text_fragment (text : string) : fragment =
+    text
+    |> text_view
+    |> view_to_fragment
+
+inl provide_meta_context () =
+    !\($'"leptos_meta::provide_meta_context()"') : ()
+
+inl provide_context forall t. (x : t) =
+    !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
+
+inl create_signal forall t. (value : t) : read_signal t * write_signal t =
+    inl value = join value
+    !\($'$"leptos::create_signal(!value)"')
+
+inl create_rw_signal forall t. (value : t) : rw_signal t =
+    inl value = join value
+    !\($'$"leptos::create_rw_signal(!value)"')
+
+inl read_only forall t. (value : rw_signal t) : read_signal t =
+    inl value = join value
+    !\($'$"leptos::RwSignal::read_only(&!value)"')
+
+inl write_only forall t. (value : rw_signal t) : write_signal t =
+    inl value = join value
+    !\($'$"leptos::RwSignal::write_only(&!value)"')
+
+inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
+    real
+        typecase t with
+        | signal => ()
+        | rw_signal => ()
+        | read_signal => ()
+        | write_signal => ()
+        | memo => ()
+        | _ => error_type `(()) ("invalid signal", ``(t u))
+
+inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalGet::get(&!signal)"')
+
+instance signal_get signal = signal_get'
+instance signal_get rw_signal = signal_get'
+instance signal_get read_signal = signal_get'
+instance signal_get memo = signal_get'
+
+inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
+    inl fn = join fn
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'"leptos::SignalUpdate::update(&!signal, |x| { *x = !fn(x.clone()) })"') : ()
+
+instance signal_update rw_signal = signal_update'
+instance signal_update write_signal = signal_update'
+
+inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
+
+instance signal_get_untracked rw_signal = signal_get_untracked'
+instance signal_get_untracked read_signal = signal_get_untracked'
+instance signal_get_untracked memo = signal_get_untracked'
+
+inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
+    inl value = join value
+    inl signal = join signal
+    signal |> typecheck_signal
+    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
+
+instance signal_set rw_signal = signal_set'
+instance signal_set write_signal = signal_set'
+
+inl create_local_resource forall t u.
+    closure_fix
+    (source : () -> t)
+    (fetcher : t -> async.future_pin u)
+    : resource t u
+    =
+    // inl fetcher x = rust.move fun () =>
+    //    fetcher x
+    // inl fetcher = join fetcher
+    // !\($'"leptos::create_local_resource(move || !source(), move |x| async move { !fetcher(x)().await })"')
+
+    inl source = join source
+    join
+        inl source = join source
+        !\($'"let __result = leptos::create_local_resource(move || !source(), |x| async move { //"')
+
+        inl x = !\($'"x"')
+        inl x' = fetcher x
+        inl x' = join x'
+        inl x' = x' |> async.await
+
+        x' |> rust.fix_closure closure_fix
+
+        !\($'"__result"')
+
+// inl create_resource forall t u. (source : () -> t) (fetcher : t -> async.future_pin u) : resource t u =
+//     inl source = join source
+//     !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
+
+inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
+    inl action_fn = join action_fn
+    !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn(value.clone()))"')
+
+inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
+    inl value = join value
+    inl action = join action
+    !\($'"leptos::Action::dispatch(&!action, !value.clone())"')
+
+inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
+    inl action = join action
+    !\($'"leptos::Action::input(&!action)"')
+
+inl action_pending forall t u. (action : action (heap t) u) : read_signal bool =
+    inl action = join action
+    !\($'"leptos::Action::pending(&!action)"')
+
+inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' u) =
+    inl action = join action
+    !\($'"leptos::Action::value(&!action)"')
+
+inl use_context forall t. () : optionm'.option' t =
+    !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
+
+inl resource_loading forall t u. (resource : resource t u) : signal bool =
+    inl resource = join resource
+    !\($'$"leptos::Resource::loading(&!resource)"')
+
+inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
+    inl resource = join resource
+    !\($'$"leptos::SignalGet::get(&!resource)"')
+
+inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
+    inl resource = join resource
+    inl fn = join fn
+    !\($'$"leptos::SignalWith::with(&!resource, |x| !fn(x.clone()))"')
+
+inl create_effect (fn : () -> ()) : () =
+    inl fn = join fn
+    !\($'"leptos::create_effect(move |_| { !fn() })"')
+
+inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
+    inl fn = join fn
+    !\($'"leptos::create_effect(move |x| { !fn(x) })"')
+
+inl interval_handle_clear (interval_handle : interval_handle) =
+    inl interval_handle = join interval_handle
+    !\($'$"leptos::leptos_dom::helpers::IntervalHandle::clear(&!interval_handle)"') : ()
+
+inl set_interval_with_handle
+    (fn : () -> ())
+    (interval_millis : date_time.duration)
+    : resultm.result' interval_handle wasm.js_value
+    =
+    inl fn = join fn
+    !\($'$"leptos::set_interval_with_handle(move || !fn(), !interval_millis)"')
+
+inl create_memo forall t. (fn : () -> t) : memo t =
+    inl fn = join fn
+    !\($'"leptos::create_memo(move |_| { !fn() })"')
+
+let window () : wasm.window =
+    !\($'"leptos::leptos_dom::window()"')
+
+inl memo_get forall t. (memo : memo t) : t =
+    inl memo = join memo
+    !\($'$"!memo()"')
+
+inl bool_prop (prop : string) (fn : () -> bool) : string =
+    inl fn = join fn
+    $'"" + !prop + "={move || !fn()}"'
+
+inl concat_props props =
+    ("", props)
+    ||> listm.fold fun acc (x : string) =>
+        $'" " + !x + !acc + ""'
+
+inl move_to_fragment fn =
+    rust.move fn
+    |> closure_to_fragment
+
+inl tag_raw tag props children =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
+    inl children : () -> fragment = join children
+    $'"<" + !tag + " " + !props + ">{!children()}</" + !tag + ">"'
+
+inl tag_element tag props children : html_element _ =
+    inl children = join children
+    tag_raw tag props children
+    |> macro_to_element
+
+inl tag_closed_raw tag props =
+    inl tag : string = tag
+    inl props = props |> concat_props
+    $'"<" + !tag + " " + !props + " />"'
+
+inl tag_closed tag props : html_element _ =
+    tag_closed_raw tag props
+    |> macro_to_element
+
+inl for props : view =
+    tag_closed_raw "leptos::For" props
+    |> macro_to_view
+
+inl for forall t u (signal : * -> *).
+    (signal : signal (am'.vec t))
+    (key_fn : t -> u)
+    (children' : t -> fragment)
+    : view
+    =
+    inl signal = join signal
+    signal |> typecheck_signal
+    inl key_fn = join key_fn
+    inl children' = join children'
+    for [
+        $'"each=!signal"'
+        $'"key=move |x| !key_fn(x.to_owned())"'
+        $'"let:x"'
+        $'"children=move |x| !children'(x)"'
+    ]
+
+inl show props : view =
+    tag_closed_raw "leptos::Show" props
+    |> macro_to_view
+
+inl show (when_fn : () -> bool) (fallback : () -> view) (children : () -> fragment) : view =
+    inl when_fn = join when_fn
+    inl when_fn = join when_fn
+    inl fallback = join fallback
+    inl children = join children
+    show [
+        $'"when=move || !when_fn()"'
+        $'"fallback=move || !fallback()"'
+        $'"children=std::rc::Rc::new(move || !children())"'
+    ]
+
+inl use_location () : location =
+    !\($'"leptos_router::use_location()"')
+
+inl use_navigate () : string -> () =
+    inl navigate : rust.arc (rust.dyn' (rust.action_fn2 (rust.ref' sm'.str) navigate_options)) =
+        !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
+    fun url =>
+        inl url = url |> sm'.as_str
+        !\($'"!navigate(!url, Default::default())"')
+
+inl location_hash (location : location) : memo sm'.std_string =
+    inl location = join location
+    !\($'"!location.hash"')
+
+inl location_pathname (location : location) : memo sm'.std_string =
+    inl location = join location
+    !\($'"!location.pathname"')
+
+inl location_search (location : location) : memo sm'.std_string =
+    inl location = join location
+    !\($'"!location.search"')
+
+inl url_try_from (s : rust.ref' sm'.str) : resultm.result' url sm'.std_string =
+    inl s = join s
+    !\($'"leptos_router::Url::try_from(!s)"')
+
+inl url_pathname (url : url) : sm'.std_string =
+    inl url = join url
+    !\($'"!url.pathname"')
+
+inl use_url () : string =
+    inl location = use_location ()
+
+    inl url_pathname = location |> location_pathname |> memo_get |> sm'.from_std_string
+    inl url_search = location |> location_search |> memo_get |> sm'.from_std_string
+    inl url_search =
+        if url_search = ""
+        then ""
+        else $'$"?{!url_search}"'
+    $"!url_pathname + !url_search"
+
+inl route path view children : view =
+    inl path = join path
+    inl path = path |> sm'.to_std_string
+    inl view : () -> fragment = join view
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Route" [
+        $'"path=!path"'
+        $'"view=move || !view()"'
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+inl router children : view =
+    inl children = join children
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Router" [
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+inl routes children : view =
+    inl children = join children
+    inl children : () -> fragment = join children
+    tag_closed_raw "leptos_router::Routes" [
+        $'"children=Box::new(move || !children())"'
+    ]
+    |> macro_to_view
+
+inl a' props children : _ a' =
+    tag_element "a" props children
+
+inl button props children : _ button =
+    tag_element "button" props children
+
+inl details props children : _ details =
+    tag_element "details" props children
+
+inl div props children : _ div =
+    tag_element "div" props children
+
+inl footer props children : _ footer =
+    tag_element "footer" props children
+
+inl header props children : _ header =
+    tag_element "header" props children
+
+inl label props children : _ label =
+    tag_element "label" props children
+
+inl main props children : _ main =
+    tag_element "main" props children
+
+inl nav props children : _ nav =
+    tag_element "nav" props children
+
+inl option' props children : _ option' =
+    tag_element "option" props children
+
+inl option' select children : _ option' =
+    inl select : () -> bool = join select
+    option' [
+        $'"select=!select()"'
+
+    ] fun () =>
+        children |> new_text |> text_to_fragment
+
+inl pre props children : _ pre =
+    tag_element "pre" props children
+
+inl select props children : _ select =
+    tag_element "select" props children
+
+inl span props children : _ span =
+    tag_element "span" props children
+
+inl summary props children : _ summary =
+    tag_element "summary" props children
+
+inl table props children : _ table =
+    tag_element "table" props children
+
+inl thead props children : _ thead =
+    tag_element "thead" props children
+
+inl tbody props children : _ tbody =
+    tag_element "tbody" props children
+
+inl tr props children : _ tr =
+    tag_element "tr" props children
+
+inl th props children : _ th =
+    tag_element "th" props children
+
+inl td props children : _ td =
+    tag_element "td" props children
+
+inl svg props children : _ svg =
+    tag_element "svg" props children
+
+inl path props : _ path =
+    tag_element "path" props (fun () => ;[] |> view_array_to_fragment)
+
+inl circle props : _ circle =
+    tag_element "circle" props (fun () => ;[] |> view_array_to_fragment)
+
+inl rect props children : _ rect =
+    tag_element "rect" props children
+
+inl animate props : _ animate =
+    tag_element "animate" props (fun () => ;[] |> view_array_to_fragment)
+
+inl input props : _ input =
+    tag_closed "input" props
+
+inl dd children : _ dd =
+    tag_element "dd" [
+        $'"class=\\\"[overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
+    ] children
+
+inl dl props children : _ dl =
+    tag_element "dl" props children
+
+inl dt children : _ dt =
+    tag_element "dt" [
+        $'"class=\\\"[font-size:12px] text-gray-400\\\""'
+    ] children

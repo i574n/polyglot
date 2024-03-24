@@ -170,6 +170,13 @@ inl format_debug' x : std_string =
 inl format_pretty' x : std_string =
     !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
 
+// // ## format_ellipsis'
+
+inl format_ellipsis' s =
+    s
+    |> format_debug
+    |> ellipsis 400i32
+
 // // ## obj_to_string
 
 inl obj_to_string x : string =

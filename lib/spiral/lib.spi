@@ -7,4 +7,4 @@ inl types () =
     mapm.types ()
     async.types ()
     networking.types ()
-    leptos.types ()
+    leptos.leptos.types ()

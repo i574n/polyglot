@@ -19,6 +19,7 @@ type request =
         request_type : request_type
         body : string
         json : bool
+        auto_refresh : bool
     }
 
 inl new_request_get (url : string) : request_builder =
