@@ -25,7 +25,33 @@ modules:
     seq
     util
     physics
-    leptos
+    leptos/
+        leptos
+        svg/
+            arrow_down
+            cross
+            dice
+            lists
+            loading
+            plus
+            settings
+            transactions
+            check
+            x_red
+        ui/
+            accordion
+            divider
+            grid_pair
+            icon_button
+            tab_link
+            text_block_pre
+            text_input
+            toggle
+            error_label
+            loading_button
+            loading_panel
+            table
+            dropdown
     store
     state_core
     threading

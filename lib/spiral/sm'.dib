@@ -310,6 +310,17 @@ inl format_pretty' x : std_string =
 
 #!markdown
 
+## format_ellipsis'
+
+#!spiral
+
+inl format_ellipsis' s =
+    s
+    |> format_debug
+    |> ellipsis 400i32
+
+#!markdown
+
 ## obj_to_string
 
 #!spiral

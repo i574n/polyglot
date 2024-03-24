@@ -1,0 +1,24 @@
+open sm'_operators
+open leptos
+
+inl render children : _ span =
+    inl children = join children
+    inl children = fun () => children |> move_to_fragment
+    inl children : () -> fragment = join children
+
+    span [
+        $'"class=\\\"flex items-center pb-[6px]\\\""'
+    ] fun () =>
+        :>(;[
+            span [
+                $'"class=\\\"pr-[15px] [font-size:13px]\\\""'
+            ] fun () =>
+                children ()
+            |> element_to_view
+
+            span [
+                $'"class=\\\"h-px flex-1 bg-gray-300\\\""'
+            ] fun () =>
+                ;[] |> view_array_to_fragment
+            |> element_to_view
+        ])

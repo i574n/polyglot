@@ -1,0 +1,13 @@
+open sm'_operators
+open leptos
+
+inl render icon (class : () -> sm'.std_string) props : _ button =
+    inl class = join class
+    button
+        ([
+            $'"class=move || \\\"inline-flex shrink-0 items-center [justify-content:center] pb-[8px] pt-[9px] px-[12px] \\\".to_owned() + &!class()"'
+        ] /@ props)
+        fun () =>
+            :>(;[
+                icon |> element_to_view
+            ])

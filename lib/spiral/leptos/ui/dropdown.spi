@@ -1,0 +1,89 @@
+open svg
+open leptos
+
+type props =
+    {
+        data : optionm'.option' (leptos.memo (am'.vec (i32 * (leptos.read_signal sm'.std_string))))
+        item : optionm'.option' (memo (option string))
+        select : i32 * string -> ()
+    }
+
+inl props () : props =
+    {
+        data = None |> optionm'.box
+        item = None |> optionm'.box
+        select = fun _ => ()
+    }
+
+inl render props_fn : _ _ =
+    inl props : props = props () |> props_fn
+
+    accordion.render
+        fun props' => { props' with
+            title =
+                props.item
+                |> optionm'.unbox
+                |> optionm.map leptos.memo_get
+                |> optionm'.flatten
+                |> optionm'.default_value "Select..."
+            details_class = fun () => "[align-self:flex-start]"
+            summary_class = fun () => "py-[4px]"
+            open' = fun () => false
+        }
+        fun () =>
+            leptos.div [
+                $'"class=\\\"flex flex-1 flex-col p-[10px] gap-[7px] [border-left-width:1px] [border-bottom-width:1px] border-gray-200 bg-gray-100\\\""'
+            ] fun () =>
+                inl data =
+                    props.data
+                    |> optionm'.unbox
+                    |> optionm.map (leptos.memo_get >> am'.from_vec)
+                    |> optionm'.default_value (a ;[])
+                match data with
+                | (a ;[] : _ i32 _) =>
+                    "No data"
+                    |> error_label.render
+                    |> leptos.element_to_fragment
+                | _ =>
+                    match props.data |> optionm'.unbox with
+                    | Some data =>
+                        leptos.for
+                            data
+                            fun i, _ => i
+                            fun i, item =>
+                                inl item =
+                                    item
+                                    |> leptos.signal_get
+                                inl item' = join item
+                                inl on_click = rust.move fun () =>
+                                    inl item =
+                                        item
+                                        |> sm'.from_std_string
+                                    props.select (i, item)
+                                :>(;[
+                                    leptos.button [
+                                        $'"class=\\\"flex flex-1 gap-[10px] [align-items:center] [justify-content:center] inline-block rounded border border-gray-400 hover:bg-gray-100 px-[22px] py-1 text-sm text-gray-900 bg-gray-200 hover:text-gray-600 focus:outline-none focus:ring active:text-gray-500\\\""'
+                                        $'"on:click=move |_| !on_click()"'
+                                        $'"aria-label=!item'"'
+                                    ] fun () =>
+                                        inl item = item |> sm'.from_std_string
+                                        :>(;[
+                                            match
+                                                item,
+                                                props.item
+                                                |> optionm'.unbox
+                                                |> optionm.map leptos.memo_get
+                                                |> optionm'.flatten
+                                            with
+                                            | item, Some account when item = account =>
+                                                check.render (Some $'"h-5 w-5"') []
+                                                |> leptos.element_to_view
+                                            | _ => ;[] |> leptos.views_to_view
+
+                                            item
+                                            |> leptos.text_view
+                                        ])
+                                ])
+                        |> leptos.view_to_fragment
+                    | None => ;[] |> leptos.view_array_to_fragment
+            |> leptos.element_to_fragment
