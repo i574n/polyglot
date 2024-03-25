@@ -368,7 +368,11 @@ inl use_requests forall t u.
                     inl state_data =
                         state_data
                         |> optionm'.unbox
-                        |> optionm.map (resultm.unbox >> resultm.map (am'.map_vec optionm'.unbox))
+                        |> optionm.map (
+                            resultm.unbox
+                            >> resultm.map fun (a items) =>
+                                items |> am'.to_vec |> am'.vec_map optionm'.unbox |> am'.from_vec : _ i32 _
+                        )
 
                     inl state_data_log = state_data |> sm'.format_ellipsis'
                     leptos.log $'"state_core.use_requests (8) / result_memo / state_data: " + string !state_data_log + ""'
@@ -482,7 +486,16 @@ inl use_requests forall t u.
                 state_data_memo
                 |> leptos.signal_get
                 |> optionm'.unbox
-                |> optionm.map (resultm.unbox >> resultm.map (am'.map_vec optionm'.unbox))
+                |> optionm.map (
+                    resultm.unbox
+                    >> resultm.map (
+                        fun (a x) => x
+                        >> am'.to_vec
+                        >> am'.vec_map optionm'.unbox
+                        >> am'.from_vec
+                        >> fun x => x : _ i32 _
+                    )
+                )
 
             inl state_data_log = state_data |> sm'.format_ellipsis'
             leptos.log $'"state_core.use_request (14) / result_memo / state_data: " + string !state_data_log + ""'
@@ -492,14 +505,23 @@ inl use_requests forall t u.
                 |> leptos.resource_get
                 |> optionm'.unbox
                 |> optionm.map resultm.unbox
-                |> optionm.map (resultm.map (am'.map_vec optionm'.unbox))
+                |> optionm.map (
+                    resultm.map (
+                        fun (a x) => x
+                        >> am'.to_vec
+                        >> am'.vec_map optionm'.unbox
+                        >> am'.from_vec
+                        >> fun x => x : _ i32 _
+                    )
+                )
                 |> optionm'.default_value (a ;[] |> Ok)
 
             json
             |> function
-            | Ok json =>
+            | Ok (a json) =>
                 json
-                |> am'.map_vec fun json =>
+                |> am'.to_vec
+                |> am'.vec_map fun json =>
                     match json with
                     | Some json =>
                         inl new_state_data = json |> sm'.to_std_string |> heap
@@ -509,7 +531,9 @@ inl use_requests forall t u.
             | Error error => ()
 
             requests
-            |> am'.mapi_vec fun i request =>
+            |> fun (a x) => x
+            |> am'.to_vec
+            |> am'.vec_mapi fun i request =>
                 inl state_data =
                     state_data
                     |> optionm.map (resultm.map (
@@ -544,6 +568,7 @@ inl use_requests forall t u.
                     inl value_log = value |> sm'.format_debug
                     leptos.log $'"state_core.use_request (17) / json Error / value: " + string !value_log + ""'
                     None |> optionm'.box |> Ok |> resultm.box
+            |> am'.from_vec
             |> leptos.log_format fun log => $'"state_core.use_requests (18) / result_func func0 / result: " + string !log + ""'
 
     inl result : leptos.memo (a i32 (resultm.result' (optionm'.option' t) sm'.std_string)) =
@@ -564,7 +589,8 @@ inl use_requests forall t u.
                 |> optionm.map (
                     resultm.unbox
                     >> resultm.map (
-                        am'.from_vec >> (am'.map_vec optionm'.unbox)
+                        am'.vec_map optionm'.unbox
+                        >> am'.from_vec
                     )
                 )
 
@@ -575,7 +601,10 @@ inl use_requests forall t u.
 
             result_func
             |> leptos.signal_get
-            |> am'.map_vec (resultm.map' (optionm'.map map))
+            |> fun (a x) => x
+            |> am'.to_vec
+            |> am'.vec_map (resultm.map' (optionm'.map map))
+            |> am'.from_vec
             |> leptos.log_format fun log => $'"state_core.use_requests (20) / result func0 / result: " + string !log + ""'
 
     result

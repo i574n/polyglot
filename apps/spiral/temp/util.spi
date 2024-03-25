@@ -10,13 +10,6 @@ nominal date_time = $"System.DateTime"
 nominal disposable = $"System.IDisposable"
 nominal async t = $"Async<`t>"
 
-union log_level_type =
-    | Verbose
-    | Debug
-    | Info
-    | Warn
-    | Error
-
 prototype (~!!) r : forall t. t -> r
 prototype to_string t : t -> string
 prototype of_string t : string -> t
@@ -24,6 +17,13 @@ prototype append t : t -> t -> t
 
 instance append list t = listm.append
 instance append a dim {int; number} t = am.append
+
+union log_level_type =
+    | Verbose
+    | Debug
+    | Info
+    | Warn
+    | Error
 
 instance to_string log_level_type = function
     | Debug => "Debug"

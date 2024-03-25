@@ -166,12 +166,13 @@ inl element_to_fragment (view : html_element _) : fragment =
 instance (~:>) fragment = fun x =>
     real
         typecase t with
-        | array_base view => view_array_to_fragment x
         | array_base (html_element ~el) =>
-            inl x = a `i32 `(html_element el) x
-            inl x = am'.map_vec `i32 `(html_element el) `view (element_to_view `el) x
+            inl x = am'.to_vec `(html_element el) x
+            inl x = am'.vec_map `(html_element el) `view (element_to_view `el) x
+            inl x : a i32 view = am'.from_vec `i32 `view x
             inl (a x) = x
             view_array_to_fragment x
+        | array_base view => view_array_to_fragment x
         | _ => x
 
 instance (~:>) view = fun x =>
