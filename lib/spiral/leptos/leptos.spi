@@ -314,6 +314,10 @@ inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
         | memo => ()
         | _ => error_type `(()) ("invalid signal", ``(t u))
 
+inl memo_get' forall t. (memo : memo t) : t =
+    inl memo = join memo
+    !\($'$"!memo()"')
+
 inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
     inl signal = join signal
     signal |> typecheck_signal
@@ -322,7 +326,7 @@ inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
 instance signal_get signal = signal_get'
 instance signal_get rw_signal = signal_get'
 instance signal_get read_signal = signal_get'
-instance signal_get memo = signal_get'
+instance signal_get memo = memo_get'
 
 inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
     inl fn = join fn
@@ -444,10 +448,6 @@ inl create_memo forall t. (fn : () -> t) : memo t =
 let window () : wasm.window =
     !\($'"leptos::leptos_dom::window()"')
 
-inl memo_get forall t. (memo : memo t) : t =
-    inl memo = join memo
-    !\($'$"!memo()"')
-
 inl bool_prop (prop : string) (fn : () -> bool) : string =
     inl fn = join fn
     $'"" + !prop + "={move || !fn()}"'
@@ -549,16 +549,17 @@ inl url_pathname (url : url) : sm'.std_string =
     inl url = join url
     !\($'"!url.pathname"')
 
-inl use_url () : string =
+inl use_url () =
     inl location = use_location ()
 
-    inl url_pathname = location |> location_pathname |> memo_get |> sm'.from_std_string
-    inl url_search = location |> location_search |> memo_get |> sm'.from_std_string
-    inl url_search =
-        if url_search = ""
-        then ""
-        else $'$"?{!url_search}"'
-    $"!url_pathname + !url_search"
+    create_memo fun () =>
+        inl url_pathname = location |> location_pathname |> signal_get |> sm'.from_std_string
+        inl url_search = location |> location_search |> signal_get |> sm'.from_std_string
+        inl url_search =
+            if url_search = ""
+            then ""
+            else $'$"?{!url_search}"'
+        $"!url_pathname + !url_search" : string
 
 inl route path view children : view =
     inl path = join path

@@ -8,7 +8,7 @@ inl render () =
         leptos.div [
             $'"class=\\\"flex flex-1 [gap:4px] items-center\\\""'
         ] fun () => :>(;[
-            loading.render (Some $'"[width:24px] [height:30px]"') |> leptos.element_to_view
+            loading.render (fun () => "[width:24px] [height:30px]") |> leptos.element_to_view
             $'"Loading..."' |> leptos.text_view
         ])
         |> leptos.element_to_fragment

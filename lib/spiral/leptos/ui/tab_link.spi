@@ -2,7 +2,7 @@ open sm'_operators
 open leptos
 
 inl render href icon label select : _ a' =
-    inl href = href |> sm'.to_std_string
+    inl href = join href >> sm'.to_std_string
     inl select_class () : rust.static_ref' sm'.str =
         if select ()
         then ##"border-grey-200 text-grey-900"
@@ -10,7 +10,7 @@ inl render href icon label select : _ a' =
     inl select = join select
     inl select_class = join select_class
     a' [
-        $'"href=!href"'
+        $'"href=move || !href()"'
         $'"class=move || \\\"inline-flex shrink-0 items-center [justify-content:center] flex-1 gap-2 border-t-2 [white-space:nowrap] mb-[11px] pt-[8px] pr-[15px] pl-[15px] text-sm font-medium \\\".to_owned() + !select_class()"'
         $'"aria-current=move || if !select() { \\\"page\\\" } else { \\\"\\\" }"'
     ] fun () =>

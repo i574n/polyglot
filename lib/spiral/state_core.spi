@@ -243,7 +243,7 @@ inl use_core_database forall core_state_data.
 
         inl dark_mode_loading =
             loading
-            |> leptos.memo_get
+            |> leptos.signal_get
             |> mapm.get ("dark_mode_key" |> sm'.to_std_string)
             |> optionm'.unbox
             |> optionm.map leptos.signal_get
@@ -309,7 +309,7 @@ inl use_requests forall t u.
         leptos.create_local_resource
             (2u8, 1u8)
             fun () =>
-                database |> leptos.resource_get, requests |> leptos.memo_get
+                database |> leptos.resource_get, requests |> leptos.signal_get
             fun database, (a requests) =>
                 fun () =>
                     inl database_log = database |> sm'.format_debug
@@ -360,7 +360,7 @@ inl use_requests forall t u.
         =
         leptos.create_local_resource
             (3u8, 2u8)
-            fun () => requests |> leptos.memo_get, state_data_memo |> leptos.memo_get
+            fun () => requests |> leptos.signal_get, state_data_memo |> leptos.signal_get
             fun (a requests, state_data) =>
                 inl requests_log = requests |> sm'.format_ellipsis'
                 leptos.log $'"state_core.use_requests (7) / json create_local_resource / requests: " + string !requests_log + ""'
@@ -472,15 +472,15 @@ inl use_requests forall t u.
             |> resultm.box
         |> async.future_init (2, 1) 1
 
-    inl result_func : rust.func0 (a i32 (resultm.result' (optionm'.option' u) sm'.std_string)) =
-        rust.move fun () =>
-            inl requests = requests |> leptos.memo_get
+    inl result_func : leptos.memo (a i32 (resultm.result' (optionm'.option' u) sm'.std_string)) =
+        leptos.create_memo fun () =>
+            inl requests = requests |> leptos.signal_get
             inl requests_log = requests |> sm'.format_debug
             leptos.log $'"state_core.use_requests (13) / result memo / requests: " + string !requests_log + ""'
 
             inl state_data =
                 state_data_memo
-                |> leptos.memo_get
+                |> leptos.signal_get
                 |> optionm'.unbox
                 |> optionm.map (resultm.unbox >> resultm.map (am'.map_vec optionm'.unbox))
 
@@ -574,7 +574,7 @@ inl use_requests forall t u.
             leptos.log $'"state_core.use_request (19) / result move / database: " + string !database_log + " / database_loading: " + string !database_loading + " / state_data: " + string !state_data_log + " / state_data_loading: " + string !state_data_loading + ""'
 
             result_func
-            |> rust.func0_move
+            |> leptos.signal_get
             |> am'.map_vec (resultm.map' (optionm'.map map))
             |> leptos.log_format fun log => $'"state_core.use_requests (20) / result func0 / result: " + string !log + ""'
 
