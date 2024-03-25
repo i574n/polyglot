@@ -199,17 +199,21 @@ mod module_b7a9935b {
             v1_1: string,
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, pyo3::PyErr> {
-            let v34: string =
+            let v14: string =
+                string("      args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])");
+            let v36: string =
                 Math::method11(Math::method10(new_array(&[string("import sys"),
                                                           string("import traceback"),
+                                                          string("import re"),
                                                           string("count = 0"),
+                                                          string("memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"),
                                                           string("def trace_calls(frame, event, arg):"),
                                                           string("  global count"),
                                                           string("  count += 1"),
                                                           string("  if count < 300:"),
                                                           string("    try:"),
                                                           string("      args = { k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }"),
-                                                          string("      args_str = \', \'.join([ f\"{k}={repr(v)}\" for k, v in args.items() ])"),
+                                                          v14,
                                                           sprintf!("      print(f\"{{event}}({}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }}\", flush=True)",
                                                                    string("zeta_")),
                                                           string("    except ValueError as e:"),
@@ -233,35 +237,35 @@ mod module_b7a9935b {
                                                           string("    if s.real == 1:"),
                                                           string("      s = complex(float(\'inf\'), 0)"),
                                                           string("  return (s.real, s.imag)")])));
-            let v35: num_complex::Complex<f64> = Math::method13(v2.clone());
-            let v37: f64 = v35.re;
-            let v38: num_complex::Complex<f64> = Math::method14(v2);
-            let v42: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                LrcPtr::new((false, LrcPtr::new((v37, v38.im))));
-            let v43: pyo3::Python = Math::method15(v0_1);
-            let v44: string = Math::method16(v34);
-            let v46: &str = fable_library_rust::String_::LrcStr::as_str(&v44);
-            let v49: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                Math::method17(pyo3::types::PyModule::from_code_bound(v43, v46, "", ""));
-            let v51: pyo3::Bound<pyo3::types::PyModule> = v49.unwrap();
-            let v52: string = Math::method18();
-            let v54: &str = fable_library_rust::String_::LrcStr::as_str(&v52);
-            let v55: pyo3::Bound<pyo3::types::PyModule> = Math::method19(v51);
-            let v58: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                Math::method20(v55.getattr(v54));
-            let v60: pyo3::Bound<pyo3::PyAny> = v58.unwrap();
-            let v61: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                Math::method21(v42.0.clone(), v42.1.clone());
-            let v62: pyo3::Bound<pyo3::PyAny> = Math::method22(v60);
-            let v65: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method20(
-                pyo3::prelude::PyAnyMethods::call(&v62, ((*v61).0, *(*v61).1), None),
+            let v37: num_complex::Complex<f64> = Math::method13(v2.clone());
+            let v39: f64 = v37.re;
+            let v40: num_complex::Complex<f64> = Math::method14(v2);
+            let v44: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                LrcPtr::new((false, LrcPtr::new((v39, v40.im))));
+            let v45: pyo3::Python = Math::method15(v0_1);
+            let v46: string = Math::method16(v36);
+            let v48: &str = fable_library_rust::String_::LrcStr::as_str(&v46);
+            let v51: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                Math::method17(pyo3::types::PyModule::from_code_bound(v45, v48, "", ""));
+            let v53: pyo3::Bound<pyo3::types::PyModule> = v51.unwrap();
+            let v54: string = Math::method18();
+            let v56: &str = fable_library_rust::String_::LrcStr::as_str(&v54);
+            let v57: pyo3::Bound<pyo3::types::PyModule> = Math::method19(v53);
+            let v60: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                Math::method20(v57.getattr(v56));
+            let v62: pyo3::Bound<pyo3::PyAny> = v60.unwrap();
+            let v63: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                Math::method21(v44.0.clone(), v44.1.clone());
+            let v64: pyo3::Bound<pyo3::PyAny> = Math::method22(v62);
+            let v67: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method20(
+                pyo3::prelude::PyAnyMethods::call(&v64, ((*v63).0, *(*v63).1), None),
             );
-            let v68: pyo3::Bound<pyo3::PyAny> = Math::method23(v65.unwrap());
-            let v71: Result<(f64, f64), pyo3::PyErr> = Math::method24(v68.extract());
-            let patternInput: (f64, f64) = v71.unwrap();
-            let v76: f64 = Math::method3(Math::method25(patternInput.0.clone()));
-            let v77: f64 = Math::method26(patternInput.1.clone());
-            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v76, v77))
+            let v70: pyo3::Bound<pyo3::PyAny> = Math::method23(v67.unwrap());
+            let v73: Result<(f64, f64), pyo3::PyErr> = Math::method24(v70.extract());
+            let patternInput: (f64, f64) = v73.unwrap();
+            let v78: f64 = Math::method3(Math::method25(patternInput.0.clone()));
+            let v79: f64 = Math::method26(patternInput.1.clone());
+            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v78, v79))
         }
         pub fn method27(
             v0_1: Result<num_complex::Complex<f64>, pyo3::PyErr>,
@@ -294,17 +298,21 @@ mod module_b7a9935b {
             v1_1: string,
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, pyo3::PyErr> {
-            let v34: string =
+            let v14: string =
+                string("      args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])");
+            let v36: string =
                 Math::method11(Math::method10(new_array(&[string("import sys"),
                                                           string("import traceback"),
+                                                          string("import re"),
                                                           string("count = 0"),
+                                                          string("memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"),
                                                           string("def trace_calls(frame, event, arg):"),
                                                           string("  global count"),
                                                           string("  count += 1"),
                                                           string("  if count < 300:"),
                                                           string("    try:"),
                                                           string("      args = { k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }"),
-                                                          string("      args_str = \', \'.join([ f\"{k}={repr(v)}\" for k, v in args.items() ])"),
+                                                          v14,
                                                           sprintf!("      print(f\"{{event}}({}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }}\", flush=True)",
                                                                    string("gamma_")),
                                                           string("    except ValueError as e:"),
@@ -328,35 +336,35 @@ mod module_b7a9935b {
                                                           string("    if s.real == 1:"),
                                                           string("      s = complex(float(\'inf\'), 0)"),
                                                           string("  return (s.real, s.imag)")])));
-            let v35: num_complex::Complex<f64> = Math::method13(v2.clone());
-            let v37: f64 = v35.re;
-            let v38: num_complex::Complex<f64> = Math::method14(v2);
-            let v42: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                LrcPtr::new((false, LrcPtr::new((v37, v38.im))));
-            let v43: pyo3::Python = Math::method15(v0_1);
-            let v44: string = Math::method16(v34);
-            let v46: &str = fable_library_rust::String_::LrcStr::as_str(&v44);
-            let v49: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
-                Math::method17(pyo3::types::PyModule::from_code_bound(v43, v46, "", ""));
-            let v51: pyo3::Bound<pyo3::types::PyModule> = v49.unwrap();
-            let v52: string = Math::method18();
-            let v54: &str = fable_library_rust::String_::LrcStr::as_str(&v52);
-            let v55: pyo3::Bound<pyo3::types::PyModule> = Math::method19(v51);
-            let v58: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
-                Math::method20(v55.getattr(v54));
-            let v60: pyo3::Bound<pyo3::PyAny> = v58.unwrap();
-            let v61: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
-                Math::method21(v42.0.clone(), v42.1.clone());
-            let v62: pyo3::Bound<pyo3::PyAny> = Math::method22(v60);
-            let v65: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method20(
-                pyo3::prelude::PyAnyMethods::call(&v62, ((*v61).0, *(*v61).1), None),
+            let v37: num_complex::Complex<f64> = Math::method13(v2.clone());
+            let v39: f64 = v37.re;
+            let v40: num_complex::Complex<f64> = Math::method14(v2);
+            let v44: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                LrcPtr::new((false, LrcPtr::new((v39, v40.im))));
+            let v45: pyo3::Python = Math::method15(v0_1);
+            let v46: string = Math::method16(v36);
+            let v48: &str = fable_library_rust::String_::LrcStr::as_str(&v46);
+            let v51: Result<pyo3::Bound<pyo3::types::PyModule>, pyo3::PyErr> =
+                Math::method17(pyo3::types::PyModule::from_code_bound(v45, v48, "", ""));
+            let v53: pyo3::Bound<pyo3::types::PyModule> = v51.unwrap();
+            let v54: string = Math::method18();
+            let v56: &str = fable_library_rust::String_::LrcStr::as_str(&v54);
+            let v57: pyo3::Bound<pyo3::types::PyModule> = Math::method19(v53);
+            let v60: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> =
+                Math::method20(v57.getattr(v56));
+            let v62: pyo3::Bound<pyo3::PyAny> = v60.unwrap();
+            let v63: LrcPtr<(bool, LrcPtr<(f64, f64)>)> =
+                Math::method21(v44.0.clone(), v44.1.clone());
+            let v64: pyo3::Bound<pyo3::PyAny> = Math::method22(v62);
+            let v67: Result<pyo3::Bound<pyo3::PyAny>, pyo3::PyErr> = Math::method20(
+                pyo3::prelude::PyAnyMethods::call(&v64, ((*v63).0, *(*v63).1), None),
             );
-            let v68: pyo3::Bound<pyo3::PyAny> = Math::method23(v65.unwrap());
-            let v71: Result<(f64, f64), pyo3::PyErr> = Math::method24(v68.extract());
-            let patternInput: (f64, f64) = v71.unwrap();
-            let v76: f64 = Math::method3(Math::method25(patternInput.0.clone()));
-            let v77: f64 = Math::method26(patternInput.1.clone());
-            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v76, v77))
+            let v70: pyo3::Bound<pyo3::PyAny> = Math::method23(v67.unwrap());
+            let v73: Result<(f64, f64), pyo3::PyErr> = Math::method24(v70.extract());
+            let patternInput: (f64, f64) = v73.unwrap();
+            let v78: f64 = Math::method3(Math::method25(patternInput.0.clone()));
+            let v79: f64 = Math::method26(patternInput.1.clone());
+            Ok::<num_complex::Complex<f64>, pyo3::PyErr>(num_complex::Complex::new(v78, v79))
         }
         pub fn method37() -> f64 {
             3.141592653589793_f64
@@ -1730,70 +1738,17 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method71(v0_1: pyo3::Python) {
-            let v2: f64 = Math::method3(Math::method5());
-            let v3: f64 = Math::method4();
-            let v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, v3);
-            let v9: Result<num_complex::Complex<f64>, pyo3::PyErr> = Math::method27(Math::method9(
-                v0_1.clone(),
-                string("    s = mpmath.zeta(s)"),
-                Math::method8(v5.clone()),
-            ));
-            let v11: num_complex::Complex<f64> = v9.unwrap();
-            let v12: num_complex::Complex<f64> = Math::method28(v0_1, v5);
-            let v13: num_complex::Complex<f64> = Math::method13(v11.clone());
-            let v16: f64 = v13.re + 0.08333333333333333_f64;
-            let v17: f64 = -v16;
-            let v19: f64 = if v16 >= v17 { v16 } else { v17 };
-            let v20: bool = v19 < 0.0001_f64;
-            if (if v20 { true } else { Math::method38(v20) }) == false {
-                panic!(
-                    "{}",
-                    sprintf!("__expect / actual: {:?} / expected: {:?}", v19, 0.0001_f64),
-                );
-            }
-            {
-                let v25: num_complex::Complex<f64> = Math::method14(v11);
-                let v27: f64 = v25.im;
-                let v28: bool = v27 == 0.0_f64;
-                if (if v28 { true } else { Math::method38(v28) }) == false {
-                    panic!(
-                        "{}",
-                        sprintf!("__expect / actual: {:?} / expected: {:?}", v27, 0.0_f64),
-                    );
-                }
-            }
-        }
-        pub fn method70() {
-            pyo3::prepare_freethreaded_python();
-            let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
-                //;
-                Math::method71(py);
-                {
-                    let v5: Result<(), pyo3::PyErr> = Math::method39(Ok::<(), pyo3::PyErr>(()));
-                    v5
-                }
-            });
-            {
-                //;
-                {
-                    let v10: Result<(), pyo3::PyErr> = Math::method40(__result);
-                    v10.unwrap();
-                    ()
-                }
-            }
-        }
-        pub fn method74() -> Array<f64> {
+        pub fn method72() -> Array<f64> {
             Math::method60(new_array(&[
                 10.0_f64, 20.0_f64, 30.0_f64, 40.0_f64, 50.0_f64, 60.0_f64, 70.0_f64, 80.0_f64,
                 90.0_f64, 100.0_f64,
             ]))
         }
-        pub fn method75(v0_1: bool) -> bool {
+        pub fn method73(v0_1: bool) -> bool {
             v0_1 == false
         }
-        pub fn method73(v0_1: pyo3::Python) {
-            let v1_1: Array<f64> = Math::method74();
+        pub fn method71(v0_1: pyo3::Python) {
+            let v1_1: Array<f64> = Math::method72();
             let v2: i32 = count(v1_1.clone());
             let v3: LrcPtr<Math::Mut0> = LrcPtr::new(Math::Mut0 {
                 l0: MutCell::new(0_i32),
@@ -1814,7 +1769,7 @@ mod module_b7a9935b {
                 let v18: num_complex::Complex<f64> = Math::method28(v0_1.clone(), v11);
                 let v19: num_complex::Complex<f64> = Math::method13(v17.clone());
                 let v21: f64 = v19.re;
-                let v23: bool = Math::method75(v21 == 0.0_f64);
+                let v23: bool = Math::method73(v21 == 0.0_f64);
                 if (if v23 { true } else { Math::method38(v23) }) == false {
                     panic!(
                         "{}",
@@ -1824,7 +1779,7 @@ mod module_b7a9935b {
                 {
                     let v28: num_complex::Complex<f64> = Math::method14(v17);
                     let v30: f64 = v28.im;
-                    let v32: bool = Math::method75(v30 == 0.0_f64);
+                    let v32: bool = Math::method73(v30 == 0.0_f64);
                     if (if v32 { true } else { Math::method38(v32) }) == false {
                         panic!(
                             "{}",
@@ -1840,11 +1795,11 @@ mod module_b7a9935b {
             }
             ()
         }
-        pub fn method72() {
+        pub fn method70() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method73(py);
+                Math::method71(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method39(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -1859,42 +1814,42 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method78() -> f64 {
+        pub fn method76() -> f64 {
             0.75_f64
         }
-        pub fn method79() -> f64 {
+        pub fn method77() -> f64 {
             20.5_f64
         }
-        pub fn method80() -> f64 {
+        pub fn method78() -> f64 {
             1.25_f64
         }
-        pub fn method81() -> f64 {
+        pub fn method79() -> f64 {
             30.1_f64
         }
-        pub fn method82() -> f64 {
+        pub fn method80() -> f64 {
             0.25_f64
         }
-        pub fn method83() -> f64 {
+        pub fn method81() -> f64 {
             40.0_f64
         }
-        pub fn method84() -> f64 {
+        pub fn method82() -> f64 {
             50.0_f64
         }
-        pub fn method77(v0_1: pyo3::Python) {
+        pub fn method75(v0_1: pyo3::Python) {
             let v2: f64 = Math::method3(Math::method50());
             let v3: f64 = Math::method51();
             let v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, v3);
-            let v7: f64 = Math::method3(Math::method78());
-            let v8: f64 = Math::method79();
+            let v7: f64 = Math::method3(Math::method76());
+            let v8: f64 = Math::method77();
             let v10: num_complex::Complex<f64> = num_complex::Complex::new(v7, v8);
-            let v12: f64 = Math::method3(Math::method80());
-            let v13: f64 = Math::method81();
+            let v12: f64 = Math::method3(Math::method78());
+            let v13: f64 = Math::method79();
             let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
-            let v17: f64 = Math::method3(Math::method82());
-            let v18: f64 = Math::method83();
+            let v17: f64 = Math::method3(Math::method80());
+            let v18: f64 = Math::method81();
             let v20: num_complex::Complex<f64> = num_complex::Complex::new(v17, v18);
             let v22: f64 = Math::method3(Math::method33());
-            let v23: f64 = Math::method84();
+            let v23: f64 = Math::method82();
             let v27: Array<num_complex::Complex<f64>> = Math::method57(new_array(&[
                 v5,
                 v10,
@@ -1919,7 +1874,7 @@ mod module_b7a9935b {
                 let v39: num_complex::Complex<f64> = Math::method28(v0_1.clone(), v32);
                 let v40: num_complex::Complex<f64> = Math::method13(v38.clone());
                 let v42: f64 = v40.re;
-                let v44: bool = Math::method75(v42 == 0.0_f64);
+                let v44: bool = Math::method73(v42 == 0.0_f64);
                 if (if v44 { true } else { Math::method38(v44) }) == false {
                     panic!(
                         "{}",
@@ -1929,7 +1884,7 @@ mod module_b7a9935b {
                 {
                     let v49: num_complex::Complex<f64> = Math::method14(v38);
                     let v51: f64 = v49.im;
-                    let v53: bool = Math::method75(v51 == 0.0_f64);
+                    let v53: bool = Math::method73(v51 == 0.0_f64);
                     if (if v53 { true } else { Math::method38(v53) }) == false {
                         panic!(
                             "{}",
@@ -1945,11 +1900,11 @@ mod module_b7a9935b {
             }
             ()
         }
-        pub fn method76() {
+        pub fn method74() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method77(py);
+                Math::method75(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method39(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -1964,33 +1919,33 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method87() -> f64 {
+        pub fn method85() -> f64 {
             3.0_f64
         }
-        pub fn method88() -> f64 {
+        pub fn method86() -> f64 {
             4.0_f64
         }
-        pub fn method89() -> f64 {
+        pub fn method87() -> f64 {
             2.5_f64
         }
-        pub fn method90() -> f64 {
+        pub fn method88() -> f64 {
             -3.5_f64
         }
-        pub fn method91() -> f64 {
+        pub fn method89() -> f64 {
             1.5_f64
         }
-        pub fn method92() -> f64 {
+        pub fn method90() -> f64 {
             2.5_f64
         }
-        pub fn method86(v0_1: pyo3::Python) {
-            let v2: f64 = Math::method3(Math::method87());
-            let v3: f64 = Math::method88();
+        pub fn method84(v0_1: pyo3::Python) {
+            let v2: f64 = Math::method3(Math::method85());
+            let v3: f64 = Math::method86();
             let v5: num_complex::Complex<f64> = num_complex::Complex::new(v2, v3);
-            let v7: f64 = Math::method3(Math::method89());
-            let v8: f64 = Math::method90();
+            let v7: f64 = Math::method3(Math::method87());
+            let v8: f64 = Math::method88();
             let v10: num_complex::Complex<f64> = num_complex::Complex::new(v7, v8);
-            let v12: f64 = Math::method3(Math::method91());
-            let v13: f64 = Math::method92();
+            let v12: f64 = Math::method3(Math::method89());
+            let v13: f64 = Math::method90();
             let v15: num_complex::Complex<f64> = num_complex::Complex::new(v12, v13);
             let v17: f64 = Math::method3(Math::method50());
             let v18: f64 = Math::method51();
@@ -2105,11 +2060,11 @@ mod module_b7a9935b {
             }
             ()
         }
-        pub fn method85() {
+        pub fn method83() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method86(py);
+                Math::method84(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method39(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -2124,10 +2079,10 @@ mod module_b7a9935b {
                 }
             }
         }
-        pub fn method95(v0_1: i32, v1_1: LrcPtr<Math::Mut3>) -> bool {
+        pub fn method93(v0_1: i32, v1_1: LrcPtr<Math::Mut3>) -> bool {
             v1_1.l0.get().clone() < v0_1
         }
-        pub fn method94(v0_1: pyo3::Python) {
+        pub fn method92(v0_1: pyo3::Python) {
             let v2: Array<f64> = Math::method60(new_array(&[
                 2.0_f64, 2.5_f64, 3.0_f64, 3.5_f64, 4.0_f64, 4.5_f64, 5.0_f64,
             ]));
@@ -2151,7 +2106,7 @@ mod module_b7a9935b {
                     l0: MutCell::new(0_i32),
                     l1: MutCell::new(1.0_f64),
                 });
-                while Math::method95(v15, v16.clone()) {
+                while Math::method93(v15, v16.clone()) {
                     let v18: i32 = v16.l0.get().clone();
                     let v19: f64 = v16.l1.get().clone();
                     let v20: f64 = v4[v18].clone();
@@ -2203,11 +2158,11 @@ mod module_b7a9935b {
             }
             ()
         }
-        pub fn method93() {
+        pub fn method91() {
             pyo3::prepare_freethreaded_python();
             let __result = pyo3::Python::with_gil(|py| -> pyo3::PyResult<()> {
                 //;
-                Math::method94(py);
+                Math::method92(py);
                 {
                     let v5: Result<(), pyo3::PyErr> = Math::method39(Ok::<(), pyo3::PyErr>(()));
                     v5
@@ -2264,29 +2219,24 @@ mod module_b7a9935b {
             Math::method66();
         }
         #[test]
-        fn test_zeta_at_minus_1() {
+        fn test_imaginary_axis() {
             //;
             Math::method70();
         }
         #[test]
-        fn test_imaginary_axis() {
-            //;
-            Math::method72();
-        }
-        #[test]
         fn test_critical_strip() {
             //;
-            Math::method76();
+            Math::method74();
         }
         #[test]
         fn test_reflection_formula_for_specific_value() {
             //;
-            Math::method85();
+            Math::method83();
         }
         #[test]
         fn test_euler_product_formula() {
             //;
-            Math::method93()
+            Math::method91()
         }
         pub fn closure1(unitVar: (), v0_1: Array<string>) -> i32 {
             let v1_1: string = sprintf!("value: {}", 1_i32);

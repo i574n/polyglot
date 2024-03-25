@@ -2,27 +2,22 @@ open rust_operators
 open sm'_operators
 open leptos
 
-inl render (id : string) get_value (on_change : event -> _) : _ label =
-    inl id = id |> sm'.to_std_string
-    !\($'"let id = !id.clone()"')
-
+inl render (id : () -> string) get_value (on_change : event -> _) : _ label =
+    inl id' = join id >> sm'.to_std_string
     label [
-        $'"for=id"'
+        $'"for=move || !id'()"'
         $'"class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\""'
     ] fun () =>
         inl on_change = join on_change
-        !\($'"let on_change = !on_change"')
-
         inl get_value : () -> bool = join get_value
-        !\($'"let get_value = !get_value"')
-
+        inl id = join id >> sm'.to_std_string
         :>(;[
             input [
                 $'"class=\\\"peer sr-only [&:checked_+_span_svg[data-checked-icon]]:block [&:checked_+_span_svg[data-unchecked-icon]]:hidden\\\""'
                 $'"type=\\\"checkbox\\\""'
-                $'"id=!id"'
-                $'"on:change=move |event| on_change(event)"'
-                $'"prop:checked=move || get_value()"'
+                $'"id=move || !id()"'
+                $'"on:change=move |event| !on_change(event)"'
+                $'"prop:checked=move || !get_value()"'
             ]
             |> element_to_view
 
