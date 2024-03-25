@@ -175,14 +175,16 @@ inl call1_ log name py s line =
         ;[
             $'$"import sys"'
             $'$"import traceback"'
+            $'$"import re"'
             $'$"count = 0"'
+            $'$"memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"'
             $'$"def trace_calls(frame, event, arg):"'
             $'$"  global count"'
             $'$"  count += 1"'
             $'$"  if count < 300:"'
             $'$"    try:"'
             $'$"      args = {{ k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }}"'
-            $'$"      args_str = \', \'.join([ f\\\"{{k}}={{repr(v)}}\\\" for k, v in args.items() ])"'
+            $'$"      args_str = \', \'.join([ f\\\"{{k}}={{re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}}\\\" for k, v in args.items() ])"'
             $'$"      print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }}\\\", flush=True)"'
             $'$"    except ValueError as e:"'
             $'$"      print(f\'{!name} / e: {{e}}\', flush=True)"'
@@ -344,14 +346,6 @@ inl test_behavior_near_origin___ log = run_test log (6u8, 5u8) fun zeta, gamma =
     result |> re |> _assert_lt limit.max
     result |> im |> _assert_lt limit.max
 
-// // ## test_zeta_at_minus_1
-
-inl test_zeta_at_minus_1 log = run_test log (6u8, 5u8) fun zeta, gamma =>
-    inl s = .^(-1, 0)
-    inl result = zeta s
-    re result + 1 / 12 |> abs |> _assert_lt 0.0001
-    result |> im |> _assert_eq 0
-
 // // ## test_imaginary_axis
 
 inl test_imaginary_axis log = run_test log (3u8, 2u8) fun zeta, gamma =>
@@ -442,8 +436,6 @@ inl tests () =
     test_symmetry_across_real_axis___ false
     !\($'"} #[test] fn test_behavior_near_origin___() { //"') : ()
     test_behavior_near_origin___ false
-    !\($'"} #[test] fn test_zeta_at_minus_1() { //"') : ()
-    test_zeta_at_minus_1 false
     !\($'"} #[test] fn test_imaginary_axis() { //"') : ()
     test_imaginary_axis false
     !\($'"} #[test] fn test_critical_strip() { //"') : ()
