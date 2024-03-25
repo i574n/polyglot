@@ -676,15 +676,11 @@ inl animate props : _ animate =
 inl input props : _ input =
     tag_closed "input" props
 
-inl dd children : _ dd =
-    tag_element "dd" [
-        $'"class=\\\"[overflow:auto] text-gray-700 sm:col-span-2 flex flex-1\\\""'
-    ] children
+inl dd props children : _ dd =
+    tag_element "dd" props children
 
 inl dl props children : _ dl =
     tag_element "dl" props children
 
-inl dt children : _ dt =
-    tag_element "dt" [
-        $'"class=\\\"[font-size:12px] text-gray-400\\\""'
-    ] children
+inl dt props children : _ dt =
+    tag_element "dt" props children
