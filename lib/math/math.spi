@@ -115,31 +115,35 @@ inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f6
 
 // // ## eval
 
-inl module_from_code (py : python) (code : string) : resultm.result' (bound pymodule) pyerr =
+inl module_from_code (py : python) (code : string) : _ (bound pymodule) _ =
     inl py = join py
     inl code = code |> sm'.as_str
     !\($'"pyo3::types::PyModule::from_code_bound(!py, !code, \\"\\", \\"\\")"')
+    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
 
 inl use_pyanymethods () =
     global "Fable.Core.RustInterop.emitRustExpr () \");\nuse pyo3::prelude::PyAnyMethods;\n//\""
 
-inl getattr (attr : string) (module : bound pymodule) : resultm.result' (bound pyany) pyerr =
+inl getattr (attr : string) (module : bound pymodule) : _ (bound pyany) _ =
     inl attr = attr |> sm'.as_str
     inl module = join module
     use_pyanymethods ()
     !\($'"!module.getattr(!attr)"')
+    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
 
-inl call forall t. (args : t) (module : bound pyany) : resultm.result' (bound pyany) pyerr =
+inl call forall t. (args : t) (module : bound pyany) : _ (bound pyany) _ =
     inl args = join args
     inl module = join module
     !\($'"pyo3::prelude::PyAnyMethods::call(&!module, ((*!args).0, *(*!args).1), None)"')
+    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
 
-inl extract forall t. (result : bound pyany) : resultm.result' t pyerr =
+inl extract forall t. (result : bound pyany) : _ t _ =
     inl result = join result
     use_pyanymethods ()
     !\($'"!result.extract()"')
+    |> resultm.map_error' fun (x : pyerr) => x |> sm'.format'
 
-inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) _ =
+inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) sm'.std_string =
     inl code =
         code
         |> module_from_code py
@@ -147,18 +151,15 @@ inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) _ =
     inl fn =
         code
         |> getattr "fn"
-        |> fun x => x : _ _ pyerr
         |> resultm.unwrap'
 
     fn
     |> call args
-    |> resultm.unwrap'
+    |> resultm.try'
     |> extract
-    |> fun x => x : _ _ pyerr
-    |> resultm.unwrap'
+    |> resultm.try'
     |> complex
     |> Ok
-    |> fun x => x : _ _ pyerr
     |> resultm.box
 
 inl call1_ log py s code =
@@ -179,52 +180,56 @@ inl call1_ log name py s line =
             $'$"count = 0"'
             $'$"memory_address_pattern = re.compile(r\' at 0x[0-9a-fA-F]+\')"'
             $'$"def trace_calls(frame, event, arg):"'
-            $'$"  global count"'
-            $'$"  count += 1"'
-            $'$"  if count < 300:"'
-            $'$"    try:"'
-            $'$"      args = {{ k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }}"'
-            $'$"      args_str = \', \'.join([ f\\\"{{k}}={{re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}}\\\" for k, v in args.items() ])"'
-            $'$"      print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }}\\\", flush=True)"'
-            $'$"    except ValueError as e:"'
-            $'$"      print(f\'{!name} / e: {{e}}\', flush=True)"'
+            $'$"    global count"'
+            $'$"    count += 1"'
+            $'$"    if count < 300 and event in [\'call\', \'return\']:"'
+            $'$"        try:"'
+            $'$"            args = {{ k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }}"'
+            $'$"            args_str = \', \'.join([ f\\\"{{k}}={{re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}}\\\" for k, v in args.items() ])"'
+            $'$"            print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }} / arg: {{arg}}\\\", flush=True)"'
+            $'$"        except ValueError as e:"'
+            $'$"            print(f\'{!name} / e: {{e}}\', flush=True)"'
+            // $'$"        if event == \'call\':"'
+            $'$"        return trace_calls"'
             $'$"import mpmath"'
             $'$"def fn(log, s):"'
-            $'$"  global count"'
-            $'$"  if log:"'
-            $'$"    print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
-            $'$"  s = complex(*s)"'
-            $'$"  try:"'
-            $'$"    if log: sys.settrace(trace_calls)"'
-            line
+            $'$"    global count"'
             $'$"    if log:"'
-            $'$"      sys.settrace(None)"'
-            $'$"      print(f\'{!name} / result: {{s}} / count: {{count}}\', flush=True)"'
-            $'$"  except ValueError as e:"'
-            $'$"    if s.real == 1:"'
-            $'$"      s = complex(float(\'inf\'), 0)"'
-            $'$"  return (s.real, s.imag)"'
+            $'$"        print(f\'{!name} / s: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"    s = complex(*s)"'
+            $'$"    try:"'
+            $'$"        if log: sys.settrace(trace_calls)"'
+            line
+            $'$"        if log:"'
+            $'$"            sys.settrace(None)"'
+            $'$"            print(f\'{!name} / result: {{s}} / count: {{count}}\', flush=True)"'
+            $'$"    except ValueError as e:"'
+            $'$"        if s.real == 1:"'
+            $'$"            s = complex(float(\'inf\'), 0)"'
+            $'$"    return (s.real, s.imag)"'
         ]
         |> call1_ log py s
 
 inl gamma_ log py s =
-    call1_ log "gamma_" py s $'$"    s = mpmath.gamma(s)"'
+    call1_ log "gamma_" py s $'$"        s = mpmath.gamma(s)"'
 
 inl zeta_ log py s =
-    call1_ log "zeta_" py s $'$"    s = mpmath.zeta(s)"'
+    call1_ log "zeta_" py s $'$"        s = mpmath.zeta(s)"'
 
 // // ## run_test
 
 inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -> complex f64) -> ()) =
     inl fn_ (py : python) : resultm.result' () pyerr =
+        inl nan () =
+            !\($'"f64::NAN"')
         inl gamma__ = fun (s : complex f64) =>
-            inl result = gamma_ log py s |> resultm.unwrap'
+            inl result = gamma_ log py s
             if log then
                 inl s = join s
                 !\($'"println\!(\\\"gamma__ / s: {:?} / result: {:?}\\\", !s, !result)"')
-            result
+            result |> resultm.ok' |> optionm'.unbox |> optionm'.default_value .^(nan (), nan ())
         inl zeta__ = fun (s : complex f64) =>
-            inl result = zeta_ log py s |> resultm.unwrap'
+            inl result = zeta_ log py s
 
             inl z = zeta true gamma__ s
 
@@ -238,7 +243,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
     //             im result - im x |> abs
     //             |> _assert_lt 0.001
 
-            result
+            result |> resultm.ok' |> optionm'.unbox |> optionm'.default_value .^(nan (), nan ())
         join fn (zeta__, gamma__)
 
         Ok ()
