@@ -262,7 +262,7 @@ mod module_b7a9935b {
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, std::string::String> {
             let v13: string =
-                string("            args = { k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }");
+                string("            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }");
             let v14: string =
                 string("            args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])");
             let v37: string =
@@ -274,7 +274,7 @@ mod module_b7a9935b {
                                                           string("def trace_calls(frame, event, arg):"),
                                                           string("    global count"),
                                                           string("    count += 1"),
-                                                          string("    if count < 300 and event in [\'call\', \'return\']:"),
+                                                          string("    if count < 200:"),
                                                           string("        try:"),
                                                           v13, v14,
                                                           sprintf!("            print(f\"{{event}}({}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }} / arg: {{arg}}\", flush=True)",
@@ -373,7 +373,7 @@ mod module_b7a9935b {
             v2: num_complex::Complex<f64>,
         ) -> Result<num_complex::Complex<f64>, std::string::String> {
             let v13: string =
-                string("            args = { k: v for k, v in frame.f_locals.items() if k not in [\'ctx\'] and not callable(v) }");
+                string("            args = { k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }");
             let v14: string =
                 string("            args_str = \', \'.join([ f\"{k}={re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}\" for k, v in args.items() ])");
             let v37: string =
@@ -385,7 +385,7 @@ mod module_b7a9935b {
                                                           string("def trace_calls(frame, event, arg):"),
                                                           string("    global count"),
                                                           string("    count += 1"),
-                                                          string("    if count < 300 and event in [\'call\', \'return\']:"),
+                                                          string("    if count < 200:"),
                                                           string("        try:"),
                                                           v13, v14,
                                                           sprintf!("            print(f\"{{event}}({}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }} / arg: {{arg}}\", flush=True)",
