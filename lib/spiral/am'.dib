@@ -273,45 +273,6 @@ inl to_vec forall t. (ar : array_base t) : vec t =
 
 #!markdown
 
-## map_vec
-
-#!spiral
-
-inl map_vec forall dim t u. (fn : t -> u) (ar : a dim t) : a dim u =
-    inl fn = join fn
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
-    |> from_vec
-
-#!markdown
-
-## mapi_vec
-
-#!spiral
-
-inl mapi_vec forall dim t u. (fn : dim -> t -> u) (ar : a dim t) : a dim u =
-    inl fn = join fn
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.iter().enumerate().map(|(i, x)| !fn(i.try_into().unwrap())(x.clone())).collect()"')
-    |> from_vec
-
-#!markdown
-
-## filter_vec
-
-#!spiral
-
-inl filter_vec forall dim t. (fn : t -> bool) (ar : a dim t) : a dim t =
-    inl fn = join fn
-    inl (a ar) = ar
-    inl ar = ar |> to_vec
-    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
-    |> from_vec
-
-#!markdown
-
 ## vec_push
 
 #!spiral
@@ -442,6 +403,17 @@ inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
 
 #!markdown
 
+## vec_filter
+
+#!spiral
+
+inl vec_filter forall t. (fn : t -> bool) (ar : vec t) : vec t =
+    inl fn = join fn
+    inl ar = join ar
+    !\($'"!ar.into_iter().filter(|x| !fn(x.clone().clone())).collect()"')
+
+#!markdown
+
 ## enumerate
 
 #!spiral
@@ -450,8 +422,8 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
     inl (a ar) = ar
     inl ar = ar |> to_vec
     !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    |> vec_map from_pair
     |> from_vec
-    |> map_vec from_pair
 
 #!markdown
 
