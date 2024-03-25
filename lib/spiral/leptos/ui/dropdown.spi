@@ -20,10 +20,10 @@ inl render props_fn : _ _ =
 
     accordion.render
         fun props' => { props' with
-            title =
+            title = fun () =>
                 props.item
                 |> optionm'.unbox
-                |> optionm.map leptos.memo_get
+                |> optionm.map leptos.signal_get
                 |> optionm'.flatten
                 |> optionm'.default_value "Select..."
             details_class = fun () => "[align-self:flex-start]"
@@ -37,7 +37,7 @@ inl render props_fn : _ _ =
                 inl data =
                     props.data
                     |> optionm'.unbox
-                    |> optionm.map (leptos.memo_get >> am'.from_vec)
+                    |> optionm.map (leptos.signal_get >> am'.from_vec)
                     |> optionm'.default_value (a ;[])
                 match data with
                 | (a ;[] : _ i32 _) =>
@@ -72,11 +72,11 @@ inl render props_fn : _ _ =
                                                 item,
                                                 props.item
                                                 |> optionm'.unbox
-                                                |> optionm.map leptos.memo_get
+                                                |> optionm.map leptos.signal_get
                                                 |> optionm'.flatten
                                             with
                                             | item, Some account when item = account =>
-                                                check.render (Some $'"h-5 w-5"') []
+                                                check.render (fun () => "h-5 w-5") []
                                                 |> leptos.element_to_view
                                             | _ => ;[] |> leptos.views_to_view
 

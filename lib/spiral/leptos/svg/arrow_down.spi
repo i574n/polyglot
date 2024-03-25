@@ -1,13 +1,14 @@
 open sm'_operators
 open leptos
 
-inl render (class : option string) props : _ svg =
-    inl class = class |> optionm.map sm'.as_str |> optionm'.default_value #""
+inl render (class : () -> string) props : _ svg =
+    inl class = join class
+    inl class = join class
     svg ([
         $'"xmlns=\\\"http://www.w3.org/2000/svg\\\""'
         $'"viewBox=\\\"0 0 20 20\\\""'
         $'"fill=\\\"currentColor\\\""'
-        $'"class=\\\" \\\".to_owned() + !class"'
+        $'"class=move || \\\" \\\".to_owned() + &!class()"'
         ] /@ props) fun () =>
         :>(;[
             path [

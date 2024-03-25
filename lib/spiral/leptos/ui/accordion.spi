@@ -4,7 +4,7 @@ open leptos
 
 type props =
     {
-        title : string
+        title : () -> string
         open' : () -> bool
         right_element : option view
         details_class : () -> string
@@ -13,7 +13,7 @@ type props =
 
 inl props () : props =
     {
-        title = ""
+        title = fun () => ""
         open' = fun () => true
         right_element = None
         details_class = fun () => ""
@@ -48,22 +48,24 @@ inl render props_fn children : _ div
                 $'"open=move || !open'()"'
             ] fun () =>
                 inl summary_class = join props.summary_class
-                inl summary_margin_right =
+                inl summary_margin_right () =
                     if props.right_element = None
                     then ##""
                     else ##"[margin-right:40px]"
+                inl summary_margin_right = join summary_margin_right
                 :>(;[
                     summary [
-                        $'"class=move || \\\"flex flex-1 items-center justify-between px-4 cursor-pointer text-gray-600 bg-gray-300 hover:bg-gray-200 hover:text-gray-700 \\\".to_owned() + !summary_margin_right + \\\" \\\" + &!summary_class()"'
+                        $'"class=move || \\\"flex flex-1 items-center justify-between px-4 cursor-pointer text-gray-600 bg-gray-300 hover:bg-gray-200 hover:text-gray-700 \\\".to_owned() + !summary_margin_right() + \\\" \\\" + &!summary_class()"'
                     ] fun () =>
                         :>(;[
                             div [
                                 $'"class=\\\"flex items-center gap-2\\\""'
                             ] fun () =>
+                                inl title = join props.title
                                 span [
                                     $'"class=\\\"[font-size:14px] [line-height:21px] [padding-right:11px]\\\""'
                                 ] fun () =>
-                                    props.title
+                                    title ()
                                     |> text_fragment
                                 |> element_to_fragment
                             |> element_to_view
@@ -71,7 +73,7 @@ inl render props_fn children : _ div
                             span [
                                 $'"class=\\\"shrink-0 transition duration-300 pt-[2px]\\\""'
                             ] fun () =>
-                                arrow_down.render (Some $'"h-5 w-5"') []
+                                arrow_down.render (fun () => "h-5 w-5") []
                                 |> element_to_fragment
                             |> element_to_view
                         ])
