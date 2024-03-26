@@ -3,16 +3,18 @@ open leptos
 
 type props =
     {
-        padding_class : () -> string
-        cols_class : () -> string
         class : () -> string
+        cols_class : () -> string
+        dd_class : () -> string
+        padding_class : () -> string
     }
 
 inl props () : props =
     {
+        class = fun () => ""
         padding_class = fun () => "pt-[9px] pr-[10px] pb-[11px] pl-[10px]"
         cols_class = fun () => "sm:grid-cols-[150px_repeat(2,minmax(0,1fr))]"
-        class = fun () => ""
+        dd_class = fun () => "[overflow:auto]"
     }
 
 inl render props_fn left right : _ dl =
@@ -25,12 +27,17 @@ inl render props_fn left right : _ dl =
     inl right = join right
 
     dl [
-        $'"class=move || \\\"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] \\\".to_owned() + &!cols_class() + \\\" \\\" + &!padding_class() + \\\" \\\" + &!class()"'
+        $'"class=move || \\\"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] [grid-auto-columns:max-content] \\\".to_owned() + &!cols_class() + \\\" \\\" + &!padding_class() + \\\" \\\" + &!class()"'
     ] fun () =>
+        inl dd_class = join props.dd_class
         :>(;[
-            dt left
+            dt [
+                $'"class=\\\"[font-size:12px] text-gray-400\\\""'
+            ] left
             |> element_to_view
 
-            dd right
+            dd [
+                $'"class=move || \\\"text-gray-700 sm:col-span-2 flex flex-1 \\\".to_owned () + &!dd_class()"'
+            ] right
             |> element_to_view
         ])
