@@ -248,4 +248,4 @@ This document provides a bird’s-eye view of the Polyglot repository, encapsula
 
 ---
 
-[![Star History Chart](https://api.star-history.com/svg?repos=i574n/dice&type=Timeline)](https://star-history.com/#i574n/dice&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=i574n/polyglot&type=Timeline)](https://star-history.com/#i574n/polyglot&Timeline)
