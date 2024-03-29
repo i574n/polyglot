@@ -6,6 +6,7 @@ inl types () =
 
 nominal async t = $"Async<`t>"
 nominal future t = $"Future<`t>"
+nominal task t = $"System.Threading.Tasks.Task<`t>"
 
 type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 nominal try_join_all t = $"TryJoinAll<`t>"
@@ -32,3 +33,25 @@ inl await' forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_st
 
 inl await forall t. (x : future_pin t) : t =
     !\($'"!x.await"')
+
+inl new_async forall t. (fn : () -> t) : async t =
+    $"let mutable result = None"
+    $"async {"
+    fn () |> fun x => $'return !x '
+    $"}"
+    $"|> fun x -> result <- Some x"
+    $"result |> Option.get"
+
+inl new_task forall t. (fn : () -> t) : task t =
+    $"let mutable result = None"
+    $"task {"
+    fn () |> fun x => $'return !x '
+    $"}"
+    $"|> fun x -> result <- Some x"
+    $"result |> Option.get"
+
+inl await_task forall t. (a : task t) : async t =
+    a |> $'Async.AwaitTask'
+
+inl run_synchronously forall t. (a : async t) : t =
+    a |> $'Async.RunSynchronously'

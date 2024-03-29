@@ -13,6 +13,8 @@
 
 #!fsharp
 
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import Parser.fs
 

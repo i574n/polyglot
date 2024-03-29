@@ -288,7 +288,7 @@ inl format' x : std_string =
 #!spiral
 
 inl format_debug x : string =
-    $"$\"%A{!x}\""
+    $'$"%A{!x}"'
 
 #!markdown
 
@@ -307,6 +307,24 @@ inl format_debug' x : std_string =
 
 inl format_pretty' x : std_string =
     !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+
+#!markdown
+
+## format_exception
+
+#!spiral
+
+inl format_exception (ex : exn) : string =
+    $'$"{!ex.GetType ()}: {!ex.Message}"'
+
+#!spiral
+
+// // test
+
+fun () => failwith "test"
+|> _throws
+|> optionm.map sm'.format_exception
+|> _assert_eq (Some "System.Exception: test")
 
 #!markdown
 
@@ -544,6 +562,40 @@ inl concat (a : string) (b : a _ _) : string =
 
 inl join' (concat : string) (s : a _ string) : string =
     $"System.String.Join (!concat, !s)"
+
+#!markdown
+
+## to_char_array
+
+#!spiral
+
+inl to_char_array (str : string) : a i32 char =
+    am.init (str |> sm.length) (fun i => sm.index str i)
+
+#!spiral
+
+// // test
+
+"abc"
+|> to_char_array
+|> _assert_eq (a ;['a'; 'b'; 'c'])
+
+#!markdown
+
+## to_char_list
+
+#!spiral
+
+inl to_char_list (str : string) : list char =
+    listm.init (str |> sm.length) (fun (i : i64) => sm.index str i)
+
+#!spiral
+
+// // test
+
+"abc"
+|> to_char_list
+|> _assert_eq ['a'; 'b'; 'c']
 
 #!markdown
 

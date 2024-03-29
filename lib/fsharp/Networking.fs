@@ -15,7 +15,7 @@ module Networking =
             do! client.ConnectAsync ("127.0.0.1", port, ct) |> Async.awaitValueTaskUnit
             return true
         with ex ->
-            trace Verbose (fun () -> $"testPortOpen / ex: {ex |> printException}") getLocals
+            trace Verbose (fun () -> $"testPortOpen / ex: {ex |> formatException}") getLocals
             return false
     }
 

@@ -29,14 +29,6 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../apps/scheduler/build.ps1" } | Invoke-Block
-
-#!pwsh
-
-{ . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
-
-#!pwsh
-
 { . "$ScriptDir/../apps/plot/build.ps1" } | Invoke-Block
 
 #!pwsh
@@ -49,11 +41,19 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../apps/scheduler/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/../apps/chat/build.ps1" } | Invoke-Block
 
 #!pwsh
 
 { . "$ScriptDir/../apps/spiral/temp/extension/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../apps/spiral/temp/test/build.ps1" } | Invoke-Block
 
 #!pwsh
 

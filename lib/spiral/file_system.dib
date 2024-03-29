@@ -1,0 +1,65 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# file_system
+
+#!spiral
+
+open rust_operators
+open sm'_operators
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## types
+
+#!spiral
+
+inl types () =
+    ()
+
+#!markdown
+
+## (</>)
+
+#!spiral
+
+inl (</>) (a : string) (b : string) : string =
+    $'System.IO.Path.Combine (!a, !b)'
+
+#!markdown
+
+## create_temp_directory_name
+
+#!spiral
+
+inl create_temp_directory_name () =
+    inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
+
+    ($'System.IO.Path.GetTempPath' () : string)
+    </> ($'$"{!root}"' : string)
+    </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
+
+#!spiral
+
+// // test
+
+create_temp_directory_name ()
+|> _contains ($'System.IO.Path.DirectorySeparatorChar' : char)
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let create_temp_directory_name x = !create_temp_directory_name x" : ()

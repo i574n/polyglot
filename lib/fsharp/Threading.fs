@@ -15,5 +15,5 @@ module Threading =
             | None -> cts
             | Some mergeToken ->
                 System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| cts.Token; mergeToken |]
-        let disposable = newDisposable cts.Cancel
+        let disposable = new_disposable cts.Cancel
         cts.Token, disposable

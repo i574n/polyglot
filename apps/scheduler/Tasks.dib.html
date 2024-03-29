@@ -8360,7 +8360,7 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-
+"01"
 </pre>
 </div>
 </div>
@@ -8370,8 +8370,10 @@ pub use module_ccfa04bf::*;
 <pre>
 .fsx:
 let rec method0 () : unit =
-    let v3 : string = "01"
-    let v4 : string = $"__expect / actual: %A{v3} / expected: %A{v3}"
+    let v0 : string = "01"
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v2 : string = $"__expect / actual: %A{v0} / expected: %A{v0}"
     ()
 method0()
 
@@ -8391,13 +8393,18 @@ mod module_ccfa04bf {
     pub mod Spiral_eval {
         use super::*;
         use fable_library_rust::Native_::on_startup;
+        use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
         pub fn method0() {
-            let v4: string =
-                sprintf!("__expect / actual: {:?} / expected: {:?}",
-                         string("01"), string("01"));
-            ()
+            let v1: string = sprintf!("{:?}", string("01"));
+            printfn!("{0}", v1);
+            {
+                let v2: string =
+                    sprintf!("__expect / actual: {:?} / expected: {:?}",
+                             string("01"), string("01"));
+                ()
+            }
         }
         on_startup!(Spiral_eval::method0());
     }

@@ -21,6 +21,9 @@
 
 #!fsharp
 
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/date_time.fsx
+#!import ../../lib/spiral/file_system.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -216,8 +219,8 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
             do! proc.WaitForExitAsync ct |> Async.AwaitTask
             return proc.ExitCode
         with :? System.Threading.Tasks.TaskCanceledException as ex ->
-            trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> printException}") getLocals
-            ex |> printException |> output.Push
+            trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> formatException}") getLocals
+            ex |> formatException |> output.Push
             return System.Int32.MinValue
     }
 
@@ -269,7 +272,6 @@ async {
     | Some (exitCode, output) ->
         exitCode |> _assertEqual 0
         output |> _assertEqual "0"
-
         true
     | _ -> false
 |> _assertEqual true
@@ -381,7 +383,7 @@ Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
 
 fun () -> parseArgs<Arguments> [||] |> ignore
 |> _throwsC (fun ex _ ->
-    printException ex
+    formatException ex
     |> _stringContains "Argu.ArguParseException: ERROR: missing parameter '<paths>...'."
 )
 

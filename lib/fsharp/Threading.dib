@@ -13,6 +13,8 @@
 
 #!fsharp
 
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/fsharp/Common.fs
 
 #!fsharp
@@ -32,7 +34,7 @@ let inline newDisposableToken (mergeToken: System.Threading.CancellationToken op
         | None -> cts
         | Some mergeToken ->
             System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| cts.Token; mergeToken |]
-    let disposable = newDisposable cts.Cancel
+    let disposable = new_disposable cts.Cancel
     cts.Token, disposable
 
 #!fsharp

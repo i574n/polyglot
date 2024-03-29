@@ -109,7 +109,8 @@ fun () =>
     |> item 10i32
     |> ignore
 |> _throws
-|> _assert_eq (Some "Option does not have a value.")
+|> optionm.map sm'.format_exception
+|> _assert_eq (Some "System.Exception: Option does not have a value.")
 
 #!markdown
 

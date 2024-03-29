@@ -1,0 +1,28 @@
+// // # file_system
+
+open rust_operators
+open sm'_operators
+
+// // ## types
+
+inl types () =
+    ()
+
+// // ## (</>)
+
+inl (</>) (a : string) (b : string) : string =
+    $'System.IO.Path.Combine (!a, !b)'
+
+// // ## create_temp_directory_name
+
+inl create_temp_directory_name () =
+    inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
+
+    ($'System.IO.Path.GetTempPath' () : string)
+    </> ($'$"{!root}"' : string)
+    </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
+
+// // ## main
+
+inl main () =
+    $"let create_temp_directory_name x = !create_temp_directory_name x" : ()

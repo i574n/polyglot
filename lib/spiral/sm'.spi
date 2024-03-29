@@ -158,7 +158,7 @@ inl format' x : std_string =
 // // ## format_debug
 
 inl format_debug x : string =
-    $"$\"%A{!x}\""
+    $'$"%A{!x}"'
 
 // // ## format_debug'
 
@@ -169,6 +169,11 @@ inl format_debug' x : std_string =
 
 inl format_pretty' x : std_string =
     !\\(x, $'@@$"format\!(""{{:#?}}"", $0)"')
+
+// // ## format_exception
+
+inl format_exception (ex : exn) : string =
+    $'$"{!ex.GetType ()}: {!ex.Message}"'
 
 // // ## format_ellipsis'
 
@@ -295,6 +300,16 @@ inl concat (a : string) (b : a _ _) : string =
 
 inl join' (concat : string) (s : a _ string) : string =
     $"System.String.Join (!concat, !s)"
+
+// // ## to_char_array
+
+inl to_char_array (str : string) : a i32 char =
+    am.init (str |> sm.length) (fun i => sm.index str i)
+
+// // ## to_char_list
+
+inl to_char_list (str : string) : list char =
+    listm.init (str |> sm.length) (fun (i : i64) => sm.index str i)
 
 // // ## to_string std_string
 

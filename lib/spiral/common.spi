@@ -5,7 +5,6 @@
 nominal any = $"obj"
 nominal disposable = $"System.IDisposable"
 nominal exn = $"exn"
-nominal guid = $"System.Guid"
 nominal unativeint = $"unativeint"
 
 let array x = x
@@ -100,6 +99,11 @@ inl unbox forall t u. (x : t) : u =
 inl (/+) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
+// // ## (/=)
+
+inl (/=) forall t. (a : t) (b : t) : bool =
+    $"!a = !b"
+
 // // ## (||>)
 
 inl (||>) (arg1, arg2) fn =
@@ -133,21 +137,28 @@ inl join_body_unit body d x =
 union target_runtime =
     | Native
     | Wasm
+    | Fable
 
 union target =
     | Rust : target_runtime
-    | Fsharp
+    | Fsharp : target_runtime
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"let mutable result = None"
-    $"#if FABLE_COMPILER_RUST"
-    $"#if \!WASM"
+    $"#if FABLE_COMPILER_RUST && \!WASM"
     fn (Rust Native) () |> fun x => $"!x"
-    $"#else"
+    $"#endif"
+    $"#if FABLE_COMPILER_RUST && WASM"
     fn (Rust Wasm) () |> fun x => $"!x"
     $"#endif"
-    $"#else"
-    fn Fsharp () |> fun x => $"!x"
+    $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM"
+    fn (Fsharp Native) () |> fun x => $"!x"
+    $"#endif"
+    $"#if FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM"
+    fn (Fsharp Fable) () |> fun x => $"!x"
+    $"#endif"
+    $"#if \!FABLE_COMPILER_RUST && WASM"
+    fn (Fsharp Wasm) () |> fun x => $"!x"
     $"#endif"
     $"|> fun x -> result <- Some x"
     $"result |> Option.get"
@@ -162,7 +173,65 @@ inl nameof x : string =
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
 
-// // ## new_raw_guid
+// // ## memoize
 
-inl new_raw_guid () : guid =
-    $"`guid.NewGuid ()"
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'
+
+// // ## use_disposable
+
+inl use_disposable (disposable : disposable) : disposable =
+    $"use !disposable = !disposable" : ()
+    $"!disposable"
+
+// // ## new_disposable
+
+inl new_disposable (fn : () -> ()) : disposable =
+    run_target function
+        | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
+        | Rust _ =>
+            inl fn = join fn
+            fun () => $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+
+// // ## try
+
+inl try forall t. (fn : () -> t) (ex_fn : exn -> ()) : option t =
+    inl none = None : option t
+    inl some (s : t) = Some s
+    $'try !fn () |> !some with ex -> !ex_fn ex; !none '
+
+// // ## sleep
+
+inl sleep (n : i32) : () =
+    run_target function
+        | Fsharp (Native) => fun () => $'System.Threading.Thread.Sleep' n
+        | _ => fun () => ()
+
+// // ## retry_fn
+
+inl retry_fn forall t. retries (fn : () -> t) : option t =
+    let rec loop retry =
+        try
+            fun () =>
+                if retry < retries
+                then fn () |> Some
+                else None
+            fun ex =>
+                let getLocals () = $"retry: {retry} / ex: {ex |> formatException} / {getLocals ()}"
+                // trace Warning (fun () => "retry_fn") getLocals
+                sleep 1
+        |> function
+            | Some x => x
+            | None => loop (retry + 1)
+    loop 0
+
+// // ## main
+
+inl main () =
+    inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () =
+        retry_fn r x |> optionm'.box
+    $"let new_disposable x = !new_disposable x" : ()
+    $"let retry_fn x = !retry_fn x" : ()

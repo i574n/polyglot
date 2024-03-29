@@ -128,8 +128,8 @@ module Runtime =
                 do! proc.WaitForExitAsync ct |> Async.AwaitTask
                 return proc.ExitCode
             with :? System.Threading.Tasks.TaskCanceledException as ex ->
-                trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> printException}") getLocals
-                ex |> printException |> output.Push
+                trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> formatException}") getLocals
+                ex |> formatException |> output.Push
                 return System.Int32.MinValue
         }
 

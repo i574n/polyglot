@@ -245,3 +245,7 @@ The Polyglot repository, through its innovative use of Spiral within a unified c
 The repository’s approach, characterized by its innovative integration of Spiral with various technologies and paradigms, presents a pioneering model with substantial long-term value. It not only enhances the current software development landscape but also sets a foundation for future advancements in programming languages and computational models.
 
 This document provides a bird’s-eye view of the Polyglot repository, encapsulating its essence as a hub for Spiral’s exploration and application. If there are specific sections or details you’d like to add or modify, please feel free to provide feedback or suggestions.
+
+---
+
+[![Star History Chart](https://api.star-history.com/svg?repos=i574n/polyglot&type=Timeline)](https://star-history.com/#i574n/polyglot&Timeline)

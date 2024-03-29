@@ -19,6 +19,8 @@
 
 #!fsharp
 
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/Async.fs
 
@@ -61,7 +63,7 @@ type TestEvent () as self =
             member _.Subscribe observer =
                 self.AddCall "IObservable.Subscribe"
                 let disposable = self.Event.Publish.Subscribe observer
-                newDisposable (fun () ->
+                new_disposable (fun () ->
                     self.AddCall "IObservable.Dispose"
                     disposable.Dispose ()
                 )
@@ -71,7 +73,7 @@ type TestEvent () as self =
         subscribeEvent
             self.EventInterface
             (fun args ->
-                let result = args.GetException () |> printException
+                let result = args.GetException () |> formatException
                 self.AddCall $"TestEvent.Subscribe({result})"
                 result
             )
@@ -146,7 +148,7 @@ async {
     use _ = testEvent.EventInterface.Subscribe (fun args ->
         async {
             do! testEvent.WaitCall "TestEvent.Iter(0: System.Exception: error)"
-            testEvent.AddCall $"testEvent.EventInterface.Subscribe({args.GetException () |> printException})"
+            testEvent.AddCall $"testEvent.EventInterface.Subscribe({args.GetException () |> formatException})"
         }
         |> Async.RunSynchronously
     )

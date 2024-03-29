@@ -9,6 +9,8 @@
 #!spiral
 
 inl __expect fn log b a =
+    if log then
+        a |> sm'.format_debug |> console.write_line
     inl result = fn a b
     inl result =
         result || join result
@@ -22,6 +24,9 @@ inl _assert_approx_eq e b a = __assert_approx_eq true e b a
 
 inl __assert_eq log b a = __expect (=) log b a
 inl _assert_eq b a = __assert_eq true b a
+
+inl __assert_eq' log b a = __expect (/=) log b a
+inl _assert_eq' b a = __assert_eq' true b a
 
 inl __assert_ne log b a = __expect (fun a b => a = b |> fun x => join x |> not) log b a
 inl _assert_ne b a = __assert_ne true b a
@@ -38,10 +43,16 @@ inl _assert_lt b a = __assert_lt true b a
 inl __assert_le log b a = __expect (<=) log b a
 inl _assert_le b a = __assert_le true b a
 
-inl _throws (fn : () -> ()) : option string =
-    inl none = None : option string
-    inl some (s : string) = Some s
-    $"try !fn (); !none with ex -> !some ex.Message"
+inl __contains forall t. log (b : t) a =
+    __expect
+        (fun a b => a |> $'Seq.tryFind' ((=) b) |> optionm'.unbox |> fun (x : option t) => x <> None)
+        log b a
+inl _contains b a = __contains true b a
+
+inl _throws (fn : () -> ()) : option exn =
+    inl none = None : option exn
+    inl some (s : exn) = Some s
+    $"try !fn (); !none with ex -> ex |> !some"
 
 #!spiral
 
@@ -49,6 +60,13 @@ inl _throws (fn : () -> ()) : option string =
 
 1f64
 |> _assert_approx_eq (Some 3) 2
+
+#!spiral
+
+// // test
+
+"abcd"
+|> _contains 'b'
 
 #!spiral
 

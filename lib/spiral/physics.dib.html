@@ -8786,11 +8786,17 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.6} / expected: %A{0.6}"
-    let v1 : string = $"__expect / actual: %A{0.2} / expected: %A{0.2}"
+    let v0 : string = $"%A{0.6}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{0.6} / expected: %A{0.6}"
+    let v2 : string = $"%A{0.2}"
+    System.Console.WriteLine v2
+    let v3 : string = $"__expect / actual: %A{0.2} / expected: %A{0.2}"
     ()
 method0()
 
+0.6
+0.2
 </pre>
 </div>
 </div>
@@ -9222,16 +9228,37 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.25} / expected: %A{0.25}"
-    let v1 : string = $"__expect / actual: %A{2.499998827953931E-07} / expected: %A{2.499998827953931E-07}"
-    let v2 : string = $"__expect / actual: %A{1.000088900582341E-12} / expected: %A{1.000088900582341E-12}"
-    let v3 : string = $"__expect / actual: %A{8.274037099909037E-08} / expected: %A{8.274037099909037E-08}"
-    let v4 : string = $"__expect / actual: %A{8.890058234101161E-05} / expected: %A{8.890058234101161E-05}"
-    let v5 : string = $"__expect / actual: %A{-0.0007992778373592246} / expected: %A{-0.0007992778373592246}"
-    let v6 : string = $"__expect / actual: %A{-1.0} / expected: %A{-1.0}"
+    let v0 : string = $"%A{0.25}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{0.25} / expected: %A{0.25}"
+    let v2 : string = $"%A{2.499998827953931E-07}"
+    System.Console.WriteLine v2
+    let v3 : string = $"__expect / actual: %A{2.499998827953931E-07} / expected: %A{2.499998827953931E-07}"
+    let v4 : string = $"%A{1.000088900582341E-12}"
+    System.Console.WriteLine v4
+    let v5 : string = $"__expect / actual: %A{1.000088900582341E-12} / expected: %A{1.000088900582341E-12}"
+    let v6 : string = $"%A{8.274037099909037E-08}"
+    System.Console.WriteLine v6
+    let v7 : string = $"__expect / actual: %A{8.274037099909037E-08} / expected: %A{8.274037099909037E-08}"
+    let v8 : string = $"%A{8.890058234101161E-05}"
+    System.Console.WriteLine v8
+    let v9 : string = $"__expect / actual: %A{8.890058234101161E-05} / expected: %A{8.890058234101161E-05}"
+    let v10 : string = $"%A{-0.0007992778373592246}"
+    System.Console.WriteLine v10
+    let v11 : string = $"__expect / actual: %A{-0.0007992778373592246} / expected: %A{-0.0007992778373592246}"
+    let v12 : string = $"%A{-1.0}"
+    System.Console.WriteLine v12
+    let v13 : string = $"__expect / actual: %A{-1.0} / expected: %A{-1.0}"
     ()
 method0()
 
+0.25
+2.499998828e-07
+1.000088901e-12
+8.2740371e-08
+8.890058234e-05
+-0.0007992778374
+-1.0
 </pre>
 </div>
 </div>
@@ -9310,10 +9337,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.3333250000000004} / expected: %A{0.33332500000000004}"
+    let v0 : string = $"%A{0.3333250000000004}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{0.3333250000000004} / expected: %A{0.33332500000000004}"
     ()
 method0()
 
+0.333325
 </pre>
 </div>
 </div>
@@ -9376,10 +9406,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{0.3325000000000001} / expected: %A{0.33249999999999996}"
+    let v0 : string = $"%A{0.3325000000000001}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{0.3325000000000001} / expected: %A{0.33249999999999996}"
     ()
 method0()
 
+0.3325
 </pre>
 </div>
 </div>
@@ -9493,26 +9526,29 @@ and method0 () : unit =
         v18.l1 &lt;- v23
         ()
     let v25 : float = v18.l1
-    let v26 : float = 0.3333250000000004 - v25
-    let v27 : float =  -v26
-    let v28 : bool = v26 &gt;= v27
-    let v29 : float =
-        if v28 then
-            v26
-        else
+    let v26 : string = $"%A{v25}"
+    System.Console.WriteLine v26
+    let v27 : float = 0.3333250000000004 - v25
+    let v28 : float =  -v27
+    let v29 : bool = v27 &gt;= v28
+    let v30 : float =
+        if v29 then
             v27
-    let v30 : bool = v29 &lt; 1E-08
-    let v32 : bool =
-        if v30 then
+        else
+            v28
+    let v31 : bool = v30 &lt; 1E-08
+    let v33 : bool =
+        if v31 then
             true
         else
-            method4(v30)
-    let v33 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
-    let v34 : bool = v32 = false
-    if v34 then
-        failwith&lt;unit&gt; v33
+            method4(v31)
+    let v34 : string = $"__expect / actual: %A{v25} / expected: %A{0.3333250000000004}"
+    let v35 : bool = v33 = false
+    if v35 then
+        failwith&lt;unit&gt; v34
 method0()
 
+0.333325
 </pre>
 </div>
 </div>
@@ -12918,12 +12954,21 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)} / expected: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
-    let v1 : string = $"__expect / actual: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)} / expected: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
-    let v2 : string = $"__expect / actual: %A{struct (8.0, 2894.789038540849, 2894.789038540849)} / expected: %A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
+    let v0 : string = $"%A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)} / expected: %A{struct (7.999999999999874, 2864.8311229272326, 2864.8311229272326)}"
+    let v2 : string = $"%A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
+    System.Console.WriteLine v2
+    let v3 : string = $"__expect / actual: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)} / expected: %A{struct (7.999999999999988, 3043.379244966009, 2895.0121485099035)}"
+    let v4 : string = $"%A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
+    System.Console.WriteLine v4
+    let v5 : string = $"__expect / actual: %A{struct (8.0, 2894.789038540849, 2894.789038540849)} / expected: %A{struct (8.0, 2894.789038540849, 2894.789038540849)}"
     ()
 method0()
 
+struct (8.0, 2864.831123, 2864.831123)
+struct (8.0, 3043.379245, 2895.012149)
+struct (8.0, 2894.789039, 2894.789039)
 </pre>
 </div>
 </div>
@@ -13001,10 +13046,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3.0} / expected: %A{3.0}"
+    let v0 : string = $"%A{3.0}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{3.0} / expected: %A{3.0}"
     ()
 method0()
 
+3.0
 </pre>
 </div>
 </div>
@@ -13117,10 +13165,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
+    let v0 : string = $"%A{struct (5.0, 7.0, 9.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
     ()
 method0()
 
+struct (5.0, 7.0, 9.0)
 </pre>
 </div>
 </div>
@@ -13192,10 +13243,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
+    let v0 : string = $"%A{struct (5.0, 7.0, 9.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 7.0, 9.0)} / expected: %A{struct (5.0, 7.0, 9.0)}"
     ()
 method0()
 
+struct (5.0, 7.0, 9.0)
 </pre>
 </div>
 </div>
@@ -13266,10 +13320,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
+    let v0 : string = $"%A{struct (5.0, 10.0, 15.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
     ()
 method0()
 
+struct (5.0, 10.0, 15.0)
 </pre>
 </div>
 </div>
@@ -13300,10 +13357,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (3.0, 0.0, 4.0)} / expected: %A{struct (3.0, 0.0, 4.0)}"
+    let v0 : string = $"%A{struct (3.0, 0.0, 4.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (3.0, 0.0, 4.0)} / expected: %A{struct (3.0, 0.0, 4.0)}"
     ()
 method0()
 
+struct (3.0, 0.0, 4.0)
 </pre>
 </div>
 </div>
@@ -13374,10 +13434,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
+    let v0 : string = $"%A{struct (5.0, 10.0, 15.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (5.0, 10.0, 15.0)} / expected: %A{struct (5.0, 10.0, 15.0)}"
     ()
 method0()
 
+struct (5.0, 10.0, 15.0)
 </pre>
 </div>
 </div>
@@ -13448,10 +13511,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (0.2, 0.4, 0.6)} / expected: %A{struct (0.2, 0.4, 0.6)}"
+    let v0 : string = $"%A{struct (0.2, 0.4, 0.6)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (0.2, 0.4, 0.6)} / expected: %A{struct (0.2, 0.4, 0.6)}"
     ()
 method0()
 
+struct (0.2, 0.4, 0.6)
 </pre>
 </div>
 </div>
@@ -13523,10 +13589,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (-1.0, -2.0, -3.0)} / expected: %A{struct (-1.0, -2.0, -3.0)}"
+    let v0 : string = $"%A{struct (-1.0, -2.0, -3.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (-1.0, -2.0, -3.0)} / expected: %A{struct (-1.0, -2.0, -3.0)}"
     ()
 method0()
 
+struct (-1.0, -2.0, -3.0)
 </pre>
 </div>
 </div>
@@ -13597,10 +13666,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (-3.0, -3.0, -3.0)} / expected: %A{struct (-3.0, -3.0, -3.0)}"
+    let v0 : string = $"%A{struct (-3.0, -3.0, -3.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (-3.0, -3.0, -3.0)} / expected: %A{struct (-3.0, -3.0, -3.0)}"
     ()
 method0()
 
+struct (-3.0, -3.0, -3.0)
 </pre>
 </div>
 </div>
@@ -13671,10 +13743,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{32.0} / expected: %A{32.0}"
+    let v0 : string = $"%A{32.0}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{32.0} / expected: %A{32.0}"
     ()
 method0()
 
+32.0
 </pre>
 </div>
 </div>
@@ -13748,10 +13823,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (-3.0, 6.0, -3.0)} / expected: %A{struct (-3.0, 6.0, -3.0)}"
+    let v0 : string = $"%A{struct (-3.0, 6.0, -3.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (-3.0, 6.0, -3.0)} / expected: %A{struct (-3.0, 6.0, -3.0)}"
     ()
 method0()
 
+struct (-3.0, 6.0, -3.0)
 </pre>
 </div>
 </div>
@@ -13823,10 +13901,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3.7416573867739413} / expected: %A{3.7416573867739413}"
+    let v0 : string = $"%A{3.7416573867739413}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{3.7416573867739413} / expected: %A{3.7416573867739413}"
     ()
 method0()
 
+3.741657387
 </pre>
 </div>
 </div>
@@ -13897,10 +13978,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (2.0, 6.0, 6.0)} / expected: %A{struct (2.0, 6.0, 6.0)}"
+    let v0 : string = $"%A{struct (2.0, 6.0, 6.0)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (2.0, 6.0, 6.0)} / expected: %A{struct (2.0, 6.0, 6.0)}"
     ()
 method0()
 
+struct (2.0, 6.0, 6.0)
 </pre>
 </div>
 </div>
@@ -13974,10 +14058,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{11.999999999999744} / expected: %A{11.999999999999744}"
+    let v0 : string = $"%A{11.999999999999744}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{11.999999999999744} / expected: %A{11.999999999999744}"
     ()
 method0()
 
+12.0
 </pre>
 </div>
 </div>
@@ -14857,24 +14944,27 @@ and method0 () : unit =
     let v1 : float = 0.0
     let v2 : float = 30.0
     let struct (v3 : float, v4 : float) = method1(v0, v2, v1)
-    let v5 : bool = v3 = 116.77499158246208
-    let v7 : bool =
-        if v5 then
-            let v6 : bool = v4 = 41.0
-            v6
+    let v5 : string = $"%A{struct (v3, v4)}"
+    System.Console.WriteLine v5
+    let v6 : bool = v3 = 116.77499158246208
+    let v8 : bool =
+        if v6 then
+            let v7 : bool = v4 = 41.0
+            v7
         else
             false
-    let v9 : bool =
-        if v7 then
+    let v10 : bool =
+        if v8 then
             true
         else
-            method7(v7)
-    let v10 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
-    let v11 : bool = v9 = false
-    if v11 then
-        failwith&lt;unit&gt; v10
+            method7(v8)
+    let v11 : string = $"__expect / actual: %A{struct (v3, v4)} / expected: %A{struct (116.77499158246208, 41.0)}"
+    let v12 : bool = v10 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
 method0()
 
+struct (116.7749916, 41.0)
 </pre>
 </div>
 </div>
