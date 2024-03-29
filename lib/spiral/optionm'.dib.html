@@ -7659,10 +7659,13 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    let v0 : string = $"%A{3}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
     ()
 method0()
 
+3
 </pre>
 </div>
 </div>
@@ -7733,10 +7736,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    let v0 : string = $"%A{3}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
     ()
 method0()
 
+3
 </pre>
 </div>
 </div>
@@ -7808,10 +7814,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{3} / expected: %A{3}"
+    let v0 : string = $"%A{3}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{3} / expected: %A{3}"
     ()
 method0()
 
+3
 </pre>
 </div>
 </div>
@@ -7888,12 +7897,16 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(5)
-    let v4 : US0 = US0_1(5)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(5)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(5)
+    let v6 : US0 = US0_1(5)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
+US0_1 5
 </pre>
 </div>
 </div>
@@ -7979,18 +7992,21 @@ and method0 () : unit =
     let v2 : int32 = v1 + 1
     v0.l0 &lt;- v2
     let v3 : int32 = v0.l0
-    let v4 : bool = v3 = 2
-    let v6 : bool =
-        if v4 then
+    let v4 : string = $"%A{v3}"
+    System.Console.WriteLine v4
+    let v5 : bool = v3 = 2
+    let v7 : bool =
+        if v5 then
             true
         else
-            method1(v4)
-    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+            method1(v5)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{2}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
+2
 </pre>
 </div>
 </div>
@@ -8087,15 +8103,17 @@ and method0 () : unit =
     let v4 : int32 option = None
     let v5 : US0 = US0_0
     let v6 : US0 = v4 |&gt; Option.map v1 |&gt; Option.defaultValue v5
-    let v11 : bool =
+    let v7 : string = $"%A{struct (v3, v6)}"
+    System.Console.WriteLine v7
+    let v12 : bool =
         match v3 with
-        | US0_1(v9) -&gt; (* Some *)
-            let v10 : bool = v9 = 3
-            v10
+        | US0_1(v10) -&gt; (* Some *)
+            let v11 : bool = v10 = 3
+            v11
         | _ -&gt;
             false
-    let v13 : bool =
-        if v11 then
+    let v14 : bool =
+        if v12 then
             match v6 with
             | US0_0 -&gt; (* None *)
                 true
@@ -8103,19 +8121,20 @@ and method0 () : unit =
                 false
         else
             false
-    let v15 : bool =
-        if v13 then
+    let v16 : bool =
+        if v14 then
             true
         else
-            method1(v13)
-    let v16 : US0 = US0_1(3)
-    let v17 : US0 = US0_0
-    let v18 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v16, v17)}"
-    let v19 : bool = v15 = false
-    if v19 then
-        failwith&lt;unit&gt; v18
+            method1(v14)
+    let v17 : US0 = US0_1(3)
+    let v18 : US0 = US0_0
+    let v19 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v17, v18)}"
+    let v20 : bool = v16 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
+struct (US0_1 3, US0_0)
 </pre>
 </div>
 </div>

@@ -13,6 +13,8 @@
 
 #!fsharp
 
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/fsharp/Common.fs
 
 #!fsharp
@@ -91,11 +93,11 @@ let inline runWithTimeoutAsync (timeout : int) fn =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
             trace Warning (fun () -> "runWithTimeoutAsync") getLocals
             return None
         | ex ->
-            trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> printException}") getLocals
+            trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> formatException}") getLocals
             return None
     }
 
@@ -153,7 +155,7 @@ let inline runWithTimeoutChildAsync (timeout : int) fn = async {
                 trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
                 None
             | Error ex ->
-                trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> printException}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> formatException}") getLocals
                 None
         )
 }
@@ -210,10 +212,10 @@ let inline runWithTimeoutStrict (timeout : int) fn =
             return Async.RunSynchronously (fn, timeout) |> Some, getLocals
         with
         | :? System.TimeoutException as ex ->
-            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
             return None, getLocals
         | ex ->
-            trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> printException}") getLocals
+            trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> formatException}") getLocals
             return raise ex
     }
 
@@ -232,11 +234,11 @@ let inline runWithTimeoutStrict (timeout : int) fn =
         ex.InnerExceptions
         |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
         ->
-        let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+        let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
         trace Warning (fun () -> "runWithTimeoutStrict") getLocals
         None
     | ex ->
-        let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+        let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
         trace Critical (fun () -> "runWithTimeoutStrict**") getLocals
         None
 

@@ -13,6 +13,24 @@
 
 #!fsharp
 
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/date_time.fsx
+
+#!fsharp
+
+#if !WASM && !FABLE_COMPILER
+let Date_time = {|
+    new_guid_from_date_time =
+#if !INTERACTIVE
+        Date_time.new_guid_from_date_time
+#else
+        new_guid_from_date_time
+#endif
+|}
+#endif
+
+#!fsharp
+
 let nl = System.Environment.NewLine
 let q = @""""
 
@@ -68,166 +86,14 @@ module String =
         then value
         else $"{value |> substring 0 max}..."
 
-#!fsharp
-
-type TicksGuid = System.Guid
-type DateTimeGuid = System.Guid
-
-#!fsharp
-
-//// test
-
-let testGuid = Guid "FEDCBA98-7654-3210-FEDC-BA9876543210"
-
 #!markdown
 
-## dateTimeGuidFromDateTime
+## formatException
 
 #!fsharp
 
-let inline dateTimeGuidFromDateTime (guid: System.Guid) (dateTime: System.DateTime) =
-    let guid = guid |> string
-    let prefix = dateTime.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    DateTimeGuid $"{prefix}{guid.[prefix.Length..]}"
-
-#!fsharp
-
-//// test
-
-dateTimeGuidFromDateTime testGuid DateTime.MinValue
-|> _assertEqual (DateTimeGuid "00010101-0000-0000-0000-0a9876543210")
-
-#!fsharp
-
-//// test
-
-dateTimeGuidFromDateTime testGuid DateTime.MaxValue
-|> _assertEqual (DateTimeGuid $"99991231-2359-5999-9999-9{(testGuid |> string).[^10..]}")
-
-#!fsharp
-
-//// test
-
-dateTimeGuidFromDateTime testGuid DateTime.UnixEpoch
-|> _assertEqual (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).[^10..]}")
-
-#!markdown
-
-## dateTimeFromGuid
-
-#!fsharp
-
-let inline dateTimeFromGuid (dateTimeGuid: DateTimeGuid) =
-    let dateTimeGuid = dateTimeGuid |> string
-    System.DateTime.ParseExact (dateTimeGuid.[..24] |> String.replace "-" "", "yyyyMMddHHmmssfffffff", null)
-
-#!fsharp
-
-//// test
-
-dateTimeFromGuid (DateTimeGuid "00010101-0000-0000-0000-0a9876543210")
-|> _assertEqual DateTime.MinValue
-
-#!fsharp
-
-//// test
-
-dateTimeFromGuid (DateTimeGuid $"99991231-2359-5999-9999-9{(testGuid |> string).[^10..]}")
-|> _assertEqual DateTime.MaxValue
-
-#!fsharp
-
-//// test
-
-dateTimeFromGuid (DateTimeGuid $"19700101-0000-0000-0000-0{(testGuid |> string).[^10..]}")
-|> _assertEqual DateTime.UnixEpoch
-
-#!markdown
-
-## ticksGuidFromTicks
-
-#!fsharp
-
-let inline ticksGuidFromTicks (guid: System.Guid) (ticks: int64) =
-    let guid = guid |> string
-    let ticks = ticks |> string |> String.padLeft 18 '0'
-    TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
-
-#!fsharp
-
-//// test
-
-ticksGuidFromTicks testGuid 0L
-|> _assertEqual (TicksGuid "00000000-0000-0000-00dc-ba9876543210")
-
-#!fsharp
-
-//// test
-
-ticksGuidFromTicks testGuid 999999999999999999L
-|> _assertEqual (TicksGuid $"99999999-9999-9999-99dc-b{(testGuid |> string).[^10..]}")
-
-#!markdown
-
-## ticksFromGuid
-
-#!fsharp
-
-let inline ticksFromGuid (ticksGuid: DateTimeGuid) =
-    let ticks = ticksGuid |> string
-    int64 $"{ticks.[0..7]}{ticks.[9..12]}{ticks.[14..17]}{ticks.[19..20]}"
-
-#!fsharp
-
-//// test
-
-ticksFromGuid (TicksGuid "00000000-0000-0000-00dc-ba9876543210")
-|> _assertEqual 0L
-
-#!fsharp
-
-//// test
-
-ticksFromGuid (TicksGuid $"99999999-9999-9999-99{(testGuid |> string).[^14..]}")
-|> _assertEqual 999999999999999999L
-
-#!markdown
-
-## newGuidFromDateTime
-
-#!fsharp
-
-let inline newGuidFromDateTime (dateTime: System.DateTime) =
-    let guid = System.Guid.NewGuid ()
-    dateTimeGuidFromDateTime guid dateTime
-
-#!fsharp
-
-//// test
-
-newGuidFromDateTime System.DateTime.UtcNow
-|> dateTimeFromGuid
-|> fun dateTime -> (dateTime - System.DateTime.UtcNow).TotalSeconds |> int
-|> _assertEqual 0
-
-#!markdown
-
-## newGuidFromTicks
-
-#!fsharp
-
-let inline newGuidFromTicks (ticks: int64) =
-    let guid = System.Guid.NewGuid ()
-    ticksGuidFromTicks guid ticks
-
-#!fsharp
-
-//// test
-
-newGuidFromTicks System.DateTime.UtcNow.Ticks
-|> ticksFromGuid
-|> fun ticks -> (ticks - System.DateTime.UtcNow.Ticks) / 100000L
-|> _assertEqual 0L
+let inline formatException (ex : exn) =
+    $"{ex.GetType ()}: {ex.Message}"
 
 #!markdown
 
@@ -238,41 +104,6 @@ newGuidFromTicks System.DateTime.UtcNow.Ticks
 let inline memoize fn =
     let result = lazy fn ()
     fun () -> result.Value
-
-#!fsharp
-
-//// test
-
-let mutable count = 0
-let add =
-    fun () -> count <- count + 1
-    |> memoize
-
-add ()
-add ()
-add ()
-
-count
-|> _assertEqual 1
-
-#!markdown
-
-## printException
-
-#!fsharp
-
-let inline printException (ex : System.Exception) =
-    $"{ex.GetType ()}: {ex.Message}"
-
-#!fsharp
-
-//// test
-
-fun () -> failwith "test"
-|> _throwsC (fun ex _ ->
-    printException ex
-    |> _assertEqual "System.Exception: test"
-)
 
 #!markdown
 
@@ -322,10 +153,10 @@ let rec traceRaw level fn =
                 let tmpPath = System.IO.Path.GetTempPath ()
                 let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
                 System.IO.Directory.CreateDirectory logDir |> ignore
-                let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
+                let logFile = System.IO.Path.Combine (logDir, $"{Date_time.new_guid_from_date_time System.DateTime.Now}.txt")
                 System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
             with ex ->
-                traceRaw Critical (fun () -> $"trace / ex: {ex |> printException}")
+                traceRaw Critical (fun () -> $"trace / ex: {ex |> formatException}")
 #endif
 
 #!fsharp
@@ -410,111 +241,3 @@ let inline withTraceDump dump fn =
 //// test
 
 trace Debug (fun () -> "test") getLocals
-
-#!markdown
-
-## newDisposable
-
-#!fsharp
-
-let inline newDisposable fn =
-    { new System.IDisposable with
-        member _.Dispose () = fn ()
-    }
-
-#!fsharp
-
-//// test
-
-let mutable newDisposableTest = 0
-newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-|> _.Dispose()
-newDisposableTest |> _assertEqual 1
-
-#!fsharp
-
-//// test
-
-let mutable newDisposableTest = 0
-fun () -> task {
-    use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-    ()
-}
-|> fun x -> x () |> Async.AwaitTask |> Async.RunSynchronously
-newDisposableTest |> _assertEqual 1
-
-#!fsharp
-
-//// test
-
-let mutable newDisposableTest = 0
-async {
-    use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-    ()
-}
-|> Async.RunSynchronously
-newDisposableTest |> _assertEqual 1
-
-#!fsharp
-
-//// test
-
-let mutable newDisposableTest = 0
-async {
-    let x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-    ()
-}
-|> Async.RunSynchronously
-newDisposableTest |> _assertEqual 0
-
-#!markdown
-
-## retryFn
-
-#!fsharp
-
-let inline retryFn retries fn =
-    let rec loop retry =
-        try
-            if retry < retries
-            then fn () |> Some
-            else None
-        with ex ->
-            let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
-            trace Warning (fun () -> "retryFn") getLocals
-            System.Threading.Thread.Sleep 1
-            loop (retry + 1)
-    loop 0
-
-#!fsharp
-
-//// test
-
-let mutable retryFnTest = 0
-fun () ->
-    retryFnTest <- retryFnTest + 1
-    retryFnTest
-|> retryFn 3
-|> _assertEqual (Some 1)
-
-#!fsharp
-
-//// test
-
-fun () -> failwith "test"
-|> retryFn 3
-|> _assertEqual None
-
-#!fsharp
-
-//// test
-
-let mutable retryFnTest = 0
-fun () ->
-    if retryFnTest >= 2
-    then retryFnTest
-    else
-        retryFnTest <- retryFnTest + 1
-        failwith "test"
-|> retryFn 3
-|> _assertEqual (Some 2)

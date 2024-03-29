@@ -4,6 +4,17 @@ namespace Polyglot
 
 module Common =
 
+#if !WASM && !FABLE_COMPILER
+    let Date_time = {|
+        new_guid_from_date_time =
+#if !INTERACTIVE
+            Date_time.new_guid_from_date_time
+#else
+            new_guid_from_date_time
+#endif
+    |}
+#endif
+
     let nl = System.Environment.NewLine
     let q = @""""
 
@@ -55,57 +66,16 @@ module Common =
             then value
             else $"{value |> substring 0 max}..."
 
-    type TicksGuid = System.Guid
-    type DateTimeGuid = System.Guid
+    /// ## formatException
 
-    /// ## dateTimeGuidFromDateTime
-
-    let inline dateTimeGuidFromDateTime (guid: System.Guid) (dateTime: System.DateTime) =
-        let guid = guid |> string
-        let prefix = dateTime.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-        DateTimeGuid $"{prefix}{guid.[prefix.Length..]}"
-
-    /// ## dateTimeFromGuid
-
-    let inline dateTimeFromGuid (dateTimeGuid: DateTimeGuid) =
-        let dateTimeGuid = dateTimeGuid |> string
-        System.DateTime.ParseExact (dateTimeGuid.[..24] |> String.replace "-" "", "yyyyMMddHHmmssfffffff", null)
-
-    /// ## ticksGuidFromTicks
-
-    let inline ticksGuidFromTicks (guid: System.Guid) (ticks: int64) =
-        let guid = guid |> string
-        let ticks = ticks |> string |> String.padLeft 18 '0'
-        TicksGuid $"{ticks.[0..7]}-{ticks.[8..11]}-{ticks.[12..15]}-{ticks.[16..17]}{guid.[21..]}"
-
-    /// ## ticksFromGuid
-
-    let inline ticksFromGuid (ticksGuid: DateTimeGuid) =
-        let ticks = ticksGuid |> string
-        int64 $"{ticks.[0..7]}{ticks.[9..12]}{ticks.[14..17]}{ticks.[19..20]}"
-
-    /// ## newGuidFromDateTime
-
-    let inline newGuidFromDateTime (dateTime: System.DateTime) =
-        let guid = System.Guid.NewGuid ()
-        dateTimeGuidFromDateTime guid dateTime
-
-    /// ## newGuidFromTicks
-
-    let inline newGuidFromTicks (ticks: int64) =
-        let guid = System.Guid.NewGuid ()
-        ticksGuidFromTicks guid ticks
+    let inline formatException (ex : exn) =
+        $"{ex.GetType ()}: {ex.Message}"
 
     /// ## memoize
 
     let inline memoize fn =
         let result = lazy fn ()
         fun () -> result.Value
-
-    /// ## printException
-
-    let inline printException (ex : System.Exception) =
-        $"{ex.GetType ()}: {ex.Message}"
 
     /// ## TraceLevel
 
@@ -145,10 +115,10 @@ module Common =
                     let tmpPath = System.IO.Path.GetTempPath ()
                     let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
                     System.IO.Directory.CreateDirectory logDir |> ignore
-                    let logFile = System.IO.Path.Combine (logDir, $"{newGuidFromDateTime System.DateTime.Now}.txt")
+                    let logFile = System.IO.Path.Combine (logDir, $"{Date_time.new_guid_from_date_time System.DateTime.Now}.txt")
                     System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
                 with ex ->
-                    traceRaw Critical (fun () -> $"trace / ex: {ex |> printException}")
+                    traceRaw Critical (fun () -> $"trace / ex: {ex |> formatException}")
 #endif
 
     /// ## trace
@@ -217,25 +187,3 @@ module Common =
             fn ()
         finally
             traceDump <- oldTraceDump
-
-    /// ## newDisposable
-
-    let inline newDisposable fn =
-        { new System.IDisposable with
-            member _.Dispose () = fn ()
-        }
-
-    /// ## retryFn
-
-    let inline retryFn retries fn =
-        let rec loop retry =
-            try
-                if retry < retries
-                then fn () |> Some
-                else None
-            with ex ->
-                let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
-                trace Warning (fun () -> "retryFn") getLocals
-                System.Threading.Thread.Sleep 1
-                loop (retry + 1)
-        loop 0

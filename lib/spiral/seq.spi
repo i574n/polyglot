@@ -1,5 +1,19 @@
 // // # seq
 
+// // ## seq'
+
+type seq' t = $"`t seq"
+
+// // ## of_array'
+
+inl of_array' forall dim t. (items : a dim t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
+// // ## to_array'
+
+inl to_array' forall dim t. (items : seq' t) : a dim t =
+    $'!items |> Seq.toArray'
+
 // // ## seq
 
 type seq dim el = dim -> option el

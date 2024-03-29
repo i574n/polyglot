@@ -4,7 +4,7 @@ inl (/@) x = listm'.(/@) x
 
 inl gc_collect () =
     run_target function
-        | Fsharp => fun () => $"System.GC.Collect ()"
+        | Fsharp _ => fun () => $"System.GC.Collect ()"
         | _ => fun () => ()
         
 inl printfn x =

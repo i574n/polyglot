@@ -7573,7 +7573,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
+<span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Runtime.fs</span>
@@ -7622,7 +7624,7 @@ a.anchor-link {
         <span class="n">do</span><span class="err">!</span> <span class="n">client</span><span class="o">.</span><span class="n">ConnectAsync</span> <span class="p">(</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">ct</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">awaitValueTaskUnit</span>
         <span class="k">return</span> <span class="n">true</span>
     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"testPortOpen / ex: {ex |&gt; printException}"</span><span class="p">)</span> <span class="n">getLocals</span>
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"testPortOpen / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
         <span class="k">return</span> <span class="n">false</span>
 <span class="p">}</span>
 </pre></div>
@@ -7844,9 +7846,9 @@ False
 2
 2
 2
-117
-117
-117
+119
+119
+119
 True
 </pre>
 </div>
@@ -7920,11 +7922,11 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:11 #20 [Debug] 1
-00:00:11 #22 [Debug] 2
-00:00:11 #22 [Debug] _1
-00:00:11 #23 [Debug] 3
-00:00:11 #24 [Debug] runWithTimeoutAsync / timeout: 60
+<pre>00:00:10 #20 [Debug] 1
+00:00:10 #21 [Debug] _1
+00:00:10 #22 [Debug] 2
+00:00:10 #23 [Debug] 3
+00:00:10 #24 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:11 #25 [Verbose] waitForPortAccess / port: 5555 / retry: 0
 00:00:11 #26 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:11 #27 [Debug] runWithTimeoutAsync / timeout: 60
@@ -7944,9 +7946,9 @@ True
 7
 7
 7
-8
-8
-8
+10
+10
+10
 True
 </pre>
 </div>
@@ -8145,11 +8147,11 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:19 #56 [Debug] 1
-00:00:19 #57 [Debug] 2
-00:00:19 #58 [Debug] _1
-00:00:19 #59 [Debug] _2
-00:00:19 #60 [Debug] _3
+<pre>00:00:18 #56 [Debug] 1
+00:00:18 #57 [Debug] 2
+00:00:18 #58 [Debug] _1
+00:00:18 #59 [Debug] _2
+00:00:18 #60 [Debug] _3
 00:00:19 #61 [Debug] 3
 00:00:19 #62 [Debug] runWithTimeoutAsync / timeout: 60
 00:00:19 #63 [Debug] 4
@@ -8160,9 +8162,9 @@ True
 00:00:19 #68 [Debug] 5
 00:00:19 #69 [Debug] 6
 5557
-3
-3
-3
+6
+6
+6
 True
 </pre>
 </div>

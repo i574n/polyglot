@@ -7587,7 +7587,6 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="nb">any</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"obj"</span>
 <span class="n">nominal</span> <span class="n">disposable</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.IDisposable"</span>
 <span class="n">nominal</span> <span class="n">exn</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"exn"</span>
-<span class="n">nominal</span> <span class="n">guid</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.Guid"</span>
 <span class="n">nominal</span> <span class="n">unativeint</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"unativeint"</span>
 
 <span class="n">let</span> <span class="n">array</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
@@ -7703,8 +7702,17 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">i64</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">i32</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i32</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"int32 !x"</span>
+
+<span class="n">inl</span> <span class="n">i64</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">i64</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"int64 !x"</span>
+
+<span class="n">inl</span> <span class="n">f32</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">f32</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"float32 !x"</span>
+
+<span class="n">inl</span> <span class="n">f64</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">f64</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"float !x"</span>
 </pre></div>
 </div>
 </div>
@@ -7791,10 +7799,13 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
+    let v0 : string = $"%A{struct (1, 2)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (1, 2)} / expected: %A{struct (1, 2)}"
     ()
 method0()
 
+struct (1, 2)
 </pre>
 </div>
 </div>
@@ -7914,24 +7925,27 @@ and method0 () : unit =
     let (a, b) = v1
     let v2 : string = a
     let v3 : int32 = b
-    let v4 : bool = v2 = "a"
-    let v6 : bool =
-        if v4 then
-            let v5 : bool = v3 = 1
-            v5
+    let v4 : string = $"%A{struct (v2, v3)}"
+    System.Console.WriteLine v4
+    let v5 : bool = v2 = "a"
+    let v7 : bool =
+        if v5 then
+            let v6 : bool = v3 = 1
+            v6
         else
             false
-    let v8 : bool =
-        if v6 then
+    let v9 : bool =
+        if v7 then
             true
         else
-            method1(v6)
-    let v9 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
-    let v10 : bool = v8 = false
-    if v10 then
-        failwith&lt;unit&gt; v9
+            method1(v7)
+    let v10 : string = $"__expect / actual: %A{struct (v2, v3)} / expected: %A{struct (v0, 1)}"
+    let v11 : bool = v9 = false
+    if v11 then
+        failwith&lt;unit&gt; v10
 method0()
 
+struct ("a", 1)
 </pre>
 </div>
 </div>
@@ -8241,11 +8255,51 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(%7C%7C%3E)">(||&gt;)<a class="anchor-link" href="#(%7C%7C%3E)">¶</a></h2>
+<h2 id="(/=)">(/=)<a class="anchor-link" href="#(/=)">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">/=</span><span class="p">)</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s2">"!a = !b"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="(%7C%7C%3E)">(||&gt;)<a class="anchor-link" href="#(%7C%7C%3E)">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8274,7 +8328,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8300,17 +8354,20 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{1} / expected: %A{1}"
+    let v0 : string = $"%A{1}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{1} / expected: %A{1}"
     ()
 method0()
 
+1
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8320,7 +8377,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8349,7 +8406,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8375,17 +8432,20 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
+    let v0 : string = $"%A{struct (2, 1)}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{struct (2, 1)} / expected: %A{struct (2, 1)}"
     ()
 method0()
 
+struct (2, 1)
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8395,7 +8455,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8428,7 +8488,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8460,7 +8520,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8494,24 +8554,27 @@ and method0 () : unit =
     let v1 : int32 = 9 + v0
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v6 : bool =
-        if v4 then
+    let v4 : string = $"%A{v3}"
+    System.Console.WriteLine v4
+    let v5 : bool = v3 = 15
+    let v7 : bool =
+        if v5 then
             true
         else
-            method2(v4)
-    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+            method2(v5)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
+15
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8549,25 +8612,28 @@ and method0 () : unit =
     let v2 : int32 = method2(v0, v1)
     let v3 : int32 = v2 + 2
     let v4 : int32 = v3 + 1
-    let v5 : bool = v4 = 15
-    let v7 : bool =
-        if v5 then
+    let v5 : string = $"%A{v4}"
+    System.Console.WriteLine v5
+    let v6 : bool = v4 = 15
+    let v8 : bool =
+        if v6 then
             true
         else
-            method3(v5)
-    let v8 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+            method3(v6)
+    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{15}"
+    let v10 : bool = v8 = false
+    if v10 then
+        failwith&lt;unit&gt; v9
 method0()
 
+15
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8577,7 +8643,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8610,7 +8676,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8647,25 +8713,28 @@ and method0 () : unit =
     let v1 : int32 = method2(v0)
     let v2 : int32 = v1 + 2
     let v3 : int32 = v2 + 1
-    let v4 : bool = v3 = 15
-    let v6 : bool =
-        if v4 then
+    let v4 : string = $"%A{v3}"
+    System.Console.WriteLine v4
+    let v5 : bool = v3 = 15
+    let v7 : bool =
+        if v5 then
             true
         else
-            method3(v4)
-    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+            method3(v5)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{15}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
+15
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8675,7 +8744,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8723,7 +8792,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8768,24 +8837,27 @@ and method0 () : unit =
     #endif
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
-    let v4 : bool = v3 = 1uy
-    let v6 : bool =
-        if v4 then
+    let v4 : string = $"%A{v3}"
+    System.Console.WriteLine v4
+    let v5 : bool = v3 = 1uy
+    let v7 : bool =
+        if v5 then
             true
         else
-            method1(v4)
-    let v7 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+            method1(v5)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{1uy}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
+1uy
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8815,7 +8887,7 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>.rs output:
-
+true
 </pre>
 </div>
 </div>
@@ -8843,17 +8915,20 @@ and method0 () : unit =
     |&gt; fun x -&gt; result &lt;- Some x
     let v3 : uint8 = result |&gt; Option.get
     let v4 : bool = 2uy = v3
-    let v6 : bool =
+    let v5 : string = $"%A{v4}"
+    System.Console.WriteLine v5
+    let v7 : bool =
         if v4 then
             true
         else
             method1(v4)
-    let v7 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
-    let v8 : bool = v6 = false
-    if v8 then
-        failwith&lt;unit&gt; v7
+    let v8 : string = $"__expect / actual: %A{v4} / expected: %A{true}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
 method0()
 
+
 .rs:
 #![allow(dead_code,)]
 #![allow(non_camel_case_types,)]
@@ -8871,13 +8946,17 @@ mod module_ccfa04bf {
         use fable_library_rust::Native_::MutCell;
         use fable_library_rust::Native_::on_startup;
         use fable_library_rust::Option_::getValue;
+        use fable_library_rust::String_::printfn;
         use fable_library_rust::String_::sprintf;
+        use fable_library_rust::String_::string;
         pub fn method1(v0: bool) -&gt; bool { v0 }
         pub fn method0() {
             let result: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
             result.set(Some(2_u8));
             {
                 let v4: bool = 2_u8 == getValue(result.get().clone());
+                let v5: string = sprintf!("{:?}", v4);
+                printfn!("{0}", v5);
                 if (if v4 { true } else { Spiral_eval::method1(v4) }) == false
                    {
                     panic!("{}",
@@ -8896,7 +8975,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8906,7 +8985,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8936,7 +9015,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8946,7 +9025,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8976,7 +9055,46 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="guid">guid<a class="anchor-link" href="#guid">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">guid</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.Guid"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8986,7 +9104,7 @@ pub use module_ccfa04bf::*;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9009,6 +9127,836 @@ pub use module_ccfa04bf::*;
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_guid">new_guid<a class="anchor-link" href="#new_guid">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_guid</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">guid</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'`guid !x '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="memoize">memoize<a class="anchor-link" href="#memoize">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">lazy</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'Lazy&lt;`t&gt;'</span>
+
+<span class="n">inl</span> <span class="n">memoize</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">result</span> <span class="p">:</span> <span class="n">lazy</span> <span class="n">t</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'lazy !fn ()'</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'!result.Value'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">count</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
+<span class="n">inl</span> <span class="n">add</span> <span class="o">=</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">count</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="o">|&gt;</span> <span class="n">memoize</span>
+
+<span class="n">add</span> <span class="p">()</span>
+<span class="n">add</span> <span class="p">()</span>
+<span class="n">add</span> <span class="p">()</span>
+
+<span class="o">*</span><span class="n">count</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+let rec closure0 (v0 : Mut0) () : unit =
+    let v1 : int32 = v0.l0
+    let v2 : int32 = v1 + 1
+    v0.l0 &lt;- v2
+    ()
+and method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0} : Mut0
+    let v1 : (unit -&gt; unit) = closure0(v0)
+    let v2 : Lazy&lt;unit&gt; = lazy v1 ()
+    v2.Value
+    v2.Value
+    v2.Value
+    let v3 : int32 = v0.l0
+    let v4 : string = $"%A{v3}"
+    System.Console.WriteLine v4
+    let v5 : bool = v3 = 1
+    let v7 : bool =
+        if v5 then
+            true
+        else
+            method1(v5)
+    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{1}"
+    let v9 : bool = v7 = false
+    if v9 then
+        failwith&lt;unit&gt; v8
+method0()
+
+1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="s2">"test"</span>
+<span class="o">|&gt;</span> <span class="n">_throws</span>
+<span class="o">|&gt;</span> <span class="n">optionm</span><span class="o">.</span><span class="n">map</span> <span class="n">sm</span><span class="s1">'.format_exception</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="s2">"System.Exception: test"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : exn
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : string
+let rec closure0 () () : unit =
+    failwith&lt;unit&gt; "test"
+and closure1 () (v0 : exn) : US0 =
+    US0_1(v0)
+and method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : (unit -&gt; unit) = closure0()
+    let v1 : US0 = US0_0
+    let v2 : (exn -&gt; US0) = closure1()
+    let v3 : US0 = try v0 (); v1 with ex -&gt; ex |&gt; v2
+    let v9 : US1 =
+        match v3 with
+        | US0_0 -&gt; (* None *)
+            US1_0
+        | US0_1(v4) -&gt; (* Some *)
+            let v5 : string = $"{v4.GetType ()}: {v4.Message}"
+            US1_1(v5)
+    let v10 : string = $"%A{v9}"
+    System.Console.WriteLine v10
+    let v15 : bool =
+        match v9 with
+        | US1_1(v13) -&gt; (* Some *)
+            let v14 : bool = v13 = "System.Exception: test"
+            v14
+        | _ -&gt;
+            false
+    let v17 : bool =
+        if v15 then
+            true
+        else
+            method1(v15)
+    let v18 : string = "System.Exception: test"
+    let v19 : US1 = US1_1(v18)
+    let v20 : string = $"__expect / actual: %A{v9} / expected: %A{v19}"
+    let v21 : bool = v17 = false
+    if v21 then
+        failwith&lt;unit&gt; v20
+method0()
+
+US1_1 "System.Exception: test"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=63">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_disposable">new_disposable<a class="anchor-link" href="#new_disposable">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">disposable</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'{ new System.IDisposable with member _.Dispose () = !fn () }'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">new_disposable_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
+<span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">new_disposable_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">new_disposable_test</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'_.Dispose()'</span>
+<span class="o">*</span><span class="n">new_disposable_test</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+let rec closure0 (v0 : Mut0) () : unit =
+    let v1 : int32 = v0.l0
+    let v2 : int32 = v1 + 1
+    v0.l0 &lt;- v2
+    ()
+and method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0} : Mut0
+    let v1 : (unit -&gt; unit) = closure0(v0)
+    let v2 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v1 () }
+    let v3 : (System.IDisposable -&gt; unit) = _.Dispose()
+    v3 v2
+    let v4 : int32 = v0.l0
+    let v5 : string = $"%A{v4}"
+    System.Console.WriteLine v5
+    let v6 : bool = v4 = 1
+    let v8 : bool =
+        if v6 then
+            true
+        else
+            method1(v6)
+    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{1}"
+    let v10 : bool = v8 = false
+    if v10 then
+        failwith&lt;unit&gt; v9
+method0()
+
+1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="n">let</span> <span class="n">mutable</span> <span class="n">newDisposableTest</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">//</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">task</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="n">use</span> <span class="n">x</span> <span class="o">=</span> <span class="n">newDisposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">newDisposableTest</span> <span class="o">&lt;-</span> <span class="n">newDisposableTest</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">//</span>     <span class="p">()</span>
+<span class="o">//</span> <span class="p">}</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+<span class="o">//</span> <span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="c1">#!fsharp</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="o">////</span> <span class="n">test</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="n">let</span> <span class="n">mutable</span> <span class="n">newDisposableTest</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">//</span> <span class="k">async</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="n">use</span> <span class="n">x</span> <span class="o">=</span> <span class="n">newDisposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">newDisposableTest</span> <span class="o">&lt;-</span> <span class="n">newDisposableTest</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">//</span>     <span class="p">()</span>
+<span class="o">//</span> <span class="p">}</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+<span class="o">//</span> <span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="c1">#!fsharp</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="o">////</span> <span class="n">test</span>
+<span class="o">//</span> 
+<span class="o">//</span> <span class="n">let</span> <span class="n">mutable</span> <span class="n">newDisposableTest</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o">//</span> <span class="k">async</span> <span class="p">{</span>
+<span class="o">//</span>     <span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">newDisposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">newDisposableTest</span> <span class="o">&lt;-</span> <span class="n">newDisposableTest</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">//</span>     <span class="p">()</span>
+<span class="o">//</span> <span class="p">}</span>
+<span class="o">//</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+<span class="o">//</span> <span class="n">newDisposableTest</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">System</span>
+
+<span class="nb">type</span> <span class="n">DateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">DateTime</span><span class="p">:</span> <span class="n">DateTimeOffset</span>
+    <span class="n">TimeZone</span><span class="p">:</span> <span class="n">TimeZoneInfo</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Creating</span> <span class="n">an</span> <span class="n">example</span> <span class="n">DateTimeWithZone</span>
+<span class="n">let</span> <span class="n">now</span> <span class="o">=</span> <span class="n">DateTimeOffset</span><span class="o">.</span><span class="n">Now</span>
+<span class="n">let</span> <span class="n">timeZoneInfo</span> <span class="o">=</span> <span class="n">TimeZoneInfo</span><span class="o">.</span><span class="n">Local</span>
+<span class="n">let</span> <span class="n">dateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span> <span class="n">DateTime</span> <span class="o">=</span> <span class="n">now</span><span class="p">;</span> <span class="n">TimeZone</span> <span class="o">=</span> <span class="n">timeZoneInfo</span> <span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Usage</span> <span class="n">example</span><span class="p">:</span> <span class="n">Displaying</span> <span class="n">information</span>
+<span class="n">printfn</span> <span class="s2">"DateTime: %O"</span> <span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">DateTime</span>
+<span class="n">printfn</span> <span class="s2">"Time Zone: </span><span class="si">%s</span><span class="s2">"</span> <span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span><span class="o">.</span><span class="n">DisplayName</span>
+<span class="n">printfn</span> <span class="s2">"Is DST: %b"</span> <span class="p">(</span><span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">IsDaylightSavingTime</span><span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">DateTime</span><span class="p">))</span>
+<span class="n">printfn</span> <span class="s2">"v1: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span><span class="o">.</span><span class="n">GetUtcOffset</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
+<span class="n">printfn</span> <span class="s2">"v2: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>DateTime: 2024-03-28 7:55:31 PM -04:00
+Time Zone: (UTC-04:00) Cuiaba
+Is DST: false
+v1: -04:00:00
+v2: (UTC-04:00) Cuiaba
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="try">try<a class="anchor-link" href="#try">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">try</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">(</span><span class="n">ex_fn</span> <span class="p">:</span> <span class="n">exn</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">none</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span>
+    <span class="n">inl</span> <span class="n">some</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">s</span>
+    <span class="err">$</span><span class="s1">'try !fn () |&gt; !some with ex -&gt; !ex_fn ex; !none '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="retry_fn">retry_fn<a class="anchor-link" href="#retry_fn">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">retry_fn</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">retries</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span>
+        <span class="k">try</span>
+            <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+                <span class="k">if</span> <span class="n">retry</span> <span class="o">&lt;</span> <span class="n">retries</span>
+                <span class="n">then</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Some</span>
+                <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="o">//</span> <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"retry_fn"</span><span class="p">)</span> <span class="n">getLocals</span>
+                <span class="err">$</span><span class="s1">'System.Threading.Thread.Sleep'</span> <span class="mi">1</span><span class="n">i32</span>
+        <span class="o">|&gt;</span> <span class="n">function</span>
+            <span class="o">|</span> <span class="n">Some</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span>
+            <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">loop</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="n">retry_fn_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">retry_fn_test</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="o">*</span><span class="n">retry_fn_test</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">1</span><span class="n">i32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : US0
+let rec closure0 (v0 : Mut0, v1 : int32) () : US0 =
+    let v2 : bool = v1 &lt; 3
+    if v2 then
+        let v3 : int32 = v0.l0
+        let v4 : int32 = v3 + 1
+        v0.l0 &lt;- v4
+        let v5 : int32 = v0.l0
+        US0_1(v5)
+    else
+        US0_0
+and closure1 () (v0 : US0) : US1 =
+    US1_1(v0)
+and closure2 () (v0 : exn) : unit =
+    let v1 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
+    v1 1
+and method1 (v0 : Mut0, v1 : int32) : US0 =
+    let v2 : (unit -&gt; US0) = closure0(v0, v1)
+    let v3 : (US0 -&gt; US1) = closure1()
+    let v4 : (exn -&gt; unit) = closure2()
+    let v5 : US1 = US1_0
+    let v6 : US1 = try v2 () |&gt; v3 with ex -&gt; v4 ex; v5 
+    match v6 with
+    | US1_0 -&gt; (* None *)
+        let v8 : int32 = v1 + 1
+        method1(v0, v8)
+    | US1_1(v7) -&gt; (* Some *)
+        v7
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0} : Mut0
+    let v1 : int32 = 0
+    let v2 : US0 = method1(v0, v1)
+    let v3 : string = $"%A{v2}"
+    System.Console.WriteLine v3
+    let v7 : bool =
+        match v2 with
+        | US0_1(v5) -&gt; (* Some *)
+            let v6 : bool = v5 = 1
+            v6
+        | _ -&gt;
+            false
+    let v9 : bool =
+        if v7 then
+            true
+        else
+            method2(v7)
+    let v10 : US0 = US0_1(1)
+    let v11 : string = $"__expect / actual: %A{v2} / expected: %A{v10}"
+    let v12 : bool = v9 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
+method0()
+
+US0_1 1
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">retry_fn_test</span> <span class="o">=</span> <span class="n">mut</span> <span class="mi">0</span><span class="n">i32</span>
+<span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="o">*</span><span class="n">retry_fn_test</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+    <span class="n">then</span> <span class="o">*</span><span class="n">retry_fn_test</span>
+    <span class="k">else</span>
+        <span class="n">retry_fn_test</span> <span class="o">&lt;-</span> <span class="o">*</span><span class="n">retry_fn_test</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">failwith</span> <span class="s2">"test"</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span><span class="n">i32</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2</span><span class="n">i32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type Mut0 = {mutable l0 : int32}
+and [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : US0
+let rec closure0 (v0 : Mut0, v1 : int32) () : US0 =
+    let v2 : bool = v1 &lt; 3
+    if v2 then
+        let v3 : int32 = v0.l0
+        let v4 : bool = v3 &gt;= 2
+        let v9 : int32 =
+            if v4 then
+                let v5 : int32 = v0.l0
+                v5
+            else
+                let v6 : int32 = v0.l0
+                let v7 : int32 = v6 + 1
+                v0.l0 &lt;- v7
+                failwith&lt;int32&gt; "test"
+        US0_1(v9)
+    else
+        US0_0
+and closure1 () (v0 : US0) : US1 =
+    US1_1(v0)
+and closure2 () (v0 : exn) : unit =
+    let v1 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
+    v1 1
+and method1 (v0 : Mut0, v1 : int32) : US0 =
+    let v2 : (unit -&gt; US0) = closure0(v0, v1)
+    let v3 : (US0 -&gt; US1) = closure1()
+    let v4 : (exn -&gt; unit) = closure2()
+    let v5 : US1 = US1_0
+    let v6 : US1 = try v2 () |&gt; v3 with ex -&gt; v4 ex; v5 
+    match v6 with
+    | US1_0 -&gt; (* None *)
+        let v8 : int32 = v1 + 1
+        method1(v0, v8)
+    | US1_1(v7) -&gt; (* Some *)
+        v7
+and method2 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : Mut0 = {l0 = 0} : Mut0
+    let v1 : int32 = 0
+    let v2 : US0 = method1(v0, v1)
+    let v3 : string = $"%A{v2}"
+    System.Console.WriteLine v3
+    let v7 : bool =
+        match v2 with
+        | US0_1(v5) -&gt; (* Some *)
+            let v6 : bool = v5 = 2
+            v6
+        | _ -&gt;
+            false
+    let v9 : bool =
+        if v7 then
+            true
+        else
+            method2(v7)
+    let v10 : US0 = US0_1(2)
+    let v11 : string = $"__expect / actual: %A{v2} / expected: %A{v10}"
+    let v12 : bool = v9 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
+method0()
+
+US0_1 2
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">retry_fn</span> <span class="p">(</span><span class="n">r</span> <span class="p">:</span> <span class="n">i32</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">_</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">()</span> <span class="o">=</span>
+        <span class="n">retry_fn</span> <span class="n">r</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+    <span class="err">$</span><span class="s2">"let new_guid x = !new_guid x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let new_disposable x = !new_disposable x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let retry_fn x = !retry_fn x"</span> <span class="p">:</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1
+and [&lt;Struct&gt;] US1 =
+    | US1_0
+    | US1_1 of f1_0 : US0
+let rec closure0 () (v0 : string) : System.Guid =
+    let v1 : System.Guid = System.Guid v0 
+    v1
+and closure1 () (v0 : (unit -&gt; unit)) : System.IDisposable =
+    let v1 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
+    v1
+and closure4 (v0 : int32, v1 : (unit -&gt; unit), v2 : int32) () : US0 =
+    let v3 : bool = v2 &lt; v0
+    if v3 then
+        v1 ()
+        US0_1
+    else
+        US0_0
+and closure5 () (v0 : US0) : US1 =
+    US1_1(v0)
+and closure6 () (v0 : exn) : unit =
+    let v1 : (int32 -&gt; unit) = System.Threading.Thread.Sleep
+    v1 1
+and method0 (v0 : int32, v1 : (unit -&gt; unit), v2 : int32) : US0 =
+    let v3 : (unit -&gt; US0) = closure4(v0, v1, v2)
+    let v4 : (US0 -&gt; US1) = closure5()
+    let v5 : (exn -&gt; unit) = closure6()
+    let v6 : US1 = US1_0
+    let v7 : US1 = try v3 () |&gt; v4 with ex -&gt; v5 ex; v6 
+    match v7 with
+    | US1_0 -&gt; (* None *)
+        let v9 : int32 = v2 + 1
+        method0(v0, v1, v9)
+    | US1_1(v8) -&gt; (* Some *)
+        v8
+and closure3 (v0 : int32) (v1 : (unit -&gt; unit)) : unit option =
+    let v2 : int32 = 0
+    let v3 : US0 = method0(v0, v1, v2)
+    match v3 with
+    | US0_0 -&gt; (* None *)
+        let v5 : unit option = None
+        v5
+    | US0_1 -&gt; (* Some *)
+        let v4 : unit option = Some ()
+        v4
+and closure2 () (v0 : int32) : ((unit -&gt; unit) -&gt; unit option) =
+    closure3(v0)
+let v0 : (string -&gt; System.Guid) = closure0()
+let new_guid x = v0 x
+let v1 : ((unit -&gt; unit) -&gt; System.IDisposable) = closure1()
+let new_disposable x = v1 x
+let v2 : (int32 -&gt; ((unit -&gt; unit) -&gt; unit option)) = closure2()
+let retry_fn x = v2 x
+()
 
 </pre>
 </div>

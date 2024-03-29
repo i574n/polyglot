@@ -14,6 +14,48 @@ open testing
 
 #!markdown
 
+## seq'
+
+#!spiral
+
+type seq' t = $"`t seq"
+
+#!markdown
+
+## of_array'
+
+#!spiral
+
+inl of_array' forall dim t. (items : a dim t) : seq' t =
+    $'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'
+
+#!spiral
+
+// // test
+
+(a ;["a"; "b"] : _ i32 _)
+|> of_array'
+
+#!markdown
+
+## to_array'
+
+#!spiral
+
+inl to_array' forall dim t. (items : seq' t) : a dim t =
+    $'!items |> Seq.toArray'
+
+#!spiral
+
+// // test
+
+(a ;["a"; "b"] : _ i32 _)
+|> of_array'
+|> to_array'
+|> _assert_eq (a ;["a"; "b"] : _ i32 _)
+
+#!markdown
+
 ## seq
 
 #!spiral

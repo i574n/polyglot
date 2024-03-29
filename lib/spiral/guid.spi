@@ -1,0 +1,21 @@
+// // # guid
+
+// // ## guid
+
+nominal guid = $"System.Guid"
+
+// // ## new_guid
+
+inl new_guid (x : string) : guid =
+    $'`guid !x '
+
+// // ## new_raw_guid
+
+inl new_raw_guid () : guid =
+    $"System.Guid.NewGuid ()"
+
+// // ## main
+
+inl main () =
+    $"let new_guid x = !new_guid x" : ()
+    $"let new_raw_guid x = !new_raw_guid x" : ()

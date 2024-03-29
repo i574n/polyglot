@@ -1,5 +1,9 @@
+// // # date_time
+
 open rust_operators
 open sm'_operators
+
+// // ## types
 
 inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::DateTime<$0>\")>] type chrono_DateTime<'T> = class end"
@@ -8,7 +12,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"chrono::Utc\")>] type chrono_Utc = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::time::Duration\")>] type std_time_Duration = class end"
 
-type ticks = i64
+nominal ticks = i64
 nominal duration = $"std_time_Duration"
 nominal date_time = $"System.DateTime"
 nominal date_time' t = $"chrono_DateTime<`t>"
@@ -16,13 +20,19 @@ nominal local = $"chrono_Local"
 nominal naive_date_time = $"chrono_NaiveDateTime"
 nominal utc = $"chrono_Utc"
 
+// // ## naive_utc
+
 inl naive_utc (date_time : date_time' utc) : naive_date_time =
     inl date_time = join date_time
     !\($'"!date_time.naive_utc()"')
 
+// // ## to_local
+
 inl to_local (date_time : date_time' utc) : date_time' local =
     inl naive_date_time = date_time |> naive_utc
     !\($'"chrono::offset::TimeZone::from_utc_datetime(&chrono::Local, &!naive_date_time)"')
+
+// // ## from_timestamp'
 
 inl from_timestamp' forall t {number; int}. (timestamp : t) : option (date_time' utc) =
     inl timestamp = join timestamp
@@ -30,15 +40,21 @@ inl from_timestamp' forall t {number; int}. (timestamp : t) : option (date_time'
         !\($'"chrono::DateTime::from_timestamp_micros(!timestamp / 1000i64)"')
     result |> optionm'.unbox
 
+// // ## format'
+
 inl format' (format : string) (date_time : date_time' utc) : sm'.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
 
+// // ## format''
+
 inl format'' (format : string) (date_time : date_time' _) : sm'.std_string =
     inl format = #format
     inl date_time = join date_time
     !\($'"!date_time.format(!format).to_string()"')
+
+// // ## format_timestamp
 
 inl format_timestamp (timestamp : sm'.std_string) =
     inl timestamp = join timestamp
@@ -52,6 +68,68 @@ inl format_timestamp (timestamp : sm'.std_string) =
         |> sm'.from_std_string
     |> resultm.from_option
 
+// // ## duration_from_millis
+
 inl duration_from_millis (ms : u64) : duration =
     inl ms = join ms
     !\($'"std::time::Duration::from_millis(!ms)"')
+
+// // ## get_environment_variable
+
+inl get_environment_variable (var : string) : string =
+    $"System.Environment.GetEnvironmentVariable !var"
+
+type ticks_guid = guid.guid
+type date_time_guid = guid.guid
+
+// // ## date_time_guid_from_date_time
+
+inl date_time_guid_from_date_time (guid : guid.guid) (date_time : date_time) =
+    inl guid = guid |> sm'.obj_to_string
+    inl prefix = $'!date_time.ToString "yyyyMMdd-HHmm-ssff-ffff-f"' : string
+    $'`date_time_guid $"{!prefix}{!guid.[!prefix.Length..]}"' : date_time_guid
+
+// // ## date_time_from_guid
+
+inl date_time_from_guid (date_time_guid : date_time_guid) =
+    inl date_time_guid = date_time_guid |> sm'.obj_to_string
+    inl sm'_replace = join sm'.replace
+    run_target function
+        | Fsharp => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
+        | Rust _ => fun () =>
+            $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
+
+// // ## ticks_guid_from_ticks
+
+inl ticks_guid_from_ticks (guid : guid.guid) (ticks : ticks) : ticks_guid =
+    inl guid = guid |> sm'.obj_to_string
+    inl ticks = ticks |> sm'.obj_to_string |> sm'.pad_left 18i32 '0'
+    $'`ticks_guid $"{!ticks.[0..7]}-{!ticks.[8..11]}-{!ticks.[12..15]}-{!ticks.[16..17]}{!guid.[21..]}"'
+
+// // ## ticks_from_guid
+
+inl ticks_from_guid (guid : date_time_guid) : ticks =
+    inl guid = guid |> sm'.obj_to_string
+    $'`i64 $"{!guid.[0..7]}{!guid.[9..12]}{!guid.[14..17]}{!guid.[19..20]}"'
+
+// // ## new_guid_from_date_time
+
+inl new_guid_from_date_time (date_time : date_time) =
+    inl guid = guid.new_raw_guid ()
+    date_time_guid_from_date_time guid date_time
+
+// // ## new_guid_from_ticks
+
+inl new_guid_from_ticks (ticks : ticks) =
+    inl guid = guid.new_raw_guid ()
+    ticks_guid_from_ticks guid ticks
+
+// // ## main
+
+inl main () =
+    $"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x" : ()
+    $"let date_time_from_guid x = !date_time_from_guid x" : ()
+    $"let ticks_guid_from_ticks x = !ticks_guid_from_ticks x" : ()
+    $"let ticks_from_guid x = !ticks_from_guid x" : ()
+    $"let new_guid_from_date_time x = !new_guid_from_date_time x" : ()
+    $"let new_guid_from_ticks x = !new_guid_from_ticks x" : ()

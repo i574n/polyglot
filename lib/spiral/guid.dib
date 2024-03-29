@@ -1,0 +1,49 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# guid
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## guid
+
+#!spiral
+
+nominal guid = $"System.Guid"
+
+#!markdown
+
+## new_guid
+
+#!spiral
+
+inl new_guid (x : string) : guid =
+    $'`guid !x '
+
+#!markdown
+
+## new_raw_guid
+
+#!spiral
+
+inl new_raw_guid () : guid =
+    $"System.Guid.NewGuid ()"
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let new_guid x = !new_guid x" : ()
+    $"let new_raw_guid x = !new_raw_guid x" : ()

@@ -98,7 +98,7 @@ module Eval =
                 let fileName = "SpiralScriptHelpers"
                 File.AppendAllText (logFile, $"{dateTimeStr} {fileName} {text}{Environment.NewLine}") |> ignore
             with ex ->
-                trace Debug (fun () -> $"V.log / ex: {ex |> printException}") getLocals
+                trace Debug (fun () -> $"V.log / ex: {ex |> formatException}") getLocals
 
     let log (text : string) =
         if traceLevel = TraceLevel.Verbose then
@@ -111,7 +111,7 @@ module Eval =
                 let fileName = "SpiralScriptHelpers"
                 File.AppendAllText (logFile, $"{dateTimeStr} {fileName} {text}{Environment.NewLine}") |> ignore
             with ex ->
-                trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> printException}") getLocals
+                trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> formatException}") getLocals
                 log2 text
 
     let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
@@ -146,7 +146,7 @@ module Eval =
                                 | None ->
                                     log $"Eval.watchDirectory / GetFiles / tokens: None / {getLocals ()}"
                         with ex ->
-                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> printException} / {getLocals ()}"
+                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> formatException} / {getLocals ()}"
                     })
                     |> Async.Sequential
                     |> Async.Ignore
@@ -178,7 +178,7 @@ module Eval =
                                     log $"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"
                             | _ -> ()
                         with ex ->
-                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> printException} / {getLocals ()}"
+                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> formatException} / {getLocals ()}"
                     })
 
                 async {
@@ -188,10 +188,10 @@ module Eval =
                 }
                 |> Async.Start
             with ex ->
-                log $"Eval / ex: {ex |> printException}"
+                log $"Eval / ex: {ex |> formatException}"
 
             disposable
-        else newDisposable (fun () -> ())
+        else new_disposable (fun () -> ())
 
     let inline eval
         (fsi_eval:
@@ -349,7 +349,7 @@ module Eval =
                             match codeChoice with
                             | Some (Ok code) -> Some code
                             | Some (Error ex) ->
-                                log $"Eval / errors: {ex |> printException}"
+                                log $"Eval / errors: {ex |> formatException}"
                                 None
                             | _ -> None
 
@@ -493,7 +493,7 @@ path = "{hash}.rs"
                                             )
                                         Some (ch, errors)
                                     with ex ->
-                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> printException}") getLocals
+                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> formatException}") getLocals
                                         None
 
                             match fsxResult, rustResult with
@@ -547,11 +547,11 @@ path = "{hash}.rs"
                                 )
                             |]
                     with ex ->
-                        log $"Eval / ex: {ex |> printException}"
-                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> printException}"),
+                        log $"Eval / ex: {ex |> formatException}"
+                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> formatException}"),
                         [|
                             (
-                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> printException}", 0, ("", (0, 0), (0, 0))
+                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> formatException}", 0, ("", (0, 0), (0, 0))
                             )
                         |]
                 }
@@ -565,10 +565,10 @@ path = "{hash}.rs"
                     |]
                 )
             with ex ->
-                log $"Eval / ex: {ex |> printException}"
-                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> printException}"),
+                log $"Eval / ex: {ex |> formatException}"
+                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> formatException}"),
                 [|
                     (
-                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> printException}", 0, ("", (0, 0), (0, 0))
+                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> formatException}", 0, ("", (0, 0), (0, 0))
                     )
                 |]

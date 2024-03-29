@@ -154,7 +154,7 @@ and method9 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : R
     let v13 : string = $"            args = {{ k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != 'make_mpc' and k not in ['ctx'] and not callable(v) }}"
     let v14 : string = $"            args_str = ', '.join([ f\"{{k}}={{re.sub(memory_address_pattern, ' at 0x<?>', repr(v))}}\" for k, v in args.items() ])"
     let v15 : string = "zeta_"
-    let v16 : string = $"            print(f\"{{event}}({v15}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split('site-packages')[-1]}} / f_back.f_lineno: {{ '' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ '' if frame.f_back is None else frame.f_back.f_code.co_filename.split('site-packages')[-1] }} / arg: {{arg}}\", flush=True)"
+    let v16 : string = $"            print(f\"{{event}}({v15}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split('site-packages')[-1]}} / f_back.f_lineno: {{ '' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ '' if frame.f_back is None else frame.f_back.f_code.co_filename.split('site-packages')[-1] }} / arg: {{re.sub(memory_address_pattern, ' at 0x<?>', repr(arg))}}\", flush=True)"
     let v17 : string = $"        except ValueError as e:"
     let v18 : string = $"            print(f'{v15} / e: {{e}}', flush=True)"
     let v19 : string = $"        return trace_calls"
@@ -268,7 +268,7 @@ and method41 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v13 : string = $"            args = {{ k: v for k, v in frame.f_locals.items() if frame.f_code.co_name != 'make_mpc' and k not in ['ctx'] and not callable(v) }}"
     let v14 : string = $"            args_str = ', '.join([ f\"{{k}}={{re.sub(memory_address_pattern, ' at 0x<?>', repr(v))}}\" for k, v in args.items() ])"
     let v15 : string = "gamma_"
-    let v16 : string = $"            print(f\"{{event}}({v15}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split('site-packages')[-1]}} / f_back.f_lineno: {{ '' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ '' if frame.f_back is None else frame.f_back.f_code.co_filename.split('site-packages')[-1] }} / arg: {{arg}}\", flush=True)"
+    let v16 : string = $"            print(f\"{{event}}({v15}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split('site-packages')[-1]}} / f_back.f_lineno: {{ '' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ '' if frame.f_back is None else frame.f_back.f_code.co_filename.split('site-packages')[-1] }} / arg: {{re.sub(memory_address_pattern, ' at 0x<?>', repr(arg))}}\", flush=True)"
     let v17 : string = $"        except ValueError as e:"
     let v18 : string = $"            print(f'{v15} / e: {{e}}', flush=True)"
     let v19 : string = $"        return trace_calls"
@@ -1139,39 +1139,43 @@ and method1 (v0 : pyo3_Python) : unit =
         let v40 : num_complex_Complex<float> = method14(v39)
         let v41 : string = "v40.im"
         let v42 : float = Fable.Core.RustInterop.emitRustExpr () v41
-        let v43 : bool = v42 = 0.0
-        let v45 : bool =
-            if v43 then
+        let v43 : string = $"%A{v42}"
+        System.Console.WriteLine v43
+        let v44 : bool = v42 = 0.0
+        let v46 : bool =
+            if v44 then
                 true
             else
-                method43(v43)
-        let v46 : string = $"__expect / actual: %A{v42} / expected: %A{0.0}"
-        let v47 : bool = v45 = false
-        if v47 then
-            failwith<unit> v46
-        let v48 : num_complex_Complex<float> = method13(v39)
-        let v49 : string = "v48.re"
-        let v50 : float = Fable.Core.RustInterop.emitRustExpr () v49
-        let v51 : float = v50 - v18
-        let v52 : float =  -v51
-        let v53 : bool = v51 >= v52
-        let v54 : float =
-            if v53 then
-                v51
-            else
+                method43(v44)
+        let v47 : string = $"__expect / actual: %A{v42} / expected: %A{0.0}"
+        let v48 : bool = v46 = false
+        if v48 then
+            failwith<unit> v47
+        let v49 : num_complex_Complex<float> = method13(v39)
+        let v50 : string = "v49.re"
+        let v51 : float = Fable.Core.RustInterop.emitRustExpr () v50
+        let v52 : float = v51 - v18
+        let v53 : float =  -v52
+        let v54 : bool = v52 >= v53
+        let v55 : float =
+            if v54 then
                 v52
-        let v55 : bool = v54 < 0.0001
-        let v57 : bool =
-            if v55 then
+            else
+                v53
+        let v56 : string = $"%A{v55}"
+        System.Console.WriteLine v56
+        let v57 : bool = v55 < 0.0001
+        let v59 : bool =
+            if v57 then
                 true
             else
-                method43(v55)
-        let v58 : string = $"__expect / actual: %A{v54} / expected: %A{0.0001}"
-        let v59 : bool = v57 = false
-        if v59 then
-            failwith<unit> v58
-        let v60 : int32 = v16 + 1
-        v14.l0 <- v60
+                method43(v57)
+        let v60 : string = $"__expect / actual: %A{v55} / expected: %A{0.0001}"
+        let v61 : bool = v59 = false
+        if v61 then
+            failwith<unit> v60
+        let v62 : int32 = v16 + 1
+        v14.l0 <- v62
         ()
     ()
 and method44 (v0 : Result<unit, pyo3_PyErr>) : Result<unit, pyo3_PyErr> =
@@ -1241,37 +1245,41 @@ and method47 (v0 : pyo3_Python) : unit =
             v30
         else
             v31
-    let v34 : bool = v33 < 0.001
-    let v36 : bool =
-        if v34 then
+    let v34 : string = $"%A{v33}"
+    System.Console.WriteLine v34
+    let v35 : bool = v33 < 0.001
+    let v37 : bool =
+        if v35 then
             true
         else
-            method43(v34)
-    let v37 : string = $"__expect / actual: %A{v33} / expected: %A{0.001}"
-    let v38 : bool = v36 = false
-    if v38 then
-        failwith<unit> v37
-    let v39 : num_complex_Complex<float> = method14(v26)
-    let v40 : string = "v39.im"
-    let v41 : float = Fable.Core.RustInterop.emitRustExpr () v40
-    let v42 : float = v41 - 0.275
-    let v43 : float =  -v42
-    let v44 : bool = v42 >= v43
-    let v45 : float =
-        if v44 then
-            v42
-        else
+            method43(v35)
+    let v38 : string = $"__expect / actual: %A{v33} / expected: %A{0.001}"
+    let v39 : bool = v37 = false
+    if v39 then
+        failwith<unit> v38
+    let v40 : num_complex_Complex<float> = method14(v26)
+    let v41 : string = "v40.im"
+    let v42 : float = Fable.Core.RustInterop.emitRustExpr () v41
+    let v43 : float = v42 - 0.275
+    let v44 : float =  -v43
+    let v45 : bool = v43 >= v44
+    let v46 : float =
+        if v45 then
             v43
-    let v46 : bool = v45 < 0.001
-    let v48 : bool =
-        if v46 then
+        else
+            v44
+    let v47 : string = $"%A{v46}"
+    System.Console.WriteLine v47
+    let v48 : bool = v46 < 0.001
+    let v50 : bool =
+        if v48 then
             true
         else
-            method43(v46)
-    let v49 : string = $"__expect / actual: %A{v45} / expected: %A{0.001}"
-    let v50 : bool = v48 = false
-    if v50 then
-        failwith<unit> v49
+            method43(v48)
+    let v51 : string = $"__expect / actual: %A{v46} / expected: %A{0.001}"
+    let v52 : bool = v50 = false
+    if v52 then
+        failwith<unit> v51
 and method46 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
@@ -1349,29 +1357,33 @@ and method52 (v0 : pyo3_Python, v1 : UH0) : unit =
         let v30 : num_complex_Complex<float> = method13(v29)
         let v31 : string = "v30.re"
         let v32 : float = Fable.Core.RustInterop.emitRustExpr () v31
-        let v33 : bool = v32 = 0.0
-        let v35 : bool =
-            if v33 then
+        let v33 : string = $"%A{v32}"
+        System.Console.WriteLine v33
+        let v34 : bool = v32 = 0.0
+        let v36 : bool =
+            if v34 then
                 true
             else
-                method43(v33)
-        let v36 : string = $"__expect / actual: %A{v32} / expected: %A{0.0}"
-        let v37 : bool = v35 = false
-        if v37 then
-            failwith<unit> v36
-        let v38 : num_complex_Complex<float> = method14(v29)
-        let v39 : string = "v38.im"
-        let v40 : float = Fable.Core.RustInterop.emitRustExpr () v39
-        let v41 : bool = v40 = 0.0
-        let v43 : bool =
-            if v41 then
+                method43(v34)
+        let v37 : string = $"__expect / actual: %A{v32} / expected: %A{0.0}"
+        let v38 : bool = v36 = false
+        if v38 then
+            failwith<unit> v37
+        let v39 : num_complex_Complex<float> = method14(v29)
+        let v40 : string = "v39.im"
+        let v41 : float = Fable.Core.RustInterop.emitRustExpr () v40
+        let v42 : string = $"%A{v41}"
+        System.Console.WriteLine v42
+        let v43 : bool = v41 = 0.0
+        let v45 : bool =
+            if v43 then
                 true
             else
-                method43(v41)
-        let v44 : string = $"__expect / actual: %A{v40} / expected: %A{0.0}"
-        let v45 : bool = v43 = false
-        if v45 then
-            failwith<unit> v44
+                method43(v43)
+        let v46 : string = $"__expect / actual: %A{v41} / expected: %A{0.0}"
+        let v47 : bool = v45 = false
+        if v47 then
+            failwith<unit> v46
         method52(v0, v3)
     | UH0_1 -> (* Nil *)
         ()
@@ -1486,38 +1498,42 @@ and method54 (v0 : pyo3_Python) : unit =
                 v61
             else
                 v62
-        let v65 : bool = v64 < 0.0001
-        let v67 : bool =
-            if v65 then
+        let v65 : string = $"%A{v64}"
+        System.Console.WriteLine v65
+        let v66 : bool = v64 < 0.0001
+        let v68 : bool =
+            if v66 then
                 true
             else
-                method43(v65)
-        let v68 : string = $"__expect / actual: %A{v64} / expected: %A{0.0001}"
-        let v69 : bool = v67 = false
-        if v69 then
-            failwith<unit> v68
-        let v70 : num_complex_Complex<float> = method14(v58)
-        let v71 : string = "v70.im"
-        let v72 : float = Fable.Core.RustInterop.emitRustExpr () v71
-        let v73 : float =  -v72
-        let v74 : bool = v72 >= v73
-        let v75 : float =
-            if v74 then
-                v72
-            else
+                method43(v66)
+        let v69 : string = $"__expect / actual: %A{v64} / expected: %A{0.0001}"
+        let v70 : bool = v68 = false
+        if v70 then
+            failwith<unit> v69
+        let v71 : num_complex_Complex<float> = method14(v58)
+        let v72 : string = "v71.im"
+        let v73 : float = Fable.Core.RustInterop.emitRustExpr () v72
+        let v74 : float =  -v73
+        let v75 : bool = v73 >= v74
+        let v76 : float =
+            if v75 then
                 v73
-        let v76 : bool = v75 < 0.0001
-        let v78 : bool =
-            if v76 then
+            else
+                v74
+        let v77 : string = $"%A{v76}"
+        System.Console.WriteLine v77
+        let v78 : bool = v76 < 0.0001
+        let v80 : bool =
+            if v78 then
                 true
             else
-                method43(v76)
-        let v79 : string = $"__expect / actual: %A{v75} / expected: %A{0.0001}"
-        let v80 : bool = v78 = false
-        if v80 then
-            failwith<unit> v79
-        let v81 : int32 = v36 + 1
-        v34.l0 <- v81
+                method43(v78)
+        let v81 : string = $"__expect / actual: %A{v76} / expected: %A{0.0001}"
+        let v82 : bool = v80 = false
+        if v82 then
+            failwith<unit> v81
+        let v83 : int32 = v36 + 1
+        v34.l0 <- v83
         ()
     ()
 and method53 () : unit =
@@ -1582,31 +1598,35 @@ and method64 (v0 : pyo3_Python) : unit =
         let v34 : num_complex_Complex<float> = method13(v33)
         let v35 : string = "v34.re"
         let v36 : float = Fable.Core.RustInterop.emitRustExpr () v35
-        let v37 : bool = v36 > 0.0
-        let v39 : bool =
-            if v37 then
+        let v37 : string = $"%A{v36}"
+        System.Console.WriteLine v37
+        let v38 : bool = v36 > 0.0
+        let v40 : bool =
+            if v38 then
                 true
             else
-                method43(v37)
-        let v40 : string = $"__expect / actual: %A{v36} / expected: %A{0.0}"
-        let v41 : bool = v39 = false
-        if v41 then
-            failwith<unit> v40
-        let v42 : num_complex_Complex<float> = method14(v33)
-        let v43 : string = "v42.im"
-        let v44 : float = Fable.Core.RustInterop.emitRustExpr () v43
-        let v45 : bool = v44 = 0.0
-        let v47 : bool =
-            if v45 then
+                method43(v38)
+        let v41 : string = $"__expect / actual: %A{v36} / expected: %A{0.0}"
+        let v42 : bool = v40 = false
+        if v42 then
+            failwith<unit> v41
+        let v43 : num_complex_Complex<float> = method14(v33)
+        let v44 : string = "v43.im"
+        let v45 : float = Fable.Core.RustInterop.emitRustExpr () v44
+        let v46 : string = $"%A{v45}"
+        System.Console.WriteLine v46
+        let v47 : bool = v45 = 0.0
+        let v49 : bool =
+            if v47 then
                 true
             else
-                method43(v45)
-        let v48 : string = $"__expect / actual: %A{v44} / expected: %A{0.0}"
-        let v49 : bool = v47 = false
-        if v49 then
-            failwith<unit> v48
-        let v50 : int32 = v6 + 1
-        v4.l0 <- v50
+                method43(v47)
+        let v50 : string = $"__expect / actual: %A{v45} / expected: %A{0.0}"
+        let v51 : bool = v49 = false
+        if v51 then
+            failwith<unit> v50
+        let v52 : int32 = v6 + 1
+        v4.l0 <- v52
         ()
     ()
 and method63 () : unit =
@@ -1662,29 +1682,33 @@ and method67 (v0 : pyo3_Python) : unit =
     let v27 : num_complex_Complex<float> = method13(v26)
     let v28 : string = "v27.re"
     let v29 : float = Fable.Core.RustInterop.emitRustExpr () v28
-    let v30 : bool = v29 = infinity
-    let v32 : bool =
-        if v30 then
+    let v30 : string = $"%A{v29}"
+    System.Console.WriteLine v30
+    let v31 : bool = v29 = infinity
+    let v33 : bool =
+        if v31 then
             true
         else
-            method43(v30)
-    let v33 : string = $"__expect / actual: %A{v29} / expected: %A{infinity}"
-    let v34 : bool = v32 = false
-    if v34 then
-        failwith<unit> v33
-    let v35 : num_complex_Complex<float> = method14(v26)
-    let v36 : string = "v35.im"
-    let v37 : float = Fable.Core.RustInterop.emitRustExpr () v36
-    let v38 : bool = v37 = 0.0
-    let v40 : bool =
-        if v38 then
+            method43(v31)
+    let v34 : string = $"__expect / actual: %A{v29} / expected: %A{infinity}"
+    let v35 : bool = v33 = false
+    if v35 then
+        failwith<unit> v34
+    let v36 : num_complex_Complex<float> = method14(v26)
+    let v37 : string = "v36.im"
+    let v38 : float = Fable.Core.RustInterop.emitRustExpr () v37
+    let v39 : string = $"%A{v38}"
+    System.Console.WriteLine v39
+    let v40 : bool = v38 = 0.0
+    let v42 : bool =
+        if v40 then
             true
         else
-            method43(v38)
-    let v41 : string = $"__expect / actual: %A{v37} / expected: %A{0.0}"
-    let v42 : bool = v40 = false
-    if v42 then
-        failwith<unit> v41
+            method43(v40)
+    let v43 : string = $"__expect / actual: %A{v38} / expected: %A{0.0}"
+    let v44 : bool = v42 = false
+    if v44 then
+        failwith<unit> v43
 and method66 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
@@ -1780,32 +1804,36 @@ and method69 (v0 : pyo3_Python) : unit =
     let v64 : num_complex_Complex<float> = method13(v60)
     let v65 : string = "v64.re"
     let v66 : float = Fable.Core.RustInterop.emitRustExpr () v65
-    let v67 : bool = v63 = v66
-    let v69 : bool =
-        if v67 then
+    let v67 : string = $"%A{v63}"
+    System.Console.WriteLine v67
+    let v68 : bool = v63 = v66
+    let v70 : bool =
+        if v68 then
             true
         else
-            method43(v67)
-    let v70 : string = $"__expect / actual: %A{v63} / expected: %A{v66}"
-    let v71 : bool = v69 = false
-    if v71 then
-        failwith<unit> v70
-    let v72 : num_complex_Complex<float> = method14(v26)
-    let v73 : string = "v72.im"
-    let v74 : float = Fable.Core.RustInterop.emitRustExpr () v73
-    let v75 : num_complex_Complex<float> = method14(v60)
-    let v76 : string = "v75.im"
-    let v77 : float = Fable.Core.RustInterop.emitRustExpr () v76
-    let v78 : bool = v74 = v77
-    let v80 : bool =
-        if v78 then
+            method43(v68)
+    let v71 : string = $"__expect / actual: %A{v63} / expected: %A{v66}"
+    let v72 : bool = v70 = false
+    if v72 then
+        failwith<unit> v71
+    let v73 : num_complex_Complex<float> = method14(v26)
+    let v74 : string = "v73.im"
+    let v75 : float = Fable.Core.RustInterop.emitRustExpr () v74
+    let v76 : num_complex_Complex<float> = method14(v60)
+    let v77 : string = "v76.im"
+    let v78 : float = Fable.Core.RustInterop.emitRustExpr () v77
+    let v79 : string = $"%A{v75}"
+    System.Console.WriteLine v79
+    let v80 : bool = v75 = v78
+    let v82 : bool =
+        if v80 then
             true
         else
-            method43(v78)
-    let v81 : string = $"__expect / actual: %A{v74} / expected: %A{v77}"
-    let v82 : bool = v80 = false
-    if v82 then
-        failwith<unit> v81
+            method43(v80)
+    let v83 : string = $"__expect / actual: %A{v75} / expected: %A{v78}"
+    let v84 : bool = v82 = false
+    if v84 then
+        failwith<unit> v83
 and method68 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
@@ -1863,29 +1891,33 @@ and method72 (v0 : pyo3_Python) : unit =
     let v27 : num_complex_Complex<float> = method13(v26)
     let v28 : string = "v27.re"
     let v29 : float = Fable.Core.RustInterop.emitRustExpr () v28
-    let v30 : bool = v29 < infinity
-    let v32 : bool =
-        if v30 then
+    let v30 : string = $"%A{v29}"
+    System.Console.WriteLine v30
+    let v31 : bool = v29 < infinity
+    let v33 : bool =
+        if v31 then
             true
         else
-            method43(v30)
-    let v33 : string = $"__expect / actual: %A{v29} / expected: %A{infinity}"
-    let v34 : bool = v32 = false
-    if v34 then
-        failwith<unit> v33
-    let v35 : num_complex_Complex<float> = method14(v26)
-    let v36 : string = "v35.im"
-    let v37 : float = Fable.Core.RustInterop.emitRustExpr () v36
-    let v38 : bool = v37 < infinity
-    let v40 : bool =
-        if v38 then
+            method43(v31)
+    let v34 : string = $"__expect / actual: %A{v29} / expected: %A{infinity}"
+    let v35 : bool = v33 = false
+    if v35 then
+        failwith<unit> v34
+    let v36 : num_complex_Complex<float> = method14(v26)
+    let v37 : string = "v36.im"
+    let v38 : float = Fable.Core.RustInterop.emitRustExpr () v37
+    let v39 : string = $"%A{v38}"
+    System.Console.WriteLine v39
+    let v40 : bool = v38 < infinity
+    let v42 : bool =
+        if v40 then
             true
         else
-            method43(v38)
-    let v41 : string = $"__expect / actual: %A{v37} / expected: %A{infinity}"
-    let v42 : bool = v40 = false
-    if v42 then
-        failwith<unit> v41
+            method43(v40)
+    let v43 : string = $"__expect / actual: %A{v38} / expected: %A{infinity}"
+    let v44 : bool = v42 = false
+    if v44 then
+        failwith<unit> v43
 and method71 () : unit =
     let v0 : string = "pyo3::prepare_freethreaded_python()"
     Fable.Core.RustInterop.emitRustExpr () v0
@@ -1952,33 +1984,37 @@ and method76 (v0 : pyo3_Python) : unit =
         let v33 : num_complex_Complex<float> = method13(v32)
         let v34 : string = "v33.re"
         let v35 : float = Fable.Core.RustInterop.emitRustExpr () v34
-        let v36 : bool = v35 = 0.0
-        let v37 : bool = method78(v36)
-        let v39 : bool =
-            if v37 then
+        let v36 : string = $"%A{v35}"
+        System.Console.WriteLine v36
+        let v37 : bool = v35 = 0.0
+        let v38 : bool = method78(v37)
+        let v40 : bool =
+            if v38 then
                 true
             else
-                method43(v37)
-        let v40 : string = $"__expect / actual: %A{v35} / expected: %A{0.0}"
-        let v41 : bool = v39 = false
-        if v41 then
-            failwith<unit> v40
-        let v42 : num_complex_Complex<float> = method14(v32)
-        let v43 : string = "v42.im"
-        let v44 : float = Fable.Core.RustInterop.emitRustExpr () v43
-        let v45 : bool = v44 = 0.0
-        let v46 : bool = method78(v45)
-        let v48 : bool =
-            if v46 then
+                method43(v38)
+        let v41 : string = $"__expect / actual: %A{v35} / expected: %A{0.0}"
+        let v42 : bool = v40 = false
+        if v42 then
+            failwith<unit> v41
+        let v43 : num_complex_Complex<float> = method14(v32)
+        let v44 : string = "v43.im"
+        let v45 : float = Fable.Core.RustInterop.emitRustExpr () v44
+        let v46 : string = $"%A{v45}"
+        System.Console.WriteLine v46
+        let v47 : bool = v45 = 0.0
+        let v48 : bool = method78(v47)
+        let v50 : bool =
+            if v48 then
                 true
             else
-                method43(v46)
-        let v49 : string = $"__expect / actual: %A{v44} / expected: %A{0.0}"
-        let v50 : bool = v48 = false
-        if v50 then
-            failwith<unit> v49
-        let v51 : int32 = v5 + 1
-        v3.l0 <- v51
+                method43(v48)
+        let v51 : string = $"__expect / actual: %A{v45} / expected: %A{0.0}"
+        let v52 : bool = v50 = false
+        if v52 then
+            failwith<unit> v51
+        let v53 : int32 = v5 + 1
+        v3.l0 <- v53
         ()
     ()
 and method75 () : unit =
@@ -2075,33 +2111,37 @@ and method80 (v0 : pyo3_Python) : unit =
         let v54 : num_complex_Complex<float> = method13(v53)
         let v55 : string = "v54.re"
         let v56 : float = Fable.Core.RustInterop.emitRustExpr () v55
-        let v57 : bool = v56 = 0.0
-        let v58 : bool = method78(v57)
-        let v60 : bool =
-            if v58 then
+        let v57 : string = $"%A{v56}"
+        System.Console.WriteLine v57
+        let v58 : bool = v56 = 0.0
+        let v59 : bool = method78(v58)
+        let v61 : bool =
+            if v59 then
                 true
             else
-                method43(v58)
-        let v61 : string = $"__expect / actual: %A{v56} / expected: %A{0.0}"
-        let v62 : bool = v60 = false
-        if v62 then
-            failwith<unit> v61
-        let v63 : num_complex_Complex<float> = method14(v53)
-        let v64 : string = "v63.im"
-        let v65 : float = Fable.Core.RustInterop.emitRustExpr () v64
-        let v66 : bool = v65 = 0.0
-        let v67 : bool = method78(v66)
-        let v69 : bool =
-            if v67 then
+                method43(v59)
+        let v62 : string = $"__expect / actual: %A{v56} / expected: %A{0.0}"
+        let v63 : bool = v61 = false
+        if v63 then
+            failwith<unit> v62
+        let v64 : num_complex_Complex<float> = method14(v53)
+        let v65 : string = "v64.im"
+        let v66 : float = Fable.Core.RustInterop.emitRustExpr () v65
+        let v67 : string = $"%A{v66}"
+        System.Console.WriteLine v67
+        let v68 : bool = v66 = 0.0
+        let v69 : bool = method78(v68)
+        let v71 : bool =
+            if v69 then
                 true
             else
-                method43(v67)
-        let v70 : string = $"__expect / actual: %A{v65} / expected: %A{0.0}"
-        let v71 : bool = v69 = false
-        if v71 then
-            failwith<unit> v70
-        let v72 : int32 = v31 + 1
-        v29.l0 <- v72
+                method43(v69)
+        let v72 : string = $"__expect / actual: %A{v66} / expected: %A{0.0}"
+        let v73 : bool = v71 = false
+        if v73 then
+            failwith<unit> v72
+        let v74 : int32 = v31 + 1
+        v29.l0 <- v74
         ()
     ()
 and method79 () : unit =
@@ -2316,42 +2356,46 @@ and method89 (v0 : pyo3_Python) : unit =
                 v163
             else
                 v164
-        let v167 : bool = v166 < 0.0001
-        let v169 : bool =
-            if v167 then
+        let v167 : string = $"%A{v166}"
+        System.Console.WriteLine v167
+        let v168 : bool = v166 < 0.0001
+        let v170 : bool =
+            if v168 then
                 true
             else
-                method43(v167)
-        let v170 : string = $"__expect / actual: %A{v166} / expected: %A{0.0001}"
-        let v171 : bool = v169 = false
-        if v171 then
-            failwith<unit> v170
-        let v172 : num_complex_Complex<float> = method14(v48)
-        let v173 : string = "v172.im"
-        let v174 : float = Fable.Core.RustInterop.emitRustExpr () v173
-        let v175 : num_complex_Complex<float> = method14(v156)
-        let v176 : string = "v175.im"
-        let v177 : float = Fable.Core.RustInterop.emitRustExpr () v176
-        let v178 : float = v174 - v177
-        let v179 : float =  -v178
-        let v180 : bool = v178 >= v179
-        let v181 : float =
-            if v180 then
-                v178
-            else
+                method43(v168)
+        let v171 : string = $"__expect / actual: %A{v166} / expected: %A{0.0001}"
+        let v172 : bool = v170 = false
+        if v172 then
+            failwith<unit> v171
+        let v173 : num_complex_Complex<float> = method14(v48)
+        let v174 : string = "v173.im"
+        let v175 : float = Fable.Core.RustInterop.emitRustExpr () v174
+        let v176 : num_complex_Complex<float> = method14(v156)
+        let v177 : string = "v176.im"
+        let v178 : float = Fable.Core.RustInterop.emitRustExpr () v177
+        let v179 : float = v175 - v178
+        let v180 : float =  -v179
+        let v181 : bool = v179 >= v180
+        let v182 : float =
+            if v181 then
                 v179
-        let v182 : bool = v181 < 0.0001
-        let v184 : bool =
-            if v182 then
+            else
+                v180
+        let v183 : string = $"%A{v182}"
+        System.Console.WriteLine v183
+        let v184 : bool = v182 < 0.0001
+        let v186 : bool =
+            if v184 then
                 true
             else
-                method43(v182)
-        let v185 : string = $"__expect / actual: %A{v181} / expected: %A{0.0001}"
-        let v186 : bool = v184 = false
-        if v186 then
-            failwith<unit> v185
-        let v187 : int32 = v26 + 1
-        v24.l0 <- v187
+                method43(v184)
+        let v187 : string = $"__expect / actual: %A{v182} / expected: %A{0.0001}"
+        let v188 : bool = v186 = false
+        if v188 then
+            failwith<unit> v187
+        let v189 : int32 = v26 + 1
+        v24.l0 <- v189
         ()
     ()
 and method88 () : unit =
@@ -2443,31 +2487,35 @@ and method97 (v0 : pyo3_Python) : unit =
                 v51
             else
                 v52
-        let v55 : bool = v54 < 0.01
-        let v57 : bool =
-            if v55 then
+        let v55 : string = $"%A{v54}"
+        System.Console.WriteLine v55
+        let v56 : bool = v54 < 0.01
+        let v58 : bool =
+            if v56 then
                 true
             else
-                method43(v55)
-        let v58 : string = $"__expect / actual: %A{v54} / expected: %A{0.01}"
-        let v59 : bool = v57 = false
-        if v59 then
-            failwith<unit> v58
-        let v60 : num_complex_Complex<float> = method14(v47)
-        let v61 : string = "v60.im"
-        let v62 : float = Fable.Core.RustInterop.emitRustExpr () v61
-        let v63 : bool = v62 < 0.01
-        let v65 : bool =
-            if v63 then
+                method43(v56)
+        let v59 : string = $"__expect / actual: %A{v54} / expected: %A{0.01}"
+        let v60 : bool = v58 = false
+        if v60 then
+            failwith<unit> v59
+        let v61 : num_complex_Complex<float> = method14(v47)
+        let v62 : string = "v61.im"
+        let v63 : float = Fable.Core.RustInterop.emitRustExpr () v62
+        let v64 : string = $"%A{v63}"
+        System.Console.WriteLine v64
+        let v65 : bool = v63 < 0.01
+        let v67 : bool =
+            if v65 then
                 true
             else
-                method43(v63)
-        let v66 : string = $"__expect / actual: %A{v62} / expected: %A{0.01}"
-        let v67 : bool = v65 = false
-        if v67 then
-            failwith<unit> v66
-        let v68 : int32 = v8 + 1
-        v6.l0 <- v68
+                method43(v65)
+        let v68 : string = $"__expect / actual: %A{v63} / expected: %A{0.01}"
+        let v69 : bool = v67 = false
+        if v69 then
+            failwith<unit> v68
+        let v70 : int32 = v8 + 1
+        v6.l0 <- v70
         ()
     ()
 and method96 () : unit =

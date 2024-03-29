@@ -4,6 +4,15 @@ namespace Polyglot
 
 module FileSystem =
 
+    let File_system = {|
+        create_temp_directory_name =
+#if !INTERACTIVE
+            File_system.create_temp_directory_name
+#else
+            create_temp_directory_name
+#endif
+    |}
+
     open Common
 
     /// ## Operators
@@ -14,19 +23,10 @@ module FileSystem =
 
     open Operators
 
-    /// ## createTempDirectoryName
-
-    let inline createTempDirectoryName () =
-        let root = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-
-        System.IO.Path.GetTempPath ()
-        </> $"!{root}"
-        </> string (newGuidFromDateTime System.DateTime.Now)
-
     /// ## createTempDirectory
 
     let inline createTempDirectory () =
-        let tempFolder = createTempDirectoryName ()
+        let tempFolder = File_system.create_temp_directory_name ()
         let result = System.IO.Directory.CreateDirectory tempFolder
 
         if not result.Exists then
@@ -106,7 +106,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
                     trace Debug (fun () -> "waitForFileAccess") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -129,7 +129,7 @@ module FileSystem =
                     |> Async.Ignore
                 return! fullPath |> readAllTextAsync |> Async.map Some
             with ex ->
-                let getLocals () = $"retry: {retry} / ex: {ex |> printException} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> formatException} / {getLocals ()}"
                 trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
                 if retry = 0
                 then return! loop (retry + 1)
@@ -146,7 +146,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
                     trace Debug (fun () -> "deleteDirectoryAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -162,7 +162,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
                     trace Warning (fun () -> "deleteFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -179,7 +179,7 @@ module FileSystem =
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () =
-                        $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> printException} / {getLocals ()}"
+                        $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
                     trace Warning (fun () -> "moveFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -304,7 +304,7 @@ module FileSystem =
             })
 
         let disposable =
-            newDisposable (fun () ->
+            new_disposable (fun () ->
                 trace Debug (fun () -> "watchWithFilter / Disposing watch stream") getLocals
                 watcher.EnableRaisingEvents <- false
                 watcher.Dispose ()

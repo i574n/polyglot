@@ -7576,7 +7576,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
+<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
@@ -7594,6 +7597,27 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">File_system</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span>
+    <span class="n">create_temp_directory_name</span> <span class="o">=</span>
+<span class="c1">#if !INTERACTIVE</span>
+        <span class="n">File_system</span><span class="o">.</span><span class="n">create_temp_directory_name</span>
+<span class="c1">#else</span>
+        <span class="n">create_temp_directory_name</span>
+<span class="c1">#endif</span>
+<span class="o">|</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 </pre></div>
 </div>
@@ -7601,7 +7625,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7611,7 +7635,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7627,7 +7651,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7642,67 +7666,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="createTempDirectoryName">createTempDirectoryName<a class="anchor-link" href="#createTempDirectoryName">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">createTempDirectoryName</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">root</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Reflection</span><span class="o">.</span><span class="n">Assembly</span><span class="o">.</span><span class="n">GetEntryAssembly</span><span class="p">()</span><span class="o">.</span><span class="n">GetName</span><span class="p">()</span><span class="o">.</span><span class="n">Name</span>
-
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetTempPath</span> <span class="p">()</span>
-    <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"!</span><span class="si">{root}</span><span class="s2">"</span>
-    <span class="o">&lt;/&gt;</span> <span class="n">string</span> <span class="p">(</span><span class="n">newGuidFromDateTime</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">createTempDirectoryName</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">_contains</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">DirectorySeparatorChar</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1951-5356-5611-5f0abdd7c196
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7712,7 +7676,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7721,7 +7685,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">createTempDirectory</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">createTempDirectoryName</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">File_system</span><span class="o">.</span><span class="n">create_temp_directory_name</span> <span class="p">()</span>
     <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">tempFolder</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">Exists</span> <span class="n">then</span>
@@ -7739,7 +7703,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7772,7 +7736,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7782,7 +7746,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7798,7 +7762,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7831,7 +7795,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7841,7 +7805,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7865,7 +7829,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7897,7 +7861,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7930,7 +7894,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7940,7 +7904,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7956,7 +7920,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7966,7 +7930,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7987,7 +7951,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7997,7 +7961,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8013,7 +7977,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8023,7 +7987,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8042,7 +8006,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8052,7 +8016,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8076,7 +8040,7 @@ a.anchor-link {
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; printException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForFileAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8087,7 +8051,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8166,8 +8130,8 @@ a.anchor-link {
 00:00:00 #4 [Debug] 3
 00:00:00 #5 [Debug] _2
 00:00:00 #6 [Debug] 4
-00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1951-5456-5652-533d1a775099\test.txt' because it is being used by another process.
-00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1951-5456-5652-533d1a775099\test.txt' because it is being used by another process.
+00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3055-5579-5f1086414270\test.txt' because it is being used by another process.
+00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3055-5579-5f1086414270\test.txt' because it is being used by another process.
 00:00:02 #9 [Debug] _3
 00:00:02 #10 [Debug] _4
 00:00:02 #11 [Debug] _5
@@ -8175,9 +8139,9 @@ a.anchor-link {
 00:00:02 #13 [Debug] 5
 00:00:02 #14 [Debug] 6
 00:00:02 #15 [Debug] 7
-126
-126
-126
+128
+128
+128
 1
 True
 </pre>
@@ -8186,7 +8150,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8196,7 +8160,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8218,7 +8182,7 @@ True
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Some</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; printException} / {getLocals ()}"</span>
+            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"watchWithFilter / readContent"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8231,7 +8195,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8241,7 +8205,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8256,7 +8220,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; printException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteDirectoryAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8267,7 +8231,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8331,20 +8295,20 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:03 #16 [Debug] 1
-00:00:03 #17 [Debug] 2
-00:00:03 #18 [Debug] 3
-00:00:03 #19 [Debug] _1
-00:00:03 #20 [Debug] _2
-00:00:03 #21 [Debug] 4
-00:00:03 #22 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:05 #23 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:05 #24 [Debug] _3
-00:00:05 #25 [Debug] 5
-00:00:05 #26 [Debug] 6
-121
-121
-121
+<pre>00:00:02 #16 [Debug] 1
+00:00:02 #17 [Debug] 2
+00:00:02 #18 [Debug] 3
+00:00:02 #19 [Debug] _1
+00:00:02 #20 [Debug] _2
+00:00:02 #21 [Debug] 4
+00:00:02 #22 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:04 #23 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
+00:00:04 #24 [Debug] _3
+00:00:04 #25 [Debug] 5
+00:00:04 #26 [Debug] 6
+125
+125
+125
 True
 </pre>
 </div>
@@ -8352,7 +8316,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8362,7 +8326,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8377,7 +8341,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; printException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8388,7 +8352,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8453,12 +8417,12 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:05 #27 [Debug] 1
 00:00:05 #28 [Debug] 2
-00:00:05 #29 [Debug] 3
-00:00:05 #30 [Debug] _1
-00:00:05 #32 [Debug] _2
-00:00:05 #31 [Debug] 4
-00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-0055-5514-50acabbfee0d\test.txt' because it is being used by another process.
-00:00:07 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-0055-5514-50acabbfee0d\test.txt' because it is being used by another process.
+00:00:05 #29 [Debug] _1
+00:00:05 #30 [Debug] 3
+00:00:05 #31 [Debug] _2
+00:00:05 #32 [Debug] 4
+00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3562-6246-6e408b58332d\test.txt' because it is being used by another process.
+00:00:06 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3562-6246-6e408b58332d\test.txt' because it is being used by another process.
 00:00:07 #35 [Debug] _3
 00:00:07 #36 [Debug] 5
 00:00:07 #37 [Debug] 6
@@ -8472,7 +8436,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8482,7 +8446,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8498,7 +8462,7 @@ True
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; printException} / {getLocals ()}"</span>
+                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"moveFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8509,7 +8473,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8584,22 +8548,22 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:08 #38 [Debug] 1
-00:00:08 #39 [Debug] 2
-00:00:08 #40 [Debug] 3
-00:00:08 #41 [Debug] _1
-00:00:08 #42 [Debug] _2
-00:00:08 #43 [Debug] 4
-00:00:08 #44 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
+<pre>00:00:07 #38 [Debug] 1
+00:00:07 #39 [Debug] 2
+00:00:07 #40 [Debug] 3
+00:00:07 #41 [Debug] _1
+00:00:07 #42 [Debug] _2
+00:00:07 #43 [Debug] 4
+00:00:07 #44 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
 00:00:09 #45 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:10 #46 [Debug] _3
-00:00:10 #47 [Debug] 5
-00:00:10 #48 [Debug] 6
-00:00:10 #49 [Debug] 7
-00:00:10 #50 [Debug] 8
-129
-129
-129
+00:00:09 #46 [Debug] _3
+00:00:09 #47 [Debug] 5
+00:00:09 #48 [Debug] 6
+00:00:09 #49 [Debug] 7
+00:00:09 #50 [Debug] 8
+128
+128
+128
 0
 0
 0
@@ -8611,7 +8575,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8621,7 +8585,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8745,7 +8709,7 @@ True
         <span class="p">})</span>
 
     <span class="n">let</span> <span class="n">disposable</span> <span class="o">=</span>
-        <span class="n">newDisposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
+        <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"watchWithFilter / Disposing watch stream"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">watcher</span><span class="o">.</span><span class="n">EnableRaisingEvents</span> <span class="o">&lt;-</span> <span class="n">false</span>
             <span class="n">watcher</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
@@ -8771,7 +8735,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8781,7 +8745,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8861,7 +8825,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8871,7 +8835,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8934,7 +8898,7 @@ True
     <span class="p">]</span>
 
 <span class="n">run</span>
-<span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -8950,26 +8914,26 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:18 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:18 #52 [Debug] testEventsRaw / eventsLog: 
-0 / 638465755321066170 / Created ("file1.txt", Some "a1")
-1 / 638465755321066171 / Changed ("file1.txt", Some "a1")
-15318 / 638465755321081489 / Changed ("file1.txt", Some "a1")
-1034 / 638465755321082523 / Created ("file2.txt", Some "a2")
-1 / 638465755321082524 / Changed ("file2.txt", Some "a2")
-44 / 638465755321082568 / Changed ("file2.txt", Some "a2")
-2618386 / 638465755323700954 / Changed ("file1.txt", Some "b1")
-2328 / 638465755323703282 / Changed ("file1.txt", Some "b1")
-6761 / 638465755323710043 / Changed ("file2.txt", Some "b2")
-1463 / 638465755323711506 / Changed ("file2.txt", Some "b2")
-2670607 / 638465755326382113 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-8568 / 638465755326390681 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2597804 / 638465755328988485 / Changed ("file_1.txt", Some "c1")
-2840 / 638465755328991325 / Changed ("file_1.txt", Some "c1")
-15512 / 638465755329006837 / Changed ("file_2.txt", Some "c2")
-3428 / 638465755329010265 / Changed ("file_2.txt", Some "c2")
-2626501 / 638465755331636766 / Deleted "file_1.txt"
-1634 / 638465755331638400 / Deleted "file_2.txt"
+00:00:16 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:16 #52 [Debug] testEventsRaw / eventsLog: 
+0 / 638472592061695971 / Created ("file1.txt", Some "a1")
+1 / 638472592061695972 / Changed ("file1.txt", Some "a1")
+54537 / 638472592061750509 / Changed ("file1.txt", Some "a1")
+2069 / 638472592061752578 / Created ("file2.txt", Some "a2")
+1 / 638472592061752579 / Changed ("file2.txt", Some "a2")
+151 / 638472592061752730 / Changed ("file2.txt", Some "a2")
+2494139 / 638472592064246869 / Changed ("file1.txt", Some "b1")
+2223 / 638472592064249092 / Changed ("file1.txt", Some "b1")
+8990 / 638472592064258082 / Changed ("file2.txt", Some "b2")
+1924 / 638472592064260006 / Changed ("file2.txt", Some "b2")
+2626146 / 638472592066886152 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+4728 / 638472592066890880 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2484463 / 638472592069375343 / Changed ("file_1.txt", Some "c1")
+2040 / 638472592069377383 / Changed ("file_1.txt", Some "c1")
+8195 / 638472592069385578 / Changed ("file_2.txt", Some "c2")
+2180 / 638472592069387758 / Changed ("file_2.txt", Some "c2")
+2496529 / 638472592071884287 / Deleted "file_1.txt"
+3899 / 638472592071888186 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9073,7 +9037,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9083,7 +9047,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9163,7 +9127,7 @@ FSharpOption&lt;Unit&gt;
     <span class="p">]</span>
 
 <span class="n">run</span>
-<span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">5</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">5</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -9177,33 +9141,29 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:27 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file1.txt' because it is being used by another process.)
-00:00:30 #54 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_1.txt' because it is being used by another process.)
-00:00:30 #55 [Debug] waitForFileAccess / path: file_1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_1.txt' because it is being used by another process.
-00:00:30 #56 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_2.txt' because it is being used by another process.)
-00:00:30 #57 [Debug] waitForFileAccess / path: file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240320-1952-2036-3696-3f18fe1690e0\file_2.txt' because it is being used by another process.
+<pre>00:00:23 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-5251-5120-53fd905c9b7b\file1.txt' because it is being used by another process.)
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:33 #58 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:34 #59 [Debug] testEventsRaw / eventsLog: 
-0 / 638465755406466459 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
-1 / 638465755406466460 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
-56840 / 638465755406523300 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
-23388 / 638465755406546688 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
-1 / 638465755406546689 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
-63281 / 638465755406609970 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
-15346598 / 638465755421956568 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
-203599 / 638465755422160167 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-416802 / 638465755422576969 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-114859 / 638465755422691828 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15189358 / 638465755437881186 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
-14872 / 638465755437896058 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "2222222222222
-15135998 / 638465755453032056 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
-154486 / 638465755453186542 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111
-34780 / 638465755453221322 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-102779 / 638465755453324101 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222
-15182144 / 638465755468506245 / Deleted "file_1.txt"
-5775 / 638465755468512020 / Deleted "file_2.txt"
+00:00:29 #54 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:30 #55 [Debug] testEventsRaw / eventsLog: 
+0 / 638472592127816965 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
+1 / 638472592127816966 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
+87978 / 638472592127904944 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
+21429 / 638472592127926373 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
+1 / 638472592127926374 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
+125411 / 638472592128051785 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+15169721 / 638472592143221506 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
+117288 / 638472592143338794 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
+168999 / 638472592143507793 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
+68919 / 638472592143576712 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+15008941 / 638472592158585653 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
+9839 / 638472592158595492 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "22222222222222
+15147053 / 638472592173742545 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
+79858 / 638472592173822403 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111
+67860 / 638472592173890263 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+80376 / 638472592173970639 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+14991021 / 638472592188961660 / Deleted "file_1.txt"
+14786 / 638472592188976446 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9307,7 +9267,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9317,7 +9277,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9410,7 +9370,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9420,7 +9380,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9469,7 +9429,7 @@ FSharpOption&lt;Unit&gt;
     <span class="o">|&gt;</span> <span class="n">_sequenceEqual</span> <span class="n">eventMap</span>
 
 <span class="n">run</span>
-<span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -9485,7 +9445,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:39 #60 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:34 #56 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9511,7 +9471,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9521,7 +9481,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9568,7 +9528,7 @@ FSharpOption&lt;Unit&gt;
     <span class="o">|&gt;</span> <span class="n">_sequenceEqual</span> <span class="n">eventMap</span>
 
 <span class="n">run</span>
-<span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -9584,7 +9544,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:44 #61 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:39 #57 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9605,7 +9565,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9615,7 +9575,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9667,7 +9627,7 @@ FSharpOption&lt;Unit&gt;
     <span class="o">|&gt;</span> <span class="n">_sequenceEqual</span> <span class="n">eventMap</span>
 
 <span class="n">run</span>
-<span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -9683,7 +9643,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:50 #62 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:44 #58 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9710,7 +9670,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9720,7 +9680,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9780,7 +9740,7 @@ FSharpOption&lt;Unit&gt;
     <span class="o">|&gt;</span> <span class="n">_sequenceEqual</span> <span class="n">eventMap</span>
 
 <span class="n">run</span>
-<span class="o">|&gt;</span> <span class="n">retryFn</span> <span class="mi">3</span>
+<span class="o">|&gt;</span> <span class="n">retry_fn</span> <span class="mi">3</span>
 <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
 </pre></div>
 </div>
@@ -9796,7 +9756,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:01:00 #63 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:50 #59 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

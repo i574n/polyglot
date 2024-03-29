@@ -62,11 +62,11 @@ module Async =
                 ex.InnerExceptions
                 |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
                 ->
-                let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+                let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
                 trace Warning (fun () -> "runWithTimeoutAsync") getLocals
                 return None
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> printException}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> formatException}") getLocals
                 return None
         }
 
@@ -92,7 +92,7 @@ module Async =
                     trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> printException}") getLocals
+                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> formatException}") getLocals
                     None
             )
     }
@@ -117,10 +117,10 @@ module Async =
                 return Async.RunSynchronously (fn, timeout) |> Some, getLocals
             with
             | :? System.TimeoutException as ex ->
-                let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+                let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
                 return None, getLocals
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> printException}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> formatException}") getLocals
                 return raise ex
         }
 
@@ -139,11 +139,11 @@ module Async =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
             trace Warning (fun () -> "runWithTimeoutStrict") getLocals
             None
         | ex ->
-            let getLocals () = $"ex: {ex |> printException} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
             trace Critical (fun () -> "runWithTimeoutStrict**") getLocals
             None
 

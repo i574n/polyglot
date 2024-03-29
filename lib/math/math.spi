@@ -186,7 +186,7 @@ inl call1_ log name py s line =
             $'$"        try:"'
             $'$"            args = {{ k: v for k, v in frame.f_locals.items() if frame.f_code.co_name \!= \'make_mpc\' and k not in [\'ctx\'] and not callable(v) }}"'
             $'$"            args_str = \', \'.join([ f\\\"{{k}}={{re.sub(memory_address_pattern, \' at 0x<?>\', repr(v))}}\\\" for k, v in args.items() ])"'
-            $'$"            print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }} / arg: {{arg}}\\\", flush=True)"'
+            $'$"            print(f\\\"{{event}}({!name}) / f_code.co_name: {{frame.f_code.co_name}} / f_locals: {{args_str}} / f_lineno: {{frame.f_lineno}} / f_code.co_filename: {{frame.f_code.co_filename.split(\'site-packages\')[-1]}} / f_back.f_lineno: {{ \'\' if frame.f_back is None else frame.f_back.f_lineno }} / f_back.f_code.co_filename: {{ \'\' if frame.f_back is None else frame.f_back.f_code.co_filename.split(\'site-packages\')[-1] }} / arg: {{re.sub(memory_address_pattern, \' at 0x<?>\', repr(arg))}}\\\", flush=True)"'
             $'$"        except ValueError as e:"'
             $'$"            print(f\'{!name} / e: {{e}}\', flush=True)"'
             $'$"        return trace_calls"'

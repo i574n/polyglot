@@ -1,18 +1,18 @@
 packages:
     |core-
 modules:
+    guid
     rust
     rust_operators
     optionm'
     optionm'_operators
-    common-
-    testing
     resultm
+    common-
     am'
     sm'
     sm'_operators
-    wasm
     date_time
+    wasm
     listm'
     listm'_operators
     mapm
@@ -23,6 +23,7 @@ modules:
     benchmark
     stream
     seq
+    file_system
     util
     physics
     leptos/
@@ -56,3 +57,4 @@ modules:
     state_core
     threading
     lib
+    testing

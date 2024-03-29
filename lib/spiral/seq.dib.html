@@ -7572,11 +7572,289 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="seq">seq<a class="anchor-link" href="#seq">¶</a></h2>
+<h2 id="seq'">seq'<a class="anchor-link" href="#seq'">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">seq</span><span class="s1">' t = $"`t seq"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="of_array'">of_array'<a class="anchor-link" href="#of_array'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">of_array</span><span class="s1">' forall dim t. (items : a dim t) : seq'</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'seq { for i = 0 to !items.Length - 1 do yield !items.[i] }'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">of_array</span><span class="s1">'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<details class="dni-treeview" open="open"><summary><span class="dni-code-hint"><code>[ a, b ]</code></span></summary><div><table><thead><tr></tr></thead><tbody><tr><td>CheckClose</td><td><div class="dni-plaintext"><pre>False</pre></div></td></tr><tr><td>LastGenerated</td><td><div class="dni-plaintext"><pre>&lt;null&gt;</pre></div></td></tr><tr><td>v2</td><td><div class="dni-plaintext"><pre>[ a, b ]</pre></div></td></tr><tr><td>enum</td><td><div class="dni-plaintext"><pre>&lt;null&gt;</pre></div></td></tr><tr><td>pc</td><td><div class="dni-plaintext"><pre>0</pre></div></td></tr><tr><td>current</td><td><div class="dni-plaintext"><pre>&lt;null&gt;</pre></div></td></tr><tr><td><i>(values)</i></td><td><div class="dni-plaintext"><pre>[ a, b ]</pre></div></td></tr></tbody></table></div></details><style>
+.dni-code-hint {
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.dni-treeview {
+    white-space: nowrap;
+}
+.dni-treeview td {
+    vertical-align: top;
+    text-align: start;
+}
+details.dni-treeview {
+    padding-left: 1em;
+}
+table td {
+    text-align: start;
+}
+table tr { 
+    vertical-align: top; 
+    margin: 0em 0px;
+}
+table tr td pre 
+{ 
+    vertical-align: top !important; 
+    margin: 0em 0px !important;
+} 
+table th {
+    text-align: start;
+}
+</style>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method1 (v0 : (string [])) : (string []) =
+    v0
+and method0 () : string seq =
+    let v0 : string = "a"
+    let v1 : string = "b"
+    let v2 : (string []) = [|v0; v1|]
+    let v3 : (string []) = method1(v2)
+    let v4 : string seq = seq { for i = 0 to v3.Length - 1 do yield v3.[i] }
+    v4
+method0()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_array'">to_array'<a class="anchor-link" href="#to_array'">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">to_array</span><span class="s1">' forall dim t. (items : seq'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">dim</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!items |&gt; Seq.toArray'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">of_array</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">to_array</span><span class="s1">'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method1 (v0 : (string [])) : (string []) =
+    v0
+and method2 (v0 : (string []), v1 : (string []), v2 : int32) : bool =
+    let v3 : int32 = v0.Length
+    let v4 : bool = v2 &lt; v3
+    if v4 then
+        let v5 : string = v0.[int v2]
+        let v6 : string = v1.[int v2]
+        let v7 : bool = v5 = v6
+        if v7 then
+            let v8 : int32 = v2 + 1
+            method2(v0, v1, v8)
+        else
+            false
+    else
+        true
+and method3 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string = "a"
+    let v1 : string = "b"
+    let v2 : (string []) = [|v0; v1|]
+    let v3 : (string []) = method1(v2)
+    let v4 : string seq = seq { for i = 0 to v3.Length - 1 do yield v3.[i] }
+    let v5 : (string []) = v4 |&gt; Seq.toArray
+    let v6 : (string []) = [|v0; v1|]
+    let v7 : (string []) = method1(v6)
+    let v8 : string = $"%A{v5}"
+    System.Console.WriteLine v8
+    let v9 : int32 = v5.Length
+    let v10 : int32 = v7.Length
+    let v11 : bool = v9 = v10
+    let v12 : bool = v11 &lt;&gt; true
+    let v15 : bool =
+        if v12 then
+            false
+        else
+            let v13 : int32 = 0
+            method2(v5, v7, v13)
+    let v17 : bool =
+        if v15 then
+            true
+        else
+            method3(v15)
+    let v18 : string = $"__expect / actual: %A{v5} / expected: %A{v7}"
+    let v19 : bool = v17 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
+method0()
+
+[|"a"; "b"|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="seq">seq<a class="anchor-link" href="#seq">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7605,7 +7883,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7615,7 +7893,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7645,7 +7923,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7655,7 +7933,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7686,7 +7964,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7726,9 +8004,12 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v3 : US0 = US0_1(5)
-    let v4 : US0 = US0_1(5)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(5)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(5)
+    let v6 : US0 = US0_1(5)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
@@ -7742,13 +8023,14 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
+US0_1 5
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7758,7 +8040,7 @@ print_and_return / x: 9
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7790,7 +8072,7 @@ print_and_return / x: 9
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7821,19 +8103,23 @@ print_and_return / x: 9
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(10)
-    let v4 : US0 = US0_1(10)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(10)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(10)
+    let v6 : US0 = US0_1(10)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
+US0_1 10
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7843,7 +8129,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7875,7 +8161,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7916,9 +8202,12 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v3 : US0 = US0_1(10)
-    let v4 : US0 = US0_1(10)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(10)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(10)
+    let v6 : US0 = US0_1(10)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
@@ -7932,13 +8221,14 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
+US0_1 10
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7948,7 +8238,7 @@ print_and_return / x: 9
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7993,7 +8283,7 @@ print_and_return / x: 9
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8034,9 +8324,12 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v3 : US0 = US0_1(2)
-    let v4 : US0 = US0_1(2)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(2)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(2)
+    let v6 : US0 = US0_1(2)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
@@ -8050,13 +8343,14 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
+US0_1 2
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8066,7 +8360,7 @@ print_and_return / x: 9
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8097,7 +8391,7 @@ print_and_return / x: 9
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8128,19 +8422,23 @@ print_and_return / x: 9
     | US0_0
     | US0_1 of f1_0 : int32 * f1_1 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(5, 10)
-    let v4 : US0 = US0_1(5, 10)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(5, 10)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(5, 10)
+    let v6 : US0 = US0_1(5, 10)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
+US0_1 (5, 10)
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8150,7 +8448,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8179,7 +8477,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8208,21 +8506,26 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v6 : US0 = US0_1(5)
-    let v7 : US0 = US0_1(10)
-    let v8 : US0 = US0_1(5)
-    let v9 : US0 = US0_1(10)
-    let v10 : string = $"__expect / actual: %A{struct (v6, v7)} / expected: %A{struct (v8, v9)}"
+    let v0 : US0 = US0_1(5)
+    let v1 : US0 = US0_1(10)
+    let v2 : string = $"%A{struct (v0, v1)}"
+    System.Console.WriteLine v2
+    let v9 : US0 = US0_1(5)
+    let v10 : US0 = US0_1(10)
+    let v11 : US0 = US0_1(5)
+    let v12 : US0 = US0_1(10)
+    let v13 : string = $"__expect / actual: %A{struct (v9, v10)} / expected: %A{struct (v11, v12)}"
     ()
 method0()
 
+struct (US0_1 5, US0_1 10)
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8232,7 +8535,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8262,7 +8565,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8292,19 +8595,23 @@ method0()
     | US0_0
     | US0_1 of f1_0 : int32
 let rec method0 () : unit =
-    let v3 : US0 = US0_1(6)
-    let v4 : US0 = US0_1(6)
-    let v5 : string = $"__expect / actual: %A{v3} / expected: %A{v4}"
+    let v0 : US0 = US0_1(6)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(6)
+    let v6 : US0 = US0_1(6)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
+US0_1 6
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8314,7 +8621,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8355,7 +8662,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8365,7 +8672,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8397,7 +8704,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8425,17 +8732,20 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{45} / expected: %A{45}"
+    let v0 : string = $"%A{45}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{45} / expected: %A{45}"
     ()
 method0()
 
+45
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8445,7 +8755,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8481,7 +8791,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8512,39 +8822,62 @@ method0()
     | UH0_0 of int32 * UH0
     | UH0_1
 let rec method0 () : unit =
-    let v88 : UH0 = UH0_1
-    let v89 : UH0 = UH0_0(9, v88)
-    let v90 : UH0 = UH0_0(8, v89)
-    let v91 : UH0 = UH0_0(7, v90)
-    let v92 : UH0 = UH0_0(6, v91)
-    let v93 : UH0 = UH0_0(5, v92)
-    let v94 : UH0 = UH0_0(4, v93)
-    let v95 : UH0 = UH0_0(3, v94)
-    let v96 : UH0 = UH0_0(2, v95)
-    let v97 : UH0 = UH0_0(1, v96)
-    let v98 : UH0 = UH0_0(0, v97)
-    let v99 : UH0 = UH0_1
-    let v100 : UH0 = UH0_0(9, v99)
-    let v101 : UH0 = UH0_0(8, v100)
-    let v102 : UH0 = UH0_0(7, v101)
-    let v103 : UH0 = UH0_0(6, v102)
-    let v104 : UH0 = UH0_0(5, v103)
-    let v105 : UH0 = UH0_0(4, v104)
-    let v106 : UH0 = UH0_0(3, v105)
-    let v107 : UH0 = UH0_0(2, v106)
-    let v108 : UH0 = UH0_0(1, v107)
-    let v109 : UH0 = UH0_0(0, v108)
-    let v110 : string = $"__expect / actual: %A{v98} / expected: %A{v109}"
+    let v0 : UH0 = UH0_1
+    let v1 : UH0 = UH0_0(9, v0)
+    let v2 : UH0 = UH0_0(8, v1)
+    let v3 : UH0 = UH0_0(7, v2)
+    let v4 : UH0 = UH0_0(6, v3)
+    let v5 : UH0 = UH0_0(5, v4)
+    let v6 : UH0 = UH0_0(4, v5)
+    let v7 : UH0 = UH0_0(3, v6)
+    let v8 : UH0 = UH0_0(2, v7)
+    let v9 : UH0 = UH0_0(1, v8)
+    let v10 : UH0 = UH0_0(0, v9)
+    let v11 : string = $"%A{v10}"
+    System.Console.WriteLine v11
+    let v100 : UH0 = UH0_1
+    let v101 : UH0 = UH0_0(9, v100)
+    let v102 : UH0 = UH0_0(8, v101)
+    let v103 : UH0 = UH0_0(7, v102)
+    let v104 : UH0 = UH0_0(6, v103)
+    let v105 : UH0 = UH0_0(5, v104)
+    let v106 : UH0 = UH0_0(4, v105)
+    let v107 : UH0 = UH0_0(3, v106)
+    let v108 : UH0 = UH0_0(2, v107)
+    let v109 : UH0 = UH0_0(1, v108)
+    let v110 : UH0 = UH0_0(0, v109)
+    let v111 : UH0 = UH0_1
+    let v112 : UH0 = UH0_0(9, v111)
+    let v113 : UH0 = UH0_0(8, v112)
+    let v114 : UH0 = UH0_0(7, v113)
+    let v115 : UH0 = UH0_0(6, v114)
+    let v116 : UH0 = UH0_0(5, v115)
+    let v117 : UH0 = UH0_0(4, v116)
+    let v118 : UH0 = UH0_0(3, v117)
+    let v119 : UH0 = UH0_0(2, v118)
+    let v120 : UH0 = UH0_0(1, v119)
+    let v121 : UH0 = UH0_0(0, v120)
+    let v122 : string = $"__expect / actual: %A{v110} / expected: %A{v121}"
     ()
 method0()
 
+UH0_0
+  (0,
+   UH0_0
+     (1,
+      UH0_0
+        (2,
+         UH0_0
+           (3,
+            UH0_0
+              (4, UH0_0 (5, UH0_0 (6, UH0_0 (7, UH0_0 (8, UH0_0 (9, UH0_1))))))))))
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8554,7 +8887,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8586,7 +8919,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8630,32 +8963,35 @@ and method0 () : unit =
         else
             let v5 : int32 = v1.[int 1]
             US0_1(v5)
-    let v11 : bool =
+    let v8 : string = $"%A{v7}"
+    System.Console.WriteLine v8
+    let v12 : bool =
         match v7 with
-        | US0_1(v9) -&gt; (* Some *)
-            let v10 : bool = v9 = 2
-            v10
+        | US0_1(v10) -&gt; (* Some *)
+            let v11 : bool = v10 = 2
+            v11
         | _ -&gt;
             false
-    let v13 : bool =
-        if v11 then
+    let v14 : bool =
+        if v12 then
             true
         else
-            method2(v11)
-    let v14 : US0 = US0_1(2)
-    let v15 : string = $"__expect / actual: %A{v7} / expected: %A{v14}"
-    let v16 : bool = v13 = false
-    if v16 then
-        failwith&lt;unit&gt; v15
+            method2(v12)
+    let v15 : US0 = US0_1(2)
+    let v16 : string = $"__expect / actual: %A{v7} / expected: %A{v15}"
+    let v17 : bool = v14 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
+US0_1 2
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8665,7 +9001,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8705,7 +9041,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9003,34 +9339,37 @@ and method0 () : unit =
     let v163 : (int32 []) = v2.l0
     let v164 : (int32 []) = [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
     let v165 : (int32 []) = method1(v164)
-    let v166 : int32 = v163.Length
-    let v167 : int32 = v165.Length
-    let v168 : bool = v166 = v167
-    let v169 : bool = v168 &lt;&gt; true
-    let v172 : bool =
-        if v169 then
+    let v166 : string = $"%A{v163}"
+    System.Console.WriteLine v166
+    let v167 : int32 = v163.Length
+    let v168 : int32 = v165.Length
+    let v169 : bool = v167 = v168
+    let v170 : bool = v169 &lt;&gt; true
+    let v173 : bool =
+        if v170 then
             false
         else
-            let v170 : int32 = 0
-            method3(v163, v165, v170)
-    let v174 : bool =
-        if v172 then
+            let v171 : int32 = 0
+            method3(v163, v165, v171)
+    let v175 : bool =
+        if v173 then
             true
         else
-            method4(v172)
-    let v175 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
-    let v176 : bool = v174 = false
-    if v176 then
-        failwith&lt;unit&gt; v175
+            method4(v173)
+    let v176 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
+    let v177 : bool = v175 = false
+    if v177 then
+        failwith&lt;unit&gt; v176
 method0()
 
+[|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9040,7 +9379,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9073,7 +9412,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9101,16 +9440,19 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    let v0 : string = $"%A{10}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
     ()
 method0()
 
+10
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9154,7 +9496,9 @@ method0()
     printfn $"print_and_return / x: {3}"
     printfn $"print_and_return / x: {4}"
     printfn $"print_and_return / x: {5}"
-    let v0 : string = $"__expect / actual: %A{10} / expected: %A{10}"
+    let v0 : string = $"%A{10}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{10} / expected: %A{10}"
     ()
 method0()
 
@@ -9174,13 +9518,14 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
+10
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9190,7 +9535,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9223,7 +9568,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9317,16 +9662,18 @@ and method0 () : unit =
     let v4 : UH1 = method2(v1, v2, v3)
     let v5 : int32 = 0
     let v6 : int32 = method5(v4, v5)
-    let v7 : bool = v6 = 10
-    let v9 : bool =
-        if v7 then
+    let v7 : string = $"%A{v6}"
+    System.Console.WriteLine v7
+    let v8 : bool = v6 = 10
+    let v10 : bool =
+        if v8 then
             true
         else
-            method6(v7)
-    let v10 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v11 : bool = v9 = false
-    if v11 then
-        failwith&lt;unit&gt; v10
+            method6(v8)
+    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
+    let v12 : bool = v10 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
 method0()
 
 print_and_return / x: 0
@@ -9345,12 +9692,13 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
+10
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9478,16 +9826,18 @@ and method0 () : unit =
     let v7 : UH1 = method3(v4, v5, v6)
     let v8 : int32 = 0
     let v9 : int32 = method6(v7, v8)
-    let v10 : bool = v9 = 10
-    let v12 : bool =
-        if v10 then
+    let v10 : string = $"%A{v9}"
+    System.Console.WriteLine v10
+    let v11 : bool = v9 = 10
+    let v13 : bool =
+        if v11 then
             true
         else
-            method7(v10)
-    let v13 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
-    let v14 : bool = v12 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+            method7(v11)
+    let v14 : string = $"__expect / actual: %A{v9} / expected: %A{10}"
+    let v15 : bool = v13 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
 method0()
 
 print_and_return / x: 0
@@ -9496,12 +9846,13 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
+10
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9677,16 +10028,18 @@ and method0 () : unit =
     let v21 : UH1 = method1(v18, v19, v20)
     let v22 : int32 = 0
     let v23 : int32 = method4(v21, v22)
-    let v24 : bool = v23 = 10
-    let v26 : bool =
-        if v24 then
+    let v24 : string = $"%A{v23}"
+    System.Console.WriteLine v24
+    let v25 : bool = v23 = 10
+    let v27 : bool =
+        if v25 then
             true
         else
-            method5(v24)
-    let v27 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
-    let v28 : bool = v26 = false
-    if v28 then
-        failwith&lt;unit&gt; v27
+            method5(v25)
+    let v28 : string = $"__expect / actual: %A{v23} / expected: %A{10}"
+    let v29 : bool = v27 = false
+    if v29 then
+        failwith&lt;unit&gt; v28
 method0()
 
 print_and_return / x: 0
@@ -9695,13 +10048,14 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
+10
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9711,7 +10065,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9757,7 +10111,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9894,31 +10248,35 @@ and method0 () : unit =
     let v4 : UH1 = method1(v1, v2, v3)
     let v5 : int32 = 0
     let v6 : int32 = method4(v4, v5)
-    let v7 : bool = v6 = 10
-    let v9 : bool =
-        if v7 then
+    let v7 : string = $"%A{v6}"
+    System.Console.WriteLine v7
+    let v8 : bool = v6 = 10
+    let v10 : bool =
+        if v8 then
             true
         else
-            method5(v7)
-    let v10 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
-    let v11 : bool = v9 = false
-    if v11 then
-        failwith&lt;unit&gt; v10
-    let v12 : UH1 = UH1_1
-    let v13 : int32 = 0
-    let v14 : UH1 = method6(v1, v12, v13)
-    let v15 : int32 = 0
-    let v16 : int32 = method4(v14, v15)
-    let v17 : bool = v16 = 10
-    let v19 : bool =
-        if v17 then
+            method5(v8)
+    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{10}"
+    let v12 : bool = v10 = false
+    if v12 then
+        failwith&lt;unit&gt; v11
+    let v13 : UH1 = UH1_1
+    let v14 : int32 = 0
+    let v15 : UH1 = method6(v1, v13, v14)
+    let v16 : int32 = 0
+    let v17 : int32 = method4(v15, v16)
+    let v18 : string = $"%A{v17}"
+    System.Console.WriteLine v18
+    let v19 : bool = v17 = 10
+    let v21 : bool =
+        if v19 then
             true
         else
-            method5(v17)
-    let v20 : string = $"__expect / actual: %A{v16} / expected: %A{10}"
-    let v21 : bool = v19 = false
-    if v21 then
-        failwith&lt;unit&gt; v20
+            method5(v19)
+    let v22 : string = $"__expect / actual: %A{v17} / expected: %A{10}"
+    let v23 : bool = v21 = false
+    if v23 then
+        failwith&lt;unit&gt; v22
 method0()
 
 print_and_return / x: 0
@@ -9927,13 +10285,15 @@ print_and_return / x: 2
 print_and_return / x: 3
 print_and_return / x: 4
 print_and_return / x: 5
+10
+10
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9943,7 +10303,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9976,7 +10336,7 @@ print_and_return / x: 5
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10001,16 +10361,19 @@ print_and_return / x: 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = $"%A{1024}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
     ()
 method0()
 
+1024
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10043,7 +10406,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10081,24 +10444,27 @@ and method0 () : unit =
     let v0 : int32 = 1
     let v1 : int32 = 10
     let v2 : int32 = method1(v0, v1)
-    let v3 : bool = v2 = 1024
-    let v5 : bool =
-        if v3 then
+    let v3 : string = $"%A{v2}"
+    System.Console.WriteLine v3
+    let v4 : bool = v2 = 1024
+    let v6 : bool =
+        if v4 then
             true
         else
-            method2(v3)
-    let v6 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
-    let v7 : bool = v5 = false
-    if v7 then
-        failwith&lt;unit&gt; v6
+            method2(v4)
+    let v7 : string = $"__expect / actual: %A{v2} / expected: %A{1024}"
+    let v8 : bool = v6 = false
+    if v8 then
+        failwith&lt;unit&gt; v7
 method0()
 
+1024
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10128,7 +10494,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10153,17 +10519,20 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec method0 () : unit =
-    let v0 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
+    let v0 : string = $"%A{1024}"
+    System.Console.WriteLine v0
+    let v1 : string = $"__expect / actual: %A{1024} / expected: %A{1024}"
     ()
 method0()
 
+1024
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10173,7 +10542,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

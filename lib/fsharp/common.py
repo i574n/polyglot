@@ -22,7 +22,7 @@ def String_ellipsis(max: int, value: str) -> str:
 
 
 
-def _expr0() -> TypeInfo:
+def _expr14() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -37,7 +37,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr0
+TraceLevel_reflection = _expr14
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:
@@ -115,7 +115,7 @@ def repl_start(__unit: None=None) -> int64 | None:
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
     def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
         trim_chars_2: Array[str] = [" ", "/"]
-        def _arrow1(__unit: None=None) -> Any:
+        def _arrow15(__unit: None=None) -> Any:
             match_value: int64 | None = repl_start()
             if match_value is None:
                 return now()
@@ -126,7 +126,7 @@ def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str
                 return create_1(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t))
 
 
-        return trim_end(trim_start(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [to_string(_arrow1(), "HH:mm:ss"), trace_count(), level, fn(None), get_locals(None)]))), *trim_chars_2)
+        return trim_end(trim_start(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [to_string(_arrow15(), "HH:mm:ss"), trace_count(), level, fn(None), get_locals(None)]))), *trim_chars_2)
 
     trace_raw(level, fn_1)
 

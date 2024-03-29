@@ -21,7 +21,7 @@ module Supervisor =
                 trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.Length: {result |> Option.ofObj |> Option.map String.length}") getLocals
                 return Some result
             with ex ->
-                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> printException}") getLocals
+                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> formatException}") getLocals
                 return None
         else
             trace Debug (fun () -> "sendJson / error: port not open") getLocals
@@ -87,7 +87,7 @@ module Supervisor =
                                             let! pingResult = pingObj |> sendObj availablePort
                                             trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
                                         with ex ->
-                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> printException}") getLocals
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> formatException}") getLocals
                                             do! Async.Sleep 10
                                             do! loop (retry + 1)
                                     }
@@ -115,7 +115,7 @@ module Supervisor =
                 ()
 
         let disposable =
-            newDisposable (fun () ->
+            new_disposable (fun () ->
                 disposable.Dispose ()
                 connection.StopAsync () |> Async.AwaitTask |> Async.StartImmediate
             )
@@ -293,7 +293,7 @@ modules:
 """
         do! spiprojCode |> FileSystem.writeAllTextAsync spiprojPath
 
-        let disposable = newDisposable (fun () ->
+        let disposable = new_disposable (fun () ->
             ()
             // tempDir |> FileSystem.deleteDirectoryAsync |> Async.Ignore |> Async.RunSynchronously
         )
