@@ -7,7 +7,7 @@ nuget Argu ~> 6.2.0
 nuget Expecto ~> 10.2.0
 nuget Expecto.FsCheck ~> 10.2.0-fscheck3 prerelease
 nuget Fable.Core ~> 4.3.0
-nuget Falco.Markup ~> 1.0.0
+nuget Falco.Markup ~> 1.1.0
 nuget FParsec ~> 2.0.0 prerelease
 nuget FsCheck ~> 3.0.0 prerelease
 nuget FSharp.Control.AsyncSeq ~> 3.2.0

@@ -8011,14 +8011,34 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="guid">guid<a class="anchor-link" href="#guid">¶</a></h2>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">inl</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"FEDCBA98-7654-3210-FEDC-BA9876543210"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -8030,7 +8050,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">guid</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"System.Guid"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">ticks_guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span>
+<span class="nb">type</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span>
 </pre></div>
 </div>
 </div>
@@ -8057,7 +8078,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="new_raw_guid">new_raw_guid<a class="anchor-link" href="#new_raw_guid">¶</a></h2>
+<h2 id="date_time_guid_from_date_time">date_time_guid_from_date_time<a class="anchor-link" href="#date_time_guid_from_date_time">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8069,150 +8090,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_raw_guid</span> <span class="p">()</span> <span class="p">:</span> <span class="n">guid</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"`guid.NewGuid ()"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="new_guid">new_guid<a class="anchor-link" href="#new_guid">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_guid</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">guid</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'`guid !x '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">inl</span> <span class="n">test_guid</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">new_guid</span> <span class="s2">"FEDCBA98-7654-3210-FEDC-BA9876543210"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">ticks_guid</span> <span class="o">=</span> <span class="n">guid</span>
-<span class="nb">type</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">guid</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="date_time_guid_from_date_time">date_time_guid_from_date_time<a class="anchor-link" href="#date_time_guid_from_date_time">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">guid</span> <span class="p">:</span> <span class="n">guid</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">date_time_guid_from_date_time</span> <span class="p">(</span><span class="n">guid</span> <span class="p">:</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span><span class="p">)</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
     <span class="n">inl</span> <span class="n">prefix</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'!date_time.ToString "yyyyMMdd-HHmm-ssff-ffff-f"'</span> <span class="p">:</span> <span class="n">string</span>
-    <span class="err">$</span><span class="s1">'`guid $"{!prefix}{!guid.[!prefix.Length..]}"'</span> <span class="p">:</span> <span class="n">date_time_guid</span>
+    <span class="err">$</span><span class="s1">'`date_time_guid $"{!prefix}{!guid.[!prefix.Length..]}"'</span> <span class="p">:</span> <span class="n">date_time_guid</span>
 </pre></div>
 </div>
 </div>
@@ -8232,7 +8113,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8288,7 +8169,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8349,7 +8230,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8411,7 +8292,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8421,7 +8302,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8431,8 +8312,11 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">date_time_guid</span> <span class="p">:</span> <span class="n">date_time_guid</span><span class="p">)</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">date_time_guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
-    <span class="n">inl</span> <span class="n">sm</span><span class="s1">'_replace = sm'</span><span class="o">.</span><span class="n">replace</span>
-    <span class="err">$</span><span class="s1">'System.DateTime.ParseExact (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"yyyyMMddHHmmssfffffff"</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="s1">' : date_time</span>
+    <span class="n">inl</span> <span class="n">sm</span><span class="s1">'_replace = join sm'</span><span class="o">.</span><span class="n">replace</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.ParseExact (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"yyyyMMddHHmmssfffffff"</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="s1">' : date_time</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'System.DateTime.Parse (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">)</span><span class="s1">' : date_time</span>
 </pre></div>
 </div>
 </div>
@@ -8452,7 +8336,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8462,7 +8346,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">new_guid</span> <span class="s2">"00010101-0000-0000-0000-0a9876543210"</span><span class="p">)</span>
+<span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"00010101-0000-0000-0000-0a9876543210"</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">MinValue</span><span class="s1">'</span>
 </pre></div>
 </div>
@@ -8483,27 +8367,51 @@ and closure1 (v0 : string) (v1 : string) : (string -&gt; string) =
     closure2(v0, v1)
 and closure0 () (v0 : string) : (string -&gt; (string -&gt; string)) =
     closure1(v0)
-and method1 (v0 : bool) : bool =
+and method1 () : (string -&gt; (string -&gt; (string -&gt; string))) =
+    closure0()
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : string = "00010101-0000-0000-0000-0a9876543210"
     let v1 : System.Guid = System.Guid v0 
     let v2 : string = v1.ToString ()
-    let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = closure0()
-    let v4 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    let v5 : System.DateTime = System.DateTime.MinValue
-    let v6 : string = $"%A{v4}"
-    System.Console.WriteLine v6
-    let v7 : bool = v4 = v5
-    let v9 : bool =
-        if v7 then
+    let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v4 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
+    v4
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
+    v5
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v6 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v6
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v7
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v8
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v9 : System.DateTime = result |&gt; Option.get
+    let v10 : System.DateTime = System.DateTime.MinValue
+    let v11 : string = $"%A{v9}"
+    System.Console.WriteLine v11
+    let v12 : bool = v9 = v10
+    let v14 : bool =
+        if v12 then
             true
         else
-            method1(v7)
-    let v10 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
-    let v11 : bool = v9 = false
-    if v11 then
-        failwith&lt;unit&gt; v10
+            method2(v12)
+    let v15 : string = $"__expect / actual: %A{v9} / expected: %A{v10}"
+    let v16 : bool = v14 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
 0001-01-01 12:00:00 AM
@@ -8512,7 +8420,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8522,7 +8430,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99991231-2359-5999-9999-9{(!test_guid () |&gt; string).[^10..]}"'</span><span class="p">)</span>
+<span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99991231-2359-5999-9999-9{(!test_guid () |&gt; string).[^10..]}"'</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">MaxValue</span><span class="s1">'</span>
 </pre></div>
 </div>
@@ -8547,28 +8455,52 @@ and closure2 (v0 : string) (v1 : string) : (string -&gt; string) =
     closure3(v0, v1)
 and closure1 () (v0 : string) : (string -&gt; (string -&gt; string)) =
     closure2(v0)
-and method1 (v0 : bool) : bool =
+and method1 () : (string -&gt; (string -&gt; (string -&gt; string))) =
+    closure1()
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : (unit -&gt; System.Guid) = closure0()
     let v1 : string = $"99991231-2359-5999-9999-9{(v0 () |&gt; string).[^10..]}"
     let v2 : System.Guid = System.Guid v1 
     let v3 : string = v2.ToString ()
-    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = closure1()
-    let v5 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    let v6 : System.DateTime = System.DateTime.MaxValue
-    let v7 : string = $"%A{v5}"
-    System.Console.WriteLine v7
-    let v8 : bool = v5 = v6
-    let v10 : bool =
-        if v8 then
+    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v5 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    v5
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    v6
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v7
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v8
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v9
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v10 : System.DateTime = result |&gt; Option.get
+    let v11 : System.DateTime = System.DateTime.MaxValue
+    let v12 : string = $"%A{v10}"
+    System.Console.WriteLine v12
+    let v13 : bool = v10 = v11
+    let v15 : bool =
+        if v13 then
             true
         else
-            method1(v8)
-    let v11 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
-    let v12 : bool = v10 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+            method2(v13)
+    let v16 : string = $"__expect / actual: %A{v10} / expected: %A{v11}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 9999-12-31 11:59:59 PM
@@ -8577,7 +8509,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8587,7 +8519,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"19700101-0000-0000-0000-0{(!test_guid () |&gt; string).[^10..]}"'</span><span class="p">)</span>
+<span class="n">date_time_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"19700101-0000-0000-0000-0{(!test_guid () |&gt; string).[^10..]}"'</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' $'</span><span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UnixEpoch</span><span class="s1">'</span>
 </pre></div>
 </div>
@@ -8612,28 +8544,52 @@ and closure2 (v0 : string) (v1 : string) : (string -&gt; string) =
     closure3(v0, v1)
 and closure1 () (v0 : string) : (string -&gt; (string -&gt; string)) =
     closure2(v0)
-and method1 (v0 : bool) : bool =
+and method1 () : (string -&gt; (string -&gt; (string -&gt; string))) =
+    closure1()
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : (unit -&gt; System.Guid) = closure0()
     let v1 : string = $"19700101-0000-0000-0000-0{(v0 () |&gt; string).[^10..]}"
     let v2 : System.Guid = System.Guid v1 
     let v3 : string = v2.ToString ()
-    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = closure1()
-    let v5 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    let v6 : System.DateTime = System.DateTime.UnixEpoch
-    let v7 : string = $"%A{v5}"
-    System.Console.WriteLine v7
-    let v8 : bool = v5 = v6
-    let v10 : bool =
-        if v8 then
+    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v5 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    v5
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    v6
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v7
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v8
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v9
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v10 : System.DateTime = result |&gt; Option.get
+    let v11 : System.DateTime = System.DateTime.UnixEpoch
+    let v12 : string = $"%A{v10}"
+    System.Console.WriteLine v12
+    let v13 : bool = v10 = v11
+    let v15 : bool =
+        if v13 then
             true
         else
-            method1(v8)
-    let v11 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
-    let v12 : bool = v10 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+            method2(v13)
+    let v16 : string = $"__expect / actual: %A{v10} / expected: %A{v11}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 1970-01-01 12:00:00 AM
@@ -8643,7 +8599,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8653,7 +8609,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8661,10 +8617,10 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ticks_guid_from_ticks</span> <span class="p">(</span><span class="n">guid</span> <span class="p">:</span> <span class="n">guid</span><span class="p">)</span> <span class="p">(</span><span class="n">ticks</span> <span class="p">:</span> <span class="n">ticks</span><span class="p">)</span> <span class="p">:</span> <span class="n">ticks_guid</span> <span class="o">=</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">ticks_guid_from_ticks</span> <span class="p">(</span><span class="n">guid</span> <span class="p">:</span> <span class="n">guid</span><span class="o">.</span><span class="n">guid</span><span class="p">)</span> <span class="p">(</span><span class="n">ticks</span> <span class="p">:</span> <span class="n">ticks</span><span class="p">)</span> <span class="p">:</span> <span class="n">ticks_guid</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
     <span class="n">inl</span> <span class="n">ticks</span> <span class="o">=</span> <span class="n">ticks</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string |&gt; sm'</span><span class="o">.</span><span class="n">pad_left</span> <span class="mi">18</span><span class="n">i32</span> <span class="s1">'0'</span>
-    <span class="err">$</span><span class="s1">'`guid $"{!ticks.[0..7]}-{!ticks.[8..11]}-{!ticks.[12..15]}-{!ticks.[16..17]}{!guid.[21..]}"'</span>
+    <span class="err">$</span><span class="s1">'`ticks_guid $"{!ticks.[0..7]}-{!ticks.[8..11]}-{!ticks.[12..15]}-{!ticks.[16..17]}{!guid.[21..]}"'</span>
 </pre></div>
 </div>
 </div>
@@ -8684,7 +8640,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8695,7 +8651,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">ticks_guid_from_ticks</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="n">ticks</span> <span class="mi">0</span><span class="n">i64</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (new_guid "00000000-0000-0000-00dc-ba9876543210")</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")</span>
 </pre></div>
 </div>
 </div>
@@ -8739,7 +8695,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8750,7 +8706,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="n">ticks_guid_from_ticks</span> <span class="p">(</span><span class="n">test_guid</span> <span class="p">())</span> <span class="p">(</span><span class="n">ticks</span> <span class="mi">999999999999999999</span><span class="n">i64</span><span class="p">)</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (new_guid $'</span><span class="err">$</span><span class="s2">"99999999-9999-9999-99dc-b{(!test_guid () |&gt; string).[^10..]}"</span><span class="s1">')</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span><span class="s1">' (guid.new_guid $'</span><span class="err">$</span><span class="s2">"99999999-9999-9999-99dc-b{(!test_guid () |&gt; string).[^10..]}"</span><span class="s1">')</span>
 </pre></div>
 </div>
 </div>
@@ -8800,7 +8756,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8810,7 +8766,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8840,7 +8796,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8850,7 +8806,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">ticks_from_guid</span> <span class="p">(</span><span class="n">new_guid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
+<span class="n">ticks_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="s2">"00000000-0000-0000-00dc-ba9876543210"</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">ticks</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8891,7 +8847,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8901,7 +8857,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="n">ticks_from_guid</span> <span class="p">(</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99999999-9999-9999-99{(!test_guid () |&gt; string).[^14..]}"'</span><span class="p">)</span>
+<span class="n">ticks_from_guid</span> <span class="p">(</span><span class="n">guid</span><span class="o">.</span><span class="n">new_guid</span> <span class="err">$</span><span class="s1">'$"99999999-9999-9999-99{(!test_guid () |&gt; string).[^14..]}"'</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">ticks</span> <span class="mi">999999999999999999</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8948,7 +8904,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8958,7 +8914,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8967,7 +8923,7 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_guid_from_date_time</span> <span class="p">(</span><span class="n">date_time</span> <span class="p">:</span> <span class="n">date_time</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">new_raw_guid</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">new_raw_guid</span> <span class="p">()</span>
     <span class="n">date_time_guid_from_date_time</span> <span class="n">guid</span> <span class="n">date_time</span>
 </pre></div>
 </div>
@@ -8988,7 +8944,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9021,7 +8977,9 @@ and closure1 (v0 : string) (v1 : string) : (string -&gt; string) =
     closure2(v0, v1)
 and closure0 () (v0 : string) : (string -&gt; (string -&gt; string)) =
     closure1(v0)
-and method1 (v0 : bool) : bool =
+and method1 () : (string -&gt; (string -&gt; (string -&gt; string))) =
+    closure0()
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : System.DateTime = System.DateTime.UtcNow
@@ -9030,22 +8988,44 @@ and method0 () : unit =
     let v3 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
     let v4 : System.Guid = System.Guid $"{v3}{v2.[v3.Length..]}"
     let v5 : string = v4.ToString ()
-    let v6 : (string -&gt; (string -&gt; (string -&gt; string))) = closure0()
-    let v7 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
-    let v8 : float = (v7 - System.DateTime.UtcNow).TotalSeconds
-    let v9 : int32 = int32 v8
-    let v10 : string = $"%A{v9}"
-    System.Console.WriteLine v10
-    let v11 : bool = v9 = 0
-    let v13 : bool =
-        if v11 then
+    let v6 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : System.DateTime = System.DateTime.Parse (v5.[..24] |&gt; v6 "-" "")
+    v7
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v8 : System.DateTime = System.DateTime.Parse (v5.[..24] |&gt; v6 "-" "")
+    v8
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v9
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v10 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v10
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v11 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v11
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v12 : System.DateTime = result |&gt; Option.get
+    let v13 : float = (v12 - System.DateTime.UtcNow).TotalSeconds
+    let v14 : int32 = int32 v13
+    let v15 : string = $"%A{v14}"
+    System.Console.WriteLine v15
+    let v16 : bool = v14 = 0
+    let v18 : bool =
+        if v16 then
             true
         else
-            method1(v11)
-    let v14 : string = $"__expect / actual: %A{v9} / expected: %A{0}"
-    let v15 : bool = v13 = false
-    if v15 then
-        failwith&lt;unit&gt; v14
+            method2(v16)
+    let v19 : string = $"__expect / actual: %A{v14} / expected: %A{0}"
+    let v20 : bool = v18 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
 0
@@ -9055,7 +9035,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9065,7 +9045,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9074,7 +9054,7 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_guid_from_ticks</span> <span class="p">(</span><span class="n">ticks</span> <span class="p">:</span> <span class="n">ticks</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">new_raw_guid</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">guid</span> <span class="o">=</span> <span class="n">guid</span><span class="o">.</span><span class="n">new_raw_guid</span> <span class="p">()</span>
     <span class="n">ticks_guid_from_ticks</span> <span class="n">guid</span> <span class="n">ticks</span>
 </pre></div>
 </div>
@@ -9095,7 +9075,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9154,7 +9134,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9164,7 +9144,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9205,11 +9185,35 @@ and closure4 (v0 : string) (v1 : string) : (string -&gt; string) =
     closure5(v0, v1)
 and closure3 () (v0 : string) : (string -&gt; (string -&gt; string)) =
     closure4(v0)
+and method0 () : (string -&gt; (string -&gt; (string -&gt; string))) =
+    closure3()
 and closure2 () (v0 : System.Guid) : System.DateTime =
     let v1 : string = v0.ToString ()
-    let v2 : (string -&gt; (string -&gt; (string -&gt; string))) = closure3()
-    let v3 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    let v2 : (string -&gt; (string -&gt; (string -&gt; string))) = method0()
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v3 : System.DateTime = System.DateTime.Parse (v1.[..24] |&gt; v2 "-" "")
     v3
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v4 : System.DateTime = System.DateTime.Parse (v1.[..24] |&gt; v2 "-" "")
+    v4
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v5 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v5
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v6 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v6
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v7 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v7
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v8 : System.DateTime = result |&gt; Option.get
+    v8
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : string = v0.ToString ()
     let v3 : string = v1.ToString ()
