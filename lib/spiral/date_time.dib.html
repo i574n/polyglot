@@ -9133,8 +9133,57 @@ method0()
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
+
+<span class="nb">type</span> <span class="n">DateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">DateTime</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTimeOffset</span>
+    <span class="n">TimeZone</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeZoneInfo</span>
+<span class="p">}</span>
+
+<span class="k">try</span>
+    <span class="n">let</span> <span class="n">now</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">DateTimeOffset</span><span class="o">.</span><span class="n">Now</span>
+    <span class="n">let</span> <span class="n">timeZoneInfo</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeZoneInfo</span><span class="o">.</span><span class="n">Local</span>
+    <span class="n">let</span> <span class="n">dateTimeWithZone</span> <span class="o">=</span> <span class="p">{</span> <span class="n">DateTime</span> <span class="o">=</span> <span class="n">now</span><span class="p">;</span> <span class="n">TimeZone</span> <span class="o">=</span> <span class="n">timeZoneInfo</span> <span class="p">}</span>
+
+    <span class="n">printfn</span> <span class="s2">"DateTime: %O"</span> <span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">DateTime</span>
+    <span class="n">printfn</span> <span class="s2">"Time Zone: </span><span class="si">%s</span><span class="s2">"</span> <span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span><span class="o">.</span><span class="n">DisplayName</span>
+    <span class="n">printfn</span> <span class="s2">"Is DST: %b"</span> <span class="p">(</span><span class="n">timeZoneInfo</span><span class="o">.</span><span class="n">IsDaylightSavingTime</span><span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">DateTime</span><span class="p">))</span>
+    <span class="n">printfn</span> <span class="s2">"v1: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span><span class="o">.</span><span class="n">GetUtcOffset</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">printfn</span> <span class="s2">"v2: </span><span class="si">%s</span><span class="s2">"</span> <span class="p">(</span><span class="n">dateTimeWithZone</span><span class="o">.</span><span class="n">TimeZone</span> <span class="o">|&gt;</span> <span class="n">string</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+    <span class="n">printfn</span> <span class="s2">"error: %A"</span> <span class="n">ex</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>DateTime: 2024-03-29 4:58:41 PM -04:00
+Time Zone: (UTC-04:00) Cuiaba
+Is DST: false
+v1: -04:00:00
+v2: (UTC-04:00) Cuiaba
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9144,7 +9193,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

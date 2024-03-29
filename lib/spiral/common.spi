@@ -181,6 +181,12 @@ inl memoize forall t. (fn : () -> t) : () -> t =
     inl result : lazy t = $'lazy !fn ()'
     fun () => $'!result.Value'
 
+// // ## use_disposable
+
+inl use_disposable (disposable : disposable) : disposable =
+    $"use !disposable = !disposable" : ()
+    $"!disposable"
+
 // // ## new_disposable
 
 inl new_disposable (fn : () -> ()) : disposable =

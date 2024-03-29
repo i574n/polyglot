@@ -392,6 +392,16 @@ fun () => failwith "test"
 
 #!markdown
 
+## use_disposable
+
+#!spiral
+
+inl use_disposable (disposable : disposable) : disposable =
+    $"use !disposable = !disposable" : ()
+    $"!disposable"
+
+#!markdown
+
 ## new_disposable
 
 #!spiral
@@ -416,59 +426,40 @@ new_disposable (fun () => new_disposable_test <- *new_disposable_test + 1)
 
 // // test
 
-inl main () =
-    // let mutable newDisposableTest = 0
-    // fun () -> task {
-    //     use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-    //     ()
-    // }
-    // |> fun x -> x () |> Async.AwaitTask |> Async.RunSynchronously
-    // newDisposableTest |> _assertEqual 1
-    // #!fsharp
-    // //// test
-    // let mutable newDisposableTest = 0
-    // async {
-    //     use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-    //     ()
-    // }
-    // |> Async.RunSynchronously
-    // newDisposableTest |> _assertEqual 1
-    // #!fsharp
-    // //// test
-    // let mutable newDisposableTest = 0
-    // async {
-    //     let x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-    //     ()
-    // }
-    // |> Async.RunSynchronously
-    // newDisposableTest |> _assertEqual 0
-    ()
+inl new_disposable_test = mut 0i32
+fun () =>
+    new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
+    |> use_disposable
+    |> ignore
+|> async.new_task
+|> async.await_task
+|> async.run_synchronously
+*new_disposable_test |> _assert_eq 1
 
-#!fsharp
+#!spiral
 
-//// test
+// // test
 
-open System
+inl new_disposable_test = mut 0i32
+fun () =>
+    new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
+    |> use_disposable
+    |> ignore
+|> async.new_async
+|> async.run_synchronously
+*new_disposable_test |> _assert_eq 1
 
-type DateTimeWithZone = {
-    DateTime: DateTimeOffset
-    TimeZone: TimeZoneInfo
-}
+#!spiral
 
-try
-    // Creating an example DateTimeWithZone
-    let now = DateTimeOffset.Now
-    let timeZoneInfo = TimeZoneInfo.Local
-    let dateTimeWithZone = { DateTime = now; TimeZone = timeZoneInfo }
+// // test
 
-    // Usage example: Displaying information
-    printfn "DateTime: %O" dateTimeWithZone.DateTime
-    printfn "Time Zone: %s" dateTimeWithZone.TimeZone.DisplayName
-    printfn "Is DST: %b" (timeZoneInfo.IsDaylightSavingTime(dateTimeWithZone.DateTime.DateTime))
-    printfn "v1: %s" (dateTimeWithZone.TimeZone.GetUtcOffset(now) |> string)
-    printfn "v2: %s" (dateTimeWithZone.TimeZone |> string)
-with ex ->
-    printfn "error: %A" ex
+inl new_disposable_test = mut 0i32
+fun () =>
+    new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
+    |> ignore
+|> async.new_async
+|> async.run_synchronously
+*new_disposable_test |> _assert_eq 0
 
 #!markdown
 

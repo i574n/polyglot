@@ -300,6 +300,28 @@ new_guid_from_ticks $'System.DateTime.UtcNow.Ticks'
 |> fun ticks => $'(!ticks - System.DateTime.UtcNow.Ticks) / 100000L'
 |> _assert_eq 0i64
 
+#!fsharp
+
+//// test
+
+type DateTimeWithZone = {
+    DateTime: System.DateTimeOffset
+    TimeZone: System.TimeZoneInfo
+}
+
+try
+    let now = System.DateTimeOffset.Now
+    let timeZoneInfo = System.TimeZoneInfo.Local
+    let dateTimeWithZone = { DateTime = now; TimeZone = timeZoneInfo }
+
+    printfn "DateTime: %O" dateTimeWithZone.DateTime
+    printfn "Time Zone: %s" dateTimeWithZone.TimeZone.DisplayName
+    printfn "Is DST: %b" (timeZoneInfo.IsDaylightSavingTime(dateTimeWithZone.DateTime.DateTime))
+    printfn "v1: %s" (dateTimeWithZone.TimeZone.GetUtcOffset(now) |> string)
+    printfn "v2: %s" (dateTimeWithZone.TimeZone |> string)
+with ex ->
+    printfn "error: %A" ex
+
 #!markdown
 
 ## main

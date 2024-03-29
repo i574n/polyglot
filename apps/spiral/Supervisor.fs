@@ -50,17 +50,13 @@ module Supervisor =
         | TypeErrors of {| uri : string; errors : RString list |}
 
     let inline awaitCompiler port cancellationToken = async {
-        let! ct =
-            cancellationToken
-            |> Option.defaultValue System.Threading.CancellationToken.None
-            |> Async.mergeCancellationTokenWithDefaultAsync
-
-        let cts = new System.Threading.CancellationTokenSource ()
+        let ct, disposable = cancellationToken |> Threading.newDisposableToken
+        let! ct = ct |> Async.mergeCancellationTokenWithDefaultAsync
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
             let! availablePort = Networking.getAvailablePort (Some 60) port
             if availablePort <> port then
-                inbox.Post port
+                inbox.Post (port, false)
             else
                 let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
 
@@ -92,20 +88,20 @@ module Supervisor =
                                             do! loop (retry + 1)
                                     }
                                     do! loop 0
-                                    inbox.Post availablePort
+                                    inbox.Post (availablePort, true)
                             }
                         }
                 trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
-                cts.Cancel ()
+                disposable.Dispose ()
         }, ct)
 
-        let! serverPort = compiler.Receive ()
+        let! serverPort, managed = compiler.Receive ()
 
         let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{serverPort}").Build ()
         do! connection.StartAsync () |> Async.AwaitTask
 
         let event = Event<_> ()
-        let disposable = connection.On<string> ("ServerToClientMsg", event.Trigger)
+        let disposable' = connection.On<string> ("ServerToClientMsg", event.Trigger)
         let stream =
             FSharp.Control.AsyncSeq.unfoldAsync
                 (fun () -> async {
@@ -114,17 +110,23 @@ module Supervisor =
                 })
                 ()
 
-        let disposable =
+        let disposable' =
             new_disposable (fun () ->
-                disposable.Dispose ()
-                connection.StopAsync () |> Async.AwaitTask |> Async.StartImmediate
+                async {
+                    disposable'.Dispose ()
+                    do! connection.StopAsync () |> Async.AwaitTask
+                    disposable.Dispose ()
+                    if managed
+                    then do! Networking.waitForPortAccess (Some 2000) false serverPort |> Async.Ignore
+                }
+                |> Async.RunSynchronously
             )
 
         return
             serverPort,
             stream,
-            cts.Token,
-            disposable
+            ct,
+            disposable'
     }
 
     /// ## getFileUri
@@ -417,11 +419,15 @@ modules:
             | _ -> None
 
         async {
-            let! buildFileResult =
+            let port = port |> Option.defaultWith getCompilerPort
+            let localToken, disposable = Threading.newDisposableToken None
+            let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
+            use _ = disposable
+
+            let buildFileAsync =
                 buildFileActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let port = port |> Option.defaultWith getCompilerPort
-                    let! outputCode, errors = inputPath |> buildFile timeout port None
+                    let! outputCode, errors = inputPath |> buildFile timeout serverPort None
 
                     errors
                     |> List.map snd
@@ -436,13 +442,11 @@ modules:
                     | None ->
                         return 1
                 })
-                |> Async.Sequential
 
-            let! fileTokenRangeResult =
+            let fileTokenRangeAsync =
                 fileTokenRangeActions
                 |> List.map (fun (inputPath, outputPath) -> async {
-                    let port = port |> Option.defaultWith getCompilerPort
-                    let! tokenRange = inputPath |> getFileTokenRange port None
+                    let! tokenRange = inputPath |> getFileTokenRange serverPort None
                     match tokenRange with
                     | Some tokenRange ->
                         do! tokenRange |> FSharp.Json.Json.serialize |> FileSystem.writeAllTextAsync outputPath
@@ -450,19 +454,10 @@ modules:
                     | None ->
                         return 1
                 })
-                |> Async.Sequential
 
-            let! executeCommandResult =
+            let executeCommandAsync =
                 executeCommandActions
                 |> List.map (fun command -> async {
-                    let port = port |> Option.defaultWith getCompilerPort
-
-                    let localToken, disposable = Threading.newDisposableToken None
-                    use _ = disposable
-
-                    let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
-                    use _ = disposable
-
                     let! exitCode, result =
                         Runtime.executeWithOptionsAsync
                             {
@@ -476,12 +471,12 @@ modules:
 
                     return exitCode
                 })
-                |> Async.Sequential
 
-            return
-                [| buildFileResult; fileTokenRangeResult; executeCommandResult |]
-                |> Array.collect id
-                |> Array.sum
+            return!
+                [| buildFileAsync; fileTokenRangeAsync; executeCommandAsync |]
+                |> Seq.collect id
+                |> fun x -> Async.Parallel (x, float System.Environment.ProcessorCount * 0.75 |> ceil)
+                |> Async.map Array.sum
         }
         |> Async.runWithTimeout timeout
         |> Option.defaultValue 1
