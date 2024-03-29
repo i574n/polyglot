@@ -872,7 +872,7 @@ let main args =
         return!
             [| buildFileAsync; fileTokenRangeAsync; executeCommandAsync |]
             |> Seq.collect id
-            |> fun x -> Async.Parallel (x, float System.Environment.ProcessorCount * 0.75 |> ceil)
+            |> fun x -> Async.Parallel (x, float System.Environment.ProcessorCount * 0.75 |> ceil |> int)
             |> Async.map Array.sum
     }
     |> Async.runWithTimeout timeout
