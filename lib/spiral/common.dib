@@ -416,31 +416,33 @@ new_disposable (fun () => new_disposable_test <- *new_disposable_test + 1)
 
 // // test
 
-// let mutable newDisposableTest = 0
-// fun () -> task {
-//     use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-//     ()
-// }
-// |> fun x -> x () |> Async.AwaitTask |> Async.RunSynchronously
-// newDisposableTest |> _assertEqual 1
-// #!fsharp
-// //// test
-// let mutable newDisposableTest = 0
-// async {
-//     use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-//     ()
-// }
-// |> Async.RunSynchronously
-// newDisposableTest |> _assertEqual 1
-// #!fsharp
-// //// test
-// let mutable newDisposableTest = 0
-// async {
-//     let x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
-//     ()
-// }
-// |> Async.RunSynchronously
-// newDisposableTest |> _assertEqual 0
+inl main () =
+    // let mutable newDisposableTest = 0
+    // fun () -> task {
+    //     use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    //     ()
+    // }
+    // |> fun x -> x () |> Async.AwaitTask |> Async.RunSynchronously
+    // newDisposableTest |> _assertEqual 1
+    // #!fsharp
+    // //// test
+    // let mutable newDisposableTest = 0
+    // async {
+    //     use x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    //     ()
+    // }
+    // |> Async.RunSynchronously
+    // newDisposableTest |> _assertEqual 1
+    // #!fsharp
+    // //// test
+    // let mutable newDisposableTest = 0
+    // async {
+    //     let x = newDisposable (fun () -> newDisposableTest <- newDisposableTest + 1)
+    //     ()
+    // }
+    // |> Async.RunSynchronously
+    // newDisposableTest |> _assertEqual 0
+    ()
 
 #!fsharp
 
@@ -453,17 +455,20 @@ type DateTimeWithZone = {
     TimeZone: TimeZoneInfo
 }
 
-// Creating an example DateTimeWithZone
-let now = DateTimeOffset.Now
-let timeZoneInfo = TimeZoneInfo.Local
-let dateTimeWithZone = { DateTime = now; TimeZone = timeZoneInfo }
+try
+    // Creating an example DateTimeWithZone
+    let now = DateTimeOffset.Now
+    let timeZoneInfo = TimeZoneInfo.Local
+    let dateTimeWithZone = { DateTime = now; TimeZone = timeZoneInfo }
 
-// Usage example: Displaying information
-printfn "DateTime: %O" dateTimeWithZone.DateTime
-printfn "Time Zone: %s" dateTimeWithZone.TimeZone.DisplayName
-printfn "Is DST: %b" (timeZoneInfo.IsDaylightSavingTime(dateTimeWithZone.DateTime.DateTime))
-printfn "v1: %s" (dateTimeWithZone.TimeZone.GetUtcOffset(now) |> string)
-printfn "v2: %s" (dateTimeWithZone.TimeZone |> string)
+    // Usage example: Displaying information
+    printfn "DateTime: %O" dateTimeWithZone.DateTime
+    printfn "Time Zone: %s" dateTimeWithZone.TimeZone.DisplayName
+    printfn "Is DST: %b" (timeZoneInfo.IsDaylightSavingTime(dateTimeWithZone.DateTime.DateTime))
+    printfn "v1: %s" (dateTimeWithZone.TimeZone.GetUtcOffset(now) |> string)
+    printfn "v2: %s" (dateTimeWithZone.TimeZone |> string)
+with ex ->
+    printfn "error: %A" ex
 
 #!markdown
 
