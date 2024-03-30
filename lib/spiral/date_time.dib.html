@@ -8144,23 +8144,25 @@ and method0 () : unit =
     let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
     let v1 : System.Guid = System.Guid v0 
     let v2 : System.DateTime = System.DateTime.MinValue
-    let v3 : string = v1.ToString ()
-    let v4 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
-    let v6 : string = v5.ToString ()
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v8 : string = "00010101-0000-0000-0000-0a9876543210"
-    let v9 : bool = v6 = v8
-    let v11 : bool =
-        if v9 then
+    let v3 : (System.Guid -&gt; string) = _.ToString()
+    let v4 : string = v3 v1
+    let v5 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v6 : System.Guid = System.Guid $"{v5}{v4.[v5.Length..]}"
+    let v7 : (System.Guid -&gt; string) = _.ToString()
+    let v8 : string = v7 v6
+    let v9 : string = $"%A{v8}"
+    System.Console.WriteLine v9
+    let v10 : string = "00010101-0000-0000-0000-0a9876543210"
+    let v11 : bool = v8 = v10
+    let v13 : bool =
+        if v11 then
             true
         else
-            method1(v9)
-    let v12 : string = $"__expect / actual: %A{v6} / expected: %A{v8}"
-    let v13 : bool = v11 = false
-    if v13 then
-        failwith&lt;unit&gt; v12
+            method1(v11)
+    let v14 : string = $"__expect / actual: %A{v8} / expected: %A{v10}"
+    let v15 : bool = v13 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
 method0()
 
 "00010101-0000-0000-0000-0a9876543210"
@@ -8204,24 +8206,26 @@ and method0 () : unit =
     let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
     let v1 : System.Guid = System.Guid v0 
     let v2 : System.DateTime = System.DateTime.MaxValue
-    let v3 : string = v1.ToString ()
-    let v4 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
-    let v6 : string = v5.ToString ()
-    let v7 : (unit -&gt; System.Guid) = closure0()
-    let v8 : string = $"99991231-2359-5999-9999-9{(v7() |&gt; string).[^10..]}"
-    let v9 : string = $"%A{v6}"
-    System.Console.WriteLine v9
-    let v10 : bool = v6 = v8
-    let v12 : bool =
-        if v10 then
+    let v3 : (System.Guid -&gt; string) = _.ToString()
+    let v4 : string = v3 v1
+    let v5 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v6 : System.Guid = System.Guid $"{v5}{v4.[v5.Length..]}"
+    let v7 : (System.Guid -&gt; string) = _.ToString()
+    let v8 : string = v7 v6
+    let v9 : (unit -&gt; System.Guid) = closure0()
+    let v10 : string = $"99991231-2359-5999-9999-9{(v9() |&gt; string).[^10..]}"
+    let v11 : string = $"%A{v8}"
+    System.Console.WriteLine v11
+    let v12 : bool = v8 = v10
+    let v14 : bool =
+        if v12 then
             true
         else
-            method1(v10)
-    let v13 : string = $"__expect / actual: %A{v6} / expected: %A{v8}"
-    let v14 : bool = v12 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+            method1(v12)
+    let v15 : string = $"__expect / actual: %A{v8} / expected: %A{v10}"
+    let v16 : bool = v14 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
 "99991231-2359-5999-9999-9a9876543210"
@@ -8265,24 +8269,26 @@ and method0 () : unit =
     let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
     let v1 : System.Guid = System.Guid v0 
     let v2 : System.DateTime = System.DateTime.UnixEpoch
-    let v3 : string = v1.ToString ()
-    let v4 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
-    let v6 : string = v5.ToString ()
-    let v7 : (unit -&gt; System.Guid) = closure0()
-    let v8 : string = $"19700101-0000-0000-0000-0{(v7 () |&gt; string).[^10..]}"
-    let v9 : string = $"%A{v6}"
-    System.Console.WriteLine v9
-    let v10 : bool = v6 = v8
-    let v12 : bool =
-        if v10 then
+    let v3 : (System.Guid -&gt; string) = _.ToString()
+    let v4 : string = v3 v1
+    let v5 : string = v2.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v6 : System.Guid = System.Guid $"{v5}{v4.[v5.Length..]}"
+    let v7 : (System.Guid -&gt; string) = _.ToString()
+    let v8 : string = v7 v6
+    let v9 : (unit -&gt; System.Guid) = closure0()
+    let v10 : string = $"19700101-0000-0000-0000-0{(v9 () |&gt; string).[^10..]}"
+    let v11 : string = $"%A{v8}"
+    System.Console.WriteLine v11
+    let v12 : bool = v8 = v10
+    let v14 : bool =
+        if v12 then
             true
         else
-            method1(v10)
-    let v13 : string = $"__expect / actual: %A{v6} / expected: %A{v8}"
-    let v14 : bool = v12 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+            method1(v12)
+    let v15 : string = $"__expect / actual: %A{v8} / expected: %A{v10}"
+    let v16 : bool = v14 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
 "19700101-0000-0000-0000-0a9876543210"
@@ -8374,44 +8380,45 @@ and method2 (v0 : bool) : bool =
 and method0 () : unit =
     let v0 : string = "00010101-0000-0000-0000-0a9876543210"
     let v1 : System.Guid = System.Guid v0 
-    let v2 : string = v1.ToString ()
-    let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
     let mutable result = None
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v4 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v4
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
+    let v5 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
     v5
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v6 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
     v6
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v7 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v7
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
     #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v9
+    #endif
     |&gt; fun x -&gt; result &lt;- Some x
-    let v9 : System.DateTime = result |&gt; Option.get
-    let v10 : System.DateTime = System.DateTime.MinValue
-    let v11 : string = $"%A{v9}"
-    System.Console.WriteLine v11
-    let v12 : bool = v9 = v10
-    let v14 : bool =
-        if v12 then
+    let v10 : System.DateTime = result |&gt; Option.get
+    let v11 : System.DateTime = System.DateTime.MinValue
+    let v12 : string = $"%A{v10}"
+    System.Console.WriteLine v12
+    let v13 : bool = v10 = v11
+    let v15 : bool =
+        if v13 then
             true
         else
-            method2(v12)
-    let v15 : string = $"__expect / actual: %A{v9} / expected: %A{v10}"
-    let v16 : bool = v14 = false
-    if v16 then
-        failwith&lt;unit&gt; v15
+            method2(v13)
+    let v16 : string = $"__expect / actual: %A{v10} / expected: %A{v11}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 0001-01-01 12:00:00 AM
@@ -8463,44 +8470,45 @@ and method0 () : unit =
     let v0 : (unit -&gt; System.Guid) = closure0()
     let v1 : string = $"99991231-2359-5999-9999-9{(v0 () |&gt; string).[^10..]}"
     let v2 : System.Guid = System.Guid v1 
-    let v3 : string = v2.ToString ()
-    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let v3 : (System.Guid -&gt; string) = _.ToString()
+    let v4 : string = v3 v2
+    let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
     let mutable result = None
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v5 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v5
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    let v6 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v6
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v7 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v7
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v8 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
     #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v10
+    #endif
     |&gt; fun x -&gt; result &lt;- Some x
-    let v10 : System.DateTime = result |&gt; Option.get
-    let v11 : System.DateTime = System.DateTime.MaxValue
-    let v12 : string = $"%A{v10}"
-    System.Console.WriteLine v12
-    let v13 : bool = v10 = v11
-    let v15 : bool =
-        if v13 then
+    let v11 : System.DateTime = result |&gt; Option.get
+    let v12 : System.DateTime = System.DateTime.MaxValue
+    let v13 : string = $"%A{v11}"
+    System.Console.WriteLine v13
+    let v14 : bool = v11 = v12
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v13)
-    let v16 : string = $"__expect / actual: %A{v10} / expected: %A{v11}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+            method2(v14)
+    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
+    let v18 : bool = v16 = false
+    if v18 then
+        failwith&lt;unit&gt; v17
 method0()
 
 9999-12-31 11:59:59 PM
@@ -8552,44 +8560,45 @@ and method0 () : unit =
     let v0 : (unit -&gt; System.Guid) = closure0()
     let v1 : string = $"19700101-0000-0000-0000-0{(v0 () |&gt; string).[^10..]}"
     let v2 : System.Guid = System.Guid v1 
-    let v3 : string = v2.ToString ()
-    let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let v3 : (System.Guid -&gt; string) = _.ToString()
+    let v4 : string = v3 v2
+    let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
     let mutable result = None
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v5 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v5
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
+    let v6 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v6
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v7 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v7
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v8 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
     #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v10
+    #endif
     |&gt; fun x -&gt; result &lt;- Some x
-    let v10 : System.DateTime = result |&gt; Option.get
-    let v11 : System.DateTime = System.DateTime.UnixEpoch
-    let v12 : string = $"%A{v10}"
-    System.Console.WriteLine v12
-    let v13 : bool = v10 = v11
-    let v15 : bool =
-        if v13 then
+    let v11 : System.DateTime = result |&gt; Option.get
+    let v12 : System.DateTime = System.DateTime.UnixEpoch
+    let v13 : string = $"%A{v11}"
+    System.Console.WriteLine v13
+    let v14 : bool = v11 = v12
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v13)
-    let v16 : string = $"__expect / actual: %A{v10} / expected: %A{v11}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+            method2(v14)
+    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
+    let v18 : bool = v16 = false
+    if v18 then
+        failwith&lt;unit&gt; v17
 method0()
 
 1970-01-01 12:00:00 AM
@@ -8669,24 +8678,26 @@ method0()
 and method0 () : unit =
     let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
     let v1 : System.Guid = System.Guid v0 
-    let v2 : string = v1.ToString ()
-    let v3 : string = 0L.ToString ()
-    let v4 : string = v3.PadLeft (18, '0')
-    let v5 : System.Guid = System.Guid $"{v4.[0..7]}-{v4.[8..11]}-{v4.[12..15]}-{v4.[16..17]}{v2.[21..]}"
-    let v6 : string = "00000000-0000-0000-00dc-ba9876543210"
-    let v7 : System.Guid = System.Guid v6 
-    let v8 : string = $"%A{v5}"
-    System.Console.WriteLine v8
-    let v9 : bool = v5 = v7
-    let v11 : bool =
-        if v9 then
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : (int64 -&gt; string) = _.ToString()
+    let v5 : string = v4 0L
+    let v6 : string = v5.PadLeft (18, '0')
+    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
+    let v8 : string = "00000000-0000-0000-00dc-ba9876543210"
+    let v9 : System.Guid = System.Guid v8 
+    let v10 : string = $"%A{v7}"
+    System.Console.WriteLine v10
+    let v11 : bool = v7 = v9
+    let v13 : bool =
+        if v11 then
             true
         else
-            method1(v9)
-    let v12 : string = $"__expect / actual: %A{v5} / expected: %A{v7}"
-    let v13 : bool = v11 = false
-    if v13 then
-        failwith&lt;unit&gt; v12
+            method1(v11)
+    let v14 : string = $"__expect / actual: %A{v7} / expected: %A{v9}"
+    let v15 : bool = v13 = false
+    if v15 then
+        failwith&lt;unit&gt; v14
 method0()
 
 00000000-0000-0000-00dc-ba9876543210
@@ -8728,25 +8739,27 @@ and method1 (v0 : bool) : bool =
 and method0 () : unit =
     let v0 : string = "FEDCBA98-7654-3210-FEDC-BA9876543210"
     let v1 : System.Guid = System.Guid v0 
-    let v2 : string = v1.ToString ()
-    let v3 : string = 999999999999999999L.ToString ()
-    let v4 : string = v3.PadLeft (18, '0')
-    let v5 : System.Guid = System.Guid $"{v4.[0..7]}-{v4.[8..11]}-{v4.[12..15]}-{v4.[16..17]}{v2.[21..]}"
-    let v6 : (unit -&gt; System.Guid) = closure0()
-    let v7 : string = $"99999999-9999-9999-99dc-b{(v6 () |&gt; string).[^10..]}"
-    let v8 : System.Guid = System.Guid v7 
-    let v9 : string = $"%A{v5}"
-    System.Console.WriteLine v9
-    let v10 : bool = v5 = v8
-    let v12 : bool =
-        if v10 then
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : (int64 -&gt; string) = _.ToString()
+    let v5 : string = v4 999999999999999999L
+    let v6 : string = v5.PadLeft (18, '0')
+    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
+    let v8 : (unit -&gt; System.Guid) = closure0()
+    let v9 : string = $"99999999-9999-9999-99dc-b{(v8 () |&gt; string).[^10..]}"
+    let v10 : System.Guid = System.Guid v9 
+    let v11 : string = $"%A{v7}"
+    System.Console.WriteLine v11
+    let v12 : bool = v7 = v10
+    let v14 : bool =
+        if v12 then
             true
         else
-            method1(v10)
-    let v13 : string = $"__expect / actual: %A{v5} / expected: %A{v8}"
-    let v14 : bool = v12 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+            method1(v12)
+    let v15 : string = $"__expect / actual: %A{v7} / expected: %A{v10}"
+    let v16 : bool = v14 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
 99999999-9999-9999-99dc-ba9876543210
@@ -8825,20 +8838,21 @@ method0()
 and method0 () : unit =
     let v0 : string = "00000000-0000-0000-00dc-ba9876543210"
     let v1 : System.Guid = System.Guid v0 
-    let v2 : string = v1.ToString ()
-    let v3 : int64 = int64 $"{v2.[0..7]}{v2.[9..12]}{v2.[14..17]}{v2.[19..20]}"
-    let v4 : string = $"%A{v3}"
-    System.Console.WriteLine v4
-    let v5 : bool = v3 = 0L
-    let v7 : bool =
-        if v5 then
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : int64 = int64 $"{v3.[0..7]}{v3.[9..12]}{v3.[14..17]}{v3.[19..20]}"
+    let v5 : string = $"%A{v4}"
+    System.Console.WriteLine v5
+    let v6 : bool = v4 = 0L
+    let v8 : bool =
+        if v6 then
             true
         else
-            method1(v5)
-    let v8 : string = $"__expect / actual: %A{v3} / expected: %A{0L}"
-    let v9 : bool = v7 = false
-    if v9 then
-        failwith&lt;unit&gt; v8
+            method1(v6)
+    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{0L}"
+    let v10 : bool = v8 = false
+    if v10 then
+        failwith&lt;unit&gt; v9
 method0()
 
 0L
@@ -8881,20 +8895,21 @@ and method0 () : unit =
     let v0 : (unit -&gt; System.Guid) = closure0()
     let v1 : string = $"99999999-9999-9999-99{(v0 () |&gt; string).[^14..]}"
     let v2 : System.Guid = System.Guid v1 
-    let v3 : string = v2.ToString ()
-    let v4 : int64 = int64 $"{v3.[0..7]}{v3.[9..12]}{v3.[14..17]}{v3.[19..20]}"
-    let v5 : string = $"%A{v4}"
-    System.Console.WriteLine v5
-    let v6 : bool = v4 = 999999999999999999L
-    let v8 : bool =
-        if v6 then
+    let v3 : (System.Guid -&gt; string) = _.ToString()
+    let v4 : string = v3 v2
+    let v5 : int64 = int64 $"{v4.[0..7]}{v4.[9..12]}{v4.[14..17]}{v4.[19..20]}"
+    let v6 : string = $"%A{v5}"
+    System.Console.WriteLine v6
+    let v7 : bool = v5 = 999999999999999999L
+    let v9 : bool =
+        if v7 then
             true
         else
-            method1(v6)
-    let v9 : string = $"__expect / actual: %A{v4} / expected: %A{999999999999999999L}"
-    let v10 : bool = v8 = false
-    if v10 then
-        failwith&lt;unit&gt; v9
+            method1(v7)
+    let v10 : string = $"__expect / actual: %A{v5} / expected: %A{999999999999999999L}"
+    let v11 : bool = v9 = false
+    if v11 then
+        failwith&lt;unit&gt; v10
 method0()
 
 999999999999999999L
@@ -8984,48 +8999,50 @@ and method2 (v0 : bool) : bool =
 and method0 () : unit =
     let v0 : System.DateTime = System.DateTime.UtcNow
     let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : string = v1.ToString ()
-    let v3 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v4 : System.Guid = System.Guid $"{v3}{v2.[v3.Length..]}"
-    let v5 : string = v4.ToString ()
-    let v6 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
+    let v6 : (System.Guid -&gt; string) = _.ToString()
+    let v7 : string = v6 v5
+    let v8 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
     let mutable result = None
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v7 : System.DateTime = System.DateTime.Parse (v5.[..24] |&gt; v6 "-" "")
-    v7
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v8 : System.DateTime = System.DateTime.Parse (v5.[..24] |&gt; v6 "-" "")
-    v8
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v9 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
+    let v9 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
     v9
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v10 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v10 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
     v10
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v11 : System.DateTime = System.DateTime.ParseExact (v5.[..24] |&gt; v6 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v11 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
     v11
     #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v12 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v12
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v13 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v13
+    #endif
     |&gt; fun x -&gt; result &lt;- Some x
-    let v12 : System.DateTime = result |&gt; Option.get
-    let v13 : float = (v12 - System.DateTime.UtcNow).TotalSeconds
-    let v14 : int32 = int32 v13
-    let v15 : string = $"%A{v14}"
-    System.Console.WriteLine v15
-    let v16 : bool = v14 = 0
-    let v18 : bool =
-        if v16 then
+    let v14 : System.DateTime = result |&gt; Option.get
+    let v15 : float = (v14 - System.DateTime.UtcNow).TotalSeconds
+    let v16 : int32 = int32 v15
+    let v17 : string = $"%A{v16}"
+    System.Console.WriteLine v17
+    let v18 : bool = v16 = 0
+    let v20 : bool =
+        if v18 then
             true
         else
-            method2(v16)
-    let v19 : string = $"__expect / actual: %A{v14} / expected: %A{0}"
-    let v20 : bool = v18 = false
-    if v20 then
-        failwith&lt;unit&gt; v19
+            method2(v18)
+    let v21 : string = $"__expect / actual: %A{v16} / expected: %A{0}"
+    let v22 : bool = v20 = false
+    if v22 then
+        failwith&lt;unit&gt; v21
 method0()
 
 0
@@ -9106,25 +9123,28 @@ method0()
 and method0 () : unit =
     let v0 : int64 = System.DateTime.UtcNow.Ticks
     let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : string = v1.ToString ()
-    let v3 : string = v0.ToString ()
-    let v4 : string = v3.PadLeft (18, '0')
-    let v5 : System.Guid = System.Guid $"{v4.[0..7]}-{v4.[8..11]}-{v4.[12..15]}-{v4.[16..17]}{v2.[21..]}"
-    let v6 : string = v5.ToString ()
-    let v7 : int64 = int64 $"{v6.[0..7]}{v6.[9..12]}{v6.[14..17]}{v6.[19..20]}"
-    let v8 : int64 = (v7 - System.DateTime.UtcNow.Ticks) / 100000L
-    let v9 : string = $"%A{v8}"
-    System.Console.WriteLine v9
-    let v10 : bool = v8 = 0L
-    let v12 : bool =
-        if v10 then
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : (int64 -&gt; string) = _.ToString()
+    let v5 : string = v4 v0
+    let v6 : string = v5.PadLeft (18, '0')
+    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
+    let v8 : (System.Guid -&gt; string) = _.ToString()
+    let v9 : string = v8 v7
+    let v10 : int64 = int64 $"{v9.[0..7]}{v9.[9..12]}{v9.[14..17]}{v9.[19..20]}"
+    let v11 : int64 = (v10 - System.DateTime.UtcNow.Ticks) / 100000L
+    let v12 : string = $"%A{v11}"
+    System.Console.WriteLine v12
+    let v13 : bool = v11 = 0L
+    let v15 : bool =
+        if v13 then
             true
         else
-            method1(v10)
-    let v13 : string = $"__expect / actual: %A{v8} / expected: %A{0L}"
-    let v14 : bool = v12 = false
-    if v14 then
-        failwith&lt;unit&gt; v13
+            method1(v13)
+    let v16 : string = $"__expect / actual: %A{v11} / expected: %A{0L}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 0L
@@ -9172,7 +9192,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 2024-03-29 4:58:41 PM -04:00
+<pre>DateTime: 2024-03-30 3:34:02 PM -04:00
 Time Zone: (UTC-04:00) Cuiaba
 Is DST: false
 v1: -04:00:00
@@ -9221,10 +9241,11 @@ v2: (UTC-04:00) Cuiaba
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>let rec closure1 (v0 : System.Guid) (v1 : System.DateTime) : System.Guid =
-    let v2 : string = v0.ToString ()
-    let v3 : string = v1.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v4 : System.Guid = System.Guid $"{v3}{v2.[v3.Length..]}"
-    v4
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v0
+    let v4 : string = v1.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
+    v5
 and closure0 () (v0 : System.Guid) : (System.DateTime -&gt; System.Guid) =
     closure1(v0)
 and closure5 (v0 : string, v1 : string) (v2 : string) : string =
@@ -9237,57 +9258,64 @@ and closure3 () (v0 : string) : (string -&gt; (string -&gt; string)) =
 and method0 () : (string -&gt; (string -&gt; (string -&gt; string))) =
     closure3()
 and closure2 () (v0 : System.Guid) : System.DateTime =
-    let v1 : string = v0.ToString ()
-    let v2 : (string -&gt; (string -&gt; (string -&gt; string))) = method0()
+    let v1 : (System.Guid -&gt; string) = _.ToString()
+    let v2 : string = v1 v0
+    let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = method0()
     let mutable result = None
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v3 : System.DateTime = System.DateTime.Parse (v1.[..24] |&gt; v2 "-" "")
-    v3
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v4 : System.DateTime = System.DateTime.Parse (v1.[..24] |&gt; v2 "-" "")
+    let v4 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
     v4
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v5 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
     v5
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v6 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v6 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v6
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v7 : System.DateTime = System.DateTime.ParseExact (v1.[..24] |&gt; v2 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v7
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v8 : System.DateTime = result |&gt; Option.get
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v9 : System.DateTime = result |&gt; Option.get
+    v9
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
-    let v2 : string = v0.ToString ()
-    let v3 : string = v1.ToString ()
-    let v4 : string = v3.PadLeft (18, '0')
-    let v5 : System.Guid = System.Guid $"{v4.[0..7]}-{v4.[8..11]}-{v4.[12..15]}-{v4.[16..17]}{v2.[21..]}"
-    v5
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v0
+    let v4 : (int64 -&gt; string) = _.ToString()
+    let v5 : string = v4 v1
+    let v6 : string = v5.PadLeft (18, '0')
+    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
+    v7
 and closure6 () (v0 : System.Guid) : (int64 -&gt; System.Guid) =
     closure7(v0)
 and closure8 () (v0 : System.Guid) : int64 =
-    let v1 : string = v0.ToString ()
-    let v2 : int64 = int64 $"{v1.[0..7]}{v1.[9..12]}{v1.[14..17]}{v1.[19..20]}"
-    v2
+    let v1 : (System.Guid -&gt; string) = _.ToString()
+    let v2 : string = v1 v0
+    let v3 : int64 = int64 $"{v2.[0..7]}{v2.[9..12]}{v2.[14..17]}{v2.[19..20]}"
+    v3
 and closure9 () (v0 : System.DateTime) : System.Guid =
     let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : string = v1.ToString ()
-    let v3 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v4 : System.Guid = System.Guid $"{v3}{v2.[v3.Length..]}"
-    v4
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : string = v0.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v5 : System.Guid = System.Guid $"{v4}{v3.[v4.Length..]}"
+    v5
 and closure10 () (v0 : int64) : System.Guid =
     let v1 : System.Guid = System.Guid.NewGuid ()
-    let v2 : string = v1.ToString ()
-    let v3 : string = v0.ToString ()
-    let v4 : string = v3.PadLeft (18, '0')
-    let v5 : System.Guid = System.Guid $"{v4.[0..7]}-{v4.[8..11]}-{v4.[12..15]}-{v4.[16..17]}{v2.[21..]}"
-    v5
+    let v2 : (System.Guid -&gt; string) = _.ToString()
+    let v3 : string = v2 v1
+    let v4 : (int64 -&gt; string) = _.ToString()
+    let v5 : string = v4 v0
+    let v6 : string = v5.PadLeft (18, '0')
+    let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
+    v7
 let v0 : (System.Guid -&gt; (System.DateTime -&gt; System.Guid)) = closure0()
 let date_time_guid_from_date_time x = v0 x
 let v1 : (System.Guid -&gt; System.DateTime) = closure2()

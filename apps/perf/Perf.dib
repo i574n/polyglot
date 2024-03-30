@@ -706,7 +706,7 @@ let solutions = [
     fun (input: string) ->
         let resultList =
             List.fold (fun acc x ->
-                let rotate (text: string) (letter: string) = text.Substring (1, input.Length - 1) + letter
+                let rotate (text: string) (letter: string) = (text |> Sm.slice 1 (input.Length - 1)) + letter
                 [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] @ acc
             ) [] (Seq.toList input)
 
@@ -931,8 +931,8 @@ inl get_solutions () =
             am.singleton 0i32
             |> am.append (am'.init_series 1 (input_length - 1) 1)
             |> am.map (fun i =>
-                inl a = sm.slice input { from = i; to = input_length - 1 } : string
-                inl b = sm.slice input { from = 0; to = i - 1 } : string
+                inl a = input |> sm'.slice i (input_length - 1)
+                inl b = input |> sm'.slice 0 (i - 1)
                 $"!a + !b" : string
             )
             |> seq.of_array
@@ -948,8 +948,8 @@ inl get_solutions () =
             listm.singleton 0i32
             |> listm.append (listm'.init_series 1 (input_length - 1) 1)
             |> listm.map (fun i =>
-                inl a = sm.slice input { from = i; to = input_length - 1 } : string
-                inl b = if i = 0 then "" else sm.slice input { from = 0; to = i - 1 } : string
+                inl a = input |> sm'.slice i (input_length - 1)
+                inl b = if i = 0 then "" else input |> sm'.slice 0 (i - 1)
                 $"!a + !b" : string
             )
             |> listm.toArray

@@ -29,30 +29,32 @@ let rec closure0 () () : string =
     let v12 : string = System.IO.Path.Combine (v10, v11)
     let v13 : System.DateTime = System.DateTime.Now
     let v14 : System.Guid = System.Guid.NewGuid ()
-    let v15 : string = v14.ToString ()
-    let v16 : string = v13.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v17 : System.Guid = System.Guid $"{v16}{v15.[v16.Length..]}"
-    let v18 : string = v17.ToString ()
-    let v19 : string = System.IO.Path.Combine (v12, v18)
-    v19
+    let v15 : (System.Guid -> string) = _.ToString()
+    let v16 : string = v15 v14
+    let v17 : string = v13.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v18 : System.Guid = System.Guid $"{v17}{v16.[v17.Length..]}"
+    let v19 : (System.Guid -> string) = _.ToString()
+    let v20 : string = v19 v18
+    let v21 : string = System.IO.Path.Combine (v12, v20)
+    v21
     #endif
     #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-    let v20 : US0 = US0_0
-    let v21 : US1 = US1_0(v20)
-    let v22 : string = $"create_temp_directory_name target: {v21}"
-    let v23 : string = failwith<string> v22
-    v23
+    let v22 : US0 = US0_0
+    let v23 : US1 = US1_0(v22)
+    let v24 : string = $"create_temp_directory_name target: {v23}"
+    let v25 : string = failwith<string> v24
+    v25
     #endif
     #if !FABLE_COMPILER_RUST && WASM
-    let v24 : US0 = US0_2
-    let v25 : US1 = US1_0(v24)
-    let v26 : string = $"create_temp_directory_name target: {v25}"
-    let v27 : string = failwith<string> v26
-    v27
+    let v26 : US0 = US0_2
+    let v27 : US1 = US1_0(v26)
+    let v28 : string = $"create_temp_directory_name target: {v27}"
+    let v29 : string = failwith<string> v28
+    v29
     #endif
     |> fun x -> result <- Some x
-    let v28 : string = result |> Option.get
-    v28
+    let v30 : string = result |> Option.get
+    v30
 let v0 : (unit -> string) = closure0()
 let create_temp_directory_name () = v0 ()
 ()

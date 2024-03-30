@@ -18,12 +18,12 @@ pub mod Date_time {
     use fable_library_rust::String_::string;
     use fable_library_rust::String_::toString;
     pub fn closure1(v0_1: Guid, v1_1: DateTime) -> Guid {
-        let v2_1: string = toString(v0_1);
-        let v3_1: string = v1_1.toString(string("yyyyMMdd-HHmm-ssff-ffff-f"));
+        let v3_1: string = toString(v0_1);
+        let v4_1: string = v1_1.toString(string("yyyyMMdd-HHmm-ssff-ffff-f"));
         parse(sprintf!(
             "{}{}",
-            v3_1.clone(),
-            getSlice(v2_1, Some(length(v3_1)), None::<i32>)
+            v4_1.clone(),
+            getSlice(v3_1, Some(length(v4_1)), None::<i32>)
         ))
     }
     pub fn closure0(unitVar: (), v0_1: Guid) -> Func1<DateTime, Guid> {
@@ -52,26 +52,26 @@ pub mod Date_time {
         Func1::new(move |v: string| Date_time::closure3((), v))
     }
     pub fn closure2(unitVar: (), v0_1: Guid) -> DateTime {
-        let v1_1: string = toString(v0_1);
+        let v2_1: string = toString(v0_1);
         let result: MutCell<Option<DateTime>> = MutCell::new(None::<DateTime>);
         {
             let x: DateTime = DateTime::parse((Date_time::method0())(string("-"))(string(""))(
-                getSlice(v1_1, None::<i32>, Some(24_i32)),
+                getSlice(v2_1, None::<i32>, Some(24_i32)),
             ));
             result.set(Some(x))
         }
         getValue(result.get().clone())
     }
     pub fn closure7(v0_1: Guid, v1_1: i64) -> Guid {
-        let v2_1: string = toString(v0_1);
-        let v4_1: string = padLeft(toString(v1_1), 18_i32, '0');
+        let v3_1: string = toString(v0_1);
+        let v6: string = padLeft(toString(v1_1), 18_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v4_1.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v4_1.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v4_1.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v4_1, Some(16_i32), Some(17_i32)),
-            getSlice(v2_1, Some(21_i32), None::<i32>)
+            getSlice(v6.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v6.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v6.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v6, Some(16_i32), Some(17_i32)),
+            getSlice(v3_1, Some(21_i32), None::<i32>)
         ))
     }
     pub fn closure6(unitVar: (), v0_1: Guid) -> Func1<i64, Guid> {
@@ -81,34 +81,34 @@ pub mod Date_time {
         })
     }
     pub fn closure8(unitVar: (), v0_1: Guid) -> i64 {
-        let v1_1: string = toString(v0_1);
+        let v2_1: string = toString(v0_1);
         toInt64(sprintf!(
             "{}{}{}{}",
-            getSlice(v1_1.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v1_1.clone(), Some(9_i32), Some(12_i32)),
-            getSlice(v1_1.clone(), Some(14_i32), Some(17_i32)),
-            getSlice(v1_1, Some(19_i32), Some(20_i32))
+            getSlice(v2_1.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v2_1.clone(), Some(9_i32), Some(12_i32)),
+            getSlice(v2_1.clone(), Some(14_i32), Some(17_i32)),
+            getSlice(v2_1, Some(19_i32), Some(20_i32))
         ))
     }
     pub fn closure9(unitVar: (), v0_1: DateTime) -> Guid {
-        let v2_1: string = toString(new_guid());
-        let v3_1: string = v0_1.toString(string("yyyyMMdd-HHmm-ssff-ffff-f"));
+        let v3_1: string = toString(new_guid());
+        let v4_1: string = v0_1.toString(string("yyyyMMdd-HHmm-ssff-ffff-f"));
         parse(sprintf!(
             "{}{}",
-            v3_1.clone(),
-            getSlice(v2_1, Some(length(v3_1)), None::<i32>)
+            v4_1.clone(),
+            getSlice(v3_1, Some(length(v4_1)), None::<i32>)
         ))
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Guid {
-        let v2_1: string = toString(new_guid());
-        let v4_1: string = padLeft(toString(v0_1), 18_i32, '0');
+        let v3_1: string = toString(new_guid());
+        let v6: string = padLeft(toString(v0_1), 18_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v4_1.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v4_1.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v4_1.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v4_1, Some(16_i32), Some(17_i32)),
-            getSlice(v2_1, Some(21_i32), None::<i32>)
+            getSlice(v6.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v6.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v6.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v6, Some(16_i32), Some(17_i32)),
+            getSlice(v3_1, Some(21_i32), None::<i32>)
         ))
     }
     pub fn v0() -> Func1<Guid, Func1<DateTime, Guid>> {

@@ -18,6 +18,9 @@ pub mod Lib {
         pub fn ellipsis(x: i32) -> Func1<string, string> {
             Sm::ellipsis(x)
         }
+        pub fn ellipsis_end(x: i64) -> Func1<string, string> {
+            Sm::ellipsis_end(x)
+        }
         pub fn ends_with(x: string) -> Func1<string, bool> {
             Sm::ends_with(x)
         }
@@ -26,6 +29,9 @@ pub mod Lib {
         }
         pub fn replace(x: string) -> Func1<string, Func1<string, string>> {
             Sm::replace(x)
+        }
+        pub fn slice(x: i32) -> Func1<i32, Func1<string, string>> {
+            Sm::slice(x)
         }
         pub fn split(x: string) -> Func1<string, Array<string>> {
             Sm::split(x)

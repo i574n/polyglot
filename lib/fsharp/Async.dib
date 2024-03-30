@@ -84,7 +84,7 @@ let inline catch a =
 
 #!fsharp
 
-let inline runWithTimeoutAsync (timeout : int) fn =
+let inline runWithTimeoutAsync_ (timeout : int) fn =
     let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
     let timeoutTask = async {
@@ -115,17 +115,17 @@ let inline runWithTimeoutAsync (timeout : int) fn =
 
 #!fsharp
 
-let inline runWithTimeout timeout fn =
+let inline runWithTimeout_ timeout fn =
     fn
-    |> runWithTimeoutAsync timeout
+    |> runWithTimeoutAsync_ timeout
     |> Async.RunSynchronously
 
 #!fsharp
 
 //// test
 
-Async.Sleep 60
-|> runWithTimeout 10
+Async.Sleep 120
+|> runWithTimeout_ 10
 |> _assertEqual None
 
 #!fsharp
@@ -133,7 +133,7 @@ Async.Sleep 60
 //// test
 
 Async.Sleep 10
-|> runWithTimeout 60
+|> runWithTimeout_ 60
 |> _assertEqual (Some ())
 
 #!fsharp
@@ -143,7 +143,7 @@ Async.Sleep 10
 async {
     raise (exn "error")
 }
-|> runWithTimeout 60
+|> runWithTimeout_ 60
 |> _assertEqual None
 
 #!markdown
@@ -175,6 +175,14 @@ let inline runWithTimeoutChild timeout fn =
     fn
     |> runWithTimeoutChildAsync timeout
     |> Async.RunSynchronously
+
+#!fsharp
+
+let inline runWithTimeoutAsync timeout fn =
+    runWithTimeoutChildAsync timeout fn
+
+let inline runWithTimeout timeout fn =
+    runWithTimeoutChild timeout fn
 
 #!fsharp
 

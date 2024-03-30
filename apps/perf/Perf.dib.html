@@ -8546,49 +8546,49 @@ Test: uniqueLettersTests
 Solution: abc  
 Test case 1. A. Time: 3L  
 Test case 2. B. Time: 4L  
-Test case 3. C. Time: 3L  
-Test case 4. D. Time: 4L  
+Test case 3. C. Time: 4L  
+Test case 4. D. Time: 1L  
 Test case 5. E. Time: 1L  
 Test case 6. F. Time: 1L  
 Test case 7. G. Time: 1L  
-Test case 8. H. Time: 2L  
+Test case 8. H. Time: 1L  
 Test case 9. I. Time: 1L  
 Test case 10. J. Time: 1L  
-Test case 11. K. Time: 2L  
+Test case 11. K. Time: 4L  
 
 Solution: accabb  
 Test case 1. A. Time: 1L  
 Test case 2. B. Time: 1L  
-Test case 3. C. Time: 1L  
+Test case 3. C. Time: 2L  
 Test case 4. D. Time: 1L  
-Test case 5. E. Time: 0L  
-Test case 6. F. Time: 0L  
-Test case 7. G. Time: 0L  
+Test case 5. E. Time: 1L  
+Test case 6. F. Time: 1L  
+Test case 7. G. Time: 1L  
 Test case 8. H. Time: 0L  
 Test case 9. I. Time: 0L  
 Test case 10. J. Time: 0L  
 Test case 11. K. Time: 1L  
 
 Solution: pprrqqpp  
-Test case 1. A. Time: 1L  
+Test case 1. A. Time: 0L  
 Test case 2. B. Time: 1L  
 Test case 3. C. Time: 1L  
-Test case 4. D. Time: 1L  
-Test case 5. E. Time: 1L  
-Test case 6. F. Time: 1L  
-Test case 7. G. Time: 1L  
-Test case 8. H. Time: 1L  
+Test case 4. D. Time: 0L  
+Test case 5. E. Time: 0L  
+Test case 6. F. Time: 0L  
+Test case 7. G. Time: 0L  
+Test case 8. H. Time: 0L  
 Test case 9. I. Time: 0L  
-Test case 10. J. Time: 1L  
+Test case 10. J. Time: 0L  
 Test case 11. K. Time: 0L  
 
 Solution: aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb  
-Test case 1. A. Time: 14L  
+Test case 1. A. Time: 11L  
 Test case 2. B. Time: 8L  
 Test case 3. C. Time: 12L  
 Test case 4. D. Time: 8L  
-Test case 5. E. Time: 9L  
-Test case 6. F. Time: 9L  
+Test case 5. E. Time: 7L  
+Test case 6. F. Time: 8L  
 Test case 7. G. Time: 6L  
 Test case 8. H. Time: 7L  
 Test case 9. I. Time: 6L  
@@ -8597,22 +8597,22 @@ Test case 11. K. Time: 3L
 
 Input                                                                          	| Expected	| Result	| Best   
 ---                                                                            	| ---     	| ---   	| ---    
-abc                                                                            	| abc     	| abc   	| (5, 1) 
-accabb                                                                         	| acb     	| acb   	| (5, 0) 
-pprrqqpp                                                                       	| prq     	| prq   	| (9, 0) 
+abc                                                                            	| abc     	| abc   	| (4, 1) 
+accabb                                                                         	| acb     	| acb   	| (8, 0) 
+pprrqqpp                                                                       	| prq     	| prq   	| (1, 0) 
 aaaaaaaaaaaaaaccccccabbbbbbbaaacccbbbaaccccccccccacbbbbbbbbbbbbbcccccccbbbbbbbb	| acb     	| acb   	| (11, 3)
 
 Average Ranking  
 Test case 9. Average Time: 1L  
-Test case 11. Average Time: 1L  
+Test case 4. Average Time: 2L  
 Test case 5. Average Time: 2L  
 Test case 6. Average Time: 2L  
 Test case 7. Average Time: 2L  
 Test case 8. Average Time: 2L  
 Test case 10. Average Time: 2L  
+Test case 11. Average Time: 2L  
+Test case 1. Average Time: 3L  
 Test case 2. Average Time: 3L  
-Test case 4. Average Time: 3L  
-Test case 1. Average Time: 4L  
 Test case 3. Average Time: 4L  
 </pre>
 </div>
@@ -8801,7 +8801,7 @@ Test case 8. Average Time: 1551L</p>
     <span class="n">fun</span> <span class="p">(</span><span class="nb">input</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">resultList</span> <span class="o">=</span>
             <span class="n">List</span><span class="o">.</span><span class="n">fold</span> <span class="p">(</span><span class="n">fun</span> <span class="n">acc</span> <span class="n">x</span> <span class="o">-&gt;</span>
-                <span class="n">let</span> <span class="n">rotate</span> <span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">letter</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">Substring</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">letter</span>
+                <span class="n">let</span> <span class="n">rotate</span> <span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">letter</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">text</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">slice</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">Length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">letter</span>
                 <span class="p">[</span> <span class="n">rotate</span> <span class="p">(</span><span class="k">if</span> <span class="n">acc</span><span class="o">.</span><span class="n">IsEmpty</span> <span class="n">then</span> <span class="nb">input</span> <span class="k">else</span> <span class="n">acc</span><span class="o">.</span><span class="n">Head</span><span class="p">)</span> <span class="p">(</span><span class="n">string</span> <span class="n">x</span><span class="p">)</span> <span class="p">]</span> <span class="o">@</span> <span class="n">acc</span>
             <span class="p">)</span> <span class="p">[]</span> <span class="p">(</span><span class="n">Seq</span><span class="o">.</span><span class="n">toList</span> <span class="nb">input</span><span class="p">)</span>
 
@@ -8938,45 +8938,45 @@ Test: rotateStringsTests
 
 Solution: abc  
 Test case 1. A. Time: 2L  
-Test case 2. B. Time: 1L  
+Test case 2. B. Time: 2L  
 Test case 3. C. Time: 1L  
-Test case 4. CA. Time: 4L  
+Test case 4. CA. Time: 3L  
 Test case 5. CB. Time: 2L  
 Test case 6. D. Time: 2L  
 Test case 7. E. Time: 1L  
-Test case 8. F. Time: 1L  
+Test case 8. F. Time: 2L  
 Test case 9. FA. Time: 2L  
-Test case 10. FB. Time: 8L  
+Test case 10. FB. Time: 7L  
 Test case 11. FC. Time: 9L  
 
 Solution: abcde  
-Test case 1. A. Time: 1L  
-Test case 2. B. Time: 0L  
+Test case 1. A. Time: 3L  
+Test case 2. B. Time: 1L  
 Test case 3. C. Time: 1L  
 Test case 4. CA. Time: 1L  
 Test case 5. CB. Time: 1L  
-Test case 6. D. Time: 4L  
-Test case 7. E. Time: 0L  
-Test case 8. F. Time: 0L  
-Test case 9. FA. Time: 0L  
-Test case 10. FB. Time: 4L  
-Test case 11. FC. Time: 5L  
-
-Solution: abcdefghi  
-Test case 1. A. Time: 4L  
-Test case 2. B. Time: 4L  
-Test case 3. C. Time: 2L  
-Test case 4. CA. Time: 4L  
-Test case 5. CB. Time: 2L  
-Test case 6. D. Time: 7L  
+Test case 6. D. Time: 3L  
 Test case 7. E. Time: 1L  
 Test case 8. F. Time: 0L  
-Test case 9. FA. Time: 7L  
+Test case 9. FA. Time: 1L  
+Test case 10. FB. Time: 3L  
+Test case 11. FC. Time: 4L  
+
+Solution: abcdefghi  
+Test case 1. A. Time: 5L  
+Test case 2. B. Time: 1L  
+Test case 3. C. Time: 3L  
+Test case 4. CA. Time: 2L  
+Test case 5. CB. Time: 4L  
+Test case 6. D. Time: 7L  
+Test case 7. E. Time: 3L  
+Test case 8. F. Time: 0L  
+Test case 9. FA. Time: 3L  
 Test case 10. FB. Time: 2L  
-Test case 11. FC. Time: 6L  
+Test case 11. FC. Time: 4L  
 
 Solution: abab  
-Test case 1. A. Time: 0L  
+Test case 1. A. Time: 1L  
 Test case 2. B. Time: 0L  
 Test case 3. C. Time: 1L  
 Test case 4. CA. Time: 1L  
@@ -8984,9 +8984,9 @@ Test case 5. CB. Time: 1L
 Test case 6. D. Time: 1L  
 Test case 7. E. Time: 1L  
 Test case 8. F. Time: 0L  
-Test case 9. FA. Time: 0L  
+Test case 9. FA. Time: 1L  
 Test case 10. FB. Time: 1L  
-Test case 11. FC. Time: 4L  
+Test case 11. FC. Time: 3L  
 
 Solution: aa  
 Test case 1. A. Time: 0L  
@@ -8995,43 +8995,43 @@ Test case 3. C. Time: 0L
 Test case 4. CA. Time: 0L  
 Test case 5. CB. Time: 0L  
 Test case 6. D. Time: 0L  
-Test case 7. E. Time: 0L  
+Test case 7. E. Time: 1L  
 Test case 8. F. Time: 0L  
-Test case 9. FA. Time: 0L  
+Test case 9. FA. Time: 1L  
 Test case 10. FB. Time: 1L  
-Test case 11. FC. Time: 4L  
+Test case 11. FC. Time: 7L  
 
 Solution: z  
-Test case 1. A. Time: 0L  
+Test case 1. A. Time: 1L  
 Test case 2. B. Time: 0L  
 Test case 3. C. Time: 0L  
-Test case 4. CA. Time: 0L  
+Test case 4. CA. Time: 1L  
 Test case 5. CB. Time: 0L  
 Test case 6. D. Time: 0L  
 Test case 7. E. Time: 0L  
 Test case 8. F. Time: 0L  
 Test case 9. FA. Time: 0L  
-Test case 10. FB. Time: 0L  
-Test case 11. FC. Time: 4L  
+Test case 10. FB. Time: 1L  
+Test case 11. FC. Time: 3L  
 
 Input    	| Expected                                                                                 	| Result                                                                                   	| Best  
 ---      	| ---                                                                                      	| ---                                                                                      	| ---   
-abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (2, 1)
-abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (2, 0)
+abc      	| bca cab abc                                                                              	| bca cab abc                                                                              	| (3, 1)
+abcde    	| bcdea cdeab deabc eabcd abcde                                                            	| bcdea cdeab deabc eabcd abcde                                                            	| (8, 0)
 abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi	| (8, 0)
-abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (1, 0)
+abab     	| baba abab baba abab                                                                      	| baba abab baba abab                                                                      	| (2, 0)
 aa       	| aa aa                                                                                    	| aa aa                                                                                    	| (1, 0)
-z        	| z                                                                                        	| z                                                                                        	| (1, 0)
+z        	| z                                                                                        	| z                                                                                        	| (2, 0)
 
 Average Ranking  
 Test case 2. Average Time: 0L  
-Test case 3. Average Time: 0L  
-Test case 7. Average Time: 0L  
 Test case 8. Average Time: 0L  
-Test case 1. Average Time: 1L  
+Test case 3. Average Time: 1L  
 Test case 4. Average Time: 1L  
 Test case 5. Average Time: 1L  
+Test case 7. Average Time: 1L  
 Test case 9. Average Time: 1L  
+Test case 1. Average Time: 2L  
 Test case 6. Average Time: 2L  
 Test case 10. Average Time: 2L  
 Test case 11. Average Time: 5L  
@@ -9158,8 +9158,8 @@ Test case 11. Average Time: 5L
             <span class="n">am</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span><span class="n">i32</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">am</span><span class="s1">'.init_series 1 (input_length - 1) 1)</span>
             <span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span>
-                <span class="n">inl</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">input_length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
-                <span class="n">inl</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="n">inl</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.slice i (input_length - 1)</span>
+                <span class="n">inl</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.slice 0 (i - 1)</span>
                 <span class="err">$</span><span class="s2">"!a + !b"</span> <span class="p">:</span> <span class="n">string</span>
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">of_array</span>
@@ -9175,8 +9175,8 @@ Test case 11. Average Time: 5L
             <span class="n">listm</span><span class="o">.</span><span class="n">singleton</span> <span class="mi">0</span><span class="n">i32</span>
             <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span><span class="n">listm</span><span class="s1">'.init_series 1 (input_length - 1) 1)</span>
             <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">i</span> <span class="o">=&gt;</span>
-                <span class="n">inl</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">input_length</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
-                <span class="n">inl</span> <span class="n">b</span> <span class="o">=</span> <span class="k">if</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="s2">""</span> <span class="k">else</span> <span class="n">sm</span><span class="o">.</span><span class="n">slice</span> <span class="nb">input</span> <span class="p">{</span> <span class="kn">from</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">to</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">:</span> <span class="n">string</span>
+                <span class="n">inl</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.slice i (input_length - 1)</span>
+                <span class="n">inl</span> <span class="n">b</span> <span class="o">=</span> <span class="k">if</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span> <span class="s2">""</span> <span class="k">else</span> <span class="nb">input</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.slice 0 (i - 1)</span>
                 <span class="err">$</span><span class="s2">"!a + !b"</span> <span class="p">:</span> <span class="n">string</span>
             <span class="p">)</span>
             <span class="o">|&gt;</span> <span class="n">listm</span><span class="o">.</span><span class="n">toArray</span>
@@ -10608,41 +10608,41 @@ method0()
 Test: v0
 
 Solution: "abc"  
-Test case 1. F. Time: 1084  
-Test case 2. FA. Time: 1452  
+Test case 1. F. Time: 1035  
+Test case 2. FA. Time: 1363  
 
 Solution: "abcde"  
-Test case 1. F. Time: 1547  
-Test case 2. FA. Time: 2387  
+Test case 1. F. Time: 1510  
+Test case 2. FA. Time: 1957  
 
 Solution: "abcdefghi"  
-Test case 1. F. Time: 2224  
-Test case 2. FA. Time: 2531  
+Test case 1. F. Time: 1917  
+Test case 2. FA. Time: 2417  
 
 Solution: "abab"  
-Test case 1. F. Time: 1083  
-Test case 2. FA. Time: 1298  
+Test case 1. F. Time: 980  
+Test case 2. FA. Time: 1324  
 
 Solution: "aa"  
-Test case 1. F. Time: 773  
-Test case 2. FA. Time: 812  
+Test case 1. F. Time: 870  
+Test case 2. FA. Time: 778  
 
 Solution: "z"  
-Test case 1. F. Time: 319  
-Test case 2. FA. Time: 188  
+Test case 1. F. Time: 263  
+Test case 2. FA. Time: 184  
 
 Input      	| Expected                                                                                   	| Result                                                                                     	| Best              
 ---        	| ---                                                                                        	| ---                                                                                        	| ---               
-"abc"      	| "bca cab abc"                                                                              	| "bca cab abc"                                                                              	| struct (1L, 1084L)
-"abcde"    	| "bcdea cdeab deabc eabcd abcde"                                                            	| "bcdea cdeab deabc eabcd abcde"                                                            	| struct (1L, 1547L)
-"abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| struct (1L, 2224L)
-"abab"     	| "baba abab baba abab"                                                                      	| "baba abab baba abab"                                                                      	| struct (1L, 1083L)
-"aa"       	| "aa aa"                                                                                    	| "aa aa"                                                                                    	| struct (1L, 773L) 
-"z"        	| "z"                                                                                        	| "z"                                                                                        	| struct (2L, 188L) 
+"abc"      	| "bca cab abc"                                                                              	| "bca cab abc"                                                                              	| struct (1L, 1035L)
+"abcde"    	| "bcdea cdeab deabc eabcd abcde"                                                            	| "bcdea cdeab deabc eabcd abcde"                                                            	| struct (1L, 1510L)
+"abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| "bcdefghia cdefghiab defghiabc efghiabcd fghiabcde ghiabcdef hiabcdefg iabcdefgh abcdefghi"	| struct (1L, 1917L)
+"abab"     	| "baba abab baba abab"                                                                      	| "baba abab baba abab"                                                                      	| struct (1L, 980L) 
+"aa"       	| "aa aa"                                                                                    	| "aa aa"                                                                                    	| struct (2L, 778L) 
+"z"        	| "z"                                                                                        	| "z"                                                                                        	| struct (2L, 184L) 
 
 Average Ranking  
-Test case 1. Average Time: 1171L  
-Test case 2. Average Time: 1444L  
+Test case 1. Average Time: 1095L  
+Test case 2. Average Time: 1337L  
 </pre>
 </div>
 </div>
@@ -12334,28 +12334,28 @@ method0()
 Test: v33
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)  
-Test case 1. semi_open_1. Time: 556  
-Test case 2. closed_1. Time: 479  
-Test case 3. semi_open_2. Time: 482  
-Test case 4. closed_2. Time: 544  
+Test case 1. semi_open_1. Time: 468  
+Test case 2. closed_1. Time: 408  
+Test case 3. semi_open_2. Time: 436  
+Test case 4. closed_2. Time: 413  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)  
-Test case 1. semi_open_1. Time: 491  
-Test case 2. closed_1. Time: 488  
-Test case 3. semi_open_2. Time: 491  
-Test case 4. closed_2. Time: 500  
+Test case 1. semi_open_1. Time: 403  
+Test case 2. closed_1. Time: 392  
+Test case 3. semi_open_2. Time: 393  
+Test case 4. closed_2. Time: 378  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)  
-Test case 1. semi_open_1. Time: 478  
-Test case 2. closed_1. Time: 460  
-Test case 3. semi_open_2. Time: 481  
-Test case 4. closed_2. Time: 474  
+Test case 1. semi_open_1. Time: 411  
+Test case 2. closed_1. Time: 393  
+Test case 3. semi_open_2. Time: 397  
+Test case 4. closed_2. Time: 413  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)  
-Test case 1. semi_open_1. Time: 480  
-Test case 2. closed_1. Time: 545  
-Test case 3. semi_open_2. Time: 546  
-Test case 4. closed_2. Time: 550  
+Test case 1. semi_open_1. Time: 400  
+Test case 2. closed_1. Time: 398  
+Test case 3. semi_open_2. Time: 378  
+Test case 4. closed_2. Time: 385  
 
 Solution: struct ([|1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20;
           21; 22; 23; 24; 25; 26; 27; 28; 29; 30; 31; 32; 33; 34; 35; 36; 37; 38;
@@ -12363,34 +12363,34 @@ Solution: struct ([|1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 1
           57; 58; 59; 60; 61; 62; 63; 64; 65; 66; 67; 68; 69; 70; 71; 72; 73; 74;
           75; 76; 77; 78; 79; 80; 81; 82; 83; 84; 85; 86; 87; 88; 89; 90; 91; 92;
           93; 94; 95; 96; 97; 98; 99; 100|], 60, 100)  
-Test case 1. semi_open_1. Time: 563  
-Test case 2. closed_1. Time: 594  
-Test case 3. semi_open_2. Time: 557  
-Test case 4. closed_2. Time: 525  
+Test case 1. semi_open_1. Time: 392  
+Test case 2. closed_1. Time: 412  
+Test case 3. semi_open_2. Time: 402  
+Test case 4. closed_2. Time: 388  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)  
-Test case 1. semi_open_1. Time: 492  
-Test case 2. closed_1. Time: 506  
-Test case 3. semi_open_2. Time: 466  
-Test case 4. closed_2. Time: 485  
+Test case 1. semi_open_1. Time: 363  
+Test case 2. closed_1. Time: 369  
+Test case 3. semi_open_2. Time: 382  
+Test case 4. closed_2. Time: 380  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)  
-Test case 1. semi_open_1. Time: 496  
-Test case 2. closed_1. Time: 513  
-Test case 3. semi_open_2. Time: 502  
-Test case 4. closed_2. Time: 504  
+Test case 1. semi_open_1. Time: 384  
+Test case 2. closed_1. Time: 390  
+Test case 3. semi_open_2. Time: 379  
+Test case 4. closed_2. Time: 392  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)  
-Test case 1. semi_open_1. Time: 512  
-Test case 2. closed_1. Time: 535  
-Test case 3. semi_open_2. Time: 465  
-Test case 4. closed_2. Time: 462  
+Test case 1. semi_open_1. Time: 395  
+Test case 2. closed_1. Time: 390  
+Test case 3. semi_open_2. Time: 389  
+Test case 4. closed_2. Time: 402  
 
 Solution: struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)  
-Test case 1. semi_open_1. Time: 556  
-Test case 2. closed_1. Time: 505  
-Test case 3. semi_open_2. Time: 457  
-Test case 4. closed_2. Time: 483  
+Test case 1. semi_open_1. Time: 421  
+Test case 2. closed_1. Time: 397  
+Test case 3. semi_open_2. Time: 401  
+Test case 4. closed_2. Time: 388  
 
 Solution: struct ([|1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20;
           21; 22; 23; 24; 25; 26; 27; 28; 29; 30; 31; 32; 33; 34; 35; 36; 37; 38;
@@ -12398,39 +12398,39 @@ Solution: struct ([|1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 1
           57; 58; 59; 60; 61; 62; 63; 64; 65; 66; 67; 68; 69; 70; 71; 72; 73; 74;
           75; 76; 77; 78; 79; 80; 81; 82; 83; 84; 85; 86; 87; 88; 89; 90; 91; 92;
           93; 94; 95; 96; 97; 98; 99; 100|], 60, 100)  
-Test case 1. semi_open_1. Time: 508  
-Test case 2. closed_1. Time: 508  
-Test case 3. semi_open_2. Time: 508  
-Test case 4. closed_2. Time: 492  
+Test case 1. semi_open_1. Time: 416  
+Test case 2. closed_1. Time: 403  
+Test case 3. semi_open_2. Time: 417  
+Test case 4. closed_2. Time: 403  
 
 Input                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	| Expected	| Result  	| Best             
 ---                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	| ---     	| ---     	| ---              
-struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 3 	| US0_1 3 	| struct (2L, 479L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 0 	| US0_1 0 	| struct (2L, 488L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_1 6 	| US0_1 6 	| struct (2L, 460L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_0   	| US0_0   	| struct (1L, 480L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 3 	| US0_1 3 	| struct (2L, 408L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 0 	| US0_1 0 	| struct (4L, 378L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_1 6 	| US0_1 6 	| struct (2L, 393L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_0   	| US0_0   	| struct (3L, 378L)
 struct ([|1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20;
           21; 22; 23; 24; 25; 26; 27; 28; 29; 30; 31; 32; 33; 34; 35; 36; 37; 38;
           39; 40; 41; 42; 43; 44; 45; 46; 47; 48; 49; 50; 51; 52; 53; 54; 55; 56;
           57; 58; 59; 60; 61; 62; 63; 64; 65; 66; 67; 68; 69; 70; 71; 72; 73; 74;
           75; 76; 77; 78; 79; 80; 81; 82; 83; 84; 85; 86; 87; 88; 89; 90; 91; 92;
-          93; 94; 95; 96; 97; 98; 99; 100|], 60, 100)	| US0_1 59	| US0_1 59	| struct (4L, 525L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 3 	| US0_1 3 	| struct (3L, 466L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 0 	| US0_1 0 	| struct (1L, 496L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_1 6 	| US0_1 6 	| struct (4L, 462L)
-struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_0   	| US0_0   	| struct (3L, 457L)
+          93; 94; 95; 96; 97; 98; 99; 100|], 60, 100)	| US0_1 59	| US0_1 59	| struct (4L, 388L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 6, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 3 	| US0_1 3 	| struct (1L, 363L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 1, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                       	| US0_1 0 	| US0_1 0 	| struct (3L, 379L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 11, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_1 6 	| US0_1 6 	| struct (3L, 389L)
+struct ([|1; 3; 4; 6; 8; 9; 11|], 12, 7)                                                                                                                                                                                                                                                                                                                                                                                                                                      	| US0_0   	| US0_0   	| struct (4L, 388L)
 struct ([|1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18; 19; 20;
           21; 22; 23; 24; 25; 26; 27; 28; 29; 30; 31; 32; 33; 34; 35; 36; 37; 38;
           39; 40; 41; 42; 43; 44; 45; 46; 47; 48; 49; 50; 51; 52; 53; 54; 55; 56;
           57; 58; 59; 60; 61; 62; 63; 64; 65; 66; 67; 68; 69; 70; 71; 72; 73; 74;
           75; 76; 77; 78; 79; 80; 81; 82; 83; 84; 85; 86; 87; 88; 89; 90; 91; 92;
-          93; 94; 95; 96; 97; 98; 99; 100|], 60, 100)	| US0_1 59	| US0_1 59	| struct (4L, 492L)
+          93; 94; 95; 96; 97; 98; 99; 100|], 60, 100)	| US0_1 59	| US0_1 59	| struct (2L, 403L)
 
 Average Ranking  
-Test case 3. Average Time: 495L  
-Test case 4. Average Time: 501L  
-Test case 1. Average Time: 513L  
-Test case 2. Average Time: 513L  
+Test case 4. Average Time: 394L  
+Test case 2. Average Time: 395L  
+Test case 3. Average Time: 397L  
+Test case 1. Average Time: 405L  
 </pre>
 </div>
 </div>
@@ -12573,7 +12573,7 @@ Solution: 9
 Test case 1. A. Time: 0L  
 
 Solution: 10  
-Test case 1. A. Time: 2L  
+Test case 1. A. Time: 1L  
 
 Input	| Expected  	| Result    	| Best  
 ---  	| ---       	| ---       	| ---   
@@ -12581,7 +12581,7 @@ Input	| Expected  	| Result    	| Best
 2    	| ba        	| ba        	| (1, 0)
 3    	| aaa       	| aaa       	| (1, 0)
 9    	| aaaaaaaaa 	| aaaaaaaaa 	| (1, 0)
-10   	| baaaaaaaaa	| baaaaaaaaa	| (1, 2)
+10   	| baaaaaaaaa	| baaaaaaaaa	| (1, 1)
 
 Average Ranking  
 Test case 1. Average Time: 0L  

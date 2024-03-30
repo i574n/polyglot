@@ -9,24 +9,24 @@ $ErrorActionPreference = "Stop"
 
 if (!$fast) {
     { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 testing.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 guid.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 common.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 console.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 date_time.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 math.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"optionm'.dib\`"`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"am'.dib\`"`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"sm'.dib\`"`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"listm'.dib\`"`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 benchmark.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 stream.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 seq.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 util.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 file_system.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 rust.dib`"" `
-        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 physics.dib`"" `
-    } | Invoke-Block -Retries 3
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 testing.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 guid.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 common.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 console.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 date_time.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 math.dib -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"optionm'.dib\`" -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"am'.dib\`" -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"sm'.dib\`" -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 \`"listm'.dib\`" -Retries 3`"" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 benchmark.dib`" -Retries 3" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 stream.dib`" -Retries 3" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 seq.dib`" -Retries 3" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 util.dib`" -Retries 3" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 file_system.dib`" -Retries 3" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 rust.dib`" -Retries 3" `
+        --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 physics.dib`" -Retries 3" `
+    } | Invoke-Block
 }
 
 { . ../../apps/parser/dist/DibParser$(GetExecutableSuffix) testing.dib spi common.dib spi console.dib spi date_time.dib spi file_system.dib spi guid.dib spi math.dib spi "optionm'.dib" spi "am'.dib" spi "sm'.dib" spi "listm'.dib" spi benchmark.dib spi stream.dib spi seq.dib spi util.dib spi rust.dib spi physics.dib spi } | Invoke-Block

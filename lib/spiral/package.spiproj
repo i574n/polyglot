@@ -12,13 +12,13 @@ modules:
     listm'
     listm'_operators
     seq
+    math
     sm'
     sm'_operators
     date_time
     wasm
     mapm
     console
-    math
     async
     networking
     benchmark

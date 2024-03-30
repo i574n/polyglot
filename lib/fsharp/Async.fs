@@ -48,7 +48,7 @@ module Async =
 
     /// ## runWithTimeoutAsync
 
-    let inline runWithTimeoutAsync (timeout : int) fn =
+    let inline runWithTimeoutAsync_ (timeout : int) fn =
         let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
         let timeoutTask = async {
@@ -77,9 +77,9 @@ module Async =
         [ timeoutTask; task ]
         |> choice
 
-    let inline runWithTimeout timeout fn =
+    let inline runWithTimeout_ timeout fn =
         fn
-        |> runWithTimeoutAsync timeout
+        |> runWithTimeoutAsync_ timeout
         |> Async.RunSynchronously
 
     /// ## runWithTimeoutChildAsync
@@ -105,6 +105,12 @@ module Async =
         fn
         |> runWithTimeoutChildAsync timeout
         |> Async.RunSynchronously
+
+    let inline runWithTimeoutAsync timeout fn =
+        runWithTimeoutChildAsync timeout fn
+
+    let inline runWithTimeout timeout fn =
+        runWithTimeoutChild timeout fn
 
     /// ## runWithTimeoutStrict
 

@@ -699,12 +699,7 @@ let inline testEventsRaw
             (0L, [])
         |> snd
         |> List.rev
-        |> List.map (fun (diff, n, event) ->
-            let text = $"{n} / {diff} / {event}"
-            if text |> String.length <= 100
-            then text
-            else text |> Sm.substring 0 100 |> Sm.replace "\n" ""
-        )
+        |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> Sm.ellipsis_end 100L)
         |> Sm.concat "\n"
     let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
     trace Debug (fun () -> "testEventsRaw") getLocals

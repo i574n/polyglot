@@ -124,7 +124,7 @@ module Builder =
         let codeTrim = code |> Sm.trim_end [||]
         return
             if codeTrim |> Sm.ends_with "\n()"
-            then codeTrim |> Sm.substring 0 ((codeTrim |> String.length) - 2)
+            then codeTrim |> Sm.slice 0 ((codeTrim |> String.length) - 3)
             else code
     }
 

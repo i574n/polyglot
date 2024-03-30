@@ -55,7 +55,7 @@ inl render props_fn children : _ div
                 inl summary_margin_right = join summary_margin_right
                 :>(;[
                     summary [
-                        $'"class=move || \\\"flex flex-1 items-center justify-between px-4 cursor-pointer text-gray-600 bg-gray-300 hover:bg-gray-200 hover:text-gray-700 \\\".to_owned() + !summary_margin_right() + \\\" \\\" + &!summary_class()"'
+                        $'"class=move || \\\"flex flex-1 items-center justify-between px-4 cursor-pointer text-gray-600 hover:text-gray-700 bg-gray-300 hover:bg-gray-200 \\\".to_owned() + !summary_margin_right() + \\\" \\\" + &!summary_class()"'
                     ] fun () =>
                         :>(;[
                             div [

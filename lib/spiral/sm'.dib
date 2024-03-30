@@ -159,14 +159,12 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 #!markdown
 
-## ellipsis
+## slice
 
 #!spiral
 
-inl ellipsis (max : i32) (s : string) =
-    if sm.length s <= max
-    then s
-    else s |> substring 0 max |> fun x => $'!x + "..."'
+inl slice from to s : string =
+    sm.slice s { from to }
 
 #!markdown
 
@@ -311,23 +309,12 @@ fun () => failwith "test"
 
 #!markdown
 
-## format_ellipsis'
-
-#!spiral
-
-inl format_ellipsis' s =
-    s
-    |> format_debug
-    |> ellipsis 400i32
-
-#!markdown
-
 ## obj_to_string
 
 #!spiral
 
 inl obj_to_string x : string =
-    $"!x.ToString ()"
+    x |> $'_.ToString()'
 
 #!markdown
 
@@ -539,6 +526,76 @@ inl concat (a : string) (b : seq.seq' _) : string =
 
 #!markdown
 
+## ellipsis
+
+#!spiral
+
+inl ellipsis (max : i32) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
+
+#!spiral
+
+// // test
+
+"12345"
+|> ellipsis 2
+|> _assert_eq "12..."
+
+"12345"
+|> ellipsis 4
+|> _assert_eq "1234..."
+
+#!markdown
+
+## ellipsis_end
+
+#!spiral
+
+inl ellipsis_end (max : i64) (s : string) =
+    inl len = sm.length s
+    if len <= max
+    then s
+    else
+        inl half = f64 max / 2
+        inl start_half = half |> math.ceil |> i64
+        inl end_half = half |> math.floor |> i64
+        inl start = s |> slice 0 (start_half - 1)
+        inl end = s |> slice (len - end_half) (len - 1)
+        (a ;[start; "..."; end] : _ i32 _)
+        |> seq.of_array
+        |> concat ""
+
+#!spiral
+
+// // test
+
+"12345"
+|> ellipsis_end 2
+|> _assert_eq "1...5"
+
+"12345"
+|> ellipsis_end 3
+|> _assert_eq "12...5"
+
+"1234567"
+|> ellipsis_end 4
+|> _assert_eq "12...67"
+
+#!markdown
+
+## format_ellipsis
+
+#!spiral
+
+inl format_ellipsis s =
+    s
+    |> format_debug
+    |> ellipsis_end 400
+
+#!markdown
+
 ## split
 
 #!spiral
@@ -621,6 +678,8 @@ inl main () =
     $"let pad_left x = !pad_left x" : ()
     $"let pad_right x = !pad_right x" : ()
     $"let replace x = !replace x" : ()
+    inl slice (a : i32) (b : i32) c = slice a b c
+    $"let slice x = !slice x" : ()
     $"let split x = !split x" : ()
     $"let split_string x = !split_string x" : ()
     $"let starts_with x = !starts_with x" : ()
@@ -631,6 +690,7 @@ inl main () =
     $"let trim_end x = !trim_end x" : ()
     $"let trim_start x = !trim_start x" : ()
     $"let ellipsis x = !ellipsis x" : ()
+    $"let ellipsis_end x = !ellipsis_end x" : ()
     $"let format_exception x = !format_exception x" : ()
     $"let concat_array_trailing x = !concat_array_trailing x" : ()
     inl concat a (b : seq.seq' string) = concat a b

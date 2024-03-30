@@ -83,12 +83,10 @@ inl trim_end (trim_chars : array_base char) (input : string) : string =
 inl trim_start (trim_chars : array_base char) (input : string) : string =
     $"!input.TrimStart !trim_chars"
 
-// // ## ellipsis
+// // ## slice
 
-inl ellipsis (max : i32) (s : string) =
-    if sm.length s <= max
-    then s
-    else s |> substring 0 max |> fun x => $'!x + "..."'
+inl slice from to s : string =
+    sm.slice s { from to }
 
 // // ## raw_string_literal
 
@@ -166,17 +164,10 @@ inl format_exception (ex : exn) : string =
         | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
         | _ => fun () => ex |> format_debug
 
-// // ## format_ellipsis'
-
-inl format_ellipsis' s =
-    s
-    |> format_debug
-    |> ellipsis 400i32
-
 // // ## obj_to_string
 
 inl obj_to_string x : string =
-    $"!x.ToString ()"
+    x |> $'_.ToString()'
 
 // // ## to_string any
 
@@ -287,6 +278,36 @@ inl concat_list_heap_trailing separator input =
 inl concat (a : string) (b : seq.seq' _) : string =
     $"!b |> String.concat !a"
 
+// // ## ellipsis
+
+inl ellipsis (max : i32) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
+
+// // ## ellipsis_end
+
+inl ellipsis_end (max : i64) (s : string) =
+    inl len = sm.length s
+    if len <= max
+    then s
+    else
+        inl half = f64 max / 2
+        inl start_half = half |> math.ceil |> i64
+        inl end_half = half |> math.floor |> i64
+        inl start = s |> slice 0 (start_half - 1)
+        inl end = s |> slice (len - end_half) (len - 1)
+        (a ;[start; "..."; end] : _ i32 _)
+        |> seq.of_array
+        |> concat ""
+
+// // ## format_ellipsis
+
+inl format_ellipsis s =
+    s
+    |> format_debug
+    |> ellipsis_end 400
+
 // // ## split
 
 inl split (separator : string) (str : string) : array_base string =
@@ -327,6 +348,8 @@ inl main () =
     $"let pad_left x = !pad_left x" : ()
     $"let pad_right x = !pad_right x" : ()
     $"let replace x = !replace x" : ()
+    inl slice (a : i32) (b : i32) c = slice a b c
+    $"let slice x = !slice x" : ()
     $"let split x = !split x" : ()
     $"let split_string x = !split_string x" : ()
     $"let starts_with x = !starts_with x" : ()
@@ -337,6 +360,7 @@ inl main () =
     $"let trim_end x = !trim_end x" : ()
     $"let trim_start x = !trim_start x" : ()
     $"let ellipsis x = !ellipsis x" : ()
+    $"let ellipsis_end x = !ellipsis_end x" : ()
     $"let format_exception x = !format_exception x" : ()
     $"let concat_array_trailing x = !concat_array_trailing x" : ()
     inl concat a (b : seq.seq' string) = concat a b

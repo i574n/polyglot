@@ -247,8 +247,13 @@ module Supervisor =
             )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
                 trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> Sm.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
+#if INTERACTIVE
+                let errorWait = 2
+#else
+                let errorWait = 10
+#endif
                 match fsxContent, errors with
-                | None, [] when typeErrorCount > 2 -> false
+                | None, [] when typeErrorCount > errorWait -> false
                 | None, [] -> true
                 | _ -> false
             )

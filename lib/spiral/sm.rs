@@ -2,6 +2,7 @@ pub mod Sm {
     use super::*;
     use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
     use fable_library_rust::NativeArray_::count;
+    use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::NativeArray_::new_init;
     use fable_library_rust::NativeArray_::Array;
     use fable_library_rust::Native_::on_startup;
@@ -16,6 +17,7 @@ pub mod Sm {
     use fable_library_rust::String_::contains as contains_1;
     use fable_library_rust::String_::endsWith;
     use fable_library_rust::String_::getCharAt;
+    use fable_library_rust::String_::getSlice;
     use fable_library_rust::String_::join;
     use fable_library_rust::String_::length;
     use fable_library_rust::String_::padLeft;
@@ -110,19 +112,35 @@ pub mod Sm {
             move |v: string| Sm::closure10(v0_1.clone(), v)
         })
     }
-    pub fn closure13(v0_1: string, v1_1: string) -> Array<string> {
-        split_1(v1_1, v0_1, -1_i32, 0_i32)
+    pub fn closure14(v0_1: i32, v1_1: i32, v2_1: string) -> string {
+        getSlice(v2_1, Some(v0_1), Some(v1_1))
     }
-    pub fn closure12(unitVar: (), v0_1: string) -> Func1<string, Array<string>> {
+    pub fn closure13(v0_1: i32, v1_1: i32) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure13(v0_1.clone(), v)
+            let v1_1 = v1_1.clone();
+            move |v: string| Sm::closure14(v0_1, v1_1, v)
+        })
+    }
+    pub fn closure12(unitVar: (), v0_1: i32) -> Func1<i32, Func1<string, string>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: i32| Sm::closure13(v0_1, v)
+        })
+    }
+    pub fn closure16(v0_1: string, v1_1: string) -> Array<string> {
+        split_1(v1_1, v0_1, -1_i32, 0_i32)
+    }
+    pub fn closure15(unitVar: (), v0_1: string) -> Func1<string, Array<string>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: string| Sm::closure16(v0_1.clone(), v)
         })
     }
     pub fn method0() -> string {
         string("")
     }
-    pub fn closure15(v0_1: Array<string>, v1_1: string) -> Array<string> {
+    pub fn closure18(v0_1: Array<string>, v1_1: string) -> Array<string> {
         let result: MutCell<Option<Array<string>>> = MutCell::new(None::<Array<string>>);
         let v3_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
         {
@@ -131,78 +149,116 @@ pub mod Sm {
         }
         getValue(result.get().clone())
     }
-    pub fn closure14(unitVar: (), v0_1: Array<string>) -> Func1<string, Array<string>> {
+    pub fn closure17(unitVar: (), v0_1: Array<string>) -> Func1<string, Array<string>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure15(v0_1.clone(), v)
+            move |v: string| Sm::closure18(v0_1.clone(), v)
         })
     }
-    pub fn closure17(v0_1: string, v1_1: string) -> bool {
+    pub fn closure20(v0_1: string, v1_1: string) -> bool {
         startsWith(v1_1, v0_1, false)
     }
-    pub fn closure16(unitVar: (), v0_1: string) -> Func1<string, bool> {
+    pub fn closure19(unitVar: (), v0_1: string) -> Func1<string, bool> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure17(v0_1.clone(), v)
+            move |v: string| Sm::closure20(v0_1.clone(), v)
         })
     }
-    pub fn closure20(v0_1: i32, v1_1: i32, v2_1: string) -> string {
+    pub fn closure23(v0_1: i32, v1_1: i32, v2_1: string) -> string {
         substring2(v2_1, v0_1, v1_1)
     }
-    pub fn closure19(v0_1: i32, v1_1: i32) -> Func1<string, string> {
+    pub fn closure22(v0_1: i32, v1_1: i32) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
             let v1_1 = v1_1.clone();
-            move |v: string| Sm::closure20(v0_1, v1_1, v)
+            move |v: string| Sm::closure23(v0_1, v1_1, v)
         })
     }
-    pub fn closure18(unitVar: (), v0_1: i32) -> Func1<i32, Func1<string, string>> {
+    pub fn closure21(unitVar: (), v0_1: i32) -> Func1<i32, Func1<string, string>> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: i32| Sm::closure19(v0_1, v)
+            move |v: i32| Sm::closure22(v0_1, v)
         })
     }
-    pub fn closure21(unitVar: (), v0_1: string) -> string {
+    pub fn closure24(unitVar: (), v0_1: string) -> string {
         toLower(v0_1)
     }
-    pub fn closure22(unitVar: (), v0_1: string) -> string {
+    pub fn closure25(unitVar: (), v0_1: string) -> string {
         toUpper(v0_1)
     }
-    pub fn closure23(unitVar: (), v0_1: string) -> string {
+    pub fn closure26(unitVar: (), v0_1: string) -> string {
         trim_1(v0_1)
     }
-    pub fn closure25(v0_1: Array<char>, v1_1: string) -> string {
+    pub fn closure28(v0_1: Array<char>, v1_1: string) -> string {
         trimEndChars(v1_1, v0_1)
     }
-    pub fn closure24(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
+    pub fn closure27(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure25(v0_1.clone(), v)
+            move |v: string| Sm::closure28(v0_1.clone(), v)
         })
     }
-    pub fn closure27(v0_1: Array<char>, v1_1: string) -> string {
+    pub fn closure30(v0_1: Array<char>, v1_1: string) -> string {
         trimStartChars(v1_1, v0_1)
     }
-    pub fn closure26(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
+    pub fn closure29(unitVar: (), v0_1: Array<char>) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure27(v0_1.clone(), v)
+            move |v: string| Sm::closure30(v0_1.clone(), v)
         })
     }
-    pub fn closure29(v0_1: i32, v1_1: string) -> string {
+    pub fn closure32(v0_1: i32, v1_1: string) -> string {
         if length(v1_1.clone()) <= v0_1 {
             v1_1.clone()
         } else {
-            append(substring2(v1_1, 0_i32, v0_1), string("..."))
+            append(
+                getSlice(v1_1, Some(0_i32), Some(v0_1 - 1_i32)),
+                string("..."),
+            )
         }
     }
-    pub fn closure28(unitVar: (), v0_1: i32) -> Func1<string, string> {
+    pub fn closure31(unitVar: (), v0_1: i32) -> Func1<string, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: string| Sm::closure29(v0_1, v)
+            move |v: string| Sm::closure32(v0_1, v)
         })
     }
-    pub fn closure30(unitVar: (), v0_1: LrcPtr<Exception>) -> string {
+    pub fn method1(v0_1: Array<string>) -> Array<string> {
+        v0_1
+    }
+    pub fn closure34(v0_1: i64, v1_1: string) -> string {
+        let v2_1: i64 = length(v1_1.clone()) as i64;
+        if v2_1 <= v0_1 {
+            v1_1.clone()
+        } else {
+            let v5_1: f64 = v0_1 as f64 / 2.0_f64;
+            let v8_1: i64 = v5_1.ceil() as i64;
+            let v11_1: i64 = v5_1.floor() as i64;
+            join(
+                string(""),
+                toArray(ofArray(Sm::method1(new_array(&[
+                    getSlice(
+                        v1_1.clone(),
+                        Some(0_i64 as i32),
+                        Some((v8_1 - 1_i64) as i32),
+                    ),
+                    string("..."),
+                    getSlice(
+                        v1_1,
+                        Some((v2_1 - v11_1) as i32),
+                        Some((v2_1 - 1_i64) as i32),
+                    ),
+                ])))),
+            )
+        }
+    }
+    pub fn closure33(unitVar: (), v0_1: i64) -> Func1<string, string> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: string| Sm::closure34(v0_1, v)
+        })
+    }
+    pub fn closure35(unitVar: (), v0_1: LrcPtr<Exception>) -> string {
         let result: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
             let x: string = sprintf!("{:?}", v0_1);
@@ -210,16 +266,16 @@ pub mod Sm {
         }
         getValue(result.get().clone())
     }
-    pub fn method1(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
+    pub fn method2(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn closure32(v0_1: string, v1_1: Array<string>) -> string {
+    pub fn closure37(v0_1: string, v1_1: Array<string>) -> string {
         let v2_1: i32 = count(v1_1.clone());
         let v4_1: LrcPtr<Sm::Mut0> = LrcPtr::new(Sm::Mut0 {
             l0: MutCell::new(0_i32),
             l1: MutCell::new(string("")),
         });
-        while Sm::method1(v2_1, v4_1.clone()) {
+        while Sm::method2(v2_1, v4_1.clone()) {
             let v6_1: i32 = v4_1.l0.get().clone();
             let v9_1: string = append(
                 append(
@@ -235,43 +291,43 @@ pub mod Sm {
         }
         v4_1.l1.get().clone()
     }
-    pub fn closure31(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
+    pub fn closure36(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: Array<string>| Sm::closure32(v0_1.clone(), v)
+            move |v: Array<string>| Sm::closure37(v0_1.clone(), v)
         })
     }
-    pub fn closure34(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
+    pub fn closure39(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
         join(v0_1, toArray(v1_1))
     }
-    pub fn closure33(
+    pub fn closure38(
         unitVar: (),
         v0_1: string,
     ) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: LrcPtr<dyn IEnumerable_1<string>>| Sm::closure34(v0_1.clone(), v)
+            move |v: LrcPtr<dyn IEnumerable_1<string>>| Sm::closure39(v0_1.clone(), v)
         })
     }
-    pub fn closure36(v0_1: string, v1_1: Array<string>) -> string {
+    pub fn closure41(v0_1: string, v1_1: Array<string>) -> string {
         join(v0_1, v1_1)
     }
-    pub fn closure35(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
+    pub fn closure40(unitVar: (), v0_1: string) -> Func1<Array<string>, string> {
         Func1::new({
             let v0_1 = v0_1.clone();
-            move |v: Array<string>| Sm::closure36(v0_1.clone(), v)
+            move |v: Array<string>| Sm::closure41(v0_1.clone(), v)
         })
     }
-    pub fn method2(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
+    pub fn method3(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
-    pub fn closure37(unitVar: (), v0_1: string) -> Array<char> {
+    pub fn closure42(unitVar: (), v0_1: string) -> Array<char> {
         let v1_1: i32 = length(v0_1.clone());
         let v2_1: Array<char> = new_init(&'\u{0000}', v1_1);
         let v3_1: LrcPtr<Sm::Mut1> = LrcPtr::new(Sm::Mut1 {
             l0: MutCell::new(0_i32),
         });
-        while Sm::method2(v1_1, v3_1.clone()) {
+        while Sm::method3(v1_1, v3_1.clone()) {
             let v5_1: i32 = v3_1.l0.get().clone();
             let v6_1: char = getCharAt(v0_1.clone(), v5_1);
             v2_1.get_mut()[v5_1 as usize] = v6_1;
@@ -323,126 +379,142 @@ pub mod Sm {
     pub fn replace(x: string) -> Func1<string, Func1<string, string>> {
         (Sm::v4())(x)
     }
-    pub fn v5() -> Func1<string, Func1<string, Array<string>>> {
-        static v5: OnceInit<Func1<string, Func1<string, Array<string>>>> = OnceInit::new();
-        v5.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure12((), v)))
+    pub fn v5() -> Func1<i32, Func1<i32, Func1<string, string>>> {
+        static v5: OnceInit<Func1<i32, Func1<i32, Func1<string, string>>>> = OnceInit::new();
+        v5.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure12((), v)))
+            .clone()
+    }
+    pub fn slice(x: i32) -> Func1<i32, Func1<string, string>> {
+        (Sm::v5())(x)
+    }
+    pub fn v6() -> Func1<string, Func1<string, Array<string>>> {
+        static v6: OnceInit<Func1<string, Func1<string, Array<string>>>> = OnceInit::new();
+        v6.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure15((), v)))
             .clone()
     }
     pub fn split(x: string) -> Func1<string, Array<string>> {
-        (Sm::v5())(x)
+        (Sm::v6())(x)
     }
-    pub fn v6() -> Func1<Array<string>, Func1<string, Array<string>>> {
-        static v6: OnceInit<Func1<Array<string>, Func1<string, Array<string>>>> = OnceInit::new();
-        v6.get_or_insert_with(|| Func1::new(move |v: Array<string>| Sm::closure14((), v)))
+    pub fn v7() -> Func1<Array<string>, Func1<string, Array<string>>> {
+        static v7: OnceInit<Func1<Array<string>, Func1<string, Array<string>>>> = OnceInit::new();
+        v7.get_or_insert_with(|| Func1::new(move |v: Array<string>| Sm::closure17((), v)))
             .clone()
     }
     pub fn split_string(x: Array<string>) -> Func1<string, Array<string>> {
-        (Sm::v6())(x)
+        (Sm::v7())(x)
     }
-    pub fn v7() -> Func1<string, Func1<string, bool>> {
-        static v7: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
-        v7.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure16((), v)))
+    pub fn v8() -> Func1<string, Func1<string, bool>> {
+        static v8: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
+        v8.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure19((), v)))
             .clone()
     }
     pub fn starts_with(x: string) -> Func1<string, bool> {
-        (Sm::v7())(x)
+        (Sm::v8())(x)
     }
-    pub fn v8() -> Func1<i32, Func1<i32, Func1<string, string>>> {
-        static v8: OnceInit<Func1<i32, Func1<i32, Func1<string, string>>>> = OnceInit::new();
-        v8.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure18((), v)))
+    pub fn v9() -> Func1<i32, Func1<i32, Func1<string, string>>> {
+        static v9: OnceInit<Func1<i32, Func1<i32, Func1<string, string>>>> = OnceInit::new();
+        v9.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure21((), v)))
             .clone()
     }
     pub fn substring(x: i32) -> Func1<i32, Func1<string, string>> {
-        (Sm::v8())(x)
-    }
-    pub fn v9() -> Func1<string, string> {
-        static v9: OnceInit<Func1<string, string>> = OnceInit::new();
-        v9.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure21((), v)))
-            .clone()
-    }
-    pub fn to_lower(x: string) -> string {
         (Sm::v9())(x)
     }
     pub fn v10() -> Func1<string, string> {
         static v10: OnceInit<Func1<string, string>> = OnceInit::new();
-        v10.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure22((), v)))
+        v10.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure24((), v)))
             .clone()
     }
-    pub fn to_upper(x: string) -> string {
+    pub fn to_lower(x: string) -> string {
         (Sm::v10())(x)
     }
     pub fn v11() -> Func1<string, string> {
         static v11: OnceInit<Func1<string, string>> = OnceInit::new();
-        v11.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure23((), v)))
+        v11.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure25((), v)))
+            .clone()
+    }
+    pub fn to_upper(x: string) -> string {
+        (Sm::v11())(x)
+    }
+    pub fn v12() -> Func1<string, string> {
+        static v12: OnceInit<Func1<string, string>> = OnceInit::new();
+        v12.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure26((), v)))
             .clone()
     }
     pub fn trim(x: string) -> string {
-        (Sm::v11())(x)
-    }
-    pub fn v12() -> Func1<Array<char>, Func1<string, string>> {
-        static v12: OnceInit<Func1<Array<char>, Func1<string, string>>> = OnceInit::new();
-        v12.get_or_insert_with(|| Func1::new(move |v: Array<char>| Sm::closure24((), v)))
-            .clone()
-    }
-    pub fn trim_end(x: Array<char>) -> Func1<string, string> {
         (Sm::v12())(x)
     }
     pub fn v13() -> Func1<Array<char>, Func1<string, string>> {
         static v13: OnceInit<Func1<Array<char>, Func1<string, string>>> = OnceInit::new();
-        v13.get_or_insert_with(|| Func1::new(move |v: Array<char>| Sm::closure26((), v)))
+        v13.get_or_insert_with(|| Func1::new(move |v: Array<char>| Sm::closure27((), v)))
+            .clone()
+    }
+    pub fn trim_end(x: Array<char>) -> Func1<string, string> {
+        (Sm::v13())(x)
+    }
+    pub fn v14() -> Func1<Array<char>, Func1<string, string>> {
+        static v14: OnceInit<Func1<Array<char>, Func1<string, string>>> = OnceInit::new();
+        v14.get_or_insert_with(|| Func1::new(move |v: Array<char>| Sm::closure29((), v)))
             .clone()
     }
     pub fn trim_start(x: Array<char>) -> Func1<string, string> {
-        (Sm::v13())(x)
+        (Sm::v14())(x)
     }
-    pub fn v14() -> Func1<i32, Func1<string, string>> {
-        static v14: OnceInit<Func1<i32, Func1<string, string>>> = OnceInit::new();
-        v14.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure28((), v)))
+    pub fn v15() -> Func1<i32, Func1<string, string>> {
+        static v15: OnceInit<Func1<i32, Func1<string, string>>> = OnceInit::new();
+        v15.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure31((), v)))
             .clone()
     }
     pub fn ellipsis(x: i32) -> Func1<string, string> {
-        (Sm::v14())(x)
+        (Sm::v15())(x)
     }
-    pub fn v15() -> Func1<LrcPtr<Exception>, string> {
-        static v15: OnceInit<Func1<LrcPtr<Exception>, string>> = OnceInit::new();
-        v15.get_or_insert_with(|| Func1::new(move |v: LrcPtr<Exception>| Sm::closure30((), v)))
+    pub fn v16() -> Func1<i64, Func1<string, string>> {
+        static v16: OnceInit<Func1<i64, Func1<string, string>>> = OnceInit::new();
+        v16.get_or_insert_with(|| Func1::new(move |v: i64| Sm::closure33((), v)))
+            .clone()
+    }
+    pub fn ellipsis_end(x: i64) -> Func1<string, string> {
+        (Sm::v16())(x)
+    }
+    pub fn v17() -> Func1<LrcPtr<Exception>, string> {
+        static v17: OnceInit<Func1<LrcPtr<Exception>, string>> = OnceInit::new();
+        v17.get_or_insert_with(|| Func1::new(move |v: LrcPtr<Exception>| Sm::closure35((), v)))
             .clone()
     }
     pub fn format_exception(x: LrcPtr<Exception>) -> string {
-        (Sm::v15())(x)
-    }
-    pub fn v16() -> Func1<string, Func1<Array<string>, string>> {
-        static v16: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
-        v16.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure31((), v)))
-            .clone()
-    }
-    pub fn concat_array_trailing(x: string) -> Func1<Array<string>, string> {
-        (Sm::v16())(x)
-    }
-    pub fn v17() -> Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>> {
-        static v17: OnceInit<Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>>> =
-            OnceInit::new();
-        v17.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure33((), v)))
-            .clone()
-    }
-    pub fn concat(x: string) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
         (Sm::v17())(x)
     }
     pub fn v18() -> Func1<string, Func1<Array<string>, string>> {
         static v18: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
-        v18.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure35((), v)))
+        v18.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure36((), v)))
+            .clone()
+    }
+    pub fn concat_array_trailing(x: string) -> Func1<Array<string>, string> {
+        (Sm::v18())(x)
+    }
+    pub fn v19() -> Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>> {
+        static v19: OnceInit<Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>>> =
+            OnceInit::new();
+        v19.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure38((), v)))
+            .clone()
+    }
+    pub fn concat(x: string) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
+        (Sm::v19())(x)
+    }
+    pub fn v20() -> Func1<string, Func1<Array<string>, string>> {
+        static v20: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
+        v20.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure40((), v)))
             .clone()
     }
     pub fn join_(x: string) -> Func1<Array<string>, string> {
-        (Sm::v18())(x)
+        (Sm::v20())(x)
     }
-    pub fn v19() -> Func1<string, Array<char>> {
-        static v19: OnceInit<Func1<string, Array<char>>> = OnceInit::new();
-        v19.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure37((), v)))
+    pub fn v21() -> Func1<string, Array<char>> {
+        static v21: OnceInit<Func1<string, Array<char>>> = OnceInit::new();
+        v21.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure42((), v)))
             .clone()
     }
     pub fn to_char_array(x: string) -> Array<char> {
-        (Sm::v19())(x)
+        (Sm::v21())(x)
     }
     on_startup!((),);
 }

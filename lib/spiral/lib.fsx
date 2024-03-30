@@ -30,6 +30,13 @@ module Sm =
         ellipsis x
 #endif
 
+    let ellipsis_end x =
+#if !INTERACTIVE
+        Sm.ellipsis_end x
+#else
+        ellipsis_end x
+#endif
+
     let ends_with x =
 #if !INTERACTIVE
         Sm.ends_with x
@@ -49,6 +56,13 @@ module Sm =
         Sm.replace x
 #else
         replace x
+#endif
+
+    let slice x =
+#if !INTERACTIVE
+        Sm.slice x
+#else
+        slice x
 #endif
 
     let split x =
