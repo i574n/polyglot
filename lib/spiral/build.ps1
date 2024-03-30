@@ -1,5 +1,6 @@
 param(
     $fast,
+    $sequential,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -26,6 +27,7 @@ if (!$fast) {
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 file_system.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 rust.dib`" -Retries 3" `
         --execute-command "pwsh -c `"../../scripts/invoke-dib.ps1 physics.dib`" -Retries 3" `
+        $(!$sequential ? @("--parallel") : @()) `
     } | Invoke-Block
 }
 
