@@ -7577,8 +7577,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
@@ -7599,6 +7601,22 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 <span class="nb">open</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">Operators</span>
 </pre></div>
@@ -7607,7 +7625,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7617,7 +7635,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7667,7 +7685,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7677,7 +7695,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7700,7 +7718,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">modulesCode</span> <span class="o">=</span>
         <span class="n">modules</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">path</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"""&lt;Compile Include="{repositoryRoot &lt;/&gt; path}" /&gt;"""</span><span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
 
     <span class="n">let</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fsproj"</span>
     <span class="n">let</span> <span class="n">fsprojCode</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"""&lt;Project Sdk="Microsoft.NET.Sdk"&gt;</span>
@@ -7730,7 +7748,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">paketReferencesPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"paket.references"</span>
     <span class="n">let</span> <span class="n">paketReferencesCode</span> <span class="o">=</span>
         <span class="s2">"FSharp.Core"</span> <span class="p">::</span> <span class="n">packages</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">paketReferencesCode</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">paketReferencesPath</span>
 
     <span class="k">return</span> <span class="n">fsprojPath</span>
@@ -7741,7 +7759,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7751,7 +7769,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7768,7 +7786,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7804,37 +7822,33 @@ a.anchor-link {
   OnLine = None }
 00:00:00 #4 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:00 #5 [Verbose] &gt;   Determining projects to restore...
-00:00:00 #6 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:01 #6 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
 00:00:01 #7 [Verbose] &gt;   The last full restore is still up to date. Nothing left to do.
 00:00:01 #8 [Verbose] &gt;   Total time taken: 0 milliseconds
 00:00:01 #9 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
 00:00:01 #10 [Verbose] &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj
 00:00:01 #11 [Verbose] &gt;   Starting restore process.
 00:00:01 #12 [Verbose] &gt;   Total time taken: 0 milliseconds
-00:00:02 #13 [Verbose] &gt;   Retrying 'FindPackagesByIdAsync' for source 'https://api.nuget.org/v3-flatcontainer/microsoft.aspnetcore.app.runtime.linux-x64/index.json'.
-00:00:02 #14 [Verbose] &gt;   The SSL connection could not be established, see inner exception.
-00:00:02 #15 [Verbose] &gt;     Unable to read data from the transport connection: Connection reset by peer.
-00:00:02 #16 [Verbose] &gt;     Connection reset by peer
-00:00:07 #17 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 5.3 sec).
-00:00:07 #18 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
-00:00:08 #19 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
-00:00:08 #20 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/bin/Release/net9.0/linux-x64/test1.dll
-00:00:09 #21 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
-00:00:09 #22 [Debug] executeAsync / exitCode: 0 / output.Length: 1684
-00:00:09 #23 [Debug] executeAsync / options: { Command =
+00:00:02 #13 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 260 ms).
+00:00:02 #14 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
+00:00:03 #15 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
+00:00:04 #16 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/bin/Release/net9.0/linux-x64/test1.dll
+00:00:04 #17 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
+00:00:04 #18 [Debug] executeAsync / exitCode: 0 / output.Length: 1363
+00:00:04 #19 [Debug] executeAsync / options: { Command =
    "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj" --configuration Release --output "dist" --runtime win-x64"
   WorkingDirectory =
    Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1"
   CancellationToken = None
   OnLine = None }
-00:00:09 #24 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:09 #25 [Verbose] &gt;   Determining projects to restore...
-00:00:12 #26 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 2.48 sec).
-00:00:12 #27 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
-00:00:14 #28 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
-00:00:14 #29 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/bin/Release/net9.0/win-x64/test1.dll
-00:00:14 #30 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
-00:00:14 #31 [Debug] executeAsync / exitCode: 0 / output.Length: 965
+00:00:04 #20 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:05 #21 [Verbose] &gt;   Determining projects to restore...
+00:00:05 #22 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj (in 250 ms).
+00:00:05 #23 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
+00:00:06 #24 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fs(1,16): warning FS0988: Main module of program is empty: nothing will happen when it is run [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/test1.fsproj]
+00:00:07 #25 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/bin/Release/net9.0/win-x64/test1.dll
+00:00:07 #26 [Verbose] &gt;   test1 -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test1/dist
+00:00:07 #27 [Debug] executeAsync / exitCode: 0 / output.Length: 963
 FSharpOption&lt;Int32&gt;
       Value: 0
 </pre>
@@ -7842,7 +7856,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7868,39 +7882,39 @@ FSharpOption&lt;Int32&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15 #32 [Debug] persistCodeProject / packages: [] / modules: [] / name: test2 / code.Length: 15
-00:00:15 #33 [Debug] buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
-00:00:15 #34 [Debug] executeAsync / options: { Command =
+<pre>00:00:07 #28 [Debug] persistCodeProject / packages: [] / modules: [] / name: test2 / code.Length: 15
+00:00:07 #29 [Debug] buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
+00:00:07 #30 [Debug] executeAsync / options: { Command =
    "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj" --configuration Release --output "dist" --runtime linux-x64"
   WorkingDirectory =
    Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2"
   CancellationToken = None
   OnLine = None }
-00:00:15 #35 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:15 #36 [Verbose] &gt;   Determining projects to restore...
-00:00:16 #37 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
-00:00:16 #38 [Verbose] &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:16 #39 [Verbose] &gt;   Total time taken: 0 milliseconds
-00:00:16 #40 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
-00:00:16 #41 [Verbose] &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
-00:00:16 #42 [Verbose] &gt;   Starting restore process.
-00:00:17 #43 [Verbose] &gt;   Total time taken: 0 milliseconds
-00:00:17 #44 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 259 ms).
-00:00:17 #45 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:18 #46 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:18 #47 [Debug] executeAsync / exitCode: 1 / output.Length: 1138
-00:00:18 #48 [Debug] executeAsync / options: { Command =
+00:00:08 #31 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:08 #32 [Verbose] &gt;   Determining projects to restore...
+00:00:08 #33 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:08 #34 [Verbose] &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:08 #35 [Verbose] &gt;   Total time taken: 0 milliseconds
+00:00:09 #36 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:09 #37 [Verbose] &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj
+00:00:09 #38 [Verbose] &gt;   Starting restore process.
+00:00:09 #39 [Verbose] &gt;   Total time taken: 0 milliseconds
+00:00:10 #40 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 252 ms).
+00:00:10 #41 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
+00:00:11 #42 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
+00:00:11 #43 [Debug] executeAsync / exitCode: 1 / output.Length: 1138
+00:00:11 #44 [Debug] executeAsync / options: { Command =
    "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj" --configuration Release --output "dist" --runtime win-x64"
   WorkingDirectory =
    Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2"
   CancellationToken = None
   OnLine = None }
-00:00:18 #49 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:19 #50 [Verbose] &gt;   Determining projects to restore...
-00:00:19 #51 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 251 ms).
-00:00:19 #52 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:21 #53 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
-00:00:21 #54 [Debug] executeAsync / exitCode: 1 / output.Length: 740
+00:00:11 #45 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:11 #46 [Verbose] &gt;   Determining projects to restore...
+00:00:12 #47 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj (in 248 ms).
+00:00:12 #48 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
+00:00:13 #49 [Verbose] &gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [/home/runner/work/polyglot/polyglot/target/polyglot/builder/test2/test2.fsproj]
+00:00:13 #50 [Debug] executeAsync / exitCode: 1 / output.Length: 740
 FSharpOption&lt;Int32&gt;
       Value: 2
 </pre>
@@ -7909,7 +7923,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7919,7 +7933,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7936,10 +7950,10 @@ FSharpOption&lt;Int32&gt;
         <span class="n">fun</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="s2">"[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
     <span class="p">)</span>
 
-    <span class="n">let</span> <span class="n">codeTrim</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trimEnd</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">codeTrim</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
     <span class="k">return</span>
-        <span class="k">if</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()"</span>
-        <span class="n">then</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">substring</span> <span class="mi">0</span> <span class="p">((</span><span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()"</span>
+        <span class="n">then</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">slice</span> <span class="mi">0</span> <span class="p">((</span><span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
         <span class="k">else</span> <span class="n">code</span>
 <span class="p">}</span>
 </pre></div>
@@ -7948,7 +7962,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7958,7 +7972,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7979,7 +7993,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7989,7 +8003,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8009,7 +8023,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8019,7 +8033,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8048,7 +8062,7 @@ FSharpOption&lt;Int32&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8094,7 +8108,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8104,7 +8118,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8150,7 +8164,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8217,28 +8231,28 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:22 #55 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/spiral/common.fsx; lib/spiral/date_time.fsx; lib/spiral/file_system.fsx; ... ] / name: Builder / code.Length: 7086
-00:00:22 #56 [Debug] buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
-00:00:22 #57 [Debug] executeAsync / options: { Command =
+<pre>00:00:14 #51 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/date_time.fsx; ... ] / name: Builder / code.Length: 7102
+00:00:14 #52 [Debug] buildProject / fullPath: /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
+00:00:14 #53 [Debug] executeAsync / options: { Command =
    "dotnet publish "/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj" --configuration Release --output "/home/runner/work/polyglot/polyglot/apps/builder/dist" --runtime linux-x64"
   WorkingDirectory =
    Some "/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder"
   CancellationToken = None
   OnLine = None }
-00:00:22 #58 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:22 #59 [Verbose] &gt;   Determining projects to restore...
-00:00:23 #60 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
-00:00:23 #61 [Verbose] &gt;   The last full restore is still up to date. Nothing left to do.
-00:00:23 #62 [Verbose] &gt;   Total time taken: 0 milliseconds
-00:00:23 #63 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
-00:00:23 #64 [Verbose] &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
-00:00:23 #65 [Verbose] &gt;   Starting restore process.
-00:00:23 #66 [Verbose] &gt;   Total time taken: 0 milliseconds
-00:00:24 #67 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj (in 287 ms).
-00:00:24 #68 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj]
-00:00:29 #69 [Verbose] &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/bin/Release/net9.0/linux-x64/Builder.dll
-00:00:29 #70 [Verbose] &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/apps/builder/dist
-00:00:29 #71 [Debug] executeAsync / exitCode: 0 / output.Length: 1119
+00:00:14 #54 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:15 #55 [Verbose] &gt;   Determining projects to restore...
+00:00:15 #56 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:15 #57 [Verbose] &gt;   The last full restore is still up to date. Nothing left to do.
+00:00:15 #58 [Verbose] &gt;   Total time taken: 0 milliseconds
+00:00:15 #59 [Verbose] &gt;   Paket version 8.1.0-alpha001+8e77fe66ac27ddecf519e0df5a4d3327ca9250e2
+00:00:16 #60 [Verbose] &gt;   Restoring /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj
+00:00:16 #61 [Verbose] &gt;   Starting restore process.
+00:00:16 #62 [Verbose] &gt;   Total time taken: 0 milliseconds
+00:00:16 #63 [Verbose] &gt;   Restored /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj (in 288 ms).
+00:00:16 #64 [Verbose] &gt; /usr/share/dotnet/sdk/9.0.100-preview.1.24101.2/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [/home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/Builder.fsproj]
+00:00:21 #65 [Verbose] &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/target/polyglot/builder/Builder/bin/Release/net9.0/linux-x64/Builder.dll
+00:00:21 #66 [Verbose] &gt;   Builder -&gt; /home/runner/work/polyglot/polyglot/apps/builder/dist
+00:00:21 #67 [Debug] executeAsync / exitCode: 0 / output.Length: 1119
 </pre>
 </div>
 </div>

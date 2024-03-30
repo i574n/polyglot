@@ -220,7 +220,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                let getLocals () = $"retry: {retry} / ex: {ex |> formatException} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 // trace Warning (fun () => "retry_fn") getLocals
                 sleep 1
         |> function

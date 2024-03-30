@@ -7626,8 +7626,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
@@ -7893,7 +7892,20 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1 of f1_0 : int32
+let rec method0 () : unit =
+    let v0 : US0 = US0_1(5)
+    let v1 : string = $"%A{v0}"
+    System.Console.WriteLine v1
+    let v5 : US0 = US0_1(5)
+    let v6 : US0 = US0_1(5)
+    let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
+    ()
+method0()
+
+US0_1 5
 </pre>
 </div>
 </div>

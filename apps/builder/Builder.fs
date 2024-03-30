@@ -4,6 +4,10 @@ namespace Polyglot
 
 module Builder =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
     open FileSystem.Operators
 
@@ -63,7 +67,7 @@ module Builder =
         let modulesCode =
             modules
             |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
-            |> String.concat "\n        "
+            |> Sm.concat "\n        "
 
         let fsprojPath = targetDir </> $"{name}.fsproj"
         let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
@@ -93,7 +97,7 @@ module Builder =
         let paketReferencesPath = targetDir </> "paket.references"
         let paketReferencesCode =
             "FSharp.Core" :: packages
-            |> String.concat "\n"
+            |> Sm.concat "\n"
         do! paketReferencesCode |> FileSystem.writeAllTextExists paketReferencesPath
 
         return fsprojPath
@@ -117,10 +121,10 @@ module Builder =
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
-        let codeTrim = code |> String.trimEnd [||]
+        let codeTrim = code |> Sm.trim_end [||]
         return
-            if codeTrim |> String.endsWith "\n()"
-            then codeTrim |> String.substring 0 ((codeTrim |> String.length) - 2)
+            if codeTrim |> Sm.ends_with "\n()"
+            then codeTrim |> Sm.slice 0 ((codeTrim |> String.length) - 3)
             else code
     }
 

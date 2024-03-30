@@ -22,8 +22,10 @@
 #!fsharp
 
 #!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -31,6 +33,12 @@
 #!import ../../lib/fsharp/Networking.fs
 #!import ../../lib/fsharp/Runtime.fs
 #!import ../../lib/fsharp/FileSystem.fs
+
+#!fsharp
+
+#if !INTERACTIVE
+open Lib
+#endif
 
 #!fsharp
 
@@ -101,7 +109,7 @@ let inline persistCodeProject packages modules name code = async {
     let modulesCode =
         modules
         |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
-        |> String.concat "\n        "
+        |> Sm.concat "\n        "
 
     let fsprojPath = targetDir </> $"{name}.fsproj"
     let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
@@ -131,7 +139,7 @@ let inline persistCodeProject packages modules name code = async {
     let paketReferencesPath = targetDir </> "paket.references"
     let paketReferencesCode =
         "FSharp.Core" :: packages
-        |> String.concat "\n"
+        |> Sm.concat "\n"
     do! paketReferencesCode |> FileSystem.writeAllTextExists paketReferencesPath
 
     return fsprojPath
@@ -181,10 +189,10 @@ let inline readFile path = async {
         fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
     )
 
-    let codeTrim = code |> String.trimEnd [||]
+    let codeTrim = code |> Sm.trim_end [||]
     return
-        if codeTrim |> String.endsWith "\n()"
-        then codeTrim |> String.substring 0 ((codeTrim |> String.length) - 2)
+        if codeTrim |> Sm.ends_with "\n()"
+        then codeTrim |> Sm.slice 0 ((codeTrim |> String.length) - 3)
         else code
 }
 

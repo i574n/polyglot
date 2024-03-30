@@ -3,18 +3,11 @@ import '../../fable_modules/fable_library/Date.dart' as date;
 import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/TimeSpan.dart' as time_span;
 import '../../fable_modules/fable_library/Types.dart' as types;
+import '../../../../../../../lib/spiral/lib.fsx' as lib;
 
 const nl = '\n';
 
 const q = '\"';
-
-String String_ellipsis(int max, String value) {
-    if (value.length <= max) {
-        return value;
-    } else {
-        return '${value.substring(0, 0 + max)}...';
-    }
-}
 
 class TraceLevel implements types.Union, Comparable<TraceLevel> {
     final int tag;
@@ -95,7 +88,6 @@ types.Some<int>? replStart() => null;
 
 void trace(TraceLevel level, String Function() fn, String Function() getLocals) {
     traceRaw(level, () {
-        final trimChars_2 = [32, 47];
         final types.Some<int>? matchValue = replStart();
         late final DateTime tmp_capture;
         if (matchValue == null) {
@@ -104,7 +96,8 @@ void trace(TraceLevel level, String Function() fn, String Function() getLocals) 
             final t = time_span.fromTicks(date.getTicks(date.now()) - types.value(matchValue));
             tmp_capture = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t));
         }
-        return string.trimEnd(string.trimStart(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [date.toString(tmp_capture, 'HH:mm:ss'), traceCount, level, fn(), getLocals()])), <int>[]), trimChars_2);
+        final time = date.toString(tmp_capture, 'HH:mm:ss');
+        return (lib.Sm_trim_end([32, 47]))((lib.Sm_trim_start(<int>[]))(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [time, traceCount, level, fn(), getLocals()]))));
     });
 }
 

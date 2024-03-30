@@ -36,6 +36,18 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 (a ;["a"; "b"] : _ i32 _)
 |> of_array'
 
+#!spiral
+
+inl of_array forall dim t. (items : a dim t) : seq' t =
+    items |> $'Seq.ofArray'
+
+#!spiral
+
+// // test
+
+(a ;["a"; "b"] : _ i32 _)
+|> of_array
+
 #!markdown
 
 ## to_array'

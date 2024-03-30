@@ -4,6 +4,10 @@ namespace Polyglot
 
 module Async =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
 
     /// ## choice
@@ -44,7 +48,7 @@ module Async =
 
     /// ## runWithTimeoutAsync
 
-    let inline runWithTimeoutAsync (timeout : int) fn =
+    let inline runWithTimeoutAsync_ (timeout : int) fn =
         let getLocals () = $"timeout: {timeout} / {getLocals ()}"
 
         let timeoutTask = async {
@@ -62,20 +66,20 @@ module Async =
                 ex.InnerExceptions
                 |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
                 ->
-                let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
+                let getLocals () = $"ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 trace Warning (fun () -> "runWithTimeoutAsync") getLocals
                 return None
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> formatException}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutAsync** / ex: {ex |> Sm.format_exception}") getLocals
                 return None
         }
 
         [ timeoutTask; task ]
         |> choice
 
-    let inline runWithTimeout timeout fn =
+    let inline runWithTimeout_ timeout fn =
         fn
-        |> runWithTimeoutAsync timeout
+        |> runWithTimeoutAsync_ timeout
         |> Async.RunSynchronously
 
     /// ## runWithTimeoutChildAsync
@@ -92,7 +96,7 @@ module Async =
                     trace Debug (fun () -> $"runWithTimeoutChildAsync") getLocals
                     None
                 | Error ex ->
-                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> formatException}") getLocals
+                    trace Critical (fun () -> $"runWithTimeoutChildAsync** / ex: {ex |> Sm.format_exception}") getLocals
                     None
             )
     }
@@ -101,6 +105,12 @@ module Async =
         fn
         |> runWithTimeoutChildAsync timeout
         |> Async.RunSynchronously
+
+    let inline runWithTimeoutAsync timeout fn =
+        runWithTimeoutChildAsync timeout fn
+
+    let inline runWithTimeout timeout fn =
+        runWithTimeoutChild timeout fn
 
     /// ## runWithTimeoutStrict
 
@@ -117,10 +127,10 @@ module Async =
                 return Async.RunSynchronously (fn, timeout) |> Some, getLocals
             with
             | :? System.TimeoutException as ex ->
-                let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
+                let getLocals () = $"ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 return None, getLocals
             | ex ->
-                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> formatException}") getLocals
+                trace Critical (fun () -> $"runWithTimeoutStrict / ex: {ex |> Sm.format_exception}") getLocals
                 return raise ex
         }
 
@@ -139,11 +149,11 @@ module Async =
             ex.InnerExceptions
             |> Seq.exists (function :? System.Threading.Tasks.TaskCanceledException -> true | _ -> false)
             ->
-            let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> Sm.format_exception} / {getLocals ()}"
             trace Warning (fun () -> "runWithTimeoutStrict") getLocals
             None
         | ex ->
-            let getLocals () = $"ex: {ex |> formatException} / {getLocals ()}"
+            let getLocals () = $"ex: {ex |> Sm.format_exception} / {getLocals ()}"
             trace Critical (fun () -> "runWithTimeoutStrict**") getLocals
             None
 

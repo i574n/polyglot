@@ -7,6 +7,7 @@ require_once(__FABLE_LIBRARY__.'/FSharp.Core.php');
 require_once(__FABLE_LIBRARY__.'/String.php');
 require_once(__FABLE_LIBRARY__.'/TimeSpan.php');
 require_once(__FABLE_LIBRARY__.'/Util.php');
+require_once(__ROOT__.'/../../../../../lib/spiral/lib.fs.phpx');
 
 use \FSharpUnion;
 use \IComparable;
@@ -19,22 +20,13 @@ $GLOBALS['nl'] = '
 $GLOBALS['q'] = '"';
 
 #2
-function String_ellipsis($max, $value) {
-    if ($value->length <= $max) {
-        return $value;
-    } else {
-        return NULL;
-    }
-}
-
-#3
 abstract class TraceLevel implements FSharpUnion {
     static function allCases() {
         return [ '\\Polyglot\\Common\\TraceLevel_Verbose', '\\Polyglot\\Common\\TraceLevel_Debug', '\\Polyglot\\Common\\TraceLevel_Info', '\\Polyglot\\Common\\TraceLevel_Warning', '\\Polyglot\\Common\\TraceLevel_Critical' ];
     }
 }
 
-#3
+#2
 class TraceLevel_Verbose extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -50,7 +42,7 @@ class TraceLevel_Verbose extends TraceLevel implements IComparable {
     }
 }
 
-#3
+#2
 class TraceLevel_Debug extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -66,7 +58,7 @@ class TraceLevel_Debug extends TraceLevel implements IComparable {
     }
 }
 
-#3
+#2
 class TraceLevel_Info extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -82,7 +74,7 @@ class TraceLevel_Info extends TraceLevel implements IComparable {
     }
 }
 
-#3
+#2
 class TraceLevel_Warning extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -98,7 +90,7 @@ class TraceLevel_Warning extends TraceLevel implements IComparable {
     }
 }
 
-#3
+#2
 class TraceLevel_Critical extends TraceLevel implements IComparable {
     function __construct() {
     }
@@ -114,7 +106,7 @@ class TraceLevel_Critical extends TraceLevel implements IComparable {
     }
 }
 
-#4
+#3
 function TraceLevel__get_IsVerbose($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -123,7 +115,7 @@ function TraceLevel__get_IsVerbose($this_, $unitArg) {
     }
 }
 
-#5
+#4
 function TraceLevel__get_IsDebug($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -132,7 +124,7 @@ function TraceLevel__get_IsDebug($this_, $unitArg) {
     }
 }
 
-#6
+#5
 function TraceLevel__get_IsInfo($this_, $unitArg) {
     if ($this_->get_Tag() == 2) {
         return true;
@@ -141,7 +133,7 @@ function TraceLevel__get_IsInfo($this_, $unitArg) {
     }
 }
 
-#7
+#6
 function TraceLevel__get_IsWarning($this_, $unitArg) {
     if ($this_->get_Tag() == 3) {
         return true;
@@ -150,7 +142,7 @@ function TraceLevel__get_IsWarning($this_, $unitArg) {
     }
 }
 
-#8
+#7
 function TraceLevel__get_IsCritical($this_, $unitArg) {
     if ($this_->get_Tag() == 4) {
         return true;
@@ -159,19 +151,19 @@ function TraceLevel__get_IsCritical($this_, $unitArg) {
     }
 }
 
-#9
+#8
 $GLOBALS['traceEnabled'] = true;
 
-#10
+#9
 $GLOBALS['traceCount'] = 0;
 
-#11
+#10
 $GLOBALS['traceLevel'] = new TraceLevel_Verbose();
 
-#12
+#11
 $GLOBALS['traceDump'] = false;
 
-#13
+#12
 function testTraceLevel($level) {
     if ($GLOBALS['traceEnabled']) {
         return \Util\compare($level, $GLOBALS['traceLevel']) >= 0;
@@ -180,7 +172,7 @@ function testTraceLevel($level) {
     }
 }
 
-#14
+#13
 function traceRaw($level, $fn) {
     if (testTraceLevel($level)) {
         $GLOBALS['traceCount'] = $GLOBALS['traceCount'] + 1;
@@ -191,23 +183,23 @@ function traceRaw($level, $fn) {
     }
 }
 
-#15
+#14
 function replStart($unitVar) {
     return NULL;
 }
 
-#16
+#15
 function trace($level, $fn, $getLocals) {
     return traceRaw($level, function ($unitVar) use ($fn, $getLocals, $level, $replStart, $traceCount) { 
-        $trimChars_2 = [ ' ', '/' ];
-        return \String\trimEnd(\String\trimStart(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ (function ($matchValue) {         if (is_null($matchValue)) {
+        $time = (function ($matchValue) {         if (is_null($matchValue)) {
             return \Date\now();
         } else {
             $replStart_1 = $matchValue;
             $t = \TimeSpan\fromTicks(\BigInt\toInt64(\BigInt\op_Subtraction(\Date\getTicks(\Date\now()), $replStart_1)));
             return \Date\create(1, 1, 1, $t->\TimeSpan\hours(), $t->\TimeSpan\minutes(), $t->\TimeSpan\seconds(), $t->\TimeSpan\milliseconds());
         }
- })(replStart(NULL))->\Date\toString('HH:mm:ss'), $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ])), [  ]), $trimChars_2);
+ })(replStart(NULL))->\Date\toString('HH:mm:ss');
+        return \lib\Sm_trim_end([ ' ', '/' ])(\lib\Sm_trim_start([  ])(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ $time, $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ]))));
     });
 }
 

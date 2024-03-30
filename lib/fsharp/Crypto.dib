@@ -14,7 +14,10 @@
 #!fsharp
 
 #!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
+#!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 
 #!fsharp
@@ -33,7 +36,7 @@ let hashText (input : string) =
     |> System.Text.Encoding.UTF8.GetBytes
     |> sha256.ComputeHash
     |> Array.map (fun b -> b.ToString "x2")
-    |> String.concat ""
+    |> Sm.concat ""
 
 #!fsharp
 

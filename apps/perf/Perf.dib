@@ -13,6 +13,20 @@
 open testing
 open benchmark
 
+#!fsharp
+
+#!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
+#!import ../../lib/spiral/date_time.fsx
+#!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
+
+#!fsharp
+
+#if !INTERACTIVE
+open Lib
+#endif
+
 #!spiral
 
 inl (/@) x = listm'.(/@) x
@@ -43,7 +57,7 @@ let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expec
         | :? System.Collections.ICollection as input ->
             System.Linq.Enumerable.Cast<obj> input
             |> Seq.map string
-            |> String.concat ","
+            |> Sm.concat ","
         | _ -> input.ToString ()
 
     printfn ""
@@ -692,7 +706,7 @@ let solutions = [
     fun (input: string) ->
         let resultList =
             List.fold (fun acc x ->
-                let rotate (text: string) (letter: string) = text.Substring (1, input.Length - 1) + letter
+                let rotate (text: string) (letter: string) = (text |> Sm.slice 1 (input.Length - 1)) + letter
                 [ rotate (if acc.IsEmpty then input else acc.Head) (string x) ] @ acc
             ) [] (Seq.toList input)
 
@@ -715,7 +729,7 @@ let solutions = [
             item :: acc
         ) []
         |> List.rev
-        |> String.concat " "
+        |> Sm.concat " "
 
     "C",
     fun input ->
@@ -724,7 +738,7 @@ let solutions = [
         |> List.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
         |> List.rev
         |> List.skip 1
-        |> String.concat " "
+        |> Sm.concat " "
 
     "CA",
     fun input ->
@@ -732,7 +746,7 @@ let solutions = [
         |> Seq.fold (fun (acc: string list) letter -> acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
         |> Seq.rev
         |> Seq.skip 1
-        |> String.concat " "
+        |> Sm.concat " "
 
     "CB",
     fun input ->
@@ -741,7 +755,7 @@ let solutions = [
         |> Array.fold (fun (acc: string[]) letter -> acc |> Array.append [| acc.[0].[ 1 .. input.Length - 1 ] + string letter |]) [| input |]
         |> Array.rev
         |> Array.skip 1
-        |> String.concat " "
+        |> Sm.concat " "
 
     "D",
     fun input ->
@@ -757,7 +771,7 @@ let solutions = [
             loop [] list
         |> List.rev
         |> List.map (List.toArray >> String)
-        |> String.concat " "
+        |> Sm.concat " "
 
     "E",
     fun input ->
@@ -770,35 +784,35 @@ let solutions = [
                     item :: loop item tail
                 | [] -> []
             loop input list
-        |> String.concat " "
+        |> Sm.concat " "
 
     "F",
     fun input ->
         Array.singleton 0
         |> Array.append [| 1 .. input.Length - 1 |]
         |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
-        |> String.concat " "
+        |> Sm.concat " "
 
     "FA",
     fun input ->
         List.singleton 0
         |> List.append [ 1 .. input.Length - 1 ]
         |> List.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
-        |> String.concat " "
+        |> Sm.concat " "
 
     "FB",
     fun input ->
         Seq.singleton 0
         |> Seq.append (seq { 1 .. input.Length - 1 })
         |> Seq.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
-        |> String.concat " "
+        |> Sm.concat " "
 
     "FC",
     fun input ->
         Array.singleton 0
         |> Array.append [| 1 .. input.Length - 1 |]
         |> Array.Parallel.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
-        |> String.concat " "
+        |> Sm.concat " "
 ]
 let testCases = seq {
     "abc", "bca cab abc"
@@ -850,7 +864,7 @@ inl get_solutions () =
         //         item :: acc
         //     ) []
         //     |> List.rev
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         // "C",
         // fun input =>
@@ -859,7 +873,7 @@ inl get_solutions () =
         //     |> List.fold (fun (acc : list string) letter => acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
         //     |> List.rev
         //     |> List.skip 1
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         // "CA",
         // fun input =>
@@ -867,7 +881,7 @@ inl get_solutions () =
         //     |> Seq.fold (fun (acc : list string) letter => acc.Head.[ 1 .. input.Length - 1 ] + string letter :: acc) [ input ]
         //     |> Seq.rev
         //     |> Seq.skip 1
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         // "CB",
         // fun input =>
@@ -876,7 +890,7 @@ inl get_solutions () =
         //     |> Array.fold (fun (acc : a _ string) letter => acc |> Array.append (a ;[ acc.[0].[ 1 .. input.Length - 1 ] + string letter ])) (a ;[ input ])
         //     |> Array.rev
         //     |> Array.skip 1
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         // "D",
         // fun input =>
@@ -892,7 +906,7 @@ inl get_solutions () =
         //         loop [] list
         //     |> List.rev
         //     |> List.map (List.toArray >> String)
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         // "E",
         // fun input =>
@@ -905,22 +919,23 @@ inl get_solutions () =
         //                 item :: loop item tail
         //             | [] => []
         //         loop input list
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         "F",
         fun input =>
         // Array.singleton 0
         // |> Array.append [| 1 .. input.Length - 1 |]
         // |> Array.map (fun i -> input.[ i .. ] + input.[ .. i - 1 ])
-        // |> String.concat " "
+        // |> Sm.concat " "
             inl input_length = input |> sm.length
             am.singleton 0i32
             |> am.append (am'.init_series 1 (input_length - 1) 1)
             |> am.map (fun i =>
-                inl a = sm.slice input { from = i; to = input_length - 1 } : string
-                inl b = sm.slice input { from = 0; to = i - 1 } : string
+                inl a = input |> sm'.slice i (input_length - 1)
+                inl b = input |> sm'.slice 0 (i - 1)
                 $"!a + !b" : string
             )
+            |> seq.of_array
             |> sm'.concat " "
 
         "FA",
@@ -928,17 +943,18 @@ inl get_solutions () =
         //     List.singleton 0
         //     |> List.append [ 1 .. input.Length - 1 ]
         //   //  |> List.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
-        //     |> String.concat " "
+        //     |> Sm.concat " "
             inl input_length = input |> sm.length
             listm.singleton 0i32
             |> listm.append (listm'.init_series 1 (input_length - 1) 1)
             |> listm.map (fun i =>
-                inl a = sm.slice input { from = i; to = input_length - 1 } : string
-                inl b = if i = 0 then "" else sm.slice input { from = 0; to = i - 1 } : string
+                inl a = input |> sm'.slice i (input_length - 1)
+                inl b = if i = 0 then "" else input |> sm'.slice 0 (i - 1)
                 $"!a + !b" : string
             )
             |> listm.toArray
             |> fun x => x : a i32 _
+            |> seq.of_array
             |> sm'.concat " "
 
         // "FB",
@@ -946,14 +962,14 @@ inl get_solutions () =
         //     Seq.singleton 0
         //   //  |> Seq.append (seq { 1 .. input.Length - 1 })
         //   //  |> Seq.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
-        //     |> String.concat " "
+        //     |> Sm.concat " "
 
         // "FC",
         // fun input =>
         //     Array.singleton 0
         //     |> Array.append (a ;[ 1 .. input.Length - 1 ])
         // //    |> Array.Parallel.map (fun i => input.[ i .. ] + input.[ .. i - 1 ])
-        //     |> String.concat " "
+        //     |> Sm.concat " "
     ]
 
 inl rec rotate_strings_tests () =

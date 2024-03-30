@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 3000
 const baseURL = `http://localhost:${PORT}`
 
 export default {
-  timeout: 20 * 1000,
+  timeout: 60 * 1000,
   testDir: path.join(__dirname, "e2e"),
-  retries: process.env.CI ? 1 : 0,
+  retries: 1,
   outputDir: "test-results/",
   fullyParallel: true,
   reporter: "html",

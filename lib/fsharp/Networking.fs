@@ -4,6 +4,10 @@ namespace Polyglot
 
 module Networking =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
 
     /// ## testPortOpen
@@ -15,7 +19,7 @@ module Networking =
             do! client.ConnectAsync ("127.0.0.1", port, ct) |> Async.awaitValueTaskUnit
             return true
         with ex ->
-            trace Verbose (fun () -> $"testPortOpen / ex: {ex |> formatException}") getLocals
+            trace Verbose (fun () -> $"testPortOpen / ex: {ex |> Sm.format_exception}") getLocals
             return false
     }
 

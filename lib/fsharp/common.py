@@ -4,25 +4,17 @@ from typing import Any
 from fable_modules.fable_library.date import (to_string, now, ticks as ticks_1, create as create_1)
 from fable_modules.fable_library.long import op_subtraction
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
-from fable_modules.fable_library.string_ import (substring, trim_end, trim_start, to_text, interpolate)
+from fable_modules.fable_library.string_ import (to_text, interpolate)
 from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
 from fable_modules.fable_library.types import (Array, Union, int64)
 from fable_modules.fable_library.util import (create_atom, compare)
+from .....lib.spiral.lib import (Sm_trim_end, Sm_trim_start)
 
 nl: str = "\n"
 
 q: str = "\""
 
-def String_ellipsis(max: int, value: str) -> str:
-    if len(value) <= max:
-        return value
-
-    else: 
-        return ("" + substring(value, 0, max)) + "..."
-
-
-
-def _expr14() -> TypeInfo:
+def _expr65() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -37,7 +29,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr14
+TraceLevel_reflection = _expr65
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:
@@ -114,8 +106,7 @@ def repl_start(__unit: None=None) -> int64 | None:
 
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
     def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
-        trim_chars_2: Array[str] = [" ", "/"]
-        def _arrow15(__unit: None=None) -> Any:
+        def _arrow66(__unit: None=None) -> Any:
             match_value: int64 | None = repl_start()
             if match_value is None:
                 return now()
@@ -126,7 +117,8 @@ def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str
                 return create_1(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t))
 
 
-        return trim_end(trim_start(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [to_string(_arrow15(), "HH:mm:ss"), trace_count(), level, fn(None), get_locals(None)]))), *trim_chars_2)
+        time: str = to_string(_arrow66(), "HH:mm:ss")
+        return Sm_trim_end([" ", "/"])(Sm_trim_start([])(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, trace_count(), level, fn(None), get_locals(None)]))))
 
     trace_raw(level, fn_1)
 

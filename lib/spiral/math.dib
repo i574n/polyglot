@@ -94,8 +94,8 @@ inl e () =
 
 #!spiral
 
-inl floor forall t {float}. (x : t) : t =
-    $"floor !x"
+inl floor forall t {float}. (n : t) : t =
+    n |> $'floor'
 
 #!spiral
 
@@ -103,6 +103,47 @@ inl floor forall t {float}. (x : t) : t =
 
 0.6 |> floor
 |> _assert_eq 0f64
+
+#!markdown
+
+## ceil
+
+#!spiral
+
+inl ceil forall t {float}. (n : t) : t =
+    n |> $'ceil'
+
+#!spiral
+
+// // test
+
+0.6 |> ceil
+|> _assert_eq 1f64
+
+#!markdown
+
+## round
+
+#!spiral
+
+inl round forall t {float}. (n : t) : t =
+    n |> $'round'
+
+#!spiral
+
+// // test
+
+0.5 |> round
+|> _assert_eq 0f64
+
+1.5 |> round
+|> _assert_eq 2f64
+
+2.5 |> round
+|> _assert_eq 2f64
+
+3.5 |> round
+|> _assert_eq 4f64
 
 #!markdown
 

@@ -14,7 +14,10 @@
 #!fsharp
 
 #!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
+#!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 
 #!fsharp
@@ -62,7 +65,7 @@ let inline fromStr str =
         lines =
             if str |> String.IsNullOrEmpty
             then [||]
-            else str |> String.splitString [| "\r\n"; "\n" |]
+            else str |> Sm.split_string [| "\r\n"; "\n" |]
         position = initialPos
     }
 

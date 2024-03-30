@@ -7559,7 +7559,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
+<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 </pre></div>
 </div>
 </div>
@@ -7573,15 +7576,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !WASM &amp;&amp; !FABLE_COMPILER</span>
-<span class="n">let</span> <span class="n">Date_time</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span>
-    <span class="n">new_guid_from_date_time</span> <span class="o">=</span>
-<span class="c1">#if !INTERACTIVE</span>
-        <span class="n">Date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span>
-<span class="c1">#else</span>
-        <span class="n">new_guid_from_date_time</span>
-<span class="c1">#endif</span>
-<span class="o">|</span><span class="p">}</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
 <span class="c1">#endif</span>
 </pre></div>
 </div>
@@ -7617,92 +7613,8 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">module</span> <span class="n">String</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">contains</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">Contains</span> <span class="n">value</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">endsWith</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">EndsWith</span> <span class="n">value</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">padLeft</span> <span class="n">totalWidth</span> <span class="n">paddingChar</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">PadLeft</span> <span class="p">(</span><span class="n">totalWidth</span><span class="p">,</span> <span class="n">paddingChar</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">replace</span> <span class="p">(</span><span class="n">oldValue</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">newValue</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">Replace</span> <span class="p">(</span><span class="n">oldValue</span><span class="p">,</span> <span class="n">newValue</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">split</span> <span class="n">separator</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">Split</span> <span class="n">separator</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">splitString</span> <span class="p">(</span><span class="n">separator</span> <span class="p">:</span> <span class="n">string</span> <span class="n">array</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">Split</span> <span class="p">(</span><span class="n">separator</span><span class="p">,</span> <span class="n">System</span><span class="o">.</span><span class="n">StringSplitOptions</span><span class="o">.</span><span class="kc">None</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">startsWith</span> <span class="p">(</span><span class="n">value</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">StartsWith</span> <span class="n">value</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">substring</span> <span class="n">startIndex</span> <span class="n">length</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">Substring</span> <span class="p">(</span><span class="n">startIndex</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">toLower</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">ToLower</span> <span class="p">()</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">toUpper</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">ToUpper</span> <span class="p">()</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">trim</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">Trim</span> <span class="p">()</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">trimEnd</span> <span class="p">(</span><span class="n">trimChars</span> <span class="p">:</span> <span class="n">char</span> <span class="n">array</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">TrimEnd</span> <span class="n">trimChars</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">trimStart</span> <span class="p">(</span><span class="n">trimChars</span> <span class="p">:</span> <span class="n">char</span> <span class="n">array</span><span class="p">)</span> <span class="p">(</span><span class="nb">input</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="nb">input</span><span class="o">.</span><span class="n">TrimStart</span> <span class="n">trimChars</span>
-
-
-    <span class="n">let</span> <span class="n">ellipsis</span> <span class="nb">max</span> <span class="n">value</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="nb">max</span>
-        <span class="n">then</span> <span class="n">value</span>
-        <span class="k">else</span> <span class="err">$</span><span class="s2">"{value |&gt; substring 0 max}..."</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="formatException">formatException<a class="anchor-link" href="#formatException">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">formatException</span> <span class="p">(</span><span class="n">ex</span> <span class="p">:</span> <span class="n">exn</span><span class="p">)</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"{ex.GetType ()}: </span><span class="si">{ex.Message}</span><span class="s2">"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7712,7 +7624,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7729,7 +7641,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7739,7 +7651,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7765,7 +7677,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7781,7 +7693,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7791,7 +7703,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7819,14 +7731,14 @@ a.anchor-link {
                 <span class="n">let</span> <span class="n">logFile</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">logDir</span><span class="p">,</span> <span class="err">$</span><span class="s2">"{Date_time.new_guid_from_date_time System.DateTime.Now}.txt"</span><span class="p">)</span>
                 <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">WriteAllTextAsync</span> <span class="p">(</span><span class="n">logFile</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
             <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">traceRaw</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"trace / ex: {ex |&gt; formatException}"</span><span class="p">)</span>
+                <span class="n">traceRaw</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"trace / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span>
 <span class="c1">#endif</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7856,7 +7768,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7866,7 +7778,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7905,8 +7817,8 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">dateTime</span><span class="o">.</span><span class="n">ToString</span>
 <span class="c1">#endif</span>
         <span class="err">$</span><span class="s2">"</span><span class="si">{time}</span><span class="s2"> #</span><span class="si">{traceCount}</span><span class="s2"> [%A</span><span class="si">{level}</span><span class="s2">] </span><span class="si">%s</span><span class="s2">{fn ()} / </span><span class="si">%s</span><span class="s2">{getLocals ()}"</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trimStart</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trimEnd</span> <span class="p">[</span><span class="o">|</span> <span class="s1">' '</span><span class="p">;</span> <span class="s1">'/'</span> <span class="o">|</span><span class="p">]</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">|</span> <span class="s1">' '</span><span class="p">;</span> <span class="s1">'/'</span> <span class="o">|</span><span class="p">]</span>
     <span class="o">|&gt;</span> <span class="n">traceRaw</span> <span class="n">level</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">withTrace</span> <span class="n">enabled</span> <span class="n">fn</span> <span class="o">=</span>
@@ -7943,7 +7855,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

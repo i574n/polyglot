@@ -4,6 +4,10 @@ namespace Polyglot
 
 module Eval =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
     open FileSystem.Operators
 
@@ -19,7 +23,7 @@ module Eval =
 
     let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
         let allCodeLineLength =
-            allCode |> String.split [| '\n' |] |> Array.length
+            allCode |> Sm.split "\n" |> Array.length
 
         errors
         |> List.map (fun (_, error) ->
@@ -98,7 +102,7 @@ module Eval =
                 let fileName = "SpiralScriptHelpers"
                 File.AppendAllText (logFile, $"{dateTimeStr} {fileName} {text}{Environment.NewLine}") |> ignore
             with ex ->
-                trace Debug (fun () -> $"V.log / ex: {ex |> formatException}") getLocals
+                trace Debug (fun () -> $"V.log / ex: {ex |> Sm.format_exception}") getLocals
 
     let log (text : string) =
         if traceLevel = TraceLevel.Verbose then
@@ -111,7 +115,7 @@ module Eval =
                 let fileName = "SpiralScriptHelpers"
                 File.AppendAllText (logFile, $"{dateTimeStr} {fileName} {text}{Environment.NewLine}") |> ignore
             with ex ->
-                trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> formatException}") getLocals
+                trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> Sm.format_exception}") getLocals
                 log2 text
 
     let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
@@ -146,7 +150,7 @@ module Eval =
                                 | None ->
                                     log $"Eval.watchDirectory / GetFiles / tokens: None / {getLocals ()}"
                         with ex ->
-                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> formatException} / {getLocals ()}"
+                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                     })
                     |> Async.Sequential
                     |> Async.Ignore
@@ -178,7 +182,7 @@ module Eval =
                                     log $"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"
                             | _ -> ()
                         with ex ->
-                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> formatException} / {getLocals ()}"
+                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                     })
 
                 async {
@@ -188,7 +192,7 @@ module Eval =
                 }
                 |> Async.Start
             with ex ->
-                log $"Eval / ex: {ex |> formatException}"
+                log $"Eval / ex: {ex |> Sm.format_exception}"
 
             disposable
         else new_disposable (fun () -> ())
@@ -204,8 +208,8 @@ module Eval =
         log $"Eval / code: %A{code}"
 
         let rawCellCode =
-            if code |> String.trim <> "// // trace"
-            then code |> String.replace "\r\n" "\n"
+            if code |> Sm.trim <> "// // trace"
+            then code |> Sm.replace "\r\n" "\n"
             else
                 if traceLevel = Info
                 then traceLevel <- Verbose
@@ -213,9 +217,9 @@ module Eval =
                 traceDump <- traceLevel = Verbose
                 "inl main () = ()"
 
-        let lines = rawCellCode |> String.split [| '\n' |]
+        let lines = rawCellCode |> Sm.split "\n"
 
-        if lines |> Array.exists (fun line -> line |> String.startsWith "#r " && line |> String.endsWith "\"") then
+        if lines |> Array.exists (fun line -> line |> Sm.starts_with "#r " && line |> Sm.ends_with "\"") then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
             let ch, errors = fsi_eval code cancellationToken
             match ch with
@@ -233,8 +237,8 @@ module Eval =
                 let hasMain =
                     lastBlock
                     |> Option.exists (fun line ->
-                        line |> String.startsWith "inl main "
-                        || line |> String.startsWith "let main "
+                        line |> Sm.starts_with "inl main "
+                        || line |> Sm.starts_with "let main "
                     )
 
                 let cellCode, lastTopLevelIndex =
@@ -249,18 +253,18 @@ module Eval =
                                 | _ when finished -> lastTopLevelIndex, true
                                 | "" -> lastTopLevelIndex, false
                                 | line when
-                                    line |> String.startsWith " "
-                                    || line |> String.startsWith "// " -> lastTopLevelIndex, false
+                                    line |> Sm.starts_with " "
+                                    || line |> Sm.starts_with "// " -> lastTopLevelIndex, false
                                 | line when
-                                    line |> String.startsWith "open "
-                                    || line |> String.startsWith "prototype "
-                                    || line |> String.startsWith "instance "
-                                    || line |> String.startsWith "type "
-                                    || line |> String.startsWith "union "
-                                    || line |> String.startsWith "nominal " -> lastTopLevelIndex, true
+                                    line |> Sm.starts_with "open "
+                                    || line |> Sm.starts_with "prototype "
+                                    || line |> Sm.starts_with "instance "
+                                    || line |> Sm.starts_with "type "
+                                    || line |> Sm.starts_with "union "
+                                    || line |> Sm.starts_with "nominal " -> lastTopLevelIndex, true
                                 | line when
-                                    line |> String.startsWith "inl "
-                                    || line |> String.startsWith "let " ->
+                                    line |> Sm.starts_with "inl "
+                                    || line |> Sm.starts_with "let " ->
                                     let m =
                                         System.Text.RegularExpressions.Regex.Match (
                                             line,
@@ -280,10 +284,10 @@ module Eval =
                                     match i with
                                     | i when i < lastTopLevelIndex -> line
                                     | i when i = lastTopLevelIndex -> $"\nlet main () =\n    {line}"
-                                    | _ when line |> String.trim = "" -> ""
+                                    | _ when line |> Sm.trim = "" -> ""
                                     | _ -> $"    {line}"
                                 )
-                                |> String.concat "\n"
+                                |> Sm.concat "\n"
                             | None -> $"{rawCellCode}\n\ninl main () = ()\n"
                         code, lastTopLevelIndex
 
@@ -292,16 +296,16 @@ module Eval =
                 let rustArgs =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> String.startsWith "// // rust="
-                        then line |> String.split [| '=' |] |> Array.tryItem 1
+                        if line |> Sm.starts_with "// // rust="
+                        then line |> Sm.split "=" |> Array.tryItem 1
                         else None
                     )
 
                 let timeout =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> String.startsWith "// // timeout="
-                        then line |> String.split [| '=' |] |> Array.tryItem 1 |> Option.map int
+                        if line |> Sm.starts_with "// // timeout="
+                        then line |> Sm.split "=" |> Array.tryItem 1 |> Option.map int
                         else None
                     )
                     |> Option.defaultValue (60000 * 60)
@@ -309,8 +313,8 @@ module Eval =
                 let printCode =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> String.startsWith "// // print_code="
-                        then line |> String.split [| '=' |] |> Array.tryItem 1 |> Option.map ((=) "true")
+                        if line |> Sm.starts_with "// // print_code="
+                        then line |> Sm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
                         else None
                     )
                     |> Option.defaultValue true
@@ -318,8 +322,8 @@ module Eval =
                 let maxTermCount =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> String.startsWith "// // max_term_count="
-                        then line |> String.split [| '=' |] |> Array.tryItem 1 |> Option.map int
+                        if line |> Sm.starts_with "// // max_term_count="
+                        then line |> Sm.split "=" |> Array.tryItem 1 |> Option.map int
                         else None
                     )
 
@@ -349,7 +353,7 @@ module Eval =
                             match codeChoice with
                             | Some (Ok code) -> Some code
                             | Some (Error ex) ->
-                                log $"Eval / errors: {ex |> formatException}"
+                                log $"Eval / errors: {ex |> Sm.format_exception}"
                                 None
                             | _ -> None
 
@@ -413,12 +417,12 @@ module Eval =
 
                                             let mainCode = "pub fn main() -> Result<(), String> { Ok(()) }"
 
-                                            let cached = rsCode |> String.contains mainCode
+                                            let cached = rsCode |> Sm.contains mainCode
 
                                             let rsCode =
                                                 if cached
                                                 then rsCode
-                                                else rsCode |> String.replace "),);" "));"
+                                                else rsCode |> Sm.replace "),);" "));"
 
                                             if printCode
                                             then _trace (fun () -> $"\n.rs:\n{rsCode}")
@@ -465,12 +469,12 @@ path = "{hash}.rs"
                                                 try
                                                     let result =
                                                         result
-                                                        |> String.split [| '\n' |]
+                                                        |> Sm.split "\n"
                                                         |> Array.skipWhile (fun line ->
-                                                            line |> String.contains @"[optimized] target" |> not
+                                                            line |> Sm.contains @"[optimized] target" |> not
                                                         )
                                                         |> Array.skip 2
-                                                        |> String.concat "\n"
+                                                        |> Sm.concat "\n"
                                                     return Some (Ok result)
                                                 with ex ->
                                                     return $"ex: {ex}\nresult:\n{result}" |> Error |> Some
@@ -493,7 +497,7 @@ path = "{hash}.rs"
                                             )
                                         Some (ch, errors)
                                     with ex ->
-                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> formatException}") getLocals
+                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> Sm.format_exception}") getLocals
                                         None
 
                             match fsxResult, rustResult with
@@ -547,11 +551,11 @@ path = "{hash}.rs"
                                 )
                             |]
                     with ex ->
-                        log $"Eval / ex: {ex |> formatException}"
-                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> formatException}"),
+                        log $"Eval / ex: {ex |> Sm.format_exception}"
+                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> Sm.format_exception}"),
                         [|
                             (
-                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> formatException}", 0, ("", (0, 0), (0, 0))
+                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> Sm.format_exception}", 0, ("", (0, 0), (0, 0))
                             )
                         |]
                 }
@@ -565,10 +569,10 @@ path = "{hash}.rs"
                     |]
                 )
             with ex ->
-                log $"Eval / ex: {ex |> formatException}"
-                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> formatException}"),
+                log $"Eval / ex: {ex |> Sm.format_exception}"
+                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> Sm.format_exception}"),
                 [|
                     (
-                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> formatException}", 0, ("", (0, 0), (0, 0))
+                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> Sm.format_exception}", 0, ("", (0, 0), (0, 0))
                     )
                 |]

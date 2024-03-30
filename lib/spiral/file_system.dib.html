@@ -7694,11 +7694,14 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_temp_directory_name</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'</span> <span class="p">:</span> <span class="n">string</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'</span> <span class="p">:</span> <span class="n">string</span>
 
-    <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Path.GetTempPath'</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-    <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"{!root}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-    <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
+            <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Path.GetTempPath'</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"{!root}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
+        <span class="o">|</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_temp_directory_name target: {!x}"'</span>
 </pre></div>
 </div>
 </div>
@@ -7744,56 +7747,99 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
     | US0_0
-    | US0_1 of f1_0 : char
+    | US0_1
+    | US0_2
+and [&lt;Struct&gt;] US1 =
+    | US1_0 of f0_0 : US0
+    | US1_1 of f1_0 : US0
+and [&lt;Struct&gt;] US2 =
+    | US2_0
+    | US2_1 of f1_0 : char
 let rec closure0 (v0 : char) (v1 : char) : bool =
     let v2 : bool = v0 = v1
     v2
-and closure1 () (v0 : char) : US0 =
-    US0_1(v0)
+and closure1 () (v0 : char) : US2 =
+    US2_1(v0)
 and method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let v0 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v1 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v2 : string = v1 ()
-    let v3 : string = $"{v0}"
-    let v4 : string = System.IO.Path.Combine (v2, v3)
-    let v5 : System.DateTime = System.DateTime.Now
-    let v6 : System.Guid = System.Guid.NewGuid ()
-    let v7 : string = v6.ToString ()
-    let v8 : string = v5.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v9 : System.Guid = System.Guid $"{v8}{v7.[v8.Length..]}"
-    let v10 : string = v9.ToString ()
-    let v11 : string = System.IO.Path.Combine (v4, v10)
-    let v12 : char = System.IO.Path.DirectorySeparatorChar
-    let v13 : string = $"%A{v11}"
-    System.Console.WriteLine v13
-    let v14 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
-    let v15 : (char -&gt; bool) = closure0(v12)
-    let v16 : (string -&gt; char option) = v14 v15
-    let v17 : char option = v16 v11
-    let v18 : (char -&gt; US0) = closure1()
-    let v19 : US0 = US0_0
-    let v20 : US0 = v17 |&gt; Option.map v18 |&gt; Option.defaultValue v19
-    let v22 : bool =
-        match v20 with
-        | US0_0 -&gt; (* None *)
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v0 : US0 = US0_1
+    let v1 : US1 = US1_1(v0)
+    let v2 : string = $"create_temp_directory_name target: {v1}"
+    let v3 : string = failwith&lt;string&gt; v2
+    v3
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v4 : US0 = US0_2
+    let v5 : US1 = US1_1(v4)
+    let v6 : string = $"create_temp_directory_name target: {v5}"
+    let v7 : string = failwith&lt;string&gt; v6
+    v7
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v9 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v10 : string = v9 ()
+    let v11 : string = $"{v8}"
+    let v12 : string = System.IO.Path.Combine (v10, v11)
+    let v13 : System.DateTime = System.DateTime.Now
+    let v14 : System.Guid = System.Guid.NewGuid ()
+    let v15 : (System.Guid -&gt; string) = _.ToString()
+    let v16 : string = v15 v14
+    let v17 : string = v13.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v18 : System.Guid = System.Guid $"{v17}{v16.[v17.Length..]}"
+    let v19 : (System.Guid -&gt; string) = _.ToString()
+    let v20 : string = v19 v18
+    let v21 : string = System.IO.Path.Combine (v12, v20)
+    v21
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v22 : US0 = US0_0
+    let v23 : US1 = US1_0(v22)
+    let v24 : string = $"create_temp_directory_name target: {v23}"
+    let v25 : string = failwith&lt;string&gt; v24
+    v25
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v26 : US0 = US0_2
+    let v27 : US1 = US1_0(v26)
+    let v28 : string = $"create_temp_directory_name target: {v27}"
+    let v29 : string = failwith&lt;string&gt; v28
+    v29
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v30 : string = result |&gt; Option.get
+    let v31 : char = System.IO.Path.DirectorySeparatorChar
+    let v32 : string = $"%A{v30}"
+    System.Console.WriteLine v32
+    let v33 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
+    let v34 : (char -&gt; bool) = closure0(v31)
+    let v35 : (string -&gt; char option) = v33 v34
+    let v36 : char option = v35 v30
+    let v37 : (char -&gt; US2) = closure1()
+    let v38 : US2 = US2_0
+    let v39 : US2 = v36 |&gt; Option.map v37 |&gt; Option.defaultValue v38
+    let v41 : bool =
+        match v39 with
+        | US2_0 -&gt; (* None *)
             true
         | _ -&gt;
             false
-    let v23 : bool = v22 &lt;&gt; true
-    let v25 : bool =
-        if v23 then
+    let v42 : bool = v41 &lt;&gt; true
+    let v44 : bool =
+        if v42 then
             true
         else
-            method1(v23)
-    let v26 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
-    let v27 : bool = v25 = false
-    if v27 then
-        failwith&lt;unit&gt; v26
+            method1(v42)
+    let v45 : string = $"__expect / actual: %A{v30} / expected: %A{v31}"
+    let v46 : bool = v44 = false
+    if v46 then
+        failwith&lt;unit&gt; v45
 method0()
 
-"/tmp/dotnet-repl/20240329-2208-3043-4332-49f5b95afab1"
+"/tmp/dotnet-repl/20240330-2030-3681-8105-87ddf14f44a2"
 </pre>
 </div>
 </div>
@@ -7819,7 +7865,7 @@ method0()
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"let create_temp_directory_name x = !create_temp_directory_name x"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let create_temp_directory_name () = !create_temp_directory_name ()"</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7832,22 +7878,65 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec closure0 () () : string =
-    let v0 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v1 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v2 : string = v1 ()
-    let v3 : string = $"{v0}"
-    let v4 : string = System.IO.Path.Combine (v2, v3)
-    let v5 : System.DateTime = System.DateTime.Now
-    let v6 : System.Guid = System.Guid.NewGuid ()
-    let v7 : string = v6.ToString ()
-    let v8 : string = v5.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v9 : System.Guid = System.Guid $"{v8}{v7.[v8.Length..]}"
-    let v10 : string = v9.ToString ()
-    let v11 : string = System.IO.Path.Combine (v4, v10)
-    v11
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1
+    | US0_2
+and [&lt;Struct&gt;] US1 =
+    | US1_0 of f0_0 : US0
+    | US1_1 of f1_0 : US0
+let rec closure0 () () : string =
+    let mutable result = None
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v0 : US0 = US0_1
+    let v1 : US1 = US1_1(v0)
+    let v2 : string = $"create_temp_directory_name target: {v1}"
+    let v3 : string = failwith&lt;string&gt; v2
+    v3
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v4 : US0 = US0_2
+    let v5 : US1 = US1_1(v4)
+    let v6 : string = $"create_temp_directory_name target: {v5}"
+    let v7 : string = failwith&lt;string&gt; v6
+    v7
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v9 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v10 : string = v9 ()
+    let v11 : string = $"{v8}"
+    let v12 : string = System.IO.Path.Combine (v10, v11)
+    let v13 : System.DateTime = System.DateTime.Now
+    let v14 : System.Guid = System.Guid.NewGuid ()
+    let v15 : (System.Guid -&gt; string) = _.ToString()
+    let v16 : string = v15 v14
+    let v17 : string = v13.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v18 : System.Guid = System.Guid $"{v17}{v16.[v17.Length..]}"
+    let v19 : (System.Guid -&gt; string) = _.ToString()
+    let v20 : string = v19 v18
+    let v21 : string = System.IO.Path.Combine (v12, v20)
+    v21
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v22 : US0 = US0_0
+    let v23 : US1 = US1_0(v22)
+    let v24 : string = $"create_temp_directory_name target: {v23}"
+    let v25 : string = failwith&lt;string&gt; v24
+    v25
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v26 : US0 = US0_2
+    let v27 : US1 = US1_0(v26)
+    let v28 : string = $"create_temp_directory_name target: {v27}"
+    let v29 : string = failwith&lt;string&gt; v28
+    v29
+    #endif
+    |&gt; fun x -&gt; result &lt;- Some x
+    let v30 : string = result |&gt; Option.get
+    v30
 let v0 : (unit -&gt; string) = closure0()
-let create_temp_directory_name x = v0 x
+let create_temp_directory_name () = v0 ()
 ()
 
 </pre>

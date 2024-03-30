@@ -7577,8 +7577,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
@@ -7597,14 +7599,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">File_system</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span>
-    <span class="n">create_temp_directory_name</span> <span class="o">=</span>
-<span class="c1">#if !INTERACTIVE</span>
-        <span class="n">File_system</span><span class="o">.</span><span class="n">create_temp_directory_name</span>
-<span class="c1">#else</span>
-        <span class="n">create_temp_directory_name</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
 <span class="c1">#endif</span>
-<span class="o">|</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -8040,7 +8037,7 @@ a.anchor-link {
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForFileAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8104,7 +8101,7 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
 
         <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"1"</span>
@@ -8126,12 +8123,12 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 #1 [Debug] 1
 00:00:00 #2 [Debug] 2
-00:00:00 #3 [Debug] _1
-00:00:00 #4 [Debug] 3
+00:00:00 #3 [Debug] 3
+00:00:00 #4 [Debug] _1
 00:00:00 #5 [Debug] _2
 00:00:00 #6 [Debug] 4
-00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240329-2202-1776-7615-724767b7e464/test.txt' because it is being used by another process.
-00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240329-2202-1776-7615-724767b7e464/test.txt' because it is being used by another process.
+00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2024-5098-9878-9485e97df004/test.txt' because it is being used by another process.
+00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2024-5098-9878-9485e97df004/test.txt' because it is being used by another process.
 00:00:02 #9 [Debug] _3
 00:00:02 #10 [Debug] _4
 00:00:02 #11 [Debug] _5
@@ -8182,7 +8179,7 @@ True
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Some</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"watchWithFilter / readContent"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8220,7 +8217,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteDirectoryAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8277,7 +8274,7 @@ True
     <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">true</span>
@@ -8339,7 +8336,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8395,7 +8392,7 @@ True
     <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">true</span>
@@ -8458,7 +8455,7 @@ True
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"moveFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8519,7 +8516,7 @@ True
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="n">retries1</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">retries2</span>
@@ -8551,8 +8548,8 @@ True
 00:00:06 #38 [Debug] _2
 00:00:06 #39 [Debug] 4
 00:00:06 #40 [Debug] 5
-00:00:06 #41 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240329-2202-2467-6774-6d8af9f2b4af/test2.txt' because it is being used by another process.
-00:00:08 #42 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240329-2202-2467-6774-6d8af9f2b4af/test2.txt' because it is being used by another process.
+00:00:06 #41 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2024-5775-7507-79b50f0846b1/test2.txt' because it is being used by another process.
+00:00:07 #42 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2024-5775-7507-79b50f0846b1/test2.txt' because it is being used by another process.
 00:00:08 #43 [Debug] _3
 00:00:08 #44 [Debug] 6
 00:00:08 #45 [Debug] 7
@@ -8619,7 +8616,7 @@ True
         <span class="p">)</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">getEventPath</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="n">fullPath</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trimStart</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'/'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="n">fullPath</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'/'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">ticks</span> <span class="p">()</span> <span class="o">=</span>
         <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span><span class="o">.</span><span class="n">Ticks</span>
@@ -8789,13 +8786,8 @@ True
             <span class="p">(</span><span class="mi">0</span><span class="n">L</span><span class="p">,</span> <span class="p">[])</span>
         <span class="o">|&gt;</span> <span class="n">snd</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span>
-            <span class="k">if</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="mi">100</span>
-            <span class="n">then</span> <span class="n">text</span>
-            <span class="k">else</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">substring</span> <span class="mi">0</span> <span class="mi">100</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="s2">""</span>
-        <span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ellipsis_end</span> <span class="mi">100</span><span class="n">L</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"eventsLog: </span><span class="se">\n</span><span class="si">{eventsLog}</span><span class="s2"> / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"testEventsRaw"</span><span class="p">)</span> <span class="n">getLocals</span>
 
@@ -8808,7 +8800,7 @@ True
             <span class="k">match</span> <span class="n">acc</span><span class="p">,</span> <span class="n">event</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">lastPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">lastContent</span><span class="p">)</span> <span class="k">as</span> <span class="n">lastEvent</span> <span class="p">::</span> <span class="n">acc</span><span class="p">,</span>
                 <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span>
-                <span class="n">when</span> <span class="n">lastPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="n">lastContent</span>
+                <span class="n">when</span> <span class="n">lastPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">lastContent</span>
                 <span class="o">-&gt;</span>
                 <span class="n">event</span> <span class="p">::</span> <span class="n">acc</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">event</span> <span class="p">::</span> <span class="n">acc</span>
@@ -8910,24 +8902,24 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:13 #47 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:13 #48 [Debug] testEventsRaw / eventsLog: 
-0 / 638473465498834404 / Created ("file1.txt", Some "a1")
-11566 / 638473465498845970 / Changed ("file1.txt", Some "a1")
-2014 / 638473465498847984 / Created ("file2.txt", Some "a2")
-43 / 638473465498848027 / Changed ("file2.txt", Some "a2")
-2475647 / 638473465501323674 / Changed ("file1.txt", Some "b1")
-352 / 638473465501324026 / Changed ("file1.txt", Some "b1")
-4534 / 638473465501328560 / Changed ("file2.txt", Some "b2")
-347 / 638473465501328907 / Changed ("file2.txt", Some "b2")
-2559163 / 638473465503888070 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-1083 / 638473465503889153 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2511347 / 638473465506400500 / Changed ("file_1.txt", Some "c1")
-589 / 638473465506401089 / Changed ("file_1.txt", Some "c1")
-4207 / 638473465506405296 / Changed ("file_2.txt", Some "c2")
-368 / 638473465506405664 / Changed ("file_2.txt", Some "c2")
-2537892 / 638473465508943556 / Deleted "file_1.txt"
-887 / 638473465508944443 / Deleted "file_2.txt"
+00:00:12 #47 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:12 #48 [Debug] testEventsRaw / eventsLog: 
+0 / 638474271024066456 / Created ("file1.txt", Some "a1")
+12106 / 638474271024078562 / Changed ("file1.txt", Some "a1")
+1840 / 638474271024080402 / Created ("file2.txt", Some "a2")
+74 / 638474271024080476 / Changed ("file2.txt", Some "a2")
+2518967 / 638474271026599443 / Changed ("file1.txt", Some "b1")
+630 / 638474271026600073 / Changed ("file1.txt", Some "b1")
+4502 / 638474271026604575 / Changed ("file2.txt", Some "b2")
+182 / 638474271026604757 / Changed ("file2.txt", Some "b2")
+2506898 / 638474271029111655 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+1534 / 638474271029113189 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2515760 / 638474271031628949 / Changed ("file_1.txt", Some "c1")
+823 / 638474271031629772 / Changed ("file_1.txt", Some "c1")
+6399 / 638474271031636171 / Changed ("file_2.txt", Some "c2")
+204 / 638474271031636375 / Changed ("file_2.txt", Some "c2")
+2509266 / 638474271034145641 / Deleted "file_1.txt"
+1115 / 638474271034146756 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9089,13 +9081,13 @@ FSharpOption&lt;Unit&gt;
         <span class="n">testEventsRaw</span> <span class="n">watchDirectory</span> <span class="n">write</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">))</span> <span class="o">-&gt;</span>
                 <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span>
                     <span class="n">oldPath</span><span class="p">,</span>
-                    <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
                 <span class="p">)</span>
             <span class="o">|</span> <span class="n">event</span> <span class="o">-&gt;</span> <span class="n">event</span>
         <span class="p">)</span>
@@ -9137,382 +9129,768 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:23 #49 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:25 #50 [Debug] testEventsRaw / eventsLog: 
-0 / 638473465538537844 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
-2755 / 638473465538540599 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111
-524 / 638473465538541123 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-36 / 638473465538541159 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-72 / 638473465538541231 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-13301 / 638473465538554532 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
-8794 / 638473465538563326 / Created  ("file2.txt",   Some     "2222222222222222222222222222222222
-153 / 638473465538563479 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-78 / 638473465538563557 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-480 / 638473465538564037 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-78 / 638473465538564115 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-195 / 638473465538564310 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-193 / 638473465538564503 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-149 / 638473465538564652 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-215 / 638473465538564867 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-84 / 638473465538564951 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-975 / 638473465538565926 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-154 / 638473465538566080 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-131 / 638473465538566211 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-403 / 638473465538566614 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-170 / 638473465538566784 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-154 / 638473465538566938 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-753 / 638473465538567691 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-66 / 638473465538567757 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-205 / 638473465538567962 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-645 / 638473465538568607 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-174 / 638473465538568781 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-128 / 638473465538568909 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-641 / 638473465538569550 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-152 / 638473465538569702 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-849 / 638473465538570551 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-59 / 638473465538570610 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-152 / 638473465538570762 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-902 / 638473465538571664 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-61 / 638473465538571725 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-139 / 638473465538571864 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-626 / 638473465538572490 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-33 / 638473465538572523 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-143 / 638473465538572666 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-613 / 638473465538573279 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-70 / 638473465538573349 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-153 / 638473465538573502 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-1167 / 638473465538574669 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222
-36 / 638473465538574705 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-45 / 638473465538574750 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-166 / 638473465538574916 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-633 / 638473465538575549 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-167 / 638473465538575716 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-616 / 638473465538576332 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-177 / 638473465538576509 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-608 / 638473465538577117 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-34 / 638473465538577151 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-144 / 638473465538577295 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-1331 / 638473465538578626 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222
-71 / 638473465538578697 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-35 / 638473465538578732 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-162 / 638473465538578894 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-132 / 638473465538579026 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-694 / 638473465538579720 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-60 / 638473465538579780 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-6771 / 638473465538586551 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222
-15015999 / 638473465553602550 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
-251 / 638473465553602801 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-1057 / 638473465553603858 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111
-99 / 638473465553603957 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-338 / 638473465553604295 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-53 / 638473465553604348 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-345 / 638473465553604693 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-126 / 638473465553604819 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-325 / 638473465553605144 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-139 / 638473465553605283 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-213 / 638473465553605496 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-360 / 638473465553605856 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-503 / 638473465553606359 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-521 / 638473465553606880 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-80 / 638473465553606960 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-413 / 638473465553607373 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-36 / 638473465553607409 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-131 / 638473465553607540 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-190 / 638473465553607730 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-160 / 638473465553607890 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-105 / 638473465553607995 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-270 / 638473465553608265 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-52 / 638473465553608317 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-193 / 638473465553608510 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-45 / 638473465553608555 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-281 / 638473465553608836 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-57 / 638473465553608893 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-196 / 638473465553609089 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-56 / 638473465553609145 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-623 / 638473465553609768 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-192 / 638473465553609960 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-336 / 638473465553610296 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-55 / 638473465553610351 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-189 / 638473465553610540 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-49 / 638473465553610589 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-317 / 638473465553610906 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-51 / 638473465553610957 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-163 / 638473465553611120 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-182 / 638473465553611302 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-46 / 638473465553611348 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-327 / 638473465553611675 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-45 / 638473465553611720 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-189 / 638473465553611909 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-40 / 638473465553611949 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-300 / 638473465553612249 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-50 / 638473465553612299 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-193 / 638473465553612492 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-313 / 638473465553612805 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-43 / 638473465553612848 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-233 / 638473465553613081 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-332 / 638473465553613413 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-268 / 638473465553613681 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-52 / 638473465553613733 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-184 / 638473465553613917 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-135 / 638473465553614052 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-328 / 638473465553614380 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-125 / 638473465553614505 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-192 / 638473465553614697 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-49 / 638473465553614746 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-273 / 638473465553615019 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-45 / 638473465553615064 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-275 / 638473465553615339 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-37 / 638473465553615376 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-287 / 638473465553615663 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-44 / 638473465553615707 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-245 / 638473465553615952 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-134 / 638473465553616086 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-144 / 638473465553616230 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-229 / 638473465553616459 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-41 / 638473465553616500 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-243 / 638473465553616743 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-135 / 638473465553616878 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-145 / 638473465553617023 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-94 / 638473465553617117 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-231 / 638473465553617348 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-40 / 638473465553617388 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-360 / 638473465553617748 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-179 / 638473465553617927 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-208 / 638473465553618135 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-44 / 638473465553618179 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-245 / 638473465553618424 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-126 / 638473465553618550 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-195 / 638473465553618745 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-371 / 638473465553619116 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-166 / 638473465553619282 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-96 / 638473465553619378 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-251 / 638473465553619629 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-153 / 638473465553619782 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-149 / 638473465553619931 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-204 / 638473465553620135 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-41 / 638473465553620176 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-240 / 638473465553620416 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-135 / 638473465553620551 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-142 / 638473465553620693 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-149 / 638473465553620842 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-224 / 638473465553621066 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-50 / 638473465553621116 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-265 / 638473465553621381 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-275 / 638473465553621656 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-258 / 638473465553621914 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-110 / 638473465553622024 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-251 / 638473465553622275 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-39 / 638473465553622314 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-255 / 638473465553622569 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-208 / 638473465553622777 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-105 / 638473465553622882 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-156 / 638473465553623038 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-137 / 638473465553623175 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-148 / 638473465553623323 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-300 / 638473465553623623 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-210 / 638473465553623833 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-151 / 638473465553623984 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-148 / 638473465553624132 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-149 / 638473465553624281 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-279 / 638473465553624560 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-47 / 638473465553624607 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-281 / 638473465553624888 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-39 / 638473465553624927 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-289 / 638473465553625216 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-154 / 638473465553625370 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-97 / 638473465553625467 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111111
-103 / 638473465553625570 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111111
-54864 / 638473465553680434 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
-128 / 638473465553680562 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-397 / 638473465553680959 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-172 / 638473465553681131 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-106 / 638473465553681237 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-196 / 638473465553681433 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-157 / 638473465553681590 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-103 / 638473465553681693 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-207 / 638473465553681900 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-166 / 638473465553682066 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-206 / 638473465553682272 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-42 / 638473465553682314 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-209 / 638473465553682523 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-114 / 638473465553682637 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-176 / 638473465553682813 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-167 / 638473465553682980 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-189 / 638473465553683169 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-153 / 638473465553683322 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-102 / 638473465553683424 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-211 / 638473465553683635 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-102 / 638473465553683737 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-208 / 638473465553683945 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-101 / 638473465553684046 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-189 / 638473465553684235 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-198 / 638473465553684433 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-108 / 638473465553684541 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-210 / 638473465553684751 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-119 / 638473465553684870 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-203 / 638473465553685073 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-159 / 638473465553685232 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-161 / 638473465553685393 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-215 / 638473465553685608 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-196 / 638473465553685804 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-155 / 638473465553685959 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-205 / 638473465553686164 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-170 / 638473465553686334 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-379 / 638473465553686713 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-229 / 638473465553686942 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-205 / 638473465553687147 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-265 / 638473465553687412 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-47 / 638473465553687459 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-193 / 638473465553687652 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-156 / 638473465553687808 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-200 / 638473465553688008 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-206 / 638473465553688214 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-163 / 638473465553688377 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-221 / 638473465553688598 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-162 / 638473465553688760 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-199 / 638473465553688959 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-109 / 638473465553689068 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-217 / 638473465553689285 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-161 / 638473465553689446 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-188 / 638473465553689634 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-185 / 638473465553689819 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-195 / 638473465553690014 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-198 / 638473465553690212 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-186 / 638473465553690398 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-95 / 638473465553690493 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-215 / 638473465553690708 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-181 / 638473465553690889 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-175 / 638473465553691064 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-187 / 638473465553691251 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-194 / 638473465553691445 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-151 / 638473465553691596 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-190 / 638473465553691786 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-174 / 638473465553691960 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-193 / 638473465553692153 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-184 / 638473465553692337 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-196 / 638473465553692533 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-185 / 638473465553692718 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-193 / 638473465553692911 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-175 / 638473465553693086 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-195 / 638473465553693281 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-150 / 638473465553693431 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-188 / 638473465553693619 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-179 / 638473465553693798 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-196 / 638473465553693994 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-182 / 638473465553694176 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-183 / 638473465553694359 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-180 / 638473465553694539 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-178 / 638473465553694717 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-177 / 638473465553694894 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-195 / 638473465553695089 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-159 / 638473465553695248 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-205 / 638473465553695453 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-189 / 638473465553695642 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-186 / 638473465553695828 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-183 / 638473465553696011 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-178 / 638473465553696189 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-179 / 638473465553696368 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-145 / 638473465553696513 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-227 / 638473465553696740 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-188 / 638473465553696928 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-150 / 638473465553697078 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-191 / 638473465553697269 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-192 / 638473465553697461 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-195 / 638473465553697656 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-152 / 638473465553697808 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-197 / 638473465553698005 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-198 / 638473465553698203 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-183 / 638473465553698386 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-182 / 638473465553698568 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-184 / 638473465553698752 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-147 / 638473465553698899 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-194 / 638473465553699093 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-177 / 638473465553699270 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-206 / 638473465553699476 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-211 / 638473465553699687 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-181 / 638473465553699868 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-186 / 638473465553700054 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-209 / 638473465553700263 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-141 / 638473465553700404 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-193 / 638473465553700597 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-176 / 638473465553700773 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-199 / 638473465553700972 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-196 / 638473465553701168 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-327 / 638473465553701495 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-140 / 638473465553701635 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-220 / 638473465553701855 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-145 / 638473465553702000 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-213 / 638473465553702213 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-147 / 638473465553702360 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-197 / 638473465553702557 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222222
-21 / 638473465553702578 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222222
-15010415 / 638473465568712993 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
-347 / 638473465568713340 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "222222222222222
-15075763 / 638473465583789103 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
-225 / 638473465583789328 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-691 / 638473465583790019 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-803 / 638473465583790822 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-71 / 638473465583790893 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111111
-5426 / 638473465583796319 / Changed  ("file_1.txt",   Some     "111111111111111111111111111111111
-51 / 638473465583796370 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111111
-303 / 638473465583796673 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-233 / 638473465583796906 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-237 / 638473465583797143 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-145 / 638473465583797288 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-227 / 638473465583797515 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-551 / 638473465583798066 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-263 / 638473465583798329 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-148 / 638473465583798477 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-171 / 638473465583798648 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-168 / 638473465583798816 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-163 / 638473465583798979 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-145 / 638473465583799124 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-158 / 638473465583799282 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-172 / 638473465583799454 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-168 / 638473465583799622 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-185 / 638473465583799807 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-139 / 638473465583799946 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-4908 / 638473465583804854 / Changed  ("file_1.txt",   Some     "111111111111111111111111111111111
-275 / 638473465583805129 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-379 / 638473465583805508 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-35 / 638473465583805543 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111111
-169 / 638473465583805712 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-887 / 638473465583806599 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-58 / 638473465583806657 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111111
-182 / 638473465583806839 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-124 / 638473465583806963 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-167 / 638473465583807130 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-179 / 638473465583807309 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-178 / 638473465583807487 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-148 / 638473465583807635 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-213 / 638473465583807848 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-693 / 638473465583808541 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-139 / 638473465583808680 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-143 / 638473465583808823 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-169 / 638473465583808992 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-113 / 638473465583809105 / Changed  ("file_1.txt",   Some     "1111111111111111111111111111111111
-44965 / 638473465583854070 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-145 / 638473465583854215 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-458 / 638473465583854673 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-322 / 638473465583854995 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-251 / 638473465583855246 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-180 / 638473465583855426 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-175 / 638473465583855601 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-863 / 638473465583856464 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-185 / 638473465583856649 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-1099 / 638473465583857748 / Changed  ("file_2.txt",   Some     "222222222222222222222222222222222
-4718 / 638473465583862466 / Changed  ("file_2.txt",   Some     "222222222222222222222222222222222
-36 / 638473465583862502 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222222
-9156 / 638473465583871658 / Changed  ("file_2.txt",   Some     "222222222222222222222222222222222
-56 / 638473465583871714 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222222
-7290 / 638473465583879004 / Changed  ("file_2.txt",   Some     "222222222222222222222222222222222
-12404 / 638473465583891408 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-356 / 638473465583891764 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-297 / 638473465583892061 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-285 / 638473465583892346 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-206 / 638473465583892552 / Changed  ("file_2.txt",   Some     "2222222222222222222222222222222222
-15031101 / 638473465598923653 / Deleted "file_1.txt"
-3092 / 638473465598926745 / Deleted "file_2.txt"
+00:00:22 #49 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:24 #50 [Debug] testEventsRaw / eventsLog: 
+0 / 638474271058674334 / Created
+  ("file1.txt",
+ ...11111111111111111111111111111111111111111111111a")
+2823 / 638474271058677157 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111a")
+219 / 638474271058677376 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+269 / 638474271058677645 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+71 / 638474271058677716 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+423 / 638474271058678139 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+256 / 638474271058678395 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+358 / 638474271058678753 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+58 / 638474271058678811 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+193 / 638474271058679004 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+55 / 638474271058679059 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+438 / 638474271058679497 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+254 / 638474271058679751 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+499 / 638474271058680250 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+61 / 638474271058680311 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+381 / 638474271058680692 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+116 / 638474271058680808 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+293 / 638474271058681101 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+347 / 638474271058681448 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+277 / 638474271058681725 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+40 / 638474271058681765 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+442 / 638474271058682207 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+59 / 638474271058682266 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+407 / 638474271058682673 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+162 / 638474271058682835 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+222 / 638474271058683057 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+218 / 638474271058683275 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+146 / 638474271058683421 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+226 / 638474271058683647 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+144 / 638474271058683791 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+141 / 638474271058683932 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+230 / 638474271058684162 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+278 / 638474271058684440 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+351 / 638474271058684791 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+42 / 638474271058684833 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+249 / 638474271058685082 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+167 / 638474271058685249 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+322 / 638474271058685571 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+114 / 638474271058685685 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+393 / 638474271058686078 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+147 / 638474271058686225 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+315 / 638474271058686540 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+57 / 638474271058686597 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+398 / 638474271058686995 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+221 / 638474271058687216 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+270 / 638474271058687486 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+3999 / 638474271058691485 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111a")
+103 / 638474271058691588 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+139 / 638474271058691727 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+150 / 638474271058691877 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+148 / 638474271058692025 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+149 / 638474271058692174 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+166 / 638474271058692340 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+158 / 638474271058692498 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+140 / 638474271058692638 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+149 / 638474271058692787 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+142 / 638474271058692929 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+147 / 638474271058693076 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+162 / 638474271058693238 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+136 / 638474271058693374 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+166 / 638474271058693540 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+143 / 638474271058693683 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+143 / 638474271058693826 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+186 / 638474271058694012 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+157 / 638474271058694169 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+152 / 638474271058694321 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+147 / 638474271058694468 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+193 / 638474271058694661 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+230 / 638474271058694891 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+56 / 638474271058694947 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111a")
+12895 / 638474271058707842 / Created
+  ("file2.txt...22222222222222222222222222222222222222222222222a")
+174 / 638474271058708016 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+232 / 638474271058708248 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+434 / 638474271058708682 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+260 / 638474271058708942 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+281 / 638474271058709223 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+179 / 638474271058709402 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+150 / 638474271058709552 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+190 / 638474271058709742 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+176 / 638474271058709918 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+188 / 638474271058710106 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+165 / 638474271058710271 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+184 / 638474271058710455 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+178 / 638474271058710633 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+138 / 638474271058710771 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+165 / 638474271058710936 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+176 / 638474271058711112 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+172 / 638474271058711284 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+184 / 638474271058711468 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+159 / 638474271058711627 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+173 / 638474271058711800 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+186 / 638474271058711986 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+171 / 638474271058712157 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+168 / 638474271058712325 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+393 / 638474271058712718 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+206 / 638474271058712924 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+181 / 638474271058713105 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+190 / 638474271058713295 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+202 / 638474271058713497 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+54922 / 638474271058768419 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222a")
+177 / 638474271058768596 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+15029011 / 638474271073797607 / Changed
+  ("file1....11111111111111111111111111111111111111111111111b")
+2547 / 638474271073800154 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+77 / 638474271073800231 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111b")
+196 / 638474271073800427 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+246 / 638474271073800673 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+188 / 638474271073800861 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+188 / 638474271073801049 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+912 / 638474271073801961 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+58 / 638474271073802019 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111b")
+256 / 638474271073802275 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+267 / 638474271073802542 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+212 / 638474271073802754 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+164 / 638474271073802918 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+177 / 638474271073803095 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+155 / 638474271073803250 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+281 / 638474271073803531 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+146 / 638474271073803677 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+199 / 638474271073803876 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+281 / 638474271073804157 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+201 / 638474271073804358 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+155 / 638474271073804513 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+188 / 638474271073804701 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+229 / 638474271073804930 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+264 / 638474271073805194 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+214 / 638474271073805408 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+181 / 638474271073805589 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+168 / 638474271073805757 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+207 / 638474271073805964 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+217 / 638474271073806181 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+292 / 638474271073806473 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+247 / 638474271073806720 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+208 / 638474271073806928 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+217 / 638474271073807145 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+140 / 638474271073807285 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+206 / 638474271073807491 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+129 / 638474271073807620 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+232 / 638474271073807852 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+170 / 638474271073808022 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+214 / 638474271073808236 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+201 / 638474271073808437 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+198 / 638474271073808635 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+152 / 638474271073808787 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638474271073808944 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+158 / 638474271073809102 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638474271073809259 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+159 / 638474271073809418 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+189 / 638474271073809607 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+200 / 638474271073809807 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+193 / 638474271073810000 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+228 / 638474271073810228 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+165 / 638474271073810393 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638474271073810550 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+161 / 638474271073810711 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+182 / 638474271073810893 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+244 / 638474271073811137 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+195 / 638474271073811332 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+191 / 638474271073811523 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638474271073811680 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+160 / 638474271073811840 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+175 / 638474271073812015 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+175 / 638474271073812190 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+152 / 638474271073812342 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+182 / 638474271073812524 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+168 / 638474271073812692 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+163 / 638474271073812855 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+162 / 638474271073813017 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+178 / 638474271073813195 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+166 / 638474271073813361 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+160 / 638474271073813521 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+166 / 638474271073813687 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+183 / 638474271073813870 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+171 / 638474271073814041 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638474271073814198 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+156 / 638474271073814354 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+166 / 638474271073814520 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+155 / 638474271073814675 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+160 / 638474271073814835 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+194 / 638474271073815029 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+156 / 638474271073815185 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+176 / 638474271073815361 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+155 / 638474271073815516 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+168 / 638474271073815684 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+159 / 638474271073815843 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+163 / 638474271073816006 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+176 / 638474271073816182 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+167 / 638474271073816349 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+159 / 638474271073816508 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+170 / 638474271073816678 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+170 / 638474271073816848 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+165 / 638474271073817013 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+154 / 638474271073817167 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+162 / 638474271073817329 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+180 / 638474271073817509 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+164 / 638474271073817673 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+156 / 638474271073817829 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+171 / 638474271073818000 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+173 / 638474271073818173 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+167 / 638474271073818340 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+162 / 638474271073818502 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+208 / 638474271073818710 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+243 / 638474271073818953 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+174 / 638474271073819127 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+158 / 638474271073819285 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+175 / 638474271073819460 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+190 / 638474271073819650 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+33 / 638474271073819683 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111b")
+33730 / 638474271073853413 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222b")
+139 / 638474271073853552 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+454 / 638474271073854006 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+358 / 638474271073854364 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+186 / 638474271073854550 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+178 / 638474271073854728 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+159 / 638474271073854887 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+161 / 638474271073855048 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+164 / 638474271073855212 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+176 / 638474271073855388 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+171 / 638474271073855559 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+172 / 638474271073855731 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+165 / 638474271073855896 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+180 / 638474271073856076 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+187 / 638474271073856263 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+142 / 638474271073856405 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+133 / 638474271073856538 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+139 / 638474271073856677 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+176 / 638474271073856853 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+177 / 638474271073857030 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+181 / 638474271073857211 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+144 / 638474271073857355 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+154 / 638474271073857509 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+189 / 638474271073857698 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+161 / 638474271073857859 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+184 / 638474271073858043 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+157 / 638474271073858200 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+175 / 638474271073858375 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+168 / 638474271073858543 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+153 / 638474271073858696 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+151 / 638474271073858847 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+154 / 638474271073859001 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+199 / 638474271073859200 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+179 / 638474271073859379 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+1100 / 638474271073860479 / Changed
+  ("file2.txt"...22222222222222222222222222222222222222222222222b")
+71 / 638474271073860550 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+174 / 638474271073860724 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+169 / 638474271073860893 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+152 / 638474271073861045 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+150 / 638474271073861195 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+208 / 638474271073861403 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+135 / 638474271073861538 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+154 / 638474271073861692 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+159 / 638474271073861851 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+161 / 638474271073862012 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+159 / 638474271073862171 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+157 / 638474271073862328 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+177 / 638474271073862505 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+177 / 638474271073862682 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+207 / 638474271073862889 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+220 / 638474271073863109 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+144 / 638474271073863253 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+154 / 638474271073863407 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+158 / 638474271073863565 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+228 / 638474271073863793 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+195 / 638474271073863988 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+156 / 638474271073864144 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+152 / 638474271073864296 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+154 / 638474271073864450 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+200 / 638474271073864650 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+173 / 638474271073864823 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+156 / 638474271073864979 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+166 / 638474271073865145 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+183 / 638474271073865328 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+179 / 638474271073865507 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+152 / 638474271073865659 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+172 / 638474271073865831 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+182 / 638474271073866013 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+166 / 638474271073866179 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+152 / 638474271073866331 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+150 / 638474271073866481 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+179 / 638474271073866660 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+180 / 638474271073866840 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+155 / 638474271073866995 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+184 / 638474271073867179 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+16068 / 638474271073883247 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222b")
+15022571 / 638474271088905818 / Renamed
+  ("file1....1111111111111111111111111111111111111111111111b"))
+338 / 638474271088906156 / Renamed
+  ("file2.txt",...2222222222222222222222222222222222222222222222b"))
+15064223 / 638474271103970379 / Changed
+  ("file_1...11111111111111111111111111111111111111111111111c")
+1381 / 638474271103971760 / Changed
+  ("file_1.txt...11111111111111111111111111111111111111111111111c")
+61 / 638474271103971821 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+165 / 638474271103971986 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+169 / 638474271103972155 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+1077 / 638474271103973232 / Changed
+  ("file_1.txt...11111111111111111111111111111111111111111111111c")
+56 / 638474271103973288 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+149 / 638474271103973437 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+201 / 638474271103973638 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+254 / 638474271103973892 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+613 / 638474271103974505 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+330 / 638474271103974835 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+72 / 638474271103974907 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+180 / 638474271103975087 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+170 / 638474271103975257 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+144 / 638474271103975401 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+156 / 638474271103975557 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+179 / 638474271103975736 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+164 / 638474271103975900 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+208 / 638474271103976108 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+55 / 638474271103976163 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+219 / 638474271103976382 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+692 / 638474271103977074 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+27 / 638474271103977101 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+149 / 638474271103977250 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+140 / 638474271103977390 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+187 / 638474271103977577 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+2652 / 638474271103980229 / Changed
+  ("file_1.txt...11111111111111111111111111111111111111111111111c")
+278 / 638474271103980507 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+216 / 638474271103980723 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+61 / 638474271103980784 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+281 / 638474271103981065 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+127 / 638474271103981192 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+147 / 638474271103981339 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+161 / 638474271103981500 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+605 / 638474271103982105 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+2061 / 638474271103984166 / Changed
+  ("file_1.txt...11111111111111111111111111111111111111111111111c")
+172 / 638474271103984338 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+171 / 638474271103984509 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+147 / 638474271103984656 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+173 / 638474271103984829 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+651 / 638474271103985480 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+453 / 638474271103985933 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+1849 / 638474271103987782 / Changed
+  ("file_1.txt...11111111111111111111111111111111111111111111111c")
+171 / 638474271103987953 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+162 / 638474271103988115 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+149 / 638474271103988264 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+167 / 638474271103988431 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+549 / 638474271103988980 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+34 / 638474271103989014 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+165 / 638474271103989179 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+177 / 638474271103989356 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+147 / 638474271103989503 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+154 / 638474271103989657 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+190 / 638474271103989847 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+241 / 638474271103990088 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+154 / 638474271103990242 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+154 / 638474271103990396 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+579 / 638474271103990975 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+27477 / 638474271104018452 / Changed
+  ("file_2.tx...22222222222222222222222222222222222222222222222c")
+174 / 638474271104018626 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+467 / 638474271104019093 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+150 / 638474271104019243 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+221 / 638474271104019464 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+38 / 638474271104019502 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+371 / 638474271104019873 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+246 / 638474271104020119 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+39 / 638474271104020158 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+201 / 638474271104020359 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+164 / 638474271104020523 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+180 / 638474271104020703 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+211 / 638474271104020914 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+115 / 638474271104021029 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+155 / 638474271104021184 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+629 / 638474271104021813 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+112 / 638474271104021925 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+544 / 638474271104022469 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+163 / 638474271104022632 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+134 / 638474271104022766 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+156 / 638474271104022922 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+174 / 638474271104023096 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+158 / 638474271104023254 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+153 / 638474271104023407 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+145 / 638474271104023552 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+207 / 638474271104023759 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+152 / 638474271104023911 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+15052 / 638474271104038963 / Changed
+  ("file_2.tx...22222222222222222222222222222222222222222222222c")
+15016419 / 638474271119055382 / Deleted "file_1.txt"
+3664 / 638474271119059046 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9794,7 +10172,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:28 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:26 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9893,7 +10271,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:30 #52 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:28 #52 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9992,7 +10370,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:33 #53 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:31 #53 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -10105,7 +10483,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:36 #54 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:33 #54 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

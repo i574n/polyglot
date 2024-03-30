@@ -35,7 +35,7 @@ inl ends_with (value : string) (s : string) : bool =
 
 // // ## pad_left
 
-inl pad_left total_width padding_char (s : string) : string =
+inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
     $"!s.PadLeft (!total_width, !padding_char)"
 
 // // ## pad_right
@@ -48,25 +48,14 @@ inl pad_right (pad : i32) (s : string) : string =
 inl replace (old_value : string) (new_value : string) (s : string) : string =
     $"!s.Replace (!old_value, !new_value)"
 
-// // ## split
-
-inl split (separator : string) (str : string) : array_base string =
-    $"!str.Split !separator"
-
-// // ## split_string
-
-inl split_string (separator : array_base string) (str : string) : array_base string =
-    $"!str.Split (!separator, StringSplitOptions.None)"
-
 // // ## starts_with
 
-inl starts_with (value : std_string) (s : std_string) : bool =
-    inl s = join s
-    !\($'"!s.starts_with(&!value)"')
+inl starts_with (value : string) (s : string) : bool =
+    $"!s.StartsWith !value"
 
 // // ## substring
 
-inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
+inl substring (start : i32) (len : i32) (str : string) : string =
     $"!str.Substring (!start, !len)"
 
 // // ## to_lower
@@ -94,12 +83,10 @@ inl trim_end (trim_chars : array_base char) (input : string) : string =
 inl trim_start (trim_chars : array_base char) (input : string) : string =
     $"!input.TrimStart !trim_chars"
 
-// // ## ellipsis
+// // ## slice
 
-inl ellipsis forall t {int; number}. (max : t) (s : string) =
-    if sm.length s <= max
-    then s
-    else s |> substring 0 max |> fun x => $'!x + "..."'
+inl slice from to s : string =
+    sm.slice s { from to }
 
 // // ## raw_string_literal
 
@@ -173,19 +160,14 @@ inl format_pretty' x : std_string =
 // // ## format_exception
 
 inl format_exception (ex : exn) : string =
-    $'$"{!ex.GetType ()}: {!ex.Message}"'
-
-// // ## format_ellipsis'
-
-inl format_ellipsis' s =
-    s
-    |> format_debug
-    |> ellipsis 400i32
+    run_target function
+        | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
+        | _ => fun () => ex |> format_debug
 
 // // ## obj_to_string
 
 inl obj_to_string x : string =
-    $"!x.ToString ()"
+    x |> $'_.ToString()'
 
 // // ## to_string any
 
@@ -268,7 +250,7 @@ inl base64_decode (s : std_string) : result std_string std_string =
 
 // // ## concat_array_trailing
 
-inl concat_array_trailing separator input =
+inl concat_array_trailing (separator : string) (input : a i32 string) =
     ("", input)
     ||> am.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'
@@ -293,12 +275,54 @@ inl concat_list_heap_trailing separator input =
 
 // // ## concat
 
-inl concat (a : string) (b : a _ _) : string =
+inl concat (a : string) (b : seq.seq' _) : string =
     $"!b |> String.concat !a"
+
+// // ## ellipsis
+
+inl ellipsis (max : i32) (s : string) =
+    if sm.length s <= max
+    then s
+    else s |> slice 0 (max - 1) |> fun x => $'!x + "..."'
+
+// // ## ellipsis_end
+
+inl ellipsis_end (max : i64) (s : string) =
+    inl len = sm.length s
+    if len <= max
+    then s
+    else
+        inl half = f64 max / 2
+        inl start_half = half |> math.ceil |> i64
+        inl end_half = half |> math.floor |> i64
+        inl start = s |> slice 0 (start_half - 1)
+        inl end = s |> slice (len - end_half) (len - 1)
+        (a ;[start; "..."; end] : _ i32 _)
+        |> seq.of_array
+        |> concat ""
+
+// // ## format_ellipsis
+
+inl format_ellipsis s =
+    s
+    |> format_debug
+    |> ellipsis_end 400
+
+// // ## split
+
+inl split (separator : string) (str : string) : array_base string =
+    $"!str.Split !separator"
+
+// // ## split_string
+
+inl split_string (separator : array_base string) (str : string) : array_base string =
+    run_target function
+        | Fsharp (Native) => fun () => $"!str.Split (!separator, System.StringSplitOptions.None)"
+        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
 
 // // ## join'
 
-inl join' (concat : string) (s : a _ string) : string =
+inl join' (concat : string) (s : a i32 string) : string =
     $"System.String.Join (!concat, !s)"
 
 // // ## to_char_array
@@ -315,3 +339,31 @@ inl to_char_list (str : string) : list char =
 
 open rust
 instance to_string std_string = from_std_string
+
+// // ## main
+
+inl main () =
+    $"let contains x = !contains x" : ()
+    $"let ends_with x = !ends_with x" : ()
+    $"let pad_left x = !pad_left x" : ()
+    $"let pad_right x = !pad_right x" : ()
+    $"let replace x = !replace x" : ()
+    inl slice (a : i32) (b : i32) c = slice a b c
+    $"let slice x = !slice x" : ()
+    $"let split x = !split x" : ()
+    $"let split_string x = !split_string x" : ()
+    $"let starts_with x = !starts_with x" : ()
+    $"let substring x = !substring x" : ()
+    $"let to_lower x = !to_lower x" : ()
+    $"let to_upper x = !to_upper x" : ()
+    $"let trim x = !trim x" : ()
+    $"let trim_end x = !trim_end x" : ()
+    $"let trim_start x = !trim_start x" : ()
+    $"let ellipsis x = !ellipsis x" : ()
+    $"let ellipsis_end x = !ellipsis_end x" : ()
+    $"let format_exception x = !format_exception x" : ()
+    $"let concat_array_trailing x = !concat_array_trailing x" : ()
+    inl concat a (b : seq.seq' string) = concat a b
+    $"let concat x = !concat x" : ()
+    $"let join' x = !join' x" : ()
+    $"let to_char_array x = !to_char_array x" : ()

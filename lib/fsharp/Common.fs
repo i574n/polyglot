@@ -4,72 +4,14 @@ namespace Polyglot
 
 module Common =
 
-#if !WASM && !FABLE_COMPILER
-    let Date_time = {|
-        new_guid_from_date_time =
 #if !INTERACTIVE
-            Date_time.new_guid_from_date_time
-#else
-            new_guid_from_date_time
-#endif
-    |}
+    open Lib
 #endif
 
     let nl = System.Environment.NewLine
     let q = @""""
 
     let inline cons head tail = head :: tail
-
-    module String =
-        let inline contains (value : string) (input : string) =
-            input.Contains value
-
-        let inline endsWith (value : string) (input : string) =
-            input.EndsWith value
-
-        let inline padLeft totalWidth paddingChar (input : string) =
-            input.PadLeft (totalWidth, paddingChar)
-
-        let inline replace (oldValue : string) (newValue : string) (input : string) =
-            input.Replace (oldValue, newValue)
-
-        let inline split separator (input : string) =
-            input.Split separator
-
-        let inline splitString (separator : string array) (input : string) =
-            input.Split (separator, System.StringSplitOptions.None)
-
-        let inline startsWith (value : string) (input : string) =
-            input.StartsWith value
-
-        let inline substring startIndex length (input : string) =
-            input.Substring (startIndex, length)
-
-        let inline toLower (input : string) =
-            input.ToLower ()
-
-        let inline toUpper (input : string) =
-            input.ToUpper ()
-
-        let inline trim (input : string) =
-            input.Trim ()
-
-        let inline trimEnd (trimChars : char array) (input : string) =
-            input.TrimEnd trimChars
-
-        let inline trimStart (trimChars : char array) (input : string) =
-            input.TrimStart trimChars
-
-
-        let ellipsis max value =
-            if value |> String.length <= max
-            then value
-            else $"{value |> substring 0 max}..."
-
-    /// ## formatException
-
-    let inline formatException (ex : exn) =
-        $"{ex.GetType ()}: {ex.Message}"
 
     /// ## memoize
 
@@ -118,7 +60,7 @@ module Common =
                     let logFile = System.IO.Path.Combine (logDir, $"{Date_time.new_guid_from_date_time System.DateTime.Now}.txt")
                     System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
                 with ex ->
-                    traceRaw Critical (fun () -> $"trace / ex: {ex |> formatException}")
+                    traceRaw Critical (fun () -> $"trace / ex: {ex |> Sm.format_exception}")
 #endif
 
     /// ## trace
@@ -154,8 +96,8 @@ module Common =
                     |> dateTime.ToString
 #endif
             $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
-            |> String.trimStart [||]
-            |> String.trimEnd [| ' '; '/' |]
+            |> Sm.trim_start [||]
+            |> Sm.trim_end [| ' '; '/' |]
         |> traceRaw level
 
     let inline withTrace enabled fn =

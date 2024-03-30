@@ -2,10 +2,10 @@ pub mod Polyglot {
     use super::*;
     pub mod Common {
         use super::*;
+        use crate::Lib::Sm;
         use fable_library_rust::DateTime_::DateTime;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
-        use fable_library_rust::NativeArray_::Array;
         use fable_library_rust::Native_::compare;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::LrcPtr;
@@ -13,8 +13,6 @@ pub mod Polyglot {
         use fable_library_rust::Native_::OnceInit;
         use fable_library_rust::String_::sprintf;
         use fable_library_rust::String_::string;
-        use fable_library_rust::String_::trimEndChars;
-        use fable_library_rust::String_::trimStartChars;
         use fable_library_rust::TimeSpan_::TimeSpan;
         pub fn nl() -> string {
             static nl: OnceInit<string> = OnceInit::new();
@@ -23,18 +21,6 @@ pub mod Polyglot {
         pub fn q() -> string {
             static q: OnceInit<string> = OnceInit::new();
             q.get_or_insert_with(|| string("\"")).clone()
-        }
-        pub mod String_ {
-            use super::*;
-            use fable_library_rust::String_::length as length_1;
-            use fable_library_rust::String_::substring2;
-            pub fn ellipsis(max: i32, value: string) -> string {
-                if length_1(value.clone()) <= max {
-                    value.clone()
-                } else {
-                    sprintf!("{}...", substring2(value, 0_i32, max))
-                }
-            }
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum TraceLevel {
@@ -148,48 +134,43 @@ pub mod Polyglot {
                 let getLocals = getLocals.clone();
                 let level = level.clone();
                 move || {
-                    let trimChars_2: Array<char> = new_array(&[' ', '/']);
-                    trimEndChars(
-                        trimStartChars(
-                            sprintf!(
-                                "{} #{} [{:?}] {} / {}",
-                                {
-                                    let dateTime: DateTime = {
-                                        let matchValue: Option<i64> = Polyglot::Common::replStart();
-                                        match &matchValue {
-                                            None => DateTime::now(),
-                                            Some(matchValue_0_0) => {
-                                                let replStart_1: i64 = matchValue_0_0.clone();
-                                                let t: TimeSpan = TimeSpan::new_ticks(
-                                                    {
-                                                        let copyOfStruct: DateTime =
-                                                            DateTime::now();
-                                                        copyOfStruct.ticks()
-                                                    } - replStart_1,
-                                                );
-                                                DateTime::new_ymdhms_milli(
-                                                    1_i32,
-                                                    1_i32,
-                                                    1_i32,
-                                                    t.hours(),
-                                                    t.minutes(),
-                                                    t.seconds(),
-                                                    t.milliseconds(),
-                                                )
-                                            }
-                                        }
-                                    };
-                                    dateTime.toString(string("hh:mm:ss"))
-                                },
-                                Polyglot::Common::traceCount().get().clone(),
-                                level.clone(),
-                                r#fn(),
-                                getLocals()
-                            ),
-                            new_empty::<char>(),
+                    let time: string = {
+                        let dateTime: DateTime = {
+                            let matchValue: Option<i64> = Polyglot::Common::replStart();
+                            match &matchValue {
+                                None => DateTime::now(),
+                                Some(matchValue_0_0) => {
+                                    let replStart_1: i64 = matchValue_0_0.clone();
+                                    let t: TimeSpan = TimeSpan::new_ticks(
+                                        {
+                                            let copyOfStruct: DateTime = DateTime::now();
+                                            copyOfStruct.ticks()
+                                        } - replStart_1,
+                                    );
+                                    DateTime::new_ymdhms_milli(
+                                        1_i32,
+                                        1_i32,
+                                        1_i32,
+                                        t.hours(),
+                                        t.minutes(),
+                                        t.seconds(),
+                                        t.milliseconds(),
+                                    )
+                                }
+                            }
+                        };
+                        dateTime.toString(string("hh:mm:ss"))
+                    };
+                    (Sm::trim_end(new_array(&[' ', '/'])))((Sm::trim_start(new_empty::<char>()))(
+                        sprintf!(
+                            "{} #{} [{:?}] {} / {}",
+                            time,
+                            Polyglot::Common::traceCount().get().clone(),
+                            level.clone(),
+                            r#fn(),
+                            getLocals()
                         ),
-                        trimChars_2,
-                    )
+                    ))
                 }
             });
             Polyglot::Common::traceRaw(level.clone(), fn_1)

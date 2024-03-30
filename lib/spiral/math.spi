@@ -12,8 +12,18 @@ inl e () =
 
 // // ## floor
 
-inl floor forall t {float}. (x : t) : t =
-    $"floor !x"
+inl floor forall t {float}. (n : t) : t =
+    n |> $'floor'
+
+// // ## ceil
+
+inl ceil forall t {float}. (n : t) : t =
+    n |> $'ceil'
+
+// // ## round
+
+inl round forall t {float}. (n : t) : t =
+    n |> $'round'
 
 // // ## log_base
 

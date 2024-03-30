@@ -15,7 +15,7 @@ if (!$fast) {
 
 { . ../../apps/spiral/dist/Supervisor$(GetExecutableSuffix) --build-file math.spi math.fsx --timeout 60000 } | Invoke-Block
 
-{ . ../../apps/builder/dist/Builder$(GetExecutableSuffix) math.fsx $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules lib/spiral/common.fsx lib/spiral/date_time.fsx lib/fsharp/Common.fs } | Invoke-Block
+{ . ../../apps/builder/dist/Builder$(GetExecutableSuffix) math.fsx $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Fable.Core --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs } | Invoke-Block
 
 $targetDir = "../../target/polyglot/builder/math"
 
@@ -24,7 +24,10 @@ $targetDir = "../../target/polyglot/builder/math"
 
 Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/Common.rs -Force
 Copy-Item $targetDir/rs/lib/spiral/common.rs ../../lib/spiral/common.rs -Force
+Copy-Item $targetDir/rs/lib/spiral/sm.rs ../../lib/spiral/sm.rs -Force
 Copy-Item $targetDir/rs/lib/spiral/date_time.rs ../../lib/spiral/date_time.rs -Force
+Copy-Item $targetDir/rs/lib/spiral/file_system.rs ../../lib/spiral/file_system.rs -Force
+Copy-Item $targetDir/rs/lib/spiral/lib.rs ../../lib/spiral/lib.rs -Force
 
 (Get-Content $targetDir/rs/math.rs) `
     -replace "../../../lib/fsharp", "../lib/fsharp" `

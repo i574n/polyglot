@@ -313,7 +313,7 @@ inl use_requests forall t u.
             fun database, (a requests) =>
                 fun () =>
                     inl database_log = database |> sm'.format_debug
-                    inl requests_log = requests |> sm'.format_ellipsis'
+                    inl requests_log = requests |> sm'.format_ellipsis
                     leptos.log $'"state_core.use_requests (3) / state_data_resource create_local_resource / request : " + string !requests_log + " / database: " + string !database_log + ""'
                     requests
                     |> am'.to_vec
@@ -362,7 +362,7 @@ inl use_requests forall t u.
             (3u8, 2u8)
             fun () => requests |> leptos.signal_get, state_data_memo |> leptos.signal_get
             fun (a requests, state_data) =>
-                inl requests_log = requests |> sm'.format_ellipsis'
+                inl requests_log = requests |> sm'.format_ellipsis
                 leptos.log $'"state_core.use_requests (7) / json create_local_resource / requests: " + string !requests_log + ""'
                 fun () =>
                     inl state_data =
@@ -374,7 +374,7 @@ inl use_requests forall t u.
                                 items |> am'.to_vec |> am'.vec_map optionm'.unbox |> am'.from_vec : _ i32 _
                         )
 
-                    inl state_data_log = state_data |> sm'.format_ellipsis'
+                    inl state_data_log = state_data |> sm'.format_ellipsis
                     leptos.log $'"state_core.use_requests (8) / result_memo / state_data: " + string !state_data_log + ""'
 
                     requests
@@ -390,9 +390,9 @@ inl use_requests forall t u.
                                         !x |> sm'.from_std_string
                                 ))
 
-                            inl request_log = { request_type json auto_refresh } |> sm'.format_ellipsis'
-                            inl state_data_log = state_data |> sm'.format_ellipsis'
-                            inl state_data'_log = state_data' |> sm'.format_ellipsis'
+                            inl request_log = { request_type json auto_refresh } |> sm'.format_ellipsis
+                            inl state_data_log = state_data |> sm'.format_ellipsis
+                            inl state_data'_log = state_data' |> sm'.format_ellipsis
                             inl should_fetch =
                                 match auto_refresh, state_data, state_data' with
                                 | true, _, _ => true
@@ -497,7 +497,7 @@ inl use_requests forall t u.
                     )
                 )
 
-            inl state_data_log = state_data |> sm'.format_ellipsis'
+            inl state_data_log = state_data |> sm'.format_ellipsis
             leptos.log $'"state_core.use_request (14) / result_memo / state_data: " + string !state_data_log + ""'
 
             inl json =
@@ -543,11 +543,11 @@ inl use_requests forall t u.
                             !x |> sm'.from_std_string
                     ))
 
-                inl request_log = request |> sm'.format_ellipsis'
-                inl state_data_log = state_data |> sm'.format_ellipsis'
+                inl request_log = request |> sm'.format_ellipsis
+                inl state_data_log = state_data |> sm'.format_ellipsis
                 leptos.log $'"state_core.use_request (15) / result memo / request: " + string !request_log + " / state_data: " + string !state_data_log + ""'
 
-                inl json_log = json |> sm'.format_ellipsis'
+                inl json_log = json |> sm'.format_ellipsis
                 leptos.log $'"state_core.use_request (16) / effect / json: " + string !json_log + ""'
 
                 inl json =
@@ -594,8 +594,8 @@ inl use_requests forall t u.
                     )
                 )
 
-            inl database_log = database |> sm'.format_ellipsis'
-            inl state_data_log = state_data |> sm'.format_ellipsis'
+            inl database_log = database |> sm'.format_ellipsis
+            inl state_data_log = state_data |> sm'.format_ellipsis
 
             leptos.log $'"state_core.use_request (19) / result move / database: " + string !database_log + " / database_loading: " + string !database_loading + " / state_data: " + string !state_data_log + " / state_data_loading: " + string !state_data_loading + ""'
 

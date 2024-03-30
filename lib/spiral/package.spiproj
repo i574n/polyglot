@@ -9,20 +9,20 @@ modules:
     resultm
     common-
     am'
+    listm'
+    listm'_operators
+    seq
+    math
     sm'
     sm'_operators
     date_time
     wasm
-    listm'
-    listm'_operators
     mapm
     console
-    math
     async
     networking
     benchmark
     stream
-    seq
     file_system
     util
     physics

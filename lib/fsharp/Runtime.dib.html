@@ -7577,8 +7577,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
@@ -7598,13 +7600,29 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
+<span class="c1">#endif</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7621,7 +7639,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7631,7 +7649,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7649,7 +7667,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7709,7 +7727,7 @@ table th {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7719,7 +7737,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7736,7 +7754,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7765,7 +7783,7 @@ table th {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7775,7 +7793,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7797,14 +7815,14 @@ table th {
         <span class="o">|</span> <span class="s1">' '</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="p">(</span><span class="n">Start</span> <span class="o">|</span> <span class="n">Path</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="n">Arguments</span>
         <span class="o">|</span> <span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">Arguments</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{args}{char}</span><span class="s2">"</span><span class="p">)</span> <span class="n">tail</span> <span class="n">Arguments</span>
         <span class="o">|</span> <span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="si">{path}{char}</span><span class="s2">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="n">step</span>
-        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="o">@</span><span class="s2">"</span><span class="se">\"</span><span class="s2"> "</span><span class="o">/</span><span class="s2">", args</span>
+        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="o">@</span><span class="s2">"</span><span class="se">\"</span><span class="s2"> "</span><span class="o">/</span><span class="s2">", args</span>
     <span class="n">loop</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span><span class="p">)</span> <span class="n">Start</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7863,7 +7881,7 @@ table th {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7873,7 +7891,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7967,12 +7985,12 @@ table th {
             <span class="n">do</span><span class="err">!</span> <span class="n">proc</span><span class="o">.</span><span class="n">WaitForExitAsync</span> <span class="n">ct</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
             <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">ExitCode</span>
         <span class="k">with</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="k">as</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / WaitForExitAsync / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">formatException</span> <span class="o">|&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">Push</span>
+            <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / WaitForExitAsync / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">format_exception</span> <span class="o">|&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">Push</span>
             <span class="k">return</span> <span class="n">System</span><span class="o">.</span><span class="n">Int32</span><span class="o">.</span><span class="n">MinValue</span>
     <span class="p">}</span>
 
-    <span class="n">let</span> <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="n">let</span> <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
         <span class="err">$</span><span class="s2">"executeAsync / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / output.Length: </span><span class="si">{output.Length}</span><span class="s2">"</span>
@@ -7994,7 +8012,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8046,21 +8064,21 @@ table th {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 #1 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content /tmp/dotnet-repl/20240329-2203-2866-6650-65b8adc3e8a7/test.txt""
+   "pwsh -c "Get-Content /tmp/dotnet-repl/20240330-2025-5865-6569-6199610ab7a4/test.txt""
   WorkingDirectory = None
   CancellationToken = None
   OnLine = None }
-00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/dotnet-repl/20240329-2203-2866-6650-65b8adc3e8a7/test.txt' because it does not exist.</span>
+00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/dotnet-repl/20240330-2025-5865-6569-6199610ab7a4/test.txt' because it does not exist.</span>
 00:00:00 #3 [Debug] executeAsync / exitCode: 1 / output.Length: 141
 1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/dotnet-repl/20240329-2203-2866-6650-65b8adc3e8a7/test.txt' because it does not exist.</span>]
+[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/dotnet-repl/20240330-2025-5865-6569-6199610ab7a4/test.txt' because it does not exist.</span>]
 00:00:00 #4 [Debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
   WorkingDirectory =
-   Some "/tmp/dotnet-repl/20240329-2203-2866-6650-65b8adc3e8a7"
+   Some "/tmp/dotnet-repl/20240330-2025-5865-6569-6199610ab7a4"
   CancellationToken = None
   OnLine = None }
 00:00:00 #5 [Verbose] &gt; 0
-00:00:01 #6 [Debug] executeAsync / exitCode: 0 / output.Length: 1
+00:00:00 #6 [Debug] executeAsync / exitCode: 0 / output.Length: 1
 0
 0
 True
@@ -8069,7 +8087,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8128,9 +8146,9 @@ True
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:01 #7 [Debug] 1
-00:00:01 #9 [Debug] 2
-00:00:01 #8 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content /tmp/dotnet-repl/20240329-2203-3003-0350-0ffd43c381de/test.txt""
+00:00:01 #8 [Debug] 2
+00:00:01 #9 [Debug] executeAsync / options: { Command =
+   "pwsh -c "Get-Content /tmp/dotnet-repl/20240330-2025-5989-8931-833a2cdc1e8f/test.txt""
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = None }
@@ -8148,7 +8166,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8158,7 +8176,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8174,7 +8192,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8207,7 +8225,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8217,7 +8235,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8244,7 +8262,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8268,7 +8286,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8305,7 +8323,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8317,7 +8335,7 @@ OPTIONS:
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">parseArgs</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 <span class="o">|&gt;</span> <span class="n">_throwsC</span> <span class="p">(</span><span class="n">fun</span> <span class="n">ex</span> <span class="n">_</span> <span class="o">-&gt;</span>
-    <span class="n">formatException</span> <span class="n">ex</span>
+    <span class="n">Sm</span><span class="o">.</span><span class="n">format_exception</span> <span class="n">ex</span>
     <span class="o">|&gt;</span> <span class="n">_stringContains</span> <span class="s2">"Argu.ArguParseException: ERROR: missing parameter '&lt;paths&gt;...'."</span>
 <span class="p">)</span>
 </pre></div>
@@ -8332,7 +8350,7 @@ OPTIONS:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSI_0033+it@3-246
+<pre>FSI_0035+it@3-216
 Argu.ArguParseException: ERROR: missing parameter '&lt;paths&gt;...'.
 USAGE: dotnet-repl [--help] &lt;paths&gt;...
 
@@ -8349,7 +8367,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8366,7 +8384,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8407,7 +8425,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8425,7 +8443,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
