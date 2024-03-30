@@ -7583,8 +7583,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Threading.fs</span>
@@ -7606,6 +7608,22 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 <span class="nb">open</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">Operators</span>
 <span class="nb">open</span> <span class="n">Microsoft</span><span class="o">.</span><span class="n">AspNetCore</span><span class="o">.</span><span class="n">SignalR</span><span class="o">.</span><span class="n">Client</span>
@@ -7615,7 +7633,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7625,7 +7643,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7644,7 +7662,7 @@ a.anchor-link {
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"sendJson / port: </span><span class="si">{port}</span><span class="s2"> / json: </span><span class="si">{json}</span><span class="s2"> / result.Length: {result |&gt; Option.ofObj |&gt; Option.map String.length}"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">return</span> <span class="n">Some</span> <span class="n">result</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"sendJson / port: </span><span class="si">{port}</span><span class="s2"> / json: </span><span class="si">{json}</span><span class="s2"> / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"sendJson / port: </span><span class="si">{port}</span><span class="s2"> / json: </span><span class="si">{json}</span><span class="s2"> / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">return</span> <span class="kc">None</span>
     <span class="k">else</span>
         <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"sendJson / error: port not open"</span><span class="p">)</span> <span class="n">getLocals</span>
@@ -7656,7 +7674,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7666,7 +7684,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7684,7 +7702,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7694,7 +7712,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7718,7 +7736,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7727,17 +7745,13 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">awaitCompiler</span> <span class="n">port</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">ct</span> <span class="o">=</span>
-        <span class="n">cancellationToken</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">mergeCancellationTokenWithDefaultAsync</span>
-
-    <span class="n">let</span> <span class="n">cts</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationTokenSource</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">ct</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">cancellationToken</span> <span class="o">|&gt;</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">mergeCancellationTokenWithDefaultAsync</span>
 
     <span class="n">let</span> <span class="n">compiler</span> <span class="o">=</span> <span class="n">MailboxProcessor</span><span class="o">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">fun</span> <span class="n">inbox</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">availablePort</span> <span class="o">=</span> <span class="n">Networking</span><span class="o">.</span><span class="n">getAvailablePort</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">60</span><span class="p">)</span> <span class="n">port</span>
         <span class="k">if</span> <span class="n">availablePort</span> <span class="o">&lt;&gt;</span> <span class="n">port</span> <span class="n">then</span>
-            <span class="n">inbox</span><span class="o">.</span><span class="n">Post</span> <span class="n">port</span>
+            <span class="n">inbox</span><span class="o">.</span><span class="n">Post</span> <span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">false</span><span class="p">)</span>
         <span class="k">else</span>
             <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
 
@@ -7754,7 +7768,7 @@ a.anchor-link {
                         <span class="n">CancellationToken</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">ct</span>
                         <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="kc">None</span>
                         <span class="n">OnLine</span> <span class="o">=</span> <span class="n">Some</span> <span class="o">&lt;|</span> <span class="n">fun</span> <span class="p">{</span> <span class="n">Line</span> <span class="o">=</span> <span class="n">line</span> <span class="p">}</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                            <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">contains</span> <span class="err">$</span><span class="s2">"Server bound to: http://localhost:</span><span class="si">{availablePort}</span><span class="s2">"</span> <span class="n">then</span>
+                            <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">contains</span> <span class="err">$</span><span class="s2">"Server bound to: http://localhost:</span><span class="si">{availablePort}</span><span class="s2">"</span> <span class="n">then</span>
                                 <span class="n">do</span><span class="err">!</span> <span class="n">Networking</span><span class="o">.</span><span class="n">waitForPortAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">500</span><span class="p">)</span> <span class="n">true</span> <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
                                 <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
@@ -7764,25 +7778,25 @@ a.anchor-link {
                                         <span class="n">let</span><span class="err">!</span> <span class="n">pingResult</span> <span class="o">=</span> <span class="n">pingObj</span> <span class="o">|&gt;</span> <span class="n">sendObj</span> <span class="n">availablePort</span>
                                         <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"awaitCompiler / Ping / result: </span><span class="si">{pingResult}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
                                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                                        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"awaitCompiler / Ping / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                                        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"awaitCompiler / Ping / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
                                         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
                                         <span class="n">do</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                                 <span class="p">}</span>
                                 <span class="n">do</span><span class="err">!</span> <span class="n">loop</span> <span class="mi">0</span>
-                                <span class="n">inbox</span><span class="o">.</span><span class="n">Post</span> <span class="n">availablePort</span>
+                                <span class="n">inbox</span><span class="o">.</span><span class="n">Post</span> <span class="p">(</span><span class="n">availablePort</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
                         <span class="p">}</span>
                     <span class="p">}</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"awaitCompiler / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / result: </span><span class="si">{result}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">cts</span><span class="o">.</span><span class="n">Cancel</span> <span class="p">()</span>
+            <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
     <span class="p">},</span> <span class="n">ct</span><span class="p">)</span>
 
-    <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span> <span class="o">=</span> <span class="n">compiler</span><span class="o">.</span><span class="n">Receive</span> <span class="p">()</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span><span class="p">,</span> <span class="n">managed</span> <span class="o">=</span> <span class="n">compiler</span><span class="o">.</span><span class="n">Receive</span> <span class="p">()</span>
 
     <span class="n">let</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">HubConnectionBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">WithUrl</span><span class="p">(</span><span class="err">$</span><span class="s2">"http://127.0.0.1:</span><span class="si">{serverPort}</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">Build</span> <span class="p">()</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">connection</span><span class="o">.</span><span class="n">StartAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
 
     <span class="n">let</span> <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">&lt;</span><span class="n">_</span><span class="o">&gt;</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">On</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="p">(</span><span class="s2">"ServerToClientMsg"</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">Trigger</span><span class="p">)</span>
+    <span class="n">let</span> <span class="n">disposable</span><span class="s1">' = connection.On&lt;string&gt; ("ServerToClientMsg", event.Trigger)</span>
     <span class="n">let</span> <span class="n">stream</span> <span class="o">=</span>
         <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">unfoldAsync</span>
             <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
@@ -7791,17 +7805,23 @@ a.anchor-link {
             <span class="p">})</span>
             <span class="p">()</span>
 
-    <span class="n">let</span> <span class="n">disposable</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">disposable</span><span class="s1">' =</span>
         <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-            <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-            <span class="n">connection</span><span class="o">.</span><span class="n">StopAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartImmediate</span>
+            <span class="k">async</span> <span class="p">{</span>
+                <span class="n">disposable</span><span class="s1">'.Dispose ()</span>
+                <span class="n">do</span><span class="err">!</span> <span class="n">connection</span><span class="o">.</span><span class="n">StopAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
+                <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
+                <span class="k">if</span> <span class="n">managed</span>
+                <span class="n">then</span> <span class="n">do</span><span class="err">!</span> <span class="n">Networking</span><span class="o">.</span><span class="n">waitForPortAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2000</span><span class="p">)</span> <span class="n">false</span> <span class="n">serverPort</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+            <span class="p">}</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
         <span class="p">)</span>
 
     <span class="k">return</span>
         <span class="n">serverPort</span><span class="p">,</span>
         <span class="n">stream</span><span class="p">,</span>
-        <span class="n">cts</span><span class="o">.</span><span class="n">Token</span><span class="p">,</span>
-        <span class="n">disposable</span>
+        <span class="n">ct</span><span class="p">,</span>
+        <span class="n">disposable</span><span class="s1">'</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -7809,7 +7829,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7819,7 +7839,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7831,14 +7851,14 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
         <span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="ow">not</span>
         <span class="n">then</span> <span class="n">path</span>
-        <span class="k">else</span> <span class="err">$</span><span class="s2">"{path.[0] |&gt; System.Char.ToLower}{path.[1..]}"</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">"</span> <span class="s2">"/"</span>
-    <span class="err">$</span><span class="s2">"file:///{path |&gt; String.trimStart [| '/' |]}"</span>
+        <span class="k">else</span> <span class="err">$</span><span class="s2">"{path.[0] |&gt; System.Char.ToLower}{path.[1..]}"</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">"</span> <span class="s2">"/"</span>
+    <span class="err">$</span><span class="s2">"file:///{path |&gt; Sm.trim_start [| '/' |]}"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7855,7 +7875,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7871,7 +7891,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7881,7 +7901,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7892,16 +7912,16 @@ a.anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">serializeObj</span> <span class="n">obj</span> <span class="o">=</span>
         <span class="n">obj</span>
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\\\</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">"</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">r</span><span class="se">\\</span><span class="s2">n"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">n"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\\\</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">r</span><span class="se">\\</span><span class="s2">n"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">n"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7911,7 +7931,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7948,7 +7968,7 @@ a.anchor-link {
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
         <span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">content</span> <span class="o">-&gt;</span>
-            <span class="n">Some</span> <span class="p">(</span><span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">),</span> <span class="kc">None</span>
+            <span class="n">Some</span> <span class="p">(</span><span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">),</span> <span class="kc">None</span>
         <span class="p">)</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">printErrorData</span> <span class="p">(</span><span class="n">data</span> <span class="p">:</span> <span class="p">{</span><span class="o">|</span> <span class="n">uri</span> <span class="p">:</span> <span class="n">string</span><span class="p">;</span> <span class="n">errors</span> <span class="p">:</span> <span class="n">RString</span> <span class="nb">list</span> <span class="o">|</span><span class="p">})</span> <span class="o">=</span>
@@ -7956,7 +7976,7 @@ a.anchor-link {
         <span class="n">let</span> <span class="n">errors</span> <span class="o">=</span>
             <span class="n">data</span><span class="o">.</span><span class="n">errors</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
-            <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
         <span class="err">$</span><span class="s2">"</span><span class="si">{fileName}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{errors}</span><span class="s2">"</span>
 
     <span class="n">let</span> <span class="n">errorsSeq</span> <span class="o">=</span>
@@ -8004,7 +8024,7 @@ a.anchor-link {
                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">fsxContentResult</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span>
         <span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">takeWhileInclusive</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">fsxContent</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">typeErrorCount</span><span class="p">)</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"buildFile / takeWhileInclusive / fsxContent: {fsxContent |&gt; Option.defaultValue System.String.Empty |&gt; String.ellipsis 750} / errors: {errors |&gt; serializeObj} / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"buildFile / takeWhileInclusive / fsxContent: {fsxContent |&gt; Option.defaultValue System.String.Empty |&gt; Sm.ellipsis 750} / errors: {errors |&gt; serializeObj} / typeErrorCount: </span><span class="si">{typeErrorCount}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">match</span> <span class="n">fsxContent</span><span class="p">,</span> <span class="n">errors</span> <span class="k">with</span>
             <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="n">when</span> <span class="n">typeErrorCount</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">false</span>
             <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[]</span> <span class="o">-&gt;</span> <span class="n">true</span>
@@ -8041,7 +8061,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8051,7 +8071,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8091,7 +8111,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8101,7 +8121,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8120,7 +8140,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8136,7 +8156,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8183,18 +8203,35 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 #1 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:00 #2 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #3 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #4 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-4419-1931-198f8ecc9b33/main.spi"}} / result.Length:
-00:00:00 #5 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-4419-1931-198f8ecc9b33/main.spi"}} / result.Length:
-00:00:00 #6 [Debug] buildFile / takeWhileInclusive / fsxContent: let rec closure0 () () : int32 =
+00:00:00 #2 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:00 #3 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:00 #4 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:00 #5 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:00 #6 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:00 #7 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:01 #8 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:01 #9 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:01 #10 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:01 #11 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:01 #12 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:01 #13 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0129-3690-9094-985b99797e7b/main.spi"}} / result.Length:
+00:00:01 #14 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0129-3690-9094-985b99797e7b/main.spi"}} / result.Length:
+00:00:02 #15 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0129-3690-9094-985b99797e7b\main.spi
+00:00:02 #16 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:03 #17 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:04 #18 [Debug] buildFile / takeWhileInclusive / fsxContent: let rec closure0 () () : int32 =
     let v0 : string = "text"
     System.Console.WriteLine v0
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
  / errors: [] / typeErrorCount: 0
-00:00:00 #7 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:06 #19 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:06 #20 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: let rec closure0 () () : int32 =
@@ -8210,7 +8247,7 @@ let v0 : (unit -&gt; int32) = closure0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8236,29 +8273,47 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #8 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:00 #9 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #10 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:00 #11 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-4505-0539-052b96232fd0/main.spi"}} / result.Length:
-00:00:00 #12 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-4505-0539-052b96232fd0/main.spi"}} / result.Length:
-00:00:01 #13 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:02 #14 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:03 #15 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:04 #16 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:05 #17 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:06 #18 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:07 #19 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:08 #20 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:09 #21 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:10 #22 [Debug] runWithTimeoutAsync / timeout: 10000
-00:00:10 #23 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+<pre>00:00:07 #21 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:07 #22 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:07 #23 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:07 #24 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:08 #25 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:08 #26 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:08 #27 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:08 #28 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:08 #29 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:08 #30 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:08 #31 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:08 #32 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:08 #33 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0129-4416-1606-1d4cb45969a1/main.spi"}} / result.Length:
+00:00:08 #34 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0129-4416-1606-1d4cb45969a1/main.spi"}} / result.Length:
+00:00:09 #35 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0129-4416-1606-1d4cb45969a1\main.spi
+00:00:09 #36 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:10 #37 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #38 [Verbose] &gt; Cannot find `main` in file main.
+00:00:11 #39 [Verbose] &gt; Build skipped for c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0129-4416-1606-1d4cb45969a1\main.spi
+00:00:11 #40 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #41 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:13 #42 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:14 #43 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:15 #44 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:16 #45 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:17 #46 [Debug] runWithTimeoutAsync / timeout: 10000
+00:00:17 #47 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:18 #48 [Debug] runWithTimeoutAsync / timeout: 10000
+00:00:19 #49 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:19 #50 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 &lt;null&gt;
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8300,11 +8355,26 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:11 #26 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:11 #27 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #28 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #29 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    0i32\n\ninl a = 1\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5532-3268-379b9f0710c5/main.spi"}} / result.Length:
-00:00:11 #30 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:19 #51 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:19 #52 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:20 #53 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:20 #54 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:20 #55 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:20 #56 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:20 #57 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:20 #58 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:20 #59 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:20 #60 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:20 #61 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:20 #62 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:20 #63 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    0i32\n\ninl a = 1\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0129-5656-5658-56cfb73482f2/main.spi"}} / result.Length:
+00:00:20 #64 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0129-5656-5658-56cfb73482f2/main.spi"}} / result.Length:
+00:00:21 #65 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0129-5656-5658-56cfb73482f2\main.spi
+00:00:21 #66 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Global inl/let statements should all return functions known at parse time.",
@@ -8325,13 +8395,14 @@ Global inl/let statements should all return functions known at parse time.",
             "Global inl/let statements should all return functions known at parse time."
           ]
         ],
-        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5532-3268-379b9f0710c5\main.spi"
+        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0129-5656-5658-56cfb73482f2\main.spi"
       }
     }
   ]
 ] / typeErrorCount: 0
-00:00:11 #31 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5532-3268-379b9f0710c5/main.spi"}} / result.Length:
-00:00:11 #32 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:21 #67 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:23 #68 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:23 #69 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8341,7 +8412,7 @@ Global inl/let statements should all return functions known at parse time. ]
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8375,23 +8446,38 @@ Global inl/let statements should all return functions known at parse time. ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:11 #33 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:11 #34 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #35 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #36 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5569-6991-66dba3914413/main.spi"}} / result.Length:
-00:00:11 #37 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5569-6991-66dba3914413/main.spi"}} / result.Length:
-00:00:11 #38 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:23 #70 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:23 #71 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:24 #72 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:24 #73 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:24 #74 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:24 #75 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:24 #76 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:24 #77 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:24 #78 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:24 #79 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:24 #80 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:24 #81 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:24 #82 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-0077-7723-70f3e5038b26/main.spi"}} / result.Length:
+00:00:25 #83 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-0077-7723-70f3e5038b26/main.spi"}} / result.Length:
+00:00:25 #84 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-0077-7723-70f3e5038b26\main.spi
+00:00:25 #85 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:26 #86 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "An attempt to divide by zero has been detected at compile time.",
     {
       "TracedError": {
         "message": "An attempt to divide by zero has been detected at compile time.",
         "trace": [
-          "Error trace on line: 1, column: 10 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5569-6991-66dba3914413\main.spi.
+          "Error trace on line: 1, column: 10 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-0077-7723-70f3e5038b26\main.spi.
 inl main () =
          ^
 ",
-          "Error trace on line: 2, column: 5 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5569-6991-66dba3914413\main.spi.
+          "Error trace on line: 2, column: 5 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-0077-7723-70f3e5038b26\main.spi.
     1i32 / 0i32
     ^
 "
@@ -8400,7 +8486,9 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0
-00:00:11 #39 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:26 #87 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:28 #88 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:28 #89 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ An attempt to divide by zero has been detected at compile time. ]
@@ -8409,7 +8497,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8448,11 +8536,28 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:11 #40 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:11 #42 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #43 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #44 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5614-1419-1c35e2e38d3b/main.spi"}} / result.Length:
-00:00:11 #45 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:29 #90 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:29 #91 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:29 #92 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:29 #93 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:29 #94 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:30 #95 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:30 #96 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:30 #97 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:30 #98 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:30 #99 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:30 #100 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:30 #101 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:30 #102 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-0617-1716-1034eb7269c3/main.spi"}} / result.Length:
+00:00:30 #103 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-0617-1716-1034eb7269c3/main.spi"}} / result.Length:
+00:00:30 #104 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-0617-1716-1034eb7269c3\main.spi
+00:00:31 #105 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:31 #106 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
+00:00:31 #107 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Constraint satisfaction error.
@@ -8477,13 +8582,14 @@ Got: string
 Fails to satisfy: number"
           ]
         ],
-        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5614-1419-1c35e2e38d3b\main.spi"
+        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-0617-1716-1034eb7269c3\main.spi"
       }
     }
   ]
-] / typeErrorCount: 0
-00:00:12 #46 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5614-1419-1c35e2e38d3b/main.spi"}} / result.Length:
-00:00:12 #47 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+] / typeErrorCount: 1
+00:00:31 #108 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:33 #109 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:33 #110 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8495,7 +8601,7 @@ Fails to satisfy: number ]
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8533,11 +8639,28 @@ Fails to satisfy: number ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:12 #48 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:12 #49 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #50 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #51 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5660-6022-637c073f158c/main.spi"}} / result.Length:
-00:00:12 #52 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:34 #111 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:34 #112 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:34 #113 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:34 #114 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:34 #115 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:35 #116 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:35 #117 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:35 #118 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:35 #119 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:35 #120 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:35 #121 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:35 #122 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:35 #123 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-1130-3070-34d2bf56f3e4/main.spi"}} / result.Length:
+00:00:35 #124 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-1130-3070-34d2bf56f3e4/main.spi"}} / result.Length:
+00:00:35 #125 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-1130-3070-34d2bf56f3e4\main.spi
+00:00:36 #126 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:36 #127 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
+00:00:36 #128 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Unbound variable: x.
@@ -8572,13 +8695,14 @@ Unbound variable: y.",
             "Unbound variable: y."
           ]
         ],
-        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5660-6022-637c073f158c\main.spi"
+        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-1130-3070-34d2bf56f3e4\main.spi"
       }
     }
   ]
-] / typeErrorCount: 0
-00:00:12 #53 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5660-6022-637c073f158c/main.spi"}} / result.Length:
-00:00:12 #54 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+] / typeErrorCount: 1
+00:00:36 #129 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:38 #130 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:38 #131 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8589,7 +8713,7 @@ Unbound variable: y. ]
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8628,11 +8752,26 @@ Unbound variable: y. ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:12 #55 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:12 #56 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #57 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #58 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"union a =\n    | B\n    | c\n\ninl main () =\n    ()\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5707-0721-0e4ac38ea8aa/main.spi"}} / result.Length:
-00:00:12 #59 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:39 #132 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:39 #133 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:39 #134 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:39 #135 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:40 #136 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:40 #137 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:40 #138 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:40 #139 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:40 #140 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:40 #141 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:40 #142 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:40 #143 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:40 #144 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"union a =\n    | B\n    | c\n\ninl main () =\n    ()\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-1637-3723-37b647caae24/main.spi"}} / result.Length:
+00:00:40 #145 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-1637-3723-37b647caae24/main.spi"}} / result.Length:
+00:00:40 #146 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-1637-3723-37b647caae24\main.spi
+00:00:40 #147 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Expected: uppercase variable",
@@ -8653,13 +8792,14 @@ Expected: uppercase variable",
             "Expected: uppercase variable"
           ]
         ],
-        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5707-0721-0e4ac38ea8aa\main.spi"
+        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-1637-3723-37b647caae24\main.spi"
       }
     }
   ]
 ] / typeErrorCount: 0
-00:00:12 #61 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5707-0721-0e4ac38ea8aa/main.spi"}} / result.Length:
-00:00:12 #62 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:40 #148 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:42 #149 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:42 #150 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8669,7 +8809,7 @@ Expected: uppercase variable ]
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8706,11 +8846,12 @@ Expected: uppercase variable ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:13 #63 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:13 #64 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #65 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #66 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\n/// abc\ninl main () =\n    ()\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5751-5197-540aac075255/main.spi"}} / result.Length:
-00:00:13 #67 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:43 #151 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:43 #152 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:43 #153 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:43 #154 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\n/// abc\ninl main () =\n    ()\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-2050-5014-5865b2eca5fd/main.spi"}} / result.Length:
+00:00:43 #155 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-2050-5014-5865b2eca5fd/main.spi"}} / result.Length:
+00:00:44 #156 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Expected: whitespace",
@@ -8731,13 +8872,12 @@ Expected: whitespace",
             "Expected: whitespace"
           ]
         ],
-        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5751-5197-540aac075255\main.spi"
+        "uri": "file:///c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-2050-5014-5865b2eca5fd\main.spi"
       }
     }
   ]
 ] / typeErrorCount: 0
-00:00:13 #68 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5751-5197-540aac075255/main.spi"}} / result.Length:
-00:00:13 #69 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:44 #157 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8747,7 +8887,7 @@ Expected: whitespace ]
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8787,27 +8927,42 @@ Expected: whitespace ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:13 #70 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:13 #71 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #72 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #73 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox ()\n    ()\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5793-9379-9819d4c8943b/main.spi"}} / result.Length:
-00:00:13 #74 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5793-9379-9819d4c8943b/main.spi"}} / result.Length:
-00:00:13 #75 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:44 #158 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:44 #159 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:45 #160 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:45 #161 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:45 #162 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:45 #163 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:45 #164 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:45 #165 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:45 #166 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:45 #167 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:45 #168 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:45 #169 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:45 #170 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox ()\n    ()\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-2177-7757-7e0dc815fdc6/main.spi"}} / result.Length:
+00:00:46 #171 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-2177-7757-7e0dc815fdc6/main.spi"}} / result.Length:
+00:00:46 #172 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-2177-7757-7e0dc815fdc6\main.spi
+00:00:46 #173 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:47 #174 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "Cannot apply a forall with a term.",
     {
       "TracedError": {
         "message": "Cannot apply a forall with a term.",
         "trace": [
-          "Error trace on line: 2, column: 10 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5793-9379-9819d4c8943b\main.spi.
+          "Error trace on line: 2, column: 10 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-2177-7757-7e0dc815fdc6\main.spi.
 inl main () =
          ^
 ",
-          "Error trace on line: 4, column: 9 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5793-9379-9819d4c8943b\main.spi.
+          "Error trace on line: 4, column: 9 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-2177-7757-7e0dc815fdc6\main.spi.
         inl real_unbox forall a. (obj : a) : a =
         ^
 ",
-          "Error trace on line: 7, column: 9 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1950-5793-9379-9819d4c8943b\main.spi.
+          "Error trace on line: 7, column: 9 in module: c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-2177-7757-7e0dc815fdc6\main.spi.
         real_unbox ()
         ^
 "
@@ -8816,7 +8971,9 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0
-00:00:13 #76 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:47 #175 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:49 #176 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:49 #177 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ Cannot apply a forall with a term. ]
@@ -8825,7 +8982,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8864,12 +9021,26 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:14 #78 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:14 #79 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:14 #80 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:14 #81 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox \u0060i32 1\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5842-4283-4de0f6e66092/main.spi"}} / result.Length:
-00:00:14 #82 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5842-4283-4de0f6e66092/main.spi"}} / result.Length:
-00:00:14 #83 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:50 #178 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:50 #179 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:50 #180 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:50 #181 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:51 #182 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:51 #183 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:51 #184 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:51 #185 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:51 #186 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:51 #187 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:51 #188 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:51 #189 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox \u0060i32 1\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-2739-3909-3fb9d22f43cc/main.spi"}} / result.Length:
+00:00:51 #190 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-2739-3909-3fb9d22f43cc/main.spi"}} / result.Length:
+00:00:51 #191 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-2739-3909-3fb9d22f43cc\main.spi
+00:00:52 #192 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:53 #193 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "The main function should not have a forall.",
     {
@@ -8880,7 +9051,9 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
     }
   ]
 ] / typeErrorCount: 0
-00:00:14 #84 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:53 #194 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:55 #195 [Debug] runWithTimeoutAsync / timeout: 2000
+00:00:55 #196 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ The main function should not have a forall. ]
@@ -8889,7 +9062,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8936,14 +9109,32 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:14 #85 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:14 #86 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:14 #87 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:14 #88 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.1 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5889-8984-878efbc9b108/main.spi"}} / result.Length:
-00:00:14 #89 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5889-8984-878efbc9b108/main.spi"}} / result.Length:
-00:00:14 #90 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.3325000000000001
+<pre>00:00:55 #197 [Debug] runWithTimeoutAsync / timeout: 60
+00:00:55 #198 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:00:55 #199 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:00:55 #200 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:00:56 #201 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:00:56 #202 [Debug] runWithTimeoutAsync / timeout: 500
+00:00:56 #203 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:00:56 #204 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:00:56 #205 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:00:56 #206 [Verbose] &gt; Server bound to: http://localhost:13805
+00:00:56 #207 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:56 #208 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:56 #209 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.1 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-3255-5574-51465d129636/main.spi"}} / result.Length:
+00:00:56 #210 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-3255-5574-51465d129636/main.spi"}} / result.Length:
+00:00:57 #211 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-3255-5574-51465d129636\main.spi
+00:00:57 #212 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:58 #213 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:58 #214 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.3325000000000001
  / errors: [] / typeErrorCount: 0
-00:00:14 #91 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:58 #215 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:01:00 #216 [Debug] runWithTimeoutAsync / timeout: 2000
+00:01:00 #217 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: 0.3325000000000001
@@ -8954,7 +9145,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9003,14 +9194,32 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:15 #93 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:15 #94 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:15 #95 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:15 #96 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.01 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5937-3751-3f48d9abeeda/main.spi"}} / result.Length:
-00:00:15 #97 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1950-5937-3751-3f48d9abeeda/main.spi"}} / result.Length:
-00:00:15 #98 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.33332500000000004
+<pre>00:01:01 #218 [Debug] runWithTimeoutAsync / timeout: 60
+00:01:01 #219 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:buildCode@3-1070&gt; }
+00:01:01 #220 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:01:01 #221 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:01:01 #222 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:01 #223 [Debug] runWithTimeoutAsync / timeout: 500
+00:01:01 #224 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:01:02 #225 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:01:02 #226 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:01:02 #227 [Verbose] &gt; Server bound to: http://localhost:13805
+00:01:02 #228 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:01:02 #229 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:01:02 #230 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.01 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-3804-0425-01317014591d/main.spi"}} / result.Length:
+00:01:02 #231 [Debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-3804-0425-01317014591d/main.spi"}} / result.Length:
+00:01:02 #232 [Verbose] &gt; Building c:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0130-3804-0425-01317014591d\main.spi
+00:01:03 #233 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:01:04 #234 [Debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:01:04 #235 [Debug] buildFile / takeWhileInclusive / fsxContent: 0.33332500000000004
  / errors: [] / typeErrorCount: 0
-00:00:15 #99 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:01:04 #236 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:01:06 #237 [Debug] runWithTimeoutAsync / timeout: 2000
+00:01:06 #238 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: 0.33332500000000004
@@ -9022,7 +9231,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9032,7 +9241,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9043,7 +9252,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">getFileTokenRange</span> <span class="n">port</span> <span class="n">cancellationToken</span> <span class="n">path</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">code</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">readAllTextAsync</span>
-    <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 
     <span class="n">let</span> <span class="n">token</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span> <span class="n">cancellationToken</span>
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
@@ -9079,7 +9288,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9089,7 +9298,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9108,7 +9317,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9136,9 +9345,23 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:24 #108 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:24 #109 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1951-0837-3742-395ba6ac8c06/main.spi"}} / result.Length:
-00:00:24 #110 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1951-0837-3742-395ba6ac8c06/main.spi"}} / result.Length: Some(213)
+<pre>00:01:19 #239 [Debug] runWithTimeoutAsync / timeout: 60
+00:01:19 #240 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:it@4-435&gt; }
+00:01:19 #241 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:01:19 #242 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:01:19 #243 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:20 #244 [Debug] runWithTimeoutAsync / timeout: 500
+00:01:20 #245 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:01:20 #246 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:01:20 #247 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:01:20 #248 [Verbose] &gt; Server bound to: http://localhost:13805
+00:01:20 #249 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-5612-1201-14bfd41c7487/main.spi"}} / result.Length:
+00:01:20 #250 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0130-5612-1201-14bfd41c7487/main.spi"}} / result.Length: Some(213)
+00:01:22 #251 [Debug] runWithTimeoutAsync / timeout: 2000
 FSharpOption&lt;Int32[]&gt;
       Value: [ 0, 0, 3, 7, 0, 0, 4, 4, 0, 0, 0, 5, 1, 8, 0, 0, 1, 1, 8, 0, 0, 2, 1, 4, 0, 0, 2, 1, 8, 0, 0, 1, 1, 8, 0 ]
 </pre>
@@ -9146,7 +9369,7 @@ FSharpOption&lt;Int32[]&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9174,9 +9397,23 @@ FSharpOption&lt;Int32[]&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:27 #115 [Debug] runWithTimeoutAsync / timeout: 60
-00:00:27 #116 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1951-1184-8495-8daf8e466715/main.spi"}} / result.Length:
-00:00:27 #117 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240328-1951-1184-8495-8daf8e466715/main.spi"}} / result.Length: Some(214)
+<pre>00:01:29 #252 [Debug] runWithTimeoutAsync / timeout: 60
+00:01:29 #253 [Debug] executeAsync / options: { Command =
+   "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64"
+  WorkingDirectory = None
+  CancellationToken = Some System.Threading.CancellationToken
+  OnLine = Some &lt;fun:it@4-865&gt; }
+00:01:29 #254 [Verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
+00:01:29 #255 [Verbose] &gt; dll_path: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
+00:01:29 #256 [Verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
+00:01:30 #257 [Debug] runWithTimeoutAsync / timeout: 500
+00:01:30 #258 [Verbose] waitForPortAccess / port: 13805 / retry: 0
+00:01:30 #259 [Debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
+00:01:30 #260 [Verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
+00:01:30 #261 [Verbose] &gt; Server bound to: http://localhost:13805
+00:01:30 #262 [Debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0131-0624-2479-243b78935926/main.spi"}} / result.Length:
+00:01:30 #263 [Debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///c:/Users/i574n/AppData/Local/Temp/dotnet-repl/20240330-0131-0624-2479-243b78935926/main.spi"}} / result.Length: Some(214)
+00:01:32 #264 [Debug] runWithTimeoutAsync / timeout: 2000
 FSharpOption&lt;Int32[]&gt;
       Value: [ 0, 0, 3, 7, 0, 0, 4, 4, 0, 0, 0, 5, 1, 8, 0, 0, 1, 1, 8, 0, 0, 2, 1, 4, 0, 0, 2, 1, 3, 0, 0, 1, 3, 12, 0 ]
 </pre>
@@ -9185,7 +9422,7 @@ FSharpOption&lt;Int32[]&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9195,7 +9432,7 @@ FSharpOption&lt;Int32[]&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9224,7 +9461,7 @@ FSharpOption&lt;Int32[]&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9268,7 +9505,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9278,7 +9515,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9327,11 +9564,15 @@ OPTIONS:
         <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 
     <span class="k">async</span> <span class="p">{</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">buildFileResult</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultWith</span> <span class="n">getCompilerPort</span>
+        <span class="n">let</span> <span class="n">localToken</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span> <span class="kc">None</span>
+        <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span><span class="p">,</span> <span class="n">_errors</span><span class="p">,</span> <span class="n">compilerToken</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">awaitCompiler</span> <span class="n">port</span> <span class="p">(</span><span class="n">Some</span> <span class="n">localToken</span><span class="p">)</span>
+        <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
+
+        <span class="n">let</span> <span class="n">buildFileAsync</span> <span class="o">=</span>
             <span class="n">buildFileActions</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">inputPath</span><span class="p">,</span> <span class="n">outputPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultWith</span> <span class="n">getCompilerPort</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">inputPath</span> <span class="o">|&gt;</span> <span class="n">buildFile</span> <span class="n">timeout</span> <span class="n">port</span> <span class="kc">None</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">outputCode</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">inputPath</span> <span class="o">|&gt;</span> <span class="n">buildFile</span> <span class="n">timeout</span> <span class="n">serverPort</span> <span class="kc">None</span>
 
                 <span class="n">errors</span>
                 <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="n">snd</span>
@@ -9346,13 +9587,11 @@ OPTIONS:
                 <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
                     <span class="k">return</span> <span class="mi">1</span>
             <span class="p">})</span>
-            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
 
-        <span class="n">let</span><span class="err">!</span> <span class="n">fileTokenRangeResult</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">fileTokenRangeAsync</span> <span class="o">=</span>
             <span class="n">fileTokenRangeActions</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">inputPath</span><span class="p">,</span> <span class="n">outputPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultWith</span> <span class="n">getCompilerPort</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">tokenRange</span> <span class="o">=</span> <span class="n">inputPath</span> <span class="o">|&gt;</span> <span class="n">getFileTokenRange</span> <span class="n">port</span> <span class="kc">None</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">tokenRange</span> <span class="o">=</span> <span class="n">inputPath</span> <span class="o">|&gt;</span> <span class="n">getFileTokenRange</span> <span class="n">serverPort</span> <span class="kc">None</span>
                 <span class="k">match</span> <span class="n">tokenRange</span> <span class="k">with</span>
                 <span class="o">|</span> <span class="n">Some</span> <span class="n">tokenRange</span> <span class="o">-&gt;</span>
                     <span class="n">do</span><span class="err">!</span> <span class="n">tokenRange</span> <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">outputPath</span>
@@ -9360,19 +9599,10 @@ OPTIONS:
                 <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
                     <span class="k">return</span> <span class="mi">1</span>
             <span class="p">})</span>
-            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
 
-        <span class="n">let</span><span class="err">!</span> <span class="n">executeCommandResult</span> <span class="o">=</span>
+        <span class="n">let</span> <span class="n">executeCommandAsync</span> <span class="o">=</span>
             <span class="n">executeCommandActions</span>
             <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">command</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-                <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultWith</span> <span class="n">getCompilerPort</span>
-
-                <span class="n">let</span> <span class="n">localToken</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span> <span class="kc">None</span>
-                <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
-
-                <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span><span class="p">,</span> <span class="n">_errors</span><span class="p">,</span> <span class="n">compilerToken</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">awaitCompiler</span> <span class="n">port</span> <span class="p">(</span><span class="n">Some</span> <span class="n">localToken</span><span class="p">)</span>
-                <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
-
                 <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
                     <span class="n">Runtime</span><span class="o">.</span><span class="n">executeWithOptionsAsync</span>
                         <span class="p">{</span>
@@ -9386,12 +9616,12 @@ OPTIONS:
 
                 <span class="k">return</span> <span class="n">exitCode</span>
             <span class="p">})</span>
-            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
 
-        <span class="k">return</span>
-            <span class="p">[</span><span class="o">|</span> <span class="n">buildFileResult</span><span class="p">;</span> <span class="n">fileTokenRangeResult</span><span class="p">;</span> <span class="n">executeCommandResult</span> <span class="o">|</span><span class="p">]</span>
-            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
-            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">sum</span>
+        <span class="k">return</span><span class="err">!</span>
+            <span class="p">[</span><span class="o">|</span> <span class="n">buildFileAsync</span><span class="p">;</span> <span class="n">fileTokenRangeAsync</span><span class="p">;</span> <span class="n">executeCommandAsync</span> <span class="o">|</span><span class="p">]</span>
+            <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span> <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">ProcessorCount</span> <span class="o">*</span> <span class="mf">0.75</span> <span class="o">|&gt;</span> <span class="n">ceil</span> <span class="o">|&gt;</span> <span class="nb">int</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Array</span><span class="o">.</span><span class="n">sum</span>
     <span class="p">}</span>
     <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="n">timeout</span>
     <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="mi">1</span>
@@ -9400,7 +9630,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

@@ -9230,33 +9230,55 @@ and method0 () : unit =
     let v1 : US0 = US0_0
     let v2 : (exn -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; ex |&gt; v2
-    let v9 : US1 =
+    let v14 : US1 =
         match v3 with
         | US0_0 -&gt; (* None *)
             US1_0
         | US0_1(v4) -&gt; (* Some *)
-            let v5 : string = $"{v4.GetType ()}: {v4.Message}"
-            US1_1(v5)
-    let v10 : string = $"%A{v9}"
-    System.Console.WriteLine v10
-    let v15 : bool =
-        match v9 with
-        | US1_1(v13) -&gt; (* Some *)
-            let v14 : bool = v13 = "System.Exception: test"
-            v14
+            let mutable result = None
+            #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+            let v5 : string = $"%A{v4}"
+            v5
+            #endif
+            #if FABLE_COMPILER_RUST &amp;&amp; WASM
+            let v6 : string = $"%A{v4}"
+            v6
+            #endif
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            let v7 : string = $"{v4.GetType ()}: {v4.Message}"
+            v7
+            #endif
+            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            let v8 : string = $"%A{v4}"
+            v8
+            #endif
+            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+            let v9 : string = $"%A{v4}"
+            v9
+            #endif
+            |&gt; fun x -&gt; result &lt;- Some x
+            let v10 : string = result |&gt; Option.get
+            US1_1(v10)
+    let v15 : string = $"%A{v14}"
+    System.Console.WriteLine v15
+    let v20 : bool =
+        match v14 with
+        | US1_1(v18) -&gt; (* Some *)
+            let v19 : bool = v18 = "System.Exception: test"
+            v19
         | _ -&gt;
             false
-    let v17 : bool =
-        if v15 then
+    let v22 : bool =
+        if v20 then
             true
         else
-            method1(v15)
-    let v18 : string = "System.Exception: test"
-    let v19 : US1 = US1_1(v18)
-    let v20 : string = $"__expect / actual: %A{v9} / expected: %A{v19}"
-    let v21 : bool = v17 = false
-    if v21 then
-        failwith&lt;unit&gt; v20
+            method1(v20)
+    let v23 : string = "System.Exception: test"
+    let v24 : US1 = US1_1(v23)
+    let v25 : string = $"__expect / actual: %A{v14} / expected: %A{v24}"
+    let v26 : bool = v22 = false
+    if v26 then
+        failwith&lt;unit&gt; v25
 method0()
 
 US1_1 "System.Exception: test"
@@ -9845,7 +9867,7 @@ method0()
                 <span class="n">then</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Some</span>
                 <span class="k">else</span> <span class="kc">None</span>
             <span class="n">fun</span> <span class="n">ex</span> <span class="o">=&gt;</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="o">//</span> <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"retry_fn"</span><span class="p">)</span> <span class="n">getLocals</span>
                 <span class="n">sleep</span> <span class="mi">1</span>
         <span class="o">|&gt;</span> <span class="n">function</span>

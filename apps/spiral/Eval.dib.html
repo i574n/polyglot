@@ -7583,8 +7583,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Threading.fs</span>
@@ -7609,6 +7611,22 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 <span class="nb">open</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">Operators</span>
 </pre></div>
@@ -7616,7 +7634,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7638,7 +7656,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7648,7 +7666,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">mapErrors</span> <span class="p">(</span><span class="n">severity</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">allCodeLineLength</span> <span class="o">=</span>
-        <span class="n">allCode</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">length</span>
+        <span class="n">allCode</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">length</span>
 
     <span class="n">errors</span>
     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="o">-&gt;</span>
@@ -7714,7 +7732,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7731,7 +7749,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7751,13 +7769,13 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s2">"SpiralScriptHelpers"</span>
             <span class="n">File</span><span class="o">.</span><span class="n">AppendAllText</span> <span class="p">(</span><span class="n">logFile</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{dateTimeStr}</span><span class="s2"> </span><span class="si">{fileName}</span><span class="s2"> </span><span class="si">{text}{Environment.NewLine}</span><span class="s2">"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"V.log / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"V.log / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7776,14 +7794,14 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s2">"SpiralScriptHelpers"</span>
             <span class="n">File</span><span class="o">.</span><span class="n">AppendAllText</span> <span class="p">(</span><span class="n">logFile</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{dateTimeStr}</span><span class="s2"> </span><span class="si">{fileName}</span><span class="s2"> </span><span class="si">{text}{Environment.NewLine}</span><span class="s2">"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.log / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.log / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">log2</span> <span class="n">text</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7823,7 +7841,7 @@ a.anchor-link {
                             <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
                                 <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / GetFiles / tokens: None / {getLocals ()}"</span>
                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / GetFiles / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / GetFiles / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="p">})</span>
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
@@ -7855,7 +7873,7 @@ a.anchor-link {
                                 <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"</span>
                         <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span>
                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / iterAsyncParallel / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / iterAsyncParallel / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="p">})</span>
 
             <span class="k">async</span> <span class="p">{</span>
@@ -7865,7 +7883,7 @@ a.anchor-link {
             <span class="p">}</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; formatException}"</span>
+            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; Sm.format_exception}"</span>
 
         <span class="n">disposable</span>
     <span class="k">else</span> <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span>
@@ -7874,7 +7892,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7893,8 +7911,8 @@ a.anchor-link {
     <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / code: %A</span><span class="si">{code}</span><span class="s2">"</span>
 
     <span class="n">let</span> <span class="n">rawCellCode</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span> <span class="o">&lt;&gt;</span> <span class="s2">"// // trace"</span>
-        <span class="n">then</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span> <span class="o">&lt;&gt;</span> <span class="s2">"// // trace"</span>
+        <span class="n">then</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
         <span class="k">else</span>
             <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Info</span>
             <span class="n">then</span> <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">Verbose</span>
@@ -7902,9 +7920,9 @@ a.anchor-link {
             <span class="n">traceDump</span> <span class="o">&lt;-</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Verbose</span>
             <span class="s2">"inl main () = ()"</span>
 
-    <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">rawCellCode</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">rawCellCode</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 
-    <span class="k">if</span> <span class="n">lines</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"#r "</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span> <span class="n">then</span>
+    <span class="k">if</span> <span class="n">lines</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"#r "</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"</span><span class="se">\"</span><span class="s2">"</span><span class="p">)</span> <span class="n">then</span>
         <span class="n">let</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="n">defaultArg</span> <span class="n">cancellationToken</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
         <span class="n">let</span> <span class="n">ch</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">fsi_eval</span> <span class="n">code</span> <span class="n">cancellationToken</span>
         <span class="k">match</span> <span class="n">ch</span> <span class="k">with</span>
@@ -7922,8 +7940,8 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">hasMain</span> <span class="o">=</span>
                 <span class="n">lastBlock</span>
                 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                    <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"inl main "</span>
-                    <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"let main "</span>
+                    <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"inl main "</span>
+                    <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"let main "</span>
                 <span class="p">)</span>
 
             <span class="n">let</span> <span class="n">cellCode</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span> <span class="o">=</span>
@@ -7938,18 +7956,18 @@ a.anchor-link {
                             <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">finished</span> <span class="o">-&gt;</span> <span class="n">lastTopLevelIndex</span><span class="p">,</span> <span class="n">true</span>
                             <span class="o">|</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="n">lastTopLevelIndex</span><span class="p">,</span> <span class="n">false</span>
                             <span class="o">|</span> <span class="n">line</span> <span class="n">when</span>
-                                <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">" "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// "</span> <span class="o">-&gt;</span> <span class="n">lastTopLevelIndex</span><span class="p">,</span> <span class="n">false</span>
+                                <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">" "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// "</span> <span class="o">-&gt;</span> <span class="n">lastTopLevelIndex</span><span class="p">,</span> <span class="n">false</span>
                             <span class="o">|</span> <span class="n">line</span> <span class="n">when</span>
-                                <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"open "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"prototype "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"instance "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"type "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"union "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"nominal "</span> <span class="o">-&gt;</span> <span class="n">lastTopLevelIndex</span><span class="p">,</span> <span class="n">true</span>
+                                <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"open "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"prototype "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"instance "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"type "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"union "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"nominal "</span> <span class="o">-&gt;</span> <span class="n">lastTopLevelIndex</span><span class="p">,</span> <span class="n">true</span>
                             <span class="o">|</span> <span class="n">line</span> <span class="n">when</span>
-                                <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"inl "</span>
-                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"let "</span> <span class="o">-&gt;</span>
+                                <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"inl "</span>
+                                <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"let "</span> <span class="o">-&gt;</span>
                                 <span class="n">let</span> <span class="n">m</span> <span class="o">=</span>
                                     <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Match</span> <span class="p">(</span>
                                         <span class="n">line</span><span class="p">,</span>
@@ -7969,10 +7987,10 @@ a.anchor-link {
                                 <span class="k">match</span> <span class="n">i</span> <span class="k">with</span>
                                 <span class="o">|</span> <span class="n">i</span> <span class="n">when</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lastTopLevelIndex</span> <span class="o">-&gt;</span> <span class="n">line</span>
                                 <span class="o">|</span> <span class="n">i</span> <span class="n">when</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lastTopLevelIndex</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="se">\n</span><span class="s2">let main () =</span><span class="se">\n</span><span class="s2">    </span><span class="si">{line}</span><span class="s2">"</span>
-                                <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="s2">""</span>
+                                <span class="o">|</span> <span class="n">_</span> <span class="n">when</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="s2">""</span>
                                 <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"    </span><span class="si">{line}</span><span class="s2">"</span>
                             <span class="p">)</span>
-                            <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+                            <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                         <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{rawCellCode}</span><span class="se">\n\n</span><span class="s2">inl main () = ()</span><span class="se">\n</span><span class="s2">"</span>
                     <span class="n">code</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span>
 
@@ -7981,16 +7999,16 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">rustArgs</span> <span class="o">=</span>
                 <span class="n">lines</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryPick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// // rust="</span>
-                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'='</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // rust="</span>
+                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"="</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">)</span>
 
             <span class="n">let</span> <span class="n">timeout</span> <span class="o">=</span>
                 <span class="n">lines</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryPick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// // timeout="</span>
-                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'='</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="nb">int</span>
+                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // timeout="</span>
+                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"="</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="nb">int</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span><span class="mi">60000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
@@ -7998,8 +8016,8 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">printCode</span> <span class="o">=</span>
                 <span class="n">lines</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryPick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// // print_code="</span>
-                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'='</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="s2">"true"</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // print_code="</span>
+                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"="</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="s2">"true"</span><span class="p">)</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">true</span>
@@ -8007,8 +8025,8 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">maxTermCount</span> <span class="o">=</span>
                 <span class="n">lines</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryPick</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// // max_term_count="</span>
-                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'='</span> <span class="o">|</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="nb">int</span>
+                    <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // max_term_count="</span>
+                    <span class="n">then</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"="</span> <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">tryItem</span> <span class="mi">1</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">map</span> <span class="nb">int</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">)</span>
 
@@ -8038,7 +8056,7 @@ a.anchor-link {
                         <span class="k">match</span> <span class="n">codeChoice</span> <span class="k">with</span>
                         <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Some</span> <span class="n">code</span>
                         <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">ex</span><span class="p">)</span> <span class="o">-&gt;</span>
-                            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / errors: {ex |&gt; formatException}"</span>
+                            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / errors: {ex |&gt; Sm.format_exception}"</span>
                             <span class="kc">None</span>
                         <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 
@@ -8102,12 +8120,12 @@ a.anchor-link {
 
                                         <span class="n">let</span> <span class="n">mainCode</span> <span class="o">=</span> <span class="s2">"pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }"</span>
 
-                                        <span class="n">let</span> <span class="n">cached</span> <span class="o">=</span> <span class="n">rsCode</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">contains</span> <span class="n">mainCode</span>
+                                        <span class="n">let</span> <span class="n">cached</span> <span class="o">=</span> <span class="n">rsCode</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">contains</span> <span class="n">mainCode</span>
 
                                         <span class="n">let</span> <span class="n">rsCode</span> <span class="o">=</span>
                                             <span class="k">if</span> <span class="n">cached</span>
                                             <span class="n">then</span> <span class="n">rsCode</span>
-                                            <span class="k">else</span> <span class="n">rsCode</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"),);"</span> <span class="s2">"));"</span>
+                                            <span class="k">else</span> <span class="n">rsCode</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"),);"</span> <span class="s2">"));"</span>
 
                                         <span class="k">if</span> <span class="n">printCode</span>
                                         <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="se">\n</span><span class="s2">.rs:</span><span class="se">\n</span><span class="si">{rsCode}</span><span class="s2">"</span><span class="p">)</span>
@@ -8154,12 +8172,12 @@ a.anchor-link {
                                             <span class="k">try</span>
                                                 <span class="n">let</span> <span class="n">result</span> <span class="o">=</span>
                                                     <span class="n">result</span>
-                                                    <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+                                                    <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                                                     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">skipWhile</span> <span class="p">(</span><span class="n">fun</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                                                        <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"[optimized] target"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                                        <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"[optimized] target"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
                                                     <span class="p">)</span>
                                                     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">skip</span> <span class="mi">2</span>
-                                                    <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+                                                    <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                                                 <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Ok</span> <span class="n">result</span><span class="p">)</span>
                                             <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
                                                 <span class="k">return</span> <span class="err">$</span><span class="s2">"ex: </span><span class="si">{ex}</span><span class="se">\n</span><span class="s2">result:</span><span class="se">\n</span><span class="si">{result}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Error</span> <span class="o">|&gt;</span> <span class="n">Some</span>
@@ -8182,7 +8200,7 @@ a.anchor-link {
                                         <span class="p">)</span>
                                     <span class="n">Some</span> <span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
                                 <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.Eval / ex: {ex |&gt; formatException}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.Eval / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
                                     <span class="kc">None</span>
 
                         <span class="k">match</span> <span class="n">fsxResult</span><span class="p">,</span> <span class="n">rustResult</span> <span class="k">with</span>
@@ -8236,11 +8254,11 @@ a.anchor-link {
                             <span class="p">)</span>
                         <span class="o">|</span><span class="p">]</span>
                 <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                    <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; formatException}"</span>
-                    <span class="k">return</span> <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Spiral error or timeout (4_) / ex: {ex |&gt; formatException}"</span><span class="p">),</span>
+                    <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; Sm.format_exception}"</span>
+                    <span class="k">return</span> <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Spiral error or timeout (4_) / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">),</span>
                     <span class="p">[</span><span class="o">|</span>
                         <span class="p">(</span>
-                            <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Diag: Spiral error or timeout (4) / ex: {ex |&gt; formatException}"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                            <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Diag: Spiral error or timeout (4) / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
                         <span class="p">)</span>
                     <span class="o">|</span><span class="p">]</span>
             <span class="p">}</span>
@@ -8254,11 +8272,11 @@ a.anchor-link {
                 <span class="o">|</span><span class="p">]</span>
             <span class="p">)</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; formatException}"</span>
-            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Spiral error or timeout (3) / ex: {ex |&gt; formatException}"</span><span class="p">),</span>
+            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; Sm.format_exception}"</span>
+            <span class="n">Error</span> <span class="p">(</span><span class="ne">Exception</span> <span class="err">$</span><span class="s2">"Spiral error or timeout (3) / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">),</span>
             <span class="p">[</span><span class="o">|</span>
                 <span class="p">(</span>
-                    <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Diag: Spiral error or timeout (3) / ex: {ex |&gt; formatException}"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                    <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">,</span> <span class="err">$</span><span class="s2">"Diag: Spiral error or timeout (3) / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
                 <span class="p">)</span>
             <span class="o">|</span><span class="p">]</span>
 </pre></div>

@@ -22,8 +22,10 @@
 #!fsharp
 
 #!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -32,14 +34,9 @@
 
 #!fsharp
 
-let File_system = {|
-    create_temp_directory_name =
 #if !INTERACTIVE
-        File_system.create_temp_directory_name
-#else
-        create_temp_directory_name
+open Lib
 #endif
-|}
 
 #!fsharp
 
@@ -210,7 +207,7 @@ let inline waitForFileAccess access path =
             return retry
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
+                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 trace Debug (fun () -> "waitForFileAccess") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -264,7 +261,7 @@ async {
     | Some (retries, text) ->
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 100)
+            (if Runtime.isWindows () then 50 else 100)
             (if Runtime.isWindows () then 150 else 200)
 
         text |> _assertEqual "1"
@@ -293,7 +290,7 @@ let inline readAllTextRetryAsync fullPath =
                 |> Async.Ignore
             return! fullPath |> readAllTextAsync |> Async.map Some
         with ex ->
-            let getLocals () = $"retry: {retry} / ex: {ex |> formatException} / {getLocals ()}"
+            let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
             trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
             if retry = 0
             then return! loop (retry + 1)
@@ -314,7 +311,7 @@ let inline deleteDirectoryAsync path =
             return retry
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
+                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 trace Debug (fun () -> "deleteDirectoryAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -361,7 +358,7 @@ async {
     | Some retries ->
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 0)
+            (if Runtime.isWindows () then 50 else 0)
             (if Runtime.isWindows () then 150 else 0)
 
         true
@@ -381,7 +378,7 @@ let inline deleteFileAsync path =
             return retry
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
+                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 trace Warning (fun () -> "deleteFileAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -427,7 +424,7 @@ async {
     | Some retries ->
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 0)
+            (if Runtime.isWindows () then 50 else 0)
             (if Runtime.isWindows () then 150 else 0)
 
         true
@@ -448,7 +445,7 @@ let inline moveFileAsync newPath oldPath =
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () =
-                    $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> formatException} / {getLocals ()}"
+                    $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
                 trace Warning (fun () -> "moveFileAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -499,7 +496,7 @@ async {
     | Some (retries1, retries2, text) ->
         retries1
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 0)
+            (if Runtime.isWindows () then 50 else 0)
             (if Runtime.isWindows () then 150 else 0)
 
         retries2
@@ -549,7 +546,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
         )
 
     let inline getEventPath (path : string) =
-        path |> String.trim |> String.replace fullPath "" |> String.trimStart [| '/'; '\\' |]
+        path |> Sm.trim |> Sm.replace fullPath "" |> Sm.trim_start [| '/'; '\\' |]
 
     let inline ticks () =
         System.DateTime.UtcNow.Ticks
@@ -706,9 +703,9 @@ let inline testEventsRaw
             let text = $"{n} / {diff} / {event}"
             if text |> String.length <= 100
             then text
-            else text |> String.substring 0 100 |> String.replace "\n" ""
+            else text |> Sm.substring 0 100 |> Sm.replace "\n" ""
         )
-        |> String.concat "\n"
+        |> Sm.concat "\n"
     let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
     trace Debug (fun () -> "testEventsRaw") getLocals
 
@@ -721,7 +718,7 @@ let inline testEventsRaw
             match acc, event with
             | FileSystemChange.Changed (lastPath, Some lastContent) as lastEvent :: acc,
                 FileSystemChange.Changed (path, Some content)
-                when lastPath = path && content |> String.startsWith lastContent
+                when lastPath = path && content |> Sm.starts_with lastContent
                 ->
                 event :: acc
             | _ -> event :: acc
@@ -839,13 +836,13 @@ let inline run () =
         testEventsRaw watchDirectory write
         |> List.map (function
             | FileSystemChange.Changed (path, Some content) ->
-                FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
+                FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> Sm.concat "" |> Some)
             | FileSystemChange.Created (path, Some content) ->
-                FileSystemChange.Created (path, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
+                FileSystemChange.Created (path, content |> Seq.distinct |> Seq.map string |> Sm.concat "" |> Some)
             | FileSystemChange.Renamed (oldPath, (newPath, Some content)) ->
                 FileSystemChange.Renamed (
                     oldPath,
-                    (newPath, content |> Seq.distinct |> Seq.map string |> String.concat "" |> Some)
+                    (newPath, content |> Seq.distinct |> Seq.map string |> Sm.concat "" |> Some)
                 )
             | event -> event
         )

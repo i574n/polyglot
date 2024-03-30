@@ -73,7 +73,7 @@ inl ends_with (value : string) (s : string) : bool =
 
 #!spiral
 
-inl pad_left total_width padding_char (s : string) : string =
+inl pad_left (total_width : i32) (padding_char : char) (s : string) : string =
     $"!s.PadLeft (!total_width, !padding_char)"
 
 #!markdown
@@ -96,31 +96,12 @@ inl replace (old_value : string) (new_value : string) (s : string) : string =
 
 #!markdown
 
-## split
-
-#!spiral
-
-inl split (separator : string) (str : string) : array_base string =
-    $"!str.Split !separator"
-
-#!markdown
-
-## split_string
-
-#!spiral
-
-inl split_string (separator : array_base string) (str : string) : array_base string =
-    $"!str.Split (!separator, StringSplitOptions.None)"
-
-#!markdown
-
 ## starts_with
 
 #!spiral
 
-inl starts_with (value : std_string) (s : std_string) : bool =
-    inl s = join s
-    !\($'"!s.starts_with(&!value)"')
+inl starts_with (value : string) (s : string) : bool =
+    $"!s.StartsWith !value"
 
 #!markdown
 
@@ -128,7 +109,7 @@ inl starts_with (value : std_string) (s : std_string) : bool =
 
 #!spiral
 
-inl substring forall t {int}. (start : t) (len : t) (str : string) : string =
+inl substring (start : i32) (len : i32) (str : string) : string =
     $"!str.Substring (!start, !len)"
 
 #!markdown
@@ -182,7 +163,7 @@ inl trim_start (trim_chars : array_base char) (input : string) : string =
 
 #!spiral
 
-inl ellipsis forall t {int; number}. (max : t) (s : string) =
+inl ellipsis (max : i32) (s : string) =
     if sm.length s <= max
     then s
     else s |> substring 0 max |> fun x => $'!x + "..."'
@@ -315,7 +296,9 @@ inl format_pretty' x : std_string =
 #!spiral
 
 inl format_exception (ex : exn) : string =
-    $'$"{!ex.GetType ()}: {!ex.Message}"'
+    run_target function
+        | Fsharp (Native) => fun () => $'$"{!ex.GetType ()}: {!ex.Message}"'
+        | _ => fun () => ex |> format_debug
 
 #!spiral
 
@@ -467,7 +450,7 @@ inl base64_decode (s : std_string) : result std_string std_string =
 
 #!spiral
 
-inl concat_array_trailing separator input =
+inl concat_array_trailing (separator : string) (input : a i32 string) =
     ("", input)
     ||> am.fold fun acc (x : string) =>
         $'!acc + !x + !separator + ""'
@@ -551,8 +534,28 @@ types ()
 
 #!spiral
 
-inl concat (a : string) (b : a _ _) : string =
+inl concat (a : string) (b : seq.seq' _) : string =
     $"!b |> String.concat !a"
+
+#!markdown
+
+## split
+
+#!spiral
+
+inl split (separator : string) (str : string) : array_base string =
+    $"!str.Split !separator"
+
+#!markdown
+
+## split_string
+
+#!spiral
+
+inl split_string (separator : array_base string) (str : string) : array_base string =
+    run_target function
+        | Fsharp (Native) => fun () => $"!str.Split (!separator, System.StringSplitOptions.None)"
+        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
 
 #!markdown
 
@@ -560,7 +563,7 @@ inl concat (a : string) (b : a _ _) : string =
 
 #!spiral
 
-inl join' (concat : string) (s : a _ string) : string =
+inl join' (concat : string) (s : a i32 string) : string =
     $"System.String.Join (!concat, !s)"
 
 #!markdown
@@ -605,3 +608,32 @@ inl to_char_list (str : string) : list char =
 
 open rust
 instance to_string std_string = from_std_string
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let contains x = !contains x" : ()
+    $"let ends_with x = !ends_with x" : ()
+    $"let pad_left x = !pad_left x" : ()
+    $"let pad_right x = !pad_right x" : ()
+    $"let replace x = !replace x" : ()
+    $"let split x = !split x" : ()
+    $"let split_string x = !split_string x" : ()
+    $"let starts_with x = !starts_with x" : ()
+    $"let substring x = !substring x" : ()
+    $"let to_lower x = !to_lower x" : ()
+    $"let to_upper x = !to_upper x" : ()
+    $"let trim x = !trim x" : ()
+    $"let trim_end x = !trim_end x" : ()
+    $"let trim_start x = !trim_start x" : ()
+    $"let ellipsis x = !ellipsis x" : ()
+    $"let format_exception x = !format_exception x" : ()
+    $"let concat_array_trailing x = !concat_array_trailing x" : ()
+    inl concat a (b : seq.seq' string) = concat a b
+    $"let concat x = !concat x" : ()
+    $"let join' x = !join' x" : ()
+    $"let to_char_array x = !to_char_array x" : ()

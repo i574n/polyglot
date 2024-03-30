@@ -14,4 +14,4 @@ module Crypto =
         |> System.Text.Encoding.UTF8.GetBytes
         |> sha256.ComputeHash
         |> Array.map (fun b -> b.ToString "x2")
-        |> String.concat ""
+        |> Sm.concat ""

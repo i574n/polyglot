@@ -7577,8 +7577,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
@@ -7597,14 +7599,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">File_system</span> <span class="o">=</span> <span class="p">{</span><span class="o">|</span>
-    <span class="n">create_temp_directory_name</span> <span class="o">=</span>
-<span class="c1">#if !INTERACTIVE</span>
-        <span class="n">File_system</span><span class="o">.</span><span class="n">create_temp_directory_name</span>
-<span class="c1">#else</span>
-        <span class="n">create_temp_directory_name</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
 <span class="c1">#endif</span>
-<span class="o">|</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -8040,7 +8037,7 @@ a.anchor-link {
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForFileAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8104,7 +8101,7 @@ a.anchor-link {
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
 
         <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"1"</span>
@@ -8130,8 +8127,8 @@ a.anchor-link {
 00:00:00 #4 [Debug] 3
 00:00:00 #5 [Debug] _2
 00:00:00 #6 [Debug] 4
-00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3055-5579-5f1086414270\test.txt' because it is being used by another process.
-00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3055-5579-5f1086414270\test.txt' because it is being used by another process.
+00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-3183-8379-8ab650670b4f\test.txt' because it is being used by another process.
+00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-3183-8379-8ab650670b4f\test.txt' because it is being used by another process.
 00:00:02 #9 [Debug] _3
 00:00:02 #10 [Debug] _4
 00:00:02 #11 [Debug] _5
@@ -8182,7 +8179,7 @@ True
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Some</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"watchWithFilter / readContent"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8220,7 +8217,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteDirectoryAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8277,7 +8274,7 @@ True
     <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">true</span>
@@ -8341,7 +8338,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8397,7 +8394,7 @@ True
     <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
         <span class="n">retries</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">true</span>
@@ -8417,12 +8414,12 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:05 #27 [Debug] 1
 00:00:05 #28 [Debug] 2
-00:00:05 #29 [Debug] _1
-00:00:05 #30 [Debug] 3
+00:00:05 #29 [Debug] 3
+00:00:05 #30 [Debug] _1
 00:00:05 #31 [Debug] _2
 00:00:05 #32 [Debug] 4
-00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3562-6246-6e408b58332d\test.txt' because it is being used by another process.
-00:00:06 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-3562-6246-6e408b58332d\test.txt' because it is being used by another process.
+00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-3698-9805-980129e9db05\test.txt' because it is being used by another process.
+00:00:06 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-3698-9805-980129e9db05\test.txt' because it is being used by another process.
 00:00:07 #35 [Debug] _3
 00:00:07 #36 [Debug] 5
 00:00:07 #37 [Debug] 6
@@ -8462,7 +8459,7 @@ True
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; formatException} / {getLocals ()}"</span>
+                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"moveFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8523,7 +8520,7 @@ True
     <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
         <span class="n">retries1</span>
         <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">100</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
             <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">retries2</span>
@@ -8623,7 +8620,7 @@ True
         <span class="p">)</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">getEventPath</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="n">fullPath</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trimStart</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'/'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="n">fullPath</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'/'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">ticks</span> <span class="p">()</span> <span class="o">=</span>
         <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span><span class="o">.</span><span class="n">Ticks</span>
@@ -8797,9 +8794,9 @@ True
             <span class="n">let</span> <span class="n">text</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span>
             <span class="k">if</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span> <span class="o">&lt;=</span> <span class="mi">100</span>
             <span class="n">then</span> <span class="n">text</span>
-            <span class="k">else</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">substring</span> <span class="mi">0</span> <span class="mi">100</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="s2">""</span>
+            <span class="k">else</span> <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">substring</span> <span class="mi">0</span> <span class="mi">100</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="s2">""</span>
         <span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"eventsLog: </span><span class="se">\n</span><span class="si">{eventsLog}</span><span class="s2"> / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"testEventsRaw"</span><span class="p">)</span> <span class="n">getLocals</span>
 
@@ -8812,7 +8809,7 @@ True
             <span class="k">match</span> <span class="n">acc</span><span class="p">,</span> <span class="n">event</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">lastPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">lastContent</span><span class="p">)</span> <span class="k">as</span> <span class="n">lastEvent</span> <span class="p">::</span> <span class="n">acc</span><span class="p">,</span>
                 <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span>
-                <span class="n">when</span> <span class="n">lastPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="n">lastContent</span>
+                <span class="n">when</span> <span class="n">lastPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">lastContent</span>
                 <span class="o">-&gt;</span>
                 <span class="n">event</span> <span class="p">::</span> <span class="n">acc</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">event</span> <span class="p">::</span> <span class="n">acc</span>
@@ -8914,26 +8911,26 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:16 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:16 #52 [Debug] testEventsRaw / eventsLog: 
-0 / 638472592061695971 / Created ("file1.txt", Some "a1")
-1 / 638472592061695972 / Changed ("file1.txt", Some "a1")
-54537 / 638472592061750509 / Changed ("file1.txt", Some "a1")
-2069 / 638472592061752578 / Created ("file2.txt", Some "a2")
-1 / 638472592061752579 / Changed ("file2.txt", Some "a2")
-151 / 638472592061752730 / Changed ("file2.txt", Some "a2")
-2494139 / 638472592064246869 / Changed ("file1.txt", Some "b1")
-2223 / 638472592064249092 / Changed ("file1.txt", Some "b1")
-8990 / 638472592064258082 / Changed ("file2.txt", Some "b2")
-1924 / 638472592064260006 / Changed ("file2.txt", Some "b2")
-2626146 / 638472592066886152 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-4728 / 638472592066890880 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2484463 / 638472592069375343 / Changed ("file_1.txt", Some "c1")
-2040 / 638472592069377383 / Changed ("file_1.txt", Some "c1")
-8195 / 638472592069385578 / Changed ("file_2.txt", Some "c2")
-2180 / 638472592069387758 / Changed ("file_2.txt", Some "c2")
-2496529 / 638472592071884287 / Deleted "file_1.txt"
-3899 / 638472592071888186 / Deleted "file_2.txt"
+00:00:19 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:19 #52 [Debug] testEventsRaw / eventsLog: 
+0 / 638473732095705498 / Created ("file1.txt", Some "a1")
+1 / 638473732095705499 / Changed ("file1.txt", Some "a1")
+17971 / 638473732095723470 / Changed ("file1.txt", Some "a1")
+895 / 638473732095724365 / Created ("file2.txt", Some "a2")
+1 / 638473732095724366 / Changed ("file2.txt", Some "a2")
+43 / 638473732095724409 / Changed ("file2.txt", Some "a2")
+2608624 / 638473732098333033 / Changed ("file1.txt", Some "b1")
+1605 / 638473732098334638 / Changed ("file1.txt", Some "b1")
+6613 / 638473732098341251 / Changed ("file2.txt", Some "b2")
+1505 / 638473732098342756 / Changed ("file2.txt", Some "b2")
+2507761 / 638473732100850517 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+3115 / 638473732100853632 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2644434 / 638473732103498066 / Changed ("file_1.txt", Some "c1")
+2210 / 638473732103500276 / Changed ("file_1.txt", Some "c1")
+10050 / 638473732103510326 / Changed ("file_2.txt", Some "c2")
+1304 / 638473732103511630 / Changed ("file_2.txt", Some "c2")
+2642013 / 638473732106153643 / Deleted "file_1.txt"
+1952 / 638473732106155595 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9095,13 +9092,13 @@ FSharpOption&lt;Unit&gt;
         <span class="n">testEventsRaw</span> <span class="n">watchDirectory</span> <span class="n">write</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">))</span> <span class="o">-&gt;</span>
                 <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span>
                     <span class="n">oldPath</span><span class="p">,</span>
-                    <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
                 <span class="p">)</span>
             <span class="o">|</span> <span class="n">event</span> <span class="o">-&gt;</span> <span class="n">event</span>
         <span class="p">)</span>
@@ -9141,29 +9138,34 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:23 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240328-1746-5251-5120-53fd905c9b7b\file1.txt' because it is being used by another process.)
+<pre>00:00:26 #54 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-5759-5905-5ea531bcbdc7\file2.txt' because it is being used by another process.)
+00:00:26 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-5759-5905-5ea531bcbdc7\file2.txt' because it is being used by another process.)
+00:00:27 #55 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-5759-5905-5ea531bcbdc7\file2.txt' because it is being used by another process.)
+00:00:27 #56 [Debug] waitForFileAccess / path: file2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-5759-5905-5ea531bcbdc7\file2.txt' because it is being used by another process.
+00:00:30 #57 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-5759-5905-5ea531bcbdc7\file_2.txt' because it is being used by another process.)
+00:00:30 #58 [Debug] waitForFileAccess / path: file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-0126-5759-5905-5ea531bcbdc7\file_2.txt' because it is being used by another process.
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:29 #54 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:30 #55 [Debug] testEventsRaw / eventsLog: 
-0 / 638472592127816965 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
-1 / 638472592127816966 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
-87978 / 638472592127904944 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
-21429 / 638472592127926373 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
-1 / 638472592127926374 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
-125411 / 638472592128051785 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-15169721 / 638472592143221506 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
-117288 / 638472592143338794 / Changed  ("file1.txt",   Some     "11111111111111111111111111111111
-168999 / 638472592143507793 / Changed  ("file2.txt",   Some     "22222222222222222222222222222222
-68919 / 638472592143576712 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
-15008941 / 638472592158585653 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
-9839 / 638472592158595492 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "22222222222222
-15147053 / 638472592173742545 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
-79858 / 638472592173822403 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111
-67860 / 638472592173890263 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-80376 / 638472592173970639 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
-14991021 / 638472592188961660 / Deleted "file_1.txt"
-14786 / 638472592188976446 / Deleted "file_2.txt"
+00:00:33 #59 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:33 #60 [Debug] testEventsRaw / eventsLog: 
+0 / 638473732178696706 / Created  ("file1.txt",   Some     "1111111111111111111111111111111111111
+1 / 638473732178696707 / Changed  ("file1.txt",   Some     "1111111111111111111111111111111111111
+66039 / 638473732178762746 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
+14840 / 638473732178777586 / Created  ("file2.txt",   Some     "222222222222222222222222222222222
+1 / 638473732178777587 / Changed  ("file2.txt",   Some     "2222222222222222222222222222222222222
+66544 / 638473732178844131 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+14993887 / 638473732193838018 / Changed  ("file1.txt",   Some     "111111111111111111111111111111
+70414 / 638473732193908432 / Changed  ("file1.txt",   Some     "111111111111111111111111111111111
+21965 / 638473732193930397 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+82219 / 638473732194012616 / Changed  ("file2.txt",   Some     "222222222222222222222222222222222
+15116818 / 638473732209129434 / Renamed  ("file1.txt",   ("file_1.txt",    Some      "1111111111
+4163 / 638473732209133597 / Renamed  ("file2.txt",   ("file_2.txt",    Some      "22222222222222
+15008608 / 638473732224142205 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111
+69434 / 638473732224211639 / Changed  ("file_1.txt",   Some     "11111111111111111111111111111111
+24941 / 638473732224236580 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+65107 / 638473732224301687 / Changed  ("file_2.txt",   Some     "22222222222222222222222222222222
+14989672 / 638473732239291359 / Deleted "file_1.txt"
+6705 / 638473732239298064 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9445,7 +9447,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:34 #56 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:40 #61 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9544,7 +9546,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:39 #57 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:46 #62 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9643,7 +9645,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:44 #58 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:54 #63 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9756,7 +9758,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:50 #59 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:01:02 #64 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

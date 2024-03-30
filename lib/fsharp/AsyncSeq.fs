@@ -4,6 +4,10 @@ namespace Polyglot
 
 module AsyncSeq =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
 
     /// ## subscribeEvent

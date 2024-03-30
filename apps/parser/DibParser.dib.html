@@ -7617,8 +7617,10 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
+<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
@@ -7638,6 +7640,22 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#if !INTERACTIVE</span>
+<span class="nb">open</span> <span class="n">Lib</span>
+<span class="c1">#endif</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 <span class="nb">open</span> <span class="n">FParsec</span>
 </pre></div>
@@ -7646,7 +7664,7 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7656,7 +7674,7 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7668,19 +7686,19 @@ d----          2024-03-12  8:15 PM                <span class="ansi-blue-bg ansi
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">escapeCell</span> <span class="nb">input</span> <span class="o">=</span>
     <span class="nb">input</span>
-    <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
-        <span class="o">|</span> <span class="n">line</span> <span class="n">when</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">#!"</span> <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">#r"</span> <span class="o">-&gt;</span>
+        <span class="o">|</span> <span class="n">line</span> <span class="n">when</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">#!"</span> <span class="o">||</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"</span><span class="se">\\</span><span class="s2">#r"</span> <span class="o">-&gt;</span>
             <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Replace</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s2">"^</span><span class="se">\\\\</span><span class="s2">#"</span><span class="p">,</span> <span class="s2">"#"</span><span class="p">)</span>
         <span class="o">|</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">line</span>
     <span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7717,7 +7735,7 @@ b
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7727,7 +7745,7 @@ b
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7741,7 +7759,7 @@ b
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7781,7 +7799,7 @@ b
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7841,7 +7859,7 @@ Expecting: '#!'
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7851,7 +7869,7 @@ Expecting: '#!'
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7862,13 +7880,13 @@ Expecting: '#!'
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">magicCommand</span> <span class="o">=</span>
     <span class="n">magicMarker</span>
     <span class="o">&gt;&gt;.</span> <span class="n">manyTill</span> <span class="n">anyChar</span> <span class="n">newline</span>
-    <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">String</span><span class="o">.</span><span class="n">Concat</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span><span class="p">)</span>
+    <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">String</span><span class="o">.</span><span class="n">Concat</span> <span class="o">&gt;&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7910,7 +7928,7 @@ Expecting: '#!'
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7972,7 +7990,7 @@ Expecting: '#!'
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7982,7 +8000,7 @@ Expecting: '#!'
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7995,13 +8013,13 @@ Expecting: '#!'
     <span class="o">|&gt;</span> <span class="n">attempt</span>
     <span class="o">|&gt;</span> <span class="n">lookAhead</span>
     <span class="o">|&gt;</span> <span class="n">manyTill</span> <span class="n">anyChar</span>
-    <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">String</span><span class="o">.</span><span class="n">Concat</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span><span class="p">)</span>
+    <span class="o">|&gt;&gt;</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">String</span><span class="o">.</span><span class="n">Concat</span> <span class="o">&gt;&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8054,7 +8072,7 @@ a
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8064,7 +8082,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8083,7 +8101,7 @@ a
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8093,7 +8111,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8115,7 +8133,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8168,7 +8186,7 @@ a
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8178,7 +8196,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8194,7 +8212,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8256,7 +8274,7 @@ a
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8266,7 +8284,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8292,7 +8310,7 @@ a
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8302,7 +8320,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8319,26 +8337,26 @@ a
             <span class="o">|</span> <span class="n">Fs</span> <span class="o">-&gt;</span> <span class="s2">"/// "</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">""</span>
         <span class="n">content</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
-        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">trimEnd</span> <span class="p">[</span><span class="o">||</span><span class="p">])</span>
-        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">" (test)"</span> <span class="o">&gt;&gt;</span> <span class="ow">not</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">Sm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">||</span><span class="p">])</span>
+        <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">" (test)"</span> <span class="o">&gt;&gt;</span> <span class="ow">not</span><span class="p">)</span>
         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
-            <span class="o">|</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="n">markdownComment</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span>
+            <span class="o">|</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="n">markdownComment</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span>
             <span class="o">|</span> <span class="n">line</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Replace</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s2">"^</span><span class="se">\\</span><span class="s2">s*"</span><span class="p">,</span> <span class="err">$</span><span class="s2">"$&amp;</span><span class="si">{markdownComment}</span><span class="s2">"</span><span class="p">)</span>
         <span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="o">|</span> <span class="n">Fs</span><span class="p">,</span> <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"fsharp"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="p">}</span> <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">trimmedContent</span> <span class="o">=</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span>
-        <span class="k">if</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"//// test"</span> <span class="o">||</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"//// ignore"</span>
+        <span class="n">let</span> <span class="n">trimmedContent</span> <span class="o">=</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span>
+        <span class="k">if</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"//// test"</span> <span class="o">||</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"//// ignore"</span>
         <span class="n">then</span> <span class="s2">""</span>
         <span class="k">else</span>
             <span class="n">content</span>
-            <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
-            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">String</span><span class="o">.</span><span class="n">trimStart</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"#r"</span> <span class="o">&gt;&gt;</span> <span class="ow">not</span><span class="p">)</span>
-            <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">filter</span> <span class="p">(</span><span class="n">Sm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"#r"</span> <span class="o">&gt;&gt;</span> <span class="ow">not</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="o">|</span> <span class="p">(</span><span class="n">Spi</span> <span class="o">|</span> <span class="n">Spir</span><span class="p">),</span> <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"spiral"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="p">}</span> <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">trimmedContent</span> <span class="o">=</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span>
-        <span class="k">if</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// // test"</span> <span class="o">||</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"// // ignore"</span>
+        <span class="n">let</span> <span class="n">trimmedContent</span> <span class="o">=</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span>
+        <span class="k">if</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // test"</span> <span class="o">||</span> <span class="n">trimmedContent</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"// // ignore"</span>
         <span class="n">then</span> <span class="s2">""</span>
         <span class="k">else</span> <span class="n">content</span>
     <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="s2">""</span>
@@ -8347,7 +8365,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8410,7 +8428,7 @@ a
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8420,7 +8438,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8432,14 +8450,14 @@ a
     <span class="n">blocks</span>
     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">formatBlock</span> <span class="n">output</span><span class="p">)</span>
     <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">filter</span> <span class="p">((</span><span class="o">&lt;&gt;</span><span class="p">)</span> <span class="s2">""</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+    <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
     <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8532,7 +8550,7 @@ let a = 3
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8542,7 +8560,7 @@ let a = 3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8562,29 +8580,29 @@ let a = 3
         <span class="k">match</span> <span class="n">blocks</span> <span class="k">with</span>
         <span class="o">|</span> <span class="p">{</span> <span class="n">magic</span> <span class="o">=</span> <span class="s2">"markdown"</span><span class="p">;</span> <span class="n">content</span> <span class="o">=</span> <span class="n">content</span> <span class="p">}</span> <span class="p">::</span> <span class="n">_</span>
             <span class="n">when</span> <span class="n">output</span> <span class="o">=</span> <span class="n">Fs</span>
-            <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"# "</span>
-            <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">")"</span>
+            <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"# "</span>
+            <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">")"</span>
             <span class="o">-&gt;</span>
             <span class="n">let</span> <span class="n">inline</span> <span class="n">indentBlock</span> <span class="p">(</span><span class="n">block</span> <span class="p">:</span> <span class="n">Block</span><span class="p">)</span> <span class="o">=</span>
                 <span class="p">{</span> <span class="n">block</span> <span class="k">with</span>
                     <span class="n">content</span> <span class="o">=</span>
                         <span class="n">block</span><span class="o">.</span><span class="n">content</span>
-                        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">split</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+                        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                         <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">fold</span>
                             <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">isMultiline</span><span class="p">)</span> <span class="n">line</span> <span class="o">-&gt;</span>
-                                <span class="n">let</span> <span class="n">trimmedLine</span> <span class="o">=</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">trim</span>
+                                <span class="n">let</span> <span class="n">trimmedLine</span> <span class="o">=</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span>
                                 <span class="k">if</span> <span class="n">trimmedLine</span> <span class="o">=</span> <span class="s2">""</span>
                                 <span class="n">then</span> <span class="s2">""</span> <span class="p">::</span> <span class="n">lines</span><span class="p">,</span> <span class="n">isMultiline</span>
                                 <span class="k">else</span>
                                     <span class="n">let</span> <span class="n">inline</span> <span class="n">singleQuoteLine</span> <span class="p">()</span> <span class="o">=</span>
                                         <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">sumBy</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="s1">'"'</span> <span class="o">&gt;&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Convert</span><span class="o">.</span><span class="n">ToInt32</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
-                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"'""'"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">"{"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">endsWith</span> <span class="s2">"{|"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"}"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"|}"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">contains</span> <span class="o">@</span><span class="s2">"'""'"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"{"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"{|"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"}"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
+                                        <span class="o">&amp;&amp;</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"|}"</span> <span class="o">|&gt;</span> <span class="ow">not</span>
 
-                                    <span class="k">match</span> <span class="n">isMultiline</span><span class="p">,</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">splitString</span> <span class="p">[</span><span class="o">|</span> <span class="err">$</span><span class="s2">"</span><span class="si">{q}{q}{q}</span><span class="s2">"</span> <span class="o">|</span><span class="p">]</span> <span class="k">with</span>
+                                    <span class="k">match</span> <span class="n">isMultiline</span><span class="p">,</span> <span class="n">trimmedLine</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">split_string</span> <span class="p">[</span><span class="o">|</span> <span class="err">$</span><span class="s2">"</span><span class="si">{q}{q}{q}</span><span class="s2">"</span> <span class="o">|</span><span class="p">]</span> <span class="k">with</span>
                                     <span class="o">|</span> <span class="n">false</span><span class="p">,</span> <span class="p">[</span><span class="o">|</span> <span class="n">_</span><span class="p">;</span> <span class="n">_</span> <span class="o">|</span><span class="p">]</span> <span class="o">-&gt;</span>
                                         <span class="err">$</span><span class="s2">"    </span><span class="si">{line}</span><span class="s2">"</span> <span class="p">::</span> <span class="n">lines</span><span class="p">,</span> <span class="n">true</span>
 
@@ -8594,13 +8612,13 @@ let a = 3
                                     <span class="o">|</span> <span class="n">false</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">singleQuoteLine</span> <span class="p">()</span> <span class="o">-&gt;</span>
                                         <span class="err">$</span><span class="s2">"    </span><span class="si">{line}</span><span class="s2">"</span> <span class="p">::</span> <span class="n">lines</span><span class="p">,</span> <span class="n">true</span>
 
-                                    <span class="o">|</span> <span class="n">false</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"#"</span> <span class="o">&amp;&amp;</span> <span class="n">block</span><span class="o">.</span><span class="n">magic</span> <span class="o">=</span> <span class="s2">"fsharp"</span> <span class="o">-&gt;</span>
+                                    <span class="o">|</span> <span class="n">false</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"#"</span> <span class="o">&amp;&amp;</span> <span class="n">block</span><span class="o">.</span><span class="n">magic</span> <span class="o">=</span> <span class="s2">"fsharp"</span> <span class="o">-&gt;</span>
                                         <span class="n">line</span> <span class="p">::</span> <span class="n">lines</span><span class="p">,</span> <span class="n">false</span>
 
                                     <span class="o">|</span> <span class="n">false</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span>
                                         <span class="err">$</span><span class="s2">"    </span><span class="si">{line}</span><span class="s2">"</span> <span class="p">::</span> <span class="n">lines</span><span class="p">,</span> <span class="n">false</span>
 
-                                    <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">singleQuoteLine</span> <span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">startsWith</span> <span class="s2">"    "</span> <span class="o">-&gt;</span>
+                                    <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">singleQuoteLine</span> <span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="s2">"    "</span> <span class="o">-&gt;</span>
                                         <span class="err">$</span><span class="s2">"    </span><span class="si">{line}</span><span class="s2">"</span> <span class="p">::</span> <span class="n">lines</span><span class="p">,</span> <span class="n">false</span>
 
                                     <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">singleQuoteLine</span> <span class="p">()</span> <span class="o">-&gt;</span>
@@ -8612,7 +8630,7 @@ let a = 3
                             <span class="p">([],</span> <span class="n">false</span><span class="p">)</span>
                         <span class="o">|&gt;</span> <span class="n">fst</span>
                         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
-                        <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+                        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
                 <span class="p">}</span>
 
             <span class="n">let</span> <span class="n">moduleName</span><span class="p">,</span> <span class="n">namespaceName</span> <span class="o">=</span>
@@ -8649,7 +8667,7 @@ let a = 3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8760,7 +8778,7 @@ let a = 3
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8902,7 +8920,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8946,7 +8964,7 @@ a
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8995,7 +9013,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9005,7 +9023,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9027,7 +9045,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9037,7 +9055,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9049,7 +9067,7 @@ inl x = 0i32
     <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"output: </span><span class="si">{output}</span><span class="s2"> / path: </span><span class="si">{path}</span><span class="s2"> / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"writeDibCode"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseDibCode</span> <span class="n">output</span> <span class="n">path</span>
-    <span class="n">let</span> <span class="n">outputPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replace</span> <span class="s2">".dib"</span> <span class="err">$</span><span class="s2">".{output |&gt; string |&gt; String.toLower}"</span>
+    <span class="n">let</span> <span class="n">outputPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">".dib"</span> <span class="err">$</span><span class="s2">".{output |&gt; string |&gt; Sm.to_lower}"</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">outputPath</span>
 <span class="p">}</span>
 </pre></div>
@@ -9058,7 +9076,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9068,7 +9086,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9090,7 +9108,7 @@ inl x = 0i32
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9129,7 +9147,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9139,7 +9157,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9169,7 +9187,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

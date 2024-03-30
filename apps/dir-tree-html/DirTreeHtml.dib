@@ -23,8 +23,10 @@
 #!fsharp
 
 #!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -32,6 +34,12 @@
 #!import ../../lib/fsharp/Networking.fs
 #!import ../../lib/fsharp/Runtime.fs
 #!import ../../lib/fsharp/FileSystem.fs
+
+#!fsharp
+
+#if !INTERACTIVE
+open Lib
+#endif
 
 #!fsharp
 
@@ -46,7 +54,12 @@ type FileSystemNode =
     | Root of FileSystemNode list
 
 let rec scanDirectory isRoot (basePath : string) (path : string) =
-    let relativePath = path.Replace(basePath, "").Replace("\\", "/").Replace("//", "/").TrimStart '/'
+    let relativePath =
+        path
+        |> Sm.replace basePath ""
+        |> Sm.replace "\\" "/"
+        |> Sm.replace "//" "/"
+        |> Sm.trim_start [| '/' |]
 
     let directories =
         path

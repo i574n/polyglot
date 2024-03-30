@@ -19,11 +19,20 @@
 #!fsharp
 
 #!import ../../lib/spiral/common.fsx
+#!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
+#!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
 #!import ../../lib/fsharp/Runtime.fs
+
+#!fsharp
+
+#if !INTERACTIVE
+open Lib
+#endif
 
 #!fsharp
 
@@ -42,7 +51,7 @@ let inline testPortOpen port = async {
         do! client.ConnectAsync ("127.0.0.1", port, ct) |> Async.awaitValueTaskUnit
         return true
     with ex ->
-        trace Verbose (fun () -> $"testPortOpen / ex: {ex |> formatException}") getLocals
+        trace Verbose (fun () -> $"testPortOpen / ex: {ex |> Sm.format_exception}") getLocals
         return false
 }
 

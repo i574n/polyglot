@@ -4,6 +4,10 @@ namespace Polyglot
 
 module Supervisor =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
     open FileSystem.Operators
     open Microsoft.AspNetCore.SignalR.Client
@@ -21,7 +25,7 @@ module Supervisor =
                 trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.Length: {result |> Option.ofObj |> Option.map String.length}") getLocals
                 return Some result
             with ex ->
-                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> formatException}") getLocals
+                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> Sm.format_exception}") getLocals
                 return None
         else
             trace Debug (fun () -> "sendJson / error: port not open") getLocals
@@ -73,7 +77,7 @@ module Supervisor =
                             CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
-                                if line |> String.contains $"Server bound to: http://localhost:{availablePort}" then
+                                if line |> Sm.contains $"Server bound to: http://localhost:{availablePort}" then
                                     do! Networking.waitForPortAccess (Some 500) true availablePort |> Async.Ignore
 
                                     let rec loop retry = async {
@@ -83,7 +87,7 @@ module Supervisor =
                                             let! pingResult = pingObj |> sendObj availablePort
                                             trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
                                         with ex ->
-                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> formatException}") getLocals
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> Sm.format_exception}") getLocals
                                             do! Async.Sleep 10
                                             do! loop (retry + 1)
                                     }
@@ -135,8 +139,8 @@ module Supervisor =
         let path =
             if Runtime.isWindows () |> not
             then path
-            else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> String.replace "\\" "/"
-        $"file:///{path |> String.trimStart [| '/' |]}"
+            else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> Sm.replace "\\" "/"
+        $"file:///{path |> Sm.trim_start [| '/' |]}"
 
     let inline getFilePathFromUri uri =
         match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
@@ -151,9 +155,9 @@ module Supervisor =
     let serializeObj obj =
             obj
             |> FSharp.Json.Json.serialize
-            |> String.replace "\\\\" "\\"
-            |> String.replace "\\r\\n" "\n"
-            |> String.replace "\\n" "\n"
+            |> Sm.replace "\\\\" "\\"
+            |> Sm.replace "\\r\\n" "\n"
+            |> Sm.replace "\\n" "\n"
 
     /// ## buildFile
 
@@ -186,7 +190,7 @@ module Supervisor =
                 | _ -> None
             )
             |> FSharp.Control.AsyncSeq.map (fun content ->
-                Some (content |> String.replace "\r\n" "\n"), None
+                Some (content |> Sm.replace "\r\n" "\n"), None
             )
 
         let inline printErrorData (data : {| uri : string; errors : RString list |}) =
@@ -194,7 +198,7 @@ module Supervisor =
             let errors =
                 data.errors
                 |> List.map snd
-                |> String.concat "\n"
+                |> Sm.concat "\n"
             $"{fileName}:\n{errors}"
 
         let errorsSeq =
@@ -242,7 +246,7 @@ module Supervisor =
                     | _ -> fsxContentResult, errors, typeErrorCount
             )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> String.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> Sm.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
                 match fsxContent, errors with
                 | None, [] when typeErrorCount > 2 -> false
                 | None, [] -> true
@@ -317,7 +321,7 @@ modules:
     let inline getFileTokenRange port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let! code = fullPath |> FileSystem.readAllTextAsync
-        let lines = code |> String.split [| '\n' |]
+        let lines = code |> Sm.split "\n"
 
         let token, disposable = Threading.newDisposableToken cancellationToken
         use _ = disposable

@@ -4,6 +4,10 @@ namespace Polyglot
 
 module DirTreeHtml =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open FileSystem.Operators
     open Falco.Markup
 
@@ -13,7 +17,12 @@ module DirTreeHtml =
         | Root of FileSystemNode list
 
     let rec scanDirectory isRoot (basePath : string) (path : string) =
-        let relativePath = path.Replace(basePath, "").Replace("\\", "/").Replace("//", "/").TrimStart '/'
+        let relativePath =
+            path
+            |> Sm.replace basePath ""
+            |> Sm.replace "\\" "/"
+            |> Sm.replace "//" "/"
+            |> Sm.trim_start [| '/' |]
 
         let directories =
             path

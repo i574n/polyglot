@@ -16,13 +16,16 @@ inl (</>) (a : string) (b : string) : string =
 // // ## create_temp_directory_name
 
 inl create_temp_directory_name () =
-    inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
 
-    ($'System.IO.Path.GetTempPath' () : string)
-    </> ($'$"{!root}"' : string)
-    </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
+            ($'System.IO.Path.GetTempPath' () : string)
+            </> ($'$"{!root}"' : string)
+            </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
+        | x => fun () => failwith $'$"create_temp_directory_name target: {!x}"'
 
 // // ## main
 
 inl main () =
-    $"let create_temp_directory_name x = !create_temp_directory_name x" : ()
+    $"let create_temp_directory_name () = !create_temp_directory_name ()" : ()

@@ -4,6 +4,10 @@ namespace Polyglot
 
 module DibParser =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
     open FParsec
 
@@ -16,7 +20,7 @@ module DibParser =
     let magicCommand =
         magicMarker
         >>. manyTill anyChar newline
-        |>> (System.String.Concat >> String.trim)
+        |>> (System.String.Concat >> Sm.trim)
 
     /// ## content
 
@@ -25,7 +29,7 @@ module DibParser =
         |> attempt
         |> lookAhead
         |> manyTill anyChar
-        |>> (System.String.Concat >> String.trim)
+        |>> (System.String.Concat >> Sm.trim)
 
     /// ## Block
 
@@ -79,26 +83,26 @@ module DibParser =
                 | Fs -> "/// "
                 | _ -> ""
             content
-            |> String.split [| '\n' |]
-            |> Array.map (String.trimEnd [||])
-            |> Array.filter (String.endsWith " (test)" >> not)
+            |> Sm.split "\n"
+            |> Array.map (Sm.trim_end [||])
+            |> Array.filter (Sm.ends_with " (test)" >> not)
             |> Array.map (function
-                | "" -> markdownComment |> String.trim
+                | "" -> markdownComment |> Sm.trim
                 | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", $"$&{markdownComment}")
             )
-            |> String.concat "\n"
+            |> Sm.concat "\n"
         | Fs, { magic = "fsharp"; content = content } ->
-            let trimmedContent = content |> String.trim
-            if trimmedContent |> String.startsWith "//// test" || trimmedContent |> String.startsWith "//// ignore"
+            let trimmedContent = content |> Sm.trim
+            if trimmedContent |> Sm.starts_with "//// test" || trimmedContent |> Sm.starts_with "//// ignore"
             then ""
             else
                 content
-                |> String.split [| '\n' |]
-                |> Array.filter (String.trimStart [||] >> String.startsWith "#r" >> not)
-                |> String.concat "\n"
+                |> Sm.split "\n"
+                |> Array.filter (Sm.trim_start [||] >> Sm.starts_with "#r" >> not)
+                |> Sm.concat "\n"
         | (Spi | Spir), { magic = "spiral"; content = content } ->
-            let trimmedContent = content |> String.trim
-            if trimmedContent |> String.startsWith "// // test" || trimmedContent |> String.startsWith "// // ignore"
+            let trimmedContent = content |> Sm.trim
+            if trimmedContent |> Sm.starts_with "// // test" || trimmedContent |> Sm.starts_with "// // ignore"
             then ""
             else content
         | _ -> ""
@@ -109,7 +113,7 @@ module DibParser =
         blocks
         |> List.map (formatBlock output)
         |> List.filter ((<>) "")
-        |> String.concat "\n\n"
+        |> Sm.concat "\n\n"
         |> fun s -> s + "\n"
 
     /// ## parse
@@ -126,29 +130,29 @@ module DibParser =
             match blocks with
             | { magic = "markdown"; content = content } :: _
                 when output = Fs
-                && content |> String.startsWith "# "
-                && content |> String.endsWith ")"
+                && content |> Sm.starts_with "# "
+                && content |> Sm.ends_with ")"
                 ->
                 let inline indentBlock (block : Block) =
                     { block with
                         content =
                             block.content
-                            |> String.split [| '\n' |]
+                            |> Sm.split "\n"
                             |> Array.fold
                                 (fun (lines, isMultiline) line ->
-                                    let trimmedLine = line |> String.trim
+                                    let trimmedLine = line |> Sm.trim
                                     if trimmedLine = ""
                                     then "" :: lines, isMultiline
                                     else
                                         let inline singleQuoteLine () =
                                             trimmedLine |> Seq.sumBy ((=) '"' >> System.Convert.ToInt32) = 1
-                                            && trimmedLine |> String.contains @"'""'" |> not
-                                            && trimmedLine |> String.endsWith "{" |> not
-                                            && trimmedLine |> String.endsWith "{|" |> not
-                                            && trimmedLine |> String.startsWith "}" |> not
-                                            && trimmedLine |> String.startsWith "|}" |> not
+                                            && trimmedLine |> Sm.contains @"'""'" |> not
+                                            && trimmedLine |> Sm.ends_with "{" |> not
+                                            && trimmedLine |> Sm.ends_with "{|" |> not
+                                            && trimmedLine |> Sm.starts_with "}" |> not
+                                            && trimmedLine |> Sm.starts_with "|}" |> not
 
-                                        match isMultiline, trimmedLine |> String.splitString [| $"{q}{q}{q}" |] with
+                                        match isMultiline, trimmedLine |> Sm.split_string [| $"{q}{q}{q}" |] with
                                         | false, [| _; _ |] ->
                                             $"    {line}" :: lines, true
 
@@ -158,13 +162,13 @@ module DibParser =
                                         | false, _ when singleQuoteLine () ->
                                             $"    {line}" :: lines, true
 
-                                        | false, _ when line |> String.startsWith "#" && block.magic = "fsharp" ->
+                                        | false, _ when line |> Sm.starts_with "#" && block.magic = "fsharp" ->
                                             line :: lines, false
 
                                         | false, _ ->
                                             $"    {line}" :: lines, false
 
-                                        | true, _ when singleQuoteLine () && line |> String.startsWith "    " ->
+                                        | true, _ when singleQuoteLine () && line |> Sm.starts_with "    " ->
                                             $"    {line}" :: lines, false
 
                                         | true, _ when singleQuoteLine () ->
@@ -176,7 +180,7 @@ module DibParser =
                                 ([], false)
                             |> fst
                             |> List.rev
-                            |> String.concat "\n"
+                            |> Sm.concat "\n"
                     }
 
                 let moduleName, namespaceName =
@@ -226,7 +230,7 @@ module {moduleName} ="
         let getLocals () = $"output: {output} / path: {path} / {getLocals ()}"
         trace Debug (fun () -> "writeDibCode") getLocals
         let! result = parseDibCode output path
-        let outputPath = path |> String.replace ".dib" $".{output |> string |> String.toLower}"
+        let outputPath = path |> Sm.replace ".dib" $".{output |> string |> Sm.to_lower}"
         do! result |> FileSystem.writeAllTextAsync outputPath
     }
 

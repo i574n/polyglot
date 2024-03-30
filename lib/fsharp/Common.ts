@@ -1,25 +1,17 @@
-import { interpolate, toText, trimStart, trimEnd, substring } from "../../fable_modules/fable-library-ts.4.14.0/String.js";
-import { int32 } from "../../fable_modules/fable-library-ts.4.14.0/Int32.js";
 import { Union } from "../../fable_modules/fable-library-ts.4.14.0/Types.js";
 import { union_type, TypeInfo } from "../../fable_modules/fable-library-ts.4.14.0/Reflection.js";
 import { compare, createAtom } from "../../fable_modules/fable-library-ts.4.14.0/Util.js";
-import { value as value_1, Option } from "../../fable_modules/fable-library-ts.4.14.0/Option.js";
+import { int32 } from "../../fable_modules/fable-library-ts.4.14.0/Int32.js";
+import { value, Option } from "../../fable_modules/fable-library-ts.4.14.0/Option.js";
 import { op_Subtraction, toInt64, int64 } from "../../fable_modules/fable-library-ts.4.14.0/BigInt.js";
 import { create, getTicks, now, toString } from "../../fable_modules/fable-library-ts.4.14.0/Date.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../fable_modules/fable-library-ts.4.14.0/TimeSpan.js";
+import { Sm_trim_start, Sm_trim_end } from "../../../../../../../lib/spiral/lib.fsx";
+import { interpolate, toText } from "../../fable_modules/fable-library-ts.4.14.0/String.js";
 
 export const nl = "\n";
 
 export const q = "\"";
-
-export function String_ellipsis(max: int32, value: string): string {
-    if (value.length <= max) {
-        return value;
-    }
-    else {
-        return `${substring(value, 0, max)}...`;
-    }
-}
 
 export type TraceLevel_$union = 
     | TraceLevel<0>
@@ -149,8 +141,8 @@ function replStart(): Option<int64> {
 export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (() => string)): void {
     traceRaw(level, (): string => {
         let matchValue: Option<int64>, replStart_1: int64, t: number;
-        const trimChars_2: string[] = [" ", "/"];
-        return trimEnd(trimStart(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [toString((matchValue = replStart(), (matchValue == null) ? now() : ((replStart_1 = value_1(matchValue), (t = fromTicks(toInt64(op_Subtraction(getTicks(now()), replStart_1))), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t)))))), "HH:mm:ss"), traceCount(), level, fn(), getLocals()]))), ...trimChars_2);
+        const time: string = toString((matchValue = replStart(), (matchValue == null) ? now() : ((replStart_1 = value(matchValue), (t = fromTicks(toInt64(op_Subtraction(getTicks(now()), replStart_1))), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t)))))), "HH:mm:ss");
+        return Sm_trim_end([" ", "/"])(Sm_trim_start([])(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, traceCount(), level, fn(), getLocals()]))));
     });
 }
 

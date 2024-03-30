@@ -1,5 +1,9 @@
 /// ## Perf (Polyglot)
 
+#if !INTERACTIVE
+open Lib
+#endif
+
 /// ## TestCaseResult
 
 type TestCaseResult =
@@ -18,7 +22,7 @@ let run count (solutions: (string * ('TInput -> 'TExpected)) list) (input, expec
         | :? System.Collections.ICollection as input ->
             System.Linq.Enumerable.Cast<obj> input
             |> Seq.map string
-            |> String.concat ","
+            |> Sm.concat ","
         | _ -> input.ToString ()
 
     printfn ""
