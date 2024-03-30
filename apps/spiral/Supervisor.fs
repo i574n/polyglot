@@ -373,8 +373,9 @@ modules:
         | Build_File of string * string
         | File_Token_Range of string * string
         | Execute_Command of string
-        | Timeout of int
-        | Port of int
+        | [<Argu.ArguAttributes.Unique>] Timeout of int
+        | [<Argu.ArguAttributes.Unique>] Port of int
+        | [<Argu.ArguAttributes.Unique>] Parallel
 
         interface Argu.IArgParserTemplate with
             member s.Usage =
@@ -384,6 +385,7 @@ modules:
                 | Execute_Command _ -> nameof Execute_Command
                 | Timeout _ -> nameof Timeout
                 | Port _ -> nameof Port
+                | Parallel -> nameof Parallel
 
     /// ## main
 
@@ -426,6 +428,8 @@ modules:
             match argsMap |> Map.tryFind (nameof Arguments.Port) with
             | Some [ Arguments.Port port ] -> Some port
             | _ -> None
+
+        let isParallel = argsMap |> Map.containsKey (nameof Arguments.Parallel)
 
         async {
             let port = port |> Option.defaultWith getCompilerPort
@@ -484,7 +488,10 @@ modules:
             return!
                 [| buildFileAsync; fileTokenRangeAsync; executeCommandAsync |]
                 |> Seq.collect id
-                |> fun x -> Async.Parallel (x, float System.Environment.ProcessorCount * 0.75 |> ceil |> int)
+                |> fun x ->
+                    if isParallel
+                    then Async.Parallel (x, float System.Environment.ProcessorCount * 0.75 |> ceil |> int)
+                    else Async.Sequential x
                 |> Async.map Array.sum
         }
         |> Async.runWithTimeout timeout
