@@ -39,11 +39,11 @@ type Mut0 = {mutable l0 : int32}
 and Mut1 = {mutable l0 : int32; mutable l1 : string}
 and Mut2 = {mutable l0 : int32; mutable l1 : num_complex_Complex<float>}
 and [<Struct>] US0 =
-    | US0_0
-    | US0_1 of f1_0 : num_complex_Complex<float>
+    | US0_0 of f0_0 : num_complex_Complex<float>
+    | US0_1
 and UH0 =
-    | UH0_0 of float * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of float * UH0
 and Mut3 = {mutable l0 : int32; mutable l1 : float}
 let rec method2 () : float =
     2.0
@@ -351,7 +351,7 @@ and method41 (v0 : pyo3_Python, v1 : string, v2 : num_complex_Complex<float>) : 
     let v97 : Result<num_complex_Complex<float>, std_string_String> = Ok v96
     v97
 and closure5 () (v0 : num_complex_Complex<float>) : US0 =
-    US0_1(v0)
+    US0_0(v0)
 and method42 () : float =
     3.141592653589793
 and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_Complex<float> =
@@ -421,7 +421,7 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v55 : string = "v54.ok()"
         let v56 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v55
         let v57 : (num_complex_Complex<float> -> US0) = closure5()
-        let v58 : US0 = US0_0
+        let v58 : US0 = US0_1
         let v59 : US0 = v56 |> Option.map v57 |> Option.defaultValue v58
         let v60 : string = "f64::NAN"
         let v61 : float = Fable.Core.RustInterop.emitRustExpr () v60
@@ -434,9 +434,9 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
         let v68 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v67
         let v71 : num_complex_Complex<float> =
             match v59 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v68
-            | US0_1(v69) -> (* Some *)
+            | US0_0(v69) -> (* Some *)
                 v69
         let v72 : float = method42()
         let v73 : float = method3(v72)
@@ -545,7 +545,7 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                     let v162 : Result<num_complex_Complex<float>, std_string_String> = method41(v0, v160, v161)
                     let v163 : string = "v162.ok()"
                     let v164 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v163
-                    let v165 : US0 = US0_0
+                    let v165 : US0 = US0_1
                     let v166 : US0 = v164 |> Option.map v57 |> Option.defaultValue v165
                     let v167 : string = "f64::NAN"
                     let v168 : float = Fable.Core.RustInterop.emitRustExpr () v167
@@ -558,9 +558,9 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                     let v175 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v174
                     let v178 : num_complex_Complex<float> =
                         match v166 with
-                        | US0_0 -> (* None *)
+                        | US0_1 -> (* None *)
                             v175
-                        | US0_1(v176) -> (* Some *)
+                        | US0_0(v176) -> (* Some *)
                             v176
                     let v179 : float = method42()
                     let v180 : float = method3(v179)
@@ -669,7 +669,7 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                 let v269 : Result<num_complex_Complex<float>, std_string_String> = method41(v0, v267, v268)
                                 let v270 : string = "v269.ok()"
                                 let v271 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v270
-                                let v272 : US0 = US0_0
+                                let v272 : US0 = US0_1
                                 let v273 : US0 = v271 |> Option.map v57 |> Option.defaultValue v272
                                 let v274 : string = "f64::NAN"
                                 let v275 : float = Fable.Core.RustInterop.emitRustExpr () v274
@@ -682,9 +682,9 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                 let v282 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v281
                                 let v285 : num_complex_Complex<float> =
                                     match v273 with
-                                    | US0_0 -> (* None *)
+                                    | US0_1 -> (* None *)
                                         v282
-                                    | US0_1(v283) -> (* Some *)
+                                    | US0_0(v283) -> (* Some *)
                                         v283
                                 let v286 : float = method42()
                                 let v287 : float = method3(v286)
@@ -793,7 +793,7 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                             let v376 : Result<num_complex_Complex<float>, std_string_String> = method41(v0, v374, v375)
                                             let v377 : string = "v376.ok()"
                                             let v378 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v377
-                                            let v379 : US0 = US0_0
+                                            let v379 : US0 = US0_1
                                             let v380 : US0 = v378 |> Option.map v57 |> Option.defaultValue v379
                                             let v381 : string = "f64::NAN"
                                             let v382 : float = Fable.Core.RustInterop.emitRustExpr () v381
@@ -806,9 +806,9 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                             let v389 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v388
                                             let v392 : num_complex_Complex<float> =
                                                 match v380 with
-                                                | US0_0 -> (* None *)
+                                                | US0_1 -> (* None *)
                                                     v389
-                                                | US0_1(v390) -> (* Some *)
+                                                | US0_0(v390) -> (* Some *)
                                                     v390
                                             let v393 : float = method42()
                                             let v394 : float = method3(v393)
@@ -917,7 +917,7 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                         let v483 : Result<num_complex_Complex<float>, std_string_String> = method41(v0, v481, v482)
                                                         let v484 : string = "v483.ok()"
                                                         let v485 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v484
-                                                        let v486 : US0 = US0_0
+                                                        let v486 : US0 = US0_1
                                                         let v487 : US0 = v485 |> Option.map v57 |> Option.defaultValue v486
                                                         let v488 : string = "f64::NAN"
                                                         let v489 : float = Fable.Core.RustInterop.emitRustExpr () v488
@@ -930,9 +930,9 @@ and method33 (v0 : pyo3_Python, v1 : num_complex_Complex<float>) : num_complex_C
                                                         let v496 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v495
                                                         let v499 : num_complex_Complex<float> =
                                                             match v487 with
-                                                            | US0_0 -> (* None *)
+                                                            | US0_1 -> (* None *)
                                                                 v496
-                                                            | US0_1(v497) -> (* Some *)
+                                                            | US0_0(v497) -> (* Some *)
                                                                 v497
                                                         let v500 : float = method42()
                                                         let v501 : float = method3(v500)
@@ -1119,7 +1119,7 @@ and method1 (v0 : pyo3_Python) : unit =
         let v23 : string = "v21.ok()"
         let v24 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v23
         let v25 : (num_complex_Complex<float> -> US0) = closure5()
-        let v26 : US0 = US0_0
+        let v26 : US0 = US0_1
         let v27 : US0 = v24 |> Option.map v25 |> Option.defaultValue v26
         let v28 : string = "f64::NAN"
         let v29 : float = Fable.Core.RustInterop.emitRustExpr () v28
@@ -1132,9 +1132,9 @@ and method1 (v0 : pyo3_Python) : unit =
         let v36 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v35
         let v39 : num_complex_Complex<float> =
             match v27 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v36
-            | US0_1(v37) -> (* Some *)
+            | US0_0(v37) -> (* Some *)
                 v37
         let v40 : num_complex_Complex<float> = method14(v39)
         let v41 : string = "v40.im"
@@ -1217,7 +1217,7 @@ and method47 (v0 : pyo3_Python) : unit =
     let v10 : string = "v8.ok()"
     let v11 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : (num_complex_Complex<float> -> US0) = closure5()
-    let v13 : US0 = US0_0
+    let v13 : US0 = US0_1
     let v14 : US0 = v11 |> Option.map v12 |> Option.defaultValue v13
     let v15 : string = "f64::NAN"
     let v16 : float = Fable.Core.RustInterop.emitRustExpr () v15
@@ -1230,9 +1230,9 @@ and method47 (v0 : pyo3_Python) : unit =
     let v23 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v22
     let v26 : num_complex_Complex<float> =
         match v14 with
-        | US0_0 -> (* None *)
+        | US0_1 -> (* None *)
             v23
-        | US0_1(v24) -> (* Some *)
+        | US0_0(v24) -> (* Some *)
             v24
     let v27 : num_complex_Complex<float> = method13(v26)
     let v28 : string = "v27.re"
@@ -1301,30 +1301,30 @@ and method46 () : unit =
     Fable.Core.RustInterop.emitRustExpr () v11
     ()
 and method51 () : UH0 =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(-40.0, v0)
-    let v2 : UH0 = UH0_0(-38.0, v1)
-    let v3 : UH0 = UH0_0(-36.0, v2)
-    let v4 : UH0 = UH0_0(-34.0, v3)
-    let v5 : UH0 = UH0_0(-32.0, v4)
-    let v6 : UH0 = UH0_0(-30.0, v5)
-    let v7 : UH0 = UH0_0(-28.0, v6)
-    let v8 : UH0 = UH0_0(-26.0, v7)
-    let v9 : UH0 = UH0_0(-24.0, v8)
-    let v10 : UH0 = UH0_0(-22.0, v9)
-    let v11 : UH0 = UH0_0(-20.0, v10)
-    let v12 : UH0 = UH0_0(-18.0, v11)
-    let v13 : UH0 = UH0_0(-16.0, v12)
-    let v14 : UH0 = UH0_0(-14.0, v13)
-    let v15 : UH0 = UH0_0(-12.0, v14)
-    let v16 : UH0 = UH0_0(-10.0, v15)
-    let v17 : UH0 = UH0_0(-8.0, v16)
-    let v18 : UH0 = UH0_0(-6.0, v17)
-    let v19 : UH0 = UH0_0(-4.0, v18)
-    UH0_0(-2.0, v19)
+    let v0 : UH0 = UH0_0
+    let v1 : UH0 = UH0_1(-40.0, v0)
+    let v2 : UH0 = UH0_1(-38.0, v1)
+    let v3 : UH0 = UH0_1(-36.0, v2)
+    let v4 : UH0 = UH0_1(-34.0, v3)
+    let v5 : UH0 = UH0_1(-32.0, v4)
+    let v6 : UH0 = UH0_1(-30.0, v5)
+    let v7 : UH0 = UH0_1(-28.0, v6)
+    let v8 : UH0 = UH0_1(-26.0, v7)
+    let v9 : UH0 = UH0_1(-24.0, v8)
+    let v10 : UH0 = UH0_1(-22.0, v9)
+    let v11 : UH0 = UH0_1(-20.0, v10)
+    let v12 : UH0 = UH0_1(-18.0, v11)
+    let v13 : UH0 = UH0_1(-16.0, v12)
+    let v14 : UH0 = UH0_1(-14.0, v13)
+    let v15 : UH0 = UH0_1(-12.0, v14)
+    let v16 : UH0 = UH0_1(-10.0, v15)
+    let v17 : UH0 = UH0_1(-8.0, v16)
+    let v18 : UH0 = UH0_1(-6.0, v17)
+    let v19 : UH0 = UH0_1(-4.0, v18)
+    UH0_1(-2.0, v19)
 and method52 (v0 : pyo3_Python, v1 : UH0) : unit =
     match v1 with
-    | UH0_0(v2, v3) -> (* Cons *)
+    | UH0_1(v2, v3) -> (* Cons *)
         let v4 : float = method31(v2)
         let v5 : float = method3(v4)
         let v6 : float = method4()
@@ -1337,7 +1337,7 @@ and method52 (v0 : pyo3_Python, v1 : UH0) : unit =
         let v13 : string = "v11.ok()"
         let v14 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v13
         let v15 : (num_complex_Complex<float> -> US0) = closure5()
-        let v16 : US0 = US0_0
+        let v16 : US0 = US0_1
         let v17 : US0 = v14 |> Option.map v15 |> Option.defaultValue v16
         let v18 : string = "f64::NAN"
         let v19 : float = Fable.Core.RustInterop.emitRustExpr () v18
@@ -1350,9 +1350,9 @@ and method52 (v0 : pyo3_Python, v1 : UH0) : unit =
         let v26 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v25
         let v29 : num_complex_Complex<float> =
             match v17 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v26
-            | US0_1(v27) -> (* Some *)
+            | US0_0(v27) -> (* Some *)
                 v27
         let v30 : num_complex_Complex<float> = method13(v29)
         let v31 : string = "v30.re"
@@ -1385,7 +1385,7 @@ and method52 (v0 : pyo3_Python, v1 : UH0) : unit =
         if v47 then
             failwith<unit> v46
         method52(v0, v3)
-    | UH0_1 -> (* Nil *)
+    | UH0_0 -> (* Nil *)
         ()
 and method50 (v0 : pyo3_Python) : unit =
     let v1 : UH0 = method51()
@@ -1471,7 +1471,7 @@ and method54 (v0 : pyo3_Python) : unit =
         let v42 : string = "v40.ok()"
         let v43 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v42
         let v44 : (num_complex_Complex<float> -> US0) = closure5()
-        let v45 : US0 = US0_0
+        let v45 : US0 = US0_1
         let v46 : US0 = v43 |> Option.map v44 |> Option.defaultValue v45
         let v47 : string = "f64::NAN"
         let v48 : float = Fable.Core.RustInterop.emitRustExpr () v47
@@ -1484,9 +1484,9 @@ and method54 (v0 : pyo3_Python) : unit =
         let v55 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v54
         let v58 : num_complex_Complex<float> =
             match v46 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v55
-            | US0_1(v56) -> (* Some *)
+            | US0_0(v56) -> (* Some *)
                 v56
         let v59 : num_complex_Complex<float> = method13(v58)
         let v60 : string = "v59.re"
@@ -1578,7 +1578,7 @@ and method64 (v0 : pyo3_Python) : unit =
         let v17 : string = "v15.ok()"
         let v18 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v17
         let v19 : (num_complex_Complex<float> -> US0) = closure5()
-        let v20 : US0 = US0_0
+        let v20 : US0 = US0_1
         let v21 : US0 = v18 |> Option.map v19 |> Option.defaultValue v20
         let v22 : string = "f64::NAN"
         let v23 : float = Fable.Core.RustInterop.emitRustExpr () v22
@@ -1591,9 +1591,9 @@ and method64 (v0 : pyo3_Python) : unit =
         let v30 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v29
         let v33 : num_complex_Complex<float> =
             match v21 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v30
-            | US0_1(v31) -> (* Some *)
+            | US0_0(v31) -> (* Some *)
                 v31
         let v34 : num_complex_Complex<float> = method13(v33)
         let v35 : string = "v34.re"
@@ -1662,7 +1662,7 @@ and method67 (v0 : pyo3_Python) : unit =
     let v10 : string = "v8.ok()"
     let v11 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : (num_complex_Complex<float> -> US0) = closure5()
-    let v13 : US0 = US0_0
+    let v13 : US0 = US0_1
     let v14 : US0 = v11 |> Option.map v12 |> Option.defaultValue v13
     let v15 : string = "f64::NAN"
     let v16 : float = Fable.Core.RustInterop.emitRustExpr () v15
@@ -1675,9 +1675,9 @@ and method67 (v0 : pyo3_Python) : unit =
     let v23 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v22
     let v26 : num_complex_Complex<float> =
         match v14 with
-        | US0_0 -> (* None *)
+        | US0_1 -> (* None *)
             v23
-        | US0_1(v24) -> (* Some *)
+        | US0_0(v24) -> (* Some *)
             v24
     let v27 : num_complex_Complex<float> = method13(v26)
     let v28 : string = "v27.re"
@@ -1744,7 +1744,7 @@ and method69 (v0 : pyo3_Python) : unit =
     let v10 : string = "v8.ok()"
     let v11 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : (num_complex_Complex<float> -> US0) = closure5()
-    let v13 : US0 = US0_0
+    let v13 : US0 = US0_1
     let v14 : US0 = v11 |> Option.map v12 |> Option.defaultValue v13
     let v15 : string = "f64::NAN"
     let v16 : float = Fable.Core.RustInterop.emitRustExpr () v15
@@ -1757,9 +1757,9 @@ and method69 (v0 : pyo3_Python) : unit =
     let v23 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v22
     let v26 : num_complex_Complex<float> =
         match v14 with
-        | US0_0 -> (* None *)
+        | US0_1 -> (* None *)
             v23
-        | US0_1(v24) -> (* Some *)
+        | US0_0(v24) -> (* Some *)
             v24
     let v27 : num_complex_Complex<float> = method13(v5)
     let v28 : string = "v27.re"
@@ -1779,7 +1779,7 @@ and method69 (v0 : pyo3_Python) : unit =
     let v42 : num_complex_Complex<float> = method33(v0, v38)
     let v43 : string = "v41.ok()"
     let v44 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v43
-    let v45 : US0 = US0_0
+    let v45 : US0 = US0_1
     let v46 : US0 = v44 |> Option.map v12 |> Option.defaultValue v45
     let v47 : string = "f64::NAN"
     let v48 : float = Fable.Core.RustInterop.emitRustExpr () v47
@@ -1792,9 +1792,9 @@ and method69 (v0 : pyo3_Python) : unit =
     let v55 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v54
     let v58 : num_complex_Complex<float> =
         match v46 with
-        | US0_0 -> (* None *)
+        | US0_1 -> (* None *)
             v55
-        | US0_1(v56) -> (* Some *)
+        | US0_0(v56) -> (* Some *)
             v56
     let v59 : string = "v58.conj()"
     let v60 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v59
@@ -1871,7 +1871,7 @@ and method72 (v0 : pyo3_Python) : unit =
     let v10 : string = "v8.ok()"
     let v11 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v10
     let v12 : (num_complex_Complex<float> -> US0) = closure5()
-    let v13 : US0 = US0_0
+    let v13 : US0 = US0_1
     let v14 : US0 = v11 |> Option.map v12 |> Option.defaultValue v13
     let v15 : string = "f64::NAN"
     let v16 : float = Fable.Core.RustInterop.emitRustExpr () v15
@@ -1884,9 +1884,9 @@ and method72 (v0 : pyo3_Python) : unit =
     let v23 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v22
     let v26 : num_complex_Complex<float> =
         match v14 with
-        | US0_0 -> (* None *)
+        | US0_1 -> (* None *)
             v23
-        | US0_1(v24) -> (* Some *)
+        | US0_0(v24) -> (* Some *)
             v24
     let v27 : num_complex_Complex<float> = method13(v26)
     let v28 : string = "v27.re"
@@ -1964,7 +1964,7 @@ and method76 (v0 : pyo3_Python) : unit =
         let v16 : string = "v14.ok()"
         let v17 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v16
         let v18 : (num_complex_Complex<float> -> US0) = closure5()
-        let v19 : US0 = US0_0
+        let v19 : US0 = US0_1
         let v20 : US0 = v17 |> Option.map v18 |> Option.defaultValue v19
         let v21 : string = "f64::NAN"
         let v22 : float = Fable.Core.RustInterop.emitRustExpr () v21
@@ -1977,9 +1977,9 @@ and method76 (v0 : pyo3_Python) : unit =
         let v29 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v28
         let v32 : num_complex_Complex<float> =
             match v20 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v29
-            | US0_1(v30) -> (* Some *)
+            | US0_0(v30) -> (* Some *)
                 v30
         let v33 : num_complex_Complex<float> = method13(v32)
         let v34 : string = "v33.re"
@@ -2091,7 +2091,7 @@ and method80 (v0 : pyo3_Python) : unit =
         let v37 : string = "v35.ok()"
         let v38 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v37
         let v39 : (num_complex_Complex<float> -> US0) = closure5()
-        let v40 : US0 = US0_0
+        let v40 : US0 = US0_1
         let v41 : US0 = v38 |> Option.map v39 |> Option.defaultValue v40
         let v42 : string = "f64::NAN"
         let v43 : float = Fable.Core.RustInterop.emitRustExpr () v42
@@ -2104,9 +2104,9 @@ and method80 (v0 : pyo3_Python) : unit =
         let v50 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v49
         let v53 : num_complex_Complex<float> =
             match v41 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v50
-            | US0_1(v51) -> (* Some *)
+            | US0_0(v51) -> (* Some *)
                 v51
         let v54 : num_complex_Complex<float> = method13(v53)
         let v55 : string = "v54.re"
@@ -2211,7 +2211,7 @@ and method89 (v0 : pyo3_Python) : unit =
         let v32 : string = "v30.ok()"
         let v33 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v32
         let v34 : (num_complex_Complex<float> -> US0) = closure5()
-        let v35 : US0 = US0_0
+        let v35 : US0 = US0_1
         let v36 : US0 = v33 |> Option.map v34 |> Option.defaultValue v35
         let v37 : string = "f64::NAN"
         let v38 : float = Fable.Core.RustInterop.emitRustExpr () v37
@@ -2224,9 +2224,9 @@ and method89 (v0 : pyo3_Python) : unit =
         let v45 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v44
         let v48 : num_complex_Complex<float> =
             match v36 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v45
-            | US0_1(v46) -> (* Some *)
+            | US0_0(v46) -> (* Some *)
                 v46
         let v49 : float = method2()
         let v50 : float = method3(v49)
@@ -2285,7 +2285,7 @@ and method89 (v0 : pyo3_Python) : unit =
         let v103 : Result<num_complex_Complex<float>, std_string_String> = method41(v0, v101, v102)
         let v104 : string = "v103.ok()"
         let v105 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v104
-        let v106 : US0 = US0_0
+        let v106 : US0 = US0_1
         let v107 : US0 = v105 |> Option.map v34 |> Option.defaultValue v106
         let v108 : string = "f64::NAN"
         let v109 : float = Fable.Core.RustInterop.emitRustExpr () v108
@@ -2298,9 +2298,9 @@ and method89 (v0 : pyo3_Python) : unit =
         let v116 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v115
         let v119 : num_complex_Complex<float> =
             match v107 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v116
-            | US0_1(v117) -> (* Some *)
+            | US0_0(v117) -> (* Some *)
                 v117
         let v120 : string = "v93 * v119"
         let v121 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v120
@@ -2323,7 +2323,7 @@ and method89 (v0 : pyo3_Python) : unit =
         let v138 : num_complex_Complex<float> = method33(v0, v134)
         let v139 : string = "v137.ok()"
         let v140 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v139
-        let v141 : US0 = US0_0
+        let v141 : US0 = US0_1
         let v142 : US0 = v140 |> Option.map v34 |> Option.defaultValue v141
         let v143 : string = "f64::NAN"
         let v144 : float = Fable.Core.RustInterop.emitRustExpr () v143
@@ -2336,9 +2336,9 @@ and method89 (v0 : pyo3_Python) : unit =
         let v151 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v150
         let v154 : num_complex_Complex<float> =
             match v142 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v151
-            | US0_1(v152) -> (* Some *)
+            | US0_0(v152) -> (* Some *)
                 v152
         let v155 : string = "v121 * v154"
         let v156 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v155
@@ -2459,7 +2459,7 @@ and method97 (v0 : pyo3_Python) : unit =
         let v31 : string = "v29.ok()"
         let v32 : num_complex_Complex<float> option = Fable.Core.RustInterop.emitRustExpr () v31
         let v33 : (num_complex_Complex<float> -> US0) = closure5()
-        let v34 : US0 = US0_0
+        let v34 : US0 = US0_1
         let v35 : US0 = v32 |> Option.map v33 |> Option.defaultValue v34
         let v36 : string = "f64::NAN"
         let v37 : float = Fable.Core.RustInterop.emitRustExpr () v36
@@ -2472,9 +2472,9 @@ and method97 (v0 : pyo3_Python) : unit =
         let v44 : num_complex_Complex<float> = Fable.Core.RustInterop.emitRustExpr () v43
         let v47 : num_complex_Complex<float> =
             match v35 with
-            | US0_0 -> (* None *)
+            | US0_1 -> (* None *)
                 v44
-            | US0_1(v45) -> (* Some *)
+            | US0_0(v45) -> (* Some *)
                 v45
         let v48 : num_complex_Complex<float> = method13(v47)
         let v49 : string = "v48.re"

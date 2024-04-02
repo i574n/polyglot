@@ -50,7 +50,7 @@ open Lib
 #!fsharp
 
 open Common
-open FileSystem.Operators
+open File_system.Operators
 open Microsoft.AspNetCore.SignalR.Client
 
 #!markdown
@@ -361,7 +361,7 @@ let inline buildFile timeout port cancellationToken path = async {
 #!fsharp
 
 let inline persistCode code = async {
-    let tempDir = FileSystem.createTempDirectory ()
+    let tempDir = File_system.create_temp_directory ()
 
     let mainPath = tempDir </> "main.spi"
     do! code |> FileSystem.writeAllTextAsync mainPath

@@ -8811,74 +8811,75 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : exn
+    | US0_0 of f0_0 : exn
+    | US0_1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : string
+    | US1_0 of f0_0 : string
+    | US1_1
 let rec closure0 () () : unit =
     failwith&lt;unit&gt; "test"
 and closure1 () (v0 : exn) : US0 =
-    US0_1(v0)
+    US0_0(v0)
 and method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : (unit -&gt; unit) = closure0()
-    let v1 : US0 = US0_0
+    let v1 : US0 = US0_1
     let v2 : (exn -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; ex |&gt; v2
-    let v14 : US1 =
+    let v15 : US1 =
         match v3 with
-        | US0_0 -&gt; (* None *)
-            US1_0
-        | US0_1(v4) -&gt; (* Some *)
-            let mutable result = None
+        | US0_1 -&gt; (* None *)
+            US1_1
+        | US0_0(v4) -&gt; (* Some *)
+            let v5 : string option = None
+            let mutable _v5 = v5
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-            let v5 : string = $"%A{v4}"
-            v5
-            #endif
-            #if FABLE_COMPILER_RUST &amp;&amp; WASM
             let v6 : string = $"%A{v4}"
             v6
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            let v7 : string = $"{v4.GetType ()}: {v4.Message}"
+            #if FABLE_COMPILER_RUST &amp;&amp; WASM
+            let v7 : string = $"%A{v4}"
             v7
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            let v8 : string = $"%A{v4}"
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            let v8 : string = $"{v4.GetType ()}: {v4.Message}"
             v8
             #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
             let v9 : string = $"%A{v4}"
             v9
             #endif
-            |&gt; fun x -&gt; result &lt;- Some x
-            let v10 : string = result |&gt; Option.get
-            US1_1(v10)
-    let v15 : string = $"%A{v14}"
-    System.Console.WriteLine v15
-    let v20 : bool =
-        match v14 with
-        | US1_1(v18) -&gt; (* Some *)
-            let v19 : bool = v18 = "System.Exception: test"
-            v19
+            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+            let v10 : string = $"%A{v4}"
+            v10
+            #endif
+            |&gt; fun x -&gt; _v5 &lt;- Some x
+            let v11 : string = _v5 |&gt; Option.get
+            US1_0(v11)
+    let v16 : string = $"%A{v15}"
+    System.Console.WriteLine v16
+    let v21 : bool =
+        match v15 with
+        | US1_0(v19) -&gt; (* Some *)
+            let v20 : bool = v19 = "System.Exception: test"
+            v20
         | _ -&gt;
             false
-    let v22 : bool =
-        if v20 then
+    let v23 : bool =
+        if v21 then
             true
         else
-            method1(v20)
-    let v23 : string = "System.Exception: test"
-    let v24 : US1 = US1_1(v23)
-    let v25 : string = $"__expect / actual: %A{v14} / expected: %A{v24}"
-    let v26 : bool = v22 = false
-    if v26 then
-        failwith&lt;unit&gt; v25
+            method1(v21)
+    let v24 : string = "System.Exception: test"
+    let v25 : US1 = US1_0(v24)
+    let v26 : string = $"__expect / actual: %A{v15} / expected: %A{v25}"
+    let v27 : bool = v23 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
 method0()
 
-US1_1 "System.Exception: test"
+US1_0 "System.Exception: test"
 </pre>
 </div>
 </div>
@@ -10681,28 +10682,28 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type UH0 =
-    | UH0_0 of char * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of char * UH0
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0('c', v0)
-    let v2 : UH0 = UH0_0('b', v1)
-    let v3 : UH0 = UH0_0('a', v2)
+    let v0 : UH0 = UH0_0
+    let v1 : UH0 = UH0_1('c', v0)
+    let v2 : UH0 = UH0_1('b', v1)
+    let v3 : UH0 = UH0_1('a', v2)
     let v4 : string = $"%A{v3}"
     System.Console.WriteLine v4
-    let v23 : UH0 = UH0_1
-    let v24 : UH0 = UH0_0('c', v23)
-    let v25 : UH0 = UH0_0('b', v24)
-    let v26 : UH0 = UH0_0('a', v25)
-    let v27 : UH0 = UH0_1
-    let v28 : UH0 = UH0_0('c', v27)
-    let v29 : UH0 = UH0_0('b', v28)
-    let v30 : UH0 = UH0_0('a', v29)
+    let v23 : UH0 = UH0_0
+    let v24 : UH0 = UH0_1('c', v23)
+    let v25 : UH0 = UH0_1('b', v24)
+    let v26 : UH0 = UH0_1('a', v25)
+    let v27 : UH0 = UH0_0
+    let v28 : UH0 = UH0_1('c', v27)
+    let v29 : UH0 = UH0_1('b', v28)
+    let v30 : UH0 = UH0_1('a', v29)
     let v31 : string = $"__expect / actual: %A{v26} / expected: %A{v30}"
     ()
 method0()
 
-UH0_0 ('a', UH0_0 ('b', UH0_0 ('c', UH0_1)))
+UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </pre>
 </div>
 </div>
@@ -10851,46 +10852,47 @@ and method0 () : string =
     let v0 : string = ""
     v0
 and closure18 (v0 : (string [])) (v1 : string) : (string []) =
-    let mutable result = None
+    let v2 : (string []) option = None
+    let mutable _v2 = v2
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v2 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v3 : string seq = v2 v0
-    let v4 : string = method0()
-    let v5 : string = v3 |&gt; String.concat v4
-    let v6 : (string []) = v1.Split v5
-    v6
+    let v3 : ((string []) -&gt; string seq) = Seq.ofArray
+    let v4 : string seq = v3 v0
+    let v5 : string = method0()
+    let v6 : string = v4 |&gt; String.concat v5
+    let v7 : (string []) = v1.Split v6
+    v7
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v7 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v8 : string seq = v7 v0
-    let v9 : string = method0()
-    let v10 : string = v8 |&gt; String.concat v9
-    let v11 : (string []) = v1.Split v10
-    v11
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v12 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
+    let v8 : ((string []) -&gt; string seq) = Seq.ofArray
+    let v9 : string seq = v8 v0
+    let v10 : string = method0()
+    let v11 : string = v9 |&gt; String.concat v10
+    let v12 : (string []) = v1.Split v11
     v12
     #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v13 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
+    v13
+    #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v13 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v14 : string seq = v13 v0
-    let v15 : string = method0()
-    let v16 : string = v14 |&gt; String.concat v15
-    let v17 : (string []) = v1.Split v16
-    v17
+    let v14 : ((string []) -&gt; string seq) = Seq.ofArray
+    let v15 : string seq = v14 v0
+    let v16 : string = method0()
+    let v17 : string = v15 |&gt; String.concat v16
+    let v18 : (string []) = v1.Split v17
+    v18
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v18 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v19 : string seq = v18 v0
-    let v20 : string = method0()
-    let v21 : string = v19 |&gt; String.concat v20
-    let v22 : (string []) = v1.Split v21
-    v22
-    #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v23 : (string []) = result |&gt; Option.get
+    let v19 : ((string []) -&gt; string seq) = Seq.ofArray
+    let v20 : string seq = v19 v0
+    let v21 : string = method0()
+    let v22 : string = v20 |&gt; String.concat v21
+    let v23 : (string []) = v1.Split v22
     v23
+    #endif
+    |&gt; fun x -&gt; _v2 &lt;- Some x
+    let v24 : (string []) = _v2 |&gt; Option.get
+    v24
 and closure17 () (v0 : (string [])) : (string -&gt; (string [])) =
     closure18(v0)
 and closure20 (v0 : string) (v1 : string) : bool =
@@ -10968,30 +10970,31 @@ and closure34 (v0 : int64) (v1 : string) : string =
 and closure33 () (v0 : int64) : (string -&gt; string) =
     closure34(v0)
 and closure35 () (v0 : exn) : string =
-    let mutable result = None
+    let v1 : string option = None
+    let mutable _v1 = v1
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v1 : string = $"%A{v0}"
-    v1
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v2 : string = $"%A{v0}"
     v2
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v3 : string = $"{v0.GetType ()}: {v0.Message}"
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v3 : string = $"%A{v0}"
     v3
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v4 : string = $"%A{v0}"
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v4 : string = $"{v0.GetType ()}: {v0.Message}"
     v4
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v5 : string = $"%A{v0}"
     v5
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v6 : string = result |&gt; Option.get
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v6 : string = $"%A{v0}"
     v6
+    #endif
+    |&gt; fun x -&gt; _v1 &lt;- Some x
+    let v7 : string = _v1 |&gt; Option.get
+    v7
 and method2 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0

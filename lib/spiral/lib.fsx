@@ -121,10 +121,27 @@ module Sm =
         trim_end x
 #endif
 
+#if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
 module File_system =
+    let create_temp_directory () =
+#if !INTERACTIVE
+        File_system.create_temp_directory ()
+#else
+        create_temp_directory ()
+#endif
+
     let create_temp_directory_name () =
 #if !INTERACTIVE
         File_system.create_temp_directory_name ()
 #else
         create_temp_directory_name ()
+#endif
+
+    module Operators =
+        let (</>) x =
+#if !INTERACTIVE
+            File_system.(</>) x
+#else
+            (</>) x
+#endif
 #endif

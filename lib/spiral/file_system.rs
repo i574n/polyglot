@@ -2,6 +2,7 @@ pub mod File_system {
     use super::*;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Func0;
+    use fable_library_rust::Native_::Func1;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::getValue;
@@ -68,18 +69,63 @@ pub mod File_system {
         }
     }
     pub fn closure0(unitVar: (), unitVar_1: ()) -> string {
-        let result: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
             let x: string = panic!(
                 "{}",
                 sprintf!(
-                    "create_temp_directory_name target: {}",
-                    File_system::US1::US1_1(File_system::US0::US0_1)
+                    "create_temp_directory_name / target: {}",
+                    File_system::US1::US1_0(File_system::US0::US0_0)
                 ),
             );
-            result.set(Some(x))
+            _v0.set(Some(x))
         }
-        getValue(result.get().clone())
+        getValue(_v0.get().clone())
+    }
+    pub fn closure3(unitVar: (), unitVar_1: ()) -> string {
+        string("")
+    }
+    pub fn closure2(v0_1: string, v1_1: string, unitVar: ()) -> string {
+        sprintf!(
+            "temp_folder: {} / result: {} {}",
+            v0_1,
+            v1_1,
+            File_system::closure3((), ())
+        )
+    }
+    pub fn closure1(unitVar: (), unitVar_1: ()) -> string {
+        let _v0: MutCell<Option<string>> = MutCell::new(None::<string>);
+        {
+            let x: string = panic!(
+                "{}",
+                sprintf!(
+                    "create_temp_directory / target: {}",
+                    File_system::US1::US1_0(File_system::US0::US0_0)
+                ),
+            );
+            _v0.set(Some(x))
+        }
+        getValue(_v0.get().clone())
+    }
+    pub fn closure5(v0_1: string, v1_1: string) -> string {
+        let _v2: MutCell<Option<string>> = MutCell::new(None::<string>);
+        {
+            let x: string = panic!(
+                "{}",
+                sprintf!(
+                    "(</>) / target: {}",
+                    File_system::US1::US1_0(File_system::US0::US0_0)
+                ),
+            );
+            _v2.set(Some(x))
+        }
+        getValue(_v2.get().clone())
+    }
+    pub fn closure4(unitVar: (), v0_1: string) -> Func1<string, string> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: string| File_system::closure5(v0_1.clone(), v)
+        })
     }
     pub fn v0() -> Func0<string> {
         static v0: OnceInit<Func0<string>> = OnceInit::new();
@@ -88,6 +134,22 @@ pub mod File_system {
     }
     pub fn create_temp_directory_name() -> string {
         (File_system::v0())()
+    }
+    pub fn v1() -> Func0<string> {
+        static v1: OnceInit<Func0<string>> = OnceInit::new();
+        v1.get_or_insert_with(|| Func0::new(move || File_system::closure1((), ())))
+            .clone()
+    }
+    pub fn create_temp_directory() -> string {
+        (File_system::v1())()
+    }
+    pub fn v2() -> Func1<string, Func1<string, string>> {
+        static v2: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
+        v2.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure4((), v)))
+            .clone()
+    }
+    pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {
+        (File_system::v2())(x)
     }
     on_startup!((),);
 }

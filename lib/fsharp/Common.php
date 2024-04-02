@@ -199,7 +199,7 @@ function trace($level, $fn, $getLocals) {
             return \Date\create(1, 1, 1, $t->\TimeSpan\hours(), $t->\TimeSpan\minutes(), $t->\TimeSpan\seconds(), $t->\TimeSpan\milliseconds());
         }
  })(replStart(NULL))->\Date\toString('HH:mm:ss');
-        return \lib\Sm_trim_end([ ' ', '/' ])(\lib\Sm_trim_start([  ])(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ $time, $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ]))));
+        return \lib\trim_end([ ' ', '/' ])(\lib\trim_start([  ])(\String\toText(\String\interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [ $time, $GLOBALS['traceCount'], $level, $fn(NULL), $getLocals(NULL) ]))));
     });
 }
 

@@ -97,7 +97,7 @@ void trace(TraceLevel level, String Function() fn, String Function() getLocals) 
             tmp_capture = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t));
         }
         final time = date.toString(tmp_capture, 'HH:mm:ss');
-        return (lib.Sm_trim_end([32, 47]))((lib.Sm_trim_start(<int>[]))(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [time, traceCount, level, fn(), getLocals()]))));
+        return (lib.trim_end([32, 47]))((lib.trim_start(<int>[]))(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [time, traceCount, level, fn(), getLocals()]))));
     });
 }
 

@@ -7680,12 +7680,12 @@ and [&lt;Struct&gt;] US5 =
 let rec method0 (v0 : (US5 [])) : (US5 []) =
     v0
 and closure0 () () : unit =
-    let v0 : US0 = US0_1
-    let v1 : US1 = US1_0
-    let v2 : US2 = US2_0
-    let v3 : US3 = US3_1
+    let v0 : US0 = US0_0
+    let v1 : US1 = US1_1
+    let v2 : US2 = US2_1
+    let v3 : US3 = US3_0
     let v4 : US4 = US4_0(v0, v1, v2, v3)
-    let v5 : US5 = US5_14(v4)
+    let v5 : US5 = US5_0(v4)
     let v6 : (US5 []) = [|v5|]
     let v7 : (US5 []) = method0(v6)
     let v8 : string = $"%A{v7}"
@@ -7695,7 +7695,7 @@ let v0 : (unit -&gt; unit) = closure0()
 v0 ()
 ()
 
-[|US5_14 (US4_0 (US0_1, US1_0, US2_0, US3_1))|]
+[|US5_0 (US4_0 (US0_0, US1_1, US2_1, US3_0))|]
 </pre>
 </div>
 </div>

@@ -9,7 +9,7 @@ module Builder =
 #endif
 
     open Common
-    open FileSystem.Operators
+    open File_system.Operators
 
     /// ## buildProject
 

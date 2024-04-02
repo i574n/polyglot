@@ -9,7 +9,7 @@ module Supervisor =
 #endif
 
     open Common
-    open FileSystem.Operators
+    open File_system.Operators
     open Microsoft.AspNetCore.SignalR.Client
 
     /// ## sendJson
@@ -286,7 +286,7 @@ module Supervisor =
     /// ## persistCode
 
     let inline persistCode code = async {
-        let tempDir = FileSystem.createTempDirectory ()
+        let tempDir = File_system.create_temp_directory ()
 
         let mainPath = tempDir </> "main.spi"
         do! code |> FileSystem.writeAllTextAsync mainPath

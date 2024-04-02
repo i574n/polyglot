@@ -8383,42 +8383,43 @@ and method0 () : unit =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v1
     let v4 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let mutable result = None
+    let v5 : System.DateTime option = None
+    let mutable _v5 = v5
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v5 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v5
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
     v6
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v7 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v7 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
     v7
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v8 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v10 : System.DateTime = result |&gt; Option.get
-    let v11 : System.DateTime = System.DateTime.MinValue
-    let v12 : string = $"%A{v10}"
-    System.Console.WriteLine v12
-    let v13 : bool = v10 = v11
-    let v15 : bool =
-        if v13 then
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v10 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v10
+    #endif
+    |&gt; fun x -&gt; _v5 &lt;- Some x
+    let v11 : System.DateTime = _v5 |&gt; Option.get
+    let v12 : System.DateTime = System.DateTime.MinValue
+    let v13 : string = $"%A{v11}"
+    System.Console.WriteLine v13
+    let v14 : bool = v11 = v12
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v13)
-    let v16 : string = $"__expect / actual: %A{v10} / expected: %A{v11}"
-    let v17 : bool = v15 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+            method2(v14)
+    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
+    let v18 : bool = v16 = false
+    if v18 then
+        failwith&lt;unit&gt; v17
 method0()
 
 0001-01-01 12:00:00 AM
@@ -8473,42 +8474,43 @@ and method0 () : unit =
     let v3 : (System.Guid -&gt; string) = _.ToString()
     let v4 : string = v3 v2
     let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let mutable result = None
+    let v6 : System.DateTime option = None
+    let mutable _v6 = v6
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v6 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v6
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v7
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v8 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v8 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v8
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v9 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v11 : System.DateTime = result |&gt; Option.get
-    let v12 : System.DateTime = System.DateTime.MaxValue
-    let v13 : string = $"%A{v11}"
-    System.Console.WriteLine v13
-    let v14 : bool = v11 = v12
-    let v16 : bool =
-        if v14 then
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v11
+    #endif
+    |&gt; fun x -&gt; _v6 &lt;- Some x
+    let v12 : System.DateTime = _v6 |&gt; Option.get
+    let v13 : System.DateTime = System.DateTime.MaxValue
+    let v14 : string = $"%A{v12}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = v13
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v14)
-    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
-    let v18 : bool = v16 = false
-    if v18 then
-        failwith&lt;unit&gt; v17
+            method2(v15)
+    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
+    let v19 : bool = v17 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
 9999-12-31 11:59:59 PM
@@ -8563,42 +8565,43 @@ and method0 () : unit =
     let v3 : (System.Guid -&gt; string) = _.ToString()
     let v4 : string = v3 v2
     let v5 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let mutable result = None
+    let v6 : System.DateTime option = None
+    let mutable _v6 = v6
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v6 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v6
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v7
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v8 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v8 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
     v8
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v9 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v11 : System.DateTime = result |&gt; Option.get
-    let v12 : System.DateTime = System.DateTime.UnixEpoch
-    let v13 : string = $"%A{v11}"
-    System.Console.WriteLine v13
-    let v14 : bool = v11 = v12
-    let v16 : bool =
-        if v14 then
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v11
+    #endif
+    |&gt; fun x -&gt; _v6 &lt;- Some x
+    let v12 : System.DateTime = _v6 |&gt; Option.get
+    let v13 : System.DateTime = System.DateTime.UnixEpoch
+    let v14 : string = $"%A{v12}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = v13
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v14)
-    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
-    let v18 : bool = v16 = false
-    if v18 then
-        failwith&lt;unit&gt; v17
+            method2(v15)
+    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
+    let v19 : bool = v17 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
 1970-01-01 12:00:00 AM
@@ -9006,43 +9009,44 @@ and method0 () : unit =
     let v6 : (System.Guid -&gt; string) = _.ToString()
     let v7 : string = v6 v5
     let v8 : (string -&gt; (string -&gt; (string -&gt; string))) = method1()
-    let mutable result = None
+    let v9 : System.DateTime option = None
+    let mutable _v9 = v9
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v9 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v9
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v10 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
     v10
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v11 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v11 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
     v11
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v12 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
     v12
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v13 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
     v13
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v14 : System.DateTime = result |&gt; Option.get
-    let v15 : float = (v14 - System.DateTime.UtcNow).TotalSeconds
-    let v16 : int32 = int32 v15
-    let v17 : string = $"%A{v16}"
-    System.Console.WriteLine v17
-    let v18 : bool = v16 = 0
-    let v20 : bool =
-        if v18 then
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v14 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
+    v14
+    #endif
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v15 : System.DateTime = _v9 |&gt; Option.get
+    let v16 : float = (v15 - System.DateTime.UtcNow).TotalSeconds
+    let v17 : int32 = int32 v16
+    let v18 : string = $"%A{v17}"
+    System.Console.WriteLine v18
+    let v19 : bool = v17 = 0
+    let v21 : bool =
+        if v19 then
             true
         else
-            method2(v18)
-    let v21 : string = $"__expect / actual: %A{v16} / expected: %A{0}"
-    let v22 : bool = v20 = false
-    if v22 then
-        failwith&lt;unit&gt; v21
+            method2(v19)
+    let v22 : string = $"__expect / actual: %A{v17} / expected: %A{0}"
+    let v23 : bool = v21 = false
+    if v23 then
+        failwith&lt;unit&gt; v22
 method0()
 
 0
@@ -9192,7 +9196,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 2024-03-30 3:34:02 PM -04:00
+<pre>DateTime: 2024-04-02 2:30:23 AM -04:00
 Time Zone: (UTC-04:00) Cuiaba
 Is DST: false
 v1: -04:00:00
@@ -9261,30 +9265,31 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let v1 : (System.Guid -&gt; string) = _.ToString()
     let v2 : string = v1 v0
     let v3 : (string -&gt; (string -&gt; (string -&gt; string))) = method0()
-    let mutable result = None
+    let v4 : System.DateTime option = None
+    let mutable _v4 = v4
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v4 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v4
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
     v5
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v6 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
     v6
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v7 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v7
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
     let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v9 : System.DateTime = result |&gt; Option.get
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
+    #endif
+    |&gt; fun x -&gt; _v4 &lt;- Some x
+    let v10 : System.DateTime = _v4 |&gt; Option.get
+    v10
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v0

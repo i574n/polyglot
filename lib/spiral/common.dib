@@ -116,30 +116,95 @@ new_pair "a" (new_pair 1i32 "b")
 
 #!markdown
 
-## log_level_type
+## memoize
 
 #!spiral
 
-union log_level_type =
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'
+
+#!spiral
+
+// // test
+
+inl count = mut 0i32
+inl add =
+    fun () => count <- *count + 1
+    |> memoize
+
+add ()
+add ()
+add ()
+
+*count
+|> _assert_eq 1
+
+#!markdown
+
+## trace_level
+
+#!spiral
+
+union trace_level =
     | Verbose
     | Debug
     | Info
     | Warning
     | Critical
 
-instance to_string log_level_type = function
+instance to_string trace_level = function
     | Verbose => "Verbose"
     | Debug => "Debug"
     | Info => "Info"
     | Warning => "Warning"
     | Critical => "Critical"
 
-instance of_string log_level_type = function
+instance of_string trace_level = function
     | "Verbose" => Verbose
     | "Debug" => Debug
     | "Info" => Info
     | "Warning" => Warning
     | "Critical" => Critical
+
+#!markdown
+
+## get_locals
+
+#!spiral
+
+inl get_locals () = ""
+
+#!markdown
+
+## trace_state
+
+#!spiral
+
+inl trace_state () =
+    inl result =
+        fun () =>
+            {
+                enabled = mut true
+                count = mut 0i64
+                level = mut Debug
+                dump = mut false
+            }
+        |> memoize
+    result ()
+
+#!markdown
+
+## test_trace_level
+
+#!spiral
+
+inl test_trace_level level =
+    inl state = trace_state ()
+    inl level' = *state.level
+    *state.enabled && $'!level >= !level' '
 
 #!markdown
 
@@ -296,7 +361,8 @@ union target =
     | Fsharp : target_runtime
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
-    $"let mutable result = None"
+    inl result : optionm'.option' t = $'None'
+    $"let mutable _!result = !result"
     $"#if FABLE_COMPILER_RUST && \!WASM"
     fn (Rust Native) () |> fun x => $"!x"
     $"#endif"
@@ -312,8 +378,8 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"#if \!FABLE_COMPILER_RUST && WASM"
     fn (Fsharp Wasm) () |> fun x => $"!x"
     $"#endif"
-    $"|> fun x -> result <- Some x"
-    $"result |> Option.get"
+    $"|> fun x -> _!result <- Some x"
+    $"_!result |> Option.get"
 
 #!spiral
 
@@ -353,34 +419,6 @@ inl nameof x : string =
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
 
-#!markdown
-
-## memoize
-
-#!spiral
-
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
-#!spiral
-
-// // test
-
-inl count = mut 0i32
-inl add =
-    fun () => count <- *count + 1
-    |> memoize
-
-add ()
-add ()
-add ()
-
-*count
-|> _assert_eq 1
-
 #!spiral
 
 // // test
@@ -409,9 +447,10 @@ inl use_disposable (disposable : disposable) : disposable =
 inl new_disposable (fn : () -> ()) : disposable =
     run_target function
         | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        | Rust _ =>
-            inl fn = join fn
-            fun () => $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        // | Rust _ =>
+        //     fun () =>
+                // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        | target => fun () => failwith $'$"new_disposable / target: {!target}"'
 
 #!spiral
 

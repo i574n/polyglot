@@ -7894,19 +7894,19 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5)
+    let v0 : US0 = US0_0(5)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(5)
-    let v6 : US0 = US0_1(5)
+    let v5 : US0 = US0_0(5)
+    let v6 : US0 = US0_0(5)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 5
+US0_0 5
 </pre>
 </div>
 </div>
@@ -8089,25 +8089,25 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec closure0 () (v0 : int32) : US0 =
-    US0_1(v0)
+    US0_0(v0)
 and method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : int32 option = Some 3
     let v1 : (int32 -&gt; US0) = closure0()
-    let v2 : US0 = US0_0
+    let v2 : US0 = US0_1
     let v3 : US0 = v0 |&gt; Option.map v1 |&gt; Option.defaultValue v2
     let v4 : int32 option = None
-    let v5 : US0 = US0_0
+    let v5 : US0 = US0_1
     let v6 : US0 = v4 |&gt; Option.map v1 |&gt; Option.defaultValue v5
     let v7 : string = $"%A{struct (v3, v6)}"
     System.Console.WriteLine v7
     let v12 : bool =
         match v3 with
-        | US0_1(v10) -&gt; (* Some *)
+        | US0_0(v10) -&gt; (* Some *)
             let v11 : bool = v10 = 3
             v11
         | _ -&gt;
@@ -8115,7 +8115,7 @@ and method0 () : unit =
     let v14 : bool =
         if v12 then
             match v6 with
-            | US0_0 -&gt; (* None *)
+            | US0_1 -&gt; (* None *)
                 true
             | _ -&gt;
                 false
@@ -8126,15 +8126,15 @@ and method0 () : unit =
             true
         else
             method1(v14)
-    let v17 : US0 = US0_1(3)
-    let v18 : US0 = US0_0
+    let v17 : US0 = US0_0(3)
+    let v18 : US0 = US0_1
     let v19 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v17, v18)}"
     let v20 : bool = v16 = false
     if v20 then
         failwith&lt;unit&gt; v19
 method0()
 
-struct (US0_1 3, US0_0)
+struct (US0_0 3, US0_1)
 </pre>
 </div>
 </div>

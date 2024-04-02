@@ -9,31 +9,7 @@ module FileSystem =
 #endif
 
     open Common
-
-    /// ## Operators
-
-    module Operators =
-        let inline (</>) a b =
-            System.IO.Path.Combine (a, b)
-
-    open Operators
-
-    /// ## createTempDirectory
-
-    let inline createTempDirectory () =
-        let tempFolder = File_system.create_temp_directory_name ()
-        let result = System.IO.Directory.CreateDirectory tempFolder
-
-        if not result.Exists then
-            let getLocals () =
-                $"tempFolder: {tempFolder} / result: {({|
-                    Exists = result.Exists
-                    CreationTime = result.CreationTime
-                |})} {getLocals ()}"
-
-            trace Debug (fun () -> "createTempDirectory") getLocals
-
-        tempFolder
+    open File_system.Operators
 
     /// ## getSourceDirectory
 

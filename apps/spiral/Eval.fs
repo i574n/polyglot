@@ -9,17 +9,13 @@ module Eval =
 #endif
 
     open Common
-    open FileSystem.Operators
+    open File_system.Operators
 
     open System
     open System.Collections.Generic
     open System.IO
     open System.Text
     open System.Threading
-    // open FSharp.Compiler
-    // open FSharp.Compiler.Interactive.Shell
-    // open FSharp.Compiler.Diagnostics
-    // open FSharp.Compiler.EditorServices
 
     let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
         let allCodeLineLength =

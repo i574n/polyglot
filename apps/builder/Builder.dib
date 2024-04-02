@@ -43,7 +43,7 @@ open Lib
 #!fsharp
 
 open Common
-open FileSystem.Operators
+open File_system.Operators
 
 #!markdown
 

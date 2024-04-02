@@ -7654,7 +7654,10 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'System.IO.Path.Combine (!a, !b)'</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'System.IO.Path.Combine (!a, !b)'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"(&lt;/&gt;) / target: {!target}"'</span>
 </pre></div>
 </div>
 </div>
@@ -7699,9 +7702,9 @@ a.anchor-link {
             <span class="n">inl</span> <span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'</span> <span class="p">:</span> <span class="n">string</span>
 
             <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Path.GetTempPath'</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"{!root}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"\!{!root}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
             <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
-        <span class="o">|</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_temp_directory_name target: {!x}"'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_temp_directory_name / target: {!target}"'</span>
 </pre></div>
 </div>
 </div>
@@ -7753,93 +7756,164 @@ and [&lt;Struct&gt;] US1 =
     | US1_0 of f0_0 : US0
     | US1_1 of f1_0 : US0
 and [&lt;Struct&gt;] US2 =
-    | US2_0
-    | US2_1 of f1_0 : char
+    | US2_0 of f0_0 : char
+    | US2_1
 let rec closure0 (v0 : char) (v1 : char) : bool =
     let v2 : bool = v0 = v1
     v2
 and closure1 () (v0 : char) : US2 =
-    US2_1(v0)
+    US2_0(v0)
 and method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
-    let mutable result = None
+    let v0 : string option = None
+    let mutable _v0 = v0
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v0 : US0 = US0_1
-    let v1 : US1 = US1_1(v0)
-    let v2 : string = $"create_temp_directory_name target: {v1}"
-    let v3 : string = failwith&lt;string&gt; v2
-    v3
+    let v1 : US0 = US0_0
+    let v2 : US1 = US1_0(v1)
+    let v3 : string = $"create_temp_directory_name / target: {v2}"
+    let v4 : string = failwith&lt;string&gt; v3
+    v4
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v4 : US0 = US0_2
-    let v5 : US1 = US1_1(v4)
-    let v6 : string = $"create_temp_directory_name target: {v5}"
-    let v7 : string = failwith&lt;string&gt; v6
-    v7
+    let v5 : US0 = US0_1
+    let v6 : US1 = US1_0(v5)
+    let v7 : string = $"create_temp_directory_name / target: {v6}"
+    let v8 : string = failwith&lt;string&gt; v7
+    v8
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v8 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v9 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v10 : string = v9 ()
-    let v11 : string = $"{v8}"
-    let v12 : string = System.IO.Path.Combine (v10, v11)
-    let v13 : System.DateTime = System.DateTime.Now
-    let v14 : System.Guid = System.Guid.NewGuid ()
-    let v15 : (System.Guid -&gt; string) = _.ToString()
-    let v16 : string = v15 v14
-    let v17 : string = v13.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v18 : System.Guid = System.Guid $"{v17}{v16.[v17.Length..]}"
-    let v19 : (System.Guid -&gt; string) = _.ToString()
-    let v20 : string = v19 v18
-    let v21 : string = System.IO.Path.Combine (v12, v20)
+    let v9 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v10 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v11 : string = v10 ()
+    let v12 : string = $"!{v9}"
+    let v13 : string option = None
+    let mutable _v13 = v13
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v14 : US0 = US0_0
+    let v15 : US1 = US1_0(v14)
+    let v16 : string = $"(&lt;/&gt;) / target: {v15}"
+    let v17 : string = failwith&lt;string&gt; v16
+    v17
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v18 : US0 = US0_1
+    let v19 : US1 = US1_0(v18)
+    let v20 : string = $"(&lt;/&gt;) / target: {v19}"
+    let v21 : string = failwith&lt;string&gt; v20
     v21
     #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v22 : string = System.IO.Path.Combine (v11, v12)
+    v22
+    #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v22 : US0 = US0_0
-    let v23 : US1 = US1_0(v22)
-    let v24 : string = $"create_temp_directory_name target: {v23}"
-    let v25 : string = failwith&lt;string&gt; v24
-    v25
+    let v23 : US0 = US0_2
+    let v24 : US1 = US1_1(v23)
+    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
+    let v26 : string = failwith&lt;string&gt; v25
+    v26
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v26 : US0 = US0_2
-    let v27 : US1 = US1_0(v26)
-    let v28 : string = $"create_temp_directory_name target: {v27}"
-    let v29 : string = failwith&lt;string&gt; v28
-    v29
+    let v27 : US0 = US0_1
+    let v28 : US1 = US1_1(v27)
+    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
+    let v30 : string = failwith&lt;string&gt; v29
+    v30
     #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v30 : string = result |&gt; Option.get
-    let v31 : char = System.IO.Path.DirectorySeparatorChar
-    let v32 : string = $"%A{v30}"
-    System.Console.WriteLine v32
-    let v33 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
-    let v34 : (char -&gt; bool) = closure0(v31)
-    let v35 : (string -&gt; char option) = v33 v34
-    let v36 : char option = v35 v30
-    let v37 : (char -&gt; US2) = closure1()
-    let v38 : US2 = US2_0
-    let v39 : US2 = v36 |&gt; Option.map v37 |&gt; Option.defaultValue v38
-    let v41 : bool =
-        match v39 with
-        | US2_0 -&gt; (* None *)
+    |&gt; fun x -&gt; _v13 &lt;- Some x
+    let v31 : string = _v13 |&gt; Option.get
+    let v32 : System.DateTime = System.DateTime.Now
+    let v33 : System.Guid = System.Guid.NewGuid ()
+    let v34 : (System.Guid -&gt; string) = _.ToString()
+    let v35 : string = v34 v33
+    let v36 : string = v32.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v37 : System.Guid = System.Guid $"{v36}{v35.[v36.Length..]}"
+    let v38 : (System.Guid -&gt; string) = _.ToString()
+    let v39 : string = v38 v37
+    let v40 : string option = None
+    let mutable _v40 = v40
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v41 : US0 = US0_0
+    let v42 : US1 = US1_0(v41)
+    let v43 : string = $"(&lt;/&gt;) / target: {v42}"
+    let v44 : string = failwith&lt;string&gt; v43
+    v44
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v45 : US0 = US0_1
+    let v46 : US1 = US1_0(v45)
+    let v47 : string = $"(&lt;/&gt;) / target: {v46}"
+    let v48 : string = failwith&lt;string&gt; v47
+    v48
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v49 : string = System.IO.Path.Combine (v31, v39)
+    v49
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v50 : US0 = US0_2
+    let v51 : US1 = US1_1(v50)
+    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
+    let v53 : string = failwith&lt;string&gt; v52
+    v53
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v54 : US0 = US0_1
+    let v55 : US1 = US1_1(v54)
+    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
+    let v57 : string = failwith&lt;string&gt; v56
+    v57
+    #endif
+    |&gt; fun x -&gt; _v40 &lt;- Some x
+    let v58 : string = _v40 |&gt; Option.get
+    v58
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v59 : US0 = US0_2
+    let v60 : US1 = US1_1(v59)
+    let v61 : string = $"create_temp_directory_name / target: {v60}"
+    let v62 : string = failwith&lt;string&gt; v61
+    v62
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v63 : US0 = US0_1
+    let v64 : US1 = US1_1(v63)
+    let v65 : string = $"create_temp_directory_name / target: {v64}"
+    let v66 : string = failwith&lt;string&gt; v65
+    v66
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v67 : string = _v0 |&gt; Option.get
+    let v68 : char = System.IO.Path.DirectorySeparatorChar
+    let v69 : string = $"%A{v67}"
+    System.Console.WriteLine v69
+    let v70 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
+    let v71 : (char -&gt; bool) = closure0(v68)
+    let v72 : (string -&gt; char option) = v70 v71
+    let v73 : char option = v72 v67
+    let v74 : (char -&gt; US2) = closure1()
+    let v75 : US2 = US2_1
+    let v76 : US2 = v73 |&gt; Option.map v74 |&gt; Option.defaultValue v75
+    let v78 : bool =
+        match v76 with
+        | US2_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
-    let v42 : bool = v41 &lt;&gt; true
-    let v44 : bool =
-        if v42 then
+    let v79 : bool = v78 &lt;&gt; true
+    let v81 : bool =
+        if v79 then
             true
         else
-            method1(v42)
-    let v45 : string = $"__expect / actual: %A{v30} / expected: %A{v31}"
-    let v46 : bool = v44 = false
-    if v46 then
-        failwith&lt;unit&gt; v45
+            method1(v79)
+    let v82 : string = $"__expect / actual: %A{v67} / expected: %A{v68}"
+    let v83 : bool = v81 = false
+    if v83 then
+        failwith&lt;unit&gt; v82
 method0()
 
-"C:\Users\i574n\AppData\Local\Temp\dotnet-repl\20240330-1536-1646-4655-4ad7a4ff92a2"
+"C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240402-0256-4101-0166-0223550a7dbf"
 </pre>
 </div>
 </div>
@@ -7852,7 +7926,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
+<h2 id="directory_info">directory_info<a class="anchor-link" href="#directory_info">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7864,8 +7938,610 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">directory_info</span> <span class="o">=</span>
+    <span class="o">//</span> <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if \!FABLE_COMPILER &amp;&amp; \!FABLE_COMPILER_RUST &amp;&amp; \!WASM</span><span class="se">\n</span><span class="s1">                                                                                                                   System.IO.DirectoryInfo</span><span class="se">\n</span><span class="s1">#else</span><span class="se">\n</span><span class="s1">                                                                                                                   _</span><span class="se">\n</span><span class="s1">#endif</span><span class="se">\n</span><span class="s1">                                                                                                                  '</span>
+    <span class="err">$</span><span class="s1">'System.IO.DirectoryInfo'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info_exists">directory_info_exists<a class="anchor-link" href="#directory_info_exists">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_exists</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!info.Exists'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"directory_info_exists / target: {!target}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info_creation_time">directory_info_creation_time<a class="anchor-link" href="#directory_info_creation_time">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_creation_time</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span><span class="o">.</span><span class="n">date_time</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!info.CreationTime'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"directory_info_creation_time / target: {!target}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="create_directory">create_directory<a class="anchor-link" href="#create_directory">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_directory</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.CreateDirectory'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_directory / target: {!target}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_exists">directory_exists<a class="anchor-link" href="#directory_exists">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_exists</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.Exists'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="create_temp_directory">create_temp_directory<a class="anchor-link" href="#create_temp_directory">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_temp_directory</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">temp_folder</span> <span class="o">=</span> <span class="n">create_temp_directory_name</span> <span class="p">()</span>
+            <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="n">temp_folder</span> <span class="o">|&gt;</span> <span class="n">create_directory</span>
+
+            <span class="n">inl</span> <span class="n">exists</span><span class="s1">' = result |&gt; directory_info_exists</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="s1">' then</span>
+                <span class="n">inl</span> <span class="n">creation_time</span> <span class="o">=</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">directory_info_creation_time</span>
+                <span class="n">inl</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="err">$</span><span class="s1">'{| Exists = !exists'</span><span class="p">;</span> <span class="n">CreationTime</span> <span class="o">=</span> <span class="err">!</span><span class="n">creation_time</span> <span class="o">|</span><span class="p">}</span><span class="s1">' : any) |&gt; sm'</span><span class="o">.</span><span class="n">format_debug</span>
+                <span class="n">inl</span> <span class="n">get_locals</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+                    <span class="err">$</span><span class="s1">'$"temp_folder: {!temp_folder} / result: {!result} {!get_locals ()}"'</span>
+                <span class="o">//</span> <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="s2">"createTempDirectory"</span><span class="p">)</span> <span class="n">get_locals</span>
+                <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"create_temp_directory / {!get_locals ()}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+
+            <span class="n">temp_folder</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_temp_directory / target: {!target}"'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">create_temp_directory</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">directory_exists</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0
+    | US0_1
+    | US0_2
+and [&lt;Struct&gt;] US1 =
+    | US1_0 of f0_0 : US0
+    | US1_1 of f1_0 : US0
+let rec closure1 () () : string =
+    let v0 : string = ""
+    v0
+and closure0 (v0 : string, v1 : string) () : string =
+    let v2 : (unit -&gt; string) = closure1()
+    let v3 : string = $"temp_folder: {v0} / result: {v1} {v2 ()}"
+    v3
+and method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string option = None
+    let mutable _v0 = v0
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v1 : US0 = US0_0
+    let v2 : US1 = US1_0(v1)
+    let v3 : string = $"create_temp_directory / target: {v2}"
+    let v4 : string = failwith&lt;string&gt; v3
+    v4
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v5 : US0 = US0_1
+    let v6 : US1 = US1_0(v5)
+    let v7 : string = $"create_temp_directory / target: {v6}"
+    let v8 : string = failwith&lt;string&gt; v7
+    v8
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v9 : string option = None
+    let mutable _v9 = v9
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v10 : US0 = US0_0
+    let v11 : US1 = US1_0(v10)
+    let v12 : string = $"create_temp_directory_name / target: {v11}"
+    let v13 : string = failwith&lt;string&gt; v12
+    v13
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v14 : US0 = US0_1
+    let v15 : US1 = US1_0(v14)
+    let v16 : string = $"create_temp_directory_name / target: {v15}"
+    let v17 : string = failwith&lt;string&gt; v16
+    v17
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v18 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v19 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v20 : string = v19 ()
+    let v21 : string = $"!{v18}"
+    let v22 : string option = None
+    let mutable _v22 = v22
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v23 : US0 = US0_0
+    let v24 : US1 = US1_0(v23)
+    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
+    let v26 : string = failwith&lt;string&gt; v25
+    v26
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v27 : US0 = US0_1
+    let v28 : US1 = US1_0(v27)
+    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
+    let v30 : string = failwith&lt;string&gt; v29
+    v30
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v31 : string = System.IO.Path.Combine (v20, v21)
+    v31
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v32 : US0 = US0_2
+    let v33 : US1 = US1_1(v32)
+    let v34 : string = $"(&lt;/&gt;) / target: {v33}"
+    let v35 : string = failwith&lt;string&gt; v34
+    v35
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v36 : US0 = US0_1
+    let v37 : US1 = US1_1(v36)
+    let v38 : string = $"(&lt;/&gt;) / target: {v37}"
+    let v39 : string = failwith&lt;string&gt; v38
+    v39
+    #endif
+    |&gt; fun x -&gt; _v22 &lt;- Some x
+    let v40 : string = _v22 |&gt; Option.get
+    let v41 : System.DateTime = System.DateTime.Now
+    let v42 : System.Guid = System.Guid.NewGuid ()
+    let v43 : (System.Guid -&gt; string) = _.ToString()
+    let v44 : string = v43 v42
+    let v45 : string = v41.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v46 : System.Guid = System.Guid $"{v45}{v44.[v45.Length..]}"
+    let v47 : (System.Guid -&gt; string) = _.ToString()
+    let v48 : string = v47 v46
+    let v49 : string option = None
+    let mutable _v49 = v49
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v50 : US0 = US0_0
+    let v51 : US1 = US1_0(v50)
+    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
+    let v53 : string = failwith&lt;string&gt; v52
+    v53
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v54 : US0 = US0_1
+    let v55 : US1 = US1_0(v54)
+    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
+    let v57 : string = failwith&lt;string&gt; v56
+    v57
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v58 : string = System.IO.Path.Combine (v40, v48)
+    v58
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v59 : US0 = US0_2
+    let v60 : US1 = US1_1(v59)
+    let v61 : string = $"(&lt;/&gt;) / target: {v60}"
+    let v62 : string = failwith&lt;string&gt; v61
+    v62
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v63 : US0 = US0_1
+    let v64 : US1 = US1_1(v63)
+    let v65 : string = $"(&lt;/&gt;) / target: {v64}"
+    let v66 : string = failwith&lt;string&gt; v65
+    v66
+    #endif
+    |&gt; fun x -&gt; _v49 &lt;- Some x
+    let v67 : string = _v49 |&gt; Option.get
+    v67
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v68 : US0 = US0_2
+    let v69 : US1 = US1_1(v68)
+    let v70 : string = $"create_temp_directory_name / target: {v69}"
+    let v71 : string = failwith&lt;string&gt; v70
+    v71
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v72 : US0 = US0_1
+    let v73 : US1 = US1_1(v72)
+    let v74 : string = $"create_temp_directory_name / target: {v73}"
+    let v75 : string = failwith&lt;string&gt; v74
+    v75
+    #endif
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v76 : string = _v9 |&gt; Option.get
+    let v77 : System.IO.DirectoryInfo option = None
+    let mutable _v77 = v77
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v78 : US0 = US0_0
+    let v79 : US1 = US1_0(v78)
+    let v80 : string = $"create_directory / target: {v79}"
+    let v81 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v80
+    v81
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v82 : US0 = US0_1
+    let v83 : US1 = US1_0(v82)
+    let v84 : string = $"create_directory / target: {v83}"
+    let v85 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v84
+    v85
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v86 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
+    let v87 : System.IO.DirectoryInfo = v86 v76
+    v87
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v88 : US0 = US0_2
+    let v89 : US1 = US1_1(v88)
+    let v90 : string = $"create_directory / target: {v89}"
+    let v91 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v90
+    v91
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v92 : US0 = US0_1
+    let v93 : US1 = US1_1(v92)
+    let v94 : string = $"create_directory / target: {v93}"
+    let v95 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v94
+    v95
+    #endif
+    |&gt; fun x -&gt; _v77 &lt;- Some x
+    let v96 : System.IO.DirectoryInfo = _v77 |&gt; Option.get
+    let v97 : bool option = None
+    let mutable _v97 = v97
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v98 : US0 = US0_0
+    let v99 : US1 = US1_0(v98)
+    let v100 : string = $"directory_info_exists / target: {v99}"
+    let v101 : bool = failwith&lt;bool&gt; v100
+    v101
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v102 : US0 = US0_1
+    let v103 : US1 = US1_0(v102)
+    let v104 : string = $"directory_info_exists / target: {v103}"
+    let v105 : bool = failwith&lt;bool&gt; v104
+    v105
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v106 : bool = v96.Exists
+    v106
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v107 : US0 = US0_2
+    let v108 : US1 = US1_1(v107)
+    let v109 : string = $"directory_info_exists / target: {v108}"
+    let v110 : bool = failwith&lt;bool&gt; v109
+    v110
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v111 : US0 = US0_1
+    let v112 : US1 = US1_1(v111)
+    let v113 : string = $"directory_info_exists / target: {v112}"
+    let v114 : bool = failwith&lt;bool&gt; v113
+    v114
+    #endif
+    |&gt; fun x -&gt; _v97 &lt;- Some x
+    let v115 : bool = _v97 |&gt; Option.get
+    let v116 : bool = v115 = false
+    if v116 then
+        let v117 : System.DateTime option = None
+        let mutable _v117 = v117
+        #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+        let v118 : US0 = US0_0
+        let v119 : US1 = US1_0(v118)
+        let v120 : string = $"directory_info_creation_time / target: {v119}"
+        let v121 : System.DateTime = failwith&lt;System.DateTime&gt; v120
+        v121
+        #endif
+        #if FABLE_COMPILER_RUST &amp;&amp; WASM
+        let v122 : US0 = US0_1
+        let v123 : US1 = US1_0(v122)
+        let v124 : string = $"directory_info_creation_time / target: {v123}"
+        let v125 : System.DateTime = failwith&lt;System.DateTime&gt; v124
+        v125
+        #endif
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        let v126 : System.DateTime = v96.CreationTime
+        v126
+        #endif
+        #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        let v127 : US0 = US0_2
+        let v128 : US1 = US1_1(v127)
+        let v129 : string = $"directory_info_creation_time / target: {v128}"
+        let v130 : System.DateTime = failwith&lt;System.DateTime&gt; v129
+        v130
+        #endif
+        #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+        let v131 : US0 = US0_1
+        let v132 : US1 = US1_1(v131)
+        let v133 : string = $"directory_info_creation_time / target: {v132}"
+        let v134 : System.DateTime = failwith&lt;System.DateTime&gt; v133
+        v134
+        #endif
+        |&gt; fun x -&gt; _v117 &lt;- Some x
+        let v135 : System.DateTime = _v117 |&gt; Option.get
+        let v136 : obj = {| Exists = v115; CreationTime = v135 |}
+        let v137 : string = $"%A{v136}"
+        let v138 : (unit -&gt; string) = closure0(v76, v137)
+        let v139 : string = $"create_temp_directory / {v138 ()}"
+        System.Console.WriteLine v139
+        ()
+    v76
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v140 : US0 = US0_2
+    let v141 : US1 = US1_1(v140)
+    let v142 : string = $"create_temp_directory / target: {v141}"
+    let v143 : string = failwith&lt;string&gt; v142
+    v143
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v144 : US0 = US0_1
+    let v145 : US1 = US1_1(v144)
+    let v146 : string = $"create_temp_directory / target: {v145}"
+    let v147 : string = failwith&lt;string&gt; v146
+    v147
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v148 : string = _v0 |&gt; Option.get
+    let v149 : (string -&gt; bool) = System.IO.Directory.Exists
+    let v150 : bool = v149 v148
+    let v151 : string = $"%A{v150}"
+    System.Console.WriteLine v151
+    let v153 : bool =
+        if v150 then
+            true
+        else
+            method1(v150)
+    let v154 : string = $"__expect / actual: %A{v150} / expected: %A{true}"
+    let v155 : bool = v153 = false
+    if v155 then
+        failwith&lt;unit&gt; v154
+method0()
+
+true
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="main">main<a class="anchor-link" href="#main">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
     <span class="err">$</span><span class="s2">"let create_temp_directory_name () = !create_temp_directory_name ()"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let create_temp_directory () = !create_temp_directory ()"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="n">inl</span> <span class="n">combine</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">x</span>
+    <span class="err">$</span><span class="s2">"let (&lt;/&gt;) x = !combine x"</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -7886,57 +8562,452 @@ and [&lt;Struct&gt;] US1 =
     | US1_0 of f0_0 : US0
     | US1_1 of f1_0 : US0
 let rec closure0 () () : string =
-    let mutable result = None
+    let v0 : string option = None
+    let mutable _v0 = v0
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v0 : US0 = US0_1
-    let v1 : US1 = US1_1(v0)
-    let v2 : string = $"create_temp_directory_name target: {v1}"
-    let v3 : string = failwith&lt;string&gt; v2
-    v3
+    let v1 : US0 = US0_0
+    let v2 : US1 = US1_0(v1)
+    let v3 : string = $"create_temp_directory_name / target: {v2}"
+    let v4 : string = failwith&lt;string&gt; v3
+    v4
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v4 : US0 = US0_2
-    let v5 : US1 = US1_1(v4)
-    let v6 : string = $"create_temp_directory_name target: {v5}"
-    let v7 : string = failwith&lt;string&gt; v6
-    v7
+    let v5 : US0 = US0_1
+    let v6 : US1 = US1_0(v5)
+    let v7 : string = $"create_temp_directory_name / target: {v6}"
+    let v8 : string = failwith&lt;string&gt; v7
+    v8
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v8 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v9 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v10 : string = v9 ()
-    let v11 : string = $"{v8}"
-    let v12 : string = System.IO.Path.Combine (v10, v11)
-    let v13 : System.DateTime = System.DateTime.Now
-    let v14 : System.Guid = System.Guid.NewGuid ()
-    let v15 : (System.Guid -&gt; string) = _.ToString()
-    let v16 : string = v15 v14
-    let v17 : string = v13.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v18 : System.Guid = System.Guid $"{v17}{v16.[v17.Length..]}"
-    let v19 : (System.Guid -&gt; string) = _.ToString()
-    let v20 : string = v19 v18
-    let v21 : string = System.IO.Path.Combine (v12, v20)
+    let v9 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v10 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v11 : string = v10 ()
+    let v12 : string = $"!{v9}"
+    let v13 : string option = None
+    let mutable _v13 = v13
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v14 : US0 = US0_0
+    let v15 : US1 = US1_0(v14)
+    let v16 : string = $"(&lt;/&gt;) / target: {v15}"
+    let v17 : string = failwith&lt;string&gt; v16
+    v17
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v18 : US0 = US0_1
+    let v19 : US1 = US1_0(v18)
+    let v20 : string = $"(&lt;/&gt;) / target: {v19}"
+    let v21 : string = failwith&lt;string&gt; v20
     v21
     #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v22 : string = System.IO.Path.Combine (v11, v12)
+    v22
+    #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v22 : US0 = US0_0
-    let v23 : US1 = US1_0(v22)
-    let v24 : string = $"create_temp_directory_name target: {v23}"
-    let v25 : string = failwith&lt;string&gt; v24
-    v25
+    let v23 : US0 = US0_2
+    let v24 : US1 = US1_1(v23)
+    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
+    let v26 : string = failwith&lt;string&gt; v25
+    v26
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v26 : US0 = US0_2
-    let v27 : US1 = US1_0(v26)
-    let v28 : string = $"create_temp_directory_name target: {v27}"
-    let v29 : string = failwith&lt;string&gt; v28
-    v29
-    #endif
-    |&gt; fun x -&gt; result &lt;- Some x
-    let v30 : string = result |&gt; Option.get
+    let v27 : US0 = US0_1
+    let v28 : US1 = US1_1(v27)
+    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
+    let v30 : string = failwith&lt;string&gt; v29
     v30
+    #endif
+    |&gt; fun x -&gt; _v13 &lt;- Some x
+    let v31 : string = _v13 |&gt; Option.get
+    let v32 : System.DateTime = System.DateTime.Now
+    let v33 : System.Guid = System.Guid.NewGuid ()
+    let v34 : (System.Guid -&gt; string) = _.ToString()
+    let v35 : string = v34 v33
+    let v36 : string = v32.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v37 : System.Guid = System.Guid $"{v36}{v35.[v36.Length..]}"
+    let v38 : (System.Guid -&gt; string) = _.ToString()
+    let v39 : string = v38 v37
+    let v40 : string option = None
+    let mutable _v40 = v40
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v41 : US0 = US0_0
+    let v42 : US1 = US1_0(v41)
+    let v43 : string = $"(&lt;/&gt;) / target: {v42}"
+    let v44 : string = failwith&lt;string&gt; v43
+    v44
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v45 : US0 = US0_1
+    let v46 : US1 = US1_0(v45)
+    let v47 : string = $"(&lt;/&gt;) / target: {v46}"
+    let v48 : string = failwith&lt;string&gt; v47
+    v48
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v49 : string = System.IO.Path.Combine (v31, v39)
+    v49
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v50 : US0 = US0_2
+    let v51 : US1 = US1_1(v50)
+    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
+    let v53 : string = failwith&lt;string&gt; v52
+    v53
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v54 : US0 = US0_1
+    let v55 : US1 = US1_1(v54)
+    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
+    let v57 : string = failwith&lt;string&gt; v56
+    v57
+    #endif
+    |&gt; fun x -&gt; _v40 &lt;- Some x
+    let v58 : string = _v40 |&gt; Option.get
+    v58
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v59 : US0 = US0_2
+    let v60 : US1 = US1_1(v59)
+    let v61 : string = $"create_temp_directory_name / target: {v60}"
+    let v62 : string = failwith&lt;string&gt; v61
+    v62
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v63 : US0 = US0_1
+    let v64 : US1 = US1_1(v63)
+    let v65 : string = $"create_temp_directory_name / target: {v64}"
+    let v66 : string = failwith&lt;string&gt; v65
+    v66
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v67 : string = _v0 |&gt; Option.get
+    v67
+and closure3 () () : string =
+    let v0 : string = ""
+    v0
+and closure2 (v0 : string, v1 : string) () : string =
+    let v2 : (unit -&gt; string) = closure3()
+    let v3 : string = $"temp_folder: {v0} / result: {v1} {v2 ()}"
+    v3
+and closure1 () () : string =
+    let v0 : string option = None
+    let mutable _v0 = v0
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v1 : US0 = US0_0
+    let v2 : US1 = US1_0(v1)
+    let v3 : string = $"create_temp_directory / target: {v2}"
+    let v4 : string = failwith&lt;string&gt; v3
+    v4
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v5 : US0 = US0_1
+    let v6 : US1 = US1_0(v5)
+    let v7 : string = $"create_temp_directory / target: {v6}"
+    let v8 : string = failwith&lt;string&gt; v7
+    v8
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v9 : string option = None
+    let mutable _v9 = v9
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v10 : US0 = US0_0
+    let v11 : US1 = US1_0(v10)
+    let v12 : string = $"create_temp_directory_name / target: {v11}"
+    let v13 : string = failwith&lt;string&gt; v12
+    v13
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v14 : US0 = US0_1
+    let v15 : US1 = US1_0(v14)
+    let v16 : string = $"create_temp_directory_name / target: {v15}"
+    let v17 : string = failwith&lt;string&gt; v16
+    v17
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v18 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v19 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v20 : string = v19 ()
+    let v21 : string = $"!{v18}"
+    let v22 : string option = None
+    let mutable _v22 = v22
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v23 : US0 = US0_0
+    let v24 : US1 = US1_0(v23)
+    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
+    let v26 : string = failwith&lt;string&gt; v25
+    v26
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v27 : US0 = US0_1
+    let v28 : US1 = US1_0(v27)
+    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
+    let v30 : string = failwith&lt;string&gt; v29
+    v30
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v31 : string = System.IO.Path.Combine (v20, v21)
+    v31
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v32 : US0 = US0_2
+    let v33 : US1 = US1_1(v32)
+    let v34 : string = $"(&lt;/&gt;) / target: {v33}"
+    let v35 : string = failwith&lt;string&gt; v34
+    v35
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v36 : US0 = US0_1
+    let v37 : US1 = US1_1(v36)
+    let v38 : string = $"(&lt;/&gt;) / target: {v37}"
+    let v39 : string = failwith&lt;string&gt; v38
+    v39
+    #endif
+    |&gt; fun x -&gt; _v22 &lt;- Some x
+    let v40 : string = _v22 |&gt; Option.get
+    let v41 : System.DateTime = System.DateTime.Now
+    let v42 : System.Guid = System.Guid.NewGuid ()
+    let v43 : (System.Guid -&gt; string) = _.ToString()
+    let v44 : string = v43 v42
+    let v45 : string = v41.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v46 : System.Guid = System.Guid $"{v45}{v44.[v45.Length..]}"
+    let v47 : (System.Guid -&gt; string) = _.ToString()
+    let v48 : string = v47 v46
+    let v49 : string option = None
+    let mutable _v49 = v49
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v50 : US0 = US0_0
+    let v51 : US1 = US1_0(v50)
+    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
+    let v53 : string = failwith&lt;string&gt; v52
+    v53
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v54 : US0 = US0_1
+    let v55 : US1 = US1_0(v54)
+    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
+    let v57 : string = failwith&lt;string&gt; v56
+    v57
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v58 : string = System.IO.Path.Combine (v40, v48)
+    v58
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v59 : US0 = US0_2
+    let v60 : US1 = US1_1(v59)
+    let v61 : string = $"(&lt;/&gt;) / target: {v60}"
+    let v62 : string = failwith&lt;string&gt; v61
+    v62
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v63 : US0 = US0_1
+    let v64 : US1 = US1_1(v63)
+    let v65 : string = $"(&lt;/&gt;) / target: {v64}"
+    let v66 : string = failwith&lt;string&gt; v65
+    v66
+    #endif
+    |&gt; fun x -&gt; _v49 &lt;- Some x
+    let v67 : string = _v49 |&gt; Option.get
+    v67
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v68 : US0 = US0_2
+    let v69 : US1 = US1_1(v68)
+    let v70 : string = $"create_temp_directory_name / target: {v69}"
+    let v71 : string = failwith&lt;string&gt; v70
+    v71
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v72 : US0 = US0_1
+    let v73 : US1 = US1_1(v72)
+    let v74 : string = $"create_temp_directory_name / target: {v73}"
+    let v75 : string = failwith&lt;string&gt; v74
+    v75
+    #endif
+    |&gt; fun x -&gt; _v9 &lt;- Some x
+    let v76 : string = _v9 |&gt; Option.get
+    let v77 : System.IO.DirectoryInfo option = None
+    let mutable _v77 = v77
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v78 : US0 = US0_0
+    let v79 : US1 = US1_0(v78)
+    let v80 : string = $"create_directory / target: {v79}"
+    let v81 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v80
+    v81
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v82 : US0 = US0_1
+    let v83 : US1 = US1_0(v82)
+    let v84 : string = $"create_directory / target: {v83}"
+    let v85 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v84
+    v85
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v86 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
+    let v87 : System.IO.DirectoryInfo = v86 v76
+    v87
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v88 : US0 = US0_2
+    let v89 : US1 = US1_1(v88)
+    let v90 : string = $"create_directory / target: {v89}"
+    let v91 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v90
+    v91
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v92 : US0 = US0_1
+    let v93 : US1 = US1_1(v92)
+    let v94 : string = $"create_directory / target: {v93}"
+    let v95 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v94
+    v95
+    #endif
+    |&gt; fun x -&gt; _v77 &lt;- Some x
+    let v96 : System.IO.DirectoryInfo = _v77 |&gt; Option.get
+    let v97 : bool option = None
+    let mutable _v97 = v97
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v98 : US0 = US0_0
+    let v99 : US1 = US1_0(v98)
+    let v100 : string = $"directory_info_exists / target: {v99}"
+    let v101 : bool = failwith&lt;bool&gt; v100
+    v101
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v102 : US0 = US0_1
+    let v103 : US1 = US1_0(v102)
+    let v104 : string = $"directory_info_exists / target: {v103}"
+    let v105 : bool = failwith&lt;bool&gt; v104
+    v105
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v106 : bool = v96.Exists
+    v106
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v107 : US0 = US0_2
+    let v108 : US1 = US1_1(v107)
+    let v109 : string = $"directory_info_exists / target: {v108}"
+    let v110 : bool = failwith&lt;bool&gt; v109
+    v110
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v111 : US0 = US0_1
+    let v112 : US1 = US1_1(v111)
+    let v113 : string = $"directory_info_exists / target: {v112}"
+    let v114 : bool = failwith&lt;bool&gt; v113
+    v114
+    #endif
+    |&gt; fun x -&gt; _v97 &lt;- Some x
+    let v115 : bool = _v97 |&gt; Option.get
+    let v116 : bool = v115 = false
+    if v116 then
+        let v117 : System.DateTime option = None
+        let mutable _v117 = v117
+        #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+        let v118 : US0 = US0_0
+        let v119 : US1 = US1_0(v118)
+        let v120 : string = $"directory_info_creation_time / target: {v119}"
+        let v121 : System.DateTime = failwith&lt;System.DateTime&gt; v120
+        v121
+        #endif
+        #if FABLE_COMPILER_RUST &amp;&amp; WASM
+        let v122 : US0 = US0_1
+        let v123 : US1 = US1_0(v122)
+        let v124 : string = $"directory_info_creation_time / target: {v123}"
+        let v125 : System.DateTime = failwith&lt;System.DateTime&gt; v124
+        v125
+        #endif
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        let v126 : System.DateTime = v96.CreationTime
+        v126
+        #endif
+        #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        let v127 : US0 = US0_2
+        let v128 : US1 = US1_1(v127)
+        let v129 : string = $"directory_info_creation_time / target: {v128}"
+        let v130 : System.DateTime = failwith&lt;System.DateTime&gt; v129
+        v130
+        #endif
+        #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+        let v131 : US0 = US0_1
+        let v132 : US1 = US1_1(v131)
+        let v133 : string = $"directory_info_creation_time / target: {v132}"
+        let v134 : System.DateTime = failwith&lt;System.DateTime&gt; v133
+        v134
+        #endif
+        |&gt; fun x -&gt; _v117 &lt;- Some x
+        let v135 : System.DateTime = _v117 |&gt; Option.get
+        let v136 : obj = {| Exists = v115; CreationTime = v135 |}
+        let v137 : string = $"%A{v136}"
+        let v138 : (unit -&gt; string) = closure2(v76, v137)
+        let v139 : string = $"create_temp_directory / {v138 ()}"
+        System.Console.WriteLine v139
+        ()
+    v76
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v140 : US0 = US0_2
+    let v141 : US1 = US1_1(v140)
+    let v142 : string = $"create_temp_directory / target: {v141}"
+    let v143 : string = failwith&lt;string&gt; v142
+    v143
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v144 : US0 = US0_1
+    let v145 : US1 = US1_1(v144)
+    let v146 : string = $"create_temp_directory / target: {v145}"
+    let v147 : string = failwith&lt;string&gt; v146
+    v147
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v148 : string = _v0 |&gt; Option.get
+    v148
+and closure5 (v0 : string) (v1 : string) : string =
+    let v2 : string option = None
+    let mutable _v2 = v2
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v3 : US0 = US0_0
+    let v4 : US1 = US1_0(v3)
+    let v5 : string = $"(&lt;/&gt;) / target: {v4}"
+    let v6 : string = failwith&lt;string&gt; v5
+    v6
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v7 : US0 = US0_1
+    let v8 : US1 = US1_0(v7)
+    let v9 : string = $"(&lt;/&gt;) / target: {v8}"
+    let v10 : string = failwith&lt;string&gt; v9
+    v10
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v11 : string = System.IO.Path.Combine (v0, v1)
+    v11
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v12 : US0 = US0_2
+    let v13 : US1 = US1_1(v12)
+    let v14 : string = $"(&lt;/&gt;) / target: {v13}"
+    let v15 : string = failwith&lt;string&gt; v14
+    v15
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v16 : US0 = US0_1
+    let v17 : US1 = US1_1(v16)
+    let v18 : string = $"(&lt;/&gt;) / target: {v17}"
+    let v19 : string = failwith&lt;string&gt; v18
+    v19
+    #endif
+    |&gt; fun x -&gt; _v2 &lt;- Some x
+    let v20 : string = _v2 |&gt; Option.get
+    v20
+and closure4 () (v0 : string) : (string -&gt; string) =
+    closure5(v0)
 let v0 : (unit -&gt; string) = closure0()
 let create_temp_directory_name () = v0 ()
+let v1 : (unit -&gt; string) = closure1()
+let create_temp_directory () = v1 ()
+let v2 : (string -&gt; (string -&gt; string)) = closure4()
+let (&lt;/&gt;) x = v2 x
 ()
 
 </pre>

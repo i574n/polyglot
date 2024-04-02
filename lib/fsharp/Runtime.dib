@@ -47,7 +47,7 @@ open Common
 
 //// test
 
-open FileSystem.Operators
+open File_system.Operators
 
 #!markdown
 
@@ -254,7 +254,7 @@ let inline executeAsync command =
 
 //// test
 
-let tempFolder = FileSystem.createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let fileName = "test.txt"
 let path = tempFolder </> fileName
 
@@ -288,7 +288,7 @@ async {
 
 //// test
 
-let tempFolder = FileSystem.createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let command = @$"pwsh -c ""Get-Content {path}"""

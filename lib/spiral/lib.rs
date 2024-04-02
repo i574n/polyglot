@@ -58,12 +58,4 @@ pub mod Lib {
             Sm::trim_end(x)
         }
     }
-    pub mod File_system {
-        use super::*;
-        use crate::File_system;
-        use fable_library_rust::String_::string;
-        pub fn create_temp_directory_name() -> string {
-            File_system::create_temp_directory_name()
-        }
-    }
 }

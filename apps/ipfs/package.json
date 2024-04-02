@@ -3,15 +3,14 @@
   "type": "module",
   "scripts": {
     "outdated-pre": "npm-check-updates --target greatest",
-    "start": "tsx index.ts"
+    "start": "bun index.ts"
   },
   "dependencies": {
     "nft.storage": "~7.1"
   },
   "devDependencies": {
-    "@types/node": "~20.11",
-    "npm-check-updates": "~16.14",
-    "typescript": "next",
-    "tsx": "~4.7"
+    "@types/node": "~20.12",
+    "npm-check-updates": "~17.0.0-5",
+    "typescript": "next"
   }
 }

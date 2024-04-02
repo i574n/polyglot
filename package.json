@@ -4,8 +4,8 @@
     "outdated-pre": "npm-check-updates --target greatest"
   },
   "devDependencies": {
-    "@types/node": "~20.11",
-    "npm-check-updates": "~16.14",
+    "@types/node": "~20.12",
+    "npm-check-updates": "~17.0.0-5",
     "typescript": "next"
   }
 }

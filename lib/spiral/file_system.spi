@@ -11,7 +11,10 @@ inl types () =
 // // ## (</>)
 
 inl (</>) (a : string) (b : string) : string =
-    $'System.IO.Path.Combine (!a, !b)'
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Path.Combine (!a, !b)'
+        | target => fun () => failwith $'$"(</>) / target: {!target}"'
 
 // // ## create_temp_directory_name
 
@@ -21,11 +24,69 @@ inl create_temp_directory_name () =
             inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
 
             ($'System.IO.Path.GetTempPath' () : string)
-            </> ($'$"{!root}"' : string)
+            </> ($'$"\!{!root}"' : string)
             </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
-        | x => fun () => failwith $'$"create_temp_directory_name target: {!x}"'
+        | target => fun () => failwith $'$"create_temp_directory_name / target: {!target}"'
+
+// // ## directory_info
+
+nominal directory_info =
+    // $'\n#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM\n                                                                                                                   System.IO.DirectoryInfo\n#else\n                                                                                                                   _\n#endif\n                                                                                                                  '
+    $'System.IO.DirectoryInfo'
+
+// // ## directory_info_exists
+
+inl directory_info_exists (info : directory_info) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.Exists'
+        | target => fun () => failwith $'$"directory_info_exists / target: {!target}"'
+
+// // ## directory_info_creation_time
+
+inl directory_info_creation_time (info : directory_info) : date_time.date_time =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.CreationTime'
+        | target => fun () => failwith $'$"directory_info_creation_time / target: {!target}"'
+
+// // ## create_directory
+
+inl create_directory (path : string) : directory_info =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Directory.CreateDirectory'
+        | target => fun () => failwith $'$"create_directory / target: {!target}"'
+
+// // ## directory_exists
+
+inl directory_exists (path : string) : bool =
+    path |> $'System.IO.Directory.Exists'
+
+// // ## create_temp_directory
+
+inl create_temp_directory () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl temp_folder = create_temp_directory_name ()
+            inl result = temp_folder |> create_directory
+
+            inl exists' = result |> directory_info_exists
+            if not exists' then
+                inl creation_time = result |> directory_info_creation_time
+                inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
+                inl get_locals () : string =
+                    $'$"temp_folder: {!temp_folder} / result: {!result} {!get_locals ()}"'
+                // trace Debug (fun () => "createTempDirectory") get_locals
+                console.write_line ($'$"create_temp_directory / {!get_locals ()}"' : string)
+
+            temp_folder
+        | target => fun () => failwith $'$"create_temp_directory / target: {!target}"'
 
 // // ## main
 
 inl main () =
     $"let create_temp_directory_name () = !create_temp_directory_name ()" : ()
+    $"let create_temp_directory () = !create_temp_directory ()" : ()
+    inl combine x = (</>) x
+    $"let (</>) x = !combine x" : ()

@@ -23,9 +23,9 @@ function CheckJson {
     param (
         [string] $json
     )
-    $json = [IO.Path]::GetFullPath("$ScriptDir/$json")
-    Write-Output "`n$json"
-    { pnpm -C $json outdated-pre } | Invoke-Block
+    $json = [IO.Path]::GetFullPath("$ScriptDir/$json").Replace("\", "/")
+    Write-Output "`nCheckJson / json: $json"
+    { bun --cwd $json outdated-pre } | Invoke-Block
 }
 
 

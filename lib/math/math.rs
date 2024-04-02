@@ -63,8 +63,8 @@ mod module_b7a9935b {
         }
         #[derive(Clone, Debug)]
         pub enum US0 {
-            US0_0,
-            US0_1(num_complex::Complex<f64>),
+            US0_0(num_complex::Complex<f64>),
+            US0_1,
         }
         impl Math::US0 {
             pub fn get_IsUS0_0(this_: &MutCell<Math::US0>, unitArg: ()) -> bool {
@@ -89,19 +89,19 @@ mod module_b7a9935b {
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd)]
         pub enum UH0 {
-            UH0_0(f64, LrcPtr<Math::UH0>),
-            UH0_1,
+            UH0_0,
+            UH0_1(f64, LrcPtr<Math::UH0>),
         }
         impl Math::UH0 {
             pub fn get_IsUH0_0(this_: LrcPtr<Math::UH0>, unitArg: ()) -> bool {
-                if let Math::UH0::UH0_0(this__0_0, this__0_1) = this_.as_ref() {
+                if let Math::UH0::UH0_0 = this_.as_ref() {
                     true
                 } else {
                     false
                 }
             }
             pub fn get_IsUH0_1(this_: LrcPtr<Math::UH0>, unitArg: ()) -> bool {
-                if let Math::UH0::UH0_1 = this_.as_ref() {
+                if let Math::UH0::UH0_1(this__1_0, this__1_1) = this_.as_ref() {
                     true
                 } else {
                     false
@@ -458,7 +458,7 @@ mod module_b7a9935b {
             ))
         }
         pub fn closure5(unitVar: (), v0_1: num_complex::Complex<f64>) -> Math::US0 {
-            Math::US0::US0_1(v0_1)
+            Math::US0::US0_0(v0_1)
         }
         pub fn method42() -> f64 {
             3.141592653589793_f64
@@ -529,14 +529,17 @@ mod module_b7a9935b {
                             Math::method8(v49 - v2),
                         );
                     let v57 = Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v));
-                    let v59: Math::US0 = defaultValue(Math::US0::US0_0, map(v57.clone(), v54.ok()));
+                    let v59: Math::US0 = defaultValue(Math::US0::US0_1, map(v57.clone(), v54.ok()));
                     let v61: f64 = f64::NAN;
                     let v63: f64 = f64::NAN;
                     let v65: f64 = Math::method3(Math::method31(v61));
                     let v66: f64 = Math::method32(v63);
                     let v68: num_complex::Complex<f64> = num_complex::Complex::new(v65, v66);
                     let v71: num_complex::Complex<f64> = match &v59 {
-                        Math::US0::US0_1(v59_1_0) => v59_1_0.clone(),
+                        Math::US0::US0_0(v59_0_0) => match &v59 {
+                            Math::US0::US0_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        },
                         _ => v68,
                     };
                     let v73: f64 = Math::method3(Math::method42());
@@ -626,7 +629,7 @@ mod module_b7a9935b {
                                         Math::method8(v157 - v110),
                                     );
                                 let v166: Math::US0 =
-                                    defaultValue(Math::US0::US0_0, map(v57.clone(), v162.ok()));
+                                    defaultValue(Math::US0::US0_1, map(v57.clone(), v162.ok()));
                                 let v168: f64 = f64::NAN;
                                 let v170: f64 = f64::NAN;
                                 let v172: f64 = Math::method3(Math::method31(v168));
@@ -634,7 +637,10 @@ mod module_b7a9935b {
                                 let v175: num_complex::Complex<f64> =
                                     num_complex::Complex::new(v172, v173);
                                 let v178: num_complex::Complex<f64> = match &v166 {
-                                    Math::US0::US0_1(v166_1_0) => v166_1_0.clone(),
+                                    Math::US0::US0_0(v166_0_0) => match &v166 {
+                                        Math::US0::US0_0(x) => x.clone(),
+                                        _ => unreachable!(),
+                                    },
                                     _ => v175,
                                 };
                                 let v180: f64 = Math::method3(Math::method42());
@@ -738,7 +744,7 @@ mod module_b7a9935b {
                                                 Math::method8(v264 - v217),
                                             );
                                             let v273: Math::US0 = defaultValue(
-                                                Math::US0::US0_0,
+                                                Math::US0::US0_1,
                                                 map(v57.clone(), v269.ok()),
                                             );
                                             let v275: f64 = f64::NAN;
@@ -748,7 +754,10 @@ mod module_b7a9935b {
                                             let v282: num_complex::Complex<f64> =
                                                 num_complex::Complex::new(v279, v280);
                                             let v285: num_complex::Complex<f64> = match &v273 {
-                                                Math::US0::US0_1(v273_1_0) => v273_1_0.clone(),
+                                                Math::US0::US0_0(v273_0_0) => match &v273 {
+                                                    Math::US0::US0_0(x) => x.clone(),
+                                                    _ => unreachable!(),
+                                                },
                                                 _ => v282,
                                             };
                                             let v287: f64 = Math::method3(Math::method42());
@@ -878,7 +887,7 @@ mod module_b7a9935b {
                                                             Math::method8(v371 - v324),
                                                         );
                                                         let v380: Math::US0 = defaultValue(
-                                                            Math::US0::US0_0,
+                                                            Math::US0::US0_1,
                                                             map(v57.clone(), v376.ok()),
                                                         );
                                                         let v382: f64 = f64::NAN;
@@ -890,8 +899,13 @@ mod module_b7a9935b {
                                                             num_complex::Complex::new(v386, v387);
                                                         let v392: num_complex::Complex<f64> =
                                                             match &v380 {
-                                                                Math::US0::US0_1(v380_1_0) => {
-                                                                    v380_1_0.clone()
+                                                                Math::US0::US0_0(v380_0_0) => {
+                                                                    match &v380 {
+                                                                        Math::US0::US0_0(x) => {
+                                                                            x.clone()
+                                                                        }
+                                                                        _ => unreachable!(),
+                                                                    }
                                                                 }
                                                                 _ => v389,
                                                             };
@@ -1073,7 +1087,7 @@ mod module_b7a9935b {
                                                                                                        Math::method8(v478 - v431));
                                                                         let v487: Math::US0 =
                                                                             defaultValue(
-                                                                                Math::US0::US0_0,
+                                                                                Math::US0::US0_1,
                                                                                 map(v57, v483.ok()),
                                                                             );
                                                                         let v489: f64 = f64::NAN;
@@ -1093,9 +1107,17 @@ mod module_b7a9935b {
                                                                                             num_complex::Complex<f64> =
                                                                                         match &v487
                                                                                             {
-                                                                                            Math::US0::US0_1(v487_1_0)
+                                                                                            Math::US0::US0_0(v487_0_0)
                                                                                             =>
-                                                                                            v487_1_0.clone(),
+                                                                                            match &v487
+                                                                                                {
+                                                                                                Math::US0::US0_0(x)
+                                                                                                =>
+                                                                                                x.clone(),
+                                                                                                _
+                                                                                                =>
+                                                                                                unreachable!(),
+                                                                                            },
                                                                                             _
                                                                                             =>
                                                                                             v496,
@@ -1313,7 +1335,7 @@ mod module_b7a9935b {
                 );
                 let v22: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v17);
                 let v27: Math::US0 = defaultValue(
-                    Math::US0::US0_0,
+                    Math::US0::US0_1,
                     map(
                         Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                         v21.ok(),
@@ -1325,7 +1347,10 @@ mod module_b7a9935b {
                 let v34: f64 = Math::method32(v31);
                 let v36: num_complex::Complex<f64> = num_complex::Complex::new(v33, v34);
                 let v39: num_complex::Complex<f64> = match &v27 {
-                    Math::US0::US0_1(v27_1_0) => v27_1_0.clone(),
+                    Math::US0::US0_0(v27_0_0) => match &v27 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v36,
                 };
                 let v40: num_complex::Complex<f64> = Math::method14(v39.clone());
@@ -1409,7 +1434,7 @@ mod module_b7a9935b {
             );
             let v9: num_complex::Complex<f64> = Math::method33(v0_1, v5);
             let v14: Math::US0 = defaultValue(
-                Math::US0::US0_0,
+                Math::US0::US0_1,
                 map(
                     Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                     v8.ok(),
@@ -1421,7 +1446,10 @@ mod module_b7a9935b {
             let v21: f64 = Math::method32(v18);
             let v23: num_complex::Complex<f64> = num_complex::Complex::new(v20, v21);
             let v26: num_complex::Complex<f64> = match &v14 {
-                Math::US0::US0_1(v14_1_0) => v14_1_0.clone(),
+                Math::US0::US0_0(v14_0_0) => match &v14 {
+                    Math::US0::US0_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
                 _ => v23,
             };
             let v27: num_complex::Complex<f64> = Math::method13(v26.clone());
@@ -1481,36 +1509,40 @@ mod module_b7a9935b {
             }
         }
         pub fn method51() -> LrcPtr<Math::UH0> {
-            LrcPtr::new(Math::UH0::UH0_0(-2.0_f64,
-                                         LrcPtr::new(Math::UH0::UH0_0(-4.0_f64,
-                                                                      LrcPtr::new(Math::UH0::UH0_0(-6.0_f64,
-                                                                                                   LrcPtr::new(Math::UH0::UH0_0(-8.0_f64,
-                                                                                                                                LrcPtr::new(Math::UH0::UH0_0(-10.0_f64,
-                                                                                                                                                             LrcPtr::new(Math::UH0::UH0_0(-12.0_f64,
-                                                                                                                                                                                          LrcPtr::new(Math::UH0::UH0_0(-14.0_f64,
-                                                                                                                                                                                                                       LrcPtr::new(Math::UH0::UH0_0(-16.0_f64,
-                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_0(-18.0_f64,
-                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_0(-20.0_f64,
-                                                                                                                                                                                                                                                                                                              LrcPtr::new(Math::UH0::UH0_0(-22.0_f64,
-                                                                                                                                                                                                                                                                                                                                           LrcPtr::new(Math::UH0::UH0_0(-24.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                        LrcPtr::new(Math::UH0::UH0_0(-26.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                     LrcPtr::new(Math::UH0::UH0_0(-28.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                  LrcPtr::new(Math::UH0::UH0_0(-30.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                               LrcPtr::new(Math::UH0::UH0_0(-32.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            LrcPtr::new(Math::UH0::UH0_0(-34.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         LrcPtr::new(Math::UH0::UH0_0(-36.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      LrcPtr::new(Math::UH0::UH0_0(-38.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   LrcPtr::new(Math::UH0::UH0_0(-40.0_f64,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                LrcPtr::new(Math::UH0::UH0_1)))))))))))))))))))))))))))))))))))))))))
+            LrcPtr::new(Math::UH0::UH0_1(-2.0_f64,
+                                         LrcPtr::new(Math::UH0::UH0_1(-4.0_f64,
+                                                                      LrcPtr::new(Math::UH0::UH0_1(-6.0_f64,
+                                                                                                   LrcPtr::new(Math::UH0::UH0_1(-8.0_f64,
+                                                                                                                                LrcPtr::new(Math::UH0::UH0_1(-10.0_f64,
+                                                                                                                                                             LrcPtr::new(Math::UH0::UH0_1(-12.0_f64,
+                                                                                                                                                                                          LrcPtr::new(Math::UH0::UH0_1(-14.0_f64,
+                                                                                                                                                                                                                       LrcPtr::new(Math::UH0::UH0_1(-16.0_f64,
+                                                                                                                                                                                                                                                    LrcPtr::new(Math::UH0::UH0_1(-18.0_f64,
+                                                                                                                                                                                                                                                                                 LrcPtr::new(Math::UH0::UH0_1(-20.0_f64,
+                                                                                                                                                                                                                                                                                                              LrcPtr::new(Math::UH0::UH0_1(-22.0_f64,
+                                                                                                                                                                                                                                                                                                                                           LrcPtr::new(Math::UH0::UH0_1(-24.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                        LrcPtr::new(Math::UH0::UH0_1(-26.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                     LrcPtr::new(Math::UH0::UH0_1(-28.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                  LrcPtr::new(Math::UH0::UH0_1(-30.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               LrcPtr::new(Math::UH0::UH0_1(-32.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            LrcPtr::new(Math::UH0::UH0_1(-34.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         LrcPtr::new(Math::UH0::UH0_1(-36.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      LrcPtr::new(Math::UH0::UH0_1(-38.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   LrcPtr::new(Math::UH0::UH0_1(-40.0_f64,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                LrcPtr::new(Math::UH0::UH0_0)))))))))))))))))))))))))))))))))))))))))
         }
         pub fn method52(v0_1: pyo3::Python, v1_1: LrcPtr<Math::UH0>) {
             let v0_1: MutCell<pyo3::Python> = MutCell::new(v0_1.clone());
             let v1_1: MutCell<LrcPtr<Math::UH0>> = MutCell::new(v1_1.clone());
             '_method52: loop {
                 break '_method52 (match v1_1.get().clone().as_ref() {
-                    Math::UH0::UH0_1 => (),
-                    Math::UH0::UH0_0(v1_1_0_0, v1_1_0_1) => {
-                        let v5: f64 = Math::method3(Math::method31(v1_1_0_0.clone()));
+                    Math::UH0::UH0_0 => (),
+                    Math::UH0::UH0_1(v1_1_1_0, v1_1_1_1) => {
+                        let v5: f64 =
+                            Math::method3(Math::method31(match v1_1.get().clone().as_ref() {
+                                Math::UH0::UH0_1(x, _) => x.clone(),
+                                _ => unreachable!(),
+                            }));
                         let v6: f64 = Math::method4();
                         let v8: num_complex::Complex<f64> = num_complex::Complex::new(v5, v6);
                         let v11: Result<num_complex::Complex<f64>, std::string::String> =
@@ -1521,7 +1553,7 @@ mod module_b7a9935b {
                             );
                         let v12: num_complex::Complex<f64> = Math::method33(v0_1.get().clone(), v8);
                         let v17: Math::US0 = defaultValue(
-                            Math::US0::US0_0,
+                            Math::US0::US0_1,
                             map(
                                 Func1::new(move |v: num_complex::Complex<f64>| {
                                     Math::closure5((), v)
@@ -1535,7 +1567,10 @@ mod module_b7a9935b {
                         let v24: f64 = Math::method32(v21);
                         let v26: num_complex::Complex<f64> = num_complex::Complex::new(v23, v24);
                         let v29: num_complex::Complex<f64> = match &v17 {
-                            Math::US0::US0_1(v17_1_0) => v17_1_0.clone(),
+                            Math::US0::US0_0(v17_0_0) => match &v17 {
+                                Math::US0::US0_0(x) => x.clone(),
+                                _ => unreachable!(),
+                            },
                             _ => v26,
                         };
                         let v30: num_complex::Complex<f64> = Math::method13(v29.clone());
@@ -1573,7 +1608,11 @@ mod module_b7a9935b {
                                     }
                                     {
                                         let v0_1_temp: pyo3::Python = v0_1.get().clone();
-                                        let v1_1_temp: LrcPtr<Math::UH0> = v1_1_0_1.clone();
+                                        let v1_1_temp: LrcPtr<Math::UH0> =
+                                            match v1_1.get().clone().as_ref() {
+                                                Math::UH0::UH0_1(_, x) => x.clone(),
+                                                _ => unreachable!(),
+                                            };
                                         v0_1.set(v0_1_temp);
                                         v1_1.set(v1_1_temp);
                                         continue '_method52;
@@ -1673,7 +1712,7 @@ mod module_b7a9935b {
                 );
                 let v41: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v37);
                 let v46: Math::US0 = defaultValue(
-                    Math::US0::US0_0,
+                    Math::US0::US0_1,
                     map(
                         Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                         v40.ok(),
@@ -1685,7 +1724,10 @@ mod module_b7a9935b {
                 let v53: f64 = Math::method32(v50);
                 let v55: num_complex::Complex<f64> = num_complex::Complex::new(v52, v53);
                 let v58: num_complex::Complex<f64> = match &v46 {
-                    Math::US0::US0_1(v46_1_0) => v46_1_0.clone(),
+                    Math::US0::US0_0(v46_0_0) => match &v46 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v55,
                 };
                 let v59: num_complex::Complex<f64> = Math::method13(v58.clone());
@@ -1774,7 +1816,7 @@ mod module_b7a9935b {
                 );
                 let v16: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v12);
                 let v21: Math::US0 = defaultValue(
-                    Math::US0::US0_0,
+                    Math::US0::US0_1,
                     map(
                         Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                         v15.ok(),
@@ -1786,7 +1828,10 @@ mod module_b7a9935b {
                 let v28: f64 = Math::method32(v25);
                 let v30: num_complex::Complex<f64> = num_complex::Complex::new(v27, v28);
                 let v33: num_complex::Complex<f64> = match &v21 {
-                    Math::US0::US0_1(v21_1_0) => v21_1_0.clone(),
+                    Math::US0::US0_0(v21_0_0) => match &v21 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v30,
                 };
                 let v34: num_complex::Complex<f64> = Math::method13(v33.clone());
@@ -1859,7 +1904,7 @@ mod module_b7a9935b {
             );
             let v9: num_complex::Complex<f64> = Math::method33(v0_1, v5);
             let v14: Math::US0 = defaultValue(
-                Math::US0::US0_0,
+                Math::US0::US0_1,
                 map(
                     Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                     v8.ok(),
@@ -1871,7 +1916,10 @@ mod module_b7a9935b {
             let v21: f64 = Math::method32(v18);
             let v23: num_complex::Complex<f64> = num_complex::Complex::new(v20, v21);
             let v26: num_complex::Complex<f64> = match &v14 {
-                Math::US0::US0_1(v14_1_0) => v14_1_0.clone(),
+                Math::US0::US0_0(v14_0_0) => match &v14 {
+                    Math::US0::US0_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
                 _ => v23,
             };
             let v27: num_complex::Complex<f64> = Math::method13(v26.clone());
@@ -1940,14 +1988,17 @@ mod module_b7a9935b {
             );
             let v9: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v5.clone());
             let v12 = Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v));
-            let v14: Math::US0 = defaultValue(Math::US0::US0_0, map(v12.clone(), v8.ok()));
+            let v14: Math::US0 = defaultValue(Math::US0::US0_1, map(v12.clone(), v8.ok()));
             let v16: f64 = f64::NAN;
             let v18: f64 = f64::NAN;
             let v20: f64 = Math::method3(Math::method31(v16));
             let v21: f64 = Math::method32(v18);
             let v23: num_complex::Complex<f64> = num_complex::Complex::new(v20, v21);
             let v26: num_complex::Complex<f64> = match &v14 {
-                Math::US0::US0_1(v14_1_0) => v14_1_0.clone(),
+                Math::US0::US0_0(v14_0_0) => match &v14 {
+                    Math::US0::US0_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
                 _ => v23,
             };
             let v27: num_complex::Complex<f64> = Math::method13(v5.clone());
@@ -1963,14 +2014,17 @@ mod module_b7a9935b {
                 Math::method8(v38.clone()),
             );
             let v42: num_complex::Complex<f64> = Math::method33(v0_1, v38);
-            let v46: Math::US0 = defaultValue(Math::US0::US0_0, map(v12, v41.ok()));
+            let v46: Math::US0 = defaultValue(Math::US0::US0_1, map(v12, v41.ok()));
             let v48: f64 = f64::NAN;
             let v50: f64 = f64::NAN;
             let v52: f64 = Math::method3(Math::method31(v48));
             let v53: f64 = Math::method32(v50);
             let v55: num_complex::Complex<f64> = num_complex::Complex::new(v52, v53);
             let v58: num_complex::Complex<f64> = match &v46 {
-                Math::US0::US0_1(v46_1_0) => v46_1_0.clone(),
+                Math::US0::US0_0(v46_0_0) => match &v46 {
+                    Math::US0::US0_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
                 _ => v55,
             };
             let v60: num_complex::Complex<f64> = v58.conj();
@@ -2043,7 +2097,7 @@ mod module_b7a9935b {
             );
             let v9: num_complex::Complex<f64> = Math::method33(v0_1, v5);
             let v14: Math::US0 = defaultValue(
-                Math::US0::US0_0,
+                Math::US0::US0_1,
                 map(
                     Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                     v8.ok(),
@@ -2055,7 +2109,10 @@ mod module_b7a9935b {
             let v21: f64 = Math::method32(v18);
             let v23: num_complex::Complex<f64> = num_complex::Complex::new(v20, v21);
             let v26: num_complex::Complex<f64> = match &v14 {
-                Math::US0::US0_1(v14_1_0) => v14_1_0.clone(),
+                Math::US0::US0_0(v14_0_0) => match &v14 {
+                    Math::US0::US0_0(x) => x.clone(),
+                    _ => unreachable!(),
+                },
                 _ => v23,
             };
             let v27: num_complex::Complex<f64> = Math::method13(v26.clone());
@@ -2142,7 +2199,7 @@ mod module_b7a9935b {
                 );
                 let v15: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v11);
                 let v20: Math::US0 = defaultValue(
-                    Math::US0::US0_0,
+                    Math::US0::US0_1,
                     map(
                         Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                         v14.ok(),
@@ -2154,7 +2211,10 @@ mod module_b7a9935b {
                 let v27: f64 = Math::method32(v24);
                 let v29: num_complex::Complex<f64> = num_complex::Complex::new(v26, v27);
                 let v32: num_complex::Complex<f64> = match &v20 {
-                    Math::US0::US0_1(v20_1_0) => v20_1_0.clone(),
+                    Math::US0::US0_0(v20_0_0) => match &v20 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v29,
                 };
                 let v33: num_complex::Complex<f64> = Math::method13(v32.clone());
@@ -2273,7 +2333,7 @@ mod module_b7a9935b {
                 );
                 let v36: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v32);
                 let v41: Math::US0 = defaultValue(
-                    Math::US0::US0_0,
+                    Math::US0::US0_1,
                     map(
                         Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                         v35.ok(),
@@ -2285,7 +2345,10 @@ mod module_b7a9935b {
                 let v48: f64 = Math::method32(v45);
                 let v50: num_complex::Complex<f64> = num_complex::Complex::new(v47, v48);
                 let v53: num_complex::Complex<f64> = match &v41 {
-                    Math::US0::US0_1(v41_1_0) => v41_1_0.clone(),
+                    Math::US0::US0_0(v41_0_0) => match &v41 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v50,
                 };
                 let v54: num_complex::Complex<f64> = Math::method13(v53.clone());
@@ -2397,14 +2460,17 @@ mod module_b7a9935b {
                 );
                 let v31: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v27.clone());
                 let v34 = Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v));
-                let v36: Math::US0 = defaultValue(Math::US0::US0_0, map(v34.clone(), v30.ok()));
+                let v36: Math::US0 = defaultValue(Math::US0::US0_1, map(v34.clone(), v30.ok()));
                 let v38: f64 = f64::NAN;
                 let v40: f64 = f64::NAN;
                 let v42: f64 = Math::method3(Math::method31(v38));
                 let v43: f64 = Math::method32(v40);
                 let v45: num_complex::Complex<f64> = num_complex::Complex::new(v42, v43);
                 let v48: num_complex::Complex<f64> = match &v36 {
-                    Math::US0::US0_1(v36_1_0) => v36_1_0.clone(),
+                    Math::US0::US0_0(v36_0_0) => match &v36 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v45,
                 };
                 let v50: f64 = Math::method3(Math::method2());
@@ -2442,14 +2508,17 @@ mod module_b7a9935b {
                     string("        s = mpmath.gamma(s)"),
                     Math::method8(v98 - v27),
                 );
-                let v107: Math::US0 = defaultValue(Math::US0::US0_0, map(v34.clone(), v103.ok()));
+                let v107: Math::US0 = defaultValue(Math::US0::US0_1, map(v34.clone(), v103.ok()));
                 let v109: f64 = f64::NAN;
                 let v111: f64 = f64::NAN;
                 let v113: f64 = Math::method3(Math::method31(v109));
                 let v114: f64 = Math::method32(v111);
                 let v116: num_complex::Complex<f64> = num_complex::Complex::new(v113, v114);
                 let v119: num_complex::Complex<f64> = match &v107 {
-                    Math::US0::US0_1(v107_1_0) => v107_1_0.clone(),
+                    Math::US0::US0_0(v107_0_0) => match &v107 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v116,
                 };
                 let v121: num_complex::Complex<f64> = v93 * v119;
@@ -2466,14 +2535,17 @@ mod module_b7a9935b {
                     Math::method8(v134.clone()),
                 );
                 let v138: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v134);
-                let v142: Math::US0 = defaultValue(Math::US0::US0_0, map(v34, v137.ok()));
+                let v142: Math::US0 = defaultValue(Math::US0::US0_1, map(v34, v137.ok()));
                 let v144: f64 = f64::NAN;
                 let v146: f64 = f64::NAN;
                 let v148: f64 = Math::method3(Math::method31(v144));
                 let v149: f64 = Math::method32(v146);
                 let v151: num_complex::Complex<f64> = num_complex::Complex::new(v148, v149);
                 let v154: num_complex::Complex<f64> = match &v142 {
-                    Math::US0::US0_1(v142_1_0) => v142_1_0.clone(),
+                    Math::US0::US0_0(v142_0_0) => match &v142 {
+                        Math::US0::US0_0(x) => x.clone(),
+                        _ => unreachable!(),
+                    },
                     _ => v151,
                 };
                 let v156: num_complex::Complex<f64> = v121 * v154;
@@ -2591,7 +2663,7 @@ mod module_b7a9935b {
                     );
                     let v30: num_complex::Complex<f64> = Math::method33(v0_1.clone(), v14);
                     let v35: Math::US0 = defaultValue(
-                        Math::US0::US0_0,
+                        Math::US0::US0_1,
                         map(
                             Func1::new(move |v: num_complex::Complex<f64>| Math::closure5((), v)),
                             v29.ok(),
@@ -2603,7 +2675,10 @@ mod module_b7a9935b {
                     let v42: f64 = Math::method32(v39);
                     let v44: num_complex::Complex<f64> = num_complex::Complex::new(v41, v42);
                     let v47: num_complex::Complex<f64> = match &v35 {
-                        Math::US0::US0_1(v35_1_0) => v35_1_0.clone(),
+                        Math::US0::US0_0(v35_0_0) => match &v35 {
+                            Math::US0::US0_0(x) => x.clone(),
+                            _ => unreachable!(),
+                        },
                         _ => v44,
                     };
                     let v48: num_complex::Complex<f64> = Math::method13(v47.clone());

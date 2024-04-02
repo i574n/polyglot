@@ -41,50 +41,7 @@ open Lib
 #!fsharp
 
 open Common
-
-#!markdown
-
-## Operators
-
-#!fsharp
-
-module Operators =
-    let inline (</>) a b =
-        System.IO.Path.Combine (a, b)
-
-#!fsharp
-
-open Operators
-
-#!markdown
-
-## createTempDirectory
-
-#!fsharp
-
-let inline createTempDirectory () =
-    let tempFolder = File_system.create_temp_directory_name ()
-    let result = System.IO.Directory.CreateDirectory tempFolder
-
-    if not result.Exists then
-        let getLocals () =
-            $"tempFolder: {tempFolder} / result: {({|
-                Exists = result.Exists
-                CreationTime = result.CreationTime
-            |})} {getLocals ()}"
-
-        trace Debug (fun () -> "createTempDirectory") getLocals
-
-    tempFolder
-
-#!fsharp
-
-//// test
-
-let tempDirectory = createTempDirectory ()
-
-Directory.Exists tempDirectory
-|> _assertEqual true
+open File_system.Operators
 
 #!markdown
 
@@ -218,7 +175,7 @@ let inline waitForFileAccess access path =
 
 //// test
 
-let tempFolder = createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let inline lockFile () = async {
@@ -322,7 +279,7 @@ let inline deleteDirectoryAsync path =
 
 //// test
 
-let tempFolder = createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let path = tempFolder </> "test"
 
 let inline lockDirectory () = async {
@@ -389,7 +346,7 @@ let inline deleteFileAsync path =
 
 //// test
 
-let tempFolder = createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let inline lockFile () = async {
@@ -456,7 +413,7 @@ let inline moveFileAsync newPath oldPath =
 
 //// test
 
-let tempFolder = createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 let newPath = tempFolder </> "test2.txt"
 
@@ -665,7 +622,7 @@ let inline testEventsRaw
     (watchFn : (_ -> bool) -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let tempDirectory = createTempDirectory ()
+    let tempDirectory = File_system.create_temp_directory ()
     let stream, disposable = watchFn (fun _ -> true) tempDirectory
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
@@ -906,7 +863,7 @@ let inline testEventsSorted
     (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let path = createTempDirectory ()
+    let path = File_system.create_temp_directory ()
     let stream, disposable = watchFn path
 
     let events = System.Collections.Concurrent.ConcurrentBag ()

@@ -37,10 +37,6 @@ rustup update
 
 #!pwsh
 
-npm install -g pnpm
-
-#!pwsh
-
 npm install -g esbuild
 
 #!pwsh
@@ -77,7 +73,7 @@ npx -y playwright@1.42.1 install
 
 #!pwsh
 
-{ pnpm -C .. install --frozen-lockfile } | Invoke-Block
+{ bun install --cwd .. --frozen-lockfile } | Invoke-Block
 
 #!pwsh
 

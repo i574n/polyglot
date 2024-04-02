@@ -43,7 +43,7 @@ open Lib
 
 #!fsharp
 
-open FileSystem.Operators
+open File_system.Operators
 open Falco.Markup
 
 #!fsharp
@@ -166,7 +166,7 @@ details > div {{
 
 //// test
 
-let tempFolder = FileSystem.createTempDirectory ()
+let tempFolder = File_system.create_temp_directory ()
 let rec loop d n = async {
     if n >= 0 then
         tempFolder </> d |> System.IO.Directory.CreateDirectory |> ignore

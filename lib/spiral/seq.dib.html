@@ -8097,8 +8097,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
@@ -8110,11 +8110,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_1(5)
+    let v0 : US0 = US0_0(5)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(5)
-    let v6 : US0 = US0_1(5)
+    let v5 : US0 = US0_0(5)
+    let v6 : US0 = US0_0(5)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
@@ -8129,7 +8129,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_1 5
+US0_0 5
 </pre>
 </div>
 </div>
@@ -8206,19 +8206,19 @@ US0_1 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(10)
+    let v0 : US0 = US0_0(10)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(10)
-    let v6 : US0 = US0_1(10)
+    let v5 : US0 = US0_0(10)
+    let v6 : US0 = US0_0(10)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 10
+US0_0 10
 </pre>
 </div>
 </div>
@@ -8295,8 +8295,8 @@ US0_1 10
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
@@ -8308,11 +8308,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_1(10)
+    let v0 : US0 = US0_0(10)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(10)
-    let v6 : US0 = US0_1(10)
+    let v5 : US0 = US0_0(10)
+    let v6 : US0 = US0_0(10)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
@@ -8327,7 +8327,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_1 10
+US0_0 10
 </pre>
 </div>
 </div>
@@ -8417,8 +8417,8 @@ US0_1 10
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
@@ -8430,11 +8430,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_1(2)
+    let v0 : US0 = US0_0(2)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(2)
-    let v6 : US0 = US0_1(2)
+    let v5 : US0 = US0_0(2)
+    let v6 : US0 = US0_0(2)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
@@ -8449,7 +8449,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_1 2
+US0_0 2
 </pre>
 </div>
 </div>
@@ -8525,19 +8525,19 @@ US0_1 2
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32 * f1_1 : int32
+    | US0_0 of f0_0 : int32 * f0_1 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5, 10)
+    let v0 : US0 = US0_0(5, 10)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(5, 10)
-    let v6 : US0 = US0_1(5, 10)
+    let v5 : US0 = US0_0(5, 10)
+    let v6 : US0 = US0_0(5, 10)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 (5, 10)
+US0_0 (5, 10)
 </pre>
 </div>
 </div>
@@ -8609,22 +8609,22 @@ US0_1 (5, 10)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5)
-    let v1 : US0 = US0_1(10)
+    let v0 : US0 = US0_0(5)
+    let v1 : US0 = US0_0(10)
     let v2 : string = $"%A{struct (v0, v1)}"
     System.Console.WriteLine v2
-    let v9 : US0 = US0_1(5)
-    let v10 : US0 = US0_1(10)
-    let v11 : US0 = US0_1(5)
-    let v12 : US0 = US0_1(10)
+    let v9 : US0 = US0_0(5)
+    let v10 : US0 = US0_0(10)
+    let v11 : US0 = US0_0(5)
+    let v12 : US0 = US0_0(10)
     let v13 : string = $"__expect / actual: %A{struct (v9, v10)} / expected: %A{struct (v11, v12)}"
     ()
 method0()
 
-struct (US0_1 5, US0_1 10)
+struct (US0_0 5, US0_0 10)
 </pre>
 </div>
 </div>
@@ -8698,19 +8698,19 @@ struct (US0_1 5, US0_1 10)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(6)
+    let v0 : US0 = US0_0(6)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(6)
-    let v6 : US0 = US0_1(6)
+    let v5 : US0 = US0_0(6)
+    let v6 : US0 = US0_0(6)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 6
+US0_0 6
 </pre>
 </div>
 </div>
@@ -8925,58 +8925,58 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type UH0 =
-    | UH0_0 of int32 * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of int32 * UH0
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(9, v0)
-    let v2 : UH0 = UH0_0(8, v1)
-    let v3 : UH0 = UH0_0(7, v2)
-    let v4 : UH0 = UH0_0(6, v3)
-    let v5 : UH0 = UH0_0(5, v4)
-    let v6 : UH0 = UH0_0(4, v5)
-    let v7 : UH0 = UH0_0(3, v6)
-    let v8 : UH0 = UH0_0(2, v7)
-    let v9 : UH0 = UH0_0(1, v8)
-    let v10 : UH0 = UH0_0(0, v9)
+    let v0 : UH0 = UH0_0
+    let v1 : UH0 = UH0_1(9, v0)
+    let v2 : UH0 = UH0_1(8, v1)
+    let v3 : UH0 = UH0_1(7, v2)
+    let v4 : UH0 = UH0_1(6, v3)
+    let v5 : UH0 = UH0_1(5, v4)
+    let v6 : UH0 = UH0_1(4, v5)
+    let v7 : UH0 = UH0_1(3, v6)
+    let v8 : UH0 = UH0_1(2, v7)
+    let v9 : UH0 = UH0_1(1, v8)
+    let v10 : UH0 = UH0_1(0, v9)
     let v11 : string = $"%A{v10}"
     System.Console.WriteLine v11
-    let v100 : UH0 = UH0_1
-    let v101 : UH0 = UH0_0(9, v100)
-    let v102 : UH0 = UH0_0(8, v101)
-    let v103 : UH0 = UH0_0(7, v102)
-    let v104 : UH0 = UH0_0(6, v103)
-    let v105 : UH0 = UH0_0(5, v104)
-    let v106 : UH0 = UH0_0(4, v105)
-    let v107 : UH0 = UH0_0(3, v106)
-    let v108 : UH0 = UH0_0(2, v107)
-    let v109 : UH0 = UH0_0(1, v108)
-    let v110 : UH0 = UH0_0(0, v109)
-    let v111 : UH0 = UH0_1
-    let v112 : UH0 = UH0_0(9, v111)
-    let v113 : UH0 = UH0_0(8, v112)
-    let v114 : UH0 = UH0_0(7, v113)
-    let v115 : UH0 = UH0_0(6, v114)
-    let v116 : UH0 = UH0_0(5, v115)
-    let v117 : UH0 = UH0_0(4, v116)
-    let v118 : UH0 = UH0_0(3, v117)
-    let v119 : UH0 = UH0_0(2, v118)
-    let v120 : UH0 = UH0_0(1, v119)
-    let v121 : UH0 = UH0_0(0, v120)
+    let v100 : UH0 = UH0_0
+    let v101 : UH0 = UH0_1(9, v100)
+    let v102 : UH0 = UH0_1(8, v101)
+    let v103 : UH0 = UH0_1(7, v102)
+    let v104 : UH0 = UH0_1(6, v103)
+    let v105 : UH0 = UH0_1(5, v104)
+    let v106 : UH0 = UH0_1(4, v105)
+    let v107 : UH0 = UH0_1(3, v106)
+    let v108 : UH0 = UH0_1(2, v107)
+    let v109 : UH0 = UH0_1(1, v108)
+    let v110 : UH0 = UH0_1(0, v109)
+    let v111 : UH0 = UH0_0
+    let v112 : UH0 = UH0_1(9, v111)
+    let v113 : UH0 = UH0_1(8, v112)
+    let v114 : UH0 = UH0_1(7, v113)
+    let v115 : UH0 = UH0_1(6, v114)
+    let v116 : UH0 = UH0_1(5, v115)
+    let v117 : UH0 = UH0_1(4, v116)
+    let v118 : UH0 = UH0_1(3, v117)
+    let v119 : UH0 = UH0_1(2, v118)
+    let v120 : UH0 = UH0_1(1, v119)
+    let v121 : UH0 = UH0_1(0, v120)
     let v122 : string = $"__expect / actual: %A{v110} / expected: %A{v121}"
     ()
 method0()
 
-UH0_0
+UH0_1
   (0,
-   UH0_0
+   UH0_1
      (1,
-      UH0_0
+      UH0_1
         (2,
-         UH0_0
+         UH0_1
            (3,
-            UH0_0
-              (4, UH0_0 (5, UH0_0 (6, UH0_0 (7, UH0_0 (8, UH0_0 (9, UH0_1))))))))))
+            UH0_1
+              (4, UH0_1 (5, UH0_1 (6, UH0_1 (7, UH0_1 (8, UH0_1 (9, UH0_0))))))))))
 </pre>
 </div>
 </div>
@@ -9052,8 +9052,8 @@ UH0_0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method1 (v0 : (int32 [])) : (int32 []) =
     v0
 and method2 (v0 : bool) : bool =
@@ -9065,15 +9065,15 @@ and method0 () : unit =
     let v3 : bool = 1 &gt;= v2
     let v7 : US0 =
         if v3 then
-            US0_0
+            US0_1
         else
             let v5 : int32 = v1.[int 1]
-            US0_1(v5)
+            US0_0(v5)
     let v8 : string = $"%A{v7}"
     System.Console.WriteLine v8
     let v12 : bool =
         match v7 with
-        | US0_1(v10) -&gt; (* Some *)
+        | US0_0(v10) -&gt; (* Some *)
             let v11 : bool = v10 = 2
             v11
         | _ -&gt;
@@ -9083,14 +9083,14 @@ and method0 () : unit =
             true
         else
             method2(v12)
-    let v15 : US0 = US0_1(2)
+    let v15 : US0 = US0_0(2)
     let v16 : string = $"__expect / actual: %A{v7} / expected: %A{v15}"
     let v17 : bool = v14 = false
     if v17 then
         failwith&lt;unit&gt; v16
 method0()
 
-US0_1 2
+US0_0 2
 </pre>
 </div>
 </div>
@@ -9705,11 +9705,11 @@ print_and_return / x: 5
     | UH0_0 of int32 * (unit -&gt; UH0)
     | UH0_1
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec closure0 (v0 : int32) () : UH0 =
     let v1 : int32 = v0 + 1
     method1(v1)
@@ -9722,48 +9722,48 @@ and method3 (v0 : int32, v1 : UH0) : US0 =
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
         let v4 : bool = v0 &lt;= 0
         if v4 then
-            US0_1(v2)
+            US0_0(v2)
         else
             let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
             method3(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
-        US0_0
+        US0_1
 and method4 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method4(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method2 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : US0 = method3(v2, v0)
     match v3 with
-    | US0_1(v4) -&gt; (* Some *)
+    | US0_0(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
-            let v6 : UH1 = UH1_0(v4, v1)
+            let v6 : UH1 = UH1_1(v4, v1)
             let v7 : int32 = v2 + 1
             method2(v0, v6, v7)
         else
-            let v9 : UH1 = UH1_1
+            let v9 : UH1 = UH1_0
             method4(v1, v9)
     | _ -&gt;
-        let v12 : UH1 = UH1_1
+        let v12 : UH1 = UH1_0
         method4(v1, v12)
 and method5 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method5(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method6 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
-    let v2 : UH1 = UH1_1
+    let v2 : UH1 = UH1_0
     let v3 : int32 = 0
     let v4 : UH1 = method2(v1, v2, v3)
     let v5 : int32 = 0
@@ -9839,15 +9839,15 @@ print_and_return / x: 5
     | UH0_0 of int32 * (unit -&gt; UH0)
     | UH0_1
 and [&lt;Struct&gt;] US0 =
-    | US0_0 of f0_0 : UH0
-    | US0_1 of f1_0 : (unit -&gt; UH0)
+    | US0_0 of f0_0 : (unit -&gt; UH0)
+    | US0_1 of f1_0 : UH0
 and Mut0 = {mutable l0 : US0}
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32
+    | US1_0 of f0_0 : int32
+    | US1_1
 let rec closure0 (v0 : int32) () : UH0 =
     let v1 : int32 = v0 + 1
     method1(v1)
@@ -9860,9 +9860,9 @@ and closure1 (v0 : UH0) () : UH0 =
 and closure2 (v0 : UH0, v1 : Mut0) () : UH0 =
     let v2 : US0 = v1.l0
     match v2 with
-    | US0_0(v3) -&gt; (* Computed *)
+    | US0_1(v3) -&gt; (* Computed *)
         v3
-    | US0_1(v4) -&gt; (* NotComputed *)
+    | US0_0(v4) -&gt; (* NotComputed *)
         let v5 : UH0 = v4 ()
         let v12 : UH0 =
             match v5 with
@@ -9871,11 +9871,11 @@ and closure2 (v0 : UH0, v1 : Mut0) () : UH0 =
                 UH0_0(v7, v9)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v13 : US0 = US0_0(v12)
+        let v13 : US0 = US0_1(v12)
         v1.l0 &lt;- v13
         v12
 and method2 (v0 : UH0, v1 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
-    let v2 : US0 = US0_1(v1)
+    let v2 : US0 = US0_0(v1)
     let v3 : Mut0 = {l0 = v2} : Mut0
     closure2(v0, v3)
 and method4 (v0 : int32, v1 : UH0) : US1 =
@@ -9883,41 +9883,41 @@ and method4 (v0 : int32, v1 : UH0) : US1 =
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
         let v4 : bool = v0 &lt;= 0
         if v4 then
-            US1_1(v2)
+            US1_0(v2)
         else
             let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
             method4(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
-        US1_0
+        US1_1
 and method5 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method5(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method3 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : US1 = method4(v2, v0)
     match v3 with
-    | US1_1(v4) -&gt; (* Some *)
+    | US1_0(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
-            let v6 : UH1 = UH1_0(v4, v1)
+            let v6 : UH1 = UH1_1(v4, v1)
             let v7 : int32 = v2 + 1
             method3(v0, v6, v7)
         else
-            let v9 : UH1 = UH1_1
+            let v9 : UH1 = UH1_0
             method5(v1, v9)
     | _ -&gt;
-        let v12 : UH1 = UH1_1
+        let v12 : UH1 = UH1_0
         method5(v1, v12)
 and method6 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method6(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method7 (v0 : bool) : bool =
     v0
@@ -9927,7 +9927,7 @@ and method0 () : unit =
     let v2 : (unit -&gt; UH0) = closure1(v1)
     let v3 : (unit -&gt; UH0) = method2(v1, v2)
     let v4 : UH0 = v3 ()
-    let v5 : UH1 = UH1_1
+    let v5 : UH1 = UH1_0
     let v6 : int32 = 0
     let v7 : UH1 = method3(v4, v5, v6)
     let v8 : int32 = 0
@@ -9993,15 +9993,15 @@ print_and_return / x: 5
     | UH0_0 of int32 * (unit -&gt; UH0)
     | UH0_1
 and [&lt;Struct&gt;] US0 =
-    | US0_0 of f0_0 : UH0
-    | US0_1 of f1_0 : (unit -&gt; UH0)
+    | US0_0 of f0_0 : (unit -&gt; UH0)
+    | US0_1 of f1_0 : UH0
 and Mut0 = {mutable l0 : US0}
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32
+    | US1_0 of f0_0 : int32
+    | US1_1
 let rec closure10 () () : UH0 =
     UH0_1
 and closure9 () () : UH0 =
@@ -10046,20 +10046,20 @@ and closure0 () () : UH0 =
 and closure11 (v0 : Mut0) () : UH0 =
     let v1 : US0 = v0.l0
     match v1 with
-    | US0_0(v2) -&gt; (* Computed *)
+    | US0_1(v2) -&gt; (* Computed *)
         v2
-    | US0_1(v3) -&gt; (* NotComputed *)
+    | US0_0(v3) -&gt; (* NotComputed *)
         let v4 : UH0 = v3 ()
         let v13 : UH0 =
             match v4 with
             | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : US0 = US0_1(v7)
+                let v8 : US0 = US0_0(v7)
                 let v9 : Mut0 = {l0 = v8} : Mut0
                 let v10 : (unit -&gt; UH0) = closure11(v9)
                 UH0_0(v6, v10)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v14 : US0 = US0_0(v13)
+        let v14 : US0 = US0_1(v13)
         v0.l0 &lt;- v14
         v13
 and method2 (v0 : int32, v1 : UH0) : US1 =
@@ -10067,69 +10067,69 @@ and method2 (v0 : int32, v1 : UH0) : US1 =
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
         let v4 : bool = v0 &lt;= 0
         if v4 then
-            US1_1(v2)
+            US1_0(v2)
         else
             let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
             method2(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
-        US1_0
+        US1_1
 and method3 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method3(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method1 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : US1 = method2(v2, v0)
     match v3 with
-    | US1_1(v4) -&gt; (* Some *)
+    | US1_0(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
-            let v6 : UH1 = UH1_0(v4, v1)
+            let v6 : UH1 = UH1_1(v4, v1)
             let v7 : int32 = v2 + 1
             method1(v0, v6, v7)
         else
-            let v9 : UH1 = UH1_1
+            let v9 : UH1 = UH1_0
             method3(v1, v9)
     | _ -&gt;
-        let v12 : UH1 = UH1_1
+        let v12 : UH1 = UH1_0
         method3(v1, v12)
 and method4 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method4(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method5 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     printfn $"print_and_return / x: {0}"
     let v0 : (unit -&gt; UH0) = closure0()
-    let v1 : US0 = US0_1(v0)
+    let v1 : US0 = US0_0(v0)
     let v2 : Mut0 = {l0 = v1} : Mut0
     let v3 : US0 = v2.l0
     let v18 : UH0 =
         match v3 with
-        | US0_0(v4) -&gt; (* Computed *)
+        | US0_1(v4) -&gt; (* Computed *)
             v4
-        | US0_1(v5) -&gt; (* NotComputed *)
+        | US0_0(v5) -&gt; (* NotComputed *)
             let v6 : UH0 = v5 ()
             let v15 : UH0 =
                 match v6 with
                 | UH0_0(v8, v9) -&gt; (* StreamCons *)
-                    let v10 : US0 = US0_1(v9)
+                    let v10 : US0 = US0_0(v9)
                     let v11 : Mut0 = {l0 = v10} : Mut0
                     let v12 : (unit -&gt; UH0) = closure11(v11)
                     UH0_0(v8, v12)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v16 : US0 = US0_0(v15)
+            let v16 : US0 = US0_1(v15)
             v2.l0 &lt;- v16
             v15
-    let v19 : UH1 = UH1_1
+    let v19 : UH1 = UH1_0
     let v20 : int32 = 0
     let v21 : UH1 = method1(v18, v19, v20)
     let v22 : int32 = 0
@@ -10254,68 +10254,68 @@ print_and_return / x: 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 and UH0 =
-    | UH0_0 of int32 * US0 * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of int32 * US0 * UH0
 and Mut0 = {mutable l0 : UH0}
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32 * f1_1 : US0
+    | US1_0 of f0_0 : int32 * f0_1 : US0
+    | US1_1
 let rec method2 (v0 : int32, v1 : UH0) : US1 =
     match v1 with
-    | UH0_0(v3, v4, v5) -&gt; (* Cons *)
+    | UH0_1(v3, v4, v5) -&gt; (* Cons *)
         let v6 : bool = v3 = v0
         if v6 then
-            US1_1(v3, v4)
+            US1_0(v3, v4)
         else
             method2(v0, v5)
-    | UH0_1 -&gt; (* Nil *)
-        US1_0
+    | UH0_0 -&gt; (* Nil *)
+        US1_1
 and method3 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method3(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method1 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : UH0 = v0.l0
     let v4 : US1 = method2(v2, v3)
     let v12 : US0 =
         match v4 with
-        | US1_0 -&gt; (* None *)
+        | US1_1 -&gt; (* None *)
             printfn $"print_and_return / x: {v2}"
             let v7 : UH0 = v0.l0
-            let v8 : US0 = US0_1(v2)
-            let v9 : UH0 = UH0_0(v2, v8, v7)
+            let v8 : US0 = US0_0(v2)
+            let v9 : UH0 = UH0_1(v2, v8, v7)
             v0.l0 &lt;- v9
-            US0_1(v2)
-        | US1_1(v5, v6) -&gt; (* Some *)
+            US0_0(v2)
+        | US1_0(v5, v6) -&gt; (* Some *)
             v6
     match v12 with
-    | US0_1(v13) -&gt; (* Some *)
+    | US0_0(v13) -&gt; (* Some *)
         let v14 : bool = v13 &lt; 5
         if v14 then
-            let v15 : UH1 = UH1_0(v13, v1)
+            let v15 : UH1 = UH1_1(v13, v1)
             let v16 : int32 = v2 + 1
             method1(v0, v15, v16)
         else
-            let v18 : UH1 = UH1_1
+            let v18 : UH1 = UH1_0
             method3(v1, v18)
     | _ -&gt;
-        let v21 : UH1 = UH1_1
+        let v21 : UH1 = UH1_0
         method3(v1, v21)
 and method4 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method4(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method5 (v0 : bool) : bool =
     v0
@@ -10324,32 +10324,32 @@ and method6 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
     let v4 : US1 = method2(v2, v3)
     let v12 : US0 =
         match v4 with
-        | US1_0 -&gt; (* None *)
+        | US1_1 -&gt; (* None *)
             printfn $"print_and_return / x: {v2}"
             let v7 : UH0 = v0.l0
-            let v8 : US0 = US0_1(v2)
-            let v9 : UH0 = UH0_0(v2, v8, v7)
+            let v8 : US0 = US0_0(v2)
+            let v9 : UH0 = UH0_1(v2, v8, v7)
             v0.l0 &lt;- v9
-            US0_1(v2)
-        | US1_1(v5, v6) -&gt; (* Some *)
+            US0_0(v2)
+        | US1_0(v5, v6) -&gt; (* Some *)
             v6
     match v12 with
-    | US0_1(v13) -&gt; (* Some *)
+    | US0_0(v13) -&gt; (* Some *)
         let v14 : bool = v13 &lt; 5
         if v14 then
-            let v15 : UH1 = UH1_0(v13, v1)
+            let v15 : UH1 = UH1_1(v13, v1)
             let v16 : int32 = v2 + 1
             method6(v0, v15, v16)
         else
-            let v18 : UH1 = UH1_1
+            let v18 : UH1 = UH1_0
             method3(v1, v18)
     | _ -&gt;
-        let v21 : UH1 = UH1_1
+        let v21 : UH1 = UH1_0
         method3(v1, v21)
 and method0 () : unit =
-    let v0 : UH0 = UH0_1
+    let v0 : UH0 = UH0_0
     let v1 : Mut0 = {l0 = v0} : Mut0
-    let v2 : UH1 = UH1_1
+    let v2 : UH1 = UH1_0
     let v3 : int32 = 0
     let v4 : UH1 = method1(v1, v2, v3)
     let v5 : int32 = 0
@@ -10366,7 +10366,7 @@ and method0 () : unit =
     let v12 : bool = v10 = false
     if v12 then
         failwith&lt;unit&gt; v11
-    let v13 : UH1 = UH1_1
+    let v13 : UH1 = UH1_0
     let v14 : int32 = 0
     let v15 : UH1 = method6(v1, v13, v14)
     let v16 : int32 = 0

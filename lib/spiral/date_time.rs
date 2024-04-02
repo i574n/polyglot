@@ -53,14 +53,14 @@ pub mod Date_time {
     }
     pub fn closure2(unitVar: (), v0_1: Guid) -> DateTime {
         let v2_1: string = toString(v0_1);
-        let result: MutCell<Option<DateTime>> = MutCell::new(None::<DateTime>);
+        let _v4: MutCell<Option<DateTime>> = MutCell::new(None::<DateTime>);
         {
             let x: DateTime = DateTime::parse((Date_time::method0())(string("-"))(string(""))(
                 getSlice(v2_1, None::<i32>, Some(24_i32)),
             ));
-            result.set(Some(x))
+            _v4.set(Some(x))
         }
-        getValue(result.get().clone())
+        getValue(_v4.get().clone())
     }
     pub fn closure7(v0_1: Guid, v1_1: i64) -> Guid {
         let v3_1: string = toString(v0_1);

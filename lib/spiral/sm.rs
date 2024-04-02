@@ -141,13 +141,13 @@ pub mod Sm {
         string("")
     }
     pub fn closure18(v0_1: Array<string>, v1_1: string) -> Array<string> {
-        let result: MutCell<Option<Array<string>>> = MutCell::new(None::<Array<string>>);
-        let v3_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
+        let _v2: MutCell<Option<Array<string>>> = MutCell::new(None::<Array<string>>);
+        let v4_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(v0_1);
         {
-            let x: Array<string> = split_1(v1_1, join(Sm::method0(), toArray(v3_1)), -1_i32, 0_i32);
-            result.set(Some(x))
+            let x: Array<string> = split_1(v1_1, join(Sm::method0(), toArray(v4_1)), -1_i32, 0_i32);
+            _v2.set(Some(x))
         }
-        getValue(result.get().clone())
+        getValue(_v2.get().clone())
     }
     pub fn closure17(unitVar: (), v0_1: Array<string>) -> Func1<string, Array<string>> {
         Func1::new({
@@ -259,12 +259,12 @@ pub mod Sm {
         })
     }
     pub fn closure35(unitVar: (), v0_1: LrcPtr<Exception>) -> string {
-        let result: MutCell<Option<string>> = MutCell::new(None::<string>);
+        let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
         {
             let x: string = sprintf!("{:?}", v0_1);
-            result.set(Some(x))
+            _v1.set(Some(x))
         }
-        getValue(result.get().clone())
+        getValue(_v1.get().clone())
     }
     pub fn method2(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1

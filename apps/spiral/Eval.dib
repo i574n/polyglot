@@ -53,7 +53,7 @@ open Lib
 #!fsharp
 
 open Common
-open FileSystem.Operators
+open File_system.Operators
 
 #!fsharp
 
@@ -62,10 +62,6 @@ open System.Collections.Generic
 open System.IO
 open System.Text
 open System.Threading
-// open FSharp.Compiler
-// open FSharp.Compiler.Interactive.Shell
-// open FSharp.Compiler.Diagnostics
-// open FSharp.Compiler.EditorServices
 
 #!fsharp
 

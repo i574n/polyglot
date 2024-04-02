@@ -7957,12 +7957,12 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type Mut0 = {mutable l0 : int32}
 and UH0 =
-    | UH0_0 of int32 * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of int32 * UH0
 and Mut1 = {mutable l0 : int32; mutable l1 : UH0}
 and [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method1 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
     let v2 : bool = v1 &lt; 10
@@ -7973,18 +7973,18 @@ and method2 (v0 : int32, v1 : Mut1) : bool =
     v3
 and method4 (v0 : UH0, v1 : int32) : int32 =
     match v0 with
-    | UH0_0(v2, v3) -&gt; (* Cons *)
+    | UH0_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + 1
         method4(v3, v4)
-    | UH0_1 -&gt; (* Nil *)
+    | UH0_0 -&gt; (* Nil *)
         v1
 and method5 (v0 : (int32 []), v1 : UH0, v2 : int32) : int32 =
     match v1 with
-    | UH0_0(v3, v4) -&gt; (* Cons *)
+    | UH0_1(v3, v4) -&gt; (* Cons *)
         v0.[int v2] &lt;- v3
         let v5 : int32 = v2 + 1
         method5(v0, v4, v5)
-    | UH0_1 -&gt; (* Nil *)
+    | UH0_0 -&gt; (* Nil *)
         v2
 and method3 (v0 : UH0) : (int32 []) =
     let v1 : int32 = 0
@@ -8021,7 +8021,7 @@ and method0 () : unit =
         v1.l0 &lt;- v4
         ()
     let v5 : int32 = v0.Length
-    let v6 : UH0 = UH0_1
+    let v6 : UH0 = UH0_0
     let v7 : Mut1 = {l0 = 0; l1 = v6} : Mut1
     while method2(v5, v7) do
         let v9 : int32 = v7.l0
@@ -8034,15 +8034,15 @@ and method0 () : unit =
         let v16 : bool = v15 = 0
         let v19 : US0 =
             if v16 then
-                US0_1(v14)
+                US0_0(v14)
             else
-                US0_0
+                US0_1
         let v23 : UH0 =
             match v19 with
-            | US0_0 -&gt; (* None *)
+            | US0_1 -&gt; (* None *)
                 v13
-            | US0_1(v20) -&gt; (* Some *)
-                UH0_0(v20, v13)
+            | US0_0(v20) -&gt; (* Some *)
+                UH0_1(v20, v13)
         let v24 : int32 = v9 + 1
         v7.l0 &lt;- v24
         v7.l1 &lt;- v23
@@ -8548,8 +8548,8 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type Mut0 = {mutable l0 : int32}
 and [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 and Mut1 = {mutable l0 : int32; mutable l1 : US0}
 let rec method1 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
@@ -8571,7 +8571,7 @@ and method0 () : unit =
         v1.l0 &lt;- v4
         ()
     let v5 : int32 = v0.Length
-    let v6 : US0 = US0_0
+    let v6 : US0 = US0_1
     let v7 : Mut1 = {l0 = 0; l1 = v6} : Mut1
     while method2(v5, v7) do
         let v9 : int32 = v7.l0
@@ -8582,13 +8582,13 @@ and method0 () : unit =
         let v14 : int32 = v0.[int v12]
         let v21 : US0 =
             match v13 with
-            | US0_0 -&gt; (* None *)
+            | US0_1 -&gt; (* None *)
                 let v16 : bool = v14 = 5
                 if v16 then
-                    US0_1(v14)
+                    US0_0(v14)
                 else
-                    US0_0
-            | US0_1(v15) -&gt; (* Some *)
+                    US0_1
+            | US0_0(v15) -&gt; (* Some *)
                 v13
         let v22 : int32 = v9 + 1
         v7.l0 &lt;- v22
@@ -8599,7 +8599,7 @@ and method0 () : unit =
     System.Console.WriteLine v24
     let v28 : bool =
         match v23 with
-        | US0_1(v26) -&gt; (* Some *)
+        | US0_0(v26) -&gt; (* Some *)
             let v27 : bool = v26 = 5
             v27
         | _ -&gt;
@@ -8609,14 +8609,14 @@ and method0 () : unit =
             true
         else
             method3(v28)
-    let v31 : US0 = US0_1(5)
+    let v31 : US0 = US0_0(5)
     let v32 : string = $"__expect / actual: %A{v23} / expected: %A{v31}"
     let v33 : bool = v30 = false
     if v33 then
         failwith&lt;unit&gt; v32
 method0()
 
-US0_1 5
+US0_0 5
 </pre>
 </div>
 </div>
@@ -8967,8 +8967,8 @@ method0()
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type Mut0 = {mutable l0 : int32}
 and UH0 =
-    | UH0_0 of int32 * int32 * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of int32 * int32 * UH0
 and Mut1 = {mutable l0 : int32; mutable l1 : UH0; mutable l2 : int32}
 let rec method1 (v0 : Mut0) : bool =
     let v1 : int32 = v0.l0
@@ -8980,25 +8980,25 @@ and method2 (v0 : int32, v1 : Mut1) : bool =
     v3
 and method3 (v0 : UH0, v1 : UH0) : UH0 =
     match v0 with
-    | UH0_0(v2, v3, v4) -&gt; (* Cons *)
-        let v5 : UH0 = UH0_0(v2, v3, v1)
+    | UH0_1(v2, v3, v4) -&gt; (* Cons *)
+        let v5 : UH0 = UH0_1(v2, v3, v1)
         method3(v4, v5)
-    | UH0_1 -&gt; (* Nil *)
+    | UH0_0 -&gt; (* Nil *)
         v1
 and method5 (v0 : UH0, v1 : int32) : int32 =
     match v0 with
-    | UH0_0(v2, v3, v4) -&gt; (* Cons *)
+    | UH0_1(v2, v3, v4) -&gt; (* Cons *)
         let v5 : int32 = v1 + 1
         method5(v4, v5)
-    | UH0_1 -&gt; (* Nil *)
+    | UH0_0 -&gt; (* Nil *)
         v1
 and method6 (v0 : (struct (int32 * int32) []), v1 : UH0, v2 : int32) : int32 =
     match v1 with
-    | UH0_0(v3, v4, v5) -&gt; (* Cons *)
+    | UH0_1(v3, v4, v5) -&gt; (* Cons *)
         v0.[int v2] &lt;- struct (v3, v4)
         let v6 : int32 = v2 + 1
         method6(v0, v5, v6)
-    | UH0_1 -&gt; (* Nil *)
+    | UH0_0 -&gt; (* Nil *)
         v2
 and method4 (v0 : UH0) : (struct (int32 * int32) []) =
     let v1 : int32 = 0
@@ -9042,7 +9042,7 @@ and method0 () : unit =
         v1.l0 &lt;- v5
         ()
     let v6 : int32 = v0.Length
-    let v7 : UH0 = UH0_1
+    let v7 : UH0 = UH0_0
     let v8 : Mut1 = {l0 = 0; l1 = v7; l2 = 0} : Mut1
     while method2(v6, v8) do
         let v10 : int32 = v8.l0
@@ -9050,13 +9050,13 @@ and method0 () : unit =
         let v13 : int32 = v0.[int v10]
         let v14 : int32 = v12 + 1
         let v15 : int32 = v10 + 1
-        let v16 : UH0 = UH0_0(v12, v13, v11)
+        let v16 : UH0 = UH0_1(v12, v13, v11)
         v8.l0 &lt;- v15
         v8.l1 &lt;- v16
         v8.l2 &lt;- v14
         ()
     let struct (v17 : UH0, v18 : int32) = v8.l1, v8.l2
-    let v19 : UH0 = UH0_1
+    let v19 : UH0 = UH0_0
     let v20 : UH0 = method3(v17, v19)
     let v21 : (struct (int32 * int32) []) = method4(v20)
     let v22 : (struct (int32 * int32) []) = [|struct (0, 0); struct (1, 2); struct (2, 4)|]

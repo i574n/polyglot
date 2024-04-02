@@ -7669,13 +7669,13 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : char
+    | US0_0 of f0_0 : char
+    | US0_1
 let rec closure0 () (v0 : char) : bool =
     let v1 : bool = 'b' = v0
     v1
 and closure1 () (v0 : char) : US0 =
-    US0_1(v0)
+    US0_0(v0)
 and method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
@@ -7687,11 +7687,11 @@ and method0 () : unit =
     let v4 : (string -&gt; char option) = v2 v3
     let v5 : char option = v4 v0
     let v6 : (char -&gt; US0) = closure1()
-    let v7 : US0 = US0_0
+    let v7 : US0 = US0_1
     let v8 : US0 = v5 |&gt; Option.map v6 |&gt; Option.defaultValue v7
     let v10 : bool =
         match v8 with
-        | US0_0 -&gt; (* None *)
+        | US0_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
