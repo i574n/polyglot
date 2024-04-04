@@ -1,5 +1,39 @@
 // // # listm
 
+// // ## list'
+
+nominal list' t = $'`t list'
+
+inl empty' forall t. () : list' t =
+    $'[]'
+
+inl cons' forall t. (head : t) (tail : list' t) : list' t =
+    $'!head :: !tail '
+
+// // ## box
+
+inl box forall t. (list : list t) : list' t =
+    (empty' (), list)
+    ||> listm.fold fun acc x =>
+        acc |> cons' x
+
+// // ## fold'
+
+inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
+    (init, list)
+    ||> $'List.fold' (fun acc x => Cons (fn x, acc))
+
+// // ## unbox
+
+inl unbox forall t. (list : list' t) : list t =
+    (Nil, list)
+    ||> fold' id
+
+// // ## distinct'
+
+inl distinct' forall t. (list : list' t) : list' t =
+    list |> $'List.distinct'
+
 // // ## append
 
 instance append list t =

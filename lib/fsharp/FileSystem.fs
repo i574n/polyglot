@@ -9,27 +9,7 @@ module FileSystem =
 #endif
 
     open Common
-    open File_system.Operators
-
-    /// ## getSourceDirectory
-
-    let getSourceDirectory =
-        fun () -> __SOURCE_DIRECTORY__
-        |> memoize
-
-    /// ## findParent
-
-    let inline findParent name isFile rootDir =
-        let rec loop dir =
-            if dir </> name |> (if isFile then System.IO.File.Exists else System.IO.Directory.Exists)
-            then dir
-            else
-                dir
-                |> System.IO.Directory.GetParent
-                |> function
-                    | null -> failwith $"""No parent for {if isFile then "file" else "dir"} '{name}' at '{rootDir}'"""
-                    | parent -> parent.FullName |> loop
-        loop rootDir
+    open SpiralFileSystem.Operators
 
     /// ## readAllTextAsync
 
@@ -77,7 +57,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     trace Debug (fun () -> "waitForFileAccess") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -100,7 +80,7 @@ module FileSystem =
                     |> Async.Ignore
                 return! fullPath |> readAllTextAsync |> Async.map Some
             with ex ->
-                let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
                 if retry = 0
                 then return! loop (retry + 1)
@@ -117,7 +97,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     trace Debug (fun () -> "deleteDirectoryAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -133,7 +113,7 @@ module FileSystem =
                 return retry
             with ex ->
                 if retry % 100 = 0 then
-                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                    let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     trace Warning (fun () -> "deleteFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -150,7 +130,7 @@ module FileSystem =
             with ex ->
                 if retry % 100 = 0 then
                     let getLocals () =
-                        $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                        $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     trace Warning (fun () -> "moveFileAsync") getLocals
                 do! Async.Sleep 10
                 return! loop (retry + 1)
@@ -189,7 +169,7 @@ module FileSystem =
             )
 
         let inline getEventPath (path : string) =
-            path |> Sm.trim |> Sm.replace fullPath "" |> Sm.trim_start [| '/'; '\\' |]
+            path |> SpiralSm.trim |> SpiralSm.replace fullPath "" |> SpiralSm.trim_start [| '/'; '\\' |]
 
         let inline ticks () =
             System.DateTime.UtcNow.Ticks

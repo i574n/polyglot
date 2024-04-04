@@ -7618,7 +7618,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
-<span class="nb">open</span> <span class="n">File_system</span><span class="o">.</span><span class="n">Operators</span>
+<span class="nb">open</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">Operators</span>
 </pre></div>
 </div>
 </div>
@@ -7707,7 +7707,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"packages: </span><span class="si">{packages}</span><span class="s2"> / modules: </span><span class="si">{modules}</span><span class="s2"> / name: </span><span class="si">{name}</span><span class="s2"> / code.Length: {code |&gt; String.length} / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"persistCodeProject"</span><span class="p">)</span> <span class="n">getLocals</span>
 
-    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
+    <span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_source_directory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">find_parent</span> <span class="s2">".paket"</span> <span class="n">false</span>
 
     <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/polyglot/builder"</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span>
     <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">targetDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
@@ -7718,7 +7718,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">modulesCode</span> <span class="o">=</span>
         <span class="n">modules</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">path</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"""&lt;Compile Include="{repositoryRoot &lt;/&gt; path}" /&gt;"""</span><span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">        "</span>
 
     <span class="n">let</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{name}</span><span class="s2">.fsproj"</span>
     <span class="n">let</span> <span class="n">fsprojCode</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"""&lt;Project Sdk="Microsoft.NET.Sdk"&gt;</span>
@@ -7748,7 +7748,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">paketReferencesPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"paket.references"</span>
     <span class="n">let</span> <span class="n">paketReferencesCode</span> <span class="o">=</span>
         <span class="s2">"FSharp.Core"</span> <span class="p">::</span> <span class="n">packages</span>
-        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">do</span><span class="err">!</span> <span class="n">paketReferencesCode</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">paketReferencesPath</span>
 
     <span class="k">return</span> <span class="n">fsprojPath</span>
@@ -7820,22 +7820,22 @@ a.anchor-link {
   CancellationToken = None
   OnLine = None }
 00:00:00 #4 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:00 #5 [Verbose] &gt;   Determining projects to restore...
-00:00:01 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj (in 497 ms).
-00:00:01 #7 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj]
-00:00:02 #8 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\bin\Release\net9.0\linux-x64\test1.dll
-00:00:04 #9 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\dist\
-00:00:04 #10 [Debug] executeAsync / exitCode: 0 / output.Length: 693
-00:00:04 #11 [Debug] executeAsync / options: { Command =
+00:00:01 #5 [Verbose] &gt;   Determining projects to restore...
+00:00:03 #6 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj (in 1.44 sec).
+00:00:03 #7 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj]
+00:00:04 #8 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\bin\Release\net9.0\linux-x64\test1.dll
+00:00:05 #9 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\dist\
+00:00:06 #10 [Debug] executeAsync / exitCode: 0 / output.Length: 695
+00:00:06 #11 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\test1\test1.fsproj" --configuration Release --output "dist" --runtime win-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\test1"
   CancellationToken = None
   OnLine = None }
-00:00:04 #12 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:05 #13 [Verbose] &gt;   Determining projects to restore...
-00:00:05 #14 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj (in 314 ms).
-00:00:05 #15 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj]
-00:00:06 #16 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\bin\Release\net9.0\win-x64\test1.dll
+00:00:06 #12 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:06 #13 [Verbose] &gt;   Determining projects to restore...
+00:00:07 #14 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj (in 426 ms).
+00:00:07 #15 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test1\test1.fsproj]
+00:00:08 #16 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\bin\Release\net9.0\win-x64\test1.dll
 00:00:12 #17 [Verbose] &gt;   test1 -&gt; C:\home\git\polyglot\target\polyglot\builder\test1\dist\
 00:00:12 #18 [Debug] executeAsync / exitCode: 0 / output.Length: 691
 FSharpOption&lt;Int32&gt;
@@ -7880,21 +7880,21 @@ FSharpOption&lt;Int32&gt;
   OnLine = None }
 00:00:13 #22 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
 00:00:14 #23 [Verbose] &gt;   Determining projects to restore...
-00:00:14 #24 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj (in 352 ms).
+00:00:15 #24 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj (in 524 ms).
 00:00:15 #25 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
-00:00:16 #26 [Verbose] &gt; C:\home\git\polyglot\target\polyglot\builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
-00:00:16 #27 [Debug] executeAsync / exitCode: 1 / output.Length: 715
-00:00:16 #28 [Debug] executeAsync / options: { Command =
+00:00:18 #26 [Verbose] &gt; C:\home\git\polyglot\target\polyglot\builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
+00:00:18 #27 [Debug] executeAsync / exitCode: 1 / output.Length: 715
+00:00:18 #28 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\test2\test2.fsproj" --configuration Release --output "dist" --runtime win-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\test2"
   CancellationToken = None
   OnLine = None }
-00:00:17 #29 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:17 #30 [Verbose] &gt;   Determining projects to restore...
-00:00:18 #31 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj (in 322 ms).
-00:00:18 #32 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
-00:00:20 #33 [Verbose] &gt; C:\home\git\polyglot\target\polyglot\builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
-00:00:20 #34 [Debug] executeAsync / exitCode: 1 / output.Length: 715
+00:00:18 #29 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:19 #30 [Verbose] &gt;   Determining projects to restore...
+00:00:19 #31 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj (in 378 ms).
+00:00:20 #32 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
+00:00:22 #33 [Verbose] &gt; C:\home\git\polyglot\target\polyglot\builder\test2\test2.fs(1,5): error FS0039: The value or constructor 'a' is not defined. [C:\home\git\polyglot\target\polyglot\builder\test2\test2.fsproj]
+00:00:22 #34 [Debug] executeAsync / exitCode: 1 / output.Length: 715
 FSharpOption&lt;Int32&gt;
       Value: 2
 </pre>
@@ -7930,10 +7930,10 @@ FSharpOption&lt;Int32&gt;
         <span class="n">fun</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="s2">"[&lt;EntryPoint&gt;]</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">Value</span>
     <span class="p">)</span>
 
-    <span class="n">let</span> <span class="n">codeTrim</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+    <span class="n">let</span> <span class="n">codeTrim</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
     <span class="k">return</span>
-        <span class="k">if</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()"</span>
-        <span class="n">then</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">slice</span> <span class="mi">0</span> <span class="p">((</span><span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ends_with</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">()"</span>
+        <span class="n">then</span> <span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">slice</span> <span class="mi">0</span> <span class="p">((</span><span class="n">codeTrim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
         <span class="k">else</span> <span class="n">code</span>
 <span class="p">}</span>
 </pre></div>
@@ -8211,32 +8211,32 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:23 #35 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/date_time.fsx; ... ] / name: Builder / code.Length: 7103
-00:00:23 #36 [Debug] buildProject / fullPath: C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj
-00:00:23 #37 [Debug] executeAsync / options: { Command =
+<pre>00:00:24 #35 [Debug] persistCodeProject / packages: [Argu; FSharp.Control.AsyncSeq; System.CommandLine; ... ] / modules: [lib/spiral/common.fsx; lib/spiral/sm.fsx; lib/spiral/date_time.fsx; ... ] / name: Builder / code.Length: 7153
+00:00:24 #36 [Debug] buildProject / fullPath: C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj
+00:00:24 #37 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime linux-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\Builder"
   CancellationToken = None
   OnLine = None }
-00:00:23 #38 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:00:24 #39 [Verbose] &gt;   Determining projects to restore...
-00:00:25 #40 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj (in 623 ms).
-00:00:25 #41 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj]
-00:01:02 #42 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\target\polyglot\builder\Builder\bin\Release\net9.0\linux-x64\Builder.dll
-00:01:09 #43 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:01:10 #44 [Debug] executeAsync / exitCode: 0 / output.Length: 692
-00:01:10 #45 [Debug] executeAsync / options: { Command =
+00:00:25 #38 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:26 #39 [Verbose] &gt;   Determining projects to restore...
+00:00:26 #40 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj (in 452 ms).
+00:00:27 #41 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj]
+00:00:36 #42 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\target\polyglot\builder\Builder\bin\Release\net9.0\linux-x64\Builder.dll
+00:00:37 #43 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:38 #44 [Debug] executeAsync / exitCode: 0 / output.Length: 692
+00:00:38 #45 [Debug] executeAsync / options: { Command =
    "dotnet publish "C:\home\git\polyglot\target/polyglot/builder\Builder\Builder.fsproj" --configuration Release --output "C:\home\git\polyglot\apps\builder\dist" --runtime win-x64"
   WorkingDirectory = Some "C:\home\git\polyglot\target\polyglot\builder\Builder"
   CancellationToken = None
   OnLine = None }
-00:01:11 #46 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
-00:01:13 #47 [Verbose] &gt;   Determining projects to restore...
-00:01:16 #48 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj (in 1.3 sec).
-00:01:16 #49 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj]
-00:01:34 #50 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\target\polyglot\builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
-00:01:44 #51 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
-00:01:44 #52 [Debug] executeAsync / exitCode: 0 / output.Length: 691
+00:00:38 #46 [Verbose] &gt; MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
+00:00:39 #47 [Verbose] &gt;   Determining projects to restore...
+00:00:40 #48 [Verbose] &gt;   Restored C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj (in 624 ms).
+00:00:40 #49 [Verbose] &gt; C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\target\polyglot\builder\Builder\Builder.fsproj]
+00:00:47 #50 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\target\polyglot\builder\Builder\bin\Release\net9.0\win-x64\Builder.dll
+00:00:52 #51 [Verbose] &gt;   Builder -&gt; C:\home\git\polyglot\apps\builder\dist\
+00:00:52 #52 [Debug] executeAsync / exitCode: 0 / output.Length: 690
 </pre>
 </div>
 </div>

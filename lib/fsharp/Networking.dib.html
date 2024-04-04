@@ -7643,7 +7643,7 @@ a.anchor-link {
         <span class="n">do</span><span class="err">!</span> <span class="n">client</span><span class="o">.</span><span class="n">ConnectAsync</span> <span class="p">(</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">ct</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">awaitValueTaskUnit</span>
         <span class="k">return</span> <span class="n">true</span>
     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"testPortOpen / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"testPortOpen / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
         <span class="k">return</span> <span class="n">false</span>
 <span class="p">}</span>
 </pre></div>
@@ -7845,29 +7845,29 @@ False
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 #3 [Debug] 1
-00:00:01 #5 [Debug] 2
-00:00:01 #4 [Debug] _1
-00:00:01 #6 [Debug] 3
-00:00:03 #7 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:03 #8 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:05 #9 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:06 #10 [Debug] _2
-00:00:06 #11 [Debug] _3
-00:00:06 #12 [Debug] 4
-00:00:06 #13 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:07 #14 [Verbose] waitForPortAccess / port: 5555 / retry: 100
-00:00:08 #15 [Debug] _4
-00:00:08 #16 [Debug] _5
-00:00:10 #17 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:10 #18 [Debug] 5
-00:00:10 #19 [Debug] 6
+<pre>00:00:02 #3 [Debug] 1
+00:00:02 #5 [Debug] 2
+00:00:02 #4 [Debug] _1
+00:00:02 #6 [Debug] 3
+00:00:04 #7 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:04 #8 [Verbose] waitForPortAccess / port: 5555 / retry: 0
+00:00:06 #9 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:07 #10 [Debug] _2
+00:00:07 #11 [Debug] _3
+00:00:07 #12 [Debug] 4
+00:00:07 #13 [Verbose] waitForPortAccess / port: 5555 / retry: 0
+00:00:08 #14 [Verbose] waitForPortAccess / port: 5555 / retry: 100
+00:00:09 #15 [Debug] _4
+00:00:09 #16 [Debug] _5
+00:00:11 #17 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:11 #18 [Debug] 5
+00:00:11 #19 [Debug] 6
 2
 2
 2
-124
-124
-124
+117
+117
+117
 True
 </pre>
 </div>
@@ -7941,33 +7941,33 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:10 #20 [Debug] 1
-00:00:10 #21 [Debug] 2
-00:00:10 #22 [Debug] _1
-00:00:10 #23 [Debug] 3
-00:00:10 #24 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:10 #25 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:10 #26 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:10 #27 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:11 #28 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:11 #29 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:11 #30 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:11 #31 [Debug] _2
-00:00:11 #32 [Debug] _3
-00:00:11 #33 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:11 #34 [Debug] 4
-00:00:11 #35 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:11 #36 [Debug] _4
-00:00:11 #37 [Debug] _5
-00:00:11 #38 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:11 #39 [Debug] 5
-00:00:11 #40 [Debug] 6
+<pre>00:00:12 #20 [Debug] 1
+00:00:12 #22 [Debug] _1
+00:00:12 #21 [Debug] 2
+00:00:12 #23 [Debug] 3
+00:00:12 #24 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #25 [Verbose] waitForPortAccess / port: 5555 / retry: 0
+00:00:12 #26 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #27 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #28 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #29 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #30 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #31 [Debug] _2
+00:00:12 #32 [Debug] _3
+00:00:12 #33 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:12 #34 [Debug] 4
+00:00:12 #35 [Verbose] waitForPortAccess / port: 5555 / retry: 0
+00:00:12 #36 [Debug] _4
+00:00:12 #37 [Debug] _5
+00:00:13 #38 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:13 #39 [Debug] 5
+00:00:13 #40 [Debug] 6
 7
 7
 7
-10
-10
-10
+11
+11
+11
 True
 </pre>
 </div>
@@ -8075,25 +8075,25 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:12 #41 [Debug] 1
-00:00:12 #42 [Debug] 2
-00:00:12 #43 [Debug] _1
-00:00:12 #44 [Debug] _2
-00:00:12 #45 [Debug] _3
-00:00:12 #46 [Debug] 3
-00:00:14 #47 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:14 #48 [Debug] 4
-00:00:14 #49 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:15 #50 [Verbose] waitForPortAccess / port: 5555 / retry: 100
-00:00:16 #51 [Debug] _4
-00:00:16 #52 [Debug] _5
-00:00:18 #53 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
-00:00:18 #54 [Debug] 5
-00:00:18 #55 [Debug] 6
+<pre>00:00:14 #41 [Debug] 1
+00:00:14 #42 [Debug] _1
+00:00:14 #43 [Debug] 2
+00:00:14 #44 [Debug] _2
+00:00:14 #45 [Debug] _3
+00:00:14 #46 [Debug] 3
+00:00:16 #47 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:16 #48 [Debug] 4
+00:00:16 #49 [Verbose] waitForPortAccess / port: 5555 / retry: 0
+00:00:17 #50 [Verbose] waitForPortAccess / port: 5555 / retry: 100
+00:00:18 #51 [Debug] _4
+00:00:18 #52 [Debug] _5
+00:00:20 #53 [Verbose] testPortOpen / ex: System.AggregateException: One or more errors occurred. (No connection could be made because the target machine actively refused it.)
+00:00:20 #54 [Debug] 5
+00:00:20 #55 [Debug] 6
 5557
-111
-111
-111
+109
+109
+109
 True
 </pre>
 </div>
@@ -8166,24 +8166,24 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:18 #56 [Debug] 1
-00:00:18 #57 [Debug] 2
-00:00:18 #58 [Debug] _1
-00:00:18 #59 [Debug] _2
-00:00:18 #60 [Debug] _3
-00:00:18 #61 [Debug] 3
-00:00:18 #62 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:18 #63 [Debug] 4
-00:00:18 #64 [Verbose] waitForPortAccess / port: 5555 / retry: 0
-00:00:18 #65 [Debug] _4
-00:00:18 #66 [Debug] _5
-00:00:19 #67 [Debug] runWithTimeoutChildAsync / timeout: 60
-00:00:19 #68 [Debug] 5
-00:00:19 #69 [Debug] 6
+<pre>00:00:20 #56 [Debug] 1
+00:00:20 #57 [Debug] 2
+00:00:20 #58 [Debug] _1
+00:00:20 #59 [Debug] _2
+00:00:20 #60 [Debug] _3
+00:00:21 #61 [Debug] 3
+00:00:21 #62 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:21 #63 [Debug] 4
+00:00:21 #64 [Verbose] waitForPortAccess / port: 5555 / retry: 0
+00:00:21 #65 [Debug] _4
+00:00:21 #66 [Debug] _5
+00:00:21 #67 [Debug] runWithTimeoutChildAsync / timeout: 60
+00:00:21 #68 [Debug] 5
+00:00:21 #69 [Debug] 6
 5557
-4
-4
-4
+5
+5
+5
 True
 </pre>
 </div>

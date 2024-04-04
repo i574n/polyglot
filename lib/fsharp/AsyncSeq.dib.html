@@ -7684,7 +7684,7 @@ a.anchor-link {
         <span class="n">subscribeEvent</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">EventInterface</span>
             <span class="p">(</span><span class="n">fun</span> <span class="n">args</span> <span class="o">-&gt;</span>
-                <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">GetException</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">format_exception</span>
+                <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">GetException</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">AddCall</span> <span class="err">$</span><span class="s2">"TestEvent.Subscribe(</span><span class="si">{result}</span><span class="s2">)"</span>
                 <span class="n">result</span>
             <span class="p">)</span>
@@ -7819,7 +7819,7 @@ a.anchor-link {
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">EventInterface</span><span class="o">.</span><span class="n">Subscribe</span> <span class="p">(</span><span class="n">fun</span> <span class="n">args</span> <span class="o">-&gt;</span>
         <span class="k">async</span> <span class="p">{</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">testEvent</span><span class="o">.</span><span class="n">WaitCall</span> <span class="s2">"TestEvent.Iter(0: System.Exception: error)"</span>
-            <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="err">$</span><span class="s2">"testEvent.EventInterface.Subscribe({args.GetException () |&gt; Sm.format_exception})"</span>
+            <span class="n">testEvent</span><span class="o">.</span><span class="n">AddCall</span> <span class="err">$</span><span class="s2">"testEvent.EventInterface.Subscribe({args.GetException () |&gt; SpiralSm.format_exception})"</span>
         <span class="p">}</span>
         <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
     <span class="p">)</span>
@@ -7927,7 +7927,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1162024
+<pre>1240085
 </pre>
 </div>
 </div>

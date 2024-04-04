@@ -7614,7 +7614,8 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="p">()</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::Path</span><span class="se">\"</span><span class="s2">)&gt;] type std_path_Path = class end"</span>
+    <span class="k">global</span> <span class="s2">"[&lt;Fable.Core.Erase; Fable.Core.Emit(</span><span class="se">\"</span><span class="s2">std::path::PathBuf</span><span class="se">\"</span><span class="s2">)&gt;] type std_path_PathBuf = class end"</span>
 </pre></div>
 </div>
 </div>
@@ -7634,18 +7635,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="(%3C/%3E)">(&lt;/&gt;)<a class="anchor-link" href="#(%3C/%3E)">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7653,11 +7643,12 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'System.IO.Path.Combine (!a, !b)'</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"(&lt;/&gt;) / target: {!target}"'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">types</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="k">global</span> <span class="s2">"#if FABLE_COMPILER // file_system.types"</span>
+    <span class="n">sm</span><span class="s1">'.types ()</span>
+    <span class="n">rust</span><span class="o">.</span><span class="n">types</span> <span class="p">()</span>
+    <span class="n">types</span> <span class="p">()</span>
+    <span class="k">global</span> <span class="s2">"#endif // file_system.types"</span>
 </pre></div>
 </div>
 </div>
@@ -7678,17 +7669,17 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="create_temp_directory_name">create_temp_directory_name<a class="anchor-link" href="#create_temp_directory_name">¶</a></h2>
+<h2 id="path">path<a class="anchor-link" href="#path">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7696,15 +7687,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_temp_directory_name</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">inl</span> <span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'</span> <span class="p">:</span> <span class="n">string</span>
-
-            <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Path.GetTempPath'</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"\!{!root}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
-            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_temp_directory_name / target: {!target}"'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">path</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_path_Path'</span>
+<span class="n">nominal</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'std_path_PathBuf'</span>
 </pre></div>
 </div>
 </div>
@@ -7721,6 +7705,17 @@ a.anchor-link {
 
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="new_path_buf">new_path_buf<a class="anchor-link" href="#new_path_buf">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7732,10 +7727,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
-
-<span class="n">create_temp_directory_name</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">_contains</span> <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Path.DirectorySeparatorChar'</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">new_path_buf</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">path_buf</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::path::PathBuf::from($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7748,172 +7742,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1
-    | US0_2
-and [&lt;Struct&gt;] US1 =
-    | US1_0 of f0_0 : US0
-    | US1_1 of f1_0 : US0
-and [&lt;Struct&gt;] US2 =
-    | US2_0 of f0_0 : char
-    | US2_1
-let rec closure0 (v0 : char) (v1 : char) : bool =
-    let v2 : bool = v0 = v1
-    v2
-and closure1 () (v0 : char) : US2 =
-    US2_0(v0)
-and method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : string option = None
-    let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v1 : US0 = US0_0
-    let v2 : US1 = US1_0(v1)
-    let v3 : string = $"create_temp_directory_name / target: {v2}"
-    let v4 : string = failwith&lt;string&gt; v3
-    v4
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v5 : US0 = US0_1
-    let v6 : US1 = US1_0(v5)
-    let v7 : string = $"create_temp_directory_name / target: {v6}"
-    let v8 : string = failwith&lt;string&gt; v7
-    v8
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v9 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v10 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v11 : string = v10 ()
-    let v12 : string = $"!{v9}"
-    let v13 : string option = None
-    let mutable _v13 = v13
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v14 : US0 = US0_0
-    let v15 : US1 = US1_0(v14)
-    let v16 : string = $"(&lt;/&gt;) / target: {v15}"
-    let v17 : string = failwith&lt;string&gt; v16
-    v17
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v18 : US0 = US0_1
-    let v19 : US1 = US1_0(v18)
-    let v20 : string = $"(&lt;/&gt;) / target: {v19}"
-    let v21 : string = failwith&lt;string&gt; v20
-    v21
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v22 : string = System.IO.Path.Combine (v11, v12)
-    v22
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v23 : US0 = US0_2
-    let v24 : US1 = US1_1(v23)
-    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
-    let v26 : string = failwith&lt;string&gt; v25
-    v26
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v27 : US0 = US0_1
-    let v28 : US1 = US1_1(v27)
-    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
-    let v30 : string = failwith&lt;string&gt; v29
-    v30
-    #endif
-    |&gt; fun x -&gt; _v13 &lt;- Some x
-    let v31 : string = _v13 |&gt; Option.get
-    let v32 : System.DateTime = System.DateTime.Now
-    let v33 : System.Guid = System.Guid.NewGuid ()
-    let v34 : (System.Guid -&gt; string) = _.ToString()
-    let v35 : string = v34 v33
-    let v36 : string = v32.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v37 : System.Guid = System.Guid $"{v36}{v35.[v36.Length..]}"
-    let v38 : (System.Guid -&gt; string) = _.ToString()
-    let v39 : string = v38 v37
-    let v40 : string option = None
-    let mutable _v40 = v40
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v41 : US0 = US0_0
-    let v42 : US1 = US1_0(v41)
-    let v43 : string = $"(&lt;/&gt;) / target: {v42}"
-    let v44 : string = failwith&lt;string&gt; v43
-    v44
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v45 : US0 = US0_1
-    let v46 : US1 = US1_0(v45)
-    let v47 : string = $"(&lt;/&gt;) / target: {v46}"
-    let v48 : string = failwith&lt;string&gt; v47
-    v48
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v49 : string = System.IO.Path.Combine (v31, v39)
-    v49
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v50 : US0 = US0_2
-    let v51 : US1 = US1_1(v50)
-    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
-    let v53 : string = failwith&lt;string&gt; v52
-    v53
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v54 : US0 = US0_1
-    let v55 : US1 = US1_1(v54)
-    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
-    let v57 : string = failwith&lt;string&gt; v56
-    v57
-    #endif
-    |&gt; fun x -&gt; _v40 &lt;- Some x
-    let v58 : string = _v40 |&gt; Option.get
-    v58
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v59 : US0 = US0_2
-    let v60 : US1 = US1_1(v59)
-    let v61 : string = $"create_temp_directory_name / target: {v60}"
-    let v62 : string = failwith&lt;string&gt; v61
-    v62
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v63 : US0 = US0_1
-    let v64 : US1 = US1_1(v63)
-    let v65 : string = $"create_temp_directory_name / target: {v64}"
-    let v66 : string = failwith&lt;string&gt; v65
-    v66
-    #endif
-    |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v67 : string = _v0 |&gt; Option.get
-    let v68 : char = System.IO.Path.DirectorySeparatorChar
-    let v69 : string = $"%A{v67}"
-    System.Console.WriteLine v69
-    let v70 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
-    let v71 : (char -&gt; bool) = closure0(v68)
-    let v72 : (string -&gt; char option) = v70 v71
-    let v73 : char option = v72 v67
-    let v74 : (char -&gt; US2) = closure1()
-    let v75 : US2 = US2_1
-    let v76 : US2 = v73 |&gt; Option.map v74 |&gt; Option.defaultValue v75
-    let v78 : bool =
-        match v76 with
-        | US2_1 -&gt; (* None *)
-            true
-        | _ -&gt;
-            false
-    let v79 : bool = v78 &lt;&gt; true
-    let v81 : bool =
-        if v79 then
-            true
-        else
-            method1(v79)
-    let v82 : string = $"__expect / actual: %A{v67} / expected: %A{v68}"
-    let v83 : bool = v81 = false
-    if v83 then
-        failwith&lt;unit&gt; v82
-method0()
+<pre>()
 
-"C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240402-0256-4101-0166-0223550a7dbf"
 </pre>
 </div>
 </div>
@@ -7926,7 +7756,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="directory_info">directory_info<a class="anchor-link" href="#directory_info">¶</a></h2>
+<h2 id="path_buf_from">path_buf_from<a class="anchor-link" href="#path_buf_from">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7938,9 +7768,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">directory_info</span> <span class="o">=</span>
-    <span class="o">//</span> <span class="err">$</span><span class="s1">'</span><span class="se">\n</span><span class="s1">#if \!FABLE_COMPILER &amp;&amp; \!FABLE_COMPILER_RUST &amp;&amp; \!WASM</span><span class="se">\n</span><span class="s1">                                                                                                                   System.IO.DirectoryInfo</span><span class="se">\n</span><span class="s1">#else</span><span class="se">\n</span><span class="s1">                                                                                                                   _</span><span class="se">\n</span><span class="s1">#endif</span><span class="se">\n</span><span class="s1">                                                                                                                  '</span>
-    <span class="err">$</span><span class="s1">'System.IO.DirectoryInfo'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_from</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">box</span> <span class="n">path</span><span class="p">)</span> <span class="p">:</span> <span class="n">path_buf</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"std::path::PathBuf::from($0)"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7967,7 +7796,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="directory_info_exists">directory_info_exists<a class="anchor-link" href="#directory_info_exists">¶</a></h2>
+<h2 id="path_join">path_join<a class="anchor-link" href="#path_join">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7979,11 +7808,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_exists</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'!info.Exists'</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"directory_info_exists / target: {!target}"'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_join</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">path_buf</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">path_buf</span><span class="p">,</span> <span class="n">s</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_std_string), $'</span><span class="s2">"$0.join($1)"</span><span class="s1">')</span>
 </pre></div>
 </div>
 </div>
@@ -8010,7 +7836,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="directory_info_creation_time">directory_info_creation_time<a class="anchor-link" href="#directory_info_creation_time">¶</a></h2>
+<h2 id="path_display">path_display<a class="anchor-link" href="#path_display">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8022,11 +7848,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_creation_time</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span><span class="o">.</span><span class="n">date_time</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="err">$</span><span class="s1">'!info.CreationTime'</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"directory_info_creation_time / target: {!target}"'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_display</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' path) : sm'</span><span class="o">.</span><span class="n">std_string</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.display().to_string()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8053,7 +7876,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="create_directory">create_directory<a class="anchor-link" href="#create_directory">¶</a></h2>
+<h2 id="path_buf_file_name">path_buf_file_name<a class="anchor-link" href="#path_buf_file_name">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8065,11 +7888,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_directory</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
-    <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
-            <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.CreateDirectory'</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_directory / target: {!target}"'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_file_name</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="p">(</span><span class="n">rust</span><span class="o">.</span><span class="n">ref</span><span class="s1">' sm'</span><span class="o">.</span><span class="n">os_str</span><span class="p">)</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!path.file_name()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8096,7 +7916,7 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="directory_exists">directory_exists<a class="anchor-link" href="#directory_exists">¶</a></h2>
+<h2 id="path_buf_display">path_buf_display<a class="anchor-link" href="#path_buf_display">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8108,8 +7928,8 @@ method0()
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_exists</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
-    <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.Exists'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_display</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">sm</span><span class="s1">'.std_string =</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.display().to_string()"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8136,11 +7956,909 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="create_temp_directory">create_temp_directory<a class="anchor-link" href="#create_temp_directory">¶</a></h2>
+<h2 id="path_exists">path_exists<a class="anchor-link" href="#path_exists">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_exists</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!path_buf.exists()"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="path_is_dir">path_is_dir<a class="anchor-link" href="#path_is_dir">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_is_dir</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!path_buf.is_dir()"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="path_is_file">path_is_file<a class="anchor-link" href="#path_is_file">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_is_file</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!path_buf.is_file()"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="path_parent">path_parent<a class="anchor-link" href="#path_parent">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">path_buf_parent</span> <span class="p">(</span><span class="n">path_buf</span> <span class="p">:</span> <span class="n">path_buf</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">path_buf</span> <span class="o">=</span>
+    <span class="err">!</span>\\<span class="p">(</span><span class="n">path_buf</span><span class="p">,</span> <span class="err">$</span><span class="s1">'"$0.parent().map(std::path::PathBuf::from)"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="(%3C-/%3E)">(&lt; /&gt;)<a class="anchor-link" href="#(%3C-/%3E)">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="p">(</span><span class="n">a</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'System.IO.Path.Combine (!a, !b)'</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">a</span> <span class="o">|&gt;</span> <span class="n">new_path_buf</span> <span class="o">|&gt;</span> <span class="n">path_join</span> <span class="n">b</span> <span class="o">|&gt;</span> <span class="n">path_buf_display</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="get_temp_path">get_temp_path<a class="anchor-link" href="#get_temp_path">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_temp_path</span> <span class="p">()</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.IO.Path.GetTempPath'</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="create_temp_directory_name">create_temp_directory_name<a class="anchor-link" href="#create_temp_directory_name">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_temp_directory_name</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">root</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'</span> <span class="p">:</span> <span class="n">string</span>
+
+            <span class="n">get_temp_path</span> <span class="p">()</span>
+            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"\!{!root}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+            <span class="o">&lt;/&gt;</span> <span class="p">(</span><span class="n">date_time</span><span class="o">.</span><span class="n">new_guid_from_date_time</span> <span class="err">$</span><span class="s1">'System.DateTime.Now'</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string)</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">create_temp_directory_name</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">_contains</span> <span class="p">(</span><span class="err">$</span><span class="s1">'System.IO.Path.DirectorySeparatorChar'</span> <span class="p">:</span> <span class="n">char</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>type [&lt;Struct&gt;] US0 =
+    | US0_0 of f0_0 : char
+    | US0_1
+let rec method1 (v0 : string) : string =
+    v0
+and closure0 (v0 : char) (v1 : char) : bool =
+    let v2 : bool = v0 = v1
+    v2
+and closure1 () (v0 : char) : US0 =
+    US0_0(v0)
+and method2 () : (char -&gt; US0) =
+    closure1()
+and method3 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string option = None
+    let mutable _v0 = v0
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : string = null |&gt; unbox&lt;string&gt;
+    v1
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v2 : string = null |&gt; unbox&lt;string&gt;
+    v2
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v3 : string = null |&gt; unbox&lt;string&gt;
+    v3
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v4 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v5 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v6 : string = v5 ()
+    let v7 : string = $"!{v4}"
+    let v8 : string option = None
+    let mutable _v8 = v8
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v9 : string = method1(v6)
+    let v10 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v11 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v12 : string = "String::from($0)"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v11 v12
+    let v14 : string = "std::path::PathBuf::from($0)"
+    let v15 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = method1(v7)
+    let v17 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v18 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v16 v17
+    let v19 : string = "String::from($0)"
+    let v20 : std_string_String = Fable.Core.RustInterop.emitRustExpr v18 v19
+    let v21 : string = "$0.join($1)"
+    let v22 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v15, v20) v21
+    let v23 : string = "$0.display().to_string()"
+    let v24 : std_string_String = Fable.Core.RustInterop.emitRustExpr v22 v23
+    let v25 : string = "fable_library_rust::String_::fromString($0)"
+    let v26 : string = Fable.Core.RustInterop.emitRustExpr v24 v25
+    v26
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v27 : string = null |&gt; unbox&lt;string&gt;
+    v27
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v28 : string = null |&gt; unbox&lt;string&gt;
+    v28
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v29 : string = System.IO.Path.Combine (v6, v7)
+    v29
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v30 : string = null |&gt; unbox&lt;string&gt;
+    v30
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v31 : string = null |&gt; unbox&lt;string&gt;
+    v31
+    #endif
+    |&gt; fun x -&gt; _v8 &lt;- Some x
+    let v32 : string = _v8 |&gt; Option.get
+    let v33 : System.DateTime = System.DateTime.Now
+    let v34 : System.Guid = System.Guid.NewGuid ()
+    let v35 : (System.Guid -&gt; string) = _.ToString()
+    let v36 : string = v35 v34
+    let v37 : string = v33.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v38 : System.Guid = System.Guid $"{v37}{v36.[v37.Length..]}"
+    let v39 : (System.Guid -&gt; string) = _.ToString()
+    let v40 : string = v39 v38
+    let v41 : string option = None
+    let mutable _v41 = v41
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v42 : string = method1(v32)
+    let v43 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v44 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v42 v43
+    let v45 : string = "String::from($0)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr v44 v45
+    let v47 : string = "std::path::PathBuf::from($0)"
+    let v48 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v46 v47
+    let v49 : string = method1(v40)
+    let v50 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v51 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v49 v50
+    let v52 : string = "String::from($0)"
+    let v53 : std_string_String = Fable.Core.RustInterop.emitRustExpr v51 v52
+    let v54 : string = "$0.join($1)"
+    let v55 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v48, v53) v54
+    let v56 : string = "$0.display().to_string()"
+    let v57 : std_string_String = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v58 : string = "fable_library_rust::String_::fromString($0)"
+    let v59 : string = Fable.Core.RustInterop.emitRustExpr v57 v58
+    v59
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v60 : string = null |&gt; unbox&lt;string&gt;
+    v60
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v61 : string = null |&gt; unbox&lt;string&gt;
+    v61
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v62 : string = System.IO.Path.Combine (v32, v40)
+    v62
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v63 : string = null |&gt; unbox&lt;string&gt;
+    v63
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v64 : string = null |&gt; unbox&lt;string&gt;
+    v64
+    #endif
+    |&gt; fun x -&gt; _v41 &lt;- Some x
+    let v65 : string = _v41 |&gt; Option.get
+    v65
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v66 : string = null |&gt; unbox&lt;string&gt;
+    v66
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v67 : string = null |&gt; unbox&lt;string&gt;
+    v67
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v68 : string = _v0 |&gt; Option.get
+    let v69 : char = System.IO.Path.DirectorySeparatorChar
+    let v70 : string = $"%A{v68}"
+    System.Console.WriteLine v70
+    let v71 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
+    let v72 : (char -&gt; bool) = closure0(v69)
+    let v73 : (string -&gt; char option) = v71 v72
+    let v74 : char option = v73 v68
+    let v75 : (char -&gt; US0) = method2()
+    let v76 : US0 = US0_1
+    let v77 : US0 = v74 |&gt; Option.map v75 |&gt; Option.defaultValue v76
+    let v79 : bool =
+        match v77 with
+        | US0_1 -&gt; (* None *)
+            true
+        | _ -&gt;
+            false
+    let v80 : bool = v79 &lt;&gt; true
+    let v82 : bool =
+        if v80 then
+            true
+        else
+            method3(v80)
+    let v83 : string = $"__expect / actual: %A{v68} / expected: %A{v69}"
+    let v84 : bool = v82 = false
+    if v84 then
+        failwith&lt;unit&gt; v83
+method0()
+
+"C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0512-2427-2731-2f34624f0bfb"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info">directory_info<a class="anchor-link" href="#directory_info">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nominal</span> <span class="n">directory_info</span> <span class="o">=</span> <span class="err">$</span><span class="s1">'System.IO.DirectoryInfo'</span>
+
+<span class="n">inl</span> <span class="n">directory_info</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
+    <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'`directory_info '</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info_exists">directory_info_exists<a class="anchor-link" href="#directory_info_exists">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_exists</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!info.Exists'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=40">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info_creation_time">directory_info_creation_time<a class="anchor-link" href="#directory_info_creation_time">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_creation_time</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">date_time</span><span class="o">.</span><span class="n">date_time</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!info.CreationTime'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info_name">directory_info_name<a class="anchor-link" href="#directory_info_name">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_name</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!info.Name'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_info_full_name">directory_info_full_name<a class="anchor-link" href="#directory_info_full_name">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_info_full_name</span> <span class="p">(</span><span class="n">info</span> <span class="p">:</span> <span class="n">directory_info</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="err">$</span><span class="s1">'!info.FullName'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="create_directory">create_directory<a class="anchor-link" href="#create_directory">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">create_directory</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.CreateDirectory'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_exists">directory_exists<a class="anchor-link" href="#directory_exists">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_exists</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.Exists'</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
+            <span class="p">(</span><span class="n">path</span> <span class="o">|&gt;</span> <span class="n">path_buf_exists</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">path</span> <span class="o">|&gt;</span> <span class="n">path_buf_is_dir</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="directory_get_parent">directory_get_parent<a class="anchor-link" href="#directory_get_parent">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">directory_get_parent</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">optionm</span><span class="s1">'.option'</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">parent</span> <span class="p">:</span> <span class="n">directory_info</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.Directory.GetParent'</span>
+            <span class="k">if</span> <span class="n">parent</span> <span class="o">=.</span> <span class="n">null</span> <span class="p">()</span>
+            <span class="n">then</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">parent</span> <span class="o">|&gt;</span> <span class="n">directory_info_full_name</span> <span class="o">|&gt;</span> <span class="n">Some</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">path</span>
+            <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
+            <span class="o">|&gt;</span> <span class="n">path_buf_parent</span>
+            <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.try'</span>
+            <span class="o">|&gt;</span> <span class="n">path_buf_display</span>
+            <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+            <span class="o">|&gt;</span> <span class="n">Some</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="file_exists">file_exists<a class="anchor-link" href="#file_exists">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">file_exists</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span>
+    <span class="n">run_target</span> <span class="n">function</span>
+        <span class="o">|</span> <span class="n">Fsharp</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">path</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.IO.File.Exists'</span>
+        <span class="o">|</span> <span class="n">Rust</span> <span class="p">(</span><span class="n">Native</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
+            <span class="n">inl</span> <span class="n">path_buf</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
+            <span class="p">(</span><span class="n">path_buf</span> <span class="o">|&gt;</span> <span class="n">path_buf_exists</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">path_buf</span> <span class="o">|&gt;</span> <span class="n">path_buf_is_file</span><span class="p">)</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="create_temp_directory">create_temp_directory<a class="anchor-link" href="#create_temp_directory">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8164,7 +8882,7 @@ method0()
                 <span class="n">console</span><span class="o">.</span><span class="n">write_line</span> <span class="p">(</span><span class="err">$</span><span class="s1">'$"create_temp_directory / {!get_locals ()}"'</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span>
 
             <span class="n">temp_folder</span>
-        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"create_temp_directory / target: {!target}"'</span>
+        <span class="o">|</span> <span class="n">target</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">null</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8184,7 +8902,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8209,307 +8927,322 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1
-    | US0_2
-and [&lt;Struct&gt;] US1 =
-    | US1_0 of f0_0 : US0
-    | US1_1 of f1_0 : US0
-let rec closure1 () () : string =
+<pre>let rec method1 (v0 : string) : string =
+    v0
+and closure1 () () : string =
     let v0 : string = ""
     v0
 and closure0 (v0 : string, v1 : string) () : string =
     let v2 : (unit -&gt; string) = closure1()
     let v3 : string = $"temp_folder: {v0} / result: {v1} {v2 ()}"
     v3
-and method1 (v0 : bool) : bool =
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : string option = None
     let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v1 : US0 = US0_0
-    let v2 : US1 = US1_0(v1)
-    let v3 : string = $"create_temp_directory / target: {v2}"
-    let v4 : string = failwith&lt;string&gt; v3
-    v4
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : string = null |&gt; unbox&lt;string&gt;
+    v1
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v5 : US0 = US0_1
-    let v6 : US1 = US1_0(v5)
-    let v7 : string = $"create_temp_directory / target: {v6}"
-    let v8 : string = failwith&lt;string&gt; v7
-    v8
+    let v2 : string = null |&gt; unbox&lt;string&gt;
+    v2
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v3 : string = null |&gt; unbox&lt;string&gt;
+    v3
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v9 : string option = None
-    let mutable _v9 = v9
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v10 : US0 = US0_0
-    let v11 : US1 = US1_0(v10)
-    let v12 : string = $"create_temp_directory_name / target: {v11}"
-    let v13 : string = failwith&lt;string&gt; v12
-    v13
+    let v4 : string option = None
+    let mutable _v4 = v4
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v5 : string = null |&gt; unbox&lt;string&gt;
+    v5
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v14 : US0 = US0_1
-    let v15 : US1 = US1_0(v14)
-    let v16 : string = $"create_temp_directory_name / target: {v15}"
-    let v17 : string = failwith&lt;string&gt; v16
-    v17
+    let v6 : string = null |&gt; unbox&lt;string&gt;
+    v6
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v7 : string = null |&gt; unbox&lt;string&gt;
+    v7
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v18 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v19 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v20 : string = v19 ()
-    let v21 : string = $"!{v18}"
-    let v22 : string option = None
-    let mutable _v22 = v22
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v23 : US0 = US0_0
-    let v24 : US1 = US1_0(v23)
-    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
-    let v26 : string = failwith&lt;string&gt; v25
-    v26
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v27 : US0 = US0_1
-    let v28 : US1 = US1_0(v27)
-    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
-    let v30 : string = failwith&lt;string&gt; v29
+    let v8 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v9 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v10 : string = v9 ()
+    let v11 : string = $"!{v8}"
+    let v12 : string option = None
+    let mutable _v12 = v12
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v13 : string = method1(v10)
+    let v14 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v15 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = "String::from($0)"
+    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v18 : string = "std::path::PathBuf::from($0)"
+    let v19 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v17 v18
+    let v20 : string = method1(v11)
+    let v21 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v22 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v20 v21
+    let v23 : string = "String::from($0)"
+    let v24 : std_string_String = Fable.Core.RustInterop.emitRustExpr v22 v23
+    let v25 : string = "$0.join($1)"
+    let v26 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v19, v24) v25
+    let v27 : string = "$0.display().to_string()"
+    let v28 : std_string_String = Fable.Core.RustInterop.emitRustExpr v26 v27
+    let v29 : string = "fable_library_rust::String_::fromString($0)"
+    let v30 : string = Fable.Core.RustInterop.emitRustExpr v28 v29
     v30
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v31 : string = System.IO.Path.Combine (v20, v21)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v31 : string = null |&gt; unbox&lt;string&gt;
     v31
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v32 : US0 = US0_2
-    let v33 : US1 = US1_1(v32)
-    let v34 : string = $"(&lt;/&gt;) / target: {v33}"
-    let v35 : string = failwith&lt;string&gt; v34
-    v35
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v36 : US0 = US0_1
-    let v37 : US1 = US1_1(v36)
-    let v38 : string = $"(&lt;/&gt;) / target: {v37}"
-    let v39 : string = failwith&lt;string&gt; v38
-    v39
-    #endif
-    |&gt; fun x -&gt; _v22 &lt;- Some x
-    let v40 : string = _v22 |&gt; Option.get
-    let v41 : System.DateTime = System.DateTime.Now
-    let v42 : System.Guid = System.Guid.NewGuid ()
-    let v43 : (System.Guid -&gt; string) = _.ToString()
-    let v44 : string = v43 v42
-    let v45 : string = v41.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v46 : System.Guid = System.Guid $"{v45}{v44.[v45.Length..]}"
-    let v47 : (System.Guid -&gt; string) = _.ToString()
-    let v48 : string = v47 v46
-    let v49 : string option = None
-    let mutable _v49 = v49
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v50 : US0 = US0_0
-    let v51 : US1 = US1_0(v50)
-    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
-    let v53 : string = failwith&lt;string&gt; v52
-    v53
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v54 : US0 = US0_1
-    let v55 : US1 = US1_0(v54)
-    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
-    let v57 : string = failwith&lt;string&gt; v56
-    v57
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v32 : string = null |&gt; unbox&lt;string&gt;
+    v32
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v58 : string = System.IO.Path.Combine (v40, v48)
-    v58
+    let v33 : string = System.IO.Path.Combine (v10, v11)
+    v33
     #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v59 : US0 = US0_2
-    let v60 : US1 = US1_1(v59)
-    let v61 : string = $"(&lt;/&gt;) / target: {v60}"
-    let v62 : string = failwith&lt;string&gt; v61
-    v62
+    let v34 : string = null |&gt; unbox&lt;string&gt;
+    v34
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v63 : US0 = US0_1
-    let v64 : US1 = US1_1(v63)
-    let v65 : string = $"(&lt;/&gt;) / target: {v64}"
-    let v66 : string = failwith&lt;string&gt; v65
-    v66
+    let v35 : string = null |&gt; unbox&lt;string&gt;
+    v35
     #endif
-    |&gt; fun x -&gt; _v49 &lt;- Some x
-    let v67 : string = _v49 |&gt; Option.get
-    v67
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v68 : US0 = US0_2
-    let v69 : US1 = US1_1(v68)
-    let v70 : string = $"create_temp_directory_name / target: {v69}"
-    let v71 : string = failwith&lt;string&gt; v70
-    v71
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v72 : US0 = US0_1
-    let v73 : US1 = US1_1(v72)
-    let v74 : string = $"create_temp_directory_name / target: {v73}"
-    let v75 : string = failwith&lt;string&gt; v74
-    v75
-    #endif
-    |&gt; fun x -&gt; _v9 &lt;- Some x
-    let v76 : string = _v9 |&gt; Option.get
-    let v77 : System.IO.DirectoryInfo option = None
-    let mutable _v77 = v77
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v78 : US0 = US0_0
-    let v79 : US1 = US1_0(v78)
-    let v80 : string = $"create_directory / target: {v79}"
-    let v81 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v80
-    v81
+    |&gt; fun x -&gt; _v12 &lt;- Some x
+    let v36 : string = _v12 |&gt; Option.get
+    let v37 : System.DateTime = System.DateTime.Now
+    let v38 : System.Guid = System.Guid.NewGuid ()
+    let v39 : (System.Guid -&gt; string) = _.ToString()
+    let v40 : string = v39 v38
+    let v41 : string = v37.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v42 : System.Guid = System.Guid $"{v41}{v40.[v41.Length..]}"
+    let v43 : (System.Guid -&gt; string) = _.ToString()
+    let v44 : string = v43 v42
+    let v45 : string option = None
+    let mutable _v45 = v45
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v46 : string = method1(v36)
+    let v47 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v48 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v46 v47
+    let v49 : string = "String::from($0)"
+    let v50 : std_string_String = Fable.Core.RustInterop.emitRustExpr v48 v49
+    let v51 : string = "std::path::PathBuf::from($0)"
+    let v52 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v50 v51
+    let v53 : string = method1(v44)
+    let v54 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v55 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v53 v54
+    let v56 : string = "String::from($0)"
+    let v57 : std_string_String = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v58 : string = "$0.join($1)"
+    let v59 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v52, v57) v58
+    let v60 : string = "$0.display().to_string()"
+    let v61 : std_string_String = Fable.Core.RustInterop.emitRustExpr v59 v60
+    let v62 : string = "fable_library_rust::String_::fromString($0)"
+    let v63 : string = Fable.Core.RustInterop.emitRustExpr v61 v62
+    v63
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v82 : US0 = US0_1
-    let v83 : US1 = US1_0(v82)
-    let v84 : string = $"create_directory / target: {v83}"
-    let v85 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v84
+    let v64 : string = null |&gt; unbox&lt;string&gt;
+    v64
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v65 : string = null |&gt; unbox&lt;string&gt;
+    v65
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v66 : string = System.IO.Path.Combine (v36, v44)
+    v66
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v67 : string = null |&gt; unbox&lt;string&gt;
+    v67
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v68 : string = null |&gt; unbox&lt;string&gt;
+    v68
+    #endif
+    |&gt; fun x -&gt; _v45 &lt;- Some x
+    let v69 : string = _v45 |&gt; Option.get
+    v69
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v70 : string = null |&gt; unbox&lt;string&gt;
+    v70
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v71 : string = null |&gt; unbox&lt;string&gt;
+    v71
+    #endif
+    |&gt; fun x -&gt; _v4 &lt;- Some x
+    let v72 : string = _v4 |&gt; Option.get
+    let v73 : System.IO.DirectoryInfo option = None
+    let mutable _v73 = v73
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v74 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v74
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v75 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v75
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v76 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v76
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v77 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
+    let v78 : System.IO.DirectoryInfo = v77 v72
+    v78
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v79 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v79
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v80 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v80
+    #endif
+    |&gt; fun x -&gt; _v73 &lt;- Some x
+    let v81 : System.IO.DirectoryInfo = _v73 |&gt; Option.get
+    let v82 : bool option = None
+    let mutable _v82 = v82
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v83 : bool = null |&gt; unbox&lt;bool&gt;
+    v83
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v84 : bool = null |&gt; unbox&lt;bool&gt;
+    v84
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v85 : bool = null |&gt; unbox&lt;bool&gt;
     v85
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v86 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
-    let v87 : System.IO.DirectoryInfo = v86 v76
+    let v86 : bool = v81.Exists
+    v86
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v87 : bool = null |&gt; unbox&lt;bool&gt;
     v87
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v88 : US0 = US0_2
-    let v89 : US1 = US1_1(v88)
-    let v90 : string = $"create_directory / target: {v89}"
-    let v91 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v90
-    v91
-    #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v92 : US0 = US0_1
-    let v93 : US1 = US1_1(v92)
-    let v94 : string = $"create_directory / target: {v93}"
-    let v95 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v94
-    v95
+    let v88 : bool = null |&gt; unbox&lt;bool&gt;
+    v88
     #endif
-    |&gt; fun x -&gt; _v77 &lt;- Some x
-    let v96 : System.IO.DirectoryInfo = _v77 |&gt; Option.get
-    let v97 : bool option = None
-    let mutable _v97 = v97
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v98 : US0 = US0_0
-    let v99 : US1 = US1_0(v98)
-    let v100 : string = $"directory_info_exists / target: {v99}"
-    let v101 : bool = failwith&lt;bool&gt; v100
-    v101
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v102 : US0 = US0_1
-    let v103 : US1 = US1_0(v102)
-    let v104 : string = $"directory_info_exists / target: {v103}"
-    let v105 : bool = failwith&lt;bool&gt; v104
-    v105
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v106 : bool = v96.Exists
-    v106
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v107 : US0 = US0_2
-    let v108 : US1 = US1_1(v107)
-    let v109 : string = $"directory_info_exists / target: {v108}"
-    let v110 : bool = failwith&lt;bool&gt; v109
-    v110
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v111 : US0 = US0_1
-    let v112 : US1 = US1_1(v111)
-    let v113 : string = $"directory_info_exists / target: {v112}"
-    let v114 : bool = failwith&lt;bool&gt; v113
-    v114
-    #endif
-    |&gt; fun x -&gt; _v97 &lt;- Some x
-    let v115 : bool = _v97 |&gt; Option.get
-    let v116 : bool = v115 = false
-    if v116 then
-        let v117 : System.DateTime option = None
-        let mutable _v117 = v117
-        #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-        let v118 : US0 = US0_0
-        let v119 : US1 = US1_0(v118)
-        let v120 : string = $"directory_info_creation_time / target: {v119}"
-        let v121 : System.DateTime = failwith&lt;System.DateTime&gt; v120
-        v121
+    |&gt; fun x -&gt; _v82 &lt;- Some x
+    let v89 : bool = _v82 |&gt; Option.get
+    let v90 : bool = v89 = false
+    if v90 then
+        let v91 : System.DateTime option = None
+        let mutable _v91 = v91
+        #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        let v92 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v92
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        let v122 : US0 = US0_1
-        let v123 : US1 = US1_0(v122)
-        let v124 : string = $"directory_info_creation_time / target: {v123}"
-        let v125 : System.DateTime = failwith&lt;System.DateTime&gt; v124
-        v125
+        let v93 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v93
+        #endif
+        #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+        let v94 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v94
         #endif
         #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        let v126 : System.DateTime = v96.CreationTime
-        v126
+        let v95 : System.DateTime = v81.CreationTime
+        v95
         #endif
         #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        let v127 : US0 = US0_2
-        let v128 : US1 = US1_1(v127)
-        let v129 : string = $"directory_info_creation_time / target: {v128}"
-        let v130 : System.DateTime = failwith&lt;System.DateTime&gt; v129
-        v130
+        let v96 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v96
         #endif
         #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-        let v131 : US0 = US0_1
-        let v132 : US1 = US1_1(v131)
-        let v133 : string = $"directory_info_creation_time / target: {v132}"
-        let v134 : System.DateTime = failwith&lt;System.DateTime&gt; v133
-        v134
+        let v97 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v97
         #endif
-        |&gt; fun x -&gt; _v117 &lt;- Some x
-        let v135 : System.DateTime = _v117 |&gt; Option.get
-        let v136 : obj = {| Exists = v115; CreationTime = v135 |}
-        let v137 : string = $"%A{v136}"
-        let v138 : (unit -&gt; string) = closure0(v76, v137)
-        let v139 : string = $"create_temp_directory / {v138 ()}"
-        System.Console.WriteLine v139
+        |&gt; fun x -&gt; _v91 &lt;- Some x
+        let v98 : System.DateTime = _v91 |&gt; Option.get
+        let v99 : obj = {| Exists = v89; CreationTime = v98 |}
+        let v100 : string = $"%A{v99}"
+        let v101 : (unit -&gt; string) = closure0(v72, v100)
+        let v102 : string = $"create_temp_directory / {v101 ()}"
+        System.Console.WriteLine v102
         ()
-    v76
+    v72
     #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v140 : US0 = US0_2
-    let v141 : US1 = US1_1(v140)
-    let v142 : string = $"create_temp_directory / target: {v141}"
-    let v143 : string = failwith&lt;string&gt; v142
-    v143
+    let v103 : string = null |&gt; unbox&lt;string&gt;
+    v103
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v144 : US0 = US0_1
-    let v145 : US1 = US1_1(v144)
-    let v146 : string = $"create_temp_directory / target: {v145}"
-    let v147 : string = failwith&lt;string&gt; v146
-    v147
+    let v104 : string = null |&gt; unbox&lt;string&gt;
+    v104
     #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v148 : string = _v0 |&gt; Option.get
-    let v149 : (string -&gt; bool) = System.IO.Directory.Exists
-    let v150 : bool = v149 v148
-    let v151 : string = $"%A{v150}"
-    System.Console.WriteLine v151
-    let v153 : bool =
-        if v150 then
+    let v105 : string = _v0 |&gt; Option.get
+    let v106 : bool option = None
+    let mutable _v106 = v106
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v107 : string = method1(v105)
+    let v108 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v109 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v107 v108
+    let v110 : string = "String::from($0)"
+    let v111 : std_string_String = Fable.Core.RustInterop.emitRustExpr v109 v110
+    let v112 : string = "std::path::PathBuf::from($0)"
+    let v113 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v111 v112
+    let v114 : string = "v113.exists()"
+    let v115 : bool = Fable.Core.RustInterop.emitRustExpr () v114
+    let v118 : bool =
+        if v115 then
+            let v116 : string = "v113.is_dir()"
+            let v117 : bool = Fable.Core.RustInterop.emitRustExpr () v116
+            v117
+        else
+            false
+    v118
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v119 : bool = null |&gt; unbox&lt;bool&gt;
+    v119
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v120 : bool = null |&gt; unbox&lt;bool&gt;
+    v120
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v121 : (string -&gt; bool) = System.IO.Directory.Exists
+    let v122 : bool = v121 v105
+    v122
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v123 : bool = null |&gt; unbox&lt;bool&gt;
+    v123
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v124 : bool = null |&gt; unbox&lt;bool&gt;
+    v124
+    #endif
+    |&gt; fun x -&gt; _v106 &lt;- Some x
+    let v125 : bool = _v106 |&gt; Option.get
+    let v126 : string = $"%A{v125}"
+    System.Console.WriteLine v126
+    let v128 : bool =
+        if v125 then
             true
         else
-            method1(v150)
-    let v154 : string = $"__expect / actual: %A{v150} / expected: %A{true}"
-    let v155 : bool = v153 = false
-    if v155 then
-        failwith&lt;unit&gt; v154
+            method2(v125)
+    let v129 : string = $"__expect / actual: %A{v125} / expected: %A{true}"
+    let v130 : bool = v128 = false
+    if v130 then
+        failwith&lt;unit&gt; v129
 method0()
 
 true
@@ -8519,7 +9252,265 @@ true
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="get_source_directory">get_source_directory<a class="anchor-link" href="#get_source_directory">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">get_source_directory</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'__SOURCE_DIRECTORY__'</span> <span class="p">:</span> <span class="n">string</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+
+<span class="n">get_source_directory</span> <span class="p">()</span>
+<span class="o">|&gt;</span> <span class="n">directory_info</span>
+<span class="o">|&gt;</span> <span class="n">directory_info_name</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"spiral"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>let rec method1 (v0 : bool) : bool =
+    v0
+and method0 () : unit =
+    let v0 : string = __SOURCE_DIRECTORY__
+    let v1 : (string -&gt; System.IO.DirectoryInfo) = System.IO.DirectoryInfo 
+    let v2 : System.IO.DirectoryInfo = v1 v0
+    let v3 : string option = None
+    let mutable _v3 = v3
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v4 : string = null |&gt; unbox&lt;string&gt;
+    v4
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v5 : string = null |&gt; unbox&lt;string&gt;
+    v5
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v6 : string = null |&gt; unbox&lt;string&gt;
+    v6
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v7 : string = v2.Name
+    v7
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v8 : string = null |&gt; unbox&lt;string&gt;
+    v8
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v9 : string = null |&gt; unbox&lt;string&gt;
+    v9
+    #endif
+    |&gt; fun x -&gt; _v3 &lt;- Some x
+    let v10 : string = _v3 |&gt; Option.get
+    let v11 : string = $"%A{v10}"
+    System.Console.WriteLine v11
+    let v13 : bool = v10 = "spiral"
+    let v15 : bool =
+        if v13 then
+            true
+        else
+            method1(v13)
+    let v16 : string = "spiral"
+    let v17 : string = $"__expect / actual: %A{v10} / expected: %A{v16}"
+    let v18 : bool = v15 = false
+    if v18 then
+        failwith&lt;unit&gt; v17
+method0()
+
+"spiral"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="find_parent">find_parent<a class="anchor-link" href="#find_parent">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">find_parent</span> <span class="n">name</span> <span class="n">is_file</span> <span class="n">root_dir</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="nb">dir</span> <span class="o">=</span>
+        <span class="k">if</span> <span class="nb">dir</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="k">if</span> <span class="n">is_file</span> <span class="n">then</span> <span class="n">file_exists</span> <span class="k">else</span> <span class="n">directory_exists</span><span class="p">)</span>
+        <span class="n">then</span> <span class="nb">dir</span>
+        <span class="k">else</span>
+            <span class="k">match</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="n">join</span> <span class="n">directory_get_parent</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox with</span>
+            <span class="o">|</span> <span class="n">Some</span> <span class="n">parent</span> <span class="o">=&gt;</span> <span class="n">parent</span> <span class="o">|&gt;</span> <span class="n">loop</span>
+            <span class="o">|</span> <span class="kc">None</span> <span class="o">=&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s1">'$"""No parent for {if !is_file then "file" else "dir"} </span><span class="se">\'</span><span class="s1">{!name}</span><span class="se">\'</span><span class="s1"> at </span><span class="se">\'</span><span class="s1">{!root_dir}</span><span class="se">\'</span><span class="s1">"""'</span>
+    <span class="n">loop</span> <span class="n">root_dir</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">a</span> <span class="p">;[</span> <span class="s2">".paket"</span><span class="p">,</span> <span class="n">false</span><span class="p">;</span> <span class="s2">"paket.dependencies"</span><span class="p">,</span> <span class="n">true</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">is_file</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="n">get_source_directory</span> <span class="p">()</span>
+    <span class="o">|&gt;</span> <span class="n">find_parent</span> <span class="n">file</span> <span class="n">is_file</span>
+    <span class="o">|&gt;</span> <span class="n">directory_info</span>
+    <span class="o">|&gt;</span> <span class="n">directory_info_name</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.distinct</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"polyglot"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[|"polyglot"|]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">rust</span><span class="o">=</span>
+<span class="o">//</span> <span class="o">//</span> <span class="n">print_code</span><span class="o">=</span><span class="n">false</span>
+
+<span class="n">types</span> <span class="p">()</span>
+<span class="n">a</span> <span class="p">;[</span> <span class="s2">".paket"</span><span class="p">,</span> <span class="n">false</span><span class="p">;</span> <span class="s2">"paket.dependencies"</span><span class="p">,</span> <span class="n">true</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="o">.</span><span class="n">map</span> <span class="n">fun</span> <span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">is_file</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">join</span>
+        <span class="n">get_source_directory</span> <span class="p">()</span>
+        <span class="o">|&gt;</span> <span class="n">find_parent</span> <span class="n">file</span> <span class="n">is_file</span>
+        <span class="o">|&gt;</span> <span class="n">new_path_buf</span>
+        <span class="o">|&gt;</span> <span class="n">path_buf_file_name</span>
+        <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.try'</span>
+        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.to_os_string</span>
+        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.os_to_str</span>
+        <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.try'</span>
+        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.ref_to_std_string</span>
+        <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.from_std_string</span>
+        <span class="o">|&gt;</span> <span class="n">Some</span>
+        <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.box</span>
+    <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
+    <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.default_value ""</span>
+<span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.distinct</span>
+<span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">result</span> <span class="o">=&gt;</span>
+    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">am</span><span class="s1">'.length |&gt; _assert_eq 1i32</span>
+    <span class="n">index</span> <span class="n">result</span> <span class="mi">0</span><span class="n">i32</span> <span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="s2">"polyglot"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>1
+"polyglot"
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8529,7 +9520,7 @@ true
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8538,8 +9529,11 @@ true
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">main</span> <span class="p">()</span> <span class="o">=</span>
+    <span class="n">types</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let create_temp_directory_name () = !create_temp_directory_name ()"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="err">$</span><span class="s2">"let create_temp_directory () = !create_temp_directory ()"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let get_source_directory () = !get_source_directory ()"</span> <span class="p">:</span> <span class="p">()</span>
+    <span class="err">$</span><span class="s2">"let find_parent x = !find_parent x"</span> <span class="p">:</span> <span class="p">()</span>
     <span class="n">inl</span> <span class="n">combine</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">x</span>
     <span class="err">$</span><span class="s2">"let (&lt;/&gt;) x = !combine x"</span> <span class="p">:</span> <span class="p">()</span>
 </pre></div>
@@ -8554,134 +9548,176 @@ true
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
+<pre>#if FABLE_COMPILER // file_system.types
+[&lt;Fable.Core.Erase; Fable.Core.Emit("str")&gt;] type Str = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")&gt;] type base64_DecodeError = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")&gt;] type borsh_io_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")&gt;] type js_sys_JsString = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")&gt;] type serde_json_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")&gt;] type serde_json_Value = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")&gt;] type serde_wasm_bindgen_Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")&gt;] type std_ffi_OsStr = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")&gt;] type std_ffi_OsString = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")&gt;] type std_str_Utf8Error = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::string::String")&gt;] type std_string_String = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func0&lt;$0&gt;")&gt;] type Func0&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Func1&lt;$0, $1&gt;")&gt;] type Func0&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Box&lt;$0&gt;")&gt;] type Box&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("dyn $0")&gt;] type Dyn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn() -&gt; $0")&gt;] type Fn&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn()")&gt;] type FnUnit = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("FnOnce() -&gt; $0")&gt;] type FnOnce&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")&gt;] type ActionFn2&lt;'T, 'U&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("impl $0")&gt;] type Impl&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("mut $0")&gt;] type Mut&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;$0")&gt;] type Ref&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("&amp;'static $0")&gt;] type StaticRef&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("MutCell&lt;$0&gt;")&gt;] type MutCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::any::Any")&gt;] type std_any_Any = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell&lt;$0&gt;")&gt;] type std_cell_RefCell&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin&lt;$0&gt;")&gt;] type std_pin_Pin&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc&lt;$0&gt;")&gt;] type std_rc_Rc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak&lt;$0&gt;")&gt;] type std_rc_Weak&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc&lt;$0&gt;")&gt;] type std_sync_Arc&lt;'T&gt; = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::Path")&gt;] type std_path_Path = class end
+[&lt;Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")&gt;] type std_path_PathBuf = class end
+#endif // file_system.types
+type [&lt;Struct&gt;] US0 =
+    | US0_0 of f0_0 : string
     | US0_1
-    | US0_2
-and [&lt;Struct&gt;] US1 =
-    | US1_0 of f0_0 : US0
-    | US1_1 of f1_0 : US0
-let rec closure0 () () : string =
+let rec method0 (v0 : string) : string =
+    v0
+and closure0 () () : string =
     let v0 : string option = None
     let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v1 : US0 = US0_0
-    let v2 : US1 = US1_0(v1)
-    let v3 : string = $"create_temp_directory_name / target: {v2}"
-    let v4 : string = failwith&lt;string&gt; v3
-    v4
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : string = null |&gt; unbox&lt;string&gt;
+    v1
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v5 : US0 = US0_1
-    let v6 : US1 = US1_0(v5)
-    let v7 : string = $"create_temp_directory_name / target: {v6}"
-    let v8 : string = failwith&lt;string&gt; v7
-    v8
+    let v2 : string = null |&gt; unbox&lt;string&gt;
+    v2
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v3 : string = null |&gt; unbox&lt;string&gt;
+    v3
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v9 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v10 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v11 : string = v10 ()
-    let v12 : string = $"!{v9}"
-    let v13 : string option = None
-    let mutable _v13 = v13
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v14 : US0 = US0_0
-    let v15 : US1 = US1_0(v14)
-    let v16 : string = $"(&lt;/&gt;) / target: {v15}"
-    let v17 : string = failwith&lt;string&gt; v16
-    v17
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v18 : US0 = US0_1
-    let v19 : US1 = US1_0(v18)
-    let v20 : string = $"(&lt;/&gt;) / target: {v19}"
-    let v21 : string = failwith&lt;string&gt; v20
-    v21
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v22 : string = System.IO.Path.Combine (v11, v12)
-    v22
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v23 : US0 = US0_2
-    let v24 : US1 = US1_1(v23)
-    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
-    let v26 : string = failwith&lt;string&gt; v25
+    let v4 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v5 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v6 : string = v5 ()
+    let v7 : string = $"!{v4}"
+    let v8 : string option = None
+    let mutable _v8 = v8
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v9 : string = method0(v6)
+    let v10 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v11 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v12 : string = "String::from($0)"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v11 v12
+    let v14 : string = "std::path::PathBuf::from($0)"
+    let v15 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = method0(v7)
+    let v17 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v18 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v16 v17
+    let v19 : string = "String::from($0)"
+    let v20 : std_string_String = Fable.Core.RustInterop.emitRustExpr v18 v19
+    let v21 : string = "$0.join($1)"
+    let v22 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v15, v20) v21
+    let v23 : string = "$0.display().to_string()"
+    let v24 : std_string_String = Fable.Core.RustInterop.emitRustExpr v22 v23
+    let v25 : string = "fable_library_rust::String_::fromString($0)"
+    let v26 : string = Fable.Core.RustInterop.emitRustExpr v24 v25
     v26
     #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v27 : US0 = US0_1
-    let v28 : US1 = US1_1(v27)
-    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
-    let v30 : string = failwith&lt;string&gt; v29
-    v30
-    #endif
-    |&gt; fun x -&gt; _v13 &lt;- Some x
-    let v31 : string = _v13 |&gt; Option.get
-    let v32 : System.DateTime = System.DateTime.Now
-    let v33 : System.Guid = System.Guid.NewGuid ()
-    let v34 : (System.Guid -&gt; string) = _.ToString()
-    let v35 : string = v34 v33
-    let v36 : string = v32.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v37 : System.Guid = System.Guid $"{v36}{v35.[v36.Length..]}"
-    let v38 : (System.Guid -&gt; string) = _.ToString()
-    let v39 : string = v38 v37
-    let v40 : string option = None
-    let mutable _v40 = v40
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v41 : US0 = US0_0
-    let v42 : US1 = US1_0(v41)
-    let v43 : string = $"(&lt;/&gt;) / target: {v42}"
-    let v44 : string = failwith&lt;string&gt; v43
-    v44
-    #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v45 : US0 = US0_1
-    let v46 : US1 = US1_0(v45)
-    let v47 : string = $"(&lt;/&gt;) / target: {v46}"
-    let v48 : string = failwith&lt;string&gt; v47
-    v48
+    let v27 : string = null |&gt; unbox&lt;string&gt;
+    v27
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v28 : string = null |&gt; unbox&lt;string&gt;
+    v28
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v49 : string = System.IO.Path.Combine (v31, v39)
-    v49
+    let v29 : string = System.IO.Path.Combine (v6, v7)
+    v29
     #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v50 : US0 = US0_2
-    let v51 : US1 = US1_1(v50)
-    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
-    let v53 : string = failwith&lt;string&gt; v52
-    v53
+    let v30 : string = null |&gt; unbox&lt;string&gt;
+    v30
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v54 : US0 = US0_1
-    let v55 : US1 = US1_1(v54)
-    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
-    let v57 : string = failwith&lt;string&gt; v56
-    v57
+    let v31 : string = null |&gt; unbox&lt;string&gt;
+    v31
     #endif
-    |&gt; fun x -&gt; _v40 &lt;- Some x
-    let v58 : string = _v40 |&gt; Option.get
-    v58
+    |&gt; fun x -&gt; _v8 &lt;- Some x
+    let v32 : string = _v8 |&gt; Option.get
+    let v33 : System.DateTime = System.DateTime.Now
+    let v34 : System.Guid = System.Guid.NewGuid ()
+    let v35 : (System.Guid -&gt; string) = _.ToString()
+    let v36 : string = v35 v34
+    let v37 : string = v33.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v38 : System.Guid = System.Guid $"{v37}{v36.[v37.Length..]}"
+    let v39 : (System.Guid -&gt; string) = _.ToString()
+    let v40 : string = v39 v38
+    let v41 : string option = None
+    let mutable _v41 = v41
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v42 : string = method0(v32)
+    let v43 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v44 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v42 v43
+    let v45 : string = "String::from($0)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr v44 v45
+    let v47 : string = "std::path::PathBuf::from($0)"
+    let v48 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v46 v47
+    let v49 : string = method0(v40)
+    let v50 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v51 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v49 v50
+    let v52 : string = "String::from($0)"
+    let v53 : std_string_String = Fable.Core.RustInterop.emitRustExpr v51 v52
+    let v54 : string = "$0.join($1)"
+    let v55 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v48, v53) v54
+    let v56 : string = "$0.display().to_string()"
+    let v57 : std_string_String = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v58 : string = "fable_library_rust::String_::fromString($0)"
+    let v59 : string = Fable.Core.RustInterop.emitRustExpr v57 v58
+    v59
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v59 : US0 = US0_2
-    let v60 : US1 = US1_1(v59)
-    let v61 : string = $"create_temp_directory_name / target: {v60}"
-    let v62 : string = failwith&lt;string&gt; v61
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v60 : string = null |&gt; unbox&lt;string&gt;
+    v60
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v61 : string = null |&gt; unbox&lt;string&gt;
+    v61
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v62 : string = System.IO.Path.Combine (v32, v40)
     v62
     #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v63 : string = null |&gt; unbox&lt;string&gt;
+    v63
+    #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v63 : US0 = US0_1
-    let v64 : US1 = US1_1(v63)
-    let v65 : string = $"create_temp_directory_name / target: {v64}"
-    let v66 : string = failwith&lt;string&gt; v65
+    let v64 : string = null |&gt; unbox&lt;string&gt;
+    v64
+    #endif
+    |&gt; fun x -&gt; _v41 &lt;- Some x
+    let v65 : string = _v41 |&gt; Option.get
+    v65
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v66 : string = null |&gt; unbox&lt;string&gt;
     v66
     #endif
-    |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v67 : string = _v0 |&gt; Option.get
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v67 : string = null |&gt; unbox&lt;string&gt;
     v67
+    #endif
+    |&gt; fun x -&gt; _v0 &lt;- Some x
+    let v68 : string = _v0 |&gt; Option.get
+    v68
 and closure3 () () : string =
     let v0 : string = ""
     v0
@@ -8692,322 +9728,639 @@ and closure2 (v0 : string, v1 : string) () : string =
 and closure1 () () : string =
     let v0 : string option = None
     let mutable _v0 = v0
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v1 : US0 = US0_0
-    let v2 : US1 = US1_0(v1)
-    let v3 : string = $"create_temp_directory / target: {v2}"
-    let v4 : string = failwith&lt;string&gt; v3
-    v4
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v1 : string = null |&gt; unbox&lt;string&gt;
+    v1
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v5 : US0 = US0_1
-    let v6 : US1 = US1_0(v5)
-    let v7 : string = $"create_temp_directory / target: {v6}"
-    let v8 : string = failwith&lt;string&gt; v7
-    v8
+    let v2 : string = null |&gt; unbox&lt;string&gt;
+    v2
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v3 : string = null |&gt; unbox&lt;string&gt;
+    v3
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v9 : string option = None
-    let mutable _v9 = v9
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v10 : US0 = US0_0
-    let v11 : US1 = US1_0(v10)
-    let v12 : string = $"create_temp_directory_name / target: {v11}"
-    let v13 : string = failwith&lt;string&gt; v12
-    v13
+    let v4 : string option = None
+    let mutable _v4 = v4
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v5 : string = null |&gt; unbox&lt;string&gt;
+    v5
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v14 : US0 = US0_1
-    let v15 : US1 = US1_0(v14)
-    let v16 : string = $"create_temp_directory_name / target: {v15}"
-    let v17 : string = failwith&lt;string&gt; v16
-    v17
+    let v6 : string = null |&gt; unbox&lt;string&gt;
+    v6
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v7 : string = null |&gt; unbox&lt;string&gt;
+    v7
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v18 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    let v19 : (unit -&gt; string) = System.IO.Path.GetTempPath
-    let v20 : string = v19 ()
-    let v21 : string = $"!{v18}"
-    let v22 : string option = None
-    let mutable _v22 = v22
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v23 : US0 = US0_0
-    let v24 : US1 = US1_0(v23)
-    let v25 : string = $"(&lt;/&gt;) / target: {v24}"
-    let v26 : string = failwith&lt;string&gt; v25
-    v26
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v27 : US0 = US0_1
-    let v28 : US1 = US1_0(v27)
-    let v29 : string = $"(&lt;/&gt;) / target: {v28}"
-    let v30 : string = failwith&lt;string&gt; v29
+    let v8 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    let v9 : (unit -&gt; string) = System.IO.Path.GetTempPath
+    let v10 : string = v9 ()
+    let v11 : string = $"!{v8}"
+    let v12 : string option = None
+    let mutable _v12 = v12
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v13 : string = method0(v10)
+    let v14 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v15 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = "String::from($0)"
+    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v18 : string = "std::path::PathBuf::from($0)"
+    let v19 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v17 v18
+    let v20 : string = method0(v11)
+    let v21 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v22 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v20 v21
+    let v23 : string = "String::from($0)"
+    let v24 : std_string_String = Fable.Core.RustInterop.emitRustExpr v22 v23
+    let v25 : string = "$0.join($1)"
+    let v26 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v19, v24) v25
+    let v27 : string = "$0.display().to_string()"
+    let v28 : std_string_String = Fable.Core.RustInterop.emitRustExpr v26 v27
+    let v29 : string = "fable_library_rust::String_::fromString($0)"
+    let v30 : string = Fable.Core.RustInterop.emitRustExpr v28 v29
     v30
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v31 : string = System.IO.Path.Combine (v20, v21)
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v31 : string = null |&gt; unbox&lt;string&gt;
     v31
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v32 : US0 = US0_2
-    let v33 : US1 = US1_1(v32)
-    let v34 : string = $"(&lt;/&gt;) / target: {v33}"
-    let v35 : string = failwith&lt;string&gt; v34
-    v35
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v36 : US0 = US0_1
-    let v37 : US1 = US1_1(v36)
-    let v38 : string = $"(&lt;/&gt;) / target: {v37}"
-    let v39 : string = failwith&lt;string&gt; v38
-    v39
-    #endif
-    |&gt; fun x -&gt; _v22 &lt;- Some x
-    let v40 : string = _v22 |&gt; Option.get
-    let v41 : System.DateTime = System.DateTime.Now
-    let v42 : System.Guid = System.Guid.NewGuid ()
-    let v43 : (System.Guid -&gt; string) = _.ToString()
-    let v44 : string = v43 v42
-    let v45 : string = v41.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v46 : System.Guid = System.Guid $"{v45}{v44.[v45.Length..]}"
-    let v47 : (System.Guid -&gt; string) = _.ToString()
-    let v48 : string = v47 v46
-    let v49 : string option = None
-    let mutable _v49 = v49
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v50 : US0 = US0_0
-    let v51 : US1 = US1_0(v50)
-    let v52 : string = $"(&lt;/&gt;) / target: {v51}"
-    let v53 : string = failwith&lt;string&gt; v52
-    v53
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v54 : US0 = US0_1
-    let v55 : US1 = US1_0(v54)
-    let v56 : string = $"(&lt;/&gt;) / target: {v55}"
-    let v57 : string = failwith&lt;string&gt; v56
-    v57
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v32 : string = null |&gt; unbox&lt;string&gt;
+    v32
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v58 : string = System.IO.Path.Combine (v40, v48)
-    v58
+    let v33 : string = System.IO.Path.Combine (v10, v11)
+    v33
     #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v59 : US0 = US0_2
-    let v60 : US1 = US1_1(v59)
-    let v61 : string = $"(&lt;/&gt;) / target: {v60}"
-    let v62 : string = failwith&lt;string&gt; v61
-    v62
+    let v34 : string = null |&gt; unbox&lt;string&gt;
+    v34
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v63 : US0 = US0_1
-    let v64 : US1 = US1_1(v63)
-    let v65 : string = $"(&lt;/&gt;) / target: {v64}"
-    let v66 : string = failwith&lt;string&gt; v65
-    v66
+    let v35 : string = null |&gt; unbox&lt;string&gt;
+    v35
     #endif
-    |&gt; fun x -&gt; _v49 &lt;- Some x
-    let v67 : string = _v49 |&gt; Option.get
-    v67
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v68 : US0 = US0_2
-    let v69 : US1 = US1_1(v68)
-    let v70 : string = $"create_temp_directory_name / target: {v69}"
-    let v71 : string = failwith&lt;string&gt; v70
-    v71
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v72 : US0 = US0_1
-    let v73 : US1 = US1_1(v72)
-    let v74 : string = $"create_temp_directory_name / target: {v73}"
-    let v75 : string = failwith&lt;string&gt; v74
-    v75
-    #endif
-    |&gt; fun x -&gt; _v9 &lt;- Some x
-    let v76 : string = _v9 |&gt; Option.get
-    let v77 : System.IO.DirectoryInfo option = None
-    let mutable _v77 = v77
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v78 : US0 = US0_0
-    let v79 : US1 = US1_0(v78)
-    let v80 : string = $"create_directory / target: {v79}"
-    let v81 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v80
-    v81
+    |&gt; fun x -&gt; _v12 &lt;- Some x
+    let v36 : string = _v12 |&gt; Option.get
+    let v37 : System.DateTime = System.DateTime.Now
+    let v38 : System.Guid = System.Guid.NewGuid ()
+    let v39 : (System.Guid -&gt; string) = _.ToString()
+    let v40 : string = v39 v38
+    let v41 : string = v37.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v42 : System.Guid = System.Guid $"{v41}{v40.[v41.Length..]}"
+    let v43 : (System.Guid -&gt; string) = _.ToString()
+    let v44 : string = v43 v42
+    let v45 : string option = None
+    let mutable _v45 = v45
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v46 : string = method0(v36)
+    let v47 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v48 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v46 v47
+    let v49 : string = "String::from($0)"
+    let v50 : std_string_String = Fable.Core.RustInterop.emitRustExpr v48 v49
+    let v51 : string = "std::path::PathBuf::from($0)"
+    let v52 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v50 v51
+    let v53 : string = method0(v44)
+    let v54 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v55 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v53 v54
+    let v56 : string = "String::from($0)"
+    let v57 : std_string_String = Fable.Core.RustInterop.emitRustExpr v55 v56
+    let v58 : string = "$0.join($1)"
+    let v59 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v52, v57) v58
+    let v60 : string = "$0.display().to_string()"
+    let v61 : std_string_String = Fable.Core.RustInterop.emitRustExpr v59 v60
+    let v62 : string = "fable_library_rust::String_::fromString($0)"
+    let v63 : string = Fable.Core.RustInterop.emitRustExpr v61 v62
+    v63
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v82 : US0 = US0_1
-    let v83 : US1 = US1_0(v82)
-    let v84 : string = $"create_directory / target: {v83}"
-    let v85 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v84
+    let v64 : string = null |&gt; unbox&lt;string&gt;
+    v64
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v65 : string = null |&gt; unbox&lt;string&gt;
+    v65
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v66 : string = System.IO.Path.Combine (v36, v44)
+    v66
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v67 : string = null |&gt; unbox&lt;string&gt;
+    v67
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v68 : string = null |&gt; unbox&lt;string&gt;
+    v68
+    #endif
+    |&gt; fun x -&gt; _v45 &lt;- Some x
+    let v69 : string = _v45 |&gt; Option.get
+    v69
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v70 : string = null |&gt; unbox&lt;string&gt;
+    v70
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v71 : string = null |&gt; unbox&lt;string&gt;
+    v71
+    #endif
+    |&gt; fun x -&gt; _v4 &lt;- Some x
+    let v72 : string = _v4 |&gt; Option.get
+    let v73 : System.IO.DirectoryInfo option = None
+    let mutable _v73 = v73
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v74 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v74
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v75 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v75
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v76 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v76
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v77 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
+    let v78 : System.IO.DirectoryInfo = v77 v72
+    v78
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v79 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v79
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v80 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    v80
+    #endif
+    |&gt; fun x -&gt; _v73 &lt;- Some x
+    let v81 : System.IO.DirectoryInfo = _v73 |&gt; Option.get
+    let v82 : bool option = None
+    let mutable _v82 = v82
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v83 : bool = null |&gt; unbox&lt;bool&gt;
+    v83
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v84 : bool = null |&gt; unbox&lt;bool&gt;
+    v84
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v85 : bool = null |&gt; unbox&lt;bool&gt;
     v85
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v86 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
-    let v87 : System.IO.DirectoryInfo = v86 v76
+    let v86 : bool = v81.Exists
+    v86
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v87 : bool = null |&gt; unbox&lt;bool&gt;
     v87
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v88 : US0 = US0_2
-    let v89 : US1 = US1_1(v88)
-    let v90 : string = $"create_directory / target: {v89}"
-    let v91 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v90
-    v91
-    #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v92 : US0 = US0_1
-    let v93 : US1 = US1_1(v92)
-    let v94 : string = $"create_directory / target: {v93}"
-    let v95 : System.IO.DirectoryInfo = failwith&lt;System.IO.DirectoryInfo&gt; v94
-    v95
+    let v88 : bool = null |&gt; unbox&lt;bool&gt;
+    v88
     #endif
-    |&gt; fun x -&gt; _v77 &lt;- Some x
-    let v96 : System.IO.DirectoryInfo = _v77 |&gt; Option.get
-    let v97 : bool option = None
-    let mutable _v97 = v97
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v98 : US0 = US0_0
-    let v99 : US1 = US1_0(v98)
-    let v100 : string = $"directory_info_exists / target: {v99}"
-    let v101 : bool = failwith&lt;bool&gt; v100
-    v101
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v102 : US0 = US0_1
-    let v103 : US1 = US1_0(v102)
-    let v104 : string = $"directory_info_exists / target: {v103}"
-    let v105 : bool = failwith&lt;bool&gt; v104
-    v105
-    #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v106 : bool = v96.Exists
-    v106
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v107 : US0 = US0_2
-    let v108 : US1 = US1_1(v107)
-    let v109 : string = $"directory_info_exists / target: {v108}"
-    let v110 : bool = failwith&lt;bool&gt; v109
-    v110
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v111 : US0 = US0_1
-    let v112 : US1 = US1_1(v111)
-    let v113 : string = $"directory_info_exists / target: {v112}"
-    let v114 : bool = failwith&lt;bool&gt; v113
-    v114
-    #endif
-    |&gt; fun x -&gt; _v97 &lt;- Some x
-    let v115 : bool = _v97 |&gt; Option.get
-    let v116 : bool = v115 = false
-    if v116 then
-        let v117 : System.DateTime option = None
-        let mutable _v117 = v117
-        #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-        let v118 : US0 = US0_0
-        let v119 : US1 = US1_0(v118)
-        let v120 : string = $"directory_info_creation_time / target: {v119}"
-        let v121 : System.DateTime = failwith&lt;System.DateTime&gt; v120
-        v121
+    |&gt; fun x -&gt; _v82 &lt;- Some x
+    let v89 : bool = _v82 |&gt; Option.get
+    let v90 : bool = v89 = false
+    if v90 then
+        let v91 : System.DateTime option = None
+        let mutable _v91 = v91
+        #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        let v92 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v92
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        let v122 : US0 = US0_1
-        let v123 : US1 = US1_0(v122)
-        let v124 : string = $"directory_info_creation_time / target: {v123}"
-        let v125 : System.DateTime = failwith&lt;System.DateTime&gt; v124
-        v125
+        let v93 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v93
+        #endif
+        #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+        let v94 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v94
         #endif
         #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        let v126 : System.DateTime = v96.CreationTime
-        v126
+        let v95 : System.DateTime = v81.CreationTime
+        v95
         #endif
         #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        let v127 : US0 = US0_2
-        let v128 : US1 = US1_1(v127)
-        let v129 : string = $"directory_info_creation_time / target: {v128}"
-        let v130 : System.DateTime = failwith&lt;System.DateTime&gt; v129
-        v130
+        let v96 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v96
         #endif
         #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-        let v131 : US0 = US0_1
-        let v132 : US1 = US1_1(v131)
-        let v133 : string = $"directory_info_creation_time / target: {v132}"
-        let v134 : System.DateTime = failwith&lt;System.DateTime&gt; v133
-        v134
+        let v97 : System.DateTime = null |&gt; unbox&lt;System.DateTime&gt;
+        v97
         #endif
-        |&gt; fun x -&gt; _v117 &lt;- Some x
-        let v135 : System.DateTime = _v117 |&gt; Option.get
-        let v136 : obj = {| Exists = v115; CreationTime = v135 |}
-        let v137 : string = $"%A{v136}"
-        let v138 : (unit -&gt; string) = closure2(v76, v137)
-        let v139 : string = $"create_temp_directory / {v138 ()}"
-        System.Console.WriteLine v139
+        |&gt; fun x -&gt; _v91 &lt;- Some x
+        let v98 : System.DateTime = _v91 |&gt; Option.get
+        let v99 : obj = {| Exists = v89; CreationTime = v98 |}
+        let v100 : string = $"%A{v99}"
+        let v101 : (unit -&gt; string) = closure2(v72, v100)
+        let v102 : string = $"create_temp_directory / {v101 ()}"
+        System.Console.WriteLine v102
         ()
-    v76
+    v72
     #endif
     #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v140 : US0 = US0_2
-    let v141 : US1 = US1_1(v140)
-    let v142 : string = $"create_temp_directory / target: {v141}"
-    let v143 : string = failwith&lt;string&gt; v142
-    v143
+    let v103 : string = null |&gt; unbox&lt;string&gt;
+    v103
     #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v144 : US0 = US0_1
-    let v145 : US1 = US1_1(v144)
-    let v146 : string = $"create_temp_directory / target: {v145}"
-    let v147 : string = failwith&lt;string&gt; v146
-    v147
+    let v104 : string = null |&gt; unbox&lt;string&gt;
+    v104
     #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v148 : string = _v0 |&gt; Option.get
-    v148
-and closure5 (v0 : string) (v1 : string) : string =
-    let v2 : string option = None
-    let mutable _v2 = v2
-    #if FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v3 : US0 = US0_0
-    let v4 : US1 = US1_0(v3)
-    let v5 : string = $"(&lt;/&gt;) / target: {v4}"
-    let v6 : string = failwith&lt;string&gt; v5
-    v6
+    let v105 : string = _v0 |&gt; Option.get
+    v105
+and closure4 () () : string =
+    let v0 : string = __SOURCE_DIRECTORY__
+    v0
+and closure8 () (v0 : string) : bool =
+    let v1 : bool option = None
+    let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : string = method0(v0)
+    let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v4 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v2 v3
+    let v5 : string = "String::from($0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v7 : string = "std::path::PathBuf::from($0)"
+    let v8 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "v8.exists()"
+    let v10 : bool = Fable.Core.RustInterop.emitRustExpr () v9
+    let v13 : bool =
+        if v10 then
+            let v11 : string = "v8.is_file()"
+            let v12 : bool = Fable.Core.RustInterop.emitRustExpr () v11
+            v12
+        else
+            false
+    v13
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v7 : US0 = US0_1
-    let v8 : US1 = US1_0(v7)
-    let v9 : string = $"(&lt;/&gt;) / target: {v8}"
-    let v10 : string = failwith&lt;string&gt; v9
-    v10
+    let v14 : bool = null |&gt; unbox&lt;bool&gt;
+    v14
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v11 : string = System.IO.Path.Combine (v0, v1)
-    v11
-    #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-    let v12 : US0 = US0_2
-    let v13 : US1 = US1_1(v12)
-    let v14 : string = $"(&lt;/&gt;) / target: {v13}"
-    let v15 : string = failwith&lt;string&gt; v14
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v15 : bool = null |&gt; unbox&lt;bool&gt;
     v15
     #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v16 : (string -&gt; bool) = System.IO.File.Exists
+    let v17 : bool = v16 v0
+    v17
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v18 : bool = null |&gt; unbox&lt;bool&gt;
+    v18
+    #endif
     #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v16 : US0 = US0_1
-    let v17 : US1 = US1_1(v16)
-    let v18 : string = $"(&lt;/&gt;) / target: {v17}"
-    let v19 : string = failwith&lt;string&gt; v18
+    let v19 : bool = null |&gt; unbox&lt;bool&gt;
     v19
     #endif
-    |&gt; fun x -&gt; _v2 &lt;- Some x
-    let v20 : string = _v2 |&gt; Option.get
+    |&gt; fun x -&gt; _v1 &lt;- Some x
+    let v20 : bool = _v1 |&gt; Option.get
     v20
-and closure4 () (v0 : string) : (string -&gt; string) =
-    closure5(v0)
+and closure9 () (v0 : string) : bool =
+    let v1 : bool option = None
+    let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : string = method0(v0)
+    let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v4 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v2 v3
+    let v5 : string = "String::from($0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v7 : string = "std::path::PathBuf::from($0)"
+    let v8 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "v8.exists()"
+    let v10 : bool = Fable.Core.RustInterop.emitRustExpr () v9
+    let v13 : bool =
+        if v10 then
+            let v11 : string = "v8.is_dir()"
+            let v12 : bool = Fable.Core.RustInterop.emitRustExpr () v11
+            v12
+        else
+            false
+    v13
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v14 : bool = null |&gt; unbox&lt;bool&gt;
+    v14
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v15 : bool = null |&gt; unbox&lt;bool&gt;
+    v15
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v16 : (string -&gt; bool) = System.IO.Directory.Exists
+    let v17 : bool = v16 v0
+    v17
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v18 : bool = null |&gt; unbox&lt;bool&gt;
+    v18
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v19 : bool = null |&gt; unbox&lt;bool&gt;
+    v19
+    #endif
+    |&gt; fun x -&gt; _v1 &lt;- Some x
+    let v20 : bool = _v1 |&gt; Option.get
+    v20
+and closure10 () (v0 : string) : string option =
+    let v1 : US0 option = None
+    let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v2 : string = method0(v0)
+    let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v4 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v2 v3
+    let v5 : string = "String::from($0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v7 : string = "std::path::PathBuf::from($0)"
+    let v8 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "$0.parent().map(std::path::PathBuf::from)"
+    let v10 : std_path_PathBuf option = Fable.Core.RustInterop.emitRustExpr v8 v9
+    let v11 : string = "v10?"
+    let v12 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr () v11
+    let v13 : string = "$0.display().to_string()"
+    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr v12 v13
+    let v15 : string = "fable_library_rust::String_::fromString($0)"
+    let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15
+    let v17 : US0 = US0_0(v16)
+    v17
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v18 : US0 = null |&gt; unbox&lt;US0&gt;
+    v18
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v19 : US0 = null |&gt; unbox&lt;US0&gt;
+    v19
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v20 : (string -&gt; System.IO.DirectoryInfo) = System.IO.Directory.GetParent
+    let v21 : System.IO.DirectoryInfo = v20 v0
+    let v22 : System.IO.DirectoryInfo = null |&gt; unbox&lt;System.IO.DirectoryInfo&gt;
+    let v23 : bool = v21 = v22
+    let v34 : US0 =
+        if v23 then
+            US0_1
+        else
+            let v25 : string option = None
+            let mutable _v25 = v25
+            #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            let v26 : string = null |&gt; unbox&lt;string&gt;
+            v26
+            #endif
+            #if FABLE_COMPILER_RUST &amp;&amp; WASM
+            let v27 : string = null |&gt; unbox&lt;string&gt;
+            v27
+            #endif
+            #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+            let v28 : string = null |&gt; unbox&lt;string&gt;
+            v28
+            #endif
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            let v29 : string = v21.FullName
+            v29
+            #endif
+            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            let v30 : string = null |&gt; unbox&lt;string&gt;
+            v30
+            #endif
+            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+            let v31 : string = null |&gt; unbox&lt;string&gt;
+            v31
+            #endif
+            |&gt; fun x -&gt; _v25 &lt;- Some x
+            let v32 : string = _v25 |&gt; Option.get
+            US0_0(v32)
+    v34
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v35 : US0 = null |&gt; unbox&lt;US0&gt;
+    v35
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v36 : US0 = null |&gt; unbox&lt;US0&gt;
+    v36
+    #endif
+    |&gt; fun x -&gt; _v1 &lt;- Some x
+    let v37 : US0 = _v1 |&gt; Option.get
+    match v37 with
+    | US0_1 -&gt; (* None *)
+        let v40 : string option = None
+        v40
+    | US0_0(v38) -&gt; (* Some *)
+        let v39 : string option = Some v38
+        v39
+and method2 () : (string -&gt; string option) =
+    closure10()
+and closure11 () (v0 : string) : US0 =
+    US0_0(v0)
+and method3 () : (string -&gt; US0) =
+    closure11()
+and method4 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
+    let v4 : string option = None
+    let mutable _v4 = v4
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v5 : string = method0(v3)
+    let v6 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v7 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v5 v6
+    let v8 : string = "String::from($0)"
+    let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v7 v8
+    let v10 : string = "std::path::PathBuf::from($0)"
+    let v11 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v12 : string = method0(v0)
+    let v13 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v14 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v12 v13
+    let v15 : string = "String::from($0)"
+    let v16 : std_string_String = Fable.Core.RustInterop.emitRustExpr v14 v15
+    let v17 : string = "$0.join($1)"
+    let v18 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v11, v16) v17
+    let v19 : string = "$0.display().to_string()"
+    let v20 : std_string_String = Fable.Core.RustInterop.emitRustExpr v18 v19
+    let v21 : string = "fable_library_rust::String_::fromString($0)"
+    let v22 : string = Fable.Core.RustInterop.emitRustExpr v20 v21
+    v22
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v23 : string = null |&gt; unbox&lt;string&gt;
+    v23
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v24 : string = null |&gt; unbox&lt;string&gt;
+    v24
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v25 : string = System.IO.Path.Combine (v3, v0)
+    v25
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v26 : string = null |&gt; unbox&lt;string&gt;
+    v26
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v27 : string = null |&gt; unbox&lt;string&gt;
+    v27
+    #endif
+    |&gt; fun x -&gt; _v4 &lt;- Some x
+    let v28 : string = _v4 |&gt; Option.get
+    let v31 : (string -&gt; bool) =
+        if v1 then
+            closure8()
+        else
+            closure9()
+    let v32 : bool = v31 v28
+    if v32 then
+        v3
+    else
+        let v33 : (string -&gt; string option) = method2()
+        let v34 : string option = v33 v3
+        let v35 : (string -&gt; US0) = method3()
+        let v36 : US0 = US0_1
+        let v37 : US0 = v34 |&gt; Option.map v35 |&gt; Option.defaultValue v36
+        match v37 with
+        | US0_1 -&gt; (* None *)
+            let v40 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}'"""
+            failwith&lt;string&gt; v40
+        | US0_0(v38) -&gt; (* Some *)
+            method4(v0, v1, v2, v38)
+and method1 (v0 : string, v1 : bool, v2 : string) : string =
+    let v3 : string option = None
+    let mutable _v3 = v3
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v4 : string = method0(v2)
+    let v5 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v6 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v7 : string = "String::from($0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "std::path::PathBuf::from($0)"
+    let v10 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v8 v9
+    let v11 : string = method0(v0)
+    let v12 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v13 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v11 v12
+    let v14 : string = "String::from($0)"
+    let v15 : std_string_String = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = "$0.join($1)"
+    let v17 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v10, v15) v16
+    let v18 : string = "$0.display().to_string()"
+    let v19 : std_string_String = Fable.Core.RustInterop.emitRustExpr v17 v18
+    let v20 : string = "fable_library_rust::String_::fromString($0)"
+    let v21 : string = Fable.Core.RustInterop.emitRustExpr v19 v20
+    v21
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v22 : string = null |&gt; unbox&lt;string&gt;
+    v22
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v23 : string = null |&gt; unbox&lt;string&gt;
+    v23
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v24 : string = System.IO.Path.Combine (v2, v0)
+    v24
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v25 : string = null |&gt; unbox&lt;string&gt;
+    v25
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v26 : string = null |&gt; unbox&lt;string&gt;
+    v26
+    #endif
+    |&gt; fun x -&gt; _v3 &lt;- Some x
+    let v27 : string = _v3 |&gt; Option.get
+    let v30 : (string -&gt; bool) =
+        if v1 then
+            closure8()
+        else
+            closure9()
+    let v31 : bool = v30 v27
+    if v31 then
+        v2
+    else
+        let v32 : (string -&gt; string option) = method2()
+        let v33 : string option = v32 v2
+        let v34 : (string -&gt; US0) = method3()
+        let v35 : US0 = US0_1
+        let v36 : US0 = v33 |&gt; Option.map v34 |&gt; Option.defaultValue v35
+        match v36 with
+        | US0_1 -&gt; (* None *)
+            let v39 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}'"""
+            failwith&lt;string&gt; v39
+        | US0_0(v37) -&gt; (* Some *)
+            method4(v0, v1, v2, v37)
+and closure7 (v0 : string, v1 : bool) (v2 : string) : string =
+    method1(v0, v1, v2)
+and closure6 (v0 : string) (v1 : bool) : (string -&gt; string) =
+    closure7(v0, v1)
+and closure5 () (v0 : string) : (bool -&gt; (string -&gt; string)) =
+    closure6(v0)
+and closure13 (v0 : string) (v1 : string) : string =
+    let v2 : string option = None
+    let mutable _v2 = v2
+    #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v3 : string = method0(v0)
+    let v4 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v5 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v3 v4
+    let v6 : string = "String::from($0)"
+    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr v5 v6
+    let v8 : string = "std::path::PathBuf::from($0)"
+    let v9 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v7 v8
+    let v10 : string = method0(v1)
+    let v11 : string = "fable_library_rust::String_::LrcStr::as_str(&amp;$0)"
+    let v12 : Ref&lt;Str&gt; = Fable.Core.RustInterop.emitRustExpr v10 v11
+    let v13 : string = "String::from($0)"
+    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr v12 v13
+    let v15 : string = "$0.join($1)"
+    let v16 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v9, v14) v15
+    let v17 : string = "$0.display().to_string()"
+    let v18 : std_string_String = Fable.Core.RustInterop.emitRustExpr v16 v17
+    let v19 : string = "fable_library_rust::String_::fromString($0)"
+    let v20 : string = Fable.Core.RustInterop.emitRustExpr v18 v19
+    v20
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v21 : string = null |&gt; unbox&lt;string&gt;
+    v21
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v22 : string = null |&gt; unbox&lt;string&gt;
+    v22
+    #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v23 : string = System.IO.Path.Combine (v0, v1)
+    v23
+    #endif
+    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    let v24 : string = null |&gt; unbox&lt;string&gt;
+    v24
+    #endif
+    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v25 : string = null |&gt; unbox&lt;string&gt;
+    v25
+    #endif
+    |&gt; fun x -&gt; _v2 &lt;- Some x
+    let v26 : string = _v2 |&gt; Option.get
+    v26
+and closure12 () (v0 : string) : (string -&gt; string) =
+    closure13(v0)
 let v0 : (unit -&gt; string) = closure0()
 let create_temp_directory_name () = v0 ()
 let v1 : (unit -&gt; string) = closure1()
 let create_temp_directory () = v1 ()
-let v2 : (string -&gt; (string -&gt; string)) = closure4()
-let (&lt;/&gt;) x = v2 x
+let v2 : (unit -&gt; string) = closure4()
+let get_source_directory () = v2 ()
+let v3 : (string -&gt; (bool -&gt; (string -&gt; string))) = closure5()
+let find_parent x = v3 x
+let v4 : (string -&gt; (string -&gt; string)) = closure12()
+let (&lt;/&gt;) x = v4 x
 ()
 
 </pre>

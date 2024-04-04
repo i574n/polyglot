@@ -1,14 +1,29 @@
-#if !WASM && !FABLE_COMPILER
-module Date_time =
+#if !WASM && !CONTRACT && !FABLE_COMPILER
+module SpiralDateTime =
+    let format x =
+#if !INTERACTIVE
+        Date_time.format x
+#else
+        format x
+#endif
+
+    let format_iso8601 x =
+#if !INTERACTIVE
+        Date_time.format_iso8601 x
+#else
+        format_iso8601 x
+#endif
+
     let new_guid_from_date_time x =
 #if !INTERACTIVE
         Date_time.new_guid_from_date_time x
 #else
         new_guid_from_date_time x
 #endif
+
 #endif
 
-module Sm =
+module SpiralSm =
     let concat x =
 #if !INTERACTIVE
         Sm.concat x
@@ -121,8 +136,21 @@ module Sm =
         trim_end x
 #endif
 
-#if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-module File_system =
+module SpiralFileSystem =
+    let get_source_directory () =
+#if !INTERACTIVE
+        File_system.get_source_directory ()
+#else
+        get_source_directory ()
+#endif
+
+    let find_parent x =
+#if !INTERACTIVE
+        File_system.find_parent x
+#else
+        find_parent x
+#endif
+
     let create_temp_directory () =
 #if !INTERACTIVE
         File_system.create_temp_directory ()
@@ -137,6 +165,7 @@ module File_system =
         create_temp_directory_name ()
 #endif
 
+#if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM && !CONTRACT
     module Operators =
         let (</>) x =
 #if !INTERACTIVE
@@ -144,4 +173,5 @@ module File_system =
 #else
             (</>) x
 #endif
+
 #endif

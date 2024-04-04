@@ -120,11 +120,10 @@ prototype signal_update signal t : (t -> t) -> signal t -> ()
 prototype signal_set signal t : t -> signal t -> ()
 
 inl log_string (text : string) =
-    !\\((), $'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
+    !\($'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
 
 inl log (text : string) =
-    inl text = join text
-    (!\($'@@$"leptos::logging::log\!(""{{}}"", !text)"') : ())
+    (!\\(text, $'@@$"leptos::logging::log\!(""{{}}"", $0)"') : ())
 
 inl log_debug (text : string) =
     !\\(text, $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"') : ()
@@ -142,21 +141,19 @@ inl mount_to_body (view_fn : () -> rust.impl into_view) =
     !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
 
 inl view_vec_to_fragment (view : am'.vec view) : fragment =
-    !\($'"leptos::Fragment::new(!view)"')
+    !\\(view, $'"leptos::Fragment::new($0)"')
 
 inl view_array_to_fragment (view : array_base view) : fragment =
     view |> am'.to_vec |> view_vec_to_fragment
 
 inl element_to_view (view : html_element _) : view =
-    inl view = join view
-    !\($'"leptos::IntoView::into_view(!view)"')
+    !\\(view, $'"leptos::IntoView::into_view($0)"')
 
 inl view_to_fragment (view : view) : fragment =
     ;[view] |> view_array_to_fragment
 
 inl fragment_to_view (fragment : fragment) : view =
-    inl fragment = join fragment
-    !\($'"leptos::IntoView::into_view(!fragment)"')
+    !\\(fragment, $'"leptos::IntoView::into_view($0)"')
 
 inl element_to_fragment (view : html_element _) : fragment =
     view
@@ -209,30 +206,26 @@ inl macro_to_fragment (macro : string) : fragment =
     !\($'"leptos::view\! { " + !macro + " }"')
 
 inl new_transparent x : transparent =
-    !\($'"leptos::leptos_dom::Transparent::new(!x)"')
+    !\\(x, $'"leptos::leptos_dom::Transparent::new($0)"')
 
 inl closure_to_view (closure : rust.func0 view) : view =
-    inl closure = join closure
-    !\($'"leptos::IntoView::into_view(move || !closure())"')
+    !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
 
-inl batch (fn : rust.func0 ()) : () =
-    inl fn = join fn
-    !\($'"leptos::batch(move || !fn())"')
+inl batch (fn : () -> ()) : () =
+    !\\(fn, $'"leptos::batch(move || $0())"')
 
 inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
-    inl closure = join closure
-    !\($'"leptos::IntoView::into_view(move || !closure())"')
+    !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
     |> view_to_fragment
 
 inl array_to_view (view : a _ view) : view =
-    inl view = join view
-    !\($'"leptos::CollectView::collect_view(!view.to_vec())"')
+    !\\(view, $'"leptos::CollectView::collect_view($0.to_vec())"')
 
 inl to_fragment x : fragment =
     $"!x |> unbox"
 
 inl text_to_view (text : text) : view =
-    !\($'"leptos::IntoView::into_view(!text)"')
+    !\\(text, $'"leptos::IntoView::into_view($0)"')
 
 inl text_to_fragment (text : text) : fragment =
     text
@@ -243,7 +236,7 @@ inl macro_to_view (macro : string) : view =
     !\($'"leptos::IntoView::into_view(leptos::view\! { " + !macro + " })"')
 
 inl transparent_to_view (transparent : transparent) : view =
-    !\($'"leptos::IntoView::into_view(!transparent)"')
+    !\\(transparent, $'"leptos::IntoView::into_view($0)"')
 
 inl transparent_to_fragment (transparent : transparent) : fragment =
     transparent
@@ -254,12 +247,8 @@ inl macro_to_element (view : string) : html_element _ =
     view |> macro_to_view_trait |> view_trait_to_element
 
 inl transparents_fragment (items : array_base transparent) : fragment =
-    inl transparent_to_view x =
-        inl x = join x
-        x |> transparent_to_view
-    inl transparent_to_view = join transparent_to_view
     inl items = items |> am'.to_vec
-    !\($'"!items.iter().map(|x| !transparent_to_view(x.clone())).collect::<leptos::Fragment>()"')
+    !\\((items, transparent_to_view), $'"$0.iter().map(|x| $1(x.clone())).collect::<leptos::Fragment>()"')
 
 inl views_to_view (items : array_base view) : view =
     inl items = join items
@@ -269,9 +258,8 @@ inl views_to_view (items : array_base view) : view =
     |> array_to_view
 
 inl new_text (text : string) : text =
-    inl text = join text
     inl text = text |> sm'.to_std_string
-    !\($'"leptos::html::text(!text)"')
+    !\\(text, $'"leptos::html::text($0)"')
 
 inl text_view (text : string) : view =
     text
@@ -287,23 +275,19 @@ inl provide_meta_context () =
     !\($'"leptos_meta::provide_meta_context()"') : ()
 
 inl provide_context forall t. (x : t) =
-    !\($'$"leptos::provide_context::<std::rc::Rc<`t>>(!x)"') : ()
+    !\\(x, $'$"leptos::provide_context::<std::rc::Rc<`t>>($0)"') : ()
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
-    inl value = join value
-    !\($'$"leptos::create_signal(!value)"')
+    !\\(value, $'$"leptos::create_signal($0)"')
 
 inl create_rw_signal forall t. (value : t) : rw_signal t =
-    inl value = join value
-    !\($'$"leptos::create_rw_signal(!value)"')
+    !\\(value, $'$"leptos::create_rw_signal($0)"')
 
 inl read_only forall t. (value : rw_signal t) : read_signal t =
-    inl value = join value
-    !\($'$"leptos::RwSignal::read_only(&!value)"')
+    !\\(value, $'$"leptos::RwSignal::read_only(&$0)"')
 
 inl write_only forall t. (value : rw_signal t) : write_signal t =
-    inl value = join value
-    !\($'$"leptos::RwSignal::write_only(&!value)"')
+    !\\(value, $'$"leptos::RwSignal::write_only(&$0)"')
 
 inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
     real
@@ -316,13 +300,11 @@ inl typecheck_signal forall (t : * -> *) u. (signal : t u) : () =
         | _ => error_type `(()) ("invalid signal", ``(t u))
 
 inl memo_get' forall t. (memo : memo t) : t =
-    inl memo = join memo
-    !\($'$"!memo()"')
+    !\\(memo, $'$"$0()"')
 
 inl signal_get' forall (t : * -> *) u. (signal : t u) : u =
-    inl signal = join signal
     signal |> typecheck_signal
-    !\($'$"leptos::SignalGet::get(&!signal)"')
+    !\\(signal, $'$"leptos::SignalGet::get(&$0)"')
 
 instance signal_get signal = signal_get'
 instance signal_get rw_signal = signal_get'
@@ -330,28 +312,23 @@ instance signal_get read_signal = signal_get'
 instance signal_get memo = memo_get'
 
 inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
-    inl fn = join fn
-    inl signal = join signal
     signal |> typecheck_signal
-    !\($'"leptos::SignalUpdate::update(&!signal, |x| { *x = !fn(x.clone()) })"') : ()
+    !\\((signal, fn), $'"leptos::SignalUpdate::update(&$0, |x| { *x = $1(x.clone()) })"') : ()
 
 instance signal_update rw_signal = signal_update'
 instance signal_update write_signal = signal_update'
 
 inl signal_get_untracked' forall (t : * -> *) u. (signal : t u) : u =
-    inl signal = join signal
     signal |> typecheck_signal
-    !\($'$"leptos::SignalGetUntracked::get_untracked(&!signal)"')
+    !\\(signal, $'$"leptos::SignalGetUntracked::get_untracked(&$0)"')
 
 instance signal_get_untracked rw_signal = signal_get_untracked'
 instance signal_get_untracked read_signal = signal_get_untracked'
 instance signal_get_untracked memo = signal_get_untracked'
 
 inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
-    inl value = join value
-    inl signal = join signal
     signal |> typecheck_signal
-    !\($'$"leptos::SignalSet::set(&!signal, !value)"') : ()
+    !\\((signal, value), $'$"leptos::SignalSet::set(&$0, $1)"') : ()
 
 instance signal_set rw_signal = signal_set'
 instance signal_set write_signal = signal_set'
@@ -367,10 +344,8 @@ inl create_local_resource forall t u.
     // inl fetcher = join fetcher
     // !\($'"leptos::create_local_resource(move || !source(), move |x| async move { !fetcher(x)().await })"')
 
-    inl source = join source
     join
-        inl source = join source
-        !\($'"let __result = leptos::create_local_resource(move || !source(), |x| async move { //"')
+        !\\(source, $'"let __result = leptos::create_local_resource(move || $0(), |x| async move { //"')
 
         inl x = !\($'"x"')
         inl x' = fetcher x
@@ -386,65 +361,52 @@ inl create_local_resource forall t u.
 //     !\\(fetcher, $'"leptos::create_resource(move || !source(), |x| async move { $0(x).await })"')
 
 inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u =
-    inl action_fn = join action_fn
-    !\($'"leptos::create_action(move |value: &std::rc::Rc<`t>| !action_fn(value.clone()))"')
+    !\\(action_fn, $'"leptos::create_action(move |value: &std::rc::Rc<`t>| $0(value.clone()))"')
 
 inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
-    inl value = join value
-    inl action = join action
-    !\($'"leptos::Action::dispatch(&!action, !value.clone())"')
+    !\\((action, value), $'"leptos::Action::dispatch(&$0, $1.clone())"')
 
 inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
-    inl action = join action
-    !\($'"leptos::Action::input(&!action)"')
+    !\\(action, $'"leptos::Action::input(&$0)"')
 
 inl action_pending forall t u. (action : action (heap t) u) : read_signal bool =
-    inl action = join action
-    !\($'"leptos::Action::pending(&!action)"')
+    !\\(action, $'"leptos::Action::pending(&$0)"')
 
 inl action_value forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' u) =
-    inl action = join action
-    !\($'"leptos::Action::value(&!action)"')
+    !\\(action, $'"leptos::Action::value(&$0)"')
 
 inl use_context forall t. () : optionm'.option' t =
     !\($'"leptos::use_context::<std::rc::Rc<`t>>()"')
 
 inl resource_loading forall t u. (resource : resource t u) : signal bool =
-    inl resource = join resource
-    !\($'$"leptos::Resource::loading(&!resource)"')
+    !\\(resource, $'$"leptos::Resource::loading(&$0)"')
 
 inl resource_get forall t u. (resource : resource t u) : optionm'.option' u =
-    inl resource = join resource
-    !\($'$"leptos::SignalGet::get(&!resource)"')
+    !\\(resource, $'$"leptos::SignalGet::get(&$0)"')
 
 inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option' u -> v) : v =
-    inl resource = join resource
-    inl fn = join fn
-    !\($'$"leptos::SignalWith::with(&!resource, |x| !fn(x.clone()))"')
+    !\\((resource, fn), $'$"leptos::SignalWith::with(&$0, |x| $1(x.clone()))"')
 
 inl create_effect (fn : () -> ()) : () =
-    inl fn = join fn
-    !\($'"leptos::create_effect(move |_| { !fn() })"')
+    inl fn = fn |> rust.emit
+    !\($'"leptos::create_effect(move |_| { !fn(()) })"')
 
 inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
-    inl fn = join fn
-    !\($'"leptos::create_effect(move |x| { !fn(x) })"')
+    !\\(fn, $'"leptos::create_effect(move |x| { $0(x) })"')
 
 inl interval_handle_clear (interval_handle : interval_handle) =
-    inl interval_handle = join interval_handle
-    !\($'$"leptos::leptos_dom::helpers::IntervalHandle::clear(&!interval_handle)"') : ()
+    !\\(interval_handle, $'$"leptos::leptos_dom::helpers::IntervalHandle::clear(&$0)"') : ()
 
 inl set_interval_with_handle
     (fn : () -> ())
     (interval_millis : date_time.duration)
     : resultm.result' interval_handle wasm.js_value
     =
-    inl fn = join fn
-    !\($'$"leptos::set_interval_with_handle(move || !fn(), !interval_millis)"')
+    !\\((fn, interval_millis), $'$"leptos::set_interval_with_handle(move || $0(), $1)"')
 
 inl create_memo forall t. (fn : () -> t) : memo t =
-    inl fn = join fn
-    !\($'"leptos::create_memo(move |_| { !fn() })"')
+    inl fn = fn |> rust.emit
+    !\($'"leptos::create_memo(move |_| { !fn(()) })"')
 
 let window () : wasm.window =
     !\($'"leptos::leptos_dom::window()"')
@@ -528,27 +490,22 @@ inl use_navigate () : string -> () =
         !\($'"std::sync::Arc::new(leptos_router::use_navigate())"')
     fun url =>
         inl url = url |> sm'.as_str
-        !\($'"!navigate(!url, Default::default())"')
+        !\\(navigate, $'"$0(!url, Default::default())"')
 
 inl location_hash (location : location) : memo sm'.std_string =
-    inl location = join location
-    !\($'"!location.hash"')
+    !\\(location, $'"$0.hash"')
 
 inl location_pathname (location : location) : memo sm'.std_string =
-    inl location = join location
-    !\($'"!location.pathname"')
+    !\\(location, $'"$0.pathname"')
 
 inl location_search (location : location) : memo sm'.std_string =
-    inl location = join location
-    !\($'"!location.search"')
+    !\\(location, $'"$0.search"')
 
 inl url_try_from (s : rust.ref' sm'.str) : resultm.result' url sm'.std_string =
-    inl s = join s
-    !\($'"leptos_router::Url::try_from(!s)"')
+    !\\(s, $'"leptos_router::Url::try_from($0)"')
 
 inl url_pathname (url : url) : sm'.std_string =
-    inl url = join url
-    !\($'"!url.pathname"')
+    !\\(url, $'"$0.pathname"')
 
 inl use_url () =
     inl location = use_location ()
@@ -575,7 +532,8 @@ inl route path view children : view =
     |> macro_to_view
 
 inl router children : view =
-    inl children = join children
+    inl children () =
+        children ()
     inl children : () -> fragment = join children
     tag_closed_raw "leptos_router::Router" [
         $'"children=Box::new(move || !children())"'
@@ -583,10 +541,9 @@ inl router children : view =
     |> macro_to_view
 
 inl routes children : view =
-    inl children = join children
-    inl children : () -> fragment = join children
+    inl children : () -> fragment = children |> rust.emit
     tag_closed_raw "leptos_router::Routes" [
-        $'"children=Box::new(move || !children())"'
+        $'"children=Box::new(move || !children(()))"'
     ]
     |> macro_to_view
 

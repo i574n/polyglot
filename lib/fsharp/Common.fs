@@ -51,16 +51,16 @@ module Common =
             System.Console.WriteLine text
 #endif
 
-#if !WASM && !FABLE_COMPILER
+#if !WASM && !CONTRACT && !FABLE_COMPILER
             if traceDump then
                 try
                     let tmpPath = System.IO.Path.GetTempPath ()
                     let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
                     System.IO.Directory.CreateDirectory logDir |> ignore
-                    let logFile = System.IO.Path.Combine (logDir, $"{Date_time.new_guid_from_date_time System.DateTime.Now}.txt")
+                    let logFile = System.IO.Path.Combine (logDir, $"{SpiralDateTime.new_guid_from_date_time System.DateTime.Now}.txt")
                     System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
                 with ex ->
-                    traceRaw Critical (fun () -> $"trace / ex: {ex |> Sm.format_exception}")
+                    traceRaw Critical (fun () -> $"trace / ex: {ex |> SpiralSm.format_exception}")
 #endif
 
     /// ## trace
@@ -79,7 +79,7 @@ module Common =
     let trace level fn getLocals =
         fun () ->
             let time =
-#if WASM
+#if WASM || CONTRACT
                 ""
 #else
                 match replStart () with
@@ -96,8 +96,8 @@ module Common =
                     |> dateTime.ToString
 #endif
             $"{time} #{traceCount} [%A{level}] %s{fn ()} / %s{getLocals ()}"
-            |> Sm.trim_start [||]
-            |> Sm.trim_end [| ' '; '/' |]
+            |> SpiralSm.trim_start [||]
+            |> SpiralSm.trim_end [| ' '; '/' |]
         |> traceRaw level
 
     let inline withTrace enabled fn =

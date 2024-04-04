@@ -36,6 +36,7 @@ nominal option' t = $"`t option"
 
 inl unbox forall t. (x : option' t) : option t =
     inl some x : option t = Some x
+    inl some = join some
     inl none : option t = None
     $"!x |> Option.map !some |> Option.defaultValue !none"
 
@@ -47,9 +48,12 @@ inl box forall t. (x : option t) : option' t =
 // // ## map
 
 inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    inl x = join x
-    inl fn = join fn
-    !\($'"!x.map(|x| !fn(x))"')
+    !\\((x, fn), $'"$0.map(|x| $1(x))"')
+
+// // ## try'
+
+inl try' forall t. (x : option' t) : t =
+    !\($'"!x?"')
 
 // // ## flatten
 

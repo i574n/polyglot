@@ -2,7 +2,7 @@ pub mod Polyglot {
     use super::*;
     pub mod Common {
         use super::*;
-        use crate::Lib::Sm;
+        use crate::Lib::SpiralSm;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
         use fable_library_rust::Native_::compare;
@@ -132,16 +132,16 @@ pub mod Polyglot {
                 let getLocals = getLocals.clone();
                 let level = level.clone();
                 move || {
-                    (Sm::trim_end(new_array(&[' ', '/'])))((Sm::trim_start(new_empty::<char>()))(
-                        sprintf!(
-                            "{} #{} [{:?}] {} / {}",
-                            string(""),
-                            Polyglot::Common::traceCount().get().clone(),
-                            level.clone(),
-                            r#fn(),
-                            getLocals()
-                        ),
-                    ))
+                    (SpiralSm::trim_end(new_array(&[' ', '/'])))((SpiralSm::trim_start(
+                        new_empty::<char>(),
+                    ))(sprintf!(
+                        "{} #{} [{:?}] {} / {}",
+                        string(""),
+                        Polyglot::Common::traceCount().get().clone(),
+                        level.clone(),
+                        r#fn(),
+                        getLocals()
+                    )))
                 }
             });
             Polyglot::Common::traceRaw(level.clone(), fn_1)

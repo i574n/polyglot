@@ -25,7 +25,7 @@ function CheckJson {
     )
     $json = [IO.Path]::GetFullPath("$ScriptDir/$json").Replace("\", "/")
     Write-Output "`nCheckJson / json: $json"
-    { bun --cwd $json outdated-pre } | Invoke-Block
+    { ~/.bun/bin/bun --cwd $json outdated-pre } | Invoke-Block
 }
 
 

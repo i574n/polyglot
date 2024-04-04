@@ -19,19 +19,26 @@ if (!$fast) {
 
 $targetDir = "../../target/polyglot/builder/math"
 
-{ dotnet fable $targetDir/math.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/rs } | Invoke-Block
+{ dotnet fable $targetDir/math.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/target/rs } | Invoke-Block
 
+function CopyTarget {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Language
+    )
 
-Copy-Item $targetDir/rs/lib/fsharp/Common.rs ../../lib/fsharp/Common.rs -Force
-Copy-Item $targetDir/rs/lib/spiral/common.rs ../../lib/spiral/common.rs -Force
-Copy-Item $targetDir/rs/lib/spiral/sm.rs ../../lib/spiral/sm.rs -Force
-Copy-Item $targetDir/rs/lib/spiral/date_time.rs ../../lib/spiral/date_time.rs -Force
-Copy-Item $targetDir/rs/lib/spiral/file_system.rs ../../lib/spiral/file_system.rs -Force
-Copy-Item $targetDir/rs/lib/spiral/lib.rs ../../lib/spiral/lib.rs -Force
+    Copy-Item $targetDir/target/$Language/lib/fsharp/Common.$Language ../../lib/fsharp/Common.$Language -Force
+    Copy-Item $targetDir/target/$Language/lib/spiral/common.$Language ../../lib/spiral/common.$Language -Force
+    Copy-Item $targetDir/target/$Language/lib/spiral/date_time.$Language ../../lib/spiral/date_time.$Language -Force
+    Copy-Item $targetDir/target/$Language/lib/spiral/file_system.$Language ../../lib/spiral/file_system.$Language -Force
+    Copy-Item $targetDir/target/$Language/lib/spiral/sm.$Language ../../lib/spiral/sm.$Language -Force
+    Copy-Item $targetDir/target/$Language/lib/spiral/lib.$Language ../../lib/spiral/lib.$Language -Force
+}
 
-(Get-Content $targetDir/rs/math.rs) `
-    -replace "../../../lib/fsharp", "../lib/fsharp" `
-    -replace "../../../lib/spiral", "../lib/spiral" `
+CopyTarget "rs"
+
+(Get-Content $targetDir/target/rs/math.rs) `
+    -replace "../../../lib", "../lib" `
     -replace ".fsx`"]", ".rs`"]" `
     | Set-Content math.rs
 

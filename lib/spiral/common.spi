@@ -1,16 +1,6 @@
 // // # common
 
-// // ## types
-
-nominal any = $"obj"
-nominal disposable = $"System.IDisposable"
-nominal exn = $"exn"
-nominal unativeint = $"unativeint"
-
-let array x = x
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
+inl array x = x
 
 // // ## prototype
 
@@ -24,14 +14,29 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+// // ## unativeint
+
+nominal unativeint = $"unativeint"
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
+
+// // ## i32
+
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
+
+// // ## i64
 
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
+// // ## f32
+
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
+
+// // ## f64
 
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
@@ -110,6 +115,10 @@ inl test_trace_level level =
     inl level' = *state.level
     *state.enabled && $'!level >= !level' '
 
+// // ## any
+
+nominal any = $"obj"
+
 // // ## to_any
 
 inl to_any forall t. (obj : t) : any =
@@ -127,14 +136,29 @@ inl (/@) a b =
 inl unbox forall t u. (x : t) : u =
     $"!x |> unbox<`u>"
 
-// // ## (/+)
+// // ## (+.)
 
-inl (/+) forall t. (a : t) (b : t) : t =
+inl (+.) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
-// // ## (/=)
+// // ## (-.)
 
-inl (/=) forall t. (a : t) (b : t) : bool =
+inl (-.) forall t. (a : t) (b : t) : t =
+    $"!a - !b"
+
+// // ## (*.)
+
+inl (*.) forall t. (a : t) (b : t) : t =
+    $"!a * !b"
+
+// // ## (/.)
+
+inl (/.) forall t. (a : t) (b : t) : t =
+    $"!a / !b"
+
+// // ## (=.)
+
+inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
 
 // // ## (||>)
@@ -169,8 +193,9 @@ inl join_body_unit body d x =
 
 union target_runtime =
     | Native
-    | Wasm
     | Fable
+    | Wasm
+    | Contract
 
 union target =
     | Rust : target_runtime
@@ -179,11 +204,14 @@ union target =
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     inl result : optionm'.option' t = $'None'
     $"let mutable _!result = !result"
-    $"#if FABLE_COMPILER_RUST && \!WASM"
+    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
     fn (Rust Native) () |> fun x => $"!x"
     $"#endif"
     $"#if FABLE_COMPILER_RUST && WASM"
     fn (Rust Wasm) () |> fun x => $"!x"
+    $"#endif"
+    $"#if FABLE_COMPILER_RUST && CONTRACT"
+    fn (Rust Contract) () |> fun x => $"!x"
     $"#endif"
     $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM"
     fn (Fsharp Native) () |> fun x => $"!x"
@@ -207,6 +235,10 @@ inl nameof x : string =
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
 
+// // ## disposable
+
+nominal disposable = $"System.IDisposable"
+
 // // ## use_disposable
 
 inl use_disposable (disposable : disposable) : disposable =
@@ -222,6 +254,10 @@ inl new_disposable (fn : () -> ()) : disposable =
         //     fun () =>
                 // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
         | target => fun () => failwith $'$"new_disposable / target: {!target}"'
+
+// // ## exn
+
+nominal exn = $"exn"
 
 // // ## try
 
@@ -247,7 +283,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 // trace Warning (fun () => "retry_fn") getLocals
                 sleep 1
         |> function

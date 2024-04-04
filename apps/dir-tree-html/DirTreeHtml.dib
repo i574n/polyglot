@@ -43,7 +43,7 @@ open Lib
 
 #!fsharp
 
-open File_system.Operators
+open SpiralFileSystem.Operators
 open Falco.Markup
 
 #!fsharp
@@ -56,10 +56,10 @@ type FileSystemNode =
 let rec scanDirectory isRoot (basePath : string) (path : string) =
     let relativePath =
         path
-        |> Sm.replace basePath ""
-        |> Sm.replace "\\" "/"
-        |> Sm.replace "//" "/"
-        |> Sm.trim_start [| '/' |]
+        |> SpiralSm.replace basePath ""
+        |> SpiralSm.replace "\\" "/"
+        |> SpiralSm.replace "//" "/"
+        |> SpiralSm.trim_start [| '/' |]
 
     let directories =
         path
@@ -166,7 +166,7 @@ details > div {{
 
 //// test
 
-let tempFolder = File_system.create_temp_directory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let rec loop d n = async {
     if n >= 0 then
         tempFolder </> d |> System.IO.Directory.CreateDirectory |> ignore

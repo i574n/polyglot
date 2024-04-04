@@ -21,7 +21,7 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let v3 : (string -> (string -> (string -> string))) = method0()
     let v4 : System.DateTime option = None
     let mutable _v4 = v4
-    #if FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
     v5
     #endif
@@ -29,21 +29,25 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
     v6
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-    let v7 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v7 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
     v7
     #endif
-    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
     let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8
     #endif
-    #if !FABLE_COMPILER_RUST && WASM
+    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9
     #endif
-    |> fun x -> _v4 <- Some x
-    let v10 : System.DateTime = _v4 |> Option.get
+    #if !FABLE_COMPILER_RUST && WASM
+    let v10 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10
+    #endif
+    |> fun x -> _v4 <- Some x
+    let v11 : System.DateTime = _v4 |> Option.get
+    v11
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -> string) = _.ToString()
     let v3 : string = v2 v0
@@ -75,16 +79,29 @@ and closure10 () (v0 : int64) : System.Guid =
     let v6 : string = v5.PadLeft (18, '0')
     let v7 : System.Guid = System.Guid $"{v6.[0..7]}-{v6.[8..11]}-{v6.[12..15]}-{v6.[16..17]}{v3.[21..]}"
     v7
+and closure12 (v0 : string) (v1 : System.DateTime) : string =
+    let v2 : (string -> string) = v1.ToString
+    v2 v0
+and closure11 () (v0 : string) : (System.DateTime -> string) =
+    closure12(v0)
+and closure13 () (v0 : System.DateTime) : string =
+    let v1 : (string -> string) = v0.ToString
+    let v2 : string = "yyyy-MM-ddTHH-mm-ss.fff"
+    v1 v2
 let v0 : (System.Guid -> (System.DateTime -> System.Guid)) = closure0()
 let date_time_guid_from_date_time x = v0 x
 let v1 : (System.Guid -> System.DateTime) = closure2()
 let date_time_from_guid x = v1 x
 let v2 : (System.Guid -> (int64 -> System.Guid)) = closure6()
-let ticks_guid_from_ticks x = v2 x
+let timestamp_guid_from_timestamp x = v2 x
 let v3 : (System.Guid -> int64) = closure8()
-let ticks_from_guid x = v3 x
+let timestamp_from_guid x = v3 x
 let v4 : (System.DateTime -> System.Guid) = closure9()
 let new_guid_from_date_time x = v4 x
 let v5 : (int64 -> System.Guid) = closure10()
-let new_guid_from_ticks x = v5 x
+let new_guid_from_timestamp x = v5 x
+let v6 : (string -> (System.DateTime -> string)) = closure11()
+let format x = v6 x
+let v7 : (System.DateTime -> string) = closure13()
+let format_iso8601 x = v7 x
 ()

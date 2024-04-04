@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
 
 #!markdown
 
@@ -24,11 +24,121 @@ open testing
 #!spiral
 
 inl types () =
-    ()
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>] type std_path_Path = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>] type std_path_PathBuf = class end"
+
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER // file_system.types"
+    sm'.types ()
+    rust.types ()
+    types ()
+    global "#endif // file_system.types"
 
 #!markdown
 
-## (</>)
+## path
+
+#!spiral
+
+nominal path = $'std_path_Path'
+nominal path_buf = $'std_path_PathBuf'
+
+#!markdown
+
+## new_path_buf
+
+#!spiral
+
+inl new_path_buf (path : string) : path_buf =
+    inl path = path |> sm'.to_std_string
+    !\\(path, $'"std::path::PathBuf::from($0)"')
+
+#!markdown
+
+## path_buf_from
+
+#!spiral
+
+inl path_buf_from (path : rust.box path) : path_buf =
+    !\\(path, $'"std::path::PathBuf::from($0)"')
+
+#!markdown
+
+## path_join
+
+#!spiral
+
+inl path_join (s : string) (path_buf : path_buf) : path_buf =
+    !\\((path_buf, s |> sm'.to_std_string), $'"$0.join($1)"')
+
+#!markdown
+
+## path_display
+
+#!spiral
+
+inl path_display (path : rust.ref' path) : sm'.std_string =
+    !\\(path, $'"$0.display().to_string()"')
+
+#!markdown
+
+## path_buf_file_name
+
+#!spiral
+
+inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
+    !\($'"!path.file_name()"')
+
+#!markdown
+
+## path_buf_display
+
+#!spiral
+
+inl path_buf_display (path : path_buf) : sm'.std_string =
+    !\\(path, $'"$0.display().to_string()"')
+
+#!markdown
+
+## path_exists
+
+#!spiral
+
+inl path_buf_exists (path_buf : path_buf) : bool =
+    !\($'"!path_buf.exists()"')
+
+#!markdown
+
+## path_is_dir
+
+#!spiral
+
+inl path_buf_is_dir (path_buf : path_buf) : bool =
+    !\($'"!path_buf.is_dir()"')
+
+#!markdown
+
+## path_is_file
+
+#!spiral
+
+inl path_buf_is_file (path_buf : path_buf) : bool =
+    !\($'"!path_buf.is_file()"')
+
+#!markdown
+
+## path_parent
+
+#!spiral
+
+inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
+    !\\(path_buf, $'"$0.parent().map(std::path::PathBuf::from)"')
+
+#!markdown
+
+## (< />)
 
 #!spiral
 
@@ -36,7 +146,18 @@ inl (</>) (a : string) (b : string) : string =
     run_target function
         | Fsharp (Native) => fun () =>
             $'System.IO.Path.Combine (!a, !b)'
-        | target => fun () => failwith $'$"(</>) / target: {!target}"'
+        | Rust (Native) => fun () =>
+            a |> new_path_buf |> path_join b |> path_buf_display |> sm'.from_std_string
+        | target => fun () => null ()
+
+#!markdown
+
+## get_temp_path
+
+#!spiral
+
+inl get_temp_path () : string =
+    $'System.IO.Path.GetTempPath' ()
 
 #!markdown
 
@@ -49,10 +170,10 @@ inl create_temp_directory_name () =
         | Fsharp (Native) => fun () =>
             inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
 
-            ($'System.IO.Path.GetTempPath' () : string)
+            get_temp_path ()
             </> ($'$"\!{!root}"' : string)
             </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
-        | target => fun () => failwith $'$"create_temp_directory_name / target: {!target}"'
+        | target => fun () => null ()
 
 #!spiral
 
@@ -67,9 +188,10 @@ create_temp_directory_name ()
 
 #!spiral
 
-nominal directory_info =
-    // $'\n#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM\n                                                                                                                   System.IO.DirectoryInfo\n#else\n                                                                                                                   _\n#endif\n                                                                                                                  '
-    $'System.IO.DirectoryInfo'
+nominal directory_info = $'System.IO.DirectoryInfo'
+
+inl directory_info (path : string) : directory_info =
+    path |> $'`directory_info '
 
 #!markdown
 
@@ -81,7 +203,7 @@ inl directory_info_exists (info : directory_info) : bool =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!info.Exists'
-        | target => fun () => failwith $'$"directory_info_exists / target: {!target}"'
+        | target => fun () => null ()
 
 #!markdown
 
@@ -93,7 +215,31 @@ inl directory_info_creation_time (info : directory_info) : date_time.date_time =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!info.CreationTime'
-        | target => fun () => failwith $'$"directory_info_creation_time / target: {!target}"'
+        | target => fun () => null ()
+
+#!markdown
+
+## directory_info_name
+
+#!spiral
+
+inl directory_info_name (info : directory_info) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.Name'
+        | target => fun () => null ()
+
+#!markdown
+
+## directory_info_full_name
+
+#!spiral
+
+inl directory_info_full_name (info : directory_info) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.FullName'
+        | target => fun () => null ()
 
 #!markdown
 
@@ -105,7 +251,7 @@ inl create_directory (path : string) : directory_info =
     run_target function
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.Directory.CreateDirectory'
-        | target => fun () => failwith $'$"create_directory / target: {!target}"'
+        | target => fun () => null ()
 
 #!markdown
 
@@ -114,7 +260,52 @@ inl create_directory (path : string) : directory_info =
 #!spiral
 
 inl directory_exists (path : string) : bool =
-    path |> $'System.IO.Directory.Exists'
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Directory.Exists'
+        | Rust (Native) => fun () =>
+            inl path = path |> new_path_buf
+            (path |> path_buf_exists) && (path |> path_buf_is_dir)
+        | target => fun () => null ()
+
+#!markdown
+
+## directory_get_parent
+
+#!spiral
+
+inl directory_get_parent (path : string) : optionm'.option' string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
+            if parent =. null ()
+            then None
+            else parent |> directory_info_full_name |> Some
+        | Rust (Native) => fun () =>
+            path
+            |> new_path_buf
+            |> path_buf_parent
+            |> optionm'.try'
+            |> path_buf_display
+            |> sm'.from_std_string
+            |> Some
+        | target => fun () => null ()
+    |> optionm'.box
+
+#!markdown
+
+## file_exists
+
+#!spiral
+
+inl file_exists (path : string) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.File.Exists'
+        | Rust (Native) => fun () =>
+            inl path_buf = path |> new_path_buf
+            (path_buf |> path_buf_exists) && (path_buf |> path_buf_is_file)
+        | target => fun () => null ()
 
 #!markdown
 
@@ -138,7 +329,7 @@ inl create_temp_directory () =
                 console.write_line ($'$"create_temp_directory / {!get_locals ()}"' : string)
 
             temp_folder
-        | target => fun () => failwith $'$"create_temp_directory / target: {!target}"'
+        | target => fun () => null ()
 
 #!spiral
 
@@ -150,12 +341,92 @@ create_temp_directory ()
 
 #!markdown
 
+## get_source_directory
+
+#!spiral
+
+inl get_source_directory () =
+    $'__SOURCE_DIRECTORY__' : string
+
+#!spiral
+
+// // test
+
+get_source_directory ()
+|> directory_info
+|> directory_info_name
+|> _assert_eq "spiral"
+
+#!markdown
+
+## find_parent
+
+#!spiral
+
+inl find_parent name is_file root_dir =
+    let rec loop dir =
+        if dir </> name |> (if is_file then file_exists else directory_exists)
+        then dir
+        else
+            match dir |> (join directory_get_parent) |> optionm'.unbox with
+            | Some parent => parent |> loop
+            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\'"""'
+    loop root_dir
+
+#!spiral
+
+// // test
+// // print_code=false
+
+a ;[ ".paket", false; "paket.dependencies", true ]
+|> am.map fun (file, is_file) =>
+    get_source_directory ()
+    |> find_parent file is_file
+    |> directory_info
+    |> directory_info_name
+|> am'.distinct
+|> _assert_eq (a ;[ "polyglot" ] : _ i32 _)
+
+#!spiral
+
+// // test
+// // rust=
+// // print_code=false
+
+types ()
+a ;[ ".paket", false; "paket.dependencies", true ]
+|> am.map fun (file, is_file) =>
+    fun () => join
+        get_source_directory ()
+        |> find_parent file is_file
+        |> new_path_buf
+        |> path_buf_file_name
+        |> optionm'.try'
+        |> sm'.to_os_string
+        |> sm'.os_to_str
+        |> optionm'.try'
+        |> sm'.ref_to_std_string
+        |> sm'.from_std_string
+        |> Some
+        |> optionm'.box
+    |> fun x => x () |> optionm'.unbox
+    |> optionm'.default_value ""
+|> am'.distinct
+|> fun result =>
+    result |> am'.length |> _assert_eq 1i32
+    index result 0i32 |> _assert_eq "polyglot"
+
+#!markdown
+
 ## main
 
 #!spiral
 
 inl main () =
+    types ()
     $"let create_temp_directory_name () = !create_temp_directory_name ()" : ()
     $"let create_temp_directory () = !create_temp_directory ()" : ()
+    $"let get_source_directory () = !get_source_directory ()" : ()
+    $"let find_parent x = !find_parent x" : ()
     inl combine x = (</>) x
     $"let (</>) x = !combine x" : ()

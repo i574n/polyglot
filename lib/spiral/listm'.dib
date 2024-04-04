@@ -12,7 +12,79 @@
 
 open testing
 
+#!spiral
+
+// // test
+
 prototype append t : t -> t -> t
+
+#!markdown
+
+## list'
+
+#!spiral
+
+nominal list' t = $'`t list'
+
+#!spiral
+
+inl empty' forall t. () : list' t =
+    $'[]'
+
+#!spiral
+
+inl cons' forall t. (head : t) (tail : list' t) : list' t =
+    $'!head :: !tail '
+
+#!markdown
+
+## box
+
+#!spiral
+
+inl box forall t. (list : list t) : list' t =
+    (empty' (), list)
+    ||> listm.fold fun acc x =>
+        acc |> cons' x
+
+#!markdown
+
+## fold'
+
+#!spiral
+
+inl fold' forall t u. (fn : t -> u) (init : list u) (list : list' t) : list u =
+    (init, list)
+    ||> $'List.fold' (fun acc x => Cons (fn x, acc))
+
+#!markdown
+
+## unbox
+
+#!spiral
+
+inl unbox forall t. (list : list' t) : list t =
+    (Nil, list)
+    ||> fold' id
+
+#!markdown
+
+## distinct'
+
+#!spiral
+
+inl distinct' forall t. (list : list' t) : list' t =
+    list |> $'List.distinct'
+
+#!spiral
+
+// // test
+
+[ ""; "" ]
+|> box
+|> distinct'
+|> unbox
+|> _assert_eq [ "" ]
 
 #!markdown
 

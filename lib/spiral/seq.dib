@@ -33,7 +33,7 @@ inl of_array' forall dim t. (items : a dim t) : seq' t =
 
 // // test
 
-(a ;["a"; "b"] : _ i32 _)
+(a ;[ "a"; "b" ] : _ i32 _)
 |> of_array'
 
 #!spiral
@@ -45,7 +45,7 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 
 // // test
 
-(a ;["a"; "b"] : _ i32 _)
+(a ;[ "a"; "b" ] : _ i32 _)
 |> of_array
 
 #!markdown
@@ -61,10 +61,10 @@ inl to_array' forall dim t. (items : seq' t) : a dim t =
 
 // // test
 
-(a ;["a"; "b"] : _ i32 _)
+(a ;[ "a"; "b" ] : _ i32 _)
 |> of_array'
 |> to_array'
-|> _assert_eq (a ;["a"; "b"] : _ i32 _)
+|> _assert_eq (a ;[ "a"; "b" ] : _ i32 _)
 
 #!markdown
 

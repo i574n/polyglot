@@ -32,7 +32,7 @@ inl types () =
 
 #!spiral
 
-nominal ticks = i64
+nominal timestamp = i64
 nominal duration = $"std_time_Duration"
 nominal date_time = $"System.DateTime"
 nominal date_time' t = $"chrono_DateTime<`t>"
@@ -71,6 +71,33 @@ inl from_timestamp' forall t {number; int}. (timestamp : t) : option (date_time'
     inl result : optionm'.option' (date_time' utc) =
         !\($'"chrono::DateTime::from_timestamp_micros(!timestamp / 1000i64)"')
     result |> optionm'.unbox
+
+#!markdown
+
+## ticks
+
+#!spiral
+
+inl ticks (date_time : date_time) : timestamp =
+    date_time |> $'_.Ticks'
+
+#!markdown
+
+## format
+
+#!spiral
+
+inl format (format : string) (date_time : date_time) : string =
+    $'!date_time.ToString' format
+
+#!markdown
+
+## format_iso8601
+
+#!spiral
+
+inl format_iso8601 (date_time : date_time) =
+    date_time |> format "yyyy-MM-ddTHH-mm-ss.fff"
 
 #!markdown
 
@@ -140,7 +167,7 @@ inl test_guid () =
 
 #!spiral
 
-type ticks_guid = guid.guid
+type timestamp_guid = guid.guid
 type date_time_guid = guid.guid
 
 #!markdown
@@ -215,36 +242,36 @@ date_time_from_guid (guid.new_guid $'$"19700101-0000-0000-0000-0{(!test_guid () 
 
 #!markdown
 
-## ticks_guid_from_ticks
+## timestamp_guid_from_timestamp
 
 #!spiral
 
-inl ticks_guid_from_ticks (guid : guid.guid) (ticks : ticks) : ticks_guid =
+inl timestamp_guid_from_timestamp (guid : guid.guid) (timestamp : timestamp) : timestamp_guid =
     inl guid = guid |> sm'.obj_to_string
-    inl ticks = ticks |> sm'.obj_to_string |> sm'.pad_left 18i32 '0'
-    $'`ticks_guid $"{!ticks.[0..7]}-{!ticks.[8..11]}-{!ticks.[12..15]}-{!ticks.[16..17]}{!guid.[21..]}"'
+    inl timestamp = timestamp |> sm'.obj_to_string |> sm'.pad_left 18i32 '0'
+    $'`timestamp_guid $"{!timestamp.[0..7]}-{!timestamp.[8..11]}-{!timestamp.[12..15]}-{!timestamp.[16..17]}{!guid.[21..]}"'
 
 #!spiral
 
 // // test
 
-ticks_guid_from_ticks (test_guid ()) (ticks 0i64)
+timestamp_guid_from_timestamp (test_guid ()) (timestamp 0i64)
 |> _assert_eq' (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
 
 #!spiral
 
 // // test
 
-ticks_guid_from_ticks (test_guid ()) (ticks 999999999999999999i64)
+timestamp_guid_from_timestamp (test_guid ()) (timestamp 999999999999999999i64)
 |> _assert_eq' (guid.new_guid $'$"99999999-9999-9999-99dc-b{(!test_guid () |> string).[^10..]}"')
 
 #!markdown
 
-## ticks_from_guid
+## timestamp_from_guid
 
 #!spiral
 
-inl ticks_from_guid (guid : date_time_guid) : ticks =
+inl timestamp_from_guid (guid : date_time_guid) : timestamp =
     inl guid = guid |> sm'.obj_to_string
     $'`i64 $"{!guid.[0..7]}{!guid.[9..12]}{!guid.[14..17]}{!guid.[19..20]}"'
 
@@ -252,15 +279,50 @@ inl ticks_from_guid (guid : date_time_guid) : ticks =
 
 // // test
 
-ticks_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
-|> _assert_eq (ticks 0)
+timestamp_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
+|> _assert_eq (timestamp 0)
 
 #!spiral
 
 // // test
 
-ticks_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
-|> _assert_eq (ticks 999999999999999999)
+timestamp_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
+|> _assert_eq (timestamp 999999999999999999)
+
+#!markdown
+
+## utc_now
+
+#!spiral
+
+inl utc_now () : date_time =
+    $'System.DateTime.UtcNow'
+
+#!markdown
+
+## time_span
+
+#!spiral
+
+nominal time_span = $'System.TimeSpan'
+
+#!markdown
+
+## new_time_span
+
+#!spiral
+
+inl new_time_span (a : date_time) (b : date_time) : time_span =
+    $'!b - !a '
+
+#!markdown
+
+## total_seconds
+
+#!spiral
+
+inl total_seconds (time_span : time_span) : f64 =
+    time_span |> $'_.TotalSeconds'
 
 #!markdown
 
@@ -276,28 +338,31 @@ inl new_guid_from_date_time (date_time : date_time) =
 
 // // test
 
-new_guid_from_date_time $'System.DateTime.UtcNow'
+utc_now ()
+|> new_guid_from_date_time
 |> date_time_from_guid
-|> fun date_time => $'(!date_time - System.DateTime.UtcNow).TotalSeconds' : f64 |> i32
+|> fun date_time => new_time_span date_time (utc_now ()) |> total_seconds |> i32
 |> _assert_eq 0
 
 #!markdown
 
-## new_guid_from_ticks
+## new_guid_from_timestamp
 
 #!spiral
 
-inl new_guid_from_ticks (ticks : ticks) =
+inl new_guid_from_timestamp (timestamp : timestamp) =
     inl guid = guid.new_raw_guid ()
-    ticks_guid_from_ticks guid ticks
+    timestamp_guid_from_timestamp guid timestamp
 
 #!spiral
 
 // // test
 
-new_guid_from_ticks $'System.DateTime.UtcNow.Ticks'
-|> ticks_from_guid
-|> fun ticks => $'(!ticks - System.DateTime.UtcNow.Ticks) / 100000L'
+utc_now ()
+|> ticks
+|> new_guid_from_timestamp
+|> timestamp_from_guid
+|> fun (timestamp timestamp) => (timestamp - (utc_now () |> ticks |> fun (timestamp x) => x)) / 100000i64
 |> _assert_eq 0i64
 
 #!fsharp
@@ -331,7 +396,9 @@ with ex ->
 inl main () =
     $"let date_time_guid_from_date_time x = !date_time_guid_from_date_time x" : ()
     $"let date_time_from_guid x = !date_time_from_guid x" : ()
-    $"let ticks_guid_from_ticks x = !ticks_guid_from_ticks x" : ()
-    $"let ticks_from_guid x = !ticks_from_guid x" : ()
+    $"let timestamp_guid_from_timestamp x = !timestamp_guid_from_timestamp x" : ()
+    $"let timestamp_from_guid x = !timestamp_from_guid x" : ()
     $"let new_guid_from_date_time x = !new_guid_from_date_time x" : ()
-    $"let new_guid_from_ticks x = !new_guid_from_ticks x" : ()
+    $"let new_guid_from_timestamp x = !new_guid_from_timestamp x" : ()
+    $"let format x = !format x" : ()
+    $"let format_iso8601 x = !format_iso8601 x" : ()

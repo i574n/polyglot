@@ -8035,6 +8035,7 @@ method0()
 
 <span class="n">inl</span> <span class="n">unbox</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t) : option t =</span>
     <span class="n">inl</span> <span class="n">some</span> <span class="n">x</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">x</span>
+    <span class="n">inl</span> <span class="n">some</span> <span class="o">=</span> <span class="n">join</span> <span class="n">some</span>
     <span class="n">inl</span> <span class="n">none</span> <span class="p">:</span> <span class="n">option</span> <span class="n">t</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="err">$</span><span class="s2">"!x |&gt; Option.map !some |&gt; Option.defaultValue !none"</span>
 
@@ -8093,45 +8094,48 @@ method0()
     | US0_1
 let rec closure0 () (v0 : int32) : US0 =
     US0_0(v0)
-and method1 (v0 : bool) : bool =
+and method1 () : (int32 -&gt; US0) =
+    closure0()
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : int32 option = Some 3
-    let v1 : (int32 -&gt; US0) = closure0()
+    let v1 : (int32 -&gt; US0) = method1()
     let v2 : US0 = US0_1
     let v3 : US0 = v0 |&gt; Option.map v1 |&gt; Option.defaultValue v2
     let v4 : int32 option = None
-    let v5 : US0 = US0_1
-    let v6 : US0 = v4 |&gt; Option.map v1 |&gt; Option.defaultValue v5
-    let v7 : string = $"%A{struct (v3, v6)}"
-    System.Console.WriteLine v7
-    let v12 : bool =
+    let v5 : (int32 -&gt; US0) = method1()
+    let v6 : US0 = US0_1
+    let v7 : US0 = v4 |&gt; Option.map v5 |&gt; Option.defaultValue v6
+    let v8 : string = $"%A{struct (v3, v7)}"
+    System.Console.WriteLine v8
+    let v13 : bool =
         match v3 with
-        | US0_0(v10) -&gt; (* Some *)
-            let v11 : bool = v10 = 3
-            v11
+        | US0_0(v11) -&gt; (* Some *)
+            let v12 : bool = v11 = 3
+            v12
         | _ -&gt;
             false
-    let v14 : bool =
-        if v12 then
-            match v6 with
+    let v15 : bool =
+        if v13 then
+            match v7 with
             | US0_1 -&gt; (* None *)
                 true
             | _ -&gt;
                 false
         else
             false
-    let v16 : bool =
-        if v14 then
+    let v17 : bool =
+        if v15 then
             true
         else
-            method1(v14)
-    let v17 : US0 = US0_0(3)
-    let v18 : US0 = US0_1
-    let v19 : string = $"__expect / actual: %A{struct (v3, v6)} / expected: %A{struct (v17, v18)}"
-    let v20 : bool = v16 = false
-    if v20 then
-        failwith&lt;unit&gt; v19
+            method2(v15)
+    let v18 : US0 = US0_0(3)
+    let v19 : US0 = US0_1
+    let v20 : string = $"__expect / actual: %A{struct (v3, v7)} / expected: %A{struct (v18, v19)}"
+    let v21 : bool = v17 = false
+    if v21 then
+        failwith&lt;unit&gt; v20
 method0()
 
 struct (US0_0 3, US0_1)
@@ -8160,9 +8164,7 @@ struct (US0_0 3, US0_1)
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="nb">map</span> <span class="n">forall</span> <span class="n">t</span> <span class="n">u</span><span class="o">.</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">u</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">option</span><span class="s1">' t) : option'</span> <span class="n">u</span> <span class="o">=</span>
-    <span class="n">inl</span> <span class="n">x</span> <span class="o">=</span> <span class="n">join</span> <span class="n">x</span>
-    <span class="n">inl</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">join</span> <span class="n">fn</span>
-    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x.map(|x| !fn(x))"'</span><span class="p">)</span>
+    <span class="err">!</span>\\<span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">fn</span><span class="p">),</span> <span class="err">$</span><span class="s1">'"$0.map(|x| $1(x))"'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8189,11 +8191,51 @@ struct (US0_0 3, US0_1)
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="flatten">flatten<a class="anchor-link" href="#flatten">¶</a></h2>
+<h2 id="try'">try'<a class="anchor-link" href="#try'">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="k">try</span><span class="s1">' forall t. (x : option'</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
+    <span class="err">!</span>\<span class="p">(</span><span class="err">$</span><span class="s1">'"!x?"'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="flatten">flatten<a class="anchor-link" href="#flatten">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8225,7 +8267,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8235,7 +8277,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8265,7 +8307,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8275,7 +8317,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8305,7 +8347,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=30">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8315,7 +8357,7 @@ struct (US0_0 3, US0_1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

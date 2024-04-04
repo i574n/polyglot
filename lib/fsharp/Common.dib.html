@@ -7722,16 +7722,16 @@ a.anchor-link {
         <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span> <span class="n">text</span>
 <span class="c1">#endif</span>
 
-<span class="c1">#if !WASM &amp;&amp; !FABLE_COMPILER</span>
+<span class="c1">#if !WASM &amp;&amp; !CONTRACT &amp;&amp; !FABLE_COMPILER</span>
         <span class="k">if</span> <span class="n">traceDump</span> <span class="n">then</span>
             <span class="k">try</span>
                 <span class="n">let</span> <span class="n">tmpPath</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetTempPath</span> <span class="p">()</span>
                 <span class="n">let</span> <span class="n">logDir</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">tmpPath</span><span class="p">,</span> <span class="s2">"!polyglot"</span><span class="p">)</span>
                 <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">logDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-                <span class="n">let</span> <span class="n">logFile</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">logDir</span><span class="p">,</span> <span class="err">$</span><span class="s2">"{Date_time.new_guid_from_date_time System.DateTime.Now}.txt"</span><span class="p">)</span>
+                <span class="n">let</span> <span class="n">logFile</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">logDir</span><span class="p">,</span> <span class="err">$</span><span class="s2">"{SpiralDateTime.new_guid_from_date_time System.DateTime.Now}.txt"</span><span class="p">)</span>
                 <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">WriteAllTextAsync</span> <span class="p">(</span><span class="n">logFile</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
             <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">traceRaw</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"trace / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span>
+                <span class="n">traceRaw</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"trace / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span>
 <span class="c1">#endif</span>
 </pre></div>
 </div>
@@ -7800,7 +7800,7 @@ a.anchor-link {
 <span class="n">let</span> <span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span> <span class="o">=</span>
     <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">time</span> <span class="o">=</span>
-<span class="c1">#if WASM</span>
+<span class="c1">#if WASM || CONTRACT</span>
             <span class="s2">""</span>
 <span class="c1">#else</span>
             <span class="k">match</span> <span class="n">replStart</span> <span class="p">()</span> <span class="k">with</span>
@@ -7817,8 +7817,8 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">dateTime</span><span class="o">.</span><span class="n">ToString</span>
 <span class="c1">#endif</span>
         <span class="err">$</span><span class="s2">"</span><span class="si">{time}</span><span class="s2"> #</span><span class="si">{traceCount}</span><span class="s2"> [%A</span><span class="si">{level}</span><span class="s2">] </span><span class="si">%s</span><span class="s2">{fn ()} / </span><span class="si">%s</span><span class="s2">{getLocals ()}"</span>
-        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
-        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">|</span> <span class="s1">' '</span><span class="p">;</span> <span class="s1">'/'</span> <span class="o">|</span><span class="p">]</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_end</span> <span class="p">[</span><span class="o">|</span> <span class="s1">' '</span><span class="p">;</span> <span class="s1">'/'</span> <span class="o">|</span><span class="p">]</span>
     <span class="o">|&gt;</span> <span class="n">traceRaw</span> <span class="n">level</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">withTrace</span> <span class="n">enabled</span> <span class="n">fn</span> <span class="o">=</span>

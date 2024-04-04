@@ -223,9 +223,6 @@ pub mod Sm {
             move |v: string| Sm::closure32(v0_1, v)
         })
     }
-    pub fn method1(v0_1: Array<string>) -> Array<string> {
-        v0_1
-    }
     pub fn closure34(v0_1: i64, v1_1: string) -> string {
         let v2_1: i64 = length(v1_1.clone()) as i64;
         if v2_1 <= v0_1 {
@@ -236,7 +233,7 @@ pub mod Sm {
             let v11_1: i64 = v5_1.floor() as i64;
             join(
                 string(""),
-                toArray(ofArray(Sm::method1(new_array(&[
+                toArray(ofArray(new_array(&[
                     getSlice(
                         v1_1.clone(),
                         Some(0_i64 as i32),
@@ -248,7 +245,7 @@ pub mod Sm {
                         Some((v2_1 - v11_1) as i32),
                         Some((v2_1 - 1_i64) as i32),
                     ),
-                ])))),
+                ]))),
             )
         }
     }
@@ -266,7 +263,7 @@ pub mod Sm {
         }
         getValue(_v1.get().clone())
     }
-    pub fn method2(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
+    pub fn method1(v0_1: i32, v1_1: LrcPtr<Sm::Mut0>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
     pub fn closure37(v0_1: string, v1_1: Array<string>) -> string {
@@ -275,7 +272,7 @@ pub mod Sm {
             l0: MutCell::new(0_i32),
             l1: MutCell::new(string("")),
         });
-        while Sm::method2(v2_1, v4_1.clone()) {
+        while Sm::method1(v2_1, v4_1.clone()) {
             let v6_1: i32 = v4_1.l0.get().clone();
             let v9_1: string = append(
                 append(
@@ -318,7 +315,7 @@ pub mod Sm {
             move |v: Array<string>| Sm::closure41(v0_1.clone(), v)
         })
     }
-    pub fn method3(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
+    pub fn method2(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
     pub fn closure42(unitVar: (), v0_1: string) -> Array<char> {
@@ -327,7 +324,7 @@ pub mod Sm {
         let v3_1: LrcPtr<Sm::Mut1> = LrcPtr::new(Sm::Mut1 {
             l0: MutCell::new(0_i32),
         });
-        while Sm::method3(v1_1, v3_1.clone()) {
+        while Sm::method2(v1_1, v3_1.clone()) {
             let v5_1: i32 = v3_1.l0.get().clone();
             let v6_1: char = getCharAt(v0_1.clone(), v5_1);
             v2_1.get_mut()[v5_1 as usize] = v6_1;

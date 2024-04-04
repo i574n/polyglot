@@ -41,62 +41,7 @@ open Lib
 #!fsharp
 
 open Common
-open File_system.Operators
-
-#!markdown
-
-## getSourceDirectory
-
-#!fsharp
-
-let getSourceDirectory =
-    fun () -> __SOURCE_DIRECTORY__
-    |> memoize
-
-#!fsharp
-
-//// test
-
-getSourceDirectory ()
-|> System.IO.DirectoryInfo
-|> fun dir -> dir.Name
-|> _assertEqual "fsharp"
-
-#!markdown
-
-## findParent
-
-#!fsharp
-
-let inline findParent name isFile rootDir =
-    let rec loop dir =
-        if dir </> name |> (if isFile then System.IO.File.Exists else System.IO.Directory.Exists)
-        then dir
-        else
-            dir
-            |> System.IO.Directory.GetParent
-            |> function
-                | null -> failwith $"""No parent for {if isFile then "file" else "dir"} '{name}' at '{rootDir}'"""
-                | parent -> parent.FullName |> loop
-    loop rootDir
-
-#!fsharp
-
-//// test
-
-getSourceDirectory () |> findParent ".paket" false
-|> System.IO.DirectoryInfo
-|> fun dir -> dir.Name
-|> _assertEqual "polyglot"
-
-#!fsharp
-
-//// test
-
-getSourceDirectory () |> findParent "paket.dependencies" true
-|> System.IO.DirectoryInfo
-|> fun dir -> dir.Name
-|> _assertEqual "polyglot"
+open SpiralFileSystem.Operators
 
 #!markdown
 
@@ -164,7 +109,7 @@ let inline waitForFileAccess access path =
             return retry
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 trace Debug (fun () -> "waitForFileAccess") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -175,7 +120,7 @@ let inline waitForFileAccess access path =
 
 //// test
 
-let tempFolder = File_system.create_temp_directory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let inline lockFile () = async {
@@ -247,7 +192,7 @@ let inline readAllTextRetryAsync fullPath =
                 |> Async.Ignore
             return! fullPath |> readAllTextAsync |> Async.map Some
         with ex ->
-            let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+            let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
             trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
             if retry = 0
             then return! loop (retry + 1)
@@ -268,7 +213,7 @@ let inline deleteDirectoryAsync path =
             return retry
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 trace Debug (fun () -> "deleteDirectoryAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -279,7 +224,7 @@ let inline deleteDirectoryAsync path =
 
 //// test
 
-let tempFolder = File_system.create_temp_directory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let path = tempFolder </> "test"
 
 let inline lockDirectory () = async {
@@ -335,7 +280,7 @@ let inline deleteFileAsync path =
             return retry
         with ex ->
             if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 trace Warning (fun () -> "deleteFileAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -346,7 +291,7 @@ let inline deleteFileAsync path =
 
 //// test
 
-let tempFolder = File_system.create_temp_directory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let inline lockFile () = async {
@@ -402,7 +347,7 @@ let inline moveFileAsync newPath oldPath =
         with ex ->
             if retry % 100 = 0 then
                 let getLocals () =
-                    $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                    $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 trace Warning (fun () -> "moveFileAsync") getLocals
             do! Async.Sleep 10
             return! loop (retry + 1)
@@ -413,7 +358,7 @@ let inline moveFileAsync newPath oldPath =
 
 //// test
 
-let tempFolder = File_system.create_temp_directory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 let newPath = tempFolder </> "test2.txt"
 
@@ -503,7 +448,7 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
         )
 
     let inline getEventPath (path : string) =
-        path |> Sm.trim |> Sm.replace fullPath "" |> Sm.trim_start [| '/'; '\\' |]
+        path |> SpiralSm.trim |> SpiralSm.replace fullPath "" |> SpiralSm.trim_start [| '/'; '\\' |]
 
     let inline ticks () =
         System.DateTime.UtcNow.Ticks
@@ -622,7 +567,7 @@ let inline testEventsRaw
     (watchFn : (_ -> bool) -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let tempDirectory = File_system.create_temp_directory ()
+    let tempDirectory = SpiralFileSystem.create_temp_directory ()
     let stream, disposable = watchFn (fun _ -> true) tempDirectory
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
@@ -656,8 +601,8 @@ let inline testEventsRaw
             (0L, [])
         |> snd
         |> List.rev
-        |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> Sm.ellipsis_end 100L)
-        |> Sm.concat "\n"
+        |> List.map (fun (diff, n, event) -> $"{n} / {diff} / {event}" |> SpiralSm.ellipsis_end 100L)
+        |> SpiralSm.concat "\n"
     let getLocals () = $"eventsLog: \n{eventsLog} / {getLocals ()}"
     trace Debug (fun () -> "testEventsRaw") getLocals
 
@@ -670,7 +615,7 @@ let inline testEventsRaw
             match acc, event with
             | FileSystemChange.Changed (lastPath, Some lastContent) as lastEvent :: acc,
                 FileSystemChange.Changed (path, Some content)
-                when lastPath = path && content |> Sm.starts_with lastContent
+                when lastPath = path && content |> SpiralSm.starts_with lastContent
                 ->
                 event :: acc
             | _ -> event :: acc
@@ -788,13 +733,13 @@ let inline run () =
         testEventsRaw watchDirectory write
         |> List.map (function
             | FileSystemChange.Changed (path, Some content) ->
-                FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> Sm.concat "" |> Some)
+                FileSystemChange.Changed (path, content |> Seq.distinct |> Seq.map string |> SpiralSm.concat "" |> Some)
             | FileSystemChange.Created (path, Some content) ->
-                FileSystemChange.Created (path, content |> Seq.distinct |> Seq.map string |> Sm.concat "" |> Some)
+                FileSystemChange.Created (path, content |> Seq.distinct |> Seq.map string |> SpiralSm.concat "" |> Some)
             | FileSystemChange.Renamed (oldPath, (newPath, Some content)) ->
                 FileSystemChange.Renamed (
                     oldPath,
-                    (newPath, content |> Seq.distinct |> Seq.map string |> Sm.concat "" |> Some)
+                    (newPath, content |> Seq.distinct |> Seq.map string |> SpiralSm.concat "" |> Some)
                 )
             | event -> event
         )
@@ -863,7 +808,7 @@ let inline testEventsSorted
     (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let path = File_system.create_temp_directory ()
+    let path = SpiralFileSystem.create_temp_directory ()
     let stream, disposable = watchFn path
 
     let events = System.Collections.Concurrent.ConcurrentBag ()

@@ -8,13 +8,13 @@ from fable_modules.fable_library.string_ import (to_text, interpolate)
 from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
 from fable_modules.fable_library.types import (Array, Union, int64)
 from fable_modules.fable_library.util import (create_atom, compare)
-from .....lib.spiral.lib import (trim_end, trim_start)
+from ......lib.spiral.lib import (SpiralSm_trim_end, SpiralSm_trim_start)
 
 nl: str = "\n"
 
 q: str = "\""
 
-def _expr70() -> TypeInfo:
+def _expr82() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -29,7 +29,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr70
+TraceLevel_reflection = _expr82
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:
@@ -106,7 +106,7 @@ def repl_start(__unit: None=None) -> int64 | None:
 
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
     def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
-        def _arrow71(__unit: None=None) -> Any:
+        def _arrow83(__unit: None=None) -> Any:
             match_value: int64 | None = repl_start()
             if match_value is None:
                 return now()
@@ -117,8 +117,8 @@ def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str
                 return create_1(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t))
 
 
-        time: str = to_string(_arrow71(), "HH:mm:ss")
-        return trim_end([" ", "/"])(trim_start([])(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, trace_count(), level, fn(None), get_locals(None)]))))
+        time: str = to_string(_arrow83(), "HH:mm:ss")
+        return SpiralSm_trim_end([" ", "/"])(SpiralSm_trim_start([])(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, trace_count(), level, fn(None), get_locals(None)]))))
 
     trace_raw(level, fn_1)
 

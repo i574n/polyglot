@@ -16,6 +16,7 @@ pub mod Common {
         US0_0,
         US0_1,
         US0_2,
+        US0_3,
     }
     impl Common::US0 {
         pub fn get_IsUS0_0(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
@@ -33,6 +34,13 @@ pub mod Common {
             }
         }
         pub fn get_IsUS0_2(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS0_3(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
             if unreachable!() {
                 true
             } else {

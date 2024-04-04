@@ -64,13 +64,13 @@ pub mod Date_time {
     }
     pub fn closure7(v0_1: Guid, v1_1: i64) -> Guid {
         let v3_1: string = toString(v0_1);
-        let v6: string = padLeft(toString(v1_1), 18_i32, '0');
+        let v6_1: string = padLeft(toString(v1_1), 18_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v6.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v6.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v6.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v6, Some(16_i32), Some(17_i32)),
+            getSlice(v6_1.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v6_1.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v6_1.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v6_1, Some(16_i32), Some(17_i32)),
             getSlice(v3_1, Some(21_i32), None::<i32>)
         ))
     }
@@ -101,15 +101,27 @@ pub mod Date_time {
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Guid {
         let v3_1: string = toString(new_guid());
-        let v6: string = padLeft(toString(v0_1), 18_i32, '0');
+        let v6_1: string = padLeft(toString(v0_1), 18_i32, '0');
         parse(sprintf!(
             "{}-{}-{}-{}{}",
-            getSlice(v6.clone(), Some(0_i32), Some(7_i32)),
-            getSlice(v6.clone(), Some(8_i32), Some(11_i32)),
-            getSlice(v6.clone(), Some(12_i32), Some(15_i32)),
-            getSlice(v6, Some(16_i32), Some(17_i32)),
+            getSlice(v6_1.clone(), Some(0_i32), Some(7_i32)),
+            getSlice(v6_1.clone(), Some(8_i32), Some(11_i32)),
+            getSlice(v6_1.clone(), Some(12_i32), Some(15_i32)),
+            getSlice(v6_1, Some(16_i32), Some(17_i32)),
             getSlice(v3_1, Some(21_i32), None::<i32>)
         ))
+    }
+    pub fn closure12(v0_1: string, v1_1: DateTime) -> string {
+        v1_1.toString(v0_1)
+    }
+    pub fn closure11(unitVar: (), v0_1: string) -> Func1<DateTime, string> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: DateTime| Date_time::closure12(v0_1.clone(), v)
+        })
+    }
+    pub fn closure13(unitVar: (), v0_1: DateTime) -> string {
+        v0_1.toString(string("yyyy-MM-ddTHH-mm-ss.fff"))
     }
     pub fn v0() -> Func1<Guid, Func1<DateTime, Guid>> {
         static v0: OnceInit<Func1<Guid, Func1<DateTime, Guid>>> = OnceInit::new();
@@ -132,7 +144,7 @@ pub mod Date_time {
         v2.get_or_insert_with(|| Func1::new(move |v: Guid| Date_time::closure6((), v)))
             .clone()
     }
-    pub fn ticks_guid_from_ticks(x: Guid) -> Func1<i64, Guid> {
+    pub fn timestamp_guid_from_timestamp(x: Guid) -> Func1<i64, Guid> {
         (Date_time::v2())(x)
     }
     pub fn v3() -> Func1<Guid, i64> {
@@ -140,7 +152,7 @@ pub mod Date_time {
         v3.get_or_insert_with(|| Func1::new(move |v: Guid| Date_time::closure8((), v)))
             .clone()
     }
-    pub fn ticks_from_guid(x: Guid) -> i64 {
+    pub fn timestamp_from_guid(x: Guid) -> i64 {
         (Date_time::v3())(x)
     }
     pub fn v4() -> Func1<DateTime, Guid> {
@@ -156,8 +168,24 @@ pub mod Date_time {
         v5.get_or_insert_with(|| Func1::new(move |v: i64| Date_time::closure10((), v)))
             .clone()
     }
-    pub fn new_guid_from_ticks(x: i64) -> Guid {
+    pub fn new_guid_from_timestamp(x: i64) -> Guid {
         (Date_time::v5())(x)
+    }
+    pub fn v6() -> Func1<string, Func1<DateTime, string>> {
+        static v6: OnceInit<Func1<string, Func1<DateTime, string>>> = OnceInit::new();
+        v6.get_or_insert_with(|| Func1::new(move |v: string| Date_time::closure11((), v)))
+            .clone()
+    }
+    pub fn format(x: string) -> Func1<DateTime, string> {
+        (Date_time::v6())(x)
+    }
+    pub fn v7() -> Func1<DateTime, string> {
+        static v7: OnceInit<Func1<DateTime, string>> = OnceInit::new();
+        v7.get_or_insert_with(|| Func1::new(move |v: DateTime| Date_time::closure13((), v)))
+            .clone()
+    }
+    pub fn format_iso8601(x: DateTime) -> string {
+        (Date_time::v7())(x)
     }
     on_startup!((),);
 }

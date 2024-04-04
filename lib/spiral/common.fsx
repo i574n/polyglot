@@ -2,6 +2,7 @@ type [<Struct>] US0 =
     | US0_0
     | US0_1
     | US0_2
+    | US0_3
 and [<Struct>] US1 =
     | US1_0 of f0_0 : US0
     | US1_1 of f1_0 : US0
@@ -14,7 +15,7 @@ and [<Struct>] US3 =
 let rec closure0 () (v0 : (unit -> unit)) : System.IDisposable =
     let v1 : System.IDisposable option = None
     let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : US0 = US0_0
     let v3 : US1 = US1_0(v2)
     let v4 : string = $"new_disposable / target: {v3}"
@@ -22,27 +23,34 @@ let rec closure0 () (v0 : (unit -> unit)) : System.IDisposable =
     v5
     #endif
     #if FABLE_COMPILER_RUST && WASM
-    let v6 : US0 = US0_1
+    let v6 : US0 = US0_2
     let v7 : US1 = US1_0(v6)
     let v8 : string = $"new_disposable / target: {v7}"
     let v9 : System.IDisposable = failwith<System.IDisposable> v8
     v9
     #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v10 : US0 = US0_3
+    let v11 : US1 = US1_0(v10)
+    let v12 : string = $"new_disposable / target: {v11}"
+    let v13 : System.IDisposable = failwith<System.IDisposable> v12
+    v13
+    #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-    let v10 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
-    v10
+    let v14 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
+    v14
     #endif
     #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-    let v11 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
-    v11
+    let v15 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
+    v15
     #endif
     #if !FABLE_COMPILER_RUST && WASM
-    let v12 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
-    v12
+    let v16 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v0 () }
+    v16
     #endif
     |> fun x -> _v1 <- Some x
-    let v13 : System.IDisposable = _v1 |> Option.get
-    v13
+    let v17 : System.IDisposable = _v1 |> Option.get
+    v17
 and closure3 (v0 : int32, v1 : (unit -> unit), v2 : int32) () : US2 =
     let v3 : bool = v2 < v0
     if v3 then
@@ -55,10 +63,13 @@ and closure4 () (v0 : US2) : US3 =
 and closure5 () (v0 : exn) : unit =
     let v1 : unit option = None
     let mutable _v1 = v1
-    #if FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     ()
     #endif
     #if FABLE_COMPILER_RUST && WASM
+    ()
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
     ()
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM

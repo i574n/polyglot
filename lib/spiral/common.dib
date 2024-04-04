@@ -8,25 +8,13 @@
 
 #!spiral
 
-// // test
-
-open testing
-
-#!markdown
-
-## types
+inl array x = x
 
 #!spiral
 
-nominal any = $"obj"
-nominal disposable = $"System.IDisposable"
-nominal exn = $"exn"
-nominal unativeint = $"unativeint"
+// // test
 
-let array x = x
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
+open testing
 
 #!markdown
 
@@ -48,16 +36,49 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+#!markdown
+
+## unativeint
+
+#!spiral
+
+nominal unativeint = $"unativeint"
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
+
+#!markdown
+
+## i32
+
 #!spiral
 
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
 
+#!markdown
+
+## i64
+
+#!spiral
+
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
+#!markdown
+
+## f32
+
+#!spiral
+
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
+
+#!markdown
+
+## f64
+
+#!spiral
 
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
@@ -208,6 +229,14 @@ inl test_trace_level level =
 
 #!markdown
 
+## any
+
+#!spiral
+
+nominal any = $"obj"
+
+#!markdown
+
 ## to_any
 
 #!spiral
@@ -237,20 +266,47 @@ inl unbox forall t u. (x : t) : u =
 
 #!markdown
 
-## (/+)
+## (+.)
 
 #!spiral
 
-inl (/+) forall t. (a : t) (b : t) : t =
+inl (+.) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
 #!markdown
 
-## (/=)
+## (-.)
 
 #!spiral
 
-inl (/=) forall t. (a : t) (b : t) : bool =
+inl (-.) forall t. (a : t) (b : t) : t =
+    $"!a - !b"
+
+#!markdown
+
+## (*.)
+
+#!spiral
+
+inl (*.) forall t. (a : t) (b : t) : t =
+    $"!a * !b"
+
+#!markdown
+
+## (/.)
+
+#!spiral
+
+inl (/.) forall t. (a : t) (b : t) : t =
+    $"!a / !b"
+
+#!markdown
+
+## (=.)
+
+#!spiral
+
+inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
 
 #!markdown
@@ -312,7 +368,7 @@ inl rec fold_list f s = function
 
 // // test
 
-[5i32; 4; join 3; 2; 1]
+[ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (+) 0
 |> _assert_eq 15
 
@@ -320,7 +376,7 @@ inl rec fold_list f s = function
 
 // // test
 
-[5i32; 4; join 3; 2; 1]
+[ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (join_body (+)) 0
 |> _assert_eq 15
 
@@ -341,7 +397,7 @@ inl join_body_unit body d x =
 
 // // test
 
-[5i32; 4; join 3; 2; 1]
+[ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
 |> _assert_eq 15
 
@@ -353,8 +409,9 @@ inl join_body_unit body d x =
 
 union target_runtime =
     | Native
-    | Wasm
     | Fable
+    | Wasm
+    | Contract
 
 union target =
     | Rust : target_runtime
@@ -363,11 +420,14 @@ union target =
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     inl result : optionm'.option' t = $'None'
     $"let mutable _!result = !result"
-    $"#if FABLE_COMPILER_RUST && \!WASM"
+    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
     fn (Rust Native) () |> fun x => $"!x"
     $"#endif"
     $"#if FABLE_COMPILER_RUST && WASM"
     fn (Rust Wasm) () |> fun x => $"!x"
+    $"#endif"
+    $"#if FABLE_COMPILER_RUST && CONTRACT"
+    fn (Rust Contract) () |> fun x => $"!x"
     $"#endif"
     $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM"
     fn (Fsharp Native) () |> fun x => $"!x"
@@ -427,6 +487,14 @@ fun () => failwith "test"
 |> _throws
 |> optionm.map sm'.format_exception
 |> _assert_eq (Some "System.Exception: test")
+
+#!markdown
+
+## disposable
+
+#!spiral
+
+nominal disposable = $"System.IDisposable"
 
 #!markdown
 
@@ -502,6 +570,14 @@ fun () =>
 
 #!markdown
 
+## exn
+
+#!spiral
+
+nominal exn = $"exn"
+
+#!markdown
+
 ## try
 
 #!spiral
@@ -536,7 +612,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 // trace Warning (fun () => "retry_fn") getLocals
                 sleep 1
         |> function

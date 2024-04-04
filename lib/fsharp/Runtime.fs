@@ -41,7 +41,7 @@ module Runtime =
             | ' ' :: tail, (Start | Path _) -> loop (path, args) tail Arguments
             | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
             | char :: tail, _ -> loop ($"{path}{char}", args) tail step
-            | _, _ -> path |> Sm.replace @"\" "/", args
+            | _, _ -> path |> SpiralSm.replace @"\" "/", args
         loop ("", "") (command |> Seq.toList) Start
 
     /// ## executeAsync
@@ -132,12 +132,12 @@ module Runtime =
                 do! proc.WaitForExitAsync ct |> Async.AwaitTask
                 return proc.ExitCode
             with :? System.Threading.Tasks.TaskCanceledException as ex ->
-                trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> Sm.format_exception}") getLocals
-                ex |> Sm.format_exception |> output.Push
+                trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> SpiralSm.format_exception}") getLocals
+                ex |> SpiralSm.format_exception |> output.Push
                 return System.Int32.MinValue
         }
 
-        let output = output |> Seq.rev |> Sm.concat "\n"
+        let output = output |> Seq.rev |> SpiralSm.concat "\n"
 
         trace Debug (fun () ->
             $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}"

@@ -7677,9 +7677,7 @@ and [&lt;Struct&gt;] US5 =
     | US5_13 of f13_0 : US4
     | US5_14 of f14_0 : US4
     | US5_15 of f15_0 : US4
-let rec method0 (v0 : (US5 [])) : (US5 []) =
-    v0
-and closure0 () () : unit =
+let rec closure0 () () : unit =
     let v0 : US0 = US0_0
     let v1 : US1 = US1_1
     let v2 : US2 = US2_1
@@ -7687,9 +7685,8 @@ and closure0 () () : unit =
     let v4 : US4 = US4_0(v0, v1, v2, v3)
     let v5 : US5 = US5_0(v4)
     let v6 : (US5 []) = [|v5|]
-    let v7 : (US5 []) = method0(v6)
-    let v8 : string = $"%A{v7}"
-    System.Console.WriteLine v8
+    let v7 : string = $"%A{v6}"
+    System.Console.WriteLine v7
     ()
 let v0 : (unit -&gt; unit) = closure0()
 v0 ()

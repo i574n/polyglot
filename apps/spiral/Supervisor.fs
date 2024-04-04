@@ -9,7 +9,7 @@ module Supervisor =
 #endif
 
     open Common
-    open File_system.Operators
+    open SpiralFileSystem.Operators
     open Microsoft.AspNetCore.SignalR.Client
 
     /// ## sendJson
@@ -25,7 +25,7 @@ module Supervisor =
                 trace Debug (fun () -> $"sendJson / port: {port} / json: {json} / result.Length: {result |> Option.ofObj |> Option.map String.length}") getLocals
                 return Some result
             with ex ->
-                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> Sm.format_exception}") getLocals
+                trace Critical (fun () -> $"sendJson / port: {port} / json: {json} / ex: {ex |> SpiralSm.format_exception}") getLocals
                 return None
         else
             trace Debug (fun () -> "sendJson / error: port not open") getLocals
@@ -62,7 +62,7 @@ module Supervisor =
             if availablePort <> port then
                 inbox.Post (port, false)
             else
-                let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+                let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
 
                 let compilerPath =
                     repositoryRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
@@ -77,7 +77,7 @@ module Supervisor =
                             CancellationToken = Some ct
                             WorkingDirectory = None
                             OnLine = Some <| fun { Line = line } -> async {
-                                if line |> Sm.contains $"Server bound to: http://localhost:{availablePort}" then
+                                if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
                                     do! Networking.waitForPortAccess (Some 500) true availablePort |> Async.Ignore
 
                                     let rec loop retry = async {
@@ -87,7 +87,7 @@ module Supervisor =
                                             let! pingResult = pingObj |> sendObj availablePort
                                             trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
                                         with ex ->
-                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> Sm.format_exception}") getLocals
+                                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") getLocals
                                             do! Async.Sleep 10
                                             do! loop (retry + 1)
                                     }
@@ -139,8 +139,8 @@ module Supervisor =
         let path =
             if Runtime.isWindows () |> not
             then path
-            else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> Sm.replace "\\" "/"
-        $"file:///{path |> Sm.trim_start [| '/' |]}"
+            else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> SpiralSm.replace "\\" "/"
+        $"file:///{path |> SpiralSm.trim_start [| '/' |]}"
 
     let inline getFilePathFromUri uri =
         match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
@@ -155,9 +155,9 @@ module Supervisor =
     let serializeObj obj =
             obj
             |> FSharp.Json.Json.serialize
-            |> Sm.replace "\\\\" "\\"
-            |> Sm.replace "\\r\\n" "\n"
-            |> Sm.replace "\\n" "\n"
+            |> SpiralSm.replace "\\\\" "\\"
+            |> SpiralSm.replace "\\r\\n" "\n"
+            |> SpiralSm.replace "\\n" "\n"
 
     /// ## buildFile
 
@@ -190,7 +190,7 @@ module Supervisor =
                 | _ -> None
             )
             |> FSharp.Control.AsyncSeq.map (fun content ->
-                Some (content |> Sm.replace "\r\n" "\n"), None
+                Some (content |> SpiralSm.replace "\r\n" "\n"), None
             )
 
         let inline printErrorData (data : {| uri : string; errors : RString list |}) =
@@ -198,7 +198,7 @@ module Supervisor =
             let errors =
                 data.errors
                 |> List.map snd
-                |> Sm.concat "\n"
+                |> SpiralSm.concat "\n"
             $"{fileName}:\n{errors}"
 
         let errorsSeq =
@@ -246,7 +246,7 @@ module Supervisor =
                     | _ -> fsxContentResult, errors, typeErrorCount
             )
             |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> Sm.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
+                trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
 #if INTERACTIVE
                 let errorWait = 2
 #else
@@ -286,12 +286,12 @@ module Supervisor =
     /// ## persistCode
 
     let inline persistCode code = async {
-        let tempDir = File_system.create_temp_directory ()
+        let tempDir = SpiralFileSystem.create_temp_directory ()
 
         let mainPath = tempDir </> "main.spi"
         do! code |> FileSystem.writeAllTextAsync mainPath
 
-        let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+        let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
 
         let spiprojPath = tempDir </> "package.spiproj"
         let spiprojCode =
@@ -326,7 +326,7 @@ modules:
     let inline getFileTokenRange port cancellationToken path = async {
         let fullPath = path |> System.IO.Path.GetFullPath
         let! code = fullPath |> FileSystem.readAllTextAsync
-        let lines = code |> Sm.split "\n"
+        let lines = code |> SpiralSm.split "\n"
 
         let token, disposable = Threading.newDisposableToken cancellationToken
         use _ = disposable

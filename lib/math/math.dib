@@ -42,10 +42,7 @@ nominal pyany = $"pyo3_PyAny"
 nominal pyerr = $"pyo3_PyErr"
 
 inl complex forall t. ((re : t), (im : t)) : complex t =
-    inl re = join re
-    inl re = join re
-    inl im = join im
-    !\($'"num_complex::Complex::new(!re, !im)"')
+    !\\((re, im), $'"num_complex::Complex::new($0, $1)"')
 
 #!spiral
 
@@ -91,12 +88,12 @@ inl complex_add forall t. (a : complex t) (b : complex t) : complex t =
 inl (.+) a b = complex_add a b
 
 inl complex_sub forall t. (a : complex t) (b : complex t) : complex t =
-    !\($'"!a - !b"')
+    !\\((a, b), $'"$0 - $1"')
 
 inl (.-) a b = complex_sub a b
 
 inl complex_mult forall t. (a : complex t) (b : complex t) : complex t =
-    !\($'"!a * !b"')
+    !\\((a, b), $'"$0 * $1"')
 
 inl (.*) a b = complex_mult a b
 
@@ -126,9 +123,8 @@ inl conj forall t. (c : complex t) : complex t =
 
 inl zeta log (gamma : complex f64 -> complex f64) (s : complex f64) : complex f64 =
     inl rec zeta count gamma s =
-        inl s = join s
         if log then
-            !\($'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", !count, !s)"')
+            !\\(s, $'"println\!(\\\"zeta / count: {:?} / s: {:?}\\\", !count, $0)"')
         if re s > 1 then
             (.^(0, 0), (am.init 10000i32 id : a i32 _))
             ||> am.fold fun acc n =>
@@ -165,6 +161,7 @@ inl use_pyanymethods () =
     global "Fable.Core.RustInterop.emitRustExpr () \");\nuse pyo3::prelude::PyAnyMethods;\n//\""
 
 inl getattr (attr : string) (module : bound pymodule) : _ (bound pyany) _ =
+    inl attr = join attr
     inl attr = attr |> sm'.as_str
     inl module = join module
     use_pyanymethods ()

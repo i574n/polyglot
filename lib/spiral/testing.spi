@@ -17,7 +17,7 @@ inl _assert_approx_eq e b a = __assert_approx_eq true e b a
 inl __assert_eq log b a = __expect (=) log b a
 inl _assert_eq b a = __assert_eq true b a
 
-inl __assert_eq' log b a = __expect (/=) log b a
+inl __assert_eq' log b a = __expect (=.) log b a
 inl _assert_eq' b a = __assert_eq' true b a
 
 inl __assert_ne log b a = __expect (fun a b => a = b |> fun x => join x |> not) log b a

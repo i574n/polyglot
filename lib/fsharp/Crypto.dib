@@ -22,6 +22,12 @@
 
 #!fsharp
 
+#if !INTERACTIVE
+open Lib
+#endif
+
+#!fsharp
+
 open Common
 
 #!markdown
@@ -36,7 +42,7 @@ let hashText (input : string) =
     |> System.Text.Encoding.UTF8.GetBytes
     |> sha256.ComputeHash
     |> Array.map (fun b -> b.ToString "x2")
-    |> Sm.concat ""
+    |> SpiralSm.concat ""
 
 #!fsharp
 

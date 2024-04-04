@@ -2,13 +2,14 @@ open rust_operators
 open sm'_operators
 open leptos
 
-inl render (id : () -> string) get_value (on_change : event -> _) : _ label =
-    inl id' = join id >> sm'.to_std_string
+inl render (id : () -> string) get_value (on_change : event -> ()) : _ label =
+    inl id' = id >> sm'.to_std_string
+    !\\(id', $'"let !id' = $0"')
     label [
         $'"for=move || !id'()"'
         $'"class=\\\"block relative h-8 w-14 cursor-pointer [-webkit-tap-highlight-color:_transparent]\\\""'
     ] fun () =>
-        inl on_change = join on_change
+        !\\(on_change, $'"let !on_change = $0"')
         inl get_value : () -> bool = join get_value
         inl id = join id >> sm'.to_std_string
         :>(;[

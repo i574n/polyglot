@@ -4,6 +4,10 @@ namespace Polyglot
 
 module Crypto =
 
+#if !INTERACTIVE
+    open Lib
+#endif
+
     open Common
 
     /// ## hashText
@@ -14,4 +18,4 @@ module Crypto =
         |> System.Text.Encoding.UTF8.GetBytes
         |> sha256.ComputeHash
         |> Array.map (fun b -> b.ToString "x2")
-        |> Sm.concat ""
+        |> SpiralSm.concat ""
