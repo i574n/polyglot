@@ -16,6 +16,10 @@ open testing
 
 open rust_operators
 
+#!markdown
+
+## types
+
 #!spiral
 
 inl types () =
@@ -26,6 +30,8 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Error\")>] type serde_json_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_json::Value\")>] type serde_json_Value = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"serde_wasm_bindgen::Error\")>] type serde_wasm_bindgen_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsStr\")>] type std_ffi_OsStr = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::ffi::OsString\")>] type std_ffi_OsString = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::str::Utf8Error\")>] type std_str_Utf8Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::string::String\")>] type std_string_String = class end"
 
@@ -45,9 +51,11 @@ nominal utf8_error = $"std_str_Utf8Error"
 nominal json_value = $"serde_json_Value"
 nominal json_error = $"serde_json_Error"
 nominal serde_wasm_bindgen_error = $"serde_wasm_bindgen_Error"
-nominal std_string = $"std_string_String"
 nominal js_string = $"js_sys_JsString"
 nominal str = $"Str"
+nominal os_str = $"std_ffi_OsStr"
+nominal os_string = $"std_ffi_OsString"
+nominal std_string = $"std_string_String"
 
 #!markdown
 
@@ -200,8 +208,34 @@ inl include_str (path : string) : rust.ref' str =
 #!spiral
 
 inl as_str (s : string) : rust.ref' str =
-    inl s = join s
-    !\($'$"fable_library_rust::String_::LrcStr::as_str(&!s)"')
+    !\\(s, $'"fable_library_rust::String_::LrcStr::as_str(&$0)"')
+
+#!markdown
+
+## as_os_ref
+
+#!spiral
+
+inl as_os_ref (s : os_string) : rust.ref' os_str =
+    !\\(s, $'"$0.as_ref()"')
+
+#!markdown
+
+## to_os_string
+
+#!spiral
+
+inl to_os_string (s : rust.ref' os_str) : os_string =
+    !\\(s, $'"$0.to_os_string()"')
+
+#!markdown
+
+## os_to_str
+
+#!spiral
+
+inl os_to_str (s : os_string) : optionm'.option' (rust.ref' str) =
+    !\\(s, $'"$0.to_str()"')
 
 #!markdown
 
@@ -210,8 +244,7 @@ inl as_str (s : string) : rust.ref' str =
 #!spiral
 
 inl from_std_string (str : std_string) : string =
-    inl str = join str
-    !\($'"fable_library_rust::String_::fromString(!str)"')
+    !\\(str, $'"fable_library_rust::String_::fromString($0)"')
 
 #!markdown
 
@@ -220,7 +253,7 @@ inl from_std_string (str : std_string) : string =
 #!spiral
 
 inl ref_to_std_string (str : rust.ref' str) : std_string =
-    !\($'"String::from(!str)"')
+    !\\(str, $'"String::from($0)"')
 
 #!markdown
 
@@ -361,6 +394,7 @@ inl serialize forall t. (x : t) : resultm.result' std_string json_error =
 #!spiral
 
 inl deserialize forall t. (json : string) : resultm.result' t std_string =
+    inl json = join json
     inl json = json |> as_str
     !\($'"serde_json::from_str(&!json)"')
     |> resultm.map_error' fun (x : json_error) => x |> format'
@@ -479,7 +513,7 @@ inl concat_list_trailing separator input =
     "3"
 ]
 |> fun x =>
-    inl code = (x : _) |> sm'.concat_list_trailing "\n"
+    inl code = (x : _) |> concat_list_trailing "\n"
     code
     |> _assert_eq "1\n2\n3\n"
 
@@ -490,13 +524,13 @@ inl concat_list_trailing separator input =
 #!spiral
 
 inl concat_list_heap_trailing separator input =
+    inl separator = join separator
+    inl separator = separator |> as_str
     ("", input)
     ||> listm.fold fun acc (x : string) =>
         inl acc = acc |> to_std_string
         inl x = x |> as_str
-        inl separator = separator |> as_str
-        !\($'"!acc + !x + !separator"')
-        |> from_std_string
+        $'$"{!acc}{!x}{!separator}"'
 
 #!spiral
 
@@ -511,7 +545,7 @@ types ()
     "3"
 ]
 |> fun x =>
-    inl code = (x : _) |> sm'.concat_list_heap_trailing "\n"
+    inl code = (x : _) |> concat_list_heap_trailing "\n"
     code
     |> _assert_eq "1\n2\n3\n"
 

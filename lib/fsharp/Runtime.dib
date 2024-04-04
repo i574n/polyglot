@@ -47,7 +47,7 @@ open Common
 
 //// test
 
-open FileSystem.Operators
+open SpiralFileSystem.Operators
 
 #!markdown
 
@@ -104,7 +104,7 @@ let splitCommand (command: string) =
         | ' ' :: tail, (Start | Path _) -> loop (path, args) tail Arguments
         | char :: tail, Arguments -> loop (path, $"{args}{char}") tail Arguments
         | char :: tail, _ -> loop ($"{path}{char}", args) tail step
-        | _, _ -> path |> Sm.replace @"\" "/", args
+        | _, _ -> path |> SpiralSm.replace @"\" "/", args
     loop ("", "") (command |> Seq.toList) Start
 
 #!fsharp
@@ -227,12 +227,12 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
             do! proc.WaitForExitAsync ct |> Async.AwaitTask
             return proc.ExitCode
         with :? System.Threading.Tasks.TaskCanceledException as ex ->
-            trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> Sm.format_exception}") getLocals
-            ex |> Sm.format_exception |> output.Push
+            trace Warning (fun () -> $"executeAsync / WaitForExitAsync / ex: {ex |> SpiralSm.format_exception}") getLocals
+            ex |> SpiralSm.format_exception |> output.Push
             return System.Int32.MinValue
     }
 
-    let output = output |> Seq.rev |> Sm.concat "\n"
+    let output = output |> Seq.rev |> SpiralSm.concat "\n"
 
     trace Debug (fun () ->
         $"executeAsync / exitCode: {exitCode} / output.Length: {output.Length}"
@@ -254,7 +254,7 @@ let inline executeAsync command =
 
 //// test
 
-let tempFolder = FileSystem.createTempDirectory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let fileName = "test.txt"
 let path = tempFolder </> fileName
 
@@ -288,7 +288,7 @@ async {
 
 //// test
 
-let tempFolder = FileSystem.createTempDirectory ()
+let tempFolder = SpiralFileSystem.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let command = @$"pwsh -c ""Get-Content {path}"""
@@ -391,7 +391,7 @@ Argu.ArgumentParser.Create<Arguments>().PrintUsage ()
 
 fun () -> parseArgs<Arguments> [||] |> ignore
 |> _throwsC (fun ex _ ->
-    Sm.format_exception ex
+    SpiralSm.format_exception ex
     |> _stringContains "Argu.ArguParseException: ERROR: missing parameter '<paths>...'."
 )
 

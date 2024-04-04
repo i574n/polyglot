@@ -1,6 +1,7 @@
 function Invoke-Linux {
     param (
-        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock,
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [ScriptBlock] $ScriptBlock,
         [string] $Distro = ""
     )
     if ($IsWindows) {
@@ -17,7 +18,8 @@ function Invoke-Linux {
 
 function Invoke-Block {
     param (
-        [Parameter(Mandatory, ValueFromPipeline)] [ScriptBlock] $ScriptBlock,
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [ScriptBlock] $ScriptBlock,
         [string] $OnError = $ErrorActionPreference,
         [Hashtable] $EnvironmentVariables,
         [switch] $Linux = $false,
@@ -99,16 +101,20 @@ function Invoke-Block {
 
 function Get-LastSortedItem {
     param (
-        [Parameter(Mandatory)] [string] $Path,
-        [Parameter(Mandatory)] [string] $Filter
+        [Parameter(Mandatory)]
+        [string] $Path,
+        [Parameter(Mandatory)]
+        [string] $Filter
     )
     (Get-ChildItem -Path $Path -Filter $Filter -Recurse | Sort-Object { [regex]::Replace($_.FullName, '\d+', { $args[0].Value.PadLeft(20) }) })[-1]
 }
 
 function Update-Toml {
     param (
-        [Parameter(Mandatory)] [string] $tomlPath,
-        [Parameter(Mandatory)] [scriptblock] $ContentModifier
+        [Parameter(Mandatory)]
+        [string] $tomlPath,
+        [Parameter(Mandatory)]
+        [scriptblock] $ContentModifier
     )
 
     if (!(Test-Path $tomlPath)) {
@@ -124,8 +130,10 @@ function Update-Toml {
 
 function Update-Json {
     param (
-        [Parameter(Mandatory)] [string] $jsonPath,
-        [Parameter(Mandatory)] [scriptblock] $ContentModifier
+        [Parameter(Mandatory)]
+        [string] $jsonPath,
+        [Parameter(Mandatory)]
+        [scriptblock] $ContentModifier
     )
 
     if (!(Test-Path $jsonPath)) {

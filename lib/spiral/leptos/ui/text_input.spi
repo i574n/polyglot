@@ -4,10 +4,10 @@ open leptos
 inl render forall t. (class : () -> string) props getter setter : _ input =
     inl getter : () -> t = join getter
     inl setter : sm'.std_string -> () = join setter
-    inl class = join class
+    inl class = class |> rust.emit
     input
         ([
-            $'"class=move || \\\"bg-gray-50 h-[31px] [font-size:.875rem] \\\".to_owned() + &!class()"'
+            $'"class=move || \\\"bg-gray-50 h-[31px] [font-size:.875rem] \\\".to_owned() + &!class(())"'
             $'"prop:value=move || !getter()"'
             $'"on:keyup=move |event: web_sys::KeyboardEvent| !setter(leptos::event_target_value(&event))"'
         ] /@ props)

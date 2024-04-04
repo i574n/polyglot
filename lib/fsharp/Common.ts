@@ -6,7 +6,7 @@ import { value, Option } from "../../fable_modules/fable-library-ts.4.14.0/Optio
 import { op_Subtraction, toInt64, int64 } from "../../fable_modules/fable-library-ts.4.14.0/BigInt.js";
 import { create, getTicks, now, toString } from "../../fable_modules/fable-library-ts.4.14.0/Date.js";
 import { milliseconds, seconds, minutes, hours, fromTicks } from "../../fable_modules/fable-library-ts.4.14.0/TimeSpan.js";
-import { Sm_trim_start, Sm_trim_end } from "../../../../../../../lib/spiral/lib.fsx";
+import { SpiralSm_trim_start, SpiralSm_trim_end } from "../../../../../../../../lib/spiral/lib.fsx";
 import { interpolate, toText } from "../../fable_modules/fable-library-ts.4.14.0/String.js";
 
 export const nl = "\n";
@@ -142,7 +142,7 @@ export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (
     traceRaw(level, (): string => {
         let matchValue: Option<int64>, replStart_1: int64, t: number;
         const time: string = toString((matchValue = replStart(), (matchValue == null) ? now() : ((replStart_1 = value(matchValue), (t = fromTicks(toInt64(op_Subtraction(getTicks(now()), replStart_1))), create(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t)))))), "HH:mm:ss");
-        return Sm_trim_end([" ", "/"])(Sm_trim_start([])(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, traceCount(), level, fn(), getLocals()]))));
+        return SpiralSm_trim_end([" ", "/"])(SpiralSm_trim_start([])(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, traceCount(), level, fn(), getLocals()]))));
     });
 }
 

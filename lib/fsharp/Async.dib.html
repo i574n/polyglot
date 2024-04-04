@@ -7735,11 +7735,11 @@ a.anchor-link {
             <span class="n">ex</span><span class="o">.</span><span class="n">InnerExceptions</span>
             <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">function</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="o">-&gt;</span> <span class="n">true</span> <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span><span class="p">)</span>
             <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
             <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="o">|</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync** / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutAsync** / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">return</span> <span class="kc">None</span>
     <span class="p">}</span>
 
@@ -7896,7 +7896,7 @@ a.anchor-link {
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutChildAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
                 <span class="kc">None</span>
             <span class="o">|</span> <span class="n">Error</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutChildAsync** / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutChildAsync** / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
                 <span class="kc">None</span>
         <span class="p">)</span>
 <span class="p">}</span>
@@ -8070,10 +8070,10 @@ a.anchor-link {
             <span class="k">return</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span> <span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">,</span> <span class="n">getLocals</span>
         <span class="k">with</span>
         <span class="o">|</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">TimeoutException</span> <span class="k">as</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
             <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="n">getLocals</span>
         <span class="o">|</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutStrict / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"runWithTimeoutStrict / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">return</span> <span class="k">raise</span> <span class="n">ex</span>
     <span class="p">}</span>
 
@@ -8092,11 +8092,11 @@ a.anchor-link {
         <span class="n">ex</span><span class="o">.</span><span class="n">InnerExceptions</span>
         <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">exists</span> <span class="p">(</span><span class="n">function</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="o">-&gt;</span> <span class="n">true</span> <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span><span class="p">)</span>
         <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
         <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict"</span><span class="p">)</span> <span class="n">getLocals</span>
         <span class="kc">None</span>
     <span class="o">|</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
         <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"runWithTimeoutStrict**"</span><span class="p">)</span> <span class="n">getLocals</span>
         <span class="kc">None</span>
 </pre></div>

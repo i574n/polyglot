@@ -2,7 +2,7 @@ pub mod Polyglot {
     use super::*;
     pub mod Common {
         use super::*;
-        use crate::Lib::Sm;
+        use crate::Lib::SpiralSm;
         use fable_library_rust::DateTime_::DateTime;
         use fable_library_rust::NativeArray_::new_array;
         use fable_library_rust::NativeArray_::new_empty;
@@ -161,16 +161,16 @@ pub mod Polyglot {
                         };
                         dateTime.toString(string("hh:mm:ss"))
                     };
-                    (Sm::trim_end(new_array(&[' ', '/'])))((Sm::trim_start(new_empty::<char>()))(
-                        sprintf!(
-                            "{} #{} [{:?}] {} / {}",
-                            time,
-                            Polyglot::Common::traceCount().get().clone(),
-                            level.clone(),
-                            r#fn(),
-                            getLocals()
-                        ),
-                    ))
+                    (SpiralSm::trim_end(new_array(&[' ', '/'])))((SpiralSm::trim_start(
+                        new_empty::<char>(),
+                    ))(sprintf!(
+                        "{} #{} [{:?}] {} / {}",
+                        time,
+                        Polyglot::Common::traceCount().get().clone(),
+                        level.clone(),
+                        r#fn(),
+                        getLocals()
+                    )))
                 }
             });
             Polyglot::Common::traceRaw(level.clone(), fn_1)

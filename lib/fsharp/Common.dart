@@ -3,7 +3,7 @@ import '../../fable_modules/fable_library/Date.dart' as date;
 import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/TimeSpan.dart' as time_span;
 import '../../fable_modules/fable_library/Types.dart' as types;
-import '../../../../../../../lib/spiral/lib.fsx' as lib;
+import '../../../../../../../../lib/spiral/lib.fsx' as lib;
 
 const nl = '\n';
 
@@ -97,7 +97,7 @@ void trace(TraceLevel level, String Function() fn, String Function() getLocals) 
             tmp_capture = date.create(1, 1, 1, time_span.hours(t), time_span.minutes(t), time_span.seconds(t), time_span.milliseconds(t));
         }
         final time = date.toString(tmp_capture, 'HH:mm:ss');
-        return (lib.Sm_trim_end([32, 47]))((lib.Sm_trim_start(<int>[]))(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [time, traceCount, level, fn(), getLocals()]))));
+        return (lib.SpiralSm_trim_end([32, 47]))((lib.SpiralSm_trim_start(<int>[]))(string.toText(string.interpolate('%P() #%P() [%A%P()] %s%P() / %s%P()', [time, traceCount, level, fn(), getLocals()]))));
     });
 }
 

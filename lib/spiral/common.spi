@@ -1,16 +1,6 @@
 // // # common
 
-// // ## types
-
-nominal any = $"obj"
-nominal disposable = $"System.IDisposable"
-nominal exn = $"exn"
-nominal unativeint = $"unativeint"
-
-let array x = x
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
+inl array x = x
 
 // // ## prototype
 
@@ -24,14 +14,29 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+// // ## unativeint
+
+nominal unativeint = $"unativeint"
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
+
+// // ## i32
+
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
+
+// // ## i64
 
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
+// // ## f32
+
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
+
+// // ## f64
 
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
@@ -54,28 +59,65 @@ inl from_pair forall a b. (pair : pair a b) : a * b =
     $"let (a, b) = !pair"
     $"a", $"b"
 
-// // ## log_level_type
+// // ## memoize
 
-union log_level_type =
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'
+
+// // ## trace_level
+
+union trace_level =
     | Verbose
     | Debug
     | Info
     | Warning
     | Critical
 
-instance to_string log_level_type = function
+instance to_string trace_level = function
     | Verbose => "Verbose"
     | Debug => "Debug"
     | Info => "Info"
     | Warning => "Warning"
     | Critical => "Critical"
 
-instance of_string log_level_type = function
+instance of_string trace_level = function
     | "Verbose" => Verbose
     | "Debug" => Debug
     | "Info" => Info
     | "Warning" => Warning
     | "Critical" => Critical
+
+// // ## get_locals
+
+inl get_locals () = ""
+
+// // ## trace_state
+
+inl trace_state () =
+    inl result =
+        fun () =>
+            {
+                enabled = mut true
+                count = mut 0i64
+                level = mut Debug
+                dump = mut false
+            }
+        |> memoize
+    result ()
+
+// // ## test_trace_level
+
+inl test_trace_level level =
+    inl state = trace_state ()
+    inl level' = *state.level
+    *state.enabled && $'!level >= !level' '
+
+// // ## any
+
+nominal any = $"obj"
 
 // // ## to_any
 
@@ -94,14 +136,29 @@ inl (/@) a b =
 inl unbox forall t u. (x : t) : u =
     $"!x |> unbox<`u>"
 
-// // ## (/+)
+// // ## (+.)
 
-inl (/+) forall t. (a : t) (b : t) : t =
+inl (+.) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
-// // ## (/=)
+// // ## (-.)
 
-inl (/=) forall t. (a : t) (b : t) : bool =
+inl (-.) forall t. (a : t) (b : t) : t =
+    $"!a - !b"
+
+// // ## (*.)
+
+inl (*.) forall t. (a : t) (b : t) : t =
+    $"!a * !b"
+
+// // ## (/.)
+
+inl (/.) forall t. (a : t) (b : t) : t =
+    $"!a / !b"
+
+// // ## (=.)
+
+inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
 
 // // ## (||>)
@@ -136,20 +193,25 @@ inl join_body_unit body d x =
 
 union target_runtime =
     | Native
-    | Wasm
     | Fable
+    | Wasm
+    | Contract
 
 union target =
     | Rust : target_runtime
     | Fsharp : target_runtime
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
-    $"let mutable result = None"
-    $"#if FABLE_COMPILER_RUST && \!WASM"
+    inl result : optionm'.option' t = $'None'
+    $"let mutable _!result = !result"
+    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
     fn (Rust Native) () |> fun x => $"!x"
     $"#endif"
     $"#if FABLE_COMPILER_RUST && WASM"
     fn (Rust Wasm) () |> fun x => $"!x"
+    $"#endif"
+    $"#if FABLE_COMPILER_RUST && CONTRACT"
+    fn (Rust Contract) () |> fun x => $"!x"
     $"#endif"
     $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM"
     fn (Fsharp Native) () |> fun x => $"!x"
@@ -160,8 +222,8 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"#if \!FABLE_COMPILER_RUST && WASM"
     fn (Fsharp Wasm) () |> fun x => $"!x"
     $"#endif"
-    $"|> fun x -> result <- Some x"
-    $"result |> Option.get"
+    $"|> fun x -> _!result <- Some x"
+    $"_!result |> Option.get"
 
 // // ## nameof
 
@@ -173,13 +235,9 @@ inl nameof x : string =
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
 
-// // ## memoize
+// // ## disposable
 
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
+nominal disposable = $"System.IDisposable"
 
 // // ## use_disposable
 
@@ -192,9 +250,14 @@ inl use_disposable (disposable : disposable) : disposable =
 inl new_disposable (fn : () -> ()) : disposable =
     run_target function
         | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        | Rust _ =>
-            inl fn = join fn
-            fun () => $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        // | Rust _ =>
+        //     fun () =>
+                // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        | target => fun () => failwith $'$"new_disposable / target: {!target}"'
+
+// // ## exn
+
+nominal exn = $"exn"
 
 // // ## try
 
@@ -220,7 +283,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 // trace Warning (fun () => "retry_fn") getLocals
                 sleep 1
         |> function

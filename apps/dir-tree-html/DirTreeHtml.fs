@@ -8,7 +8,7 @@ module DirTreeHtml =
     open Lib
 #endif
 
-    open FileSystem.Operators
+    open SpiralFileSystem.Operators
     open Falco.Markup
 
     type FileSystemNode =
@@ -19,10 +19,10 @@ module DirTreeHtml =
     let rec scanDirectory isRoot (basePath : string) (path : string) =
         let relativePath =
             path
-            |> Sm.replace basePath ""
-            |> Sm.replace "\\" "/"
-            |> Sm.replace "//" "/"
-            |> Sm.trim_start [| '/' |]
+            |> SpiralSm.replace basePath ""
+            |> SpiralSm.replace "\\" "/"
+            |> SpiralSm.replace "//" "/"
+            |> SpiralSm.trim_start [| '/' |]
 
         let directories =
             path

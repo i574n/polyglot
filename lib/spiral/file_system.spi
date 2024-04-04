@@ -6,12 +6,86 @@ open sm'_operators
 // // ## types
 
 inl types () =
-    ()
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>] type std_path_Path = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>] type std_path_PathBuf = class end"
 
-// // ## (</>)
+inl types () =
+    global "#if FABLE_COMPILER // file_system.types"
+    sm'.types ()
+    rust.types ()
+    types ()
+    global "#endif // file_system.types"
+
+// // ## path
+
+nominal path = $'std_path_Path'
+nominal path_buf = $'std_path_PathBuf'
+
+// // ## new_path_buf
+
+inl new_path_buf (path : string) : path_buf =
+    inl path = path |> sm'.to_std_string
+    !\\(path, $'"std::path::PathBuf::from($0)"')
+
+// // ## path_buf_from
+
+inl path_buf_from (path : rust.box path) : path_buf =
+    !\\(path, $'"std::path::PathBuf::from($0)"')
+
+// // ## path_join
+
+inl path_join (s : string) (path_buf : path_buf) : path_buf =
+    !\\((path_buf, s |> sm'.to_std_string), $'"$0.join($1)"')
+
+// // ## path_display
+
+inl path_display (path : rust.ref' path) : sm'.std_string =
+    !\\(path, $'"$0.display().to_string()"')
+
+// // ## path_buf_file_name
+
+inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
+    !\($'"!path.file_name()"')
+
+// // ## path_buf_display
+
+inl path_buf_display (path : path_buf) : sm'.std_string =
+    !\\(path, $'"$0.display().to_string()"')
+
+// // ## path_exists
+
+inl path_buf_exists (path_buf : path_buf) : bool =
+    !\($'"!path_buf.exists()"')
+
+// // ## path_is_dir
+
+inl path_buf_is_dir (path_buf : path_buf) : bool =
+    !\($'"!path_buf.is_dir()"')
+
+// // ## path_is_file
+
+inl path_buf_is_file (path_buf : path_buf) : bool =
+    !\($'"!path_buf.is_file()"')
+
+// // ## path_parent
+
+inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
+    !\\(path_buf, $'"$0.parent().map(std::path::PathBuf::from)"')
+
+// // ## (< />)
 
 inl (</>) (a : string) (b : string) : string =
-    $'System.IO.Path.Combine (!a, !b)'
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Path.Combine (!a, !b)'
+        | Rust (Native) => fun () =>
+            a |> new_path_buf |> path_join b |> path_buf_display |> sm'.from_std_string
+        | target => fun () => null ()
+
+// // ## get_temp_path
+
+inl get_temp_path () : string =
+    $'System.IO.Path.GetTempPath' ()
 
 // // ## create_temp_directory_name
 
@@ -20,12 +94,144 @@ inl create_temp_directory_name () =
         | Fsharp (Native) => fun () =>
             inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
 
-            ($'System.IO.Path.GetTempPath' () : string)
-            </> ($'$"{!root}"' : string)
+            get_temp_path ()
+            </> ($'$"\!{!root}"' : string)
             </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
-        | x => fun () => failwith $'$"create_temp_directory_name target: {!x}"'
+        | target => fun () => null ()
+
+// // ## directory_info
+
+nominal directory_info = $'System.IO.DirectoryInfo'
+
+inl directory_info (path : string) : directory_info =
+    path |> $'`directory_info '
+
+// // ## directory_info_exists
+
+inl directory_info_exists (info : directory_info) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.Exists'
+        | target => fun () => null ()
+
+// // ## directory_info_creation_time
+
+inl directory_info_creation_time (info : directory_info) : date_time.date_time =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.CreationTime'
+        | target => fun () => null ()
+
+// // ## directory_info_name
+
+inl directory_info_name (info : directory_info) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.Name'
+        | target => fun () => null ()
+
+// // ## directory_info_full_name
+
+inl directory_info_full_name (info : directory_info) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!info.FullName'
+        | target => fun () => null ()
+
+// // ## create_directory
+
+inl create_directory (path : string) : directory_info =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Directory.CreateDirectory'
+        | target => fun () => null ()
+
+// // ## directory_exists
+
+inl directory_exists (path : string) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Directory.Exists'
+        | Rust (Native) => fun () =>
+            inl path = path |> new_path_buf
+            (path |> path_buf_exists) && (path |> path_buf_is_dir)
+        | target => fun () => null ()
+
+// // ## directory_get_parent
+
+inl directory_get_parent (path : string) : optionm'.option' string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
+            if parent =. null ()
+            then None
+            else parent |> directory_info_full_name |> Some
+        | Rust (Native) => fun () =>
+            path
+            |> new_path_buf
+            |> path_buf_parent
+            |> optionm'.try'
+            |> path_buf_display
+            |> sm'.from_std_string
+            |> Some
+        | target => fun () => null ()
+    |> optionm'.box
+
+// // ## file_exists
+
+inl file_exists (path : string) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.File.Exists'
+        | Rust (Native) => fun () =>
+            inl path_buf = path |> new_path_buf
+            (path_buf |> path_buf_exists) && (path_buf |> path_buf_is_file)
+        | target => fun () => null ()
+
+// // ## create_temp_directory
+
+inl create_temp_directory () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl temp_folder = create_temp_directory_name ()
+            inl result = temp_folder |> create_directory
+
+            inl exists' = result |> directory_info_exists
+            if not exists' then
+                inl creation_time = result |> directory_info_creation_time
+                inl result = ($'{| Exists = !exists'; CreationTime = !creation_time |}' : any) |> sm'.format_debug
+                inl get_locals () : string =
+                    $'$"temp_folder: {!temp_folder} / result: {!result} {!get_locals ()}"'
+                // trace Debug (fun () => "createTempDirectory") get_locals
+                console.write_line ($'$"create_temp_directory / {!get_locals ()}"' : string)
+
+            temp_folder
+        | target => fun () => null ()
+
+// // ## get_source_directory
+
+inl get_source_directory () =
+    $'__SOURCE_DIRECTORY__' : string
+
+// // ## find_parent
+
+inl find_parent name is_file root_dir =
+    let rec loop dir =
+        if dir </> name |> (if is_file then file_exists else directory_exists)
+        then dir
+        else
+            match dir |> (join directory_get_parent) |> optionm'.unbox with
+            | Some parent => parent |> loop
+            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\'"""'
+    loop root_dir
 
 // // ## main
 
 inl main () =
+    types ()
     $"let create_temp_directory_name () = !create_temp_directory_name ()" : ()
+    $"let create_temp_directory () = !create_temp_directory ()" : ()
+    $"let get_source_directory () = !get_source_directory ()" : ()
+    $"let find_parent x = !find_parent x" : ()
+    inl combine x = (</>) x
+    $"let (</>) x = !combine x" : ()

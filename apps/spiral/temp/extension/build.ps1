@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 
 
 if (!$fast) {
-    { pnpm install --frozen-lockfile } | Invoke-Block
+    { ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block
 }
 
 { wasm-pack build --target web --dev <# --reference-types # --weak-refs --no-typescript #> } | Invoke-Block
@@ -18,5 +18,5 @@ Remove-Item ./dist -Recurse -Force -ErrorAction Ignore
 { Copy-Item ./public/* ./dist -Recurse -Force } | Invoke-Block
 
 if (!$fast) {
-    { pnpm test:e2e } | Invoke-Block
+    { ~/.bun/bin/bun test:e2e } | Invoke-Block
 }

@@ -36,7 +36,7 @@ $files | ForEach-Object {
     #     }
     #     $Error.Clear()
 
-    #     $output = pnpm -C ../apps/ipfs start $_.FullName
+    #     $output = ~/.bun/bin/bun start $_.FullName --cwd ../apps/ipfs
     #     $status = $output `
     #     | Select-String -Pattern "status: '(\w+)'" `
     #     | ForEach-Object { $_.Matches.Groups[1].Value }

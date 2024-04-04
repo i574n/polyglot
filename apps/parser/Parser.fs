@@ -33,7 +33,7 @@ module Parser =
             lines =
                 if str |> String.IsNullOrEmpty
                 then [||]
-                else str |> Sm.split_string [| "\r\n"; "\n" |]
+                else str |> SpiralSm.split_string [| "\r\n"; "\n" |]
             position = initialPos
         }
 

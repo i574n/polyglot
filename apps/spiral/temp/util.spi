@@ -128,12 +128,3 @@ inl array_collect forall t r. (fn : t -> a i32 r) (items : a i32 t) : a i32 r =
     items
     |> am.map fn
     |> am.fold (/@) (a ;[])
-
-inl new_guid_from_ticks (ticks : ticks) : guid =
-    inl guid = new_raw_guid () |> to_string'
-    inl ticks' = ticks |> to_string'
-    $"`guid $\"{!ticks'.[0..7]}-{!ticks'.[8..11]}-{!ticks'.[12..15]}-{!ticks'.[16..17]}{!guid.[21..]}\""
-
-inl ticks_from_guid (guid : guid) : ticks =
-    inl ticks' = guid |> to_string'
-    $"`i64 $\"{!ticks'.[0..7]}{!ticks'.[9..12]}{!ticks'.[14..17]}{!ticks'.[19..20]}\""

@@ -23,7 +23,7 @@ function UpdateJson {
     )
     $json = [IO.Path]::GetFullPath("$ScriptDir/$json")
     Write-Output "`n$json"
-    { pnpm -C $json update } | Invoke-Block
+    { ~/.bun/bin/bun update --cwd $json } | Invoke-Block
 }
 
 

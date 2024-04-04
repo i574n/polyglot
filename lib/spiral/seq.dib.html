@@ -7654,7 +7654,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">of_array</span><span class="s1">'</span>
 </pre></div>
 </div>
@@ -7705,15 +7705,12 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : (string [])) : (string []) =
-    v0
-and method0 () : string seq =
+<pre>let rec method0 () : string seq =
     let v0 : string = "a"
     let v1 : string = "b"
     let v2 : (string []) = [|v0; v1|]
-    let v3 : (string []) = method1(v2)
-    let v4 : string seq = seq { for i = 0 to v3.Length - 1 do yield v3.[i] }
-    v4
+    let v3 : string seq = seq { for i = 0 to v2.Length - 1 do yield v2.[i] }
+    v3
 method0()
 
 </pre>
@@ -7760,7 +7757,7 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">of_array</span>
 </pre></div>
 </div>
@@ -7811,15 +7808,12 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : (string [])) : (string []) =
-    v0
-and method0 () : string seq =
+<pre>let rec method0 () : string seq =
     let v0 : string = "a"
     let v1 : string = "b"
     let v2 : (string []) = [|v0; v1|]
-    let v3 : (string []) = method1(v2)
-    let v4 : ((string []) -&gt; string seq) = Seq.ofArray
-    v4 v3
+    let v3 : ((string []) -&gt; string seq) = Seq.ofArray
+    v3 v2
 method0()
 
 </pre>
@@ -7877,10 +7871,10 @@ method0()
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
-<span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 <span class="o">|&gt;</span> <span class="n">of_array</span><span class="s1">'</span>
 <span class="o">|&gt;</span> <span class="n">to_array</span><span class="s1">'</span>
-<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span><span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span><span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
+<span class="o">|&gt;</span> <span class="n">_assert_eq</span> <span class="p">(</span><span class="n">a</span> <span class="p">;[</span> <span class="s2">"a"</span><span class="p">;</span> <span class="s2">"b"</span> <span class="p">]</span> <span class="p">:</span> <span class="n">_</span> <span class="n">i32</span> <span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7893,9 +7887,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : (string [])) : (string []) =
-    v0
-and method2 (v0 : (string []), v1 : (string []), v2 : int32) : bool =
+<pre>let rec method1 (v0 : (string []), v1 : (string []), v2 : int32) : bool =
     let v3 : int32 = v0.Length
     let v4 : bool = v2 &lt; v3
     if v4 then
@@ -7904,43 +7896,41 @@ and method2 (v0 : (string []), v1 : (string []), v2 : int32) : bool =
         let v7 : bool = v5 = v6
         if v7 then
             let v8 : int32 = v2 + 1
-            method2(v0, v1, v8)
+            method1(v0, v1, v8)
         else
             false
     else
         true
-and method3 (v0 : bool) : bool =
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : string = "a"
     let v1 : string = "b"
     let v2 : (string []) = [|v0; v1|]
-    let v3 : (string []) = method1(v2)
-    let v4 : string seq = seq { for i = 0 to v3.Length - 1 do yield v3.[i] }
-    let v5 : (string []) = v4 |&gt; Seq.toArray
-    let v6 : (string []) = [|v0; v1|]
-    let v7 : (string []) = method1(v6)
-    let v8 : string = $"%A{v5}"
-    System.Console.WriteLine v8
-    let v9 : int32 = v5.Length
-    let v10 : int32 = v7.Length
-    let v11 : bool = v9 = v10
-    let v12 : bool = v11 &lt;&gt; true
-    let v15 : bool =
-        if v12 then
+    let v3 : string seq = seq { for i = 0 to v2.Length - 1 do yield v2.[i] }
+    let v4 : (string []) = v3 |&gt; Seq.toArray
+    let v5 : (string []) = [|v0; v1|]
+    let v6 : string = $"%A{v4}"
+    System.Console.WriteLine v6
+    let v7 : int32 = v4.Length
+    let v8 : int32 = v5.Length
+    let v9 : bool = v7 = v8
+    let v10 : bool = v9 &lt;&gt; true
+    let v13 : bool =
+        if v10 then
             false
         else
-            let v13 : int32 = 0
-            method2(v5, v7, v13)
-    let v17 : bool =
-        if v15 then
+            let v11 : int32 = 0
+            method1(v4, v5, v11)
+    let v15 : bool =
+        if v13 then
             true
         else
-            method3(v15)
-    let v18 : string = $"__expect / actual: %A{v5} / expected: %A{v7}"
-    let v19 : bool = v17 = false
-    if v19 then
-        failwith&lt;unit&gt; v18
+            method2(v13)
+    let v16 : string = $"__expect / actual: %A{v4} / expected: %A{v5}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 [|"a"; "b"|]
@@ -8097,8 +8087,8 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
@@ -8110,11 +8100,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_1(5)
+    let v0 : US0 = US0_0(5)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(5)
-    let v6 : US0 = US0_1(5)
+    let v5 : US0 = US0_0(5)
+    let v6 : US0 = US0_0(5)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
@@ -8129,7 +8119,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_1 5
+US0_0 5
 </pre>
 </div>
 </div>
@@ -8206,19 +8196,19 @@ US0_1 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(10)
+    let v0 : US0 = US0_0(10)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(10)
-    let v6 : US0 = US0_1(10)
+    let v5 : US0 = US0_0(10)
+    let v6 : US0 = US0_0(10)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 10
+US0_0 10
 </pre>
 </div>
 </div>
@@ -8295,8 +8285,8 @@ US0_1 10
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
@@ -8308,11 +8298,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_1(10)
+    let v0 : US0 = US0_0(10)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(10)
-    let v6 : US0 = US0_1(10)
+    let v5 : US0 = US0_0(10)
+    let v6 : US0 = US0_0(10)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
@@ -8327,7 +8317,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_1 10
+US0_0 10
 </pre>
 </div>
 </div>
@@ -8417,8 +8407,8 @@ US0_1 10
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
     printfn $"print_and_return / x: {0}"
     printfn $"print_and_return / x: {1}"
@@ -8430,11 +8420,11 @@ let rec method0 () : unit =
     printfn $"print_and_return / x: {7}"
     printfn $"print_and_return / x: {8}"
     printfn $"print_and_return / x: {9}"
-    let v0 : US0 = US0_1(2)
+    let v0 : US0 = US0_0(2)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(2)
-    let v6 : US0 = US0_1(2)
+    let v5 : US0 = US0_0(2)
+    let v6 : US0 = US0_0(2)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
@@ -8449,7 +8439,7 @@ print_and_return / x: 6
 print_and_return / x: 7
 print_and_return / x: 8
 print_and_return / x: 9
-US0_1 2
+US0_0 2
 </pre>
 </div>
 </div>
@@ -8525,19 +8515,19 @@ US0_1 2
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32 * f1_1 : int32
+    | US0_0 of f0_0 : int32 * f0_1 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5, 10)
+    let v0 : US0 = US0_0(5, 10)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(5, 10)
-    let v6 : US0 = US0_1(5, 10)
+    let v5 : US0 = US0_0(5, 10)
+    let v6 : US0 = US0_0(5, 10)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 (5, 10)
+US0_0 (5, 10)
 </pre>
 </div>
 </div>
@@ -8609,22 +8599,22 @@ US0_1 (5, 10)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(5)
-    let v1 : US0 = US0_1(10)
+    let v0 : US0 = US0_0(5)
+    let v1 : US0 = US0_0(10)
     let v2 : string = $"%A{struct (v0, v1)}"
     System.Console.WriteLine v2
-    let v9 : US0 = US0_1(5)
-    let v10 : US0 = US0_1(10)
-    let v11 : US0 = US0_1(5)
-    let v12 : US0 = US0_1(10)
+    let v9 : US0 = US0_0(5)
+    let v10 : US0 = US0_0(10)
+    let v11 : US0 = US0_0(5)
+    let v12 : US0 = US0_0(10)
     let v13 : string = $"__expect / actual: %A{struct (v9, v10)} / expected: %A{struct (v11, v12)}"
     ()
 method0()
 
-struct (US0_1 5, US0_1 10)
+struct (US0_0 5, US0_0 10)
 </pre>
 </div>
 </div>
@@ -8698,19 +8688,19 @@ struct (US0_1 5, US0_1 10)
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec method0 () : unit =
-    let v0 : US0 = US0_1(6)
+    let v0 : US0 = US0_0(6)
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v5 : US0 = US0_1(6)
-    let v6 : US0 = US0_1(6)
+    let v5 : US0 = US0_0(6)
+    let v6 : US0 = US0_0(6)
     let v7 : string = $"__expect / actual: %A{v5} / expected: %A{v6}"
     ()
 method0()
 
-US0_1 6
+US0_0 6
 </pre>
 </div>
 </div>
@@ -8925,58 +8915,58 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type UH0 =
-    | UH0_0 of int32 * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of int32 * UH0
 let rec method0 () : unit =
-    let v0 : UH0 = UH0_1
-    let v1 : UH0 = UH0_0(9, v0)
-    let v2 : UH0 = UH0_0(8, v1)
-    let v3 : UH0 = UH0_0(7, v2)
-    let v4 : UH0 = UH0_0(6, v3)
-    let v5 : UH0 = UH0_0(5, v4)
-    let v6 : UH0 = UH0_0(4, v5)
-    let v7 : UH0 = UH0_0(3, v6)
-    let v8 : UH0 = UH0_0(2, v7)
-    let v9 : UH0 = UH0_0(1, v8)
-    let v10 : UH0 = UH0_0(0, v9)
+    let v0 : UH0 = UH0_0
+    let v1 : UH0 = UH0_1(9, v0)
+    let v2 : UH0 = UH0_1(8, v1)
+    let v3 : UH0 = UH0_1(7, v2)
+    let v4 : UH0 = UH0_1(6, v3)
+    let v5 : UH0 = UH0_1(5, v4)
+    let v6 : UH0 = UH0_1(4, v5)
+    let v7 : UH0 = UH0_1(3, v6)
+    let v8 : UH0 = UH0_1(2, v7)
+    let v9 : UH0 = UH0_1(1, v8)
+    let v10 : UH0 = UH0_1(0, v9)
     let v11 : string = $"%A{v10}"
     System.Console.WriteLine v11
-    let v100 : UH0 = UH0_1
-    let v101 : UH0 = UH0_0(9, v100)
-    let v102 : UH0 = UH0_0(8, v101)
-    let v103 : UH0 = UH0_0(7, v102)
-    let v104 : UH0 = UH0_0(6, v103)
-    let v105 : UH0 = UH0_0(5, v104)
-    let v106 : UH0 = UH0_0(4, v105)
-    let v107 : UH0 = UH0_0(3, v106)
-    let v108 : UH0 = UH0_0(2, v107)
-    let v109 : UH0 = UH0_0(1, v108)
-    let v110 : UH0 = UH0_0(0, v109)
-    let v111 : UH0 = UH0_1
-    let v112 : UH0 = UH0_0(9, v111)
-    let v113 : UH0 = UH0_0(8, v112)
-    let v114 : UH0 = UH0_0(7, v113)
-    let v115 : UH0 = UH0_0(6, v114)
-    let v116 : UH0 = UH0_0(5, v115)
-    let v117 : UH0 = UH0_0(4, v116)
-    let v118 : UH0 = UH0_0(3, v117)
-    let v119 : UH0 = UH0_0(2, v118)
-    let v120 : UH0 = UH0_0(1, v119)
-    let v121 : UH0 = UH0_0(0, v120)
+    let v100 : UH0 = UH0_0
+    let v101 : UH0 = UH0_1(9, v100)
+    let v102 : UH0 = UH0_1(8, v101)
+    let v103 : UH0 = UH0_1(7, v102)
+    let v104 : UH0 = UH0_1(6, v103)
+    let v105 : UH0 = UH0_1(5, v104)
+    let v106 : UH0 = UH0_1(4, v105)
+    let v107 : UH0 = UH0_1(3, v106)
+    let v108 : UH0 = UH0_1(2, v107)
+    let v109 : UH0 = UH0_1(1, v108)
+    let v110 : UH0 = UH0_1(0, v109)
+    let v111 : UH0 = UH0_0
+    let v112 : UH0 = UH0_1(9, v111)
+    let v113 : UH0 = UH0_1(8, v112)
+    let v114 : UH0 = UH0_1(7, v113)
+    let v115 : UH0 = UH0_1(6, v114)
+    let v116 : UH0 = UH0_1(5, v115)
+    let v117 : UH0 = UH0_1(4, v116)
+    let v118 : UH0 = UH0_1(3, v117)
+    let v119 : UH0 = UH0_1(2, v118)
+    let v120 : UH0 = UH0_1(1, v119)
+    let v121 : UH0 = UH0_1(0, v120)
     let v122 : string = $"__expect / actual: %A{v110} / expected: %A{v121}"
     ()
 method0()
 
-UH0_0
+UH0_1
   (0,
-   UH0_0
+   UH0_1
      (1,
-      UH0_0
+      UH0_1
         (2,
-         UH0_0
+         UH0_1
            (3,
-            UH0_0
-              (4, UH0_0 (5, UH0_0 (6, UH0_0 (7, UH0_0 (8, UH0_0 (9, UH0_1))))))))))
+            UH0_1
+              (4, UH0_1 (5, UH0_1 (6, UH0_1 (7, UH0_1 (8, UH0_1 (9, UH0_0))))))))))
 </pre>
 </div>
 </div>
@@ -9052,45 +9042,42 @@ UH0_0
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
-let rec method1 (v0 : (int32 [])) : (int32 []) =
-    v0
-and method2 (v0 : bool) : bool =
+    | US0_0 of f0_0 : int32
+    | US0_1
+let rec method1 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : (int32 []) = [|1; 2; 3|]
-    let v1 : (int32 []) = method1(v0)
-    let v2 : int32 = v1.Length
-    let v3 : bool = 1 &gt;= v2
-    let v7 : US0 =
-        if v3 then
-            US0_0
+    let v1 : int32 = v0.Length
+    let v2 : bool = 1 &gt;= v1
+    let v6 : US0 =
+        if v2 then
+            US0_1
         else
-            let v5 : int32 = v1.[int 1]
-            US0_1(v5)
-    let v8 : string = $"%A{v7}"
-    System.Console.WriteLine v8
-    let v12 : bool =
-        match v7 with
-        | US0_1(v10) -&gt; (* Some *)
-            let v11 : bool = v10 = 2
-            v11
+            let v4 : int32 = v0.[int 1]
+            US0_0(v4)
+    let v7 : string = $"%A{v6}"
+    System.Console.WriteLine v7
+    let v11 : bool =
+        match v6 with
+        | US0_0(v9) -&gt; (* Some *)
+            let v10 : bool = v9 = 2
+            v10
         | _ -&gt;
             false
-    let v14 : bool =
-        if v12 then
+    let v13 : bool =
+        if v11 then
             true
         else
-            method2(v12)
-    let v15 : US0 = US0_1(2)
-    let v16 : string = $"__expect / actual: %A{v7} / expected: %A{v15}"
-    let v17 : bool = v14 = false
-    if v17 then
-        failwith&lt;unit&gt; v16
+            method1(v11)
+    let v14 : US0 = US0_0(2)
+    let v15 : string = $"__expect / actual: %A{v6} / expected: %A{v14}"
+    let v16 : bool = v13 = false
+    if v16 then
+        failwith&lt;unit&gt; v15
 method0()
 
-US0_1 2
+US0_0 2
 </pre>
 </div>
 </div>
@@ -9176,13 +9163,11 @@ US0_1 2
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type Mut0 = {mutable l0 : (int32 [])}
 and Mut1 = {mutable l0 : int32}
-let rec method1 (v0 : (int32 [])) : (int32 []) =
-    v0
-and method2 (v0 : int32, v1 : Mut1) : bool =
+let rec method1 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0
     v3
-and method3 (v0 : (int32 []), v1 : (int32 []), v2 : int32) : bool =
+and method2 (v0 : (int32 []), v1 : (int32 []), v2 : int32) : bool =
     let v3 : int32 = v0.Length
     let v4 : bool = v2 &lt; v3
     if v4 then
@@ -9191,281 +9176,269 @@ and method3 (v0 : (int32 []), v1 : (int32 []), v2 : int32) : bool =
         let v7 : bool = v5 = v6
         if v7 then
             let v8 : int32 = v2 + 1
-            method3(v0, v1, v8)
+            method2(v0, v1, v8)
         else
             false
     else
         true
-and method4 (v0 : bool) : bool =
+and method3 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : (int32 []) = [||]
-    let v1 : (int32 []) = method1(v0)
-    let v2 : Mut0 = {l0 = v1} : Mut0
-    let v3 : (int32 []) = v2.l0
-    let v4 : (int32 []) = [|0|]
-    let v5 : (int32 []) = method1(v4)
-    let v6 : int32 = v3.Length
-    let v7 : int32 = v5.Length
-    let v8 : int32 = v6 + v7
-    let v9 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v8)
-    let v10 : Mut1 = {l0 = 0} : Mut1
-    while method2(v8, v10) do
-        let v12 : int32 = v10.l0
-        let v13 : bool = v12 &lt; v6
-        let v17 : int32 =
-            if v13 then
-                let v14 : int32 = v3.[int v12]
+    let v1 : Mut0 = {l0 = v0} : Mut0
+    let v2 : (int32 []) = v1.l0
+    let v3 : (int32 []) = [|0|]
+    let v4 : int32 = v2.Length
+    let v5 : int32 = v3.Length
+    let v6 : int32 = v4 + v5
+    let v7 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v6)
+    let v8 : Mut1 = {l0 = 0} : Mut1
+    while method1(v6, v8) do
+        let v10 : int32 = v8.l0
+        let v11 : bool = v10 &lt; v4
+        let v15 : int32 =
+            if v11 then
+                let v12 : int32 = v2.[int v10]
+                v12
+            else
+                let v13 : int32 = v10 - v4
+                let v14 : int32 = v3.[int v13]
                 v14
-            else
-                let v15 : int32 = v12 - v6
-                let v16 : int32 = v5.[int v15]
-                v16
-        v9.[int v12] &lt;- v17
-        let v18 : int32 = v12 + 1
-        v10.l0 &lt;- v18
+        v7.[int v10] &lt;- v15
+        let v16 : int32 = v10 + 1
+        v8.l0 &lt;- v16
         ()
-    v2.l0 &lt;- v9
-    let v19 : (int32 []) = v2.l0
-    let v20 : (int32 []) = [|1|]
-    let v21 : (int32 []) = method1(v20)
-    let v22 : int32 = v19.Length
-    let v23 : int32 = v21.Length
-    let v24 : int32 = v22 + v23
-    let v25 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v24)
-    let v26 : Mut1 = {l0 = 0} : Mut1
-    while method2(v24, v26) do
-        let v28 : int32 = v26.l0
-        let v29 : bool = v28 &lt; v22
-        let v33 : int32 =
-            if v29 then
-                let v30 : int32 = v19.[int v28]
-                v30
+    v1.l0 &lt;- v7
+    let v17 : (int32 []) = v1.l0
+    let v18 : (int32 []) = [|1|]
+    let v19 : int32 = v17.Length
+    let v20 : int32 = v18.Length
+    let v21 : int32 = v19 + v20
+    let v22 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v21)
+    let v23 : Mut1 = {l0 = 0} : Mut1
+    while method1(v21, v23) do
+        let v25 : int32 = v23.l0
+        let v26 : bool = v25 &lt; v19
+        let v30 : int32 =
+            if v26 then
+                let v27 : int32 = v17.[int v25]
+                v27
             else
-                let v31 : int32 = v28 - v22
-                let v32 : int32 = v21.[int v31]
-                v32
-        v25.[int v28] &lt;- v33
-        let v34 : int32 = v28 + 1
-        v26.l0 &lt;- v34
+                let v28 : int32 = v25 - v19
+                let v29 : int32 = v18.[int v28]
+                v29
+        v22.[int v25] &lt;- v30
+        let v31 : int32 = v25 + 1
+        v23.l0 &lt;- v31
         ()
-    v2.l0 &lt;- v25
-    let v35 : (int32 []) = v2.l0
-    let v36 : (int32 []) = [|2|]
-    let v37 : (int32 []) = method1(v36)
-    let v38 : int32 = v35.Length
-    let v39 : int32 = v37.Length
-    let v40 : int32 = v38 + v39
-    let v41 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v40)
-    let v42 : Mut1 = {l0 = 0} : Mut1
-    while method2(v40, v42) do
-        let v44 : int32 = v42.l0
-        let v45 : bool = v44 &lt; v38
-        let v49 : int32 =
-            if v45 then
-                let v46 : int32 = v35.[int v44]
-                v46
+    v1.l0 &lt;- v22
+    let v32 : (int32 []) = v1.l0
+    let v33 : (int32 []) = [|2|]
+    let v34 : int32 = v32.Length
+    let v35 : int32 = v33.Length
+    let v36 : int32 = v34 + v35
+    let v37 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v36)
+    let v38 : Mut1 = {l0 = 0} : Mut1
+    while method1(v36, v38) do
+        let v40 : int32 = v38.l0
+        let v41 : bool = v40 &lt; v34
+        let v45 : int32 =
+            if v41 then
+                let v42 : int32 = v32.[int v40]
+                v42
             else
-                let v47 : int32 = v44 - v38
-                let v48 : int32 = v37.[int v47]
-                v48
-        v41.[int v44] &lt;- v49
-        let v50 : int32 = v44 + 1
-        v42.l0 &lt;- v50
+                let v43 : int32 = v40 - v34
+                let v44 : int32 = v33.[int v43]
+                v44
+        v37.[int v40] &lt;- v45
+        let v46 : int32 = v40 + 1
+        v38.l0 &lt;- v46
         ()
-    v2.l0 &lt;- v41
-    let v51 : (int32 []) = v2.l0
-    let v52 : (int32 []) = [|3|]
-    let v53 : (int32 []) = method1(v52)
-    let v54 : int32 = v51.Length
-    let v55 : int32 = v53.Length
-    let v56 : int32 = v54 + v55
-    let v57 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v56)
-    let v58 : Mut1 = {l0 = 0} : Mut1
-    while method2(v56, v58) do
-        let v60 : int32 = v58.l0
-        let v61 : bool = v60 &lt; v54
-        let v65 : int32 =
-            if v61 then
-                let v62 : int32 = v51.[int v60]
-                v62
+    v1.l0 &lt;- v37
+    let v47 : (int32 []) = v1.l0
+    let v48 : (int32 []) = [|3|]
+    let v49 : int32 = v47.Length
+    let v50 : int32 = v48.Length
+    let v51 : int32 = v49 + v50
+    let v52 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v51)
+    let v53 : Mut1 = {l0 = 0} : Mut1
+    while method1(v51, v53) do
+        let v55 : int32 = v53.l0
+        let v56 : bool = v55 &lt; v49
+        let v60 : int32 =
+            if v56 then
+                let v57 : int32 = v47.[int v55]
+                v57
             else
-                let v63 : int32 = v60 - v54
-                let v64 : int32 = v53.[int v63]
-                v64
-        v57.[int v60] &lt;- v65
-        let v66 : int32 = v60 + 1
-        v58.l0 &lt;- v66
+                let v58 : int32 = v55 - v49
+                let v59 : int32 = v48.[int v58]
+                v59
+        v52.[int v55] &lt;- v60
+        let v61 : int32 = v55 + 1
+        v53.l0 &lt;- v61
         ()
-    v2.l0 &lt;- v57
-    let v67 : (int32 []) = v2.l0
-    let v68 : (int32 []) = [|4|]
-    let v69 : (int32 []) = method1(v68)
-    let v70 : int32 = v67.Length
-    let v71 : int32 = v69.Length
-    let v72 : int32 = v70 + v71
-    let v73 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v72)
-    let v74 : Mut1 = {l0 = 0} : Mut1
-    while method2(v72, v74) do
-        let v76 : int32 = v74.l0
-        let v77 : bool = v76 &lt; v70
-        let v81 : int32 =
-            if v77 then
-                let v78 : int32 = v67.[int v76]
-                v78
+    v1.l0 &lt;- v52
+    let v62 : (int32 []) = v1.l0
+    let v63 : (int32 []) = [|4|]
+    let v64 : int32 = v62.Length
+    let v65 : int32 = v63.Length
+    let v66 : int32 = v64 + v65
+    let v67 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v66)
+    let v68 : Mut1 = {l0 = 0} : Mut1
+    while method1(v66, v68) do
+        let v70 : int32 = v68.l0
+        let v71 : bool = v70 &lt; v64
+        let v75 : int32 =
+            if v71 then
+                let v72 : int32 = v62.[int v70]
+                v72
             else
-                let v79 : int32 = v76 - v70
-                let v80 : int32 = v69.[int v79]
-                v80
-        v73.[int v76] &lt;- v81
-        let v82 : int32 = v76 + 1
-        v74.l0 &lt;- v82
+                let v73 : int32 = v70 - v64
+                let v74 : int32 = v63.[int v73]
+                v74
+        v67.[int v70] &lt;- v75
+        let v76 : int32 = v70 + 1
+        v68.l0 &lt;- v76
         ()
-    v2.l0 &lt;- v73
-    let v83 : (int32 []) = v2.l0
-    let v84 : (int32 []) = [|5|]
-    let v85 : (int32 []) = method1(v84)
-    let v86 : int32 = v83.Length
-    let v87 : int32 = v85.Length
-    let v88 : int32 = v86 + v87
-    let v89 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v88)
-    let v90 : Mut1 = {l0 = 0} : Mut1
-    while method2(v88, v90) do
-        let v92 : int32 = v90.l0
-        let v93 : bool = v92 &lt; v86
-        let v97 : int32 =
-            if v93 then
-                let v94 : int32 = v83.[int v92]
-                v94
+    v1.l0 &lt;- v67
+    let v77 : (int32 []) = v1.l0
+    let v78 : (int32 []) = [|5|]
+    let v79 : int32 = v77.Length
+    let v80 : int32 = v78.Length
+    let v81 : int32 = v79 + v80
+    let v82 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v81)
+    let v83 : Mut1 = {l0 = 0} : Mut1
+    while method1(v81, v83) do
+        let v85 : int32 = v83.l0
+        let v86 : bool = v85 &lt; v79
+        let v90 : int32 =
+            if v86 then
+                let v87 : int32 = v77.[int v85]
+                v87
             else
-                let v95 : int32 = v92 - v86
-                let v96 : int32 = v85.[int v95]
-                v96
-        v89.[int v92] &lt;- v97
-        let v98 : int32 = v92 + 1
-        v90.l0 &lt;- v98
+                let v88 : int32 = v85 - v79
+                let v89 : int32 = v78.[int v88]
+                v89
+        v82.[int v85] &lt;- v90
+        let v91 : int32 = v85 + 1
+        v83.l0 &lt;- v91
         ()
-    v2.l0 &lt;- v89
-    let v99 : (int32 []) = v2.l0
-    let v100 : (int32 []) = [|6|]
-    let v101 : (int32 []) = method1(v100)
-    let v102 : int32 = v99.Length
-    let v103 : int32 = v101.Length
-    let v104 : int32 = v102 + v103
-    let v105 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v104)
-    let v106 : Mut1 = {l0 = 0} : Mut1
-    while method2(v104, v106) do
-        let v108 : int32 = v106.l0
-        let v109 : bool = v108 &lt; v102
-        let v113 : int32 =
-            if v109 then
-                let v110 : int32 = v99.[int v108]
-                v110
+    v1.l0 &lt;- v82
+    let v92 : (int32 []) = v1.l0
+    let v93 : (int32 []) = [|6|]
+    let v94 : int32 = v92.Length
+    let v95 : int32 = v93.Length
+    let v96 : int32 = v94 + v95
+    let v97 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v96)
+    let v98 : Mut1 = {l0 = 0} : Mut1
+    while method1(v96, v98) do
+        let v100 : int32 = v98.l0
+        let v101 : bool = v100 &lt; v94
+        let v105 : int32 =
+            if v101 then
+                let v102 : int32 = v92.[int v100]
+                v102
             else
-                let v111 : int32 = v108 - v102
-                let v112 : int32 = v101.[int v111]
-                v112
-        v105.[int v108] &lt;- v113
-        let v114 : int32 = v108 + 1
-        v106.l0 &lt;- v114
+                let v103 : int32 = v100 - v94
+                let v104 : int32 = v93.[int v103]
+                v104
+        v97.[int v100] &lt;- v105
+        let v106 : int32 = v100 + 1
+        v98.l0 &lt;- v106
         ()
-    v2.l0 &lt;- v105
-    let v115 : (int32 []) = v2.l0
-    let v116 : (int32 []) = [|7|]
-    let v117 : (int32 []) = method1(v116)
-    let v118 : int32 = v115.Length
-    let v119 : int32 = v117.Length
-    let v120 : int32 = v118 + v119
-    let v121 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v120)
-    let v122 : Mut1 = {l0 = 0} : Mut1
-    while method2(v120, v122) do
-        let v124 : int32 = v122.l0
-        let v125 : bool = v124 &lt; v118
-        let v129 : int32 =
-            if v125 then
-                let v126 : int32 = v115.[int v124]
-                v126
+    v1.l0 &lt;- v97
+    let v107 : (int32 []) = v1.l0
+    let v108 : (int32 []) = [|7|]
+    let v109 : int32 = v107.Length
+    let v110 : int32 = v108.Length
+    let v111 : int32 = v109 + v110
+    let v112 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v111)
+    let v113 : Mut1 = {l0 = 0} : Mut1
+    while method1(v111, v113) do
+        let v115 : int32 = v113.l0
+        let v116 : bool = v115 &lt; v109
+        let v120 : int32 =
+            if v116 then
+                let v117 : int32 = v107.[int v115]
+                v117
             else
-                let v127 : int32 = v124 - v118
-                let v128 : int32 = v117.[int v127]
-                v128
-        v121.[int v124] &lt;- v129
-        let v130 : int32 = v124 + 1
-        v122.l0 &lt;- v130
+                let v118 : int32 = v115 - v109
+                let v119 : int32 = v108.[int v118]
+                v119
+        v112.[int v115] &lt;- v120
+        let v121 : int32 = v115 + 1
+        v113.l0 &lt;- v121
         ()
-    v2.l0 &lt;- v121
-    let v131 : (int32 []) = v2.l0
-    let v132 : (int32 []) = [|8|]
-    let v133 : (int32 []) = method1(v132)
-    let v134 : int32 = v131.Length
-    let v135 : int32 = v133.Length
-    let v136 : int32 = v134 + v135
-    let v137 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v136)
-    let v138 : Mut1 = {l0 = 0} : Mut1
-    while method2(v136, v138) do
-        let v140 : int32 = v138.l0
-        let v141 : bool = v140 &lt; v134
-        let v145 : int32 =
-            if v141 then
-                let v142 : int32 = v131.[int v140]
-                v142
+    v1.l0 &lt;- v112
+    let v122 : (int32 []) = v1.l0
+    let v123 : (int32 []) = [|8|]
+    let v124 : int32 = v122.Length
+    let v125 : int32 = v123.Length
+    let v126 : int32 = v124 + v125
+    let v127 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v126)
+    let v128 : Mut1 = {l0 = 0} : Mut1
+    while method1(v126, v128) do
+        let v130 : int32 = v128.l0
+        let v131 : bool = v130 &lt; v124
+        let v135 : int32 =
+            if v131 then
+                let v132 : int32 = v122.[int v130]
+                v132
             else
-                let v143 : int32 = v140 - v134
-                let v144 : int32 = v133.[int v143]
-                v144
-        v137.[int v140] &lt;- v145
-        let v146 : int32 = v140 + 1
-        v138.l0 &lt;- v146
+                let v133 : int32 = v130 - v124
+                let v134 : int32 = v123.[int v133]
+                v134
+        v127.[int v130] &lt;- v135
+        let v136 : int32 = v130 + 1
+        v128.l0 &lt;- v136
         ()
-    v2.l0 &lt;- v137
-    let v147 : (int32 []) = v2.l0
-    let v148 : (int32 []) = [|9|]
-    let v149 : (int32 []) = method1(v148)
-    let v150 : int32 = v147.Length
-    let v151 : int32 = v149.Length
-    let v152 : int32 = v150 + v151
-    let v153 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v152)
-    let v154 : Mut1 = {l0 = 0} : Mut1
-    while method2(v152, v154) do
-        let v156 : int32 = v154.l0
-        let v157 : bool = v156 &lt; v150
-        let v161 : int32 =
-            if v157 then
-                let v158 : int32 = v147.[int v156]
-                v158
+    v1.l0 &lt;- v127
+    let v137 : (int32 []) = v1.l0
+    let v138 : (int32 []) = [|9|]
+    let v139 : int32 = v137.Length
+    let v140 : int32 = v138.Length
+    let v141 : int32 = v139 + v140
+    let v142 : (int32 []) = Array.zeroCreate&lt;int32&gt; (v141)
+    let v143 : Mut1 = {l0 = 0} : Mut1
+    while method1(v141, v143) do
+        let v145 : int32 = v143.l0
+        let v146 : bool = v145 &lt; v139
+        let v150 : int32 =
+            if v146 then
+                let v147 : int32 = v137.[int v145]
+                v147
             else
-                let v159 : int32 = v156 - v150
-                let v160 : int32 = v149.[int v159]
-                v160
-        v153.[int v156] &lt;- v161
-        let v162 : int32 = v156 + 1
-        v154.l0 &lt;- v162
+                let v148 : int32 = v145 - v139
+                let v149 : int32 = v138.[int v148]
+                v149
+        v142.[int v145] &lt;- v150
+        let v151 : int32 = v145 + 1
+        v143.l0 &lt;- v151
         ()
-    v2.l0 &lt;- v153
-    let v163 : (int32 []) = v2.l0
-    let v164 : (int32 []) = [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
-    let v165 : (int32 []) = method1(v164)
-    let v166 : string = $"%A{v163}"
-    System.Console.WriteLine v166
-    let v167 : int32 = v163.Length
-    let v168 : int32 = v165.Length
-    let v169 : bool = v167 = v168
-    let v170 : bool = v169 &lt;&gt; true
-    let v173 : bool =
-        if v170 then
+    v1.l0 &lt;- v142
+    let v152 : (int32 []) = v1.l0
+    let v153 : (int32 []) = [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
+    let v154 : string = $"%A{v152}"
+    System.Console.WriteLine v154
+    let v155 : int32 = v152.Length
+    let v156 : int32 = v153.Length
+    let v157 : bool = v155 = v156
+    let v158 : bool = v157 &lt;&gt; true
+    let v161 : bool =
+        if v158 then
             false
         else
-            let v171 : int32 = 0
-            method3(v163, v165, v171)
-    let v175 : bool =
-        if v173 then
+            let v159 : int32 = 0
+            method2(v152, v153, v159)
+    let v163 : bool =
+        if v161 then
             true
         else
-            method4(v173)
-    let v176 : string = $"__expect / actual: %A{v163} / expected: %A{v165}"
-    let v177 : bool = v175 = false
-    if v177 then
-        failwith&lt;unit&gt; v176
+            method3(v161)
+    let v164 : string = $"__expect / actual: %A{v152} / expected: %A{v153}"
+    let v165 : bool = v163 = false
+    if v165 then
+        failwith&lt;unit&gt; v164
 method0()
 
 [|0; 1; 2; 3; 4; 5; 6; 7; 8; 9|]
@@ -9705,11 +9678,11 @@ print_and_return / x: 5
     | UH0_0 of int32 * (unit -&gt; UH0)
     | UH0_1
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 let rec closure0 (v0 : int32) () : UH0 =
     let v1 : int32 = v0 + 1
     method1(v1)
@@ -9722,48 +9695,48 @@ and method3 (v0 : int32, v1 : UH0) : US0 =
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
         let v4 : bool = v0 &lt;= 0
         if v4 then
-            US0_1(v2)
+            US0_0(v2)
         else
             let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
             method3(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
-        US0_0
+        US0_1
 and method4 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method4(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method2 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : US0 = method3(v2, v0)
     match v3 with
-    | US0_1(v4) -&gt; (* Some *)
+    | US0_0(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
-            let v6 : UH1 = UH1_0(v4, v1)
+            let v6 : UH1 = UH1_1(v4, v1)
             let v7 : int32 = v2 + 1
             method2(v0, v6, v7)
         else
-            let v9 : UH1 = UH1_1
+            let v9 : UH1 = UH1_0
             method4(v1, v9)
     | _ -&gt;
-        let v12 : UH1 = UH1_1
+        let v12 : UH1 = UH1_0
         method4(v1, v12)
 and method5 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method5(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method6 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : int32 = 0
     let v1 : UH0 = method1(v0)
-    let v2 : UH1 = UH1_1
+    let v2 : UH1 = UH1_0
     let v3 : int32 = 0
     let v4 : UH1 = method2(v1, v2, v3)
     let v5 : int32 = 0
@@ -9839,15 +9812,15 @@ print_and_return / x: 5
     | UH0_0 of int32 * (unit -&gt; UH0)
     | UH0_1
 and [&lt;Struct&gt;] US0 =
-    | US0_0 of f0_0 : UH0
-    | US0_1 of f1_0 : (unit -&gt; UH0)
+    | US0_0 of f0_0 : (unit -&gt; UH0)
+    | US0_1 of f1_0 : UH0
 and Mut0 = {mutable l0 : US0}
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32
+    | US1_0 of f0_0 : int32
+    | US1_1
 let rec closure0 (v0 : int32) () : UH0 =
     let v1 : int32 = v0 + 1
     method1(v1)
@@ -9860,9 +9833,9 @@ and closure1 (v0 : UH0) () : UH0 =
 and closure2 (v0 : UH0, v1 : Mut0) () : UH0 =
     let v2 : US0 = v1.l0
     match v2 with
-    | US0_0(v3) -&gt; (* Computed *)
+    | US0_1(v3) -&gt; (* Computed *)
         v3
-    | US0_1(v4) -&gt; (* NotComputed *)
+    | US0_0(v4) -&gt; (* NotComputed *)
         let v5 : UH0 = v4 ()
         let v12 : UH0 =
             match v5 with
@@ -9871,11 +9844,11 @@ and closure2 (v0 : UH0, v1 : Mut0) () : UH0 =
                 UH0_0(v7, v9)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v13 : US0 = US0_0(v12)
+        let v13 : US0 = US0_1(v12)
         v1.l0 &lt;- v13
         v12
 and method2 (v0 : UH0, v1 : (unit -&gt; UH0)) : (unit -&gt; UH0) =
-    let v2 : US0 = US0_1(v1)
+    let v2 : US0 = US0_0(v1)
     let v3 : Mut0 = {l0 = v2} : Mut0
     closure2(v0, v3)
 and method4 (v0 : int32, v1 : UH0) : US1 =
@@ -9883,41 +9856,41 @@ and method4 (v0 : int32, v1 : UH0) : US1 =
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
         let v4 : bool = v0 &lt;= 0
         if v4 then
-            US1_1(v2)
+            US1_0(v2)
         else
             let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
             method4(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
-        US1_0
+        US1_1
 and method5 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method5(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method3 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : US1 = method4(v2, v0)
     match v3 with
-    | US1_1(v4) -&gt; (* Some *)
+    | US1_0(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
-            let v6 : UH1 = UH1_0(v4, v1)
+            let v6 : UH1 = UH1_1(v4, v1)
             let v7 : int32 = v2 + 1
             method3(v0, v6, v7)
         else
-            let v9 : UH1 = UH1_1
+            let v9 : UH1 = UH1_0
             method5(v1, v9)
     | _ -&gt;
-        let v12 : UH1 = UH1_1
+        let v12 : UH1 = UH1_0
         method5(v1, v12)
 and method6 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method6(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method7 (v0 : bool) : bool =
     v0
@@ -9927,7 +9900,7 @@ and method0 () : unit =
     let v2 : (unit -&gt; UH0) = closure1(v1)
     let v3 : (unit -&gt; UH0) = method2(v1, v2)
     let v4 : UH0 = v3 ()
-    let v5 : UH1 = UH1_1
+    let v5 : UH1 = UH1_0
     let v6 : int32 = 0
     let v7 : UH1 = method3(v4, v5, v6)
     let v8 : int32 = 0
@@ -9993,15 +9966,15 @@ print_and_return / x: 5
     | UH0_0 of int32 * (unit -&gt; UH0)
     | UH0_1
 and [&lt;Struct&gt;] US0 =
-    | US0_0 of f0_0 : UH0
-    | US0_1 of f1_0 : (unit -&gt; UH0)
+    | US0_0 of f0_0 : (unit -&gt; UH0)
+    | US0_1 of f1_0 : UH0
 and Mut0 = {mutable l0 : US0}
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32
+    | US1_0 of f0_0 : int32
+    | US1_1
 let rec closure10 () () : UH0 =
     UH0_1
 and closure9 () () : UH0 =
@@ -10046,20 +10019,20 @@ and closure0 () () : UH0 =
 and closure11 (v0 : Mut0) () : UH0 =
     let v1 : US0 = v0.l0
     match v1 with
-    | US0_0(v2) -&gt; (* Computed *)
+    | US0_1(v2) -&gt; (* Computed *)
         v2
-    | US0_1(v3) -&gt; (* NotComputed *)
+    | US0_0(v3) -&gt; (* NotComputed *)
         let v4 : UH0 = v3 ()
         let v13 : UH0 =
             match v4 with
             | UH0_0(v6, v7) -&gt; (* StreamCons *)
-                let v8 : US0 = US0_1(v7)
+                let v8 : US0 = US0_0(v7)
                 let v9 : Mut0 = {l0 = v8} : Mut0
                 let v10 : (unit -&gt; UH0) = closure11(v9)
                 UH0_0(v6, v10)
             | UH0_1 -&gt; (* StreamNil *)
                 UH0_1
-        let v14 : US0 = US0_0(v13)
+        let v14 : US0 = US0_1(v13)
         v0.l0 &lt;- v14
         v13
 and method2 (v0 : int32, v1 : UH0) : US1 =
@@ -10067,69 +10040,69 @@ and method2 (v0 : int32, v1 : UH0) : US1 =
     | UH0_0(v2, v3) -&gt; (* StreamCons *)
         let v4 : bool = v0 &lt;= 0
         if v4 then
-            US1_1(v2)
+            US1_0(v2)
         else
             let v6 : int32 = v0 - 1
             let v7 : UH0 = v3 ()
             method2(v6, v7)
     | UH0_1 -&gt; (* StreamNil *)
-        US1_0
+        US1_1
 and method3 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method3(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method1 (v0 : UH0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : US1 = method2(v2, v0)
     match v3 with
-    | US1_1(v4) -&gt; (* Some *)
+    | US1_0(v4) -&gt; (* Some *)
         let v5 : bool = v4 &lt; 5
         if v5 then
-            let v6 : UH1 = UH1_0(v4, v1)
+            let v6 : UH1 = UH1_1(v4, v1)
             let v7 : int32 = v2 + 1
             method1(v0, v6, v7)
         else
-            let v9 : UH1 = UH1_1
+            let v9 : UH1 = UH1_0
             method3(v1, v9)
     | _ -&gt;
-        let v12 : UH1 = UH1_1
+        let v12 : UH1 = UH1_0
         method3(v1, v12)
 and method4 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method4(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method5 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     printfn $"print_and_return / x: {0}"
     let v0 : (unit -&gt; UH0) = closure0()
-    let v1 : US0 = US0_1(v0)
+    let v1 : US0 = US0_0(v0)
     let v2 : Mut0 = {l0 = v1} : Mut0
     let v3 : US0 = v2.l0
     let v18 : UH0 =
         match v3 with
-        | US0_0(v4) -&gt; (* Computed *)
+        | US0_1(v4) -&gt; (* Computed *)
             v4
-        | US0_1(v5) -&gt; (* NotComputed *)
+        | US0_0(v5) -&gt; (* NotComputed *)
             let v6 : UH0 = v5 ()
             let v15 : UH0 =
                 match v6 with
                 | UH0_0(v8, v9) -&gt; (* StreamCons *)
-                    let v10 : US0 = US0_1(v9)
+                    let v10 : US0 = US0_0(v9)
                     let v11 : Mut0 = {l0 = v10} : Mut0
                     let v12 : (unit -&gt; UH0) = closure11(v11)
                     UH0_0(v8, v12)
                 | UH0_1 -&gt; (* StreamNil *)
                     UH0_1
-            let v16 : US0 = US0_0(v15)
+            let v16 : US0 = US0_1(v15)
             v2.l0 &lt;- v16
             v15
-    let v19 : UH1 = UH1_1
+    let v19 : UH1 = UH1_0
     let v20 : int32 = 0
     let v21 : UH1 = method1(v18, v19, v20)
     let v22 : int32 = 0
@@ -10254,68 +10227,68 @@ print_and_return / x: 5
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : int32
+    | US0_0 of f0_0 : int32
+    | US0_1
 and UH0 =
-    | UH0_0 of int32 * US0 * UH0
-    | UH0_1
+    | UH0_0
+    | UH0_1 of int32 * US0 * UH0
 and Mut0 = {mutable l0 : UH0}
 and UH1 =
-    | UH1_0 of int32 * UH1
-    | UH1_1
+    | UH1_0
+    | UH1_1 of int32 * UH1
 and [&lt;Struct&gt;] US1 =
-    | US1_0
-    | US1_1 of f1_0 : int32 * f1_1 : US0
+    | US1_0 of f0_0 : int32 * f0_1 : US0
+    | US1_1
 let rec method2 (v0 : int32, v1 : UH0) : US1 =
     match v1 with
-    | UH0_0(v3, v4, v5) -&gt; (* Cons *)
+    | UH0_1(v3, v4, v5) -&gt; (* Cons *)
         let v6 : bool = v3 = v0
         if v6 then
-            US1_1(v3, v4)
+            US1_0(v3, v4)
         else
             method2(v0, v5)
-    | UH0_1 -&gt; (* Nil *)
-        US1_0
+    | UH0_0 -&gt; (* Nil *)
+        US1_1
 and method3 (v0 : UH1, v1 : UH1) : UH1 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
-        let v4 : UH1 = UH1_0(v2, v1)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
+        let v4 : UH1 = UH1_1(v2, v1)
         method3(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method1 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
     let v3 : UH0 = v0.l0
     let v4 : US1 = method2(v2, v3)
     let v12 : US0 =
         match v4 with
-        | US1_0 -&gt; (* None *)
+        | US1_1 -&gt; (* None *)
             printfn $"print_and_return / x: {v2}"
             let v7 : UH0 = v0.l0
-            let v8 : US0 = US0_1(v2)
-            let v9 : UH0 = UH0_0(v2, v8, v7)
+            let v8 : US0 = US0_0(v2)
+            let v9 : UH0 = UH0_1(v2, v8, v7)
             v0.l0 &lt;- v9
-            US0_1(v2)
-        | US1_1(v5, v6) -&gt; (* Some *)
+            US0_0(v2)
+        | US1_0(v5, v6) -&gt; (* Some *)
             v6
     match v12 with
-    | US0_1(v13) -&gt; (* Some *)
+    | US0_0(v13) -&gt; (* Some *)
         let v14 : bool = v13 &lt; 5
         if v14 then
-            let v15 : UH1 = UH1_0(v13, v1)
+            let v15 : UH1 = UH1_1(v13, v1)
             let v16 : int32 = v2 + 1
             method1(v0, v15, v16)
         else
-            let v18 : UH1 = UH1_1
+            let v18 : UH1 = UH1_0
             method3(v1, v18)
     | _ -&gt;
-        let v21 : UH1 = UH1_1
+        let v21 : UH1 = UH1_0
         method3(v1, v21)
 and method4 (v0 : UH1, v1 : int32) : int32 =
     match v0 with
-    | UH1_0(v2, v3) -&gt; (* Cons *)
+    | UH1_1(v2, v3) -&gt; (* Cons *)
         let v4 : int32 = v1 + v2
         method4(v3, v4)
-    | UH1_1 -&gt; (* Nil *)
+    | UH1_0 -&gt; (* Nil *)
         v1
 and method5 (v0 : bool) : bool =
     v0
@@ -10324,32 +10297,32 @@ and method6 (v0 : Mut0, v1 : UH1, v2 : int32) : UH1 =
     let v4 : US1 = method2(v2, v3)
     let v12 : US0 =
         match v4 with
-        | US1_0 -&gt; (* None *)
+        | US1_1 -&gt; (* None *)
             printfn $"print_and_return / x: {v2}"
             let v7 : UH0 = v0.l0
-            let v8 : US0 = US0_1(v2)
-            let v9 : UH0 = UH0_0(v2, v8, v7)
+            let v8 : US0 = US0_0(v2)
+            let v9 : UH0 = UH0_1(v2, v8, v7)
             v0.l0 &lt;- v9
-            US0_1(v2)
-        | US1_1(v5, v6) -&gt; (* Some *)
+            US0_0(v2)
+        | US1_0(v5, v6) -&gt; (* Some *)
             v6
     match v12 with
-    | US0_1(v13) -&gt; (* Some *)
+    | US0_0(v13) -&gt; (* Some *)
         let v14 : bool = v13 &lt; 5
         if v14 then
-            let v15 : UH1 = UH1_0(v13, v1)
+            let v15 : UH1 = UH1_1(v13, v1)
             let v16 : int32 = v2 + 1
             method6(v0, v15, v16)
         else
-            let v18 : UH1 = UH1_1
+            let v18 : UH1 = UH1_0
             method3(v1, v18)
     | _ -&gt;
-        let v21 : UH1 = UH1_1
+        let v21 : UH1 = UH1_0
         method3(v1, v21)
 and method0 () : unit =
-    let v0 : UH0 = UH0_1
+    let v0 : UH0 = UH0_0
     let v1 : Mut0 = {l0 = v0} : Mut0
-    let v2 : UH1 = UH1_1
+    let v2 : UH1 = UH1_0
     let v3 : int32 = 0
     let v4 : UH1 = method1(v1, v2, v3)
     let v5 : int32 = 0
@@ -10366,7 +10339,7 @@ and method0 () : unit =
     let v12 : bool = v10 = false
     if v12 then
         failwith&lt;unit&gt; v11
-    let v13 : UH1 = UH1_1
+    let v13 : UH1 = UH1_0
     let v14 : int32 = 0
     let v15 : UH1 = method6(v1, v13, v14)
     let v16 : int32 = 0

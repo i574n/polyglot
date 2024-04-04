@@ -33,14 +33,21 @@
 
 #!fsharp
 
-open Common
-open FileSystem.Operators
+#if !INTERACTIVE
+open Lib
+#endif
 
 #!fsharp
 
-let tmpSpiralPath = Path.GetTempPath () </> "!dotnet-interactive-spiral"
-let linePlotsDataPath = tmpSpiralPath </> "line-plots-data"
-let linePlotsSvgPath = tmpSpiralPath </> "line-plots-svg"
+open Common
+open SpiralFileSystem.Operators
+
+#!fsharp
+
+let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
+let tmpSpiralPath = repositoryRoot </> "target/polyglot/plotting"
+let linePlotsDataPath = tmpSpiralPath </> "line-data"
+let linePlotsSvgPath = tmpSpiralPath </> "line-svg"
 
 [ tmpSpiralPath; linePlotsDataPath; linePlotsSvgPath ]
 |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
@@ -53,9 +60,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
             let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"
 
             if System.IO.File.Exists svgPath |> not then
-                do! json |> FileSystem.writeAllTextAsync (linePlotsDataPath </> hashHex)
-
-                let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+                do! json |> FileSystem.writeAllTextAsync $"{linePlotsDataPath </> hashHex}.json"
 
                 let ct = Microsoft.DotNet.Interactive.KernelInvocationContext.Current.CancellationToken
 

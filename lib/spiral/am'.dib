@@ -25,11 +25,23 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"[$0; $1]\")>] type Slice'<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Vec<$0>\")>] type Vec<'T> = class end"
 
+#!markdown
+
+## length
+
 #!spiral
 
-nominal slice t = $"Slice<`t>"
-nominal slice' t u = $"Slice'<`t, `u>"
-nominal vec t = $"Vec<`t>"
+inl length forall dim {int} el. (a : a dim el) : dim =
+    a |> length
+
+#!markdown
+
+## index
+
+#!spiral
+
+inl index forall dim {int} el. (i : dim) (a : a dim el) : el =
+    index a i
 
 #!markdown
 
@@ -121,7 +133,7 @@ inl init_series start end inc =
 // // test
 
 init_series 0 1 0.5
-|> _assert_eq (a ;[0f64; 0.5; 1])
+|> _assert_eq (a ;[ 0f64; 0.5; 1 ])
 
 #!markdown
 
@@ -131,7 +143,7 @@ init_series 0 1 0.5
 
 inl head (ar : a _ _) =
     if var_is ar || length ar > 0
-    then index ar 0
+    then ar |> index 0
     else error_type "The length of the array should be greater than 0."
 
 #!markdown
@@ -143,7 +155,7 @@ inl head (ar : a _ _) =
 inl last (ar : a _ _) =
     inl len = length ar
     if var_is ar || len > 0
-    then index ar (len - 1)
+    then ar |> index (len - 1)
     else error_type "The length of the array should be greater than 0."
 
 #!spiral
@@ -206,28 +218,64 @@ inl map_base forall t u. (fn : t -> u) (x : array_base t) : array_base u =
     |> am.map fn
     |> fun (a x : _ i64 _) => x
 
+#!markdown
+
+## average
+
 #!spiral
 
-inl average forall el {number}. (array : a _ el) : el =
-    $"!array |> Array.average"
+inl average forall el {number}. (a : a _ el) : el =
+    a |> $'Array.average'
 
-inl length forall dim el {number}. (array : a dim el) : dim =
-    $"!array |> Array.length"
+#!spiral
 
-inl parallel_map forall dim el el'. (fn : el -> el') (array : a dim el) : a dim el' =
-    $"!array |> Array.Parallel.map !fn"
+inl distinct forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.distinct'
 
-inl sort_by forall dim el. (fn : el -> _) (array : a dim el) : a dim el =
-    $"!array |> Array.sortBy !fn"
+#!markdown
 
-inl sort_descending forall dim el. (array : a dim el) : a dim el =
-    $"!array |> Array.sortDescending"
+## parallel_map
 
-inl transpose forall dim el. (array : a dim (a dim el)) : a dim (a dim el) =
-    $"!array |> Array.transpose"
+#!spiral
 
-inl try_item forall dim el. (i : i32) (array : a dim el) : option el =
-    $"!array |> Array.tryItem !i" |> optionm'.unbox
+inl parallel_map forall dim el el'. (fn : el -> el') (a : a dim el) : a dim el' =
+    a |> $'Array.Parallel.map' fn
+
+#!markdown
+
+## sort_by
+
+#!spiral
+
+inl sort_by forall dim el. (fn : el -> _) (a : a dim el) : a dim el =
+    a |> $'Array.sortBy' fn
+
+#!markdown
+
+## sort_descending
+
+#!spiral
+
+inl sort_descending forall dim el. (a : a dim el) : a dim el =
+    a |> $'Array.sortDescending'
+
+#!markdown
+
+## transpose
+
+#!spiral
+
+inl transpose forall dim el. (a : a dim (a dim el)) : a dim (a dim el) =
+    a |> $'Array.transpose'
+
+#!markdown
+
+## try_item
+
+#!spiral
+
+inl try_item forall dim el. (i : i32) (a : a dim el) : option el =
+    a |> $'Array.tryItem' i |> optionm'.unbox
 
 #!markdown
 
@@ -253,13 +301,20 @@ am.init 3i32 ((*) 2)
 
 #!markdown
 
+## vec
+
+#!spiral
+
+nominal vec t = $"Vec<`t>"
+
+#!markdown
+
 ## from_vec
 
 #!spiral
 
 inl from_vec forall dim el. (vec : vec el) : a dim el =
-    inl vec = join vec
-    !\($'"fable_library_rust::NativeArray_::array_from(!vec)"')
+    !\\(vec, $'"fable_library_rust::NativeArray_::array_from($0)"')
 
 #!markdown
 
@@ -267,9 +322,8 @@ inl from_vec forall dim el. (vec : vec el) : a dim el =
 
 #!spiral
 
-inl to_vec forall t. (ar : array_base t) : vec t =
-    inl ar = join ar
-    !\($'"!ar.to_vec()"')
+inl to_vec forall t. (ab : array_base t) : vec t =
+    !\\(ab, $'"$0.to_vec()"')
 
 #!markdown
 
@@ -397,9 +451,7 @@ inl vec_mapi forall dim t u. (fn : dim -> t -> u) (ar : vec t) : vec u =
 #!spiral
 
 inl vec_map forall t u. (fn : t -> u) (ar : vec t) : vec u =
-    inl fn = join fn
-    inl ar = join ar
-    !\($'"!ar.iter().map(|x| !fn(x.clone())).collect()"')
+    !\\((ar, fn), $'"$0.iter().map(|x| $1(x.clone())).collect()"')
 
 #!markdown
 
@@ -427,9 +479,19 @@ inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t
 
 #!markdown
 
+## slice
+
+#!spiral
+
+nominal slice t = $"Slice<`t>"
+
+#!markdown
+
 ## slice'
 
 #!spiral
+
+nominal slice' t u = $"Slice'<`t, `u>"
 
 inl slice' forall dim el. (x : option el) : slice' el dim =
     match x with

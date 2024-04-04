@@ -7632,7 +7632,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="nb">open</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">Operators</span>
+<span class="nb">open</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">Operators</span>
 </pre></div>
 </div>
 </div>
@@ -7815,7 +7815,7 @@ table th {
         <span class="o">|</span> <span class="s1">' '</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="p">(</span><span class="n">Start</span> <span class="o">|</span> <span class="n">Path</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="n">Arguments</span>
         <span class="o">|</span> <span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">Arguments</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{args}{char}</span><span class="s2">"</span><span class="p">)</span> <span class="n">tail</span> <span class="n">Arguments</span>
         <span class="o">|</span> <span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="si">{path}{char}</span><span class="s2">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="n">step</span>
-        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="o">@</span><span class="s2">"</span><span class="se">\"</span><span class="s2"> "</span><span class="o">/</span><span class="s2">", args</span>
+        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="o">@</span><span class="s2">"</span><span class="se">\"</span><span class="s2"> "</span><span class="o">/</span><span class="s2">", args</span>
     <span class="n">loop</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span><span class="p">)</span> <span class="n">Start</span>
 </pre></div>
 </div>
@@ -7985,12 +7985,12 @@ table th {
             <span class="n">do</span><span class="err">!</span> <span class="n">proc</span><span class="o">.</span><span class="n">WaitForExitAsync</span> <span class="n">ct</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
             <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">ExitCode</span>
         <span class="k">with</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="k">as</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / WaitForExitAsync / ex: {ex |&gt; Sm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">format_exception</span> <span class="o">|&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">Push</span>
+            <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / WaitForExitAsync / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+            <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span> <span class="o">|&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">Push</span>
             <span class="k">return</span> <span class="n">System</span><span class="o">.</span><span class="n">Int32</span><span class="o">.</span><span class="n">MinValue</span>
     <span class="p">}</span>
 
-    <span class="n">let</span> <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="n">let</span> <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
         <span class="err">$</span><span class="s2">"executeAsync / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / output.Length: </span><span class="si">{output.Length}</span><span class="s2">"</span>
@@ -8022,7 +8022,7 @@ table th {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">createTempDirectory</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="n">fileName</span>
 
@@ -8064,20 +8064,20 @@ table th {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 #1 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content /tmp/dotnet-repl/20240330-2152-0493-9339-9f5f271308ff/test.txt""
+   "pwsh -c "Get-Content /tmp/!dotnet-repl/20240404-1013-3488-8801-8f58e55de5a9/test.txt""
   WorkingDirectory = None
   CancellationToken = None
   OnLine = None }
-00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/dotnet-repl/20240330-2152-0493-9339-9f5f271308ff/test.txt' because it does not exist.</span>
-00:00:00 #3 [Debug] executeAsync / exitCode: 1 / output.Length: 141
+00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/!dotnet-repl/20240404-1013-3488-8801-8f58e55de5a9/test.txt' because it does not exist.</span>
+00:00:00 #3 [Debug] executeAsync / exitCode: 1 / output.Length: 142
 1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/dotnet-repl/20240330-2152-0493-9339-9f5f271308ff/test.txt' because it does not exist.</span>]
+[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path '/tmp/!dotnet-repl/20240404-1013-3488-8801-8f58e55de5a9/test.txt' because it does not exist.</span>]
 00:00:00 #4 [Debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
   WorkingDirectory =
-   Some "/tmp/dotnet-repl/20240330-2152-0493-9339-9f5f271308ff"
+   Some "/tmp/!dotnet-repl/20240404-1013-3488-8801-8f58e55de5a9"
   CancellationToken = None
   OnLine = None }
-00:00:01 #5 [Verbose] &gt; 0
+00:00:00 #5 [Verbose] &gt; 0
 00:00:01 #6 [Debug] executeAsync / exitCode: 0 / output.Length: 1
 0
 0
@@ -8097,7 +8097,7 @@ True
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">createTempDirectory</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
 
 <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="o">@</span><span class="err">$</span><span class="s2">"pwsh -c ""Get-Content </span><span class="si">{path}</span><span class="s2">"""</span>
@@ -8147,16 +8147,16 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:01 #7 [Debug] 1
 00:00:01 #8 [Debug] 2
-00:00:01 #9 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content /tmp/dotnet-repl/20240330-2152-0639-3989-357423f2c487/test.txt""
+00:00:01 #8 [Debug] executeAsync / options: { Command =
+   "pwsh -c "Get-Content /tmp/!dotnet-repl/20240404-1013-3620-2075-2254ff347373/test.txt""
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = None }
-00:00:01 #10 [Debug] 3
-00:00:01 #11 [Debug] 4
-00:00:01 #12 [Warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:01 #13 [Debug] executeAsync / exitCode: -2147483648 / output.Length: 66
-00:00:01 #14 [Debug] 5
+00:00:01 #9 [Debug] 3
+00:00:01 #10 [Debug] 4
+00:00:01 #11 [Warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+00:00:01 #12 [Debug] executeAsync / exitCode: -2147483648 / output.Length: 66
+00:00:01 #13 [Debug] 5
 -2147483648
 System.Threading.Tasks.TaskCanceledException: A task was canceled.
 True
@@ -8335,7 +8335,7 @@ OPTIONS:
 
 <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">parseArgs</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span> <span class="p">[</span><span class="o">||</span><span class="p">]</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
 <span class="o">|&gt;</span> <span class="n">_throwsC</span> <span class="p">(</span><span class="n">fun</span> <span class="n">ex</span> <span class="n">_</span> <span class="o">-&gt;</span>
-    <span class="n">Sm</span><span class="o">.</span><span class="n">format_exception</span> <span class="n">ex</span>
+    <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span> <span class="n">ex</span>
     <span class="o">|&gt;</span> <span class="n">_stringContains</span> <span class="s2">"Argu.ArguParseException: ERROR: missing parameter '&lt;paths&gt;...'."</span>
 <span class="p">)</span>
 </pre></div>

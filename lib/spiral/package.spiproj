@@ -24,6 +24,7 @@ modules:
     benchmark
     stream
     file_system
+    file_system_operators
     util
     physics
     leptos/

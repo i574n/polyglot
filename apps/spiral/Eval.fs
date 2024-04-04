@@ -9,21 +9,17 @@ module Eval =
 #endif
 
     open Common
-    open FileSystem.Operators
+    open SpiralFileSystem.Operators
 
     open System
     open System.Collections.Generic
     open System.IO
     open System.Text
     open System.Threading
-    // open FSharp.Compiler
-    // open FSharp.Compiler.Interactive.Shell
-    // open FSharp.Compiler.Diagnostics
-    // open FSharp.Compiler.EditorServices
 
     let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
         let allCodeLineLength =
-            allCode |> Sm.split "\n" |> Array.length
+            allCode |> SpiralSm.split "\n" |> Array.length
 
         errors
         |> List.map (fun (_, error) ->
@@ -85,44 +81,33 @@ module Eval =
         |> List.collect id
         |> List.toArray
 
-    let spiralExDir = Path.GetTempPath () </> "!spiral-ex"
-    let maxTermCountPath = spiralExDir </> "max_term_count.txt"
+    let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
+    let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
+    let maxTermCountPath = targetDir </> "max_term_count.txt"
 
     let mutable allCode = ""
 
-    let log2 (text : string) =
+    let logFile filePath (text : string) =
         if traceLevel = TraceLevel.Verbose then
-            try
-                let tmpPath = Path.GetTempPath ()
-                let logDir = Path.Combine (tmpPath, "_log_spiral_kernel")
-                Directory.CreateDirectory logDir |> ignore
-                let dateTimeStr = DateTime.Now.ToString "yyyy-MM-dd HH-mm-ss-fff"
-                let logFile = Path.Combine (logDir, $"log_{dateTimeStr}_{Random().Next()}.txt")
-                let dateTimeStr = DateTime.Now.ToString "yyyy-MM-dd HH:mm:ss.fff"
-                let fileName = "SpiralScriptHelpers"
-                File.AppendAllText (logFile, $"{dateTimeStr} {fileName} {text}{Environment.NewLine}") |> ignore
-            with ex ->
-                trace Debug (fun () -> $"V.log / ex: {ex |> Sm.format_exception}") getLocals
+            let logDir = targetDir </> "log_kernel"
+            Directory.CreateDirectory logDir |> ignore
+            let dateTimeStr = DateTime.Now |> SpiralDateTime.format_iso8601
+            let logFile = logDir </> filePath
+            File.AppendAllText (logFile, $"{dateTimeStr} Eval / {text}{Environment.NewLine}") |> ignore
 
     let log (text : string) =
-        if traceLevel = TraceLevel.Verbose then
-            try
-                let tmpPath = Path.GetTempPath ()
-                let logDir = Path.Combine (tmpPath, "_log_spiral_kernel")
-                Directory.CreateDirectory logDir |> ignore
-                let logFile = Path.Combine (logDir, "log.txt")
-                let dateTimeStr = DateTime.Now.ToString "yyyy-MM-dd HH:mm:ss.fff"
-                let fileName = "SpiralScriptHelpers"
-                File.AppendAllText (logFile, $"{dateTimeStr} {fileName} {text}{Environment.NewLine}") |> ignore
-            with ex ->
-                trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> Sm.format_exception}") getLocals
-                log2 text
+        try
+            text |> logFile "log.txt"
+        with ex ->
+            trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> SpiralSm.format_exception}") getLocals
+            let dateTimeStr = DateTime.Now |> SpiralDateTime.format_iso8601
+            text |> logFile $"log_{dateTimeStr}_{Random().Next()}.txt"
 
     let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
 
     let inline startTokenRangeWatcher () =
         if [ "dotnet-repl" ] |> List.contains assemblyName |> not then
-            let tmpSpiralDir = Path.GetTempPath () </> "!dotnet-interactive-spiral"
+            let tmpSpiralDir = repositoryRoot </> "target/polyglot/spiral_eval"
             let tmpCodeDir = tmpSpiralDir </> "code"
             let tmpTokensDir = tmpSpiralDir </> "tokens"
 
@@ -150,7 +135,7 @@ module Eval =
                                 | None ->
                                     log $"Eval.watchDirectory / GetFiles / tokens: None / {getLocals ()}"
                         with ex ->
-                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     })
                     |> Async.Sequential
                     |> Async.Ignore
@@ -182,7 +167,7 @@ module Eval =
                                     log $"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"
                             | _ -> ()
                         with ex ->
-                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     })
 
                 async {
@@ -192,7 +177,7 @@ module Eval =
                 }
                 |> Async.Start
             with ex ->
-                log $"Eval / ex: {ex |> Sm.format_exception}"
+                log $"Eval / ex: {ex |> SpiralSm.format_exception}"
 
             disposable
         else new_disposable (fun () -> ())
@@ -208,8 +193,8 @@ module Eval =
         log $"Eval / code: %A{code}"
 
         let rawCellCode =
-            if code |> Sm.trim <> "// // trace"
-            then code |> Sm.replace "\r\n" "\n"
+            if code |> SpiralSm.trim <> "// // trace"
+            then code |> SpiralSm.replace "\r\n" "\n"
             else
                 if traceLevel = Info
                 then traceLevel <- Verbose
@@ -217,9 +202,9 @@ module Eval =
                 traceDump <- traceLevel = Verbose
                 "inl main () = ()"
 
-        let lines = rawCellCode |> Sm.split "\n"
+        let lines = rawCellCode |> SpiralSm.split "\n"
 
-        if lines |> Array.exists (fun line -> line |> Sm.starts_with "#r " && line |> Sm.ends_with "\"") then
+        if lines |> Array.exists (fun line -> line |> SpiralSm.starts_with "#r " && line |> SpiralSm.ends_with "\"") then
             let cancellationToken = defaultArg cancellationToken System.Threading.CancellationToken.None
             let ch, errors = fsi_eval code cancellationToken
             match ch with
@@ -237,8 +222,8 @@ module Eval =
                 let hasMain =
                     lastBlock
                     |> Option.exists (fun line ->
-                        line |> Sm.starts_with "inl main "
-                        || line |> Sm.starts_with "let main "
+                        line |> SpiralSm.starts_with "inl main "
+                        || line |> SpiralSm.starts_with "let main "
                     )
 
                 let cellCode, lastTopLevelIndex =
@@ -253,18 +238,18 @@ module Eval =
                                 | _ when finished -> lastTopLevelIndex, true
                                 | "" -> lastTopLevelIndex, false
                                 | line when
-                                    line |> Sm.starts_with " "
-                                    || line |> Sm.starts_with "// " -> lastTopLevelIndex, false
+                                    line |> SpiralSm.starts_with " "
+                                    || line |> SpiralSm.starts_with "// " -> lastTopLevelIndex, false
                                 | line when
-                                    line |> Sm.starts_with "open "
-                                    || line |> Sm.starts_with "prototype "
-                                    || line |> Sm.starts_with "instance "
-                                    || line |> Sm.starts_with "type "
-                                    || line |> Sm.starts_with "union "
-                                    || line |> Sm.starts_with "nominal " -> lastTopLevelIndex, true
+                                    line |> SpiralSm.starts_with "open "
+                                    || line |> SpiralSm.starts_with "prototype "
+                                    || line |> SpiralSm.starts_with "instance "
+                                    || line |> SpiralSm.starts_with "type "
+                                    || line |> SpiralSm.starts_with "union "
+                                    || line |> SpiralSm.starts_with "nominal " -> lastTopLevelIndex, true
                                 | line when
-                                    line |> Sm.starts_with "inl "
-                                    || line |> Sm.starts_with "let " ->
+                                    line |> SpiralSm.starts_with "inl "
+                                    || line |> SpiralSm.starts_with "let " ->
                                     let m =
                                         System.Text.RegularExpressions.Regex.Match (
                                             line,
@@ -284,10 +269,10 @@ module Eval =
                                     match i with
                                     | i when i < lastTopLevelIndex -> line
                                     | i when i = lastTopLevelIndex -> $"\nlet main () =\n    {line}"
-                                    | _ when line |> Sm.trim = "" -> ""
+                                    | _ when line |> SpiralSm.trim = "" -> ""
                                     | _ -> $"    {line}"
                                 )
-                                |> Sm.concat "\n"
+                                |> SpiralSm.concat "\n"
                             | None -> $"{rawCellCode}\n\ninl main () = ()\n"
                         code, lastTopLevelIndex
 
@@ -296,16 +281,16 @@ module Eval =
                 let rustArgs =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> Sm.starts_with "// // rust="
-                        then line |> Sm.split "=" |> Array.tryItem 1
+                        if line |> SpiralSm.starts_with "// // rust="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1
                         else None
                     )
 
                 let timeout =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> Sm.starts_with "// // timeout="
-                        then line |> Sm.split "=" |> Array.tryItem 1 |> Option.map int
+                        if line |> SpiralSm.starts_with "// // timeout="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
                         else None
                     )
                     |> Option.defaultValue (60000 * 60)
@@ -313,8 +298,8 @@ module Eval =
                 let printCode =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> Sm.starts_with "// // print_code="
-                        then line |> Sm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
+                        if line |> SpiralSm.starts_with "// // print_code="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
                         else None
                     )
                     |> Option.defaultValue true
@@ -322,8 +307,8 @@ module Eval =
                 let maxTermCount =
                     lines
                     |> Array.tryPick (fun line ->
-                        if line |> Sm.starts_with "// // max_term_count="
-                        then line |> Sm.split "=" |> Array.tryItem 1 |> Option.map int
+                        if line |> SpiralSm.starts_with "// // max_term_count="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
                         else None
                     )
 
@@ -353,7 +338,7 @@ module Eval =
                             match codeChoice with
                             | Some (Ok code) -> Some code
                             | Some (Error ex) ->
-                                log $"Eval / errors: {ex |> Sm.format_exception}"
+                                log $"Eval / errors: {ex |> SpiralSm.format_exception}"
                                 None
                             | _ -> None
 
@@ -417,12 +402,12 @@ module Eval =
 
                                             let mainCode = "pub fn main() -> Result<(), String> { Ok(()) }"
 
-                                            let cached = rsCode |> Sm.contains mainCode
+                                            let cached = rsCode |> SpiralSm.contains mainCode
 
                                             let rsCode =
                                                 if cached
                                                 then rsCode
-                                                else rsCode |> Sm.replace "),);" "));"
+                                                else rsCode |> SpiralSm.replace "),);" "));"
 
                                             if printCode
                                             then _trace (fun () -> $"\n.rs:\n{rsCode}")
@@ -469,12 +454,12 @@ path = "{hash}.rs"
                                                 try
                                                     let result =
                                                         result
-                                                        |> Sm.split "\n"
+                                                        |> SpiralSm.split "\n"
                                                         |> Array.skipWhile (fun line ->
-                                                            line |> Sm.contains @"[optimized] target" |> not
+                                                            line |> SpiralSm.contains @"[optimized] target" |> not
                                                         )
                                                         |> Array.skip 2
-                                                        |> Sm.concat "\n"
+                                                        |> SpiralSm.concat "\n"
                                                     return Some (Ok result)
                                                 with ex ->
                                                     return $"ex: {ex}\nresult:\n{result}" |> Error |> Some
@@ -497,7 +482,7 @@ path = "{hash}.rs"
                                             )
                                         Some (ch, errors)
                                     with ex ->
-                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> Sm.format_exception}") getLocals
+                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> SpiralSm.format_exception}") getLocals
                                         None
 
                             match fsxResult, rustResult with
@@ -551,11 +536,11 @@ path = "{hash}.rs"
                                 )
                             |]
                     with ex ->
-                        log $"Eval / ex: {ex |> Sm.format_exception}"
-                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> Sm.format_exception}"),
+                        log $"Eval / ex: {ex |> SpiralSm.format_exception}"
+                        return Error (Exception $"Spiral error or timeout (4_) / ex: {ex |> SpiralSm.format_exception}"),
                         [|
                             (
-                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> Sm.format_exception}", 0, ("", (0, 0), (0, 0))
+                                TraceLevel.Critical, $"Diag: Spiral error or timeout (4) / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
                             )
                         |]
                 }
@@ -569,10 +554,10 @@ path = "{hash}.rs"
                     |]
                 )
             with ex ->
-                log $"Eval / ex: {ex |> Sm.format_exception}"
-                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> Sm.format_exception}"),
+                log $"Eval / ex: {ex |> SpiralSm.format_exception}"
+                Error (Exception $"Spiral error or timeout (3) / ex: {ex |> SpiralSm.format_exception}"),
                 [|
                     (
-                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> Sm.format_exception}", 0, ("", (0, 0), (0, 0))
+                        TraceLevel.Critical, $"Diag: Spiral error or timeout (3) / ex: {ex |> SpiralSm.format_exception}", 0, ("", (0, 0), (0, 0))
                     )
                 |]

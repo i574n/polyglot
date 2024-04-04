@@ -1,4 +1,5 @@
 param(
+    $fast,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -41,12 +42,14 @@ if ($extensionsPath.Count -gt 0) {
     Remove-Item "$extensionSrcPath/compiler" -Recurse -Force -ErrorAction Ignore
 
     $path ="$spiralPath/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/"
-    Write-Output $path
+    Write-Output "path: $path"
 
     Copy-Item $path "$extensionSrcPath/compiler" -Recurse -Force
 
-    { npm install } | Invoke-Block -Location $extensionSrcPath
-    { npx tsc --build } | Invoke-Block -Location $extensionSrcPath
+    if (!$fast) {
+        { npm install } | Invoke-Block -Location $extensionSrcPath
+        { npx tsc --build } | Invoke-Block -Location $extensionSrcPath
+    }
     { npx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 }
 

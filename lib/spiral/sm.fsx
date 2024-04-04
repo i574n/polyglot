@@ -45,28 +45,25 @@ and method0 () : string =
     let v0 : string = ""
     v0
 and closure18 (v0 : (string [])) (v1 : string) : (string []) =
-    let mutable result = None
-    #if FABLE_COMPILER_RUST && !WASM
-    let v2 : ((string []) -> string seq) = Seq.ofArray
-    let v3 : string seq = v2 v0
-    let v4 : string = method0()
-    let v5 : string = v3 |> String.concat v4
-    let v6 : (string []) = v1.Split v5
-    v6
+    let v2 : (string []) option = None
+    let mutable _v2 = v2
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : ((string []) -> string seq) = Seq.ofArray
+    let v4 : string seq = v3 v0
+    let v5 : string = method0()
+    let v6 : string = v4 |> String.concat v5
+    let v7 : (string []) = v1.Split v6
+    v7
     #endif
     #if FABLE_COMPILER_RUST && WASM
-    let v7 : ((string []) -> string seq) = Seq.ofArray
-    let v8 : string seq = v7 v0
-    let v9 : string = method0()
-    let v10 : string = v8 |> String.concat v9
-    let v11 : (string []) = v1.Split v10
-    v11
-    #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-    let v12 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
+    let v8 : ((string []) -> string seq) = Seq.ofArray
+    let v9 : string seq = v8 v0
+    let v10 : string = method0()
+    let v11 : string = v9 |> String.concat v10
+    let v12 : (string []) = v1.Split v11
     v12
     #endif
-    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_RUST && CONTRACT
     let v13 : ((string []) -> string seq) = Seq.ofArray
     let v14 : string seq = v13 v0
     let v15 : string = method0()
@@ -74,17 +71,29 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v17 : (string []) = v1.Split v16
     v17
     #endif
-    #if !FABLE_COMPILER_RUST && WASM
-    let v18 : ((string []) -> string seq) = Seq.ofArray
-    let v19 : string seq = v18 v0
-    let v20 : string = method0()
-    let v21 : string = v19 |> String.concat v20
-    let v22 : (string []) = v1.Split v21
-    v22
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    let v18 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
+    v18
     #endif
-    |> fun x -> result <- Some x
-    let v23 : (string []) = result |> Option.get
+    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    let v19 : ((string []) -> string seq) = Seq.ofArray
+    let v20 : string seq = v19 v0
+    let v21 : string = method0()
+    let v22 : string = v20 |> String.concat v21
+    let v23 : (string []) = v1.Split v22
     v23
+    #endif
+    #if !FABLE_COMPILER_RUST && WASM
+    let v24 : ((string []) -> string seq) = Seq.ofArray
+    let v25 : string seq = v24 v0
+    let v26 : string = method0()
+    let v27 : string = v25 |> String.concat v26
+    let v28 : (string []) = v1.Split v27
+    v28
+    #endif
+    |> fun x -> _v2 <- Some x
+    let v29 : (string []) = _v2 |> Option.get
+    v29
 and closure17 () (v0 : (string [])) : (string -> (string [])) =
     closure18(v0)
 and closure20 (v0 : string) (v1 : string) : bool =
@@ -130,8 +139,6 @@ and closure32 (v0 : int32) (v1 : string) : string =
         v6
 and closure31 () (v0 : int32) : (string -> string) =
     closure32(v0)
-and method1 (v0 : (string [])) : (string []) =
-    v0
 and closure34 (v0 : int64) (v1 : string) : string =
     let v2 : int64 = System.Convert.ToInt64 v1.Length
     let v3 : bool = v2 <= v0
@@ -153,40 +160,44 @@ and closure34 (v0 : int64) (v1 : string) : string =
         let v16 : string = v1.[int v14..int v15]
         let v17 : string = "..."
         let v18 : (string []) = [|v13; v17; v16|]
-        let v19 : (string []) = method1(v18)
-        let v20 : ((string []) -> string seq) = Seq.ofArray
-        let v21 : string seq = v20 v19
-        let v22 : string = ""
-        let v23 : string = v21 |> String.concat v22
-        v23
+        let v19 : ((string []) -> string seq) = Seq.ofArray
+        let v20 : string seq = v19 v18
+        let v21 : string = ""
+        let v22 : string = v20 |> String.concat v21
+        v22
 and closure33 () (v0 : int64) : (string -> string) =
     closure34(v0)
 and closure35 () (v0 : exn) : string =
-    let mutable result = None
-    #if FABLE_COMPILER_RUST && !WASM
-    let v1 : string = $"%A{v0}"
-    v1
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
+    let v1 : string option = None
+    let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = $"%A{v0}"
     v2
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
-    let v3 : string = $"{v0.GetType ()}: {v0.Message}"
+    #if FABLE_COMPILER_RUST && WASM
+    let v3 : string = $"%A{v0}"
     v3
     #endif
-    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_RUST && CONTRACT
     let v4 : string = $"%A{v0}"
     v4
     #endif
-    #if !FABLE_COMPILER_RUST && WASM
-    let v5 : string = $"%A{v0}"
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    let v5 : string = $"{v0.GetType ()}: {v0.Message}"
     v5
     #endif
-    |> fun x -> result <- Some x
-    let v6 : string = result |> Option.get
+    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    let v6 : string = $"%A{v0}"
     v6
-and method2 (v0 : int32, v1 : Mut0) : bool =
+    #endif
+    #if !FABLE_COMPILER_RUST && WASM
+    let v7 : string = $"%A{v0}"
+    v7
+    #endif
+    |> fun x -> _v1 <- Some x
+    let v8 : string = _v1 |> Option.get
+    v8
+and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -194,7 +205,7 @@ and closure37 (v0 : string) (v1 : (string [])) : string =
     let v2 : int32 = v1.Length
     let v3 : string = ""
     let v4 : Mut0 = {l0 = 0; l1 = v3} : Mut0
-    while method2(v2, v4) do
+    while method1(v2, v4) do
         let v6 : int32 = v4.l0
         let v7 : string = v4.l1
         let v8 : string = v1.[int v6]
@@ -217,7 +228,7 @@ and closure41 (v0 : string) (v1 : (string [])) : string =
     v2
 and closure40 () (v0 : string) : ((string []) -> string) =
     closure41(v0)
-and method3 (v0 : int32, v1 : Mut1) : bool =
+and method2 (v0 : int32, v1 : Mut1) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
@@ -225,7 +236,7 @@ and closure42 () (v0 : string) : (char []) =
     let v1 : int32 = v0.Length
     let v2 : (char []) = Array.zeroCreate<char> (v1)
     let v3 : Mut1 = {l0 = 0} : Mut1
-    while method3(v1, v3) do
+    while method2(v1, v3) do
         let v5 : int32 = v3.l0
         let v6 : char = v0.[int v5]
         v2.[int v5] <- v6

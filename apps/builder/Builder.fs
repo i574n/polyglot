@@ -9,7 +9,7 @@ module Builder =
 #endif
 
     open Common
-    open FileSystem.Operators
+    open SpiralFileSystem.Operators
 
     /// ## buildProject
 
@@ -56,7 +56,7 @@ module Builder =
         let getLocals () = $"packages: {packages} / modules: {modules} / name: {name} / code.Length: {code |> String.length} / {getLocals ()}"
         trace Debug (fun () -> "persistCodeProject") getLocals
 
-        let repositoryRoot = FileSystem.getSourceDirectory () |> FileSystem.findParent ".paket" false
+        let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
 
         let targetDir = repositoryRoot </> "target/polyglot/builder" </> name
         System.IO.Directory.CreateDirectory targetDir |> ignore
@@ -67,7 +67,7 @@ module Builder =
         let modulesCode =
             modules
             |> List.map (fun path -> $"""<Compile Include="{repositoryRoot </> path}" />""")
-            |> Sm.concat "\n        "
+            |> SpiralSm.concat "\n        "
 
         let fsprojPath = targetDir </> $"{name}.fsproj"
         let fsprojCode = $"""<Project Sdk="Microsoft.NET.Sdk">
@@ -97,7 +97,7 @@ module Builder =
         let paketReferencesPath = targetDir </> "paket.references"
         let paketReferencesCode =
             "FSharp.Core" :: packages
-            |> Sm.concat "\n"
+            |> SpiralSm.concat "\n"
         do! paketReferencesCode |> FileSystem.writeAllTextExists paketReferencesPath
 
         return fsprojPath
@@ -121,10 +121,10 @@ module Builder =
             fun m -> m.Groups.[1].Value + "[<EntryPoint>]\n" + m.Groups.[1].Value + m.Groups.[2].Value
         )
 
-        let codeTrim = code |> Sm.trim_end [||]
+        let codeTrim = code |> SpiralSm.trim_end [||]
         return
-            if codeTrim |> Sm.ends_with "\n()"
-            then codeTrim |> Sm.slice 0 ((codeTrim |> String.length) - 3)
+            if codeTrim |> SpiralSm.ends_with "\n()"
+            then codeTrim |> SpiralSm.slice 0 ((codeTrim |> String.length) - 3)
             else code
     }
 

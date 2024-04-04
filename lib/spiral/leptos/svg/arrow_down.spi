@@ -2,13 +2,12 @@ open sm'_operators
 open leptos
 
 inl render (class : () -> string) props : _ svg =
-    inl class = join class
-    inl class = join class
+    inl class = class |> rust.emit
     svg ([
         $'"xmlns=\\\"http://www.w3.org/2000/svg\\\""'
         $'"viewBox=\\\"0 0 20 20\\\""'
         $'"fill=\\\"currentColor\\\""'
-        $'"class=move || \\\" \\\".to_owned() + &!class()"'
+        $'"class=move || \\\" \\\".to_owned() + &!class(())"'
         ] /@ props) fun () =>
         :>(;[
             path [

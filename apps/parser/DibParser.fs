@@ -20,7 +20,7 @@ module DibParser =
     let magicCommand =
         magicMarker
         >>. manyTill anyChar newline
-        |>> (System.String.Concat >> Sm.trim)
+        |>> (System.String.Concat >> SpiralSm.trim)
 
     /// ## content
 
@@ -29,7 +29,7 @@ module DibParser =
         |> attempt
         |> lookAhead
         |> manyTill anyChar
-        |>> (System.String.Concat >> Sm.trim)
+        |>> (System.String.Concat >> SpiralSm.trim)
 
     /// ## Block
 
@@ -83,26 +83,26 @@ module DibParser =
                 | Fs -> "/// "
                 | _ -> ""
             content
-            |> Sm.split "\n"
-            |> Array.map (Sm.trim_end [||])
-            |> Array.filter (Sm.ends_with " (test)" >> not)
+            |> SpiralSm.split "\n"
+            |> Array.map (SpiralSm.trim_end [||])
+            |> Array.filter (SpiralSm.ends_with " (test)" >> not)
             |> Array.map (function
-                | "" -> markdownComment |> Sm.trim
+                | "" -> markdownComment |> SpiralSm.trim
                 | line -> System.Text.RegularExpressions.Regex.Replace (line, "^\\s*", $"$&{markdownComment}")
             )
-            |> Sm.concat "\n"
+            |> SpiralSm.concat "\n"
         | Fs, { magic = "fsharp"; content = content } ->
-            let trimmedContent = content |> Sm.trim
-            if trimmedContent |> Sm.starts_with "//// test" || trimmedContent |> Sm.starts_with "//// ignore"
+            let trimmedContent = content |> SpiralSm.trim
+            if trimmedContent |> SpiralSm.starts_with "//// test" || trimmedContent |> SpiralSm.starts_with "//// ignore"
             then ""
             else
                 content
-                |> Sm.split "\n"
-                |> Array.filter (Sm.trim_start [||] >> Sm.starts_with "#r" >> not)
-                |> Sm.concat "\n"
+                |> SpiralSm.split "\n"
+                |> Array.filter (SpiralSm.trim_start [||] >> SpiralSm.starts_with "#r" >> not)
+                |> SpiralSm.concat "\n"
         | (Spi | Spir), { magic = "spiral"; content = content } ->
-            let trimmedContent = content |> Sm.trim
-            if trimmedContent |> Sm.starts_with "// // test" || trimmedContent |> Sm.starts_with "// // ignore"
+            let trimmedContent = content |> SpiralSm.trim
+            if trimmedContent |> SpiralSm.starts_with "// // test" || trimmedContent |> SpiralSm.starts_with "// // ignore"
             then ""
             else content
         | _ -> ""
@@ -113,7 +113,7 @@ module DibParser =
         blocks
         |> List.map (formatBlock output)
         |> List.filter ((<>) "")
-        |> Sm.concat "\n\n"
+        |> SpiralSm.concat "\n\n"
         |> fun s -> s + "\n"
 
     /// ## parse
@@ -130,29 +130,29 @@ module DibParser =
             match blocks with
             | { magic = "markdown"; content = content } :: _
                 when output = Fs
-                && content |> Sm.starts_with "# "
-                && content |> Sm.ends_with ")"
+                && content |> SpiralSm.starts_with "# "
+                && content |> SpiralSm.ends_with ")"
                 ->
                 let inline indentBlock (block : Block) =
                     { block with
                         content =
                             block.content
-                            |> Sm.split "\n"
+                            |> SpiralSm.split "\n"
                             |> Array.fold
                                 (fun (lines, isMultiline) line ->
-                                    let trimmedLine = line |> Sm.trim
+                                    let trimmedLine = line |> SpiralSm.trim
                                     if trimmedLine = ""
                                     then "" :: lines, isMultiline
                                     else
                                         let inline singleQuoteLine () =
                                             trimmedLine |> Seq.sumBy ((=) '"' >> System.Convert.ToInt32) = 1
-                                            && trimmedLine |> Sm.contains @"'""'" |> not
-                                            && trimmedLine |> Sm.ends_with "{" |> not
-                                            && trimmedLine |> Sm.ends_with "{|" |> not
-                                            && trimmedLine |> Sm.starts_with "}" |> not
-                                            && trimmedLine |> Sm.starts_with "|}" |> not
+                                            && trimmedLine |> SpiralSm.contains @"'""'" |> not
+                                            && trimmedLine |> SpiralSm.ends_with "{" |> not
+                                            && trimmedLine |> SpiralSm.ends_with "{|" |> not
+                                            && trimmedLine |> SpiralSm.starts_with "}" |> not
+                                            && trimmedLine |> SpiralSm.starts_with "|}" |> not
 
-                                        match isMultiline, trimmedLine |> Sm.split_string [| $"{q}{q}{q}" |] with
+                                        match isMultiline, trimmedLine |> SpiralSm.split_string [| $"{q}{q}{q}" |] with
                                         | false, [| _; _ |] ->
                                             $"    {line}" :: lines, true
 
@@ -162,13 +162,13 @@ module DibParser =
                                         | false, _ when singleQuoteLine () ->
                                             $"    {line}" :: lines, true
 
-                                        | false, _ when line |> Sm.starts_with "#" && block.magic = "fsharp" ->
+                                        | false, _ when line |> SpiralSm.starts_with "#" && block.magic = "fsharp" ->
                                             line :: lines, false
 
                                         | false, _ ->
                                             $"    {line}" :: lines, false
 
-                                        | true, _ when singleQuoteLine () && line |> Sm.starts_with "    " ->
+                                        | true, _ when singleQuoteLine () && line |> SpiralSm.starts_with "    " ->
                                             $"    {line}" :: lines, false
 
                                         | true, _ when singleQuoteLine () ->
@@ -180,7 +180,7 @@ module DibParser =
                                 ([], false)
                             |> fst
                             |> List.rev
-                            |> Sm.concat "\n"
+                            |> SpiralSm.concat "\n"
                     }
 
                 let moduleName, namespaceName =
@@ -230,7 +230,7 @@ module {moduleName} ="
         let getLocals () = $"output: {output} / path: {path} / {getLocals ()}"
         trace Debug (fun () -> "writeDibCode") getLocals
         let! result = parseDibCode output path
-        let outputPath = path |> Sm.replace ".dib" $".{output |> string |> Sm.to_lower}"
+        let outputPath = path |> SpiralSm.replace ".dib" $".{output |> string |> SpiralSm.to_lower}"
         do! result |> FileSystem.writeAllTextAsync outputPath
     }
 

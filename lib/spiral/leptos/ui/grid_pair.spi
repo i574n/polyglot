@@ -19,17 +19,16 @@ inl props () : props =
 
 inl render props_fn left right : _ dl =
     inl props : props = props () |> props_fn
-    inl class = join props.class
-    inl class = join class
-    inl padding_class = join props.padding_class
-    inl cols_class = join props.cols_class
+    inl class = props.class |> rust.emit
+    inl padding_class = props.padding_class |> rust.emit
+    inl cols_class = props.cols_class |> rust.emit
     inl left = join left
     inl right = join right
 
     dl [
-        $'"class=move || \\\"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] [grid-auto-columns:max-content] \\\".to_owned() + &!cols_class() + \\\" \\\" + &!padding_class() + \\\" \\\" + &!class()"'
+        $'"class=move || \\\"grid gap-[1px] flex-1 even:bg-gray-50 [inline-size:max-content] [width:100%] [grid-auto-columns:max-content] \\\".to_owned() + &!cols_class(()) + \\\" \\\" + &!padding_class(()) + \\\" \\\" + &!class(())"'
     ] fun () =>
-        inl dd_class = join props.dd_class
+        inl dd_class = props.dd_class |> rust.emit
         :>(;[
             dt [
                 $'"class=\\\"[font-size:12px] text-gray-400\\\""'
@@ -37,7 +36,7 @@ inl render props_fn left right : _ dl =
             |> element_to_view
 
             dd [
-                $'"class=move || \\\"text-gray-700 sm:col-span-2 flex flex-1 \\\".to_owned () + &!dd_class()"'
+                $'"class=move || \\\"text-gray-700 sm:col-span-2 flex flex-1 \\\".to_owned () + &!dd_class(())"'
             ] right
             |> element_to_view
         ])

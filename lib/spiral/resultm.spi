@@ -37,9 +37,8 @@ inl map_error forall t e u. (fn : e -> u) (source : result t e) : result t u =
     | Error x => x |> fn |> Error
 
 inl map' forall t e u. (fn : t -> u) (source : result' t e) : result' u e =
-    inl fn = join fn
     inl source = join source
-    !\($'"!source.map(|x| !fn(x))"')
+    !\\((source, fn), $'"$0.map(|x| $1(x))"')
 
 inl map_error' forall t e u. (fn : e -> u) (source : result' t e) : result' t u =
     inl fn = join fn

@@ -7560,7 +7560,7 @@ a.anchor-link {
 <span class="n">inl</span> <span class="n">__assert_eq</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">=</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_eq</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_eq</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__assert_eq</span><span class="s1">' log b a = __expect (/=) log b a</span>
+<span class="n">inl</span> <span class="n">__assert_eq</span><span class="s1">' log b a = __expect (=.) log b a</span>
 <span class="n">inl</span> <span class="n">_assert_eq</span><span class="s1">' b a = __assert_eq'</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
 <span class="n">inl</span> <span class="n">__assert_ne</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">join</span> <span class="n">x</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
@@ -7669,14 +7669,16 @@ method0()
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>type [&lt;Struct&gt;] US0 =
-    | US0_0
-    | US0_1 of f1_0 : char
+    | US0_0 of f0_0 : char
+    | US0_1
 let rec closure0 () (v0 : char) : bool =
     let v1 : bool = 'b' = v0
     v1
 and closure1 () (v0 : char) : US0 =
-    US0_1(v0)
-and method1 (v0 : bool) : bool =
+    US0_0(v0)
+and method1 () : (char -&gt; US0) =
+    closure1()
+and method2 (v0 : bool) : bool =
     v0
 and method0 () : unit =
     let v0 : string = "abcd"
@@ -7686,12 +7688,12 @@ and method0 () : unit =
     let v3 : (char -&gt; bool) = closure0()
     let v4 : (string -&gt; char option) = v2 v3
     let v5 : char option = v4 v0
-    let v6 : (char -&gt; US0) = closure1()
-    let v7 : US0 = US0_0
+    let v6 : (char -&gt; US0) = method1()
+    let v7 : US0 = US0_1
     let v8 : US0 = v5 |&gt; Option.map v6 |&gt; Option.defaultValue v7
     let v10 : bool =
         match v8 with
-        | US0_0 -&gt; (* None *)
+        | US0_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
@@ -7700,7 +7702,7 @@ and method0 () : unit =
         if v11 then
             true
         else
-            method1(v11)
+            method2(v11)
     let v14 : string = $"__expect / actual: %A{v0} / expected: %A{'b'}"
     let v15 : bool = v13 = false
     if v15 then

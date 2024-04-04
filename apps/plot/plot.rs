@@ -80,19 +80,21 @@ fn draw_line_plot(
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let tmp_spiral_path = std::env::temp_dir().join("!dotnet-interactive-spiral");
-    let line_plots_data_path = tmp_spiral_path.join("line-plots-data");
-    let line_plots_svg_path = tmp_spiral_path.join("line-plots-svg");
+    let repository_root =
+        plot::SpiralFileSystem::find_parent(".paket".into())(false)(plot::SpiralFileSystem::get_source_directory());
+    let tmp_spiral_dir = std::path::PathBuf::from(repository_root.to_string()).join("target/polyglot/plotting");
+    let line_plots_data_dir = tmp_spiral_dir.join("line-data");
+    let line_plots_svg_dir = tmp_spiral_dir.join("line-svg");
 
-    std::fs::create_dir_all(&line_plots_data_path)?;
-    std::fs::create_dir_all(&line_plots_svg_path)?;
+    std::fs::create_dir_all(&line_plots_data_dir)?;
+    std::fs::create_dir_all(&line_plots_svg_dir)?;
 
-    let missing_svg = std::fs::read_dir(&line_plots_data_path)?
+    let missing_svg = std::fs::read_dir(&line_plots_data_dir)?
         .filter_map(|file| {
             let file = file.ok()?;
             let path = file.path();
             let hash_hex = path.file_stem()?.to_str()?;
-            let svg_path = line_plots_svg_path.join(format!("{}.svg", hash_hex));
+            let svg_path = line_plots_svg_dir.join(format!("{}.svg", hash_hex));
             if !svg_path.exists() {
                 Some((std::fs::read_to_string(path).ok()?, svg_path))
             } else {

@@ -6,4 +6,4 @@ $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
 
 
-{ pnpm install --frozen-lockfile } | Invoke-Block
+{ ~/.bun/bin/bun install --frozen-lockfile } | Invoke-Block

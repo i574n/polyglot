@@ -2,8 +2,7 @@ open sm'_operators
 open leptos
 
 inl render (class : () -> string) : _ svg =
-    inl class = join class
-    inl class = join class
+    inl class = class |> rust.emit
     svg [
         $'"version=\\\"1.1\\\""'
         $'"xmlns=\\\"http://www.w3.org/2000/svg\\\""'
@@ -13,7 +12,7 @@ inl render (class : () -> string) : _ svg =
         $'"viewBox=\\\"0 0 24 30\\\""'
         $'"style=\\\"enable-background:new 0 0 50 50;\\\""'
         $'"xml:space=\\\"preserve\\\""'
-        $'"class=move || \\\" \\\".to_owned() + &!class()"'
+        $'"class=move || \\\" \\\".to_owned() + &!class(())"'
     ] fun () =>
         :>(;[
             rect [

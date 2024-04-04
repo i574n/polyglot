@@ -7616,6 +7616,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
+<span class="nb">open</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">Operators</span>
 </pre></div>
 </div>
 </div>
@@ -7628,280 +7629,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Operators">Operators<a class="anchor-link" href="#Operators">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">module</span> <span class="n">Operators</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">inline</span> <span class="p">(</span><span class="o">&lt;/&gt;</span><span class="p">)</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">Combine</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Operators</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="createTempDirectory">createTempDirectory<a class="anchor-link" href="#createTempDirectory">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">createTempDirectory</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">File_system</span><span class="o">.</span><span class="n">create_temp_directory_name</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">tempFolder</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">Exists</span> <span class="n">then</span>
-        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-            <span class="err">$</span><span class="s2">"tempFolder: </span><span class="si">{tempFolder}</span><span class="s2"> / result: {({|</span>
-                <span class="n">Exists</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">Exists</span>
-                <span class="n">CreationTime</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">CreationTime</span>
-            <span class="o">|</span><span class="p">})}</span> <span class="p">{</span><span class="n">getLocals</span> <span class="p">()}</span><span class="s2">"</span>
-
-        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"createTempDirectory"</span><span class="p">)</span> <span class="n">getLocals</span>
-
-    <span class="n">tempFolder</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempDirectory</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
-
-<span class="n">Directory</span><span class="o">.</span><span class="n">Exists</span> <span class="n">tempDirectory</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="getSourceDirectory">getSourceDirectory<a class="anchor-link" href="#getSourceDirectory">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">getSourceDirectory</span> <span class="o">=</span>
-    <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="n">__SOURCE_DIRECTORY__</span>
-    <span class="o">|&gt;</span> <span class="n">memoize</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">getSourceDirectory</span> <span class="p">()</span>
-<span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">DirectoryInfo</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="nb">dir</span><span class="o">.</span><span class="n">Name</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"fsharp"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>fsharp
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="findParent">findParent<a class="anchor-link" href="#findParent">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">findParent</span> <span class="n">name</span> <span class="n">isFile</span> <span class="n">rootDir</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="nb">dir</span> <span class="o">=</span>
-        <span class="k">if</span> <span class="nb">dir</span> <span class="o">&lt;/&gt;</span> <span class="n">name</span> <span class="o">|&gt;</span> <span class="p">(</span><span class="k">if</span> <span class="n">isFile</span> <span class="n">then</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">Exists</span><span class="p">)</span>
-        <span class="n">then</span> <span class="nb">dir</span>
-        <span class="k">else</span>
-            <span class="nb">dir</span>
-            <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetParent</span>
-            <span class="o">|&gt;</span> <span class="n">function</span>
-                <span class="o">|</span> <span class="n">null</span> <span class="o">-&gt;</span> <span class="n">failwith</span> <span class="err">$</span><span class="s2">"""No parent for {if isFile then "file" else "dir"} '</span><span class="si">{name}</span><span class="s2">' at '</span><span class="si">{rootDir}</span><span class="s2">'"""</span>
-                <span class="o">|</span> <span class="n">parent</span> <span class="o">-&gt;</span> <span class="n">parent</span><span class="o">.</span><span class="n">FullName</span> <span class="o">|&gt;</span> <span class="n">loop</span>
-    <span class="n">loop</span> <span class="n">rootDir</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">findParent</span> <span class="s2">".paket"</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">DirectoryInfo</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="nb">dir</span><span class="o">.</span><span class="n">Name</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"polyglot"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>polyglot
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">getSourceDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">findParent</span> <span class="s2">"paket.dependencies"</span> <span class="n">true</span>
-<span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">DirectoryInfo</span>
-<span class="o">|&gt;</span> <span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="nb">dir</span><span class="o">.</span><span class="n">Name</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"polyglot"</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>polyglot
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="readAllTextAsync">readAllTextAsync<a class="anchor-link" href="#readAllTextAsync">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7917,7 +7649,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7927,7 +7659,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7948,7 +7680,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7958,7 +7690,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7974,7 +7706,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7984,7 +7716,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8003,7 +7735,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=28">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8013,7 +7745,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8037,7 +7769,7 @@ a.anchor-link {
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForFileAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8048,7 +7780,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8058,7 +7790,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
@@ -8127,8 +7859,8 @@ a.anchor-link {
 00:00:00 #3 [Debug] 3
 00:00:00 #4 [Debug] _2
 00:00:00 #5 [Debug] 4
-00:00:00 #6 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2150-5540-4095-4aebf1857b3e/test.txt' because it is being used by another process.
-00:00:01 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2150-5540-4095-4aebf1857b3e/test.txt' because it is being used by another process.
+00:00:00 #6 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240404-1012-2502-0205-09dc1907c1c3/test.txt' because it is being used by another process.
+00:00:01 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240404-1012-2502-0205-09dc1907c1c3/test.txt' because it is being used by another process.
 00:00:02 #8 [Debug] _3
 00:00:02 #9 [Debug] _4
 00:00:02 #10 [Debug] _5
@@ -8147,7 +7879,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8157,7 +7889,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8179,7 +7911,7 @@ True
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Some</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
             <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"watchWithFilter / readContent"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8192,7 +7924,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8202,7 +7934,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8217,7 +7949,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteDirectoryAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8228,7 +7960,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=35">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8238,7 +7970,7 @@ True
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test"</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockDirectory</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
@@ -8311,7 +8043,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=36">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8321,7 +8053,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=37">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8336,7 +8068,7 @@ True
             <span class="k">return</span> <span class="n">retry</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8347,7 +8079,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8357,7 +8089,7 @@ True
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
 
 <span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
@@ -8429,7 +8161,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8439,7 +8171,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8455,7 +8187,7 @@ True
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
             <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                 <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; Sm.format_exception} / {getLocals ()}"</span>
+                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"moveFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
             <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
             <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
@@ -8466,7 +8198,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8476,7 +8208,7 @@ True
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
 
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
+<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
 <span class="n">let</span> <span class="n">newPath</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test2.txt"</span>
 
@@ -8548,8 +8280,8 @@ True
 00:00:06 #37 [Debug] _2
 00:00:06 #38 [Debug] 4
 00:00:06 #39 [Debug] 5
-00:00:06 #40 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2151-0214-1485-1843953a4044/test2.txt' because it is being used by another process.
-00:00:07 #41 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/dotnet-repl/20240330-2151-0214-1485-1843953a4044/test2.txt' because it is being used by another process.
+00:00:06 #40 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240404-1012-3178-7889-7b097cd584c4/test2.txt' because it is being used by another process.
+00:00:07 #41 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240404-1012-3178-7889-7b097cd584c4/test2.txt' because it is being used by another process.
 00:00:08 #42 [Debug] _3
 00:00:08 #43 [Debug] 6
 00:00:08 #44 [Debug] 7
@@ -8568,7 +8300,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8578,7 +8310,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8616,7 +8348,7 @@ True
         <span class="p">)</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">getEventPath</span> <span class="p">(</span><span class="n">path</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">replace</span> <span class="n">fullPath</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'/'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="n">fullPath</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim_start</span> <span class="p">[</span><span class="o">|</span> <span class="s1">'/'</span><span class="p">;</span> <span class="s1">'</span><span class="se">\\</span><span class="s1">'</span> <span class="o">|</span><span class="p">]</span>
 
     <span class="n">let</span> <span class="n">inline</span> <span class="n">ticks</span> <span class="p">()</span> <span class="o">=</span>
         <span class="n">System</span><span class="o">.</span><span class="n">DateTime</span><span class="o">.</span><span class="n">UtcNow</span><span class="o">.</span><span class="n">Ticks</span>
@@ -8728,7 +8460,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8738,7 +8470,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8752,7 +8484,7 @@ True
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="p">(</span><span class="n">_</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">tempDirectory</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">tempDirectory</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
     <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span><span class="p">)</span> <span class="n">tempDirectory</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
@@ -8786,8 +8518,8 @@ True
             <span class="p">(</span><span class="mi">0</span><span class="n">L</span><span class="p">,</span> <span class="p">[])</span>
         <span class="o">|&gt;</span> <span class="n">snd</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">rev</span>
-        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">ellipsis_end</span> <span class="mi">100</span><span class="n">L</span><span class="p">)</span>
-        <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{n}</span><span class="s2"> / </span><span class="si">{diff}</span><span class="s2"> / </span><span class="si">{event}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">ellipsis_end</span> <span class="mi">100</span><span class="n">L</span><span class="p">)</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
     <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"eventsLog: </span><span class="se">\n</span><span class="si">{eventsLog}</span><span class="s2"> / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"testEventsRaw"</span><span class="p">)</span> <span class="n">getLocals</span>
 
@@ -8800,7 +8532,7 @@ True
             <span class="k">match</span> <span class="n">acc</span><span class="p">,</span> <span class="n">event</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">lastPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">lastContent</span><span class="p">)</span> <span class="k">as</span> <span class="n">lastEvent</span> <span class="p">::</span> <span class="n">acc</span><span class="p">,</span>
                 <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span>
-                <span class="n">when</span> <span class="n">lastPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">lastContent</span>
+                <span class="n">when</span> <span class="n">lastPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">&amp;&amp;</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">starts_with</span> <span class="n">lastContent</span>
                 <span class="o">-&gt;</span>
                 <span class="n">event</span> <span class="p">::</span> <span class="n">acc</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">event</span> <span class="p">::</span> <span class="n">acc</span>
@@ -8813,7 +8545,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8823,7 +8555,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8904,22 +8636,22 @@ True
       Value: &lt;null&gt;
 00:00:12 #46 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 00:00:12 #47 [Debug] testEventsRaw / eventsLog: 
-0 / 638474322670519775 / Created ("file1.txt", Some "a1")
-13068 / 638474322670532843 / Changed ("file1.txt", Some "a1")
-2789 / 638474322670535632 / Created ("file2.txt", Some "a2")
-70 / 638474322670535702 / Changed ("file2.txt", Some "a2")
-2525366 / 638474322673061068 / Changed ("file1.txt", Some "b1")
-385 / 638474322673061453 / Changed ("file1.txt", Some "b1")
-4309 / 638474322673065762 / Changed ("file2.txt", Some "b2")
-132 / 638474322673065894 / Changed ("file2.txt", Some "b2")
-2530216 / 638474322675596110 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-1360 / 638474322675597470 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2538307 / 638474322678135777 / Changed ("file_1.txt", Some "c1")
-813 / 638474322678136590 / Changed ("file_1.txt", Some "c1")
-4549 / 638474322678141139 / Changed ("file_2.txt", Some "c2")
-435 / 638474322678141574 / Changed ("file_2.txt", Some "c2")
-2520714 / 638474322680662288 / Deleted "file_1.txt"
-978 / 638474322680663266 / Deleted "file_2.txt"
+0 / 638478223566457684 / Created ("file1.txt", Some "a1")
+11369 / 638478223566469053 / Changed ("file1.txt", Some "a1")
+1219 / 638478223566470272 / Created ("file2.txt", Some "a2")
+50 / 638478223566470322 / Changed ("file2.txt", Some "a2")
+2515660 / 638478223568985982 / Changed ("file1.txt", Some "b1")
+4361 / 638478223568990343 / Changed ("file1.txt", Some "b1")
+3727 / 638478223568994070 / Changed ("file2.txt", Some "b2")
+304 / 638478223568994374 / Changed ("file2.txt", Some "b2")
+2510983 / 638478223571505357 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+1656 / 638478223571507013 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2517629 / 638478223574024642 / Changed ("file_1.txt", Some "c1")
+1882 / 638478223574026524 / Changed ("file_1.txt", Some "c1")
+3183 / 638478223574029707 / Changed ("file_2.txt", Some "c2")
+197 / 638478223574029904 / Changed ("file_2.txt", Some "c2")
+2524491 / 638478223576554395 / Deleted "file_1.txt"
+849 / 638478223576555244 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9023,7 +8755,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9033,7 +8765,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9081,13 +8813,13 @@ FSharpOption&lt;Unit&gt;
         <span class="n">testEventsRaw</span> <span class="n">watchDirectory</span> <span class="n">write</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">function</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">)</span> <span class="o">-&gt;</span>
-                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">Some</span> <span class="n">content</span><span class="p">))</span> <span class="o">-&gt;</span>
                 <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span>
                     <span class="n">oldPath</span><span class="p">,</span>
-                    <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">Sm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                    <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">distinct</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">map</span> <span class="n">string</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
                 <span class="p">)</span>
             <span class="o">|</span> <span class="n">event</span> <span class="o">-&gt;</span> <span class="n">event</span>
         <span class="p">)</span>
@@ -9130,758 +8862,1213 @@ FSharpOption&lt;Unit&gt;
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
 00:00:22 #48 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:24 #49 [Debug] testEventsRaw / eventsLog: 
-0 / 638474322706329097 / Created
+00:00:25 #49 [Debug] testEventsRaw / eventsLog: 
+0 / 638478223600912655 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-3428 / 638474322706332525 / Changed
+3019 / 638478223600915674 / Changed
   ("file1.txt"...11111111111111111111111111111111111111111111111a")
-294 / 638474322706332819 / Changed
+292 / 638478223600915966 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-524 / 638474322706333343 / Changed
+408 / 638478223600916374 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-535 / 638474322706333878 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-103 / 638474322706333981 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-201 / 638474322706334182 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-190 / 638474322706334372 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-154 / 638474322706334526 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-156 / 638474322706334682 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-166 / 638474322706334848 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-175 / 638474322706335023 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-198 / 638474322706335221 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-178 / 638474322706335399 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-173 / 638474322706335572 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-188 / 638474322706335760 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-197 / 638474322706335957 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-294 / 638474322706336251 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-366 / 638474322706336617 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-87 / 638474322706336704 / Changed
+84 / 638478223600916458 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-237 / 638474322706336941 / Changed
+273 / 638478223600916731 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-327 / 638474322706337268 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-308 / 638474322706337576 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-317 / 638474322706337893 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-236 / 638474322706338129 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-191 / 638474322706338320 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-209 / 638474322706338529 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-175 / 638474322706338704 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-187 / 638474322706338891 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-170 / 638474322706339061 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-164 / 638474322706339225 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-163 / 638474322706339388 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-150 / 638474322706339538 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-201 / 638474322706339739 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-364 / 638474322706340103 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-151 / 638474322706340254 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-235 / 638474322706340489 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-179 / 638474322706340668 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-500 / 638474322706341168 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-311 / 638474322706341479 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-288 / 638474322706341767 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-308 / 638474322706342075 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-120 / 638474322706342195 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-463 / 638474322706342658 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-58 / 638474322706342716 / Changed
+73 / 638478223600916804 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-469 / 638474322706343185 / Changed
+256 / 638478223600917060 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-78 / 638474322706343263 / Changed
+222 / 638478223600917282 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+258 / 638478223600917540 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+288 / 638478223600917828 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+204 / 638478223600918032 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+176 / 638478223600918208 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+179 / 638478223600918387 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+160 / 638478223600918547 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+270 / 638478223600918817 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+217 / 638478223600919034 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+280 / 638478223600919314 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+149 / 638478223600919463 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+73 / 638478223600919536 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-419 / 638474322706343682 / Changed
+165 / 638478223600919701 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-56 / 638474322706343738 / Changed
+140 / 638478223600919841 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+252 / 638478223600920093 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+238 / 638478223600920331 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+286 / 638478223600920617 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+180 / 638478223600920797 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+180 / 638478223600920977 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+230 / 638478223600921207 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+166 / 638478223600921373 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+131 / 638478223600921504 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+244 / 638478223600921748 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+154 / 638478223600921902 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+145 / 638478223600922047 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+230 / 638478223600922277 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+227 / 638478223600922504 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+187 / 638478223600922691 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+151 / 638478223600922842 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+146 / 638478223600922988 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+216 / 638478223600923204 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+198 / 638478223600923402 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+144 / 638478223600923546 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+216 / 638478223600923762 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+218 / 638478223600923980 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+265 / 638478223600924245 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+277 / 638478223600924522 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+172 / 638478223600924694 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+180 / 638478223600924874 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+208 / 638478223600925082 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+149 / 638478223600925231 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+180 / 638478223600925411 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+261 / 638478223600925672 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+165 / 638478223600925837 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+202 / 638478223600926039 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+123 / 638478223600926162 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+251 / 638478223600926413 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+184 / 638478223600926597 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+268 / 638478223600926865 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+49 / 638478223600926914 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-1109 / 638474322706344847 / Changed
-  ("file1.txt"...11111111111111111111111111111111111111111111111a")
-78 / 638474322706344925 / Changed
+259 / 638478223600927173 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+367 / 638478223600927540 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+183 / 638478223600927723 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+249 / 638478223600927972 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+48 / 638478223600928020 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-192 / 638474322706345117 / Changed
+254 / 638478223600928274 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-354 / 638474322706345471 / Changed
+128 / 638478223600928402 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-62 / 638474322706345533 / Changed
+243 / 638478223600928645 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+117 / 638478223600928762 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+237 / 638478223600928999 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+132 / 638478223600929131 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+245 / 638478223600929376 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+110 / 638478223600929486 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+234 / 638478223600929720 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+126 / 638478223600929846 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+246 / 638478223600930092 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+228 / 638478223600930320 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+181 / 638478223600930501 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+172 / 638478223600930673 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+186 / 638478223600930859 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+186 / 638478223600931045 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+120 / 638478223600931165 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+243 / 638478223600931408 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+148 / 638478223600931556 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+196 / 638478223600931752 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+107 / 638478223600931859 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+239 / 638478223600932098 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+110 / 638478223600932208 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+231 / 638478223600932439 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+216 / 638478223600932655 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+221 / 638478223600932876 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+180 / 638478223600933056 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+118 / 638478223600933174 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+229 / 638478223600933403 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+122 / 638478223600933525 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+243 / 638478223600933768 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111a")
+62 / 638478223600933830 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-239 / 638474322706345772 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-114 / 638474322706345886 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-246 / 638474322706346132 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-179 / 638474322706346311 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-226 / 638474322706346537 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-109 / 638474322706346646 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-219 / 638474322706346865 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-175 / 638474322706347040 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-206 / 638474322706347246 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-204 / 638474322706347450 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-176 / 638474322706347626 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-204 / 638474322706347830 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-166 / 638474322706347996 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-210 / 638474322706348206 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-164 / 638474322706348370 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-183 / 638474322706348553 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-186 / 638474322706348739 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-223 / 638474322706348962 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-173 / 638474322706349135 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-215 / 638474322706349350 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-208 / 638474322706349558 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-109 / 638474322706349667 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-221 / 638474322706349888 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-47 / 638474322706349935 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-28199 / 638474322706378134 / Created
+10687 / 638478223600944517 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-145 / 638474322706378279 / Changed
+123 / 638478223600944640 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-56 / 638474322706378335 / Changed
+60 / 638478223600944700 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-731 / 638474322706379066 / Changed
+369 / 638478223600945069 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-73 / 638474322706379139 / Changed
+32 / 638478223600945101 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-498 / 638474322706379637 / Changed
+269 / 638478223600945370 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-50 / 638474322706379687 / Changed
+22 / 638478223600945392 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-288 / 638474322706379975 / Changed
+171 / 638478223600945563 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-44 / 638474322706380019 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-318 / 638474322706380337 / Changed
+186 / 638478223600945749 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-242 / 638474322706380579 / Changed
+187 / 638478223600945936 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-46 / 638474322706380625 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-327 / 638474322706380952 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-321 / 638474322706381273 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-367 / 638474322706381640 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-63 / 638474322706381703 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-436 / 638474322706382139 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-45 / 638474322706382184 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-1043 / 638474322706383227 / Changed
+1452 / 638478223600947388 / Changed
   ("file2.txt"...22222222222222222222222222222222222222222222222a")
-74 / 638474322706383301 / Changed
+175 / 638478223600947563 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+742 / 638478223600948305 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+61 / 638478223600948366 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-337 / 638474322706383638 / Changed
+167 / 638478223600948533 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-52 / 638474322706383690 / Changed
+169 / 638478223600948702 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+146 / 638478223600948848 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+149 / 638478223600948997 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+148 / 638478223600949145 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+154 / 638478223600949299 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+225 / 638478223600949524 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+225 / 638478223600949749 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+103 / 638478223600949852 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+188 / 638478223600950040 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+181 / 638478223600950221 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+173 / 638478223600950394 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+680 / 638478223600951074 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+72 / 638478223600951146 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-312 / 638474322706384002 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-207 / 638474322706384209 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-162 / 638474322706384371 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-155 / 638474322706384526 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-245 / 638474322706384771 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-226 / 638474322706384997 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-346 / 638474322706385343 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222a")
-47 / 638474322706385390 / Changed
+37 / 638478223600951183 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-517 / 638474322706385907 / Changed
+620 / 638478223600951803 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-51 / 638474322706385958 / Changed
+56 / 638478223600951859 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222a")
-15044762 / 638474322721430720 / Changed
+216 / 638478223600952075 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+164 / 638478223600952239 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+147 / 638478223600952386 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+154 / 638478223600952540 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+186 / 638478223600952726 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+186 / 638478223600952912 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+178 / 638478223600953090 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+170 / 638478223600953260 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+150 / 638478223600953410 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+153 / 638478223600953563 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+171 / 638478223600953734 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+179 / 638478223600953913 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+148 / 638478223600954061 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+169 / 638478223600954230 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+149 / 638478223600954379 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+153 / 638478223600954532 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+174 / 638478223600954706 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+159 / 638478223600954865 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+241 / 638478223600955106 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+246 / 638478223600955352 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+199 / 638478223600955551 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+171 / 638478223600955722 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+141 / 638478223600955863 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+745 / 638478223600956608 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+78 / 638478223600956686 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+117 / 638478223600956803 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+157 / 638478223600956960 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+238 / 638478223600957198 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+223 / 638478223600957421 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+144 / 638478223600957565 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+683 / 638478223600958248 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+70 / 638478223600958318 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+115 / 638478223600958433 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+150 / 638478223600958583 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+153 / 638478223600958736 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+231 / 638478223600958967 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+223 / 638478223600959190 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+170 / 638478223600959360 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+157 / 638478223600959517 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+200 / 638478223600959717 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+195 / 638478223600959912 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+174 / 638478223600960086 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+171 / 638478223600960257 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+173 / 638478223600960430 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+811 / 638478223600961241 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+72 / 638478223600961313 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+164 / 638478223600961477 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+205 / 638478223600961682 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+134 / 638478223600961816 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+148 / 638478223600961964 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+144 / 638478223600962108 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+150 / 638478223600962258 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+229 / 638478223600962487 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+171 / 638478223600962658 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+149 / 638478223600962807 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+146 / 638478223600962953 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+188 / 638478223600963141 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+178 / 638478223600963319 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+170 / 638478223600963489 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+149 / 638478223600963638 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+172 / 638478223600963810 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+181 / 638478223600963991 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+169 / 638478223600964160 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+154 / 638478223600964314 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+144 / 638478223600964458 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+151 / 638478223600964609 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+123 / 638478223600964732 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+15528348 / 638478223616493080 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-430 / 638474322721431150 / Changed
+791 / 638478223616493871 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-3458 / 638474322721434608 / Changed
+67 / 638478223616493938 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111b")
+4212 / 638478223616498150 / Changed
   ("file1.txt"...11111111111111111111111111111111111111111111111b")
-107 / 638474322721434715 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-300 / 638474322721435015 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-99 / 638474322721435114 / Changed
+58 / 638478223616498208 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-160 / 638474322721435274 / Changed
+153 / 638478223616498361 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-327 / 638474322721435601 / Changed
+160 / 638478223616498521 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-258 / 638474322721435859 / Changed
+271 / 638478223616498792 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-191 / 638474322721436050 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-188 / 638474322721436238 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-254 / 638474322721436492 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-270 / 638474322721436762 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-258 / 638474322721437020 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-275 / 638474322721437295 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-385 / 638474322721437680 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-246 / 638474322721437926 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-297 / 638474322721438223 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-29 / 638474322721438252 / Changed
+96 / 638478223616498888 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-196 / 638474322721438448 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-379 / 638474322721438827 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-256 / 638474322721439083 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-146 / 638474322721439229 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-295 / 638474322721439524 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-260 / 638474322721439784 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-208 / 638474322721439992 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-246 / 638474322721440238 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-163 / 638474322721440401 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-271 / 638474322721440672 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-315 / 638474322721440987 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-232 / 638474322721441219 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-404 / 638474322721441623 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-153 / 638474322721441776 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-766 / 638474322721442542 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-143 / 638474322721442685 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-671 / 638474322721443356 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-81 / 638474322721443437 / Changed
+1022 / 638478223616499910 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+67 / 638478223616499977 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-136 / 638474322721443573 / Changed
+178 / 638478223616500155 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-166 / 638474322721443739 / Changed
+218 / 638478223616500373 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-229 / 638474322721443968 / Changed
+110 / 638478223616500483 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-163 / 638474322721444131 / Changed
+209 / 638478223616500692 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-164 / 638474322721444295 / Changed
+283 / 638478223616500975 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-153 / 638474322721444448 / Changed
+646 / 638478223616501621 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-168 / 638474322721444616 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-134 / 638474322721444750 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-201 / 638474322721444951 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-114 / 638474322721445065 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-184 / 638474322721445249 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-154 / 638474322721445403 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-150 / 638474322721445553 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-159 / 638474322721445712 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-154 / 638474322721445866 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-151 / 638474322721446017 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-154 / 638474322721446171 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-176 / 638474322721446347 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-209 / 638474322721446556 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-116 / 638474322721446672 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-152 / 638474322721446824 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-144 / 638474322721446968 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-152 / 638474322721447120 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-179 / 638474322721447299 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-139 / 638474322721447438 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-183 / 638474322721447621 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-149 / 638474322721447770 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-169 / 638474322721447939 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-166 / 638474322721448105 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-207 / 638474322721448312 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-116 / 638474322721448428 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-212 / 638474322721448640 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-200 / 638474322721448840 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-154 / 638474322721448994 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-642 / 638474322721449636 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-59 / 638474322721449695 / Changed
+56 / 638478223616501677 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-158 / 638474322721449853 / Changed
+186 / 638478223616501863 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-189 / 638474322721450042 / Changed
+177 / 638478223616502040 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-135 / 638474322721450177 / Changed
+158 / 638478223616502198 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-569 / 638474322721450746 / Changed
+154 / 638478223616502352 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-61 / 638474322721450807 / Changed
+160 / 638478223616502512 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638478223616502669 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+377 / 638478223616503046 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+210 / 638478223616503256 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+154 / 638478223616503410 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+698 / 638478223616504108 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+65 / 638478223616504173 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-111 / 638474322721450918 / Changed
+269 / 638478223616504442 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-189 / 638474322721451107 / Changed
+227 / 638478223616504669 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-175 / 638474322721451282 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-181 / 638474322721451463 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-155 / 638474322721451618 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-150 / 638474322721451768 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-188 / 638474322721451956 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-388 / 638474322721452344 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-46 / 638474322721452390 / Changed
+45 / 638478223616504714 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-326 / 638474322721452716 / Changed
+191 / 638478223616504905 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-741 / 638474322721453457 / Changed
+205 / 638478223616505110 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-52 / 638474322721453509 / Changed
+181 / 638478223616505291 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+652 / 638478223616505943 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+62 / 638478223616506005 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-168 / 638474322721453677 / Changed
+133 / 638478223616506138 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-204 / 638474322721453881 / Changed
+183 / 638478223616506321 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-182 / 638474322721454063 / Changed
+234 / 638478223616506555 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-127 / 638474322721454190 / Changed
+184 / 638478223616506739 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-151 / 638474322721454341 / Changed
+150 / 638478223616506889 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-232 / 638474322721454573 / Changed
+156 / 638478223616507045 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-239 / 638474322721454812 / Changed
+172 / 638478223616507217 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-185 / 638474322721454997 / Changed
+182 / 638478223616507399 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-114 / 638474322721455111 / Changed
+154 / 638478223616507553 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-61779 / 638474322721516890 / Changed
+187 / 638478223616507740 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+219 / 638478223616507959 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+180 / 638478223616508139 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+203 / 638478223616508342 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+213 / 638478223616508555 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+153 / 638478223616508708 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+176 / 638478223616508884 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+194 / 638478223616509078 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+161 / 638478223616509239 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+174 / 638478223616509413 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+234 / 638478223616509647 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+168 / 638478223616509815 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+1122 / 638478223616510937 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+167 / 638478223616511104 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+160 / 638478223616511264 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+151 / 638478223616511415 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+652 / 638478223616512067 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+54 / 638478223616512121 / Changed
+  ("file1.txt",
+...11111111111111111111111111111111111111111111111b")
+154 / 638478223616512275 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+147 / 638478223616512422 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+171 / 638478223616512593 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+178 / 638478223616512771 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+184 / 638478223616512955 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+147 / 638478223616513102 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+174 / 638478223616513276 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+178 / 638478223616513454 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+157 / 638478223616513611 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+146 / 638478223616513757 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+112 / 638478223616513869 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+53095 / 638478223616566964 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-205 / 638474322721517095 / Changed
+189 / 638478223616567153 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-14880 / 638474322721531975 / Changed
+629 / 638478223616567782 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+190 / 638478223616567972 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+188 / 638478223616568160 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+322 / 638478223616568482 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+215 / 638478223616568697 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+330 / 638478223616569027 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+311 / 638478223616569338 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+270 / 638478223616569608 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+256 / 638478223616569864 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+251 / 638478223616570115 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+255 / 638478223616570370 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+268 / 638478223616570638 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+255 / 638478223616570893 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+278 / 638478223616571171 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+250 / 638478223616571421 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+253 / 638478223616571674 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+253 / 638478223616571927 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+251 / 638478223616572178 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+256 / 638478223616572434 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+263 / 638478223616572697 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+257 / 638478223616572954 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+282 / 638478223616573236 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+254 / 638478223616573490 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+250 / 638478223616573740 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+260 / 638478223616574000 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+250 / 638478223616574250 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+252 / 638478223616574502 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+251 / 638478223616574753 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+282 / 638478223616575035 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+252 / 638478223616575287 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+259 / 638478223616575546 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+271 / 638478223616575817 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+272 / 638478223616576089 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+256 / 638478223616576345 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+261 / 638478223616576606 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+252 / 638478223616576858 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+272 / 638478223616577130 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+256 / 638478223616577386 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+255 / 638478223616577641 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+249 / 638478223616577890 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+249 / 638478223616578139 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+256 / 638478223616578395 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+333 / 638478223616578728 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+288 / 638478223616579016 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+322 / 638478223616579338 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+312 / 638478223616579650 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+294 / 638478223616579944 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+290 / 638478223616580234 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+291 / 638478223616580525 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+297 / 638478223616580822 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+300 / 638478223616581122 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+318 / 638478223616581440 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+300 / 638478223616581740 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+293 / 638478223616582033 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+283 / 638478223616582316 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+290 / 638478223616582606 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+515 / 638478223616583121 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+338 / 638478223616583459 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+322 / 638478223616583781 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+300 / 638478223616584081 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+297 / 638478223616584378 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+294 / 638478223616584672 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+291 / 638478223616584963 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+295 / 638478223616585258 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+291 / 638478223616585549 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+295 / 638478223616585844 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+305 / 638478223616586149 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+283 / 638478223616586432 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+305 / 638478223616586737 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+292 / 638478223616587029 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+297 / 638478223616587326 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+287 / 638478223616587613 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+296 / 638478223616587909 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+322 / 638478223616588231 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+298 / 638478223616588529 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+299 / 638478223616588828 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+301 / 638478223616589129 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+294 / 638478223616589423 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+290 / 638478223616589713 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+293 / 638478223616590006 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+307 / 638478223616590313 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+319 / 638478223616590632 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+298 / 638478223616590930 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+296 / 638478223616591226 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+297 / 638478223616591523 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+314 / 638478223616591837 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+299 / 638478223616592136 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+289 / 638478223616592425 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+314 / 638478223616592739 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+294 / 638478223616593033 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+297 / 638478223616593330 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+296 / 638478223616593626 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+307 / 638478223616593933 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+287 / 638478223616594220 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+276 / 638478223616594496 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+276 / 638478223616594772 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+281 / 638478223616595053 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+20216 / 638478223616615269 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-86 / 638474322721532061 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222b")
-4918 / 638474322721536979 / Changed
-  ("file2.txt"...22222222222222222222222222222222222222222222222b")
-15020542 / 638474322736557521 / Renamed
+110 / 638478223616615379 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+168 / 638478223616615547 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+311 / 638478223616615858 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+268 / 638478223616616126 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+254 / 638478223616616380 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+281 / 638478223616616661 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+330 / 638478223616616991 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+323 / 638478223616617314 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+316 / 638478223616617630 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+315 / 638478223616617945 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+311 / 638478223616618256 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+342 / 638478223616618598 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+322 / 638478223616618920 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+436 / 638478223616619356 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+309 / 638478223616619665 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+318 / 638478223616619983 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+326 / 638478223616620309 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+314 / 638478223616620623 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+312 / 638478223616620935 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+313 / 638478223616621248 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+339 / 638478223616621587 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+313 / 638478223616621900 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+324 / 638478223616622224 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+266 / 638478223616622490 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222b")
+15027915 / 638478223631650405 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-487 / 638474322736558008 / Renamed
+304 / 638478223631650709 / Renamed
   ("file2.txt",...2222222222222222222222222222222222222222222222b"))
-15046907 / 638474322751604915 / Changed
+15048863 / 638478223646699572 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-228 / 638474322751605143 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-633 / 638474322751605776 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-3659 / 638474322751609435 / Changed
+4827 / 638478223646704399 / Changed
   ("file_1.txt...11111111111111111111111111111111111111111111111c")
-96 / 638474322751609531 / Changed
+72 / 638478223646704471 / Changed
   ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-209 / 638474322751609740 / Changed
+36 / 638478223646704507 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+155 / 638478223646704662 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-343 / 638474322751610083 / Changed
+169 / 638478223646704831 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-243 / 638474322751610326 / Changed
+251 / 638478223646705082 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-247 / 638474322751610573 / Changed
+143 / 638478223646705225 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-221 / 638474322751610794 / Changed
+139 / 638478223646705364 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-242 / 638474322751611036 / Changed
+168 / 638478223646705532 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-436 / 638474322751611472 / Changed
+324 / 638478223646705856 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-195 / 638474322751611667 / Changed
+139 / 638478223646705995 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-195 / 638474322751611862 / Changed
+700 / 638478223646706695 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-166 / 638474322751612028 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-158 / 638474322751612186 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-153 / 638474322751612339 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-148 / 638474322751612487 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-153 / 638474322751612640 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-229 / 638474322751612869 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-386 / 638474322751613255 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-136 / 638474322751613391 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-865 / 638474322751614256 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-138 / 638474322751614394 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-3113 / 638474322751617507 / Changed
+41 / 638478223646706736 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+2828 / 638478223646709564 / Changed
   ("file_1.txt...11111111111111111111111111111111111111111111111c")
-172 / 638474322751617679 / Changed
+170 / 638478223646709734 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-388 / 638474322751618067 / Changed
+130 / 638478223646709864 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-166 / 638474322751618233 / Changed
+140 / 638478223646710004 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-192 / 638474322751618425 / Changed
+148 / 638478223646710152 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-270 / 638474322751618695 / Changed
+141 / 638478223646710293 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-263 / 638474322751618958 / Changed
+154 / 638478223646710447 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-144 / 638474322751619102 / Changed
+204 / 638478223646710651 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-173 / 638474322751619275 / Changed
+162 / 638478223646710813 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-163 / 638474322751619438 / Changed
+176 / 638478223646710989 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-154 / 638474322751619592 / Changed
+145 / 638478223646711134 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-131 / 638474322751619723 / Changed
+666 / 638478223646711800 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-200 / 638474322751619923 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-157 / 638474322751620080 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-146 / 638474322751620226 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-148 / 638474322751620374 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-167 / 638474322751620541 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-169 / 638474322751620710 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-157 / 638474322751620867 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-149 / 638474322751621016 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-201 / 638474322751621217 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-684 / 638474322751621901 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-120 / 638474322751622021 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-154 / 638474322751622175 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-149 / 638474322751622324 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-146 / 638474322751622470 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-147 / 638474322751622617 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-151 / 638474322751622768 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-654 / 638474322751623422 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-48 / 638474322751623470 / Changed
+42 / 638478223646711842 / Changed
   ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-179 / 638474322751623649 / Changed
+549 / 638478223646712391 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-188 / 638474322751623837 / Changed
+221 / 638478223646712612 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-120 / 638474322751623957 / Changed
+211 / 638478223646712823 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-158 / 638474322751624115 / Changed
+175 / 638478223646712998 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-146 / 638474322751624261 / Changed
+211 / 638478223646713209 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-653 / 638474322751624914 / Changed
+171 / 638478223646713380 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-47 / 638474322751624961 / Changed
-  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-611 / 638474322751625572 / Changed
+197 / 638478223646713577 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-43 / 638474322751625615 / Changed
-  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-95 / 638474322751625710 / Changed
-  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-44719 / 638474322751670429 / Changed
+201 / 638478223646713778 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+164 / 638478223646713942 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+159 / 638478223646714101 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+166 / 638478223646714267 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+160 / 638478223646714427 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+168 / 638478223646714595 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+171 / 638478223646714766 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+187 / 638478223646714953 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+167 / 638478223646715120 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+196 / 638478223646715316 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+152 / 638478223646715468 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+168 / 638478223646715636 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+160 / 638478223646715796 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+167 / 638478223646715963 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+185 / 638478223646716148 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+166 / 638478223646716314 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+213 / 638478223646716527 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+228 / 638478223646716755 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+158 / 638478223646716913 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+171 / 638478223646717084 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+170 / 638478223646717254 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+193 / 638478223646717447 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+222 / 638478223646717669 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+204 / 638478223646717873 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+200 / 638478223646718073 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+168 / 638478223646718241 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+150 / 638478223646718391 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+156 / 638478223646718547 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+169 / 638478223646718716 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+182 / 638478223646718898 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+163 / 638478223646719061 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+159 / 638478223646719220 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+161 / 638478223646719381 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+183 / 638478223646719564 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+160 / 638478223646719724 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+126 / 638478223646719850 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+46863 / 638478223646766713 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-226 / 638474322751670655 / Changed
+159 / 638478223646766872 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-433 / 638474322751671088 / Changed
+338 / 638478223646767210 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-66 / 638474322751671154 / Changed
-  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
-231 / 638474322751671385 / Changed
+176 / 638478223646767386 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-40 / 638474322751671425 / Changed
-  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
-220 / 638474322751671645 / Changed
+199 / 638478223646767585 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-163 / 638474322751671808 / Changed
+205 / 638478223646767790 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-166 / 638474322751671974 / Changed
+195 / 638478223646767985 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-216 / 638474322751672190 / Changed
+210 / 638478223646768195 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-156 / 638474322751672346 / Changed
+199 / 638478223646768394 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-194 / 638474322751672540 / Changed
+190 / 638478223646768584 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-135 / 638474322751672675 / Changed
+159 / 638478223646768743 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-144 / 638474322751672819 / Changed
+173 / 638478223646768916 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-129 / 638474322751672948 / Changed
+143 / 638478223646769059 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-142 / 638474322751673090 / Changed
+157 / 638478223646769216 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638474322751673266 / Changed
+162 / 638478223646769378 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-139 / 638474322751673405 / Changed
+164 / 638478223646769542 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-140 / 638474322751673545 / Changed
+173 / 638478223646769715 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-141 / 638474322751673686 / Changed
+187 / 638478223646769902 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-168 / 638474322751673854 / Changed
+162 / 638478223646770064 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-298 / 638474322751674152 / Changed
+158 / 638478223646770222 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-210 / 638474322751674362 / Changed
+161 / 638478223646770383 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-230 / 638474322751674592 / Changed
+162 / 638478223646770545 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-122 / 638474322751674714 / Changed
+157 / 638478223646770702 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-117 / 638474322751674831 / Changed
+165 / 638478223646770867 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-152 / 638474322751674983 / Changed
+218 / 638478223646771085 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-148 / 638474322751675131 / Changed
+197 / 638478223646771282 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-143 / 638474322751675274 / Changed
+204 / 638478223646771486 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-123 / 638474322751675397 / Changed
+180 / 638478223646771666 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-179 / 638474322751675576 / Changed
+157 / 638478223646771823 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-145 / 638474322751675721 / Changed
+164 / 638478223646771987 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-147 / 638474322751675868 / Changed
+152 / 638478223646772139 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-149 / 638474322751676017 / Changed
+183 / 638478223646772322 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-144 / 638474322751676161 / Changed
+161 / 638478223646772483 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-190 / 638474322751676351 / Changed
+153 / 638478223646772636 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-28 / 638474322751676379 / Changed
-  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
-203 / 638474322751676582 / Changed
+200 / 638478223646772836 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638474322751676758 / Changed
+152 / 638478223646772988 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-116 / 638474322751676874 / Changed
+152 / 638478223646773140 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-153 / 638474322751677027 / Changed
+161 / 638478223646773301 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-103 / 638474322751677130 / Changed
+161 / 638478223646773462 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-173 / 638474322751677303 / Changed
+189 / 638478223646773651 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-144 / 638474322751677447 / Changed
+168 / 638478223646773819 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-154 / 638474322751677601 / Changed
+168 / 638478223646773987 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-172 / 638474322751677773 / Changed
+165 / 638478223646774152 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-276 / 638474322751678049 / Changed
+155 / 638478223646774307 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-408 / 638474322751678457 / Changed
+162 / 638478223646774469 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-250 / 638474322751678707 / Changed
+160 / 638478223646774629 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-161 / 638474322751678868 / Changed
+191 / 638478223646774820 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-146 / 638474322751679014 / Changed
+171 / 638478223646774991 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-217 / 638474322751679231 / Changed
+167 / 638478223646775158 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-646 / 638474322751679877 / Changed
+178 / 638478223646775336 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-45 / 638474322751679922 / Changed
-  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
-160 / 638474322751680082 / Changed
+217 / 638478223646775553 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-148 / 638474322751680230 / Changed
+353 / 638478223646775906 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-173 / 638474322751680403 / Changed
+162 / 638478223646776068 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-166 / 638474322751680569 / Changed
+188 / 638478223646776256 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-148 / 638474322751680717 / Changed
+199 / 638478223646776455 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-171 / 638474322751680888 / Changed
+234 / 638478223646776689 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-166 / 638474322751681054 / Changed
+206 / 638478223646776895 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-165 / 638474322751681219 / Changed
+292 / 638478223646777187 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-159 / 638474322751681378 / Changed
+266 / 638478223646777453 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-149 / 638474322751681527 / Changed
+218 / 638478223646777671 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-167 / 638474322751681694 / Changed
+206 / 638478223646777877 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-164 / 638474322751681858 / Changed
+211 / 638478223646778088 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-152 / 638474322751682010 / Changed
+200 / 638478223646778288 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-172 / 638474322751682182 / Changed
+224 / 638478223646778512 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-177 / 638474322751682359 / Changed
+204 / 638478223646778716 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-165 / 638474322751682524 / Changed
+227 / 638478223646778943 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-151 / 638474322751682675 / Changed
+204 / 638478223646779147 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-157 / 638474322751682832 / Changed
+162 / 638478223646779309 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-737 / 638474322751683569 / Changed
+161 / 638478223646779470 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-124 / 638474322751683693 / Changed
+181 / 638478223646779651 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-152 / 638474322751683845 / Changed
+148 / 638478223646779799 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-173 / 638474322751684018 / Changed
+156 / 638478223646779955 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-131 / 638474322751684149 / Changed
+190 / 638478223646780145 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-215 / 638474322751684364 / Changed
+171 / 638478223646780316 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-194 / 638474322751684558 / Changed
+162 / 638478223646780478 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-147 / 638474322751684705 / Changed
+157 / 638478223646780635 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-14889 / 638474322751699594 / Changed
-  ("file_2.tx...22222222222222222222222222222222222222222222222c")
-15007413 / 638474322766707007 / Deleted "file_1.txt"
-3980 / 638474322766710987 / Deleted "file_2.txt"
+178 / 638478223646780813 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+258 / 638478223646781071 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+361 / 638478223646781432 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+420 / 638478223646781852 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+319 / 638478223646782171 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+269 / 638478223646782440 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+270 / 638478223646782710 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+483 / 638478223646783193 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+283 / 638478223646783476 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+260 / 638478223646783736 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+228 / 638478223646783964 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+210 / 638478223646784174 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+260 / 638478223646784434 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+411 / 638478223646784845 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+214 / 638478223646785059 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+205 / 638478223646785264 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+227 / 638478223646785491 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+194 / 638478223646785685 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+159 / 638478223646785844 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+166 / 638478223646786010 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+159 / 638478223646786169 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+182 / 638478223646786351 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+172 / 638478223646786523 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+158 / 638478223646786681 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+192 / 638478223646786873 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+151 / 638478223646787024 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+157 / 638478223646787181 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+165 / 638478223646787346 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+161 / 638478223646787507 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+270 / 638478223646787777 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+163 / 638478223646787940 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+169 / 638478223646788109 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+180 / 638478223646788289 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+155 / 638478223646788444 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+160 / 638478223646788604 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+162 / 638478223646788766 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+175 / 638478223646788941 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+163 / 638478223646789104 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+163 / 638478223646789267 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+192 / 638478223646789459 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+185 / 638478223646789644 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+157 / 638478223646789801 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+157 / 638478223646789958 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+165 / 638478223646790123 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+179 / 638478223646790302 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+159 / 638478223646790461 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+158 / 638478223646790619 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+186 / 638478223646790805 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+114 / 638478223646790919 / Changed
+  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
+15029075 / 638478223661819994 / Deleted "file_1.txt"
+3582 / 638478223661823576 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9985,7 +10172,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9995,7 +10182,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10037,7 +10224,7 @@ FSharpOption&lt;Unit&gt;
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">createTempDirectory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
     <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="n">path</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
@@ -10088,7 +10275,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10098,7 +10285,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10163,7 +10350,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:26 #50 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:27 #50 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -10189,7 +10376,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=54">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10199,7 +10386,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=55">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10262,7 +10449,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:28 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:29 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -10283,7 +10470,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10293,7 +10480,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10388,7 +10575,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10398,7 +10585,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10474,7 +10661,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:33 #53 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:34 #53 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

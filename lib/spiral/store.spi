@@ -2,6 +2,7 @@ open rust_operators
 
 inl storage_get forall t. (key : string) (storage : wasm.storage) : result (option t) wasm.js_value =
     inl storage = join storage
+    inl key = join key
     inl key = key |> sm'.as_str
     inl result = !\($'$"web_sys::Storage::get_item(&!storage, !key)"')
     inl result : result (optionm'.option' sm'.std_string) wasm.js_value = result |> resultm.unbox
@@ -12,6 +13,7 @@ inl storage_get forall t. (key : string) (storage : wasm.storage) : result (opti
 
 inl storage_set forall t. (key : string) (value : t) (storage : wasm.storage) =
     inl storage = join storage
+    inl key = join key
     inl key = key |> sm'.as_str
     inl value = join value
     inl value : sm'.std_string = !\($'"serde_json::json!!(!value).to_string()"')
@@ -19,10 +21,10 @@ inl storage_set forall t. (key : string) (value : t) (storage : wasm.storage) =
     !\($'$"web_sys::Storage::set(&!storage, !key, !value).unwrap()"') : ()
 
 let local_storage (window : wasm.window) : resultm.result' (optionm'.option' wasm.storage) wasm.js_value =
-    inl window = join window
-    !\($'"!window.local_storage()"')
+    !\\(window, $'"$0.local_storage()"')
 
 inl store_get forall t. (key : string) (store : wasm.rexie_store) : async.future_pin t =
+    inl key = join key
     inl key = key |> sm'.as_str
     inl key : wasm.js_value = !\($'"wasm_bindgen::JsValue::from_str(!key)"')
     !\($'$"Box::pin(rexie::Store::get(&!store, &!key))"')
@@ -37,6 +39,7 @@ inl transaction_read_only (store_names : array_base string) (rexie : wasm.rexie)
     |> resultm.map_error' fun (x : wasm.rexie_error) => x |> sm'.format'
 
 inl transaction_store (store_name : string) (transaction : wasm.rexie_transaction) : resultm.result' wasm.rexie_store sm'.std_string =
+    inl store_name = join store_name
     inl store_name = store_name |> sm'.as_str
     !\($'"!transaction.store(!store_name)"')
     |> resultm.map_error' fun (x : wasm.rexie_error) => x |> sm'.format'

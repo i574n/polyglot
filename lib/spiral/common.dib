@@ -8,25 +8,13 @@
 
 #!spiral
 
-// // test
-
-open testing
-
-#!markdown
-
-## types
+inl array x = x
 
 #!spiral
 
-nominal any = $"obj"
-nominal disposable = $"System.IDisposable"
-nominal exn = $"exn"
-nominal unativeint = $"unativeint"
+// // test
 
-let array x = x
-
-inl unativeint forall t {int}. (n : t) : unativeint =
-    $"unativeint !n"
+open testing
 
 #!markdown
 
@@ -48,16 +36,49 @@ prototype to_string t : t -> string
 inl null forall t. () : t =
     $"null |> unbox<`t>"
 
+#!markdown
+
+## unativeint
+
+#!spiral
+
+nominal unativeint = $"unativeint"
+
+inl unativeint forall t {int}. (n : t) : unativeint =
+    $"unativeint !n"
+
+#!markdown
+
+## i32
+
 #!spiral
 
 inl i32 forall t. (x : t) : i32 =
     $"int32 !x"
 
+#!markdown
+
+## i64
+
+#!spiral
+
 inl i64 forall t. (x : t) : i64 =
     $"int64 !x"
 
+#!markdown
+
+## f32
+
+#!spiral
+
 inl f32 forall t. (x : t) : f32 =
     $"float32 !x"
+
+#!markdown
+
+## f64
+
+#!spiral
 
 inl f64 forall t. (x : t) : f64 =
     $"float !x"
@@ -116,30 +137,103 @@ new_pair "a" (new_pair 1i32 "b")
 
 #!markdown
 
-## log_level_type
+## memoize
 
 #!spiral
 
-union log_level_type =
+nominal lazy t = $'Lazy<`t>'
+
+inl memoize forall t. (fn : () -> t) : () -> t =
+    inl result : lazy t = $'lazy !fn ()'
+    fun () => $'!result.Value'
+
+#!spiral
+
+// // test
+
+inl count = mut 0i32
+inl add =
+    fun () => count <- *count + 1
+    |> memoize
+
+add ()
+add ()
+add ()
+
+*count
+|> _assert_eq 1
+
+#!markdown
+
+## trace_level
+
+#!spiral
+
+union trace_level =
     | Verbose
     | Debug
     | Info
     | Warning
     | Critical
 
-instance to_string log_level_type = function
+instance to_string trace_level = function
     | Verbose => "Verbose"
     | Debug => "Debug"
     | Info => "Info"
     | Warning => "Warning"
     | Critical => "Critical"
 
-instance of_string log_level_type = function
+instance of_string trace_level = function
     | "Verbose" => Verbose
     | "Debug" => Debug
     | "Info" => Info
     | "Warning" => Warning
     | "Critical" => Critical
+
+#!markdown
+
+## get_locals
+
+#!spiral
+
+inl get_locals () = ""
+
+#!markdown
+
+## trace_state
+
+#!spiral
+
+inl trace_state () =
+    inl result =
+        fun () =>
+            {
+                enabled = mut true
+                count = mut 0i64
+                level = mut Debug
+                dump = mut false
+            }
+        |> memoize
+    result ()
+
+#!markdown
+
+## test_trace_level
+
+#!spiral
+
+inl test_trace_level level =
+    inl state = trace_state ()
+    inl level' = *state.level
+    *state.enabled && $'!level >= !level' '
+
+#!markdown
+
+## any
+
+#!spiral
+
+nominal any = $"obj"
 
 #!markdown
 
@@ -172,20 +266,47 @@ inl unbox forall t u. (x : t) : u =
 
 #!markdown
 
-## (/+)
+## (+.)
 
 #!spiral
 
-inl (/+) forall t. (a : t) (b : t) : t =
+inl (+.) forall t. (a : t) (b : t) : t =
     $"!a + !b"
 
 #!markdown
 
-## (/=)
+## (-.)
 
 #!spiral
 
-inl (/=) forall t. (a : t) (b : t) : bool =
+inl (-.) forall t. (a : t) (b : t) : t =
+    $"!a - !b"
+
+#!markdown
+
+## (*.)
+
+#!spiral
+
+inl (*.) forall t. (a : t) (b : t) : t =
+    $"!a * !b"
+
+#!markdown
+
+## (/.)
+
+#!spiral
+
+inl (/.) forall t. (a : t) (b : t) : t =
+    $"!a / !b"
+
+#!markdown
+
+## (=.)
+
+#!spiral
+
+inl (=.) forall t. (a : t) (b : t) : bool =
     $"!a = !b"
 
 #!markdown
@@ -247,7 +368,7 @@ inl rec fold_list f s = function
 
 // // test
 
-[5i32; 4; join 3; 2; 1]
+[ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (+) 0
 |> _assert_eq 15
 
@@ -255,7 +376,7 @@ inl rec fold_list f s = function
 
 // // test
 
-[5i32; 4; join 3; 2; 1]
+[ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (join_body (+)) 0
 |> _assert_eq 15
 
@@ -276,7 +397,7 @@ inl join_body_unit body d x =
 
 // // test
 
-[5i32; 4; join 3; 2; 1]
+[ 5i32; 4; join 3; 2; 1 ]
 |> fold_list (fun acc n => join_body_unit ((+) acc) n n) 0
 |> _assert_eq 15
 
@@ -288,20 +409,25 @@ inl join_body_unit body d x =
 
 union target_runtime =
     | Native
-    | Wasm
     | Fable
+    | Wasm
+    | Contract
 
 union target =
     | Rust : target_runtime
     | Fsharp : target_runtime
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
-    $"let mutable result = None"
-    $"#if FABLE_COMPILER_RUST && \!WASM"
+    inl result : optionm'.option' t = $'None'
+    $"let mutable _!result = !result"
+    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
     fn (Rust Native) () |> fun x => $"!x"
     $"#endif"
     $"#if FABLE_COMPILER_RUST && WASM"
     fn (Rust Wasm) () |> fun x => $"!x"
+    $"#endif"
+    $"#if FABLE_COMPILER_RUST && CONTRACT"
+    fn (Rust Contract) () |> fun x => $"!x"
     $"#endif"
     $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!WASM"
     fn (Fsharp Native) () |> fun x => $"!x"
@@ -312,8 +438,8 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $"#if \!FABLE_COMPILER_RUST && WASM"
     fn (Fsharp Wasm) () |> fun x => $"!x"
     $"#endif"
-    $"|> fun x -> result <- Some x"
-    $"result |> Option.get"
+    $"|> fun x -> _!result <- Some x"
+    $"_!result |> Option.get"
 
 #!spiral
 
@@ -353,34 +479,6 @@ inl nameof x : string =
 inl get_environment_variable (var : string) : string =
     $"System.Environment.GetEnvironmentVariable !var"
 
-#!markdown
-
-## memoize
-
-#!spiral
-
-nominal lazy t = $'Lazy<`t>'
-
-inl memoize forall t. (fn : () -> t) : () -> t =
-    inl result : lazy t = $'lazy !fn ()'
-    fun () => $'!result.Value'
-
-#!spiral
-
-// // test
-
-inl count = mut 0i32
-inl add =
-    fun () => count <- *count + 1
-    |> memoize
-
-add ()
-add ()
-add ()
-
-*count
-|> _assert_eq 1
-
 #!spiral
 
 // // test
@@ -389,6 +487,14 @@ fun () => failwith "test"
 |> _throws
 |> optionm.map sm'.format_exception
 |> _assert_eq (Some "System.Exception: test")
+
+#!markdown
+
+## disposable
+
+#!spiral
+
+nominal disposable = $"System.IDisposable"
 
 #!markdown
 
@@ -409,9 +515,10 @@ inl use_disposable (disposable : disposable) : disposable =
 inl new_disposable (fn : () -> ()) : disposable =
     run_target function
         | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
-        | Rust _ =>
-            inl fn = join fn
-            fun () => $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        // | Rust _ =>
+        //     fun () =>
+                // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
+        | target => fun () => failwith $'$"new_disposable / target: {!target}"'
 
 #!spiral
 
@@ -463,6 +570,14 @@ fun () =>
 
 #!markdown
 
+## exn
+
+#!spiral
+
+nominal exn = $"exn"
+
+#!markdown
+
 ## try
 
 #!spiral
@@ -497,7 +612,7 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                let getLocals () = $"retry: {retry} / ex: {ex |> Sm.format_exception} / {getLocals ()}"
+                let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                 // trace Warning (fun () => "retry_fn") getLocals
                 sleep 1
         |> function
