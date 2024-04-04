@@ -7,12 +7,22 @@ function CopyTarget {
         [string] $Runtime
     )
     $_runtime = $Runtime -ne "" ? "_$Runtime" : ""
-    Copy-Item $targetDir/target/$Language/lib/fsharp/Common.$Language $root/lib/fsharp/Common$_runtime.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/common.$Language $root/lib/spiral/common$_runtime.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/date_time.$Language $root/lib/spiral/date_time$_runtime.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/file_system.$Language $root/lib/spiral/file_system$_runtime.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/sm.$Language $root/lib/spiral/sm$_runtime.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/lib.$Language $root/lib/spiral/lib$_runtime.$Language -Force
+
+    function CopyItem {
+        param (
+            $lib,
+            $name
+        )
+        $name = $Language -eq "py" ? $name.ToLower() : $name
+        Copy-Item $targetDir/target/$Language/lib/$lib/$name.$Language $root/lib/$lib/$name$_runtime.$Language -Force
+    }
+
+    CopyItem "fsharp" "Common"
+    CopyItem "spiral" "common"
+    CopyItem "spiral" "date_time"
+    CopyItem "spiral" "file_system"
+    CopyItem "spiral" "sm"
+    CopyItem "spiral" "lib"
 
     if ($Language -eq "rs" -and $Runtime -eq "contract") {
         Set-Content "$root/lib/spiral/date_time_contract.rs" ""
