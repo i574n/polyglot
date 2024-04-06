@@ -215,9 +215,9 @@ inl date_time_from_guid (date_time_guid : date_time_guid) =
     inl date_time_guid = date_time_guid |> sm'.obj_to_string
     inl sm'_replace = join sm'.replace
     run_target function
-        | Fsharp => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
         | Rust _ => fun () =>
             $'System.DateTime.Parse (!date_time_guid.[..24] |> !sm'_replace "-" "")' : date_time
+        | _ => fun () => $'System.DateTime.ParseExact (!date_time_guid.[..24] |> !sm'_replace "-" "", "yyyyMMddHHmmssfffffff", null)' : date_time
 
 #!spiral
 
@@ -288,6 +288,15 @@ timestamp_from_guid (guid.new_guid "00000000-0000-0000-00dc-ba9876543210")
 
 timestamp_from_guid (guid.new_guid $'$"99999999-9999-9999-99{(!test_guid () |> string).[^14..]}"')
 |> _assert_eq (timestamp 999999999999999999)
+
+#!markdown
+
+## now
+
+#!spiral
+
+inl now () : date_time =
+    $'System.DateTime.Now'
 
 #!markdown
 

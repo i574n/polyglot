@@ -1,10 +1,10 @@
-import { parseExact, toString } from "../../fable_modules/fable-library-ts.4.14.0/Date.js";
-import { newGuid, parse } from "../../fable_modules/fable-library-ts.4.14.0/Guid.js";
-import { padLeft, replace } from "../../fable_modules/fable-library-ts.4.14.0/String.js";
-import { value, Option } from "../../fable_modules/fable-library-ts.4.14.0/Option.js";
-import { int64ToString, defaultOf } from "../../fable_modules/fable-library-ts.4.14.0/Util.js";
-import { toInt64, int64 } from "../../fable_modules/fable-library-ts.4.14.0/BigInt.js";
-import { parse as parse_1 } from "../../fable_modules/fable-library-ts.4.14.0/Long.js";
+import { parseExact, toString } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { newGuid, parse } from "../../deps/Fable/src/fable-library-ts/Guid.js";
+import { padLeft, replace } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { int64ToString, defaultOf } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { parse as parse_1 } from "../../deps/Fable/src/fable-library-ts/Long.js";
 
 export function closure1(v0_1: string, v1_1: Date): string {
     const v3_1: string = v0_1;

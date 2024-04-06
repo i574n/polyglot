@@ -1,4 +1,5 @@
 param(
+    $fast,
     $ScriptDir = $PSScriptRoot
 )
 Set-Location $ScriptDir
@@ -10,14 +11,27 @@ $interactivePath = "../deps/dotnet-interactive"
 
 $extensionSrcPath = "$interactivePath/src/polyglot-notebooks-vscode-insiders"
 
-$json = Get-Content (Join-Path -Path $extensionSrcPath -ChildPath "package.json") | ConvertFrom-Json
+$json = Get-Content (Join-Path $extensionSrcPath "package.json") | ConvertFrom-Json
 $vsixName = $json.name + "-" + $json.version + ".vsix"
-$vsixPath = Join-Path -Path $extensionSrcPath -ChildPath $vsixName
+$vsixPath = Join-Path $extensionSrcPath $vsixName
 
-{ npm install } | Invoke-Block -Location "$extensionSrcPath/../polyglot-notebooks-ui-components"
+if (!$fast) {
+    { npm install } | Invoke-Block -Location "$extensionSrcPath/../polyglot-notebooks-ui-components"
+    { npm install } | Invoke-Block -Location $extensionSrcPath
+}
 
-{ npm install } | Invoke-Block -Location $extensionSrcPath
+Remove-Item $vsixPath -Force -ErrorAction Ignore
+
+Write-Output "Compiling..."
 { npm run compile } | Invoke-Block -Location $extensionSrcPath
+
+$path = Join-Path $extensionSrcPath "out/deps/dotnet-interactive/src/polyglot-notebooks-vscode-insiders/src/vscode-common/documentSemanticTokenProvider.js"
+Write-Output "path: $path"
+(Get-Content $path) `
+    -replace [regex]::Escape("require(`"../../"), "require(`"../../../../../../" `
+    | Set-Content $path
+
+Write-Output "Packaging..."
 { npx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 
 
@@ -49,25 +63,30 @@ foreach ($extensionsPath in $extensionsPath) {
     }
 
     $extensionDestDir = $json.publisher + "." + $json.name + "-" + $version
-    $extensionPath = Join-Path -Path $extensionsPath -ChildPath $extensionDestDir
+    $extensionPath = Join-Path $extensionsPath $extensionDestDir
     Write-Output "Copying extension to $extensionPath"
 
-    $currentJson = Get-Content (Join-Path -Path $extensionPath -ChildPath "package.json") | ConvertFrom-Json
+    $jsonPath = Join-Path $extensionPath "package.json"
+    if (Test-Path $jsonPath) {
+        $currentJson = Get-Content $jsonPath | ConvertFrom-Json
+    } else {
+        Write-Output "jsonPath not found. jsonPath: $JsonPath"
+    }
 
     Remove-Item $extensionPath -Recurse -Force -ErrorAction Ignore
 
-    Expand-Archive -Path $vsixPath -DestinationPath "$extensionPath/dist" -Force
+    Expand-Archive $vsixPath "$extensionPath/dist" -Force
     Get-ChildItem -Path "$extensionPath/dist/extension" -Recurse -Force | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
-        $destPath = Join-Path -Path $extensionPath -ChildPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
+        $destPath = Join-Path $extensionPath $_.FullName.Substring("$extensionPath/dist/extension/".Length)
 
-        if (Test-Path -Path $destPath) {
+        if (Test-Path $destPath) {
             try {
                 [System.IO.File]::Delete($destPath)
             } catch {
                 Write-Output "Failed to delete $destPath"
             }
         } else {
-            New-Item -Path $destPath -Force | Out-Null
+            New-Item $destPath -Force | Out-Null
         }
 
         Move-Item $_.FullName $destPath -Force -ErrorAction Ignore

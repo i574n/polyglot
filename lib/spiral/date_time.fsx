@@ -23,31 +23,27 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let mutable _v4 = v4
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v5
+    v5 
     #endif
     #if FABLE_COMPILER_RUST && WASM
     let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v6
+    v6 
     #endif
     #if FABLE_COMPILER_RUST && CONTRACT
     let v7 : System.DateTime = System.DateTime.Parse (v2.[..24] |> v3 "-" "")
-    v7
+    v7 
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v8
+    v8 
     #endif
-    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_TYPESCRIPT
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v9
-    #endif
-    #if !FABLE_COMPILER_RUST && WASM
-    let v10 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
+    v9 
     #endif
     |> fun x -> _v4 <- Some x
-    let v11 : System.DateTime = _v4 |> Option.get
-    v11
+    let v10 : System.DateTime = _v4 |> Option.get
+    v10
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -> string) = _.ToString()
     let v3 : string = v2 v0

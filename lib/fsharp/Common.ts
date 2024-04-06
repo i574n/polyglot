@@ -1,13 +1,13 @@
-import { Union } from "../../fable_modules/fable-library-ts.4.14.0/Types.js";
-import { union_type, TypeInfo } from "../../fable_modules/fable-library-ts.4.14.0/Reflection.js";
-import { compare, createAtom } from "../../fable_modules/fable-library-ts.4.14.0/Util.js";
-import { int32 } from "../../fable_modules/fable-library-ts.4.14.0/Int32.js";
-import { value, Option } from "../../fable_modules/fable-library-ts.4.14.0/Option.js";
-import { op_Subtraction, toInt64, int64 } from "../../fable_modules/fable-library-ts.4.14.0/BigInt.js";
-import { create, getTicks, now, toString } from "../../fable_modules/fable-library-ts.4.14.0/Date.js";
-import { milliseconds, seconds, minutes, hours, fromTicks } from "../../fable_modules/fable-library-ts.4.14.0/TimeSpan.js";
-import { SpiralSm_trim_start, SpiralSm_trim_end } from "../../../../../../../../lib/spiral/lib.fsx";
-import { interpolate, toText } from "../../fable_modules/fable-library-ts.4.14.0/String.js";
+import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { compare, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { op_Subtraction, toInt64, int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { create, getTicks, now, toString } from "../../deps/Fable/src/fable-library-ts/Date.js";
+import { milliseconds, seconds, minutes, hours, fromTicks } from "../../deps/Fable/src/fable-library-ts/TimeSpan.js";
+import { SpiralSm_trim_start, SpiralSm_trim_end } from "../../lib/spiral/lib.fsx";
+import { interpolate, toText } from "../../deps/Fable/src/fable-library-ts/String.js";
 
 export const nl = "\n";
 
@@ -62,7 +62,7 @@ export function TraceLevel_$reflection(): TypeInfo {
 }
 
 export function TraceLevel__get_IsVerbose(this$: TraceLevel_$union, unitArg: void): boolean {
-    if (this$.tag === /* Verbose */ 0) {
+    if ((this$ as any)['tag'] === /* Verbose */ 0) {
         return true;
     }
     else {
@@ -71,7 +71,7 @@ export function TraceLevel__get_IsVerbose(this$: TraceLevel_$union, unitArg: voi
 }
 
 export function TraceLevel__get_IsDebug(this$: TraceLevel_$union, unitArg: void): boolean {
-    if (this$.tag === /* Debug */ 1) {
+    if ((this$ as any)['tag'] === /* Debug */ 1) {
         return true;
     }
     else {
@@ -80,7 +80,7 @@ export function TraceLevel__get_IsDebug(this$: TraceLevel_$union, unitArg: void)
 }
 
 export function TraceLevel__get_IsInfo(this$: TraceLevel_$union, unitArg: void): boolean {
-    if (this$.tag === /* Info */ 2) {
+    if ((this$ as any)['tag'] === /* Info */ 2) {
         return true;
     }
     else {
@@ -89,7 +89,7 @@ export function TraceLevel__get_IsInfo(this$: TraceLevel_$union, unitArg: void):
 }
 
 export function TraceLevel__get_IsWarning(this$: TraceLevel_$union, unitArg: void): boolean {
-    if (this$.tag === /* Warning */ 3) {
+    if ((this$ as any)['tag'] === /* Warning */ 3) {
         return true;
     }
     else {
@@ -98,7 +98,7 @@ export function TraceLevel__get_IsWarning(this$: TraceLevel_$union, unitArg: voi
 }
 
 export function TraceLevel__get_IsCritical(this$: TraceLevel_$union, unitArg: void): boolean {
-    if (this$.tag === /* Critical */ 4) {
+    if ((this$ as any)['tag'] === /* Critical */ 4) {
         return true;
     }
     else {

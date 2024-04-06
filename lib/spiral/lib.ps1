@@ -14,7 +14,18 @@ function CopyTarget {
             $name
         )
         $name = $Language -eq "py" ? $name.ToLower() : $name
-        Copy-Item $targetDir/target/$Language/lib/$lib/$name.$Language $root/lib/$lib/$name$_runtime.$Language -Force
+        $from = "$targetDir/target/$Language/lib/$lib/$name.$Language"
+        $to = "$root/lib/$lib/$name$_runtime.$Language"
+        Copy-Item $from $to -Force
+
+                # -replace "this$.tag", "(this`$ as any)['tag']" `
+        if ($Language -eq "ts") {
+            (Get-Content $to) `
+                -replace "../../fable_modules/fable-library-ts.4.14.0/", "../../deps/Fable/src/fable-library-ts/" `
+                -replace "this\$.tag", "(this$ as any)['tag']" `
+                -replace "../../../../../../../../", "../../" `
+                | Set-Content $to
+        }
     }
 
     CopyItem "fsharp" "Common"

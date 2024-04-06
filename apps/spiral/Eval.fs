@@ -83,7 +83,6 @@ module Eval =
 
     let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
     let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
-    let maxTermCountPath = targetDir </> "max_term_count.txt"
 
     let mutable allCode = ""
 
@@ -107,24 +106,23 @@ module Eval =
 
     let inline startTokenRangeWatcher () =
         if [ "dotnet-repl" ] |> List.contains assemblyName |> not then
-            let tmpSpiralDir = repositoryRoot </> "target/polyglot/spiral_eval"
-            let tmpCodeDir = tmpSpiralDir </> "code"
-            let tmpTokensDir = tmpSpiralDir </> "tokens"
+            let packagesDir = targetDir </> "packages"
 
-            [ tmpSpiralDir; tmpCodeDir; tmpTokensDir ]
+            [ targetDir; packagesDir ]
             |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
-            let stream, disposable = FileSystem.watchDirectory (fun _ -> false) tmpCodeDir
+            let stream, disposable = FileSystem.watchDirectory (fun _ -> false) packagesDir
 
             try
                 let port = Supervisor.getCompilerPort () + 2
                 let existingFilesChild =
-                    tmpCodeDir
-                    |> System.IO.Directory.GetFiles
-                    |> Array.map (fun codePath -> async {
+                    packagesDir
+                    |> System.IO.Directory.GetDirectories
+                    |> Array.map (fun codeDir -> async {
                         try
-                            let tokensPath = tmpTokensDir </> (codePath |> System.IO.Path.GetFileName)
+                            let tokensPath = codeDir </> "tokens.json"
                             if File.Exists tokensPath |> not then
+                                let codePath = codeDir </> "main.spi"
                                 let! tokens = codePath |> Supervisor.getFileTokenRange port None
                                 match tokens with
                                 | Some tokens ->
@@ -133,9 +131,9 @@ module Eval =
                                         |> FSharp.Json.Json.serialize
                                         |> FileSystem.writeAllTextAsync tokensPath
                                 | None ->
-                                    log $"Eval.watchDirectory / GetFiles / tokens: None / {getLocals ()}"
+                                    log $"Eval.watchDirectory / GetDirectories / tokens: None / {getLocals ()}"
                         with ex ->
-                            log $"Eval.watchDirectory / GetFiles / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
+                            log $"Eval.watchDirectory / GetDirectories / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     })
                     |> Async.Sequential
                     |> Async.Ignore
@@ -145,9 +143,14 @@ module Eval =
                     |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) -> async {
                         try
                             let getLocals () = $"ticks: {ticks} / event: {event} / {getLocals ()}"
+                            log $"Eval.watchDirectory / iterAsyncParallel / {getLocals ()}"
                             match event with
-                            | FileSystem.FileSystemChange.Changed (path, _) ->
-                                let codePath = tmpCodeDir </> path
+                            | FileSystem.FileSystemChange.Changed (codePath, _)
+                                when System.IO.Path.GetFileName codePath = "main.spi"
+                                ->
+                                let hash = codePath |> System.IO.Directory.GetParent
+                                let hash = hash.Name
+                                let tokensPath = targetDir </> hash </> "tokens.json"
                                 do!
                                     codePath
                                     |> FileSystem.waitForFileAccess (Some (
@@ -162,7 +165,7 @@ module Eval =
                                     do!
                                         tokens
                                         |> FSharp.Json.Json.serialize
-                                        |> FileSystem.writeAllTextAsync (tmpTokensDir </> path)
+                                        |> FileSystem.writeAllTextAsync tokensPath
                                 | None ->
                                     log $"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"
                             | _ -> ()
@@ -304,23 +307,10 @@ module Eval =
                     )
                     |> Option.defaultValue true
 
-                let maxTermCount =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // max_term_count="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
-                        else None
-                    )
-
                 async {
                     try
                         let! mainPath, disposable = newAllCode |> Supervisor.persistCode
                         use _ = disposable
-
-                        match maxTermCount with
-                        | Some maxTermCount ->
-                            do! maxTermCount |> string |> FileSystem.writeAllTextAsync maxTermCountPath
-                        | None -> ()
 
                         let port = Supervisor.getCompilerPort ()
 
@@ -329,10 +319,6 @@ module Eval =
                             |> Supervisor.buildFile timeout port cancellationToken
                             |> Async.catch
                             |> Async.runWithTimeoutAsync timeout
-
-                        match maxTermCount with
-                        | Some _ -> do! FileSystem.deleteFileAsync maxTermCountPath |> Async.Ignore
-                        | None -> ()
 
                         let code =
                             match codeChoice with

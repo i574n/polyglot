@@ -55,15 +55,16 @@ None /?? 3i32
 
 #!spiral
 
-inl default_with fn =
-    function Some x => x | None => fn ()
+inl default_with fn = function
+    | Some x => x
+    | None => fn ()
 
 #!spiral
 
 // // test
 
 None
-|> default_with (fun () => 3i32)
+|> default_with fun () => 3i32
 |> _assert_eq 3i32
 
 #!markdown
@@ -116,16 +117,66 @@ None |> iter fn
 
 nominal option' t = $"`t option"
 
+#!markdown
+
+## none'
+
+#!spiral
+
+inl none' forall t. () : option' t =
+    $'None'
+
+#!spiral
+
+inl some' forall t. (x : t) : option' t =
+    $'Some !x '
+
+#!markdown
+
+## map
+
+#!spiral
+
+inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
+    $'!x |> Option.map !fn '
+
+#!markdown
+
+## default_value'
+
+#!spiral
+
+inl default_value' forall t. (value : t) (x : option' t) : t =
+    $'!x |> Option.defaultValue !value '
+
+#!markdown
+
+## unbox
+
+#!spiral
+
 inl unbox forall t. (x : option' t) : option t =
+    // x
+    // |> map Some
+    // |> default_value' None
     inl some x : option t = Some x
     inl some = join some
     inl none : option t = None
-    $"!x |> Option.map !some |> Option.defaultValue !none"
+    $'!x |> Option.map !some |> Option.defaultValue !none '
+
+#!markdown
+
+## box
+
+#!spiral
 
 inl box forall t. (x : option t) : option' t =
+    // x
+    // |> optionm.map some'
+    // |> default_with none'
     match x with
-    | Some x => $"Some !x"
-    | None => $"None"
+    | Some x => some' x
+    | None => none' ()
 
 #!spiral
 
@@ -136,15 +187,6 @@ inl y : option i32 = None
 inl x' = x |> box |> unbox
 inl y' = y |> box |> unbox
 (x', y') |> _assert_eq (x, y)
-
-#!markdown
-
-## map
-
-#!spiral
-
-inl map forall t u. (fn : t -> u) (x : option' t) : option' u =
-    !\\((x, fn), $'"$0.map(|x| $1(x))"')
 
 #!markdown
 
