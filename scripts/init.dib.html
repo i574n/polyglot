@@ -7588,37 +7588,29 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for 'stable-x86_64-pc-windows-msvc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for 'nightly-x86_64-pc-windows-msvc'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: latest update on 2024-02-24, rust version 1.78.0-nightly (8f359beca 2024-02-23)</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-std' for 'wasm32-unknown-unknown'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-src'</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for 'nightly-x86_64-pc-windows-msvc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: latest update on 2024-04-04, rust version 1.79.0-nightly (4fd4797c2 2024-04-03)</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'cargo'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'clippy'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-docs'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rust-std'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rustc'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: downloading component 'rustfmt'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-std' for 'wasm32-unknown-unknown'</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: during uninstall component rust-std was not found</span>
-<span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-src'</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: during uninstall component rust-src was not found</span>
 <span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'cargo'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'clippy'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-docs'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rust-std'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rustc'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: removing previous version of component 'rustfmt'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-std' for 'wasm32-unknown-unknown'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-src'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: rolling back changes</span>
-<span class="ansi-red-intense-fg ansi-bold">error: failed to install component: 'rust-src', detected conflict: 'lib/rustlib\manifest-rust-src'</span>
-<span class="ansi-red-intense-fg ansi-bold">info: syncing channel updates for '1.56-x86_64-pc-windows-msvc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'cargo'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'clippy'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-docs'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rust-std'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rustc'</span>
+<span class="ansi-red-intense-fg ansi-bold">info: installing component 'rustfmt'</span>
 <span class="ansi-red-intense-fg ansi-bold">info: checking for self-update</span>
 
-       stable-x86_64-pc-windows-msvc unchanged - rustc 1.76.0 (07dca489a 2024-02-04)
-  nightly-x86_64-pc-windows-msvc update failed - rustc 1.73.0-nightly (0e8e857b1 2023-07-16)
-         1.56-x86_64-pc-windows-msvc unchanged - rustc 1.56.1 (59eed8a2a 2021-11-01)
+  nightly-x86_64-pc-windows-msvc updated - rustc 1.79.0-nightly (4fd4797c2 2024-04-03) (from rustc 1.79.0-nightly (eb45c8444 2024-03-17))
 
 <span class="ansi-red-intense-fg ansi-bold">info: cleaning up downloads &amp; tmp directories</span>
 </pre>
@@ -7634,7 +7626,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">cargo</span><span class="o">-</span><span class="n">outdated</span> <span class="o">--</span><span class="n">locked</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">cargo</span><span class="o">-</span><span class="n">outdated</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7648,7 +7640,7 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
-<span class="ansi-red-intense-fg ansi-bold">     Ignored package `cargo-outdated v0.14.0` is already installed, use --force to override</span>
+<span class="ansi-red-intense-fg ansi-bold">     Ignored package `cargo-outdated v0.15.0` is already installed, use --force to override</span>
 </pre>
 </div>
 </div>
@@ -7690,7 +7682,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">trunk</span> <span class="o">--</span><span class="n">locked</span> <span class="o">--</span><span class="n">version</span> <span class="mf">0.19.0</span><span class="o">-</span><span class="n">alpha</span><span class="mf">.3</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">cargo</span> <span class="o">+</span><span class="n">nightly</span> <span class="n">install</span> <span class="n">trunk</span> <span class="o">--</span><span class="n">version</span> <span class="mf">0.19.1</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span> <span class="o">-</span><span class="n">OnError</span> <span class="n">Continue</span>
 </pre></div>
 </div>
 </div>
@@ -7703,7 +7695,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre><span class="ansi-red-intense-fg ansi-bold">     Ignored package `trunk v0.19.0-alpha.3` is already installed, use --force to override</span>
+<pre><span class="ansi-red-intense-fg ansi-bold">     Ignored package `trunk v0.19.1` is already installed, use --force to override</span>
 </pre>
 </div>
 </div>
@@ -7731,118 +7723,13 @@ a.anchor-link {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">    Updating git repository `https://github.com/bram209/leptosfmt.git`</span>
-<span class="ansi-red-intense-fg ansi-bold">  Installing leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#ad499011)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Updating crates.io index</span>
-<span class="ansi-red-intense-fg ansi-bold">warning: package `hermit-abi v0.3.1` in Cargo.lock is yanked in registry `crates-io`, consider running without --locked</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling quote v1.0.28</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2 v1.0.68</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-ident v1.0.9</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling autocfg v1.1.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling version_check v0.9.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.48.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling serde v1.0.164</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-utils v0.8.15</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling memoffset v0.8.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro-error-attr v1.0.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-targets v0.48.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v1.0.109</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling io-lifetimes v1.0.11</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-sys v0.48.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling cfg-if v1.0.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro-error v1.0.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling syn v2.0.42</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-epoch v0.9.14</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling windows_x86_64_msvc v0.42.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling proc-macro2-diagnostics v0.10.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling indexmap v1.9.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror v1.0.40</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle v1.0.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling scopeguard v1.1.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling utf8parse v0.2.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-wincon v1.0.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-parse v0.2.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling is-terminal v0.4.7</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling anstyle-query v1.0.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling colorchoice v1.0.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling hashbrown v0.12.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling libc v0.2.146</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling rayon-core v1.11.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling yansi v0.5.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt-prettyplease v0.2.16</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling anstream v0.3.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-targets v0.42.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-deque v0.8.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling crossbeam-channel v0.5.8</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling anyhow v1.0.71</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_lex v0.5.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling bitflags v1.3.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling winnow v0.4.6</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt-pretty-printer v0.1.8 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\ad49901\printer)</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling str_indices v0.4.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling heck v0.4.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling strsim v0.10.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling num_cpus v1.15.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_builder v4.3.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling crop v0.3.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_derive v1.0.164</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling thiserror-impl v1.0.40</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling syn_derive v0.1.6</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling clap_derive v4.3.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling windows-sys v0.45.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling rstml v0.10.6</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling encode_unicode v0.3.6</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling once_cell v1.18.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling unicode-width v0.1.10</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling either v1.8.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling lazy_static v1.4.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling console v0.15.7</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling clap v4.3.3</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling rayon v1.7.0</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling similar v2.2.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling glob v0.3.1</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_datetime v0.6.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling serde_spanned v0.6.2</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling toml_edit v0.19.10</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt-formatter v0.1.18 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\ad49901\formatter)</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling toml v0.7.4</span>
-<span class="ansi-red-intense-fg ansi-bold">   Compiling leptosfmt v0.1.18 (C:\Users\i574n\scoop\persist\rustup\.cargo\git\checkouts\leptosfmt-e22a3f497dc21d3f\ad49901\cli)</span>
-<span class="ansi-red-intense-fg ansi-bold">    Finished release [optimized] target(s) in 4m 54s</span>
-<span class="ansi-red-intense-fg ansi-bold">   Replacing C:\Users\i574n\scoop\persist\rustup\.cargo\bin\leptosfmt.exe</span>
-<span class="ansi-red-intense-fg ansi-bold">    Replaced package `leptosfmt v0.1.17 (https://github.com/bram209/leptosfmt.git#dfc05ea0)` with `leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#ad499011)` (executable `leptosfmt.exe`)</span>
+<span class="ansi-red-intense-fg ansi-bold">     Ignored package `leptosfmt v0.1.18 (https://github.com/bram209/leptosfmt.git#7fec90b2)` is already installed, use --force to override</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">pnpm</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-changed 1 package in 3s
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7864,13 +7751,13 @@ changed 1 package in 3s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 2 packages in 3s
+changed 2 packages in 6s
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7892,13 +7779,13 @@ changed 2 packages in 3s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 21 packages in 13s
+changed 21 packages in 16s
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7926,7 +7813,7 @@ changed 20 packages in 2s
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7934,7 +7821,7 @@ changed 20 packages in 2s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@playwright</span><span class="o">/</span><span class="n">test</span><span class="o">@</span><span class="mf">1.41.2</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="nd">@playwright</span><span class="o">/</span><span class="n">test</span><span class="o">@</span><span class="mf">1.42.1</span>
 </pre></div>
 </div>
 </div>
@@ -7948,13 +7835,13 @@ changed 20 packages in 2s
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-changed 3 packages in 3s
+changed 3 packages in 11s
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7962,64 +7849,13 @@ changed 3 packages in 3s
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">npx</span> <span class="o">-</span><span class="n">y</span> <span class="n">playwright</span><span class="o">@</span><span class="mf">1.41.2</span> <span class="n">install</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">npx</span> <span class="o">-</span><span class="n">y</span> <span class="n">playwright</span><span class="o">@</span><span class="mf">1.42.1</span> <span class="n">install</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Downloading Chromium 121.0.6167.57 (playwright build v1097) from https://playwright.azureedge.net/builds/chromium/1097/chromium-win64.zip
-|                                                                                |   0% of 122.2 MiB
-|■■■■■■■■                                                                        |  10% of 122.2 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 122.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 122.2 MiB
-Chromium 121.0.6167.57 (playwright build v1097) downloaded to C:\Users\i574n\AppData\Local\ms-playwright\chromium-1097
-Downloading Firefox 121.0 (playwright build v1438) from https://playwright.azureedge.net/builds/firefox/1438/firefox-win64.zip
-|                                                                                |   0% of 80.9 MiB
-|■■■■■■■■                                                                        |  10% of 80.9 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 80.9 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 80.9 MiB
-Firefox 121.0 (playwright build v1438) downloaded to C:\Users\i574n\AppData\Local\ms-playwright\firefox-1438
-Downloading Webkit 17.4 (playwright build v1967) from https://playwright.azureedge.net/builds/webkit/1967/webkit-win64.zip
-|                                                                                |   0% of 46.6 MiB
-|■■■■■■■■                                                                        |  10% of 46.6 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 46.6 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 46.6 MiB
-Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\ms-playwright\webkit-1967
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8033,7 +7869,7 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8047,7 +7883,7 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8069,7 +7905,7 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-# Invoke-Block / $Retry: 1 / $OnError: Continue / $exitcode: 0 / $EnvVars: null / $Error: 'Cannot find a variable with the name 'PackageManagementProvider'. Cannot find a variable with the name 'SourceLocation'.' / $ScriptBlock:
+# Invoke-Block / $Retry: 1 / $Location:  / $OnError: Continue / $exitcode: 0 / $EnvVars: null / $Error: 'Cannot find a variable with the name 'PackageManagementProvider'. Cannot find a variable with the name 'SourceLocation'.' / $ScriptBlock:
 'Set-PSRepository -Name PSGallery -InstallationPolicy Trusted'
 
 </pre>
@@ -8077,7 +7913,7 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8104,7 +7940,7 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8112,7 +7948,7 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="n">pnpm</span> <span class="o">-</span><span class="n">C</span> <span class="o">..</span> <span class="n">install</span> <span class="o">--</span><span class="n">frozen</span><span class="o">-</span><span class="n">lockfile</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span> <span class="o">~/.</span><span class="n">bun</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bun</span> <span class="n">install</span> <span class="o">--</span><span class="n">cwd</span> <span class="o">..</span> <span class="o">--</span><span class="n">frozen</span><span class="o">-</span><span class="n">lockfile</span> <span class="p">}</span> <span class="o">|</span> <span class="n">Invoke</span><span class="o">-</span><span class="n">Block</span>
 </pre></div>
 </div>
 </div>
@@ -8125,16 +7961,15 @@ Webkit 17.4 (playwright build v1967) downloaded to C:\Users\i574n\AppData\Local\
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Lockfile is up to date, resolution step is skipped
-Already up to date
+<pre><span class="ansi-red-intense-fg ansi-bold">bun install v1.1.0 (5903a614)</span>
 
-Done in 4.7s
+Checked 4 installs across 5 packages (no changes) [62.00ms]
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8160,20 +7995,20 @@ Already up to date.
 MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
-C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\The Spiral Language 2.fsproj]
+C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\The Spiral Language 2.fsproj]
   The Spiral Language 2 -&gt; C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:53.21
+Time Elapsed 00:00:26.49
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8194,29 +8029,38 @@ Time Elapsed 00:00:53.21
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-up to date, audited 135 packages in 1s
+<pre>path: ../deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release/
+
+up to date, audited 138 packages in 3s
 
 36 packages are looking for funding
   run `npm fund` for details
 
 found 0 vulnerabilities
-<span class="ansi-red-intense-fg ansi-bold">(node:67824) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.</span>
+<span class="ansi-red-intense-fg ansi-bold">(node:19188) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.</span>
 <span class="ansi-red-intense-fg ansi-bold">(Use `node --trace-deprecation ...` to show where the warning was created)</span>
 Executing prepublish script 'npm run vscode:prepublish'...
 
 &gt; spiral-lang-vscode@2.4.21 vscode:prepublish
-&gt; tsc
+&gt; npm run esbuild-base -- --minify
 
-This extension consists of 712 files, out of which 127 are JavaScript files. For performance reasons, you should bundle your extension: https://aka.ms/vscode-bundle-extension . You should also exclude unnecessary files by adding them to your .vscodeignore: https://aka.ms/vscode-vscodeignore
- DONE  Packaged: C:\home\git\polyglot\deps\The-Spiral-Language\VS Code Plugin\spiral-lang-vscode-2.4.21.vsix (712 files, 5.91MB)
+
+&gt; spiral-lang-vscode@2.4.21 esbuild-base
+&gt; esbuild ./src/index.ts --bundle --outfile=out/index.js --external:vscode --format=cjs --platform=node --minify
+
+
+<span class="ansi-red-intense-fg ansi-bold">  out\index.js  1.1mb ⚠️</span>
+
+<span class="ansi-red-intense-fg ansi-bold">⚡ Done in 629ms</span>
+This extension consists of 12050 files, out of which 1 are JavaScript files. For performance reasons, you should bundle your extension: https://aka.ms/vscode-bundle-extension . You should also exclude unnecessary files by adding them to your .vscodeignore: https://aka.ms/vscode-vscodeignore
+ DONE  Packaged: C:\home\git\polyglot\deps\The-Spiral-Language\VS Code Plugin\spiral-lang-vscode-2.4.21.vsix (12050 files, 15.2MB)
 Copying extension to C:\Users\i574n\scoop\persist\vscode-insiders\data\extensions\mrakgr.spiral-lang-vscode-2.4.21
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8243,10 +8087,10 @@ Tool path: C:\Users\i574n\.nuget\packages\fable\4.13.0\tools\net6.0\any
 MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
-C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Cli\Fable.Cli.fsproj]
-C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\Rust.AST.fsproj]
-C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.AST\Fable.AST.fsproj]
-C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
+C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Cli\Fable.Cli.fsproj]
+C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\Rust.AST.fsproj]
+C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.AST\Fable.AST.fsproj]
+C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
   Fable.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.AST\bin\Release\netstandard2.0\Fable.AST.dll
   Rust.AST -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Rust\AST\bin\Release\netstandard2.0\Rust.AST.dll
 C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Microsoft.Common.CurrentVersion.targets(2401,5): warning MSB3277: Found conflicts between different versions of "System.Memory" that could not be resolved. [C:\home\git\polyglot\deps\Fable\src\Fable.Transforms\Fable.Transforms.fsproj]
@@ -8280,26 +8124,26 @@ C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Microsoft.Common.CurrentVe
     1 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:03.91
+Time Elapsed 00:00:02.57
 fable.dll path: C:\home\git\polyglot\deps\Fable\src\Fable.Cli\bin\Release\net9.0\fable.dll
 Lib path: C:\Users\i574n\.nuget\packages\fable.core\4.3.0\lib\netstandard2.0
 MSBuild version 17.10.0-preview-24101-01+07fd5d51f for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
-C:\Program Files\dotnet\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Core\Fable.Core.fsproj]
+C:\Users\i574n\scoop\apps\dotnet-sdk-preview\current\sdk\9.0.100-preview.1.24101.2\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIdentifierInference.targets(313,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotnet-support-policy [C:\home\git\polyglot\deps\Fable\src\Fable.Core\Fable.Core.fsproj]
   Fable.Core -&gt; C:\home\git\polyglot\deps\Fable\src\Fable.Core\bin\Release\netstandard2.0\Fable.Core.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:05.78
+Time Elapsed 00:00:01.32
 </pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8321,79 +8165,611 @@ Time Elapsed 00:00:05.78
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre><span class="ansi-red-intense-fg ansi-bold">fatal: destination path 'hyperui' already exists and is not an empty directory.</span>
-Already up to date.
+<span class="ansi-red-intense-fg ansi-bold">From https://github.com/i574n/hyperui</span>
+<span class="ansi-red-intense-fg ansi-bold">   e387ded..bc31f72  main       -&gt; origin/main</span>
+Updating e387ded..bc31f72
+Fast-forward
+ .eslintrc.json                                     |    7 +-
+ .github/FUNDING.yml                                |    3 -
+ .gitignore                                         |   17 +-
+ .prettierignore                                    |    2 +
+ README.md                                          |   97 +
+ app/[components]/[category]/[collection]/page.jsx  |   62 +-
+ app/[components]/[category]/page.jsx               |   94 +-
+ app/about/[slug]/page.jsx                          |   47 +-
+ app/api/search/route.js                            |    9 +-
+ app/blog/[slug]/page.jsx                           |   49 +-
+ app/blog/page.jsx                                  |   11 +-
+ app/layout.jsx                                     |   35 +-
+ app/not-found.jsx                                  |   14 +
+ app/page.jsx                                       |   19 +-
+ app/robots.js                                      |   10 +
+ app/sitemap.js                                     |   15 +-
+ jsconfig.json                                      |   12 +-
+ next.config.js                                     |    3 -
+ package-lock.json                                  | 8816 ++++++++++++++++++++
+ package.json                                       |   50 +-
+ prettier.config.js                                 |    8 +-
+ public/blogs/animation-extensions.html             |    6 +-
+ public/blogs/highlight-hover.html                  |   10 +-
+ public/blogs/pixelated-lazy-load.html              |   12 +-
+ public/blogs/remove-number-spinners.html           |   16 +-
+ public/blogs/text-shadow.html                      |    8 +-
+ .../components/application-ui-alerts/1-dark.html   |   10 +-
+ public/components/application-ui-alerts/1.html     |   10 +-
+ .../components/application-ui-alerts/2-dark.html   |   15 +-
+ public/components/application-ui-alerts/2.html     |   14 +-
+ .../components/application-ui-alerts/3-dark.html   |    8 +-
+ public/components/application-ui-alerts/3.html     |    4 +-
+ .../components/application-ui-alerts/4-dark.html   |   11 +-
+ public/components/application-ui-alerts/4.html     |   11 +-
+ public/components/application-ui-badges/1.html     |    4 +-
+ public/components/application-ui-badges/3.html     |    2 +-
+ .../components/application-ui-badges/5-dark.html   |    6 +-
+ public/components/application-ui-badges/5.html     |    6 +-
+ .../application-ui-breadcrumbs/1-dark.html         |   17 +-
+ .../components/application-ui-breadcrumbs/2.html   |    4 +-
+ .../components/application-ui-button-groups/1.html |    4 +-
+ .../application-ui-button-groups/5-dark.html       |    6 +-
+ .../components/application-ui-button-groups/5.html |    6 +-
+ .../application-ui-checkboxes/1-dark.html          |   57 +
+ public/components/application-ui-checkboxes/1.html |   45 +
+ .../application-ui-checkboxes/2-dark.html          |   61 +
+ public/components/application-ui-checkboxes/2.html |   49 +
+ .../application-ui-checkboxes/3-dark.html          |   69 +
+ public/components/application-ui-checkboxes/3.html |   57 +
+ .../application-ui-checkboxes/4-dark.html          |   78 +
+ public/components/application-ui-checkboxes/4.html |   66 +
+ .../application-ui-checkboxes/5-dark.html          |   78 +
+ public/components/application-ui-checkboxes/5.html |   66 +
+ .../application-ui-checkboxes/6-dark.html          |   78 +
+ public/components/application-ui-checkboxes/6.html |   66 +
+ .../application-ui-details-list/1-dark.html        |   23 +-
+ .../components/application-ui-details-list/1.html  |    9 +-
+ .../application-ui-details-list/2-dark.html        |   33 +-
+ .../components/application-ui-details-list/2.html  |   29 +-
+ .../application-ui-details-list/3-dark.html        |   27 +-
+ .../components/application-ui-details-list/3.html  |    9 +-
+ .../application-ui-details-list/4-dark.html        |   37 +-
+ .../components/application-ui-details-list/4.html  |   29 +-
+ public/components/application-ui-dividers/1.html   |    5 +
+ public/components/application-ui-dividers/2.html   |    7 +
+ public/components/application-ui-dividers/3.html   |    4 +
+ public/components/application-ui-dividers/4.html   |    4 +
+ .../application-ui-dropdown/1-interactive.html     |    4 +-
+ public/components/application-ui-dropdown/1.html   |    8 +-
+ .../application-ui-dropdown/2-interactive.html     |    4 +-
+ public/components/application-ui-dropdown/2.html   |    8 +-
+ .../3-dark-interactive.html                        |    8 +-
+ .../components/application-ui-dropdown/3-dark.html |    8 +-
+ .../application-ui-dropdown/3-interactive.html     |   12 +-
+ public/components/application-ui-dropdown/3.html   |   16 +-
+ .../application-ui-error-pages/1-dark.html         |    6 +-
+ .../components/application-ui-error-pages/1.html   |    4 +-
+ .../application-ui-error-pages/2-dark.html         |   14 +-
+ .../components/application-ui-error-pages/2.html   |   10 +-
+ .../application-ui-error-pages/3-dark.html         |   12 +-
+ .../components/application-ui-error-pages/3.html   |   10 +-
+ .../application-ui-error-pages/4-dark.html         |   14 +-
+ .../components/application-ui-error-pages/4.html   |   10 +-
+ public/components/application-ui-grids/1.html      |    4 +-
+ public/components/application-ui-grids/10.html     |    4 +-
+ public/components/application-ui-grids/11.html     |    6 +-
+ public/components/application-ui-grids/12.html     |    4 +-
+ public/components/application-ui-grids/2.html      |    4 +-
+ public/components/application-ui-grids/3.html      |    4 +-
+ public/components/application-ui-grids/4.html      |    6 +-
+ public/components/application-ui-grids/5.html      |    8 +-
+ public/components/application-ui-grids/6.html      |    6 +-
+ public/components/application-ui-grids/7.html      |    6 +-
+ public/components/application-ui-grids/8.html      |    6 +-
+ public/components/application-ui-grids/9.html      |    4 +-
+ public/components/application-ui-headers/1.html    |    8 +-
+ public/components/application-ui-headers/2.html    |    8 +-
+ public/components/application-ui-headers/3.html    |   92 -
+ public/components/application-ui-headers/4.html    |  159 -
+ .../components/application-ui-inputs/1-dark.html   |    7 +-
+ public/components/application-ui-inputs/1.html     |    4 +-
+ .../components/application-ui-inputs/2-dark.html   |    9 +-
+ public/components/application-ui-inputs/2.html     |    7 +-
+ .../components/application-ui-inputs/3-dark.html   |    2 +-
+ .../components/application-ui-inputs/4-dark.html   |    6 +-
+ .../components/application-ui-inputs/6-dark.html   |    2 +-
+ .../components/application-ui-inputs/7-dark.html   |    2 +-
+ .../application-ui-login-forms/1-dark.html         |   36 +-
+ .../components/application-ui-login-forms/1.html   |   51 +-
+ .../application-ui-login-forms/2-dark.html         |   44 +-
+ .../components/application-ui-login-forms/2.html   |   59 +-
+ public/components/application-ui-media/1.html      |   16 +
+ public/components/application-ui-media/2.html      |   16 +
+ public/components/application-ui-media/3.html      |   16 +
+ public/components/application-ui-media/4.html      |   16 +
+ public/components/application-ui-media/5.html      |   16 +
+ public/components/application-ui-media/6.html      |   16 +
+ public/components/application-ui-media/7.html      |   16 +
+ public/components/application-ui-media/8.html      |   16 +
+ .../application-ui-pagination/1-dark.html          |   12 +-
+ public/components/application-ui-pagination/1.html |   14 +-
+ .../application-ui-pagination/2-dark.html          |   18 +-
+ public/components/application-ui-pagination/2.html |   18 +-
+ .../application-ui-pagination/3-dark.html          |   28 +-
+ public/components/application-ui-pagination/3.html |   28 +-
+ .../application-ui-pagination/4-dark.html          |   18 +-
+ public/components/application-ui-pagination/4.html |   18 +-
+ .../components/application-ui-progress/1-dark.html |    5 +-
+ public/components/application-ui-progress/1.html   |    5 +-
+ .../components/application-ui-progress/2-dark.html |    5 +-
+ public/components/application-ui-progress/2.html   |    5 +-
+ .../components/application-ui-progress/3-dark.html |   10 +-
+ public/components/application-ui-progress/3.html   |   10 +-
+ .../application-ui-radio-groups/1-dark.html        |   38 +-
+ .../components/application-ui-radio-groups/1.html  |   38 +-
+ .../application-ui-radio-groups/2-dark.html        |   72 +-
+ .../components/application-ui-radio-groups/2.html  |   72 +-
+ .../application-ui-radio-groups/3-dark.html        |   50 +-
+ .../components/application-ui-radio-groups/3.html  |   50 +-
+ .../application-ui-radio-groups/4-dark.html        |   68 +-
+ .../components/application-ui-radio-groups/4.html  |   68 +-
+ .../application-ui-radio-groups/5-dark.html        |   72 -
+ .../components/application-ui-radio-groups/5.html  |   56 +-
+ .../components/application-ui-radio-groups/6.html  |   82 +-
+ public/components/application-ui-selects/1.html    |    4 +-
+ public/components/application-ui-selects/2.html    |    4 +-
+ public/components/application-ui-selects/3.html    |    6 +-
+ public/components/application-ui-side-menu/1.html  |   32 +-
+ public/components/application-ui-side-menu/2.html  |   42 +-
+ public/components/application-ui-side-menu/3.html  |  328 +
+ public/components/application-ui-stats/1-dark.html |   24 +-
+ public/components/application-ui-stats/1.html      |   12 +-
+ public/components/application-ui-stats/2-dark.html |    4 +-
+ public/components/application-ui-stats/2.html      |    8 +-
+ public/components/application-ui-stats/3.html      |    8 +-
+ public/components/application-ui-stats/4-dark.html |    8 +-
+ public/components/application-ui-stats/4.html      |    4 +-
+ public/components/application-ui-stats/6-dark.html |    8 +-
+ public/components/application-ui-steps/1.html      |    6 +-
+ public/components/application-ui-steps/3.html      |   18 +-
+ public/components/application-ui-steps/4.html      |   14 +-
+ public/components/application-ui-steps/5.html      |   14 +-
+ public/components/application-ui-steps/6.html      |   18 +-
+ .../components/application-ui-tables/1-dark.html   |   86 +-
+ public/components/application-ui-tables/1.html     |   28 +-
+ .../components/application-ui-tables/2-dark.html   |   94 +-
+ public/components/application-ui-tables/2.html     |   28 +-
+ .../components/application-ui-tables/3-dark.html   |   86 +-
+ public/components/application-ui-tables/3.html     |   28 +-
+ .../components/application-ui-tables/4-dark.html   |   86 +-
+ public/components/application-ui-tables/4.html     |   28 +-
+ .../components/application-ui-tables/5-dark.html   |   94 +-
+ public/components/application-ui-tables/5.html     |   52 +-
+ .../components/application-ui-tables/6-dark.html   |  110 +-
+ public/components/application-ui-tables/6.html     |   52 +-
+ .../components/application-ui-tables/7-dark.html   |  140 +
+ public/components/application-ui-tables/7.html     |  120 +
+ .../application-ui-textareas/1-dark.html           |    7 +-
+ public/components/application-ui-textareas/1.html  |    4 +-
+ .../application-ui-textareas/2-dark.html           |    6 +-
+ .../application-ui-textareas/3-dark.html           |    2 +-
+ .../application-ui-toggles/1-interactive.html      |   17 +-
+ public/components/application-ui-toggles/1.html    |   11 +-
+ .../application-ui-toggles/2-interactive.html      |   17 +-
+ public/components/application-ui-toggles/2.html    |   11 +-
+ public/components/application-ui-toggles/3.html    |   12 +-
+ public/components/application-ui-toggles/4.html    |   11 +-
+ .../application-ui-vertical-menu/1-dark.html       |   10 +-
+ .../components/application-ui-vertical-menu/1.html |   13 +-
+ .../application-ui-vertical-menu/2-dark.html       |   10 +-
+ .../components/application-ui-vertical-menu/2.html |   10 +-
+ .../application-ui-vertical-menu/3-dark.html       |   26 +-
+ .../components/application-ui-vertical-menu/3.html |   29 +-
+ .../application-ui-vertical-menu/4-dark.html       |   26 +-
+ .../components/application-ui-vertical-menu/4.html |   29 +-
+ .../application-ui-vertical-menu/5-dark.html       |   26 +-
+ .../components/application-ui-vertical-menu/5.html |   26 +-
+ .../6-dark-interactive.html                        |   16 +-
+ .../application-ui-vertical-menu/6-dark.html       |   16 +-
+ .../6-interactive.html                             |   19 +-
+ .../components/application-ui-vertical-menu/6.html |   19 +-
+ .../7-dark-interactive.html                        |   32 +-
+ .../application-ui-vertical-menu/7-dark.html       |   32 +-
+ .../7-interactive.html                             |   35 +-
+ .../components/application-ui-vertical-menu/7.html |   35 +-
+ .../application-ui-vertical-menu/8-dark.html       |   18 +-
+ .../components/application-ui-vertical-menu/8.html |   18 +-
+ .../application-ui-vertical-menu/9-dark.html       |   34 +-
+ .../components/application-ui-vertical-menu/9.html |   34 +-
+ public/components/ecommerce-carts/1.html           |   12 +-
+ public/components/ecommerce-carts/2.html           |   12 +-
+ public/components/ecommerce-carts/3.html           |    6 +-
+ .../components/ecommerce-collection-cards/1.html   |   10 +-
+ .../components/ecommerce-collection-cards/2.html   |    6 +-
+ .../1-dark-interactive.html                        |   52 +-
+ .../ecommerce-collection-filters/1-dark.html       |   60 +-
+ .../1-interactive.html                             |   64 +-
+ .../components/ecommerce-collection-filters/1.html |   72 +-
+ .../2-dark-interactive.html                        |   30 +-
+ .../ecommerce-collection-filters/2-dark.html       |   38 +-
+ .../2-interactive.html                             |   62 +-
+ .../components/ecommerce-collection-filters/2.html |   52 +-
+ .../components/ecommerce-featured-sections/1.html  |   20 +-
+ .../components/ecommerce-featured-sections/2.html  |   39 +-
+ public/components/ecommerce-product-cards/1.html   |    4 +-
+ public/components/ecommerce-product-cards/2.html   |    4 +-
+ public/components/ecommerce-product-cards/3.html   |   10 +-
+ public/components/ecommerce-product-cards/4.html   |    8 +-
+ public/components/ecommerce-product-cards/5.html   |   22 +-
+ public/components/ecommerce-product-cards/6.html   |    6 +-
+ .../ecommerce-product-collections/1.html           |   49 +-
+ .../ecommerce-product-collections/2.html           |   49 +-
+ .../ecommerce-product-collections/3.html           |   29 +-
+ .../ecommerce-product-collections/4.html           |   50 +-
+ .../ecommerce-product-collections/5.html           |   87 +-
+ .../ecommerce-product-collections/6.html           |  144 +-
+ .../1-dark-interactive.html                        |    6 +-
+ .../ecommerce-quantity-inputs/1-dark.html          |    6 +-
+ .../ecommerce-quantity-inputs/1-interactive.html   |    4 +-
+ public/components/ecommerce-quantity-inputs/1.html |   10 +-
+ .../2-dark-interactive.html                        |    6 +-
+ .../ecommerce-quantity-inputs/2-dark.html          |    6 +-
+ .../ecommerce-quantity-inputs/2-interactive.html   |    6 +-
+ public/components/ecommerce-quantity-inputs/2.html |   12 +-
+ .../3-dark-interactive.html                        |    6 +-
+ .../ecommerce-quantity-inputs/3-dark.html          |    6 +-
+ .../ecommerce-quantity-inputs/3-interactive.html   |    6 +-
+ public/components/ecommerce-quantity-inputs/3.html |   12 +-
+ .../4-dark-interactive.html                        |   10 +-
+ .../ecommerce-quantity-inputs/4-dark.html          |   10 +-
+ .../ecommerce-quantity-inputs/4-interactive.html   |    8 +-
+ public/components/ecommerce-quantity-inputs/4.html |   14 +-
+ .../components/marketing-announcements/2-dark.html |   11 +-
+ public/components/marketing-announcements/2.html   |   11 +-
+ .../components/marketing-announcements/4-dark.html |    4 +-
+ public/components/marketing-announcements/4.html   |    4 +-
+ .../components/marketing-announcements/5-dark.html |    4 +-
+ public/components/marketing-announcements/5.html   |    4 +-
+ .../components/marketing-announcements/6-dark.html |    4 +-
+ public/components/marketing-announcements/6.html   |    4 +-
+ .../components/marketing-announcements/8-dark.html |   32 +-
+ public/components/marketing-announcements/8.html   |   16 +-
+ public/components/marketing-banners/1.html         |   16 +-
+ public/components/marketing-banners/2.html         |   12 +-
+ public/components/marketing-banners/3.html         |    8 +-
+ public/components/marketing-blog-cards/1-dark.html |   22 +-
+ public/components/marketing-blog-cards/1.html      |   19 +-
+ public/components/marketing-blog-cards/2-dark.html |   15 +-
+ public/components/marketing-blog-cards/2.html      |   15 +-
+ public/components/marketing-blog-cards/3-dark.html |   25 +-
+ public/components/marketing-blog-cards/3.html      |   25 +-
+ public/components/marketing-blog-cards/4-dark.html |    7 +-
+ public/components/marketing-blog-cards/4.html      |    4 +-
+ public/components/marketing-blog-cards/5-dark.html |   23 +-
+ public/components/marketing-blog-cards/5.html      |   17 +-
+ public/components/marketing-blog-cards/6-dark.html |   21 +-
+ public/components/marketing-blog-cards/6.html      |   11 +-
+ public/components/marketing-blog-cards/7.html      |   27 +-
+ public/components/marketing-buttons/1.html         |    4 +-
+ public/components/marketing-buttons/10.html        |    8 +-
+ public/components/marketing-buttons/11.html        |   12 +-
+ public/components/marketing-buttons/12.html        |    8 +-
+ public/components/marketing-buttons/2.html         |    8 +-
+ public/components/marketing-buttons/3.html         |   14 +-
+ public/components/marketing-buttons/4.html         |    8 +-
+ public/components/marketing-buttons/5.html         |   16 +-
+ public/components/marketing-buttons/6.html         |   32 +-
+ public/components/marketing-buttons/7.html         |    4 +-
+ public/components/marketing-buttons/8.html         |    8 +-
+ public/components/marketing-buttons/9.html         |   14 +-
+ public/components/marketing-cards/1.html           |   10 +-
+ public/components/marketing-cards/2.html           |    9 +-
+ public/components/marketing-cards/3.html           |   11 +-
+ public/components/marketing-cards/4.html           |    8 +-
+ public/components/marketing-cards/5.html           |    8 +-
+ public/components/marketing-cards/6.html           |   21 +-
+ public/components/marketing-cards/7.html           |    2 +-
+ public/components/marketing-cards/8.html           |   11 +-
+ public/components/marketing-cards/9.html           |   17 +-
+ public/components/marketing-cards/_12.html         |   31 -
+ public/components/marketing-cards/_9.html          |   28 -
+ public/components/marketing-ctas/1-dark.html       |   21 +-
+ public/components/marketing-ctas/1.html            |   13 +-
+ public/components/marketing-ctas/2-dark.html       |   12 +-
+ public/components/marketing-ctas/2.html            |    8 +-
+ public/components/marketing-ctas/3-dark.html       |   21 +-
+ public/components/marketing-ctas/3.html            |   17 +-
+ public/components/marketing-ctas/4.html            |   13 +-
+ public/components/marketing-ctas/5.html            |   11 +-
+ public/components/marketing-faqs/1-dark.html       |   40 +-
+ public/components/marketing-faqs/1.html            |   40 +-
+ public/components/marketing-faqs/2-dark.html       |   30 +-
+ public/components/marketing-faqs/2.html            |   47 +-
+ public/components/marketing-faqs/3-dark.html       |   22 +-
+ public/components/marketing-faqs/3.html            |   18 +-
+ public/components/marketing-faqs/4-dark.html       |   34 +-
+ public/components/marketing-faqs/4.html            |   42 +-
+ public/components/marketing-faqs/5-dark.html       |   34 +-
+ public/components/marketing-faqs/5.html            |   46 +-
+ public/components/marketing-footers/1-dark.html    |  176 +-
+ public/components/marketing-footers/1.html         |  156 +-
+ public/components/marketing-footers/10-dark.html   |  138 +-
+ public/components/marketing-footers/10.html        |  154 +-
+ public/components/marketing-footers/11-dark.html   |   15 +-
+ public/components/marketing-footers/11.html        |    7 +-
+ public/components/marketing-footers/12-dark.html   |  136 +-
+ public/components/marketing-footers/12.html        |  138 +-
+ public/components/marketing-footers/13-dark.html   |  120 +-
+ public/components/marketing-footers/13.html        |  122 +-
+ public/components/marketing-footers/2-dark.html    |  133 +-
+ public/components/marketing-footers/2.html         |  120 +-
+ public/components/marketing-footers/3-dark.html    |  139 +-
+ public/components/marketing-footers/3.html         |  128 +-
+ public/components/marketing-footers/4-dark.html    |   70 +-
+ public/components/marketing-footers/4.html         |   65 +-
+ public/components/marketing-footers/5-dark.html    |  110 +-
+ public/components/marketing-footers/5.html         |  100 +-
+ public/components/marketing-footers/6-dark.html    |  109 +-
+ public/components/marketing-footers/6.html         |   81 +-
+ public/components/marketing-footers/7-dark.html    |  100 +-
+ public/components/marketing-footers/7.html         |  139 +-
+ public/components/marketing-footers/8-dark.html    |   72 +-
+ public/components/marketing-footers/8.html         |   80 +-
+ public/components/marketing-footers/9-dark.html    |   35 +-
+ public/components/marketing-footers/9.html         |   35 +-
+ public/components/marketing-forms/1.html           |   12 +-
+ public/components/marketing-forms/2.html           |   14 +-
+ public/components/marketing-forms/3.html           |   19 +-
+ public/components/marketing-forms/4.html           |   58 +-
+ public/components/marketing-headers/1-dark.html    |   39 +-
+ public/components/marketing-headers/1.html         |   47 +-
+ public/components/marketing-headers/2-dark.html    |   31 +-
+ public/components/marketing-headers/2.html         |   65 +-
+ public/components/marketing-headers/3-dark.html    |   31 +-
+ public/components/marketing-headers/3.html         |   65 +-
+ public/components/marketing-popups/1.html          |   12 +-
+ public/components/marketing-popups/2.html          |   13 +-
+ public/components/marketing-popups/3.html          |    6 +-
+ public/components/marketing-popups/4.html          |   25 +-
+ public/components/marketing-popups/5.html          |   18 +-
+ public/components/marketing-popups/6.html          |    7 +-
+ public/components/marketing-popups/7.html          |   13 +-
+ public/components/marketing-popups/8.html          |   14 +-
+ public/components/marketing-pricings/1.html        |   92 +-
+ public/components/marketing-pricings/2.html        |  363 +
+ public/components/marketing-sections/1.html        |   42 +-
+ public/components/marketing-sections/2.html        |   27 +-
+ public/components/marketing-sections/3.html        |   16 +-
+ public/components/marketing-sections/4.html        |   57 +-
+ public/components/marketing-sections/5.html        |   23 +-
+ public/components/marketing-sections/6.html        |   12 +-
+ public/components/marketing-stats/1-dark.html      |   25 +-
+ public/components/marketing-stats/1.html           |   37 +-
+ public/components/marketing-stats/2-dark.html      |   25 +-
+ public/components/marketing-stats/2.html           |   29 +-
+ public/components/marketing-stats/3-dark.html      |   51 +-
+ public/components/marketing-stats/3.html           |   31 +-
+ public/components/marketing-testimonials/1.html    |   78 +-
+ public/components/marketing-testimonials/2.html    |   54 +-
+ public/components/marketing-testimonials/3.html    |   37 +-
+ public/components/marketing-testimonials/4.html    |   56 +-
+ public/components/marketing-testimonials/5.html    |   92 +-
+ public/iframe.js                                   |   12 -
+ src/components/BlogCard.jsx                        |   16 +-
+ src/components/BlogPreview.jsx                     |   17 +-
+ src/components/BlogTableContent.jsx                |   48 +-
+ src/components/ButtonStyle.jsx                     |   23 +-
+ src/components/CollectionCard.jsx                  |   19 +-
+ src/components/CollectionGrid.jsx                  |    2 +-
+ src/components/CollectionLinks.jsx                 |   92 +-
+ src/components/ComponentPreview.jsx                |   49 +-
+ src/components/Container.jsx                       |    6 +-
+ src/components/FaqList.jsx                         |    8 +-
+ src/components/Footer.jsx                          |   24 +-
+ src/components/GithubSocial.jsx                    |   16 +
+ src/components/Header.jsx                          |   50 +-
+ src/components/HeaderBanner.jsx                    |    6 +-
+ src/components/HeaderMenu.jsx                      |    7 +-
+ src/components/HeaderMenuLinks.jsx                 |    9 +-
+ src/components/HeaderSearch.jsx                    |   27 +-
+ src/components/HeroBanner.jsx                      |    6 +-
+ src/components/IconClose.jsx                       |    6 +-
+ src/components/IconGithub.jsx                      |    7 +-
+ src/components/IconMenu.jsx                        |    6 +-
+ src/components/MdxRemoteRender.jsx                 |   10 +-
+ src/components/PreviewCode.jsx                     |    9 +-
+ src/components/PreviewCopy.jsx                     |    8 +-
+ src/components/PreviewCreator.jsx                  |    4 +-
+ src/components/PreviewIframe.jsx                   |    5 +-
+ src/components/PreviewInteractive.jsx              |    5 +-
+ src/components/PreviewTitle.jsx                    |    2 +-
+ src/components/PreviewView.jsx                     |    6 +-
+ src/components/SponsorGrid.jsx                     |   33 -
+ src/data/components/application-ui-alerts.mdx      |    6 +-
+ src/data/components/application-ui-badges.mdx      |    6 +-
+ src/data/components/application-ui-breadcrumbs.mdx |    6 +-
+ .../components/application-ui-button-groups.mdx    |    6 +-
+ src/data/components/application-ui-checkboxes.mdx  |   34 +
+ .../components/application-ui-details-list.mdx     |    6 +-
+ src/data/components/application-ui-dividers.mdx    |   23 +
+ src/data/components/application-ui-dropdown.mdx    |    5 +-
+ src/data/components/application-ui-error-pages.mdx |    5 +-
+ src/data/components/application-ui-grids.mdx       |    6 +-
+ src/data/components/application-ui-headers.mdx     |   10 +-
+ src/data/components/application-ui-inputs.mdx      |    7 +-
+ src/data/components/application-ui-login-forms.mdx |    5 +-
+ src/data/components/application-ui-media.mdx       |   31 +
+ src/data/components/application-ui-pagination.mdx  |    6 +-
+ src/data/components/application-ui-progress.mdx    |    6 +-
+ .../components/application-ui-radio-groups.mdx     |    9 +-
+ src/data/components/application-ui-selects.mdx     |    6 +-
+ src/data/components/application-ui-side-menu.mdx   |    8 +-
+ src/data/components/application-ui-stats.mdx       |    6 +-
+ src/data/components/application-ui-steps.mdx       |    6 +-
+ src/data/components/application-ui-tables.mdx      |    9 +-
+ src/data/components/application-ui-tabs.mdx        |    7 +-
+ src/data/components/application-ui-textareas.mdx   |    7 +-
+ src/data/components/application-ui-toggles.mdx     |    6 +-
+ .../components/application-ui-vertical-menu.mdx    |    5 +-
+ src/data/components/ecommerce-carts.mdx            |    5 +-
+ src/data/components/ecommerce-collection-cards.mdx |    5 +-
+ .../components/ecommerce-collection-filters.mdx    |    6 +-
+ .../components/ecommerce-featured-sections.mdx     |    5 +-
+ src/data/components/ecommerce-product-cards.mdx    |    5 +-
+ .../components/ecommerce-product-collections.mdx   |    5 +-
+ src/data/components/ecommerce-quantity-inputs.mdx  |    6 +-
+ src/data/components/marketing-announcements.mdx    |    6 +-
+ src/data/components/marketing-banners.mdx          |    5 +-
+ src/data/components/marketing-blog-cards.mdx       |    5 +-
+ src/data/components/marketing-buttons.mdx          |    6 +-
+ src/data/components/marketing-cards.mdx            |    5 +-
+ src/data/components/marketing-ctas.mdx             |    5 +-
+ src/data/components/marketing-faqs.mdx             |    5 +-
+ src/data/components/marketing-footers.mdx          |    5 +-
+ src/data/components/marketing-forms.mdx            |    5 +-
+ src/data/components/marketing-headers.mdx          |    6 +-
+ src/data/components/marketing-popups.mdx           |    5 +-
+ src/data/components/marketing-pricings.mdx         |   10 +-
+ src/data/components/marketing-sections.mdx         |    5 +-
+ src/data/components/marketing-stats.mdx            |    5 +-
+ src/data/components/marketing-testimonials.mdx     |    6 +-
+ src/data/metadata.js                               |    3 +-
+ src/data/pages/acknowledgements.mdx                |    4 +-
+ src/data/pages/faqs.mdx                            |    2 -
+ src/data/pages/sponsors.mdx                        |   10 -
+ .../animated-border-gradient-with-tailwindcss.mdx  |    5 +-
+ .../animation-duration-delay-with-tailwindcss.mdx  |    6 +-
+ .../custom-gradients-with-tailwindcss-jit.mdx      |   15 +-
+ .../posts/how-to-clean-up-tailwindcss-code.mdx     |    2 +
+ src/data/posts/how-to-contribute.mdx               |    6 +-
+ ...xelated-image-lazy-loading-with-tailwindcss.mdx |    5 +-
+ src/styles/tailwind/site.config.js                 |    2 +-
+ src/utils/transformers.js                          |   15 +-
+ yarn.lock                                          | 3818 ---------
+ 474 files changed, 14249 insertions(+), 11556 deletions(-)
+ delete mode 100644 .github/FUNDING.yml
+ create mode 100644 .prettierignore
+ create mode 100644 app/not-found.jsx
+ create mode 100644 app/robots.js
+ create mode 100644 package-lock.json
+ create mode 100644 public/components/application-ui-checkboxes/1-dark.html
+ create mode 100644 public/components/application-ui-checkboxes/1.html
+ create mode 100644 public/components/application-ui-checkboxes/2-dark.html
+ create mode 100644 public/components/application-ui-checkboxes/2.html
+ create mode 100644 public/components/application-ui-checkboxes/3-dark.html
+ create mode 100644 public/components/application-ui-checkboxes/3.html
+ create mode 100644 public/components/application-ui-checkboxes/4-dark.html
+ create mode 100644 public/components/application-ui-checkboxes/4.html
+ create mode 100644 public/components/application-ui-checkboxes/5-dark.html
+ create mode 100644 public/components/application-ui-checkboxes/5.html
+ create mode 100644 public/components/application-ui-checkboxes/6-dark.html
+ create mode 100644 public/components/application-ui-checkboxes/6.html
+ create mode 100644 public/components/application-ui-dividers/1.html
+ create mode 100644 public/components/application-ui-dividers/2.html
+ create mode 100644 public/components/application-ui-dividers/3.html
+ create mode 100644 public/components/application-ui-dividers/4.html
+ delete mode 100644 public/components/application-ui-headers/3.html
+ delete mode 100644 public/components/application-ui-headers/4.html
+ create mode 100644 public/components/application-ui-media/1.html
+ create mode 100644 public/components/application-ui-media/2.html
+ create mode 100644 public/components/application-ui-media/3.html
+ create mode 100644 public/components/application-ui-media/4.html
+ create mode 100644 public/components/application-ui-media/5.html
+ create mode 100644 public/components/application-ui-media/6.html
+ create mode 100644 public/components/application-ui-media/7.html
+ create mode 100644 public/components/application-ui-media/8.html
+ delete mode 100644 public/components/application-ui-radio-groups/5-dark.html
+ create mode 100644 public/components/application-ui-side-menu/3.html
+ create mode 100644 public/components/application-ui-tables/7-dark.html
+ create mode 100644 public/components/application-ui-tables/7.html
+ delete mode 100644 public/components/marketing-cards/_12.html
+ delete mode 100644 public/components/marketing-cards/_9.html
+ create mode 100644 public/components/marketing-pricings/2.html
+ delete mode 100644 public/iframe.js
+ create mode 100644 src/components/GithubSocial.jsx
+ delete mode 100644 src/components/SponsorGrid.jsx
+ create mode 100644 src/data/components/application-ui-checkboxes.mdx
+ create mode 100644 src/data/components/application-ui-dividers.mdx
+ create mode 100644 src/data/components/application-ui-media.mdx
+ delete mode 100644 src/data/pages/sponsors.mdx
+ delete mode 100644 yarn.lock
 yarn install v1.22.19
+info No lockfile found.
+<span class="ansi-red-intense-fg ansi-bold">warning package-lock.json found. Your project contains lock files generated by tools other than Yarn. It is advised not to mix package managers in order to avoid resolution inconsistencies caused by unsynchronized lock files. To clear this warning, remove package-lock.json.</span>
 [1/4] Resolving packages...
-success Already up-to-date.
-Done in 0.76s.
+<span class="ansi-red-intense-fg ansi-bold">(node:24616) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.</span>
+<span class="ansi-red-intense-fg ansi-bold">(Use `node --trace-deprecation ...` to show where the warning was created)</span>
+[2/4] Fetching packages...
+info There appears to be trouble with your network connection. Retrying...
+info There appears to be trouble with your network connection. Retrying...
+[3/4] Linking dependencies...
+<span class="ansi-red-intense-fg ansi-bold">warning "eslint-config-next &gt; @typescript-eslint/parser &gt; @typescript-eslint/typescript-estree &gt; ts-api-utils@1.3.0" has unmet peer dependency "typescript@&gt;=4.2.0".</span>
+[4/4] Building fresh packages...
+success Saved lockfile.
+Done in 2621.34s.
 yarn run v1.22.19
 $ next build
-- info Creating an optimized production build...
-- info Compiled successfully
-- info Linting and checking validity of types...
-- info Collecting page data...
-- info Generating static pages (0/6)
-- info Generating static pages (1/6)
-<span class="ansi-red-intense-fg ansi-bold">- warn </span>
-<span class="ansi-red-intense-fg ansi-bold">metadata.metadataBase is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase</span>
-<span class="ansi-red-intense-fg ansi-bold">- warn </span>
-<span class="ansi-red-intense-fg ansi-bold">metadata.metadataBase is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase</span>
-- info Generating static pages (2/6)
-- info Generating static pages (4/6)
-- info Generating static pages (6/6)
-- info Finalizing page optimization...
+   ▲ Next.js 14.1.4
+
+   Creating an optimized production build ...
+<span class="ansi-red-intense-fg ansi-bold">(node:66004) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.</span>
+<span class="ansi-red-intense-fg ansi-bold">(Use `node --trace-deprecation ...` to show where the warning was created)</span>
+<span class="ansi-red-intense-fg ansi-bold">(node:66312) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.</span>
+<span class="ansi-red-intense-fg ansi-bold">(Use `node --trace-deprecation ...` to show where the warning was created)</span>
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/8) ...
+
+   Generating static pages (2/8) 
+
+   Generating static pages (4/8) 
+
+   Generating static pages (6/8) 
+
+ ✓ Generating static pages (8/8) 
+   Finalizing page optimization ...
+   Collecting build traces ...
 
 Route (app)                                Size     First Load JS
-┌ ○ /                                      182 B          84.6 kB
-├ ● /[components]/[category]               182 B          84.6 kB
-├ ● /[components]/[category]/[collection]  3.55 kB        99.6 kB
-├ ● /about/[slug]                          3.41 kB          82 kB
+┌ ○ /                                      180 B          91.3 kB
+├ ○ /_not-found                            0 B                0 B
+├ ● /[components]/[category]               180 B          91.3 kB
+├ ● /[components]/[category]/[collection]  3.79 kB         105 kB
+├ ● /about/[slug]                          2.63 kB          87 kB
 ├ ○ /api/search                            0 B                0 B
-├ ○ /blog                                  182 B          84.6 kB
-├ ● /blog/[slug]                           2.85 kB        93.1 kB
+├ ○ /blog                                  180 B          91.3 kB
+├ ● /blog/[slug]                           3.04 kB        97.9 kB
+├ ○ /robots.txt                            0 B                0 B
 └ ○ /sitemap.xml                           0 B                0 B
-+ First Load JS shared by all              78.6 kB
-  ├ chunks/596-ef6f8f5604ac81a7.js         26.1 kB
-  ├ chunks/fd9d1056-ae0ceb7ffa373b0f.js    50.6 kB
-  ├ chunks/main-app-e140771f15cb57c2.js    217 B
-  └ chunks/webpack-dfc3920b6219521e.js     1.74 kB
++ First Load JS shared by all              84.4 kB
+  ├ chunks/69-e2c27963538a19c9.js          29 kB
+  ├ chunks/fd9d1056-c6fa962edfe9fed9.js    53.4 kB
+  └ other shared chunks (total)            1.96 kB
 
-Route (pages)                              Size     First Load JS
-─ ○ /404                                   181 B          76.6 kB
-+ First Load JS shared by all              76.4 kB
-  ├ chunks/framework-8883d1e9be70c3da.js   45 kB
-  ├ chunks/main-9e0ffd36f36951ba.js        29.4 kB
-  ├ chunks/pages/_app-52924524f99094ab.js  195 B
-  └ chunks/webpack-dfc3920b6219521e.js     1.74 kB
 
-○  (Static)  automatically rendered as static HTML (uses no initial props)
-●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses getStaticProps)
 
-$ yarn css
-$ yarn css:components &amp;&amp; yarn css:blogs
-$ npx tailwindcss -i src/styles/components.css -o public/components.css -m
-<span class="ansi-red-intense-fg ansi-bold">Browserslist: caniuse-lite is outdated. Please run:</span>
-<span class="ansi-red-intense-fg ansi-bold">  npx update-browserslist-db@latest</span>
-<span class="ansi-red-intense-fg ansi-bold">  Why you should do it regularly: https://github.com/browserslist/update-db#readme</span>
-<span class="ansi-red-intense-fg ansi-bold">Browserslist: caniuse-lite is outdated. Please run:</span>
-<span class="ansi-red-intense-fg ansi-bold">  npx update-browserslist-db@latest</span>
-<span class="ansi-red-intense-fg ansi-bold">  Why you should do it regularly: https://github.com/browserslist/update-db#readme</span>
+$ npm run css
+
+&gt; css
+&gt; npm run css:components &amp;&amp; npm run css:blogs
+
+
+&gt; css:components
+&gt; npx tailwindcss -i src/styles/components.css -o public/components.css -m
+
 
 <span class="ansi-red-intense-fg ansi-bold">Rebuilding...</span>
 
-<span class="ansi-red-intense-fg ansi-bold">Done in 6510ms.</span>
-$ npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m
-<span class="ansi-red-intense-fg ansi-bold">Browserslist: caniuse-lite is outdated. Please run:</span>
-<span class="ansi-red-intense-fg ansi-bold">  npx update-browserslist-db@latest</span>
-<span class="ansi-red-intense-fg ansi-bold">  Why you should do it regularly: https://github.com/browserslist/update-db#readme</span>
-<span class="ansi-red-intense-fg ansi-bold">Browserslist: caniuse-lite is outdated. Please run:</span>
-<span class="ansi-red-intense-fg ansi-bold">  npx update-browserslist-db@latest</span>
-<span class="ansi-red-intense-fg ansi-bold">  Why you should do it regularly: https://github.com/browserslist/update-db#readme</span>
+<span class="ansi-red-intense-fg ansi-bold">Done in 3836ms.</span>
+
+&gt; css:blogs
+&gt; npx tailwindcss -i src/styles/blogs.css -o public/blogs.css -m
+
 
 <span class="ansi-red-intense-fg ansi-bold">Rebuilding...</span>
 
-<span class="ansi-red-intense-fg ansi-bold">Done in 1077ms.</span>
-Done in 123.21s.
+<span class="ansi-red-intense-fg ansi-bold">Done in 573ms.</span>
+Done in 57.83s.
 </pre>
 </div>
 </div>

@@ -1,20 +1,18 @@
-import { FSharpRef, Union } from "../../fable_modules/fable-library-ts.4.14.0/Types.js";
-import { union_type, TypeInfo } from "../../fable_modules/fable-library-ts.4.14.0/Reflection.js";
-import { some, value, Option } from "../../fable_modules/fable-library-ts.4.14.0/Option.js";
-import { IDisposable } from "../../fable_modules/fable-library-ts.4.14.0/Util.js";
-import { int32 } from "../../fable_modules/fable-library-ts.4.14.0/Int32.js";
+import { FSharpRef, Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { some, value, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 
 export type US0_$union = 
     | US0<0>
     | US0<1>
     | US0<2>
-    | US0<3>
 
 export type US0_$cases = {
     0: ["US0_0", []],
     1: ["US0_1", []],
-    2: ["US0_2", []],
-    3: ["US0_3", []]
+    2: ["US0_2", []]
 }
 
 export function US0_US0_0() {
@@ -29,30 +27,28 @@ export function US0_US0_2() {
     return new US0<2>(2, []);
 }
 
-export function US0_US0_3() {
-    return new US0<3>(3, []);
-}
-
 export class US0<Tag extends keyof US0_$cases> extends Union<Tag, US0_$cases[Tag][0]> {
     constructor(readonly tag: Tag, readonly fields: US0_$cases[Tag][1]) {
         super();
     }
     cases() {
-        return ["US0_0", "US0_1", "US0_2", "US0_3"];
+        return ["US0_0", "US0_1", "US0_2"];
     }
 }
 
 export function US0_$reflection(): TypeInfo {
-    return union_type("Common.US0", [], US0, () => [[], [], [], []]);
+    return union_type("Common.US0", [], US0, () => [[], [], []]);
 }
 
 export type US1_$union = 
     | US1<0>
     | US1<1>
+    | US1<2>
 
 export type US1_$cases = {
     0: ["US1_0", [US0_$union]],
-    1: ["US1_1", [US0_$union]]
+    1: ["US1_1", [US0_$union]],
+    2: ["US1_2", [US0_$union]]
 }
 
 export function US1_US1_0(f0_0: US0_$union) {
@@ -63,17 +59,21 @@ export function US1_US1_1(f1_0: US0_$union) {
     return new US1<1>(1, [f1_0]);
 }
 
+export function US1_US1_2(f2_0: US0_$union) {
+    return new US1<2>(2, [f2_0]);
+}
+
 export class US1<Tag extends keyof US1_$cases> extends Union<Tag, US1_$cases[Tag][0]> {
     constructor(readonly tag: Tag, readonly fields: US1_$cases[Tag][1]) {
         super();
     }
     cases() {
-        return ["US1_0", "US1_1"];
+        return ["US1_0", "US1_1", "US1_2"];
     }
 }
 
 export function US1_$reflection(): TypeInfo {
-    return union_type("Common.US1", [], US1, () => [[["f0_0", US0_$reflection()]], [["f1_0", US0_$reflection()]]]);
+    return union_type("Common.US1", [], US1, () => [[["f0_0", US0_$reflection()]], [["f1_0", US0_$reflection()]], [["f2_0", US0_$reflection()]]]);
 }
 
 export type US2_$union = 
@@ -137,7 +137,7 @@ export function US3_$reflection(): TypeInfo {
 }
 
 export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if (this$.tag === 0) {
+    if ((this$ as any)['tag'] === 0) {
         return true;
     }
     else {
@@ -146,7 +146,7 @@ export function US0__get_IsUS0_0(this$: FSharpRef<US0_$union>, unitArg: void): b
 }
 
 export function US0__get_IsUS0_1(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if (this$.tag === 1) {
+    if ((this$ as any)['tag'] === 1) {
         return true;
     }
     else {
@@ -155,16 +155,7 @@ export function US0__get_IsUS0_1(this$: FSharpRef<US0_$union>, unitArg: void): b
 }
 
 export function US0__get_IsUS0_2(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if (this$.tag === 2) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-export function US0__get_IsUS0_3(this$: FSharpRef<US0_$union>, unitArg: void): boolean {
-    if (this$.tag === 3) {
+    if ((this$ as any)['tag'] === 2) {
         return true;
     }
     else {
@@ -173,7 +164,7 @@ export function US0__get_IsUS0_3(this$: FSharpRef<US0_$union>, unitArg: void): b
 }
 
 export function US1__get_IsUS1_0(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if (this$.tag === 0) {
+    if ((this$ as any)['tag'] === 0) {
         return true;
     }
     else {
@@ -182,7 +173,16 @@ export function US1__get_IsUS1_0(this$: FSharpRef<US1_$union>, unitArg: void): b
 }
 
 export function US1__get_IsUS1_1(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
-    if (this$.tag === 1) {
+    if ((this$ as any)['tag'] === 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+export function US1__get_IsUS1_2(this$: FSharpRef<US1_$union>, unitArg: void): boolean {
+    if ((this$ as any)['tag'] === 2) {
         return true;
     }
     else {
@@ -191,7 +191,7 @@ export function US1__get_IsUS1_1(this$: FSharpRef<US1_$union>, unitArg: void): b
 }
 
 export function US2__get_IsUS2_0(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
-    if (this$.tag === 0) {
+    if ((this$ as any)['tag'] === 0) {
         return true;
     }
     else {
@@ -200,7 +200,7 @@ export function US2__get_IsUS2_0(this$: FSharpRef<US2_$union>, unitArg: void): b
 }
 
 export function US2__get_IsUS2_1(this$: FSharpRef<US2_$union>, unitArg: void): boolean {
-    if (this$.tag === 1) {
+    if ((this$ as any)['tag'] === 1) {
         return true;
     }
     else {
@@ -209,7 +209,7 @@ export function US2__get_IsUS2_1(this$: FSharpRef<US2_$union>, unitArg: void): b
 }
 
 export function US3__get_IsUS3_0(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
-    if (this$.tag === 0) {
+    if ((this$ as any)['tag'] === 0) {
         return true;
     }
     else {
@@ -218,7 +218,7 @@ export function US3__get_IsUS3_0(this$: FSharpRef<US3_$union>, unitArg: void): b
 }
 
 export function US3__get_IsUS3_1(this$: FSharpRef<US3_$union>, unitArg: void): boolean {
-    if (this$.tag === 1) {
+    if ((this$ as any)['tag'] === 1) {
         return true;
     }
     else {
@@ -228,11 +228,8 @@ export function US3__get_IsUS3_1(this$: FSharpRef<US3_$union>, unitArg: void): b
 
 export function closure0(unitVar: void, v0_1: (() => void)): IDisposable {
     let _v1: Option<IDisposable> = void 0;
-    const x: IDisposable = {
-        Dispose(): void {
-            v0_1();
-        },
-    };
+    let x: IDisposable;
+    throw new Error(`new_disposable / target: ${US1_US1_2(US0_US0_0())}`);
     _v1 = x;
     return value(_v1);
 }

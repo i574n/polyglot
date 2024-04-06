@@ -8422,25 +8422,20 @@ and closure0 () () : unit =
             let v38 : unit option = None
             let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.GC.Collect ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.GC.Collect ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
             _v38 |&gt; Option.get
@@ -8655,7 +8650,7 @@ and closure0 () () : unit =
         let v209 : int64 option = v208 v206
         let v210 : (int64 -&gt; US1) = method22()
         let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211
+        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
         let v215 : int64 =
             match v212 with
             | US1_1 -&gt; (* None *)
@@ -8713,25 +8708,20 @@ and closure0 () () : unit =
             let v258 : unit option = None
             let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ResetColor ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ResetColor ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
             _v258 |&gt; Option.get
@@ -8740,25 +8730,20 @@ and closure0 () () : unit =
             let v257 : unit option = None
             let mutable _v257 = v257
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ForegroundColor &lt;- v256
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
             _v257 |&gt; Option.get
@@ -8769,25 +8754,20 @@ and closure0 () () : unit =
         let v261 : unit option = None
         let mutable _v261 = v261
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        ()
+        () 
         #endif
-        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        ()
+        () 
         #endif
-        #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        System.Console.ResetColor ()
-        ()
-        #endif
-        #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-        System.Console.ResetColor ()
-        ()
+        #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        () 
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
         _v261 |&gt; Option.get
@@ -8920,25 +8900,20 @@ and method0 () : unit =
             let v38 : unit option = None
             let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.GC.Collect ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.GC.Collect ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
             _v38 |&gt; Option.get
@@ -9153,7 +9128,7 @@ and method0 () : unit =
         let v209 : int64 option = v208 v206
         let v210 : (int64 -&gt; US1) = method22()
         let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211
+        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
         let v215 : int64 =
             match v212 with
             | US1_1 -&gt; (* None *)
@@ -9211,25 +9186,20 @@ and method0 () : unit =
             let v258 : unit option = None
             let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ResetColor ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ResetColor ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
             _v258 |&gt; Option.get
@@ -9238,25 +9208,20 @@ and method0 () : unit =
             let v257 : unit option = None
             let mutable _v257 = v257
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ForegroundColor &lt;- v256
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
             _v257 |&gt; Option.get
@@ -9267,25 +9232,20 @@ and method0 () : unit =
         let v261 : unit option = None
         let mutable _v261 = v261
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        ()
+        () 
         #endif
-        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        ()
+        () 
         #endif
-        #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        System.Console.ResetColor ()
-        ()
-        #endif
-        #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-        System.Console.ResetColor ()
-        ()
+        #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        () 
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
         _v261 |&gt; Option.get
@@ -9382,21 +9342,21 @@ method0()
 Test: v0
 
 Solution: struct ("a", "a")  
-Test case 1. A. Time: 186  
-Test case 2. B. Time: 141  
+Test case 1. A. Time: 290  
+Test case 2. B. Time: 256  
 
 Solution: struct ("b", "b")  
-Test case 1. A. Time: 148  
-Test case 2. B. Time: 163  
+Test case 1. A. Time: 162  
+Test case 2. B. Time: 273  
 
 Input            	| Expected	| Result	| Best             
 ---              	| ---     	| ---   	| ---              
-struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 141L)
-struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 148L)
+struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 256L)
+struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 162L)
 
 Average Ranking  
-Test case 2. Average Time: 152L  
-Test case 1. Average Time: 167L  
+Test case 1. Average Time: 226L  
+Test case 2. Average Time: 264L  
 </pre>
 </div>
 </div>
@@ -9849,25 +9809,20 @@ and closure0 () () : unit =
             let v38 : unit option = None
             let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.GC.Collect ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.GC.Collect ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
             _v38 |&gt; Option.get
@@ -10082,7 +10037,7 @@ and closure0 () () : unit =
         let v209 : int64 option = v208 v206
         let v210 : (int64 -&gt; US1) = method22()
         let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211
+        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
         let v215 : int64 =
             match v212 with
             | US1_1 -&gt; (* None *)
@@ -10140,25 +10095,20 @@ and closure0 () () : unit =
             let v258 : unit option = None
             let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ResetColor ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ResetColor ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
             _v258 |&gt; Option.get
@@ -10167,25 +10117,20 @@ and closure0 () () : unit =
             let v257 : unit option = None
             let mutable _v257 = v257
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ForegroundColor &lt;- v256
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
             _v257 |&gt; Option.get
@@ -10196,25 +10141,20 @@ and closure0 () () : unit =
         let v261 : unit option = None
         let mutable _v261 = v261
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        ()
+        () 
         #endif
-        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        ()
+        () 
         #endif
-        #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        System.Console.ResetColor ()
-        ()
-        #endif
-        #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-        System.Console.ResetColor ()
-        ()
+        #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        () 
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
         _v261 |&gt; Option.get
@@ -10348,25 +10288,20 @@ and method0 () : unit =
             let v38 : unit option = None
             let mutable _v38 = v38
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.GC.Collect ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.GC.Collect ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.GC.Collect ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
             _v38 |&gt; Option.get
@@ -10581,7 +10516,7 @@ and method0 () : unit =
         let v209 : int64 option = v208 v206
         let v210 : (int64 -&gt; US1) = method22()
         let v211 : US1 = US1_1
-        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211
+        let v212 : US1 = v209 |&gt; Option.map v210 |&gt; Option.defaultValue v211 
         let v215 : int64 =
             match v212 with
             | US1_1 -&gt; (* None *)
@@ -10639,25 +10574,20 @@ and method0 () : unit =
             let v258 : unit option = None
             let mutable _v258 = v258
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ResetColor ()
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ResetColor ()
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ResetColor ()
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
             _v258 |&gt; Option.get
@@ -10666,25 +10596,20 @@ and method0 () : unit =
             let v257 : unit option = None
             let mutable _v257 = v257
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
-            ()
+            () 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-            ()
+            () 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             System.Console.ForegroundColor &lt;- v256
-            ()
+            () 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            System.Console.ForegroundColor &lt;- v256
-            ()
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            () 
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
             _v257 |&gt; Option.get
@@ -10695,25 +10620,20 @@ and method0 () : unit =
         let v261 : unit option = None
         let mutable _v261 = v261
         #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; WASM
-        ()
+        () 
         #endif
         #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
-        ()
+        () 
         #endif
-        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+        #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
         System.Console.ResetColor ()
-        ()
+        () 
         #endif
-        #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
-        System.Console.ResetColor ()
-        ()
-        #endif
-        #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-        System.Console.ResetColor ()
-        ()
+        #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+        () 
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
         _v261 |&gt; Option.get
@@ -10810,22 +10730,22 @@ method0()
 Test: v0
 
 Solution: 0.0  
-Test case 1. A. Time: 30  
+Test case 1. A. Time: 58  
 
 Solution: 2.0  
-Test case 1. A. Time: 24  
+Test case 1. A. Time: 33  
 
 Solution: 5.0  
-Test case 1. A. Time: 21  
+Test case 1. A. Time: 36  
 
 Input	| Expected	| Result	| Best            
 ---  	| ---     	| ---   	| ---             
-0.0  	| 1.0     	| 1.0   	| struct (1L, 30L)
-2.0  	| 3.0     	| 3.0   	| struct (1L, 24L)
-5.0  	| 6.0     	| 6.0   	| struct (1L, 21L)
+0.0  	| 1.0     	| 1.0   	| struct (1L, 58L)
+2.0  	| 3.0     	| 3.0   	| struct (1L, 33L)
+5.0  	| 6.0     	| 6.0   	| struct (1L, 36L)
 
 Average Ranking  
-Test case 1. Average Time: 25L  
+Test case 1. Average Time: 42L  
 </pre>
 </div>
 </div>

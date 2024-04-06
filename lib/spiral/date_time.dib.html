@@ -8440,9 +8440,9 @@ method0()
     <span class="n">inl</span> <span class="n">date_time_guid</span> <span class="o">=</span> <span class="n">date_time_guid</span> <span class="o">|&gt;</span> <span class="n">sm</span><span class="s1">'.obj_to_string</span>
     <span class="n">inl</span> <span class="n">sm</span><span class="s1">'_replace = join sm'</span><span class="o">.</span><span class="n">replace</span>
     <span class="n">run_target</span> <span class="n">function</span>
-        <span class="o">|</span> <span class="n">Fsharp</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.ParseExact (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"yyyyMMddHHmmssfffffff"</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="s1">' : date_time</span>
         <span class="o">|</span> <span class="n">Rust</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span>
             <span class="err">$</span><span class="s1">'System.DateTime.Parse (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">)</span><span class="s1">' : date_time</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">=&gt;</span> <span class="n">fun</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="err">$</span><span class="s1">'System.DateTime.ParseExact (!date_time_guid.[..24] |&gt; !sm'</span><span class="n">_replace</span> <span class="s2">"-"</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"yyyyMMddHHmmssfffffff"</span><span class="p">,</span> <span class="n">null</span><span class="p">)</span><span class="s1">' : date_time</span>
 </pre></div>
 </div>
 </div>
@@ -8507,43 +8507,39 @@ and method0 () : unit =
     let mutable _v5 = v5
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v6 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v6
+    v6 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v7 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v7
+    v7 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v8 : System.DateTime = System.DateTime.Parse (v3.[..24] |&gt; v4 "-" "")
-    v8
+    v8 
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v9
+    v9 
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v10 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v11 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v11
+    v10 
     #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v12 : System.DateTime = _v5 |&gt; Option.get
-    let v13 : System.DateTime = System.DateTime.MinValue
-    let v14 : string = $"%A{v12}"
-    System.Console.WriteLine v14
-    let v15 : bool = v12 = v13
-    let v17 : bool =
-        if v15 then
+    let v11 : System.DateTime = _v5 |&gt; Option.get
+    let v12 : System.DateTime = System.DateTime.MinValue
+    let v13 : string = $"%A{v11}"
+    System.Console.WriteLine v13
+    let v14 : bool = v11 = v12
+    let v16 : bool =
+        if v14 then
             true
         else
-            method2(v15)
-    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
-    let v19 : bool = v17 = false
-    if v19 then
-        failwith&lt;unit&gt; v18
+            method2(v14)
+    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
+    let v18 : bool = v16 = false
+    if v18 then
+        failwith&lt;unit&gt; v17
 method0()
 
 0001-01-01 12:00:00 AM
@@ -8602,43 +8598,39 @@ and method0 () : unit =
     let mutable _v6 = v6
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v7
+    v7 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v8 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v8
+    v8 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v9 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v9
+    v9 
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
+    v10 
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v11
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v12 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v12
+    v11 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v13 : System.DateTime = _v6 |&gt; Option.get
-    let v14 : System.DateTime = System.DateTime.MaxValue
-    let v15 : string = $"%A{v13}"
-    System.Console.WriteLine v15
-    let v16 : bool = v13 = v14
-    let v18 : bool =
-        if v16 then
+    let v12 : System.DateTime = _v6 |&gt; Option.get
+    let v13 : System.DateTime = System.DateTime.MaxValue
+    let v14 : string = $"%A{v12}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = v13
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v16)
-    let v19 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
-    let v20 : bool = v18 = false
-    if v20 then
-        failwith&lt;unit&gt; v19
+            method2(v15)
+    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
+    let v19 : bool = v17 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
 9999-12-31 11:59:59 PM
@@ -8697,43 +8689,39 @@ and method0 () : unit =
     let mutable _v6 = v6
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v7 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v7
+    v7 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v8 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v8
+    v8 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v9 : System.DateTime = System.DateTime.Parse (v4.[..24] |&gt; v5 "-" "")
-    v9
+    v9 
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
+    v10 
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v11
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v12 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v12
+    v11 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v13 : System.DateTime = _v6 |&gt; Option.get
-    let v14 : System.DateTime = System.DateTime.UnixEpoch
-    let v15 : string = $"%A{v13}"
-    System.Console.WriteLine v15
-    let v16 : bool = v13 = v14
-    let v18 : bool =
-        if v16 then
+    let v12 : System.DateTime = _v6 |&gt; Option.get
+    let v13 : System.DateTime = System.DateTime.UnixEpoch
+    let v14 : string = $"%A{v12}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = v13
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v16)
-    let v19 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
-    let v20 : bool = v18 = false
-    if v20 then
-        failwith&lt;unit&gt; v19
+            method2(v15)
+    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
+    let v19 : bool = v17 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
 1970-01-01 12:00:00 AM
@@ -9060,11 +9048,51 @@ method0()
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="utc_now">utc_now<a class="anchor-link" href="#utc_now">¶</a></h2>
+<h2 id="now">now<a class="anchor-link" href="#now">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">now</span> <span class="p">()</span> <span class="p">:</span> <span class="n">date_time</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'System.DateTime.Now'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="utc_now">utc_now<a class="anchor-link" href="#utc_now">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9094,7 +9122,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9104,7 +9132,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9133,7 +9161,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9143,7 +9171,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9173,7 +9201,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9183,7 +9211,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9213,7 +9241,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9223,7 +9251,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9253,7 +9281,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9305,47 +9333,43 @@ and method0 () : unit =
     let mutable _v9 = v9
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v10 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v10
+    v10 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v11 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v11
+    v11 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v12 : System.DateTime = System.DateTime.Parse (v7.[..24] |&gt; v8 "-" "")
-    v12
+    v12 
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v13 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v13
+    v13 
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v14 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v14
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v15 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v15
+    v14 
     #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
-    let v16 : System.DateTime = _v9 |&gt; Option.get
-    let v17 : System.DateTime = System.DateTime.UtcNow
-    let v18 : System.TimeSpan = v17 - v16 
-    let v19 : (System.TimeSpan -&gt; float) = _.TotalSeconds
-    let v20 : float = v19 v18
-    let v21 : int32 = int32 v20
-    let v22 : string = $"%A{v21}"
-    System.Console.WriteLine v22
-    let v23 : bool = v21 = 0
-    let v25 : bool =
-        if v23 then
+    let v15 : System.DateTime = _v9 |&gt; Option.get
+    let v16 : System.DateTime = System.DateTime.UtcNow
+    let v17 : System.TimeSpan = v16 - v15 
+    let v18 : (System.TimeSpan -&gt; float) = _.TotalSeconds
+    let v19 : float = v18 v17
+    let v20 : int32 = int32 v19
+    let v21 : string = $"%A{v20}"
+    System.Console.WriteLine v21
+    let v22 : bool = v20 = 0
+    let v24 : bool =
+        if v22 then
             true
         else
-            method2(v23)
-    let v26 : string = $"__expect / actual: %A{v21} / expected: %A{0}"
-    let v27 : bool = v25 = false
-    if v27 then
-        failwith&lt;unit&gt; v26
+            method2(v22)
+    let v25 : string = $"__expect / actual: %A{v20} / expected: %A{0}"
+    let v26 : bool = v24 = false
+    if v26 then
+        failwith&lt;unit&gt; v25
 method0()
 
 0
@@ -9355,7 +9379,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9365,7 +9389,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9395,7 +9419,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=62">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9464,7 +9488,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9503,7 +9527,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 2024-04-04 12:19:00 AM -04:00
+<pre>DateTime: 2024-04-04 6:19:26 PM -04:00
 Time Zone: (UTC-04:00) Cuiaba
 Is DST: false
 v1: -04:00:00
@@ -9514,7 +9538,7 @@ v2: (UTC-04:00) Cuiaba
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9524,7 +9548,7 @@ v2: (UTC-04:00) Cuiaba
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9578,31 +9602,27 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let mutable _v4 = v4
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v5 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v5
+    v5 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; WASM
     let v6 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v6
+    v6 
     #endif
     #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v7 : System.DateTime = System.DateTime.Parse (v2.[..24] |&gt; v3 "-" "")
-    v7
+    v7 
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v8
+    v8 
     #endif
-    #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v9
-    #endif
-    #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v10 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
-    v10
+    v9 
     #endif
     |&gt; fun x -&gt; _v4 &lt;- Some x
-    let v11 : System.DateTime = _v4 |&gt; Option.get
-    v11
+    let v10 : System.DateTime = _v4 |&gt; Option.get
+    v10
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v0

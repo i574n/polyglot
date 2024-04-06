@@ -22,10 +22,10 @@ Write-Output "Tool path: $netVersion"
 # { pwsh ../deps/dotnet-interactive/eng/build.ps1 -build -restore } | Invoke-Block
 
 if (!$fast) {
-    { Start-Process "npm" "install" -Wait -NoNewWindow -WorkingDirectory "../deps/dotnet-interactive/src/polyglot-notebooks" } | Invoke-Block
-    { Start-Process "npm" "install" -Wait -NoNewWindow -WorkingDirectory "../deps/dotnet-interactive/src/polyglot-notebooks-browser" } | Invoke-Block
-    { npm run --prefix "../deps/dotnet-interactive/src/polyglot-notebooks-browser" rollup } | Invoke-Block
-    { npm run --prefix "../deps/dotnet-interactive/src/polyglot-notebooks" compile-library } | Invoke-Block
+    { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
+    { npm install } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
+    { npm run rollup } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks-browser
+    { npm run compile-library } | Invoke-Block -Location ../deps/dotnet-interactive/src/polyglot-notebooks
 }
 
 { dotnet build -c Release "../deps/dotnet-interactive/src/dotnet-interactive/dotnet-interactive.csproj" } | Invoke-Block

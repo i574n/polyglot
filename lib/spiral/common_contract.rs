@@ -16,7 +16,6 @@ pub mod Common {
         US0_0,
         US0_1,
         US0_2,
-        US0_3,
     }
     impl Common::US0 {
         pub fn get_IsUS0_0(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
@@ -40,13 +39,6 @@ pub mod Common {
                 false
             }
         }
-        pub fn get_IsUS0_3(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Common::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -57,6 +49,7 @@ pub mod Common {
     pub enum US1 {
         US1_0(Common::US0),
         US1_1(Common::US0),
+        US1_2(Common::US0),
     }
     impl Common::US1 {
         pub fn get_IsUS1_0(this_: &MutCell<Common::US1>, unitArg: ()) -> bool {
@@ -67,6 +60,13 @@ pub mod Common {
             }
         }
         pub fn get_IsUS1_1(this_: &MutCell<Common::US1>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS1_2(this_: &MutCell<Common::US1>, unitArg: ()) -> bool {
             if unreachable!() {
                 true
             } else {
@@ -139,7 +139,7 @@ pub mod Common {
                 "{}",
                 sprintf!(
                     "new_disposable / target: {}",
-                    Common::US1::US1_0(Common::US0::US0_3)
+                    Common::US1::US1_0(Common::US0::US0_2)
                 ),
             );
             _v1.set(Some(x))

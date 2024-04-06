@@ -47,10 +47,10 @@ if ($extensionsPath.Count -gt 0) {
     Copy-Item $path "$extensionSrcPath/compiler" -Recurse -Force
 
     if (!$fast) {
-        { npm install } | Invoke-Block -Location $extensionSrcPath
-        { npx tsc --build } | Invoke-Block -Location $extensionSrcPath
+        { bun install } | Invoke-Block -Location $extensionSrcPath
+        { bunx tsc --build } | Invoke-Block -Location $extensionSrcPath
     }
-    { npx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
+    { bunx @vscode/vsce package } | Invoke-Block -Location $extensionSrcPath
 }
 
 foreach ($extensionsPath in $extensionsPath) {

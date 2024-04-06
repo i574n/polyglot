@@ -8427,7 +8427,7 @@ and method0 () : unit =
     let v1 : US0 = US0_1
     let v2 : (exn -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; ex |&gt; v2
-    let v16 : US1 =
+    let v15 : US1 =
         match v3 with
         | US0_1 -&gt; (* None *)
             US1_1
@@ -8436,51 +8436,47 @@ and method0 () : unit =
             let mutable _v5 = v5
             #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v6 : string = $"%A{v4}"
-            v6
+            v6 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; WASM
             let v7 : string = $"%A{v4}"
-            v7
+            v7 
             #endif
             #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
             let v8 : string = $"%A{v4}"
-            v8
+            v8 
             #endif
-            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v9 : string = $"{v4.GetType ()}: {v4.Message}"
-            v9
+            v9 
             #endif
-            #if FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !WASM
+            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
             let v10 : string = $"%A{v4}"
-            v10
-            #endif
-            #if !FABLE_COMPILER_RUST &amp;&amp; WASM
-            let v11 : string = $"%A{v4}"
-            v11
+            v10 
             #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
-            let v12 : string = _v5 |&gt; Option.get
-            US1_0(v12)
-    let v17 : string = $"%A{v16}"
-    System.Console.WriteLine v17
-    let v22 : bool =
-        match v16 with
-        | US1_0(v20) -&gt; (* Some *)
-            let v21 : bool = v20 = "System.Exception: Option does not have a value."
-            v21
+            let v11 : string = _v5 |&gt; Option.get
+            US1_0(v11)
+    let v16 : string = $"%A{v15}"
+    System.Console.WriteLine v16
+    let v21 : bool =
+        match v15 with
+        | US1_0(v19) -&gt; (* Some *)
+            let v20 : bool = v19 = "System.Exception: Option does not have a value."
+            v20
         | _ -&gt;
             false
-    let v24 : bool =
-        if v22 then
+    let v23 : bool =
+        if v21 then
             true
         else
-            method1(v22)
-    let v25 : string = "System.Exception: Option does not have a value."
-    let v26 : US1 = US1_0(v25)
-    let v27 : string = $"__expect / actual: %A{v16} / expected: %A{v26}"
-    let v28 : bool = v24 = false
-    if v28 then
-        failwith&lt;unit&gt; v27
+            method1(v21)
+    let v24 : string = "System.Exception: Option does not have a value."
+    let v25 : US1 = US1_0(v24)
+    let v26 : string = $"__expect / actual: %A{v15} / expected: %A{v25}"
+    let v27 : bool = v23 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
 method0()
 
 US1_0 "System.Exception: Option does not have a value."

@@ -4,6 +4,8 @@ modules:
     guid
     rust
     rust_operators
+    ts
+    ts_operators
     optionm'
     optionm'_operators
     resultm

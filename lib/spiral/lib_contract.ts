@@ -1,7 +1,7 @@
-import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../../../../../../../lib/spiral/sm.fsx";
-import { int32 } from "../../fable_modules/fable-library-ts.4.14.0/Int32.js";
-import { int64 } from "../../fable_modules/fable-library-ts.4.14.0/BigInt.js";
-import { create_temp_directory_name, create_temp_directory, find_parent, get_source_directory } from "../../../../../../../../lib/spiral/file_system.fsx";
+import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../lib/spiral/sm.fsx";
+import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { create_temp_directory_name, create_temp_directory, find_parent, get_source_directory } from "../../lib/spiral/file_system.fsx";
 
 export function SpiralSm_concat(x: string): ((arg0: Iterable<string>) => string) {
     return concat(x);

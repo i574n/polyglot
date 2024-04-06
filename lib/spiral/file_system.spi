@@ -1,6 +1,5 @@
 // // # file_system
 
-open rust_operators
 open sm'_operators
 
 // // ## types
@@ -24,62 +23,84 @@ nominal path_buf = $'std_path_PathBuf'
 // // ## new_path_buf
 
 inl new_path_buf (path : string) : path_buf =
+    open rust_operators
     inl path = path |> sm'.to_std_string
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 // // ## path_buf_from
 
 inl path_buf_from (path : rust.box path) : path_buf =
+    open rust_operators
     !\\(path, $'"std::path::PathBuf::from($0)"')
 
 // // ## path_join
 
 inl path_join (s : string) (path_buf : path_buf) : path_buf =
+    open rust_operators
     !\\((path_buf, s |> sm'.to_std_string), $'"$0.join($1)"')
 
 // // ## path_display
 
 inl path_display (path : rust.ref' path) : sm'.std_string =
+    open rust_operators
     !\\(path, $'"$0.display().to_string()"')
 
 // // ## path_buf_file_name
 
 inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_str) =
+    open rust_operators
     !\($'"!path.file_name()"')
 
 // // ## path_buf_display
 
 inl path_buf_display (path : path_buf) : sm'.std_string =
+    open rust_operators
     !\\(path, $'"$0.display().to_string()"')
 
 // // ## path_exists
 
 inl path_buf_exists (path_buf : path_buf) : bool =
+    open rust_operators
     !\($'"!path_buf.exists()"')
 
 // // ## path_is_dir
 
 inl path_buf_is_dir (path_buf : path_buf) : bool =
+    open rust_operators
     !\($'"!path_buf.is_dir()"')
 
 // // ## path_is_file
 
 inl path_buf_is_file (path_buf : path_buf) : bool =
+    open rust_operators
     !\($'"!path_buf.is_file()"')
 
 // // ## path_parent
 
 inl path_buf_parent (path_buf : path_buf) : optionm'.option' path_buf =
+    open rust_operators
     !\\(path_buf, $'"$0.parent().map(std::path::PathBuf::from)"')
+
+// // ## ts_path_join
+
+inl ts_path_join (b : string) (a : string) : string =
+    open ts_operators
+    global "type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string"
+    inl path : $'IPathJoin' = ts.import_all "path"
+    !\\((a, b), $'"!path.join($0, $1)"')
 
 // // ## (< />)
 
+// let result = find_parent(".paket")(false)(get_source_directory());
+// console.log(result);
 inl (</>) (a : string) (b : string) : string =
     run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.IO.Path.Combine (!a, !b)'
         | Rust (Native) => fun () =>
             a |> new_path_buf |> path_join b |> path_buf_display |> sm'.from_std_string
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Path.Combine (!a, !b)'
+        | TypeScript _ => fun () =>
+            a |> ts_path_join b
         | target => fun () => null ()
 
 // // ## get_temp_path
@@ -87,16 +108,22 @@ inl (</>) (a : string) (b : string) : string =
 inl get_temp_path () : string =
     $'System.IO.Path.GetTempPath' ()
 
+// // ## get_entry_assembly_name
+
+inl get_entry_assembly_name () : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
+        | target => fun () => null ()
+
 // // ## create_temp_directory_name
 
 inl create_temp_directory_name () =
     run_target function
         | Fsharp (Native) => fun () =>
-            inl root = $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name' : string
-
             get_temp_path ()
-            </> ($'$"\!{!root}"' : string)
-            </> (date_time.new_guid_from_date_time $'System.DateTime.Now' |> sm'.obj_to_string)
+            </> ($'$"\!{!get_entry_assembly_name ()}"' : string)
+            </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
         | target => fun () => null ()
 
 // // ## directory_info
@@ -150,22 +177,21 @@ inl create_directory (path : string) : directory_info =
 
 inl directory_exists (path : string) : bool =
     run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.Directory.Exists'
         | Rust (Native) => fun () =>
             inl path = path |> new_path_buf
             (path |> path_buf_exists) && (path |> path_buf_is_dir)
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Directory.Exists'
+        | TypeScript (Native) => fun () =>
+            global "type IFsExistsSync = abstract existsSync: path: string -> bool"
+            inl fs : $'IFsExistsSync' = ts.import_all "fs"
+            ts.emit_expr path $'"!fs.existsSync($0)"'
         | target => fun () => null ()
 
 // // ## directory_get_parent
 
 inl directory_get_parent (path : string) : optionm'.option' string =
     run_target function
-        | Fsharp (Native) => fun () =>
-            inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
-            if parent =. null ()
-            then None
-            else parent |> directory_info_full_name |> Some
         | Rust (Native) => fun () =>
             path
             |> new_path_buf
@@ -174,18 +200,31 @@ inl directory_get_parent (path : string) : optionm'.option' string =
             |> path_buf_display
             |> sm'.from_std_string
             |> Some
-        | target => fun () => null ()
-    |> optionm'.box
+        | Fsharp (Native) => fun () =>
+            inl parent : directory_info = path |> $'System.IO.Directory.GetParent'
+            if parent =. null ()
+            then None
+            else parent |> directory_info_full_name |> Some
+        | TypeScript _ => fun () =>
+            global "type IPathDirname = abstract dirname: path: string -> string"
+            inl fs : $'IPathDirname' = ts.import_all "path"
+            ts.emit_expr path $'"!fs.dirname($0)"' |> Some
+        | _ => fun () => null ()
+        |> optionm'.box
 
 // // ## file_exists
 
 inl file_exists (path : string) : bool =
     run_target function
-        | Fsharp (Native) => fun () =>
-            path |> $'System.IO.File.Exists'
         | Rust (Native) => fun () =>
             inl path_buf = path |> new_path_buf
             (path_buf |> path_buf_exists) && (path_buf |> path_buf_is_file)
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.File.Exists'
+        | TypeScript (Native) => fun () =>
+            global "type IFsExistsSync = abstract existsSync: path: string -> bool"
+            inl fs : $'IFsExistsSync' = ts.import_all "fs"
+            ts.emit_expr path $'"!fs.existsSync($0)"'
         | target => fun () => null ()
 
 // // ## create_temp_directory
@@ -220,7 +259,8 @@ inl find_parent name is_file root_dir =
         if dir </> name |> (if is_file then file_exists else directory_exists)
         then dir
         else
-            match dir |> (join directory_get_parent) |> optionm'.unbox with
+            inl result = dir |> (join directory_get_parent)
+            match result |> optionm'.unbox with
             | Some parent => parent |> loop
             | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\'"""'
     loop root_dir

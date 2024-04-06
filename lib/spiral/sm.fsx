@@ -53,7 +53,7 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v5 : string = method0()
     let v6 : string = v4 |> String.concat v5
     let v7 : (string []) = v1.Split v6
-    v7
+    v7 
     #endif
     #if FABLE_COMPILER_RUST && WASM
     let v8 : ((string []) -> string seq) = Seq.ofArray
@@ -61,7 +61,7 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v10 : string = method0()
     let v11 : string = v9 |> String.concat v10
     let v12 : (string []) = v1.Split v11
-    v12
+    v12 
     #endif
     #if FABLE_COMPILER_RUST && CONTRACT
     let v13 : ((string []) -> string seq) = Seq.ofArray
@@ -69,31 +69,23 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v15 : string = method0()
     let v16 : string = v14 |> String.concat v15
     let v17 : (string []) = v1.Split v16
-    v17
+    v17 
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v18 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
-    v18
+    v18 
     #endif
-    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_TYPESCRIPT
     let v19 : ((string []) -> string seq) = Seq.ofArray
     let v20 : string seq = v19 v0
     let v21 : string = method0()
     let v22 : string = v20 |> String.concat v21
     let v23 : (string []) = v1.Split v22
-    v23
-    #endif
-    #if !FABLE_COMPILER_RUST && WASM
-    let v24 : ((string []) -> string seq) = Seq.ofArray
-    let v25 : string seq = v24 v0
-    let v26 : string = method0()
-    let v27 : string = v25 |> String.concat v26
-    let v28 : (string []) = v1.Split v27
-    v28
+    v23 
     #endif
     |> fun x -> _v2 <- Some x
-    let v29 : (string []) = _v2 |> Option.get
-    v29
+    let v24 : (string []) = _v2 |> Option.get
+    v24
 and closure17 () (v0 : (string [])) : (string -> (string [])) =
     closure18(v0)
 and closure20 (v0 : string) (v1 : string) : bool =
@@ -172,31 +164,27 @@ and closure35 () (v0 : exn) : string =
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = $"%A{v0}"
-    v2
+    v2 
     #endif
     #if FABLE_COMPILER_RUST && WASM
     let v3 : string = $"%A{v0}"
-    v3
+    v3 
     #endif
     #if FABLE_COMPILER_RUST && CONTRACT
     let v4 : string = $"%A{v0}"
-    v4
+    v4 
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v5 : string = $"{v0.GetType ()}: {v0.Message}"
-    v5
+    v5 
     #endif
-    #if FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM
+    #if FABLE_COMPILER_TYPESCRIPT
     let v6 : string = $"%A{v0}"
-    v6
-    #endif
-    #if !FABLE_COMPILER_RUST && WASM
-    let v7 : string = $"%A{v0}"
-    v7
+    v6 
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : string = _v1 |> Option.get
-    v8
+    let v7 : string = _v1 |> Option.get
+    v7
 and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
