@@ -35,6 +35,7 @@
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Threading.fs
+#!import ../../lib/fsharp/Crypto.fs
 #!import ../../lib/fsharp/Async.fs
 #!import ../../lib/fsharp/AsyncSeq.fs
 #!import ../../lib/fsharp/Networking.fs
@@ -201,12 +202,20 @@ let inline getFileUri (path : string) =
         else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> SpiralSm.replace "\\" "/"
     $"file:///{path |> SpiralSm.trim_start [| '/' |]}"
 
+#!markdown
+
+## getFilePathFromUri
+
 #!fsharp
 
 let inline getFilePathFromUri uri =
     match System.Uri.TryCreate (uri, System.UriKind.Absolute) with
     | true, uri -> uri.AbsolutePath |> System.IO.Path.GetFullPath
     | _ -> failwith "invalid uri"
+
+#!markdown
+
+## getCompilerPort
 
 #!fsharp
 
@@ -236,13 +245,9 @@ let inline buildFile timeout port cancellationToken path = async {
     let fullPath = path |> System.IO.Path.GetFullPath
     let fileDir = fullPath |> System.IO.Path.GetDirectoryName
     let fileName = fullPath |> System.IO.Path.GetFileNameWithoutExtension
-    let! code = fullPath |> FileSystem.readAllTextAsync
+    let! code = fullPath |> SpiralFileSystem.read_all_text_async
 
-    let eventFilter = function
-        | FileSystem.FileSystemChange.Changed (path, _) when path = $"{fileName}.fsx" -> true
-        | _ -> false
-
-    let stream, disposable = fileDir |> FileSystem.watchDirectory eventFilter
+    let stream, disposable = fileDir |> FileSystem.watchDirectory (fun _ -> false)
     use _ = disposable
 
     let token, disposable = Threading.newDisposableToken cancellationToken
@@ -253,12 +258,12 @@ let inline buildFile timeout port cancellationToken path = async {
 
     let fsxContentSeq =
         stream
-        |> FSharp.Control.AsyncSeq.choose (function
-            | _, (FileSystem.FileSystemChange.Changed (path, Some content) as event)
-                when event |> eventFilter
+        |> FSharp.Control.AsyncSeq.chooseAsync (function
+            | _, (FileSystem.FileSystemChange.Changed (path, _))
+                when (path |> System.IO.Path.GetFileName) = $"{fileName}.fsx"
                 ->
-                Some content
-            | _ -> None
+                    fileDir </> path |> SpiralFileSystem.read_all_text_retry_async
+            | _ -> None |> Async.init
         )
         |> FSharp.Control.AsyncSeq.map (fun content ->
             Some (content |> SpiralSm.replace "\r\n" "\n"), None
@@ -361,14 +366,21 @@ let inline buildFile timeout port cancellationToken path = async {
 #!fsharp
 
 let inline persistCode code = async {
-    let tempDir = SpiralFileSystem.create_temp_directory ()
-
-    let mainPath = tempDir </> "main.spi"
-    do! code |> FileSystem.writeAllTextAsync mainPath
-
     let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
+    let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
 
-    let spiprojPath = tempDir </> "package.spiproj"
+    let packagesDir = targetDir </> "packages"
+
+    let hashHex = code |> Crypto.hashText
+    
+    let codeDir = packagesDir </> hashHex
+
+    codeDir |> System.IO.Directory.CreateDirectory |> ignore
+
+    let mainPath = codeDir </> "main.spi"
+    do! code |> SpiralFileSystem.write_all_text_async mainPath
+
+    let spiprojPath = codeDir </> "package.spiproj"
     let spiprojCode =
         $"""packageDir: {repositoryRoot </> "lib"}
 packages:
@@ -377,14 +389,9 @@ packages:
 modules:
     main
 """
-    do! spiprojCode |> FileSystem.writeAllTextAsync spiprojPath
+    do! spiprojCode |> SpiralFileSystem.write_all_text_async spiprojPath
 
-    let disposable = new_disposable (fun () ->
-        ()
-        // tempDir |> FileSystem.deleteDirectoryAsync |> Async.Ignore |> Async.RunSynchronously
-    )
-
-    return mainPath, disposable
+    return mainPath
 }
 
 #!markdown
@@ -394,8 +401,7 @@ modules:
 #!fsharp
 
 let inline buildCode timeout cancellationToken code = async {
-    let! mainPath, disposable = persistCode code
-    use _ = disposable
+    let! mainPath = persistCode code
     let port = getCompilerPort ()
     return! mainPath |> buildFile timeout port cancellationToken
 }
@@ -686,13 +692,16 @@ inl main () =
 
 let inline getFileTokenRange port cancellationToken path = async {
     let fullPath = path |> System.IO.Path.GetFullPath
-    let! code = fullPath |> FileSystem.readAllTextAsync
+    let! code = fullPath |> SpiralFileSystem.read_all_text_async
     let lines = code |> SpiralSm.split "\n"
 
     let token, disposable = Threading.newDisposableToken cancellationToken
     use _ = disposable
 
-    let! serverPort, _errors, ct, disposable = awaitCompiler port (Some token)
+    let! serverPort, _errors, ct, disposable =
+        match port with
+        | Some port -> awaitCompiler port (Some token)
+        | None -> (getCompilerPort (), FSharp.Control.AsyncSeq.empty, token, new_disposable id) |> Async.init
     use _ = disposable
 
     let fileOpenObj = {| FileOpen = {| uri = fullPath |> getFileUri; spiText = code |} |}
@@ -725,10 +734,9 @@ let inline getFileTokenRange port cancellationToken path = async {
 #!fsharp
 
 let inline getCodeTokenRange cancellationToken code = async {
-    let! mainPath, disposable = persistCode code
-    use _ = disposable
+    let! mainPath = persistCode code
     let port = getCompilerPort ()
-    return! mainPath |> getFileTokenRange port cancellationToken
+    return! mainPath |> getFileTokenRange (Some port) cancellationToken
 }
 
 #!fsharp
@@ -851,7 +859,7 @@ let main args =
 
                 match outputCode with
                 | Some outputCode ->
-                    do! outputCode |> FileSystem.writeAllTextAsync outputPath
+                    do! outputCode |> SpiralFileSystem.write_all_text_async outputPath
                     return 0
                 | None ->
                     return 1
@@ -860,10 +868,10 @@ let main args =
         let fileTokenRangeAsync =
             fileTokenRangeActions
             |> List.map (fun (inputPath, outputPath) -> async {
-                let! tokenRange = inputPath |> getFileTokenRange serverPort None
+                let! tokenRange = inputPath |> getFileTokenRange (Some serverPort) None
                 match tokenRange with
                 | Some tokenRange ->
-                    do! tokenRange |> FSharp.Json.Json.serialize |> FileSystem.writeAllTextAsync outputPath
+                    do! tokenRange |> FSharp.Json.Json.serialize |> SpiralFileSystem.write_all_text_async outputPath
                     return 0
                 | None ->
                     return 1

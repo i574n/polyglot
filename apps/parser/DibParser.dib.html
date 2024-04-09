@@ -9034,7 +9034,7 @@ inl x = 0i32
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">parseDibCode</span> <span class="n">output</span> <span class="n">file</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
     <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"output: </span><span class="si">{output}</span><span class="s2"> / file: </span><span class="si">{file}</span><span class="s2"> / {getLocals ()}"</span>
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"parseDibCode"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">file</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">readAllTextAsync</span>
+    <span class="n">let</span><span class="err">!</span> <span class="nb">input</span> <span class="o">=</span> <span class="n">file</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_async</span>
     <span class="k">match</span> <span class="n">parse</span> <span class="n">output</span> <span class="nb">input</span> <span class="k">with</span>
     <span class="o">|</span> <span class="n">Result</span><span class="o">.</span><span class="n">Ok</span> <span class="n">blocks</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">blocks</span> <span class="o">|&gt;</span> <span class="n">formatBlocks</span> <span class="n">output</span>
     <span class="o">|</span> <span class="n">Result</span><span class="o">.</span><span class="n">Error</span> <span class="n">msg</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">failwith</span> <span class="n">msg</span>
@@ -9068,7 +9068,7 @@ inl x = 0i32
     <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"writeDibCode"</span><span class="p">)</span> <span class="n">getLocals</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span> <span class="n">parseDibCode</span> <span class="n">output</span> <span class="n">path</span>
     <span class="n">let</span> <span class="n">outputPath</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">".dib"</span> <span class="err">$</span><span class="s2">".{output |&gt; string |&gt; SpiralSm.to_lower}"</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">outputPath</span>
+    <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">outputPath</span>
 <span class="p">}</span>
 </pre></div>
 </div>

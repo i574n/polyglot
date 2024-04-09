@@ -1,12 +1,12 @@
-import { Record } from "../../fable_modules/fable-library-ts.4.14.0/Types.js";
-import { float64, int32 } from "../../fable_modules/fable-library-ts.4.14.0/Int32.js";
-import { IComparable, IEquatable } from "../../fable_modules/fable-library-ts.4.14.0/Util.js";
-import { record_type, string_type, int32_type, TypeInfo } from "../../fable_modules/fable-library-ts.4.14.0/Reflection.js";
-import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../fable_modules/fable-library-ts.4.14.0/String.js";
-import { value as value_2, Option } from "../../fable_modules/fable-library-ts.4.14.0/Option.js";
-import { ofArray } from "../../fable_modules/fable-library-ts.4.14.0/Seq.js";
-import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../fable_modules/fable-library-ts.4.14.0/BigInt.js";
-import { setItem, fill, item } from "../../fable_modules/fable-library-ts.4.14.0/Array.js";
+import { Record } from "../../deps/Fable/src/fable-library-ts/Types.js";
+import { float64, int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
+import { IComparable, IEquatable } from "../../deps/Fable/src/fable-library-ts/Util.js";
+import { record_type, string_type, int32_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
+import { interpolate, toText, trimStart, trimEnd, substring as substring_1, join, split as split_1, replace as replace_1, padRight, padLeft, endsWith } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { value as value_2, Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { ofArray } from "../../deps/Fable/src/fable-library-ts/Seq.js";
+import { toInt32, op_Subtraction, fromFloat64, toFloat64, compare, int64, fromInt32, toInt64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
+import { setItem, fill, item } from "../../deps/Fable/src/fable-library-ts/Array.js";
 
 export class Mut0 extends Record implements IEquatable<Mut0>, IComparable<Mut0> {
     l0: int32;
@@ -108,8 +108,8 @@ export function method0(): string {
 
 export function closure18(v0_1: string[], v1_1: string): string[] {
     let _v2: Option<string[]> = void 0;
-    const v25: Iterable<string> = ofArray<string>(v0_1);
-    const x: string[] = split_1(v1_1, [join(method0(), v25)], void 0, 0);
+    const v20_1: Iterable<string> = ofArray<string>(v0_1);
+    const x: string[] = split_1(v1_1, [join(method0(), v20_1)], void 0, 0);
     _v2 = x;
     return value_2(_v2);
 }

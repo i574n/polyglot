@@ -33,39 +33,6 @@ prototype to_string t : t -> string
 
 #!spiral
 
-union target_runtime =
-    | Native
-    | Wasm
-    | Contract
-
-union target =
-    | Rust : target_runtime
-    | Fsharp : target_runtime
-    | TypeScript : target_runtime
-
-inl run_target forall t. (fn : target -> (() -> t)) : t =
-    inl result : optionm'.option' t = $'None'
-    $"let mutable _!result = !result"
-    $"#if FABLE_COMPILER_RUST && \!WASM && \!CONTRACT"
-    fn (Rust Native) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_RUST && WASM"
-    fn (Rust Wasm) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_RUST && CONTRACT"
-    fn (Rust Contract) () |> fun x => $'!x '
-    $"#endif"
-    $"#if \!FABLE_COMPILER && \!FABLE_COMPILER_RUST && \!FABLE_COMPILER_TYPESCRIPT && \!WASM && \!CONTRACT"
-    fn (Fsharp Native) () |> fun x => $'!x '
-    $"#endif"
-    $"#if FABLE_COMPILER_TYPESCRIPT"
-    fn (TypeScript Native) () |> fun x => $'!x '
-    $"#endif"
-    $"|> fun x -> _!result <- Some x"
-    $"_!result |> Option.get"
-
-#!spiral
-
 // // test
 
 run_target function
@@ -92,6 +59,24 @@ run_target function
 
 inl emit forall t. (x : t) : t =
     $'!x '
+
+#!markdown
+
+## upcast
+
+#!spiral
+
+inl upcast forall t u. (x : t) : u =
+    $'!x :> `u '
+
+#!markdown
+
+## downcast
+
+#!spiral
+
+inl downcast forall t u. (x : t) : u =
+    $'!x :?> `u '
 
 #!markdown
 
@@ -292,6 +277,51 @@ inl test_trace_level level =
     inl state = trace_state ()
     inl level' = *state.level
     *state.enabled && $'!level >= !level' '
+
+#!spiral
+
+// let private replStart =
+// #if INTERACTIVE || !FABLE_COMPILER
+//     fun () ->
+//         if System.Reflection.Assembly.GetEntryAssembly().GetName().Name <> "Microsoft.DotNet.Interactive.App"
+//         then Some System.DateTime.Now.Ticks
+//         else None
+//     |> memoize
+// #else
+//     fun () -> None : int64 option
+// #endif
+// 
+// inl repl_start () =
+//     run_target function
+//         | Fsharp (Native) => fun () =>
+//             get_temp_path ()
+//             </> ($'$"\!{!get_entry_assembly_name ()}"' : string)
+//             </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
+//         | target => fun () => null ()
+// 
+//     inl result : optionm'.option' t = $'None'
+//     $"let mutable _!result = !result"
+//     $"#if INTERACTIVE || !FABLE_COMPILER"
+//         fun () =>
+//             if get_entry_assembly_name () <> "Microsoft.DotNet.Interactive.App"
+//             then date_time.now () |> date_time.ticks
+//         |> memoize
+//     $"#else"
+//         fun () => None : option i64
+//     $"#endif"
+//     fn (Fsharp Wasm) () |> fun x => $"!x"
+//     $"#endif"
+//     $"|> fun x -> _!result <- Some x"
+//     $"_!result |> Option.get"
+
+inl xx () =
+    ()
+
+#!spiral
+
+inl trace trace_level fn get_locals =
+    inl text = fn ()
+    console.write_line ($'$"{!text} / {!get_locals ()}"' : string)
 
 #!markdown
 
@@ -500,17 +530,26 @@ fun () => failwith "test"
 
 #!spiral
 
-nominal disposable = $"System.IDisposable"
+nominal disposable t = $"System.IDisposable"
 
 #!markdown
 
-## use_disposable
+## use
 
 #!spiral
 
-inl use_disposable (disposable : disposable) : disposable =
-    $"use !disposable = !disposable" : ()
-    $"!disposable"
+inl use forall t. (x : t) : t =
+    $"use !x = !x " : ()
+    $'!x '
+
+#!markdown
+
+## dispose
+
+#!spiral
+
+inl dispose (disposable : disposable _) : () =
+    disposable |> $'_.Dispose()'
 
 #!markdown
 
@@ -518,13 +557,13 @@ inl use_disposable (disposable : disposable) : disposable =
 
 #!spiral
 
-inl new_disposable (fn : () -> ()) : disposable =
+inl new_disposable (fn : () -> ()) : disposable _ =
     run_target function
         | Fsharp _ => fun () => $'{ new System.IDisposable with member _.Dispose () = !fn () }'
         // | Rust _ =>
         //     fun () =>
                 // $'{ new System.IDisposable with member _.Dispose () = Fable.Core.RustInterop.emitRustExpr () "!fn()" }'
-        | target => fun () => failwith $'$"new_disposable / target: {!target}"'
+        | _ => fun () => null ()
 
 #!spiral
 
@@ -532,7 +571,8 @@ inl new_disposable (fn : () -> ()) : disposable =
 
 inl new_disposable_test = mut 0i32
 new_disposable (fun () => new_disposable_test <- *new_disposable_test + 1)
-|> $'_.Dispose()'
+|> fun x => x : disposable ()
+|> dispose
 *new_disposable_test |> _assert_eq 1
 
 #!spiral
@@ -542,8 +582,10 @@ new_disposable (fun () => new_disposable_test <- *new_disposable_test + 1)
 inl new_disposable_test = mut 0i32
 fun () =>
     new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
-    |> use_disposable
+    |> fun x => x : disposable ()
+    |> use
     |> ignore
+    |> return
 |> async.new_task
 |> async.await_task
 |> async.run_synchronously
@@ -556,8 +598,10 @@ fun () =>
 inl new_disposable_test = mut 0i32
 fun () =>
     new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
-    |> use_disposable
+    |> fun x => x : disposable ()
+    |> use
     |> ignore
+    |> return
 |> async.new_async
 |> async.run_synchronously
 *new_disposable_test |> _assert_eq 1
@@ -569,7 +613,9 @@ fun () =>
 inl new_disposable_test = mut 0i32
 fun () =>
     new_disposable fun () => new_disposable_test <- *new_disposable_test + 1
+    |> fun x => x : disposable ()
     |> ignore
+    |> return
 |> async.new_async
 |> async.run_synchronously
 *new_disposable_test |> _assert_eq 0
@@ -588,10 +634,38 @@ nominal exn = $"exn"
 
 #!spiral
 
-inl try forall t. (fn : () -> t) (ex_fn : exn -> ()) : option t =
+inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
     inl none = None : option t
     inl some (s : t) = Some s
-    $'try !fn () |> !some with ex -> !ex_fn ex; !none '
+    $'try !fn () |> !some with ex -> !ex_fn ex '
+
+#!markdown
+
+## try_unit
+
+#!spiral
+
+inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
+    $"try"
+    fn ()
+    |> ignore
+    $"with ex ->"
+    ex_fn $'ex'
+    |> ignore
+    $'(*'
+    $'*)'
+
+#!markdown
+
+## return
+
+#!spiral
+
+inl return forall t. (x : t) : () =
+    $'return !x '
+
+inl return' forall t. (x : t) : t =
+    $'return !x '
 
 #!markdown
 
@@ -618,9 +692,10 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
                 then fn () |> Some
                 else None
             fun ex =>
-                let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
+                inl get_locals () = $'$"retry: {!retry} / ex: {ex |> SpiralSm.format_exception} / {!get_locals ()}"' : string
                 // trace Warning (fun () => "retry_fn") getLocals
                 sleep 1
+                None
         |> function
             | Some x => x
             | None => loop (retry + 1)
@@ -658,7 +733,8 @@ fun () =>
 #!spiral
 
 inl main () =
-    inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () =
-        retry_fn r x |> optionm'.box
+    inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
+    
+    inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()

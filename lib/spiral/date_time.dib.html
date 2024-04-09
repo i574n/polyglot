@@ -8521,9 +8521,12 @@ and method0 () : unit =
     let v9 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v10 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
     let v11 : System.DateTime = _v5 |&gt; Option.get
@@ -8612,9 +8615,12 @@ and method0 () : unit =
     let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v11 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v12 : System.DateTime = _v6 |&gt; Option.get
@@ -8703,9 +8709,12 @@ and method0 () : unit =
     let v10 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v11 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v12 : System.DateTime = _v6 |&gt; Option.get
@@ -9347,9 +9356,12 @@ and method0 () : unit =
     let v13 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
     v13 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v14 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
     v14 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
     let v15 : System.DateTime = _v9 |&gt; Option.get
@@ -9527,7 +9539,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 2024-04-04 6:19:26 PM -04:00
+<pre>DateTime: 2024-04-08 10:57:41 PM -04:00
 Time Zone: (UTC-04:00) Cuiaba
 Is DST: false
 v1: -04:00:00
@@ -9616,9 +9628,12 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let v8 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v8 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v4 &lt;- Some x
     let v10 : System.DateTime = _v4 |&gt; Option.get

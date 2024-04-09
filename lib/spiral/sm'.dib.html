@@ -8983,9 +8983,12 @@ and method0 () : unit =
             let v9 : string = $"{v4.GetType ()}: {v4.Message}"
             v9 
             #endif
-            #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+            #if FABLE_COMPILER_TYPESCRIPT
             let v10 : string = $"%A{v4}"
             v10 
+            #endif
+            #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+            Unchecked.defaultof&lt;string&gt;
             #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
             let v11 : string = _v5 |&gt; Option.get
@@ -10954,13 +10957,16 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v18 : (string []) = v1.Split (v0, System.StringSplitOptions.None)
     v18 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v19 : ((string []) -&gt; string seq) = Seq.ofArray
     let v20 : string seq = v19 v0
     let v21 : string = method0()
     let v22 : string = v20 |&gt; String.concat v21
     let v23 : (string []) = v1.Split v22
     v23 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;(string [])&gt;
     #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
     let v24 : (string []) = _v2 |&gt; Option.get
@@ -11057,9 +11063,12 @@ and closure35 () (v0 : exn) : string =
     let v5 : string = $"{v0.GetType ()}: {v0.Message}"
     v5 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    #if FABLE_COMPILER_TYPESCRIPT
     let v6 : string = $"%A{v0}"
     v6 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;string&gt;
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v7 : string = _v1 |&gt; Option.get

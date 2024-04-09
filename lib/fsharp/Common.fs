@@ -58,7 +58,7 @@ module Common =
                     let logDir = System.IO.Path.Combine (tmpPath, "!polyglot")
                     System.IO.Directory.CreateDirectory logDir |> ignore
                     let logFile = System.IO.Path.Combine (logDir, $"{SpiralDateTime.new_guid_from_date_time System.DateTime.Now}.txt")
-                    System.IO.File.WriteAllTextAsync (logFile, text) |> Async.AwaitTask |> Async.RunSynchronously
+                    SpiralFileSystem.write_all_text_async logFile text |> Async.RunSynchronously
                 with ex ->
                     traceRaw Critical (fun () -> $"trace / ex: {ex |> SpiralSm.format_exception}")
 #endif

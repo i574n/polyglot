@@ -45,375 +45,6 @@ open SpiralFileSystem.Operators
 
 #!markdown
 
-## readAllTextAsync
-
-#!fsharp
-
-let inline readAllTextAsync path =
-    path |> System.IO.File.ReadAllTextAsync |> Async.AwaitTask
-
-#!markdown
-
-## fileExistsContent
-
-#!fsharp
-
-let inline fileExistsContent path content = async {
-    if path |> System.IO.File.Exists |> not
-    then return false
-    else
-        let! existingContent = path |> readAllTextAsync
-        return content = existingContent
-}
-
-#!markdown
-
-## writeAllTextAsync
-
-#!fsharp
-
-let inline writeAllTextAsync path contents =
-    System.IO.File.WriteAllTextAsync (path, contents) |> Async.AwaitTask
-
-#!markdown
-
-## writeAllTextExists
-
-#!fsharp
-
-let inline writeAllTextExists path contents = async {
-    let! exists = contents |> fileExistsContent path
-    if not exists
-    then do! contents |> writeAllTextAsync path
-}
-
-#!markdown
-
-## waitForFileAccess
-
-#!fsharp
-
-let inline waitForFileAccess access path =
-    let fileAccess, fileShare =
-        access
-        |> Option.defaultValue (System.IO.FileAccess.ReadWrite, System.IO.FileShare.Read)
-
-    let rec loop retry = async {
-        try
-            use _ = new System.IO.FileStream (
-                path,
-                System.IO.FileMode.Open,
-                fileAccess,
-                fileShare
-            )
-            return retry
-        with ex ->
-            if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-                trace Debug (fun () -> "waitForFileAccess") getLocals
-            do! Async.Sleep 10
-            return! loop (retry + 1)
-    }
-    loop 0
-
-#!fsharp
-
-//// test
-
-let tempFolder = SpiralFileSystem.create_temp_directory ()
-let path = tempFolder </> "test.txt"
-
-let inline lockFile () = async {
-    trace Debug (fun () -> "_1") getLocals
-    use stream = new System.IO.FileStream (
-        path,
-        System.IO.FileMode.Open,
-        System.IO.FileAccess.ReadWrite,
-        System.IO.FileShare.None
-    )
-    trace Debug (fun () -> "_2") getLocals
-    do! Async.Sleep 2000
-    trace Debug (fun () -> "_3") getLocals
-    stream.Seek (0L, SeekOrigin.Begin) |> ignore
-    trace Debug (fun () -> "_4") getLocals
-    stream.WriteByte 49uy
-    trace Debug (fun () -> "_5") getLocals
-    stream.Flush ()
-    trace Debug (fun () -> "_6") getLocals
-}
-
-async {
-    trace Debug (fun () -> "1") getLocals
-    do! "0" |> writeAllTextAsync path
-    trace Debug (fun () -> "2") getLocals
-    let! child = lockFile () |> Async.StartChild
-    trace Debug (fun () -> "3") getLocals
-    do! Async.Sleep 1
-    trace Debug (fun () -> "4") getLocals
-    let! retries = path |> waitForFileAccess None
-    trace Debug (fun () -> "5") getLocals
-    let! text = path |> readAllTextAsync
-    trace Debug (fun () -> "6") getLocals
-    do! child
-    trace Debug (fun () -> "7") getLocals
-    return retries, text
-}
-|> Async.runWithTimeout 3000
-|> function
-    | Some (retries, text) ->
-        retries
-        |> _isBetween
-            (if Runtime.isWindows () then 50 else 100)
-            (if Runtime.isWindows () then 150 else 200)
-
-        text |> _assertEqual "1"
-
-        true
-    | _ -> false
-|> _assertEqual true
-
-#!markdown
-
-## readAllTextRetryAsync
-
-#!fsharp
-
-let inline readAllTextRetryAsync fullPath =
-    let rec loop retry = async {
-        try
-            if retry > 0
-            then do!
-                fullPath
-                |> waitForFileAccess (Some (
-                    System.IO.FileAccess.Read,
-                    System.IO.FileShare.Read
-                ))
-                |> Async.runWithTimeoutAsync 1000
-                |> Async.Ignore
-            return! fullPath |> readAllTextAsync |> Async.map Some
-        with ex ->
-            let getLocals () = $"retry: {retry} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-            trace Debug (fun () -> $"watchWithFilter / readContent") getLocals
-            if retry = 0
-            then return! loop (retry + 1)
-            else return None
-    }
-    loop 0
-
-#!markdown
-
-## deleteDirectoryAsync
-
-#!fsharp
-
-let inline deleteDirectoryAsync path =
-    let rec loop retry = async {
-        try
-            System.IO.Directory.Delete (path, true)
-            return retry
-        with ex ->
-            if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-                trace Debug (fun () -> "deleteDirectoryAsync") getLocals
-            do! Async.Sleep 10
-            return! loop (retry + 1)
-    }
-    loop 0
-
-#!fsharp
-
-//// test
-
-let tempFolder = SpiralFileSystem.create_temp_directory ()
-let path = tempFolder </> "test"
-
-let inline lockDirectory () = async {
-    trace Debug (fun () -> "_1") getLocals
-    System.IO.File.WriteAllText (path </> "test.txt", "0")
-    use _ = new System.IO.FileStream (
-        path </> "test.txt",
-        System.IO.FileMode.Open,
-        System.IO.FileAccess.ReadWrite,
-        System.IO.FileShare.None
-    )
-    trace Debug (fun () -> "_2") getLocals
-    do! Async.Sleep 2000
-    trace Debug (fun () -> "_3") getLocals
-}
-
-async {
-    trace Debug (fun () -> "1") getLocals
-    Directory.CreateDirectory path |> ignore
-    trace Debug (fun () -> "2") getLocals
-    let! child = lockDirectory () |> Async.StartChild
-    trace Debug (fun () -> "3") getLocals
-    do! Async.Sleep 60
-    trace Debug (fun () -> "4") getLocals
-    let! retries = deleteDirectoryAsync path
-    trace Debug (fun () -> "5") getLocals
-    do! child
-    trace Debug (fun () -> "6") getLocals
-    return retries
-}
-|> Async.runWithTimeout 3000
-|> function
-    | Some retries ->
-        retries
-        |> _isBetween
-            (if Runtime.isWindows () then 50 else 0)
-            (if Runtime.isWindows () then 150 else 0)
-
-        true
-    | _ -> false
-|> _assertEqual true
-
-#!markdown
-
-## deleteFileAsync
-
-#!fsharp
-
-let inline deleteFileAsync path =
-    let rec loop retry = async {
-        try
-            System.IO.File.Delete path
-            return retry
-        with ex ->
-            if retry % 100 = 0 then
-                let getLocals () = $"path: {path |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-                trace Warning (fun () -> "deleteFileAsync") getLocals
-            do! Async.Sleep 10
-            return! loop (retry + 1)
-    }
-    loop 0
-
-#!fsharp
-
-//// test
-
-let tempFolder = SpiralFileSystem.create_temp_directory ()
-let path = tempFolder </> "test.txt"
-
-let inline lockFile () = async {
-    trace Debug (fun () -> "_1") getLocals
-    use _ = new System.IO.FileStream (
-        path,
-        System.IO.FileMode.Open,
-        System.IO.FileAccess.ReadWrite,
-        System.IO.FileShare.None
-    )
-    trace Debug (fun () -> "_2") getLocals
-    do! Async.Sleep 2000
-    trace Debug (fun () -> "_3") getLocals
-}
-
-async {
-    trace Debug (fun () -> "1") getLocals
-    do! "0" |> writeAllTextAsync path
-    trace Debug (fun () -> "2") getLocals
-    let! child = lockFile () |> Async.StartChild
-    trace Debug (fun () -> "3") getLocals
-    do! Async.Sleep 1
-    trace Debug (fun () -> "4") getLocals
-    let! retries = deleteFileAsync path
-    trace Debug (fun () -> "5") getLocals
-    do! child
-    trace Debug (fun () -> "6") getLocals
-    return retries
-}
-|> Async.runWithTimeout 3000
-|> function
-    | Some retries ->
-        retries
-        |> _isBetween
-            (if Runtime.isWindows () then 50 else 0)
-            (if Runtime.isWindows () then 150 else 0)
-
-        true
-    | _ -> false
-|> _assertEqual true
-
-#!markdown
-
-## moveFileAsync
-
-#!fsharp
-
-let inline moveFileAsync newPath oldPath =
-    let rec loop retry = async {
-        try
-            System.IO.File.Move (oldPath, newPath)
-            return retry
-        with ex ->
-            if retry % 100 = 0 then
-                let getLocals () =
-                    $"oldPath: {oldPath |> System.IO.Path.GetFileName} / newPath: {newPath |> System.IO.Path.GetFileName} / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
-                trace Warning (fun () -> "moveFileAsync") getLocals
-            do! Async.Sleep 10
-            return! loop (retry + 1)
-    }
-    loop 0
-
-#!fsharp
-
-//// test
-
-let tempFolder = SpiralFileSystem.create_temp_directory ()
-let path = tempFolder </> "test.txt"
-let newPath = tempFolder </> "test2.txt"
-
-let inline lockFile () = async {
-    trace Debug (fun () -> "_1") getLocals
-    use _ = new System.IO.FileStream (
-        path,
-        System.IO.FileMode.Open,
-        System.IO.FileAccess.ReadWrite,
-        System.IO.FileShare.None
-    )
-    trace Debug (fun () -> "_2") getLocals
-    do! Async.Sleep 2000
-    trace Debug (fun () -> "_3") getLocals
-}
-
-async {
-    trace Debug (fun () -> "1") getLocals
-    do! "0" |> writeAllTextAsync path
-    trace Debug (fun () -> "2") getLocals
-    let! child = lockFile () |> Async.StartChild
-    trace Debug (fun () -> "3") getLocals
-    do! Async.Sleep 1
-    trace Debug (fun () -> "4") getLocals
-    let! retries1 = path |> moveFileAsync newPath
-    trace Debug (fun () -> "5") getLocals
-    let! retries2 = newPath |> waitForFileAccess None
-    trace Debug (fun () -> "6") getLocals
-    let! text = newPath |> readAllTextAsync
-    trace Debug (fun () -> "7") getLocals
-    do! child
-    trace Debug (fun () -> "8") getLocals
-    return retries1, retries2, text
-}
-|> Async.runWithTimeout 3000
-|> function
-    | Some (retries1, retries2, text) ->
-        retries1
-        |> _isBetween
-            (if Runtime.isWindows () then 50 else 0)
-            (if Runtime.isWindows () then 150 else 0)
-
-        retries2
-        |> _isBetween
-            (if Runtime.isWindows () then 0 else 100)
-            (if Runtime.isWindows () then 0 else 200)
-
-        text |> _assertEqual "0"
-
-        true
-    | _ -> false
-|> _assertEqual true
-
-#!markdown
-
 ## watchDirectory
 
 #!fsharp
@@ -521,14 +152,14 @@ let inline watchDirectoryWithFilter filter shouldReadContent path =
             match shouldReadContent event, event with
             | true, FileSystemChange.Changed (path, _) ->
                 do! Async.Sleep 5
-                let! content = fullPath </> path |> readAllTextRetryAsync
+                let! content = fullPath </> path |> SpiralFileSystem.read_all_text_retry_async
                 return t, FileSystemChange.Changed (path, content)
             | true, FileSystemChange.Created (path, _) ->
                 do! Async.Sleep 5
-                let! content = fullPath </> path |> readAllTextRetryAsync
+                let! content = fullPath </> path |> SpiralFileSystem.read_all_text_retry_async
                 return t, FileSystemChange.Created (path, content)
             | true, FileSystemChange.Renamed (oldPath, (newPath, _)) ->
-                let! content = fullPath </> newPath |> readAllTextRetryAsync
+                let! content = fullPath </> newPath |> SpiralFileSystem.read_all_text_retry_async
                 return t, FileSystemChange.Renamed (oldPath, (newPath, content))
             | _ -> return t, event
         })
@@ -567,8 +198,8 @@ let inline testEventsRaw
     (watchFn : (_ -> bool) -> string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let tempDirectory = SpiralFileSystem.create_temp_directory ()
-    let stream, disposable = watchFn (fun _ -> true) tempDirectory
+    let struct (tempDir, tempDisposable) = SpiralFileSystem.create_temp_directory ()
+    let stream, disposable = watchFn (fun _ -> true) tempDir
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
 
@@ -579,7 +210,7 @@ let inline testEventsRaw
     let run = async {
         let! _ = iter () |> Async.StartChild
         do! Async.Sleep 250
-        return! write tempDirectory
+        return! write tempDir
     }
 
     try
@@ -588,7 +219,7 @@ let inline testEventsRaw
         |> _assertEqual (Some ())
     finally
         disposable.Dispose ()
-        deleteDirectoryAsync tempDirectory |> Async.Ignore |> Async.RunSynchronously
+        tempDisposable.Dispose ()
 
     let eventsLog =
         events
@@ -635,27 +266,27 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! $"a{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"a{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     do! Async.Sleep 250
 
     for i = 1 to n do
-        do! $"b{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"b{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     do! Async.Sleep 250
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! path </> $"file{i}.txt" |> SpiralFileSystem.move_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 250
 
     for i = 1 to n do
-        do! $"c{i}" |> writeAllTextAsync (path </> $"file_{i}.txt")
+        do! $"c{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file_{i}.txt")
 
     do! Async.Sleep 250
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! SpiralFileSystem.delete_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 250
 }
@@ -703,27 +334,27 @@ let inline write path = async {
         |> List.map (string >> String.replicate 1_000_000)
 
     for i = 1 to n do
-        do! $"{contents.[i - 1]}a" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"{contents.[i - 1]}a" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     do! Async.Sleep 1500
 
     for i = 1 to n do
-        do! $"{contents.[i - 1]}b" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"{contents.[i - 1]}b" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     do! Async.Sleep 1500
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! path </> $"file{i}.txt" |> SpiralFileSystem.move_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 1500
 
     for i = 1 to n do
-        do! $"{contents.[i - 1]}c" |> writeAllTextAsync (path </> $"file_{i}.txt")
+        do! $"{contents.[i - 1]}c" |> SpiralFileSystem.write_all_text_async (path </> $"file_{i}.txt")
 
     do! Async.Sleep 1500
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! SpiralFileSystem.delete_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 1500
 }
@@ -808,8 +439,8 @@ let inline testEventsSorted
     (watchFn : string -> FSharp.Control.AsyncSeq<int64 * FileSystemChange> * IDisposable)
     write
     =
-    let path = SpiralFileSystem.create_temp_directory ()
-    let stream, disposable = watchFn path
+    let struct (tempDir, tempDisposable) = SpiralFileSystem.create_temp_directory ()
+    let stream, disposable = watchFn tempDir
 
     let events = System.Collections.Concurrent.ConcurrentBag ()
 
@@ -820,7 +451,7 @@ let inline testEventsSorted
     let run = async {
         let! _ = iter () |> Async.StartChild
         do! Async.Sleep 250
-        return! write path
+        return! write tempDir
     }
 
     try
@@ -829,7 +460,7 @@ let inline testEventsSorted
         |> _assertEqual (Some ())
     finally
         disposable.Dispose ()
-        deleteDirectoryAsync path |> Async.Ignore |> Async.RunSynchronously
+        tempDisposable.Dispose ()
 
     let events = formatEvents events
 
@@ -866,10 +497,10 @@ let inline write path = async {
     let n = 3
 
     for i = 1 to n do
-        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
+        do! SpiralFileSystem.delete_file_async (path </> $"file{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 150
 }
@@ -916,13 +547,13 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! "" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! "" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file{i}.txt") |> Async.Ignore
+        do! SpiralFileSystem.delete_file_async (path </> $"file{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 150
 }
@@ -964,13 +595,13 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! path </> $"file{i}.txt" |> SpiralFileSystem.move_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! SpiralFileSystem.delete_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 150
 }
@@ -1017,19 +648,19 @@ let inline write path = async {
     let n = 2
 
     for i = 1 to n do
-        do! $"{i}" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! $"{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! "" |> writeAllTextAsync (path </> $"file{i}.txt")
+        do! "" |> SpiralFileSystem.write_all_text_async (path </> $"file{i}.txt")
 
     for i = 1 to n do
-        do! path </> $"file{i}.txt" |> moveFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! path </> $"file{i}.txt" |> SpiralFileSystem.move_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     for i = 1 to n do
-        do! $"{i}" |> writeAllTextAsync (path </> $"file_{i}.txt")
+        do! $"{i}" |> SpiralFileSystem.write_all_text_async (path </> $"file_{i}.txt")
 
     for i = 1 to n do
-        do! deleteFileAsync (path </> $"file_{i}.txt") |> Async.Ignore
+        do! SpiralFileSystem.delete_file_async (path </> $"file_{i}.txt") |> Async.Ignore
 
     do! Async.Sleep 150
 }

@@ -60,7 +60,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
             let svgPath = linePlotsSvgPath </> $"{hashHex}.svg"
 
             if System.IO.File.Exists svgPath |> not then
-                do! json |> FileSystem.writeAllTextAsync $"{linePlotsDataPath </> hashHex}.json"
+                do! json |> SpiralFileSystem.write_all_text_async $"{linePlotsDataPath </> hashHex}.json"
 
                 let ct = Microsoft.DotNet.Interactive.KernelInvocationContext.Current.CancellationToken
 
@@ -76,7 +76,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                     |> Async.withTraceLevel Info
                 if exitCode <> 0 then
                     return failwith $"plot failed with exit code {exitCode} and output {result}"
-            return! svgPath |> FileSystem.readAllTextAsync
+            return! svgPath |> SpiralFileSystem.read_all_text_async
         }
         |> Async.runWithTimeoutStrict 10000
         |> Option.defaultValue json

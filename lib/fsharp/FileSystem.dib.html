@@ -7629,692 +7629,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="readAllTextAsync">readAllTextAsync<a class="anchor-link" href="#readAllTextAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">readAllTextAsync</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">ReadAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fileExistsContent">fileExistsContent<a class="anchor-link" href="#fileExistsContent">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">fileExistsContent</span> <span class="n">path</span> <span class="n">content</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-    <span class="n">then</span> <span class="k">return</span> <span class="n">false</span>
-    <span class="k">else</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">existingContent</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span>
-        <span class="k">return</span> <span class="n">content</span> <span class="o">=</span> <span class="n">existingContent</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="writeAllTextAsync">writeAllTextAsync<a class="anchor-link" href="#writeAllTextAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">WriteAllTextAsync</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="writeAllTextExists">writeAllTextExists<a class="anchor-link" href="#writeAllTextExists">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">writeAllTextExists</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">exists</span> <span class="o">=</span> <span class="n">contents</span> <span class="o">|&gt;</span> <span class="n">fileExistsContent</span> <span class="n">path</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span>
-    <span class="n">then</span> <span class="n">do</span><span class="err">!</span> <span class="n">contents</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="waitForFileAccess">waitForFileAccess<a class="anchor-link" href="#waitForFileAccess">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">waitForFileAccess</span> <span class="n">access</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">fileAccess</span><span class="p">,</span> <span class="n">fileShare</span> <span class="o">=</span>
-        <span class="n">access</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="n">Read</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-                <span class="n">path</span><span class="p">,</span>
-                <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-                <span class="n">fileAccess</span><span class="p">,</span>
-                <span class="n">fileShare</span>
-            <span class="p">)</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForFileAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">use</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">Seek</span> <span class="p">(</span><span class="mi">0</span><span class="n">L</span><span class="p">,</span> <span class="n">SeekOrigin</span><span class="o">.</span><span class="n">Begin</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">WriteByte</span> <span class="mi">49</span><span class="n">uy</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">Flush</span> <span class="p">()</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_6"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">waitForFileAccess</span> <span class="kc">None</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">text</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"7"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries</span><span class="p">,</span> <span class="n">text</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">retries</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
-
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"1"</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] 1
-00:00:00 #2 [Debug] 2
-00:00:00 #4 [Debug] 3
-00:00:00 #3 [Debug] _1
-00:00:00 #5 [Debug] _2
-00:00:00 #6 [Debug] 4
-00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-3098-9837-9ac00cf94b98\test.txt' because it is being used by another process.
-00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-3098-9837-9ac00cf94b98\test.txt' because it is being used by another process.
-00:00:02 #9 [Debug] _3
-00:00:02 #10 [Debug] _4
-00:00:02 #11 [Debug] _5
-00:00:02 #12 [Debug] _6
-00:00:02 #13 [Debug] 5
-00:00:02 #14 [Debug] 6
-00:00:02 #15 [Debug] 7
-128
-128
-128
-1
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="readAllTextRetryAsync">readAllTextRetryAsync<a class="anchor-link" href="#readAllTextRetryAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">readAllTextRetryAsync</span> <span class="n">fullPath</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span>
-            <span class="n">then</span> <span class="n">do</span><span class="err">!</span>
-                <span class="n">fullPath</span>
-                <span class="o">|&gt;</span> <span class="n">waitForFileAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span>
-                    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">Read</span><span class="p">,</span>
-                    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="n">Read</span>
-                <span class="p">))</span>
-                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="mi">1000</span>
-                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Some</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"watchWithFilter / readContent"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">else</span> <span class="k">return</span> <span class="kc">None</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="deleteDirectoryAsync">deleteDirectoryAsync<a class="anchor-link" href="#deleteDirectoryAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">deleteDirectoryAsync</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">Delete</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteDirectoryAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockDirectory</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">WriteAllText</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
-    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">deleteDirectoryAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
-        <span class="n">retries</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:03 #16 [Debug] 1
-00:00:03 #17 [Debug] 2
-00:00:03 #18 [Debug] 3
-00:00:03 #19 [Debug] _1
-00:00:03 #20 [Debug] _2
-00:00:03 #21 [Debug] 4
-00:00:03 #22 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:04 #23 [Debug] deleteDirectoryAsync / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process.
-00:00:05 #24 [Debug] _3
-00:00:05 #25 [Debug] 5
-00:00:05 #26 [Debug] 6
-125
-125
-125
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="deleteFileAsync">deleteFileAsync<a class="anchor-link" href="#deleteFileAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">deleteFileAsync</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Delete</span> <span class="n">path</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">deleteFileAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
-        <span class="n">retries</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:05 #27 [Debug] 1
-00:00:05 #28 [Debug] 2
-00:00:05 #29 [Debug] 3
-00:00:05 #30 [Debug] _1
-00:00:05 #31 [Debug] _2
-00:00:05 #32 [Debug] 4
-00:00:05 #33 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-3646-4601-47e500fabb0a\test.txt' because it is being used by another process.
-00:00:07 #34 [Warning] deleteFileAsync / path: test.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-3646-4601-47e500fabb0a\test.txt' because it is being used by another process.
-00:00:07 #35 [Debug] _3
-00:00:07 #36 [Debug] 5
-00:00:07 #37 [Debug] 6
-128
-128
-128
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="moveFileAsync">moveFileAsync<a class="anchor-link" href="#moveFileAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">moveFileAsync</span> <span class="n">newPath</span> <span class="n">oldPath</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Move</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="n">newPath</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"moveFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-<span class="n">let</span> <span class="n">newPath</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test2.txt"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries1</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="n">newPath</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries2</span> <span class="o">=</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">waitForFileAccess</span> <span class="kc">None</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">text</span> <span class="o">=</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"7"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"8"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">retries1</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">retries2</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
-
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"0"</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:08 #38 [Debug] 1
-00:00:08 #39 [Debug] 2
-00:00:08 #40 [Debug] 3
-00:00:08 #41 [Debug] _1
-00:00:08 #42 [Debug] _2
-00:00:08 #43 [Debug] 4
-00:00:08 #44 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:09 #45 [Warning] moveFileAsync / oldPath: test.txt / newPath: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:10 #46 [Debug] _3
-00:00:10 #47 [Debug] 5
-00:00:10 #48 [Debug] 6
-00:00:10 #49 [Debug] 7
-00:00:10 #50 [Debug] 8
-128
-128
-128
-0
-0
-0
-0
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="watchDirectory">watchDirectory<a class="anchor-link" href="#watchDirectory">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8425,14 +7744,14 @@ True
             <span class="k">match</span> <span class="n">shouldReadContent</span> <span class="n">event</span><span class="p">,</span> <span class="n">event</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextRetryAsync</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextRetryAsync</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">-&gt;</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextRetryAsync</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span><span class="p">))</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">event</span>
         <span class="p">})</span>
@@ -8464,7 +7783,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8474,7 +7793,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8488,8 +7807,8 @@ True
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="p">(</span><span class="n">_</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">tempDirectory</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span><span class="p">)</span> <span class="n">tempDirectory</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span><span class="p">)</span> <span class="n">tempDir</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
 
@@ -8500,7 +7819,7 @@ True
     <span class="n">let</span> <span class="n">run</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">iter</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDirectory</span>
+        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDir</span>
     <span class="p">}</span>
 
     <span class="k">try</span>
@@ -8509,7 +7828,7 @@ True
         <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
     <span class="k">finally</span>
         <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-        <span class="n">deleteDirectoryAsync</span> <span class="n">tempDirectory</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+        <span class="n">tempDisposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
 
     <span class="n">let</span> <span class="n">eventsLog</span> <span class="o">=</span>
         <span class="n">events</span>
@@ -8549,7 +7868,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8559,7 +7878,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8573,27 +7892,27 @@ True
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"a</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"a</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"b</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"b</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"c</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"c</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 <span class="p">}</span>
@@ -8638,26 +7957,26 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:20 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:20 #52 [Debug] testEventsRaw / eventsLog: 
-0 / 638478131302586606 / Created ("file1.txt", Some "a1")
-1 / 638478131302586607 / Changed ("file1.txt", Some "a1")
-24325 / 638478131302610932 / Changed ("file1.txt", Some "a1")
-2274 / 638478131302613206 / Created ("file2.txt", Some "a2")
-1 / 638478131302613207 / Changed ("file2.txt", Some "a2")
-125 / 638478131302613332 / Changed ("file2.txt", Some "a2")
-2451166 / 638478131305064498 / Changed ("file1.txt", Some "b1")
-3257 / 638478131305067755 / Changed ("file1.txt", Some "b1")
-13807 / 638478131305081562 / Changed ("file2.txt", Some "b2")
-4423 / 638478131305085985 / Changed ("file2.txt", Some "b2")
-2534238 / 638478131307620223 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-9578 / 638478131307629801 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2425159 / 638478131310054960 / Changed ("file_1.txt", Some "c1")
-3339 / 638478131310058299 / Changed ("file_1.txt", Some "c1")
-15253 / 638478131310073552 / Changed ("file_2.txt", Some "c2")
-2725 / 638478131310076277 / Changed ("file_2.txt", Some "c2")
-2508025 / 638478131312584302 / Deleted "file_1.txt"
-3052 / 638478131312587354 / Deleted "file_2.txt"
+00:00:00 #1 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:00 #2 [Debug] testEventsRaw / eventsLog: 
+0 / 638482280216879381 / Created ("file1.txt", Some "a1")
+1 / 638482280216879382 / Changed ("file1.txt", Some "a1")
+23386 / 638482280216902768 / Changed ("file1.txt", Some "a1")
+808 / 638482280216903576 / Created ("file2.txt", Some "a2")
+1 / 638482280216903577 / Changed ("file2.txt", Some "a2")
+46 / 638482280216903623 / Changed ("file2.txt", Some "a2")
+2474882 / 638482280219378505 / Changed ("file1.txt", Some "b1")
+3282 / 638482280219381787 / Changed ("file1.txt", Some "b1")
+9666 / 638482280219391453 / Changed ("file2.txt", Some "b2")
+2065 / 638482280219393518 / Changed ("file2.txt", Some "b2")
+2531767 / 638482280221925285 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+15510 / 638482280221940795 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2421142 / 638482280224361937 / Changed ("file_1.txt", Some "c1")
+2117 / 638482280224364054 / Changed ("file_1.txt", Some "c1")
+7840 / 638482280224371894 / Changed ("file_2.txt", Some "c2")
+2101 / 638482280224373995 / Changed ("file_2.txt", Some "c2")
+2625195 / 638482280226999190 / Deleted "file_1.txt"
+7136 / 638482280227006326 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8761,7 +8080,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8771,7 +8090,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8789,27 +8108,27 @@ FSharpOption&lt;Unit&gt;
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">string</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">1_000_000</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}a"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}a"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}b"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}b"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}c"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}c"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 <span class="p">}</span>
@@ -8865,50 +8184,57 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:28 #53 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-5757-5733-5bc16e83b414\file2.txt' because it is being used by another process.)
-00:00:31 #54 [Debug] watchWithFilter / readContent / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-5757-5733-5bc16e83b414\file_2.txt' because it is being used by another process.)
-00:00:31 #55 [Debug] waitForFileAccess / path: file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240404-0338-5757-5733-5bc16e83b414\file_2.txt' because it is being used by another process.
+<pre>read_all_text_retry_async / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file2.txt' because it is being used by another process.) / 
+read_all_text_retry_async / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file2.txt' because it is being used by another process.) / 
+read_all_text_retry_async / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file1.txt' because it is being used by another process.) / 
+wait_for_file_access / path: file1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file1.txt' because it is being used by another process. / 
+read_all_text_retry_async / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file2.txt' because it is being used by another process.) / 
+wait_for_file_access / path: file2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file2.txt' because it is being used by another process. / 
+read_all_text_retry_async / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file_1.txt' because it is being used by another process.) / 
+wait_for_file_access / path: file_1.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file_1.txt' because it is being used by another process. / 
+read_all_text_retry_async / retry: 0 / ex: System.AggregateException: One or more errors occurred. (The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file_2.txt' because it is being used by another process.) / 
+wait_for_file_access / path: file_2.txt / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2253-4470-7045-75e2c3c2bd10\file_2.txt' because it is being used by another process. / 
 FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:34 #56 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:34 #57 [Debug] testEventsRaw / eventsLog: 
-0 / 638478131378235776 / Created
+00:00:09 #3 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:09 #4 [Debug] testEventsRaw / eventsLog: 
+0 / 638482280249866999 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638478131378235777 / Changed
+1 / 638482280249867000 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-76762 / 638478131378312539 / Changed
+63170 / 638482280249930170 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111a")
-20527 / 638478131378333066 / Created
+16484 / 638482280249946654 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638478131378333067 / Changed
+1 / 638482280249946655 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-132646 / 638478131378465713 / Changed
-  ("file2.tx...22222222222222222222222222222222222222222222222a")
-15220104 / 638478131393685817 / Changed
+61342 / 638482280250007997 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222a")
+15056722 / 638482280265064719 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-59283 / 638478131393745100 / Changed
-  ("file1.txt...11111111111111111111111111111111111111111111111b")
-37834 / 638478131393782934 / Changed
+241138 / 638482280265305857 / Changed
+  ("file1.tx...11111111111111111111111111111111111111111111111b")
+37261 / 638482280265343118 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-167020 / 638478131393949954 / Changed
+113725 / 638482280265456843 / Changed
   ("file2.tx...22222222222222222222222222222222222222222222222b")
-15196141 / 638478131409146095 / Renamed
+15082300 / 638482280280539143 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-2601 / 638478131409148696 / Renamed
+3929 / 638482280280543072 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15146325 / 638478131424295021 / Changed
+15123567 / 638482280295666639 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-66284 / 638478131424361305 / Changed
-  ("file_1.tx...11111111111111111111111111111111111111111111111c")
-22468 / 638478131424383773 / Changed
+124812 / 638482280295791451 / Changed
+  ("file_1.t...11111111111111111111111111111111111111111111111c")
+67885 / 638482280295859336 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-91482 / 638478131424475255 / Changed
-  ("file_2.tx...22222222222222222222222222222222222222222222222c")
-14977387 / 638478131439452642 / Deleted "file_1.txt"
-5463 / 638478131439458105 / Deleted "file_2.txt"
+113901 / 638482280295973237 / Changed
+  ("file_2.t...22222222222222222222222222222222222222222222222c")
+15204123 / 638482280311177360 / Deleted "file_1.txt"
+9348 / 638482280311186708 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9012,7 +8338,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9022,7 +8348,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9064,8 +8390,8 @@ FSharpOption&lt;Unit&gt;
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="n">path</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="n">tempDir</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
 
@@ -9076,7 +8402,7 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">run</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">iter</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">path</span>
+        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDir</span>
     <span class="p">}</span>
 
     <span class="k">try</span>
@@ -9085,7 +8411,7 @@ FSharpOption&lt;Unit&gt;
         <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
     <span class="k">finally</span>
         <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-        <span class="n">deleteDirectoryAsync</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+        <span class="n">tempDisposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">formatEvents</span> <span class="n">events</span>
 
@@ -9115,7 +8441,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9125,7 +8451,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9139,10 +8465,10 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -9190,7 +8516,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:39 #58 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:11 #5 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9216,7 +8542,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9226,7 +8552,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9240,13 +8566,13 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -9289,7 +8615,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:43 #59 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:13 #6 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9310,7 +8636,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9320,7 +8646,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9334,13 +8660,13 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -9388,7 +8714,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:49 #60 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:14 #7 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -9415,7 +8741,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9425,7 +8751,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9439,19 +8765,19 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -9501,7 +8827,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:57 #61 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:16 #8 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

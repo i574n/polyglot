@@ -1,4 +1,5 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
+import '../../fable_modules/fable_library/Types.dart' as types;
 import '../../../../../../../../lib/spiral/file_system.fsx' as file_system;
 import '../../../../../../../../lib/spiral/sm.fsx' as sm;
 
@@ -38,7 +39,7 @@ String SpiralFileSystem_get_source_directory() => file_system.get_source_directo
 
 String Function(String) Function(bool) SpiralFileSystem_find_parent(String x) => file_system.find_parent(x);
 
-String SpiralFileSystem_create_temp_directory() => file_system.create_temp_directory();
+types.Tuple2<String, types.IDisposable> SpiralFileSystem_create_temp_directory() => file_system.create_temp_directory();
 
 String SpiralFileSystem_create_temp_directory_name() => file_system.create_temp_directory_name();
 

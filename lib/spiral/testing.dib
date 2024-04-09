@@ -43,16 +43,24 @@ inl _assert_lt b a = __assert_lt true b a
 inl __assert_le log b a = __expect (<=) log b a
 inl _assert_le b a = __assert_le true b a
 
-inl __contains forall t. log (b : t) a =
+inl __assert_contains forall t. log (b : t) a =
     __expect
         (fun a b => a |> $'Seq.tryFind' ((=) b) |> optionm'.unbox |> fun (x : option t) => x <> None)
         log b a
-inl _contains b a = __contains true b a
+inl _assert_contains b a = __assert_contains true b a
 
 inl _throws (fn : () -> ()) : option exn =
     inl none = None : option exn
     inl some (s : exn) = Some s
     $"try !fn (); !none with ex -> ex |> !some"
+
+inl __assert_between log a b actual =
+    inl assert_between actual (a, b) =
+        __assert_ge log a actual
+        __assert_le log b actual
+        true
+    __expect assert_between log (a, b) actual
+inl _assert_between a b actual = __assert_between true a b actual
 
 #!spiral
 
@@ -66,7 +74,7 @@ inl _throws (fn : () -> ()) : option exn =
 // // test
 
 "abcd"
-|> _contains 'b'
+|> _assert_contains 'b'
 
 #!spiral
 
