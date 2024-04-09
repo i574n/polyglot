@@ -166,8 +166,7 @@ details > div {{
 
 //// test
 
-let tempFolder, disposable = SpiralFileSystem.create_temp_directory ()
-use _ = disposable
+let struct (tempFolder, disposable) = SpiralFileSystem.create_temp_directory ()
 let rec loop d n = async {
     if n >= 0 then
         tempFolder </> d |> System.IO.Directory.CreateDirectory |> ignore
@@ -217,6 +216,8 @@ details > div {
 """
 
 html |> Microsoft.DotNet.Interactive.Formatting.Html.ToHtmlContent
+
+disposable.Dispose ()
 
 #!markdown
 
