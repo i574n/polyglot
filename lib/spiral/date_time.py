@@ -15,10 +15,10 @@ def closure1(v0_1: str, v1_1: Any) -> str:
 
 
 def closure0(unit_var: None, v0_1: str) -> Callable[[Any], str]:
-    def _arrow50(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow42(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure1(v0_1, v)
 
-    return _arrow50
+    return _arrow42
 
 
 def closure5(v0_1: str, v1_1: str, v2_1: str) -> str:
@@ -26,24 +26,24 @@ def closure5(v0_1: str, v1_1: str, v2_1: str) -> str:
 
 
 def closure4(v0_1: str, v1_1: str) -> Callable[[str], str]:
-    def _arrow51(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
+    def _arrow44(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
         return closure5(v0_1, v1_1, v)
 
-    return _arrow51
+    return _arrow44
 
 
 def closure3(unit_var: None, v0_1: str) -> Callable[[str, str], str]:
-    def _arrow52(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
+    def _arrow45(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
         return closure4(v0_1, v)
 
-    return _arrow52
+    return _arrow45
 
 
 def method0(__unit: None=None) -> Callable[[str, str, str], str]:
-    def _arrow53(v: str) -> Callable[[str, str], str]:
+    def _arrow47(v: str) -> Callable[[str, str], str]:
         return closure3(None, v)
 
-    return _arrow53
+    return _arrow47
 
 
 def closure2(unit_var: None, v0_1: str) -> Any:
@@ -62,10 +62,10 @@ def closure7(v0_1: str, v1_1: int64) -> str:
 
 
 def closure6(unit_var: None, v0_1: str) -> Callable[[int64], str]:
-    def _arrow54(v: int64, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow49(v: int64, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure7(v0_1, v)
 
-    return _arrow54
+    return _arrow49
 
 
 def closure8(unit_var: None, v0_1: str) -> int64:
@@ -90,41 +90,41 @@ def closure12(v0_1: str, v1_1: Any) -> str:
 
 
 def closure11(unit_var: None, v0_1: str) -> Callable[[Any], str]:
-    def _arrow55(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow52(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure12(v0_1, v)
 
-    return _arrow55
+    return _arrow52
 
 
 def closure13(unit_var: None, v0_1: Any) -> str:
     return to_string(v0_1, "yyyy-MM-ddTHH-mm-ss.fff")
 
 
-def _arrow56(v: str) -> Callable[[Any], str]:
+def _arrow54(v: str) -> Callable[[Any], str]:
     return closure0(None, v)
 
 
-v0: Callable[[str, Any], str] = _arrow56
+v0: Callable[[str, Any], str] = _arrow54
 
 def date_time_guid_from_date_time(x: str) -> Callable[[Any], str]:
     return v0(x)
 
 
-def _arrow57(v: str) -> Any:
+def _arrow55(v: str) -> Any:
     return closure2(None, v)
 
 
-v1: Callable[[str], Any] = _arrow57
+v1: Callable[[str], Any] = _arrow55
 
 def date_time_from_guid(x: str) -> Any:
     return v1(x)
 
 
-def _arrow58(v: str) -> Callable[[int64], str]:
+def _arrow57(v: str) -> Callable[[int64], str]:
     return closure6(None, v)
 
 
-v2: Callable[[str, int64], str] = _arrow58
+v2: Callable[[str, int64], str] = _arrow57
 
 def timestamp_guid_from_timestamp(x: str) -> Callable[[int64], str]:
     return v2(x)

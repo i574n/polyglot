@@ -192,3 +192,13 @@ inl unzip s =
             inl x = dyn x
             join body x
     loop s
+
+// // ## enumerate
+
+inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+    open rust_operators
+    inl (a ar) = ar
+    inl ar = ar |> am'.to_vec
+    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    |> am'.vec_map from_pair
+    |> am'.from_vec

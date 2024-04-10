@@ -7586,6 +7586,7 @@ a.anchor-link {
 <span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/trace.fsx</span>
 <span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
@@ -7781,10 +7782,13 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">traceFile</span> <span class="n">filePath</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Verbose</span> <span class="n">then</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">get_trace_state</span> <span class="p">()</span>
+    <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="p">{</span> <span class="n">l0</span> <span class="o">=</span> <span class="n">x</span> <span class="p">}</span> <span class="n">when</span> <span class="n">x</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_0</span> <span class="o">-&gt;</span>
         <span class="n">let</span> <span class="n">dateTimeStr</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span> <span class="o">|&gt;</span> <span class="n">SpiralDateTime</span><span class="o">.</span><span class="n">new_guid_from_date_time</span>
         <span class="n">let</span> <span class="n">traceFile</span> <span class="o">=</span> <span class="n">traceDir</span> <span class="o">&lt;/&gt;</span> <span class="n">filePath</span>
         <span class="n">File</span><span class="o">.</span><span class="n">AppendAllText</span> <span class="p">(</span><span class="n">traceFile</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{dateTimeStr}</span><span class="s2"> Eval / </span><span class="si">{text}{Environment.NewLine}</span><span class="s2">"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8040,10 +8044,11 @@ a.anchor-link {
         <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span> <span class="o">&lt;&gt;</span> <span class="s2">"// // trace"</span>
         <span class="n">then</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="s2">"</span><span class="se">\r\n</span><span class="s2">"</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
         <span class="k">else</span>
-            <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Info</span>
-            <span class="n">then</span> <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">Verbose</span>
-            <span class="k">else</span> <span class="n">traceLevel</span> <span class="o">&lt;-</span> <span class="n">Info</span>
-            <span class="n">traceDump</span> <span class="o">&lt;-</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Verbose</span>
+            <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">dump</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">get_trace_state</span> <span class="p">()</span>
+            <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
+            <span class="o">|</span> <span class="p">{</span> <span class="n">l0</span> <span class="o">=</span> <span class="n">x</span> <span class="p">}</span> <span class="n">when</span> <span class="n">x</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_2</span> <span class="o">-&gt;</span> <span class="n">level</span><span class="o">.</span><span class="n">l0</span> <span class="o">&lt;-</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_0</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">level</span><span class="o">.</span><span class="n">l0</span> <span class="o">&lt;-</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_2</span>
+            <span class="n">dump</span><span class="o">.</span><span class="n">l0</span> <span class="o">&lt;-</span> <span class="n">level</span><span class="o">.</span><span class="n">l0</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_0</span>
             <span class="s2">"inl main () = ()"</span>
 
     <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">rawCellCode</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
@@ -8173,9 +8178,10 @@ a.anchor-link {
                         <span class="n">let</span> <span class="n">spiralErrors</span> <span class="o">=</span>
                             <span class="n">mapErrors</span> <span class="p">(</span><span class="ne">Warning</span><span class="p">,</span> <span class="n">spiralErrors</span><span class="p">,</span> <span class="n">lastTopLevelIndex</span><span class="p">)</span> <span class="n">allCode</span>
                         <span class="n">let</span> <span class="n">inline</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">unit</span> <span class="o">-&gt;</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-                            <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Info</span>
-                            <span class="n">then</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span>
-                            <span class="k">else</span> <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / {fn ()}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                            <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">get_trace_state</span> <span class="p">()</span>
+                            <span class="k">match</span> <span class="n">level</span> <span class="k">with</span>
+                            <span class="o">|</span> <span class="p">{</span> <span class="n">l0</span> <span class="o">=</span> <span class="n">x</span> <span class="p">}</span> <span class="n">when</span> <span class="n">x</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_2</span> <span class="o">-&gt;</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span>
+                            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / {fn ()}"</span><span class="p">)</span> <span class="n">getLocals</span>
 
                         <span class="k">if</span> <span class="n">printCode</span>
                         <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">rustArgs</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">isSome</span> <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\n</span><span class="s2">.fsx:</span><span class="se">\n</span><span class="si">{code}</span><span class="s2">"</span> <span class="k">else</span> <span class="n">code</span><span class="p">)</span>

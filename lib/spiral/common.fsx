@@ -31,7 +31,7 @@ let rec closure0 () (v0 : (unit -> unit)) : System.IDisposable =
     Unchecked.defaultof<System.IDisposable>
     #endif
     |> fun x -> _v1 <- Some x
-    let v7 : System.IDisposable = _v1 |> Option.get
+    let v7 : System.IDisposable = _v1.Value
     v7
 and closure3 (v0 : int32, v1 : (unit -> unit), v2 : int32) () : US0 =
     let v3 : bool = v2 < v0
@@ -66,7 +66,7 @@ and closure5 (v0 : int32) (v1 : exn) : US1 =
     Unchecked.defaultof<unit>
     #endif
     |> fun x -> _v2 <- Some x
-    _v2 |> Option.get
+    _v2.Value
     US1_1
 and method0 (v0 : int32, v1 : (unit -> unit), v2 : int32) : US0 =
     let v3 : (unit -> US0) = closure3(v0, v1, v2)

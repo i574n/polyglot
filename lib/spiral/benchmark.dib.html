@@ -8441,7 +8441,7 @@ and closure0 () () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
+            _v38.Value
             let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
             let v40 : System.Diagnostics.Stopwatch = v39 ()
             v40.Start ()
@@ -8730,7 +8730,7 @@ and closure0 () () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
+            _v258.Value
             ()
         | US0_0(v256) -&gt; (* Some *)
             let v257 : unit option = None
@@ -8755,7 +8755,7 @@ and closure0 () () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
+            _v257.Value
             ()
         let v259 : string = "\t| "
         let v260 : string = System.String.Join (v259, v254)
@@ -8782,7 +8782,7 @@ and closure0 () () : unit =
         Unchecked.defaultof&lt;unit&gt;
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
+        _v261.Value
         let v262 : uint64 = v253 + 1UL
         v251.l0 &lt;- v262
         ()
@@ -8931,7 +8931,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
+            _v38.Value
             let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
             let v40 : System.Diagnostics.Stopwatch = v39 ()
             v40.Start ()
@@ -9220,7 +9220,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
+            _v258.Value
             ()
         | US0_0(v256) -&gt; (* Some *)
             let v257 : unit option = None
@@ -9245,7 +9245,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
+            _v257.Value
             ()
         let v259 : string = "\t| "
         let v260 : string = System.String.Join (v259, v254)
@@ -9272,7 +9272,7 @@ and method0 () : unit =
         Unchecked.defaultof&lt;unit&gt;
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
+        _v261.Value
         let v262 : uint64 = v253 + 1UL
         v251.l0 &lt;- v262
         ()
@@ -9366,21 +9366,21 @@ method0()
 Test: v0
 
 Solution: struct ("a", "a")  
-Test case 1. A. Time: 380  
-Test case 2. B. Time: 155  
+Test case 1. A. Time: 106  
+Test case 2. B. Time: 98  
 
 Solution: struct ("b", "b")  
-Test case 1. A. Time: 178  
-Test case 2. B. Time: 178  
+Test case 1. A. Time: 99  
+Test case 2. B. Time: 105  
 
-Input            	| Expected	| Result	| Best             
----              	| ---     	| ---   	| ---              
-struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 155L)
-struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 178L)
+Input            	| Expected	| Result	| Best            
+---              	| ---     	| ---   	| ---             
+struct ("a", "a")	| "a"     	| "a"   	| struct (2L, 98L)
+struct ("b", "b")	| "b"     	| "b"   	| struct (1L, 99L)
 
 Average Ranking  
-Test case 2. Average Time: 166L  
-Test case 1. Average Time: 279L  
+Test case 2. Average Time: 101L  
+Test case 1. Average Time: 102L  
 </pre>
 </div>
 </div>
@@ -9852,7 +9852,7 @@ and closure0 () () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
+            _v38.Value
             let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
             let v40 : System.Diagnostics.Stopwatch = v39 ()
             v40.Start ()
@@ -10141,7 +10141,7 @@ and closure0 () () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
+            _v258.Value
             ()
         | US0_0(v256) -&gt; (* Some *)
             let v257 : unit option = None
@@ -10166,7 +10166,7 @@ and closure0 () () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
+            _v257.Value
             ()
         let v259 : string = "\t| "
         let v260 : string = System.String.Join (v259, v254)
@@ -10193,7 +10193,7 @@ and closure0 () () : unit =
         Unchecked.defaultof&lt;unit&gt;
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
+        _v261.Value
         let v262 : uint64 = v253 + 1UL
         v251.l0 &lt;- v262
         ()
@@ -10343,7 +10343,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v38 &lt;- Some x
-            _v38 |&gt; Option.get
+            _v38.Value
             let v39 : (unit -&gt; System.Diagnostics.Stopwatch) = System.Diagnostics.Stopwatch
             let v40 : System.Diagnostics.Stopwatch = v39 ()
             v40.Start ()
@@ -10632,7 +10632,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v258 &lt;- Some x
-            _v258 |&gt; Option.get
+            _v258.Value
             ()
         | US0_0(v256) -&gt; (* Some *)
             let v257 : unit option = None
@@ -10657,7 +10657,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;unit&gt;
             #endif
             |&gt; fun x -&gt; _v257 &lt;- Some x
-            _v257 |&gt; Option.get
+            _v257.Value
             ()
         let v259 : string = "\t| "
         let v260 : string = System.String.Join (v259, v254)
@@ -10684,7 +10684,7 @@ and method0 () : unit =
         Unchecked.defaultof&lt;unit&gt;
         #endif
         |&gt; fun x -&gt; _v261 &lt;- Some x
-        _v261 |&gt; Option.get
+        _v261.Value
         let v262 : uint64 = v253 + 1UL
         v251.l0 &lt;- v262
         ()
@@ -10778,22 +10778,22 @@ method0()
 Test: v0
 
 Solution: 0.0  
-Test case 1. A. Time: 57  
+Test case 1. A. Time: 28  
 
 Solution: 2.0  
-Test case 1. A. Time: 33  
+Test case 1. A. Time: 13  
 
 Solution: 5.0  
-Test case 1. A. Time: 58  
+Test case 1. A. Time: 12  
 
 Input	| Expected	| Result	| Best            
 ---  	| ---     	| ---   	| ---             
-0.0  	| 1.0     	| 1.0   	| struct (1L, 57L)
-2.0  	| 3.0     	| 3.0   	| struct (1L, 33L)
-5.0  	| 6.0     	| 6.0   	| struct (1L, 58L)
+0.0  	| 1.0     	| 1.0   	| struct (1L, 28L)
+2.0  	| 3.0     	| 3.0   	| struct (1L, 13L)
+5.0  	| 6.0     	| 6.0   	| struct (1L, 12L)
 
 Average Ranking  
-Test case 1. Average Time: 49L  
+Test case 1. Average Time: 17L  
 </pre>
 </div>
 </div>

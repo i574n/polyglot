@@ -8,7 +8,7 @@ repository.workspace = true
 license-file.workspace = true
 
 [dependencies]
-fable_library_rust = { path = "../../lib/rust/fable/fable_modules/fable-library-rust", default-features = false }
+fable_library_rust = { path = "../../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["datetime"] }
 serde_json = { version = "~1.0", features = ["arbitrary_precision"] }
 plotters = { version = "~0.3", default_features = false, features = ["svg_backend", "line_series", "point_series"] }
 

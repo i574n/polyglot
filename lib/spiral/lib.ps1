@@ -45,6 +45,7 @@ function CopyTarget {
     CopyItem "spiral" "date_time"
     CopyItem "spiral" "file_system"
     CopyItem "spiral" "sm"
+    CopyItem "spiral" "trace"
     CopyItem "spiral" "lib"
 
     if ($Language -eq "rs" -and $Runtime -eq "contract") {

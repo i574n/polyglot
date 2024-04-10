@@ -1,8 +1,28 @@
+import { US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1, US0_US0_0, US0_$union, trace, Mut2, Mut1, Mut0, get_trace_state } from "../../lib/spiral/trace.fsx";
+import { Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
+import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../lib/spiral/sm.fsx";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { create_temp_directory_name, create_temp_directory, find_parent, get_source_directory } from "../../lib/spiral/file_system.fsx";
 import { IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
+
+export function SpiralTrace_get_trace_state(): [Mut0, Mut1, Mut1, Mut2, Option<int64>] {
+    return get_trace_state();
+}
+
+export function SpiralTrace_trace(x: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
+    return trace(x);
+}
+
+export const SpiralTrace_US0_0: US0_$union = US0_US0_0();
+
+export const SpiralTrace_US0_1: US0_$union = US0_US0_1();
+
+export const SpiralTrace_US0_2: US0_$union = US0_US0_2();
+
+export const SpiralTrace_US0_3: US0_$union = US0_US0_3();
+
+export const SpiralTrace_US0_4: US0_$union = US0_US0_4();
 
 export function SpiralSm_concat(x: string): ((arg0: Iterable<string>) => string) {
     return concat(x);

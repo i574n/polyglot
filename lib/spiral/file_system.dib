@@ -277,18 +277,6 @@ inl get_file_name (path : string) : string =
 
 #!markdown
 
-## get_entry_assembly_name
-
-#!spiral
-
-inl get_entry_assembly_name () : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
-        | target => fun () => null ()
-
-#!markdown
-
 ## create_temp_directory_name
 
 #!spiral

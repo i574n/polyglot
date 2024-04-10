@@ -4,6 +4,25 @@ from fable_modules.fable_library.types import (int64, Array)
 from fable_modules.fable_library.util import (IEnumerable_1, IDisposable)
 from ......lib.spiral.file_system import (get_source_directory, find_parent, create_temp_directory, create_temp_directory_name)
 from ......lib.spiral.sm import (concat, contains, ellipsis, ellipsis_end, ends_with, format_exception, replace, slice, split, split_string, starts_with, substring, to_lower, trim, trim_start, trim_end)
+from ......lib.spiral.trace import (get_trace_state, Mut0, Mut1, Mut2, trace, US0)
+
+def SpiralTrace_get_trace_state(__unit: None=None) -> tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]:
+    return get_trace_state()
+
+
+def SpiralTrace_trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
+    return trace(x)
+
+
+SpiralTrace_US0_0: US0 = US0(0)
+
+SpiralTrace_US0_1: US0 = US0(1)
+
+SpiralTrace_US0_2: US0 = US0(2)
+
+SpiralTrace_US0_3: US0 = US0(3)
+
+SpiralTrace_US0_4: US0 = US0(4)
 
 def SpiralSm_concat(x: str) -> Callable[[IEnumerable_1[str]], str]:
     return concat(x)

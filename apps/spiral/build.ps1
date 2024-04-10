@@ -13,7 +13,7 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Supervisor.dib fs } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) Supervisor.fs $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FSharp.Control.AsyncSeq FSharp.Json Microsoft.AspNetCore.SignalR.Client System.CommandLine System.Reactive.Linq --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Threading.fs lib/fsharp/Crypto.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Networking.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
+{ . ../builder/dist/Builder$(GetExecutableSuffix) Supervisor.fs $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FSharp.Control.AsyncSeq FSharp.Json Microsoft.AspNetCore.SignalR.Client System.CommandLine System.Reactive.Linq --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/trace.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Threading.fs lib/fsharp/Crypto.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Networking.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
 
 if (!$fast) {
     Invoke-Dib Eval.dib -Retries 3

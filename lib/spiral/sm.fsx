@@ -87,7 +87,7 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     Unchecked.defaultof<(string [])>
     #endif
     |> fun x -> _v2 <- Some x
-    let v24 : (string []) = _v2 |> Option.get
+    let v24 : (string []) = _v2.Value
     v24
 and closure17 () (v0 : (string [])) : (string -> (string [])) =
     closure18(v0)
@@ -189,7 +189,7 @@ and closure35 () (v0 : exn) : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v1 <- Some x
-    let v7 : string = _v1 |> Option.get
+    let v7 : string = _v1.Value
     v7
 and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0

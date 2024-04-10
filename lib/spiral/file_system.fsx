@@ -33,6 +33,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")>] type std_path_PathBuf = class end
 #endif // file_system.types
 type IFsExistsSync = abstract existsSync: path: string -> bool
+module State = let mutable trace_state = None
 type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string
 type IPathDirname = abstract dirname: path: string -> string
 type [<Struct>] US1 =
@@ -49,17 +50,29 @@ and [<Struct>] US0 =
     | US0_0 of f0_0 : US1 * f0_1 : US2
     | US0_1
 and [<Struct>] US3 =
-    | US3_0 of f0_0 : int64
+    | US3_0
     | US3_1
+    | US3_2
+    | US3_3
+    | US3_4
+and Mut0 = {mutable l0 : int64}
+and Mut1 = {mutable l0 : bool}
+and Mut2 = {mutable l0 : US3}
 and [<Struct>] US4 =
     | US4_0 of f0_0 : int64
-    | US4_1 of f1_0 : exn
+    | US4_1
 and [<Struct>] US5 =
     | US5_0 of f0_0 : int64
-    | US5_1 of f1_0 : exn
+    | US5_1
 and [<Struct>] US6 =
-    | US6_0 of f0_0 : string
-    | US6_1
+    | US6_0 of f0_0 : int64
+    | US6_1 of f1_0 : exn
+and [<Struct>] US7 =
+    | US7_0 of f0_0 : int64
+    | US7_1 of f1_0 : exn
+and [<Struct>] US8 =
+    | US8_0 of f0_0 : string
+    | US8_1
 let rec closure2 () (v0 : string) : string =
     let v1 : string option = None
     let mutable _v1 = v1
@@ -88,7 +101,7 @@ let rec closure2 () (v0 : string) : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : string = _v1 |> Option.get
+    let v8 : string = _v1.Value
     v8
 and closure3 () () : string =
     let v0 : string = ""
@@ -146,7 +159,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<unit>
     #endif
     |> fun x -> _v7 <- Some x
-    _v7 |> Option.get
+    _v7.Value
     return v1 
     with ex ->
     let v8 : exn = ex
@@ -179,7 +192,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
         Unchecked.defaultof<string>
         #endif
         |> fun x -> _v11 <- Some x
-        let v17 : string = _v11 |> Option.get
+        let v17 : string = _v11.Value
         let v18 : (unit -> string) = closure1(v0, v17)
         let v19 : string = $"delete_directory_async / {v18 ()}"
         System.Console.WriteLine v19
@@ -211,7 +224,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v20 <- Some x
-    let v27 : Async<unit> = _v20 |> Option.get
+    let v27 : Async<unit> = _v20.Value
     do! v27 
     let v28 : int64 = v1 + 1L
     let v29 : Async<int64> = method0(v0, v28)
@@ -231,7 +244,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v33 : Async<int64> = _v2 |> Option.get
+    let v33 : Async<int64> = _v2.Value
     v33
 and closure0 () (v0 : string) : Async<int64> =
     let v1 : Async<int64> option = None
@@ -261,7 +274,7 @@ and closure0 () (v0 : string) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : Async<int64> = _v1 |> Option.get
+    let v8 : Async<int64> = _v1.Value
     v8
 and method3 (v0 : string, v1 : int64, v2 : string) : string =
     let v3 : (string -> string) = closure2()
@@ -345,7 +358,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
     Unchecked.defaultof<System.IO.FileStream>
     #endif
     |> fun x -> _v9 <- Some x
-    let v32 : System.IO.FileStream = _v9 |> Option.get
+    let v32 : System.IO.FileStream = _v9.Value
     use v32 = v32 
     let v33 : System.IO.FileStream = v32 
     return v3 
@@ -386,7 +399,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
         Unchecked.defaultof<string>
         #endif
         |> fun x -> _v39 <- Some x
-        let v45 : string = _v39 |> Option.get
+        let v45 : string = _v39.Value
         let v46 : (unit -> string) = closure6(v0, v3, v45)
         let v47 : string = $"wait_for_file_access / {v46 ()}"
         System.Console.WriteLine v47
@@ -418,7 +431,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v48 <- Some x
-    let v55 : Async<unit> = _v48 |> Option.get
+    let v55 : Async<unit> = _v48.Value
     do! v55 
     let v56 : int64 = v3 + 1L
     let v57 : Async<int64> = method2(v0, v1, v2, v56)
@@ -438,7 +451,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v4 <- Some x
-    let v61 : Async<int64> = _v4 |> Option.get
+    let v61 : Async<int64> = _v4.Value
     v61
 and closure5 (v0 : US0) (v1 : string) : Async<int64> =
     let v2 : Async<int64> option = None
@@ -476,7 +489,7 @@ and closure5 (v0 : US0) (v1 : string) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v17 : Async<int64> = _v2 |> Option.get
+    let v17 : Async<int64> = _v2.Value
     v17
 and closure4 () (v0 : US0) : (string -> Async<int64>) =
     closure5(v0)
@@ -529,7 +542,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<System.IO.FileStream>
     #endif
     |> fun x -> _v7 <- Some x
-    let v16 : System.IO.FileStream = _v7 |> Option.get
+    let v16 : System.IO.FileStream = _v7.Value
     use v16 = v16 
     let v17 : System.IO.FileStream = v16 
     return v1 
@@ -570,7 +583,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
         Unchecked.defaultof<string>
         #endif
         |> fun x -> _v23 <- Some x
-        let v29 : string = _v23 |> Option.get
+        let v29 : string = _v23.Value
         let v30 : (unit -> string) = closure6(v0, v1, v29)
         let v31 : string = $"wait_for_file_access / {v30 ()}"
         System.Console.WriteLine v31
@@ -602,7 +615,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v32 <- Some x
-    let v39 : Async<unit> = _v32 |> Option.get
+    let v39 : Async<unit> = _v32.Value
     do! v39 
     let v40 : int64 = v1 + 1L
     let v41 : Async<int64> = method4(v0, v40)
@@ -622,7 +635,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v45 : Async<int64> = _v2 |> Option.get
+    let v45 : Async<int64> = _v2.Value
     v45
 and closure7 () (v0 : string) : Async<int64> =
     let v1 : Async<int64> option = None
@@ -652,7 +665,7 @@ and closure7 () (v0 : string) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : Async<int64> = _v1 |> Option.get
+    let v8 : Async<int64> = _v1.Value
     v8
 and closure8 () (v0 : string) : Async<string> =
     let v1 : Async<string> option = None
@@ -699,7 +712,7 @@ and closure8 () (v0 : string) : Async<string> =
     Unchecked.defaultof<Async<string>>
     #endif
     |> fun x -> _v7 <- Some x
-    let v14 : Async<string> = _v7 |> Option.get
+    let v14 : Async<string> = _v7.Value
     v14 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -710,7 +723,7 @@ and closure8 () (v0 : string) : Async<string> =
     Unchecked.defaultof<Async<string>>
     #endif
     |> fun x -> _v1 <- Some x
-    let v16 : Async<string> = _v1 |> Option.get
+    let v16 : Async<string> = _v1.Value
     v16
 and method5 (v0 : string) : string =
     v0
@@ -793,7 +806,7 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
     Unchecked.defaultof<bool>
     #endif
     |> fun x -> _v11 <- Some x
-    let v32 : bool = _v11 |> Option.get
+    let v32 : bool = _v11.Value
     let v33 : bool = v32 = false
     if v33 then
         return false 
@@ -845,7 +858,7 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
         Unchecked.defaultof<Async<string>>
         #endif
         |> fun x -> _v40 <- Some x
-        let v47 : Async<string> = _v40 |> Option.get
+        let v47 : Async<string> = _v40.Value
         v47 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
@@ -856,7 +869,7 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
         Unchecked.defaultof<Async<string>>
         #endif
         |> fun x -> _v34 <- Some x
-        let v49 : Async<string> = _v34 |> Option.get
+        let v49 : Async<string> = _v34.Value
         let! v49 = v49 
         let v50 : string = v49 
         let v51 : bool = v1 = v50
@@ -877,7 +890,7 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
     Unchecked.defaultof<Async<bool>>
     #endif
     |> fun x -> _v6 <- Some x
-    let v54 : Async<bool> = _v6 |> Option.get
+    let v54 : Async<bool> = _v6.Value
     v54 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -888,7 +901,7 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
     Unchecked.defaultof<Async<bool>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v56 : Async<bool> = _v2 |> Option.get
+    let v56 : Async<bool> = _v2.Value
     v56
 and closure9 () (v0 : string) : (string -> Async<bool>) =
     closure10(v0)
@@ -936,7 +949,7 @@ and closure12 (v0 : string) (v1 : string) : Async<unit> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v7 <- Some x
-    let v14 : Async<unit> = _v7 |> Option.get
+    let v14 : Async<unit> = _v7.Value
     v14 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -947,7 +960,7 @@ and closure12 (v0 : string) (v1 : string) : Async<unit> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v16 : Async<unit> = _v2 |> Option.get
+    let v16 : Async<unit> = _v2.Value
     v16
 and closure11 () (v0 : string) : (string -> Async<unit>) =
     closure12(v0)
@@ -1048,7 +1061,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
     Unchecked.defaultof<bool>
     #endif
     |> fun x -> _v16 <- Some x
-    let v37 : bool = _v16 |> Option.get
+    let v37 : bool = _v16.Value
     let v38 : bool = v37 = false
     if v38 then
         return false 
@@ -1100,7 +1113,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
         Unchecked.defaultof<Async<string>>
         #endif
         |> fun x -> _v45 <- Some x
-        let v52 : Async<string> = _v45 |> Option.get
+        let v52 : Async<string> = _v45.Value
         v52 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
@@ -1111,7 +1124,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
         Unchecked.defaultof<Async<string>>
         #endif
         |> fun x -> _v39 <- Some x
-        let v54 : Async<string> = _v39 |> Option.get
+        let v54 : Async<string> = _v39.Value
         let! v54 = v54 
         let v55 : string = v54 
         let v56 : bool = v1 = v55
@@ -1132,7 +1145,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
     Unchecked.defaultof<Async<bool>>
     #endif
     |> fun x -> _v11 <- Some x
-    let v59 : Async<bool> = _v11 |> Option.get
+    let v59 : Async<bool> = _v11.Value
     v59 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -1143,7 +1156,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
     Unchecked.defaultof<Async<bool>>
     #endif
     |> fun x -> _v7 <- Some x
-    let v61 : Async<bool> = _v7 |> Option.get
+    let v61 : Async<bool> = _v7.Value
     let! v61 = v61 
     let v62 : bool = v61 
     let v63 : bool = v62 = false
@@ -1191,7 +1204,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
         Unchecked.defaultof<Async<unit>>
         #endif
         |> fun x -> _v69 <- Some x
-        let v76 : Async<unit> = _v69 |> Option.get
+        let v76 : Async<unit> = _v69.Value
         v76 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
@@ -1202,7 +1215,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
         Unchecked.defaultof<Async<unit>>
         #endif
         |> fun x -> _v64 <- Some x
-        let v78 : Async<unit> = _v64 |> Option.get
+        let v78 : Async<unit> = _v64.Value
         do! v78 
         ()
     }
@@ -1218,10 +1231,245 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v81 : Async<unit> = _v2 |> Option.get
+    let v81 : Async<unit> = _v2.Value
     v81
 and closure13 () (v0 : string) : (string -> Async<unit>) =
     closure14(v0)
+and closure16 () () : string =
+    let v0 : string = "delete_file_async"
+    v0
+and method8 (v0 : int64 option) : int64 option =
+    v0
+and method9 (v0 : int64 option) : int64 option =
+    v0
+and closure17 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
+    let v0 : Mut1 = {l0 = true} : Mut1
+    let v1 : Mut0 = {l0 = 0L} : Mut0
+    let v2 : US3 = US3_0
+    let v3 : Mut2 = {l0 = v2} : Mut2
+    let v4 : Mut1 = {l0 = false} : Mut1
+    let v5 : int64 option option = None
+    let mutable _v5 = v5
+    #if INTERACTIVE || !FABLE_COMPILER
+    let v6 : string option = None
+    let mutable _v6 = v6
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v7 : string = null |> unbox<string>
+    v7 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v8 : string = null |> unbox<string>
+    v8 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v9 : string = null |> unbox<string>
+    v9 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v10 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    v10 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v11 : string = null |> unbox<string>
+    v11 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof<string>
+    #endif
+    |> fun x -> _v6 <- Some x
+    let v12 : string = _v6.Value
+    let v14 : bool = v12 = "Microsoft.DotNet.Interactive.App"
+    let v15 : bool = v14 <> true
+    let v21 : US4 =
+        if v15 then
+            let v16 : System.DateTime = System.DateTime.Now
+            let v17 : (System.DateTime -> int64) = _.Ticks
+            let v18 : int64 = v17 v16
+            US4_0(v18)
+        else
+            US4_1
+    let v26 : int64 option =
+        match v21 with
+        | US4_1 -> (* None *)
+            let v24 : int64 option = None
+            v24
+        | US4_0(v22) -> (* Some *)
+            let v23 : int64 option = Some v22 
+            v23
+    let v27 : int64 option = method8(v26)
+    v27 
+    #else
+    let v28 : int64 option = None
+    let v29 : int64 option = method9(v28)
+    v29 
+    #endif
+    |> fun x -> _v5 <- Some x
+    let v30 : int64 option = _v5.Value
+    struct (v1, v4, v0, v3, v30)
+and closure19 () (v0 : int64) : US5 =
+    US5_0(v0)
+and method10 () : (int64 -> US5) =
+    closure19()
+and method11 () : string =
+    let v0 : string = ""
+    v0
+and closure18 (v0 : US3, v1 : (unit -> string), v2 : (unit -> string)) () : string =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure17()
+    if State.trace_state = None then State.trace_state <- v3 () |> Some
+    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
+    let v9 : string option = None
+    let mutable _v9 = v9
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v10 : (int64 -> US5) = method10()
+    let v11 : US5 = US5_1
+    let v12 : US5 = v8 |> Option.map v10 |> Option.defaultValue v11 
+    let v30 : System.DateTime =
+        match v12 with
+        | US5_1 -> (* None *)
+            let v28 : System.DateTime = System.DateTime.Now
+            v28
+        | US5_0(v13) -> (* Some *)
+            let v14 : System.DateTime = System.DateTime.Now
+            let v15 : (System.DateTime -> int64) = _.Ticks
+            let v16 : int64 = v15 v14
+            let v17 : int64 = v16 - v13
+            let v18 : System.TimeSpan = System.TimeSpan v17 
+            let v19 : (System.TimeSpan -> int32) = _.Hours
+            let v20 : int32 = v19 v18
+            let v21 : (System.TimeSpan -> int32) = _.Minutes
+            let v22 : int32 = v21 v18
+            let v23 : (System.TimeSpan -> int32) = _.Seconds
+            let v24 : int32 = v23 v18
+            let v25 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v26 : int32 = v25 v18
+            let v27 : System.DateTime = System.DateTime (1, 1, 1, v20, v22, v24, v26)
+            v27
+    let v31 : string = "hh:mm:ss"
+    let v32 : string = v30.ToString v31 
+    v32 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v33 : string = method11()
+    v33 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v34 : string = method11()
+    v34 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v35 : (int64 -> US5) = method10()
+    let v36 : US5 = US5_1
+    let v37 : US5 = v8 |> Option.map v35 |> Option.defaultValue v36 
+    let v55 : System.DateTime =
+        match v37 with
+        | US5_1 -> (* None *)
+            let v53 : System.DateTime = System.DateTime.Now
+            v53
+        | US5_0(v38) -> (* Some *)
+            let v39 : System.DateTime = System.DateTime.Now
+            let v40 : (System.DateTime -> int64) = _.Ticks
+            let v41 : int64 = v40 v39
+            let v42 : int64 = v41 - v38
+            let v43 : System.TimeSpan = System.TimeSpan v42 
+            let v44 : (System.TimeSpan -> int32) = _.Hours
+            let v45 : int32 = v44 v43
+            let v46 : (System.TimeSpan -> int32) = _.Minutes
+            let v47 : int32 = v46 v43
+            let v48 : (System.TimeSpan -> int32) = _.Seconds
+            let v49 : int32 = v48 v43
+            let v50 : (System.TimeSpan -> int32) = _.Milliseconds
+            let v51 : int32 = v50 v43
+            let v52 : System.DateTime = System.DateTime (1, 1, 1, v45, v47, v49, v51)
+            v52
+    let v56 : string = "HH:mm:ss"
+    let v57 : string = v55.ToString v56 
+    v57 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v58 : string = method11()
+    v58 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof<string>
+    #endif
+    |> fun x -> _v9 <- Some x
+    let v59 : string = _v9.Value
+    let v60 : int64 = v4.l0
+    let v70 : string =
+        match v0 with
+        | US3_4 -> (* Critical *)
+            let v65 : string = "Critical"
+            v65
+        | US3_1 -> (* Debug *)
+            let v62 : string = "Debug"
+            v62
+        | US3_2 -> (* Info *)
+            let v63 : string = "Info"
+            v63
+        | US3_0 -> (* Verbose *)
+            let v61 : string = "Verbose"
+            v61
+        | US3_3 -> (* Warning *)
+            let v64 : string = "Warning"
+            v64
+    let v71 : string = v70.ToLower ()
+    let v72 : string = $"{v59} #{v60} [{v71}] %s{v1 ()} / %s{v2 ()}"
+    let v73 : (char []) = [||]
+    let v74 : string = v72.TrimStart v73
+    let v75 : (char []) = [|' '; '/'|]
+    let v76 : string = v74.TrimEnd v75
+    v76
+and method7 (v0 : US3, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure17()
+    if State.trace_state = None then State.trace_state <- v3 () |> Some
+    let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
+    if State.trace_state = None then State.trace_state <- v3 () |> Some
+    let struct (v9 : Mut0, v10 : Mut1, v11 : Mut1, v12 : Mut2, v13 : int64 option) = State.trace_state.Value
+    let v14 : US3 = v12.l0
+    let v15 : bool = v11.l0
+    let v17 : bool =
+        if v15 then
+            let v16 : bool = v0 >= v14 
+            v16
+        else
+            false
+    if v17 then
+        let v18 : int64 = v4.l0
+        let v19 : int64 = v18 + 1L
+        v4.l0 <- v19
+        let v20 : (unit -> string) = closure18(v0, v1, v2)
+        let v21 : string = $"%s{v20 ()}"
+        let v22 : unit option = None
+        let mutable _v22 = v22
+        #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+        let v23 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v21 v23
+        () 
+        #endif
+        #if FABLE_COMPILER_RUST && WASM
+        let v24 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v21 v24
+        () 
+        #endif
+        #if FABLE_COMPILER_RUST && CONTRACT
+        let v25 : string = @"println!(""{}"", $0)"
+        Fable.Core.RustInterop.emitRustExpr v21 v25
+        () 
+        #endif
+        #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+        System.Console.WriteLine v21 
+        () 
+        #endif
+        #if FABLE_COMPILER_TYPESCRIPT
+        System.Console.WriteLine v21 
+        () 
+        #endif
+        #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+        Unchecked.defaultof<unit>
+        #endif
+        |> fun x -> _v22 <- Some x
+        _v22.Value
+        ()
 and method6 (v0 : string, v1 : int64) : Async<int64> =
     let v2 : Async<int64> option = None
     let mutable _v2 = v2
@@ -1269,7 +1517,7 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<unit>
     #endif
     |> fun x -> _v7 <- Some x
-    _v7 |> Option.get
+    _v7.Value
     return v1 
     with ex ->
     let v9 : exn = ex
@@ -1302,12 +1550,11 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
         Unchecked.defaultof<string>
         #endif
         |> fun x -> _v12 <- Some x
-        let v18 : string = _v12 |> Option.get
-        let v19 : string = "delete_file_async"
-        let v20 : (unit -> string) = closure3()
-        let v21 : string = $"{v19} / {v20 ()}"
-        System.Console.WriteLine v21
-        ()
+        let v18 : string = _v12.Value
+        let v19 : US3 = US3_3
+        let v20 : (unit -> string) = closure16()
+        let v21 : (unit -> string) = closure3()
+        method7(v19, v20, v21)
     let v22 : Async<unit> option = None
     let mutable _v22 = v22
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1335,7 +1582,7 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v22 <- Some x
-    let v29 : Async<unit> = _v22 |> Option.get
+    let v29 : Async<unit> = _v22.Value
     do! v29 
     let v30 : int64 = v1 + 1L
     let v31 : Async<int64> = method6(v0, v30)
@@ -1355,7 +1602,7 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v35 : Async<int64> = _v2 |> Option.get
+    let v35 : Async<int64> = _v2.Value
     v35
 and closure15 () (v0 : string) : Async<int64> =
     let v1 : Async<int64> option = None
@@ -1385,9 +1632,12 @@ and closure15 () (v0 : string) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : Async<int64> = _v1 |> Option.get
+    let v8 : Async<int64> = _v1.Value
     v8
-and method8 (v0 : string, v1 : string, v2 : exn) : string =
+and closure22 () () : string =
+    let v0 : string = "move_file_async"
+    v0
+and method13 (v0 : string, v1 : string, v2 : exn) : string =
     let v3 : string option = None
     let mutable _v3 = v3
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1414,14 +1664,14 @@ and method8 (v0 : string, v1 : string, v2 : exn) : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v3 <- Some x
-    let v9 : string = _v3 |> Option.get
+    let v9 : string = _v3.Value
     let v10 : (string -> string) = closure2()
     let v11 : (unit -> string) = closure3()
     let v12 : string = $"old_path: {v1 |> v10} / new_path: {v0 |> v10} / ex: {v9} / {v11 ()}"
     v12
-and closure18 (v0 : string, v1 : string, v2 : exn) () : string =
-    method8(v0, v1, v2)
-and method7 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
+and closure23 (v0 : string, v1 : string, v2 : exn) () : string =
+    method13(v0, v1, v2)
+and method12 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     let v3 : Async<int64> option = None
     let mutable _v3 = v3
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1467,18 +1717,17 @@ and method7 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     Unchecked.defaultof<unit>
     #endif
     |> fun x -> _v8 <- Some x
-    _v8 |> Option.get
+    _v8.Value
     return v2 
     with ex ->
     let v9 : exn = ex
     let v10 : int64 = v2 % 100L
     let v11 : bool = v10 = 0L
     if v11 then
-        let v12 : string = "move_file_async"
-        let v13 : (unit -> string) = closure18(v0, v1, v9)
-        let v14 : string = $"{v12} / {v13 ()}"
-        System.Console.WriteLine v14
-        ()
+        let v12 : US3 = US3_3
+        let v13 : (unit -> string) = closure22()
+        let v14 : (unit -> string) = closure23(v0, v1, v9)
+        method7(v12, v13, v14)
     let v15 : Async<unit> option = None
     let mutable _v15 = v15
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1506,10 +1755,10 @@ and method7 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v15 <- Some x
-    let v22 : Async<unit> = _v15 |> Option.get
+    let v22 : Async<unit> = _v15.Value
     do! v22 
     let v23 : int64 = v2 + 1L
-    let v24 : Async<int64> = method7(v0, v1, v23)
+    let v24 : Async<int64> = method12(v0, v1, v23)
     return! v24 
     (*
     *)
@@ -1526,9 +1775,9 @@ and method7 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v3 <- Some x
-    let v27 : Async<int64> = _v3 |> Option.get
+    let v27 : Async<int64> = _v3.Value
     v27
-and closure17 (v0 : string) (v1 : string) : Async<int64> =
+and closure21 (v0 : string) (v1 : string) : Async<int64> =
     let v2 : Async<int64> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1545,7 +1794,7 @@ and closure17 (v0 : string) (v1 : string) : Async<int64> =
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v6 : int64 = 0L
-    let v7 : Async<int64> = method7(v0, v1, v6)
+    let v7 : Async<int64> = method12(v0, v1, v6)
     v7 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -1556,25 +1805,34 @@ and closure17 (v0 : string) (v1 : string) : Async<int64> =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v9 : Async<int64> = _v2 |> Option.get
+    let v9 : Async<int64> = _v2.Value
     v9
-and closure16 () (v0 : string) : (string -> Async<int64>) =
-    closure17(v0)
-and closure20 () (v0 : int64) : US4 =
-    US4_0(v0)
-and closure21 () (v0 : exn) : US4 =
-    US4_1(v0)
-and closure22 () () : string =
+and closure20 () (v0 : string) : (string -> Async<int64>) =
+    closure21(v0)
+and closure25 () (v0 : int64) : US6 =
+    US6_0(v0)
+and closure26 () (v0 : exn) : US6 =
+    US6_1(v0)
+and closure27 () () : string =
+    let v0 : string = "run_with_timeout_async"
+    v0
+and closure28 () () : string =
     let v0 : (unit -> string) = closure3()
     let v1 : string = $"timeout: {1000} / {v0 ()}"
     v1
-and method10 (v0 : int64, v1 : string) : string =
+and closure29 (v0 : string) () : string =
+    let v1 : string = $"run_with_timeout_async** / ex: {v0}"
+    v1
+and closure30 () () : string =
+    let v0 : string = "read_all_text_retry_async"
+    v0
+and method15 (v0 : int64, v1 : string) : string =
     let v2 : (unit -> string) = closure3()
     let v3 : string = $"retry: {v0} / ex: {v1} / {v2 ()}"
     v3
-and closure23 (v0 : int64, v1 : string) () : string =
-    method10(v0, v1)
-and method9 (v0 : string, v1 : int64) : Async<string option> =
+and closure31 (v0 : int64, v1 : string) () : string =
+    method15(v0, v1)
+and method14 (v0 : string, v1 : int64) : Async<string option> =
     let v2 : Async<string option> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1623,38 +1881,38 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
         Unchecked.defaultof<Async<int64>>
         #endif
         |> fun x -> _v8 <- Some x
-        let v15 : Async<int64> = _v8 |> Option.get
-        let v16 : Async<US3> option = None
+        let v15 : Async<int64> = _v8.Value
+        let v16 : Async<US5> option = None
         let mutable _v16 = v16
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v17 : Async<US3> = null |> unbox<Async<US3>>
+        let v17 : Async<US5> = null |> unbox<Async<US5>>
         v17 
         #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v18 : Async<US3> = null |> unbox<Async<US3>>
+        let v18 : Async<US5> = null |> unbox<Async<US5>>
         v18 
         #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v19 : Async<US3> = null |> unbox<Async<US3>>
+        let v19 : Async<US5> = null |> unbox<Async<US5>>
         v19 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v20 : Async<US3> option = None
+        let v20 : Async<US5> option = None
         let mutable _v20 = v20
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v21 : Async<US3> = null |> unbox<Async<US3>>
+        let v21 : Async<US5> = null |> unbox<Async<US5>>
         v21 
         #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v22 : Async<US3> = null |> unbox<Async<US3>>
+        let v22 : Async<US5> = null |> unbox<Async<US5>>
         v22 
         #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v23 : Async<US3> = null |> unbox<Async<US3>>
+        let v23 : Async<US5> = null |> unbox<Async<US5>>
         v23 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v24 : Async<US3> option = None
+        let v24 : Async<US5> option = None
         let mutable _v24 = v24
         async {
         let v25 : Async<Async<int64>> option = None
@@ -1683,7 +1941,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
         Unchecked.defaultof<Async<Async<int64>>>
         #endif
         |> fun x -> _v25 <- Some x
-        let v31 : Async<Async<int64>> = _v25 |> Option.get
+        let v31 : Async<Async<int64>> = _v25.Value
         let! v31 = v31 
         let v32 : Async<int64> = v31 
         let v33 : Async<Choice<int64, exn>> option = None
@@ -1713,144 +1971,144 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
         Unchecked.defaultof<Async<Choice<int64, exn>>>
         #endif
         |> fun x -> _v33 <- Some x
-        let v40 : Async<Choice<int64, exn>> = _v33 |> Option.get
-        let v41 : Async<US4> option = None
+        let v40 : Async<Choice<int64, exn>> = _v33.Value
+        let v41 : Async<US6> option = None
         let mutable _v41 = v41
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v42 : Async<US4> = null |> unbox<Async<US4>>
+        let v42 : Async<US6> = null |> unbox<Async<US6>>
         v42 
         #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v43 : Async<US4> = null |> unbox<Async<US4>>
+        let v43 : Async<US6> = null |> unbox<Async<US6>>
         v43 
         #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v44 : Async<US4> = null |> unbox<Async<US4>>
+        let v44 : Async<US6> = null |> unbox<Async<US6>>
         v44 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v45 : Async<US4> option = None
+        let v45 : Async<US6> option = None
         let mutable _v45 = v45
         async {
         let! v40 = v40 
         let v46 : Choice<int64, exn> = v40 
-        let v47 : US4 option = None
+        let v47 : US6 option = None
         let mutable _v47 = v47
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v48 : US4 = null |> unbox<US4>
+        let v48 : US6 = null |> unbox<US6>
         v48 
         #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v49 : US4 = null |> unbox<US4>
+        let v49 : US6 = null |> unbox<US6>
         v49 
         #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v50 : US4 = null |> unbox<US4>
+        let v50 : US6 = null |> unbox<US6>
         v50 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v51 : (int64 -> US4) = closure20()
-        let v52 : (exn -> US4) = closure21()
-        let v53 : US4 = match v46 with Choice1Of2 x -> v51 x | Choice2Of2 x -> v52 x
+        let v51 : (int64 -> US6) = closure25()
+        let v52 : (exn -> US6) = closure26()
+        let v53 : US6 = match v46 with Choice1Of2 x -> v51 x | Choice2Of2 x -> v52 x
         v53 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        let v54 : US4 = null |> unbox<US4>
+        let v54 : US6 = null |> unbox<US6>
         v54 
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<US4>
+        Unchecked.defaultof<US6>
         #endif
         |> fun x -> _v47 <- Some x
-        let v55 : US4 = _v47 |> Option.get
+        let v55 : US6 = _v47.Value
         return v55 
         }
         |> fun x -> _v45 <- Some x
-        let v56 : Async<US4> = _v45 |> Option.get
+        let v56 : Async<US6> = _v45 |> Option.get
         v56 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        let v57 : Async<US4> = null |> unbox<Async<US4>>
+        let v57 : Async<US6> = null |> unbox<Async<US6>>
         v57 
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<Async<US4>>
+        Unchecked.defaultof<Async<US6>>
         #endif
         |> fun x -> _v41 <- Some x
-        let v58 : Async<US4> = _v41 |> Option.get
-        let v59 : Async<US5> option = None
+        let v58 : Async<US6> = _v41.Value
+        let v59 : Async<US7> option = None
         let mutable _v59 = v59
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v60 : Async<US5> = null |> unbox<Async<US5>>
+        let v60 : Async<US7> = null |> unbox<Async<US7>>
         v60 
         #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v61 : Async<US5> = null |> unbox<Async<US5>>
+        let v61 : Async<US7> = null |> unbox<Async<US7>>
         v61 
         #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v62 : Async<US5> = null |> unbox<Async<US5>>
+        let v62 : Async<US7> = null |> unbox<Async<US7>>
         v62 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v63 : Async<US5> option = None
+        let v63 : Async<US7> option = None
         let mutable _v63 = v63
         async {
         let! v58 = v58 
-        let v64 : US4 = v58 
-        let v70 : US5 =
+        let v64 : US6 = v58 
+        let v70 : US7 =
             match v64 with
-            | US4_0(v65) -> (* Choice1Of2 *)
-                US5_0(v65)
-            | US4_1(v67) -> (* Choice2Of2 *)
-                US5_1(v67)
+            | US6_0(v65) -> (* Choice1Of2 *)
+                US7_0(v65)
+            | US6_1(v67) -> (* Choice2Of2 *)
+                US7_1(v67)
         return v70 
         }
         |> fun x -> _v63 <- Some x
-        let v71 : Async<US5> = _v63 |> Option.get
+        let v71 : Async<US7> = _v63 |> Option.get
         v71 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        let v72 : Async<US5> = null |> unbox<Async<US5>>
+        let v72 : Async<US7> = null |> unbox<Async<US7>>
         v72 
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<Async<US5>>
+        Unchecked.defaultof<Async<US7>>
         #endif
         |> fun x -> _v59 <- Some x
-        let v73 : Async<US5> = _v59 |> Option.get
-        let v74 : Async<US3> option = None
+        let v73 : Async<US7> = _v59.Value
+        let v74 : Async<US5> option = None
         let mutable _v74 = v74
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v75 : Async<US3> = null |> unbox<Async<US3>>
+        let v75 : Async<US5> = null |> unbox<Async<US5>>
         v75 
         #endif
         #if FABLE_COMPILER_RUST && WASM
-        let v76 : Async<US3> = null |> unbox<Async<US3>>
+        let v76 : Async<US5> = null |> unbox<Async<US5>>
         v76 
         #endif
         #if FABLE_COMPILER_RUST && CONTRACT
-        let v77 : Async<US3> = null |> unbox<Async<US3>>
+        let v77 : Async<US5> = null |> unbox<Async<US5>>
         v77 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v78 : Async<US3> option = None
+        let v78 : Async<US5> option = None
         let mutable _v78 = v78
         async {
         let! v73 = v73 
-        let v79 : US5 = v73 
-        let v103 : US3 =
+        let v79 : US7 = v73 
+        let v103 : US5 =
             match v79 with
-            | US5_1(v82) -> (* Error *)
+            | US7_1(v82) -> (* Error *)
                 let v83 : string = $"%A{v82}"
                 let v84 : string = "System.TimeoutException"
                 let v85 : bool = v83.Contains v84
                 if v85 then
-                    let v86 : string = "run_with_timeout_async"
-                    let v87 : (unit -> string) = closure22()
-                    let v88 : string = $"{v86} / {v87 ()}"
-                    System.Console.WriteLine v88
-                    US3_1
+                    let v86 : US3 = US3_1
+                    let v87 : (unit -> string) = closure27()
+                    let v88 : (unit -> string) = closure28()
+                    method7(v86, v87, v88)
+                    US5_1
                 else
                     let v90 : string option = None
                     let mutable _v90 = v90
@@ -1878,55 +2136,55 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
                     Unchecked.defaultof<string>
                     #endif
                     |> fun x -> _v90 <- Some x
-                    let v96 : string = _v90 |> Option.get
-                    let v97 : string = $"run_with_timeout_async** / ex: {v96}"
-                    let v98 : (unit -> string) = closure22()
-                    let v99 : string = $"{v97} / {v98 ()}"
-                    System.Console.WriteLine v99
-                    US3_1
-            | US5_0(v80) -> (* Ok *)
-                US3_0(v80)
+                    let v96 : string = _v90.Value
+                    let v97 : US3 = US3_4
+                    let v98 : (unit -> string) = closure29(v96)
+                    let v99 : (unit -> string) = closure28()
+                    method7(v97, v98, v99)
+                    US5_1
+            | US7_0(v80) -> (* Ok *)
+                US5_0(v80)
         return v103 
         }
         |> fun x -> _v78 <- Some x
-        let v104 : Async<US3> = _v78 |> Option.get
+        let v104 : Async<US5> = _v78 |> Option.get
         v104 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        let v105 : Async<US3> = null |> unbox<Async<US3>>
+        let v105 : Async<US5> = null |> unbox<Async<US5>>
         v105 
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<Async<US3>>
+        Unchecked.defaultof<Async<US5>>
         #endif
         |> fun x -> _v74 <- Some x
-        let v106 : Async<US3> = _v74 |> Option.get
+        let v106 : Async<US5> = _v74.Value
         return! v106 
         }
         |> fun x -> _v24 <- Some x
-        let v107 : Async<US3> = _v24 |> Option.get
+        let v107 : Async<US5> = _v24 |> Option.get
         v107 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        let v108 : Async<US3> = null |> unbox<Async<US3>>
+        let v108 : Async<US5> = null |> unbox<Async<US5>>
         v108 
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<Async<US3>>
+        Unchecked.defaultof<Async<US5>>
         #endif
         |> fun x -> _v20 <- Some x
-        let v109 : Async<US3> = _v20 |> Option.get
+        let v109 : Async<US5> = _v20.Value
         v109 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
-        let v110 : Async<US3> = null |> unbox<Async<US3>>
+        let v110 : Async<US5> = null |> unbox<Async<US5>>
         v110 
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        Unchecked.defaultof<Async<US3>>
+        Unchecked.defaultof<Async<US5>>
         #endif
         |> fun x -> _v16 <- Some x
-        let v111 : Async<US3> = _v16 |> Option.get
+        let v111 : Async<US5> = _v16.Value
         let v112 : Async<unit> option = None
         let mutable _v112 = v112
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1942,7 +2200,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
         v115 
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v116 : (Async<US3> -> Async<unit>) = Async.Ignore
+        let v116 : (Async<US5> -> Async<unit>) = Async.Ignore
         let v117 : Async<unit> = v116 v111
         v117 
         #endif
@@ -1954,7 +2212,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
         Unchecked.defaultof<Async<unit>>
         #endif
         |> fun x -> _v112 <- Some x
-        let v119 : Async<unit> = _v112 |> Option.get
+        let v119 : Async<unit> = _v112.Value
         do! v119 
         ()
     let v120 : Async<string> option = None
@@ -2001,7 +2259,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
     Unchecked.defaultof<Async<string>>
     #endif
     |> fun x -> _v126 <- Some x
-    let v133 : Async<string> = _v126 |> Option.get
+    let v133 : Async<string> = _v126.Value
     v133 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2012,7 +2270,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
     Unchecked.defaultof<Async<string>>
     #endif
     |> fun x -> _v120 <- Some x
-    let v135 : Async<string> = _v120 |> Option.get
+    let v135 : Async<string> = _v120.Value
     let v136 : Async<string option> option = None
     let mutable _v136 = v136
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2048,7 +2306,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
     Unchecked.defaultof<Async<string option>>
     #endif
     |> fun x -> _v136 <- Some x
-    let v145 : Async<string option> = _v136 |> Option.get
+    let v145 : Async<string option> = _v136.Value
     return! v145 
     with ex ->
     let v146 : exn = ex
@@ -2081,11 +2339,11 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
         Unchecked.defaultof<string>
         #endif
         |> fun x -> _v149 <- Some x
-        let v155 : string = _v149 |> Option.get
-        let v156 : string = "read_all_text_retry_async"
-        let v157 : (unit -> string) = closure23(v1, v155)
-        let v158 : string = $"{v156} / {v157 ()}"
-        System.Console.WriteLine v158
+        let v155 : string = _v149.Value
+        let v156 : US3 = US3_1
+        let v157 : (unit -> string) = closure30()
+        let v158 : (unit -> string) = closure31(v1, v155)
+        method7(v156, v157, v158)
         let v159 : string option = None
         return v159 
         (*
@@ -2093,7 +2351,7 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
     else
         *) else
         let v160 : int64 = v1 + 1L
-        let v161 : Async<string option> = method9(v0, v160)
+        let v161 : Async<string option> = method14(v0, v160)
         return! v161 
         (*
         ()
@@ -2113,9 +2371,9 @@ and method9 (v0 : string, v1 : int64) : Async<string option> =
     Unchecked.defaultof<Async<string option>>
     #endif
     |> fun x -> _v2 <- Some x
-    let v165 : Async<string option> = _v2 |> Option.get
+    let v165 : Async<string option> = _v2.Value
     v165
-and closure19 () (v0 : string) : Async<string option> =
+and closure24 () (v0 : string) : Async<string option> =
     let v1 : Async<string option> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2132,7 +2390,7 @@ and closure19 () (v0 : string) : Async<string option> =
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v5 : int64 = 0L
-    let v6 : Async<string option> = method9(v0, v5)
+    let v6 : Async<string option> = method14(v0, v5)
     v6 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2143,9 +2401,9 @@ and closure19 () (v0 : string) : Async<string option> =
     Unchecked.defaultof<Async<string option>>
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : Async<string option> = _v1 |> Option.get
+    let v8 : Async<string option> = _v1.Value
     v8
-and closure25 () () : string =
+and closure33 () () : string =
     let v0 : string option = None
     let mutable _v0 = v0
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2172,9 +2430,9 @@ and closure25 () () : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v0 <- Some x
-    let v6 : string = _v0 |> Option.get
+    let v6 : string = _v0.Value
     v6
-and closure24 () () : string =
+and closure32 () () : string =
     let v0 : string option = None
     let mutable _v0 = v0
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2192,7 +2450,7 @@ and closure24 () () : string =
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v4 : (unit -> string) = System.IO.Path.GetTempPath
     let v5 : string = v4 ()
-    let v6 : (unit -> string) = closure25()
+    let v6 : (unit -> string) = closure33()
     let v7 : string = $"!{v6 ()}"
     let v8 : string option = None
     let mutable _v8 = v8
@@ -2240,7 +2498,7 @@ and closure24 () () : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v8 <- Some x
-    let v34 : string = _v8 |> Option.get
+    let v34 : string = _v8.Value
     let v35 : System.DateTime = System.DateTime.Now
     let v36 : System.Guid = System.Guid.NewGuid ()
     let v37 : (System.Guid -> string) = _.ToString()
@@ -2294,7 +2552,7 @@ and closure24 () () : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v43 <- Some x
-    let v68 : string = _v43 |> Option.get
+    let v68 : string = _v43.Value
     v68 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2305,13 +2563,13 @@ and closure24 () () : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v0 <- Some x
-    let v70 : string = _v0 |> Option.get
+    let v70 : string = _v0.Value
     v70
-and closure27 (v0 : string, v1 : string) () : string =
+and closure35 (v0 : string, v1 : string) () : string =
     let v2 : (unit -> string) = closure3()
     let v3 : string = $"temp_folder: {v0} / result: {v1} {v2 ()}"
     v3
-and closure28 (v0 : string) () : unit =
+and closure36 (v0 : string) () : unit =
     let v1 : Async<int64> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2339,7 +2597,7 @@ and closure28 (v0 : string) () : unit =
     Unchecked.defaultof<Async<int64>>
     #endif
     |> fun x -> _v1 <- Some x
-    let v8 : Async<int64> = _v1 |> Option.get
+    let v8 : Async<int64> = _v1.Value
     let v9 : Async<unit> option = None
     let mutable _v9 = v9
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2367,7 +2625,7 @@ and closure28 (v0 : string) () : unit =
     Unchecked.defaultof<Async<unit>>
     #endif
     |> fun x -> _v9 <- Some x
-    let v16 : Async<unit> = _v9 |> Option.get
+    let v16 : Async<unit> = _v9.Value
     let v17 : unit option = None
     let mutable _v17 = v17
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2395,9 +2653,9 @@ and closure28 (v0 : string) () : unit =
     Unchecked.defaultof<unit>
     #endif
     |> fun x -> _v17 <- Some x
-    _v17 |> Option.get
+    _v17.Value
     ()
-and closure26 () () : struct (string * System.IDisposable) =
+and closure34 () () : struct (string * System.IDisposable) =
     let v0 : struct (string * System.IDisposable) option = None
     let mutable _v0 = v0
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2430,7 +2688,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v11 : (unit -> string) = System.IO.Path.GetTempPath
     let v12 : string = v11 ()
-    let v13 : (unit -> string) = closure25()
+    let v13 : (unit -> string) = closure33()
     let v14 : string = $"!{v13 ()}"
     let v15 : string option = None
     let mutable _v15 = v15
@@ -2478,7 +2736,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v15 <- Some x
-    let v41 : string = _v15 |> Option.get
+    let v41 : string = _v15.Value
     let v42 : System.DateTime = System.DateTime.Now
     let v43 : System.Guid = System.Guid.NewGuid ()
     let v44 : (System.Guid -> string) = _.ToString()
@@ -2532,7 +2790,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v50 <- Some x
-    let v75 : string = _v50 |> Option.get
+    let v75 : string = _v50.Value
     v75 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2543,7 +2801,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v7 <- Some x
-    let v77 : string = _v7 |> Option.get
+    let v77 : string = _v7.Value
     let v78 : System.IO.DirectoryInfo option = None
     let mutable _v78 = v78
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2571,7 +2829,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<System.IO.DirectoryInfo>
     #endif
     |> fun x -> _v78 <- Some x
-    let v85 : System.IO.DirectoryInfo = _v78 |> Option.get
+    let v85 : System.IO.DirectoryInfo = _v78.Value
     let v86 : bool option = None
     let mutable _v86 = v86
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2598,7 +2856,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<bool>
     #endif
     |> fun x -> _v86 <- Some x
-    let v92 : bool = _v86 |> Option.get
+    let v92 : bool = _v86.Value
     let v93 : bool = v92 = false
     if v93 then
         let v94 : System.DateTime option = None
@@ -2627,10 +2885,10 @@ and closure26 () () : struct (string * System.IDisposable) =
         Unchecked.defaultof<System.DateTime>
         #endif
         |> fun x -> _v94 <- Some x
-        let v100 : System.DateTime = _v94 |> Option.get
+        let v100 : System.DateTime = _v94.Value
         let v101 : obj = {| Exists = v92; CreationTime = v100 |}
         let v102 : string = $"%A{v101}"
-        let v103 : (unit -> string) = closure27(v77, v102)
+        let v103 : (unit -> string) = closure35(v77, v102)
         let v104 : string = $"create_temp_directory / {v103 ()}"
         System.Console.WriteLine v104
         ()
@@ -2649,7 +2907,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     v108 
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v109 : (unit -> unit) = closure28(v77)
+    let v109 : (unit -> unit) = closure36(v77)
     let v110 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v109 () }
     v110 
     #endif
@@ -2661,7 +2919,7 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<System.IDisposable>
     #endif
     |> fun x -> _v105 <- Some x
-    let v112 : System.IDisposable = _v105 |> Option.get
+    let v112 : System.IDisposable = _v105.Value
     struct (v77, v112) 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2672,12 +2930,12 @@ and closure26 () () : struct (string * System.IDisposable) =
     Unchecked.defaultof<struct (string * System.IDisposable)>
     #endif
     |> fun x -> _v0 <- Some x
-    let struct (v115 : string, v116 : System.IDisposable) = _v0 |> Option.get
+    let struct (v115 : string, v116 : System.IDisposable) = _v0.Value
     struct (v115, v116)
-and closure29 () () : string =
+and closure37 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
     v0
-and closure33 () (v0 : string) : bool =
+and closure41 () (v0 : string) : bool =
     let v1 : bool option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2723,9 +2981,9 @@ and closure33 () (v0 : string) : bool =
     Unchecked.defaultof<bool>
     #endif
     |> fun x -> _v1 <- Some x
-    let v22 : bool = _v1 |> Option.get
+    let v22 : bool = _v1.Value
     v22
-and closure34 () (v0 : string) : bool =
+and closure42 () (v0 : string) : bool =
     let v1 : bool option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2771,10 +3029,10 @@ and closure34 () (v0 : string) : bool =
     Unchecked.defaultof<bool>
     #endif
     |> fun x -> _v1 <- Some x
-    let v22 : bool = _v1 |> Option.get
+    let v22 : bool = _v1.Value
     v22
-and closure35 () (v0 : string) : string option =
-    let v1 : US6 option = None
+and closure43 () (v0 : string) : string option =
+    let v1 : US8 option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v2 : string = method5(v0)
@@ -2792,15 +3050,15 @@ and closure35 () (v0 : string) : string option =
     let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr v12 v13
     let v15 : string = "fable_library_rust::String_::fromString($0)"
     let v16 : string = Fable.Core.RustInterop.emitRustExpr v14 v15
-    let v17 : US6 = US6_0(v16)
+    let v17 : US8 = US8_0(v16)
     v17 
     #endif
     #if FABLE_COMPILER_RUST && WASM
-    let v18 : US6 = null |> unbox<US6>
+    let v18 : US8 = null |> unbox<US8>
     v18 
     #endif
     #if FABLE_COMPILER_RUST && CONTRACT
-    let v19 : US6 = null |> unbox<US6>
+    let v19 : US8 = null |> unbox<US8>
     v19 
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
@@ -2808,9 +3066,9 @@ and closure35 () (v0 : string) : string option =
     let v21 : System.IO.DirectoryInfo = v20 v0
     let v22 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
     let v23 : bool = v21 = v22
-    let v33 : US6 =
+    let v33 : US8 =
         if v23 then
-            US6_1
+            US8_1
         else
             let v25 : string option = None
             let mutable _v25 = v25
@@ -2838,8 +3096,8 @@ and closure35 () (v0 : string) : string option =
             Unchecked.defaultof<string>
             #endif
             |> fun x -> _v25 <- Some x
-            let v31 : string = _v25 |> Option.get
-            US6_0(v31)
+            let v31 : string = _v25.Value
+            US8_0(v31)
     v33 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2847,28 +3105,28 @@ and closure35 () (v0 : string) : string option =
     let v35 : IPathDirname = Fable.Core.JsInterop.importAll v34
     let v36 : string = "v35.dirname($0)"
     let v37 : string = Fable.Core.JsInterop.emitJsExpr v0 v36
-    let v38 : US6 = US6_0(v37)
+    let v38 : US8 = US8_0(v37)
     v38 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<US6>
+    Unchecked.defaultof<US8>
     #endif
     |> fun x -> _v1 <- Some x
-    let v39 : US6 = _v1 |> Option.get
+    let v39 : US8 = _v1.Value
     match v39 with
-    | US6_1 -> (* None *)
+    | US8_1 -> (* None *)
         let v42 : string option = None
         v42
-    | US6_0(v40) -> (* Some *)
+    | US8_0(v40) -> (* Some *)
         let v41 : string option = Some v40 
         v41
-and method12 () : (string -> string option) =
-    closure35()
-and closure36 () (v0 : string) : US6 =
-    US6_0(v0)
-and method13 () : (string -> US6) =
-    closure36()
-and method14 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
+and method17 () : (string -> string option) =
+    closure43()
+and closure44 () (v0 : string) : US8 =
+    US8_0(v0)
+and method18 () : (string -> US8) =
+    closure44()
+and method19 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
     let v4 : string option = None
     let mutable _v4 = v4
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2915,28 +3173,28 @@ and method14 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v4 <- Some x
-    let v30 : string = _v4 |> Option.get
+    let v30 : string = _v4.Value
     let v33 : (string -> bool) =
         if v1 then
-            closure33()
+            closure41()
         else
-            closure34()
+            closure42()
     let v34 : bool = v33 v30
     if v34 then
         v3
     else
-        let v35 : (string -> string option) = method12()
+        let v35 : (string -> string option) = method17()
         let v36 : string option = v35 v3
-        let v37 : (string -> US6) = method13()
-        let v38 : US6 = US6_1
-        let v39 : US6 = v36 |> Option.map v37 |> Option.defaultValue v38 
+        let v37 : (string -> US8) = method18()
+        let v38 : US8 = US8_1
+        let v39 : US8 = v36 |> Option.map v37 |> Option.defaultValue v38 
         match v39 with
-        | US6_1 -> (* None *)
+        | US8_1 -> (* None *)
             let v42 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}'"""
             failwith<string> v42
-        | US6_0(v40) -> (* Some *)
-            method14(v0, v1, v2, v40)
-and method11 (v0 : string, v1 : bool, v2 : string) : string =
+        | US8_0(v40) -> (* Some *)
+            method19(v0, v1, v2, v40)
+and method16 (v0 : string, v1 : bool, v2 : string) : string =
     let v3 : string option = None
     let mutable _v3 = v3
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -2983,34 +3241,34 @@ and method11 (v0 : string, v1 : bool, v2 : string) : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v3 <- Some x
-    let v29 : string = _v3 |> Option.get
+    let v29 : string = _v3.Value
     let v32 : (string -> bool) =
         if v1 then
-            closure33()
+            closure41()
         else
-            closure34()
+            closure42()
     let v33 : bool = v32 v29
     if v33 then
         v2
     else
-        let v34 : (string -> string option) = method12()
+        let v34 : (string -> string option) = method17()
         let v35 : string option = v34 v2
-        let v36 : (string -> US6) = method13()
-        let v37 : US6 = US6_1
-        let v38 : US6 = v35 |> Option.map v36 |> Option.defaultValue v37 
+        let v36 : (string -> US8) = method18()
+        let v37 : US8 = US8_1
+        let v38 : US8 = v35 |> Option.map v36 |> Option.defaultValue v37 
         match v38 with
-        | US6_1 -> (* None *)
+        | US8_1 -> (* None *)
             let v41 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}'"""
             failwith<string> v41
-        | US6_0(v39) -> (* Some *)
-            method14(v0, v1, v2, v39)
-and closure32 (v0 : string, v1 : bool) (v2 : string) : string =
-    method11(v0, v1, v2)
-and closure31 (v0 : string) (v1 : bool) : (string -> string) =
-    closure32(v0, v1)
-and closure30 () (v0 : string) : (bool -> (string -> string)) =
-    closure31(v0)
-and closure38 (v0 : string) (v1 : string) : string =
+        | US8_0(v39) -> (* Some *)
+            method19(v0, v1, v2, v39)
+and closure40 (v0 : string, v1 : bool) (v2 : string) : string =
+    method16(v0, v1, v2)
+and closure39 (v0 : string) (v1 : bool) : (string -> string) =
+    closure40(v0, v1)
+and closure38 () (v0 : string) : (bool -> (string -> string)) =
+    closure39(v0)
+and closure46 (v0 : string) (v1 : string) : string =
     let v2 : string option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -3057,10 +3315,10 @@ and closure38 (v0 : string) (v1 : string) : string =
     Unchecked.defaultof<string>
     #endif
     |> fun x -> _v2 <- Some x
-    let v28 : string = _v2 |> Option.get
+    let v28 : string = _v2.Value
     v28
-and closure37 () (v0 : string) : (string -> string) =
-    closure38(v0)
+and closure45 () (v0 : string) : (string -> string) =
+    closure46(v0)
 let v0 : unit option = None
 let mutable _v0 = v0
 #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -3089,9 +3347,9 @@ let v7 : (string -> (string -> Async<unit>)) = closure13()
 let write_all_text_exists x = v7 x
 let v8 : (string -> Async<int64>) = closure15()
 let delete_file_async x = v8 x
-let v9 : (string -> (string -> Async<int64>)) = closure16()
+let v9 : (string -> (string -> Async<int64>)) = closure20()
 let move_file_async x = v9 x
-let v10 : (string -> Async<string option>) = closure19()
+let v10 : (string -> Async<string option>) = closure24()
 let read_all_text_retry_async x = v10 x
 () 
 #endif
@@ -3102,15 +3360,15 @@ let read_all_text_retry_async x = v10 x
 Unchecked.defaultof<unit>
 #endif
 |> fun x -> _v0 <- Some x
-_v0 |> Option.get
-let v11 : (unit -> string) = closure24()
+_v0.Value
+let v11 : (unit -> string) = closure32()
 let create_temp_directory_name () = v11 ()
-let v12 : (unit -> struct (string * System.IDisposable)) = closure26()
+let v12 : (unit -> struct (string * System.IDisposable)) = closure34()
 let create_temp_directory () = v12 ()
-let v13 : (unit -> string) = closure29()
+let v13 : (unit -> string) = closure37()
 let get_source_directory () = v13 ()
-let v14 : (string -> (bool -> (string -> string))) = closure30()
+let v14 : (string -> (bool -> (string -> string))) = closure38()
 let find_parent x = v14 x
-let v15 : (string -> (string -> string)) = closure37()
+let v15 : (string -> (string -> string)) = closure45()
 let (</>) x = v15 x
 ()

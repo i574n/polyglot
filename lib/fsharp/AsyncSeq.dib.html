@@ -7578,6 +7578,7 @@ a.anchor-link {
 <span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/trace.fsx</span>
 <span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
@@ -7742,7 +7743,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] runWithTimeoutChildAsync / timeout: 300
+<pre>00:00:00 #1 [debug] runWithTimeoutChildAsync / timeout: 300
 &lt;null&gt;
 [ 1, AddHandler, 2, RemoveHandler ]
 </pre>
@@ -7791,7 +7792,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #2 [Debug] runWithTimeoutChildAsync / timeout: 300
+<pre>00:00:00 #2 [debug] runWithTimeoutChildAsync / timeout: 300
 &lt;null&gt;
 [ 1, AddHandler, 2, IObservable.Subscribe, 3, RemoveHandler, IObservable.Dispose ]
 </pre>
@@ -7858,7 +7859,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 #3 [Debug] runWithTimeoutChildAsync / timeout: 300
+<pre>00:00:00 #3 [debug] runWithTimeoutChildAsync / timeout: 300
 &lt;null&gt;
 [ 1, AddHandler, 2, IObservable.Subscribe, 3, TestEvent.Subscribe(System.Exception: error), TestEvent.Iter(0: System.Exception: error), testEvent.EventInterface.Subscribe(System.Exception: error), 4, RemoveHandler, IObservable.Dispose ]
 </pre>
@@ -7927,7 +7928,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>1240085
+<pre>1086734
 </pre>
 </div>
 </div>

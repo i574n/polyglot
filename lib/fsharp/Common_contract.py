@@ -2,10 +2,9 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
-from fable_modules.fable_library.string_ import (to_text, interpolate)
-from fable_modules.fable_library.types import (Array, Union, int64)
-from fable_modules.fable_library.util import (create_atom, compare)
-from ......lib.spiral.lib import (SpiralSm_trim_end, SpiralSm_trim_start)
+from fable_modules.fable_library.types import (Array, Union)
+from ......lib.spiral.lib import (SpiralTrace_US0_1, SpiralTrace_US0_2, SpiralTrace_US0_3, SpiralTrace_US0_4, SpiralTrace_US0_0, SpiralTrace_trace)
+from ......lib.spiral.trace import US0
 
 nl: str = "\n"
 
@@ -73,38 +72,25 @@ def TraceLevel__get_IsCritical(this: TraceLevel, unit_arg: None) -> bool:
 
 
 
-trace_enabled: bool = create_atom(True)
+def to_trace_level(_arg: TraceLevel) -> US0:
+    if _arg.tag == 1:
+        return SpiralTrace_US0_1
 
-trace_count: int = create_atom(0)
+    elif _arg.tag == 2:
+        return SpiralTrace_US0_2
 
-trace_level: TraceLevel = create_atom(TraceLevel(0))
+    elif _arg.tag == 3:
+        return SpiralTrace_US0_3
 
-trace_dump: bool = create_atom(False)
-
-def test_trace_level(level: TraceLevel) -> bool:
-    if trace_enabled():
-        return compare(level, trace_level()) >= 0
+    elif _arg.tag == 4:
+        return SpiralTrace_US0_4
 
     else: 
-        return False
+        return SpiralTrace_US0_0
 
-
-
-def trace_raw(level: TraceLevel, fn: Callable[[], str]) -> None:
-    if test_trace_level(level):
-        trace_count(trace_count() + 1)
-        print(("" + fn(None)) + "")
-
-
-
-def repl_start(__unit: None=None) -> int64 | None:
-    return None
 
 
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
-    def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
-        return SpiralSm_trim_end([" ", "/"])(SpiralSm_trim_start([])(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", ["", trace_count(), level, fn(None), get_locals(None)]))))
-
-    trace_raw(level, fn_1)
+    SpiralTrace_trace(to_trace_level(level))(fn)(get_locals)
 
 

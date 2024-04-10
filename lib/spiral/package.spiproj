@@ -11,7 +11,6 @@ modules:
     resultm
     base-
     console
-    common-
     am'
     listm'
     listm'_operators
@@ -20,6 +19,8 @@ modules:
     sm'
     sm'_operators
     date_time
+    trace-
+    common-
     wasm
     mapm
     async

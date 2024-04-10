@@ -7580,6 +7580,7 @@ a.anchor-link {
 <span class="c1">#!import ../../lib/spiral/sm.fsx</span>
 <span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
 <span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
+<span class="c1">#!import ../../lib/spiral/trace.fsx</span>
 <span class="c1">#!import ../../lib/spiral/lib.fsx</span>
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
@@ -8065,23 +8066,23 @@ table th {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2254-5381-8168-81fb550e414d\test.txt""
+<pre>00:00:00 #1 [debug] executeAsync / options: { Command =
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10\test.txt""
   WorkingDirectory = None
   CancellationToken = None
   OnLine = None }
-00:00:00 #2 [Verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2254-5381-8168-81fb550e414d\test.txt' because it does not exist.</span>
-00:00:00 #3 [Debug] executeAsync / exitCode: 1 / output.Length: 171
+00:00:00 #2 [verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10\test.txt' because it does not exist.</span>
+00:00:00 #3 [debug] executeAsync / exitCode: 1 / output.Length: 171
 1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2254-5381-8168-81fb550e414d\test.txt' because it does not exist.</span>]
-00:00:00 #4 [Debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
+[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10\test.txt' because it does not exist.</span>]
+00:00:00 #4 [debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
   WorkingDirectory =
    Some
-     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2254-5381-8168-81fb550e414d"
+     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10"
   CancellationToken = None
   OnLine = None }
-00:00:01 #5 [Verbose] &gt; 0
-00:00:01 #6 [Debug] executeAsync / exitCode: 0 / output.Length: 1
+00:00:01 #5 [verbose] &gt; 0
+00:00:01 #6 [debug] executeAsync / exitCode: 0 / output.Length: 1
 0
 0
 True
@@ -8150,18 +8151,18 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #7 [Debug] 1
-00:00:02 #9 [Debug] 2
-00:00:02 #8 [Debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240408-2254-5606-0662-06c3a86a97cd\test.txt""
+<pre>00:00:01 #7 [debug] 1
+00:00:01 #9 [debug] 2
+00:00:01 #8 [debug] executeAsync / options: { Command =
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1806-0622-01f389ce706f\test.txt""
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = None }
-00:00:02 #10 [Debug] 3
-00:00:02 #11 [Debug] 4
-00:00:02 #12 [Warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:02 #13 [Debug] executeAsync / exitCode: -2147483648 / output.Length: 66
-00:00:02 #14 [Debug] 5
+00:00:02 #10 [debug] 3
+00:00:02 #11 [debug] 4
+00:00:02 #12 [warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+00:00:02 #13 [debug] executeAsync / exitCode: -2147483648 / output.Length: 66
+00:00:02 #14 [debug] 5
 -2147483648
 System.Threading.Tasks.TaskCanceledException: A task was canceled.
 True
@@ -8355,7 +8356,7 @@ OPTIONS:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSI_0035+it@3-1
+<pre>FSI_0036+it@3-1
 Argu.ArguParseException: ERROR: missing parameter '&lt;paths&gt;...'.
 USAGE: dotnet-repl.exe [--help] &lt;paths&gt;...
 

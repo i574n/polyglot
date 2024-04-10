@@ -1,3 +1,53 @@
+module SpiralTrace =
+    let get_trace_state () =
+#if !INTERACTIVE
+        Trace.get_trace_state ()
+#else
+        get_trace_state ()
+#endif
+    let trace x =
+#if !INTERACTIVE
+        Trace.trace x
+#else
+        trace x
+#endif
+
+    let US0_0 =
+#if !INTERACTIVE
+        Trace.US0_0
+#else
+        US0_0
+#endif
+
+    let US0_1 =
+#if !INTERACTIVE
+        Trace.US0_1
+#else
+        US0_1
+#endif
+
+    let US0_2 =
+#if !INTERACTIVE
+        Trace.US0_2
+#else
+        US0_2
+#endif
+
+    let US0_3 =
+#if !INTERACTIVE
+        Trace.US0_3
+#else
+        US0_3
+#endif
+
+    let US0_4 =
+#if !INTERACTIVE
+        Trace.US0_4
+#else
+        US0_4
+#endif
+
+
 #if !FABLE_COMPILER && !WASM && !CONTRACT
 module SpiralDateTime =
     let format x =

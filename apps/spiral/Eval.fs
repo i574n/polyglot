@@ -95,10 +95,13 @@ module Eval =
     /// ## traceFile
 
     let traceFile filePath (text : string) =
-        if traceLevel = TraceLevel.Verbose then
+        let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
+        match level with
+        | { l0 = x } when x = SpiralTrace.US0_0 ->
             let dateTimeStr = DateTime.Now |> SpiralDateTime.new_guid_from_date_time
             let traceFile = traceDir </> filePath
             File.AppendAllText (traceFile, $"{dateTimeStr} Eval / {text}{Environment.NewLine}") |> ignore
+        | _ -> ()
 
     /// ## log
 
@@ -258,10 +261,11 @@ module Eval =
             if code |> SpiralSm.trim <> "// // trace"
             then code |> SpiralSm.replace "\r\n" "\n"
             else
-                if traceLevel = Info
-                then traceLevel <- Verbose
-                else traceLevel <- Info
-                traceDump <- traceLevel = Verbose
+                let struct (_, dump, _, level, _) = SpiralTrace.get_trace_state ()
+                match level with
+                | { l0 = x } when x = SpiralTrace.US0_2 -> level.l0 <- SpiralTrace.US0_0
+                | _ -> level.l0 <- SpiralTrace.US0_2
+                dump.l0 <- level.l0 = SpiralTrace.US0_0
                 "inl main () = ()"
 
         let lines = rawCellCode |> SpiralSm.split "\n"
@@ -391,9 +395,10 @@ module Eval =
                             let spiralErrors =
                                 mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
                             let inline _trace (fn : unit -> string) =
-                                if traceLevel = Info
-                                then fn () |> System.Console.WriteLine
-                                else trace Info (fun () -> $"Eval.eval / {fn ()}") getLocals
+                                let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
+                                match level with
+                                | { l0 = x } when x = SpiralTrace.US0_2 -> fn () |> System.Console.WriteLine
+                                | _ -> trace Info (fun () -> $"Eval.eval / {fn ()}") getLocals
 
                             if printCode
                             then _trace (fun () -> if rustArgs |> Option.isSome then $"\n.fsx:\n{code}" else code)

@@ -45,7 +45,7 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     Unchecked.defaultof<System.DateTime>
     #endif
     |> fun x -> _v4 <- Some x
-    let v10 : System.DateTime = _v4 |> Option.get
+    let v10 : System.DateTime = _v4.Value
     v10
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -> string) = _.ToString()

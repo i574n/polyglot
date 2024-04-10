@@ -8991,7 +8991,7 @@ and method0 () : unit =
             Unchecked.defaultof&lt;string&gt;
             #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
-            let v11 : string = _v5 |&gt; Option.get
+            let v11 : string = _v5.Value
             US1_0(v11)
     let v16 : string = $"%A{v15}"
     System.Console.WriteLine v16
@@ -10969,7 +10969,7 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     Unchecked.defaultof&lt;(string [])&gt;
     #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
-    let v24 : (string []) = _v2 |&gt; Option.get
+    let v24 : (string []) = _v2.Value
     v24
 and closure17 () (v0 : (string [])) : (string -&gt; (string [])) =
     closure18(v0)
@@ -11071,7 +11071,7 @@ and closure35 () (v0 : exn) : string =
     Unchecked.defaultof&lt;string&gt;
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v7 : string = _v1 |&gt; Option.get
+    let v7 : string = _v1.Value
     v7
 and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0

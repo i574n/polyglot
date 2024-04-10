@@ -17,6 +17,7 @@
 #!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/trace.fsx
 #!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 
@@ -371,10 +372,11 @@ async {
 #!fsharp
 
 let inline withTraceLevel level fn = async {
-    let oldTraceLevel = traceLevel
+    let struct (_, _, _, level', _) = SpiralTrace.get_trace_state ()
+    let oldTraceLevel = level'.l0
     try
-        traceLevel <- level
+        level'.l0 <- level |> to_trace_level
         return! fn
     finally
-        traceLevel <- oldTraceLevel
+        level'.l0 <- oldTraceLevel
 }

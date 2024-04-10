@@ -1,11 +1,7 @@
 import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { compare, createAtom } from "../../deps/Fable/src/fable-library-ts/Util.js";
-import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
-import { Option } from "../../deps/Fable/src/fable-library-ts/Option.js";
-import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
-import { SpiralSm_trim_start, SpiralSm_trim_end } from "../../lib/spiral/lib.fsx";
-import { interpolate, toText } from "../../deps/Fable/src/fable-library-ts/String.js";
+import { SpiralTrace_trace, SpiralTrace_US0_0, SpiralTrace_US0_4, SpiralTrace_US0_3, SpiralTrace_US0_2, SpiralTrace_US0_1 } from "../../lib/spiral/lib.fsx";
+import { US0_$union } from "../../lib/spiral/trace.fsx";
 
 export const nl = "\n";
 
@@ -104,39 +100,25 @@ export function TraceLevel__get_IsCritical(this$: TraceLevel_$union, unitArg: vo
     }
 }
 
-export let traceEnabled = createAtom<boolean>(true);
-
-export let traceCount = createAtom<int32>(0);
-
-export let traceLevel = createAtom<TraceLevel_$union>(TraceLevel_Verbose());
-
-export let traceDump = createAtom<boolean>(false);
-
-export function testTraceLevel(level: TraceLevel_$union): boolean {
-    if (traceEnabled()) {
-        return compare(level, traceLevel()) >= 0;
-    }
-    else {
-        return false;
-    }
-}
-
 /**
- * ## traceRaw
+ * ## trace
  */
-export function traceRaw(level: TraceLevel_$union, fn: (() => string)): void {
-    if (testTraceLevel(level)) {
-        traceCount(traceCount() + 1);
-        const text = `${fn()}`;
-        console.log(text);
+export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
+    switch (_arg.tag) {
+        case /* Debug */ 1:
+            return SpiralTrace_US0_1;
+        case /* Info */ 2:
+            return SpiralTrace_US0_2;
+        case /* Warning */ 3:
+            return SpiralTrace_US0_3;
+        case /* Critical */ 4:
+            return SpiralTrace_US0_4;
+        default:
+            return SpiralTrace_US0_0;
     }
-}
-
-function replStart(): Option<int64> {
-    return void 0;
 }
 
 export function trace(level: TraceLevel_$union, fn: (() => string), getLocals: (() => string)): void {
-    traceRaw(level, (): string => SpiralSm_trim_end([" ", "/"])(SpiralSm_trim_start([])(toText(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", ["", traceCount(), level, fn(), getLocals()])))));
+    SpiralTrace_trace(to_trace_level(level))(fn)(getLocals);
 }
 

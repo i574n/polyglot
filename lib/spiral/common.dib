@@ -8,10 +8,6 @@
 
 #!spiral
 
-inl array x = x
-
-#!spiral
-
 // // test
 
 open testing
@@ -23,9 +19,6 @@ open testing
 #!spiral
 
 prototype (~:>) r : forall t. t -> r
-prototype append t : t -> t -> t
-prototype of_string t : string -> t
-prototype to_string t : t -> string
 
 #!markdown
 
@@ -80,15 +73,6 @@ inl downcast forall t u. (x : t) : u =
 
 #!markdown
 
-## null
-
-#!spiral
-
-inl null forall t. () : t =
-    $"null |> unbox<`t>"
-
-#!markdown
-
 ## unativeint
 
 #!spiral
@@ -100,50 +84,7 @@ inl unativeint forall t {int}. (n : t) : unativeint =
 
 #!markdown
 
-## i32
-
-#!spiral
-
-inl i32 forall t. (x : t) : i32 =
-    $"int32 !x"
-
-#!markdown
-
-## i64
-
-#!spiral
-
-inl i64 forall t. (x : t) : i64 =
-    $"int64 !x"
-
-#!markdown
-
-## f32
-
-#!spiral
-
-inl f32 forall t. (x : t) : f32 =
-    $"float32 !x"
-
-#!markdown
-
-## f64
-
-#!spiral
-
-inl f64 forall t. (x : t) : f64 =
-    $"float !x"
-
-#!markdown
-
 ## pair
-
-#!spiral
-
-type pair a b = $"(`a * `b)"
-
-inl pair x y =
-    x, y
 
 #!spiral
 
@@ -195,6 +136,7 @@ new_pair "a" (new_pair 1i32 "b")
 nominal lazy t = $'Lazy<`t>'
 
 inl memoize forall t. (fn : () -> t) : () -> t =
+    inl fn = join fn
     inl result : lazy t = $'lazy !fn ()'
     fun () => $'!result.Value'
 
@@ -216,123 +158,6 @@ add ()
 
 #!markdown
 
-## trace_level
-
-#!spiral
-
-union trace_level =
-    | Verbose
-    | Debug
-    | Info
-    | Warning
-    | Critical
-
-instance to_string trace_level = function
-    | Verbose => "Verbose"
-    | Debug => "Debug"
-    | Info => "Info"
-    | Warning => "Warning"
-    | Critical => "Critical"
-
-instance of_string trace_level = function
-    | "Verbose" => Verbose
-    | "Debug" => Debug
-    | "Info" => Info
-    | "Warning" => Warning
-    | "Critical" => Critical
-
-#!markdown
-
-## get_locals
-
-#!spiral
-
-inl get_locals () = ""
-
-#!markdown
-
-## trace_state
-
-#!spiral
-
-inl trace_state () =
-    inl result =
-        fun () =>
-            {
-                enabled = mut true
-                count = mut 0i64
-                level = mut Debug
-                dump = mut false
-            }
-        |> memoize
-    result ()
-
-#!markdown
-
-## test_trace_level
-
-#!spiral
-
-inl test_trace_level level =
-    inl state = trace_state ()
-    inl level' = *state.level
-    *state.enabled && $'!level >= !level' '
-
-#!spiral
-
-// let private replStart =
-// #if INTERACTIVE || !FABLE_COMPILER
-//     fun () ->
-//         if System.Reflection.Assembly.GetEntryAssembly().GetName().Name <> "Microsoft.DotNet.Interactive.App"
-//         then Some System.DateTime.Now.Ticks
-//         else None
-//     |> memoize
-// #else
-//     fun () -> None : int64 option
-// #endif
-// 
-// inl repl_start () =
-//     run_target function
-//         | Fsharp (Native) => fun () =>
-//             get_temp_path ()
-//             </> ($'$"\!{!get_entry_assembly_name ()}"' : string)
-//             </> (date_time.now () |> date_time.new_guid_from_date_time |> sm'.obj_to_string)
-//         | target => fun () => null ()
-// 
-//     inl result : optionm'.option' t = $'None'
-//     $"let mutable _!result = !result"
-//     $"#if INTERACTIVE || !FABLE_COMPILER"
-//         fun () =>
-//             if get_entry_assembly_name () <> "Microsoft.DotNet.Interactive.App"
-//             then date_time.now () |> date_time.ticks
-//         |> memoize
-//     $"#else"
-//         fun () => None : option i64
-//     $"#endif"
-//     fn (Fsharp Wasm) () |> fun x => $"!x"
-//     $"#endif"
-//     $"|> fun x -> _!result <- Some x"
-//     $"_!result |> Option.get"
-
-inl xx () =
-    ()
-
-#!spiral
-
-inl trace trace_level fn get_locals =
-    inl text = fn ()
-    console.write_line ($'$"{!text} / {!get_locals ()}"' : string)
-
-#!markdown
-
-## any
-
-#!spiral
-
-nominal any = $"obj"
-
-#!markdown
-
 ## to_any
 
 #!spiral
@@ -341,15 +166,6 @@ inl to_any forall t. (obj : t) : any =
     $"!obj"
 
 instance (~:>) any = to_any
-
-#!markdown
-
-## (/@)
-
-#!spiral
-
-inl (/@) a b =
-    b |> append a
 
 #!markdown
 
@@ -619,41 +435,6 @@ fun () =>
 |> async.new_async
 |> async.run_synchronously
 *new_disposable_test |> _assert_eq 0
-
-#!markdown
-
-## exn
-
-#!spiral
-
-nominal exn = $"exn"
-
-#!markdown
-
-## try
-
-#!spiral
-
-inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
-    inl none = None : option t
-    inl some (s : t) = Some s
-    $'try !fn () |> !some with ex -> !ex_fn ex '
-
-#!markdown
-
-## try_unit
-
-#!spiral
-
-inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
-    $"try"
-    fn ()
-    |> ignore
-    $"with ex ->"
-    ex_fn $'ex'
-    |> ignore
-    $'(*'
-    $'*)'
 
 #!markdown
 

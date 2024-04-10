@@ -31,6 +31,7 @@
 #!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/trace.fsx
 #!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
@@ -378,7 +379,7 @@ let inline persistCode code = async {
     codeDir |> System.IO.Directory.CreateDirectory |> ignore
 
     let mainPath = codeDir </> "main.spi"
-    do! code |> SpiralFileSystem.write_all_text_async mainPath
+    do! code |> SpiralFileSystem.write_all_text_exists mainPath
 
     let spiprojPath = codeDir </> "package.spiproj"
     let spiprojCode =
@@ -389,7 +390,7 @@ packages:
 modules:
     main
 """
-    do! spiprojCode |> SpiralFileSystem.write_all_text_async spiprojPath
+    do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
     return mainPath
 }

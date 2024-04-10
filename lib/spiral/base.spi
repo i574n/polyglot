@@ -1,3 +1,25 @@
+// // # base
+
+inl array x = x
+
+// // ## prototype
+
+prototype append t : t -> t -> t
+prototype of_string t : string -> t
+prototype to_string t : t -> string
+
+// // ## (||>)
+
+inl (||>) (arg1, arg2) fn =
+    arg2 |> fn arg1
+
+// // ## (/@)
+
+inl (/@) a b =
+    b |> append a
+
+// // ## target
+
 union target_runtime =
     | Native
     | Wasm
@@ -7,6 +29,8 @@ union target =
     | Rust : target_runtime
     | Fsharp : target_runtime
     | TypeScript : target_runtime
+
+// // ## run_target
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
     inl result : optionm'.option' t = optionm'.none' ()
@@ -30,4 +54,72 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     $'Unchecked.defaultof<`t>'
     $"#endif"
     $"|> fun x -> _!result <- Some x"
-    $'_!result |> Option.get'
+    $'_!result.Value'
+
+// // ## exn
+
+nominal exn = $"exn"
+
+// // ## try
+
+inl try forall t. (fn : () -> t) (ex_fn : exn -> option t) : option t =
+    inl none = None : option t
+    inl some (s : t) = Some s
+    $'try !fn () |> !some with ex -> !ex_fn ex '
+
+// // ## try_unit
+
+inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
+    $"try"
+    fn ()
+    |> ignore
+    $"with ex ->"
+    ex_fn $'ex'
+    |> ignore
+    $'(*'
+    $'*)'
+
+// // ## any
+
+nominal any = $"obj"
+
+
+// // ## i32
+
+inl i32 forall t. (x : t) : i32 =
+    $"int32 !x"
+
+// // ## i64
+
+inl i64 forall t. (x : t) : i64 =
+    $"int64 !x"
+
+// // ## f32
+
+inl f32 forall t. (x : t) : f32 =
+    $"float32 !x"
+
+// // ## f64
+
+inl f64 forall t. (x : t) : f64 =
+    $"float !x"
+
+// // ## pair
+
+type pair a b = $"(`a * `b)"
+
+inl pair x y =
+    x, y
+
+// // ## null
+
+inl null forall t. () : t =
+    $"null |> unbox<`t>"
+
+// // ## get_entry_assembly_name
+
+inl get_entry_assembly_name () : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
+        | target => fun () => null ()

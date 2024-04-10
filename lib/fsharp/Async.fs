@@ -189,10 +189,11 @@ module Async =
     /// ## withTraceLevel
 
     let inline withTraceLevel level fn = async {
-        let oldTraceLevel = traceLevel
+        let struct (_, _, _, level', _) = SpiralTrace.get_trace_state ()
+        let oldTraceLevel = level'.l0
         try
-            traceLevel <- level
+            level'.l0 <- level |> to_trace_level
             return! fn
         finally
-            traceLevel <- oldTraceLevel
+            level'.l0 <- oldTraceLevel
     }

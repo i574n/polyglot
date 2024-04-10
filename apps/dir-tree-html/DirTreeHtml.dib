@@ -26,6 +26,7 @@
 #!import ../../lib/spiral/sm.fsx
 #!import ../../lib/spiral/date_time.fsx
 #!import ../../lib/spiral/file_system.fsx
+#!import ../../lib/spiral/trace.fsx
 #!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs

@@ -430,3 +430,17 @@ listm.init 10i32 id
 
     y |> sum
     |> _assert_eq 45
+
+#!markdown
+
+## enumerate
+
+#!spiral
+
+inl enumerate forall dim {int; number} t. (ar : a dim t) : a dim (unativeint * t) =
+    open rust_operators
+    inl (a ar) = ar
+    inl ar = ar |> am'.to_vec
+    !\($'"!ar.into_iter().enumerate().map(std::rc::Rc::new).collect()"')
+    |> am'.vec_map from_pair
+    |> am'.from_vec

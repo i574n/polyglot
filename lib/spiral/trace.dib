@@ -1,0 +1,242 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# trace
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## trace_level
+
+#!spiral
+
+union trace_level =
+    | Verbose
+    | Debug
+    | Info
+    | Warning
+    | Critical
+
+instance to_string trace_level = function
+    | Verbose => "Verbose"
+    | Debug => "Debug"
+    | Info => "Info"
+    | Warning => "Warning"
+    | Critical => "Critical"
+
+instance of_string trace_level = function
+    | "Verbose" => Verbose
+    | "Debug" => Debug
+    | "Info" => Info
+    | "Warning" => Warning
+    | "Critical" => Critical
+
+#!markdown
+
+## repl_start
+
+#!spiral
+
+inl repl_start () : optionm'.option' i64 =
+    inl result : optionm'.option' (optionm'.option' i64) = optionm'.none' ()
+    $"let mutable _!result = !result"
+    $'#if INTERACTIVE || \!FABLE_COMPILER' : ()
+    if get_entry_assembly_name () <> "Microsoft.DotNet.Interactive.App"
+    then date_time.now () |> date_time.ticks |> Some
+    else None
+    |> optionm'.box
+    |> fun x =>
+        inl x = join x
+        $'!x '
+    $'#else' : ()
+    (None : option i64) |> optionm'.box
+    |> fun x =>
+        inl x = join x
+        $'!x '
+    $'#endif' : ()
+    $"|> fun x -> _!result <- Some x"
+    $'_!result.Value'
+
+#!markdown
+
+## trace_state
+
+#!spiral
+
+type trace_state =
+    {
+        count : mut i64
+        dump : mut bool
+        enabled : mut bool
+        level : mut trace_level
+        repl_start : optionm'.option' i64
+    }
+
+inl new_trace_state () =
+    {
+        enabled = mut true
+        count = mut 0i64
+        level = mut Verbose
+        dump = mut false
+        repl_start = repl_start ()
+    } : trace_state
+
+#!markdown
+
+## init_trace_state
+
+#!spiral
+
+inl init_trace_state () : () =
+    global "module State = let mutable trace_state = None"
+    $"if State.trace_state = None then State.trace_state <- !new_trace_state () |> Some" : ()
+
+#!markdown
+
+## get_trace_state
+
+#!spiral
+
+inl get_trace_state () : trace_state =
+    init_trace_state ()
+    $'State.trace_state.Value'
+
+#!markdown
+
+## get_locals
+
+#!spiral
+
+inl get_locals () = ""
+
+#!markdown
+
+## test_trace_level
+
+#!spiral
+
+inl test_trace_level level : bool =
+    inl state = get_trace_state ()
+    inl level' = *state.level
+    *state.enabled && $'!level >= !level' '
+
+#!spiral
+
+// // test
+
+test_trace_level Verbose |> _assert_eq true
+test_trace_level Critical |> _assert_eq true
+
+#!markdown
+
+## trace_raw
+
+#!spiral
+
+inl trace_raw level fn =
+    inl trace_state = get_trace_state ()
+    if level |> test_trace_level then
+        inl count = trace_state.count
+        count <- *trace_state.count + 1
+
+        inl text = $'$"%s{!fn ()}"' : string
+        run_target function
+        | Rust _ => fun () =>
+            open rust_operators
+            !\\(text, $'\@"println\!(""{}"", $0)"')
+        | _ => fun () =>
+            $'System.Console.WriteLine !text '
+
+        // run_target function
+        // | Fsharp (Native) => fun () =>
+        //     if *trace_state.dump then
+        //         try_unit
+        //             fun () =>
+        //                 // open file_system_operators
+        //                 // inl tmp_path = file_system.get_temp_path ()
+        //                 // inl log_dir = tmp_path </> "!polyglot"
+        //                 // file_system.create_directory log_dir |> ignore
+        //                 // inl guid = date_time.new_guid_from_date_time (date_time.now ())
+        //                 // inl log_file = log_dir </> $'$"{!guid}.txt"'
+        //                 // file_system.write_all_text_async log_file text |> async.run_synchronously
+        //                 ()
+        //             fun ex =>
+        //                 inl ex = ex |> sm'.format_exception
+        //                 trace_raw Critical (fun () => $'$"trace / ex: {!ex}"')
+        // | _ => fun () => ()
+
+#!spiral
+
+// // test
+// // print_code=true
+
+trace_raw Debug fun () => "test"
+
+#!markdown
+
+## trace
+
+#!spiral
+
+let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) =
+    fun () =>
+        inl trace_state = get_trace_state ()
+        inl time =
+            run_target fun target =>
+                match target with
+                | Fsharp (Native)
+                | Rust (Native) => fun () =>
+                    match trace_state.repl_start |> optionm'.unbox with
+                    | Some repl_start =>
+                        inl t =
+                            (date_time.now () |> date_time.ticks |> fun (date_time.timestamp x) => x)
+                            - repl_start |> date_time.time_span
+                        date_time.date_time_milliseconds
+                            1i32 1i32 1i32
+                            (t |> date_time.hours)
+                            (t |> date_time.minutes)
+                            (t |> date_time.seconds)
+                            (t |> date_time.milliseconds)
+                    | None => date_time.now ()
+                    |> fun date_time =>
+                        inl format =
+                            match target with
+                            | Rust _ => "hh:mm:ss"
+                            | _ => "HH:mm:ss"
+                        $'!date_time.ToString !format '
+                | _ => fun () => join ""
+        inl count = *trace_state.count
+        inl level = level |> to_string |> sm'.to_lower
+        $'$"{!time} #{!count} [{!level}] %s{!fn ()} / %s{!get_locals ()}"'
+        |> sm'.trim_start ;[]
+        |> sm'.trim_end ;[ ' '; '/' ]
+    |> trace_raw level
+
+#!spiral
+
+// // test
+// // print_code=false
+
+trace Debug (fun () => "test") get_locals
+trace Debug (fun () => "test") get_locals
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    // global "let mutable trace_state = None"
+    // $"let mutable trace_state : `trace_state option = None" : ()
+
+    $"let trace x = !trace x" : ()
+    $"let get_trace_state () = !get_trace_state ()" : ()

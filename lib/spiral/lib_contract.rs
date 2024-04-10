@@ -1,5 +1,50 @@
 pub mod Lib {
     use super::*;
+    pub mod SpiralTrace {
+        use super::*;
+        use crate::Trace;
+        use crate::Trace::Mut0;
+        use crate::Trace::Mut1;
+        use crate::Trace::Mut2;
+        use crate::Trace::US0;
+        use fable_library_rust::Native_::Func0;
+        use fable_library_rust::Native_::Func1;
+        use fable_library_rust::Native_::LrcPtr;
+        use fable_library_rust::Native_::OnceInit;
+        use fable_library_rust::String_::string;
+        pub fn get_trace_state() -> (
+            LrcPtr<Mut0>,
+            LrcPtr<Mut1>,
+            LrcPtr<Mut1>,
+            LrcPtr<Mut2>,
+            Option<i64>,
+        ) {
+            Trace::get_trace_state()
+        }
+        pub fn trace(x: US0) -> Func1<Func0<string>, Func1<Func0<string>, ()>> {
+            Trace::trace(x)
+        }
+        pub fn US0_0() -> US0 {
+            static US0_0: OnceInit<US0> = OnceInit::new();
+            US0_0.get_or_insert_with(|| US0::US0_0).clone()
+        }
+        pub fn US0_1() -> US0 {
+            static US0_1: OnceInit<US0> = OnceInit::new();
+            US0_1.get_or_insert_with(|| US0::US0_1).clone()
+        }
+        pub fn US0_2() -> US0 {
+            static US0_2: OnceInit<US0> = OnceInit::new();
+            US0_2.get_or_insert_with(|| US0::US0_2).clone()
+        }
+        pub fn US0_3() -> US0 {
+            static US0_3: OnceInit<US0> = OnceInit::new();
+            US0_3.get_or_insert_with(|| US0::US0_3).clone()
+        }
+        pub fn US0_4() -> US0 {
+            static US0_4: OnceInit<US0> = OnceInit::new();
+            US0_4.get_or_insert_with(|| US0::US0_4).clone()
+        }
+    }
     pub mod SpiralSm {
         use super::*;
         use crate::Sm;

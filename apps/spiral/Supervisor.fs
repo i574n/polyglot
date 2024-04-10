@@ -298,7 +298,7 @@ module Supervisor =
         codeDir |> System.IO.Directory.CreateDirectory |> ignore
 
         let mainPath = codeDir </> "main.spi"
-        do! code |> SpiralFileSystem.write_all_text_async mainPath
+        do! code |> SpiralFileSystem.write_all_text_exists mainPath
 
         let spiprojPath = codeDir </> "package.spiproj"
         let spiprojCode =
@@ -309,7 +309,7 @@ packages:
 modules:
     main
 """
-        do! spiprojCode |> SpiralFileSystem.write_all_text_async spiprojPath
+        do! spiprojCode |> SpiralFileSystem.write_all_text_exists spiprojPath
 
         return mainPath
     }

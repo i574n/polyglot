@@ -179,14 +179,6 @@ inl get_file_name (path : string) : string =
             path |> $'System.IO.Path.GetFileName'
         | _ => fun () => null ()
 
-// // ## get_entry_assembly_name
-
-inl get_entry_assembly_name () : string =
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
-        | target => fun () => null ()
-
 // // ## create_temp_directory_name
 
 inl create_temp_directory_name () =

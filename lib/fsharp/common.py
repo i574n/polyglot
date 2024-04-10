@@ -1,14 +1,10 @@
 from __future__ import annotations
 from collections.abc import Callable
 from typing import Any
-from fable_modules.fable_library.date import (to_string, now, ticks as ticks_1, create as create_1)
-from fable_modules.fable_library.long import op_subtraction
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
-from fable_modules.fable_library.string_ import (to_text, interpolate)
-from fable_modules.fable_library.time_span import (create, hours, minutes, seconds, milliseconds)
-from fable_modules.fable_library.types import (Array, Union, int64)
-from fable_modules.fable_library.util import (create_atom, compare)
-from ......lib.spiral.lib import (SpiralSm_trim_end, SpiralSm_trim_start)
+from fable_modules.fable_library.types import (Array, Union)
+from ......lib.spiral.lib import (SpiralTrace_US0_1, SpiralTrace_US0_2, SpiralTrace_US0_3, SpiralTrace_US0_4, SpiralTrace_US0_0, SpiralTrace_trace)
+from ......lib.spiral.trace import US0
 
 nl: str = "\n"
 
@@ -76,50 +72,25 @@ def TraceLevel__get_IsCritical(this: TraceLevel, unit_arg: None) -> bool:
 
 
 
-trace_enabled: bool = create_atom(True)
+def to_trace_level(_arg: TraceLevel) -> US0:
+    if _arg.tag == 1:
+        return SpiralTrace_US0_1
 
-trace_count: int = create_atom(0)
+    elif _arg.tag == 2:
+        return SpiralTrace_US0_2
 
-trace_level: TraceLevel = create_atom(TraceLevel(0))
+    elif _arg.tag == 3:
+        return SpiralTrace_US0_3
 
-trace_dump: bool = create_atom(False)
-
-def test_trace_level(level: TraceLevel) -> bool:
-    if trace_enabled():
-        return compare(level, trace_level()) >= 0
+    elif _arg.tag == 4:
+        return SpiralTrace_US0_4
 
     else: 
-        return False
+        return SpiralTrace_US0_0
 
-
-
-def trace_raw(level: TraceLevel, fn: Callable[[], str]) -> None:
-    if test_trace_level(level):
-        trace_count(trace_count() + 1)
-        print(("" + fn(None)) + "")
-
-
-
-def repl_start(__unit: None=None) -> int64 | None:
-    return None
 
 
 def trace(level: TraceLevel, fn: Callable[[], str], get_locals: Callable[[], str]) -> None:
-    def fn_1(__unit: None=None, level: Any=level, fn: Any=fn, get_locals: Any=get_locals) -> str:
-        def _arrow65(__unit: None=None) -> Any:
-            match_value: int64 | None = repl_start()
-            if match_value is None:
-                return now()
-
-            else: 
-                repl_start_1: int64 = match_value
-                t: Any = create(op_subtraction(ticks_1(now()), repl_start_1))
-                return create_1(1, 1, 1, hours(t), minutes(t), seconds(t), milliseconds(t))
-
-
-        time: str = to_string(_arrow65(), "HH:mm:ss")
-        return SpiralSm_trim_end([" ", "/"])(SpiralSm_trim_start([])(to_text(interpolate("%P() #%P() [%A%P()] %s%P() / %s%P()", [time, trace_count(), level, fn(None), get_locals(None)]))))
-
-    trace_raw(level, fn_1)
+    SpiralTrace_trace(to_trace_level(level))(fn)(get_locals)
 
 
