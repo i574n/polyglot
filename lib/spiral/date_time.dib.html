@@ -8525,6 +8525,9 @@ and method0 () : unit =
     let v10 : System.DateTime = System.DateTime.ParseExact (v3.[..24] |&gt; v4 "-" "", "yyyyMMddHHmmssfffffff", null)
     v10 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
+    #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
     let v11 : System.DateTime = _v5 |&gt; Option.get
     let v12 : System.DateTime = System.DateTime.MinValue
@@ -8616,6 +8619,9 @@ and method0 () : unit =
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v11 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
+    #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v12 : System.DateTime = _v6 |&gt; Option.get
     let v13 : System.DateTime = System.DateTime.MaxValue
@@ -8706,6 +8712,9 @@ and method0 () : unit =
     #if FABLE_COMPILER_TYPESCRIPT
     let v11 : System.DateTime = System.DateTime.ParseExact (v4.[..24] |&gt; v5 "-" "", "yyyyMMddHHmmssfffffff", null)
     v11 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
     let v12 : System.DateTime = _v6 |&gt; Option.get
@@ -9351,6 +9360,9 @@ and method0 () : unit =
     let v14 : System.DateTime = System.DateTime.ParseExact (v7.[..24] |&gt; v8 "-" "", "yyyyMMddHHmmssfffffff", null)
     v14 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
+    #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
     let v15 : System.DateTime = _v9 |&gt; Option.get
     let v16 : System.DateTime = System.DateTime.UtcNow
@@ -9527,7 +9539,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 04/06/2024 02:19:18 +00:00
+<pre>DateTime: 04/10/2024 06:13:53 +00:00
 Time Zone: (UTC) Coordinated Universal Time
 Is DST: false
 v1: 00:00:00
@@ -9619,6 +9631,9 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     #if FABLE_COMPILER_TYPESCRIPT
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |&gt; v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;System.DateTime&gt;
     #endif
     |&gt; fun x -&gt; _v4 &lt;- Some x
     let v10 : System.DateTime = _v4 |&gt; Option.get

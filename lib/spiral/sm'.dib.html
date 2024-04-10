@@ -8306,8 +8306,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
+<pre>
 </pre>
 </div>
 </div>
@@ -8986,6 +8985,9 @@ and method0 () : unit =
             #if FABLE_COMPILER_TYPESCRIPT
             let v10 : string = $"%A{v4}"
             v10 
+            #endif
+            #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+            Unchecked.defaultof&lt;string&gt;
             #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
             let v11 : string = _v5 |&gt; Option.get
@@ -10296,103 +10298,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>let rec method1 (v0 : bool) : bool =
-    v0
-and method0 () : unit =
-    let v0 : float = float 2L
-    let v1 : float = v0 / 2.0
-    let v2 : (float -&gt; float) = ceil
-    let v3 : float = v2 v1
-    let v4 : int64 = int64 v3
-    let v5 : (float -&gt; float) = floor
-    let v6 : float = v5 v1
-    let v7 : int64 = int64 v6
-    let v8 : int64 = v4 - 1L
-    let v9 : string = "12345".[int 0L..int v8]
-    let v10 : int64 = 5L - v7
-    let v11 : string = "12345".[int v10..int 4L]
-    let v12 : string = "..."
-    let v13 : (string []) = [|v9; v12; v11|]
-    let v14 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v15 : string seq = v14 v13
-    let v16 : string = ""
-    let v17 : string = v15 |&gt; String.concat v16
-    let v18 : string = $"%A{v17}"
-    System.Console.WriteLine v18
-    let v20 : bool = v17 = "1...5"
-    let v22 : bool =
-        if v20 then
-            true
-        else
-            method1(v20)
-    let v23 : string = "1...5"
-    let v24 : string = $"__expect / actual: %A{v17} / expected: %A{v23}"
-    let v25 : bool = v22 = false
-    if v25 then
-        failwith&lt;unit&gt; v24
-    let v26 : float = float 3L
-    let v27 : float = v26 / 2.0
-    let v28 : (float -&gt; float) = ceil
-    let v29 : float = v28 v27
-    let v30 : int64 = int64 v29
-    let v31 : (float -&gt; float) = floor
-    let v32 : float = v31 v27
-    let v33 : int64 = int64 v32
-    let v34 : int64 = v30 - 1L
-    let v35 : string = "12345".[int 0L..int v34]
-    let v36 : int64 = 5L - v33
-    let v37 : string = "12345".[int v36..int 4L]
-    let v38 : (string []) = [|v35; v12; v37|]
-    let v39 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v40 : string seq = v39 v38
-    let v41 : string = v40 |&gt; String.concat v16
-    let v42 : string = $"%A{v41}"
-    System.Console.WriteLine v42
-    let v44 : bool = v41 = "12...5"
-    let v46 : bool =
-        if v44 then
-            true
-        else
-            method1(v44)
-    let v47 : string = "12...5"
-    let v48 : string = $"__expect / actual: %A{v41} / expected: %A{v47}"
-    let v49 : bool = v46 = false
-    if v49 then
-        failwith&lt;unit&gt; v48
-    let v50 : float = float 4L
-    let v51 : float = v50 / 2.0
-    let v52 : (float -&gt; float) = ceil
-    let v53 : float = v52 v51
-    let v54 : int64 = int64 v53
-    let v55 : (float -&gt; float) = floor
-    let v56 : float = v55 v51
-    let v57 : int64 = int64 v56
-    let v58 : int64 = v54 - 1L
-    let v59 : string = "1234567".[int 0L..int v58]
-    let v60 : int64 = 7L - v57
-    let v61 : string = "1234567".[int v60..int 6L]
-    let v62 : (string []) = [|v59; v12; v61|]
-    let v63 : ((string []) -&gt; string seq) = Seq.ofArray
-    let v64 : string seq = v63 v62
-    let v65 : string = v64 |&gt; String.concat v16
-    let v66 : string = $"%A{v65}"
-    System.Console.WriteLine v66
-    let v68 : bool = v65 = "12...67"
-    let v70 : bool =
-        if v68 then
-            true
-        else
-            method1(v68)
-    let v71 : string = "12...67"
-    let v72 : string = $"__expect / actual: %A{v65} / expected: %A{v71}"
-    let v73 : bool = v70 = false
-    if v73 then
-        failwith&lt;unit&gt; v72
-method0()
-
-"1...5"
-"12...5"
-"12...67"
+<pre>
 </pre>
 </div>
 </div>
@@ -10962,6 +10868,9 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v23 : (string []) = v1.Split v22
     v23 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;(string [])&gt;
+    #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
     let v24 : (string []) = _v2 |&gt; Option.get
     v24
@@ -11060,6 +10969,9 @@ and closure35 () (v0 : exn) : string =
     #if FABLE_COMPILER_TYPESCRIPT
     let v6 : string = $"%A{v0}"
     v6 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof&lt;string&gt;
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
     let v7 : string = _v1 |&gt; Option.get

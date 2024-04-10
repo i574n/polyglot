@@ -2,6 +2,7 @@ import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_str
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
 import { create_temp_directory_name, create_temp_directory, find_parent, get_source_directory } from "../../lib/spiral/file_system.fsx";
+import { IDisposable } from "../../deps/Fable/src/fable-library-ts/Util.js";
 
 export function SpiralSm_concat(x: string): ((arg0: Iterable<string>) => string) {
     return concat(x);
@@ -75,7 +76,7 @@ export function SpiralFileSystem_find_parent(x: string): ((arg0: boolean) => ((a
     return find_parent(x);
 }
 
-export function SpiralFileSystem_create_temp_directory(): string {
+export function SpiralFileSystem_create_temp_directory(): [string, IDisposable] {
     return create_temp_directory();
 }
 

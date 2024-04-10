@@ -195,7 +195,7 @@ inl y' = y |> box |> unbox
 #!spiral
 
 inl try' forall t. (x : option' t) : t =
-    !\($'"!x?"')
+    !\\(x, $'"$0?"')
 
 #!markdown
 

@@ -5,6 +5,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
+. ../../lib/spiral/lib.ps1
 
 
 if (!$fast) {
@@ -21,21 +22,7 @@ $targetDir = "../../target/polyglot/builder/math"
 
 { dotnet fable $targetDir/math.fsproj --optimize --lang rs --extension .rs --outDir $targetDir/target/rs } | Invoke-Block
 
-function CopyTarget {
-    param (
-        [Parameter(Mandatory)]
-        [string] $Language
-    )
-
-    Copy-Item $targetDir/target/$Language/lib/fsharp/Common.$Language ../../lib/fsharp/Common.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/common.$Language ../../lib/spiral/common.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/date_time.$Language ../../lib/spiral/date_time.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/file_system.$Language ../../lib/spiral/file_system.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/sm.$Language ../../lib/spiral/sm.$Language -Force
-    Copy-Item $targetDir/target/$Language/lib/spiral/lib.$Language ../../lib/spiral/lib.$Language -Force
-}
-
-CopyTarget "rs"
+CopyTarget $targetDir ../../ "rs"
 
 (Get-Content $targetDir/target/rs/math.rs) `
     -replace "../../../lib", "../lib" `

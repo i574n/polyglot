@@ -37,6 +37,87 @@ inl types () =
 
 #!markdown
 
+## file_mode
+
+#!spiral
+
+nominal file_mode' = $'System.IO.FileMode'
+
+union file_mode =
+    | ModeCreateNew
+    | ModeCreate
+    | ModeOpen
+    | ModeOpenOrCreate
+    | Truncate
+    | Append
+
+inl file_mode = function
+    | ModeCreateNew => $'System.IO.FileMode.CreateNew' : file_mode'
+    | ModeCreate => $'System.IO.FileMode.Create' : file_mode'
+    | ModeOpen => $'System.IO.FileMode.Open' : file_mode'
+    | ModeOpenOrCreate => $'System.IO.FileMode.OpenOrCreate' : file_mode'
+    | Truncate => $'System.IO.FileMode.Truncate' : file_mode'
+    | Append => $'System.IO.FileMode.Append' : file_mode'
+
+#!markdown
+
+## file_access
+
+#!spiral
+
+nominal file_access' = $'System.IO.FileAccess'
+
+union file_access =
+    | AccessRead
+    | AccessWrite
+    | AccessReadWrite
+
+inl file_access = function
+    | AccessRead => $'System.IO.FileAccess.Read' : file_access'
+    | AccessWrite => $'System.IO.FileAccess.ReadWrite' : file_access'
+    | AccessReadWrite => $'System.IO.FileAccess.ReadWrite' : file_access'
+
+#!markdown
+
+## file_share
+
+#!spiral
+
+nominal file_share' = $'System.IO.FileShare'
+
+union file_share =
+    | ShareNone
+    | ShareRead
+    | ShareWrite
+    | ShareReadWrite
+    | ShareDelete
+
+inl file_share = function
+    | ShareNone => $'System.IO.FileShare.None' : file_share'
+    | ShareRead => $'System.IO.FileShare.Read' : file_share'
+    | ShareWrite => $'System.IO.FileShare.Write' : file_share'
+    | ShareReadWrite => $'System.IO.FileShare.ReadWrite' : file_share'
+    | ShareDelete => $'System.IO.FileShare.Delete' : file_share'
+
+#!markdown
+
+## file_stream
+
+#!spiral
+
+nominal file_stream' = $'System.IO.FileStream'
+
+inl file_stream (path : string) mode access share : file_stream' =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl mode = mode |> file_mode
+            inl access = access |> file_access
+            inl share = share |> file_share
+            $'new System.IO.FileStream (!path, !mode, !access, !share)'
+        | _ => fun () => null ()
+
+#!markdown
+
 ## path
 
 #!spiral
@@ -101,9 +182,9 @@ inl path_buf_file_name (path : path_buf) : optionm'.option' (rust.ref' sm'.os_st
 
 #!spiral
 
-inl path_buf_display (path : path_buf) : sm'.std_string =
+inl path_buf_display (path_buf : path_buf) : sm'.std_string =
     open rust_operators
-    !\\(path, $'"$0.display().to_string()"')
+    !\\(path_buf, $'"$0.display().to_string()"')
 
 #!markdown
 
@@ -113,7 +194,7 @@ inl path_buf_display (path : path_buf) : sm'.std_string =
 
 inl path_buf_exists (path_buf : path_buf) : bool =
     open rust_operators
-    !\($'"!path_buf.exists()"')
+    !\\(path_buf, $'"$0.exists()"')
 
 #!markdown
 
@@ -123,7 +204,7 @@ inl path_buf_exists (path_buf : path_buf) : bool =
 
 inl path_buf_is_dir (path_buf : path_buf) : bool =
     open rust_operators
-    !\($'"!path_buf.is_dir()"')
+    !\\(path_buf, $'"$0.is_dir()"')
 
 #!markdown
 
@@ -133,11 +214,11 @@ inl path_buf_is_dir (path_buf : path_buf) : bool =
 
 inl path_buf_is_file (path_buf : path_buf) : bool =
     open rust_operators
-    !\($'"!path_buf.is_file()"')
+    !\\(path_buf, $'"$0.is_file()"')
 
 #!markdown
 
-## path_parent
+## path_buf_parent
 
 #!spiral
 
@@ -163,8 +244,6 @@ inl ts_path_join (b : string) (a : string) : string =
 
 #!spiral
 
-// let result = find_parent(".paket")(false)(get_source_directory());
-// console.log(result);
 inl (</>) (a : string) (b : string) : string =
     run_target function
         | Rust (Native) => fun () =>
@@ -173,7 +252,7 @@ inl (</>) (a : string) (b : string) : string =
             $'System.IO.Path.Combine (!a, !b)'
         | TypeScript _ => fun () =>
             a |> ts_path_join b
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -183,6 +262,18 @@ inl (</>) (a : string) (b : string) : string =
 
 inl get_temp_path () : string =
     $'System.IO.Path.GetTempPath' ()
+
+#!markdown
+
+## get_file_name
+
+#!spiral
+
+inl get_file_name (path : string) : string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.Path.GetFileName'
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -215,7 +306,7 @@ inl create_temp_directory_name () =
 // // test
 
 create_temp_directory_name ()
-|> _contains ($'System.IO.Path.DirectorySeparatorChar' : char)
+|> _assert_contains ($'System.IO.Path.DirectorySeparatorChar' : char)
 
 #!markdown
 
@@ -238,7 +329,7 @@ inl directory_info_exists (info : directory_info) : bool =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!info.Exists'
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -250,7 +341,7 @@ inl directory_info_creation_time (info : directory_info) : date_time.date_time =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!info.CreationTime'
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -262,7 +353,7 @@ inl directory_info_name (info : directory_info) : string =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!info.Name'
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -274,7 +365,25 @@ inl directory_info_full_name (info : directory_info) : string =
     run_target function
         | Fsharp (Native) => fun () =>
             $'!info.FullName'
-        | target => fun () => null ()
+        | _ => fun () => null ()
+
+#!markdown
+
+## get_source_directory
+
+#!spiral
+
+inl get_source_directory () =
+    $'__SOURCE_DIRECTORY__' : string
+
+#!spiral
+
+// // test
+
+get_source_directory ()
+|> directory_info
+|> directory_info_name
+|> _assert_eq "spiral"
 
 #!markdown
 
@@ -286,7 +395,7 @@ inl create_directory (path : string) : directory_info =
     run_target function
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.Directory.CreateDirectory'
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -305,7 +414,7 @@ inl directory_exists (path : string) : bool =
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             inl fs : $'IFsExistsSync' = ts.import_all "fs"
             ts.emit_expr path $'"!fs.existsSync($0)"'
-        | target => fun () => null ()
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -333,7 +442,31 @@ inl directory_get_parent (path : string) : optionm'.option' string =
             inl fs : $'IPathDirname' = ts.import_all "path"
             ts.emit_expr path $'"!fs.dirname($0)"' |> Some
         | _ => fun () => null ()
-        |> optionm'.box
+    |> optionm'.box
+
+#!markdown
+
+## file_delete
+
+#!spiral
+
+inl file_delete (path : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.File.Delete'
+        | _ => fun () => null ()
+
+#!markdown
+
+## file_move
+
+#!spiral
+
+inl file_move (old_path : string) (new_path : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.File.Move (!old_path, !new_path)'
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -352,7 +485,115 @@ inl file_exists (path : string) : bool =
             global "type IFsExistsSync = abstract existsSync: path: string -> bool"
             inl fs : $'IFsExistsSync' = ts.import_all "fs"
             ts.emit_expr path $'"!fs.existsSync($0)"'
-        | target => fun () => null ()
+        | _ => fun () => null ()
+
+#!markdown
+
+## directory_delete
+
+#!spiral
+
+inl directory_delete recursive (path : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Directory.Delete (!path, !recursive)'
+        | _ => fun () => null ()
+
+#!markdown
+
+## read_all_text_async
+
+#!spiral
+
+inl read_all_text_async (path : string) : _ string =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            path |> $'System.IO.File.ReadAllTextAsync' |> async.await_task
+        | _ => fun () => null ()
+
+#!markdown
+
+## file_exists_content
+
+#!spiral
+
+inl file_exists_content path content : _ bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            fun () =>
+                if path |> file_exists |> not
+                then false |> return |> fun x => $'(*' : ()
+                else
+                    $'*) else' : ()
+                    inl existing_content = path |> read_all_text_async |> async.let'
+                    content = existing_content |> return |> fun x => $'(*' : ()
+                |> fun x => $'*)' : ()
+            |> async.new_async_unit
+        | _ => fun () => null ()
+
+#!markdown
+
+## write_all_text
+
+#!spiral
+
+inl write_all_text (path : string) (text : string) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.File.WriteAllText (!path, !text)'
+        | _ => fun () => null ()
+
+#!markdown
+
+## write_all_text_async
+
+#!spiral
+
+inl write_all_text_async (path : string) (text : string) : _ () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.File.WriteAllTextAsync (!path, !text)' |> async.await_task
+        | _ => fun () => null ()
+
+#!markdown
+
+## write_all_text_exists
+
+#!spiral
+
+inl write_all_text_exists path contents =
+    fun () =>
+        inl exists' = contents |> file_exists_content path |> async.let'
+        if not exists'
+        then contents |> write_all_text_async path |> async.do
+    |> async.new_async
+
+#!markdown
+
+## delete_directory_async
+
+#!spiral
+
+inl delete_directory_async path : _ i64 =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            let rec loop (retry : i64) =
+                fun () =>
+                    try_unit
+                        fun () =>
+                            path |> directory_delete true
+                            retry |> return
+                        fun ex =>
+                            if retry % 100i64 = 0 then
+                                inl ex = ex |> sm'.format_exception
+                                let get_locals () = $'$"path: {!path |> !get_file_name} / ex: {!ex} / {!get_locals ()}"' : string
+                                // trace Debug (fun () -> "delete_directory_async") getLocals
+                                console.write_line ($'$"delete_directory_async / {!get_locals ()}"' : string)
+                            async.sleep 10i32 |> async.do
+                            loop (retry + 1) |> async.return_await
+                |> async.new_async
+            loop 0
+        | _ => fun () => null ()
 
 #!markdown
 
@@ -374,35 +615,375 @@ inl create_temp_directory () =
                     $'$"temp_folder: {!temp_folder} / result: {!result} {!get_locals ()}"'
                 // trace Debug (fun () => "createTempDirectory") get_locals
                 console.write_line ($'$"create_temp_directory / {!get_locals ()}"' : string)
-
-            temp_folder
-        | target => fun () => null ()
+            inl disposable : _ () = new_disposable fun () =>
+                temp_folder
+                |> delete_directory_async
+                |> async.ignore
+                |> async.run_synchronously
+            temp_folder, disposable
+        | _ => fun () => null ()
 
 #!spiral
 
 // // test
 
-create_temp_directory ()
+inl path, disposable = create_temp_directory ()
+disposable |> use |> ignore
+path
 |> directory_exists
+|> _assert_eq true
+
+#!spiral
+
+// // test
+
+inl lock_directory path =
+    fun () =>
+        trace Debug (fun () => "_1") get_locals
+        "0" |> write_all_text_async (path </> "test.txt") |> async.do
+        file_stream
+            (path </> "test.txt")
+            ModeOpen
+            AccessReadWrite
+            ShareNone
+        |> use
+        |> ignore
+        trace Debug (fun () => "_2") get_locals
+        async.sleep 2000 |> async.do
+        trace Debug (fun () => "_3") get_locals
+        () |> return
+    |> async.new_async
+
+inl temp_dir, disposable = create_temp_directory ()
+disposable |> use |> ignore
+inl path = temp_dir </> "test"
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    path |> create_directory |> ignore
+    trace Debug (fun () => "2") get_locals
+    inl child = path |> lock_directory |> async.start_child |> async.let'
+    trace Debug (fun () => "3") get_locals
+    async.sleep 60 |> async.do
+    trace Debug (fun () => "4") get_locals
+    inl retries = path |> delete_directory_async |> async.let'
+    trace Debug (fun () => "5") get_locals
+    child |> async.do
+    trace Debug (fun () => "6") get_locals
+    retries |> return
+|> async.new_async_unit
+|> async.run_with_timeout 3000
+|> fun x => x : _ i64
+|> function
+    | Some (retries : i64) =>
+        retries
+        |> _assert_between
+            (if runtime.is_windows () then 50 else 0)
+            (if runtime.is_windows () then 150 else 0)
+
+        true
+    | _ => false
 |> _assert_eq true
 
 #!markdown
 
-## get_source_directory
+## wait_for_file_access
 
 #!spiral
 
-inl get_source_directory () =
-    $'__SOURCE_DIRECTORY__' : string
+inl wait_for_file_access access path =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl file_access, file_share =
+                access
+                |> optionm'.default_value (AccessReadWrite, ShareRead)
+            let rec loop (retry : i64) : _ i64 =
+                fun () =>
+                    try_unit
+                        fun () =>
+                            file_stream
+                                path
+                                ModeOpen
+                                file_access
+                                file_share
+                            |> use
+                            |> ignore
+                            retry |> return
+                        fun ex =>
+                            if retry > 0 && retry % 100i64 = 0 then
+                                inl ex = ex |> sm'.format_exception
+                                let get_locals () = $'$"path: {!path |> !get_file_name} / retry: {!retry} / ex: {!ex} / {!get_locals ()}"' : string
+                                // trace Debug (fun () -> "wait_for_file_access") getLocals
+                                console.write_line ($'$"wait_for_file_access / {!get_locals ()}"' : string)
+                            async.sleep 10i32 |> async.do
+                            loop (retry + 1) |> async.return_await
+                |> async.new_async
+            loop 0
+        | _ => fun () => null ()
+
+inl wait_for_file_access_read path =
+    path
+    |> wait_for_file_access (Some (
+        AccessRead,
+        ShareRead
+    ))
 
 #!spiral
 
 // // test
 
-get_source_directory ()
-|> directory_info
-|> directory_info_name
-|> _assert_eq "spiral"
+inl lock_file path =
+    fun () =>
+        trace Debug (fun () => "_1") get_locals
+        inl stream : file_stream' =
+            file_stream
+                path
+                ModeOpen
+                AccessReadWrite
+                ShareNone
+            |> use
+        trace Debug (fun () => "_2") get_locals
+        async.sleep 2000 |> async.do
+        trace Debug (fun () => "_3") get_locals
+        ($'!stream.Seek (0L, System.IO.SeekOrigin.Begin)' : i64) |> ignore
+        trace Debug (fun () => "_4") get_locals
+        $'!stream.WriteByte' 49u8
+        trace Debug (fun () => "_5") get_locals
+        stream |> $'_.Flush()'
+        trace Debug (fun () => "_6") get_locals
+    |> async.new_async
+
+inl temp_dir, disposable = create_temp_directory ()
+disposable |> use |> ignore
+inl path = temp_dir </> "test.txt"
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    "0" |> write_all_text_async path |> async.do
+    trace Debug (fun () => "2") get_locals
+    inl child = path |> lock_file |> async.start_child |> async.let'
+    trace Debug (fun () => "3") get_locals
+    async.sleep 1 |> async.do
+    trace Debug (fun () => "4") get_locals
+    inl retries = path |> wait_for_file_access None |> async.let'
+    trace Debug (fun () => "5") get_locals
+    inl text = path |> read_all_text_async |> async.let'
+    trace Debug (fun () => "6") get_locals
+    child |> async.do
+    trace Debug (fun () => "7") get_locals
+    (retries, text) |> return
+|> async.new_async_unit
+|> async.run_with_timeout 3000
+|> function
+    | Some ((retries : i64), text) =>
+        retries
+        |> _assert_between
+            (if runtime.is_windows () then 50 else 100)
+            (if runtime.is_windows () then 150 else 200)
+
+        text |> _assert_eq (join "1")
+
+        true
+    | _ => false
+|> _assert_eq true
+
+#!markdown
+
+## read_all_text_retry_async
+
+#!spiral
+
+inl read_all_text_retry_async full_path : async.async (optionm'.option' string) =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            let rec loop (retry : i64) =
+                fun () =>
+                    try_unit
+                        fun () =>
+                            if retry > 0
+                            then
+                                full_path
+                                |> wait_for_file_access_read
+                                |> async.run_with_timeout_async 1000
+                                |> async.ignore
+                                |> async.do
+                            full_path |> read_all_text_async |> async.map (Some >> optionm'.box) |> async.return_await
+                        fun ex =>
+                            if retry <> 0 then
+                                inl ex = ex |> sm'.format_exception
+                                let get_locals () = $'$"retry: {!retry} / ex: {!ex} / {!get_locals ()}"' : string
+                                trace Debug (fun () => $'"read_all_text_retry_async"' : string) get_locals
+                                (None : _ string) |> optionm'.box |> return |> fun x => $'(*' : ()
+                            else
+                                $'*) else' : ()
+                                loop (retry + 1) |> async.return_await |> fun x => $'(*' : ()
+                            |> fun x => $'*)' : ()
+                |> async.new_async
+            loop 0
+        | _ => fun () => null ()
+
+#!markdown
+
+## delete_file_async
+
+#!spiral
+
+inl delete_file_async path : _ i64 =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            let rec loop (retry : i64) =
+                fun () =>
+                    try_unit
+                        fun () =>
+                            path |> file_delete
+                            return retry
+                        fun ex =>
+                            if retry % 100 = 0 then
+                                inl ex = ex |> sm'.format_exception
+                                let getLocals () = $'$"path: {!path |> !get_file_name} / ex: {ex} / {!get_locals ()}"'
+                                trace Warning (fun () => "delete_file_async") get_locals
+                            async.sleep 10 |> async.do
+                            loop (retry + 1) |> async.return_await
+                |> async.new_async
+            loop 0
+        | _ => fun () => null ()
+
+#!spiral
+
+// // test
+
+inl lock_file path =
+    fun () =>
+        trace Debug (fun () => "_1") get_locals
+        file_stream
+            path
+            ModeOpen
+            AccessReadWrite
+            ShareNone
+        |> use
+        |> ignore
+        trace Debug (fun () => "_2") get_locals
+        async.sleep 2000 |> async.do
+        trace Debug (fun () => "_3") get_locals
+    |> async.new_async
+
+inl temp_dir, disposable = create_temp_directory ()
+disposable |> use |> ignore
+inl path = temp_dir </> "test.txt"
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    "0" |> write_all_text_async path |> async.do
+    trace Debug (fun () => "2") get_locals
+    inl child = lock_file path |> async.start_child |> async.let'
+    trace Debug (fun () => "3") get_locals
+    async.sleep 1 |> async.do
+    trace Debug (fun () => "4") get_locals
+    inl retries = delete_file_async path |> async.let'
+    trace Debug (fun () => "5") get_locals
+    child |> async.do
+    trace Debug (fun () => "6") get_locals
+    return retries
+|> async.new_async_unit
+|> async.run_with_timeout 3000
+|> function
+    | Some (retries : i64) =>
+        retries
+        |> _assert_between
+            (if runtime.is_windows () then 50 else 0)
+            (if runtime.is_windows () then 150 else 0)
+
+        true
+    | _ => false
+|> _assert_eq true
+
+#!markdown
+
+## move_file_async
+
+#!spiral
+
+inl move_file_async new_path old_path : _ i64 =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            let rec loop (retry : i64) =
+                fun () =>
+                    try_unit
+                        fun () =>
+                            file_move old_path new_path
+                            return retry
+                        fun ex =>
+                            if retry % 100 = 0 then
+                                let get_locals () =
+                                    inl ex = ex |> sm'.format_exception
+                                    $'$"old_path: {!old_path |> !get_file_name} / new_path: {!new_path |> !get_file_name} / ex: {!ex} / {!get_locals ()}"' : string
+                                trace Warning (fun () => "move_file_async") get_locals
+                            async.sleep 10 |> async.do
+                            loop (retry + 1) |> async.return_await
+                |> async.new_async_unit
+            loop 0
+        | _ => fun () => null ()
+
+#!spiral
+
+// // test
+
+inl lock_file path =
+    fun () =>
+        trace Debug (fun () => "_1") get_locals
+        file_stream
+            path
+            ModeOpen
+            AccessReadWrite
+            ShareNone
+        |> use
+        |> ignore
+        trace Debug (fun () => "_2") get_locals
+        async.sleep 2000 |> async.do
+        trace Debug (fun () => "_3") get_locals
+    |> async.new_async
+
+inl temp_dir, disposable = create_temp_directory ()
+disposable |> use |> ignore
+let path = temp_dir </> "test.txt"
+let new_path = temp_dir </> "test2.txt"
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    "0" |> write_all_text_async path |> async.do
+    trace Debug (fun () => "2") get_locals
+    inl child = lock_file path |> async.start_child |> async.let'
+    trace Debug (fun () => "3") get_locals
+    async.sleep 1 |> async.do
+    trace Debug (fun () => "4") get_locals
+    inl retries1 = path |> move_file_async new_path |> async.let'
+    trace Debug (fun () => "5") get_locals
+    inl retries2 = new_path |> wait_for_file_access None |> async.let'
+    trace Debug (fun () => "6") get_locals
+    inl text = new_path |> read_all_text_async |> async.let'
+    trace Debug (fun () => "7") get_locals
+    child |> async.do
+    trace Debug (fun () => "8") get_locals
+    (retries1, retries2, text) |> return
+|> async.new_async_unit
+|> async.run_with_timeout 3000
+|> function
+    | Some (retries1, retries2, text) =>
+        retries1
+        |> _assert_between
+            (if runtime.is_windows () then 50i64 else 0)
+            (if runtime.is_windows () then 150 else 0)
+
+        retries2
+        |> _assert_between
+            (if runtime.is_windows () then 0i64 else 100)
+            (if runtime.is_windows () then 0 else 200)
+
+        text |> _assert_eq (join "0")
+
+        true
+    | _ => false
+|> _assert_eq true
 
 #!markdown
 
@@ -472,6 +1053,19 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 
 inl main () =
     types ()
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $"let delete_directory_async x = !delete_directory_async x" : ()
+            $"let wait_for_file_access x = !wait_for_file_access x" : ()
+            $"let wait_for_file_access_read x = !wait_for_file_access_read x" : ()
+            $"let read_all_text_async x = !read_all_text_async x" : ()
+            $"let file_exists_content x = !file_exists_content x" : ()
+            $"let write_all_text_async x = !write_all_text_async x" : ()
+            $"let write_all_text_exists x = !write_all_text_exists x" : ()
+            $"let delete_file_async x = !delete_file_async x" : ()
+            $"let move_file_async x = !move_file_async x" : ()
+            $"let read_all_text_retry_async x = !read_all_text_retry_async x" : ()
+        | _ => fun () => ()
     $"let create_temp_directory_name () = !create_temp_directory_name ()" : ()
     $"let create_temp_directory () = !create_temp_directory ()" : ()
     $"let get_source_directory () = !get_source_directory ()" : ()

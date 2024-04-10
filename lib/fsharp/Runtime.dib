@@ -254,7 +254,7 @@ let inline executeAsync command =
 
 //// test
 
-let tempFolder = SpiralFileSystem.create_temp_directory ()
+let struct (tempFolder, disposable) = SpiralFileSystem.create_temp_directory ()
 let fileName = "test.txt"
 let path = tempFolder </> fileName
 
@@ -263,7 +263,7 @@ async {
     exitCode |> _assertEqual 1
     result |> _stringContains "not exist"
 
-    do! "0" |> FileSystem.writeAllTextAsync path
+    do! "0" |> SpiralFileSystem.write_all_text_async path
 
     return!
         executeWithOptionsAsync
@@ -284,17 +284,19 @@ async {
     | _ -> false
 |> _assertEqual true
 
+disposable.Dispose ()
+
 #!fsharp
 
 //// test
 
-let tempFolder = SpiralFileSystem.create_temp_directory ()
+let struct (tempFolder, disposable) = SpiralFileSystem.create_temp_directory ()
 let path = tempFolder </> "test.txt"
 
 let command = @$"pwsh -c ""Get-Content {path}"""
 
 async {
-    do! "0" |> FileSystem.writeAllTextAsync path
+    do! "0" |> SpiralFileSystem.write_all_text_async path
     let cts = new System.Threading.CancellationTokenSource ()
     trace Debug (fun () -> "1") getLocals
     let! result =
@@ -324,6 +326,8 @@ async {
         true
     | _ -> false
 |> _assertEqual true
+
+disposable.Dispose ()
 
 #!markdown
 

@@ -7629,688 +7629,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="readAllTextAsync">readAllTextAsync<a class="anchor-link" href="#readAllTextAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">readAllTextAsync</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">ReadAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="fileExistsContent">fileExistsContent<a class="anchor-link" href="#fileExistsContent">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">fileExistsContent</span> <span class="n">path</span> <span class="n">content</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-    <span class="n">then</span> <span class="k">return</span> <span class="n">false</span>
-    <span class="k">else</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">existingContent</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span>
-        <span class="k">return</span> <span class="n">content</span> <span class="o">=</span> <span class="n">existingContent</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="writeAllTextAsync">writeAllTextAsync<a class="anchor-link" href="#writeAllTextAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">WriteAllTextAsync</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="writeAllTextExists">writeAllTextExists<a class="anchor-link" href="#writeAllTextExists">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">writeAllTextExists</span> <span class="n">path</span> <span class="n">contents</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">exists</span> <span class="o">=</span> <span class="n">contents</span> <span class="o">|&gt;</span> <span class="n">fileExistsContent</span> <span class="n">path</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span>
-    <span class="n">then</span> <span class="n">do</span><span class="err">!</span> <span class="n">contents</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="waitForFileAccess">waitForFileAccess<a class="anchor-link" href="#waitForFileAccess">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">waitForFileAccess</span> <span class="n">access</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">fileAccess</span><span class="p">,</span> <span class="n">fileShare</span> <span class="o">=</span>
-        <span class="n">access</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="p">(</span><span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="n">Read</span><span class="p">)</span>
-
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-                <span class="n">path</span><span class="p">,</span>
-                <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-                <span class="n">fileAccess</span><span class="p">,</span>
-                <span class="n">fileShare</span>
-            <span class="p">)</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"waitForFileAccess"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">use</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">Seek</span> <span class="p">(</span><span class="mi">0</span><span class="n">L</span><span class="p">,</span> <span class="n">SeekOrigin</span><span class="o">.</span><span class="n">Begin</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">WriteByte</span> <span class="mi">49</span><span class="n">uy</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">stream</span><span class="o">.</span><span class="n">Flush</span> <span class="p">()</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_6"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">waitForFileAccess</span> <span class="kc">None</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">text</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"7"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries</span><span class="p">,</span> <span class="n">text</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">retries</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
-
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"1"</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [Debug] 1
-00:00:00 #2 [Debug] 2
-00:00:00 #4 [Debug] 3
-00:00:00 #3 [Debug] _1
-00:00:00 #5 [Debug] _2
-00:00:00 #6 [Debug] 4
-00:00:00 #7 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240406-0216-0762-6202-61d624a986d7/test.txt' because it is being used by another process.
-00:00:01 #8 [Debug] waitForFileAccess / path: test.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240406-0216-0762-6202-61d624a986d7/test.txt' because it is being used by another process.
-00:00:02 #9 [Debug] _3
-00:00:02 #10 [Debug] _4
-00:00:02 #11 [Debug] _5
-00:00:02 #12 [Debug] _6
-00:00:02 #13 [Debug] 5
-00:00:02 #14 [Debug] 6
-00:00:02 #15 [Debug] 7
-167
-167
-167
-1
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="readAllTextRetryAsync">readAllTextRetryAsync<a class="anchor-link" href="#readAllTextRetryAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">readAllTextRetryAsync</span> <span class="n">fullPath</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">&gt;</span> <span class="mi">0</span>
-            <span class="n">then</span> <span class="n">do</span><span class="err">!</span>
-                <span class="n">fullPath</span>
-                <span class="o">|&gt;</span> <span class="n">waitForFileAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span>
-                    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">Read</span><span class="p">,</span>
-                    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="n">Read</span>
-                <span class="p">))</span>
-                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="mi">1000</span>
-                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Some</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"retry: </span><span class="si">{retry}</span><span class="s2"> / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-            <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"watchWithFilter / readContent"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">then</span> <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">else</span> <span class="k">return</span> <span class="kc">None</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="deleteDirectoryAsync">deleteDirectoryAsync<a class="anchor-link" href="#deleteDirectoryAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">deleteDirectoryAsync</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">Delete</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteDirectoryAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockDirectory</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">WriteAllText</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
-    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockDirectory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">60</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">deleteDirectoryAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
-        <span class="n">retries</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #16 [Debug] 1
-00:00:02 #17 [Debug] 2
-00:00:02 #18 [Debug] 3
-00:00:02 #19 [Debug] _1
-00:00:02 #20 [Debug] _2
-00:00:02 #21 [Debug] 4
-00:00:02 #22 [Debug] 5
-00:00:04 #23 [Debug] _3
-00:00:04 #24 [Debug] 6
-0
-0
-0
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="deleteFileAsync">deleteFileAsync<a class="anchor-link" href="#deleteFileAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=24">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">deleteFileAsync</span> <span class="n">path</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Delete</span> <span class="n">path</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"path: {path |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"deleteFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries</span> <span class="o">=</span> <span class="n">deleteFileAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="n">retries</span> <span class="o">-&gt;</span>
-        <span class="n">retries</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:04 #25 [Debug] 1
-00:00:04 #26 [Debug] 2
-00:00:04 #27 [Debug] 3
-00:00:04 #28 [Debug] _1
-00:00:04 #29 [Debug] _2
-00:00:04 #30 [Debug] 4
-00:00:04 #31 [Debug] 5
-00:00:06 #32 [Debug] _3
-00:00:06 #33 [Debug] 6
-0
-0
-0
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="moveFileAsync">moveFileAsync<a class="anchor-link" href="#moveFileAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=27">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">moveFileAsync</span> <span class="n">newPath</span> <span class="n">oldPath</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Move</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="n">newPath</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">retry</span>
-        <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="k">if</span> <span class="n">retry</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
-                <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span>
-                    <span class="err">$</span><span class="s2">"oldPath: {oldPath |&gt; System.IO.Path.GetFileName} / newPath: {newPath |&gt; System.IO.Path.GetFileName} / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
-                <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"moveFileAsync"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">10</span>
-            <span class="k">return</span><span class="err">!</span> <span class="n">loop</span> <span class="p">(</span><span class="n">retry</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">loop</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">tempFolder</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-<span class="n">let</span> <span class="n">newPath</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test2.txt"</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileStream</span> <span class="p">(</span>
-        <span class="n">path</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileMode</span><span class="o">.</span><span class="n">Open</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="kc">None</span>
-    <span class="p">)</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">2000</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"_3"</span><span class="p">)</span> <span class="n">getLocals</span>
-<span class="p">}</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="n">path</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">child</span> <span class="o">=</span> <span class="n">lockFile</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries1</span> <span class="o">=</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="n">newPath</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">retries2</span> <span class="o">=</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">waitForFileAccess</span> <span class="kc">None</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"6"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">text</span> <span class="o">=</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextAsync</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"7"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">child</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"8"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">3000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">retries1</span><span class="p">,</span> <span class="n">retries2</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">retries1</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">50</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">150</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="n">retries2</span>
-        <span class="o">|&gt;</span> <span class="n">_isBetween</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="p">(</span><span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">200</span><span class="p">)</span>
-
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"0"</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:06 #34 [Debug] 1
-00:00:06 #35 [Debug] 2
-00:00:06 #36 [Debug] 3
-00:00:06 #37 [Debug] _1
-00:00:06 #38 [Debug] _2
-00:00:06 #39 [Debug] 4
-00:00:06 #40 [Debug] 5
-00:00:06 #41 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240406-0216-1436-3695-3dc11e421aab/test2.txt' because it is being used by another process.
-00:00:07 #42 [Debug] waitForFileAccess / path: test2.txt / ex: System.IO.IOException: The process cannot access the file '/tmp/!dotnet-repl/20240406-0216-1436-3695-3dc11e421aab/test2.txt' because it is being used by another process.
-00:00:08 #43 [Debug] _3
-00:00:08 #44 [Debug] 6
-00:00:08 #45 [Debug] 7
-00:00:08 #46 [Debug] 8
-0
-0
-0
-167
-167
-167
-0
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="watchDirectory">watchDirectory<a class="anchor-link" href="#watchDirectory">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8421,14 +7744,14 @@ True
             <span class="k">match</span> <span class="n">shouldReadContent</span> <span class="n">event</span><span class="p">,</span> <span class="n">event</span> <span class="k">with</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextRetryAsync</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span>
                 <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">5</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">readAllTextRetryAsync</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="o">|</span> <span class="n">true</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">_</span><span class="p">))</span> <span class="o">-&gt;</span>
-                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">readAllTextRetryAsync</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">content</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">&lt;/&gt;</span> <span class="n">newPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_retry_async</span>
                 <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Renamed</span> <span class="p">(</span><span class="n">oldPath</span><span class="p">,</span> <span class="p">(</span><span class="n">newPath</span><span class="p">,</span> <span class="n">content</span><span class="p">))</span>
             <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">event</span>
         <span class="p">})</span>
@@ -8460,7 +7783,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8470,7 +7793,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8484,8 +7807,8 @@ True
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="p">(</span><span class="n">_</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">tempDirectory</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span><span class="p">)</span> <span class="n">tempDirectory</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span><span class="p">)</span> <span class="n">tempDir</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
 
@@ -8496,7 +7819,7 @@ True
     <span class="n">let</span> <span class="n">run</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">iter</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDirectory</span>
+        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDir</span>
     <span class="p">}</span>
 
     <span class="k">try</span>
@@ -8505,7 +7828,7 @@ True
         <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
     <span class="k">finally</span>
         <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-        <span class="n">deleteDirectoryAsync</span> <span class="n">tempDirectory</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+        <span class="n">tempDisposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
 
     <span class="n">let</span> <span class="n">eventsLog</span> <span class="o">=</span>
         <span class="n">events</span>
@@ -8545,7 +7868,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8555,7 +7878,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8569,27 +7892,27 @@ True
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"a</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"a</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"b</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"b</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"c</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"c</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
 <span class="p">}</span>
@@ -8634,24 +7957,24 @@ True
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:12 #47 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:12 #48 [Debug] testEventsRaw / eventsLog: 
-0 / 638479665791221856 / Created ("file1.txt", Some "a1")
-11398 / 638479665791233254 / Changed ("file1.txt", Some "a1")
-1086 / 638479665791234340 / Created ("file2.txt", Some "a2")
-46 / 638479665791234386 / Changed ("file2.txt", Some "a2")
-2494744 / 638479665793729130 / Changed ("file1.txt", Some "b1")
-309 / 638479665793729439 / Changed ("file1.txt", Some "b1")
-4799 / 638479665793734238 / Changed ("file2.txt", Some "b2")
-196 / 638479665793734434 / Changed ("file2.txt", Some "b2")
-2530258 / 638479665796264692 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-1440 / 638479665796266132 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2519044 / 638479665798785176 / Changed ("file_1.txt", Some "c1")
-795 / 638479665798785971 / Changed ("file_1.txt", Some "c1")
-3664 / 638479665798789635 / Changed ("file_2.txt", Some "c2")
-584 / 638479665798790219 / Changed ("file_2.txt", Some "c2")
-2540284 / 638479665801330503 / Deleted "file_1.txt"
-859 / 638479665801331362 / Deleted "file_2.txt"
+00:00:00 #1 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:00 #2 [Debug] testEventsRaw / eventsLog: 
+0 / 638483262830489924 / Created ("file1.txt", Some "a1")
+14432 / 638483262830504356 / Changed ("file1.txt", Some "a1")
+1912 / 638483262830506268 / Created ("file2.txt", Some "a2")
+35 / 638483262830506303 / Changed ("file2.txt", Some "a2")
+2512522 / 638483262833018825 / Changed ("file1.txt", Some "b1")
+652 / 638483262833019477 / Changed ("file1.txt", Some "b1")
+5591 / 638483262833025068 / Changed ("file2.txt", Some "b2")
+215 / 638483262833025283 / Changed ("file2.txt", Some "b2")
+2558275 / 638483262835583558 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+5666 / 638483262835589224 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2519570 / 638483262838108794 / Changed ("file_1.txt", Some "c1")
+329 / 638483262838109123 / Changed ("file_1.txt", Some "c1")
+4733 / 638483262838113856 / Changed ("file_2.txt", Some "c2")
+187 / 638483262838114043 / Changed ("file_2.txt", Some "c2")
+2524417 / 638483262840638460 / Deleted "file_1.txt"
+1578 / 638483262840640038 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8755,7 +8078,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8765,7 +8088,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8783,27 +8106,27 @@ FSharpOption&lt;Unit&gt;
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">string</span> <span class="o">&gt;&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">replicate</span> <span class="mi">1_000_000</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}a"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}a"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}b"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}b"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}c"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"{contents.[i - 1]}c"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">1500</span>
 <span class="p">}</span>
@@ -8861,980 +8184,558 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:22 #49 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:24 #50 [Debug] testEventsRaw / eventsLog: 
-0 / 638479665825578219 / Created
+00:00:08 #3 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:10 #4 [Debug] testEventsRaw / eventsLog: 
+0 / 638483262855451636 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-3134 / 638479665825581353 / Changed
+7853 / 638483262855459489 / Changed
   ("file1.txt"...11111111111111111111111111111111111111111111111a")
-477 / 638479665825581830 / Changed
+267 / 638483262855459756 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-342 / 638479665825582172 / Changed
+241 / 638483262855459997 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-102 / 638479665825582274 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-288 / 638479665825582562 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-65 / 638479665825582627 / Changed
+68 / 638483262855460065 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111a")
-249 / 638479665825582876 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-371 / 638479665825583247 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-59 / 638479665825583306 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-441 / 638479665825583747 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-317 / 638479665825584064 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-58 / 638479665825584122 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-169 / 638479665825584291 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-241 / 638479665825584532 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-79 / 638479665825584611 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-343 / 638479665825584954 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-202 / 638479665825585156 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-97 / 638479665825585253 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-289 / 638479665825585542 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-147 / 638479665825585689 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-139 / 638479665825585828 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-140 / 638479665825585968 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-151 / 638479665825586119 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-160 / 638479665825586279 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-224 / 638479665825586503 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-230 / 638479665825586733 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-5446 / 638479665825592179 / Changed
+7582 / 638483262855467647 / Changed
   ("file1.txt"...11111111111111111111111111111111111111111111111a")
-84 / 638479665825592263 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-26 / 638479665825592289 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111a")
-323 / 638479665825592612 / Changed
+105 / 638483262855467752 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111a")
-242 / 638479665825592854 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-210 / 638479665825593064 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-207 / 638479665825593271 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-201 / 638479665825593472 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-215 / 638479665825593687 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-194 / 638479665825593881 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-192 / 638479665825594073 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-224 / 638479665825594297 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-226 / 638479665825594523 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-188 / 638479665825594711 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-189 / 638479665825594900 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-219 / 638479665825595119 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-231 / 638479665825595350 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-105 / 638479665825595455 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-233 / 638479665825595688 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-206 / 638479665825595894 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-183 / 638479665825596077 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-187 / 638479665825596264 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-186 / 638479665825596450 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-187 / 638479665825596637 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-129 / 638479665825596766 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111a")
-33186 / 638479665825629952 / Created
+46018 / 638483262855513770 / Created
   ("file2.txt...22222222222222222222222222222222222222222222222a")
-158 / 638479665825630110 / Changed
+182 / 638483262855513952 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-58 / 638479665825630168 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-293 / 638479665825630461 / Changed
+244 / 638483262855514196 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222a")
-76 / 638479665825630537 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-37 / 638479665825630574 / Changed
-  ("file2.txt",
-...22222222222222222222222222222222222222222222222a")
-3429 / 638479665825634003 / Changed
+4431 / 638483262855518627 / Changed
   ("file2.txt"...22222222222222222222222222222222222222222222222a")
-15053603 / 638479665840687606 / Changed
+237 / 638483262855518864 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+65 / 638483262855518929 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+313 / 638483262855519242 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+105 / 638483262855519347 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+555 / 638483262855519902 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+128 / 638483262855520030 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+381 / 638483262855520411 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+148 / 638483262855520559 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+208 / 638483262855520767 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+158 / 638483262855520925 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+244 / 638483262855521169 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+156 / 638483262855521325 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+273 / 638483262855521598 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+82 / 638483262855521680 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+277 / 638483262855521957 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+174 / 638483262855522131 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+378 / 638483262855522509 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+306 / 638483262855522815 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+335 / 638483262855523150 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+77 / 638483262855523227 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+347 / 638483262855523574 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+225 / 638483262855523799 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+242 / 638483262855524041 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+241 / 638483262855524282 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+198 / 638483262855524480 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+195 / 638483262855524675 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+198 / 638483262855524873 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+311 / 638483262855525184 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+81 / 638483262855525265 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222a")
+205 / 638483262855525470 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+142 / 638483262855525612 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+197 / 638483262855525809 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+181 / 638483262855525990 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+181 / 638483262855526171 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+171 / 638483262855526342 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+206 / 638483262855526548 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+195 / 638483262855526743 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+184 / 638483262855526927 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+341 / 638483262855527268 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+189 / 638483262855527457 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+218 / 638483262855527675 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+225 / 638483262855527900 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+212 / 638483262855528112 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+17664 / 638483262855545776 / Changed
+  ("file2.txt...22222222222222222222222222222222222222222222222a")
+154 / 638483262855545930 / Changed
+  ("file2.txt",...22222222222222222222222222222222222222222222222a")
+15039767 / 638483262870585697 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-334 / 638479665840687940 / Changed
+353 / 638483262870586050 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-773 / 638479665840688713 / Changed
+501 / 638483262870586551 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-474 / 638479665840689187 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-84 / 638479665840689271 / Changed
+1180 / 638483262870587731 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+82 / 638483262870587813 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-195 / 638479665840689466 / Changed
+225 / 638483262870588038 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-155 / 638479665840689621 / Changed
+166 / 638483262870588204 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-148 / 638479665840689769 / Changed
+178 / 638483262870588382 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-151 / 638479665840689920 / Changed
+145 / 638483262870588527 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-206 / 638479665840690126 / Changed
+174 / 638483262870588701 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-45 / 638479665840690171 / Changed
+242 / 638483262870588943 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+601 / 638483262870589544 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+305 / 638483262870589849 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+285 / 638483262870590134 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+439 / 638483262870590573 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+339 / 638483262870590912 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+346 / 638483262870591258 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+435 / 638483262870591693 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+242 / 638483262870591935 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+225 / 638483262870592160 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+45 / 638483262870592205 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-639 / 638479665840690810 / Changed
+164 / 638483262870592369 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-892 / 638479665840691702 / Changed
+213 / 638483262870592582 / Changed
   ("file1.txt",...11111111111111111111111111111111111111111111111b")
-89 / 638479665840691791 / Changed
+170 / 638483262870592752 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+235 / 638483262870592987 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+225 / 638483262870593212 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+226 / 638483262870593438 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+322 / 638483262870593760 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+388 / 638483262870594148 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+514 / 638483262870594662 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+236 / 638483262870594898 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+6135 / 638483262870601033 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+644 / 638483262870601677 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+172 / 638483262870601849 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+166 / 638483262870602015 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+281 / 638483262870602296 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+3409 / 638483262870605705 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+78 / 638483262870605783 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-44 / 638479665840691835 / Changed
+3375 / 638483262870609158 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+269 / 638483262870609427 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+787 / 638483262870610214 / Changed
+  ("file1.txt",...11111111111111111111111111111111111111111111111b")
+68 / 638483262870610282 / Changed
   ("file1.txt",
 ...11111111111111111111111111111111111111111111111b")
-478 / 638479665840692313 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-220 / 638479665840692533 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-53 / 638479665840692586 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111b")
-242 / 638479665840692828 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-161 / 638479665840692989 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-190 / 638479665840693179 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-265 / 638479665840693444 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-198 / 638479665840693642 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-148 / 638479665840693790 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-280 / 638479665840694070 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-307 / 638479665840694377 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-187 / 638479665840694564 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-213 / 638479665840694777 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-918 / 638479665840695695 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-343 / 638479665840696038 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-224 / 638479665840696262 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-186 / 638479665840696448 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-174 / 638479665840696622 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-156 / 638479665840696778 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-159 / 638479665840696937 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-224 / 638479665840697161 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-188 / 638479665840697349 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-170 / 638479665840697519 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-162 / 638479665840697681 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-163 / 638479665840697844 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-180 / 638479665840698024 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-282 / 638479665840698306 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-168 / 638479665840698474 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-200 / 638479665840698674 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-340 / 638479665840699014 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-310 / 638479665840699324 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-270 / 638479665840699594 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-204 / 638479665840699798 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-210 / 638479665840700008 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-191 / 638479665840700199 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-198 / 638479665840700397 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-212 / 638479665840700609 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-204 / 638479665840700813 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-199 / 638479665840701012 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-180 / 638479665840701192 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-318 / 638479665840701510 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-264 / 638479665840701774 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-199 / 638479665840701973 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-192 / 638479665840702165 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-171 / 638479665840702336 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-197 / 638479665840702533 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-207 / 638479665840702740 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-183 / 638479665840702923 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-163 / 638479665840703086 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-166 / 638479665840703252 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-192 / 638479665840703444 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-160 / 638479665840703604 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-179 / 638479665840703783 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-179 / 638479665840703962 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-161 / 638479665840704123 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-173 / 638479665840704296 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-190 / 638479665840704486 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-190 / 638479665840704676 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-216 / 638479665840704892 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-195 / 638479665840705087 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-316 / 638479665840705403 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-305 / 638479665840705708 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-264 / 638479665840705972 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-242 / 638479665840706214 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-229 / 638479665840706443 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-190 / 638479665840706633 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-194 / 638479665840706827 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-164 / 638479665840706991 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-179 / 638479665840707170 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-186 / 638479665840707356 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-186 / 638479665840707542 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-170 / 638479665840707712 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-177 / 638479665840707889 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-193 / 638479665840708082 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-261 / 638479665840708343 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-210 / 638479665840708553 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-217 / 638479665840708770 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-225 / 638479665840708995 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-186 / 638479665840709181 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-242 / 638479665840709423 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-211 / 638479665840709634 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-170 / 638479665840709804 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-162 / 638479665840709966 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-162 / 638479665840710128 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-179 / 638479665840710307 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-179 / 638479665840710486 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-187 / 638479665840710673 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-165 / 638479665840710838 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-162 / 638479665840711000 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-173 / 638479665840711173 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-176 / 638479665840711349 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-157 / 638479665840711506 / Changed
-  ("file1.txt",...11111111111111111111111111111111111111111111111b")
-41 / 638479665840711547 / Changed
-  ("file1.txt",
-...11111111111111111111111111111111111111111111111b")
-51833 / 638479665840763380 / Changed
+9409 / 638483262870619691 / Changed
+  ("file1.txt"...11111111111111111111111111111111111111111111111b")
+54024 / 638483262870673715 / Changed
   ("file2.txt...22222222222222222222222222222222222222222222222b")
-162 / 638479665840763542 / Changed
+675 / 638483262870674390 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-266 / 638479665840763808 / Changed
+509 / 638483262870674899 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-188 / 638479665840763996 / Changed
+313 / 638483262870675212 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-118 / 638479665840764114 / Changed
+284 / 638483262870675496 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-211 / 638479665840764325 / Changed
+288 / 638483262870675784 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-199 / 638479665840764524 / Changed
+276 / 638483262870676060 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-195 / 638479665840764719 / Changed
+270 / 638483262870676330 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-177 / 638479665840764896 / Changed
+267 / 638483262870676597 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-192 / 638479665840765088 / Changed
+291 / 638483262870676888 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-181 / 638479665840765269 / Changed
+263 / 638483262870677151 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-218 / 638479665840765487 / Changed
+272 / 638483262870677423 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-197 / 638479665840765684 / Changed
+267 / 638483262870677690 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-156 / 638479665840765840 / Changed
+267 / 638483262870677957 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-180 / 638479665840766020 / Changed
+261 / 638483262870678218 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-287 / 638479665840766307 / Changed
+308 / 638483262870678526 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-220 / 638479665840766527 / Changed
+352 / 638483262870678878 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-268 / 638479665840766795 / Changed
+358 / 638483262870679236 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-295 / 638479665840767090 / Changed
+633 / 638483262870679869 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-223 / 638479665840767313 / Changed
+426 / 638483262870680295 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-219 / 638479665840767532 / Changed
+155808 / 638483262870836103 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222b")
+111 / 638483262870836214 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-195 / 638479665840767727 / Changed
+256 / 638483262870836470 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-188 / 638479665840767915 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-254 / 638479665840768169 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-504 / 638479665840768673 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-246 / 638479665840768919 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-207 / 638479665840769126 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-171 / 638479665840769297 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-179 / 638479665840769476 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-174 / 638479665840769650 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-197 / 638479665840769847 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-223 / 638479665840770070 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-172 / 638479665840770242 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-179 / 638479665840770421 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-279 / 638479665840770700 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-226 / 638479665840770926 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-215 / 638479665840771141 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-244 / 638479665840771385 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-226 / 638479665840771611 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-174 / 638479665840771785 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-179 / 638479665840771964 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-186 / 638479665840772150 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-171 / 638479665840772321 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-178 / 638479665840772499 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-162 / 638479665840772661 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-205 / 638479665840772866 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-255 / 638479665840773121 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-227 / 638479665840773348 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-234 / 638479665840773582 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-195 / 638479665840773777 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-173 / 638479665840773950 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-159 / 638479665840774109 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-178 / 638479665840774287 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-194 / 638479665840774481 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-219 / 638479665840774700 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-184 / 638479665840774884 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-274 / 638479665840775158 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-43 / 638479665840775201 / Changed
+41 / 638483262870836511 / Changed
   ("file2.txt",
 ...22222222222222222222222222222222222222222222222b")
-213 / 638479665840775414 / Changed
+245 / 638483262870836756 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-225 / 638479665840775639 / Changed
+39 / 638483262870836795 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+237 / 638483262870837032 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-194 / 638479665840775833 / Changed
+41 / 638483262870837073 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+234 / 638483262870837307 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-204 / 638479665840776037 / Changed
+44 / 638483262870837351 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+236 / 638483262870837587 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-225 / 638479665840776262 / Changed
+39 / 638483262870837626 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+245 / 638483262870837871 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840776462 / Changed
+60 / 638483262870837931 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+289 / 638483262870838220 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-215 / 638479665840776677 / Changed
+39 / 638483262870838259 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+235 / 638483262870838494 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-209 / 638479665840776886 / Changed
+41 / 638483262870838535 / Changed
+  ("file2.txt",
+...22222222222222222222222222222222222222222222222b")
+243 / 638483262870838778 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-216 / 638479665840777102 / Changed
+318 / 638483262870839096 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-220 / 638479665840777322 / Changed
+246 / 638483262870839342 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-216 / 638479665840777538 / Changed
+414 / 638483262870839756 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-230 / 638479665840777768 / Changed
+298 / 638483262870840054 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-197 / 638479665840777965 / Changed
+239 / 638483262870840293 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-203 / 638479665840778168 / Changed
+248 / 638483262870840541 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-208 / 638479665840778376 / Changed
+259 / 638483262870840800 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840778576 / Changed
+236 / 638483262870841036 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-212 / 638479665840778788 / Changed
+261 / 638483262870841297 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840778988 / Changed
+245 / 638483262870841542 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-231 / 638479665840779219 / Changed
+231 / 638483262870841773 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-239 / 638479665840779458 / Changed
+233 / 638483262870842006 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-207 / 638479665840779665 / Changed
+226 / 638483262870842232 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-217 / 638479665840779882 / Changed
+256 / 638483262870842488 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-212 / 638479665840780094 / Changed
+230 / 638483262870842718 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-203 / 638479665840780297 / Changed
+256 / 638483262870842974 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-201 / 638479665840780498 / Changed
+231 / 638483262870843205 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-221 / 638479665840780719 / Changed
+241 / 638483262870843446 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-207 / 638479665840780926 / Changed
+232 / 638483262870843678 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-220 / 638479665840781146 / Changed
+232 / 638483262870843910 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-206 / 638479665840781352 / Changed
+227 / 638483262870844137 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-190 / 638479665840781542 / Changed
+251 / 638483262870844388 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-221 / 638479665840781763 / Changed
+231 / 638483262870844619 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-211 / 638479665840781974 / Changed
+227 / 638483262870844846 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-218 / 638479665840782192 / Changed
+232 / 638483262870845078 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840782392 / Changed
+228 / 638483262870845306 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-238 / 638479665840782630 / Changed
+234 / 638483262870845540 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-197 / 638479665840782827 / Changed
+253 / 638483262870845793 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-222 / 638479665840783049 / Changed
+286 / 638483262870846079 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-252 / 638479665840783301 / Changed
+228 / 638483262870846307 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-191 / 638479665840783492 / Changed
+234 / 638483262870846541 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-216 / 638479665840783708 / Changed
+220 / 638483262870846761 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-221 / 638479665840783929 / Changed
+233 / 638483262870846994 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-236 / 638479665840784165 / Changed
+224 / 638483262870847218 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-201 / 638479665840784366 / Changed
+238 / 638483262870847456 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-187 / 638479665840784553 / Changed
+270 / 638483262870847726 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-211 / 638479665840784764 / Changed
+397 / 638483262870848123 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-216 / 638479665840784980 / Changed
+269 / 638483262870848392 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840785180 / Changed
+265 / 638483262870848657 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-212 / 638479665840785392 / Changed
+285 / 638483262870848942 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-201 / 638479665840785593 / Changed
+266 / 638483262870849208 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-247 / 638479665840785840 / Changed
+204 / 638483262870849412 / Changed
   ("file2.txt",...22222222222222222222222222222222222222222222222b")
-187 / 638479665840786027 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-214 / 638479665840786241 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-214 / 638479665840786455 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-209 / 638479665840786664 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-207 / 638479665840786871 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-201 / 638479665840787072 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-232 / 638479665840787304 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-234 / 638479665840787538 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-210 / 638479665840787748 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-214 / 638479665840787962 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840788162 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-212 / 638479665840788374 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-201 / 638479665840788575 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-200 / 638479665840788775 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-233 / 638479665840789008 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-195 / 638479665840789203 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-166 / 638479665840789369 / Changed
-  ("file2.txt",...22222222222222222222222222222222222222222222222b")
-15022835 / 638479665855812204 / Renamed
+15032861 / 638483262885882273 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-271 / 638479665855812475 / Renamed
+403 / 638483262885882676 / Renamed
   ("file2.txt",...2222222222222222222222222222222222222222222222b"))
-15065271 / 638479665870877746 / Changed
+15063650 / 638483262900946326 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-246 / 638479665870877992 / Changed
+308 / 638483262900946634 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-1359 / 638479665870879351 / Changed
+1118 / 638483262900947752 / Changed
   ("file_1.txt...11111111111111111111111111111111111111111111111c")
-70 / 638479665870879421 / Changed
-  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-3527 / 638479665870882948 / Changed
+109 / 638483262900947861 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+6219 / 638483262900954080 / Changed
   ("file_1.txt...11111111111111111111111111111111111111111111111c")
-164 / 638479665870883112 / Changed
+140 / 638483262900954220 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-242 / 638479665870883354 / Changed
+25 / 638483262900954245 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+209 / 638483262900954454 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-140 / 638479665870883494 / Changed
+266 / 638483262900954720 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-3758 / 638479665870887252 / Changed
+45 / 638483262900954765 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+191 / 638483262900954956 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+206 / 638483262900955162 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+47 / 638483262900955209 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+171 / 638483262900955380 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+153 / 638483262900955533 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+248 / 638483262900955781 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+187 / 638483262900955968 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+45 / 638483262900956013 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+178 / 638483262900956191 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+143 / 638483262900956334 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+177 / 638483262900956511 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+374 / 638483262900956885 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+243 / 638483262900957128 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+630 / 638483262900957758 / Changed
+  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
+79 / 638483262900957837 / Changed
+  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
+3146 / 638483262900960983 / Changed
   ("file_1.txt...11111111111111111111111111111111111111111111111c")
-130 / 638479665870887382 / Changed
+205 / 638483262900961188 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-795 / 638479665870888177 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-31 / 638479665870888208 / Changed
+94 / 638483262900961282 / Changed
   ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-301 / 638479665870888509 / Changed
+137 / 638483262900961419 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-625 / 638479665870889134 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-42 / 638479665870889176 / Changed
+84 / 638483262900961503 / Changed
   ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-191 / 638479665870889367 / Changed
+161 / 638483262900961664 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-173 / 638479665870889540 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-226 / 638479665870889766 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-152 / 638479665870889918 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-166 / 638479665870890084 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-171 / 638479665870890255 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-157 / 638479665870890412 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-148 / 638479665870890560 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-191 / 638479665870890751 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-173 / 638479665870890924 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-147 / 638479665870891071 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-150 / 638479665870891221 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-220 / 638479665870891441 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-170 / 638479665870891611 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-179 / 638479665870891790 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-130 / 638479665870891920 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-184 / 638479665870892104 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-140 / 638479665870892244 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-151 / 638479665870892395 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-172 / 638479665870892567 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-128 / 638479665870892695 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-364 / 638479665870893059 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-125 / 638479665870893184 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-154 / 638479665870893338 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-727 / 638479665870894065 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-43 / 638479665870894108 / Changed
+4871 / 638483262900966535 / Changed
+  ("file_1.txt...11111111111111111111111111111111111111111111111c")
+67 / 638483262900966602 / Changed
   ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-182 / 638479665870894290 / Changed
+191 / 638483262900966793 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-154 / 638479665870894444 / Changed
+150 / 638483262900966943 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-636 / 638479665870895080 / Changed
+174 / 638483262900967117 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-203 / 638479665870895283 / Changed
+147 / 638483262900967264 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-116 / 638479665870895399 / Changed
+148 / 638483262900967412 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-155 / 638479665870895554 / Changed
+106 / 638483262900967518 / Changed
   ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-560 / 638479665870896114 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-197 / 638479665870896311 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-146 / 638479665870896457 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-165 / 638479665870896622 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-237 / 638479665870896859 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-526 / 638479665870897385 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-23 / 638479665870897408 / Changed
-  ("file_1.txt",...11111111111111111111111111111111111111111111111c")
-132 / 638479665870897540 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-144 / 638479665870897684 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-110 / 638479665870897794 / Changed
-  ("file_1.txt"...11111111111111111111111111111111111111111111111c")
-45653 / 638479665870943447 / Changed
+32832 / 638483262901000350 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-196 / 638479665870943643 / Changed
+239 / 638483262901000589 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-346 / 638479665870943989 / Changed
+187 / 638483262901000776 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-209 / 638479665870944198 / Changed
+222 / 638483262901000998 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-206 / 638479665870944404 / Changed
+69 / 638483262901001067 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+294 / 638483262901001361 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-201 / 638479665870944605 / Changed
+89 / 638483262901001450 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+41 / 638483262901001491 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+417 / 638483262901001908 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-203 / 638479665870944808 / Changed
+148 / 638483262901002056 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-209 / 638479665870945017 / Changed
+139 / 638483262901002195 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-204 / 638479665870945221 / Changed
+153 / 638483262901002348 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-257 / 638479665870945478 / Changed
+165 / 638483262901002513 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-183 / 638479665870945661 / Changed
+126 / 638483262901002639 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-200 / 638479665870945861 / Changed
+146 / 638483262901002785 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-189 / 638479665870946050 / Changed
+175 / 638483262901002960 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-203 / 638479665870946253 / Changed
+157 / 638483262901003117 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-202 / 638479665870946455 / Changed
+144 / 638483262901003261 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-199 / 638479665870946654 / Changed
+819 / 638483262901004080 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-224 / 638479665870946878 / Changed
+48 / 638483262901004128 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+694 / 638483262901004822 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-195 / 638479665870947073 / Changed
+97 / 638483262901004919 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+145 / 638483262901005064 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-205 / 638479665870947278 / Changed
+207 / 638483262901005271 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-212 / 638479665870947490 / Changed
+168 / 638483262901005439 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-195 / 638479665870947685 / Changed
+187 / 638483262901005626 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-200 / 638479665870947885 / Changed
+52 / 638483262901005678 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+190 / 638483262901005868 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-197 / 638479665870948082 / Changed
+175 / 638483262901006043 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-209 / 638479665870948291 / Changed
+217 / 638483262901006260 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-219 / 638479665870948510 / Changed
+155 / 638483262901006415 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-200 / 638479665870948710 / Changed
+151 / 638483262901006566 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-203 / 638479665870948913 / Changed
+148 / 638483262901006714 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-190 / 638479665870949103 / Changed
+771 / 638483262901007485 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-205 / 638479665870949308 / Changed
+54 / 638483262901007539 / Changed
+  ("file_2.txt",...22222222222222222222222222222222222222222222222c")
+206 / 638483262901007745 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-193 / 638479665870949501 / Changed
+144 / 638483262901007889 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-201 / 638479665870949702 / Changed
+167 / 638483262901008056 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-231 / 638479665870949933 / Changed
+154 / 638483262901008210 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-200 / 638479665870950133 / Changed
+145 / 638483262901008355 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-190 / 638479665870950323 / Changed
+156 / 638483262901008511 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-231 / 638479665870950554 / Changed
+151 / 638483262901008662 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-213 / 638479665870950767 / Changed
+151 / 638483262901008813 / Changed
   ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-203 / 638479665870950970 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-181 / 638479665870951151 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-197 / 638479665870951348 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-219 / 638479665870951567 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-179 / 638479665870951746 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-189 / 638479665870951935 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-178 / 638479665870952113 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-172 / 638479665870952285 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-188 / 638479665870952473 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-175 / 638479665870952648 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-203 / 638479665870952851 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-182 / 638479665870953033 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-185 / 638479665870953218 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-183 / 638479665870953401 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-170 / 638479665870953571 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-202 / 638479665870953773 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-169 / 638479665870953942 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-187 / 638479665870954129 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-189 / 638479665870954318 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-186 / 638479665870954504 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870954680 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-175 / 638479665870954855 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-179 / 638479665870955034 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870955210 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-179 / 638479665870955389 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-195 / 638479665870955584 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870955760 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-181 / 638479665870955941 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-178 / 638479665870956119 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-182 / 638479665870956301 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-194 / 638479665870956495 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-170 / 638479665870956665 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-161 / 638479665870956826 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-203 / 638479665870957029 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-197 / 638479665870957226 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-178 / 638479665870957404 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-177 / 638479665870957581 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-177 / 638479665870957758 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-185 / 638479665870957943 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870958119 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-211 / 638479665870958330 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-173 / 638479665870958503 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870958679 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-184 / 638479665870958863 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870959039 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-175 / 638479665870959214 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-174 / 638479665870959388 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-188 / 638479665870959576 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-189 / 638479665870959765 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-183 / 638479665870959948 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-168 / 638479665870960116 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-186 / 638479665870960302 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-172 / 638479665870960474 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-182 / 638479665870960656 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-209 / 638479665870960865 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-194 / 638479665870961059 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870961235 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-177 / 638479665870961412 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-187 / 638479665870961599 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-175 / 638479665870961774 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-182 / 638479665870961956 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-181 / 638479665870962137 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-201 / 638479665870962338 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-204 / 638479665870962542 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-172 / 638479665870962714 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-183 / 638479665870962897 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-179 / 638479665870963076 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-181 / 638479665870963257 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-176 / 638479665870963433 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-175 / 638479665870963608 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-202 / 638479665870963810 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-208 / 638479665870964018 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-202 / 638479665870964220 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-218 / 638479665870964438 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-206 / 638479665870964644 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-202 / 638479665870964846 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-218 / 638479665870965064 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-194 / 638479665870965258 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-234 / 638479665870965492 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-196 / 638479665870965688 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-200 / 638479665870965888 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-229 / 638479665870966117 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-143 / 638479665870966260 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-161 / 638479665870966421 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-159 / 638479665870966580 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-173 / 638479665870966753 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-154 / 638479665870966907 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-166 / 638479665870967073 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-170 / 638479665870967243 / Changed
-  ("file_2.txt"...22222222222222222222222222222222222222222222222c")
-15033720 / 638479665886000963 / Deleted "file_1.txt"
-3145 / 638479665886004108 / Deleted "file_2.txt"
+14580 / 638483262901023393 / Changed
+  ("file_2.tx...22222222222222222222222222222222222222222222222c")
+15003276 / 638483262916026669 / Deleted "file_1.txt"
+4426 / 638483262916031095 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -9938,7 +8839,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9948,7 +8849,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9990,8 +8891,8 @@ FSharpOption&lt;Unit&gt;
     <span class="p">(</span><span class="n">watchFn</span> <span class="p">:</span> <span class="n">string</span> <span class="o">-&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">&lt;</span><span class="n">int64</span> <span class="o">*</span> <span class="n">FileSystemChange</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">IDisposable</span><span class="p">)</span>
     <span class="n">write</span>
     <span class="o">=</span>
-    <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="n">path</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">tempDisposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
+    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">watchFn</span> <span class="n">tempDir</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentBag</span> <span class="p">()</span>
 
@@ -10002,7 +8903,7 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">run</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">iter</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
         <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">250</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">path</span>
+        <span class="k">return</span><span class="err">!</span> <span class="n">write</span> <span class="n">tempDir</span>
     <span class="p">}</span>
 
     <span class="k">try</span>
@@ -10011,7 +8912,7 @@ FSharpOption&lt;Unit&gt;
         <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="n">Some</span> <span class="p">())</span>
     <span class="k">finally</span>
         <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-        <span class="n">deleteDirectoryAsync</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
+        <span class="n">tempDisposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
 
     <span class="n">let</span> <span class="n">events</span> <span class="o">=</span> <span class="n">formatEvents</span> <span class="n">events</span>
 
@@ -10041,7 +8942,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10051,7 +8952,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10065,10 +8966,10 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -10116,7 +9017,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:26 #51 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:11 #5 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -10142,7 +9043,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10152,7 +9053,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10166,13 +9067,13 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -10215,7 +9116,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:28 #52 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:12 #6 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -10236,7 +9137,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10246,7 +9147,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10260,13 +9161,13 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -10314,7 +9215,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:31 #53 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:13 #7 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -10341,7 +9242,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10351,7 +9252,7 @@ FSharpOption&lt;Unit&gt;
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10365,19 +9266,19 @@ FSharpOption&lt;Unit&gt;
     <span class="n">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="s2">""</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">moveFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file</span><span class="si">{i}</span><span class="s2">.txt"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">writeAllTextAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
+        <span class="n">do</span><span class="err">!</span> <span class="err">$</span><span class="s2">"</span><span class="si">{i}</span><span class="s2">"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span>
-        <span class="n">do</span><span class="err">!</span> <span class="n">deleteFileAsync</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+        <span class="n">do</span><span class="err">!</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">delete_file_async</span> <span class="p">(</span><span class="n">path</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"file_</span><span class="si">{i}</span><span class="s2">.txt"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
     <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">150</span>
 <span class="p">}</span>
@@ -10427,7 +9328,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:33 #54 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:14 #8 [Debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

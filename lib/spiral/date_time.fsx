@@ -41,6 +41,9 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     let v9 : System.DateTime = System.DateTime.ParseExact (v2.[..24] |> v3 "-" "", "yyyyMMddHHmmssfffffff", null)
     v9 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof<System.DateTime>
+    #endif
     |> fun x -> _v4 <- Some x
     let v10 : System.DateTime = _v4 |> Option.get
     v10

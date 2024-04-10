@@ -77,7 +77,7 @@ inl box forall t. (x : option t) : option' t =
 // // ## try'
 
 inl try' forall t. (x : option' t) : t =
-    !\($'"!x?"')
+    !\\(x, $'"$0?"')
 
 // // ## flatten
 

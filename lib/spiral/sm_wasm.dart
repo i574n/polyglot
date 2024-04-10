@@ -71,10 +71,7 @@ String method0() => '';
 
 List<String> closure18(List<String> v0_1, String v1_1) {
     types.Some<List<String>>? _v2;
-    final v25 = seq.ofArray<String>(v0_1);
-    final v26 = method0();
-    final x = string.split(v1_1, [v25.join(v26)], null, 0);
-    _v2 = types.Some(x);
+    _v2 = const types.Some(null);
     return types.value(_v2);
 }
 
@@ -136,8 +133,7 @@ String Function(String) closure33(void unitVar, int v0_1) => (String v) => closu
 
 String closure35(void unitVar, dynamic v0_1) {
     types.Some<String>? _v1;
-    final x = string.toText(string.interpolate('%A%P()', [v0_1]));
-    _v1 = types.Some(x);
+    _v1 = const types.Some('');
     return types.value(_v1);
 }
 

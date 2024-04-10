@@ -166,7 +166,7 @@ details > div {{
 
 //// test
 
-let tempFolder = SpiralFileSystem.create_temp_directory ()
+let struct (tempFolder, disposable) = SpiralFileSystem.create_temp_directory ()
 let rec loop d n = async {
     if n >= 0 then
         tempFolder </> d |> System.IO.Directory.CreateDirectory |> ignore
@@ -174,7 +174,7 @@ let rec loop d n = async {
             n
             |> string
             |> String.replicate (n + 1)
-            |> FileSystem.writeAllTextAsync (tempFolder </> d </> $"file.txt")
+            |> SpiralFileSystem.write_all_text_async (tempFolder </> d </> $"file.txt")
         do! loop $"{d}/{n}" (n - 1)
 }
 loop "_.root" 3
@@ -216,6 +216,8 @@ details > div {
 """
 
 html |> Microsoft.DotNet.Interactive.Formatting.Html.ToHtmlContent
+
+disposable.Dispose ()
 
 #!markdown
 
@@ -264,7 +266,7 @@ let main args =
     let fileSystem = scanDirectory true dir dir
     let html = generateHtmlForFileSystem fileSystem
 
-    html |> FileSystem.writeAllTextAsync htmlPath
+    html |> SpiralFileSystem.write_all_text_async htmlPath
     |> Async.runWithTimeout 30000
     |> function
         | Some () -> 0

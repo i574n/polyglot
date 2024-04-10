@@ -7578,16 +7578,24 @@ a.anchor-link {
 <span class="n">inl</span> <span class="n">__assert_le</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="p">(</span><span class="o">&lt;=</span><span class="p">)</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_le</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_le</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
-<span class="n">inl</span> <span class="n">__contains</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">log</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span>
+<span class="n">inl</span> <span class="n">__assert_contains</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">log</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span>
     <span class="n">__expect</span>
         <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Seq.tryFind'</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">b</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox |&gt; fun (x : option t) =&gt; x &lt;&gt; None)</span>
         <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
-<span class="n">inl</span> <span class="n">_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+<span class="n">inl</span> <span class="n">_assert_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
 <span class="n">inl</span> <span class="n">_throws</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">none</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span>
     <span class="n">inl</span> <span class="n">some</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">exn</span><span class="p">)</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">s</span>
     <span class="err">$</span><span class="s2">"try !fn (); !none with ex -&gt; ex |&gt; !some"</span>
+
+<span class="n">inl</span> <span class="n">__assert_between</span> <span class="n">log</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span>
+    <span class="n">inl</span> <span class="n">assert_between</span> <span class="n">actual</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">__assert_ge</span> <span class="n">log</span> <span class="n">a</span> <span class="n">actual</span>
+        <span class="n">__assert_le</span> <span class="n">log</span> <span class="n">b</span> <span class="n">actual</span>
+        <span class="n">true</span>
+    <span class="n">__expect</span> <span class="n">assert_between</span> <span class="n">log</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="n">actual</span>
+<span class="n">inl</span> <span class="n">_assert_between</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span> <span class="o">=</span> <span class="n">__assert_between</span> <span class="n">true</span> <span class="n">a</span> <span class="n">b</span> <span class="n">actual</span>
 </pre></div>
 </div>
 </div>
@@ -7655,7 +7663,7 @@ method0()
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">//</span> <span class="o">//</span> <span class="n">test</span>
 
 <span class="s2">"abcd"</span>
-<span class="o">|&gt;</span> <span class="n">_contains</span> <span class="s1">'b'</span>
+<span class="o">|&gt;</span> <span class="n">_assert_contains</span> <span class="s1">'b'</span>
 </pre></div>
 </div>
 </div>

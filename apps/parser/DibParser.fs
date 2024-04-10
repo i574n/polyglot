@@ -218,7 +218,7 @@ module {moduleName} ="
     let inline parseDibCode output file = async {
         let getLocals () = $"output: {output} / file: {file} / {getLocals ()}"
         trace Debug (fun () -> "parseDibCode") getLocals
-        let! input = file |> FileSystem.readAllTextAsync
+        let! input = file |> SpiralFileSystem.read_all_text_async
         match parse output input with
         | Result.Ok blocks -> return blocks |> formatBlocks output
         | Result.Error msg -> return failwith msg
@@ -231,7 +231,7 @@ module {moduleName} ="
         trace Debug (fun () -> "writeDibCode") getLocals
         let! result = parseDibCode output path
         let outputPath = path |> SpiralSm.replace ".dib" $".{output |> string |> SpiralSm.to_lower}"
-        do! result |> FileSystem.writeAllTextAsync outputPath
+        do! result |> SpiralFileSystem.write_all_text_async outputPath
     }
 
     /// ## Arguments

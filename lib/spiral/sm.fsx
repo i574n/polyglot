@@ -83,6 +83,9 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     let v23 : (string []) = v1.Split v22
     v23 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof<(string [])>
+    #endif
     |> fun x -> _v2 <- Some x
     let v24 : (string []) = _v2 |> Option.get
     v24
@@ -181,6 +184,9 @@ and closure35 () (v0 : exn) : string =
     #if FABLE_COMPILER_TYPESCRIPT
     let v6 : string = $"%A{v0}"
     v6 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    Unchecked.defaultof<string>
     #endif
     |> fun x -> _v1 <- Some x
     let v7 : string = _v1 |> Option.get

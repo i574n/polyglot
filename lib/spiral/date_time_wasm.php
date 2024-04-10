@@ -47,8 +47,9 @@ function method0($unitVar) {
 
 #6
 function closure2($unitVar, $v0_1) {
+    $v3_1 = method0(NULL);
     $_v4 = NULL;
-    $x = \Date\parseExact(method0(NULL)('-', '', $v0_1->slice), 'yyyyMMddHHmmssfffffff', \Util\defaultOf());
+    $x = \Date\minValue();
     $_v4 = $x;
     return \Option\value($_v4);
 }

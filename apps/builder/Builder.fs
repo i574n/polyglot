@@ -62,7 +62,7 @@ module Builder =
         System.IO.Directory.CreateDirectory targetDir |> ignore
 
         let filePath = targetDir </> $"{name}.fs" |> System.IO.Path.GetFullPath
-        do! code |> FileSystem.writeAllTextExists filePath
+        do! code |> SpiralFileSystem.write_all_text_exists filePath
 
         let modulesCode =
             modules
@@ -92,13 +92,13 @@ module Builder =
     <Import Project="{repositoryRoot}/.paket/Paket.Restore.targets" />
 </Project>
 """
-        do! fsprojCode |> FileSystem.writeAllTextExists fsprojPath
+        do! fsprojCode |> SpiralFileSystem.write_all_text_exists fsprojPath
 
         let paketReferencesPath = targetDir </> "paket.references"
         let paketReferencesCode =
             "FSharp.Core" :: packages
             |> SpiralSm.concat "\n"
-        do! paketReferencesCode |> FileSystem.writeAllTextExists paketReferencesPath
+        do! paketReferencesCode |> SpiralFileSystem.write_all_text_exists paketReferencesPath
 
         return fsprojPath
     }
@@ -113,7 +113,7 @@ module Builder =
     /// ## readFile
 
     let inline readFile path = async {
-        let! code = path |> FileSystem.readAllTextAsync
+        let! code = path |> SpiralFileSystem.read_all_text_async
 
         let code = System.Text.RegularExpressions.Regex.Replace (
             code,

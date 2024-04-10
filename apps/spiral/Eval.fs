@@ -10,12 +10,15 @@ module Eval =
 
     open Common
     open SpiralFileSystem.Operators
+    open Microsoft.AspNetCore.SignalR.Client
 
     open System
     open System.Collections.Generic
     open System.IO
     open System.Text
     open System.Threading
+
+    /// ## mapErrors
 
     let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
         let allCodeLineLength =
@@ -83,59 +86,62 @@ module Eval =
 
     let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
     let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
+    let traceDir = targetDir </> "eval_trace"
+    [ targetDir; traceDir ]
+    |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
     let mutable allCode = ""
 
-    let logFile filePath (text : string) =
-        if traceLevel = TraceLevel.Verbose then
-            let logDir = targetDir </> "log_kernel"
-            Directory.CreateDirectory logDir |> ignore
-            let dateTimeStr = DateTime.Now |> SpiralDateTime.format_iso8601
-            let logFile = logDir </> filePath
-            File.AppendAllText (logFile, $"{dateTimeStr} Eval / {text}{Environment.NewLine}") |> ignore
+    /// ## traceFile
 
-    let log (text : string) =
-        try
-            text |> logFile "log.txt"
-        with ex ->
-            trace Debug (fun () -> $"SpiralScriptHelpers.log / ex: {ex |> SpiralSm.format_exception}") getLocals
-            let dateTimeStr = DateTime.Now |> SpiralDateTime.format_iso8601
-            text |> logFile $"log_{dateTimeStr}_{Random().Next()}.txt"
+    let traceFile filePath (text : string) =
+        if traceLevel = TraceLevel.Verbose then
+            let dateTimeStr = DateTime.Now |> SpiralDateTime.new_guid_from_date_time
+            let traceFile = traceDir </> filePath
+            File.AppendAllText (traceFile, $"{dateTimeStr} Eval / {text}{Environment.NewLine}") |> ignore
+
+    /// ## log
 
     let assemblyName = Reflection.Assembly.GetEntryAssembly().GetName().Name
+
+    let log (text : string) =
+        let dateTimeStr = DateTime.Now |> SpiralDateTime.new_guid_from_date_time
+        text |> traceFile $"{assemblyName}_{dateTimeStr}_{Random().Next()}.txt"
+
+    /// ## startTokenRangeWatcher
 
     let inline startTokenRangeWatcher () =
         if [ "dotnet-repl" ] |> List.contains assemblyName |> not then
             let packagesDir = targetDir </> "packages"
 
-            [ targetDir; packagesDir ]
+            [ packagesDir ]
             |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
 
             let stream, disposable = FileSystem.watchDirectory (fun _ -> false) packagesDir
 
             try
-                let port = Supervisor.getCompilerPort () + 2
                 let existingFilesChild =
                     packagesDir
                     |> System.IO.Directory.GetDirectories
                     |> Array.map (fun codeDir -> async {
                         try
                             let tokensPath = codeDir </> "tokens.json"
-                            if File.Exists tokensPath |> not then
+                            let packagePath = codeDir </> "package.spiproj"
+                            if (tokensPath |> File.Exists |> not) && (packagePath |> File.Exists |> not) then
                                 let codePath = codeDir </> "main.spi"
-                                let! tokens = codePath |> Supervisor.getFileTokenRange port None
+                                let! tokens = codePath |> Supervisor.getFileTokenRange None None
                                 match tokens with
                                 | Some tokens ->
                                     do!
                                         tokens
                                         |> FSharp.Json.Json.serialize
-                                        |> FileSystem.writeAllTextAsync tokensPath
+                                        |> SpiralFileSystem.write_all_text_async tokensPath
                                 | None ->
-                                    log $"Eval.watchDirectory / GetDirectories / tokens: None / {getLocals ()}"
+                                    log $"Eval.startTokenRangeWatcher / GetDirectories / tokens: None / {getLocals ()}"
                         with ex ->
-                            log $"Eval.watchDirectory / GetDirectories / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
+                            log $"Eval.startTokenRangeWatcher / GetDirectories / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     })
-                    |> Async.Sequential
+                    |> Async.Parallel
                     |> Async.Ignore
 
                 let streamAsyncChild =
@@ -143,34 +149,35 @@ module Eval =
                     |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) -> async {
                         try
                             let getLocals () = $"ticks: {ticks} / event: {event} / {getLocals ()}"
-                            log $"Eval.watchDirectory / iterAsyncParallel / {getLocals ()}"
+                            log $"Eval.startTokenRangeWatcher / iterAsyncParallel / {getLocals ()}"
                             match event with
                             | FileSystem.FileSystemChange.Changed (codePath, _)
                                 when System.IO.Path.GetFileName codePath = "main.spi"
                                 ->
-                                let hash = codePath |> System.IO.Directory.GetParent
-                                let hash = hash.Name
-                                let tokensPath = targetDir </> hash </> "tokens.json"
-                                do!
-                                    codePath
-                                    |> FileSystem.waitForFileAccess (Some (
-                                        System.IO.FileAccess.Read,
-                                        System.IO.FileShare.Read
-                                    ))
-                                    |> Async.runWithTimeoutAsync 1000
-                                    |> Async.Ignore
-                                let! tokens = codePath |> Supervisor.getFileTokenRange port None
-                                match tokens with
-                                | Some tokens ->
+                                let hashDir = codePath |> System.IO.Directory.GetParent
+                                let hashHex = hashDir.Name
+                                let packagePath = packagesDir </> hashHex </> "package.spiproj"
+
+                                if packagePath |> System.IO.File.Exists |> not then
+                                    let codePath = packagesDir </> codePath
+                                    let tokensPath = packagesDir </> hashHex </> "tokens.json"
                                     do!
-                                        tokens
-                                        |> FSharp.Json.Json.serialize
-                                        |> FileSystem.writeAllTextAsync tokensPath
-                                | None ->
-                                    log $"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"
+                                        codePath
+                                        |> SpiralFileSystem.wait_for_file_access_read
+                                        |> Async.runWithTimeoutAsync 1000
+                                        |> Async.Ignore
+                                    let! tokens = codePath |> Supervisor.getFileTokenRange None None
+                                    match tokens with
+                                    | Some tokens ->
+                                        do!
+                                            tokens
+                                            |> FSharp.Json.Json.serialize
+                                            |> SpiralFileSystem.write_all_text_async tokensPath
+                                    | None ->
+                                        log $"Eval.startTokenRangeWatcher / iterAsyncParallel / tokens: None / {getLocals ()}"
                             | _ -> ()
                         with ex ->
-                            log $"Eval.watchDirectory / iterAsyncParallel / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
+                            log $"Eval.startTokenRangeWatcher / iterAsyncParallel / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     })
 
                 async {
@@ -180,10 +187,62 @@ module Eval =
                 }
                 |> Async.Start
             with ex ->
-                log $"Eval / ex: {ex |> SpiralSm.format_exception}"
+                log $"Eval.startTokenRangeWatcher / ex: {ex |> SpiralSm.format_exception}"
 
             disposable
         else new_disposable (fun () -> ())
+
+    /// ## startCommandsWatcher
+
+    let startCommandsWatcher (uriServer : string) =
+        let commandsDir = targetDir </> "eval_commands"
+        let commandHistoryDir = targetDir </> "eval_command_history"
+        [ commandsDir; commandHistoryDir ]
+        |> List.iter (fun dir -> if Directory.Exists dir |> not then Directory.CreateDirectory dir |> ignore)
+
+        Directory.EnumerateFiles commandsDir |> Seq.iter File.Delete
+
+        let stream, disposable =
+            commandsDir
+            |> FileSystem.watchDirectory (function
+                | FileSystem.FileSystemChange.Created _ -> true
+                | _ -> false
+            )
+
+        let connection = HubConnectionBuilder().WithUrl(uriServer).Build()
+        connection.StartAsync() |> Async.AwaitTask |> Async.Start
+        // let _ = connection.On<string>("ServerToClientMsg", fun x ->
+        //     printfn $"ServerToClientMsg: '{x}'"
+        // )
+
+        stream
+        |> FSharp.Control.AsyncSeq.iterAsyncParallel (fun (ticks, event) -> async {
+            let getLocals () = $"ticks: {ticks} / event: {event} / {getLocals ()}"
+            trace Verbose (fun () -> "Eval.startCommandsWatcher / iterAsyncParallel") getLocals
+
+            match event with
+            | FileSystem.FileSystemChange.Created (path, Some json) ->
+                try
+                    let fullPath = commandsDir </> path
+                    let! result = connection.InvokeAsync<string>("ClientToServerMsg", json) |> Async.AwaitTask
+                    let commandHistoryPath = commandHistoryDir </> path
+                    do! fullPath |> SpiralFileSystem.move_file_async commandHistoryPath |> Async.Ignore
+                    if result |> SpiralSm.trim |> String.length > 0 then
+                        let resultPath = commandHistoryDir </> $"{Path.GetFileNameWithoutExtension path}_result.json"
+                        do! result |> SpiralFileSystem.write_all_text_async resultPath
+                with ex ->
+                    trace Critical (fun () -> "Eval.startCommandsWatcher / iterAsyncParallel / ex: {ex |> SpiralSm.format_exception}") getLocals
+            | _ -> ()
+        })
+        |> Async.StartChild
+        |> Async.Ignore
+        |> Async.Start
+
+        new_disposable (fun () ->
+            disposable.Dispose ()
+        )
+
+    /// ## eval
 
     let inline eval
         (fsi_eval:
@@ -193,7 +252,7 @@ module Eval =
         (cancellationToken: Option<System.Threading.CancellationToken>)
         (code: string)
         =
-        log $"Eval / code: %A{code}"
+        log $"Eval.eval / code: %A{code}"
 
         let rawCellCode =
             if code |> SpiralSm.trim <> "// // trace"
@@ -256,7 +315,7 @@ module Eval =
                                     let m =
                                         System.Text.RegularExpressions.Regex.Match (
                                             line,
-                                            @"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=]"
+                                            @"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=](?! +function)"
                                         )
                                     trace Debug (fun () -> $"m: '{m}' / m.Groups.Count: {m.Groups.Count}") getLocals
                                     if m.Groups.Count = 3
@@ -309,8 +368,7 @@ module Eval =
 
                 async {
                     try
-                        let! mainPath, disposable = newAllCode |> Supervisor.persistCode
-                        use _ = disposable
+                        let! mainPath = newAllCode |> Supervisor.persistCode
 
                         let port = Supervisor.getCompilerPort ()
 
@@ -335,7 +393,7 @@ module Eval =
                             let inline _trace (fn : unit -> string) =
                                 if traceLevel = Info
                                 then fn () |> System.Console.WriteLine
-                                else trace Info (fun () -> $"SpiralScriptHelpers.Eval / {fn ()}") getLocals
+                                else trace Info (fun () -> $"Eval.eval / {fn ()}") getLocals
 
                             if printCode
                             then _trace (fun () -> if rustArgs |> Option.isSome then $"\n.fsx:\n{code}" else code)
@@ -384,7 +442,7 @@ module Eval =
                                         then return Some (Error result)
                                         else
                                             let rsPath = outDir </> $"{hash}.rs"
-                                            let! rsCode = rsPath |> FileSystem.readAllTextAsync
+                                            let! rsCode = rsPath |> SpiralFileSystem.read_all_text_async
 
                                             let mainCode = "pub fn main() -> Result<(), String> { Ok(()) }"
 
@@ -401,7 +459,7 @@ module Eval =
                                             if not cached
                                             then do!
                                                 $"{rsCode}\n\n{mainCode}\n"
-                                                |> FileSystem.writeAllTextAsync rsPath
+                                                |> SpiralFileSystem.write_all_text_async rsPath
 
 
                                             let cargoTomlPath = outDir </> $"Cargo.toml"
@@ -425,7 +483,7 @@ default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"
 name = "{hash}"
 path = "{hash}.rs"
 """
-                                            do! cargoTomlContent |> FileSystem.writeAllTextExists cargoTomlPath
+                                            do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
 
                                             let! exitCode, result =
                                                 Runtime.executeWithOptionsAsync
@@ -468,7 +526,7 @@ path = "{hash}.rs"
                                             )
                                         Some (ch, errors)
                                     with ex ->
-                                        trace Critical (fun () -> $"SpiralScriptHelpers.Eval / ex: {ex |> SpiralSm.format_exception}") getLocals
+                                        trace Critical (fun () -> $"Eval.eval / ex: {ex |> SpiralSm.format_exception}") getLocals
                                         None
 
                             match fsxResult, rustResult with

@@ -23,8 +23,9 @@ String Function(String) Function(String) Function(String) method0() => (String v
 
 DateTime closure2(void unitVar, Guid v0_1) {
     final v2_1 = v0_1.toString();
+    final v3_1 = method0();
     types.Some<DateTime>? _v4;
-    final x = date.parseExact((((method0())('-'))(''))(v2_1.substring(0, 25)), 'yyyyMMddHHmmssfffffff', null);
+    final x = date.minValue();
     _v4 = types.Some(x);
     return types.value(_v4);
 }

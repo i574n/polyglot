@@ -18,13 +18,25 @@ function CopyTarget {
         $to = "$root/lib/$lib/$name$_runtime.$Language"
         Copy-Item $from $to -Force
 
-                # -replace "this$.tag", "(this`$ as any)['tag']" `
         if ($Language -eq "ts") {
             (Get-Content $to) `
                 -replace "../../fable_modules/fable-library-ts.4.14.0/", "../../deps/Fable/src/fable-library-ts/" `
                 -replace "this\$.tag", "(this$ as any)['tag']" `
                 -replace "../../../../../../../../", "../../" `
                 | Set-Content $to
+        }
+        if ($Language -eq "rs") {
+            if ($name -eq "file_system") {
+                (Get-Content $to) `
+                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = Option<T>;" `
+                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
+                    | Set-Content $to
+            }
+            if ($name -eq "common") {
+                (Get-Content $to) `
+                    -replace "defaultOf\(\)", "defaultOf::<std::rc::Rc<dyn IDisposable>>()" `
+                    | Set-Content $to
+            }
         }
     }
 

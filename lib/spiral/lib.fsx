@@ -1,4 +1,4 @@
-#if !WASM && !CONTRACT && !FABLE_COMPILER
+#if !FABLE_COMPILER && !WASM && !CONTRACT
 module SpiralDateTime =
     let format x =
 #if !INTERACTIVE
@@ -165,7 +165,79 @@ module SpiralFileSystem =
         create_temp_directory_name ()
 #endif
 
-#if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !WASM && !CONTRACT
+#if !FABLE_COMPILER && !WASM && !CONTRACT
+
+    let delete_directory_async x =
+#if !INTERACTIVE
+        File_system.delete_directory_async x
+#else
+        delete_directory_async x
+#endif
+
+    let wait_for_file_access x =
+#if !INTERACTIVE
+        File_system.wait_for_file_access x
+#else
+        wait_for_file_access x
+#endif
+
+    let wait_for_file_access_read x =
+#if !INTERACTIVE
+        File_system.wait_for_file_access_read x
+#else
+        wait_for_file_access_read x
+#endif
+
+    let read_all_text_async x =
+#if !INTERACTIVE
+        File_system.read_all_text_async x
+#else
+        read_all_text_async x
+#endif
+
+    let file_exists_content x =
+#if !INTERACTIVE
+        File_system.file_exists_content x
+#else
+        file_exists_content x
+#endif
+
+    let write_all_text_async x =
+#if !INTERACTIVE
+        File_system.write_all_text_async x
+#else
+        write_all_text_async x
+#endif
+
+    let write_all_text_exists x =
+#if !INTERACTIVE
+        File_system.write_all_text_exists x
+#else
+        write_all_text_exists x
+#endif
+
+    let delete_file_async x =
+#if !INTERACTIVE
+        File_system.delete_file_async x
+#else
+        delete_file_async x
+#endif
+
+    let move_file_async x =
+#if !INTERACTIVE
+        File_system.move_file_async x
+#else
+        move_file_async x
+#endif
+
+    let read_all_text_retry_async x =
+#if !INTERACTIVE
+        File_system.read_all_text_retry_async x
+#else
+        read_all_text_retry_async x
+#endif
+
+
     module Operators =
         let (</>) x =
 #if !INTERACTIVE

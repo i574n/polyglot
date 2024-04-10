@@ -158,7 +158,7 @@ details > div {{
         let fileSystem = scanDirectory true dir dir
         let html = generateHtmlForFileSystem fileSystem
 
-        html |> FileSystem.writeAllTextAsync htmlPath
+        html |> SpiralFileSystem.write_all_text_async htmlPath
         |> Async.runWithTimeout 30000
         |> function
             | Some () -> 0

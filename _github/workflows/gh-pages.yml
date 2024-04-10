@@ -23,10 +23,9 @@ jobs:
         with:
           dotnet-version: '9.0.100-preview.1.24101.2'
 
-      - uses: ATiltedTree/setup-rust@v1
+      - uses: moonrepo/setup-rust@v1
         with:
-          rust-version: nightly
-          components: clippy rust-src rustfmt
+          inherit-toolchain: true
 
       - uses: actions/setup-python@v4
         with:

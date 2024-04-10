@@ -1,0 +1,13 @@
+nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
+
+union os_platform =
+    | Windows
+
+inl os_platform = function
+    | Windows => $'`os_platform'.Windows' : os_platform'
+
+inl is_os_platform (x : os_platform') : bool =
+    x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
+
+inl is_windows () : bool =
+    Windows |> os_platform |> is_os_platform

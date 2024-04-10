@@ -61,7 +61,9 @@ pub mod Lib {
     pub mod SpiralFileSystem {
         use super::*;
         use crate::File_system;
+        use fable_library_rust::Interfaces_::System::IDisposable;
         use fable_library_rust::Native_::Func1;
+        use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::String_::string;
         pub fn get_source_directory() -> string {
             File_system::get_source_directory()
@@ -69,7 +71,7 @@ pub mod Lib {
         pub fn find_parent(x: string) -> Func1<bool, Func1<string, string>> {
             File_system::find_parent(x)
         }
-        pub fn create_temp_directory() -> string {
+        pub fn create_temp_directory() -> (string, LrcPtr<dyn IDisposable>) {
             File_system::create_temp_directory()
         }
         pub fn create_temp_directory_name() -> string {

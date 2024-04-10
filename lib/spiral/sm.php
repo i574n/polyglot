@@ -7,6 +7,7 @@ require_once(__FABLE_LIBRARY__.'/FSharp.Core.php');
 require_once(__FABLE_LIBRARY__.'/Option.php');
 require_once(__FABLE_LIBRARY__.'/Seq.php');
 require_once(__FABLE_LIBRARY__.'/String.php');
+require_once(__FABLE_LIBRARY__.'/Util.php');
 
 use \IComparable;
 
@@ -158,8 +159,7 @@ function method0($unitVar) {
 #20
 function closure18($v0_1, $v1_1) {
     $_v2 = NULL;
-    $v20_1 = \Seq\ofArray($v0_1);
-    $x = \String\split($v1_1, [ \String\join(method0(NULL), $v20_1) ], NULL, 0);
+    $x = \Util\defaultOf();
     $_v2 = $x;
     return \Option\value($_v2);
 }
@@ -277,7 +277,7 @@ function closure33($unitVar, $v0_1) {
 #38
 function closure35($unitVar, $v0_1) {
     $_v1 = NULL;
-    $x = \String\toText(\String\interpolate('%A%P()', [ $v0_1 ]));
+    $x = \Util\defaultOf();
     $_v1 = $x;
     return \Option\value($_v1);
 }

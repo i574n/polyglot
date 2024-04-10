@@ -8454,6 +8454,9 @@ and method0 () : unit =
             let v10 : string = $"%A{v4}"
             v10 
             #endif
+            #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+            Unchecked.defaultof&lt;string&gt;
+            #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
             let v11 : string = _v5 |&gt; Option.get
             US1_0(v11)

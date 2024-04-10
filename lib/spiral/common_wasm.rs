@@ -2,20 +2,21 @@ pub mod Common {
     use super::*;
     use fable_library_rust::Exception_::try_catch;
     use fable_library_rust::Interfaces_::System::IDisposable;
+    use fable_library_rust::Native_::defaultOf;
+    use fable_library_rust::Native_::interface_cast;
     use fable_library_rust::Native_::on_startup;
     use fable_library_rust::Native_::Func0;
     use fable_library_rust::Native_::Func1;
+    use fable_library_rust::Native_::Lrc;
     use fable_library_rust::Native_::LrcPtr;
     use fable_library_rust::Native_::MutCell;
     use fable_library_rust::Native_::OnceInit;
     use fable_library_rust::Option_::getValue;
-    use fable_library_rust::String_::sprintf;
     use fable_library_rust::System::Exception;
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US0 {
         US0_0,
         US0_1,
-        US0_2,
     }
     impl Common::US0 {
         pub fn get_IsUS0_0(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
@@ -32,13 +33,6 @@ pub mod Common {
                 false
             }
         }
-        pub fn get_IsUS0_2(this_: &MutCell<Common::US0>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Common::US0 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
@@ -48,8 +42,7 @@ pub mod Common {
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US1 {
         US1_0(Common::US0),
-        US1_1(Common::US0),
-        US1_2(Common::US0),
+        US1_1,
     }
     impl Common::US1 {
         pub fn get_IsUS1_0(this_: &MutCell<Common::US1>, unitArg: ()) -> bool {
@@ -66,67 +59,8 @@ pub mod Common {
                 false
             }
         }
-        pub fn get_IsUS1_2(this_: &MutCell<Common::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
     }
     impl core::fmt::Display for Common::US1 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US2 {
-        US2_0,
-        US2_1,
-    }
-    impl Common::US2 {
-        pub fn get_IsUS2_0(this_: &MutCell<Common::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS2_1(this_: &MutCell<Common::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Common::US2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US3 {
-        US3_0(Common::US2),
-        US3_1,
-    }
-    impl Common::US3 {
-        pub fn get_IsUS3_0(this_: &MutCell<Common::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS3_1(this_: &MutCell<Common::US3>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Common::US3 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
@@ -135,41 +69,38 @@ pub mod Common {
         let _v1: MutCell<Option<LrcPtr<dyn IDisposable>>> =
             MutCell::new(None::<LrcPtr<dyn IDisposable>>);
         {
-            let x: LrcPtr<dyn IDisposable> = panic!(
-                "{}",
-                sprintf!(
-                    "new_disposable / target: {}",
-                    Common::US1::US1_0(Common::US0::US0_1)
-                ),
+            let x: LrcPtr<dyn IDisposable> = interface_cast!(
+                defaultOf::<std::rc::Rc<dyn IDisposable>>(),
+                Lrc<dyn IDisposable>,
             );
             _v1.set(Some(x))
         }
         getValue(_v1.get().clone())
     }
-    pub fn closure3(v0_1: i32, v1_1: Func0<()>, v2: i32, unitVar: ()) -> Common::US2 {
+    pub fn closure3(v0_1: i32, v1_1: Func0<()>, v2: i32, unitVar: ()) -> Common::US0 {
         if v2 < v0_1 {
             v1_1();
-            Common::US2::US2_0
+            Common::US0::US0_0
         } else {
-            Common::US2::US2_1
+            Common::US0::US0_1
         }
     }
-    pub fn closure4(unitVar: (), v0_1: Common::US2) -> Common::US3 {
-        Common::US3::US3_0(v0_1)
+    pub fn closure4(unitVar: (), v0_1: Common::US0) -> Common::US1 {
+        Common::US1::US1_0(v0_1)
     }
-    pub fn closure5(unitVar: (), v0_1: LrcPtr<Exception>) {
-        let _v1: MutCell<Option<()>> = MutCell::new(None::<()>);
-        _v1.set(Some(()));
-        getValue(_v1.get().clone());
-        ()
+    pub fn closure5(v0_1: i32, v1_1: LrcPtr<Exception>) -> Common::US1 {
+        let _v2: MutCell<Option<()>> = MutCell::new(None::<()>);
+        _v2.set(Some(()));
+        getValue(_v2.get().clone());
+        Common::US1::US1_1
     }
-    pub fn method0(v0_1: i32, v1_1: Func0<()>, v2: i32) -> Common::US2 {
+    pub fn method0(v0_1: i32, v1_1: Func0<()>, v2: i32) -> Common::US0 {
         let v0_1: MutCell<i32> = MutCell::new(v0_1);
         let v1_1 = MutCell::new(v1_1.clone());
         let v2: MutCell<i32> = MutCell::new(v2);
         '_method0: loop {
             break '_method0 ({
-                let v7: Common::US3 = try_catch(
+                let v6: Common::US1 = try_catch(
                     || {
                         Common::closure4(
                             (),
@@ -181,14 +112,11 @@ pub mod Common {
                             ),
                         )
                     },
-                    |ex: LrcPtr<Exception>| {
-                        Common::closure5((), ex.clone());
-                        Common::US3::US3_1
-                    },
+                    |ex: LrcPtr<Exception>| Common::closure5(v2.get().clone(), ex.clone()),
                 );
-                match &v7 {
-                    Common::US3::US3_0(v7_0_0) => match &v7 {
-                        Common::US3::US3_0(x) => x.clone(),
+                match &v6 {
+                    Common::US1::US1_0(v6_0_0) => match &v6 {
+                        Common::US1::US1_0(x) => x.clone(),
                         _ => unreachable!(),
                     },
                     _ => {
@@ -205,9 +133,9 @@ pub mod Common {
         }
     }
     pub fn closure2(v0_1: i32, v1_1: Func0<()>) -> Option<()> {
-        let v3: Common::US2 = Common::method0(v0_1, v1_1, 0_i32);
+        let v3: Common::US0 = Common::method0(v0_1, v1_1, 0_i32);
         match &v3 {
-            Common::US2::US2_0 => Some(()),
+            Common::US0::US0_0 => Some(()),
             _ => None::<()>,
         }
     }

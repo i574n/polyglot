@@ -7590,6 +7590,7 @@ a.anchor-link {
 <span class="c1">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Threading.fs</span>
+<span class="c1">#!import ../../lib/fsharp/Crypto.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Networking.fs</span>
@@ -7629,6 +7630,7 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="nb">open</span> <span class="n">Common</span>
 <span class="nb">open</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">Operators</span>
+<span class="nb">open</span> <span class="n">Microsoft</span><span class="o">.</span><span class="n">AspNetCore</span><span class="o">.</span><span class="n">SignalR</span><span class="o">.</span><span class="n">Client</span>
 </pre></div>
 </div>
 </div>
@@ -7652,7 +7654,18 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="mapErrors">mapErrors<a class="anchor-link" href="#mapErrors">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7728,7 +7741,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7738,6 +7751,9 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_source_directory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">find_parent</span> <span class="s2">".paket"</span> <span class="n">false</span>
 <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/polyglot/spiral_eval"</span>
+<span class="n">let</span> <span class="n">traceDir</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"eval_trace"</span>
+<span class="p">[</span> <span class="n">targetDir</span><span class="p">;</span> <span class="n">traceDir</span> <span class="p">]</span>
+<span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">Directory</span><span class="o">.</span><span class="n">Exists</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span> <span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">ignore</span><span class="p">)</span>
 
 <span class="n">let</span> <span class="n">mutable</span> <span class="n">allCode</span> <span class="o">=</span> <span class="s2">""</span>
 </pre></div>
@@ -7745,43 +7761,14 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=10">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">logFile</span> <span class="n">filePath</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Verbose</span> <span class="n">then</span>
-        <span class="n">let</span> <span class="n">logDir</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"log_kernel"</span>
-        <span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="n">logDir</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-        <span class="n">let</span> <span class="n">dateTimeStr</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span> <span class="o">|&gt;</span> <span class="n">SpiralDateTime</span><span class="o">.</span><span class="n">format_iso8601</span>
-        <span class="n">let</span> <span class="n">logFile</span> <span class="o">=</span> <span class="n">logDir</span> <span class="o">&lt;/&gt;</span> <span class="n">filePath</span>
-        <span class="n">File</span><span class="o">.</span><span class="n">AppendAllText</span> <span class="p">(</span><span class="n">logFile</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{dateTimeStr}</span><span class="s2"> Eval / </span><span class="si">{text}{Environment.NewLine}</span><span class="s2">"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">log</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="k">try</span>
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">logFile</span> <span class="s2">"log.txt"</span>
-    <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-        <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.log / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
-        <span class="n">let</span> <span class="n">dateTimeStr</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span> <span class="o">|&gt;</span> <span class="n">SpiralDateTime</span><span class="o">.</span><span class="n">format_iso8601</span>
-        <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">logFile</span> <span class="err">$</span><span class="s2">"log_</span><span class="si">{dateTimeStr}</span><span class="s2">_{Random().Next()}.txt"</span>
-</pre></div>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="traceFile">traceFile<a class="anchor-link" href="#traceFile">¶</a></h2>
 </div>
 </div>
 </div>
@@ -7793,40 +7780,108 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">traceFile</span> <span class="n">filePath</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">TraceLevel</span><span class="o">.</span><span class="n">Verbose</span> <span class="n">then</span>
+        <span class="n">let</span> <span class="n">dateTimeStr</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span> <span class="o">|&gt;</span> <span class="n">SpiralDateTime</span><span class="o">.</span><span class="n">new_guid_from_date_time</span>
+        <span class="n">let</span> <span class="n">traceFile</span> <span class="o">=</span> <span class="n">traceDir</span> <span class="o">&lt;/&gt;</span> <span class="n">filePath</span>
+        <span class="n">File</span><span class="o">.</span><span class="n">AppendAllText</span> <span class="p">(</span><span class="n">traceFile</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{dateTimeStr}</span><span class="s2"> Eval / </span><span class="si">{text}{Environment.NewLine}</span><span class="s2">"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=13">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="log">log<a class="anchor-link" href="#log">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">assemblyName</span> <span class="o">=</span> <span class="n">Reflection</span><span class="o">.</span><span class="n">Assembly</span><span class="o">.</span><span class="n">GetEntryAssembly</span><span class="p">()</span><span class="o">.</span><span class="n">GetName</span><span class="p">()</span><span class="o">.</span><span class="n">Name</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">startTokenRangeWatcher</span> <span class="p">()</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">log</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">dateTimeStr</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span> <span class="o">|&gt;</span> <span class="n">SpiralDateTime</span><span class="o">.</span><span class="n">new_guid_from_date_time</span>
+    <span class="n">text</span> <span class="o">|&gt;</span> <span class="n">traceFile</span> <span class="err">$</span><span class="s2">"</span><span class="si">{assemblyName}</span><span class="s2">_</span><span class="si">{dateTimeStr}</span><span class="s2">_{Random().Next()}.txt"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="startTokenRangeWatcher">startTokenRangeWatcher<a class="anchor-link" href="#startTokenRangeWatcher">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=17">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">startTokenRangeWatcher</span> <span class="p">()</span> <span class="o">=</span>
     <span class="k">if</span> <span class="p">[</span> <span class="s2">"dotnet-repl"</span> <span class="p">]</span> <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">contains</span> <span class="n">assemblyName</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
         <span class="n">let</span> <span class="n">packagesDir</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"packages"</span>
 
-        <span class="p">[</span> <span class="n">targetDir</span><span class="p">;</span> <span class="n">packagesDir</span> <span class="p">]</span>
+        <span class="p">[</span> <span class="n">packagesDir</span> <span class="p">]</span>
         <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">Directory</span><span class="o">.</span><span class="n">Exists</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span> <span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">ignore</span><span class="p">)</span>
 
         <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">watchDirectory</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span><span class="p">)</span> <span class="n">packagesDir</span>
 
         <span class="k">try</span>
-            <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getCompilerPort</span> <span class="p">()</span> <span class="o">+</span> <span class="mi">2</span>
             <span class="n">let</span> <span class="n">existingFilesChild</span> <span class="o">=</span>
                 <span class="n">packagesDir</span>
                 <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetDirectories</span>
                 <span class="o">|&gt;</span> <span class="n">Array</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">fun</span> <span class="n">codeDir</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                     <span class="k">try</span>
                         <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
-                        <span class="k">if</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="n">tokensPath</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
+                        <span class="n">let</span> <span class="n">packagePath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"package.spiproj"</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">tokensPath</span> <span class="o">|&gt;</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">packagePath</span> <span class="o">|&gt;</span> <span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span><span class="p">)</span> <span class="n">then</span>
                             <span class="n">let</span> <span class="n">codePath</span> <span class="o">=</span> <span class="n">codeDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"main.spi"</span>
-                            <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="n">port</span> <span class="kc">None</span>
+                            <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="kc">None</span> <span class="kc">None</span>
                             <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
                             <span class="o">|</span> <span class="n">Some</span> <span class="n">tokens</span> <span class="o">-&gt;</span>
                                 <span class="n">do</span><span class="err">!</span>
                                     <span class="n">tokens</span>
                                     <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span>
-                                    <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">tokensPath</span>
+                                    <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">tokensPath</span>
                             <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
-                                <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / GetDirectories / tokens: None / {getLocals ()}"</span>
+                                <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / GetDirectories / tokens: None / {getLocals ()}"</span>
                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / GetDirectories / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
+                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / GetDirectories / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="p">})</span>
-                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span>
+                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span>
                 <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
             <span class="n">let</span> <span class="n">streamAsyncChild</span> <span class="o">=</span>
@@ -7834,34 +7889,35 @@ a.anchor-link {
                 <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">iterAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                     <span class="k">try</span>
                         <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ticks: </span><span class="si">{ticks}</span><span class="s2"> / event: </span><span class="si">{event}</span><span class="s2"> / {getLocals ()}"</span>
-                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / iterAsyncParallel / {getLocals ()}"</span>
+                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel / {getLocals ()}"</span>
                         <span class="k">match</span> <span class="n">event</span> <span class="k">with</span>
                         <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">codePath</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span>
                             <span class="n">when</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFileName</span> <span class="n">codePath</span> <span class="o">=</span> <span class="s2">"main.spi"</span>
                             <span class="o">-&gt;</span>
-                            <span class="n">let</span> <span class="nb">hash</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetParent</span>
-                            <span class="n">let</span> <span class="nb">hash</span> <span class="o">=</span> <span class="nb">hash</span><span class="o">.</span><span class="n">Name</span>
-                            <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="nb">hash</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
-                            <span class="n">do</span><span class="err">!</span>
-                                <span class="n">codePath</span>
-                                <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">waitForFileAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="p">(</span>
-                                    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileAccess</span><span class="o">.</span><span class="n">Read</span><span class="p">,</span>
-                                    <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">FileShare</span><span class="o">.</span><span class="n">Read</span>
-                                <span class="p">))</span>
-                                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="mi">1000</span>
-                                <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
-                            <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="n">port</span> <span class="kc">None</span>
-                            <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
-                            <span class="o">|</span> <span class="n">Some</span> <span class="n">tokens</span> <span class="o">-&gt;</span>
+                            <span class="n">let</span> <span class="n">hashDir</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Directory</span><span class="o">.</span><span class="n">GetParent</span>
+                            <span class="n">let</span> <span class="n">hashHex</span> <span class="o">=</span> <span class="n">hashDir</span><span class="o">.</span><span class="n">Name</span>
+                            <span class="n">let</span> <span class="n">packagePath</span> <span class="o">=</span> <span class="n">packagesDir</span> <span class="o">&lt;/&gt;</span> <span class="n">hashHex</span> <span class="o">&lt;/&gt;</span> <span class="s2">"package.spiproj"</span>
+                            
+                            <span class="k">if</span> <span class="n">packagePath</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">File</span><span class="o">.</span><span class="n">Exists</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span>
+                                <span class="n">let</span> <span class="n">codePath</span> <span class="o">=</span> <span class="n">packagesDir</span> <span class="o">&lt;/&gt;</span> <span class="n">codePath</span>
+                                <span class="n">let</span> <span class="n">tokensPath</span> <span class="o">=</span> <span class="n">packagesDir</span> <span class="o">&lt;/&gt;</span> <span class="n">hashHex</span> <span class="o">&lt;/&gt;</span> <span class="s2">"tokens.json"</span>
                                 <span class="n">do</span><span class="err">!</span>
-                                    <span class="n">tokens</span>
-                                    <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span>
-                                    <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">tokensPath</span>
-                            <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
-                                <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / iterAsyncParallel / tokens: None / {getLocals ()}"</span>
+                                    <span class="n">codePath</span>
+                                    <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">wait_for_file_access_read</span>
+                                    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeoutAsync</span> <span class="mi">1000</span>
+                                    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+                                <span class="n">let</span><span class="err">!</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">codePath</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getFileTokenRange</span> <span class="kc">None</span> <span class="kc">None</span>
+                                <span class="k">match</span> <span class="n">tokens</span> <span class="k">with</span>
+                                <span class="o">|</span> <span class="n">Some</span> <span class="n">tokens</span> <span class="o">-&gt;</span>
+                                    <span class="n">do</span><span class="err">!</span>
+                                        <span class="n">tokens</span>
+                                        <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">Json</span><span class="o">.</span><span class="n">serialize</span>
+                                        <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">tokensPath</span>
+                                <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span>
+                                    <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel / tokens: None / {getLocals ()}"</span>
                         <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span>
                     <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.watchDirectory / iterAsyncParallel / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
+                        <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / iterAsyncParallel / ex: {ex |&gt; SpiralSm.format_exception} / {getLocals ()}"</span>
                 <span class="p">})</span>
 
             <span class="k">async</span> <span class="p">{</span>
@@ -7871,7 +7927,7 @@ a.anchor-link {
             <span class="p">}</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
         <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / ex: {ex |&gt; SpiralSm.format_exception}"</span>
+            <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.startTokenRangeWatcher / ex: {ex |&gt; SpiralSm.format_exception}"</span>
 
         <span class="n">disposable</span>
     <span class="k">else</span> <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span>
@@ -7880,7 +7936,89 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="startCommandsWatcher">startCommandsWatcher<a class="anchor-link" href="#startCommandsWatcher">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">startCommandsWatcher</span> <span class="p">(</span><span class="n">uriServer</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
+    <span class="n">let</span> <span class="n">commandsDir</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"eval_commands"</span>
+    <span class="n">let</span> <span class="n">commandHistoryDir</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"eval_command_history"</span>
+    <span class="p">[</span> <span class="n">commandsDir</span><span class="p">;</span> <span class="n">commandHistoryDir</span> <span class="p">]</span>
+    <span class="o">|&gt;</span> <span class="n">List</span><span class="o">.</span><span class="n">iter</span> <span class="p">(</span><span class="n">fun</span> <span class="nb">dir</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">Directory</span><span class="o">.</span><span class="n">Exists</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="ow">not</span> <span class="n">then</span> <span class="n">Directory</span><span class="o">.</span><span class="n">CreateDirectory</span> <span class="nb">dir</span> <span class="o">|&gt;</span> <span class="n">ignore</span><span class="p">)</span>
+
+    <span class="n">Directory</span><span class="o">.</span><span class="n">EnumerateFiles</span> <span class="n">commandsDir</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">iter</span> <span class="n">File</span><span class="o">.</span><span class="n">Delete</span>
+
+    <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span>
+        <span class="n">commandsDir</span>
+        <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">watchDirectory</span> <span class="p">(</span><span class="n">function</span>
+            <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">true</span>
+            <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
+        <span class="p">)</span>
+
+    <span class="n">let</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">HubConnectionBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">WithUrl</span><span class="p">(</span><span class="n">uriServer</span><span class="p">)</span><span class="o">.</span><span class="n">Build</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">StartAsync</span><span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
+    <span class="o">//</span> <span class="n">let</span> <span class="n">_</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">On</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">"ServerToClientMsg"</span><span class="p">,</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
+    <span class="o">//</span>     <span class="n">printfn</span> <span class="err">$</span><span class="s2">"ServerToClientMsg: '</span><span class="si">{x}</span><span class="s2">'"</span>
+    <span class="o">//</span> <span class="p">)</span>
+
+    <span class="n">stream</span>
+    <span class="o">|&gt;</span> <span class="n">FSharp</span><span class="o">.</span><span class="n">Control</span><span class="o">.</span><span class="n">AsyncSeq</span><span class="o">.</span><span class="n">iterAsyncParallel</span> <span class="p">(</span><span class="n">fun</span> <span class="p">(</span><span class="n">ticks</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
+        <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"ticks: </span><span class="si">{ticks}</span><span class="s2"> / event: </span><span class="si">{event}</span><span class="s2"> / {getLocals ()}"</span>
+        <span class="n">trace</span> <span class="n">Verbose</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.startCommandsWatcher / iterAsyncParallel"</span><span class="p">)</span> <span class="n">getLocals</span>
+
+        <span class="k">match</span> <span class="n">event</span> <span class="k">with</span>
+        <span class="o">|</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">Some</span> <span class="n">json</span><span class="p">)</span> <span class="o">-&gt;</span>
+            <span class="k">try</span>
+                <span class="n">let</span> <span class="n">fullPath</span> <span class="o">=</span> <span class="n">commandsDir</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span>
+                <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">InvokeAsync</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">"ClientToServerMsg"</span><span class="p">,</span> <span class="n">json</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
+                <span class="n">let</span> <span class="n">commandHistoryPath</span> <span class="o">=</span> <span class="n">commandHistoryDir</span> <span class="o">&lt;/&gt;</span> <span class="n">path</span>
+                <span class="n">do</span><span class="err">!</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">move_file_async</span> <span class="n">commandHistoryPath</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+                <span class="k">if</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span> <span class="o">|&gt;</span> <span class="n">String</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="n">then</span>
+                    <span class="n">let</span> <span class="n">resultPath</span> <span class="o">=</span> <span class="n">commandHistoryDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"{Path.GetFileNameWithoutExtension path}_result.json"</span>
+                    <span class="n">do</span><span class="err">!</span> <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">resultPath</span>
+            <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+                <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"Eval.startCommandsWatcher / iterAsyncParallel / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+        <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="p">()</span>
+    <span class="p">})</span>
+    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
+    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+    <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Start</span>
+    
+    <span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
+        <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="eval">eval<a class="anchor-link" href="#eval">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7896,7 +8034,7 @@ a.anchor-link {
     <span class="p">(</span><span class="n">cancellationToken</span><span class="p">:</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">&gt;</span><span class="p">)</span>
     <span class="p">(</span><span class="n">code</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
     <span class="o">=</span>
-    <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval / code: %A</span><span class="si">{code}</span><span class="s2">"</span>
+    <span class="n">log</span> <span class="err">$</span><span class="s2">"Eval.eval / code: %A</span><span class="si">{code}</span><span class="s2">"</span>
 
     <span class="n">let</span> <span class="n">rawCellCode</span> <span class="o">=</span>
         <span class="k">if</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">trim</span> <span class="o">&lt;&gt;</span> <span class="s2">"// // trace"</span>
@@ -7959,7 +8097,7 @@ a.anchor-link {
                                 <span class="n">let</span> <span class="n">m</span> <span class="o">=</span>
                                     <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">RegularExpressions</span><span class="o">.</span><span class="n">Regex</span><span class="o">.</span><span class="n">Match</span> <span class="p">(</span>
                                         <span class="n">line</span><span class="p">,</span>
-                                        <span class="o">@</span><span class="s2">"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=]"</span>
+                                        <span class="o">@</span><span class="s2">"^(inl|let) +([~\(\w][\w\d']*(?:| *[~\w][\w\d']*\)|, *[~\w][\w\d']*)) +[:=](?! +function)"</span>
                                     <span class="p">)</span>
                                 <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"m: '</span><span class="si">{m}</span><span class="s2">' / m.Groups.Count: </span><span class="si">{m.Groups.Count}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
                                 <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">Groups</span><span class="o">.</span><span class="n">Count</span> <span class="o">=</span> <span class="mi">3</span>
@@ -8012,8 +8150,7 @@ a.anchor-link {
 
             <span class="k">async</span> <span class="p">{</span>
                 <span class="k">try</span>
-                    <span class="n">let</span><span class="err">!</span> <span class="n">mainPath</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">newAllCode</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">persistCode</span>
-                    <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
+                    <span class="n">let</span><span class="err">!</span> <span class="n">mainPath</span> <span class="o">=</span> <span class="n">newAllCode</span> <span class="o">|&gt;</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">persistCode</span>
 
                     <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">Supervisor</span><span class="o">.</span><span class="n">getCompilerPort</span> <span class="p">()</span>
 
@@ -8038,7 +8175,7 @@ a.anchor-link {
                         <span class="n">let</span> <span class="n">inline</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="n">unit</span> <span class="o">-&gt;</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
                             <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">Info</span>
                             <span class="n">then</span> <span class="n">fn</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">Console</span><span class="o">.</span><span class="n">WriteLine</span>
-                            <span class="k">else</span> <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.Eval / {fn ()}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                            <span class="k">else</span> <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / {fn ()}"</span><span class="p">)</span> <span class="n">getLocals</span>
 
                         <span class="k">if</span> <span class="n">printCode</span>
                         <span class="n">then</span> <span class="n">_trace</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="n">rustArgs</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">isSome</span> <span class="n">then</span> <span class="err">$</span><span class="s2">"</span><span class="se">\n</span><span class="s2">.fsx:</span><span class="se">\n</span><span class="si">{code}</span><span class="s2">"</span> <span class="k">else</span> <span class="n">code</span><span class="p">)</span>
@@ -8087,7 +8224,7 @@ a.anchor-link {
                                     <span class="n">then</span> <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">result</span><span class="p">)</span>
                                     <span class="k">else</span>
                                         <span class="n">let</span> <span class="n">rsPath</span> <span class="o">=</span> <span class="n">outDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"</span><span class="si">{hash}</span><span class="s2">.rs"</span>
-                                        <span class="n">let</span><span class="err">!</span> <span class="n">rsCode</span> <span class="o">=</span> <span class="n">rsPath</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">readAllTextAsync</span>
+                                        <span class="n">let</span><span class="err">!</span> <span class="n">rsCode</span> <span class="o">=</span> <span class="n">rsPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_async</span>
 
                                         <span class="n">let</span> <span class="n">mainCode</span> <span class="o">=</span> <span class="s2">"pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }"</span>
 
@@ -8104,7 +8241,7 @@ a.anchor-link {
                                         <span class="k">if</span> <span class="ow">not</span> <span class="n">cached</span>
                                         <span class="n">then</span> <span class="n">do</span><span class="err">!</span>
                                             <span class="err">$</span><span class="s2">"</span><span class="si">{rsCode}</span><span class="se">\n\n</span><span class="si">{mainCode}</span><span class="se">\n</span><span class="s2">"</span>
-                                            <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextAsync</span> <span class="n">rsPath</span>
+                                            <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">rsPath</span>
 
 
                                         <span class="n">let</span> <span class="n">cargoTomlPath</span> <span class="o">=</span> <span class="n">outDir</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="s2">"Cargo.toml"</span>
@@ -8128,7 +8265,7 @@ a.anchor-link {
 <span class="s2">name = "</span><span class="si">{hash}</span><span class="s2">"</span>
 <span class="s2">path = "</span><span class="si">{hash}</span><span class="s2">.rs"</span>
 <span class="s2">"""</span>
-                                        <span class="n">do</span><span class="err">!</span> <span class="n">cargoTomlContent</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">writeAllTextExists</span> <span class="n">cargoTomlPath</span>
+                                        <span class="n">do</span><span class="err">!</span> <span class="n">cargoTomlContent</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_exists</span> <span class="n">cargoTomlPath</span>
 
                                         <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
                                             <span class="n">Runtime</span><span class="o">.</span><span class="n">executeWithOptionsAsync</span>
@@ -8171,7 +8308,7 @@ a.anchor-link {
                                         <span class="p">)</span>
                                     <span class="n">Some</span> <span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">errors</span><span class="p">)</span>
                                 <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-                                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"SpiralScriptHelpers.Eval / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
+                                    <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
                                     <span class="kc">None</span>
 
                         <span class="k">match</span> <span class="n">fsxResult</span><span class="p">,</span> <span class="n">rustResult</span> <span class="k">with</span>

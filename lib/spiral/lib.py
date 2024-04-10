@@ -1,7 +1,7 @@
 from __future__ import annotations
 from collections.abc import Callable
 from fable_modules.fable_library.types import (int64, Array)
-from fable_modules.fable_library.util import IEnumerable_1
+from fable_modules.fable_library.util import (IEnumerable_1, IDisposable)
 from ......lib.spiral.file_system import (get_source_directory, find_parent, create_temp_directory, create_temp_directory_name)
 from ......lib.spiral.sm import (concat, contains, ellipsis, ellipsis_end, ends_with, format_exception, replace, slice, split, split_string, starts_with, substring, to_lower, trim, trim_start, trim_end)
 
@@ -77,7 +77,7 @@ def SpiralFileSystem_find_parent(x: str) -> Callable[[bool, str], str]:
     return find_parent(x)
 
 
-def SpiralFileSystem_create_temp_directory(__unit: None=None) -> str:
+def SpiralFileSystem_create_temp_directory(__unit: None=None) -> tuple[str, IDisposable]:
     return create_temp_directory()
 
 
