@@ -1,6 +1,6 @@
 function CopyTarget {
     param (
-        $targetDir,
+        $TargetDir,
         $root,
         [Parameter(Mandatory)]
         [string] $Language,
@@ -14,7 +14,7 @@ function CopyTarget {
             $name
         )
         $name = $Language -eq "py" ? $name.ToLower() : $name
-        $from = "$targetDir/target/$Language/lib/$lib/$name.$Language"
+        $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         $to = "$root/lib/$lib/$name$_runtime.$Language"
         Copy-Item $from $to -Force
 
@@ -51,4 +51,31 @@ function CopyTarget {
     if ($Language -eq "rs" -and $Runtime -eq "contract") {
         Set-Content "$root/lib/spiral/date_time_contract.rs" ""
     }
+}
+
+function GetTargetDir {
+    param (
+        [Parameter(Mandatory)]
+        [string] $ProjectName
+    )
+    $root = "$PSScriptRoot/../.."
+    $result = (Resolve-Path "$root/target/polyglot/builder/$ProjectName").Path
+    Write-Host "targetDir: $result"
+    $result
+}
+
+function BuildFable {
+    param (
+        [Parameter(Mandatory)]
+        [string] $TargetDir,
+        [Parameter(Mandatory)]
+        [string] $ProjectName,
+        [Parameter(Mandatory)]
+        [string] $Language,
+        [string] $Runtime
+    )
+    dotnet fable "$TargetDir/$ProjectName.fsproj" --optimize --lang $Language --extension ".$Language" --outDir $TargetDir/target/$Language $($Runtime ? @("--define", $Runtime) : @())
+
+    $root = "$PSScriptRoot/../.."
+    CopyTarget $TargetDir $root $Language $Runtime.ToLower()
 }

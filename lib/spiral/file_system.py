@@ -840,7 +840,7 @@ def method19(v0_1_mut: str, v1_mut: bool, v2_mut: str, v3_mut: str) -> str:
                 continue
 
             else: 
-                raise Exception(((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\'")
+                raise Exception(((((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\' (until \'") + v3) + "\')")
 
 
         break
@@ -865,7 +865,7 @@ def method16(v0_1: str, v1: bool, v2: str) -> str:
             return method19(v0_1, v1, v2, v38.fields[0])
 
         else: 
-            raise Exception(((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\'")
+            raise Exception(((((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\' (until \'") + v2) + "\')")
 
 
 

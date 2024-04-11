@@ -3190,7 +3190,7 @@ and method19 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
         let v39 : US8 = v36 |> Option.map v37 |> Option.defaultValue v38 
         match v39 with
         | US8_1 -> (* None *)
-            let v42 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}'"""
+            let v42 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v3}')"""
             failwith<string> v42
         | US8_0(v40) -> (* Some *)
             method19(v0, v1, v2, v40)
@@ -3258,7 +3258,7 @@ and method16 (v0 : string, v1 : bool, v2 : string) : string =
         let v38 : US8 = v35 |> Option.map v36 |> Option.defaultValue v37 
         match v38 with
         | US8_1 -> (* None *)
-            let v41 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}'"""
+            let v41 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v2}')"""
             failwith<string> v41
         | US8_0(v39) -> (* Some *)
             method19(v0, v1, v2, v39)

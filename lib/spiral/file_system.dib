@@ -987,7 +987,7 @@ inl find_parent name is_file root_dir =
             inl result = dir |> (join directory_get_parent)
             match result |> optionm'.unbox with
             | Some parent => parent |> loop
-            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\'"""'
+            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""'
     loop root_dir
 
 #!spiral
@@ -1013,19 +1013,20 @@ a ;[ ".paket", false; "paket.dependencies", true ]
 types ()
 a ;[ ".paket", false; "paket.dependencies", true ]
 |> am.map fun (file, is_file) =>
-    fun () => join
-        get_source_directory ()
-        |> find_parent file is_file
-        |> new_path_buf
-        |> path_buf_file_name
-        |> optionm'.try'
-        |> sm'.to_os_string
-        |> sm'.os_to_str
-        |> optionm'.try'
-        |> sm'.ref_to_std_string
-        |> sm'.from_std_string
-        |> Some
-        |> optionm'.box
+    fun () =>
+        join
+            get_source_directory ()
+            |> find_parent file is_file
+            |> new_path_buf
+            |> path_buf_file_name
+            |> optionm'.try'
+            |> sm'.to_os_string
+            |> sm'.os_to_str
+            |> optionm'.try'
+            |> sm'.ref_to_std_string
+            |> sm'.from_std_string
+            |> Some
+            |> optionm'.box
     |> fun x => x () |> optionm'.unbox
     |> optionm'.default_value ""
 |> am'.distinct

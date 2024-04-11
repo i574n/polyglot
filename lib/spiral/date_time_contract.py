@@ -15,10 +15,10 @@ def closure1(v0_1: str, v1_1: Any) -> str:
 
 
 def closure0(unit_var: None, v0_1: str) -> Callable[[Any], str]:
-    def _arrow50(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow47(v: Any, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure1(v0_1, v)
 
-    return _arrow50
+    return _arrow47
 
 
 def closure5(v0_1: str, v1_1: str, v2_1: str) -> str:
@@ -26,24 +26,24 @@ def closure5(v0_1: str, v1_1: str, v2_1: str) -> str:
 
 
 def closure4(v0_1: str, v1_1: str) -> Callable[[str], str]:
-    def _arrow51(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
+    def _arrow49(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
         return closure5(v0_1, v1_1, v)
+
+    return _arrow49
+
+
+def closure3(unit_var: None, v0_1: str) -> Callable[[str, str], str]:
+    def _arrow51(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
+        return closure4(v0_1, v)
 
     return _arrow51
 
 
-def closure3(unit_var: None, v0_1: str) -> Callable[[str, str], str]:
-    def _arrow52(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
-        return closure4(v0_1, v)
-
-    return _arrow52
-
-
 def method0(__unit: None=None) -> Callable[[str, str, str], str]:
-    def _arrow53(v: str) -> Callable[[str, str], str]:
+    def _arrow52(v: str) -> Callable[[str, str], str]:
         return closure3(None, v)
 
-    return _arrow53
+    return _arrow52
 
 
 def closure2(unit_var: None, v0_1: str) -> Any:

@@ -29,15 +29,15 @@
 
 #!pwsh
 
+{ . "$ScriptDir/../lib/math/build.ps1" } | Invoke-Block
+
+#!pwsh
+
 { . "$ScriptDir/../apps/plot/build.ps1" } | Invoke-Block
 
 #!pwsh
 
 { . "$ScriptDir/../lib/spiral/build.ps1" -sequential 1 } | Invoke-Block
-
-#!pwsh
-
-{ . "$ScriptDir/../lib/math/build.ps1" } | Invoke-Block
 
 #!pwsh
 

@@ -50,13 +50,6 @@ module SpiralTrace =
 
 #if !FABLE_COMPILER && !WASM && !CONTRACT
 module SpiralDateTime =
-    let format x =
-#if !INTERACTIVE
-        Date_time.format x
-#else
-        format x
-#endif
-
     let format_iso8601 x =
 #if !INTERACTIVE
         Date_time.format_iso8601 x
@@ -69,6 +62,13 @@ module SpiralDateTime =
         Date_time.new_guid_from_date_time x
 #else
         new_guid_from_date_time x
+#endif
+
+    let format x =
+#if !INTERACTIVE
+        Date_time.format x
+#else
+        format x
 #endif
 
 #endif

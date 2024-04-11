@@ -23,6 +23,7 @@ function Invoke-Block {
         [string] $OnError = $ErrorActionPreference,
         [Hashtable] $EnvironmentVariables,
         [switch] $Linux = $false,
+        [switch] $Return = $false,
         [string] $Distro = "",
         [string] $Location = "",
         [int] $Retries = 1
@@ -49,6 +50,8 @@ function Invoke-Block {
         Set-Location $Location
     }
 
+    $result = $null
+
     while ($Retries -gt 0) {
         try {
             $Error.Clear()
@@ -56,7 +59,14 @@ function Invoke-Block {
             if ($Linux -and $IsWindows) {
                 Invoke-Expression "{ $envVars $ScriptBlock } | Invoke-Linux -Distro `"$Distro`""
             } else {
-                & @ScriptBlock
+                if ($Return) {
+                    $result = & @ScriptBlock
+                    $output = $result | Select-Object -First $($result.Count - 1)
+                    $result = $result | Select-Object -Last 1
+                    $output | Out-Default
+                } else {
+                    & @ScriptBlock
+                }
             }
             $exitcode = $lastexitcode ?? 0
         } catch {
@@ -96,6 +106,10 @@ function Invoke-Block {
                 }
             }
         }
+    }
+
+    if ($Return) {
+        return $result
     }
 }
 
@@ -148,8 +162,8 @@ function Update-Json {
 }
 
 function EnsureSymbolicLink([string] $Path, [string] $Target) {
-    $Path = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Path))
-    $Target = [IO.Path]::GetFullPath((Join-Path $ScriptDir $Target))
+    $Path = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $Path))
+    $Target = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot $Target))
 
     if (-Not (Test-Path (Split-Path $Path))) {
         Write-Output "Parent directory does not exist: $Path"

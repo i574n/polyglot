@@ -986,7 +986,7 @@ export function method19(v0_1_mut: string, v1_mut: boolean, v2_mut: string, v3_m
                 continue method19;
             }
             else {
-                throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}'`);
+                throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}' (until '${v3}')`);
             }
         }
         break;
@@ -1008,7 +1008,7 @@ export function method16(v0_1: string, v1: boolean, v2: string): string {
             return method19(v0_1, v1, v2, v38.fields[0]);
         }
         else {
-            throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}'`);
+            throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}' (until '${v2}')`);
         }
     }
 }

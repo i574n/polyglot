@@ -964,14 +964,15 @@ pub mod File_system {
                         _ => panic!(
                             "{}",
                             sprintf!(
-                                "No parent for {} \'{}\' at \'{}\'",
+                                "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
                                 if v1.get().clone() {
                                     string("file")
                                 } else {
                                     string("dir")
                                 },
                                 v0_1.get().clone(),
-                                v2.get().clone()
+                                v2.get().clone(),
+                                v3.get().clone()
                             ),
                         ),
                     }
@@ -1009,9 +1010,10 @@ pub mod File_system {
                 _ => panic!(
                     "{}",
                     sprintf!(
-                        "No parent for {} \'{}\' at \'{}\'",
+                        "No parent for {} \'{}\' at \'{}\' (until \'{}\')",
                         if v1 { string("file") } else { string("dir") },
                         v0_1.clone(),
+                        v2.clone(),
                         v2.clone()
                     ),
                 ),

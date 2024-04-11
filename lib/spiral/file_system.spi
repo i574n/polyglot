@@ -540,7 +540,7 @@ inl find_parent name is_file root_dir =
             inl result = dir |> (join directory_get_parent)
             match result |> optionm'.unbox with
             | Some parent => parent |> loop
-            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\'"""'
+            | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""'
     loop root_dir
 
 // // ## main
