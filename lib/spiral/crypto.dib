@@ -1,0 +1,112 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# crypto
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## sha256
+
+#!spiral
+
+nominal sha256 = $'System.Security.Cryptography.SHA256'
+
+inl sha256 () : sha256 =
+    $'`sha256.Create' ()
+
+#!markdown
+
+## sha256_compute_hash
+
+#!spiral
+
+inl sha256_compute_hash (x : sha256) (data : a i32 u8) : a i32 u8 =
+    data |> $'!x.ComputeHash'
+
+#!markdown
+
+## create_hash
+
+#!spiral
+
+inl create_hash (x : string) : any =
+    open ts_operators
+    global "type ICryptoCreateHash = abstract createHash: x: string -> obj"
+    inl crypto : $'ICryptoCreateHash' = ts.import_all "crypto"
+    !\\(x, $'"!crypto.createHash($0)"')
+
+#!markdown
+
+## hash_update
+
+#!spiral
+
+inl hash_update (s : string) (x : any) : any =
+    open ts_operators
+    !\\((x, s), $'"$0.update($1, \'utf8\')"')
+
+#!markdown
+
+## hash_digest
+
+#!spiral
+
+inl hash_digest (s : string) (x : any) : string =
+    open ts_operators
+    !\\((x, s), $'"$0.digest($1)"')
+
+#!markdown
+
+## hash_text
+
+#!spiral
+
+inl hash_text (input : string) =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            inl sha256 = sha256 () |> use
+            input
+            |> sm'.utf8_get_bytes
+            |> sha256_compute_hash sha256
+            |> am.map (sm'.byte_to_string "x2")
+            |> seq.of_array'
+            |> sm'.concat ""
+        | TypeScript _ => fun () =>
+            create_hash "sha256"
+            |> hash_update input
+            |> hash_digest "hex"
+        | _ => fun () => null ()
+
+#!spiral
+
+// // test
+
+""
+|> hash_text
+|> _assert_eq "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+
+#!spiral
+
+// // test
+
+" "
+|> hash_text
+|> _assert_eq "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let hash_text x = !hash_text x" : ()

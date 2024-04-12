@@ -1,4 +1,4 @@
-import * as crypto from "crypto"
+import * as crypto from "../../lib/spiral/crypto"
 import * as path from "path"
 import * as fs from "fs"
 
@@ -7,9 +7,7 @@ const fileExists = async (path: string) => !!(await fs.promises.stat(path).catch
 const sleep = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export const getFileTokenRange = async (targetDir: string, text: string) => {
-  const hash = crypto.createHash("sha256")
-  hash.update(text, "utf8")
-  const hashHex = hash.digest("hex")
+  const hashHex = crypto.hash_text(text)
 
   const codeDir = path.join(targetDir, "packages", hashHex)
 

@@ -6,11 +6,6 @@ prototype (~:>) r : forall t. t -> r
 
 // // ## run_target
 
-// // ## emit
-
-inl emit forall t. (x : t) : t =
-    $'!x '
-
 // // ## upcast
 
 inl upcast forall t u. (x : t) : u =
@@ -128,12 +123,6 @@ inl get_environment_variable (var : string) : string =
 // // ## disposable
 
 nominal disposable t = $"System.IDisposable"
-
-// // ## use
-
-inl use forall t. (x : t) : t =
-    $"use !x = !x " : ()
-    $'!x '
 
 // // ## dispose
 

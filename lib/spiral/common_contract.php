@@ -160,8 +160,8 @@ function closure4($unitVar, $v0_1) {
 #9
 function closure5($v0_1, $v1_1) {
     $_v2 = NULL;
-    $x = \Util\defaultOf();
-    $_v2 = $x;
+    \Util\defaultOf();
+    $_v2 = NULL;
     \Option\value($_v2);
     return new US1_US1_1();
 }

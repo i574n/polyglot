@@ -6,21 +6,17 @@
 
 ## Perf (Polyglot)
 
+#!fsharp
+
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
 #!spiral
 
 // // test
 
 open testing
 open benchmark
-
-#!fsharp
-
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/trace.fsx
-#!import ../../lib/spiral/lib.fsx
 
 #!fsharp
 

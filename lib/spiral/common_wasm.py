@@ -138,27 +138,27 @@ def closure2(v0_1: int, v1_1: Callable[[], None]) -> None | None:
 
 
 def closure1(unit_var: None, v0_1: int) -> Callable[[Callable[[], None]], None | None]:
-    def _arrow2(v: Callable[[], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> None | None:
+    def _arrow4(v: Callable[[], None], unit_var: Any=unit_var, v0_1: Any=v0_1) -> None | None:
         return closure2(v0_1, v)
 
-    return _arrow2
+    return _arrow4
 
 
-def _arrow3(v: Callable[[], None]) -> IDisposable:
+def _arrow5(v: Callable[[], None]) -> IDisposable:
     return closure0(None, v)
 
 
-v0: Callable[[Callable[[], None]], IDisposable] = _arrow3
+v0: Callable[[Callable[[], None]], IDisposable] = _arrow5
 
 def new_disposable(x: Callable[[], None]) -> IDisposable:
     return v0(x)
 
 
-def _arrow4(v: int) -> Callable[[Callable[[], None]], None | None]:
+def _arrow6(v: int) -> Callable[[Callable[[], None]], None | None]:
     return closure1(None, v)
 
 
-v1: Callable[[int, Callable[[], None]], None | None] = _arrow4
+v1: Callable[[int, Callable[[], None]], None | None] = _arrow6
 
 def retry_fn(x: int) -> Callable[[Callable[[], None]], None | None]:
     return v1(x)

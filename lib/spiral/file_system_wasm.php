@@ -1067,24 +1067,24 @@ function closure18($v0_1, $v1, $v2, $unitVar) {
     $_v9 = NULL;
     $x = \Util\defaultOf();
     $_v9 = $x;
-    $v59 = \Option\value($_v9);
-    $v60 = $patternInput[0]->l0;
+    $v60 = \Option\value($_v9);
+    $v61 = $patternInput[0]->l0;
     switch ($v0_1->get_Tag())
     {
         case 1:
-            $v70 = 'Debug';
+            $v71 = 'Debug';
             break;
         case 2:
-            $v70 = 'Info';
+            $v71 = 'Info';
             break;
         case 0:
-            $v70 = 'Verbose';
+            $v71 = 'Verbose';
             break;
         case 3:
-            $v70 = 'Warning';
+            $v71 = 'Warning';
             break;
         default:
-            $v70 = 'Critical';
+            $v71 = 'Critical';
             break;
     }
     return \String\trimEnd(\String\trimStart(NULL, [  ]), [ ' ', '/' ]);
@@ -1110,8 +1110,8 @@ function method7($v0_1, $v1, $v2) {
         $v4->l0 = $v19;
         $v21 = NULL;
         $_v22 = NULL;
-        $x = \Util\defaultOf();
-        $_v22 = $x;
+        \Util\defaultOf();
+        $_v22 = NULL;
         \Option\value($_v22);
         return NULL;
     } else {
@@ -1145,8 +1145,8 @@ function method13($v0_1, $v1, $v2) {
     $_v3 = NULL;
     $x = \Util\defaultOf();
     $_v3 = $x;
-    $v9 = \Option\value($_v3);
-    $v10 = function ($v) use ($closure2) {     return closure2(NULL, $v);
+    $v10 = \Option\value($_v3);
+    $v11_1 = function ($v) use ($closure2) {     return closure2(NULL, $v);
  };
     return NULL;
 }
@@ -1260,25 +1260,25 @@ function closure36($v0_1, $unitVar) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
     $_v1 = $x;
-    $v8 = \Option\value($_v1);
-    $_v9 = NULL;
+    $v9 = \Option\value($_v1);
+    $_v10 = NULL;
     $x_1 = \Util\defaultOf();
-    $_v9 = $x_1;
-    $v16 = \Option\value($_v9);
-    $_v17 = NULL;
-    $x_2 = \Util\defaultOf();
-    $_v17 = $x_2;
-    \Option\value($_v17);
+    $_v10 = $x_1;
+    $v18 = \Option\value($_v10);
+    $_v19 = NULL;
+    \Util\defaultOf();
+    $_v19 = NULL;
+    \Option\value($_v19);
     return NULL;
 }
 
 #93
 function closure34($unitVar, $unitVar_1) {
     $_v0_1 = NULL;
-    $x = [ \Util\defaultOf(), \Util\defaultOf() ];
-    $_v0_1 = $x;
-    $patternInput = \Option\value($_v0_1);
-    return [ $patternInput[0], $patternInput[1] ];
+    $patternInput = [ \Util\defaultOf(), \Util\defaultOf() ];
+    $_v0_1 = [ $patternInput[0], $patternInput[1] ];
+    $patternInput_1 = \Option\value($_v0_1);
+    return [ $patternInput_1[0], $patternInput_1[1] ];
 }
 
 #94
@@ -1305,11 +1305,11 @@ function closure43($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = $US8();
     $_v1 = $x;
-    $v39 = \Option\value($_v1);
-    switch ($v39->get_Tag())
+    $v41 = \Option\value($_v1);
+    switch ($v41->get_Tag())
     {
         case 0:
-            return $v39->f0_0;
+            return $v41->f0_0;
         default:
             return NULL;
     }
@@ -1342,12 +1342,12 @@ function method19($v0_1, $v1, $v2, $v3) {
  }(\Option\value($_v4))) {
         return $v3;
     } else {
-        $v36 = method17(NULL)($v3);
-        $v39 = \Option\defaultArg(\Option\map(method18(NULL), $v36), new US8_US8_1());
-        switch ($v39->get_Tag())
+        $v37 = method17(NULL)($v3);
+        $v40 = \Option\defaultArg(\Option\map(method18(NULL), $v37), new US8_US8_1());
+        switch ($v40->get_Tag())
         {
             case 0:
-                return method19($v0_1, $v1, $v2, $v39->f0_0);
+                return method19($v0_1, $v1, $v2, $v40->f0_0);
             default:
                 throw new \Exception(NULL);
         }
@@ -1364,12 +1364,12 @@ function method16($v0_1, $v1, $v2) {
  }(\Option\value($_v3))) {
         return $v2;
     } else {
-        $v35 = method17(NULL)($v2);
-        $v38 = \Option\defaultArg(\Option\map(method18(NULL), $v35), new US8_US8_1());
-        switch ($v38->get_Tag())
+        $v36 = method17(NULL)($v2);
+        $v39 = \Option\defaultArg(\Option\map(method18(NULL), $v36), new US8_US8_1());
+        switch ($v39->get_Tag())
         {
             case 0:
-                return method19($v0_1, $v1, $v2, $v38->f0_0);
+                return method19($v0_1, $v1, $v2, $v39->f0_0);
             default:
                 throw new \Exception(NULL);
         }
@@ -1414,56 +1414,58 @@ $GLOBALS['v0'] = NULL;
 $GLOBALS['_v0'] = $GLOBALS['v0'];
 
 #110
-$x = \Util\defaultOf();
-$GLOBALS['_v0'] = $x;
+\Util\defaultOf();
 
 #111
-\Option\value($GLOBALS['_v0']);
+$GLOBALS['_v0'] = NULL;
 
 #112
+\Option\value($GLOBALS['_v0']);
+
+#113
 $GLOBALS['v11'] = function ($arg10_0040) use ($closure32) { return closure32(NULL, NULL);
  };
 
-#113
+#114
 function create_temp_directory_name($unitVar) {
     return $GLOBALS['v11'](NULL);
 }
 
-#114
+#115
 $GLOBALS['v12'] = function ($arg10_0040) use ($closure34) { return closure34(NULL, NULL);
  };
 
-#115
+#116
 function create_temp_directory($unitVar) {
     return $GLOBALS['v12'](NULL);
 }
 
-#116
+#117
 $GLOBALS['v13'] = function ($arg10_0040) use ($closure37) { return closure37(NULL, NULL);
  };
 
-#117
+#118
 function get_source_directory($unitVar) {
     return $GLOBALS['v13'](NULL);
 }
 
-#118
+#119
 $GLOBALS['v14'] = function ($v) use ($closure38) { return closure38(NULL, $v);
  };
 
-#119
+#120
 function find_parent($x) {
     return $GLOBALS['v14']($x);
 }
 
-#120
+#121
 $GLOBALS['v15'] = function ($v) use ($closure45) { return closure45(NULL, $v);
  };
 
-#121
+#122
 function op_LessDivideGreater($x) {
     return $GLOBALS['v15']($x);
 }
 
-#122
+#123
 

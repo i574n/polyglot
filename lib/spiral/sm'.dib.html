@@ -8960,7 +8960,7 @@ and method0 () : unit =
     let v1 : US0 = US0_1
     let v2 : (exn -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; ex |&gt; v2
-    let v15 : US1 =
+    let v16 : US1 =
         match v3 with
         | US0_1 -&gt; (* None *)
             US1_1
@@ -8988,31 +8988,32 @@ and method0 () : unit =
             v10 
             #endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-            Unchecked.defaultof&lt;string&gt;
+            let v11 : string = Unchecked.defaultof&lt;string&gt;
+            v11 
             #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
-            let v11 : string = _v5.Value
-            US1_0(v11)
-    let v16 : string = $"%A{v15}"
-    System.Console.WriteLine v16
-    let v21 : bool =
-        match v15 with
-        | US1_0(v19) -&gt; (* Some *)
-            let v20 : bool = v19 = "System.Exception: test"
-            v20
+            let v12 : string = _v5.Value
+            US1_0(v12)
+    let v17 : string = $"%A{v16}"
+    System.Console.WriteLine v17
+    let v22 : bool =
+        match v16 with
+        | US1_0(v20) -&gt; (* Some *)
+            let v21 : bool = v20 = "System.Exception: test"
+            v21
         | _ -&gt;
             false
-    let v23 : bool =
-        if v21 then
+    let v24 : bool =
+        if v22 then
             true
         else
-            method1(v21)
-    let v24 : string = "System.Exception: test"
-    let v25 : US1 = US1_0(v24)
-    let v26 : string = $"__expect / actual: %A{v15} / expected: %A{v25}"
-    let v27 : bool = v23 = false
-    if v27 then
-        failwith&lt;unit&gt; v26
+            method1(v22)
+    let v25 : string = "System.Exception: test"
+    let v26 : US1 = US1_0(v25)
+    let v27 : string = $"__expect / actual: %A{v16} / expected: %A{v26}"
+    let v28 : bool = v24 = false
+    if v28 then
+        failwith&lt;unit&gt; v27
 method0()
 
 US1_0 "System.Exception: test"
@@ -10791,11 +10792,91 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="to_string-std_string">to_string std_string<a class="anchor-link" href="#to_string-std_string">¶</a></h2>
+<h2 id="utf8_get_bytes">utf8_get_bytes<a class="anchor-link" href="#utf8_get_bytes">¶</a></h2>
 </div>
 </div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=121">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">utf8_get_bytes</span> <span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">a</span> <span class="n">i32</span> <span class="n">u8</span> <span class="o">=</span>
+    <span class="n">s</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'System.Text.Encoding.UTF8.GetBytes'</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=122">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="byte_to_string">byte_to_string<a class="anchor-link" href="#byte_to_string">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=123">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">byte_to_string</span> <span class="p">(</span><span class="nb">format</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">u8</span><span class="p">)</span> <span class="p">:</span> <span class="n">string</span> <span class="o">=</span>
+    <span class="err">$</span><span class="s1">'!x.ToString'</span> <span class="nb">format</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=124">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="to_string-std_string">to_string std_string<a class="anchor-link" href="#to_string-std_string">¶</a></h2>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=125">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10825,7 +10906,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=122">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=126">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10835,7 +10916,7 @@ UH0_1 ('a', UH0_1 ('b', UH0_1 ('c', UH0_0)))
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=123">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=127">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10966,11 +11047,12 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     v23 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;(string [])&gt;
+    let v24 : (string []) = Unchecked.defaultof&lt;(string [])&gt;
+    v24 
     #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
-    let v24 : (string []) = _v2.Value
-    v24
+    let v25 : (string []) = _v2.Value
+    v25
 and closure17 () (v0 : (string [])) : (string -&gt; (string [])) =
     closure18(v0)
 and closure20 (v0 : string) (v1 : string) : bool =
@@ -11068,11 +11150,12 @@ and closure35 () (v0 : exn) : string =
     v6 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;string&gt;
+    let v7 : string = Unchecked.defaultof&lt;string&gt;
+    v7 
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v7 : string = _v1.Value
-    v7
+    let v8 : string = _v1.Value
+    v8
 and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 &lt; v0

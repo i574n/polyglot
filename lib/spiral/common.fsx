@@ -28,11 +28,12 @@ let rec closure0 () (v0 : (unit -> unit)) : System.IDisposable =
     v6 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<System.IDisposable>
+    let v7 : System.IDisposable = Unchecked.defaultof<System.IDisposable>
+    v7 
     #endif
     |> fun x -> _v1 <- Some x
-    let v7 : System.IDisposable = _v1.Value
-    v7
+    let v8 : System.IDisposable = _v1.Value
+    v8
 and closure3 (v0 : int32, v1 : (unit -> unit), v2 : int32) () : US0 =
     let v3 : bool = v2 < v0
     if v3 then
@@ -64,6 +65,7 @@ and closure5 (v0 : int32) (v1 : exn) : US1 =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof<unit>
+    () 
     #endif
     |> fun x -> _v2 <- Some x
     _v2.Value

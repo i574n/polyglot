@@ -10,21 +10,6 @@ module Runtime =
 
     open Common
 
-    /// ## isWindows
-
-    let isWindows =
-        fun () ->
-            System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
-                System.Runtime.InteropServices.OSPlatform.Windows
-        |> memoize
-
-    /// ## getExecutableSuffix
-
-    let inline getExecutableSuffix () =
-        if isWindows ()
-        then ".exe"
-        else ""
-
     /// ## splitCommand
 
     type private CommandParseStep =
@@ -121,7 +106,7 @@ module Runtime =
         let! ct =
             options.CancellationToken
             |> Option.defaultValue System.Threading.CancellationToken.None
-            |> Async.mergeCancellationTokenWithDefaultAsync
+            |> SpiralAsync.merge_cancellation_token_with_default_async
 
         use reg = ct.Register (fun _ ->
             if not proc.HasExited then proc.Kill ()
@@ -172,7 +157,7 @@ module Runtime =
 
         let parser =
             Argu.ArgumentParser.Create<'T> (
-                programName = $"{assemblyName}{getExecutableSuffix ()}",
+                programName = $"{assemblyName}{SpiralRuntime.get_executable_suffix ()}",
                 errorHandler = errorHandler
             )
 

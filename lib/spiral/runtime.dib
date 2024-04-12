@@ -1,0 +1,75 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# runtime
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## os_platform
+
+#!spiral
+
+nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
+
+union os_platform =
+    | Windows
+
+inl os_platform = function
+    | Windows => $'`os_platform'.Windows' : os_platform'
+
+#!markdown
+
+## is_os_platform
+
+#!spiral
+
+inl is_os_platform (x : os_platform') : bool =
+    x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
+
+#!markdown
+
+## is_windows
+
+#!spiral
+
+inl is_windows () : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            Windows |> os_platform |> is_os_platform
+        | _ => fun () => null ()
+
+#!markdown
+
+## get_executable_suffix
+
+#!spiral
+
+inl get_executable_suffix () =
+    if is_windows ()
+    then ".exe"
+    else ""
+
+#!spiral
+
+// // test
+
+get_executable_suffix ()
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let is_windows () = !is_windows ()" : ()
+    $"let get_executable_suffix () = !get_executable_suffix ()" : ()

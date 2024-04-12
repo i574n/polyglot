@@ -13,12 +13,6 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/trace.fsx
-#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 
 #!fsharp
@@ -315,19 +309,6 @@ let inline init x = async {
 init 1
 |> Async.RunSynchronously
 |> _assertEqual 1
-
-#!markdown
-
-## mergeCancellationTokenWithDefaultAsync
-
-#!fsharp
-
-let inline mergeCancellationTokenWithDefaultAsync (token : System.Threading.CancellationToken) = async {
-    let! ct = Async.CancellationToken
-    let dct = Async.DefaultCancellationToken
-    let cts = System.Threading.CancellationTokenSource.CreateLinkedTokenSource [| ct; dct; token |]
-    return cts.Token
-}
 
 #!markdown
 

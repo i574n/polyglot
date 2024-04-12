@@ -205,26 +205,26 @@ String closure4(US0 v0_1, String Function() v1_1, String Function() v2, void uni
     final patternInput = types.value(State_trace_state);
     types.Some<String>? _v9;
     _v9 = const types.Some('');
-    final v59 = types.value(_v9);
-    final v60 = patternInput.item1.l0;
-    late final String v70;
+    final v60 = types.value(_v9);
+    final v61 = patternInput.item1.l0;
+    late final String v71;
     switch (v0_1.tag) {
         case 1:
-            v70 = 'Debug';
+            v71 = 'Debug';
             break;
         case 2:
-            v70 = 'Info';
+            v71 = 'Info';
             break;
         case 0:
-            v70 = 'Verbose';
+            v71 = 'Verbose';
             break;
         case 3:
-            v70 = 'Warning';
+            v71 = 'Warning';
             break;
         default:
-            v70 = 'Critical';
+            v71 = 'Critical';
     }
-    return string.trimEnd(string.trimStart('$v59 #$v60 [${v70.toLowerCase()}] ${v1_1()} / ${v2()}', <int>[]), [32, 47]);
+    return string.trimEnd(string.trimStart('$v60 #$v61 [${v71.toLowerCase()}] ${v1_1()} / ${v2()}', <int>[]), [32, 47]);
 }
 
 void method0(US0 v0_1, String Function() v1_1, String Function() v2) {
@@ -243,7 +243,8 @@ void method0(US0 v0_1, String Function() v1_1, String Function() v2) {
         v4.l0 = v19;
         final v21 = '${closure4(v0_1, v1_1, v2, util.ignore())}';
         types.Some<void>? _v22;
-        _v22 = const types.Some(null);
+        null;
+        _v22 = types.Some(util.ignore());
         types.value(_v22);
     }
 }

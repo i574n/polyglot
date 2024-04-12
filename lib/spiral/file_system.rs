@@ -766,13 +766,13 @@ pub mod File_system {
             _v3.set(Some(x))
         }
         {
-            let v9: string = getValue(_v3.get().clone());
-            let v10 = Func1::new(move |v: string| File_system::closure2((), v));
+            let v10: string = getValue(_v3.get().clone());
+            let v11_1 = Func1::new(move |v: string| File_system::closure2((), v));
             sprintf!(
                 "old_path: {} / new_path: {} / ex: {} / {}",
-                v10(v1),
-                v10(v0_1),
-                v9,
+                v11_1(v1),
+                v11_1(v0_1),
+                v10,
                 File_system::closure3((), ())
             )
         }
@@ -880,18 +880,18 @@ pub mod File_system {
             _v1.set(Some(x))
         }
         {
-            let v8: Arc<Async<i64>> = getValue(_v1.get().clone());
-            let _v9: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+            let v9: Arc<Async<i64>> = getValue(_v1.get().clone());
+            let _v10: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
             {
                 let x_1: Arc<Async<()>> = defaultOf();
-                _v9.set(Some(x_1))
+                _v10.set(Some(x_1))
             }
             {
-                let v16: Arc<Async<()>> = getValue(_v9.get().clone());
-                let _v17: MutCell<Option<()>> = MutCell::new(None::<()>);
+                let v18: Arc<Async<()>> = getValue(_v10.get().clone());
+                let _v19: MutCell<Option<()>> = MutCell::new(None::<()>);
                 defaultOf::<()>();
-                _v17.set(Some(()));
-                getValue(_v17.get().clone());
+                _v19.set(Some(()));
+                getValue(_v19.get().clone());
                 ()
             }
         }
@@ -957,9 +957,9 @@ pub mod File_system {
             _v1.set(Some(x))
         }
         {
-            let v39: File_system::US8 = getValue(_v1.get().clone());
-            match &v39 {
-                File_system::US8::US8_0(v39_0_0) => Some(match &v39 {
+            let v41: File_system::US8 = getValue(_v1.get().clone());
+            match &v41 {
+                File_system::US8::US8_0(v41_0_0) => Some(match &v41 {
                     File_system::US8::US8_0(x) => x.clone(),
                     _ => unreachable!(),
                 }),
@@ -1005,15 +1005,15 @@ pub mod File_system {
                 {
                     v3.get().clone()
                 } else {
-                    let v36: Option<string> = (File_system::method17())(v3.get().clone());
-                    let v39: File_system::US8 =
-                        defaultValue(File_system::US8::US8_1, map(File_system::method18(), v36));
-                    match &v39 {
-                        File_system::US8::US8_0(v39_0_0) => {
+                    let v37: Option<string> = (File_system::method17())(v3.get().clone());
+                    let v40: File_system::US8 =
+                        defaultValue(File_system::US8::US8_1, map(File_system::method18(), v37));
+                    match &v40 {
+                        File_system::US8::US8_0(v40_0_0) => {
                             let v0_1_temp: string = v0_1.get().clone();
                             let v1_temp: bool = v1.get().clone();
                             let v2_temp: string = v2.get().clone();
-                            let v3_temp: string = match &v39 {
+                            let v3_temp: string = match &v40 {
                                 File_system::US8::US8_0(x) => x.clone(),
                                 _ => unreachable!(),
                             };
@@ -1065,15 +1065,15 @@ pub mod File_system {
         {
             v2.clone()
         } else {
-            let v35: Option<string> = (File_system::method17())(v2.clone());
-            let v38: File_system::US8 =
-                defaultValue(File_system::US8::US8_1, map(File_system::method18(), v35));
-            match &v38 {
-                File_system::US8::US8_0(v38_0_0) => File_system::method19(
+            let v36: Option<string> = (File_system::method17())(v2.clone());
+            let v39: File_system::US8 =
+                defaultValue(File_system::US8::US8_1, map(File_system::method18(), v36));
+            match &v39 {
+                File_system::US8::US8_0(v39_0_0) => File_system::method19(
                     v0_1.clone(),
                     v1,
                     v2.clone(),
-                    match &v38 {
+                    match &v39 {
                         File_system::US8::US8_0(x) => x.clone(),
                         _ => unreachable!(),
                     },

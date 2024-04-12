@@ -46,15 +46,6 @@ run_target function
 
 #!markdown
 
-## emit
-
-#!spiral
-
-inl emit forall t. (x : t) : t =
-    $'!x '
-
-#!markdown
-
 ## upcast
 
 #!spiral
@@ -347,16 +338,6 @@ fun () => failwith "test"
 #!spiral
 
 nominal disposable t = $"System.IDisposable"
-
-#!markdown
-
-## use
-
-#!spiral
-
-inl use forall t. (x : t) : t =
-    $"use !x = !x " : ()
-    $'!x '
 
 #!markdown
 

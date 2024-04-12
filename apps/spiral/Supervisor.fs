@@ -55,7 +55,7 @@ module Supervisor =
 
     let inline awaitCompiler port cancellationToken = async {
         let ct, disposable = cancellationToken |> Threading.newDisposableToken
-        let! ct = ct |> Async.mergeCancellationTokenWithDefaultAsync
+        let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
             let! availablePort = Networking.getAvailablePort (Some 60) port
@@ -137,7 +137,7 @@ module Supervisor =
 
     let inline getFileUri (path : string) =
         let path =
-            if Runtime.isWindows () |> not
+            if SpiralRuntime.is_windows () |> not
             then path
             else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> SpiralSm.replace "\\" "/"
         $"file:///{path |> SpiralSm.trim_start [| '/' |]}"
@@ -291,7 +291,7 @@ module Supervisor =
 
         let packagesDir = targetDir </> "packages"
 
-        let hashHex = code |> Crypto.hashText
+        let hashHex = code |> SpiralCrypto.hash_text
 
         let codeDir = packagesDir </> hashHex
 

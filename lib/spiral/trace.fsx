@@ -50,38 +50,39 @@ and closure3 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
     v11 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<string>
+    let v12 : string = Unchecked.defaultof<string>
+    v12 
     #endif
     |> fun x -> _v6 <- Some x
-    let v12 : string = _v6.Value
-    let v14 : bool = v12 = "Microsoft.DotNet.Interactive.App"
-    let v15 : bool = v14 <> true
-    let v21 : US1 =
-        if v15 then
-            let v16 : System.DateTime = System.DateTime.Now
-            let v17 : (System.DateTime -> int64) = _.Ticks
-            let v18 : int64 = v17 v16
-            US1_0(v18)
+    let v13 : string = _v6.Value
+    let v15 : bool = v13 = "Microsoft.DotNet.Interactive.App"
+    let v16 : bool = v15 <> true
+    let v22 : US1 =
+        if v16 then
+            let v17 : System.DateTime = System.DateTime.Now
+            let v18 : (System.DateTime -> int64) = _.Ticks
+            let v19 : int64 = v18 v17
+            US1_0(v19)
         else
             US1_1
-    let v26 : int64 option =
-        match v21 with
+    let v27 : int64 option =
+        match v22 with
         | US1_1 -> (* None *)
-            let v24 : int64 option = None
+            let v25 : int64 option = None
+            v25
+        | US1_0(v23) -> (* Some *)
+            let v24 : int64 option = Some v23 
             v24
-        | US1_0(v22) -> (* Some *)
-            let v23 : int64 option = Some v22 
-            v23
-    let v27 : int64 option = method1(v26)
-    v27 
+    let v28 : int64 option = method1(v27)
+    v28 
     #else
-    let v28 : int64 option = None
-    let v29 : int64 option = method2(v28)
-    v29 
+    let v29 : int64 option = None
+    let v30 : int64 option = method2(v29)
+    v30 
     #endif
     |> fun x -> _v5 <- Some x
-    let v30 : int64 option = _v5.Value
-    struct (v1, v4, v0, v3, v30)
+    let v31 : int64 option = _v5.Value
+    struct (v1, v4, v0, v3, v31)
 and closure5 () (v0 : int64) : US2 =
     US2_0(v0)
 and method3 () : (int64 -> US2) =
@@ -166,35 +167,36 @@ and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
     v58 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<string>
+    let v59 : string = Unchecked.defaultof<string>
+    v59 
     #endif
     |> fun x -> _v9 <- Some x
-    let v59 : string = _v9.Value
-    let v60 : int64 = v4.l0
-    let v70 : string =
+    let v60 : string = _v9.Value
+    let v61 : int64 = v4.l0
+    let v71 : string =
         match v0 with
         | US0_4 -> (* Critical *)
-            let v65 : string = "Critical"
-            v65
+            let v66 : string = "Critical"
+            v66
         | US0_1 -> (* Debug *)
-            let v62 : string = "Debug"
-            v62
-        | US0_2 -> (* Info *)
-            let v63 : string = "Info"
+            let v63 : string = "Debug"
             v63
-        | US0_0 -> (* Verbose *)
-            let v61 : string = "Verbose"
-            v61
-        | US0_3 -> (* Warning *)
-            let v64 : string = "Warning"
+        | US0_2 -> (* Info *)
+            let v64 : string = "Info"
             v64
-    let v71 : string = v70.ToLower ()
-    let v72 : string = $"{v59} #{v60} [{v71}] %s{v1 ()} / %s{v2 ()}"
-    let v73 : (char []) = [||]
-    let v74 : string = v72.TrimStart v73
-    let v75 : (char []) = [|' '; '/'|]
-    let v76 : string = v74.TrimEnd v75
-    v76
+        | US0_0 -> (* Verbose *)
+            let v62 : string = "Verbose"
+            v62
+        | US0_3 -> (* Warning *)
+            let v65 : string = "Warning"
+            v65
+    let v72 : string = v71.ToLower ()
+    let v73 : string = $"{v60} #{v61} [{v72}] %s{v1 ()} / %s{v2 ()}"
+    let v74 : (char []) = [||]
+    let v75 : string = v73.TrimStart v74
+    let v76 : (char []) = [|' '; '/'|]
+    let v77 : string = v75.TrimEnd v76
+    v77
 and method0 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
     let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure3()
     if State.trace_state = None then State.trace_state <- v3 () |> Some
@@ -242,6 +244,7 @@ and method0 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
         #endif
         #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
         Unchecked.defaultof<unit>
+        () 
         #endif
         |> fun x -> _v22 <- Some x
         _v22.Value

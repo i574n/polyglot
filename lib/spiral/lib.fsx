@@ -47,8 +47,38 @@ module SpiralTrace =
         US0_4
 #endif
 
-
 #if !FABLE_COMPILER && !WASM && !CONTRACT
+
+module SpiralAsync =
+    let merge_cancellation_token_with_default_async x =
+#if !INTERACTIVE
+        Async_.merge_cancellation_token_with_default_async x
+#else
+        merge_cancellation_token_with_default_async x
+#endif
+
+module SpiralRuntime =
+    let get_executable_suffix () =
+#if !INTERACTIVE
+        Runtime.get_executable_suffix ()
+#else
+        get_executable_suffix ()
+#endif
+
+    let is_windows () =
+#if !INTERACTIVE
+        Runtime.is_windows ()
+#else
+        is_windows ()
+#endif
+
+module SpiralCrypto =
+    let hash_text x =
+#if !INTERACTIVE
+        Crypto.hash_text x
+#else
+        hash_text x
+#endif
 module SpiralDateTime =
     let format_iso8601 x =
 #if !INTERACTIVE

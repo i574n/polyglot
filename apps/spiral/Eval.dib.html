@@ -7582,16 +7582,9 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
-<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
-<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
-<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
-<span class="c1">#!import ../../lib/spiral/trace.fsx</span>
-<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
-<span class="c1">#!import ../../lib/fsharp/Common.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Threading.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Crypto.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Networking.fs</span>
@@ -8191,7 +8184,7 @@ a.anchor-link {
                             <span class="n">then</span> <span class="kc">None</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">init</span>
                             <span class="k">else</span>
                                 <span class="k">async</span> <span class="p">{</span>
-                                    <span class="o">//</span> <span class="n">let</span> <span class="nb">hash</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"repl_{code |&gt; Crypto.hashText}"</span>
+                                    <span class="o">//</span> <span class="n">let</span> <span class="nb">hash</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"repl_{code |&gt; SpiralCrypto.hash_text}"</span>
                                     <span class="n">let</span> <span class="nb">hash</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"spiral_eval"</span>
 
                                     <span class="n">let</span><span class="err">!</span> <span class="n">fsprojPath</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">Builder</span><span class="o">.</span><span class="n">persistCodeProject</span> <span class="p">[</span><span class="s2">"Fable.Core"</span><span class="p">]</span> <span class="p">[]</span> <span class="nb">hash</span>

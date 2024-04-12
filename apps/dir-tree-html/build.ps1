@@ -5,6 +5,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
+. ../../lib/spiral/lib.ps1
 
 
 if (!$fast) {
@@ -13,4 +14,6 @@ if (!$fast) {
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) DirTreeHtml.dib fs } | Invoke-Block
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) DirTreeHtml.fs $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu Falco.Markup FSharp.Control.AsyncSeq FSharp.Json System.CommandLine System.Reactive.Linq --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/trace.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Networking.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
+$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
+$builderArgs = @("DirTreeHtml.fs", $runtime, "--packages", "Argu", "Falco.Markup", "FSharp.Control.AsyncSeq", "FSharp.Json", "System.CommandLine", "System.Reactive.Linq", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Networking.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
+{ . ../builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block

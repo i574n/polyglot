@@ -8,11 +8,6 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
-
-#!fsharp
-
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
@@ -21,12 +16,11 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/trace.fsx
-#!import ../../lib/spiral/lib.fsx
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
+#!fsharp
+
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -49,41 +43,6 @@ open Common
 //// test
 
 open SpiralFileSystem.Operators
-
-#!markdown
-
-## isWindows
-
-#!fsharp
-
-let isWindows =
-    fun () ->
-        System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform
-            System.Runtime.InteropServices.OSPlatform.Windows
-    |> memoize
-
-#!fsharp
-
-//// test
-
-isWindows ()
-
-#!markdown
-
-## getExecutableSuffix
-
-#!fsharp
-
-let inline getExecutableSuffix () =
-    if isWindows ()
-    then ".exe"
-    else ""
-
-#!fsharp
-
-//// test
-
-getExecutableSuffix ()
 
 #!markdown
 
@@ -217,7 +176,7 @@ let inline executeWithOptionsAsync (options : ExecutionOptions) = async {
     let! ct =
         options.CancellationToken
         |> Option.defaultValue System.Threading.CancellationToken.None
-        |> Async.mergeCancellationTokenWithDefaultAsync
+        |> SpiralAsync.merge_cancellation_token_with_default_async
 
     use reg = ct.Register (fun _ ->
         if not proc.HasExited then proc.Kill ()
@@ -364,7 +323,7 @@ let inline parseArgs<'T when 'T :> Argu.IArgParserTemplate> args =
 
     let parser =
         Argu.ArgumentParser.Create<'T> (
-            programName = $"{assemblyName}{getExecutableSuffix ()}",
+            programName = $"{assemblyName}{SpiralRuntime.get_executable_suffix ()}",
             errorHandler = errorHandler
         )
 

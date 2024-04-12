@@ -408,7 +408,7 @@ module Eval =
                                 then None |> Async.init
                                 else
                                     async {
-                                        // let hash = $"repl_{code |> Crypto.hashText}"
+                                        // let hash = $"repl_{code |> SpiralCrypto.hash_text}"
                                         let hash = $"spiral_eval"
 
                                         let! fsprojPath = code |> Builder.persistCodeProject ["Fable.Core"] [] hash

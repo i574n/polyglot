@@ -18,6 +18,7 @@ modules:
     math
     sm'
     sm'_operators
+    crypto
     date_time
     trace-
     common-

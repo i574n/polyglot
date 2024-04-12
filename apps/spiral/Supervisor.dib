@@ -8,11 +8,6 @@
 
 #!fsharp
 
-#!import ../../lib/fsharp/Notebooks.dib
-#!import ../../lib/fsharp/Testing.dib
-
-#!fsharp
-
 #r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"
 #r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"
@@ -27,16 +22,14 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/trace.fsx
-#!import ../../lib/spiral/lib.fsx
+#!import ../../lib/fsharp/Notebooks.dib
+#!import ../../lib/fsharp/Testing.dib
+
+#!fsharp
+
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Threading.fs
-#!import ../../lib/fsharp/Crypto.fs
 #!import ../../lib/fsharp/Async.fs
 #!import ../../lib/fsharp/AsyncSeq.fs
 #!import ../../lib/fsharp/Networking.fs
@@ -112,7 +105,7 @@ type ClientErrorsRes =
 
 let inline awaitCompiler port cancellationToken = async {
     let ct, disposable = cancellationToken |> Threading.newDisposableToken
-    let! ct = ct |> Async.mergeCancellationTokenWithDefaultAsync
+    let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
     let compiler = MailboxProcessor.Start (fun inbox -> async {
         let! availablePort = Networking.getAvailablePort (Some 60) port
@@ -198,7 +191,7 @@ let inline awaitCompiler port cancellationToken = async {
 
 let inline getFileUri (path : string) =
     let path =
-        if Runtime.isWindows () |> not
+        if SpiralRuntime.is_windows () |> not
         then path
         else $"{path.[0] |> System.Char.ToLower}{path.[1..]}" |> SpiralSm.replace "\\" "/"
     $"file:///{path |> SpiralSm.trim_start [| '/' |]}"
@@ -372,7 +365,7 @@ let inline persistCode code = async {
 
     let packagesDir = targetDir </> "packages"
 
-    let hashHex = code |> Crypto.hashText
+    let hashHex = code |> SpiralCrypto.hash_text
     
     let codeDir = packagesDir </> hashHex
 

@@ -355,6 +355,16 @@ inl to_char_array (str : string) : a i32 char =
 inl to_char_list (str : string) : list char =
     listm.init (str |> sm.length) (fun (i : i64) => sm.index str i)
 
+// // ## utf8_get_bytes
+
+inl utf8_get_bytes (s : string) : a i32 u8 =
+    s |> $'System.Text.Encoding.UTF8.GetBytes'
+
+// // ## byte_to_string
+
+inl byte_to_string (format : string) (x : u8) : string =
+    $'!x.ToString' format
+
 // // ## to_string std_string
 
 open rust

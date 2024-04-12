@@ -7667,22 +7667,23 @@ and method0 () : unit =
     v5 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;uint8&gt;
+    let v6 : uint8 = Unchecked.defaultof&lt;uint8&gt;
+    v6 
     #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v6 : uint8 = _v0.Value
-    let v7 : string = $"%A{v6}"
-    System.Console.WriteLine v7
-    let v8 : bool = v6 = 1uy
-    let v10 : bool =
-        if v8 then
+    let v7 : uint8 = _v0.Value
+    let v8 : string = $"%A{v7}"
+    System.Console.WriteLine v8
+    let v9 : bool = v7 = 1uy
+    let v11 : bool =
+        if v9 then
             true
         else
-            method1(v8)
-    let v11 : string = $"__expect / actual: %A{v6} / expected: %A{1uy}"
-    let v12 : bool = v10 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+            method1(v9)
+    let v12 : string = $"__expect / actual: %A{v7} / expected: %A{1uy}"
+    let v13 : bool = v11 = false
+    if v13 then
+        failwith&lt;unit&gt; v12
 method0()
 
 1uy
@@ -7755,22 +7756,23 @@ and method0 () : unit =
     v5 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;uint8&gt;
+    let v6 : uint8 = Unchecked.defaultof&lt;uint8&gt;
+    v6 
     #endif
     |&gt; fun x -&gt; _v0 &lt;- Some x
-    let v6 : uint8 = _v0.Value
-    let v7 : bool = 1uy = v6
-    let v8 : string = $"%A{v7}"
-    System.Console.WriteLine v8
-    let v10 : bool =
-        if v7 then
+    let v7 : uint8 = _v0.Value
+    let v8 : bool = 1uy = v7
+    let v9 : string = $"%A{v8}"
+    System.Console.WriteLine v9
+    let v11 : bool =
+        if v8 then
             true
         else
-            method1(v7)
-    let v11 : string = $"__expect / actual: %A{v7} / expected: %A{true}"
-    let v12 : bool = v10 = false
-    if v12 then
-        failwith&lt;unit&gt; v11
+            method1(v8)
+    let v12 : string = $"__expect / actual: %A{v8} / expected: %A{true}"
+    let v13 : bool = v11 = false
+    if v13 then
+        failwith&lt;unit&gt; v12
 method0()
 
 
@@ -7799,13 +7801,13 @@ mod module_ccfa04bf {
             let _v0: MutCell&lt;Option&lt;u8&gt;&gt; = MutCell::new(None::&lt;u8&gt;);
             _v0.set(Some(1_u8));
             {
-                let v7: bool = 1_u8 == getValue(_v0.get().clone());
-                let v8: string = sprintf!("{:?}", v7);
-                printfn!("{0}", v8);
-                if (if v7 { true } else { Spiral_eval::method1(v7) }) == false
+                let v8: bool = 1_u8 == getValue(_v0.get().clone());
+                let v9: string = sprintf!("{:?}", v8);
+                printfn!("{0}", v9);
+                if (if v8 { true } else { Spiral_eval::method1(v8) }) == false
                    {
                     panic!("{}",
-                           sprintf!("__expect / actual: {:?} / expected: {:?}", v7, true));
+                           sprintf!("__expect / actual: {:?} / expected: {:?}", v8, true));
                 }
             }
         }
@@ -7813,9 +7815,6 @@ mod module_ccfa04bf {
     }
 }
 pub use module_ccfa04bf::*;
-
-
-pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 
 </pre>
 </div>
@@ -7829,51 +7828,11 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="emit">emit<a class="anchor-link" href="#emit">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">emit</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s1">'!x '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="upcast">upcast<a class="anchor-link" href="#upcast">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7903,7 +7862,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7913,7 +7872,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7943,7 +7902,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7953,7 +7912,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7985,7 +7944,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7995,7 +7954,7 @@ pub fn main() -&gt; Result&lt;(), String&gt; { Ok(()) }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8033,7 +7992,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8043,7 +8002,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8073,7 +8032,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=20">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8083,7 +8042,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8113,7 +8072,7 @@ struct (1, 2)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8172,7 +8131,7 @@ struct ("a", 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8250,7 +8209,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8260,7 +8219,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8293,7 +8252,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8365,7 +8324,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8375,7 +8334,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8407,7 +8366,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=27">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8417,7 +8376,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8447,7 +8406,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8457,7 +8416,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8487,7 +8446,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8497,7 +8456,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8527,7 +8486,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8537,7 +8496,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=34">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8567,7 +8526,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8577,7 +8536,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=36">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8607,7 +8566,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8617,7 +8576,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8647,7 +8606,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8657,7 +8616,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=42">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=40">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8686,7 +8645,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=41">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8725,7 +8684,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8735,7 +8694,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=45">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=43">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8764,7 +8723,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=44">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8803,7 +8762,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8813,7 +8772,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8846,7 +8805,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=47">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8878,7 +8837,7 @@ struct (2, 1)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=50">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=48">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8932,7 +8891,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=49">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8991,7 +8950,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=52">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9001,7 +8960,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=53">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=51">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9034,7 +8993,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=52">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9092,7 +9051,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9102,7 +9061,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=54">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9132,7 +9091,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=55">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9142,7 +9101,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9171,7 +9130,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=57">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9214,7 +9173,7 @@ and method0 () : unit =
     let v1 : US0 = US0_1
     let v2 : (exn -&gt; US0) = closure1()
     let v3 : US0 = try v0 (); v1 with ex -&gt; ex |&gt; v2
-    let v15 : US1 =
+    let v16 : US1 =
         match v3 with
         | US0_1 -&gt; (* None *)
             US1_1
@@ -9242,31 +9201,32 @@ and method0 () : unit =
             v10 
             #endif
             #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-            Unchecked.defaultof&lt;string&gt;
+            let v11 : string = Unchecked.defaultof&lt;string&gt;
+            v11 
             #endif
             |&gt; fun x -&gt; _v5 &lt;- Some x
-            let v11 : string = _v5.Value
-            US1_0(v11)
-    let v16 : string = $"%A{v15}"
-    System.Console.WriteLine v16
-    let v21 : bool =
-        match v15 with
-        | US1_0(v19) -&gt; (* Some *)
-            let v20 : bool = v19 = "System.Exception: test"
-            v20
+            let v12 : string = _v5.Value
+            US1_0(v12)
+    let v17 : string = $"%A{v16}"
+    System.Console.WriteLine v17
+    let v22 : bool =
+        match v16 with
+        | US1_0(v20) -&gt; (* Some *)
+            let v21 : bool = v20 = "System.Exception: test"
+            v21
         | _ -&gt;
             false
-    let v23 : bool =
-        if v21 then
+    let v24 : bool =
+        if v22 then
             true
         else
-            method1(v21)
-    let v24 : string = "System.Exception: test"
-    let v25 : US1 = US1_0(v24)
-    let v26 : string = $"__expect / actual: %A{v15} / expected: %A{v25}"
-    let v27 : bool = v23 = false
-    if v27 then
-        failwith&lt;unit&gt; v26
+            method1(v22)
+    let v25 : string = "System.Exception: test"
+    let v26 : US1 = US1_0(v25)
+    let v27 : string = $"__expect / actual: %A{v16} / expected: %A{v26}"
+    let v28 : bool = v24 = false
+    if v28 then
+        failwith&lt;unit&gt; v27
 method0()
 
 US1_0 "System.Exception: test"
@@ -9276,7 +9236,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9286,7 +9246,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=59">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9315,48 +9275,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="use">use<a class="anchor-link" href="#use">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">inl</span> <span class="n">use</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="p">:</span> <span class="n">t</span> <span class="o">=</span>
-    <span class="err">$</span><span class="s2">"use !x = !x "</span> <span class="p">:</span> <span class="p">()</span>
-    <span class="err">$</span><span class="s1">'!x '</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>()
-
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=64">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9366,7 +9285,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=61">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9396,7 +9315,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=66">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=62">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9406,7 +9325,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=63">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9440,7 +9359,7 @@ US1_0 "System.Exception: test"
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=64">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9501,25 +9420,26 @@ and method0 () : unit =
     v7 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.IDisposable&gt;
+    let v8 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
+    v8 
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v8 : System.IDisposable = _v1.Value
-    let v9 : (System.IDisposable -&gt; unit) = _.Dispose()
-    v9 v8
-    let v10 : int32 = v0.l0
-    let v11 : string = $"%A{v10}"
-    System.Console.WriteLine v11
-    let v12 : bool = v10 = 1
-    let v14 : bool =
-        if v12 then
+    let v9 : System.IDisposable = _v1.Value
+    let v10 : (System.IDisposable -&gt; unit) = _.Dispose()
+    v10 v9
+    let v11 : int32 = v0.l0
+    let v12 : string = $"%A{v11}"
+    System.Console.WriteLine v12
+    let v13 : bool = v11 = 1
+    let v15 : bool =
+        if v13 then
             true
         else
-            method1(v12)
-    let v15 : string = $"__expect / actual: %A{v10} / expected: %A{1}"
-    let v16 : bool = v14 = false
-    if v16 then
-        failwith&lt;unit&gt; v15
+            method1(v13)
+    let v16 : string = $"__expect / actual: %A{v11} / expected: %A{1}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 1
@@ -9528,7 +9448,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9613,57 +9533,60 @@ and method0 () : unit =
     v12 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.IDisposable&gt;
+    let v13 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
+    v13 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v13 : System.IDisposable = _v6.Value
-    use v13 = v13 
-    let v14 : System.IDisposable = v13 
+    let v14 : System.IDisposable = _v6.Value
+    use v14 = v14 
+    let v15 : System.IDisposable = v14 
     return () 
     }
     |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v15 : System.Threading.Tasks.Task = _v5 |&gt; Option.get
-    v15 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v16 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
+    let v16 : System.Threading.Tasks.Task = _v5 |&gt; Option.get
     v16 
     #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v17 : System.Threading.Tasks.Task = null |&gt; unbox&lt;System.Threading.Tasks.Task&gt;
+    v17 
+    #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.Threading.Tasks.Task&gt;
+    let v18 : System.Threading.Tasks.Task = Unchecked.defaultof&lt;System.Threading.Tasks.Task&gt;
+    v18 
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v17 : System.Threading.Tasks.Task = _v1.Value
-    let v18 : Async&lt;unit&gt; option = None
-    let mutable _v18 = v18
+    let v19 : System.Threading.Tasks.Task = _v1.Value
+    let v20 : Async&lt;unit&gt; option = None
+    let mutable _v20 = v20
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v19 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v19 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; WASM
-    let v20 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v20 
-    #endif
-    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
     let v21 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v21 
     #endif
-    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v22 : (System.Threading.Tasks.Task -&gt; Async&lt;unit&gt;) = Async.AwaitTask
-    let v23 : Async&lt;unit&gt; = v22 v17
+    #if FABLE_COMPILER_RUST &amp;&amp; WASM
+    let v22 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v22 
+    #endif
+    #if FABLE_COMPILER_RUST &amp;&amp; CONTRACT
+    let v23 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
     v23 
     #endif
+    #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
+    let v24 : (System.Threading.Tasks.Task -&gt; Async&lt;unit&gt;) = Async.AwaitTask
+    let v25 : Async&lt;unit&gt; = v24 v19
+    v25 
+    #endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v24 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
-    v24 
+    let v26 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v26 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
+    let v27 : Async&lt;unit&gt; = Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
+    v27 
     #endif
-    |&gt; fun x -&gt; _v18 &lt;- Some x
-    let v25 : Async&lt;unit&gt; = _v18.Value
-    let v26 : unit option = None
-    let mutable _v26 = v26
+    |&gt; fun x -&gt; _v20 &lt;- Some x
+    let v28 : Async&lt;unit&gt; = _v20.Value
+    let v29 : unit option = None
+    let mutable _v29 = v29
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     () 
@@ -9677,8 +9600,8 @@ and method0 () : unit =
     () 
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v27 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
-    v27 v25
+    let v30 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
+    v30 v28
     () 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -9687,22 +9610,23 @@ and method0 () : unit =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof&lt;unit&gt;
+    () 
     #endif
-    |&gt; fun x -&gt; _v26 &lt;- Some x
-    _v26.Value
-    let v28 : int32 = v0.l0
-    let v29 : string = $"%A{v28}"
-    System.Console.WriteLine v29
-    let v30 : bool = v28 = 1
-    let v32 : bool =
-        if v30 then
+    |&gt; fun x -&gt; _v29 &lt;- Some x
+    _v29.Value
+    let v31 : int32 = v0.l0
+    let v32 : string = $"%A{v31}"
+    System.Console.WriteLine v32
+    let v33 : bool = v31 = 1
+    let v35 : bool =
+        if v33 then
             true
         else
-            method1(v30)
-    let v33 : string = $"__expect / actual: %A{v28} / expected: %A{1}"
-    let v34 : bool = v32 = false
-    if v34 then
-        failwith&lt;unit&gt; v33
+            method1(v33)
+    let v36 : string = $"__expect / actual: %A{v31} / expected: %A{1}"
+    let v37 : bool = v35 = false
+    if v37 then
+        failwith&lt;unit&gt; v36
 method0()
 
 1
@@ -9711,7 +9635,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=66">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9795,29 +9719,31 @@ and method0 () : unit =
     v12 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.IDisposable&gt;
+    let v13 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
+    v13 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v13 : System.IDisposable = _v6.Value
-    use v13 = v13 
-    let v14 : System.IDisposable = v13 
+    let v14 : System.IDisposable = _v6.Value
+    use v14 = v14 
+    let v15 : System.IDisposable = v14 
     return () 
     }
     |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v15 : Async&lt;unit&gt; = _v5 |&gt; Option.get
-    v15 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v16 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    let v16 : Async&lt;unit&gt; = _v5 |&gt; Option.get
     v16 
     #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v17 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v17 
+    #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
+    let v18 : Async&lt;unit&gt; = Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
+    v18 
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v17 : Async&lt;unit&gt; = _v1.Value
-    let v18 : unit option = None
-    let mutable _v18 = v18
+    let v19 : Async&lt;unit&gt; = _v1.Value
+    let v20 : unit option = None
+    let mutable _v20 = v20
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     () 
@@ -9831,8 +9757,8 @@ and method0 () : unit =
     () 
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v19 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
-    v19 v17
+    let v21 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
+    v21 v19
     () 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -9841,22 +9767,23 @@ and method0 () : unit =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof&lt;unit&gt;
+    () 
     #endif
-    |&gt; fun x -&gt; _v18 &lt;- Some x
-    _v18.Value
-    let v20 : int32 = v0.l0
-    let v21 : string = $"%A{v20}"
-    System.Console.WriteLine v21
-    let v22 : bool = v20 = 1
-    let v24 : bool =
-        if v22 then
+    |&gt; fun x -&gt; _v20 &lt;- Some x
+    _v20.Value
+    let v22 : int32 = v0.l0
+    let v23 : string = $"%A{v22}"
+    System.Console.WriteLine v23
+    let v24 : bool = v22 = 1
+    let v26 : bool =
+        if v24 then
             true
         else
-            method1(v22)
-    let v25 : string = $"__expect / actual: %A{v20} / expected: %A{1}"
-    let v26 : bool = v24 = false
-    if v26 then
-        failwith&lt;unit&gt; v25
+            method1(v24)
+    let v27 : string = $"__expect / actual: %A{v22} / expected: %A{1}"
+    let v28 : bool = v26 = false
+    if v28 then
+        failwith&lt;unit&gt; v27
 method0()
 
 1
@@ -9865,7 +9792,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=67">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9948,27 +9875,29 @@ and method0 () : unit =
     v12 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.IDisposable&gt;
+    let v13 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
+    v13 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v13 : System.IDisposable = _v6.Value
+    let v14 : System.IDisposable = _v6.Value
     return () 
     }
     |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v14 : Async&lt;unit&gt; = _v5 |&gt; Option.get
-    v14 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v15 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    let v15 : Async&lt;unit&gt; = _v5 |&gt; Option.get
     v15 
     #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v16 : Async&lt;unit&gt; = null |&gt; unbox&lt;Async&lt;unit&gt;&gt;
+    v16 
+    #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
+    let v17 : Async&lt;unit&gt; = Unchecked.defaultof&lt;Async&lt;unit&gt;&gt;
+    v17 
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v16 : Async&lt;unit&gt; = _v1.Value
-    let v17 : unit option = None
-    let mutable _v17 = v17
+    let v18 : Async&lt;unit&gt; = _v1.Value
+    let v19 : unit option = None
+    let mutable _v19 = v19
     #if FABLE_COMPILER_RUST &amp;&amp; !WASM &amp;&amp; !CONTRACT
     null |&gt; unbox&lt;unit&gt;
     () 
@@ -9982,8 +9911,8 @@ and method0 () : unit =
     () 
     #endif
     #if !FABLE_COMPILER &amp;&amp; !FABLE_COMPILER_RUST &amp;&amp; !FABLE_COMPILER_TYPESCRIPT &amp;&amp; !WASM &amp;&amp; !CONTRACT
-    let v18 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
-    v18 v16
+    let v20 : (Async&lt;unit&gt; -&gt; unit) = Async.RunSynchronously
+    v20 v18
     () 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -9992,22 +9921,23 @@ and method0 () : unit =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof&lt;unit&gt;
+    () 
     #endif
-    |&gt; fun x -&gt; _v17 &lt;- Some x
-    _v17.Value
-    let v19 : int32 = v0.l0
-    let v20 : string = $"%A{v19}"
-    System.Console.WriteLine v20
-    let v21 : bool = v19 = 0
-    let v23 : bool =
-        if v21 then
+    |&gt; fun x -&gt; _v19 &lt;- Some x
+    _v19.Value
+    let v21 : int32 = v0.l0
+    let v22 : string = $"%A{v21}"
+    System.Console.WriteLine v22
+    let v23 : bool = v21 = 0
+    let v25 : bool =
+        if v23 then
             true
         else
-            method1(v21)
-    let v24 : string = $"__expect / actual: %A{v19} / expected: %A{0}"
-    let v25 : bool = v23 = false
-    if v25 then
-        failwith&lt;unit&gt; v24
+            method1(v23)
+    let v26 : string = $"__expect / actual: %A{v21} / expected: %A{0}"
+    let v27 : bool = v25 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
 method0()
 
 0
@@ -10017,7 +9947,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10027,7 +9957,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=69">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10060,7 +9990,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10070,7 +10000,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10102,7 +10032,7 @@ method0()
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=72">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10112,7 +10042,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=73">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10155,7 +10085,7 @@ method0()
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=78">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=74">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10224,6 +10154,7 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof&lt;unit&gt;
+    () 
     #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
     _v2.Value
@@ -10272,7 +10203,7 @@ US0_0 1
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=79">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10351,6 +10282,7 @@ and closure2 (v0 : int32) (v1 : exn) : US1 =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof&lt;unit&gt;
+    () 
     #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
     _v2.Value
@@ -10400,7 +10332,7 @@ US0_0 2
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10410,7 +10342,7 @@ US0_0 2
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=81">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=77">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10466,11 +10398,12 @@ let rec closure0 () (v0 : (unit -&gt; unit)) : System.IDisposable =
     v6 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.IDisposable&gt;
+    let v7 : System.IDisposable = Unchecked.defaultof&lt;System.IDisposable&gt;
+    v7 
     #endif
     |&gt; fun x -&gt; _v1 &lt;- Some x
-    let v7 : System.IDisposable = _v1.Value
-    v7
+    let v8 : System.IDisposable = _v1.Value
+    v8
 and closure3 (v0 : int32, v1 : (unit -&gt; unit), v2 : int32) () : US0 =
     let v3 : bool = v2 &lt; v0
     if v3 then
@@ -10502,6 +10435,7 @@ and closure5 (v0 : int32) (v1 : exn) : US1 =
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
     Unchecked.defaultof&lt;unit&gt;
+    () 
     #endif
     |&gt; fun x -&gt; _v2 &lt;- Some x
     _v2.Value

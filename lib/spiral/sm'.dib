@@ -693,6 +693,24 @@ inl to_char_list (str : string) : list char =
 
 #!markdown
 
+## utf8_get_bytes
+
+#!spiral
+
+inl utf8_get_bytes (s : string) : a i32 u8 =
+    s |> $'System.Text.Encoding.UTF8.GetBytes'
+
+#!markdown
+
+## byte_to_string
+
+#!spiral
+
+inl byte_to_string (format : string) (x : u8) : string =
+    $'!x.ToString' format
+
+#!markdown
+
 ## to_string std_string
 
 #!spiral

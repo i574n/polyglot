@@ -754,10 +754,10 @@ export function closure18(v0_1: US3_$union, v1: (() => string), v2: (() => strin
     let _v9: Option<string> = void 0;
     const x: string = method11();
     _v9 = x;
-    const v59: string = value_3(_v9);
-    const v60: int64 = patternInput[0].l0;
-    const v70: string = (v0_1.tag === /* US3_1 */ 1) ? "Debug" : ((v0_1.tag === /* US3_2 */ 2) ? "Info" : ((v0_1.tag === /* US3_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US3_3 */ 3) ? "Warning" : "Critical")));
-    return trimEnd(trimStart(`${v59} #${v60} [${v70.toLocaleLowerCase()}] ${v1()} / ${v2()}`), " ", "/");
+    const v60: string = value_3(_v9);
+    const v61: int64 = patternInput[0].l0;
+    const v71: string = (v0_1.tag === /* US3_1 */ 1) ? "Debug" : ((v0_1.tag === /* US3_2 */ 2) ? "Info" : ((v0_1.tag === /* US3_0 */ 0) ? "Verbose" : ((v0_1.tag === /* US3_3 */ 3) ? "Warning" : "Critical")));
+    return trimEnd(trimStart(`${v60} #${v61} [${v71.toLocaleLowerCase()}] ${v1()} / ${v2()}`), " ", "/");
 }
 
 export function method7(v0_1: US3_$union, v1: (() => string), v2: (() => string)): void {
@@ -804,9 +804,9 @@ export function method13(v0_1: string, v1: string, v2: Error): string {
     let _v3: Option<string> = void 0;
     const x: string = toText(interpolate("%A%P()", [v2]));
     _v3 = x;
-    const v9: string = value_3(_v3);
-    const v10 = (v: string): string => closure2(void 0, v);
-    return `old_path: ${v10(v1)} / new_path: ${v10(v0_1)} / ex: ${v9} / ${closure3(void 0, void 0)}`;
+    const v10: string = value_3(_v3);
+    const v11_1 = (v: string): string => closure2(void 0, v);
+    return `old_path: ${v11_1(v1)} / new_path: ${v11_1(v0_1)} / ex: ${v10} / ${closure3(void 0, void 0)}`;
 }
 
 export function closure23(v0_1: string, v1: string, v2: Error, unitVar: void): string {
@@ -899,15 +899,15 @@ export function closure36(v0_1: string, unitVar: void): void {
     let _v1: Option<any> = void 0;
     const x: any = defaultOf();
     _v1 = x;
-    const v8: any = value_3(_v1);
-    let _v9: Option<any> = void 0;
+    const v9: any = value_3(_v1);
+    let _v10: Option<any> = void 0;
     const x_1: any = defaultOf();
-    _v9 = x_1;
-    const v16: any = value_3(_v9);
-    let _v17: Option<void> = void 0;
+    _v10 = x_1;
+    const v18: any = value_3(_v10);
+    let _v19: Option<void> = void 0;
     defaultOf();
-    _v17 = some(void 0);
-    value_3(_v17);
+    _v19 = some(void 0);
+    value_3(_v19);
 }
 
 export function closure34(unitVar: void, unitVar_1: void): [string, IDisposable] {
@@ -940,12 +940,12 @@ export function closure42(unitVar: void, v0_1: string): boolean {
 
 export function closure43(unitVar: void, v0_1: string): Option<string> {
     let _v1: Option<US8_$union> = void 0;
-    const v35: IPathDirname = path;
-    const x: US8_$union = US8_US8_0(v35.dirname(v0_1));
+    const v36: IPathDirname = path;
+    const x: US8_$union = US8_US8_0(v36.dirname(v0_1));
     _v1 = x;
-    const v39: US8_$union = value_3(_v1);
-    if (v39.tag === /* US8_0 */ 0) {
-        return v39.fields[0];
+    const v41: US8_$union = value_3(_v1);
+    if (v41.tag === /* US8_0 */ 0) {
+        return v41.fields[0];
     }
     else {
         return void 0;
@@ -976,17 +976,17 @@ export function method19(v0_1_mut: string, v1_mut: boolean, v2_mut: string, v3_m
             return v3;
         }
         else {
-            const v36: Option<string> = method17()(v3);
-            const v39: US8_$union = defaultArg(map<string, US8_$union>(method18(), v36), US8_US8_1());
-            if (v39.tag === /* US8_0 */ 0) {
+            const v37: Option<string> = method17()(v3);
+            const v40: US8_$union = defaultArg(map<string, US8_$union>(method18(), v37), US8_US8_1());
+            if (v40.tag === /* US8_0 */ 0) {
                 v0_1_mut = v0_1;
                 v1_mut = v1;
                 v2_mut = v2;
-                v3_mut = v39.fields[0];
+                v3_mut = v40.fields[0];
                 continue method19;
             }
             else {
-                throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}'`);
+                throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}' (until '${v3}')`);
             }
         }
         break;
@@ -1002,13 +1002,13 @@ export function method16(v0_1: string, v1: boolean, v2: string): string {
         return v2;
     }
     else {
-        const v35: Option<string> = method17()(v2);
-        const v38: US8_$union = defaultArg(map<string, US8_$union>(method18(), v35), US8_US8_1());
-        if (v38.tag === /* US8_0 */ 0) {
-            return method19(v0_1, v1, v2, v38.fields[0]);
+        const v36: Option<string> = method17()(v2);
+        const v39: US8_$union = defaultArg(map<string, US8_$union>(method18(), v36), US8_US8_1());
+        if (v39.tag === /* US8_0 */ 0) {
+            return method19(v0_1, v1, v2, v39.fields[0]);
         }
         else {
-            throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}'`);
+            throw new Error(`No parent for ${v1 ? "file" : "dir"} '${v0_1}' at '${v2}' (until '${v2}')`);
         }
     }
 }

@@ -7576,13 +7576,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
-<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
-<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
-<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
-<span class="c1">#!import ../../lib/spiral/trace.fsx</span>
-<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
-<span class="c1">#!import ../../lib/fsharp/Common.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
@@ -7700,7 +7694,7 @@ a.anchor-link {
                 <span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">getEventPath</span> <span class="n">event</span><span class="o">.</span><span class="n">FullPath</span>
                 <span class="n">ticks</span> <span class="p">(),</span> <span class="p">[</span>
                     <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Created</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">Runtime</span><span class="o">.</span><span class="n">isWindows</span> <span class="p">()</span> <span class="n">then</span>
+                    <span class="k">if</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">is_windows</span> <span class="p">()</span> <span class="n">then</span>
                         <span class="n">FileSystemChange</span><span class="o">.</span><span class="n">Changed</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
                 <span class="p">])</span>
 
@@ -7960,24 +7954,24 @@ a.anchor-link {
       Value: &lt;null&gt;
 00:00:00 #1 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 00:00:00 #2 [debug] testEventsRaw / eventsLog: 
-0 / 638483818252436526 / Created ("file1.txt", Some "a1")
-1 / 638483818252436527 / Changed ("file1.txt", Some "a1")
-27563 / 638483818252464090 / Changed ("file1.txt", Some "a1")
-868 / 638483818252464958 / Created ("file2.txt", Some "a2")
-1 / 638483818252464959 / Changed ("file2.txt", Some "a2")
-61 / 638483818252465020 / Changed ("file2.txt", Some "a2")
-2471309 / 638483818254936329 / Changed ("file1.txt", Some "b1")
-2788 / 638483818254939117 / Changed ("file1.txt", Some "b1")
-12304 / 638483818254951421 / Changed ("file2.txt", Some "b2")
-2699 / 638483818254954120 / Changed ("file2.txt", Some "b2")
-2670204 / 638483818257624324 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
-11300 / 638483818257635624 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
-2468589 / 638483818260104213 / Changed ("file_1.txt", Some "c1")
-2676 / 638483818260106889 / Changed ("file_1.txt", Some "c1")
-8673 / 638483818260115562 / Changed ("file_2.txt", Some "c2")
-2063 / 638483818260117625 / Changed ("file_2.txt", Some "c2")
-2506967 / 638483818262624592 / Deleted "file_1.txt"
-2320 / 638483818262626912 / Deleted "file_2.txt"
+0 / 638484770144507443 / Created ("file1.txt", Some "a1")
+1 / 638484770144507444 / Changed ("file1.txt", Some "a1")
+34781 / 638484770144542225 / Changed ("file1.txt", Some "a1")
+1720 / 638484770144543945 / Created ("file2.txt", Some "a2")
+1 / 638484770144543946 / Changed ("file2.txt", Some "a2")
+81 / 638484770144544027 / Changed ("file2.txt", Some "a2")
+2473239 / 638484770147017266 / Changed ("file1.txt", Some "b1")
+3958 / 638484770147021224 / Changed ("file1.txt", Some "b1")
+11639 / 638484770147032863 / Changed ("file2.txt", Some "b2")
+8177 / 638484770147041040 / Changed ("file2.txt", Some "b2")
+2766717 / 638484770149807757 / Renamed ("file1.txt", ("file_1.txt", Some "b1"))
+5955 / 638484770149813712 / Renamed ("file2.txt", ("file_2.txt", Some "b2"))
+2758744 / 638484770152572456 / Changed ("file_1.txt", Some "c1")
+3698 / 638484770152576154 / Changed ("file_1.txt", Some "c1")
+9750 / 638484770152585904 / Changed ("file_2.txt", Some "c2")
+8296 / 638484770152594200 / Changed ("file_2.txt", Some "c2")
+2707325 / 638484770155301525 / Deleted "file_1.txt"
+6391 / 638484770155307916 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8187,45 +8181,45 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:09 #3 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:09 #4 [debug] testEventsRaw / eventsLog: 
-0 / 638483818284590933 / Created
+00:00:12 #3 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:12 #4 [debug] testEventsRaw / eventsLog: 
+0 / 638484770204230440 / Created
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-1 / 638483818284590934 / Changed
+1 / 638484770204230441 / Changed
   ("file1.txt",
  ...11111111111111111111111111111111111111111111111a")
-96017 / 638483818284686951 / Changed
-  ("file1.txt...11111111111111111111111111111111111111111111111a")
-16854 / 638483818284703805 / Created
-  ("file2.txt...22222222222222222222222222222222222222222222222a")
-1 / 638483818284703806 / Changed
+567568 / 638484770204798009 / Changed
+  ("file1.tx...11111111111111111111111111111111111111111111111a")
+1710 / 638484770204799719 / Created
+  ("file2.txt"...22222222222222222222222222222222222222222222222a")
+1 / 638484770204799720 / Changed
   ("file2.txt",
  ...22222222222222222222222222222222222222222222222a")
-64799 / 638483818284768605 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222a")
-14921576 / 638483818299690181 / Changed
+132397 / 638484770204932117 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222a")
+15209778 / 638484770220141895 / Changed
   ("file1....11111111111111111111111111111111111111111111111b")
-64175 / 638483818299754356 / Changed
+69843 / 638484770220211738 / Changed
   ("file1.txt...11111111111111111111111111111111111111111111111b")
-31986 / 638483818299786342 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222b")
-64879 / 638483818299851221 / Changed
-  ("file2.txt...22222222222222222222222222222222222222222222222b")
-15217825 / 638483818315069046 / Renamed
+103824 / 638484770220315562 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222b")
+150328 / 638484770220465890 / Changed
+  ("file2.tx...22222222222222222222222222222222222222222222222b")
+15057559 / 638484770235523449 / Renamed
   ("file1....1111111111111111111111111111111111111111111111b"))
-4454 / 638483818315073500 / Renamed
+5854 / 638484770235529303 / Renamed
   ("file2.txt"...2222222222222222222222222222222222222222222222b"))
-15083930 / 638483818330157430 / Changed
+15173211 / 638484770250702514 / Changed
   ("file_1...11111111111111111111111111111111111111111111111c")
-244430 / 638483818330401860 / Changed
+378833 / 638484770251081347 / Changed
   ("file_1.t...11111111111111111111111111111111111111111111111c")
-73910 / 638483818330475770 / Changed
+56963 / 638484770251138310 / Changed
   ("file_2.tx...22222222222222222222222222222222222222222222222c")
-175928 / 638483818330651698 / Changed
+108864 / 638484770251247174 / Changed
   ("file_2.t...22222222222222222222222222222222222222222222222c")
-15064003 / 638483818345715701 / Deleted "file_1.txt"
-3281 / 638483818345718982 / Deleted "file_2.txt"
+15058597 / 638484770266305771 / Deleted "file_1.txt"
+5797 / 638484770266311568 / Deleted "file_2.txt"
 FSharpList&lt;FileSystemChange&gt;
       - path: file1.txt
         content: FSharpOption&lt;String&gt;
@@ -8507,7 +8501,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:11 #5 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:18 #5 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8606,7 +8600,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:12 #6 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:21 #6 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8705,7 +8699,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:14 #7 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:27 #7 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )
@@ -8818,7 +8812,7 @@ FSharpOption&lt;Unit&gt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>FSharpOption&lt;Unit&gt;
       Value: &lt;null&gt;
-00:00:16 #8 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:30 #8 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpList&lt;Tuple&lt;String,String&gt;&gt;
 ( file1.txt, Created )
 ( file1.txt, Changed )

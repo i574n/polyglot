@@ -5,6 +5,7 @@ param(
 Set-Location $ScriptDir
 $ErrorActionPreference = "Stop"
 . ../../scripts/core.ps1
+. ../../lib/spiral/lib.ps1
 
 
 $dibParserExe = "dist/DibParser$(GetExecutableSuffix)"
@@ -14,7 +15,9 @@ if ($fast -and (Test-Path $dibParserExe)) {
     Invoke-Dib DibParser.dib -EnvironmentVariables @{ "ARGS" = "DibParser.dib fs" }
 }
 
-{ . ../builder/dist/Builder$(GetExecutableSuffix) DibParser.fs $($fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()) --packages Argu FParsec FSharp.Control.AsyncSeq System.CommandLine System.Reactive.Linq --modules lib/spiral/common.fsx lib/spiral/sm.fsx lib/spiral/date_time.fsx lib/spiral/file_system.fsx lib/spiral/trace.fsx lib/spiral/lib.fsx lib/fsharp/Common.fs lib/fsharp/CommonFSharp.fs lib/fsharp/Async.fs lib/fsharp/AsyncSeq.fs lib/fsharp/Runtime.fs lib/fsharp/FileSystem.fs } | Invoke-Block
+$runtime = $fast -or $env:CI ? @("--runtime", ($IsWindows ? "win-x64" : "linux-x64")) : @()
+$builderArgs = @("DibParser.fs", $runtime, "--packages", "Argu", "FParsec", "FSharp.Control.AsyncSeq", "System.CommandLine", "System.Reactive.Linq", "--modules", @(GetFsxModules), "lib/fsharp/Common.fs", "lib/fsharp/CommonFSharp.fs", "lib/fsharp/Async.fs", "lib/fsharp/AsyncSeq.fs", "lib/fsharp/Runtime.fs", "lib/fsharp/FileSystem.fs")
+{ . ../builder/dist/Builder$(GetExecutableSuffix) @builderArgs } | Invoke-Block
 
 if (!$fast) {
     Invoke-Dib JsonParser.dib

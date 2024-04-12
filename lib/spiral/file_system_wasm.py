@@ -31,7 +31,7 @@ class IPathDirname(Protocol):
         ...
 
 
-def _expr76() -> TypeInfo:
+def _expr81() -> TypeInfo:
     return union_type("File_system.US1", [], US1, lambda: [[], [], []])
 
 
@@ -47,9 +47,9 @@ class US1(Union):
         return ["US1_0", "US1_1", "US1_2"]
 
 
-US1_reflection = _expr76
+US1_reflection = _expr81
 
-def _expr77() -> TypeInfo:
+def _expr82() -> TypeInfo:
     return union_type("File_system.US2", [], US2, lambda: [[], [], [], [], []])
 
 
@@ -65,9 +65,9 @@ class US2(Union):
         return ["US2_0", "US2_1", "US2_2", "US2_3", "US2_4"]
 
 
-US2_reflection = _expr77
+US2_reflection = _expr82
 
-def _expr78() -> TypeInfo:
+def _expr83() -> TypeInfo:
     return union_type("File_system.US0", [], US0, lambda: [[("f0_0", US1_reflection()), ("f0_1", US2_reflection())], []])
 
 
@@ -83,9 +83,9 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr78
+US0_reflection = _expr83
 
-def _expr79() -> TypeInfo:
+def _expr84() -> TypeInfo:
     return union_type("File_system.US3", [], US3, lambda: [[], [], [], [], []])
 
 
@@ -101,9 +101,9 @@ class US3(Union):
         return ["US3_0", "US3_1", "US3_2", "US3_3", "US3_4"]
 
 
-US3_reflection = _expr79
+US3_reflection = _expr84
 
-def _expr80() -> TypeInfo:
+def _expr85() -> TypeInfo:
     return record_type("File_system.Mut0", [], Mut0, lambda: [("l0", int64_type)])
 
 
@@ -111,9 +111,9 @@ def _expr80() -> TypeInfo:
 class Mut0(Record):
     l0: int64
 
-Mut0_reflection = _expr80
+Mut0_reflection = _expr85
 
-def _expr81() -> TypeInfo:
+def _expr86() -> TypeInfo:
     return record_type("File_system.Mut1", [], Mut1, lambda: [("l0", bool_type)])
 
 
@@ -121,9 +121,9 @@ def _expr81() -> TypeInfo:
 class Mut1(Record):
     l0: bool
 
-Mut1_reflection = _expr81
+Mut1_reflection = _expr86
 
-def _expr82() -> TypeInfo:
+def _expr87() -> TypeInfo:
     return record_type("File_system.Mut2", [], Mut2, lambda: [("l0", US3_reflection())])
 
 
@@ -131,9 +131,9 @@ def _expr82() -> TypeInfo:
 class Mut2(Record):
     l0: US3
 
-Mut2_reflection = _expr82
+Mut2_reflection = _expr87
 
-def _expr83() -> TypeInfo:
+def _expr88() -> TypeInfo:
     return union_type("File_system.US4", [], US4, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -149,9 +149,9 @@ class US4(Union):
         return ["US4_0", "US4_1"]
 
 
-US4_reflection = _expr83
+US4_reflection = _expr88
 
-def _expr84() -> TypeInfo:
+def _expr89() -> TypeInfo:
     return union_type("File_system.US5", [], US5, lambda: [[("f0_0", int64_type)], []])
 
 
@@ -167,9 +167,9 @@ class US5(Union):
         return ["US5_0", "US5_1"]
 
 
-US5_reflection = _expr84
+US5_reflection = _expr89
 
-def _expr85() -> TypeInfo:
+def _expr90() -> TypeInfo:
     return union_type("File_system.US6", [], US6, lambda: [[("f0_0", int64_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -185,9 +185,9 @@ class US6(Union):
         return ["US6_0", "US6_1"]
 
 
-US6_reflection = _expr85
+US6_reflection = _expr90
 
-def _expr86() -> TypeInfo:
+def _expr91() -> TypeInfo:
     return union_type("File_system.US7", [], US7, lambda: [[("f0_0", int64_type)], [("f1_0", class_type("System.Exception"))]])
 
 
@@ -203,9 +203,9 @@ class US7(Union):
         return ["US7_0", "US7_1"]
 
 
-US7_reflection = _expr86
+US7_reflection = _expr91
 
-def _expr87() -> TypeInfo:
+def _expr92() -> TypeInfo:
     return union_type("File_system.US8", [], US8, lambda: [[("f0_0", string_type)], []])
 
 
@@ -221,7 +221,7 @@ class US8(Union):
         return ["US8_0", "US8_1"]
 
 
-US8_reflection = _expr87
+US8_reflection = _expr92
 
 def US1__get_IsUS1_0(this: FSharpRef[US1], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -499,10 +499,10 @@ def closure5(v0_1: US0, v1: str) -> Async[int64]:
 
 
 def closure4(unit_var: None, v0_1: US0) -> Callable[[str], Async[int64]]:
-    def _arrow88(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
+    def _arrow93(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
         return closure5(v0_1, v)
 
-    return _arrow88
+    return _arrow93
 
 
 def method4(v0_1: str, v1: int64) -> Async[int64]:
@@ -534,10 +534,10 @@ def closure10(v0_1: str, v1: str) -> Async[bool]:
 
 
 def closure9(unit_var: None, v0_1: str) -> Callable[[str], Async[bool]]:
-    def _arrow89(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[bool]:
+    def _arrow94(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[bool]:
         return closure10(v0_1, v)
 
-    return _arrow89
+    return _arrow94
 
 
 def closure12(v0_1: str, v1: str) -> Async[None]:
@@ -547,10 +547,10 @@ def closure12(v0_1: str, v1: str) -> Async[None]:
 
 
 def closure11(unit_var: None, v0_1: str) -> Callable[[str], Async[None]]:
-    def _arrow90(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
+    def _arrow95(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
         return closure12(v0_1, v)
 
-    return _arrow90
+    return _arrow95
 
 
 def closure14(v0_1: str, v1: str) -> Async[None]:
@@ -560,10 +560,10 @@ def closure14(v0_1: str, v1: str) -> Async[None]:
 
 
 def closure13(unit_var: None, v0_1: str) -> Callable[[str], Async[None]]:
-    def _arrow91(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
+    def _arrow96(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[None]:
         return closure14(v0_1, v)
 
-    return _arrow91
+    return _arrow96
 
 
 def closure16(unit_var: None, unit_var_1: None) -> str:
@@ -594,10 +594,10 @@ def closure19(unit_var: None, v0_1: int64) -> US5:
 
 
 def method10(__unit: None=None) -> Callable[[int64], US5]:
-    def _arrow92(v: int64) -> US5:
+    def _arrow97(v: int64) -> US5:
         return closure19(None, v)
 
-    return _arrow92
+    return _arrow97
 
 
 def method11(__unit: None=None) -> str:
@@ -611,10 +611,10 @@ def closure18(v0_1: US3, v1: Callable[[], str], v2: Callable[[], str], unit_var:
     pattern_input: tuple[Mut0, Mut1, Mut1, Mut2, int64 | None] = value(State_trace_state())
     _v9: str | None = None
     _v9 = None
-    v59: str = value(_v9)
-    v60: int64 = pattern_input[0].l0
-    v70: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
-    return trim_end(trim_start(((((((((("" + v59) + " #") + str(v60)) + " [") + v70.lower()) + "] ") + v1(None)) + " / ") + v2(None)) + ""), " ", "/")
+    v60: str = value(_v9)
+    v61: int64 = pattern_input[0].l0
+    v71: str = "Debug" if (v0_1.tag == 1) else ("Info" if (v0_1.tag == 2) else ("Verbose" if (v0_1.tag == 0) else ("Warning" if (v0_1.tag == 3) else "Critical")))
+    return trim_end(trim_start(((((((((("" + v60) + " #") + str(v61)) + " [") + v71.lower()) + "] ") + v1(None)) + " / ") + v2(None)) + ""), " ", "/")
 
 
 def method7(v0_1: US3, v1: Callable[[], str], v2: Callable[[], str]) -> None:
@@ -659,11 +659,11 @@ def closure22(unit_var: None, unit_var_1: None) -> str:
 def method13(v0_1: str, v1: str, v2: Exception) -> str:
     _v3: str | None = None
     _v3 = None
-    v9: str = value(_v3)
-    def v10(v: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> str:
+    v10: str = value(_v3)
+    def v11_1(v: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> str:
         return closure2(None, v)
 
-    return ((((((("old_path: " + v10(v1)) + " / new_path: ") + v10(v0_1)) + " / ex: ") + v9) + " / ") + closure3(None, None)) + ""
+    return ((((((("old_path: " + v11_1(v1)) + " / new_path: ") + v11_1(v0_1)) + " / ex: ") + v10) + " / ") + closure3(None, None)) + ""
 
 
 def closure23(v0_1: str, v1: str, v2: Exception, unit_var: None) -> str:
@@ -683,10 +683,10 @@ def closure21(v0_1: str, v1: str) -> Async[int64]:
 
 
 def closure20(unit_var: None, v0_1: str) -> Callable[[str], Async[int64]]:
-    def _arrow93(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
+    def _arrow98(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Async[int64]:
         return closure21(v0_1, v)
 
-    return _arrow93
+    return _arrow98
 
 
 def closure25(unit_var: None, v0_1: int64) -> US6:
@@ -752,20 +752,21 @@ def closure35(v0_1: str, v1: str, unit_var: None) -> str:
 def closure36(v0_1: str, unit_var: None) -> None:
     _v1: Async[int64] | None = None
     _v1 = None
-    v8: Async[int64] = value(_v1)
-    _v9: Async[None] | None = None
-    _v9 = None
-    v16: Async[None] = value(_v9)
-    _v17: None | None = None
-    _v17 = some(None)
-    value(_v17)
+    v9: Async[int64] = value(_v1)
+    _v10: Async[None] | None = None
+    _v10 = None
+    v18: Async[None] = value(_v10)
+    _v19: None | None = None
+    _v19 = some(None)
+    value(_v19)
 
 
 def closure34(unit_var: None, unit_var_1: None) -> tuple[str, IDisposable]:
     _v0_1: tuple[str, IDisposable] | None = None
-    _v0_1 = (None, None)
-    pattern_input: tuple[str, IDisposable] = value(_v0_1)
-    return (pattern_input[0], pattern_input[1])
+    pattern_input: tuple[str, IDisposable] = (None, None)
+    _v0_1 = (pattern_input[0], pattern_input[1])
+    pattern_input_1: tuple[str, IDisposable] = value(_v0_1)
+    return (pattern_input_1[0], pattern_input_1[1])
 
 
 def closure37(unit_var: None, unit_var_1: None) -> str:
@@ -788,9 +789,9 @@ def closure43(unit_var: None, v0_1: str) -> str | None:
     _v1: US8 | None = None
     x: US8 = US8()
     _v1 = x
-    v39: US8 = value(_v1)
-    if v39.tag == 0:
-        return v39.fields[0]
+    v41: US8 = value(_v1)
+    if v41.tag == 0:
+        return v41.fields[0]
 
     else: 
         return None
@@ -798,10 +799,10 @@ def closure43(unit_var: None, v0_1: str) -> str | None:
 
 
 def method17(__unit: None=None) -> Callable[[str], str | None]:
-    def _arrow94(v: str) -> str | None:
+    def _arrow99(v: str) -> str | None:
         return closure43(None, v)
 
-    return _arrow94
+    return _arrow99
 
 
 def closure44(unit_var: None, v0_1: str) -> US8:
@@ -809,10 +810,10 @@ def closure44(unit_var: None, v0_1: str) -> US8:
 
 
 def method18(__unit: None=None) -> Callable[[str], US8]:
-    def _arrow95(v: str) -> US8:
+    def _arrow100(v: str) -> US8:
         return closure44(None, v)
 
-    return _arrow95
+    return _arrow100
 
 
 def method19(v0_1_mut: str, v1_mut: bool, v2_mut: str, v3_mut: str) -> str:
@@ -820,27 +821,27 @@ def method19(v0_1_mut: str, v1_mut: bool, v2_mut: str, v3_mut: str) -> str:
         (v0_1, v1, v2, v3) = (v0_1_mut, v1_mut, v2_mut, v3_mut)
         _v4: str | None = None
         _v4 = None
-        def _arrow96(v: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3) -> bool:
+        def _arrow101(v: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3) -> bool:
             return closure41(None, v)
 
-        def _arrow97(v_1: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3) -> bool:
+        def _arrow102(v_1: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2, v3: Any=v3) -> bool:
             return closure42(None, v_1)
 
-        if (_arrow96 if v1 else _arrow97)(value(_v4)):
+        if (_arrow101 if v1 else _arrow102)(value(_v4)):
             return v3
 
         else: 
-            v36: str | None = method17()(v3)
-            v39: US8 = default_arg(map(method18(), v36), US8(1))
-            if v39.tag == 0:
+            v37: str | None = method17()(v3)
+            v40: US8 = default_arg(map(method18(), v37), US8(1))
+            if v40.tag == 0:
                 v0_1_mut = v0_1
                 v1_mut = v1
                 v2_mut = v2
-                v3_mut = v39.fields[0]
+                v3_mut = v40.fields[0]
                 continue
 
             else: 
-                raise Exception(((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\'")
+                raise Exception(((((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\' (until \'") + v3) + "\')")
 
 
         break
@@ -849,23 +850,23 @@ def method19(v0_1_mut: str, v1_mut: bool, v2_mut: str, v3_mut: str) -> str:
 def method16(v0_1: str, v1: bool, v2: str) -> str:
     _v3: str | None = None
     _v3 = None
-    def _arrow98(v: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> bool:
+    def _arrow103(v: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> bool:
         return closure41(None, v)
 
-    def _arrow99(v_1: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> bool:
+    def _arrow104(v_1: str, v0_1: Any=v0_1, v1: Any=v1, v2: Any=v2) -> bool:
         return closure42(None, v_1)
 
-    if (_arrow98 if v1 else _arrow99)(value(_v3)):
+    if (_arrow103 if v1 else _arrow104)(value(_v3)):
         return v2
 
     else: 
-        v35: str | None = method17()(v2)
-        v38: US8 = default_arg(map(method18(), v35), US8(1))
-        if v38.tag == 0:
-            return method19(v0_1, v1, v2, v38.fields[0])
+        v36: str | None = method17()(v2)
+        v39: US8 = default_arg(map(method18(), v36), US8(1))
+        if v39.tag == 0:
+            return method19(v0_1, v1, v2, v39.fields[0])
 
         else: 
-            raise Exception(((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\'")
+            raise Exception(((((((("No parent for " + ("file" if v1 else "dir")) + " \'") + v0_1) + "\' at \'") + v2) + "\' (until \'") + v2) + "\')")
 
 
 
@@ -875,17 +876,17 @@ def closure40(v0_1: str, v1: bool, v2: str) -> str:
 
 
 def closure39(v0_1: str, v1: bool) -> Callable[[str], str]:
-    def _arrow100(v: str, v0_1: Any=v0_1, v1: Any=v1) -> str:
+    def _arrow105(v: str, v0_1: Any=v0_1, v1: Any=v1) -> str:
         return closure40(v0_1, v1, v)
 
-    return _arrow100
+    return _arrow105
 
 
 def closure38(unit_var: None, v0_1: str) -> Callable[[bool, str], str]:
-    def _arrow101(v: bool, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
+    def _arrow106(v: bool, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
         return closure39(v0_1, v)
 
-    return _arrow101
+    return _arrow106
 
 
 def closure46(v0_1: str, v1: str) -> str:
@@ -895,10 +896,10 @@ def closure46(v0_1: str, v1: str) -> str:
 
 
 def closure45(unit_var: None, v0_1: str) -> Callable[[str], str]:
-    def _arrow102(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow107(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure46(v0_1, v)
 
-    return _arrow102
+    return _arrow107
 
 
 v0: None | None = None
@@ -909,51 +910,51 @@ _v0(some(None))
 
 value(_v0())
 
-def _arrow103(__unit: None=None) -> str:
+def _arrow108(__unit: None=None) -> str:
     return closure32(None, None)
 
 
-v11: Callable[[], str] = _arrow103
+v11: Callable[[], str] = _arrow108
 
 def create_temp_directory_name(__unit: None=None) -> str:
     return v11(None)
 
 
-def _arrow104(__unit: None=None) -> tuple[str, IDisposable]:
+def _arrow109(__unit: None=None) -> tuple[str, IDisposable]:
     return closure34(None, None)
 
 
-v12: Callable[[], tuple[str, IDisposable]] = _arrow104
+v12: Callable[[], tuple[str, IDisposable]] = _arrow109
 
 def create_temp_directory(__unit: None=None) -> tuple[str, IDisposable]:
     return v12(None)
 
 
-def _arrow105(__unit: None=None) -> str:
+def _arrow110(__unit: None=None) -> str:
     return closure37(None, None)
 
 
-v13: Callable[[], str] = _arrow105
+v13: Callable[[], str] = _arrow110
 
 def get_source_directory(__unit: None=None) -> str:
     return v13(None)
 
 
-def _arrow106(v: str) -> Callable[[bool, str], str]:
+def _arrow111(v: str) -> Callable[[bool, str], str]:
     return closure38(None, v)
 
 
-v14: Callable[[str, bool, str], str] = _arrow106
+v14: Callable[[str, bool, str], str] = _arrow111
 
 def find_parent(x: str) -> Callable[[bool, str], str]:
     return v14(x)
 
 
-def _arrow107(v: str) -> Callable[[str], str]:
+def _arrow112(v: str) -> Callable[[str], str]:
     return closure45(None, v)
 
 
-v15: Callable[[str, str], str] = _arrow107
+v15: Callable[[str, str], str] = _arrow112
 
 def op_less_divide_greater(x: str) -> Callable[[str], str]:
     return v15(x)

@@ -84,11 +84,12 @@ and closure18 (v0 : (string [])) (v1 : string) : (string []) =
     v23 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<(string [])>
+    let v24 : (string []) = Unchecked.defaultof<(string [])>
+    v24 
     #endif
     |> fun x -> _v2 <- Some x
-    let v24 : (string []) = _v2.Value
-    v24
+    let v25 : (string []) = _v2.Value
+    v25
 and closure17 () (v0 : (string [])) : (string -> (string [])) =
     closure18(v0)
 and closure20 (v0 : string) (v1 : string) : bool =
@@ -186,11 +187,12 @@ and closure35 () (v0 : exn) : string =
     v6 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<string>
+    let v7 : string = Unchecked.defaultof<string>
+    v7 
     #endif
     |> fun x -> _v1 <- Some x
-    let v7 : string = _v1.Value
-    v7
+    let v8 : string = _v1.Value
+    v8
 and method1 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0

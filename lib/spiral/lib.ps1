@@ -26,6 +26,12 @@ function CopyTarget {
                 | Set-Content $to
         }
         if ($Language -eq "rs") {
+            if ($name -eq "async_") {
+                (Get-Content $to) `
+                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;" `
+                    -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
+                    | Set-Content $to
+            }
             if ($name -eq "file_system") {
                 (Get-Content $to) `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = Option<T>;" `
@@ -43,8 +49,11 @@ function CopyTarget {
     CopyItem "fsharp" "Common"
     CopyItem "spiral" "common"
     CopyItem "spiral" "date_time"
+    CopyItem "spiral" "async_"
+    CopyItem "spiral" "runtime"
     CopyItem "spiral" "file_system"
     CopyItem "spiral" "sm"
+    CopyItem "spiral" "crypto"
     CopyItem "spiral" "trace"
     CopyItem "spiral" "lib"
 
@@ -78,4 +87,9 @@ function BuildFable {
 
     $root = "$PSScriptRoot/../.."
     CopyTarget $TargetDir $root $Language $Runtime.ToLower()
+}
+
+
+function GetFsxModules {
+    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
 }

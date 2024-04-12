@@ -385,24 +385,24 @@ function closure4($v0_1, $v1_1, $v2, $unitVar) {
     $_v9 = NULL;
     $x = \Util\defaultOf();
     $_v9 = $x;
-    $v59 = \Option\value($_v9);
-    $v60 = $patternInput[0]->l0;
+    $v60 = \Option\value($_v9);
+    $v61 = $patternInput[0]->l0;
     switch ($v0_1->get_Tag())
     {
         case 1:
-            $v70 = 'Debug';
+            $v71 = 'Debug';
             break;
         case 2:
-            $v70 = 'Info';
+            $v71 = 'Info';
             break;
         case 0:
-            $v70 = 'Verbose';
+            $v71 = 'Verbose';
             break;
         case 3:
-            $v70 = 'Warning';
+            $v71 = 'Warning';
             break;
         default:
-            $v70 = 'Critical';
+            $v71 = 'Critical';
             break;
     }
     return \String\trimEnd(\String\trimStart(NULL, [  ]), [ ' ', '/' ]);
@@ -428,8 +428,8 @@ function method0($v0_1, $v1_1, $v2) {
         $v4->l0 = $v19;
         $v21 = NULL;
         $_v22 = NULL;
-        $x = \Util\defaultOf();
-        $_v22 = $x;
+        \Util\defaultOf();
+        $_v22 = NULL;
         \Option\value($_v22);
         return NULL;
     } else {

@@ -8569,23 +8569,24 @@ and method0 () : unit =
     v10 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.DateTime&gt;
+    let v11 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
+    v11 
     #endif
     |&gt; fun x -&gt; _v5 &lt;- Some x
-    let v11 : System.DateTime = _v5.Value
-    let v12 : System.DateTime = System.DateTime.MinValue
-    let v13 : string = $"%A{v11}"
-    System.Console.WriteLine v13
-    let v14 : bool = v11 = v12
-    let v16 : bool =
-        if v14 then
+    let v12 : System.DateTime = _v5.Value
+    let v13 : System.DateTime = System.DateTime.MinValue
+    let v14 : string = $"%A{v12}"
+    System.Console.WriteLine v14
+    let v15 : bool = v12 = v13
+    let v17 : bool =
+        if v15 then
             true
         else
-            method2(v14)
-    let v17 : string = $"__expect / actual: %A{v11} / expected: %A{v12}"
-    let v18 : bool = v16 = false
-    if v18 then
-        failwith&lt;unit&gt; v17
+            method2(v15)
+    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
+    let v19 : bool = v17 = false
+    if v19 then
+        failwith&lt;unit&gt; v18
 method0()
 
 0001-01-01 12:00:00 AM
@@ -8663,23 +8664,24 @@ and method0 () : unit =
     v11 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.DateTime&gt;
+    let v12 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
+    v12 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v12 : System.DateTime = _v6.Value
-    let v13 : System.DateTime = System.DateTime.MaxValue
-    let v14 : string = $"%A{v12}"
-    System.Console.WriteLine v14
-    let v15 : bool = v12 = v13
-    let v17 : bool =
-        if v15 then
+    let v13 : System.DateTime = _v6.Value
+    let v14 : System.DateTime = System.DateTime.MaxValue
+    let v15 : string = $"%A{v13}"
+    System.Console.WriteLine v15
+    let v16 : bool = v13 = v14
+    let v18 : bool =
+        if v16 then
             true
         else
-            method2(v15)
-    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
-    let v19 : bool = v17 = false
-    if v19 then
-        failwith&lt;unit&gt; v18
+            method2(v16)
+    let v19 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
+    let v20 : bool = v18 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
 9999-12-31 11:59:59 PM
@@ -8757,23 +8759,24 @@ and method0 () : unit =
     v11 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.DateTime&gt;
+    let v12 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
+    v12 
     #endif
     |&gt; fun x -&gt; _v6 &lt;- Some x
-    let v12 : System.DateTime = _v6.Value
-    let v13 : System.DateTime = System.DateTime.UnixEpoch
-    let v14 : string = $"%A{v12}"
-    System.Console.WriteLine v14
-    let v15 : bool = v12 = v13
-    let v17 : bool =
-        if v15 then
+    let v13 : System.DateTime = _v6.Value
+    let v14 : System.DateTime = System.DateTime.UnixEpoch
+    let v15 : string = $"%A{v13}"
+    System.Console.WriteLine v15
+    let v16 : bool = v13 = v14
+    let v18 : bool =
+        if v16 then
             true
         else
-            method2(v15)
-    let v18 : string = $"__expect / actual: %A{v12} / expected: %A{v13}"
-    let v19 : bool = v17 = false
-    if v19 then
-        failwith&lt;unit&gt; v18
+            method2(v16)
+    let v19 : string = $"__expect / actual: %A{v13} / expected: %A{v14}"
+    let v20 : bool = v18 = false
+    if v20 then
+        failwith&lt;unit&gt; v19
 method0()
 
 1970-01-01 12:00:00 AM
@@ -9567,27 +9570,28 @@ and method0 () : unit =
     v14 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.DateTime&gt;
+    let v15 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
+    v15 
     #endif
     |&gt; fun x -&gt; _v9 &lt;- Some x
-    let v15 : System.DateTime = _v9.Value
-    let v16 : System.DateTime = System.DateTime.UtcNow
-    let v17 : System.TimeSpan = v16 - v15 
-    let v18 : (System.TimeSpan -&gt; float) = _.TotalSeconds
-    let v19 : float = v18 v17
-    let v20 : int32 = int32 v19
-    let v21 : string = $"%A{v20}"
-    System.Console.WriteLine v21
-    let v22 : bool = v20 = 0
-    let v24 : bool =
-        if v22 then
+    let v16 : System.DateTime = _v9.Value
+    let v17 : System.DateTime = System.DateTime.UtcNow
+    let v18 : System.TimeSpan = v17 - v16 
+    let v19 : (System.TimeSpan -&gt; float) = _.TotalSeconds
+    let v20 : float = v19 v18
+    let v21 : int32 = int32 v20
+    let v22 : string = $"%A{v21}"
+    System.Console.WriteLine v22
+    let v23 : bool = v21 = 0
+    let v25 : bool =
+        if v23 then
             true
         else
-            method2(v22)
-    let v25 : string = $"__expect / actual: %A{v20} / expected: %A{0}"
-    let v26 : bool = v24 = false
-    if v26 then
-        failwith&lt;unit&gt; v25
+            method2(v23)
+    let v26 : string = $"__expect / actual: %A{v21} / expected: %A{0}"
+    let v27 : bool = v25 = false
+    if v27 then
+        failwith&lt;unit&gt; v26
 method0()
 
 0
@@ -9745,7 +9749,7 @@ method0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>DateTime: 2024-04-10 5:41:01 PM -04:00
+<pre>DateTime: 2024-04-11 8:47:28 PM -04:00
 Time Zone: (UTC-04:00) Cuiaba
 Is DST: false
 v1: -04:00:00
@@ -9839,11 +9843,12 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     v9 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof&lt;System.DateTime&gt;
+    let v10 : System.DateTime = Unchecked.defaultof&lt;System.DateTime&gt;
+    v10 
     #endif
     |&gt; fun x -&gt; _v4 &lt;- Some x
-    let v10 : System.DateTime = _v4.Value
-    v10
+    let v11 : System.DateTime = _v4.Value
+    v11
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -&gt; string) = _.ToString()
     let v3 : string = v2 v0

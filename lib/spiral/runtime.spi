@@ -1,3 +1,7 @@
+// // # runtime
+
+// // ## os_platform
+
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
 
 union os_platform =
@@ -6,8 +10,28 @@ union os_platform =
 inl os_platform = function
     | Windows => $'`os_platform'.Windows' : os_platform'
 
+// // ## is_os_platform
+
 inl is_os_platform (x : os_platform') : bool =
     x |> $'System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform'
 
+// // ## is_windows
+
 inl is_windows () : bool =
-    Windows |> os_platform |> is_os_platform
+    run_target function
+        | Fsharp (Native) => fun () =>
+            Windows |> os_platform |> is_os_platform
+        | _ => fun () => null ()
+
+// // ## get_executable_suffix
+
+inl get_executable_suffix () =
+    if is_windows ()
+    then ".exe"
+    else ""
+
+// // ## main
+
+inl main () =
+    $"let is_windows () = !is_windows ()" : ()
+    $"let get_executable_suffix () = !get_executable_suffix ()" : ()

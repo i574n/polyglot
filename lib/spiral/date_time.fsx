@@ -42,11 +42,12 @@ and closure2 () (v0 : System.Guid) : System.DateTime =
     v9 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    Unchecked.defaultof<System.DateTime>
+    let v10 : System.DateTime = Unchecked.defaultof<System.DateTime>
+    v10 
     #endif
     |> fun x -> _v4 <- Some x
-    let v10 : System.DateTime = _v4.Value
-    v10
+    let v11 : System.DateTime = _v4.Value
+    v11
 and closure7 (v0 : System.Guid) (v1 : int64) : System.Guid =
     let v2 : (System.Guid -> string) = _.ToString()
     let v3 : string = v2 v0

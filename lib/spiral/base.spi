@@ -30,6 +30,16 @@ union target =
     | Fsharp : target_runtime
     | TypeScript : target_runtime
 
+// // ## defaultof
+
+inl defaultof forall t. () : t =
+    $'Unchecked.defaultof<`t>'
+
+// // ## emit
+
+inl emit forall t. (x : t) : t =
+    $'!x '
+
 // // ## run_target
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
@@ -51,7 +61,7 @@ inl run_target forall t. (fn : target -> (() -> t)) : t =
     fn (TypeScript Native) () |> fun x => $'!x '
     $"#endif"
     $"#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART"
-    $'Unchecked.defaultof<`t>'
+    ((real defaultof `t ()) : t) |> fun x => $'!x '
     $"#endif"
     $"|> fun x -> _!result <- Some x"
     $'_!result.Value'
@@ -123,3 +133,9 @@ inl get_entry_assembly_name () : string =
         | Fsharp (Native) => fun () =>
             $'System.Reflection.Assembly.GetEntryAssembly().GetName().Name'
         | target => fun () => null ()
+
+// // ## use
+
+inl use forall t. (x : t) : t =
+    $"use !x = !x " : ()
+    $'!x '

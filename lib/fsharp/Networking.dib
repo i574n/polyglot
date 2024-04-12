@@ -18,12 +18,6 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/trace.fsx
-#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
@@ -145,13 +139,13 @@ async {
     | Some (retries1, retries2) ->
         retries1
         |> _isBetween
-            (if Runtime.isWindows () then 2 else 2)
-            (if Runtime.isWindows () then 5 else 1500)
+            (if SpiralRuntime.is_windows () then 2 else 2)
+            (if SpiralRuntime.is_windows () then 5 else 1500)
 
         retries2
         |> _isBetween
-            (if Runtime.isWindows () then 80 else 80)
-            (if Runtime.isWindows () then 150 else 600)
+            (if SpiralRuntime.is_windows () then 80 else 80)
+            (if SpiralRuntime.is_windows () then 150 else 600)
 
         true
     | _ -> false
@@ -195,13 +189,13 @@ async {
     | Some (retries1, retries2) ->
         retries1
         |> _isBetween
-            (if Runtime.isWindows () then 4 else 2)
-            (if Runtime.isWindows () then 15 else 150)
+            (if SpiralRuntime.is_windows () then 4 else 2)
+            (if SpiralRuntime.is_windows () then 15 else 150)
 
         retries2
         |> _isBetween
-            (if Runtime.isWindows () then 5 else 0)
-            (if Runtime.isWindows () then 20 else 60)
+            (if SpiralRuntime.is_windows () then 5 else 0)
+            (if SpiralRuntime.is_windows () then 20 else 60)
 
         true
     | _ -> false
@@ -267,8 +261,8 @@ async {
 
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 100 else 100)
-            (if Runtime.isWindows () then 150 else 1200)
+            (if SpiralRuntime.is_windows () then 100 else 100)
+            (if SpiralRuntime.is_windows () then 150 else 1200)
 
         true
     | _ -> false
@@ -316,8 +310,8 @@ async {
 
         retries
         |> _isBetween
-            (if Runtime.isWindows () then 2 else 1)
-            (if Runtime.isWindows () then 10 else 120)
+            (if SpiralRuntime.is_windows () then 2 else 1)
+            (if SpiralRuntime.is_windows () then 10 else 120)
 
         true
     | _ -> false

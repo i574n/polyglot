@@ -27,16 +27,9 @@
 
 #!fsharp
 
-#!import ../../lib/spiral/common.fsx
-#!import ../../lib/spiral/sm.fsx
-#!import ../../lib/spiral/date_time.fsx
-#!import ../../lib/spiral/file_system.fsx
-#!import ../../lib/spiral/trace.fsx
-#!import ../../lib/spiral/lib.fsx
 #!import ../../lib/fsharp/Common.fs
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Threading.fs
-#!import ../../lib/fsharp/Crypto.fs
 #!import ../../lib/fsharp/Async.fs
 #!import ../../lib/fsharp/AsyncSeq.fs
 #!import ../../lib/fsharp/Networking.fs
@@ -484,7 +477,7 @@ let inline eval
                             then None |> Async.init
                             else
                                 async {
-                                    // let hash = $"repl_{code |> Crypto.hashText}"
+                                    // let hash = $"repl_{code |> SpiralCrypto.hash_text}"
                                     let hash = $"spiral_eval"
 
                                     let! fsprojPath = code |> Builder.persistCodeProject ["Fable.Core"] [] hash

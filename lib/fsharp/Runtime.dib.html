@@ -7543,8 +7543,11 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Notebooks.dib</span>
-<span class="c1">#!import ../../lib/fsharp/Testing.dib</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
+<span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
 </pre></div>
 </div>
 </div>
@@ -7558,11 +7561,8 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#r @"../../../../../../../.nuget/packages/fsharp.control.asyncseq/3.2.1/lib/netstandard2.1/FSharp.Control.AsyncSeq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive/6.0.1-preview.1/lib/net6.0/System.Reactive.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.reactive.linq/6.0.1-preview.1/lib/netstandard2.0/System.Reactive.Linq.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/argu/6.2.2/lib/netstandard2.0/Argu.dll"</span>
-<span class="c1">#r @"../../../../../../../.nuget/packages/system.commandline/2.0.0-beta4.22272.1/lib/net6.0/System.CommandLine.dll"</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Notebooks.dib</span>
+<span class="c1">#!import ../../lib/fsharp/Testing.dib</span>
 </pre></div>
 </div>
 </div>
@@ -7576,13 +7576,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/spiral/common.fsx</span>
-<span class="c1">#!import ../../lib/spiral/sm.fsx</span>
-<span class="c1">#!import ../../lib/spiral/date_time.fsx</span>
-<span class="c1">#!import ../../lib/spiral/file_system.fsx</span>
-<span class="c1">#!import ../../lib/spiral/trace.fsx</span>
-<span class="c1">#!import ../../lib/spiral/lib.fsx</span>
-<span class="c1">#!import ../../lib/fsharp/Common.fs</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
@@ -7646,155 +7640,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="isWindows">isWindows<a class="anchor-link" href="#isWindows">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">isWindows</span> <span class="o">=</span>
-    <span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-        <span class="n">System</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">InteropServices</span><span class="o">.</span><span class="n">RuntimeInformation</span><span class="o">.</span><span class="n">IsOSPlatform</span>
-            <span class="n">System</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">InteropServices</span><span class="o">.</span><span class="n">OSPlatform</span><span class="o">.</span><span class="n">Windows</span>
-    <span class="o">|&gt;</span> <span class="n">memoize</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">isWindows</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<div class="dni-plaintext"><pre>True</pre></div><style>
-.dni-code-hint {
-    font-style: italic;
-    overflow: hidden;
-    white-space: nowrap;
-}
-.dni-treeview {
-    white-space: nowrap;
-}
-.dni-treeview td {
-    vertical-align: top;
-    text-align: start;
-}
-details.dni-treeview {
-    padding-left: 1em;
-}
-table td {
-    text-align: start;
-}
-table tr { 
-    vertical-align: top; 
-    margin: 0em 0px;
-}
-table tr td pre 
-{ 
-    vertical-align: top !important; 
-    margin: 0em 0px !important;
-} 
-table th {
-    text-align: start;
-}
-</style>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="getExecutableSuffix">getExecutableSuffix<a class="anchor-link" href="#getExecutableSuffix">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">getExecutableSuffix</span> <span class="p">()</span> <span class="o">=</span>
-    <span class="k">if</span> <span class="n">isWindows</span> <span class="p">()</span>
-    <span class="n">then</span> <span class="s2">".exe"</span>
-    <span class="k">else</span> <span class="s2">""</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">getExecutableSuffix</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>.exe</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="splitCommand">splitCommand<a class="anchor-link" href="#splitCommand">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=15">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7823,7 +7673,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7882,7 +7732,7 @@ table th {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7892,7 +7742,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7975,7 +7825,7 @@ table th {
     <span class="n">let</span><span class="err">!</span> <span class="n">ct</span> <span class="o">=</span>
         <span class="n">options</span><span class="o">.</span><span class="n">CancellationToken</span>
         <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">mergeCancellationTokenWithDefaultAsync</span>
+        <span class="o">|&gt;</span> <span class="n">SpiralAsync</span><span class="o">.</span><span class="n">merge_cancellation_token_with_default_async</span>
 
     <span class="n">use</span> <span class="n">reg</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Register</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">proc</span><span class="o">.</span><span class="n">HasExited</span> <span class="n">then</span> <span class="n">proc</span><span class="o">.</span><span class="n">Kill</span> <span class="p">()</span>
@@ -8013,7 +7863,7 @@ table th {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8067,22 +7917,22 @@ table th {
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>00:00:00 #1 [debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10\test.txt""
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5\test.txt""
   WorkingDirectory = None
   CancellationToken = None
   OnLine = None }
-00:00:00 #2 [verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10\test.txt' because it does not exist.</span>
-00:00:00 #3 [debug] executeAsync / exitCode: 1 / output.Length: 171
+00:00:01 #2 [verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5\test.txt' because it does not exist.</span>
+00:00:01 #3 [debug] executeAsync / exitCode: 1 / output.Length: 171
 1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10\test.txt' because it does not exist.</span>]
-00:00:00 #4 [debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
+[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5\test.txt' because it does not exist.</span>]
+00:00:01 #4 [debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
   WorkingDirectory =
    Some
-     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1611-1156-1b4ffca40f10"
+     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5"
   CancellationToken = None
   OnLine = None }
-00:00:01 #5 [verbose] &gt; 0
-00:00:01 #6 [debug] executeAsync / exitCode: 0 / output.Length: 1
+00:00:02 #5 [verbose] &gt; 0
+00:00:02 #6 [debug] executeAsync / exitCode: 0 / output.Length: 1
 0
 0
 True
@@ -8091,7 +7941,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8151,18 +8001,18 @@ True
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 #7 [debug] 1
-00:00:01 #9 [debug] 2
-00:00:01 #8 [debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240410-1738-1806-0622-01f389ce706f\test.txt""
+<pre>00:00:03 #7 [debug] 1
+00:00:03 #9 [debug] 2
+00:00:03 #8 [debug] executeAsync / options: { Command =
+   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0686-8634-8b2a0a3913d0\test.txt""
   WorkingDirectory = None
   CancellationToken = Some System.Threading.CancellationToken
   OnLine = None }
-00:00:02 #10 [debug] 3
-00:00:02 #11 [debug] 4
-00:00:02 #12 [warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:02 #13 [debug] executeAsync / exitCode: -2147483648 / output.Length: 66
-00:00:02 #14 [debug] 5
+00:00:03 #10 [debug] 3
+00:00:03 #11 [debug] 4
+00:00:03 #12 [warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
+00:00:03 #13 [debug] executeAsync / exitCode: -2147483648 / output.Length: 66
+00:00:03 #14 [debug] 5
 -2147483648
 System.Threading.Tasks.TaskCanceledException: A task was canceled.
 True
@@ -8172,7 +8022,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8182,7 +8032,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8198,7 +8048,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8231,7 +8081,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=24">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8241,7 +8091,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8258,7 +8108,7 @@ True
 
     <span class="n">let</span> <span class="n">parser</span> <span class="o">=</span>
         <span class="n">Argu</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="o">.</span><span class="n">Create</span><span class="o">&lt;</span><span class="s1">'T&gt; (</span>
-            <span class="n">programName</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">{assemblyName}</span><span class="s2">{getExecutableSuffix ()}"</span><span class="p">,</span>
+            <span class="n">programName</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">{assemblyName}</span><span class="s2">{SpiralRuntime.get_executable_suffix ()}"</span><span class="p">,</span>
             <span class="n">errorHandler</span> <span class="o">=</span> <span class="n">errorHandler</span>
         <span class="p">)</span>
 
@@ -8268,7 +8118,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8292,7 +8142,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=27">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8329,7 +8179,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=28">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8356,7 +8206,7 @@ OPTIONS:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSI_0036+it@3-1
+<pre>FSI_0035+it@3-1
 Argu.ArguParseException: ERROR: missing parameter '&lt;paths&gt;...'.
 USAGE: dotnet-repl.exe [--help] &lt;paths&gt;...
 
@@ -8373,7 +8223,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=29">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8390,7 +8240,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=30">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8431,7 +8281,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=31">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8449,7 +8299,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=32">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
