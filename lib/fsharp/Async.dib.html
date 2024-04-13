@@ -7853,7 +7853,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 #2 [critical] runWithTimeoutAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:00 #2 [critical] runWithTimeoutAsync** / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
 </pre>
 </div>
@@ -7960,7 +7960,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:01 #3 [debug] runWithTimeoutChildAsync / timeout: 10
+<pre>00:00:00 #3 [debug] runWithTimeoutChildAsync / timeout: 10
 &lt;null&gt;
 </pre>
 </div>
@@ -8026,7 +8026,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #4 [critical] runWithTimeoutChildAsync** / ex: System.Exception: error / timeout: 60
+<pre>00:00:00 #4 [critical] runWithTimeoutChildAsync** / ex: System.Exception: error / timeout: 60
 &lt;null&gt;
 </pre>
 </div>
@@ -8124,7 +8124,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #5 [debug] runWithTimeoutStrict / timeout: 10
+<pre>00:00:01 #5 [debug] runWithTimeoutStrict / timeout: 10
 &lt;null&gt;
 </pre>
 </div>
@@ -8190,8 +8190,8 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:02 #6 [critical] runWithTimeoutStrict / ex: System.Exception: error / timeout: 60
-00:00:02 #7 [critical] runWithTimeoutStrict** / ex: System.AggregateException: One or more errors occurred. (error) / timeout: 60
+<pre>00:00:01 #6 [critical] runWithTimeoutStrict / ex: System.Exception: error / timeout: 60
+00:00:01 #7 [critical] runWithTimeoutStrict** / ex: System.AggregateException: One or more errors occurred. (error) / timeout: 60
 &lt;null&gt;
 </pre>
 </div>
@@ -8359,39 +8359,6 @@ a.anchor-link {
       ResultValue: 0
       ErrorValue: A task was canceled.
 </pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="withTraceLevel">withTraceLevel<a class="anchor-link" href="#withTraceLevel">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=39">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">withTraceLevel</span> <span class="n">level</span> <span class="n">fn</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">level</span><span class="s1">', _) = SpiralTrace.get_trace_state ()</span>
-    <span class="n">let</span> <span class="n">oldTraceLevel</span> <span class="o">=</span> <span class="n">level</span><span class="s1">'.l0</span>
-    <span class="k">try</span>
-        <span class="n">level</span><span class="s1">'.l0 &lt;- level |&gt; to_trace_level</span>
-        <span class="k">return</span><span class="err">!</span> <span class="n">fn</span>
-    <span class="k">finally</span>
-        <span class="n">level</span><span class="s1">'.l0 &lt;- oldTraceLevel</span>
-<span class="p">}</span>
-</pre></div>
 </div>
 </div>
 </div>

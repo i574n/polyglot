@@ -124,8 +124,9 @@ String closure34(int v0_1, String v1_1) {
         final v12_1 = v8_1 - 1;
         final v14_1 = v2_1 - v10_1.toInt();
         final v15_1 = v2_1 - 1;
-        final strings = seq.ofArray<String>([v1_1.substring(0, v12_1 + 1), '...', v1_1.substring(v14_1, v15_1 + 1)]);
-        return strings.join('');
+        final v20_1 = seq.ofArray<String>([v1_1.substring(0, v12_1 + 1), '...', v1_1.substring(v14_1, v15_1 + 1)]);
+        final sep = method0();
+        return v20_1.join(sep);
     }
 }
 
@@ -154,7 +155,12 @@ String closure37(String v0_1, List<String> v1_1) {
 
 String Function(List<String>) closure36(void unitVar, String v0_1) => (List<String> v) => closure37(v0_1, v);
 
-String closure39(String v0_1, Iterable<String> v1_1) => v1_1.join(v0_1);
+String method2(String v0_1) => v0_1;
+
+String closure39(String v0_1, Iterable<String> v1_1) {
+    final sep = method2(v0_1);
+    return v1_1.join(sep);
+}
 
 String Function(Iterable<String>) closure38(void unitVar, String v0_1) => (Iterable<String> v) => closure39(v0_1, v);
 
@@ -162,13 +168,13 @@ String closure41(String v0_1, List<String> v1_1) => v1_1.join(v0_1);
 
 String Function(List<String>) closure40(void unitVar, String v0_1) => (List<String> v) => closure41(v0_1, v);
 
-bool method2(int v0_1, Mut1 v1_1) => v1_1.l0 < v0_1;
+bool method3(int v0_1, Mut1 v1_1) => v1_1.l0 < v0_1;
 
 List<int> closure42(void unitVar, String v0_1) {
     final v1_1 = v0_1.length;
     final v2_1 = List.filled(v1_1, 0);
     final v3_1 = Mut1(0);
-    while (method2(v1_1, v3_1)) {
+    while (method3(v1_1, v3_1)) {
         final v5_1 = v3_1.l0;
         final v6_1 = v0_1.codeUnitAt(v5_1);
         v2_1[v5_1] = v6_1;

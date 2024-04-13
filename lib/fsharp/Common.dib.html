@@ -7674,11 +7674,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">to_trace_level</span> <span class="o">=</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Verbose</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_0</span>
-    <span class="o">|</span> <span class="n">Debug</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_1</span>
-    <span class="o">|</span> <span class="n">Info</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_2</span>
-    <span class="o">|</span> <span class="ne">Warning</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_3</span>
-    <span class="o">|</span> <span class="n">Critical</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">US0_4</span>
+    <span class="o">|</span> <span class="n">Verbose</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span>
+    <span class="o">|</span> <span class="n">Debug</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_1</span>
+    <span class="o">|</span> <span class="n">Info</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_2</span>
+    <span class="o">|</span> <span class="ne">Warning</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_3</span>
+    <span class="o">|</span> <span class="n">Critical</span> <span class="o">-&gt;</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_4</span>
 
 <span class="n">let</span> <span class="n">trace</span> <span class="n">level</span> <span class="n">fn</span> <span class="n">getLocals</span> <span class="o">=</span>
     <span class="n">let</span> <span class="n">level</span> <span class="o">=</span> <span class="n">level</span> <span class="o">|&gt;</span> <span class="n">to_trace_level</span>

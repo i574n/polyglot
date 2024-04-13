@@ -8,16 +8,6 @@ types.Tuple5<trace.Mut0, trace.Mut1, trace.Mut1, trace.Mut2, types.Some<int>?> S
 
 void Function(String Function()) Function(String Function()) SpiralTrace_trace(trace.US0 x) => trace.trace(x);
 
-const trace.US0 SpiralTrace_US0_0 = trace.US0(/* US0_0 */ 0);
-
-const trace.US0 SpiralTrace_US0_1 = trace.US0(/* US0_1 */ 1);
-
-const trace.US0 SpiralTrace_US0_2 = trace.US0(/* US0_2 */ 2);
-
-const trace.US0 SpiralTrace_US0_3 = trace.US0(/* US0_3 */ 3);
-
-const trace.US0 SpiralTrace_US0_4 = trace.US0(/* US0_4 */ 4);
-
 String Function(Iterable<String>) SpiralSm_concat(String x) => sm.concat(x);
 
 bool Function(String) SpiralSm_contains(String x) => sm.contains(x);

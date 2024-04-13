@@ -61,15 +61,15 @@ bool TraceLevel__get_IsCritical(TraceLevel this$, void unitArg) {
 trace_1.US0 to_trace_level(TraceLevel _arg) {
     switch (_arg.tag) {
         case 1:
-            return lib.SpiralTrace_US0_1;
+            return const trace_1.US0(/* US0_1 */ 1);
         case 2:
-            return lib.SpiralTrace_US0_2;
+            return const trace_1.US0(/* US0_2 */ 2);
         case 3:
-            return lib.SpiralTrace_US0_3;
+            return const trace_1.US0(/* US0_3 */ 3);
         case 4:
-            return lib.SpiralTrace_US0_4;
+            return const trace_1.US0(/* US0_4 */ 4);
         default:
-            return lib.SpiralTrace_US0_0;
+            return const trace_1.US0(/* US0_0 */ 0);
     }
 }
 

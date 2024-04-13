@@ -3,6 +3,7 @@ namespace Polyglot\Common;
 
 require_once(__FABLE_LIBRARY__.'/FSharp.Core.php');
 require_once(__ROOT__.'/../../../../../lib/spiral/lib.fs.phpx');
+require_once(__ROOT__.'/../../../../../lib/spiral/trace.fs.phpx');
 
 use \FSharpUnion;
 use \IComparable;
@@ -151,15 +152,15 @@ function to_trace_level($_arg) {
     switch ($_arg->get_Tag())
     {
         case 1:
-            return \lib\SpiralTrace_US0_1;
+            return new \Trace\US0_US0_1();
         case 2:
-            return \lib\SpiralTrace_US0_2;
+            return new \Trace\US0_US0_2();
         case 3:
-            return \lib\SpiralTrace_US0_3;
+            return new \Trace\US0_US0_3();
         case 4:
-            return \lib\SpiralTrace_US0_4;
+            return new \Trace\US0_US0_4();
         default:
-            return \lib\SpiralTrace_US0_0;
+            return new \Trace\US0_US0_0();
     }
 }
 

@@ -31,6 +31,9 @@ pub mod Crypto {
     pub fn method0(v0_1: i32, v1: LrcPtr<Crypto::Mut0>) -> bool {
         v1.l0.get().clone() < v0_1
     }
+    pub fn method1() -> string {
+        string("")
+    }
     pub fn closure0(unitVar: (), v0_1: string) -> string {
         let _v1: MutCell<Option<string>> = MutCell::new(None::<string>);
         {

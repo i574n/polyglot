@@ -41,8 +41,7 @@ run_target function
 run_target function
     | Rust (Native) => fun () => $"1uy"
     | _ => fun () => $"2uy"
-|> (=) 1u8
-|> _assert_eq true
+|> _assert_eq 1u8
 
 #!markdown
 
@@ -157,15 +156,6 @@ inl to_any forall t. (obj : t) : any =
     $"!obj"
 
 instance (~:>) any = to_any
-
-#!markdown
-
-## unbox
-
-#!spiral
-
-inl unbox forall t u. (x : t) : u =
-    $"!x |> unbox<`u>"
 
 #!markdown
 
@@ -497,6 +487,6 @@ fun () =>
 inl main () =
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
-    
+
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()

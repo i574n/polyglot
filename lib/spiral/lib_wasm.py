@@ -14,16 +14,6 @@ def SpiralTrace_trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]]
     return trace(x)
 
 
-SpiralTrace_US0_0: US0 = US0(0)
-
-SpiralTrace_US0_1: US0 = US0(1)
-
-SpiralTrace_US0_2: US0 = US0(2)
-
-SpiralTrace_US0_3: US0 = US0(3)
-
-SpiralTrace_US0_4: US0 = US0(4)
-
 def SpiralSm_concat(x: str) -> Callable[[IEnumerable_1[str]], str]:
     return concat(x)
 

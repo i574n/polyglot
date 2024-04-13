@@ -35,6 +35,11 @@ function method0($v0_1, $v1) {
 }
 
 #3
+function method1($unitVar) {
+    return '';
+}
+
+#4
 function closure0($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
@@ -42,14 +47,14 @@ function closure0($unitVar, $v0_1) {
     return \Option\value($_v1);
 }
 
-#4
+#5
 $GLOBALS['v0'] = function ($v) use ($closure0) { return closure0(NULL, $v);
  };
 
-#5
+#6
 function hash_text($x) {
     return $GLOBALS['v0']($x);
 }
 
-#6
+#7
 

@@ -132,8 +132,8 @@ inl test_trace_level level : bool =
 
 // // test
 
-test_trace_level Verbose |> _assert_eq true
 test_trace_level Critical |> _assert_eq true
+test_trace_level Verbose |> _assert_eq true
 
 #!markdown
 
@@ -235,8 +235,5 @@ trace Debug (fun () => "test") get_locals
 #!spiral
 
 inl main () =
-    // global "let mutable trace_state = None"
-    // $"let mutable trace_state : `trace_state option = None" : ()
-
     $"let trace x = !trace x" : ()
     $"let get_trace_state () = !get_trace_state ()" : ()

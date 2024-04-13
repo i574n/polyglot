@@ -40,6 +40,11 @@ inl defaultof forall t. () : t =
 inl emit forall t. (x : t) : t =
     $'!x '
 
+// // ## unbox
+
+inl unbox forall t u. (x : t) : u =
+    $"!x |> unbox<`u>"
+
 // // ## run_target
 
 inl run_target forall t. (fn : target -> (() -> t)) : t =
@@ -85,6 +90,18 @@ inl try_unit forall t. (fn : () -> ()) (ex_fn : exn -> ()) : t =
     |> ignore
     $"with ex ->"
     ex_fn $'ex'
+    |> ignore
+    $'(*'
+    $'*)'
+
+// // ## try_finally
+
+inl try_finally forall t. (fn : () -> ()) (finally : () -> ()) : t =
+    $"try"
+    fn ()
+    |> ignore
+    $"finally"
+    finally ()
     |> ignore
     $'(*'
     $'*)'

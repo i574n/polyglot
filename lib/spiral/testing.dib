@@ -45,9 +45,18 @@ inl _assert_le b a = __assert_le true b a
 
 inl __assert_contains forall t. log (b : t) a =
     __expect
-        (fun a b => a |> $'Seq.tryFind' ((=) b) |> optionm'.unbox |> fun (x : option t) => x <> None)
+        fun a b =>
+            a
+            |> $'List.ofSeq'
+            |> fun x => x : listm'.list' t
+            |> $'List.tryFind' ((=) b)
+            |> optionm'.unbox
+            |> fun (x : _ t) => x <> None
         log b a
 inl _assert_contains b a = __assert_contains true b a
+
+inl __assert_string_contains log b a = __expect sm'.contains log a b
+inl _assert_string_contains b a = __assert_string_contains true b a
 
 inl _throws (fn : () -> ()) : option exn =
     inl none = None : option exn

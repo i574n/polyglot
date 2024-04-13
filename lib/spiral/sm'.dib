@@ -556,7 +556,8 @@ types ()
 #!spiral
 
 inl concat (a : string) (b : seq.seq' _) : string =
-    $"!b |> String.concat !a"
+    inl a = join a
+    b |> $"String.concat" a
 
 #!markdown
 
@@ -646,7 +647,7 @@ inl split (separator : string) (str : string) : array_base string =
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => $"!str.Split (!separator, System.StringSplitOptions.None)"
-        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
+        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat "")
 
 #!markdown
 
@@ -691,6 +692,13 @@ inl to_char_list (str : string) : list char =
 |> to_char_list
 |> _assert_eq ['a'; 'b'; 'c']
 
+#!spiral
+
+nominal encoding = $'System.Text.Encoding'
+
+inl encoding_utf8 () : encoding =
+    $'System.Text.Encoding.UTF8'
+
 #!markdown
 
 ## utf8_get_bytes
@@ -698,7 +706,7 @@ inl to_char_list (str : string) : list char =
 #!spiral
 
 inl utf8_get_bytes (s : string) : a i32 u8 =
-    s |> $'System.Text.Encoding.UTF8.GetBytes'
+    s |> $'`encoding.UTF8.GetBytes'
 
 #!markdown
 

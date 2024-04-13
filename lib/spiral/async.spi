@@ -137,6 +137,18 @@ inl start_child_timeout forall t. (timeout : i32) (a : async t) : async (async t
             $'Async.StartChild (!a, !timeout)'
         | _ => fun () => null ()
 
+// // ## start_immediate
+
+inl start_immediate forall t. (a : async t) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            a |> $'Async.StartImmediate'
+        | _ => fun () => null ()
+
+// // ## task_canceled_exception
+
+nominal task_canceled_exception = $'System.Threading.Tasks.TaskCanceledException'
+
 // // ## sleep
 
 inl sleep (ms : i32) : async () =
@@ -244,33 +256,40 @@ inl run_with_timeout timeout fn =
 
 // // ## cancellation_token
 
-nominal cancellation_token = $'System.Threading.CancellationToken'
-nominal cancellation_token_source = $'System.Threading.CancellationTokenSource'
-
-inl cancellation_token () : async cancellation_token =
+inl cancellation_token () : async threading.cancellation_token =
     $'Async.CancellationToken'
 
-inl default_cancellation_token () : cancellation_token =
+inl default_cancellation_token () : threading.cancellation_token =
     $'Async.DefaultCancellationToken'
-
-inl cancellation_source_token (x : cancellation_token_source) : cancellation_token =
-    $'!x.Token'
-
-inl create_linked_token_source (x : array_base cancellation_token) : cancellation_token_source =
-    x |> $'System.Threading.CancellationTokenSource.CreateLinkedTokenSource'
 
 // // ## merge_cancellation_token_with_default_async
 
-inl merge_cancellation_token_with_default_async (token : cancellation_token) : async cancellation_token =
+inl merge_cancellation_token_with_default_async
+    (token : threading.cancellation_token)
+    : async threading.cancellation_token
+    =
     run_target function
         | Fsharp (Native) => fun () =>
             fun () =>
                 inl ct = cancellation_token () |> let'
                 inl dct = default_cancellation_token ()
-                inl cts = create_linked_token_source ;[ ct; dct; token ]
-                cts |> cancellation_source_token |> return
+                inl cts = threading.create_linked_token_source ;[ ct; dct; token ]
+                cts |> threading.cancellation_source_token |> return
             |> new_async_unit
         | _ => fun () => null ()
+
+// // ## with_trace_level
+
+inl with_trace_level forall t. level fn : _ t = new_async fun () =>
+    inl trace_state = get_trace_state ()
+    inl old_trace_level = *trace_state.level
+    inl trace_level = trace_state.level
+    try_finally
+        fun () =>
+            trace_level <- level
+            fn |> return_await
+        fun () =>
+            trace_level <- old_trace_level
 
 // // ## main
 

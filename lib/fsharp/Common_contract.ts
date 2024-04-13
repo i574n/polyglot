@@ -1,7 +1,7 @@
 import { Union } from "../../deps/Fable/src/fable-library-ts/Types.js";
 import { union_type, TypeInfo } from "../../deps/Fable/src/fable-library-ts/Reflection.js";
-import { SpiralTrace_trace, SpiralTrace_US0_0, SpiralTrace_US0_4, SpiralTrace_US0_3, SpiralTrace_US0_2, SpiralTrace_US0_1 } from "../../lib/spiral/lib.fsx";
-import { US0_$union } from "../../lib/spiral/trace.fsx";
+import { US0_$union, US0_US0_0, US0_US0_4, US0_US0_3, US0_US0_2, US0_US0_1 } from "../../lib/spiral/trace.fsx";
+import { SpiralTrace_trace } from "../../lib/spiral/lib.fsx";
 
 export const nl = "\n";
 
@@ -106,15 +106,15 @@ export function TraceLevel__get_IsCritical(this$: TraceLevel_$union, unitArg: vo
 export function to_trace_level(_arg: TraceLevel_$union): US0_$union {
     switch (_arg.tag) {
         case /* Debug */ 1:
-            return SpiralTrace_US0_1;
+            return US0_US0_1();
         case /* Info */ 2:
-            return SpiralTrace_US0_2;
+            return US0_US0_2();
         case /* Warning */ 3:
-            return SpiralTrace_US0_3;
+            return US0_US0_3();
         case /* Critical */ 4:
-            return SpiralTrace_US0_4;
+            return US0_US0_4();
         default:
-            return SpiralTrace_US0_0;
+            return US0_US0_0();
     }
 }
 

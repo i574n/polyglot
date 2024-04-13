@@ -68,15 +68,9 @@ let inline buildProject runtime outputDir path = async {
     return!
         runtimes
         |> List.map (fun runtime -> async {
+            let command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
             let! exitCode, _result =
-                Runtime.executeWithOptionsAsync
-                    {
-                        Command = $@"dotnet publish ""{path}"" --configuration Release --output ""{outputDir}"" --runtime {runtime}"
-                        CancellationToken = None
-                        OnLine = None
-                        WorkingDirectory = Some fileDir
-                    }
-
+                SpiralRuntime.execute_with_options_async struct (None, command, None, None, Some fileDir)
             return exitCode
         })
         |> Async.Sequential

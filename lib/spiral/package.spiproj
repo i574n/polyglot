@@ -24,13 +24,14 @@ modules:
     common-
     wasm
     mapm
+    threading
     async
     networking
     benchmark
     stream
-    runtime
     file_system
     file_system_operators
+    runtime
     util
     physics
     leptos/
@@ -62,6 +63,5 @@ modules:
             dropdown
     store
     state_core
-    threading
     lib
     testing

@@ -18,7 +18,7 @@ open testing
 
 #!spiral
 
-type seq' t = $"`t seq"
+nominal seq' t = $"`t seq"
 
 #!markdown
 
@@ -50,12 +50,28 @@ inl of_array forall dim t. (items : a dim t) : seq' t =
 
 #!markdown
 
+## of_string
+
+#!spiral
+
+inl of_string (s : string) : seq' char =
+    s |> unbox
+
+#!spiral
+
+// // test
+
+"ab"
+|> of_string
+
+#!markdown
+
 ## to_array'
 
 #!spiral
 
 inl to_array' forall dim t. (items : seq' t) : a dim t =
-    $'!items |> Seq.toArray'
+    items |> $'Seq.toArray'
 
 #!spiral
 
@@ -65,6 +81,34 @@ inl to_array' forall dim t. (items : seq' t) : a dim t =
 |> of_array'
 |> to_array'
 |> _assert_eq (a ;[ "a"; "b" ] : _ i32 _)
+
+#!markdown
+
+## to_list'
+
+#!spiral
+
+inl to_list' forall t. (items : seq' t) : listm'.list' t =
+    items |> $'Seq.toList'
+
+#!spiral
+
+// // test
+
+"ab"
+|> of_string
+|> to_list'
+|> listm'.unbox
+|> _assert_eq ([ 'a'; 'b' ])
+
+#!markdown
+
+## rev'
+
+#!spiral
+
+inl rev'' forall t u. (items : t) : seq' u =
+    items |> $'Seq.rev'
 
 #!markdown
 

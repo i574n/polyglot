@@ -7580,9 +7580,18 @@ a.anchor-link {
 
 <span class="n">inl</span> <span class="n">__assert_contains</span> <span class="n">forall</span> <span class="n">t</span><span class="o">.</span> <span class="n">log</span> <span class="p">(</span><span class="n">b</span> <span class="p">:</span> <span class="n">t</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span>
     <span class="n">__expect</span>
-        <span class="p">(</span><span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span> <span class="n">a</span> <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'Seq.tryFind'</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">b</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox |&gt; fun (x : option t) =&gt; x &lt;&gt; None)</span>
+        <span class="n">fun</span> <span class="n">a</span> <span class="n">b</span> <span class="o">=&gt;</span>
+            <span class="n">a</span>
+            <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'List.ofSeq'</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="p">:</span> <span class="n">listm</span><span class="s1">'.list'</span> <span class="n">t</span>
+            <span class="o">|&gt;</span> <span class="err">$</span><span class="s1">'List.tryFind'</span> <span class="p">((</span><span class="o">=</span><span class="p">)</span> <span class="n">b</span><span class="p">)</span>
+            <span class="o">|&gt;</span> <span class="n">optionm</span><span class="s1">'.unbox</span>
+            <span class="o">|&gt;</span> <span class="n">fun</span> <span class="p">(</span><span class="n">x</span> <span class="p">:</span> <span class="n">_</span> <span class="n">t</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">x</span> <span class="o">&lt;&gt;</span> <span class="kc">None</span>
         <span class="n">log</span> <span class="n">b</span> <span class="n">a</span>
 <span class="n">inl</span> <span class="n">_assert_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
+
+<span class="n">inl</span> <span class="n">__assert_string_contains</span> <span class="n">log</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__expect</span> <span class="n">sm</span><span class="s1">'.contains log a b</span>
+<span class="n">inl</span> <span class="n">_assert_string_contains</span> <span class="n">b</span> <span class="n">a</span> <span class="o">=</span> <span class="n">__assert_string_contains</span> <span class="n">true</span> <span class="n">b</span> <span class="n">a</span>
 
 <span class="n">inl</span> <span class="n">_throws</span> <span class="p">(</span><span class="n">fn</span> <span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span> <span class="o">=</span>
     <span class="n">inl</span> <span class="n">none</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">:</span> <span class="n">option</span> <span class="n">exn</span>
@@ -7692,29 +7701,31 @@ and method0 () : unit =
     let v0 : string = "abcd"
     let v1 : string = $"%A{v0}"
     System.Console.WriteLine v1
-    let v2 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
-    let v3 : (char -&gt; bool) = closure0()
-    let v4 : (string -&gt; char option) = v2 v3
-    let v5 : char option = v4 v0
-    let v6 : (char -&gt; US0) = method1()
-    let v7 : US0 = US0_1
-    let v8 : US0 = v5 |&gt; Option.map v6 |&gt; Option.defaultValue v7 
-    let v10 : bool =
-        match v8 with
+    let v2 : (string -&gt; char list) = List.ofSeq
+    let v3 : char list = v2 v0
+    let v4 : ((char -&gt; bool) -&gt; (char list -&gt; char option)) = List.tryFind
+    let v5 : (char -&gt; bool) = closure0()
+    let v6 : (char list -&gt; char option) = v4 v5
+    let v7 : char option = v6 v3
+    let v8 : (char -&gt; US0) = method1()
+    let v9 : US0 = US0_1
+    let v10 : US0 = v7 |&gt; Option.map v8 |&gt; Option.defaultValue v9 
+    let v12 : bool =
+        match v10 with
         | US0_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
-    let v11 : bool = v10 &lt;&gt; true
-    let v13 : bool =
-        if v11 then
+    let v13 : bool = v12 &lt;&gt; true
+    let v15 : bool =
+        if v13 then
             true
         else
-            method2(v11)
-    let v14 : string = $"__expect / actual: %A{v0} / expected: %A{'b'}"
-    let v15 : bool = v13 = false
-    if v15 then
-        failwith&lt;unit&gt; v14
+            method2(v13)
+    let v16 : string = $"__expect / actual: %A{v0} / expected: %A{'b'}"
+    let v17 : bool = v15 = false
+    if v17 then
+        failwith&lt;unit&gt; v16
 method0()
 
 "abcd"

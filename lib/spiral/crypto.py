@@ -27,6 +27,10 @@ def method0(v0_1: int, v1: Mut0) -> bool:
     return v1.l0 < v0_1
 
 
+def method1(__unit: None=None) -> str:
+    return ""
+
+
 def closure0(unit_var: None, v0_1: str) -> str:
     _v1: str | None = None
     _v1 = None

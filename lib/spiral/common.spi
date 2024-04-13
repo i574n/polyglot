@@ -52,11 +52,6 @@ inl to_any forall t. (obj : t) : any =
 
 instance (~:>) any = to_any
 
-// // ## unbox
-
-inl unbox forall t u. (x : t) : u =
-    $"!x |> unbox<`u>"
-
 // // ## (+.)
 
 inl (+.) forall t. (a : t) (b : t) : t =
@@ -178,6 +173,6 @@ inl retry_fn forall t. retries (fn : () -> t) : option t =
 inl main () =
     inl new_disposable x : _ () = new_disposable x
     $"let new_disposable x = !new_disposable x" : ()
-    
+
     inl retry_fn (r : i32) (x : () -> _) : optionm'.option' () = retry_fn r x |> optionm'.box
     $"let retry_fn x = !retry_fn x" : ()

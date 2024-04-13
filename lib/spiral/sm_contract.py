@@ -242,7 +242,8 @@ def closure34(v0_1: int64, v1_1: str) -> str:
         v13_1: str = v1_1[int(to_int(int64(0))):int(to_int(v12_1)) + 1]
         v14_1: int64 = op_subtraction(v2_1, v11_1)
         v15_1: int64 = op_subtraction(v2_1, int64(1))
-        return join("", of_array([v13_1, "...", v1_1[int(to_int(v14_1)):int(to_int(v15_1)) + 1]]))
+        v20_1: IEnumerable_1[str] = of_array([v13_1, "...", v1_1[int(to_int(v14_1)):int(to_int(v15_1)) + 1]])
+        return join(method0(), v20_1)
 
 
 
@@ -282,8 +283,12 @@ def closure36(unit_var: None, v0_1: str) -> Callable[[Array[str]], str]:
     return _arrow27
 
 
+def method2(v0_1: str) -> str:
+    return v0_1
+
+
 def closure39(v0_1: str, v1_1: IEnumerable_1[str]) -> str:
-    return join(v0_1, v1_1)
+    return join(method2(v0_1), v1_1)
 
 
 def closure38(unit_var: None, v0_1: str) -> Callable[[IEnumerable_1[str]], str]:
@@ -304,7 +309,7 @@ def closure40(unit_var: None, v0_1: str) -> Callable[[Array[str]], str]:
     return _arrow29
 
 
-def method2(v0_1: int, v1_1: Mut1) -> bool:
+def method3(v0_1: int, v1_1: Mut1) -> bool:
     return v1_1.l0 < v0_1
 
 
@@ -312,7 +317,7 @@ def closure42(unit_var: None, v0_1: str) -> Array[str]:
     v1_1: int = len(v0_1) or 0
     v2_1: Array[str] = fill([0] * v1_1, 0, v1_1, "")
     v3_1: Mut1 = Mut1(0)
-    while method2(v1_1, v3_1):
+    while method3(v1_1, v3_1):
         v5_1: int = v3_1.l0 or 0
         v6_1: str = v0_1[v5_1]
         v2_1[v5_1] = v6_1

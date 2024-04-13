@@ -345,19 +345,3 @@ async {
 |> Async.RunSynchronously
 |> Result.mapError _.Message
 |> _assertEqual (Error ("A task was canceled."))
-
-#!markdown
-
-## withTraceLevel
-
-#!fsharp
-
-let inline withTraceLevel level fn = async {
-    let struct (_, _, _, level', _) = SpiralTrace.get_trace_state ()
-    let oldTraceLevel = level'.l0
-    try
-        level'.l0 <- level |> to_trace_level
-        return! fn
-    finally
-        level'.l0 <- oldTraceLevel
-}

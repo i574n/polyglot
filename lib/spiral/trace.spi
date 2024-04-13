@@ -161,8 +161,5 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
 // // ## main
 
 inl main () =
-    // global "let mutable trace_state = None"
-    // $"let mutable trace_state : `trace_state option = None" : ()
-
     $"let trace x = !trace x" : ()
     $"let get_trace_state () = !get_trace_state ()" : ()

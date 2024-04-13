@@ -19,6 +19,8 @@ class Mut0 implements types.Record, Comparable<Mut0> {
 
 bool method0(int v0_1, Mut0 v1) => v1.l0 < v0_1;
 
+String method1() => '';
+
 String closure0(void unitVar, String v0_1) {
     types.Some<String>? _v1;
     _v1 = const types.Some('');

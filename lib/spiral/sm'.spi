@@ -296,7 +296,8 @@ inl concat_list_heap_trailing separator input =
 // // ## concat
 
 inl concat (a : string) (b : seq.seq' _) : string =
-    $"!b |> String.concat !a"
+    inl a = join a
+    b |> $"String.concat" a
 
 // // ## ellipsis
 
@@ -338,7 +339,7 @@ inl split (separator : string) (str : string) : array_base string =
 inl split_string (separator : array_base string) (str : string) : array_base string =
     run_target function
         | Fsharp (Native) => fun () => $"!str.Split (!separator, System.StringSplitOptions.None)"
-        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat (join ""))
+        | _ => fun () => str |> split ((a separator : _ i32 _) |> seq.of_array |> concat "")
 
 // // ## join'
 
@@ -355,10 +356,15 @@ inl to_char_array (str : string) : a i32 char =
 inl to_char_list (str : string) : list char =
     listm.init (str |> sm.length) (fun (i : i64) => sm.index str i)
 
+nominal encoding = $'System.Text.Encoding'
+
+inl encoding_utf8 () : encoding =
+    $'System.Text.Encoding.UTF8'
+
 // // ## utf8_get_bytes
 
 inl utf8_get_bytes (s : string) : a i32 u8 =
-    s |> $'System.Text.Encoding.UTF8.GetBytes'
+    s |> $'`encoding.UTF8.GetBytes'
 
 // // ## byte_to_string
 

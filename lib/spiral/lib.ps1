@@ -26,10 +26,17 @@ function CopyTarget {
                 | Set-Content $to
         }
         if ($Language -eq "rs") {
-            if ($name -eq "async_") {
+            if ($name -eq "async_" -or $name -eq "runtime") {
                 (Get-Content $to) `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;" `
                     -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
+                    | Set-Content $to
+            }
+            if ($name -eq "runtime") {
+                (Get-Content $to) `
+                    -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
+                    -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
+                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
                     | Set-Content $to
             }
             if ($name -eq "file_system") {

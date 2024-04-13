@@ -8748,32 +8748,34 @@ and method0 () : unit =
     let v74 : char = System.IO.Path.DirectorySeparatorChar
     let v75 : string = $"%A{v73}"
     System.Console.WriteLine v75
-    let v76 : ((char -&gt; bool) -&gt; (string -&gt; char option)) = Seq.tryFind
-    let v77 : (char -&gt; bool) = closure1(v74)
-    let v78 : (string -&gt; char option) = v76 v77
-    let v79 : char option = v78 v73
-    let v80 : (char -&gt; US0) = method2()
-    let v81 : US0 = US0_1
-    let v82 : US0 = v79 |&gt; Option.map v80 |&gt; Option.defaultValue v81 
-    let v84 : bool =
-        match v82 with
+    let v76 : (string -&gt; char list) = List.ofSeq
+    let v77 : char list = v76 v73
+    let v78 : ((char -&gt; bool) -&gt; (char list -&gt; char option)) = List.tryFind
+    let v79 : (char -&gt; bool) = closure1(v74)
+    let v80 : (char list -&gt; char option) = v78 v79
+    let v81 : char option = v80 v77
+    let v82 : (char -&gt; US0) = method2()
+    let v83 : US0 = US0_1
+    let v84 : US0 = v81 |&gt; Option.map v82 |&gt; Option.defaultValue v83 
+    let v86 : bool =
+        match v84 with
         | US0_1 -&gt; (* None *)
             true
         | _ -&gt;
             false
-    let v85 : bool = v84 &lt;&gt; true
-    let v87 : bool =
-        if v85 then
+    let v87 : bool = v86 &lt;&gt; true
+    let v89 : bool =
+        if v87 then
             true
         else
-            method3(v85)
-    let v88 : string = $"__expect / actual: %A{v73} / expected: %A{v74}"
-    let v89 : bool = v87 = false
-    if v89 then
-        failwith&lt;unit&gt; v88
+            method3(v87)
+    let v90 : string = $"__expect / actual: %A{v73} / expected: %A{v74}"
+    let v91 : bool = v89 = false
+    if v91 then
+        failwith&lt;unit&gt; v90
 method0()
 
-"C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2051-3867-6731-6b07c3d355bf"
+"C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240412-2331-5669-6945-634d9fe2fe6c"
 </pre>
 </div>
 </div>
@@ -12385,12 +12387,12 @@ method0()
 00:00:00 #6 [debug] 4
 delete_directory_async / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process. / 
 delete_directory_async / path: test / ex: System.IO.IOException: The process cannot access the file 'test.txt' because it is being used by another process. / 
-00:00:02 #7 [debug] _3
+00:00:01 #7 [debug] _3
 00:00:02 #8 [debug] 5
 00:00:02 #9 [debug] 6
-125L
-125L
-125L
+123L
+123L
+123L
 true
 </pre>
 </div>
@@ -14524,11 +14526,11 @@ method0()
 00:00:00 #4 [debug] _1
 00:00:00 #5 [debug] _2
 00:00:00 #6 [debug] 4
-wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2051-5065-6543-6a25511a50fe\test.txt' because it is being used by another process. / 
-00:00:01 #7 [debug] _3
-00:00:01 #8 [debug] _4
-00:00:01 #9 [debug] _5
-00:00:01 #10 [debug] _6
+wait_for_file_access / path: test.txt / retry: 100 / ex: System.IO.IOException: The process cannot access the file 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240412-2332-1359-5907-5d959b121cd9\test.txt' because it is being used by another process. / 
+00:00:02 #7 [debug] _3
+00:00:02 #8 [debug] _4
+00:00:02 #9 [debug] _5
+00:00:02 #10 [debug] _6
 00:00:02 #11 [debug] 5
 00:00:02 #12 [debug] 6
 00:00:02 #13 [debug] 7
@@ -16582,8 +16584,8 @@ method0()
 
 00:00:00 #1 [debug] 1
 00:00:00 #2 [debug] 2
-00:00:00 #3 [debug] 3
-00:00:00 #4 [debug] _1
+00:00:00 #3 [debug] _1
+00:00:00 #4 [debug] 3
 00:00:00 #5 [debug] _2
 00:00:00 #6 [debug] 4
 00:00:00 #7 [warning] delete_file_async
@@ -16591,9 +16593,9 @@ method0()
 00:00:02 #9 [debug] _3
 00:00:02 #10 [debug] 5
 00:00:02 #11 [debug] 6
-128L
-128L
-128L
+118L
+118L
+118L
 true
 </pre>
 </div>
@@ -19023,15 +19025,14 @@ method0()
 00:00:00 #5 [debug] _2
 00:00:00 #6 [debug] 4
 00:00:00 #7 [warning] move_file_async / old_path: test.txt / new_path: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:01 #8 [warning] move_file_async / old_path: test.txt / new_path: test2.txt / ex: System.IO.IOException: The process cannot access the file because it is being used by another process.
-00:00:01 #9 [debug] _3
-00:00:02 #10 [debug] 5
-00:00:02 #11 [debug] 6
-00:00:02 #12 [debug] 7
-00:00:02 #13 [debug] 8
-127L
-127L
-127L
+00:00:02 #8 [debug] _3
+00:00:02 #9 [debug] 5
+00:00:02 #10 [debug] 6
+00:00:02 #11 [debug] 7
+00:00:02 #12 [debug] 8
+83L
+83L
+83L
 0L
 0L
 0L
@@ -19176,6 +19177,8 @@ true
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>1
 "polyglot"
+
+
 </pre>
 </div>
 </div>

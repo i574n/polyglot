@@ -96,12 +96,10 @@ module Eval =
 
     let traceFile filePath (text : string) =
         let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
-        match level with
-        | { l0 = x } when x = SpiralTrace.US0_0 ->
+        if level.l0 = SpiralTrace.TraceLevel.US0_0 then
             let dateTimeStr = DateTime.Now |> SpiralDateTime.new_guid_from_date_time
             let traceFile = traceDir </> filePath
             File.AppendAllText (traceFile, $"{dateTimeStr} Eval / {text}{Environment.NewLine}") |> ignore
-        | _ -> ()
 
     /// ## log
 
@@ -258,15 +256,7 @@ module Eval =
         log $"Eval.eval / code: %A{code}"
 
         let rawCellCode =
-            if code |> SpiralSm.trim <> "// // trace"
-            then code |> SpiralSm.replace "\r\n" "\n"
-            else
-                let struct (_, dump, _, level, _) = SpiralTrace.get_trace_state ()
-                match level with
-                | { l0 = x } when x = SpiralTrace.US0_2 -> level.l0 <- SpiralTrace.US0_0
-                | _ -> level.l0 <- SpiralTrace.US0_2
-                dump.l0 <- level.l0 = SpiralTrace.US0_0
-                "inl main () = ()"
+            code |> SpiralSm.replace "\r\n" "\n"
 
         let lines = rawCellCode |> SpiralSm.split "\n"
 
@@ -278,6 +268,52 @@ module Eval =
             | Choice2Of2 ex -> Error(ex), errors
         else
             try
+                let rustArgs =
+                    lines
+                    |> Array.tryPick (fun line ->
+                        if line |> SpiralSm.starts_with "// // rust="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1
+                        else None
+                    )
+
+                let timeout =
+                    lines
+                    |> Array.tryPick (fun line ->
+                        if line |> SpiralSm.starts_with "// // timeout="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
+                        else None
+                    )
+                    |> Option.defaultValue (60000 * 60)
+
+                let printCode =
+                    lines
+                    |> Array.tryPick (fun line ->
+                        if line |> SpiralSm.starts_with "// // print_code="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
+                        else None
+                    )
+                    |> Option.defaultValue true
+
+                let isTrace =
+                    lines
+                    |> Array.tryPick (fun line ->
+                        if line |> SpiralSm.starts_with "// // trace="
+                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
+                        else None
+                    )
+                    |> Option.defaultValue false
+
+                let traceLevel =
+                    if isTrace
+                    then SpiralRuntime.TraceLevel.US0_0
+                    else SpiralRuntime.TraceLevel.US0_2
+
+                let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
+                level.l0 <-
+                    if traceLevel = SpiralRuntime.TraceLevel.US0_0
+                    then SpiralTrace.TraceLevel.US0_0
+                    else SpiralTrace.TraceLevel.US0_2
+
                 let lastBlock =
                     lines
                     |> Array.tryFindBack (fun line ->
@@ -344,32 +380,6 @@ module Eval =
 
                 let newAllCode = $"{allCode}\n\n{cellCode}"
 
-                let rustArgs =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // rust="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1
-                        else None
-                    )
-
-                let timeout =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // timeout="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map int
-                        else None
-                    )
-                    |> Option.defaultValue (60000 * 60)
-
-                let printCode =
-                    lines
-                    |> Array.tryPick (fun line ->
-                        if line |> SpiralSm.starts_with "// // print_code="
-                        then line |> SpiralSm.split "=" |> Array.tryItem 1 |> Option.map ((=) "true")
-                        else None
-                    )
-                    |> Option.defaultValue true
-
                 async {
                     try
                         let! mainPath = newAllCode |> Supervisor.persistCode
@@ -395,13 +405,12 @@ module Eval =
                             let spiralErrors =
                                 mapErrors (Warning, spiralErrors, lastTopLevelIndex) allCode
                             let inline _trace (fn : unit -> string) =
-                                let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
-                                match level with
-                                | { l0 = x } when x = SpiralTrace.US0_2 -> fn () |> System.Console.WriteLine
-                                | _ -> trace Info (fun () -> $"Eval.eval / {fn ()}") getLocals
+                                if isTrace
+                                then trace Info (fun () -> $"Eval.eval / {fn ()}") getLocals
+                                else fn () |> System.Console.WriteLine
 
                             if printCode
-                            then _trace (fun () -> if rustArgs |> Option.isSome then $"\n.fsx:\n{code}" else code)
+                            then _trace (fun () -> if rustArgs |> Option.isSome then $".fsx:\n{code}" else code)
 
                             let! rustResult =
                                 if rustArgs |> Option.isNone || lastTopLevelIndex = None
@@ -434,14 +443,9 @@ module Eval =
                                             |> ignore
 
 
+                                        let command = $@"dotnet fable {fsprojPath} --optimize --lang rs --extension .rs --outDir {outDir}"
                                         let! exitCode, result =
-                                            Runtime.executeWithOptionsAsync
-                                                {
-                                                    Command = $@"dotnet fable {fsprojPath} --optimize --lang rs --extension .rs --outDir {outDir}"
-                                                    CancellationToken = cancellationToken
-                                                    WorkingDirectory = None
-                                                    OnLine = None
-                                                }
+                                            SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some traceLevel, None)
 
                                         if exitCode <> 0
                                         then return Some (Error result)
@@ -459,7 +463,7 @@ module Eval =
                                                 else rsCode |> SpiralSm.replace "),);" "));"
 
                                             if printCode
-                                            then _trace (fun () -> $"\n.rs:\n{rsCode}")
+                                            then _trace (fun () -> $".rs:\n{rsCode}")
 
                                             if not cached
                                             then do!
@@ -490,14 +494,9 @@ path = "{hash}.rs"
 """
                                             do! cargoTomlContent |> SpiralFileSystem.write_all_text_exists cargoTomlPath
 
+                                            let command = $@"cargo run --release --manifest-path {cargoTomlPath}"
                                             let! exitCode, result =
-                                                Runtime.executeWithOptionsAsync
-                                                    {
-                                                        Command = $@"cargo run --release --manifest-path {cargoTomlPath}"
-                                                        CancellationToken = cancellationToken
-                                                        WorkingDirectory = None
-                                                        OnLine = None
-                                                    }
+                                                SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some traceLevel, None)
 
                                             if exitCode = 0 then
                                                 try
@@ -555,7 +554,11 @@ path = "{hash}.rs"
                                         |]
 
                                 let header = if printCode then ".rs output:\n" else ""
-                                let ch, errors2 = fsi_eval $"\"\"\"{header}{result}\n\"\"\"" cancellationToken
+                                let code =
+                                    if printCode
+                                    then $"\"\"\"{header}{result}\n\n\n\"\"\""
+                                    else $"\"\"\"{header}{result}\n\"\"\""
+                                let ch, errors2 = fsi_eval code cancellationToken
                                 let errors =
                                     errors
                                     |> Array.append spiralErrors

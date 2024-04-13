@@ -120,31 +120,29 @@ let inline awaitCompiler port cancellationToken = async {
 
             let dllPath = compilerPath </> "Spiral.dll"
 
-            let! exitCode, result =
-                Runtime.executeWithOptionsAsync
-                    {
-                        Command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
-                        CancellationToken = Some ct
-                        WorkingDirectory = None
-                        OnLine = Some <| fun { Line = line } -> async {
-                            if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                                do! Networking.waitForPortAccess (Some 500) true availablePort |> Async.Ignore
+            let command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
+            let onLine = fun struct (_, line, _) -> async {
+                if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
+                    do! Networking.waitForPortAccess (Some 500) true availablePort |> Async.Ignore
 
-                                let rec loop retry = async {
-                                    let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"
-                                    try
-                                        let pingObj = {| Ping = true |}
-                                        let! pingResult = pingObj |> sendObj availablePort
-                                        trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
-                                    with ex ->
-                                        trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") getLocals
-                                        do! Async.Sleep 10
-                                        do! loop (retry + 1)
-                                }
-                                do! loop 0
-                                inbox.Post (availablePort, true)
-                        }
+                    let rec loop retry = async {
+                        let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"
+                        try
+                            let pingObj = {| Ping = true |}
+                            let! pingResult = pingObj |> sendObj availablePort
+                            trace Verbose (fun () -> $"awaitCompiler / Ping / result: {pingResult}") getLocals
+                        with ex ->
+                            trace Verbose (fun () -> $"awaitCompiler / Ping / ex: {ex |> SpiralSm.format_exception}") getLocals
+                            do! Async.Sleep 10
+                            do! loop (retry + 1)
                     }
+                    do! loop 0
+                    inbox.Post (availablePort, true)
+            }
+
+            let! exitCode, result =
+                SpiralRuntime.execute_with_options_async struct (Some ct, command, Some onLine, None, None)
+
             trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
             disposable.Dispose ()
     }, ct)
@@ -316,11 +314,11 @@ let inline buildFile timeout port cancellationToken path = async {
                 | _ -> fsxContentResult, errors, typeErrorCount
         )
         |> FSharp.Control.AsyncSeq.takeWhileInclusive (fun (fsxContent, errors, typeErrorCount) ->
-            trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis 750} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
+            trace Debug (fun () -> $"buildFile / takeWhileInclusive / fsxContent: {fsxContent |> Option.defaultValue System.String.Empty |> SpiralSm.ellipsis_end 400} / errors: {errors |> serializeObj} / typeErrorCount: {typeErrorCount}") getLocals
 #if INTERACTIVE
             let errorWait = 2
 #else
-            let errorWait = 10
+            let errorWait = 5
 #endif
             match fsxContent, errors with
             | None, [] when typeErrorCount > errorWait -> false
@@ -875,13 +873,7 @@ let main args =
             executeCommandActions
             |> List.map (fun command -> async {
                 let! exitCode, result =
-                    Runtime.executeWithOptionsAsync
-                        {
-                            Command = command
-                            CancellationToken = Some compilerToken
-                            WorkingDirectory = None
-                            OnLine = None
-                        }
+                    SpiralRuntime.execute_with_options_async struct (Some compilerToken, command, None, None, None)
 
                 trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode}") getLocals
 

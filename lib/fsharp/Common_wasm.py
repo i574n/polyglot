@@ -3,14 +3,14 @@ from collections.abc import Callable
 from typing import Any
 from fable_modules.fable_library.reflection import (TypeInfo, union_type)
 from fable_modules.fable_library.types import (Array, Union)
-from ......lib.spiral.lib import (SpiralTrace_US0_1, SpiralTrace_US0_2, SpiralTrace_US0_3, SpiralTrace_US0_4, SpiralTrace_US0_0, SpiralTrace_trace)
+from ......lib.spiral.lib import SpiralTrace_trace
 from ......lib.spiral.trace import US0
 
 nl: str = "\n"
 
 q: str = "\""
 
-def _expr69() -> TypeInfo:
+def _expr92() -> TypeInfo:
     return union_type("Polyglot.Common.TraceLevel", [], TraceLevel, lambda: [[], [], [], [], []])
 
 
@@ -25,7 +25,7 @@ class TraceLevel(Union):
         return ["Verbose", "Debug", "Info", "Warning", "Critical"]
 
 
-TraceLevel_reflection = _expr69
+TraceLevel_reflection = _expr92
 
 def TraceLevel__get_IsVerbose(this: TraceLevel, unit_arg: None) -> bool:
     if this.tag == 0:
@@ -74,19 +74,19 @@ def TraceLevel__get_IsCritical(this: TraceLevel, unit_arg: None) -> bool:
 
 def to_trace_level(_arg: TraceLevel) -> US0:
     if _arg.tag == 1:
-        return SpiralTrace_US0_1
+        return US0(1)
 
     elif _arg.tag == 2:
-        return SpiralTrace_US0_2
+        return US0(2)
 
     elif _arg.tag == 3:
-        return SpiralTrace_US0_3
+        return US0(3)
 
     elif _arg.tag == 4:
-        return SpiralTrace_US0_4
+        return US0(4)
 
     else: 
-        return SpiralTrace_US0_0
+        return US0(0)
 
 
 

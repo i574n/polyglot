@@ -231,22 +231,20 @@ pub mod Sm {
             let v5_1: f64 = v0_1 as f64 / 2.0_f64;
             let v8_1: i64 = v5_1.ceil() as i64;
             let v11_1: i64 = v5_1.floor() as i64;
-            join(
-                string(""),
-                toArray(ofArray(new_array(&[
-                    getSlice(
-                        v1_1.clone(),
-                        Some(0_i64 as i32),
-                        Some((v8_1 - 1_i64) as i32),
-                    ),
-                    string("..."),
-                    getSlice(
-                        v1_1,
-                        Some((v2_1 - v11_1) as i32),
-                        Some((v2_1 - 1_i64) as i32),
-                    ),
-                ]))),
-            )
+            let v20_1: LrcPtr<dyn IEnumerable_1<string>> = ofArray(new_array(&[
+                getSlice(
+                    v1_1.clone(),
+                    Some(0_i64 as i32),
+                    Some((v8_1 - 1_i64) as i32),
+                ),
+                string("..."),
+                getSlice(
+                    v1_1,
+                    Some((v2_1 - v11_1) as i32),
+                    Some((v2_1 - 1_i64) as i32),
+                ),
+            ]));
+            join(Sm::method0(), toArray(v20_1))
         }
     }
     pub fn closure33(unitVar: (), v0_1: i64) -> Func1<string, string> {
@@ -294,8 +292,11 @@ pub mod Sm {
             move |v: Array<string>| Sm::closure37(v0_1.clone(), v)
         })
     }
+    pub fn method2(v0_1: string) -> string {
+        v0_1
+    }
     pub fn closure39(v0_1: string, v1_1: LrcPtr<dyn IEnumerable_1<string>>) -> string {
-        join(v0_1, toArray(v1_1))
+        join(Sm::method2(v0_1), toArray(v1_1))
     }
     pub fn closure38(
         unitVar: (),
@@ -315,7 +316,7 @@ pub mod Sm {
             move |v: Array<string>| Sm::closure41(v0_1.clone(), v)
         })
     }
-    pub fn method2(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
+    pub fn method3(v0_1: i32, v1_1: LrcPtr<Sm::Mut1>) -> bool {
         v1_1.l0.get().clone() < v0_1
     }
     pub fn closure42(unitVar: (), v0_1: string) -> Array<char> {
@@ -324,7 +325,7 @@ pub mod Sm {
         let v3_1: LrcPtr<Sm::Mut1> = LrcPtr::new(Sm::Mut1 {
             l0: MutCell::new(0_i32),
         });
-        while Sm::method2(v1_1, v3_1.clone()) {
+        while Sm::method3(v1_1, v3_1.clone()) {
             let v5_1: i32 = v3_1.l0.get().clone();
             let v6_1: char = getCharAt(v0_1.clone(), v5_1);
             v2_1.get_mut()[v5_1 as usize] = v6_1;

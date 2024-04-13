@@ -25,12 +25,16 @@ export function method0(v0_1: int32, v1: Mut0): boolean {
     return v1.l0 < v0_1;
 }
 
+export function method1(): string {
+    return "";
+}
+
 export function closure0(unitVar: void, v0_1: string): string {
     let _v1: Option<string> = void 0;
-    const v26: ICryptoCreateHash = crypto;
-    const v29: any = v26.createHash("sha256");
-    const v31: any = v29.update(v0_1, 'utf8');
-    const x: string = v31.digest("hex");
+    const v28: ICryptoCreateHash = crypto;
+    const v31: any = v28.createHash("sha256");
+    const v33: any = v31.update(v0_1, 'utf8');
+    const x: string = v33.digest("hex");
     _v1 = x;
     return value(_v1);
 }

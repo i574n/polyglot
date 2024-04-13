@@ -1,5 +1,49 @@
 open rust_operators
 
+nominal cancellation_token = $'System.Threading.CancellationToken'
+nominal cancellation_token_source = $'System.Threading.CancellationTokenSource'
+nominal cancellation_token_registration = $'System.Threading.CancellationTokenRegistration'
+
+
+inl cancellation_source_token (x : cancellation_token_source) : cancellation_token =
+    $'!x.Token'
+
+inl cancellation_source_cancel (x : cancellation_token_source) : () =
+    $'!x.Cancel ()'
+
+inl create_linked_token_source (x : array_base cancellation_token) : cancellation_token_source =
+    x |> $'System.Threading.CancellationTokenSource.CreateLinkedTokenSource'
+
 inl sleep (duration : date_time.duration) : () =
     inl duration = join duration
     !\($'"std::thread::sleep(!duration)"')
+
+inl token_none () : cancellation_token =
+    $'`cancellation_token.None'
+
+// // ## concurrent_stack
+
+nominal concurrent_stack t = $'System.Collections.Concurrent.ConcurrentStack<`t>'
+
+inl new_concurrent_stack forall t. () : concurrent_stack t =
+    $'System.Collections.Concurrent.ConcurrentStack<`t>' ()
+
+inl concurrent_stack_push forall t. (item : t) (stack : concurrent_stack t) : () =
+    $'!stack.Push' item
+
+inl token_register (fn : () -> ()) (ct : cancellation_token) : cancellation_token_registration =
+    fn |> $'!ct.Register'
+
+inl new_cancellation_token_source () : cancellation_token_source =
+    $'new `cancellation_token_source ()'
+
+inl new_disposable_token (merge_token : option cancellation_token) =
+    inl cts = new_cancellation_token_source ()
+    inl cts =
+        match merge_token with
+        | None => cts
+        | Some merge_token =>
+            create_linked_token_source ;[ cts |> cancellation_source_token; merge_token ]
+    inl disposable = new_disposable fun () =>
+        cts |> cancellation_source_cancel
+    cts |> cancellation_source_token, disposable

@@ -33,11 +33,11 @@ module Common =
     /// ## trace
 
     let to_trace_level = function
-        | Verbose -> SpiralTrace.US0_0
-        | Debug -> SpiralTrace.US0_1
-        | Info -> SpiralTrace.US0_2
-        | Warning -> SpiralTrace.US0_3
-        | Critical -> SpiralTrace.US0_4
+        | Verbose -> SpiralTrace.TraceLevel.US0_0
+        | Debug -> SpiralTrace.TraceLevel.US0_1
+        | Info -> SpiralTrace.TraceLevel.US0_2
+        | Warning -> SpiralTrace.TraceLevel.US0_3
+        | Critical -> SpiralTrace.TraceLevel.US0_4
 
     let trace level fn getLocals =
         let level = level |> to_trace_level

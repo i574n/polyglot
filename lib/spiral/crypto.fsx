@@ -4,6 +4,9 @@ let rec method0 (v0 : int32, v1 : Mut0) : bool =
     let v2 : int32 = v1.l0
     let v3 : bool = v2 < v0
     v3
+and method1 () : string =
+    let v0 : string = ""
+    v0
 and closure0 () (v0 : string) : string =
     let v1 : string option = None
     let mutable _v1 = v1
@@ -42,30 +45,32 @@ and closure0 () (v0 : string) : string =
         v14.l0 <- v21
         ()
     let v22 : string seq = seq { for i = 0 to v13.Length - 1 do yield v13.[i] }
-    let v23 : string = ""
-    let v24 : string = v22 |> String.concat v23
-    v24 
+    let v23 : string = method1()
+    let v24 : (string -> (string seq -> string)) = String.concat
+    let v25 : (string seq -> string) = v24 v23
+    let v26 : string = v25 v22
+    v26 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v25 : string = "crypto"
-    let v26 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v25
-    let v27 : string = "v26.createHash($0)"
-    let v28 : string = "sha256"
-    let v29 : obj = Fable.Core.JsInterop.emitJsExpr v28 v27
-    let v30 : string = "$0.update($1, 'utf8')"
-    let v31 : obj = Fable.Core.JsInterop.emitJsExpr struct (v29, v0) v30
-    let v32 : string = "$0.digest($1)"
-    let v33 : string = "hex"
-    let v34 : string = Fable.Core.JsInterop.emitJsExpr struct (v31, v33) v32
-    v34 
+    let v27 : string = "crypto"
+    let v28 : ICryptoCreateHash = Fable.Core.JsInterop.importAll v27
+    let v29 : string = "v28.createHash($0)"
+    let v30 : string = "sha256"
+    let v31 : obj = Fable.Core.JsInterop.emitJsExpr v30 v29
+    let v32 : string = "$0.update($1, 'utf8')"
+    let v33 : obj = Fable.Core.JsInterop.emitJsExpr struct (v31, v0) v32
+    let v34 : string = "$0.digest($1)"
+    let v35 : string = "hex"
+    let v36 : string = Fable.Core.JsInterop.emitJsExpr struct (v33, v35) v34
+    v36 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v35 : string = Unchecked.defaultof<string>
-    v35 
+    let v37 : string = Unchecked.defaultof<string>
+    v37 
     #endif
     |> fun x -> _v1 <- Some x
-    let v36 : string = _v1.Value
-    v36
+    let v38 : string = _v1.Value
+    v38
 let v0 : (string -> string) = closure0()
 let hash_text x = v0 x
 ()

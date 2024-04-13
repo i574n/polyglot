@@ -1,5 +1,7 @@
 // // # runtime
 
+open file_system_operators
+
 // // ## os_platform
 
 nominal os_platform' = $'System.Runtime.InteropServices.OSPlatform'
@@ -30,8 +32,216 @@ inl get_executable_suffix () =
     then ".exe"
     else ""
 
+// // ## split_command
+
+union quoted =
+    | Quoted
+    | NotQuoted
+
+union command_parse_step =
+    | Start
+    | Path : quoted
+    | Arguments
+
+inl split_command (command : string) =
+    let rec loop (path, args) (chars : list char) step =
+        match step, chars with
+        | _, (('"' | '\'') :: tail) when path = "" => loop (path, args) tail (Path Quoted)
+        | Path (Quoted), (('"' | '\'') :: tail) => loop (path, args) tail (Path NotQuoted)
+        | Path (Quoted), (' ' :: tail) => loop ($'$"{!path} "', args) tail (Path Quoted)
+        | (Start | Path _), (' ' :: tail) => loop (path, args) tail Arguments
+        | Arguments, (char :: tail) => loop (path, $'$"{!args}{!char}"') tail Arguments
+        | _, (char :: tail) => loop ($'$"{!path}{!char}"', args) tail step
+        | _ => path |> sm'.replace @"\" "/", args
+    loop (join "", "") (command |> seq.of_string |> seq.to_list' |> listm'.unbox) Start
+
+// // ## process
+
+nominal process = $'System.Diagnostics.Process'
+nominal process_start_info = $'System.Diagnostics.ProcessStartInfo'
+nominal data_received_event_args = $'System.Diagnostics.DataReceivedEventArgs'
+
+inl new_process (process_start_info : process_start_info) : process =
+    $'new `process (StartInfo = !process_start_info)'
+
+inl process_start (process : process) : bool =
+    $'!process.Start' ()
+
+inl process_exit_code (process : process) : i32 =
+    $'!process.ExitCode'
+
+inl process_id (process : process) : i32 =
+    $'!process.Id'
+
+inl process_has_exited (process : process) : bool =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!process.HasExited'
+        | _ => fun () => null ()
+
+inl process_kill (process : process) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'!process.Kill' ()
+        | _ => fun () => null ()
+
+inl process_begin_error_read_line (process : process) : () =
+    $'!process.BeginErrorReadLine' ()
+
+inl process_begin_output_read_line (process : process) : () =
+    $'!process.BeginOutputReadLine' ()
+
+inl process_add_output_data_received fn (process : process) : () =
+    $'!process.OutputDataReceived.Add !fn '
+
+inl process_add_error_data_received fn (process : process) : () =
+    $'!process.ErrorDataReceived.Add !fn '
+
+inl process_wait_for_exit_async (ct : threading.cancellation_token) (process : process) : async.task () =
+    $'!process.WaitForExitAsync !ct '
+
+inl event_data (e : data_received_event_args) : string =
+    $'!e.Data'
+
+// // ## execute_async
+
+type execution_line =
+    {
+        process_id : int
+        line : string
+        error : bool
+    }
+
+type execution_options =
+    {
+        command : string
+        working_directory : optionm'.option' string
+        cancellation_token : optionm'.option' threading.cancellation_token
+        on_line : optionm'.option' (execution_line -> async.async ())
+        trace_level : optionm'.option' trace_level
+    }
+
+inl execute_with_options_async (options : execution_options) : _ (i32 * string) =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            fun () =>
+                inl file_name, arguments = options.command |> split_command
+                inl working_directory = options.working_directory |> optionm'.unbox |> optionm'.default_value ""
+
+                trace Debug (fun () => $'$"execute_with_options_async / options: %A{!options}"') (join get_locals)
+
+                inl utf8 = sm'.encoding_utf8 ()
+                inl start_info : process_start_info = $'System.Diagnostics.ProcessStartInfo (Arguments = !arguments, StandardOutputEncoding = !utf8, WorkingDirectory = !working_directory, FileName = !file_name, CreateNoWindow = true, RedirectStandardError = true, RedirectStandardOutput = true, UseShellExecute = false)'
+
+                inl proc = start_info |> new_process |> use
+                inl output : _ string = threading.new_concurrent_stack ()
+
+                inl event error (e : data_received_event_args) = async.new_async fun () =>
+                    inl data = e |> event_data
+                    if data <> null () then
+                        match options.on_line |> optionm'.unbox with
+                        | Some on_line =>
+                            on_line
+                                {
+                                    process_id = proc |> process_id
+                                    line = data
+                                    error = error
+                                }
+                            |> async.do
+                        | None => ()
+
+                        trace Verbose (fun () => $'$"> {!data}"') get_locals
+
+                        inl l = if error then "[" else ""
+                        inl r = if error then "]" else ""
+                        output |> threading.concurrent_stack_push $'$"{!l}{!data}{!r}"'
+
+                proc |> process_add_output_data_received (event false >> async.start_immediate)
+                proc |> process_add_error_data_received (event true >> async.start_immediate)
+
+                if proc |> process_start |> not
+                then failwith $'$"execute_with_options_async / process_start error"'
+
+                proc |> process_begin_error_read_line
+                proc |> process_begin_output_read_line
+
+                inl ct =
+                    options.cancellation_token
+                    |> optionm'.unbox
+                    |> optionm'.default_with threading.token_none
+                    |> async.merge_cancellation_token_with_default_async
+                    |> async.let'
+
+                ct |> threading.token_register fun () =>
+                    if proc |> process_has_exited |> not
+                    then proc |> process_kill
+                |> use
+                |> ignore
+
+                inl exit_code : i32 =
+                    fun () =>
+                        try_unit
+                            fun () =>
+                                proc
+                                |> process_wait_for_exit_async ct
+                                |> async.await_task
+                                |> async.do
+                                proc |> process_exit_code |> return
+                            fun ex =>
+                                // with :? System.Threading.Tasks.TaskCanceledException as ex =>
+                                inl ex' = ex |> sm'.format_exception
+                                output |> threading.concurrent_stack_push ex'
+                                inl ex : async.task_canceled_exception = ex |> unbox
+                                trace Warning (fun () => $'$"execute_with_options_async / WaitForExitAsync / ex: %A{!ex}"') (join get_locals)
+                                (limit.min : i32) |> return
+                    |> async.new_async_unit
+                    |> async.let'
+
+                inl output =
+                    output
+                    |> seq.rev''
+                    |> fun x => x : seq.seq' string
+                    |> sm'.concat "\n"
+
+                trace Debug (fun () =>
+                    $'$"execute_with_options_async / exit_code: {!exit_code} / output.Length: {!output.Length}"'
+                ) (join get_locals)
+
+                (exit_code, output) |> return
+            |> async.new_async_unit
+            |> fun fn =>
+                match options.trace_level |> optionm'.unbox with
+                | Some trace_level => fn |> async.with_trace_level trace_level
+                | None => fn
+        | _ => fun () =>
+            global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
+            null ()
+
+inl execute_async command =
+    execute_with_options_async
+        {
+            command = command
+            cancellation_token = None |> optionm'.box
+            on_line = None |> optionm'.box
+            working_directory = None |> optionm'.box
+            trace_level = None |> optionm'.box
+        }
+
+inl execution_options (fn : execution_options -> execution_options) : execution_options =
+    {
+        command = ""
+        cancellation_token = None |> optionm'.box
+        on_line = None |> optionm'.box
+        working_directory = None |> optionm'.box
+        trace_level = None |> optionm'.box
+    }
+    |> fn
+
 // // ## main
 
 inl main () =
     $"let is_windows () = !is_windows ()" : ()
     $"let get_executable_suffix () = !get_executable_suffix ()" : ()
+    $"let execute_async x = !execute_async x" : ()
+    $"let execute_with_options_async x = !execute_with_options_async x" : ()
+    $"type RuntimeTraceLevel = `trace_level " : ()

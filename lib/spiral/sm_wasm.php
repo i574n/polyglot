@@ -264,7 +264,8 @@ function closure34($v0_1, $v1_1) {
         $v13_1 = $v1_1->slice;
         $v14_1 = \BigInt\toInt64(\BigInt\op_Subtraction($v2_1, $v11_1));
         $v15_1 = \BigInt\toInt64(\BigInt\op_Subtraction($v2_1, NULL));
-        return \String\join('', \Seq\ofArray([ $v13_1, '...', $v1_1->slice ]));
+        $v20_1 = \Seq\ofArray([ $v13_1, '...', $v1_1->slice ]);
+        return \String\join(method0(NULL), $v20_1);
     }
 }
 
@@ -308,38 +309,43 @@ function closure36($unitVar, $v0_1) {
 }
 
 #42
-function closure39($v0_1, $v1_1) {
-    return \String\join($v0_1, $v1_1);
+function method2($v0_1) {
+    return $v0_1;
 }
 
 #43
+function closure39($v0_1, $v1_1) {
+    return \String\join(method2($v0_1), $v1_1);
+}
+
+#44
 function closure38($unitVar, $v0_1) {
     return function ($v) use ($closure39, $v0_1) {     return closure39($v0_1, $v);
  };
 }
 
-#44
+#45
 function closure41($v0_1, $v1_1) {
     return \String\join($v0_1, $v1_1);
 }
 
-#45
+#46
 function closure40($unitVar, $v0_1) {
     return function ($v) use ($closure41, $v0_1) {     return closure41($v0_1, $v);
  };
 }
 
-#46
-function method2($v0_1, $v1_1) {
+#47
+function method3($v0_1, $v1_1) {
     return $v1_1->l0 < $v0_1;
 }
 
-#47
+#48
 function closure42($unitVar, $v0_1) {
     $v1_1 = $v0_1->length;
     $v2_1 = \FSharpArray\fill([  ], 0, $v1_1, '');
     $v3_1 = new Mut1(0);
-    while (method2($v1_1, $v3_1)) {
+    while (method3($v1_1, $v3_1)) {
         $v5_1 = $v3_1->l0;
         $v6_1 = $v0_1[$v5_1];
         $v2_1[$v5_1] = $v6_1;
@@ -349,203 +355,203 @@ function closure42($unitVar, $v0_1) {
     return $v2_1;
 }
 
-#48
+#49
 $GLOBALS['v0'] = function ($v) use ($closure0) { return closure0(NULL, $v);
  };
 
-#49
+#50
 function contains($x) {
     return $GLOBALS['v0']($x);
 }
 
-#50
+#51
 $GLOBALS['v1'] = function ($v) use ($closure2) { return closure2(NULL, $v);
  };
 
-#51
+#52
 function ends_with($x) {
     return $GLOBALS['v1']($x);
 }
 
-#52
+#53
 $GLOBALS['v2'] = function ($v) use ($closure4) { return closure4(NULL, $v);
  };
 
-#53
+#54
 function pad_left($x) {
     return $GLOBALS['v2']($x);
 }
 
-#54
+#55
 $GLOBALS['v3'] = function ($v) use ($closure7) { return closure7(NULL, $v);
  };
 
-#55
+#56
 function pad_right($x) {
     return $GLOBALS['v3']($x);
 }
 
-#56
+#57
 $GLOBALS['v4'] = function ($v) use ($closure9) { return closure9(NULL, $v);
  };
 
-#57
+#58
 function replace($x) {
     return $GLOBALS['v4']($x);
 }
 
-#58
+#59
 $GLOBALS['v5'] = function ($v) use ($closure12) { return closure12(NULL, $v);
  };
 
-#59
+#60
 function slice($x) {
     return $GLOBALS['v5']($x);
 }
 
-#60
+#61
 $GLOBALS['v6'] = function ($v) use ($closure15) { return closure15(NULL, $v);
  };
 
-#61
+#62
 function split($x) {
     return $GLOBALS['v6']($x);
 }
 
-#62
+#63
 $GLOBALS['v7'] = function ($v) use ($closure17) { return closure17(NULL, $v);
  };
 
-#63
+#64
 function split_string($x) {
     return $GLOBALS['v7']($x);
 }
 
-#64
+#65
 $GLOBALS['v8'] = function ($v) use ($closure19) { return closure19(NULL, $v);
  };
 
-#65
+#66
 function starts_with($x) {
     return $GLOBALS['v8']($x);
 }
 
-#66
+#67
 $GLOBALS['v9'] = function ($v) use ($closure21) { return closure21(NULL, $v);
  };
 
-#67
+#68
 function substring($x) {
     return $GLOBALS['v9']($x);
 }
 
-#68
+#69
 $GLOBALS['v10'] = function ($v) use ($closure24) { return closure24(NULL, $v);
  };
 
-#69
+#70
 function to_lower($x) {
     return $GLOBALS['v10']($x);
 }
 
-#70
+#71
 $GLOBALS['v11'] = function ($v) use ($closure25) { return closure25(NULL, $v);
  };
 
-#71
+#72
 function to_upper($x) {
     return $GLOBALS['v11']($x);
 }
 
-#72
+#73
 $GLOBALS['v12'] = function ($v) use ($closure26) { return closure26(NULL, $v);
  };
 
-#73
+#74
 function trim($x) {
     return $GLOBALS['v12']($x);
 }
 
-#74
+#75
 $GLOBALS['v13'] = function ($v) use ($closure27) { return closure27(NULL, $v);
  };
 
-#75
+#76
 function trim_end($x) {
     return $GLOBALS['v13']($x);
 }
 
-#76
+#77
 $GLOBALS['v14'] = function ($v) use ($closure29) { return closure29(NULL, $v);
  };
 
-#77
+#78
 function trim_start($x) {
     return $GLOBALS['v14']($x);
 }
 
-#78
+#79
 $GLOBALS['v15'] = function ($v) use ($closure31) { return closure31(NULL, $v);
  };
 
-#79
+#80
 function ellipsis($x) {
     return $GLOBALS['v15']($x);
 }
 
-#80
+#81
 $GLOBALS['v16'] = function ($v) use ($closure33) { return closure33(NULL, $v);
  };
 
-#81
+#82
 function ellipsis_end($x) {
     return $GLOBALS['v16']($x);
 }
 
-#82
+#83
 $GLOBALS['v17'] = function ($v) use ($closure35) { return closure35(NULL, $v);
  };
 
-#83
+#84
 function format_exception($x) {
     return $GLOBALS['v17']($x);
 }
 
-#84
+#85
 $GLOBALS['v18'] = function ($v) use ($closure36) { return closure36(NULL, $v);
  };
 
-#85
+#86
 function concat_array_trailing($x) {
     return $GLOBALS['v18']($x);
 }
 
-#86
+#87
 $GLOBALS['v19'] = function ($v) use ($closure38) { return closure38(NULL, $v);
  };
 
-#87
+#88
 function concat($x) {
     return $GLOBALS['v19']($x);
 }
 
-#88
+#89
 $GLOBALS['v20'] = function ($v) use ($closure40) { return closure40(NULL, $v);
  };
 
-#89
+#90
 function join_0027($x) {
     return $GLOBALS['v20']($x);
 }
 
-#90
+#91
 $GLOBALS['v21'] = function ($v) use ($closure42) { return closure42(NULL, $v);
  };
 
-#91
+#92
 function to_char_array($x) {
     return $GLOBALS['v21']($x);
 }
 
-#92
+#93
 

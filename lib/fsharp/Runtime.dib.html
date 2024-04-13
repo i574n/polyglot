@@ -7640,399 +7640,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="splitCommand">splitCommand<a class="anchor-link" href="#splitCommand">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">private</span> <span class="n">CommandParseStep</span> <span class="o">=</span>
-    <span class="o">|</span> <span class="n">Start</span>
-    <span class="o">|</span> <span class="n">Path</span> <span class="n">of</span> <span class="n">quoted</span><span class="p">:</span> <span class="nb">bool</span>
-    <span class="o">|</span> <span class="n">Arguments</span>
-
-<span class="n">let</span> <span class="n">splitCommand</span> <span class="p">(</span><span class="n">command</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">chars</span> <span class="n">step</span> <span class="o">=</span>
-        <span class="k">match</span> <span class="n">chars</span><span class="p">,</span> <span class="n">step</span> <span class="k">with</span>
-        <span class="o">|</span> <span class="p">(</span><span class="s1">'"'</span> <span class="o">|</span> <span class="s1">'</span><span class="se">\'</span><span class="s1">'</span><span class="p">)</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">_</span> <span class="n">when</span> <span class="n">path</span> <span class="o">=</span> <span class="s2">""</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Path</span> <span class="n">true</span><span class="p">)</span>
-        <span class="o">|</span> <span class="p">(</span><span class="s1">'"'</span> <span class="o">|</span> <span class="s1">'</span><span class="se">\'</span><span class="s1">'</span><span class="p">)</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">Path</span> <span class="n">true</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Path</span> <span class="n">false</span><span class="p">)</span>
-        <span class="o">|</span> <span class="s1">' '</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">Path</span> <span class="n">true</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="si">{path}</span><span class="s2"> "</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="p">(</span><span class="n">Path</span> <span class="n">true</span><span class="p">)</span>
-        <span class="o">|</span> <span class="s1">' '</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="p">(</span><span class="n">Start</span> <span class="o">|</span> <span class="n">Path</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="n">Arguments</span>
-        <span class="o">|</span> <span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">Arguments</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{args}{char}</span><span class="s2">"</span><span class="p">)</span> <span class="n">tail</span> <span class="n">Arguments</span>
-        <span class="o">|</span> <span class="n">char</span> <span class="p">::</span> <span class="n">tail</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">loop</span> <span class="p">(</span><span class="err">$</span><span class="s2">"</span><span class="si">{path}{char}</span><span class="s2">"</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="n">tail</span> <span class="n">step</span>
-        <span class="o">|</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">path</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">replace</span> <span class="o">@</span><span class="s2">"</span><span class="se">\"</span><span class="s2"> "</span><span class="o">/</span><span class="s2">", args</span>
-    <span class="n">loop</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span> <span class="p">(</span><span class="n">command</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">toList</span><span class="p">)</span> <span class="n">Start</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">splitCommand</span> <span class="s2">""</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
-
-<span class="n">splitCommand</span> <span class="s2">"/a/b/c"</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"/a/b/c"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span>
-
-<span class="n">splitCommand</span> <span class="s2">"cat file.txt"</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="s2">"file.txt"</span><span class="p">)</span>
-
-<span class="n">splitCommand</span> <span class="s2">"""..\..</span><span class="se">\f</span><span class="s2">ile.exe file1.txt file2.txt"""</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"../../file.exe"</span><span class="p">,</span> <span class="s2">"file1.txt file2.txt"</span><span class="p">)</span>
-
-<span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"c:\dir</span><span class="se">\f</span><span class="s2">ile.exe ""file1.txt file2.txt"""</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"c:/dir/file.exe"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"""file1.txt file2.txt"""</span><span class="p">)</span>
-
-<span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"""..\..\dir name</span><span class="se">\f</span><span class="s2">ile.exe"" ""file 1.txt"" file2.txt"</span>
-<span class="s2">|&gt; _assertEqual ("../../dir name/file.exe", @"""</span><span class="n">file</span> <span class="mf">1.</span><span class="n">txt</span><span class="s2">""</span> <span class="n">file2</span><span class="o">.</span><span class="n">txt</span><span class="s2">")</span>
-
-<span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"""..\..</span><span class="se">\f</span><span class="s2">ile 1.exe"" -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"../../file 1.exe"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"-c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span><span class="p">)</span>
-
-<span class="n">splitCommand</span> <span class="o">@</span><span class="s2">"..\..</span><span class="se">\f</span><span class="s2">ile 1.exe -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="p">(</span><span class="s2">"../../file"</span><span class="p">,</span> <span class="o">@</span><span class="s2">"1.exe -c </span><span class="se">\\</span><span class="s2">""echo 1</span><span class="se">\\</span><span class="s2">"""</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>( ,  )
-( /a/b/c,  )
-( cat, file.txt )
-( ../../file.exe, file1.txt file2.txt )
-( c:/dir/file.exe, "file1.txt file2.txt" )
-( ../../dir name/file.exe, "file 1.txt" file2.txt )
-( ../../file 1.exe, -c \\"echo 1\\" )
-( ../../file, 1.exe -c \\"echo 1\\" )
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="executeAsync">executeAsync<a class="anchor-link" href="#executeAsync">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="nb">type</span> <span class="n">ExecutionLine</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">ProcessId</span> <span class="p">:</span> <span class="nb">int</span>
-        <span class="n">Line</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="n">Error</span> <span class="p">:</span> <span class="nb">bool</span>
-    <span class="p">}</span>
-
-<span class="nb">type</span> <span class="n">ExecutionOptions</span> <span class="o">=</span>
-    <span class="p">{</span>
-        <span class="n">Command</span> <span class="p">:</span> <span class="n">string</span>
-        <span class="n">WorkingDirectory</span> <span class="p">:</span> <span class="n">string</span> <span class="n">option</span>
-        <span class="n">CancellationToken</span> <span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span> <span class="n">option</span>
-        <span class="n">OnLine</span> <span class="p">:</span> <span class="p">(</span><span class="n">ExecutionLine</span> <span class="o">-&gt;</span> <span class="n">Async</span><span class="o">&lt;</span><span class="n">unit</span><span class="o">&gt;</span><span class="p">)</span> <span class="n">option</span>
-    <span class="p">}</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">executeWithOptionsAsync</span> <span class="p">(</span><span class="n">options</span> <span class="p">:</span> <span class="n">ExecutionOptions</span><span class="p">)</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">fileName</span><span class="p">,</span> <span class="n">arguments</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">Command</span> <span class="o">|&gt;</span> <span class="n">splitCommand</span>
-    <span class="n">let</span> <span class="n">workingDirectory</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">WorkingDirectory</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="s2">""</span>
-
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / options: </span><span class="si">{options}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
-
-    <span class="n">let</span> <span class="n">startInfo</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">ProcessStartInfo</span> <span class="p">(</span>
-        <span class="n">Arguments</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">,</span>
-        <span class="n">CreateNoWindow</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
-        <span class="n">FileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="p">,</span>
-        <span class="n">RedirectStandardError</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
-        <span class="n">RedirectStandardOutput</span> <span class="o">=</span> <span class="n">true</span><span class="p">,</span>
-        <span class="n">StandardOutputEncoding</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Text</span><span class="o">.</span><span class="n">Encoding</span><span class="o">.</span><span class="n">UTF8</span><span class="p">,</span>
-        <span class="n">UseShellExecute</span> <span class="o">=</span> <span class="n">false</span><span class="p">,</span>
-        <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="n">workingDirectory</span>
-    <span class="p">)</span>
-
-    <span class="n">use</span> <span class="n">proc</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">Process</span> <span class="p">(</span><span class="n">StartInfo</span> <span class="o">=</span> <span class="n">startInfo</span><span class="p">)</span>
-    <span class="n">let</span> <span class="n">output</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="n">Collections</span><span class="o">.</span><span class="n">Concurrent</span><span class="o">.</span><span class="n">ConcurrentStack</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="p">()</span>
-
-    <span class="n">let</span> <span class="n">inline</span> <span class="n">event</span> <span class="n">error</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">System</span><span class="o">.</span><span class="n">Diagnostics</span><span class="o">.</span><span class="n">DataReceivedEventArgs</span><span class="p">)</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">Data</span> <span class="o">&lt;&gt;</span> <span class="n">null</span> <span class="n">then</span>
-            <span class="k">match</span> <span class="n">options</span><span class="o">.</span><span class="n">OnLine</span> <span class="k">with</span>
-            <span class="o">|</span> <span class="n">Some</span> <span class="n">onLine</span> <span class="o">-&gt;</span>
-                <span class="n">do</span><span class="err">!</span>
-                    <span class="n">onLine</span>
-                        <span class="p">{</span>
-                            <span class="n">ProcessId</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">Id</span>
-                            <span class="n">Line</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">Data</span>
-                            <span class="n">Error</span> <span class="o">=</span> <span class="n">error</span>
-                        <span class="p">}</span>
-            <span class="o">|</span> <span class="kc">None</span> <span class="o">-&gt;</span> <span class="p">()</span>
-
-            <span class="n">trace</span>
-                <span class="n">Verbose</span>
-                <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"&gt; </span><span class="si">{e.Data}</span><span class="s2">"</span><span class="p">)</span>
-                <span class="n">Common</span><span class="o">.</span><span class="n">getLocals</span>
-
-            <span class="n">output</span><span class="o">.</span><span class="n">Push</span>
-                <span class="err">$</span><span class="s2">"{</span>
-                    <span class="k">if</span> <span class="n">error</span> <span class="n">then</span> <span class="s1">'['</span><span class="o">.</span><span class="n">ToString</span><span class="p">()</span> <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="n">String</span><span class="o">.</span><span class="n">Empty</span>
-                <span class="p">}{</span>
-                    <span class="n">e</span><span class="o">.</span><span class="n">Data</span>
-                <span class="p">}{</span>
-                    <span class="k">if</span> <span class="n">error</span> <span class="n">then</span> <span class="s1">']'</span><span class="o">.</span><span class="n">ToString</span><span class="p">()</span> <span class="k">else</span> <span class="n">System</span><span class="o">.</span><span class="n">String</span><span class="o">.</span><span class="n">Empty</span>
-                <span class="p">}</span><span class="s2">"</span>
-    <span class="p">}</span>
-
-    <span class="n">proc</span><span class="o">.</span><span class="n">OutputDataReceived</span><span class="o">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">event</span> <span class="n">false</span> <span class="o">&gt;&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartImmediate</span><span class="p">)</span>
-    <span class="n">proc</span><span class="o">.</span><span class="n">ErrorDataReceived</span><span class="o">.</span><span class="n">Add</span> <span class="p">(</span><span class="n">event</span> <span class="n">true</span> <span class="o">&gt;&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartImmediate</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">Start</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="ow">not</span>
-    <span class="n">then</span> <span class="n">failwith</span> <span class="err">$</span><span class="s2">"executeAsync / proc.Start () error"</span>
-
-    <span class="n">proc</span><span class="o">.</span><span class="n">BeginErrorReadLine</span> <span class="p">()</span>
-    <span class="n">proc</span><span class="o">.</span><span class="n">BeginOutputReadLine</span> <span class="p">()</span>
-
-    <span class="n">let</span><span class="err">!</span> <span class="n">ct</span> <span class="o">=</span>
-        <span class="n">options</span><span class="o">.</span><span class="n">CancellationToken</span>
-        <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationToken</span><span class="o">.</span><span class="kc">None</span>
-        <span class="o">|&gt;</span> <span class="n">SpiralAsync</span><span class="o">.</span><span class="n">merge_cancellation_token_with_default_async</span>
-
-    <span class="n">use</span> <span class="n">reg</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Register</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">proc</span><span class="o">.</span><span class="n">HasExited</span> <span class="n">then</span> <span class="n">proc</span><span class="o">.</span><span class="n">Kill</span> <span class="p">()</span>
-    <span class="p">)</span>
-
-    <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="k">try</span>
-            <span class="n">do</span><span class="err">!</span> <span class="n">proc</span><span class="o">.</span><span class="n">WaitForExitAsync</span> <span class="n">ct</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
-            <span class="k">return</span> <span class="n">proc</span><span class="o">.</span><span class="n">ExitCode</span>
-        <span class="k">with</span> <span class="p">:</span><span class="err">?</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">Tasks</span><span class="o">.</span><span class="n">TaskCanceledException</span> <span class="k">as</span> <span class="n">ex</span> <span class="o">-&gt;</span>
-            <span class="n">trace</span> <span class="ne">Warning</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"executeAsync / WaitForExitAsync / ex: {ex |&gt; SpiralSm.format_exception}"</span><span class="p">)</span> <span class="n">getLocals</span>
-            <span class="n">ex</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">format_exception</span> <span class="o">|&gt;</span> <span class="n">output</span><span class="o">.</span><span class="n">Push</span>
-            <span class="k">return</span> <span class="n">System</span><span class="o">.</span><span class="n">Int32</span><span class="o">.</span><span class="n">MinValue</span>
-    <span class="p">}</span>
-
-    <span class="n">let</span> <span class="n">output</span> <span class="o">=</span> <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">rev</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">concat</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
-
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
-        <span class="err">$</span><span class="s2">"executeAsync / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / output.Length: </span><span class="si">{output.Length}</span><span class="s2">"</span>
-    <span class="p">)</span> <span class="n">getLocals</span>
-
-    <span class="k">return</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span>
-<span class="p">}</span>
-
-<span class="n">let</span> <span class="n">inline</span> <span class="n">executeAsync</span> <span class="n">command</span> <span class="o">=</span>
-    <span class="n">executeWithOptionsAsync</span>
-        <span class="p">{</span>
-            <span class="n">Command</span> <span class="o">=</span> <span class="n">command</span>
-            <span class="n">CancellationToken</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">OnLine</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=13">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempFolder</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s2">"test.txt"</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="n">fileName</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">executeAsync</span> <span class="o">@</span><span class="err">$</span><span class="s2">"pwsh -c ""Get-Content </span><span class="si">{path}</span><span class="s2">"""</span>
-    <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">1</span>
-    <span class="n">result</span> <span class="o">|&gt;</span> <span class="n">_stringContains</span> <span class="s2">"not exist"</span>
-
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">path</span>
-
-    <span class="k">return</span><span class="err">!</span>
-        <span class="n">executeWithOptionsAsync</span>
-            <span class="p">{</span>
-                <span class="n">Command</span> <span class="o">=</span> <span class="o">@</span><span class="err">$</span><span class="s2">"pwsh -c ""Get-Content </span><span class="si">{fileName}</span><span class="s2">"""</span>
-                <span class="n">CancellationToken</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">OnLine</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">tempFolder</span>
-            <span class="p">}</span>
-
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="mi">0</span>
-        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"0"</span>
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-
-<span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5\test.txt""
-  WorkingDirectory = None
-  CancellationToken = None
-  OnLine = None }
-00:00:01 #2 [verbose] &gt; <span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5\test.txt' because it does not exist.</span>
-00:00:01 #3 [debug] executeAsync / exitCode: 1 / output.Length: 171
-1
-[<span class="ansi-red-intense-fg ansi-bold">Get-Content: </span><span class="ansi-red-intense-fg ansi-bold">Cannot find path 'C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5\test.txt' because it does not exist.</span>]
-00:00:01 #4 [debug] executeAsync / options: { Command = "pwsh -c "Get-Content test.txt""
-  WorkingDirectory =
-   Some
-     "C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0359-5917-5d07c08ac5a5"
-  CancellationToken = None
-  OnLine = None }
-00:00:02 #5 [verbose] &gt; 0
-00:00:02 #6 [debug] executeAsync / exitCode: 0 / output.Length: 1
-0
-0
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="o">////</span> <span class="n">test</span>
-
-<span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">tempFolder</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">create_temp_directory</span> <span class="p">()</span>
-<span class="n">let</span> <span class="n">path</span> <span class="o">=</span> <span class="n">tempFolder</span> <span class="o">&lt;/&gt;</span> <span class="s2">"test.txt"</span>
-
-<span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="o">@</span><span class="err">$</span><span class="s2">"pwsh -c ""Get-Content </span><span class="si">{path}</span><span class="s2">"""</span>
-
-<span class="k">async</span> <span class="p">{</span>
-    <span class="n">do</span><span class="err">!</span> <span class="s2">"0"</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">write_all_text_async</span> <span class="n">path</span>
-    <span class="n">let</span> <span class="n">cts</span> <span class="o">=</span> <span class="n">new</span> <span class="n">System</span><span class="o">.</span><span class="n">Threading</span><span class="o">.</span><span class="n">CancellationTokenSource</span> <span class="p">()</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"1"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">result</span> <span class="o">=</span>
-        <span class="n">executeWithOptionsAsync</span>
-            <span class="p">{</span>
-                <span class="n">Command</span> <span class="o">=</span> <span class="n">command</span>
-                <span class="n">CancellationToken</span> <span class="o">=</span> <span class="n">Some</span> <span class="n">cts</span><span class="o">.</span><span class="n">Token</span>
-                <span class="n">OnLine</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">WorkingDirectory</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="p">}</span>
-        <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">StartChild</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"2"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">do</span><span class="err">!</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sleep</span> <span class="mi">100</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"3"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">cts</span><span class="o">.</span><span class="n">Cancel</span> <span class="p">()</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"4"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">result</span>
-    <span class="n">trace</span> <span class="n">Debug</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">"5"</span><span class="p">)</span> <span class="n">getLocals</span>
-    <span class="k">return</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span>
-<span class="p">}</span>
-<span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">runWithTimeout</span> <span class="mi">10000</span>
-<span class="o">|&gt;</span> <span class="n">function</span>
-    <span class="o">|</span> <span class="n">Some</span> <span class="p">(</span><span class="n">exitCode</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span> <span class="o">-&gt;</span>
-        <span class="n">exitCode</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="o">-</span><span class="mi">2147483648</span>
-        <span class="n">output</span> <span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="s2">"System.Threading.Tasks.TaskCanceledException: A task was canceled."</span>
-
-        <span class="n">true</span>
-    <span class="o">|</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span>
-<span class="o">|&gt;</span> <span class="n">_assertEqual</span> <span class="n">true</span>
-
-<span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:03 #7 [debug] 1
-00:00:03 #9 [debug] 2
-00:00:03 #8 [debug] executeAsync / options: { Command =
-   "pwsh -c "Get-Content C:\Users\i574n\AppData\Local\Temp\!dotnet-repl\20240411-2004-0686-8634-8b2a0a3913d0\test.txt""
-  WorkingDirectory = None
-  CancellationToken = Some System.Threading.CancellationToken
-  OnLine = None }
-00:00:03 #10 [debug] 3
-00:00:03 #11 [debug] 4
-00:00:03 #12 [warning] executeAsync / WaitForExitAsync / ex: System.Threading.Tasks.TaskCanceledException: A task was canceled.
-00:00:03 #13 [debug] executeAsync / exitCode: -2147483648 / output.Length: 66
-00:00:03 #14 [debug] 5
--2147483648
-System.Threading.Tasks.TaskCanceledException: A task was canceled.
-True
-</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="splitArgs">splitArgs<a class="anchor-link" href="#splitArgs">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8048,7 +7660,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=10">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8081,7 +7693,7 @@ True
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8091,7 +7703,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=19">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=12">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8118,7 +7730,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=13">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8142,7 +7754,7 @@ True
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=21">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=14">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8179,7 +7791,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=22">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=15">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8206,7 +7818,7 @@ OPTIONS:
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>FSI_0035+it@3-1
+<pre>FSI_0030+it@3-1
 Argu.ArguParseException: ERROR: missing parameter '&lt;paths&gt;...'.
 USAGE: dotnet-repl.exe [--help] &lt;paths&gt;...
 
@@ -8223,7 +7835,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=16">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8240,7 +7852,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=24">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=17">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8281,7 +7893,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=25">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=18">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8299,7 +7911,7 @@ OPTIONS:
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=26">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

@@ -176,15 +176,3 @@ module Async =
     let inline withCancellationToken (ct : System.Threading.CancellationToken) fn =
         Async.StartImmediateAsTask (fn, ct)
         |> Async.AwaitTask
-
-    /// ## withTraceLevel
-
-    let inline withTraceLevel level fn = async {
-        let struct (_, _, _, level', _) = SpiralTrace.get_trace_state ()
-        let oldTraceLevel = level'.l0
-        try
-            level'.l0 <- level |> to_trace_level
-            return! fn
-        finally
-            level'.l0 <- oldTraceLevel
-    }

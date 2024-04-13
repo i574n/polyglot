@@ -5,6 +5,7 @@ module SpiralTrace =
 #else
         get_trace_state ()
 #endif
+
     let trace x =
 #if !INTERACTIVE
         Trace.trace x
@@ -12,39 +13,11 @@ module SpiralTrace =
         trace x
 #endif
 
-    let US0_0 =
+    type TraceLevel =
 #if !INTERACTIVE
-        Trace.US0_0
+        Trace.US0
 #else
-        US0_0
-#endif
-
-    let US0_1 =
-#if !INTERACTIVE
-        Trace.US0_1
-#else
-        US0_1
-#endif
-
-    let US0_2 =
-#if !INTERACTIVE
-        Trace.US0_2
-#else
-        US0_2
-#endif
-
-    let US0_3 =
-#if !INTERACTIVE
-        Trace.US0_3
-#else
-        US0_3
-#endif
-
-    let US0_4 =
-#if !INTERACTIVE
-        Trace.US0_4
-#else
-        US0_4
+        US0
 #endif
 
 #if !FABLE_COMPILER && !WASM && !CONTRACT
@@ -70,6 +43,26 @@ module SpiralRuntime =
         Runtime.is_windows ()
 #else
         is_windows ()
+#endif
+    let execute_async x =
+#if !INTERACTIVE
+        Runtime.execute_async x
+#else
+        execute_async x
+#endif
+
+    let execute_with_options_async x =
+#if !INTERACTIVE
+        Runtime.execute_with_options_async x
+#else
+        execute_with_options_async x
+#endif
+
+    type TraceLevel =
+#if !INTERACTIVE
+        Runtime.US0
+#else
+        RuntimeTraceLevel
 #endif
 
 module SpiralCrypto =

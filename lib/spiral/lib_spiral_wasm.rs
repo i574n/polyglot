@@ -13,8 +13,10 @@ pub use lib::Lib::*;
 pub mod _Async;
 pub use _Async::Async_;
 
+#[allow(non_camel_case_types)]
 #[allow(non_snake_case)]
 #[allow(non_upper_case_globals)]
+#[allow(unreachable_code)]
 #[allow(unused_variables)]
 #[path = "./runtime_wasm.rs"]
 pub mod _Runtime;

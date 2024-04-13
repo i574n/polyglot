@@ -71,11 +71,11 @@ pub mod Polyglot {
         }
         pub fn to_trace_level(_arg: LrcPtr<Polyglot::Common::TraceLevel>) -> US0 {
             match _arg.as_ref() {
-                Polyglot::Common::TraceLevel::Debug => SpiralTrace::US0_1(),
-                Polyglot::Common::TraceLevel::Info => SpiralTrace::US0_2(),
-                Polyglot::Common::TraceLevel::Warning => SpiralTrace::US0_3(),
-                Polyglot::Common::TraceLevel::Critical => SpiralTrace::US0_4(),
-                _ => SpiralTrace::US0_0(),
+                Polyglot::Common::TraceLevel::Debug => US0::US0_1,
+                Polyglot::Common::TraceLevel::Info => US0::US0_2,
+                Polyglot::Common::TraceLevel::Warning => US0::US0_3,
+                Polyglot::Common::TraceLevel::Critical => US0::US0_4,
+                _ => US0::US0_0,
             }
         }
         pub fn trace(

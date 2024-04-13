@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"}]}}
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
 
 #!markdown
 
@@ -201,7 +201,7 @@ inl eval py code (args : pair bool (pair f64 f64)) : _ (_ f64) sm'.std_string =
 
 inl call1_ log py s code =
     inl code = join (a code : _ i32 _) |> sm'.concat_array_trailing "\n"
-    
+
     inl s = new_pair (re s) (im s)
     inl args = new_pair log s
 
@@ -288,7 +288,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
 
         Ok ()
         |> resultm.box
-    
+
     join
         !\($'"pyo3::prepare_freethreaded_python()"') : ()
 
@@ -296,7 +296,7 @@ inl run_test log closure_fix (fn : (complex f64 -> complex f64) * (complex f64 -
 
         let x' = fn_ (!\($'"py"') : python)
         inl x' = join x'
-        
+
         inl closure_fix = 2u8, 1u8
         x' |> rust.fix_closure closure_fix
 
