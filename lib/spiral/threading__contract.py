@@ -7,7 +7,7 @@ from fable_modules.fable_library.reflection import (TypeInfo, class_type, union_
 from fable_modules.fable_library.types import (Array, Union, FSharpRef)
 from fable_modules.fable_library.util import IDisposable
 
-def _expr19() -> TypeInfo:
+def _expr53() -> TypeInfo:
     return union_type("Threading.US0", [], US0, lambda: [[("f0_0", class_type("System.Threading.CancellationToken"))], []])
 
 
@@ -23,7 +23,7 @@ class US0(Union):
         return ["US0_0", "US0_1"]
 
 
-US0_reflection = _expr19
+US0_reflection = _expr53
 
 def US0__get_IsUS0_0(this: FSharpRef[US0], unit_arg: None) -> bool:
     if this.tag == 0:
@@ -48,10 +48,10 @@ def closure1(unit_var: None, v0_1: CancellationToken) -> US0:
 
 
 def method0(__unit: None=None) -> Callable[[CancellationToken], US0]:
-    def _arrow21(v: CancellationToken) -> US0:
+    def _arrow54(v: CancellationToken) -> US0:
         return closure1(None, v)
 
-    return _arrow21
+    return _arrow54
 
 
 def closure2(v0_1: Any, unit_var: None) -> None:
@@ -68,11 +68,11 @@ def closure0(unit_var: None, v0_1: CancellationToken | None=None) -> tuple[Cance
     return (pattern_input_1[0], pattern_input_1[1])
 
 
-def _arrow26(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
+def _arrow55(v: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return closure0(None, v)
 
 
-v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow26
+v0: Callable[[CancellationToken | None], tuple[CancellationToken, IDisposable]] = _arrow55
 
 def new_disposable_token(x: CancellationToken | None=None) -> tuple[CancellationToken, IDisposable]:
     return v0(x)
