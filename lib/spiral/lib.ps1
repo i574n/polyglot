@@ -13,6 +13,7 @@ function CopyTarget {
             $lib,
             $name
         )
+        $name = $Language -eq "py" -and $name -eq "threading" ? "$($name)_" : $name
         $name = $Language -eq "py" ? $name.ToLower() : $name
         $from = "$TargetDir/target/$Language/lib/$lib/$name.$Language"
         $to = "$root/lib/$lib/$name$_runtime.$Language"
@@ -26,23 +27,30 @@ function CopyTarget {
                 | Set-Content $to
         }
         if ($Language -eq "rs") {
-            if ($name -eq "async_" -or $name -eq "runtime") {
+            if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
                 (Get-Content $to) `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;" `
+                    | Set-Content $to
+            }
+            if ($name -in @("async_", "runtime", "threading")) {
+                (Get-Content $to) `
                     -replace "use fable_library_rust::System::Threading::CancellationToken;", "type CancellationToken = ();" `
+                    | Set-Content $to
+            }
+            if ($name -in @("threading")) {
+                (Get-Content $to) `
+                    -replace "use fable_library_rust::System::Threading::CancellationTokenSource;", "type CancellationTokenSource = ();" `
+                    | Set-Content $to
+            }
+            if ($name -in @("runtime", "threading", "file_system")) {
+                (Get-Content $to) `
+                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
                     | Set-Content $to
             }
             if ($name -eq "runtime") {
                 (Get-Content $to) `
                     -replace "use fable_library_rust::System::Threading::Tasks::TaskCanceledException;", "type TaskCanceledException = ();" `
                     -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
-                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
-                    | Set-Content $to
-            }
-            if ($name -eq "file_system") {
-                (Get-Content $to) `
-                    -replace "use fable_library_rust::Async_::Async;", "type Async<T> = Option<T>;" `
-                    -replace "\s\sdefaultOf\(\);", " defaultOf::<()>();" `
                     | Set-Content $to
             }
             if ($name -eq "common") {
@@ -58,6 +66,8 @@ function CopyTarget {
     CopyItem "spiral" "date_time"
     CopyItem "spiral" "async_"
     CopyItem "spiral" "runtime"
+    CopyItem "spiral" "threading"
+    CopyItem "spiral" "networking"
     CopyItem "spiral" "file_system"
     CopyItem "spiral" "sm"
     CopyItem "spiral" "crypto"
@@ -98,5 +108,5 @@ function BuildFable {
 
 
 function GetFsxModules {
-    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
+    @("lib/spiral/common.fsx", "lib/spiral/sm.fsx", "lib/spiral/crypto.fsx", "lib/spiral/date_time.fsx", "lib/spiral/async_.fsx", "lib/spiral/threading.fsx", "lib/spiral/networking.fsx", "lib/spiral/runtime.fsx", "lib/spiral/file_system.fsx", "lib/spiral/trace.fsx", "lib/spiral/lib.fsx")
 }

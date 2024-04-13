@@ -15,7 +15,7 @@ module Supervisor =
     /// ## sendJson
 
     let inline sendJson (port : int) (json : string) = async {
-        let! portOpen = Networking.testPortOpen port
+        let! portOpen = SpiralNetworking.test_port_open port
         if portOpen then
             try
                 let connection = HubConnectionBuilder().WithUrl($"http://127.0.0.1:{port}").Build()
@@ -54,11 +54,11 @@ module Supervisor =
         | TypeErrors of {| uri : string; errors : RString list |}
 
     let inline awaitCompiler port cancellationToken = async {
-        let ct, disposable = cancellationToken |> Threading.newDisposableToken
+        let struct (ct, disposable) = cancellationToken |> SpiralThreading.new_disposable_token
         let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
 
         let compiler = MailboxProcessor.Start (fun inbox -> async {
-            let! availablePort = Networking.getAvailablePort (Some 60) port
+            let! availablePort = SpiralNetworking.get_available_port (Some 60) port
             if availablePort <> port then
                 inbox.Post (port, false)
             else
@@ -73,7 +73,7 @@ module Supervisor =
                 let command = $@"dotnet ""{dllPath}"" --port {availablePort} --default-int i32 --default-float f64"
                 let onLine = fun struct (_, line, _) -> async {
                     if line |> SpiralSm.contains $"Server bound to: http://localhost:{availablePort}" then
-                        do! Networking.waitForPortAccess (Some 500) true availablePort |> Async.Ignore
+                        do! SpiralNetworking.wait_for_port_access (Some 500) true availablePort |> Async.Ignore
 
                         let rec loop retry = async {
                             let getLocals () = $"port: {availablePort} / retry: {retry} / {getLocals ()}"
@@ -119,7 +119,7 @@ module Supervisor =
                     do! connection.StopAsync () |> Async.AwaitTask
                     disposable.Dispose ()
                     if managed
-                    then do! Networking.waitForPortAccess (Some 2000) false serverPort |> Async.Ignore
+                    then do! SpiralNetworking.wait_for_port_access (Some 2000) false serverPort |> Async.Ignore
                 }
                 |> Async.RunSynchronously
             )
@@ -172,7 +172,7 @@ module Supervisor =
         let stream, disposable = fileDir |> FileSystem.watchDirectory (fun _ -> false)
         use _ = disposable
 
-        let token, disposable = Threading.newDisposableToken cancellationToken
+        let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
         use _ = disposable
 
         let! serverPort, errors, ct, disposable = awaitCompiler port (Some token)
@@ -327,7 +327,7 @@ modules:
         let! code = fullPath |> SpiralFileSystem.read_all_text_async
         let lines = code |> SpiralSm.split "\n"
 
-        let token, disposable = Threading.newDisposableToken cancellationToken
+        let struct (token, disposable) = SpiralThreading.new_disposable_token cancellationToken
         use _ = disposable
 
         let! serverPort, _errors, ct, disposable =
@@ -434,7 +434,7 @@ modules:
 
         async {
             let port = port |> Option.defaultWith getCompilerPort
-            let localToken, disposable = Threading.newDisposableToken None
+            let struct (localToken, disposable) = SpiralThreading.new_disposable_token None
             let! serverPort, _errors, compilerToken, disposable = awaitCompiler port (Some localToken)
             use _ = disposable
 
@@ -485,7 +485,7 @@ modules:
                 |> Seq.collect id
                 |> fun x ->
                     if isParallel
-                    then Async.Parallel (x, float System.Environment.ProcessorCount * 0.75 |> ceil |> int)
+                    then Async.Parallel (x, float System.Environment.ProcessorCount * 0.51 |> ceil |> int)
                     else Async.Sequential x
                 |> Async.map Array.sum
         }

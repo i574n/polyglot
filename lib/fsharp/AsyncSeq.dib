@@ -180,6 +180,10 @@ testEvent.Calls
     "IObservable.Dispose"
 ]
 
+#!markdown
+
+## subscribeToken
+
 #!fsharp
 
 let subscribeToken (token : System.Threading.CancellationToken) =

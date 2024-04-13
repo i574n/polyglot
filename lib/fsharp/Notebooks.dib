@@ -15,6 +15,8 @@ Formatter.ListExpansionLimit <- 100
 #!import ../../../polyglot/lib/spiral/crypto.fsx
 #!import ../../../polyglot/lib/spiral/date_time.fsx
 #!import ../../../polyglot/lib/spiral/async_.fsx
+#!import ../../../polyglot/lib/spiral/threading.fsx
+#!import ../../../polyglot/lib/spiral/networking.fsx
 #!import ../../../polyglot/lib/spiral/runtime.fsx
 #!import ../../../polyglot/lib/spiral/file_system.fsx
 #!import ../../../polyglot/lib/spiral/trace.fsx

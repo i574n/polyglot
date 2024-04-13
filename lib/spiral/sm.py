@@ -143,10 +143,10 @@ def closure18(v0_1: Array[str], v1_1: str) -> Array[str]:
 
 
 def closure17(unit_var: None, v0_1: Array[str]) -> Callable[[str], Array[str]]:
-    def _arrow20(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Array[str]:
+    def _arrow19(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Array[str]:
         return closure18(v0_1, v)
 
-    return _arrow20
+    return _arrow19
 
 
 def closure20(v0_1: str, v1_1: str) -> bool:
@@ -154,10 +154,10 @@ def closure20(v0_1: str, v1_1: str) -> bool:
 
 
 def closure19(unit_var: None, v0_1: str) -> Callable[[str], bool]:
-    def _arrow21(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> bool:
+    def _arrow20(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> bool:
         return closure20(v0_1, v)
 
-    return _arrow21
+    return _arrow20
 
 
 def closure23(v0_1: int, v1_1: int, v2_1: str) -> str:
@@ -165,17 +165,17 @@ def closure23(v0_1: int, v1_1: int, v2_1: str) -> str:
 
 
 def closure22(v0_1: int, v1_1: int) -> Callable[[str], str]:
-    def _arrow22(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
+    def _arrow21(v: str, v0_1: Any=v0_1, v1_1: Any=v1_1) -> str:
         return closure23(v0_1, v1_1, v)
 
-    return _arrow22
+    return _arrow21
 
 
 def closure21(unit_var: None, v0_1: int) -> Callable[[int, str], str]:
-    def _arrow23(v: int, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
+    def _arrow22(v: int, unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[str], str]:
         return closure22(v0_1, v)
 
-    return _arrow23
+    return _arrow22
 
 
 def closure24(unit_var: None, v0_1: str) -> str:
@@ -195,10 +195,10 @@ def closure28(v0_1: Array[str], v1_1: str) -> str:
 
 
 def closure27(unit_var: None, v0_1: Array[str]) -> Callable[[str], str]:
-    def _arrow24(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow23(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure28(v0_1, v)
 
-    return _arrow24
+    return _arrow23
 
 
 def closure30(v0_1: Array[str], v1_1: str) -> str:
@@ -206,10 +206,10 @@ def closure30(v0_1: Array[str], v1_1: str) -> str:
 
 
 def closure29(unit_var: None, v0_1: Array[str]) -> Callable[[str], str]:
-    def _arrow25(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow24(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure30(v0_1, v)
 
-    return _arrow25
+    return _arrow24
 
 
 def closure32(v0_1: int, v1_1: str) -> str:
@@ -223,10 +223,10 @@ def closure32(v0_1: int, v1_1: str) -> str:
 
 
 def closure31(unit_var: None, v0_1: int) -> Callable[[str], str]:
-    def _arrow26(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow25(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure32(v0_1, v)
 
-    return _arrow26
+    return _arrow25
 
 
 def closure34(v0_1: int64, v1_1: str) -> str:
@@ -248,10 +248,10 @@ def closure34(v0_1: int64, v1_1: str) -> str:
 
 
 def closure33(unit_var: None, v0_1: int64) -> Callable[[str], str]:
-    def _arrow27(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow26(v: str, unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure34(v0_1, v)
 
-    return _arrow27
+    return _arrow26
 
 
 def closure35(unit_var: None, v0_1: Exception) -> str:
@@ -277,10 +277,10 @@ def closure37(v0_1: str, v1_1: Array[str]) -> str:
 
 
 def closure36(unit_var: None, v0_1: str) -> Callable[[Array[str]], str]:
-    def _arrow28(v: Array[str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow27(v: Array[str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure37(v0_1, v)
 
-    return _arrow28
+    return _arrow27
 
 
 def method2(v0_1: str) -> str:
@@ -292,10 +292,10 @@ def closure39(v0_1: str, v1_1: IEnumerable_1[str]) -> str:
 
 
 def closure38(unit_var: None, v0_1: str) -> Callable[[IEnumerable_1[str]], str]:
-    def _arrow29(v: IEnumerable_1[str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow28(v: IEnumerable_1[str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure39(v0_1, v)
 
-    return _arrow29
+    return _arrow28
 
 
 def closure41(v0_1: str, v1_1: Array[str]) -> str:
@@ -303,10 +303,10 @@ def closure41(v0_1: str, v1_1: Array[str]) -> str:
 
 
 def closure40(unit_var: None, v0_1: str) -> Callable[[Array[str]], str]:
-    def _arrow30(v: Array[str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
+    def _arrow29(v: Array[str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> str:
         return closure41(v0_1, v)
 
-    return _arrow30
+    return _arrow29
 
 
 def method3(v0_1: int, v1_1: Mut1) -> bool:
@@ -326,51 +326,51 @@ def closure42(unit_var: None, v0_1: str) -> Array[str]:
     return v2_1
 
 
-def _arrow31(v: str) -> Callable[[str], bool]:
+def _arrow30(v: str) -> Callable[[str], bool]:
     return closure0(None, v)
 
 
-v0: Callable[[str, str], bool] = _arrow31
+v0: Callable[[str, str], bool] = _arrow30
 
 def contains(x: str) -> Callable[[str], bool]:
     return v0(x)
 
 
-def _arrow32(v: str) -> Callable[[str], bool]:
+def _arrow31(v: str) -> Callable[[str], bool]:
     return closure2(None, v)
 
 
-v1: Callable[[str, str], bool] = _arrow32
+v1: Callable[[str, str], bool] = _arrow31
 
 def ends_with(x: str) -> Callable[[str], bool]:
     return v1(x)
 
 
-def _arrow33(v: int) -> Callable[[str, str], str]:
+def _arrow32(v: int) -> Callable[[str, str], str]:
     return closure4(None, v)
 
 
-v2: Callable[[int, str, str], str] = _arrow33
+v2: Callable[[int, str, str], str] = _arrow32
 
 def pad_left(x: int) -> Callable[[str, str], str]:
     return v2(x)
 
 
-def _arrow34(v: int) -> Callable[[str], str]:
+def _arrow33(v: int) -> Callable[[str], str]:
     return closure7(None, v)
 
 
-v3: Callable[[int, str], str] = _arrow34
+v3: Callable[[int, str], str] = _arrow33
 
 def pad_right(x: int) -> Callable[[str], str]:
     return v3(x)
 
 
-def _arrow35(v: str) -> Callable[[str, str], str]:
+def _arrow34(v: str) -> Callable[[str, str], str]:
     return closure9(None, v)
 
 
-v4: Callable[[str, str, str], str] = _arrow35
+v4: Callable[[str, str, str], str] = _arrow34
 
 def replace(x: str) -> Callable[[str, str], str]:
     return v4(x)

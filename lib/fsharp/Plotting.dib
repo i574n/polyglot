@@ -21,7 +21,6 @@
 #!import ../../lib/fsharp/CommonFSharp.fs
 #!import ../../lib/fsharp/Async.fs
 #!import ../../lib/fsharp/AsyncSeq.fs
-#!import ../../lib/fsharp/Networking.fs
 #!import ../../lib/fsharp/Runtime.fs
 #!import ../../lib/fsharp/FileSystem.fs
 

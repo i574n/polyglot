@@ -2445,12 +2445,18 @@ pub use module_c5eb79e8::*;
 #[path = "../../lib/spiral/lib.rs"]
 mod module_8d8b0653;
 pub use module_8d8b0653::*;
+#[path = "../../lib/spiral/networking.rs"]
+mod module_2612ff6a;
+pub use module_2612ff6a::*;
 #[path = "../../lib/spiral/runtime.rs"]
 mod module_3a43928;
 pub use module_3a43928::*;
 #[path = "../../lib/spiral/sm.rs"]
 mod module_2aeb754a;
 pub use module_2aeb754a::*;
+#[path = "../../lib/spiral/threading.rs"]
+mod module_444ab8da;
+pub use module_444ab8da::*;
 #[path = "../../lib/spiral/trace.rs"]
 mod module_e61b6515;
 pub use module_e61b6515::*;

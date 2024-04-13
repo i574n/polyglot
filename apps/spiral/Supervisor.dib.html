@@ -7584,10 +7584,8 @@ a.anchor-link {
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!import ../../lib/fsharp/Common.fs</span>
 <span class="c1">#!import ../../lib/fsharp/CommonFSharp.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Threading.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Async.fs</span>
 <span class="c1">#!import ../../lib/fsharp/AsyncSeq.fs</span>
-<span class="c1">#!import ../../lib/fsharp/Networking.fs</span>
 <span class="c1">#!import ../../lib/fsharp/Runtime.fs</span>
 <span class="c1">#!import ../../lib/fsharp/FileSystem.fs</span>
 </pre></div>
@@ -7647,7 +7645,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">sendJson</span> <span class="p">(</span><span class="n">port</span> <span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="p">(</span><span class="n">json</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span><span class="err">!</span> <span class="n">portOpen</span> <span class="o">=</span> <span class="n">Networking</span><span class="o">.</span><span class="n">testPortOpen</span> <span class="n">port</span>
+    <span class="n">let</span><span class="err">!</span> <span class="n">portOpen</span> <span class="o">=</span> <span class="n">SpiralNetworking</span><span class="o">.</span><span class="n">test_port_open</span> <span class="n">port</span>
     <span class="k">if</span> <span class="n">portOpen</span> <span class="n">then</span>
         <span class="k">try</span>
             <span class="n">let</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">HubConnectionBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">WithUrl</span><span class="p">(</span><span class="err">$</span><span class="s2">"http://127.0.0.1:</span><span class="si">{port}</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">Build</span><span class="p">()</span>
@@ -7740,11 +7738,11 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">inline</span> <span class="n">awaitCompiler</span> <span class="n">port</span> <span class="n">cancellationToken</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
-    <span class="n">let</span> <span class="n">ct</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">cancellationToken</span> <span class="o">|&gt;</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">cancellationToken</span> <span class="o">|&gt;</span> <span class="n">SpiralThreading</span><span class="o">.</span><span class="n">new_disposable_token</span>
     <span class="n">let</span><span class="err">!</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">ct</span> <span class="o">|&gt;</span> <span class="n">SpiralAsync</span><span class="o">.</span><span class="n">merge_cancellation_token_with_default_async</span>
 
     <span class="n">let</span> <span class="n">compiler</span> <span class="o">=</span> <span class="n">MailboxProcessor</span><span class="o">.</span><span class="n">Start</span> <span class="p">(</span><span class="n">fun</span> <span class="n">inbox</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
-        <span class="n">let</span><span class="err">!</span> <span class="n">availablePort</span> <span class="o">=</span> <span class="n">Networking</span><span class="o">.</span><span class="n">getAvailablePort</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">60</span><span class="p">)</span> <span class="n">port</span>
+        <span class="n">let</span><span class="err">!</span> <span class="n">availablePort</span> <span class="o">=</span> <span class="n">SpiralNetworking</span><span class="o">.</span><span class="n">get_available_port</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">60</span><span class="p">)</span> <span class="n">port</span>
         <span class="k">if</span> <span class="n">availablePort</span> <span class="o">&lt;&gt;</span> <span class="n">port</span> <span class="n">then</span>
             <span class="n">inbox</span><span class="o">.</span><span class="n">Post</span> <span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">false</span><span class="p">)</span>
         <span class="k">else</span>
@@ -7759,7 +7757,7 @@ a.anchor-link {
             <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet ""</span><span class="si">{dllPath}</span><span class="s2">"" --port </span><span class="si">{availablePort}</span><span class="s2"> --default-int i32 --default-float f64"</span>
             <span class="n">let</span> <span class="n">onLine</span> <span class="o">=</span> <span class="n">fun</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">async</span> <span class="p">{</span>
                 <span class="k">if</span> <span class="n">line</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">contains</span> <span class="err">$</span><span class="s2">"Server bound to: http://localhost:</span><span class="si">{availablePort}</span><span class="s2">"</span> <span class="n">then</span>
-                    <span class="n">do</span><span class="err">!</span> <span class="n">Networking</span><span class="o">.</span><span class="n">waitForPortAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">500</span><span class="p">)</span> <span class="n">true</span> <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+                    <span class="n">do</span><span class="err">!</span> <span class="n">SpiralNetworking</span><span class="o">.</span><span class="n">wait_for_port_access</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">500</span><span class="p">)</span> <span class="n">true</span> <span class="n">availablePort</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
 
                     <span class="n">let</span> <span class="n">rec</span> <span class="n">loop</span> <span class="n">retry</span> <span class="o">=</span> <span class="k">async</span> <span class="p">{</span>
                         <span class="n">let</span> <span class="n">getLocals</span> <span class="p">()</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"port: </span><span class="si">{availablePort}</span><span class="s2"> / retry: </span><span class="si">{retry}</span><span class="s2"> / {getLocals ()}"</span>
@@ -7805,7 +7803,7 @@ a.anchor-link {
                 <span class="n">do</span><span class="err">!</span> <span class="n">connection</span><span class="o">.</span><span class="n">StopAsync</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">AwaitTask</span>
                 <span class="n">disposable</span><span class="o">.</span><span class="n">Dispose</span> <span class="p">()</span>
                 <span class="k">if</span> <span class="n">managed</span>
-                <span class="n">then</span> <span class="n">do</span><span class="err">!</span> <span class="n">Networking</span><span class="o">.</span><span class="n">waitForPortAccess</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2000</span><span class="p">)</span> <span class="n">false</span> <span class="n">serverPort</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
+                <span class="n">then</span> <span class="n">do</span><span class="err">!</span> <span class="n">SpiralNetworking</span><span class="o">.</span><span class="n">wait_for_port_access</span> <span class="p">(</span><span class="n">Some</span> <span class="mi">2000</span><span class="p">)</span> <span class="n">false</span> <span class="n">serverPort</span> <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">Ignore</span>
             <span class="p">}</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">RunSynchronously</span>
         <span class="p">)</span>
@@ -7963,7 +7961,7 @@ a.anchor-link {
     <span class="n">let</span> <span class="n">stream</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">fileDir</span> <span class="o">|&gt;</span> <span class="n">FileSystem</span><span class="o">.</span><span class="n">watchDirectory</span> <span class="p">(</span><span class="n">fun</span> <span class="n">_</span> <span class="o">-&gt;</span> <span class="n">false</span><span class="p">)</span>
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
 
-    <span class="n">let</span> <span class="n">token</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span> <span class="n">cancellationToken</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralThreading</span><span class="o">.</span><span class="n">new_disposable_token</span> <span class="n">cancellationToken</span>
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
 
     <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">ct</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">awaitCompiler</span> <span class="n">port</span> <span class="p">(</span><span class="n">Some</span> <span class="n">token</span><span class="p">)</span>
@@ -8219,35 +8217,19 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:00 #1 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:00 #1 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:00 #2 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:00 #3 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:00 #4 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:00 #5 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:00 #2 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:00 #3 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:01 #4 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:01 #5 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:01 #6 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:01 #6 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:01 #7 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:01 #8 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/0ad2ee90a0886647a7d9c334e1811a0c3ae5599125952e30eba9d5e3b57a56e0/main.spi"}} / result.Length:
-00:00:01 #9 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/0ad2ee90a0886647a7d9c334e1811a0c3ae5599125952e30eba9d5e3b57a56e0/main.spi"}} / result.Length:
-00:00:01 #7 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\0ad2ee90a0886647a7d9c334e1811a0c3ae5599125952e30eba9d5e3b57a56e0\main.spi
-00:00:02 #10 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:03 #11 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:03 #12 [debug] buildFile / takeWhileInclusive / fsxContent: let rec closure0 () () : int32 =
+<pre>00:00:00 #1 [debug] run_with_timeout_async / timeout: 60
+00:00:00 #1 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:00 #2 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:00 #3 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    console.write_line \u0022text\u0022\n    1i32\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/0ad2ee90a0886647a7d9c334e1811a0c3ae5599125952e30eba9d5e3b57a56e0/main.spi"}} / result.Length:
+00:00:00 #4 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/0ad2ee90a0886647a7d9c334e1811a0c3ae5599125952e30eba9d5e3b57a56e0/main.spi"}} / result.Length:
+00:00:00 #5 [debug] buildFile / takeWhileInclusive / fsxContent: let rec closure0 () () : int32 =
     let v0 : string = "text"
     System.Console.WriteLine v0
     1
 let v0 : (unit -&gt; int32) = closure0()
 ()
  / errors: [] / typeErrorCount: 0
-00:00:05 #13 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:05 #14 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:00 #6 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: let rec closure0 () () : int32 =
@@ -8289,38 +8271,22 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:05 #15 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:05 #8 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:05 #9 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:05 #10 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:05 #11 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:06 #12 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:06 #16 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:06 #17 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:06 #18 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:06 #19 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:06 #13 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:06 #20 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:06 #21 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:06 #22 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/main.spi"}} / result.Length:
-00:00:06 #23 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/main.spi"}} / result.Length:
-00:00:06 #14 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\main.spi
-00:00:07 #24 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:08 #15 [verbose] &gt; Cannot find `main` in file main.
-00:00:08 #16 [verbose] &gt; Build skipped for c:\home\git\polyglot\target\polyglot\spiral_eval\packages\e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\main.spi
-00:00:08 #25 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:09 #26 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:10 #27 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:11 #28 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:12 #29 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:13 #30 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:14 #31 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:15 #32 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:17 #33 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:17 #34 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
-00:00:17 #35 [debug] runWithTimeoutChildAsync / timeout: 10000
+<pre>00:00:00 #2 [debug] run_with_timeout_async / timeout: 60
+00:00:00 #7 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:00 #8 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:00 #9 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/main.spi"}} / result.Length:
+00:00:00 #10 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855/main.spi"}} / result.Length:
+00:00:01 #11 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:02 #12 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:03 #13 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:04 #14 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:05 #15 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:06 #16 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:07 #17 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:08 #18 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:09 #19 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:10 #20 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:10 #21 [debug] runWithTimeoutChildAsync / timeout: 10000
 &lt;null&gt;
 </pre>
 </div>
@@ -8369,25 +8335,11 @@ let v0 : (unit -&gt; int32) = closure0()
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:17 #36 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:17 #17 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:18 #18 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:18 #19 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:18 #20 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:18 #21 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:18 #37 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:18 #38 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:18 #39 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:18 #40 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:18 #22 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:18 #41 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:18 #42 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:18 #43 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    0i32\n\ninl a = 1\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/348c96764a8f66af39dd3ea799f5e487a51761b1e220b84a7038f033a002a481/main.spi"}} / result.Length:
-00:00:18 #44 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/348c96764a8f66af39dd3ea799f5e487a51761b1e220b84a7038f033a002a481/main.spi"}} / result.Length:
-00:00:19 #23 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\348c96764a8f66af39dd3ea799f5e487a51761b1e220b84a7038f033a002a481\main.spi
-00:00:19 #45 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:10 #3 [debug] run_with_timeout_async / timeout: 60
+00:00:10 #22 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:10 #23 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:10 #24 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl app () =\n    0i32\n\ninl a = 1\n\ninl main () =\n    app\n    |\u003E dyn\n    |\u003E ignore\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/348c96764a8f66af39dd3ea799f5e487a51761b1e220b84a7038f033a002a481/main.spi"}} / result.Length:
+00:00:10 #25 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Global inl/let statements should all return functions known at parse time.",
@@ -8413,9 +8365,8 @@ Global inl/let statements should all return functions known at parse time.",
     }
   ]
 ] / typeErrorCount: 0
-00:00:19 #46 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:21 #47 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:21 #48 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:10 #26 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/348c96764a8f66af39dd3ea799f5e487a51761b1e220b84a7038f033a002a481/main.spi"}} / result.Length:
+00:00:10 #27 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8459,26 +8410,12 @@ Global inl/let statements should all return functions known at parse time. ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:21 #49 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:21 #24 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:21 #25 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:21 #26 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:21 #27 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:22 #28 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:22 #50 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:22 #51 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:22 #52 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:22 #53 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:22 #29 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:22 #54 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:22 #55 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:22 #56 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/232df6d862bb0667133bf3fbc55c0b33286bde4b85cdb17fe93dda9c433ec620/main.spi"}} / result.Length:
-00:00:22 #57 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/232df6d862bb0667133bf3fbc55c0b33286bde4b85cdb17fe93dda9c433ec620/main.spi"}} / result.Length:
-00:00:22 #30 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\232df6d862bb0667133bf3fbc55c0b33286bde4b85cdb17fe93dda9c433ec620\main.spi
-00:00:23 #58 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:24 #59 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:11 #4 [debug] run_with_timeout_async / timeout: 60
+00:00:11 #28 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #29 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #30 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1i32 / 0i32\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/232df6d862bb0667133bf3fbc55c0b33286bde4b85cdb17fe93dda9c433ec620/main.spi"}} / result.Length:
+00:00:11 #31 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/232df6d862bb0667133bf3fbc55c0b33286bde4b85cdb17fe93dda9c433ec620/main.spi"}} / result.Length:
+00:00:11 #32 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "An attempt to divide by zero has been detected at compile time.",
     {
@@ -8498,9 +8435,7 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0
-00:00:24 #60 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:26 #61 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:26 #62 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:11 #33 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ An attempt to divide by zero has been detected at compile time. ]
@@ -8548,27 +8483,11 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:26 #63 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:26 #31 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:26 #32 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:26 #33 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:26 #34 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:27 #35 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:27 #64 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:27 #65 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:27 #66 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:27 #67 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:27 #36 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:27 #68 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:27 #69 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:27 #70 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/2278923ce88b0e473e77d4d93e25afa6e5e4f5efe803982e504cc198d4c4d82d/main.spi"}} / result.Length:
-00:00:27 #71 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/2278923ce88b0e473e77d4d93e25afa6e5e4f5efe803982e504cc198d4c4d82d/main.spi"}} / result.Length:
-00:00:27 #37 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\2278923ce88b0e473e77d4d93e25afa6e5e4f5efe803982e504cc198d4c4d82d\main.spi
-00:00:28 #72 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:29 #73 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
-00:00:29 #74 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:11 #5 [debug] run_with_timeout_async / timeout: 60
+00:00:11 #34 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #35 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #36 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    1 \u002B \u0022\u0022\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/2278923ce88b0e473e77d4d93e25afa6e5e4f5efe803982e504cc198d4c4d82d/main.spi"}} / result.Length:
+00:00:11 #37 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Constraint satisfaction error.
@@ -8597,10 +8516,9 @@ Fails to satisfy: number"
       }
     }
   ]
-] / typeErrorCount: 1
-00:00:29 #75 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:31 #76 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:31 #77 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+] / typeErrorCount: 0
+00:00:11 #38 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/2278923ce88b0e473e77d4d93e25afa6e5e4f5efe803982e504cc198d4c4d82d/main.spi"}} / result.Length:
+00:00:11 #39 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8650,27 +8568,11 @@ Fails to satisfy: number ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:31 #78 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:31 #38 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:31 #39 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:31 #40 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:31 #41 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:31 #42 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:32 #79 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:32 #80 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:32 #81 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:32 #82 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:32 #43 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:32 #83 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:32 #84 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:32 #85 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/5d8d0e66f59ab13f3bfd8d88f05ce13771ab005b08581d99225216170ba6489b/main.spi"}} / result.Length:
-00:00:32 #86 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/5d8d0e66f59ab13f3bfd8d88f05ce13771ab005b08581d99225216170ba6489b/main.spi"}} / result.Length:
-00:00:32 #44 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\5d8d0e66f59ab13f3bfd8d88f05ce13771ab005b08581d99225216170ba6489b\main.spi
-00:00:33 #87 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:33 #88 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 1
-00:00:33 #89 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:11 #6 [debug] run_with_timeout_async / timeout: 60
+00:00:11 #40 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #41 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #42 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () =\n    x \u002B y\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/5d8d0e66f59ab13f3bfd8d88f05ce13771ab005b08581d99225216170ba6489b/main.spi"}} / result.Length:
+00:00:11 #43 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Unbound variable: x.
@@ -8709,10 +8611,9 @@ Unbound variable: y.",
       }
     }
   ]
-] / typeErrorCount: 1
-00:00:33 #90 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:35 #91 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:35 #92 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+] / typeErrorCount: 0
+00:00:11 #44 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/5d8d0e66f59ab13f3bfd8d88f05ce13771ab005b08581d99225216170ba6489b/main.spi"}} / result.Length:
+00:00:11 #45 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8762,25 +8663,11 @@ Unbound variable: y. ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:36 #93 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:36 #45 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:36 #46 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:36 #47 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:36 #48 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:36 #49 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:36 #94 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:36 #95 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:37 #96 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:37 #97 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:36 #50 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:37 #98 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:37 #99 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:37 #100 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"union a =\n    | B\n    | c\n\ninl main () =\n    ()\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e711a7af82ac8ecfc9df9208c576e0745b2b4e6fbb3a46a168b4c4f56921eb3a/main.spi"}} / result.Length:
-00:00:37 #101 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e711a7af82ac8ecfc9df9208c576e0745b2b4e6fbb3a46a168b4c4f56921eb3a/main.spi"}} / result.Length:
-00:00:37 #51 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\e711a7af82ac8ecfc9df9208c576e0745b2b4e6fbb3a46a168b4c4f56921eb3a\main.spi
-00:00:37 #102 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:12 #7 [debug] run_with_timeout_async / timeout: 60
+00:00:11 #46 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #47 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:11 #48 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"union a =\n    | B\n    | c\n\ninl main () =\n    ()\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e711a7af82ac8ecfc9df9208c576e0745b2b4e6fbb3a46a168b4c4f56921eb3a/main.spi"}} / result.Length:
+00:00:11 #49 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Expected: uppercase variable",
@@ -8806,9 +8693,8 @@ Expected: uppercase variable",
     }
   ]
 ] / typeErrorCount: 0
-00:00:37 #103 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:39 #104 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:39 #105 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:11 #50 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e711a7af82ac8ecfc9df9208c576e0745b2b4e6fbb3a46a168b4c4f56921eb3a/main.spi"}} / result.Length:
+00:00:11 #51 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8855,24 +8741,11 @@ Expected: uppercase variable ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:39 #106 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:39 #52 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:40 #53 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:40 #54 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:40 #55 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:40 #56 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:40 #107 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:40 #108 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:40 #109 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:40 #110 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:40 #57 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:40 #111 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:40 #112 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:40 #113 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\n/// abc\ninl main () =\n    ()\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e83597a8ca85933ec91ea140faca562c6789f98f5348e641a1c44c73de804631/main.spi"}} / result.Length:
-00:00:40 #114 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e83597a8ca85933ec91ea140faca562c6789f98f5348e641a1c44c73de804631/main.spi"}} / result.Length:
-00:00:40 #115 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:12 #8 [debug] run_with_timeout_async / timeout: 60
+00:00:12 #52 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #53 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #54 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\n/// abc\ninl main () =\n    ()\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e83597a8ca85933ec91ea140faca562c6789f98f5348e641a1c44c73de804631/main.spi"}} / result.Length:
+00:00:12 #55 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "main.spi:
 Expected: whitespace",
@@ -8898,9 +8771,8 @@ Expected: whitespace",
     }
   ]
 ] / typeErrorCount: 0
-00:00:40 #116 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:42 #117 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:42 #118 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:12 #56 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/e83597a8ca85933ec91ea140faca562c6789f98f5348e641a1c44c73de804631/main.spi"}} / result.Length:
+00:00:12 #57 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ main.spi:
@@ -8950,26 +8822,12 @@ Expected: whitespace ]
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:43 #119 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:43 #58 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:43 #59 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:43 #60 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:43 #61 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:43 #62 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:44 #120 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:44 #121 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:44 #122 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:44 #123 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:44 #63 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:44 #124 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:44 #125 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:44 #126 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox ()\n    ()\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/a2aa158e3d25dde470018a814a2045bf437bae1760d98ab33335c72b076d4d50/main.spi"}} / result.Length:
-00:00:44 #127 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/a2aa158e3d25dde470018a814a2045bf437bae1760d98ab33335c72b076d4d50/main.spi"}} / result.Length:
-00:00:44 #64 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\a2aa158e3d25dde470018a814a2045bf437bae1760d98ab33335c72b076d4d50\main.spi
-00:00:45 #128 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:45 #129 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:12 #9 [debug] run_with_timeout_async / timeout: 60
+00:00:12 #58 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #59 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #60 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox ()\n    ()\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/a2aa158e3d25dde470018a814a2045bf437bae1760d98ab33335c72b076d4d50/main.spi"}} / result.Length:
+00:00:12 #61 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/a2aa158e3d25dde470018a814a2045bf437bae1760d98ab33335c72b076d4d50/main.spi"}} / result.Length:
+00:00:12 #62 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "Cannot apply a forall with a term.",
     {
@@ -8993,9 +8851,7 @@ inl main () =
     }
   ]
 ] / typeErrorCount: 0
-00:00:45 #130 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:47 #131 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:47 #132 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:12 #63 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ Cannot apply a forall with a term. ]
@@ -9043,26 +8899,12 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:48 #133 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:48 #65 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:48 #66 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:48 #67 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:48 #68 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:48 #69 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:48 #134 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:48 #135 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:49 #136 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:49 #137 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:49 #70 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:49 #138 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:49 #139 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:49 #140 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox \u0060i32 1\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/84eca3865a0cfc1afd28f49a38d395e9b89071527b4bda759de7cfb116593b3e/main.spi"}} / result.Length:
-00:00:49 #141 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/84eca3865a0cfc1afd28f49a38d395e9b89071527b4bda759de7cfb116593b3e/main.spi"}} / result.Length:
-00:00:49 #71 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\84eca3865a0cfc1afd28f49a38d395e9b89071527b4bda759de7cfb116593b3e\main.spi
-00:00:50 #142 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:50 #143 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
+<pre>00:00:12 #10 [debug] run_with_timeout_async / timeout: 60
+00:00:12 #64 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #65 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:12 #66 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl main () =\n    real\n        inl real_unbox forall a. (obj : a) : a =\n            typecase obj with\n            | _ =\u003E obj\n        real_unbox \u0060i32 1\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/84eca3865a0cfc1afd28f49a38d395e9b89071527b4bda759de7cfb116593b3e/main.spi"}} / result.Length:
+00:00:12 #67 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/84eca3865a0cfc1afd28f49a38d395e9b89071527b4bda759de7cfb116593b3e/main.spi"}} / result.Length:
+00:00:12 #68 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [
   [
     "The main function should not have a forall.",
     {
@@ -9073,9 +8915,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
     }
   ]
 ] / typeErrorCount: 0
-00:00:50 #144 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:52 #145 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:52 #146 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:12 #69 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - &lt;null&gt;
       - [ The main function should not have a forall. ]
@@ -9131,30 +8971,14 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:52 #147 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:52 #72 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:53 #73 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:53 #74 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:53 #75 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:53 #76 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:53 #148 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:53 #149 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:53 #150 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:53 #151 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:53 #77 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:53 #152 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:53 #153 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:53 #154 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.1 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/c0932fdbf60389c2ae8b78bb5443994f2d0ecdc6c6e7dfddf408cecaa050d294/main.spi"}} / result.Length:
-00:00:54 #155 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/c0932fdbf60389c2ae8b78bb5443994f2d0ecdc6c6e7dfddf408cecaa050d294/main.spi"}} / result.Length:
-00:00:54 #78 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\c0932fdbf60389c2ae8b78bb5443994f2d0ecdc6c6e7dfddf408cecaa050d294\main.spi
-00:00:54 #156 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:55 #157 [debug] buildFile / takeWhileInclusive / fsxContent: 0.3325000000000001
+<pre>00:00:13 #11 [debug] run_with_timeout_async / timeout: 60
+00:00:13 #70 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:13 #71 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:13 #72 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.1 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/c0932fdbf60389c2ae8b78bb5443994f2d0ecdc6c6e7dfddf408cecaa050d294/main.spi"}} / result.Length:
+00:00:13 #73 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/c0932fdbf60389c2ae8b78bb5443994f2d0ecdc6c6e7dfddf408cecaa050d294/main.spi"}} / result.Length:
+00:00:13 #74 [debug] buildFile / takeWhileInclusive / fsxContent: 0.3325000000000001
  / errors: [] / typeErrorCount: 0
-00:00:55 #158 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:57 #159 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:00:57 #160 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:13 #75 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: 0.3325000000000001
@@ -9214,30 +9038,14 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:00:58 #161 [debug] runWithTimeoutChildAsync / timeout: 60
-00:00:58 #79 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:buildCode@3-532&gt;, None, None)
-00:00:58 #80 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:00:58 #81 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:00:58 #82 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:00:58 #83 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:00:58 #162 [debug] runWithTimeoutChildAsync / timeout: 500
-00:00:58 #163 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:00:59 #164 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:00:59 #165 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:00:59 #84 [verbose] &gt; Server bound to: http://localhost:13805
-00:00:59 #166 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:59 #167 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:00:59 #168 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.01 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/355c36b6d259fe6b1c7527aa9b475ca37914ad348c4a239687383dcd0daeed2c/main.spi"}} / result.Length:
-00:00:59 #169 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/355c36b6d259fe6b1c7527aa9b475ca37914ad348c4a239687383dcd0daeed2c/main.spi"}} / result.Length:
-00:00:59 #85 [verbose] &gt; Building c:\home\git\polyglot\target\polyglot\spiral_eval\packages\355c36b6d259fe6b1c7527aa9b475ca37914ad348c4a239687383dcd0daeed2c\main.spi
-00:01:00 #170 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
-00:01:00 #171 [debug] buildFile / takeWhileInclusive / fsxContent: 0.33332500000000004
+<pre>00:00:13 #12 [debug] run_with_timeout_async / timeout: 60
+00:00:13 #76 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:13 #77 [debug] buildFile / takeWhileInclusive / fsxContent:  / errors: [] / typeErrorCount: 0
+00:00:13 #78 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"\ninl init_series start end inc =\n    inl total : f64 = conv ((end - start) / inc) \u002B 1\n    listm.init total (conv \u003E\u003E (*) inc \u003E\u003E (\u002B) start) : list f64\n\ntype integration = (f64 -\u003E f64) -\u003E f64 -\u003E f64 -\u003E f64\n\ninl integral dt : integration =\n    fun f a b =\u003E\n        init_series (a \u002B dt / 2) (b - dt / 2) dt\n        |\u003E listm.map (f \u003E\u003E (*) dt)\n        |\u003E listm.fold (\u002B) 0\n\ninl main () =\n    integral 0.01 (fun x =\u003E x ** 2) 0 1\n","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/355c36b6d259fe6b1c7527aa9b475ca37914ad348c4a239687383dcd0daeed2c/main.spi"}} / result.Length:
+00:00:13 #79 [debug] sendJson / port: 13805 / json: {"BuildFile":{"backend":"Fsharp","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/355c36b6d259fe6b1c7527aa9b475ca37914ad348c4a239687383dcd0daeed2c/main.spi"}} / result.Length:
+00:00:13 #80 [debug] buildFile / takeWhileInclusive / fsxContent: 0.33332500000000004
  / errors: [] / typeErrorCount: 0
-00:01:00 #172 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:01:02 #173 [debug] runWithTimeoutChildAsync / timeout: 2000
-00:01:02 #174 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
+00:00:13 #81 [debug] watchWithFilter / Disposing watch stream / filter: FileName, LastWrite
 FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;&gt;
       Value:       - FSharpOption&lt;String&gt;
           Value: 0.33332500000000004
@@ -9272,7 +9080,7 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
     <span class="n">let</span><span class="err">!</span> <span class="n">code</span> <span class="o">=</span> <span class="n">fullPath</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">read_all_text_async</span>
     <span class="n">let</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">code</span> <span class="o">|&gt;</span> <span class="n">SpiralSm</span><span class="o">.</span><span class="n">split</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
 
-    <span class="n">let</span> <span class="n">token</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span> <span class="n">cancellationToken</span>
+    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralThreading</span><span class="o">.</span><span class="n">new_disposable_token</span> <span class="n">cancellationToken</span>
     <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
 
     <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span><span class="p">,</span> <span class="n">_errors</span><span class="p">,</span> <span class="n">ct</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span>
@@ -9365,22 +9173,9 @@ FSharpOption&lt;Tuple&lt;FSharpOption&lt;String&gt;,FSharpList&lt;String&gt;&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:08 #175 [debug] runWithTimeoutChildAsync / timeout: 60
-00:01:08 #86 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:it@4-233&gt;, None, None)
-00:01:09 #87 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:01:09 #88 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:01:09 #89 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:01:09 #90 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:01:09 #176 [debug] runWithTimeoutChildAsync / timeout: 500
-00:01:09 #177 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:01:09 #178 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:01:09 #179 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:01:09 #91 [verbose] &gt; Server bound to: http://localhost:13805
-00:01:09 #180 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/fb6c8d45c45c5bed6706c564f1573e80b77a3923967ce83cb69737ce2ce5040c/main.spi"}} / result.Length:
-00:01:10 #181 [debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/fb6c8d45c45c5bed6706c564f1573e80b77a3923967ce83cb69737ce2ce5040c/main.spi"}} / result.Length: Some(213)
-00:01:12 #182 [debug] runWithTimeoutChildAsync / timeout: 2000
+<pre>00:00:16 #13 [debug] run_with_timeout_async / timeout: 60
+00:00:16 #82 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = ()","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/fb6c8d45c45c5bed6706c564f1573e80b77a3923967ce83cb69737ce2ce5040c/main.spi"}} / result.Length:
+00:00:16 #83 [debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":16,"line":0}],"uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/fb6c8d45c45c5bed6706c564f1573e80b77a3923967ce83cb69737ce2ce5040c/main.spi"}} / result.Length: Some(213)
 FSharpOption&lt;Int32[]&gt;
       Value: [ 0, 0, 3, 7, 0, 0, 4, 4, 0, 0, 0, 5, 1, 8, 0, 0, 1, 1, 8, 0, 0, 2, 1, 4, 0, 0, 2, 1, 8, 0, 0, 1, 1, 8, 0 ]
 </pre>
@@ -9416,22 +9211,9 @@ FSharpOption&lt;Int32[]&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>00:01:14 #183 [debug] runWithTimeoutChildAsync / timeout: 60
-00:01:14 #92 [debug] execute_with_options_async / options: struct (Some System.Threading.CancellationToken,
-        "dotnet "C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release\Spiral.dll" --port 13805 --default-int i32 --default-float f64",
-        Some &lt;fun:it@4-540&gt;, None, None)
-00:01:15 #93 [verbose] &gt; pwd: C:\home\git\polyglot\apps\spiral
-00:01:15 #94 [verbose] &gt; dllPath: C:\home\git\polyglot\deps\The-Spiral-Language\The Spiral Language 2\artifacts\bin\The Spiral Language 2\release
-00:01:15 #95 [verbose] &gt; targetDir: C:\home\git\polyglot\target/polyglot/spiral_eval
-00:01:15 #96 [verbose] &gt; Starting the Spiral Server. It is bound to: http://localhost:13805
-00:01:15 #184 [debug] runWithTimeoutChildAsync / timeout: 500
-00:01:15 #185 [verbose] waitForPortAccess / port: 13805 / retry: 0
-00:01:15 #186 [debug] sendJson / port: 13805 / json: {"Ping":true} / result.Length:
-00:01:15 #187 [verbose] awaitCompiler / Ping / result: Some(null) / port: 13805 / retry: 0
-00:01:15 #97 [verbose] &gt; Server bound to: http://localhost:13805
-00:01:15 #188 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/9df95a2f18642bd8d2f682f6edb6cef45c30ca9c616b33ebb0e5577eed14871c/main.spi"}} / result.Length:
-00:01:16 #189 [debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/9df95a2f18642bd8d2f682f6edb6cef45c30ca9c616b33ebb0e5577eed14871c/main.spi"}} / result.Length: Some(214)
-00:01:18 #190 [debug] runWithTimeoutChildAsync / timeout: 2000
+<pre>00:00:17 #14 [debug] run_with_timeout_async / timeout: 60
+00:00:17 #84 [debug] sendJson / port: 13805 / json: {"FileOpen":{"spiText":"inl main () = 1i32","uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/9df95a2f18642bd8d2f682f6edb6cef45c30ca9c616b33ebb0e5577eed14871c/main.spi"}} / result.Length:
+00:00:17 #85 [debug] sendJson / port: 13805 / json: {"FileTokenRange":{"range":[{"character":0,"line":0},{"character":18,"line":0}],"uri":"file:///c:/home/git/polyglot/target/polyglot/spiral_eval/packages/9df95a2f18642bd8d2f682f6edb6cef45c30ca9c616b33ebb0e5577eed14871c/main.spi"}} / result.Length: Some(214)
 FSharpOption&lt;Int32[]&gt;
       Value: [ 0, 0, 3, 7, 0, 0, 4, 4, 0, 0, 0, 5, 1, 8, 0, 0, 1, 1, 8, 0, 0, 2, 1, 4, 0, 0, 2, 1, 3, 0, 0, 1, 3, 12, 0 ]
 </pre>
@@ -9504,10 +9286,8 @@ FSharpOption&lt;Int32[]&gt;
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>USAGE: dotnet-repl [--help] [--build-file &lt;string&gt; &lt;string&gt;]
-                   [--file-token-range &lt;string&gt; &lt;string&gt;]
-                   [--execute-command &lt;string&gt;] [--timeout &lt;int&gt;] [--port &lt;int&gt;]
-                   [--parallel]
+<pre>USAGE: dotnet-repl [--help] [--build-file &lt;string&gt; &lt;string&gt;] [--file-token-range &lt;string&gt; &lt;string&gt;] [--execute-command &lt;string&gt;]
+                   [--timeout &lt;int&gt;] [--port &lt;int&gt;] [--parallel]
 
 OPTIONS:
 
@@ -9589,7 +9369,7 @@ OPTIONS:
 
     <span class="k">async</span> <span class="p">{</span>
         <span class="n">let</span> <span class="n">port</span> <span class="o">=</span> <span class="n">port</span> <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultWith</span> <span class="n">getCompilerPort</span>
-        <span class="n">let</span> <span class="n">localToken</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">Threading</span><span class="o">.</span><span class="n">newDisposableToken</span> <span class="kc">None</span>
+        <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">localToken</span><span class="p">,</span> <span class="n">disposable</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralThreading</span><span class="o">.</span><span class="n">new_disposable_token</span> <span class="kc">None</span>
         <span class="n">let</span><span class="err">!</span> <span class="n">serverPort</span><span class="p">,</span> <span class="n">_errors</span><span class="p">,</span> <span class="n">compilerToken</span><span class="p">,</span> <span class="n">disposable</span> <span class="o">=</span> <span class="n">awaitCompiler</span> <span class="n">port</span> <span class="p">(</span><span class="n">Some</span> <span class="n">localToken</span><span class="p">)</span>
         <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="n">disposable</span>
 
@@ -9640,7 +9420,7 @@ OPTIONS:
             <span class="o">|&gt;</span> <span class="n">Seq</span><span class="o">.</span><span class="n">collect</span> <span class="nb">id</span>
             <span class="o">|&gt;</span> <span class="n">fun</span> <span class="n">x</span> <span class="o">-&gt;</span>
                 <span class="k">if</span> <span class="n">isParallel</span>
-                <span class="n">then</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span> <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">ProcessorCount</span> <span class="o">*</span> <span class="mf">0.75</span> <span class="o">|&gt;</span> <span class="n">ceil</span> <span class="o">|&gt;</span> <span class="nb">int</span><span class="p">)</span>
+                <span class="n">then</span> <span class="n">Async</span><span class="o">.</span><span class="n">Parallel</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span> <span class="n">System</span><span class="o">.</span><span class="n">Environment</span><span class="o">.</span><span class="n">ProcessorCount</span> <span class="o">*</span> <span class="mf">0.51</span> <span class="o">|&gt;</span> <span class="n">ceil</span> <span class="o">|&gt;</span> <span class="nb">int</span><span class="p">)</span>
                 <span class="k">else</span> <span class="n">Async</span><span class="o">.</span><span class="n">Sequential</span> <span class="n">x</span>
             <span class="o">|&gt;</span> <span class="n">Async</span><span class="o">.</span><span class="n">map</span> <span class="n">Array</span><span class="o">.</span><span class="n">sum</span>
     <span class="p">}</span>

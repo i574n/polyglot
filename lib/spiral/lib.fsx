@@ -30,6 +30,43 @@ module SpiralAsync =
         merge_cancellation_token_with_default_async x
 #endif
 
+module SpiralThreading =
+    let new_disposable_token x =
+#if !INTERACTIVE
+        Threading.new_disposable_token x
+#else
+        new_disposable_token x
+#endif
+
+module SpiralNetworking =
+    let test_port_open x =
+#if !INTERACTIVE
+        Networking.test_port_open x
+#else
+        test_port_open x
+#endif
+
+    let test_port_open_timeout x =
+#if !INTERACTIVE
+        Networking.test_port_open_timeout x
+#else
+        test_port_open_timeout x
+#endif
+
+    let wait_for_port_access x =
+#if !INTERACTIVE
+        Networking.wait_for_port_access x
+#else
+        wait_for_port_access x
+#endif
+
+    let get_available_port x =
+#if !INTERACTIVE
+        Networking.get_available_port x
+#else
+        get_available_port x
+#endif
+
 module SpiralRuntime =
     let get_executable_suffix () =
 #if !INTERACTIVE

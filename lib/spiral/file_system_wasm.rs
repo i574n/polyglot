@@ -1,6 +1,6 @@
 pub mod File_system {
     use super::*;
-    type Async<T> = Option<T>;
+    type Async<T> = T;
     use fable_library_rust::Interfaces_::System::IDisposable;
     use fable_library_rust::NativeArray_::new_array;
     use fable_library_rust::NativeArray_::new_empty;

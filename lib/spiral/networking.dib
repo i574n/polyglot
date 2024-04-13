@@ -1,0 +1,538 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"spiral","items":[]}}
+
+#!markdown
+
+# networking
+
+#!spiral
+
+open rust_operators
+
+#!spiral
+
+// // test
+
+open testing
+
+#!markdown
+
+## types
+
+#!spiral
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Error\")>] type reqwest_Error = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>] type reqwest_RequestBuilder = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
+
+#!markdown
+
+## reqwest_response
+
+#!spiral
+
+nominal reqwest_response = $"reqwest_Response"
+
+#!markdown
+
+## reqwest_error
+
+#!spiral
+
+nominal reqwest_error = $"reqwest_Error"
+
+#!markdown
+
+## request_builder
+
+#!spiral
+
+nominal request_builder = $"reqwest_RequestBuilder"
+
+#!markdown
+
+## request_type
+
+#!spiral
+
+union request_type =
+    | Get
+    | Post
+
+#!markdown
+
+## request
+
+#!spiral
+
+type request =
+    {
+        url : string
+        request_type : request_type
+        body : string
+        json : bool
+        auto_refresh : bool
+    }
+
+#!markdown
+
+## new_request_get
+
+#!spiral
+
+inl new_request_get (url : string) : request_builder =
+    inl url = join url
+    inl url = url |> sm'.to_std_string
+    inl url = join url
+    !\($'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.get(!url)"')
+
+#!markdown
+
+## new_request_post
+
+#!spiral
+
+inl new_request_post (url : string) : request_builder =
+    inl url = join url
+    inl url = url |> sm'.to_std_string
+    inl url = join url
+    !\($'"reqwest_wasm::Client::builder().build().map_err(|err| err.to_string())?.post(!url)"')
+
+#!markdown
+
+## request_send
+
+#!spiral
+
+inl request_send (request : request_builder) : async.future_pin (resultm.result' reqwest_response reqwest_error) =
+    inl request = join request
+    !\($'"Box::pin(reqwest_wasm::RequestBuilder::send(!request))"')
+
+#!markdown
+
+## request_body
+
+#!spiral
+
+inl request_body (body : string) (request : request_builder) : request_builder =
+    inl body = body |> sm'.to_std_string
+    !\($'"reqwest_wasm::RequestBuilder::body(!request, !body)"')
+
+#!markdown
+
+## request_header
+
+#!spiral
+
+inl request_header (key : string) (value : string) (request : request_builder) : request_builder =
+    inl request = join request
+    inl key = key |> sm'.to_std_string
+    inl value = value |> sm'.to_std_string
+    !\($'"reqwest_wasm::RequestBuilder::header(!request, !key, !value)"')
+
+#!markdown
+
+## request_json
+
+#!spiral
+
+inl request_json forall t. (obj : t) (request : request_builder) : request_builder =
+    !\($'"reqwest_wasm::RequestBuilder::json(!request, &!obj)"')
+
+#!markdown
+
+## response_text
+
+#!spiral
+
+inl response_text (response : reqwest_response) : async.future_pin (resultm.result' sm'.std_string reqwest_error) =
+    !\($'"Box::pin(reqwest_wasm::Response::text(!response))"')
+
+#!markdown
+
+## tcp_client
+
+#!spiral
+
+nominal tcp_client = $'System.Net.Sockets.TcpClient'
+
+#!markdown
+
+## new_tcp_client
+
+#!spiral
+
+inl new_tcp_client () : tcp_client =
+    $'new `tcp_client ()'
+
+#!markdown
+
+## ip_address
+
+#!spiral
+
+nominal ip_address = $'System.Net.IPAddress'
+
+#!markdown
+
+## ip_address_parse
+
+#!spiral
+
+inl ip_address_parse (s : string) : ip_address =
+    s |> $'`ip_address.Parse'
+
+#!markdown
+
+## tcp_listener
+
+#!spiral
+
+nominal tcp_listener = $'System.Net.Sockets.TcpListener'
+
+#!markdown
+
+## new_tcp_listener
+
+#!spiral
+
+inl new_tcp_listener (ip_address : ip_address) (port : i32) : tcp_listener =
+    $'new `tcp_listener (!ip_address, !port)'
+
+#!markdown
+
+## listener_start
+
+#!spiral
+
+inl listener_start (listener : tcp_listener) : () =
+    $'!listener.Start' ()
+
+#!markdown
+
+## listener_stop
+
+#!spiral
+
+inl listener_stop (listener : tcp_listener) : () =
+    $'!listener.Stop' ()
+
+#!markdown
+
+## client_connect_async
+
+#!spiral
+
+inl client_connect_async
+    (host : string)
+    (port : i32)
+    (ct : threading.cancellation_token)
+    (client : tcp_client)
+    : async.value_task
+    =
+    $'!client.ConnectAsync (!host, !port, !ct)'
+
+#!markdown
+
+## test_port_open
+
+#!spiral
+
+inl test_port_open port : _ bool = async.new_async fun () =>
+    inl ct = async.cancellation_token () |> async.let'
+    inl client = new_tcp_client () |> use
+    try_unit
+        fun () =>
+            client |> client_connect_async "127.0.0.1" port ct |> async.await_value_task_unit |> async.do
+            return true
+        fun ex =>
+            inl ex = ex |> sm'.format_exception
+            trace Verbose (fun () => $'$"test_port_open / ex: {!ex}"') get_locals
+            return false
+
+#!spiral
+
+// // test
+
+test_port_open 65536
+|> async.run_with_timeout 120
+|> _assert_eq (Some false)
+
+#!markdown
+
+## test_port_open_timeout
+
+#!spiral
+
+inl test_port_open_timeout timeout port : _ bool = async.new_async_unit fun () =>
+    inl result =
+        test_port_open port
+        |> async.run_with_timeout_async timeout
+        |> async.let'
+    match result with
+    | None => false
+    | Some result => result
+    |> return
+
+#!spiral
+
+// // test
+
+test_port_open_timeout 120 65535
+|> async.run_synchronously
+|> _assert_eq false
+
+#!markdown
+
+## wait_for_port_access
+
+#!spiral
+
+inl wait_for_port_access timeout status port : _ i64 =
+    let rec loop retry : _ i64 = async.new_async_unit fun () =>
+        inl isPortOpen =
+            match timeout |> optionm'.unbox with
+            | None => test_port_open port
+            | Some timeout => test_port_open_timeout timeout port
+            |> async.let'
+        if isPortOpen = status
+        then retry |> return |> fun x => $'(*' : ()
+        else
+            $'*) else' : ()
+            if retry % 100 = 0 then
+                inl get_locals () = $'$"port: {!port} / retry: {!retry} / {!get_locals ()}"'
+                trace Verbose (fun () => "wait_for_port_access") get_locals
+            async.sleep 10 |> async.do
+            loop (retry + 1) |> async.return_await |> fun x => $'(*' : ()
+        |> fun x => $'*)' : ()
+    loop 0i64
+
+#!spiral
+
+// // test
+
+inl lock_port port = async.new_async fun () =>
+    trace Debug (fun () => "_1") get_locals
+    async.sleep 5000 |> async.do
+    inl listener = new_tcp_listener ("127.0.0.1" |> ip_address_parse) port |> use
+    trace Debug (fun () => "_2") get_locals
+    listener |> listener_start
+    trace Debug (fun () => "_3") get_locals
+    async.sleep 2000 |> async.do
+    trace Debug (fun () => "_4") get_locals
+    $'!listener.Stop' ()
+    trace Debug (fun () => "_5") get_locals
+
+inl port = 5555i32
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    inl child = lock_port port |> async.start_child |> async.let'
+    trace Debug (fun () => "2") get_locals
+    async.sleep 1 |> async.do
+    trace Debug (fun () => "3") get_locals
+    inl retries1 = wait_for_port_access (None |> optionm'.box) true port |> async.let'
+    trace Debug (fun () => "4") get_locals
+    inl retries2 = wait_for_port_access (None |> optionm'.box) false port |> async.let'
+    trace Debug (fun () => "5") get_locals
+    child |> async.do
+    trace Debug (fun () => "6") get_locals
+    (retries1, retries2) |> return
+|> async.new_async_unit
+|> async.run_with_timeout 20000
+|> function
+    | Some (retries1, retries2) =>
+        retries1
+        |> _assert_between
+            if runtime.is_windows () then 2i64 else 2
+            if runtime.is_windows () then 5 else 1500
+
+        retries2
+        |> _assert_between
+            if runtime.is_windows () then 80i64 else 80
+            if runtime.is_windows () then 150 else 600
+
+        true
+    | _ => false
+|> _assert_eq true
+
+#!spiral
+
+// // test
+
+
+inl lock_port port = async.new_async_unit fun () =>
+    trace Debug (fun () => "_1") get_locals
+    async.sleep 500 |> async.do
+    inl listener = new_tcp_listener (ip_address_parse "127.0.0.1") port |> use
+    trace Debug (fun () => "_2") get_locals
+    listener |> listener_start
+    trace Debug (fun () => "_3") get_locals
+    async.sleep 200 |> async.do
+    trace Debug (fun () => "_4") get_locals
+    listener |> listener_stop
+    trace Debug (fun () => "_5") get_locals
+
+inl port = 5555
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    inl child = lock_port port |> async.start_child |> async.let'
+    trace Debug (fun () => "2") get_locals
+    async.sleep 1 |> async.do
+    trace Debug (fun () => "3") get_locals
+    inl retries1 = wait_for_port_access (Some 60 |> optionm'.box) true port |> async.let'
+    trace Debug (fun () => "4") get_locals
+    inl retries2 = wait_for_port_access (Some 60 |> optionm'.box) false port |> async.let'
+    trace Debug (fun () => "5") get_locals
+    child |> async.do
+    trace Debug (fun () => "6") get_locals
+    (retries1, retries2) |> return
+|> async.new_async_unit
+|> async.run_with_timeout 2000
+|> function
+    | Some (retries1, retries2) =>
+        retries1
+        |> _assert_between
+            if runtime.is_windows () then 4i64 else 2
+            if runtime.is_windows () then 15 else 150
+
+        retries2
+        |> _assert_between
+            if runtime.is_windows () then 5i64 else 0
+            if runtime.is_windows () then 20 else 60
+
+        true
+    | _ => false
+|> _assert_eq true
+
+#!markdown
+
+## get_available_port
+
+#!spiral
+
+inl get_available_port timeout initial_port : _ i32 =
+    let rec loop port = async.new_async_unit fun () =>
+        inl is_port_open =
+            match timeout |> optionm'.unbox with
+            | None => test_port_open port
+            | Some timeout => test_port_open_timeout timeout port
+            |> async.let'
+        if not is_port_open
+        then port |> return |> fun x => $'(*' : ()
+        else
+            $'*) else' : ()
+            loop (port + 1) |> async.return_await |> fun x => $'(*' : ()
+        |> fun x => $'*)' : ()
+    loop initial_port
+
+#!spiral
+
+// // test
+
+inl lock_ports port = async.new_async_unit fun () =>
+    trace Debug (fun () => "_1") get_locals
+    inl listener1 = new_tcp_listener (ip_address_parse "127.0.0.1") port |> use
+    inl listener2 = new_tcp_listener (ip_address_parse "127.0.0.1") (port + 1) |> use
+    trace Debug (fun () => "_2") get_locals
+    listener1 |> listener_start
+    listener2 |> listener_start
+    trace Debug (fun () => "_3") get_locals
+    async.sleep 4000 |> async.do
+    trace Debug (fun () => "_4") get_locals
+    listener1 |> listener_stop
+    listener2 |> listener_stop
+    trace Debug (fun () => "_5") get_locals
+
+inl port = 5555
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    inl child = lock_ports port |> async.start_child |> async.let'
+    trace Debug (fun () => "2") get_locals
+    async.sleep 240 |> async.do
+    trace Debug (fun () => "3") get_locals
+    inl available_port = get_available_port (None |> optionm'.box) port |> async.let'
+    trace Debug (fun () => "4") get_locals
+    inl retries = wait_for_port_access (None |> optionm'.box) false port |> async.let'
+    trace Debug (fun () => "5") get_locals
+    child |> async.do
+    trace Debug (fun () => "6") get_locals
+    (available_port, retries) |> return
+|> async.new_async_unit
+|> async.run_with_timeout 15000
+|> function
+    | Some (available_port, retries) =>
+        available_port |> _assert_eq (port + 2)
+
+        retries
+        |> _assert_between
+            if runtime.is_windows () then 100i64 else 100
+            if runtime.is_windows () then 150 else 1200
+
+        true
+    | _ => false
+|> _assert_eq true
+
+#!spiral
+
+// // test
+
+inl lock_ports port = async.new_async_unit fun () =>
+    trace Debug (fun () => "_1") get_locals
+    inl listener1 = new_tcp_listener (ip_address_parse "127.0.0.1") port |> use
+    inl listener2 = new_tcp_listener (ip_address_parse "127.0.0.1") (port + 1) |> use
+    trace Debug (fun () => "_2") get_locals
+    listener1 |> listener_start
+    listener2 |> listener_start
+    trace Debug (fun () => "_3") get_locals
+    async.sleep 400 |> async.do
+    trace Debug (fun () => "_4") get_locals
+    listener1 |> listener_stop
+    listener2 |> listener_stop
+    trace Debug (fun () => "_5") get_locals
+
+inl port = 5555
+
+fun () =>
+    trace Debug (fun () => "1") get_locals
+    inl child = lock_ports port |> async.start_child |> async.let'
+    trace Debug (fun () => "2") get_locals
+    async.sleep 240 |> async.do
+    trace Debug (fun () => "3") get_locals
+    inl availablePort = get_available_port (Some 60 |> optionm'.box) port |> async.let'
+    trace Debug (fun () => "4") get_locals
+    inl retries = wait_for_port_access (Some 60 |> optionm'.box) false port |> async.let'
+    trace Debug (fun () => "5") get_locals
+    child |> async.do
+    trace Debug (fun () => "6") get_locals
+    (availablePort, retries) |> return
+|> async.new_async_unit
+|> async.run_with_timeout 1500
+|> function
+    | Some (available_port, retries) =>
+        available_port |> _assert_eq (port + 2)
+
+        retries
+        |> _assert_between
+            (if runtime.is_windows () then 2i64 else 1)
+            (if runtime.is_windows () then 10 else 120)
+
+        true
+    | _ => false
+|> _assert_eq true
+
+#!markdown
+
+## main
+
+#!spiral
+
+inl main () =
+    $"let test_port_open x = !test_port_open x" : ()
+    $"let test_port_open_timeout x = !test_port_open_timeout x" : ()
+    $"let wait_for_port_access x = !wait_for_port_access x" : ()
+    $"let get_available_port x = !get_available_port x" : ()

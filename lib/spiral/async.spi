@@ -121,6 +121,14 @@ inl run_synchronously forall t. (a : async t) : t =
             a |> $'Async.RunSynchronously'
         | _ => fun () => null ()
 
+// // ## start
+
+inl start (a : async ()) : () =
+    run_target function
+        | Fsharp (Native) => fun () =>
+            a |> $'Async.Start'
+        | _ => fun () => null ()
+
 // // ## start_child
 
 inl start_child forall t. (a : async t) : async (async t) =
@@ -290,6 +298,20 @@ inl with_trace_level forall t. level fn : _ t = new_async fun () =>
             fn |> return_await
         fun () =>
             trace_level <- old_trace_level
+
+// // ## value_task
+
+nominal value_task = $'System.Threading.Tasks.ValueTask'
+
+// // ## value_task_as_task
+
+inl value_task_as_task (task : value_task) : task () =
+    $'!task.AsTask' ()
+
+// // ## await_value_task_unit
+
+inl await_value_task_unit (task : value_task) : async () =
+    task |> value_task_as_task |> await_task
 
 // // ## main
 
