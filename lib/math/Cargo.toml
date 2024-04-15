@@ -5,7 +5,7 @@ edition = "2021"
 workspace = "../.."
 
 [dependencies]
-fable_library_rust = { path = "../rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["datetime", "guid"] }
+fable_library_rust = { path = "../rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["static_do_bindings", "datetime", "guid"] }
 num-complex = "~0.4"
 statrs = "~0.16"
 float-cmp = "~0.9"

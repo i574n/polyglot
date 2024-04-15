@@ -13,6 +13,14 @@ module SpiralTrace =
         US0
 #endif
 
+module SpiralCrypto =
+    let hash_text x =
+#if !INTERACTIVE
+        Crypto.hash_text x
+#else
+        hash_text x
+#endif
+
 #if !FABLE_COMPILER && !WASM && !CONTRACT
 
 module SpiralAsync =
@@ -88,13 +96,6 @@ module SpiralRuntime =
         execute_with_options_async x
 #endif
 
-module SpiralCrypto =
-    let hash_text x =
-#if !INTERACTIVE
-        Crypto.hash_text x
-#else
-        hash_text x
-#endif
 module SpiralDateTime =
     let format_iso8601 x =
 #if !INTERACTIVE

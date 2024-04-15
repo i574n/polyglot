@@ -21,11 +21,15 @@
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/fsharp/build.ps1" -sequential 1 } | Invoke-Block
+{ . "$ScriptDir/../lib/rust/fable/build.ps1" } | Invoke-Block
 
 #!pwsh
 
-{ . "$ScriptDir/../lib/rust/fable/build.ps1" } | Invoke-Block
+{ . "$ScriptDir/../apps/spiral/rust_builder/build.ps1" } | Invoke-Block
+
+#!pwsh
+
+{ . "$ScriptDir/../lib/fsharp/build.ps1" -sequential 1 } | Invoke-Block
 
 #!pwsh
 
