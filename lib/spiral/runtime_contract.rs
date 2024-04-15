@@ -65,6 +65,24 @@ pub mod Runtime {
                 .clone()
         }
     }
+    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    pub struct Mut0 {
+        pub l0: MutCell<i64>,
+    }
+    impl core::fmt::Display for Runtime::Mut0 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
+    pub struct Mut1 {
+        pub l0: MutCell<bool>,
+    }
+    impl core::fmt::Display for Runtime::Mut1 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US0 {
         US0_0,
@@ -116,6 +134,41 @@ pub mod Runtime {
         }
     }
     #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub struct Mut2 {
+        pub l0: MutCell<Runtime::US0>,
+    }
+    impl core::fmt::Display for Runtime::Mut2 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US1 {
+        US1_0(i64),
+        US1_1,
+    }
+    impl Runtime::US1 {
+        pub fn get_IsUS1_0(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS1_1(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+    }
+    impl core::fmt::Display for Runtime::US1 {
+        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+            write!(f, "{}", core::any::type_name::<Self>())
+        }
+    }
+    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum UH0 {
         UH0_0,
         UH0_1(char, LrcPtr<Runtime::UH0>),
@@ -142,68 +195,8 @@ pub mod Runtime {
         }
     }
     #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US2 {
-        US2_0,
-        US2_1,
-    }
-    impl Runtime::US2 {
-        pub fn get_IsUS2_0(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS2_1(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Runtime::US2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US1 {
-        US1_0,
-        US1_1(Runtime::US2),
-        US1_2,
-    }
-    impl Runtime::US1 {
-        pub fn get_IsUS1_0(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_1(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS1_2(this_: &MutCell<Runtime::US1>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Runtime::US1 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US3 {
-        US3_0(string),
+        US3_0,
         US3_1,
     }
     impl Runtime::US3 {
@@ -227,36 +220,43 @@ pub mod Runtime {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
-    pub struct Mut0 {
-        pub l0: MutCell<i64>,
+    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
+    pub enum US2 {
+        US2_0,
+        US2_1(Runtime::US3),
+        US2_2,
     }
-    impl core::fmt::Display for Runtime::Mut0 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
+    impl Runtime::US2 {
+        pub fn get_IsUS2_0(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS2_1(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
+        }
+        pub fn get_IsUS2_2(this_: &MutCell<Runtime::US2>, unitArg: ()) -> bool {
+            if unreachable!() {
+                true
+            } else {
+                false
+            }
         }
     }
-    #[derive(Clone, Debug, Default, PartialEq, PartialOrd, Hash, Eq)]
-    pub struct Mut1 {
-        pub l0: MutCell<bool>,
-    }
-    impl core::fmt::Display for Runtime::Mut1 {
+    impl core::fmt::Display for Runtime::US2 {
         fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
     #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub struct Mut2 {
-        pub l0: MutCell<Runtime::US0>,
-    }
-    impl core::fmt::Display for Runtime::Mut2 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
     pub enum US4 {
-        US4_0(i64),
+        US4_0(string),
         US4_1,
     }
     impl Runtime::US4 {
@@ -358,414 +358,13 @@ pub mod Runtime {
             write!(f, "{}", core::any::type_name::<Self>())
         }
     }
-    #[derive(Clone, Copy, Debug, PartialEq, PartialOrd, Hash, Eq)]
-    pub enum US8 {
-        US8_0(Runtime::US0),
-        US8_1,
-    }
-    impl Runtime::US8 {
-        pub fn get_IsUS8_0(this_: &MutCell<Runtime::US8>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-        pub fn get_IsUS8_1(this_: &MutCell<Runtime::US8>, unitArg: ()) -> bool {
-            if unreachable!() {
-                true
-            } else {
-                false
-            }
-        }
-    }
-    impl core::fmt::Display for Runtime::US8 {
-        fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
-            write!(f, "{}", core::any::type_name::<Self>())
-        }
-    }
-    pub fn closure0(unitVar: (), unitVar_1: ()) -> bool {
-        let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        {
-            let x: bool = unbox::<bool>(&defaultOf());
-            _v0.set(Some(x))
-        }
-        getValue(_v0.get().clone())
-    }
-    pub fn closure1(unitVar: (), unitVar_1: ()) -> string {
-        let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
-        {
-            let x: bool = unbox::<bool>(&defaultOf());
-            _v0.set(Some(x))
-        }
-        if getValue(_v0.get().clone()) {
-            string(".exe")
-        } else {
-            string("")
-        }
-    }
-    pub fn method0() -> (string, string) {
-        (string(""), string(""))
-    }
-    pub fn closure4(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
-        LrcPtr::new(Runtime::UH0::UH0_1(v0_1, v1_1))
-    }
-    pub fn closure3(unitVar: (), v0_1: char) -> Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>> {
-        Func1::new({
-            let v0_1 = v0_1.clone();
-            move |v: LrcPtr<Runtime::UH0>| Runtime::closure4(v0_1, v)
-        })
-    }
-    pub fn method1() -> Func1<char, Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>>> {
-        Func1::new(move |v: char| Runtime::closure3((), v))
-    }
-    pub fn method2(
-        v0_1: string,
-        v1_1: string,
-        v2_1: LrcPtr<Runtime::UH0>,
-        v3_1: Runtime::US1,
-    ) -> (string, string) {
-        let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
-        let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
-        let v2_1: MutCell<LrcPtr<Runtime::UH0>> = MutCell::new(v2_1.clone());
-        let v3_1: MutCell<Runtime::US1> = MutCell::new(v3_1.clone());
-        '_method2: loop {
-            break '_method2 (if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
-                v2_1.get().clone().as_ref()
-            {
-                let v5: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
-                    Runtime::UH0::UH0_1(_, x) => x.clone(),
-                    _ => unreachable!(),
-                };
-                let v4: char = match v2_1.get().clone().as_ref() {
-                    Runtime::UH0::UH0_1(x, _) => x.clone(),
-                    _ => unreachable!(),
-                };
-                if '\"' == v4 {
-                    if v1_1.get().clone() == string("") {
-                        let v0_1_temp: string = v0_1.get().clone();
-                        let v1_1_temp: string = v1_1.get().clone();
-                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                        let v3_1_temp: Runtime::US1 = Runtime::US1::US1_1(Runtime::US2::US2_0);
-                        v0_1.set(v0_1_temp);
-                        v1_1.set(v1_1_temp);
-                        v2_1.set(v2_1_temp);
-                        v3_1.set(v3_1_temp);
-                        continue '_method2;
-                    } else {
-                        match &v3_1.get().clone() {
-                            Runtime::US1::US1_1(v3_1_1_0) => {
-                                if let Runtime::US2::US2_0 = v3_1_1_0 {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: string = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                    let v3_1_temp: Runtime::US1 =
-                                        Runtime::US1::US1_1(Runtime::US2::US2_1);
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method2;
-                                } else {
-                                    if ' ' == v4 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    } else {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string =
-                                            sprintf!("{}{}", v1_1.get().clone(), v4);
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    }
-                                }
-                            }
-                            Runtime::US1::US1_0 => {
-                                if ' ' == v4 {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: string = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                    let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method2;
-                                } else {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: string =
-                                        sprintf!("{}{}", v1_1.get().clone(), v4);
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                    let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method2;
-                                }
-                            }
-                            _ => {
-                                let v0_1_temp: string = sprintf!("{}{}", v0_1.get().clone(), v4);
-                                let v1_1_temp: string = v1_1.get().clone();
-                                let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                v0_1.set(v0_1_temp);
-                                v1_1.set(v1_1_temp);
-                                v2_1.set(v2_1_temp);
-                                v3_1.set(v3_1_temp);
-                                continue '_method2;
-                            }
-                        }
-                    }
-                } else {
-                    if '\'' == v4 {
-                        if v1_1.get().clone() == string("") {
-                            let v0_1_temp: string = v0_1.get().clone();
-                            let v1_1_temp: string = v1_1.get().clone();
-                            let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                            let v3_1_temp: Runtime::US1 = Runtime::US1::US1_1(Runtime::US2::US2_0);
-                            v0_1.set(v0_1_temp);
-                            v1_1.set(v1_1_temp);
-                            v2_1.set(v2_1_temp);
-                            v3_1.set(v3_1_temp);
-                            continue '_method2;
-                        } else {
-                            match &v3_1.get().clone() {
-                                Runtime::US1::US1_1(v3_1_1_0) => {
-                                    if let Runtime::US2::US2_0 = v3_1_1_0 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 =
-                                            Runtime::US1::US1_1(Runtime::US2::US2_1);
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    } else {
-                                        if ' ' == v4 {
-                                            let v0_1_temp: string = v0_1.get().clone();
-                                            let v1_1_temp: string = v1_1.get().clone();
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                            let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method2;
-                                        } else {
-                                            let v0_1_temp: string = v0_1.get().clone();
-                                            let v1_1_temp: string =
-                                                sprintf!("{}{}", v1_1.get().clone(), v4);
-                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                            let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                            v0_1.set(v0_1_temp);
-                                            v1_1.set(v1_1_temp);
-                                            v2_1.set(v2_1_temp);
-                                            v3_1.set(v3_1_temp);
-                                            continue '_method2;
-                                        }
-                                    }
-                                }
-                                Runtime::US1::US1_0 => {
-                                    if ' ' == v4 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    } else {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string =
-                                            sprintf!("{}{}", v1_1.get().clone(), v4);
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    }
-                                }
-                                _ => {
-                                    let v0_1_temp: string =
-                                        sprintf!("{}{}", v0_1.get().clone(), v4);
-                                    let v1_1_temp: string = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                    let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method2;
-                                }
-                            }
-                        }
-                    } else {
-                        match &v3_1.get().clone() {
-                            Runtime::US1::US1_1(v3_1_1_0) => {
-                                if let Runtime::US2::US2_0 = v3_1_1_0 {
-                                    if ' ' == v4 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string = sprintf!("{} ", v1_1.get().clone());
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 =
-                                            Runtime::US1::US1_1(Runtime::US2::US2_0);
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    } else {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string =
-                                            sprintf!("{}{}", v1_1.get().clone(), v4);
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    }
-                                } else {
-                                    if ' ' == v4 {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string = v1_1.get().clone();
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    } else {
-                                        let v0_1_temp: string = v0_1.get().clone();
-                                        let v1_1_temp: string =
-                                            sprintf!("{}{}", v1_1.get().clone(), v4);
-                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                        let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                        v0_1.set(v0_1_temp);
-                                        v1_1.set(v1_1_temp);
-                                        v2_1.set(v2_1_temp);
-                                        v3_1.set(v3_1_temp);
-                                        continue '_method2;
-                                    }
-                                }
-                            }
-                            Runtime::US1::US1_0 => {
-                                if ' ' == v4 {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: string = v1_1.get().clone();
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                    let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method2;
-                                } else {
-                                    let v0_1_temp: string = v0_1.get().clone();
-                                    let v1_1_temp: string =
-                                        sprintf!("{}{}", v1_1.get().clone(), v4);
-                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5;
-                                    let v3_1_temp: Runtime::US1 = v3_1.get().clone();
-                                    v0_1.set(v0_1_temp);
-                                    v1_1.set(v1_1_temp);
-                                    v2_1.set(v2_1_temp);
-                                    v3_1.set(v3_1_temp);
-                                    continue '_method2;
-                                }
-                            }
-                            _ => {
-                                let v0_1_temp: string = sprintf!("{}{}", v0_1.get().clone(), v4);
-                                let v1_1_temp: string = v1_1.get().clone();
-                                let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
-                                let v3_1_temp: Runtime::US1 = Runtime::US1::US1_2;
-                                v0_1.set(v0_1_temp);
-                                v1_1.set(v1_1_temp);
-                                v2_1.set(v2_1_temp);
-                                v3_1.set(v3_1_temp);
-                                continue '_method2;
-                            }
-                        }
-                    }
-                }
-            } else {
-                match &v3_1.get().clone() {
-                    Runtime::US1::US1_1(v3_1_1_0) => {
-                        if let Runtime::US2::US2_0 = v3_1_1_0 {
-                            (
-                                replace(v1_1.get().clone(), string("\\"), string("/")),
-                                v0_1.get().clone(),
-                            )
-                        } else {
-                            (
-                                replace(v1_1.get().clone(), string("\\"), string("/")),
-                                v0_1.get().clone(),
-                            )
-                        }
-                    }
-                    Runtime::US1::US1_0 => (
-                        replace(v1_1.get().clone(), string("\\"), string("/")),
-                        v0_1.get().clone(),
-                    ),
-                    _ => (
-                        replace(v1_1.get().clone(), string("\\"), string("/")),
-                        v0_1.get().clone(),
-                    ),
-                }
-            });
-        }
-    }
-    pub fn closure5(unitVar: (), v0_1: string) -> Runtime::US3 {
-        Runtime::US3::US3_0(v0_1)
-    }
-    pub fn method3() -> Func1<string, Runtime::US3> {
-        Func1::new(move |v: string| Runtime::closure5((), v))
-    }
-    pub fn closure6(
-        v0_1: Option<CancellationToken>,
-        v1_1: string,
-        v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v3_1: Option<Runtime::US0>,
-        v4: Option<string>,
-        unitVar: (),
-    ) -> string {
-        sprintf!(
-            "execute_with_options_async / options: {:?}",
-            (v0_1, v1_1, v2_1, v3_1, v4)
-        )
-    }
-    pub fn closure7(unitVar: (), unitVar_1: ()) -> string {
-        string("")
-    }
-    pub fn method4() -> Func0<string> {
-        Func0::new(move || Runtime::closure7((), ()))
-    }
-    pub fn method6(v0_1: Option<i64>) -> Option<i64> {
+    pub fn method0(v0_1: Option<i64>) -> Option<i64> {
         v0_1
     }
-    pub fn method7(v0_1: Option<i64>) -> Option<i64> {
+    pub fn method1(v0_1: Option<i64>) -> Option<i64> {
         v0_1
     }
-    pub fn closure8(
+    pub fn closure0(
         unitVar: (),
         unitVar_1: (),
     ) -> (
@@ -784,15 +383,389 @@ pub mod Runtime {
         let v3_1: LrcPtr<Runtime::Mut2> = LrcPtr::new(Runtime::Mut2 {
             l0: MutCell::new(Runtime::US0::US0_0),
         });
-        let v4: LrcPtr<Runtime::Mut1> = LrcPtr::new(Runtime::Mut1 {
+        let v4_1: LrcPtr<Runtime::Mut1> = LrcPtr::new(Runtime::Mut1 {
             l0: MutCell::new(false),
         });
         let _v5: MutCell<Option<Option<i64>>> = MutCell::new(None::<Option<i64>>);
         {
-            let x: Option<i64> = Runtime::method7(None::<i64>);
+            let x: Option<i64> = Runtime::method1(None::<i64>);
             _v5.set(Some(x))
         }
-        (v1_1, v4, v0_1, v3_1, getValue(_v5.get().clone()))
+        (v1_1, v4_1, v0_1, v3_1, getValue(_v5.get().clone()))
+    }
+    pub fn closure1(unitVar: (), unitVar_1: ()) -> bool {
+        let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        {
+            let x: bool = unbox::<bool>(&defaultOf());
+            _v0.set(Some(x))
+        }
+        getValue(_v0.get().clone())
+    }
+    pub fn closure2(unitVar: (), unitVar_1: ()) -> string {
+        let _v0: MutCell<Option<bool>> = MutCell::new(None::<bool>);
+        {
+            let x: bool = unbox::<bool>(&defaultOf());
+            _v0.set(Some(x))
+        }
+        if getValue(_v0.get().clone()) {
+            string(".exe")
+        } else {
+            string("")
+        }
+    }
+    pub fn method2() -> (string, string) {
+        (string(""), string(""))
+    }
+    pub fn closure5(v0_1: char, v1_1: LrcPtr<Runtime::UH0>) -> LrcPtr<Runtime::UH0> {
+        LrcPtr::new(Runtime::UH0::UH0_1(v0_1, v1_1))
+    }
+    pub fn closure4(unitVar: (), v0_1: char) -> Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>> {
+        Func1::new({
+            let v0_1 = v0_1.clone();
+            move |v: LrcPtr<Runtime::UH0>| Runtime::closure5(v0_1, v)
+        })
+    }
+    pub fn method3() -> Func1<char, Func1<LrcPtr<Runtime::UH0>, LrcPtr<Runtime::UH0>>> {
+        Func1::new(move |v: char| Runtime::closure4((), v))
+    }
+    pub fn method4(
+        v0_1: string,
+        v1_1: string,
+        v2_1: LrcPtr<Runtime::UH0>,
+        v3_1: Runtime::US2,
+    ) -> (string, string) {
+        let v0_1: MutCell<string> = MutCell::new(v0_1.clone());
+        let v1_1: MutCell<string> = MutCell::new(v1_1.clone());
+        let v2_1: MutCell<LrcPtr<Runtime::UH0>> = MutCell::new(v2_1.clone());
+        let v3_1: MutCell<Runtime::US2> = MutCell::new(v3_1.clone());
+        '_method4: loop {
+            break '_method4 (if let Runtime::UH0::UH0_1(v2_1_1_0, v2_1_1_1) =
+                v2_1.get().clone().as_ref()
+            {
+                let v5: LrcPtr<Runtime::UH0> = match v2_1.get().clone().as_ref() {
+                    Runtime::UH0::UH0_1(_, x) => x.clone(),
+                    _ => unreachable!(),
+                };
+                let v4_1: char = match v2_1.get().clone().as_ref() {
+                    Runtime::UH0::UH0_1(x, _) => x.clone(),
+                    _ => unreachable!(),
+                };
+                if '\"' == v4_1 {
+                    if v1_1.get().clone() == string("") {
+                        let v0_1_temp: string = v0_1.get().clone();
+                        let v1_1_temp: string = v1_1.get().clone();
+                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                        let v3_1_temp: Runtime::US2 = Runtime::US2::US2_1(Runtime::US3::US3_0);
+                        v0_1.set(v0_1_temp);
+                        v1_1.set(v1_1_temp);
+                        v2_1.set(v2_1_temp);
+                        v3_1.set(v3_1_temp);
+                        continue '_method4;
+                    } else {
+                        match &v3_1.get().clone() {
+                            Runtime::US2::US2_1(v3_1_1_0) => {
+                                if let Runtime::US3::US3_0 = v3_1_1_0 {
+                                    let v0_1_temp: string = v0_1.get().clone();
+                                    let v1_1_temp: string = v1_1.get().clone();
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                    let v3_1_temp: Runtime::US2 =
+                                        Runtime::US2::US2_1(Runtime::US3::US3_1);
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method4;
+                                } else {
+                                    if ' ' == v4_1 {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string = v1_1.get().clone();
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    } else {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string =
+                                            sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    }
+                                }
+                            }
+                            Runtime::US2::US2_0 => {
+                                if ' ' == v4_1 {
+                                    let v0_1_temp: string = v0_1.get().clone();
+                                    let v1_1_temp: string = v1_1.get().clone();
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                    let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method4;
+                                } else {
+                                    let v0_1_temp: string = v0_1.get().clone();
+                                    let v1_1_temp: string =
+                                        sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                    let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method4;
+                                }
+                            }
+                            _ => {
+                                let v0_1_temp: string = sprintf!("{}{}", v0_1.get().clone(), v4_1);
+                                let v1_1_temp: string = v1_1.get().clone();
+                                let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                v0_1.set(v0_1_temp);
+                                v1_1.set(v1_1_temp);
+                                v2_1.set(v2_1_temp);
+                                v3_1.set(v3_1_temp);
+                                continue '_method4;
+                            }
+                        }
+                    }
+                } else {
+                    if '\'' == v4_1 {
+                        if v1_1.get().clone() == string("") {
+                            let v0_1_temp: string = v0_1.get().clone();
+                            let v1_1_temp: string = v1_1.get().clone();
+                            let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                            let v3_1_temp: Runtime::US2 = Runtime::US2::US2_1(Runtime::US3::US3_0);
+                            v0_1.set(v0_1_temp);
+                            v1_1.set(v1_1_temp);
+                            v2_1.set(v2_1_temp);
+                            v3_1.set(v3_1_temp);
+                            continue '_method4;
+                        } else {
+                            match &v3_1.get().clone() {
+                                Runtime::US2::US2_1(v3_1_1_0) => {
+                                    if let Runtime::US3::US3_0 = v3_1_1_0 {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string = v1_1.get().clone();
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 =
+                                            Runtime::US2::US2_1(Runtime::US3::US3_1);
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    } else {
+                                        if ' ' == v4_1 {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: string = v1_1.get().clone();
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                            let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            continue '_method4;
+                                        } else {
+                                            let v0_1_temp: string = v0_1.get().clone();
+                                            let v1_1_temp: string =
+                                                sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                            let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                            let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                            v0_1.set(v0_1_temp);
+                                            v1_1.set(v1_1_temp);
+                                            v2_1.set(v2_1_temp);
+                                            v3_1.set(v3_1_temp);
+                                            continue '_method4;
+                                        }
+                                    }
+                                }
+                                Runtime::US2::US2_0 => {
+                                    if ' ' == v4_1 {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string = v1_1.get().clone();
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    } else {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string =
+                                            sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    }
+                                }
+                                _ => {
+                                    let v0_1_temp: string =
+                                        sprintf!("{}{}", v0_1.get().clone(), v4_1);
+                                    let v1_1_temp: string = v1_1.get().clone();
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                    let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method4;
+                                }
+                            }
+                        }
+                    } else {
+                        match &v3_1.get().clone() {
+                            Runtime::US2::US2_1(v3_1_1_0) => {
+                                if let Runtime::US3::US3_0 = v3_1_1_0 {
+                                    if ' ' == v4_1 {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string = sprintf!("{} ", v1_1.get().clone());
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 =
+                                            Runtime::US2::US2_1(Runtime::US3::US3_0);
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    } else {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string =
+                                            sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    }
+                                } else {
+                                    if ' ' == v4_1 {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string = v1_1.get().clone();
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    } else {
+                                        let v0_1_temp: string = v0_1.get().clone();
+                                        let v1_1_temp: string =
+                                            sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                        let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                        let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                        v0_1.set(v0_1_temp);
+                                        v1_1.set(v1_1_temp);
+                                        v2_1.set(v2_1_temp);
+                                        v3_1.set(v3_1_temp);
+                                        continue '_method4;
+                                    }
+                                }
+                            }
+                            Runtime::US2::US2_0 => {
+                                if ' ' == v4_1 {
+                                    let v0_1_temp: string = v0_1.get().clone();
+                                    let v1_1_temp: string = v1_1.get().clone();
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                    let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method4;
+                                } else {
+                                    let v0_1_temp: string = v0_1.get().clone();
+                                    let v1_1_temp: string =
+                                        sprintf!("{}{}", v1_1.get().clone(), v4_1);
+                                    let v2_1_temp: LrcPtr<Runtime::UH0> = v5;
+                                    let v3_1_temp: Runtime::US2 = v3_1.get().clone();
+                                    v0_1.set(v0_1_temp);
+                                    v1_1.set(v1_1_temp);
+                                    v2_1.set(v2_1_temp);
+                                    v3_1.set(v3_1_temp);
+                                    continue '_method4;
+                                }
+                            }
+                            _ => {
+                                let v0_1_temp: string = sprintf!("{}{}", v0_1.get().clone(), v4_1);
+                                let v1_1_temp: string = v1_1.get().clone();
+                                let v2_1_temp: LrcPtr<Runtime::UH0> = v5.clone();
+                                let v3_1_temp: Runtime::US2 = Runtime::US2::US2_2;
+                                v0_1.set(v0_1_temp);
+                                v1_1.set(v1_1_temp);
+                                v2_1.set(v2_1_temp);
+                                v3_1.set(v3_1_temp);
+                                continue '_method4;
+                            }
+                        }
+                    }
+                }
+            } else {
+                match &v3_1.get().clone() {
+                    Runtime::US2::US2_1(v3_1_1_0) => {
+                        if let Runtime::US3::US3_0 = v3_1_1_0 {
+                            (
+                                replace(v1_1.get().clone(), string("\\"), string("/")),
+                                v0_1.get().clone(),
+                            )
+                        } else {
+                            (
+                                replace(v1_1.get().clone(), string("\\"), string("/")),
+                                v0_1.get().clone(),
+                            )
+                        }
+                    }
+                    Runtime::US2::US2_0 => (
+                        replace(v1_1.get().clone(), string("\\"), string("/")),
+                        v0_1.get().clone(),
+                    ),
+                    _ => (
+                        replace(v1_1.get().clone(), string("\\"), string("/")),
+                        v0_1.get().clone(),
+                    ),
+                }
+            });
+        }
+    }
+    pub fn closure6(unitVar: (), v0_1: string) -> Runtime::US4 {
+        Runtime::US4::US4_0(v0_1)
+    }
+    pub fn method5() -> Func1<string, Runtime::US4> {
+        Func1::new(move |v: string| Runtime::closure6((), v))
+    }
+    pub fn closure7(
+        v0_1: Option<CancellationToken>,
+        v1_1: string,
+        v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
+        v3_1: Option<string>,
+        unitVar: (),
+    ) -> string {
+        sprintf!(
+            "execute_with_options_async / options: {:?}",
+            (v0_1, v1_1, v2_1, v3_1)
+        )
+    }
+    pub fn closure8(unitVar: (), unitVar_1: ()) -> string {
+        string("")
+    }
+    pub fn method6() -> Func0<string> {
+        Func0::new(move || Runtime::closure8((), ()))
     }
     pub fn closure10(unitVar: (), v0_1: i64) -> Runtime::US5 {
         Runtime::US5::US5_0(v0_1)
@@ -818,7 +791,7 @@ pub mod Runtime {
                 Option<i64>,
             )>
         {
-            Runtime::State::trace_state().set(Some(Runtime::closure8((), ())));
+            Runtime::State::trace_state().set(Some(Runtime::closure0((), ())));
         }
         {
             let patternInput: (
@@ -833,30 +806,51 @@ pub mod Runtime {
                 let x: string = Runtime::method9();
                 _v9.set(Some(x))
             }
-            trimEndChars(
-                trimStartChars(
-                    sprintf!(
-                        "{} #{} [{}] {} / {}",
-                        getValue(_v9.get().clone()),
-                        (patternInput.0.clone()).l0.get().clone(),
-                        toLower(match &v0_1 {
-                            Runtime::US0::US0_1 => string("Debug"),
-                            Runtime::US0::US0_2 => string("Info"),
-                            Runtime::US0::US0_0 => string("Verbose"),
-                            Runtime::US0::US0_3 => string("Warning"),
-                            _ => string("Critical"),
-                        }),
-                        v1_1(),
-                        v2_1()
+            {
+                let v60: string = getValue(_v9.get().clone());
+                let v61: i64 = (patternInput.0.clone()).l0.get().clone();
+                let v72: string = toLower(match &v0_1 {
+                    Runtime::US0::US0_1 => string("Debug"),
+                    Runtime::US0::US0_2 => string("Info"),
+                    Runtime::US0::US0_0 => string("Verbose"),
+                    Runtime::US0::US0_3 => string("Warning"),
+                    _ => string("Critical"),
+                });
+                let _v73: MutCell<Option<string>> = MutCell::new(None::<string>);
+                let v136: &str = match &v0_1 {
+                    Runtime::US0::US0_1 => inline_colorization::color_bright_blue,
+                    Runtime::US0::US0_2 => inline_colorization::color_bright_green,
+                    Runtime::US0::US0_0 => inline_colorization::color_bright_black,
+                    Runtime::US0::US0_3 => inline_colorization::color_bright_yellow,
+                    _ => inline_colorization::color_bright_red,
+                };
+                let v138: &str = fable_library_rust::String_::LrcStr::as_str(&v72);
+                let v140: &str = inline_colorization::color_reset;
+                let v142: string = string("format!(\"{v136}{v138}{v140}\")");
+                let v143: std::string::String = format!("{v136}{v138}{v140}");
+                {
+                    let x_1: string = fable_library_rust::String_::fromString(v143);
+                    _v73.set(Some(x_1))
+                }
+                trimEndChars(
+                    trimStartChars(
+                        sprintf!(
+                            "{} {} #{} {} / {}",
+                            v60,
+                            getValue(_v73.get().clone()),
+                            v61,
+                            v1_1(),
+                            v2_1()
+                        ),
+                        new_empty::<char>(),
                     ),
-                    new_empty::<char>(),
-                ),
-                new_array(&[' ', '/']),
-            )
+                    new_array(&[' ', '/']),
+                )
+            }
         }
     }
-    pub fn method5(v0_1: Runtime::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
-        let v3_1 = Func0::new(move || Runtime::closure8((), ()));
+    pub fn method7(v0_1: Runtime::US0, v1_1: Func0<string>, v2_1: Func0<string>) {
+        let v3_1 = Func0::new(move || Runtime::closure0((), ()));
         if Runtime::State::trace_state().get().clone()
             == None::<(
                 LrcPtr<Runtime::Mut0>,
@@ -869,9 +863,10 @@ pub mod Runtime {
             Runtime::State::trace_state().set(Some(v3_1()));
         }
         {
-            let v4: LrcPtr<Runtime::Mut0> = (getValue(Runtime::State::trace_state().get().clone()))
-                .0
-                .clone();
+            let v4_1: LrcPtr<Runtime::Mut0> =
+                (getValue(Runtime::State::trace_state().get().clone()))
+                    .0
+                    .clone();
             if Runtime::State::trace_state().get().clone()
                 == None::<(
                     LrcPtr<Runtime::Mut0>,
@@ -897,8 +892,8 @@ pub mod Runtime {
                 } else {
                     false
                 } {
-                    let v19: i64 = v4.l0.get().clone() + 1_i64;
-                    v4.l0.set(v19);
+                    let v19: i64 = v4_1.l0.get().clone() + 1_i64;
+                    v4_1.l0.set(v19);
                     {
                         let v21: string = sprintf!("{}", Runtime::closure9(v0_1, v1_1, v2_1, ()));
                         let _v22: MutCell<Option<()>> = MutCell::new(None::<()>);
@@ -927,23 +922,22 @@ pub mod Runtime {
         v0_1: Option<CancellationToken>,
         v1_1: string,
         v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v3_1: Option<Runtime::US0>,
-        v4: Option<string>,
-        v5: (),
-        v6: LrcPtr<ConcurrentStack_1<string>>,
-        v7: (),
+        v3_1: Option<string>,
+        v4_1: (),
+        v5: LrcPtr<ConcurrentStack_1<string>>,
+        v6: (),
     ) {
-        let _v8: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        let _v7: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
         {
             let x: Arc<Async<()>> = defaultOf();
-            _v8.set(Some(x))
+            _v7.set(Some(x))
         }
         {
-            let v32: Arc<Async<()>> = getValue(_v8.get().clone());
-            let _v33: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v31: Arc<Async<()>> = getValue(_v7.get().clone());
+            let _v32: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v33.set(Some(()));
-            getValue(_v33.get().clone());
+            _v32.set(Some(()));
+            getValue(_v32.get().clone());
             ()
         }
     }
@@ -951,23 +945,22 @@ pub mod Runtime {
         v0_1: Option<CancellationToken>,
         v1_1: string,
         v2_1: Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-        v3_1: Option<Runtime::US0>,
-        v4: Option<string>,
-        v5: (),
-        v6: LrcPtr<ConcurrentStack_1<string>>,
-        v7: (),
+        v3_1: Option<string>,
+        v4_1: (),
+        v5: LrcPtr<ConcurrentStack_1<string>>,
+        v6: (),
     ) {
-        let _v8: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
+        let _v7: MutCell<Option<Arc<Async<()>>>> = MutCell::new(None::<Arc<Async<()>>>);
         {
             let x: Arc<Async<()>> = defaultOf();
-            _v8.set(Some(x))
+            _v7.set(Some(x))
         }
         {
-            let v33: Arc<Async<()>> = getValue(_v8.get().clone());
-            let _v34: MutCell<Option<()>> = MutCell::new(None::<()>);
+            let v32: Arc<Async<()>> = getValue(_v7.get().clone());
+            let _v33: MutCell<Option<()>> = MutCell::new(None::<()>);
             defaultOf::<()>();
-            _v34.set(Some(()));
-            getValue(_v34.get().clone());
+            _v33.set(Some(()));
+            getValue(_v33.get().clone());
             ()
         }
     }
@@ -1007,94 +1000,113 @@ pub mod Runtime {
             length(v1_1)
         )
     }
-    pub fn closure19(unitVar: (), v0_1: Runtime::US0) -> Runtime::US8 {
-        Runtime::US8::US8_0(v0_1)
-    }
-    pub fn method13() -> Func1<Runtime::US0, Runtime::US8> {
-        Func1::new(move |v: Runtime::US0| Runtime::closure19((), v))
-    }
-    pub fn closure2(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
-        let _v5: MutCell<Option<Arc<Async<(i32, string)>>>> =
+    pub fn closure3(unitVar: (), v0_1: string) -> Arc<Async<(i32, string)>> {
+        let _v4: MutCell<Option<Arc<Async<(i32, string)>>>> =
             MutCell::new(None::<Arc<Async<(i32, string)>>>);
         {
             let x: Arc<Async<(i32, string)>> = defaultOf();
-            _v5.set(Some(x))
+            _v4.set(Some(x))
         }
-        getValue(_v5.get().clone())
+        getValue(_v4.get().clone())
     }
-    pub fn closure20(
+    pub fn closure19(
         unitVar: (),
         _arg: (
             Option<CancellationToken>,
             string,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-            Option<Runtime::US0>,
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        let _v5: MutCell<Option<Arc<Async<(i32, string)>>>> =
+        let _v4: MutCell<Option<Arc<Async<(i32, string)>>>> =
             MutCell::new(None::<Arc<Async<(i32, string)>>>);
         {
             let x: Arc<Async<(i32, string)>> = defaultOf();
-            _v5.set(Some(x))
+            _v4.set(Some(x))
         }
-        getValue(_v5.get().clone())
+        getValue(_v4.get().clone())
     }
-    pub fn v0() -> Func0<bool> {
-        static v0: OnceInit<Func0<bool>> = OnceInit::new();
+    pub fn v0() -> Func0<(
+        LrcPtr<Runtime::Mut0>,
+        LrcPtr<Runtime::Mut1>,
+        LrcPtr<Runtime::Mut1>,
+        LrcPtr<Runtime::Mut2>,
+        Option<i64>,
+    )> {
+        static v0: OnceInit<
+            Func0<(
+                LrcPtr<Runtime::Mut0>,
+                LrcPtr<Runtime::Mut1>,
+                LrcPtr<Runtime::Mut1>,
+                LrcPtr<Runtime::Mut2>,
+                Option<i64>,
+            )>,
+        > = OnceInit::new();
         v0.get_or_insert_with(|| Func0::new(move || Runtime::closure0((), ())))
             .clone()
     }
-    pub fn is_windows() -> bool {
-        (Runtime::v0())()
-    }
-    pub fn v1() -> Func0<string> {
-        static v1: OnceInit<Func0<string>> = OnceInit::new();
+    on_startup!(if Runtime::State::trace_state().get().clone()
+        == None::<(
+            LrcPtr<Runtime::Mut0>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut1>,
+            LrcPtr<Runtime::Mut2>,
+            Option<i64>
+        )> {
+        Runtime::State::trace_state().set(Some((Runtime::v0())()));
+    },);
+    pub fn v1() -> Func0<bool> {
+        static v1: OnceInit<Func0<bool>> = OnceInit::new();
         v1.get_or_insert_with(|| Func0::new(move || Runtime::closure1((), ())))
             .clone()
     }
-    pub fn get_executable_suffix() -> string {
+    pub fn is_windows() -> bool {
         (Runtime::v1())()
     }
-    pub fn v2() -> Func1<string, Arc<Async<(i32, string)>>> {
-        static v2: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
-        v2.get_or_insert_with(|| Func1::new(move |v: string| Runtime::closure2((), v)))
+    pub fn v2() -> Func0<string> {
+        static v2: OnceInit<Func0<string>> = OnceInit::new();
+        v2.get_or_insert_with(|| Func0::new(move || Runtime::closure2((), ())))
+            .clone()
+    }
+    pub fn get_executable_suffix() -> string {
+        (Runtime::v2())()
+    }
+    pub fn v3() -> Func1<string, Arc<Async<(i32, string)>>> {
+        static v3: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
+        v3.get_or_insert_with(|| Func1::new(move |v: string| Runtime::closure3((), v)))
             .clone()
     }
     pub fn execute_async(x: string) -> Arc<Async<(i32, string)>> {
-        (Runtime::v2())(x)
+        (Runtime::v3())(x)
     }
-    pub fn v3() -> Func1<
+    pub fn v4() -> Func1<
         (
             Option<CancellationToken>,
             string,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-            Option<Runtime::US0>,
             Option<string>,
         ),
         Arc<Async<(i32, string)>>,
     > {
-        static v3: OnceInit<
+        static v4: OnceInit<
             Func1<
                 (
                     Option<CancellationToken>,
                     string,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-                    Option<Runtime::US0>,
                     Option<string>,
                 ),
                 Arc<Async<(i32, string)>>,
             >,
         > = OnceInit::new();
-        v3.get_or_insert_with(|| {
+        v4.get_or_insert_with(|| {
             Func1::new(
                 move |arg10_0040: (
                     Option<CancellationToken>,
                     string,
                     Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-                    Option<Runtime::US0>,
                     Option<string>,
-                )| Runtime::closure20((), arg10_0040),
+                )| Runtime::closure19((), arg10_0040),
             )
         })
         .clone()
@@ -1104,11 +1116,10 @@ pub mod Runtime {
             Option<CancellationToken>,
             string,
             Option<Func1<(bool, string, i32), Arc<Async<()>>>>,
-            Option<Runtime::US0>,
             Option<string>,
         ),
     ) -> Arc<Async<(i32, string)>> {
-        (Runtime::v3())(x)
+        (Runtime::v4())(x)
     }
     on_startup!((),);
 }

@@ -1,12 +1,47 @@
+#if FABLE_COMPILER // networking.types
+[<Fable.Core.Erase; Fable.Core.Emit("Func0<$0>")>] type Func0<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>] type Func0<'T, 'U> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>] type Box<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>] type Dyn<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
+[<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("Fn($0, $1)")>] type ActionFn2<'T, 'U> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("impl $0")>] type Impl<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("mut $0")>] type Mut<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("&$0")>] type Ref<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("&'static $0")>] type StaticRef<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("MutCell<$0>")>] type MutCell<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::any::Any")>] type std_any_Any = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::cell::RefCell<$0>")>] type std_cell_RefCell<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::pin::Pin<$0>")>] type std_pin_Pin<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Rc<$0>")>] type std_rc_Rc<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::rc::Weak<$0>")>] type std_rc_Weak<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::sync::Arc<$0>")>] type std_sync_Arc<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("str")>] type Str = class end
+[<Fable.Core.Erase; Fable.Core.Emit("base64::DecodeError")>] type base64_DecodeError = class end
+[<Fable.Core.Erase; Fable.Core.Emit("borsh::io::Error")>] type borsh_io_Error = class end
+[<Fable.Core.Erase; Fable.Core.Emit("js_sys::JsString")>] type js_sys_JsString = class end
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Error")>] type serde_json_Error = class end
+[<Fable.Core.Erase; Fable.Core.Emit("serde_json::Value")>] type serde_json_Value = class end
+[<Fable.Core.Erase; Fable.Core.Emit("serde_wasm_bindgen::Error")>] type serde_wasm_bindgen_Error = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsStr")>] type std_ffi_OsStr = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::ffi::OsString")>] type std_ffi_OsString = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::str::Utf8Error")>] type std_str_Utf8Error = class end
+[<Fable.Core.Erase; Fable.Core.Emit("std::string::String")>] type std_string_String = class end
+[<Fable.Core.Erase; Fable.Core.Emit("reqwest_wasm::Error")>] type reqwest_Error = class end
+[<Fable.Core.Erase; Fable.Core.Emit("reqwest_wasm::RequestBuilder")>] type reqwest_RequestBuilder = class end
+[<Fable.Core.Erase; Fable.Core.Emit("reqwest_wasm::Response")>] type reqwest_Response = class end
+#endif // networking.types
 module State = let mutable trace_state = None
-type [<Struct>] US0 =
+type Mut0 = {mutable l0 : int64}
+and Mut1 = {mutable l0 : bool}
+and [<Struct>] US0 =
     | US0_0
     | US0_1
     | US0_2
     | US0_3
     | US0_4
-and Mut0 = {mutable l0 : int64}
-and Mut1 = {mutable l0 : bool}
 and Mut2 = {mutable l0 : US0}
 and [<Struct>] US1 =
     | US1_0 of f0_0 : int64
@@ -26,17 +61,11 @@ and [<Struct>] US5 =
 and [<Struct>] US6 =
     | US6_0 of f0_0 : int32
     | US6_1
-let rec closure1 (v0 : string) () : string =
-    let v1 : string = $"test_port_open / ex: {v0}"
-    v1
-and closure2 () () : string =
-    let v0 : string = ""
+let rec method0 (v0 : int64 option) : int64 option =
     v0
 and method1 (v0 : int64 option) : int64 option =
     v0
-and method2 (v0 : int64 option) : int64 option =
-    v0
-and closure3 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
+and closure0 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
     let v0 : Mut1 = {l0 = true} : Mut1
     let v1 : Mut0 = {l0 = 0L} : Mut0
     let v2 : US0 = US0_0
@@ -91,16 +120,22 @@ and closure3 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
         | US1_0(v23) -> (* Some *)
             let v24 : int64 option = Some v23 
             v24
-    let v28 : int64 option = method1(v27)
+    let v28 : int64 option = method0(v27)
     v28 
     #else
     let v29 : int64 option = None
-    let v30 : int64 option = method2(v29)
+    let v30 : int64 option = method1(v29)
     v30 
     #endif
     |> fun x -> _v5 <- Some x
     let v31 : int64 option = _v5.Value
     struct (v1, v4, v0, v3, v31)
+and closure2 (v0 : string) () : string =
+    let v1 : string = $"test_port_open / ex: {v0}"
+    v1
+and closure3 () () : string =
+    let v0 : string = ""
+    v0
 and closure5 () (v0 : int64) : US2 =
     US2_0(v0)
 and method3 () : (int64 -> US2) =
@@ -109,7 +144,7 @@ and method4 () : string =
     let v0 : string = ""
     v0
 and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure3()
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
     if State.trace_state = None then State.trace_state <- v3 () |> Some
     let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
     let v9 : string option = None
@@ -209,14 +244,130 @@ and closure4 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : strin
             let v65 : string = "Warning"
             v65
     let v72 : string = v71.ToLower ()
-    let v73 : string = $"{v60} #{v61} [{v72}] %s{v1 ()} / %s{v2 ()}"
-    let v74 : (char []) = [||]
-    let v75 : string = v73.TrimStart v74
-    let v76 : (char []) = [|' '; '/'|]
-    let v77 : string = v75.TrimEnd v76
-    v77
-and method0 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure3()
+    let v73 : string option = None
+    let mutable _v73 = v73
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v88 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v82 : string = "inline_colorization::color_bright_red"
+            let v83 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v82
+            v83
+        | US0_1 -> (* Debug *)
+            let v76 : string = "inline_colorization::color_bright_blue"
+            let v77 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v76
+            v77
+        | US0_2 -> (* Info *)
+            let v78 : string = "inline_colorization::color_bright_green"
+            let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78
+            v79
+        | US0_0 -> (* Verbose *)
+            let v74 : string = "inline_colorization::color_bright_black"
+            let v75 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v74
+            v75
+        | US0_3 -> (* Warning *)
+            let v80 : string = "inline_colorization::color_bright_yellow"
+            let v81 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v80
+            v81
+    let v89 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v72 v89
+    let v91 : string = "inline_colorization::color_reset"
+    let v92 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v91
+    let v93 : string = "\"{v88}{v90}{v92}\""
+    let v94 : string = @$"format!(" + v93 + ")"
+    let v95 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v94
+    let v96 : string = "fable_library_rust::String_::fromString($0)"
+    let v97 : string = Fable.Core.RustInterop.emitRustExpr v95 v96
+    v97 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v112 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v106 : string = "inline_colorization::color_bright_red"
+            let v107 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v106
+            v107
+        | US0_1 -> (* Debug *)
+            let v100 : string = "inline_colorization::color_bright_blue"
+            let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v100
+            v101
+        | US0_2 -> (* Info *)
+            let v102 : string = "inline_colorization::color_bright_green"
+            let v103 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v102
+            v103
+        | US0_0 -> (* Verbose *)
+            let v98 : string = "inline_colorization::color_bright_black"
+            let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v98
+            v99
+        | US0_3 -> (* Warning *)
+            let v104 : string = "inline_colorization::color_bright_yellow"
+            let v105 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v104
+            v105
+    let v113 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v114 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v72 v113
+    let v115 : string = "inline_colorization::color_reset"
+    let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v115
+    let v117 : string = "\"{v112}{v114}{v116}\""
+    let v118 : string = @$"format!(" + v117 + ")"
+    let v119 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v118
+    let v120 : string = "fable_library_rust::String_::fromString($0)"
+    let v121 : string = Fable.Core.RustInterop.emitRustExpr v119 v120
+    v121 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v136 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v130 : string = "inline_colorization::color_bright_red"
+            let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v130
+            v131
+        | US0_1 -> (* Debug *)
+            let v124 : string = "inline_colorization::color_bright_blue"
+            let v125 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v124
+            v125
+        | US0_2 -> (* Info *)
+            let v126 : string = "inline_colorization::color_bright_green"
+            let v127 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v126
+            v127
+        | US0_0 -> (* Verbose *)
+            let v122 : string = "inline_colorization::color_bright_black"
+            let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v122
+            v123
+        | US0_3 -> (* Warning *)
+            let v128 : string = "inline_colorization::color_bright_yellow"
+            let v129 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v128
+            v129
+    let v137 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v138 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v72 v137
+    let v139 : string = "inline_colorization::color_reset"
+    let v140 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v139
+    let v141 : string = "\"{v136}{v138}{v140}\""
+    let v142 : string = @$"format!(" + v141 + ")"
+    let v143 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v142
+    let v144 : string = "fable_library_rust::String_::fromString($0)"
+    let v145 : string = Fable.Core.RustInterop.emitRustExpr v143 v144
+    v145 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    v72 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    v72 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v146 : string = Unchecked.defaultof<string>
+    v146 
+    #endif
+    |> fun x -> _v73 <- Some x
+    let v147 : string = _v73.Value
+    let v148 : string = $"{v60} {v147} #{v61} %s{v1 ()} / %s{v2 ()}"
+    let v149 : (char []) = [||]
+    let v150 : string = v148.TrimStart v149
+    let v151 : (char []) = [|' '; '/'|]
+    let v152 : string = v150.TrimEnd v151
+    v152
+and method2 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
     if State.trace_state = None then State.trace_state <- v3 () |> Some
     let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
     if State.trace_state = None then State.trace_state <- v3 () |> Some
@@ -267,7 +418,7 @@ and method0 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
         |> fun x -> _v22 <- Some x
         _v22.Value
         ()
-and closure0 () (v0 : int32) : Async<bool> =
+and closure1 () (v0 : int32) : Async<bool> =
     let v1 : Async<bool> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -359,9 +510,9 @@ and closure0 () (v0 : int32) : Async<bool> =
     |> fun x -> _v24 <- Some x
     let v31 : string = _v24.Value
     let v32 : US0 = US0_0
-    let v33 : (unit -> string) = closure1(v31)
-    let v34 : (unit -> string) = closure2()
-    method0(v32, v33, v34)
+    let v33 : (unit -> string) = closure2(v31)
+    let v34 : (unit -> string) = closure3()
+    method2(v32, v33, v34)
     return false 
     (*
     let v35 : bool = *)
@@ -389,7 +540,7 @@ and closure10 () () : string =
     let v0 : string = "run_with_timeout_async"
     v0
 and closure11 (v0 : int32) () : string =
-    let v1 : (unit -> string) = closure2()
+    let v1 : (unit -> string) = closure3()
     let v2 : string = $"timeout: {v0} / {v1 ()}"
     v2
 and closure12 (v0 : string) () : string =
@@ -505,9 +656,9 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
     |> fun x -> _v30 <- Some x
     let v37 : string = _v30.Value
     let v38 : US0 = US0_0
-    let v39 : (unit -> string) = closure1(v37)
-    let v40 : (unit -> string) = closure2()
-    method0(v38, v39, v40)
+    let v39 : (unit -> string) = closure2(v37)
+    let v40 : (unit -> string) = closure3()
+    method2(v38, v39, v40)
     return false 
     (*
     let v41 : bool = *)
@@ -756,7 +907,7 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
                 let v121 : US0 = US0_1
                 let v122 : (unit -> string) = closure10()
                 let v123 : (unit -> string) = closure11(v0)
-                method0(v121, v122, v123)
+                method2(v121, v122, v123)
                 US3_1
             else
                 let v125 : string option = None
@@ -790,7 +941,7 @@ and closure7 (v0 : int32) (v1 : int32) : Async<bool> =
                 let v133 : US0 = US0_4
                 let v134 : (unit -> string) = closure12(v132)
                 let v135 : (unit -> string) = closure11(v0)
-                method0(v133, v134, v135)
+                method2(v133, v134, v135)
                 US3_1
         | US5_0(v115) -> (* Ok *)
             US3_0(v115)
@@ -873,7 +1024,7 @@ and closure17 () () : string =
     let v0 : string = "wait_for_port_access"
     v0
 and closure18 (v0 : int32, v1 : int64) () : string =
-    let v2 : (unit -> string) = closure2()
+    let v2 : (unit -> string) = closure3()
     let v3 : string = $"port: {v0} / retry: {v1} / {v2 ()}"
     v3
 and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64> =
@@ -992,9 +1143,9 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
             |> fun x -> _v35 <- Some x
             let v42 : string = _v35.Value
             let v43 : US0 = US0_0
-            let v44 : (unit -> string) = closure1(v42)
-            let v45 : (unit -> string) = closure2()
-            method0(v43, v44, v45)
+            let v44 : (unit -> string) = closure2(v42)
+            let v45 : (unit -> string) = closure3()
+            method2(v43, v44, v45)
             return false 
             (*
             let v46 : bool = *)
@@ -1124,9 +1275,9 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
             |> fun x -> _v80 <- Some x
             let v87 : string = _v80.Value
             let v88 : US0 = US0_0
-            let v89 : (unit -> string) = closure1(v87)
-            let v90 : (unit -> string) = closure2()
-            method0(v88, v89, v90)
+            let v89 : (unit -> string) = closure2(v87)
+            let v90 : (unit -> string) = closure3()
+            method2(v88, v89, v90)
             return false 
             (*
             let v91 : bool = *)
@@ -1375,7 +1526,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
                         let v171 : US0 = US0_1
                         let v172 : (unit -> string) = closure10()
                         let v173 : (unit -> string) = closure11(v51)
-                        method0(v171, v172, v173)
+                        method2(v171, v172, v173)
                         US3_1
                     else
                         let v175 : string option = None
@@ -1409,7 +1560,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
                         let v183 : US0 = US0_4
                         let v184 : (unit -> string) = closure12(v182)
                         let v185 : (unit -> string) = closure11(v51)
-                        method0(v183, v184, v185)
+                        method2(v183, v184, v185)
                         US3_1
                 | US5_0(v165) -> (* Ok *)
                     US3_0(v165)
@@ -1497,7 +1648,7 @@ and method5 (v0 : int32 option, v1 : bool, v2 : int32, v3 : int64) : Async<int64
             let v215 : US0 = US0_0
             let v216 : (unit -> string) = closure17()
             let v217 : (unit -> string) = closure18(v2, v3)
-            method0(v215, v216, v217)
+            method2(v215, v216, v217)
         let v218 : Async<unit> option = None
         let mutable _v218 = v218
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1673,9 +1824,9 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
             |> fun x -> _v33 <- Some x
             let v40 : string = _v33.Value
             let v41 : US0 = US0_0
-            let v42 : (unit -> string) = closure1(v40)
-            let v43 : (unit -> string) = closure2()
-            method0(v41, v42, v43)
+            let v42 : (unit -> string) = closure2(v40)
+            let v43 : (unit -> string) = closure3()
+            method2(v41, v42, v43)
             return false 
             (*
             let v44 : bool = *)
@@ -1805,9 +1956,9 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
             |> fun x -> _v78 <- Some x
             let v85 : string = _v78.Value
             let v86 : US0 = US0_0
-            let v87 : (unit -> string) = closure1(v85)
-            let v88 : (unit -> string) = closure2()
-            method0(v86, v87, v88)
+            let v87 : (unit -> string) = closure2(v85)
+            let v88 : (unit -> string) = closure3()
+            method2(v86, v87, v88)
             return false 
             (*
             let v89 : bool = *)
@@ -2056,7 +2207,7 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
                         let v169 : US0 = US0_1
                         let v170 : (unit -> string) = closure10()
                         let v171 : (unit -> string) = closure11(v49)
-                        method0(v169, v170, v171)
+                        method2(v169, v170, v171)
                         US3_1
                     else
                         let v173 : string option = None
@@ -2090,7 +2241,7 @@ and method7 (v0 : int32 option, v1 : int32) : Async<int32> =
                         let v181 : US0 = US0_4
                         let v182 : (unit -> string) = closure12(v180)
                         let v183 : (unit -> string) = closure11(v49)
-                        method0(v181, v182, v183)
+                        method2(v181, v182, v183)
                         US3_1
                 | US5_0(v163) -> (* Ok *)
                     US3_0(v163)
@@ -2198,12 +2349,14 @@ and closure20 (v0 : int32 option) (v1 : int32) : Async<int32> =
     method7(v0, v1)
 and closure19 () (v0 : int32 option) : (int32 -> Async<int32>) =
     closure20(v0)
-let v0 : (int32 -> Async<bool>) = closure0()
-let test_port_open x = v0 x
-let v1 : (int32 -> (int32 -> Async<bool>)) = closure6()
-let test_port_open_timeout x = v1 x
-let v2 : (int32 option -> (bool -> (int32 -> Async<int64>))) = closure13()
-let wait_for_port_access x = v2 x
-let v3 : (int32 option -> (int32 -> Async<int32>)) = closure19()
-let get_available_port x = v3 x
+let v0 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
+if State.trace_state = None then State.trace_state <- v0 () |> Some
+let v1 : (int32 -> Async<bool>) = closure1()
+let test_port_open x = v1 x
+let v2 : (int32 -> (int32 -> Async<bool>)) = closure6()
+let test_port_open_timeout x = v2 x
+let v3 : (int32 option -> (bool -> (int32 -> Async<int64>))) = closure13()
+let wait_for_port_access x = v3 x
+let v4 : (int32 option -> (int32 -> Async<int32>)) = closure19()
+let get_available_port x = v4 x
 ()

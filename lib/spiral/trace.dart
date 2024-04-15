@@ -5,17 +5,6 @@ import '../../fable_modules/fable_library/Util.dart' as util;
 
 types.Some<types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?>>? State_trace_state;
 
-class US0 implements types.Union, Comparable<US0> {
-    final int tag;
-    const US0(this.tag);
-    @override
-    bool operator ==(Object other) => (other is US0) && (other.tag == tag);
-    @override
-    int get hashCode => tag.hashCode;
-    @override
-    int compareTo(US0 other) => tag.compareTo(other.tag);
-}
-
 class Mut0 implements types.Record, Comparable<Mut0> {
     int l0;
     Mut0(this.l0);
@@ -36,6 +25,17 @@ class Mut1 implements types.Record, Comparable<Mut1> {
     int get hashCode => l0.hashCode;
     @override
     int compareTo(Mut1 other) => util.compareBool(l0, other.l0);
+}
+
+class US0 implements types.Union, Comparable<US0> {
+    final int tag;
+    const US0(this.tag);
+    @override
+    bool operator ==(Object other) => (other is US0) && (other.tag == tag);
+    @override
+    int get hashCode => tag.hashCode;
+    @override
+    int compareTo(US0 other) => tag.compareTo(other.tag);
 }
 
 class Mut2 implements types.Record, Comparable<Mut2> {
@@ -177,17 +177,17 @@ bool US2__get_IsUS2_1(types.FSharpRef<US2, InOut> this$, void unitArg) {
     }
 }
 
+types.Some<int>? method0(types.Some<int>? v0_1) => v0_1;
+
 types.Some<int>? method1(types.Some<int>? v0_1) => v0_1;
 
-types.Some<int>? method2(types.Some<int>? v0_1) => v0_1;
-
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> closure3(void unitVar, void unitVar_1) {
+types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> closure0(void unitVar, void unitVar_1) {
     final v0_1 = Mut1(true);
     final v1_1 = Mut0(0);
     final v3 = Mut2(const US0(/* US0_0 */ 0));
     final v4 = Mut1(false);
     types.Some<types.Some<int>?>? _v5;
-    final types.Some<int>? x = method2(null);
+    final types.Some<int>? x = method1(null);
     _v5 = types.Some(x);
     return types.Tuple5(v1_1, v4, v0_1, v3, types.value(_v5));
 }
@@ -200,7 +200,7 @@ String method4() => '';
 
 String closure4(US0 v0_1, String Function() v1_1, String Function() v2, void unitVar) {
     if (State_trace_state == null) {
-        State_trace_state = types.Some(closure3(util.ignore(), util.ignore()));
+        State_trace_state = types.Some(closure0(util.ignore(), util.ignore()));
     }
     final patternInput = types.value(State_trace_state);
     types.Some<String>? _v9;
@@ -224,11 +224,14 @@ String closure4(US0 v0_1, String Function() v1_1, String Function() v2, void uni
         default:
             v71 = 'Critical';
     }
-    return string.trimEnd(string.trimStart('$v60 #$v61 [${v71.toLowerCase()}] ${v1_1()} / ${v2()}', <int>[]), [32, 47]);
+    final v72 = v71.toLowerCase();
+    types.Some<String>? _v73;
+    _v73 = const types.Some('');
+    return string.trimEnd(string.trimStart('$v60 ${types.value(_v73)} #$v61 ${v1_1()} / ${v2()}', <int>[]), [32, 47]);
 }
 
-void method0(US0 v0_1, String Function() v1_1, String Function() v2) {
-    types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v3() => closure3(util.ignore(), util.ignore());
+void method2(US0 v0_1, String Function() v1_1, String Function() v2) {
+    types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v3() => closure0(util.ignore(), util.ignore());
     if (State_trace_state == null) {
         State_trace_state = types.Some(v3());
     }
@@ -249,29 +252,19 @@ void method0(US0 v0_1, String Function() v1_1, String Function() v2) {
     }
 }
 
-void closure2(US0 v0_1, String Function() v1_1, String Function() v2) {
-    method0(v0_1, v1_1, v2);
+void closure3(US0 v0_1, String Function() v1_1, String Function() v2) {
+    method2(v0_1, v1_1, v2);
 }
 
-void Function(String Function()) closure1(US0 v0_1, String Function() v1_1) => (String Function() v) {
-    closure2(v0_1, v1_1, v);
+void Function(String Function()) closure2(US0 v0_1, String Function() v1_1) => (String Function() v) {
+    closure3(v0_1, v1_1, v);
 };
 
-void Function(String Function()) Function(String Function()) closure0(void unitVar, US0 v0_1) => (String Function() v) => closure1(v0_1, v);
+void Function(String Function()) Function(String Function()) closure1(void unitVar, US0 v0_1) => (String Function() v) => closure2(v0_1, v);
 
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> closure6(void unitVar, void unitVar_1) {
-    if (State_trace_state == null) {
-        State_trace_state = types.Some(closure3(util.ignore(), util.ignore()));
-    }
-    final patternInput = types.value(State_trace_state);
-    return types.Tuple5(patternInput.item1, patternInput.item2, patternInput.item3, patternInput.item4, patternInput.item5);
-}
+types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v0() => closure0(util.ignore(), util.ignore());
 
-void Function(String Function()) Function(String Function()) v0(US0 v) => closure0(util.ignore(), v);
+void Function(String Function()) Function(String Function()) v1(US0 v) => closure1(util.ignore(), v);
 
-void Function(String Function()) Function(String Function()) trace(US0 x) => v0(x);
-
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> v1() => closure6(util.ignore(), util.ignore());
-
-types.Tuple5<Mut0, Mut1, Mut1, Mut2, types.Some<int>?> get_trace_state() => v1();
+void Function(String Function()) Function(String Function()) trace(US0 x) => v1(x);
 

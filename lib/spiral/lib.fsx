@@ -1,11 +1,4 @@
 module SpiralTrace =
-    let get_trace_state () =
-#if !INTERACTIVE
-        Trace.get_trace_state ()
-#else
-        get_trace_state ()
-#endif
-
     let trace x =
 #if !INTERACTIVE
         Trace.trace x
@@ -93,13 +86,6 @@ module SpiralRuntime =
         Runtime.execute_with_options_async x
 #else
         execute_with_options_async x
-#endif
-
-    type TraceLevel =
-#if !INTERACTIVE
-        Runtime.US0
-#else
-        RuntimeTraceLevel
 #endif
 
 module SpiralCrypto =
@@ -247,6 +233,13 @@ module SpiralSm =
 #endif
 
 module SpiralFileSystem =
+    let get_repository_root () =
+#if !INTERACTIVE
+        File_system.get_repository_root ()
+#else
+        get_repository_root ()
+#endif
+
     let get_source_directory () =
 #if !INTERACTIVE
         File_system.get_source_directory ()
@@ -357,3 +350,61 @@ module SpiralFileSystem =
 #endif
 
 #endif
+
+let set_trace_level new_level =
+#if !INTERACTIVE
+
+    if File_system.State.trace_state = None then printfn "@1"
+    else
+        let struct (_, _, _, level, _) = File_system.State.trace_state |> Option.get
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> File_system.US0_0
+            | Trace.US0_1 -> File_system.US0_1
+            | Trace.US0_2 -> File_system.US0_2
+            | Trace.US0_3 -> File_system.US0_3
+            | Trace.US0_4 -> File_system.US0_4
+
+    if Networking.State.trace_state = None then printfn "@2"
+    else
+        let struct (_, _, _, level, _) = Networking.State.trace_state |> Option.get
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Networking.US0_0
+            | Trace.US0_1 -> Networking.US0_1
+            | Trace.US0_2 -> Networking.US0_2
+            | Trace.US0_3 -> Networking.US0_3
+            | Trace.US0_4 -> Networking.US0_4
+
+    if Runtime.State.trace_state = None then printfn "@3"
+    else
+        let struct (_, _, _, level, _) = Runtime.State.trace_state |> Option.get
+        level.l0 <-
+            match new_level with
+            | Trace.US0_0 -> Runtime.US0_0
+            | Trace.US0_1 -> Runtime.US0_1
+            | Trace.US0_2 -> Runtime.US0_2
+            | Trace.US0_3 -> Runtime.US0_3
+            | Trace.US0_4 -> Runtime.US0_4
+
+    if Trace.State.trace_state = None then printfn "@4"
+    else
+        let struct (_, _, _, level, _) = Trace.State.trace_state |> Option.get
+#else
+    if State.trace_state = None then printfn "@5"
+    else
+        let struct (_, _, _, level, _) = State.trace_state |> Option.get
+#endif
+        level.l0 <- new_level
+
+let get_trace_level () =
+#if !INTERACTIVE
+    if Trace.State.trace_state = None then printfn "@6"; SpiralTrace.TraceLevel.US0_0
+    else
+        let struct (_, _, _, level, _) = Trace.State.trace_state |> Option.get
+#else
+    if State.trace_state = None then printfn "@7"; SpiralTrace.TraceLevel.US0_0
+    else
+        let struct (_, _, _, level, _) = State.trace_state |> Option.get
+#endif
+        level.l0

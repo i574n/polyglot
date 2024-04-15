@@ -129,7 +129,7 @@ let inline mapErrors (severity, errors, lastTopLevelIndex) allCode =
 
 #!fsharp
 
-let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
+let repositoryRoot = SpiralFileSystem.get_repository_root ()
 let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
 let traceDir = targetDir </> "eval_trace"
 [ targetDir; traceDir ]
@@ -144,8 +144,7 @@ let mutable allCode = ""
 #!fsharp
 
 let traceFile filePath (text : string) =
-    let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
-    if level.l0 = SpiralTrace.TraceLevel.US0_0 then
+    if get_trace_level () = SpiralTrace.TraceLevel.US0_0 then
         let dateTimeStr = DateTime.Now |> SpiralDateTime.new_guid_from_date_time
         let traceFile = traceDir </> filePath
         File.AppendAllText (traceFile, $"{dateTimeStr} Eval / {text}{Environment.NewLine}") |> ignore
@@ -370,16 +369,14 @@ let inline eval
                 )
                 |> Option.defaultValue false
 
-            let traceLevel =
-                if isTrace
-                then SpiralRuntime.TraceLevel.US0_0
-                else SpiralRuntime.TraceLevel.US0_2
-
-            let struct (_, _, _, level, _) = SpiralTrace.get_trace_state ()
-            level.l0 <-
-                if traceLevel = SpiralRuntime.TraceLevel.US0_0
-                then SpiralTrace.TraceLevel.US0_0
-                else SpiralTrace.TraceLevel.US0_2
+            let oldLevel = get_trace_level ()
+            if isTrace
+            then SpiralTrace.TraceLevel.US0_0
+            else SpiralTrace.TraceLevel.US0_2
+            |> set_trace_level
+            use _ = (new_disposable (fun () ->
+                oldLevel |> set_trace_level
+            ))
 
             let lastBlock =
                 lines
@@ -509,10 +506,21 @@ let inline eval
                                         Directory.CreateSymbolicLink (libLinkPath, libLinkTargetPath)
                                         |> ignore
 
+                                    // try
+                                    //     let path =
+                                    //         repositoryRoot </> $@"target/release/rust_builder{SpiralRuntime.get_executable_suffix ()}"
+                                    //         |> System.IO.Path.GetFullPath
+                                    //     let command = $"{path} {fsprojPath} {outDir}"
+                                    //     let! exitCode, result =
+                                    //         SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, repositoryRoot |> Some)
+                                    //     trace Info (fun () -> $"Eval.eval 1 / exitCode: {exitCode} / result: {result}") getLocals
+                                    // with ex ->
+                                    //     trace Critical (fun () -> $"Eval.eval 1 / ex: {ex}") getLocals
 
-                                    let command = $@"dotnet fable {fsprojPath} --optimize --lang rs --extension .rs --outDir {outDir}"
+                                    
+                                    let command = $@"dotnet fable ""{fsprojPath}"" --optimize --lang rs --extension .rs --outDir ""{outDir}"" "
                                     let! exitCode, result =
-                                        SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some traceLevel, None)
+                                        SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some repositoryRoot)
 
                                     if exitCode <> 0
                                     then return Some (Error result)
@@ -548,9 +556,10 @@ edition = "2021"
 
 [dependencies]
 fable_library_rust = {{ path = "fable_modules/fable-library-rust", optional = true, default-features = false }}
-clap = {{}}
-num-complex = {{}}
-pyo3 = "~0.21.0-beta.0"
+clap = "~4.5"
+inline_colorization = "~0.1"
+num-complex = "~0.4"
+pyo3 = "~0.21"
 
 [features]
 default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]
@@ -563,7 +572,7 @@ path = "{hash}.rs"
 
                                         let command = $@"cargo run --release --manifest-path {cargoTomlPath}"
                                         let! exitCode, result =
-                                            SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some traceLevel, None)
+                                            SpiralRuntime.execute_with_options_async struct (cancellationToken, command, None, Some repositoryRoot)
 
                                         if exitCode = 0 then
                                             try

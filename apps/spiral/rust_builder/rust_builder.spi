@@ -1,0 +1,63 @@
+// // # rust_builder
+
+open file_system_operators
+open rust_operators
+open sm'_operators
+
+// // ## types
+
+inl types () =
+    rust.types ()
+    sm'.types ()
+    file_system.types ()
+    runtime.types ()
+
+// // ## get_command
+
+let get_command () =
+    ##"command"
+    |> runtime.new_command
+    |> runtime.command_arg (
+        runtime.new_arg ##"path"
+        |> runtime.arg_required true
+    )
+    |> runtime.command_arg (
+        runtime.new_arg ##"out_dir"
+        |> runtime.arg_required true
+    )
+
+// // ## tests
+
+inl tests () =
+    !\($'"}//"') : ()
+
+    !\($'"#[test] fn verify_app() { //"') : ()
+    get_command () |> runtime.command_debug_assert
+
+// // ## main
+
+// // rust=
+
+inl main (args : array_base string) =
+    inl repository_root = file_system.get_repository_root ()
+
+    trace Debug
+        fun () => $'$"rust_builder.main"'
+        fun () => $'$"args: {!args} / repository_root: {!repository_root} / {!get_locals ()}"'
+
+    inl command = get_command ()
+    inl arg_matches = command |> runtime.command_get_matches
+
+    trace Debug
+        fun () => $'$"rust_builder"'
+        fun () =>
+            inl command = command |> sm'.format_pretty'
+            inl arg_matches = arg_matches |> sm'.format_pretty'
+            $'$"command: {!command} / matches: {!arg_matches} / {!get_locals ()}"'
+
+    0i32
+
+inl main () =
+    types ()
+    $"let tests () = !tests ()" : ()
+    $"let main args = !main args" : ()

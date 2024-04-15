@@ -6,7 +6,27 @@ const fileExists = async (path: string) => !!(await fs.promises.stat(path).catch
 
 const sleep = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export const getFileTokenRange = async (targetDir: string, text: string) => {
+export function throttle<T extends (...args: any[]) => Promise<U>, U>(func: T, limit: number) {
+  let inThrottle: boolean
+  let lastResult: U
+
+  return async function (...args: Parameters<T>) {
+    if (!inThrottle) {
+      inThrottle = true
+      lastResult = await func(...args)
+      setTimeout(() => (inThrottle = false), limit)
+      return lastResult
+    }
+    return lastResult
+  }
+}
+
+export const getFileTokenRange = async (repositoryRoot: string, text: string) => {
+  const targetDir = path.join(repositoryRoot, 'target/polyglot/spiral_eval')
+  if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true })
+  }
+
   const hashHex = crypto.hash_text(text)
 
   const codeDir = path.join(targetDir, "packages", hashHex)

@@ -152,7 +152,10 @@ inl ts_path_join (b : string) (a : string) : string =
     open ts_operators
     global "type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string"
     inl path : $'IPathJoin' = ts.import_all "path"
-    !\\((a, b), $'"!path.join($0, $1)"')
+
+    inl a = join a
+    inl b = join b
+    !\($'"!path.join(!a, !b)"')
 
 // // ## (< />)
 
@@ -178,6 +181,11 @@ inl get_file_name (path : string) : string =
         | Fsharp (Native) => fun () =>
             path |> $'System.IO.Path.GetFileName'
         | _ => fun () => null ()
+
+// // ## get_current_directory
+
+inl get_current_directory () : string =
+    $'System.IO.Directory.GetCurrentDirectory' ()
 
 // // ## create_temp_directory_name
 
@@ -543,26 +551,32 @@ inl find_parent name is_file root_dir =
             | None => failwith $'$"""No parent for {if !is_file then "file" else "dir"} \'{!name}\' at \'{!root_dir}\' (until \'{!dir}\')"""'
     loop root_dir
 
+// // ## get_repository_root
+
+inl get_repository_root () =
+    get_source_directory ()
+    |> find_parent ("polyglot" </> ".paket") false
+    |> fun root => root </> "polyglot"
+
 // // ## main
 
 inl main () =
     types ()
-    run_target function
-        | Fsharp (Native) => fun () =>
-            $"let delete_directory_async x = !delete_directory_async x" : ()
-            $"let wait_for_file_access x = !wait_for_file_access x" : ()
-            $"let wait_for_file_access_read x = !wait_for_file_access_read x" : ()
-            $"let read_all_text_async x = !read_all_text_async x" : ()
-            $"let file_exists_content x = !file_exists_content x" : ()
-            $"let write_all_text_async x = !write_all_text_async x" : ()
-            $"let write_all_text_exists x = !write_all_text_exists x" : ()
-            $"let delete_file_async x = !delete_file_async x" : ()
-            $"let move_file_async x = !move_file_async x" : ()
-            $"let read_all_text_retry_async x = !read_all_text_retry_async x" : ()
-        | _ => fun () => ()
+    init_trace_state ()
+    $"let delete_directory_async x = !delete_directory_async x" : ()
+    $"let wait_for_file_access x = !wait_for_file_access x" : ()
+    $"let wait_for_file_access_read x = !wait_for_file_access_read x" : ()
+    $"let read_all_text_async x = !read_all_text_async x" : ()
+    $"let file_exists_content x = !file_exists_content x" : ()
+    $"let write_all_text_async x = !write_all_text_async x" : ()
+    $"let write_all_text_exists x = !write_all_text_exists x" : ()
+    $"let delete_file_async x = !delete_file_async x" : ()
+    $"let move_file_async x = !move_file_async x" : ()
+    $"let read_all_text_retry_async x = !read_all_text_retry_async x" : ()
     $"let create_temp_directory_name () = !create_temp_directory_name ()" : ()
     $"let create_temp_directory () = !create_temp_directory ()" : ()
     $"let get_source_directory () = !get_source_directory ()" : ()
     $"let find_parent x = !find_parent x" : ()
+    $"let get_repository_root () = !get_repository_root ()" : ()
     inl combine x = (</>) x
     $"let (</>) x = !combine x" : ()

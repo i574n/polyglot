@@ -7741,7 +7741,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_source_directory</span> <span class="p">()</span> <span class="o">|&gt;</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">find_parent</span> <span class="s2">".paket"</span> <span class="n">false</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">repositoryRoot</span> <span class="o">=</span> <span class="n">SpiralFileSystem</span><span class="o">.</span><span class="n">get_repository_root</span> <span class="p">()</span>
 <span class="n">let</span> <span class="n">targetDir</span> <span class="o">=</span> <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="s2">"target/polyglot/spiral_eval"</span>
 <span class="n">let</span> <span class="n">traceDir</span> <span class="o">=</span> <span class="n">targetDir</span> <span class="o">&lt;/&gt;</span> <span class="s2">"eval_trace"</span>
 <span class="p">[</span> <span class="n">targetDir</span><span class="p">;</span> <span class="n">traceDir</span> <span class="p">]</span>
@@ -7773,8 +7773,7 @@ a.anchor-link {
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">let</span> <span class="n">traceFile</span> <span class="n">filePath</span> <span class="p">(</span><span class="n">text</span> <span class="p">:</span> <span class="n">string</span><span class="p">)</span> <span class="o">=</span>
-    <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">get_trace_state</span> <span class="p">()</span>
-    <span class="k">if</span> <span class="n">level</span><span class="o">.</span><span class="n">l0</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="n">then</span>
+    <span class="k">if</span> <span class="n">get_trace_level</span> <span class="p">()</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span> <span class="n">then</span>
         <span class="n">let</span> <span class="n">dateTimeStr</span> <span class="o">=</span> <span class="n">DateTime</span><span class="o">.</span><span class="n">Now</span> <span class="o">|&gt;</span> <span class="n">SpiralDateTime</span><span class="o">.</span><span class="n">new_guid_from_date_time</span>
         <span class="n">let</span> <span class="n">traceFile</span> <span class="o">=</span> <span class="n">traceDir</span> <span class="o">&lt;/&gt;</span> <span class="n">filePath</span>
         <span class="n">File</span><span class="o">.</span><span class="n">AppendAllText</span> <span class="p">(</span><span class="n">traceFile</span><span class="p">,</span> <span class="err">$</span><span class="s2">"</span><span class="si">{dateTimeStr}</span><span class="s2"> Eval / </span><span class="si">{text}{Environment.NewLine}</span><span class="s2">"</span><span class="p">)</span> <span class="o">|&gt;</span> <span class="n">ignore</span>
@@ -8077,16 +8076,14 @@ a.anchor-link {
                 <span class="p">)</span>
                 <span class="o">|&gt;</span> <span class="n">Option</span><span class="o">.</span><span class="n">defaultValue</span> <span class="n">false</span>
 
-            <span class="n">let</span> <span class="n">traceLevel</span> <span class="o">=</span>
-                <span class="k">if</span> <span class="n">isTrace</span>
-                <span class="n">then</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span>
-                <span class="k">else</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_2</span>
-
-            <span class="n">let</span> <span class="n">struct</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">get_trace_state</span> <span class="p">()</span>
-            <span class="n">level</span><span class="o">.</span><span class="n">l0</span> <span class="o">&lt;-</span>
-                <span class="k">if</span> <span class="n">traceLevel</span> <span class="o">=</span> <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span>
-                <span class="n">then</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span>
-                <span class="k">else</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_2</span>
+            <span class="n">let</span> <span class="n">oldLevel</span> <span class="o">=</span> <span class="n">get_trace_level</span> <span class="p">()</span>
+            <span class="k">if</span> <span class="n">isTrace</span>
+            <span class="n">then</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_0</span>
+            <span class="k">else</span> <span class="n">SpiralTrace</span><span class="o">.</span><span class="n">TraceLevel</span><span class="o">.</span><span class="n">US0_2</span>
+            <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+            <span class="n">use</span> <span class="n">_</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_disposable</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span>
+                <span class="n">oldLevel</span> <span class="o">|&gt;</span> <span class="n">set_trace_level</span>
+            <span class="p">))</span>
 
             <span class="n">let</span> <span class="n">lastBlock</span> <span class="o">=</span>
                 <span class="n">lines</span>
@@ -8216,10 +8213,21 @@ a.anchor-link {
                                         <span class="n">Directory</span><span class="o">.</span><span class="n">CreateSymbolicLink</span> <span class="p">(</span><span class="n">libLinkPath</span><span class="p">,</span> <span class="n">libLinkTargetPath</span><span class="p">)</span>
                                         <span class="o">|&gt;</span> <span class="n">ignore</span>
 
+                                    <span class="o">//</span> <span class="k">try</span>
+                                    <span class="o">//</span>     <span class="n">let</span> <span class="n">path</span> <span class="o">=</span>
+                                    <span class="o">//</span>         <span class="n">repositoryRoot</span> <span class="o">&lt;/&gt;</span> <span class="err">$</span><span class="o">@</span><span class="s2">"target/release/rust_builder{SpiralRuntime.get_executable_suffix ()}"</span>
+                                    <span class="o">//</span>         <span class="o">|&gt;</span> <span class="n">System</span><span class="o">.</span><span class="n">IO</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">GetFullPath</span>
+                                    <span class="o">//</span>     <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="s2">"</span><span class="si">{path}</span><span class="s2"> </span><span class="si">{fsprojPath}</span><span class="s2"> </span><span class="si">{outDir}</span><span class="s2">"</span>
+                                    <span class="o">//</span>     <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
+                                    <span class="o">//</span>         <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repositoryRoot</span> <span class="o">|&gt;</span> <span class="n">Some</span><span class="p">)</span>
+                                    <span class="o">//</span>     <span class="n">trace</span> <span class="n">Info</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval 1 / exitCode: </span><span class="si">{exitCode}</span><span class="s2"> / result: </span><span class="si">{result}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
+                                    <span class="o">//</span> <span class="k">with</span> <span class="n">ex</span> <span class="o">-&gt;</span>
+                                    <span class="o">//</span>     <span class="n">trace</span> <span class="n">Critical</span> <span class="p">(</span><span class="n">fun</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="err">$</span><span class="s2">"Eval.eval 1 / ex: </span><span class="si">{ex}</span><span class="s2">"</span><span class="p">)</span> <span class="n">getLocals</span>
 
-                                    <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet fable </span><span class="si">{fsprojPath}</span><span class="s2"> --optimize --lang rs --extension .rs --outDir </span><span class="si">{outDir}</span><span class="s2">"</span>
+                                    
+                                    <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"dotnet fable ""</span><span class="si">{fsprojPath}</span><span class="s2">"" --optimize --lang rs --extension .rs --outDir ""</span><span class="si">{outDir}</span><span class="s2">"" "</span>
                                     <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
-                                        <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">traceLevel</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                                        <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">repositoryRoot</span><span class="p">)</span>
 
                                     <span class="k">if</span> <span class="n">exitCode</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
                                     <span class="n">then</span> <span class="k">return</span> <span class="n">Some</span> <span class="p">(</span><span class="n">Error</span> <span class="n">result</span><span class="p">)</span>
@@ -8255,9 +8263,10 @@ a.anchor-link {
 
 <span class="s2">[dependencies]</span>
 <span class="s2">fable_library_rust = {{ path = "fable_modules/fable-library-rust", optional = true, default-features = false }}</span>
-<span class="s2">clap = {{}}</span>
-<span class="s2">num-complex = {{}}</span>
-<span class="s2">pyo3 = "~0.21.0-beta.0"</span>
+<span class="s2">clap = "~4.5"</span>
+<span class="s2">inline_colorization = "~0.1"</span>
+<span class="s2">num-complex = "~0.4"</span>
+<span class="s2">pyo3 = "~0.21"</span>
 
 <span class="s2">[features]</span>
 <span class="s2">default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]</span>
@@ -8270,7 +8279,7 @@ a.anchor-link {
 
                                         <span class="n">let</span> <span class="n">command</span> <span class="o">=</span> <span class="err">$</span><span class="o">@</span><span class="s2">"cargo run --release --manifest-path </span><span class="si">{cargoTomlPath}</span><span class="s2">"</span>
                                         <span class="n">let</span><span class="err">!</span> <span class="n">exitCode</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span>
-                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">traceLevel</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                                            <span class="n">SpiralRuntime</span><span class="o">.</span><span class="n">execute_with_options_async</span> <span class="n">struct</span> <span class="p">(</span><span class="n">cancellationToken</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Some</span> <span class="n">repositoryRoot</span><span class="p">)</span>
 
                                         <span class="k">if</span> <span class="n">exitCode</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">then</span>
                                             <span class="k">try</span>

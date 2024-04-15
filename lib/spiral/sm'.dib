@@ -286,6 +286,15 @@ inl into_boxed_str (s : std_string) : rust.box str =
 
 #!markdown
 
+## format''
+
+#!spiral
+
+inl format'' (format : string) : std_string =
+    !\($'@@$"format\!(" + !format + ")"')
+
+#!markdown
+
 ## format'
 
 #!spiral
@@ -371,11 +380,11 @@ instance to_string result t u = fun x =>
         | string * string =>
             match x with
             | Ok x => x
-            | Error x => $'"Error: " + !x + ""' : string
+            | Error x => $'"sm\'.to_string result / Error: " + !x + ""' : string
         | std_string * std_string =>
             match x with
             | Ok x => from_std_string x
-            | Error x => $'"Error: " + string !x + ""' : string
+            | Error x => $'"sm\'.to_string result / Error: " + string !x + ""' : string
         | _ => obj_to_string `u x
 
 #!markdown

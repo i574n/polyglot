@@ -1,0 +1,16 @@
+[package]
+name = "rust_builder"
+version = "0.0.1"
+edition = "2021"
+workspace = "../../../"
+
+[dependencies]
+fable_library_rust = { path = "../../../lib/rust/fable/fable_modules/fable-library-rust", default-features = false, features = ["datetime", "guid"] }
+clap = "~4.5"
+inline_colorization = "~0.1"
+
+[dev-dependencies]
+
+[[bin]]
+name = "rust_builder"
+path = "rust_builder.rs"

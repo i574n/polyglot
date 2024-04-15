@@ -14,13 +14,49 @@ use \IComparable;
 $GLOBALS['State_trace_state'] = NULL;
 
 #1
+class Mut0 implements IComparable {
+    public $l0;
+    function __construct($l0) {
+        $this->l0 = $l0;
+    }
+    static function get_l0_Type() {
+        return 'Int64';
+    }
+    function CompareTo($other) {
+        $_cmp__1 = $this->l0 > $other->l0 ? 1 : ($this->l0 < $other->l0 ? -1 : 0);
+        if ($_cmp__1 != 0) {
+            return $_cmp__1;
+        }        
+        return 0;
+    }
+}
+
+#2
+class Mut1 implements IComparable {
+    public $l0;
+    function __construct($l0) {
+        $this->l0 = $l0;
+    }
+    static function get_l0_Type() {
+        return '??? \'Boolean\'';
+    }
+    function CompareTo($other) {
+        $_cmp__2 = $this->l0->CompareTo($other->l0);
+        if ($_cmp__2 != 0) {
+            return $_cmp__2;
+        }        
+        return 0;
+    }
+}
+
+#3
 abstract class US0 implements FSharpUnion {
     static function allCases() {
         return [ '\\Trace\\US0_US0_0', '\\Trace\\US0_US0_1', '\\Trace\\US0_US0_2', '\\Trace\\US0_US0_3', '\\Trace\\US0_US0_4' ];
     }
 }
 
-#1
+#3
 class US0_US0_0 extends US0 implements IComparable {
     function __construct() {
     }
@@ -31,12 +67,12 @@ class US0_US0_0 extends US0 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__1 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__1;
+        $_cmp__3 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__3;
     }
 }
 
-#1
+#3
 class US0_US0_1 extends US0 implements IComparable {
     function __construct() {
     }
@@ -47,12 +83,12 @@ class US0_US0_1 extends US0 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__2 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__2;
+        $_cmp__4 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__4;
     }
 }
 
-#1
+#3
 class US0_US0_2 extends US0 implements IComparable {
     function __construct() {
     }
@@ -63,12 +99,12 @@ class US0_US0_2 extends US0 implements IComparable {
         return 2;
     }
     function CompareTo($other) {
-        $_cmp__3 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__3;
+        $_cmp__5 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__5;
     }
 }
 
-#1
+#3
 class US0_US0_3 extends US0 implements IComparable {
     function __construct() {
     }
@@ -79,12 +115,12 @@ class US0_US0_3 extends US0 implements IComparable {
         return 3;
     }
     function CompareTo($other) {
-        $_cmp__4 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__4;
+        $_cmp__6 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__6;
     }
 }
 
-#1
+#3
 class US0_US0_4 extends US0 implements IComparable {
     function __construct() {
     }
@@ -95,44 +131,8 @@ class US0_US0_4 extends US0 implements IComparable {
         return 4;
     }
     function CompareTo($other) {
-        $_cmp__5 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__5;
-    }
-}
-
-#2
-class Mut0 implements IComparable {
-    public $l0;
-    function __construct($l0) {
-        $this->l0 = $l0;
-    }
-    static function get_l0_Type() {
-        return 'Int64';
-    }
-    function CompareTo($other) {
-        $_cmp__6 = $this->l0 > $other->l0 ? 1 : ($this->l0 < $other->l0 ? -1 : 0);
-        if ($_cmp__6 != 0) {
-            return $_cmp__6;
-        }        
-        return 0;
-    }
-}
-
-#3
-class Mut1 implements IComparable {
-    public $l0;
-    function __construct($l0) {
-        $this->l0 = $l0;
-    }
-    static function get_l0_Type() {
-        return '??? \'Boolean\'';
-    }
-    function CompareTo($other) {
-        $_cmp__7 = $this->l0->CompareTo($other->l0);
-        if ($_cmp__7 != 0) {
-            return $_cmp__7;
-        }        
-        return 0;
+        $_cmp__7 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__7;
     }
 }
 
@@ -338,23 +338,23 @@ function US2__get_IsUS2_1($this_, $unitArg) {
 }
 
 #16
-function method1($v0_1) {
+function method0($v0_1) {
     return $v0_1;
 }
 
 #17
-function method2($v0_1) {
+function method1($v0_1) {
     return $v0_1;
 }
 
 #18
-function closure3($unitVar, $unitVar_1) {
+function closure0($unitVar, $unitVar_1) {
     $v0_1 = new Mut1(true);
     $v1_1 = new Mut0(NULL);
     $v3 = new Mut2(new US0_US0_0());
     $v4 = new Mut1(false);
     $_v5 = NULL;
-    $x = method2(NULL);
+    $x = method1(NULL);
     $_v5 = $x;
     return [ $v1_1, $v4, $v0_1, $v3, \Option\value($_v5) ];
 }
@@ -378,7 +378,7 @@ function method4($unitVar) {
 #22
 function closure4($v0_1, $v1_1, $v2, $unitVar) {
     if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = closure3(NULL, NULL);
+        $GLOBALS['State_trace_state'] = closure0(NULL, NULL);
     } else {
     }
     $patternInput = \Option\value($GLOBALS['State_trace_state']);
@@ -405,12 +405,16 @@ function closure4($v0_1, $v1_1, $v2, $unitVar) {
             $v71 = 'Critical';
             break;
     }
+    $v72 = $v71->toLocaleLowerCase;
+    $_v73 = NULL;
+    $x_1 = \Util\defaultOf();
+    $_v73 = $x_1;
     return \String\trimEnd(\String\trimStart(NULL, [  ]), [ ' ', '/' ]);
 }
 
 #23
-function method0($v0_1, $v1_1, $v2) {
-    $v3 = function ($arg10_0040) use ($closure3) {     return closure3(NULL, NULL);
+function method2($v0_1, $v1_1, $v2) {
+    $v3 = function ($arg10_0040) use ($closure0) {     return closure0(NULL, NULL);
  };
     if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
         $GLOBALS['State_trace_state'] = $v3(NULL);
@@ -438,49 +442,40 @@ function method0($v0_1, $v1_1, $v2) {
 }
 
 #24
-function closure2($v0_1, $v1_1, $v2) {
-    return method0($v0_1, $v1_1, $v2);
+function closure3($v0_1, $v1_1, $v2) {
+    return method2($v0_1, $v1_1, $v2);
 }
 
 #25
-function closure1($v0_1, $v1_1) {
-    return function ($v) use ($closure2, $v0_1, $v1_1) {     return closure2($v0_1, $v1_1, $v);
+function closure2($v0_1, $v1_1) {
+    return function ($v) use ($closure3, $v0_1, $v1_1) {     return closure3($v0_1, $v1_1, $v);
  };
 }
 
 #26
-function closure0($unitVar, $v0_1) {
-    return function ($v) use ($closure1, $v0_1) {     return closure1($v0_1, $v);
+function closure1($unitVar, $v0_1) {
+    return function ($v) use ($closure2, $v0_1) {     return closure2($v0_1, $v);
  };
 }
 
 #27
-function closure6($unitVar, $unitVar_1) {
-    if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = closure3(NULL, NULL);
-    } else {
-    }
-    $patternInput = \Option\value($GLOBALS['State_trace_state']);
-    return [ $patternInput[0], $patternInput[1], $patternInput[2], $patternInput[3], $patternInput[4] ];
-}
+$GLOBALS['v0'] = function ($arg10_0040) use ($closure0) { return closure0(NULL, NULL);
+ };
 
 #28
-$GLOBALS['v0'] = function ($v) use ($closure0) { return closure0(NULL, $v);
- };
+if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
+    $GLOBALS['State_trace_state'] = $GLOBALS['v0'](NULL);
+} else {
+}
 
 #29
-function trace($x) {
-    return $GLOBALS['v0']($x);
-}
-
-#30
-$GLOBALS['v1'] = function ($arg10_0040) use ($closure6) { return closure6(NULL, NULL);
+$GLOBALS['v1'] = function ($v) use ($closure1) { return closure1(NULL, $v);
  };
 
-#31
-function get_trace_state($unitVar) {
-    return $GLOBALS['v1'](NULL);
+#30
+function trace($x) {
+    return $GLOBALS['v1']($x);
 }
 
-#32
+#31
 

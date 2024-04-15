@@ -23,3 +23,5 @@ if (!$fast) {
 }
 
 { . ../parser/dist/DibParser$(GetExecutableSuffix) Eval.dib fs } | Invoke-Block
+
+{ pwsh rust_builder/build.ps1 -fast $($fast ?? '') } | Invoke-Block

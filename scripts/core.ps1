@@ -73,7 +73,7 @@ function Invoke-Block {
             $exitcode = -1
         }
         if ($exitcode -ne 0 -or $Error.Count -gt 0) {
-            $msg = "`n# Invoke-Block / `$Retry: $Retries / `$Location: $Location / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
+            $msg = "`n# Invoke-Block / `$Retry: $Retries / `$Location: $Location / Get-Location: $(Get-Location) / `$OnError: $OnError / `$exitcode: $exitcode / `$EnvVars: $($EnvironmentVariables | ConvertTo-Json) / `$Error: '$Error' / `$ScriptBlock:`n'$($ScriptBlock.ToString().Trim())'`n"
 
             Write-Host $msg
             if ($OnError -eq "Stop" -and $Retries -le 1) {
@@ -216,7 +216,7 @@ function Invoke-Dib {
         [Parameter(Position = 1, ValueFromRemainingArguments)]
         [Object[]] $_args
     )
-    $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run $path --output-path "$path.ipynb" --exit-after-run } }
+    $mergedArgs = @{ "ScriptBlock" = { dotnet repl --run "$path" --output-path "$path.ipynb" --exit-after-run } }
     $key = $null
     foreach ($item in $_args) {
         if ($item -match "^-") {
@@ -226,7 +226,9 @@ function Invoke-Dib {
             $key = $null
         }
     }
-    Invoke-Block @mergedArgs
+    Write-Output "core.Invoke-Dib / Get-Location: $(Get-Location) / path: $path / _args: $($_args | ConvertTo-Json)"
+
+    { Invoke-Block @mergedArgs } | Invoke-Block
 
     { jupyter nbconvert "$path.ipynb" --to html --HTMLExporter.theme=dark } | Invoke-Block
 

@@ -9,6 +9,13 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>] type reqwest_RequestBuilder = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
 
+inl types () =
+    global "#if FABLE_COMPILER // networking.types"
+    rust.types ()
+    sm'.types ()
+    types ()
+    global "#endif // networking.types"
+
 // // ## reqwest_response
 
 nominal reqwest_response = $"reqwest_Response"
@@ -199,6 +206,8 @@ inl get_available_port timeout initial_port : _ i32 =
 // // ## main
 
 inl main () =
+    types ()
+    init_trace_state ()
     $"let test_port_open x = !test_port_open x" : ()
     $"let test_port_open_timeout x = !test_port_open_timeout x" : ()
     $"let wait_for_port_access x = !wait_for_port_access x" : ()

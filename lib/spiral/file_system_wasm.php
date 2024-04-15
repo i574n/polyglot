@@ -11,11 +11,11 @@ use \FSharpUnion;
 use \IComparable;
 
 #0
-class IFsExistsSync {
-}
+$GLOBALS['State_trace_state'] = NULL;
 
 #1
-$GLOBALS['State_trace_state'] = NULL;
+class IFsExistsSync {
+}
 
 #2
 class IPathJoin {
@@ -26,188 +26,61 @@ class IPathDirname {
 }
 
 #4
-abstract class US1 implements FSharpUnion {
-    static function allCases() {
-        return [ '\\File_system\\US1_US1_0', '\\File_system\\US1_US1_1', '\\File_system\\US1_US1_2' ];
+class Mut0 implements IComparable {
+    public $l0;
+    function __construct($l0) {
+        $this->l0 = $l0;
     }
-}
-
-#4
-class US1_US1_0 extends US1 implements IComparable {
-    function __construct() {
+    static function get_l0_Type() {
+        return 'Int64';
     }
-    static function get_FSharpCase() {
-        return 'US1_0';
-    }
-    function get_Tag() {
+    function CompareTo($other) {
+        $_cmp__1 = $this->l0 > $other->l0 ? 1 : ($this->l0 < $other->l0 ? -1 : 0);
+        if ($_cmp__1 != 0) {
+            return $_cmp__1;
+        }        
         return 0;
     }
-    function CompareTo($other) {
-        $_cmp__1 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__1;
-    }
-}
-
-#4
-class US1_US1_1 extends US1 implements IComparable {
-    function __construct() {
-    }
-    static function get_FSharpCase() {
-        return 'US1_1';
-    }
-    function get_Tag() {
-        return 1;
-    }
-    function CompareTo($other) {
-        $_cmp__2 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__2;
-    }
-}
-
-#4
-class US1_US1_2 extends US1 implements IComparable {
-    function __construct() {
-    }
-    static function get_FSharpCase() {
-        return 'US1_2';
-    }
-    function get_Tag() {
-        return 2;
-    }
-    function CompareTo($other) {
-        $_cmp__3 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__3;
-    }
 }
 
 #5
-abstract class US2 implements FSharpUnion {
-    static function allCases() {
-        return [ '\\File_system\\US2_US2_0', '\\File_system\\US2_US2_1', '\\File_system\\US2_US2_2', '\\File_system\\US2_US2_3', '\\File_system\\US2_US2_4' ];
+class Mut1 implements IComparable {
+    public $l0;
+    function __construct($l0) {
+        $this->l0 = $l0;
     }
-}
-
-#5
-class US2_US2_0 extends US2 implements IComparable {
-    function __construct() {
+    static function get_l0_Type() {
+        return '??? \'Boolean\'';
     }
-    static function get_FSharpCase() {
-        return 'US2_0';
-    }
-    function get_Tag() {
+    function CompareTo($other) {
+        $_cmp__2 = $this->l0->CompareTo($other->l0);
+        if ($_cmp__2 != 0) {
+            return $_cmp__2;
+        }        
         return 0;
-    }
-    function CompareTo($other) {
-        $_cmp__4 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__4;
-    }
-}
-
-#5
-class US2_US2_1 extends US2 implements IComparable {
-    function __construct() {
-    }
-    static function get_FSharpCase() {
-        return 'US2_1';
-    }
-    function get_Tag() {
-        return 1;
-    }
-    function CompareTo($other) {
-        $_cmp__5 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__5;
-    }
-}
-
-#5
-class US2_US2_2 extends US2 implements IComparable {
-    function __construct() {
-    }
-    static function get_FSharpCase() {
-        return 'US2_2';
-    }
-    function get_Tag() {
-        return 2;
-    }
-    function CompareTo($other) {
-        $_cmp__6 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__6;
-    }
-}
-
-#5
-class US2_US2_3 extends US2 implements IComparable {
-    function __construct() {
-    }
-    static function get_FSharpCase() {
-        return 'US2_3';
-    }
-    function get_Tag() {
-        return 3;
-    }
-    function CompareTo($other) {
-        $_cmp__7 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__7;
-    }
-}
-
-#5
-class US2_US2_4 extends US2 implements IComparable {
-    function __construct() {
-    }
-    static function get_FSharpCase() {
-        return 'US2_4';
-    }
-    function get_Tag() {
-        return 4;
-    }
-    function CompareTo($other) {
-        $_cmp__8 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__8;
     }
 }
 
 #6
 abstract class US0 implements FSharpUnion {
     static function allCases() {
-        return [ '\\File_system\\US0_US0_0', '\\File_system\\US0_US0_1' ];
+        return [ '\\File_system\\US0_US0_0', '\\File_system\\US0_US0_1', '\\File_system\\US0_US0_2', '\\File_system\\US0_US0_3', '\\File_system\\US0_US0_4' ];
     }
 }
 
 #6
 class US0_US0_0 extends US0 implements IComparable {
-    public $f0_0;
-    public $f0_1;
-    function __construct($f0_0, $f0_1) {
-        $this->f0_0 = $f0_0;
-        $this->f0_1 = $f0_1;
+    function __construct() {
     }
     static function get_FSharpCase() {
         return 'US0_0';
-    }
-    static function get_f0_0_Type() {
-        return '\\File_system\\US1';
-    }
-    static function get_f0_1_Type() {
-        return '\\File_system\\US2';
     }
     function get_Tag() {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__9 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        if ($_cmp__9 != 0) {
-            return $_cmp__9;
-        }        
-        $_cmp__10 = $this->f0_0->CompareTo($other->f0_0);
-        if ($_cmp__10 != 0) {
-            return $_cmp__10;
-        }        
-        $_cmp__11 = $this->f0_1->CompareTo($other->f0_1);
-        if ($_cmp__11 != 0) {
-            return $_cmp__11;
-        }        
-        return 0;
+        $_cmp__3 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__3;
     }
 }
 
@@ -222,19 +95,136 @@ class US0_US0_1 extends US0 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__12 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__12;
+        $_cmp__4 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__4;
+    }
+}
+
+#6
+class US0_US0_2 extends US0 implements IComparable {
+    function __construct() {
+    }
+    static function get_FSharpCase() {
+        return 'US0_2';
+    }
+    function get_Tag() {
+        return 2;
+    }
+    function CompareTo($other) {
+        $_cmp__5 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__5;
+    }
+}
+
+#6
+class US0_US0_3 extends US0 implements IComparable {
+    function __construct() {
+    }
+    static function get_FSharpCase() {
+        return 'US0_3';
+    }
+    function get_Tag() {
+        return 3;
+    }
+    function CompareTo($other) {
+        $_cmp__6 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__6;
+    }
+}
+
+#6
+class US0_US0_4 extends US0 implements IComparable {
+    function __construct() {
+    }
+    static function get_FSharpCase() {
+        return 'US0_4';
+    }
+    function get_Tag() {
+        return 4;
+    }
+    function CompareTo($other) {
+        $_cmp__7 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__7;
     }
 }
 
 #7
+class Mut2 implements IComparable {
+    public $l0;
+    function __construct($l0) {
+        $this->l0 = $l0;
+    }
+    static function get_l0_Type() {
+        return '\\File_system\\US0';
+    }
+    function CompareTo($other) {
+        $_cmp__8 = $this->l0->CompareTo($other->l0);
+        if ($_cmp__8 != 0) {
+            return $_cmp__8;
+        }        
+        return 0;
+    }
+}
+
+#8
+abstract class US1 implements FSharpUnion {
+    static function allCases() {
+        return [ '\\File_system\\US1_US1_0', '\\File_system\\US1_US1_1' ];
+    }
+}
+
+#8
+class US1_US1_0 extends US1 implements IComparable {
+    public $f0_0;
+    function __construct($f0_0) {
+        $this->f0_0 = $f0_0;
+    }
+    static function get_FSharpCase() {
+        return 'US1_0';
+    }
+    static function get_f0_0_Type() {
+        return 'Int64';
+    }
+    function get_Tag() {
+        return 0;
+    }
+    function CompareTo($other) {
+        $_cmp__9 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        if ($_cmp__9 != 0) {
+            return $_cmp__9;
+        }        
+        $_cmp__10 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        if ($_cmp__10 != 0) {
+            return $_cmp__10;
+        }        
+        return 0;
+    }
+}
+
+#8
+class US1_US1_1 extends US1 implements IComparable {
+    function __construct() {
+    }
+    static function get_FSharpCase() {
+        return 'US1_1';
+    }
+    function get_Tag() {
+        return 1;
+    }
+    function CompareTo($other) {
+        $_cmp__11 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__11;
+    }
+}
+
+#9
 abstract class US3 implements FSharpUnion {
     static function allCases() {
-        return [ '\\File_system\\US3_US3_0', '\\File_system\\US3_US3_1', '\\File_system\\US3_US3_2', '\\File_system\\US3_US3_3', '\\File_system\\US3_US3_4' ];
+        return [ '\\File_system\\US3_US3_0', '\\File_system\\US3_US3_1', '\\File_system\\US3_US3_2' ];
     }
 }
 
-#7
+#9
 class US3_US3_0 extends US3 implements IComparable {
     function __construct() {
     }
@@ -245,12 +235,12 @@ class US3_US3_0 extends US3 implements IComparable {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__13 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__13;
+        $_cmp__12 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__12;
     }
 }
 
-#7
+#9
 class US3_US3_1 extends US3 implements IComparable {
     function __construct() {
     }
@@ -261,12 +251,12 @@ class US3_US3_1 extends US3 implements IComparable {
         return 1;
     }
     function CompareTo($other) {
-        $_cmp__14 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
-        return $_cmp__14;
+        $_cmp__13 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__13;
     }
 }
 
-#7
+#9
 class US3_US3_2 extends US3 implements IComparable {
     function __construct() {
     }
@@ -277,20 +267,43 @@ class US3_US3_2 extends US3 implements IComparable {
         return 2;
     }
     function CompareTo($other) {
+        $_cmp__14 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__14;
+    }
+}
+
+#10
+abstract class US4 implements FSharpUnion {
+    static function allCases() {
+        return [ '\\File_system\\US4_US4_0', '\\File_system\\US4_US4_1', '\\File_system\\US4_US4_2', '\\File_system\\US4_US4_3', '\\File_system\\US4_US4_4' ];
+    }
+}
+
+#10
+class US4_US4_0 extends US4 implements IComparable {
+    function __construct() {
+    }
+    static function get_FSharpCase() {
+        return 'US4_0';
+    }
+    function get_Tag() {
+        return 0;
+    }
+    function CompareTo($other) {
         $_cmp__15 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
         return $_cmp__15;
     }
 }
 
-#7
-class US3_US3_3 extends US3 implements IComparable {
+#10
+class US4_US4_1 extends US4 implements IComparable {
     function __construct() {
     }
     static function get_FSharpCase() {
-        return 'US3_3';
+        return 'US4_1';
     }
     function get_Tag() {
-        return 3;
+        return 1;
     }
     function CompareTo($other) {
         $_cmp__16 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
@@ -298,15 +311,15 @@ class US3_US3_3 extends US3 implements IComparable {
     }
 }
 
-#7
-class US3_US3_4 extends US3 implements IComparable {
+#10
+class US4_US4_2 extends US4 implements IComparable {
     function __construct() {
     }
     static function get_FSharpCase() {
-        return 'US3_4';
+        return 'US4_2';
     }
     function get_Tag() {
-        return 4;
+        return 2;
     }
     function CompareTo($other) {
         $_cmp__17 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
@@ -314,88 +327,75 @@ class US3_US3_4 extends US3 implements IComparable {
     }
 }
 
-#8
-class Mut0 implements IComparable {
-    public $l0;
-    function __construct($l0) {
-        $this->l0 = $l0;
+#10
+class US4_US4_3 extends US4 implements IComparable {
+    function __construct() {
     }
-    static function get_l0_Type() {
-        return 'Int64';
+    static function get_FSharpCase() {
+        return 'US4_3';
     }
-    function CompareTo($other) {
-        $_cmp__18 = $this->l0 > $other->l0 ? 1 : ($this->l0 < $other->l0 ? -1 : 0);
-        if ($_cmp__18 != 0) {
-            return $_cmp__18;
-        }        
-        return 0;
-    }
-}
-
-#9
-class Mut1 implements IComparable {
-    public $l0;
-    function __construct($l0) {
-        $this->l0 = $l0;
-    }
-    static function get_l0_Type() {
-        return '??? \'Boolean\'';
+    function get_Tag() {
+        return 3;
     }
     function CompareTo($other) {
-        $_cmp__19 = $this->l0->CompareTo($other->l0);
-        if ($_cmp__19 != 0) {
-            return $_cmp__19;
-        }        
-        return 0;
+        $_cmp__18 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__18;
     }
 }
 
 #10
-class Mut2 implements IComparable {
-    public $l0;
-    function __construct($l0) {
-        $this->l0 = $l0;
-    }
-    static function get_l0_Type() {
-        return '\\File_system\\US3';
-    }
-    function CompareTo($other) {
-        $_cmp__20 = $this->l0->CompareTo($other->l0);
-        if ($_cmp__20 != 0) {
-            return $_cmp__20;
-        }        
-        return 0;
-    }
-}
-
-#11
-abstract class US4 implements FSharpUnion {
-    static function allCases() {
-        return [ '\\File_system\\US4_US4_0', '\\File_system\\US4_US4_1' ];
-    }
-}
-
-#11
-class US4_US4_0 extends US4 implements IComparable {
-    public $f0_0;
-    function __construct($f0_0) {
-        $this->f0_0 = $f0_0;
+class US4_US4_4 extends US4 implements IComparable {
+    function __construct() {
     }
     static function get_FSharpCase() {
-        return 'US4_0';
+        return 'US4_4';
+    }
+    function get_Tag() {
+        return 4;
+    }
+    function CompareTo($other) {
+        $_cmp__19 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        return $_cmp__19;
+    }
+}
+
+#11
+abstract class US2 implements FSharpUnion {
+    static function allCases() {
+        return [ '\\File_system\\US2_US2_0', '\\File_system\\US2_US2_1' ];
+    }
+}
+
+#11
+class US2_US2_0 extends US2 implements IComparable {
+    public $f0_0;
+    public $f0_1;
+    function __construct($f0_0, $f0_1) {
+        $this->f0_0 = $f0_0;
+        $this->f0_1 = $f0_1;
+    }
+    static function get_FSharpCase() {
+        return 'US2_0';
     }
     static function get_f0_0_Type() {
-        return 'Int64';
+        return '\\File_system\\US3';
+    }
+    static function get_f0_1_Type() {
+        return '\\File_system\\US4';
     }
     function get_Tag() {
         return 0;
     }
     function CompareTo($other) {
-        $_cmp__21 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        $_cmp__20 = $this->get_Tag() > $other->get_Tag() ? 1 : ($this->get_Tag() < $other->get_Tag() ? -1 : 0);
+        if ($_cmp__20 != 0) {
+            return $_cmp__20;
+        }        
+        $_cmp__21 = $this->f0_0->CompareTo($other->f0_0);
         if ($_cmp__21 != 0) {
             return $_cmp__21;
         }        
-        $_cmp__22 = $this->f0_0 > $other->f0_0 ? 1 : ($this->f0_0 < $other->f0_0 ? -1 : 0);
+        $_cmp__22 = $this->f0_1->CompareTo($other->f0_1);
         if ($_cmp__22 != 0) {
             return $_cmp__22;
         }        
@@ -404,11 +404,11 @@ class US4_US4_0 extends US4 implements IComparable {
 }
 
 #11
-class US4_US4_1 extends US4 implements IComparable {
+class US2_US2_1 extends US2 implements IComparable {
     function __construct() {
     }
     static function get_FSharpCase() {
-        return 'US4_1';
+        return 'US2_1';
     }
     function get_Tag() {
         return 1;
@@ -648,78 +648,6 @@ class US8_US8_1 extends US8 implements IComparable {
 }
 
 #16
-function US1__get_IsUS1_0($this_, $unitArg) {
-    if ($this_->get_Tag() == 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#17
-function US1__get_IsUS1_1($this_, $unitArg) {
-    if ($this_->get_Tag() == 1) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#18
-function US1__get_IsUS1_2($this_, $unitArg) {
-    if ($this_->get_Tag() == 2) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#19
-function US2__get_IsUS2_0($this_, $unitArg) {
-    if ($this_->get_Tag() == 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#20
-function US2__get_IsUS2_1($this_, $unitArg) {
-    if ($this_->get_Tag() == 1) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#21
-function US2__get_IsUS2_2($this_, $unitArg) {
-    if ($this_->get_Tag() == 2) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#22
-function US2__get_IsUS2_3($this_, $unitArg) {
-    if ($this_->get_Tag() == 3) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#23
-function US2__get_IsUS2_4($this_, $unitArg) {
-    if ($this_->get_Tag() == 4) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#24
 function US0__get_IsUS0_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -728,7 +656,7 @@ function US0__get_IsUS0_0($this_, $unitArg) {
     }
 }
 
-#25
+#17
 function US0__get_IsUS0_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -737,7 +665,52 @@ function US0__get_IsUS0_1($this_, $unitArg) {
     }
 }
 
-#26
+#18
+function US0__get_IsUS0_2($this_, $unitArg) {
+    if ($this_->get_Tag() == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#19
+function US0__get_IsUS0_3($this_, $unitArg) {
+    if ($this_->get_Tag() == 3) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#20
+function US0__get_IsUS0_4($this_, $unitArg) {
+    if ($this_->get_Tag() == 4) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#21
+function US1__get_IsUS1_0($this_, $unitArg) {
+    if ($this_->get_Tag() == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#22
+function US1__get_IsUS1_1($this_, $unitArg) {
+    if ($this_->get_Tag() == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#23
 function US3__get_IsUS3_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -746,7 +719,7 @@ function US3__get_IsUS3_0($this_, $unitArg) {
     }
 }
 
-#27
+#24
 function US3__get_IsUS3_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
@@ -755,7 +728,7 @@ function US3__get_IsUS3_1($this_, $unitArg) {
     }
 }
 
-#28
+#25
 function US3__get_IsUS3_2($this_, $unitArg) {
     if ($this_->get_Tag() == 2) {
         return true;
@@ -764,25 +737,7 @@ function US3__get_IsUS3_2($this_, $unitArg) {
     }
 }
 
-#29
-function US3__get_IsUS3_3($this_, $unitArg) {
-    if ($this_->get_Tag() == 3) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#30
-function US3__get_IsUS3_4($this_, $unitArg) {
-    if ($this_->get_Tag() == 4) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-#31
+#26
 function US4__get_IsUS4_0($this_, $unitArg) {
     if ($this_->get_Tag() == 0) {
         return true;
@@ -791,8 +746,53 @@ function US4__get_IsUS4_0($this_, $unitArg) {
     }
 }
 
-#32
+#27
 function US4__get_IsUS4_1($this_, $unitArg) {
+    if ($this_->get_Tag() == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#28
+function US4__get_IsUS4_2($this_, $unitArg) {
+    if ($this_->get_Tag() == 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#29
+function US4__get_IsUS4_3($this_, $unitArg) {
+    if ($this_->get_Tag() == 3) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#30
+function US4__get_IsUS4_4($this_, $unitArg) {
+    if ($this_->get_Tag() == 4) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#31
+function US2__get_IsUS2_0($this_, $unitArg) {
+    if ($this_->get_Tag() == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+#32
+function US2__get_IsUS2_1($this_, $unitArg) {
     if ($this_->get_Tag() == 1) {
         return true;
     } else {
@@ -873,93 +873,107 @@ function US8__get_IsUS8_1($this_, $unitArg) {
 }
 
 #41
-function closure2($unitVar, $v0_1) {
+function method0($v0_1) {
+    return $v0_1;
+}
+
+#42
+function method1($v0_1) {
+    return $v0_1;
+}
+
+#43
+function closure0($unitVar, $unitVar_1) {
+    $v0_1 = new Mut1(true);
+    $v1_1 = new Mut0(NULL);
+    $v3_1 = new Mut2(new US0_US0_0());
+    $v4_1 = new Mut1(false);
+    $_v5 = NULL;
+    $x = method1(NULL);
+    $_v5 = $x;
+    return [ $v1_1, $v4_1, $v0_1, $v3_1, \Option\value($_v5) ];
+}
+
+#44
+function closure3($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
     $_v1 = $x;
     return \Option\value($_v1);
 }
 
-#42
-function closure3($unitVar, $unitVar_1) {
+#45
+function closure4($unitVar, $unitVar_1) {
     return '';
 }
 
-#43
-function method1($v0_1, $v1) {
+#46
+function method3($v0_1, $v1_1) {
     return NULL;
 }
 
-#44
-function closure1($v0_1, $v1, $unitVar) {
-    return method1($v0_1, $v1);
+#47
+function closure2($v0_1, $v1_1, $unitVar) {
+    return method3($v0_1, $v1_1);
 }
 
-#45
-function method0($v0_1, $v1) {
+#48
+function method2($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
     return \Option\value($_v2);
 }
 
-#46
-function closure0($unitVar, $v0_1) {
+#49
+function closure1($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
     $_v1 = $x;
     return \Option\value($_v1);
 }
 
-#47
-function method3($v0_1, $v1, $v2) {
+#50
+function method5($v0_1, $v1_1, $v2_1) {
     return NULL;
 }
 
-#48
-function closure6($v0_1, $v1, $v2, $unitVar) {
-    return method3($v0_1, $v1, $v2);
+#51
+function closure7($v0_1, $v1_1, $v2_1, $unitVar) {
+    return method5($v0_1, $v1_1, $v2_1);
 }
 
-#49
-function method2($v0_1, $v1, $v2, $v3) {
+#52
+function method4($v0_1, $v1_1, $v2_1, $v3_1) {
     $_v4 = NULL;
     $x = \Util\defaultOf();
     $_v4 = $x;
     return \Option\value($_v4);
 }
 
-#50
-function closure5($v0_1, $v1) {
-    $_v2 = NULL;
-    $x = \Util\defaultOf();
-    $_v2 = $x;
-    return \Option\value($_v2);
-}
-
-#51
-function closure4($unitVar, $v0_1) {
-    return function ($v) use ($closure5, $v0_1) {     return closure5($v0_1, $v);
- };
-}
-
-#52
-function method4($v0_1, $v1) {
-    $_v2 = NULL;
-    $x = \Util\defaultOf();
-    $_v2 = $x;
-    return \Option\value($_v2);
-}
-
 #53
-function closure7($unitVar, $v0_1) {
-    $_v1 = NULL;
+function closure6($v0_1, $v1_1) {
+    $_v2 = NULL;
     $x = \Util\defaultOf();
-    $_v1 = $x;
-    return \Option\value($_v1);
+    $_v2 = $x;
+    return \Option\value($_v2);
 }
 
 #54
+function closure5($unitVar, $v0_1) {
+    return function ($v) use ($closure6, $v0_1) {     return closure6($v0_1, $v);
+ };
+}
+
+#55
+function method6($v0_1, $v1_1) {
+    $_v2 = NULL;
+    $x = \Util\defaultOf();
+    $_v2 = $x;
+    return \Option\value($_v2);
+}
+
+#56
 function closure8($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
@@ -967,78 +981,64 @@ function closure8($unitVar, $v0_1) {
     return \Option\value($_v1);
 }
 
-#55
-function method5($v0_1) {
-    return $v0_1;
-}
-
-#56
-function closure10($v0_1, $v1) {
-    $_v2 = NULL;
-    $x = \Util\defaultOf();
-    $_v2 = $x;
-    return \Option\value($_v2);
-}
-
 #57
 function closure9($unitVar, $v0_1) {
-    return function ($v) use ($closure10, $v0_1) {     return closure10($v0_1, $v);
- };
+    $_v1 = NULL;
+    $x = \Util\defaultOf();
+    $_v1 = $x;
+    return \Option\value($_v1);
 }
 
 #58
-function closure12($v0_1, $v1) {
-    $_v2 = NULL;
-    $x = \Util\defaultOf();
-    $_v2 = $x;
-    return \Option\value($_v2);
+function method7($v0_1) {
+    return $v0_1;
 }
 
 #59
-function closure11($unitVar, $v0_1) {
-    return function ($v) use ($closure12, $v0_1) {     return closure12($v0_1, $v);
- };
-}
-
-#60
-function closure14($v0_1, $v1) {
+function closure11($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
     return \Option\value($_v2);
 }
 
-#61
-function closure13($unitVar, $v0_1) {
-    return function ($v) use ($closure14, $v0_1) {     return closure14($v0_1, $v);
+#60
+function closure10($unitVar, $v0_1) {
+    return function ($v) use ($closure11, $v0_1) {     return closure11($v0_1, $v);
  };
 }
 
+#61
+function closure13($v0_1, $v1_1) {
+    $_v2 = NULL;
+    $x = \Util\defaultOf();
+    $_v2 = $x;
+    return \Option\value($_v2);
+}
+
 #62
-function closure16($unitVar, $unitVar_1) {
-    return 'delete_file_async';
+function closure12($unitVar, $v0_1) {
+    return function ($v) use ($closure13, $v0_1) {     return closure13($v0_1, $v);
+ };
 }
 
 #63
-function method8($v0_1) {
-    return $v0_1;
+function closure15($v0_1, $v1_1) {
+    $_v2 = NULL;
+    $x = \Util\defaultOf();
+    $_v2 = $x;
+    return \Option\value($_v2);
 }
 
 #64
-function method9($v0_1) {
-    return $v0_1;
+function closure14($unitVar, $v0_1) {
+    return function ($v) use ($closure15, $v0_1) {     return closure15($v0_1, $v);
+ };
 }
 
 #65
 function closure17($unitVar, $unitVar_1) {
-    $v0_1 = new Mut1(true);
-    $v1 = new Mut0(NULL);
-    $v3 = new Mut2(new US3_US3_0());
-    $v4 = new Mut1(false);
-    $_v5 = NULL;
-    $x = method9(NULL);
-    $_v5 = $x;
-    return [ $v1, $v4, $v0_1, $v3, \Option\value($_v5) ];
+    return 'delete_file_async';
 }
 
 #66
@@ -1058,9 +1058,9 @@ function method11($unitVar) {
 }
 
 #69
-function closure18($v0_1, $v1, $v2, $unitVar) {
+function closure18($v0_1, $v1_1, $v2_1, $unitVar) {
     if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = closure17(NULL, NULL);
+        $GLOBALS['State_trace_state'] = closure0(NULL, NULL);
     } else {
     }
     $patternInput = \Option\value($GLOBALS['State_trace_state']);
@@ -1087,27 +1087,31 @@ function closure18($v0_1, $v1, $v2, $unitVar) {
             $v71 = 'Critical';
             break;
     }
+    $v72 = $v71->toLocaleLowerCase;
+    $_v73 = NULL;
+    $x_1 = \Util\defaultOf();
+    $_v73 = $x_1;
     return \String\trimEnd(\String\trimStart(NULL, [  ]), [ ' ', '/' ]);
 }
 
 #70
-function method7($v0_1, $v1, $v2) {
-    $v3 = function ($arg10_0040) use ($closure17) {     return closure17(NULL, NULL);
+function method9($v0_1, $v1_1, $v2_1) {
+    $v3_1 = function ($arg10_0040) use ($closure0) {     return closure0(NULL, NULL);
  };
     if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = $v3(NULL);
+        $GLOBALS['State_trace_state'] = $v3_1(NULL);
     } else {
     }
-    $v4 = \Option\value($GLOBALS['State_trace_state'])[0];
+    $v4_1 = \Option\value($GLOBALS['State_trace_state'])[0];
     if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
-        $GLOBALS['State_trace_state'] = $v3(NULL);
+        $GLOBALS['State_trace_state'] = $v3_1(NULL);
     } else {
     }
     $patternInput_1 = \Option\value($GLOBALS['State_trace_state']);
     $v14_1 = $patternInput_1[3]->l0;
     if ($patternInput_1[2]->l0 ? \Util\compare($v0_1, $v14_1) >= 0 : false) {
-        $v19 = \BigInt\toInt64(\BigInt\op_Addition($v4->l0, NULL));
-        $v4->l0 = $v19;
+        $v19 = \BigInt\toInt64(\BigInt\op_Addition($v4_1->l0, NULL));
+        $v4_1->l0 = $v19;
         $v21 = NULL;
         $_v22 = NULL;
         \Util\defaultOf();
@@ -1120,7 +1124,7 @@ function method7($v0_1, $v1, $v2) {
 }
 
 #71
-function method6($v0_1, $v1) {
+function method8($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
@@ -1128,7 +1132,7 @@ function method6($v0_1, $v1) {
 }
 
 #72
-function closure15($unitVar, $v0_1) {
+function closure16($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
     $_v1 = $x;
@@ -1141,23 +1145,23 @@ function closure22($unitVar, $unitVar_1) {
 }
 
 #74
-function method13($v0_1, $v1, $v2) {
+function method13($v0_1, $v1_1, $v2_1) {
     $_v3 = NULL;
     $x = \Util\defaultOf();
     $_v3 = $x;
-    $v10 = \Option\value($_v3);
-    $v11_1 = function ($v) use ($closure2) {     return closure2(NULL, $v);
+    $v10_1 = \Option\value($_v3);
+    $v11_1 = function ($v) use ($closure3) {     return closure3(NULL, $v);
  };
     return NULL;
 }
 
 #75
-function closure23($v0_1, $v1, $v2, $unitVar) {
-    return method13($v0_1, $v1, $v2);
+function closure23($v0_1, $v1_1, $v2_1, $unitVar) {
+    return method13($v0_1, $v1_1, $v2_1);
 }
 
 #76
-function method12($v0_1, $v1, $v2) {
+function method12($v0_1, $v1_1, $v2_1) {
     $_v3 = NULL;
     $x = \Util\defaultOf();
     $_v3 = $x;
@@ -1165,7 +1169,7 @@ function method12($v0_1, $v1, $v2) {
 }
 
 #77
-function closure21($v0_1, $v1) {
+function closure21($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
@@ -1209,17 +1213,17 @@ function closure30($unitVar, $unitVar_1) {
 }
 
 #85
-function method15($v0_1, $v1) {
+function method15($v0_1, $v1_1) {
     return NULL;
 }
 
 #86
-function closure31($v0_1, $v1, $unitVar) {
-    return method15($v0_1, $v1);
+function closure31($v0_1, $v1_1, $unitVar) {
+    return method15($v0_1, $v1_1);
 }
 
 #87
-function method14($v0_1, $v1) {
+function method14($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
@@ -1236,31 +1240,41 @@ function closure24($unitVar, $v0_1) {
 
 #89
 function closure33($unitVar, $unitVar_1) {
-    $_v0_1 = NULL;
+    $_v0 = NULL;
     $x = \Util\defaultOf();
-    $_v0_1 = $x;
-    return \Option\value($_v0_1);
+    $_v0 = $x;
+    return \Option\value($_v0);
 }
 
 #90
-function closure32($unitVar, $unitVar_1) {
-    $_v0_1 = NULL;
-    $x = \Util\defaultOf();
-    $_v0_1 = $x;
-    return \Option\value($_v0_1);
+function method16($v0_1) {
+    return $v0_1;
 }
 
 #91
-function closure35($v0_1, $v1, $unitVar) {
-    return NULL;
+function method17($v0_1) {
+    return $v0_1;
 }
 
 #92
+function closure32($unitVar, $unitVar_1) {
+    $_v0 = NULL;
+    $x = \Util\defaultOf();
+    $_v0 = $x;
+    return \Option\value($_v0);
+}
+
+#93
+function closure35($v0_1, $v1_1, $unitVar) {
+    return NULL;
+}
+
+#94
 function closure36($v0_1, $unitVar) {
     $_v1 = NULL;
     $x = \Util\defaultOf();
     $_v1 = $x;
-    $v9 = \Option\value($_v1);
+    $v9_1 = \Option\value($_v1);
     $_v10 = NULL;
     $x_1 = \Util\defaultOf();
     $_v10 = $x_1;
@@ -1272,35 +1286,35 @@ function closure36($v0_1, $unitVar) {
     return NULL;
 }
 
-#93
+#95
 function closure34($unitVar, $unitVar_1) {
-    $_v0_1 = NULL;
+    $_v0 = NULL;
     $patternInput = [ \Util\defaultOf(), \Util\defaultOf() ];
-    $_v0_1 = [ $patternInput[0], $patternInput[1] ];
-    $patternInput_1 = \Option\value($_v0_1);
+    $_v0 = [ $patternInput[0], $patternInput[1] ];
+    $patternInput_1 = \Option\value($_v0);
     return [ $patternInput_1[0], $patternInput_1[1] ];
 }
 
-#94
+#96
 function closure37($unitVar, $unitVar_1) {
     return 'C:\\home\\git\\polyglot\\lib\\spiral';
 }
 
-#95
+#97
 function closure41($unitVar, $v0_1) {
     $_v1 = NULL;
     $_v1 = false;
     return \Option\value($_v1);
 }
 
-#96
+#98
 function closure42($unitVar, $v0_1) {
     $_v1 = NULL;
     $_v1 = false;
     return \Option\value($_v1);
 }
 
-#97
+#99
 function closure43($unitVar, $v0_1) {
     $_v1 = NULL;
     $x = $US8();
@@ -1315,157 +1329,334 @@ function closure43($unitVar, $v0_1) {
     }
 }
 
-#98
-function method17($unitVar) {
+#100
+function method19($unitVar) {
     return function ($v) use ($closure43) {     return closure43(NULL, $v);
  };
 }
 
-#99
+#101
 function closure44($unitVar, $v0_1) {
     return new US8_US8_0($v0_1);
 }
 
-#100
-function method18($unitVar) {
+#102
+function method20($unitVar) {
     return function ($v) use ($closure44) {     return closure44(NULL, $v);
  };
 }
 
-#101
-function method19($v0_1, $v1, $v2, $v3) {
+#103
+function method21($v0_1, $v1_1, $v2_1, $v3_1) {
     $_v4 = NULL;
     $x = \Util\defaultOf();
     $_v4 = $x;
-    if ($v1 ? function ($v) use ($closure41) {     return closure41(NULL, $v);
+    if ($v1_1 ? function ($v) use ($closure41) {     return closure41(NULL, $v);
  } : function ($v_1) use ($closure42) {     return closure42(NULL, $v_1);
  }(\Option\value($_v4))) {
-        return $v3;
+        return $v3_1;
     } else {
-        $v37 = method17(NULL)($v3);
-        $v40 = \Option\defaultArg(\Option\map(method18(NULL), $v37), new US8_US8_1());
-        switch ($v40->get_Tag())
+        $v39 = method19(NULL)($v3_1);
+        $v42 = \Option\defaultArg(\Option\map(method20(NULL), $v39), new US8_US8_1());
+        switch ($v42->get_Tag())
         {
             case 0:
-                return method19($v0_1, $v1, $v2, $v40->f0_0);
+                return method21($v0_1, $v1_1, $v2_1, $v42->f0_0);
             default:
                 throw new \Exception(NULL);
         }
     }
-}
-
-#102
-function method16($v0_1, $v1, $v2) {
-    $_v3 = NULL;
-    $x = \Util\defaultOf();
-    $_v3 = $x;
-    if ($v1 ? function ($v) use ($closure41) {     return closure41(NULL, $v);
- } : function ($v_1) use ($closure42) {     return closure42(NULL, $v_1);
- }(\Option\value($_v3))) {
-        return $v2;
-    } else {
-        $v36 = method17(NULL)($v2);
-        $v39 = \Option\defaultArg(\Option\map(method18(NULL), $v36), new US8_US8_1());
-        switch ($v39->get_Tag())
-        {
-            case 0:
-                return method19($v0_1, $v1, $v2, $v39->f0_0);
-            default:
-                throw new \Exception(NULL);
-        }
-    }
-}
-
-#103
-function closure40($v0_1, $v1, $v2) {
-    return method16($v0_1, $v1, $v2);
 }
 
 #104
-function closure39($v0_1, $v1) {
-    return function ($v) use ($closure40, $v0_1, $v1) {     return closure40($v0_1, $v1, $v);
- };
+function method18($v0_1, $v1_1, $v2_1) {
+    $_v3 = NULL;
+    $x = \Util\defaultOf();
+    $_v3 = $x;
+    if ($v1_1 ? function ($v) use ($closure41) {     return closure41(NULL, $v);
+ } : function ($v_1) use ($closure42) {     return closure42(NULL, $v_1);
+ }(\Option\value($_v3))) {
+        return $v2_1;
+    } else {
+        $v38 = method19(NULL)($v2_1);
+        $v41 = \Option\defaultArg(\Option\map(method20(NULL), $v38), new US8_US8_1());
+        switch ($v41->get_Tag())
+        {
+            case 0:
+                return method21($v0_1, $v1_1, $v2_1, $v41->f0_0);
+            default:
+                throw new \Exception(NULL);
+        }
+    }
 }
 
 #105
+function closure40($v0_1, $v1_1, $v2_1) {
+    return method18($v0_1, $v1_1, $v2_1);
+}
+
+#106
+function closure39($v0_1, $v1_1) {
+    return function ($v) use ($closure40, $v0_1, $v1_1) {     return closure40($v0_1, $v1_1, $v);
+ };
+}
+
+#107
 function closure38($unitVar, $v0_1) {
     return function ($v) use ($closure39, $v0_1) {     return closure39($v0_1, $v);
  };
 }
 
-#106
-function closure46($v0_1, $v1) {
+#108
+function method22($unitVar) {
+    return 'polyglot';
+}
+
+#109
+function method23($unitVar) {
+    return '.paket';
+}
+
+#110
+function method24($unitVar) {
+    return 'polyglot';
+}
+
+#111
+function method25($unitVar) {
+    return '.paket';
+}
+
+#112
+function method27($v0_1, $v1_1, $v2_1) {
+    $_v3 = NULL;
+    $x = \Util\defaultOf();
+    $_v3 = $x;
+    $v32 = \Option\value($_v3);
+    $_v33 = NULL;
+    $_v33 = false;
+    if (\Option\value($_v33)) {
+        return $v2_1;
+    } else {
+        $v57 = method19(NULL)($v2_1);
+        $v60 = \Option\defaultArg(\Option\map(method20(NULL), $v57), new US8_US8_1());
+        switch ($v60->get_Tag())
+        {
+            case 0:
+                return method27($v0_1, $v1_1, $v60->f0_0);
+            default:
+                throw new \Exception(NULL);
+        }
+    }
+}
+
+#113
+function method26($v0_1, $v1_1) {
+    $_v2 = NULL;
+    $x = \Util\defaultOf();
+    $_v2 = $x;
+    $v31 = \Option\value($_v2);
+    $_v32 = NULL;
+    $_v32 = false;
+    if (\Option\value($_v32)) {
+        return $v1_1;
+    } else {
+        $v56 = method19(NULL)($v1_1);
+        $v59 = \Option\defaultArg(\Option\map(method20(NULL), $v56), new US8_US8_1());
+        switch ($v59->get_Tag())
+        {
+            case 0:
+                return method27($v0_1, $v1_1, $v59->f0_0);
+            default:
+                throw new \Exception(NULL);
+        }
+    }
+}
+
+#114
+function method28($unitVar) {
+    return 'polyglot';
+}
+
+#115
+function closure45($unitVar, $unitVar_1) {
+    $_v1 = NULL;
+    $x = \Util\defaultOf();
+    $_v1 = $x;
+    $v33 = method26(\Option\value($_v1), 'C:\\home\\git\\polyglot\\lib\\spiral');
+    $_v34 = NULL;
+    $x_1 = \Util\defaultOf();
+    $_v34 = $x_1;
+    return \Option\value($_v34);
+}
+
+#116
+function closure47($v0_1, $v1_1) {
     $_v2 = NULL;
     $x = \Util\defaultOf();
     $_v2 = $x;
     return \Option\value($_v2);
 }
 
-#107
-function closure45($unitVar, $v0_1) {
-    return function ($v) use ($closure46, $v0_1) {     return closure46($v0_1, $v);
+#117
+function closure46($unitVar, $v0_1) {
+    return function ($v) use ($closure47, $v0_1) {     return closure47($v0_1, $v);
  };
 }
 
-#108
-$GLOBALS['v0'] = NULL;
+#118
+$GLOBALS['v0'] = function ($arg10_0040) use ($closure0) { return closure0(NULL, NULL);
+ };
 
-#109
-$GLOBALS['_v0'] = $GLOBALS['v0'];
+#119
+if (\Util\equals($GLOBALS['State_trace_state'], NULL)) {
+    $GLOBALS['State_trace_state'] = $GLOBALS['v0'](NULL);
+} else {
+}
 
-#110
-\Util\defaultOf();
+#120
+$GLOBALS['v1'] = function ($v) use ($closure1) { return closure1(NULL, $v);
+ };
 
-#111
-$GLOBALS['_v0'] = NULL;
+#121
+function delete_directory_async($x) {
+    return $GLOBALS['v1']($x);
+}
 
-#112
-\Option\value($GLOBALS['_v0']);
+#122
+$GLOBALS['v2'] = function ($v) use ($closure5) { return closure5(NULL, $v);
+ };
 
-#113
+#123
+function wait_for_file_access($x) {
+    return $GLOBALS['v2']($x);
+}
+
+#124
+$GLOBALS['v3'] = function ($v) use ($closure8) { return closure8(NULL, $v);
+ };
+
+#125
+function wait_for_file_access_read($x) {
+    return $GLOBALS['v3']($x);
+}
+
+#126
+$GLOBALS['v4'] = function ($v) use ($closure9) { return closure9(NULL, $v);
+ };
+
+#127
+function read_all_text_async($x) {
+    return $GLOBALS['v4']($x);
+}
+
+#128
+$GLOBALS['v5'] = function ($v) use ($closure10) { return closure10(NULL, $v);
+ };
+
+#129
+function file_exists_content($x) {
+    return $GLOBALS['v5']($x);
+}
+
+#130
+$GLOBALS['v6'] = function ($v) use ($closure12) { return closure12(NULL, $v);
+ };
+
+#131
+function write_all_text_async($x) {
+    return $GLOBALS['v6']($x);
+}
+
+#132
+$GLOBALS['v7'] = function ($v) use ($closure14) { return closure14(NULL, $v);
+ };
+
+#133
+function write_all_text_exists($x) {
+    return $GLOBALS['v7']($x);
+}
+
+#134
+$GLOBALS['v8'] = function ($v) use ($closure16) { return closure16(NULL, $v);
+ };
+
+#135
+function delete_file_async($x) {
+    return $GLOBALS['v8']($x);
+}
+
+#136
+$GLOBALS['v9'] = function ($v) use ($closure20) { return closure20(NULL, $v);
+ };
+
+#137
+function move_file_async($x) {
+    return $GLOBALS['v9']($x);
+}
+
+#138
+$GLOBALS['v10'] = function ($v) use ($closure24) { return closure24(NULL, $v);
+ };
+
+#139
+function read_all_text_retry_async($x) {
+    return $GLOBALS['v10']($x);
+}
+
+#140
 $GLOBALS['v11'] = function ($arg10_0040) use ($closure32) { return closure32(NULL, NULL);
  };
 
-#114
+#141
 function create_temp_directory_name($unitVar) {
     return $GLOBALS['v11'](NULL);
 }
 
-#115
+#142
 $GLOBALS['v12'] = function ($arg10_0040) use ($closure34) { return closure34(NULL, NULL);
  };
 
-#116
+#143
 function create_temp_directory($unitVar) {
     return $GLOBALS['v12'](NULL);
 }
 
-#117
+#144
 $GLOBALS['v13'] = function ($arg10_0040) use ($closure37) { return closure37(NULL, NULL);
  };
 
-#118
+#145
 function get_source_directory($unitVar) {
     return $GLOBALS['v13'](NULL);
 }
 
-#119
+#146
 $GLOBALS['v14'] = function ($v) use ($closure38) { return closure38(NULL, $v);
  };
 
-#120
+#147
 function find_parent($x) {
     return $GLOBALS['v14']($x);
 }
 
-#121
-$GLOBALS['v15'] = function ($v) use ($closure45) { return closure45(NULL, $v);
+#148
+$GLOBALS['v15'] = function ($arg10_0040) use ($closure45) { return closure45(NULL, NULL);
  };
 
-#122
-function op_LessDivideGreater($x) {
-    return $GLOBALS['v15']($x);
+#149
+function get_repository_root($unitVar) {
+    return $GLOBALS['v15'](NULL);
 }
 
-#123
+#150
+$GLOBALS['v16'] = function ($v) use ($closure46) { return closure46(NULL, $v);
+ };
+
+#151
+function op_LessDivideGreater($x) {
+    return $GLOBALS['v16']($x);
+}
+
+#152
 

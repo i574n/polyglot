@@ -32,35 +32,35 @@
 [<Fable.Core.Erase; Fable.Core.Emit("std::path::Path")>] type std_path_Path = class end
 [<Fable.Core.Erase; Fable.Core.Emit("std::path::PathBuf")>] type std_path_PathBuf = class end
 #endif // file_system.types
-type IFsExistsSync = abstract existsSync: path: string -> bool
 module State = let mutable trace_state = None
+type IFsExistsSync = abstract existsSync: path: string -> bool
 type IPathJoin = abstract join: [<System.ParamArray>] paths: string[] -> string
 type IPathDirname = abstract dirname: path: string -> string
-type [<Struct>] US1 =
-    | US1_0
-    | US1_1
-    | US1_2
-and [<Struct>] US2 =
-    | US2_0
-    | US2_1
-    | US2_2
-    | US2_3
-    | US2_4
+type Mut0 = {mutable l0 : int64}
+and Mut1 = {mutable l0 : bool}
 and [<Struct>] US0 =
-    | US0_0 of f0_0 : US1 * f0_1 : US2
+    | US0_0
     | US0_1
+    | US0_2
+    | US0_3
+    | US0_4
+and Mut2 = {mutable l0 : US0}
+and [<Struct>] US1 =
+    | US1_0 of f0_0 : int64
+    | US1_1
 and [<Struct>] US3 =
     | US3_0
     | US3_1
     | US3_2
-    | US3_3
-    | US3_4
-and Mut0 = {mutable l0 : int64}
-and Mut1 = {mutable l0 : bool}
-and Mut2 = {mutable l0 : US3}
 and [<Struct>] US4 =
-    | US4_0 of f0_0 : int64
+    | US4_0
     | US4_1
+    | US4_2
+    | US4_3
+    | US4_4
+and [<Struct>] US2 =
+    | US2_0 of f0_0 : US3 * f0_1 : US4
+    | US2_1
 and [<Struct>] US5 =
     | US5_0 of f0_0 : int64
     | US5_1
@@ -73,7 +73,76 @@ and [<Struct>] US7 =
 and [<Struct>] US8 =
     | US8_0 of f0_0 : string
     | US8_1
-let rec closure2 () (v0 : string) : string =
+let rec method0 (v0 : int64 option) : int64 option =
+    v0
+and method1 (v0 : int64 option) : int64 option =
+    v0
+and closure0 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
+    let v0 : Mut1 = {l0 = true} : Mut1
+    let v1 : Mut0 = {l0 = 0L} : Mut0
+    let v2 : US0 = US0_0
+    let v3 : Mut2 = {l0 = v2} : Mut2
+    let v4 : Mut1 = {l0 = false} : Mut1
+    let v5 : int64 option option = None
+    let mutable _v5 = v5
+    #if INTERACTIVE || !FABLE_COMPILER
+    let v6 : string option = None
+    let mutable _v6 = v6
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v7 : string = null |> unbox<string>
+    v7 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v8 : string = null |> unbox<string>
+    v8 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v9 : string = null |> unbox<string>
+    v9 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v10 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
+    v10 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v11 : string = null |> unbox<string>
+    v11 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v12 : string = Unchecked.defaultof<string>
+    v12 
+    #endif
+    |> fun x -> _v6 <- Some x
+    let v13 : string = _v6.Value
+    let v15 : bool = v13 = "Microsoft.DotNet.Interactive.App"
+    let v16 : bool = v15 <> true
+    let v22 : US1 =
+        if v16 then
+            let v17 : System.DateTime = System.DateTime.Now
+            let v18 : (System.DateTime -> int64) = _.Ticks
+            let v19 : int64 = v18 v17
+            US1_0(v19)
+        else
+            US1_1
+    let v27 : int64 option =
+        match v22 with
+        | US1_1 -> (* None *)
+            let v25 : int64 option = None
+            v25
+        | US1_0(v23) -> (* Some *)
+            let v24 : int64 option = Some v23 
+            v24
+    let v28 : int64 option = method0(v27)
+    v28 
+    #else
+    let v29 : int64 option = None
+    let v30 : int64 option = method1(v29)
+    v30 
+    #endif
+    |> fun x -> _v5 <- Some x
+    let v31 : int64 option = _v5.Value
+    struct (v1, v4, v0, v3, v31)
+and closure3 () (v0 : string) : string =
     let v1 : string option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -104,17 +173,17 @@ let rec closure2 () (v0 : string) : string =
     |> fun x -> _v1 <- Some x
     let v9 : string = _v1.Value
     v9
-and closure3 () () : string =
+and closure4 () () : string =
     let v0 : string = ""
     v0
-and method1 (v0 : string, v1 : string) : string =
-    let v2 : (string -> string) = closure2()
-    let v3 : (unit -> string) = closure3()
+and method3 (v0 : string, v1 : string) : string =
+    let v2 : (string -> string) = closure3()
+    let v3 : (unit -> string) = closure4()
     let v4 : string = $"path: {v0 |> v2} / ex: {v1} / {v3 ()}"
     v4
-and closure1 (v0 : string, v1 : string) () : string =
-    method1(v0, v1)
-and method0 (v0 : string, v1 : int64) : Async<int64> =
+and closure2 (v0 : string, v1 : string) () : string =
+    method3(v0, v1)
+and method2 (v0 : string, v1 : int64) : Async<int64> =
     let v2 : Async<int64> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -196,7 +265,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
         #endif
         |> fun x -> _v11 <- Some x
         let v18 : string = _v11.Value
-        let v19 : (unit -> string) = closure1(v0, v18)
+        let v19 : (unit -> string) = closure2(v0, v18)
         let v20 : string = $"delete_directory_async / {v19 ()}"
         System.Console.WriteLine v20
         ()
@@ -231,7 +300,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
     let v29 : Async<unit> = _v21.Value
     do! v29 
     let v30 : int64 = v1 + 1L
-    let v31 : Async<int64> = method0(v0, v30)
+    let v31 : Async<int64> = method2(v0, v30)
     return! v31 
     (*
     let v32 : int64 = *)
@@ -251,7 +320,7 @@ and method0 (v0 : string, v1 : int64) : Async<int64> =
     |> fun x -> _v2 <- Some x
     let v36 : Async<int64> = _v2.Value
     v36
-and closure0 () (v0 : string) : Async<int64> =
+and closure1 () (v0 : string) : Async<int64> =
     let v1 : Async<int64> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -268,7 +337,7 @@ and closure0 () (v0 : string) : Async<int64> =
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v5 : int64 = 0L
-    let v6 : Async<int64> = method0(v0, v5)
+    let v6 : Async<int64> = method2(v0, v5)
     v6 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -282,14 +351,14 @@ and closure0 () (v0 : string) : Async<int64> =
     |> fun x -> _v1 <- Some x
     let v9 : Async<int64> = _v1.Value
     v9
-and method3 (v0 : string, v1 : int64, v2 : string) : string =
-    let v3 : (string -> string) = closure2()
-    let v4 : (unit -> string) = closure3()
+and method5 (v0 : string, v1 : int64, v2 : string) : string =
+    let v3 : (string -> string) = closure3()
+    let v4 : (unit -> string) = closure4()
     let v5 : string = $"path: {v0 |> v3} / retry: {v1} / ex: {v2} / {v4 ()}"
     v5
-and closure6 (v0 : string, v1 : int64, v2 : string) () : string =
-    method3(v0, v1, v2)
-and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
+and closure7 (v0 : string, v1 : int64, v2 : string) () : string =
+    method5(v0, v1, v2)
+and method4 (v0 : string, v1 : US4, v2 : US3, v3 : int64) : Async<int64> =
     let v4 : Async<int64> option = None
     let mutable _v4 = v4
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -327,30 +396,30 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
     let v13 : System.IO.FileMode = System.IO.FileMode.Open
     let v19 : System.IO.FileAccess =
         match v2 with
-        | US1_0 -> (* AccessRead *)
+        | US3_0 -> (* AccessRead *)
             let v14 : System.IO.FileAccess = System.IO.FileAccess.Read
             v14
-        | US1_2 -> (* AccessReadWrite *)
+        | US3_2 -> (* AccessReadWrite *)
             let v16 : System.IO.FileAccess = System.IO.FileAccess.ReadWrite
             v16
-        | US1_1 -> (* AccessWrite *)
+        | US3_1 -> (* AccessWrite *)
             let v15 : System.IO.FileAccess = System.IO.FileAccess.ReadWrite
             v15
     let v29 : System.IO.FileShare =
         match v1 with
-        | US2_4 -> (* ShareDelete *)
+        | US4_4 -> (* ShareDelete *)
             let v24 : System.IO.FileShare = System.IO.FileShare.Delete
             v24
-        | US2_0 -> (* ShareNone *)
+        | US4_0 -> (* ShareNone *)
             let v20 : System.IO.FileShare = System.IO.FileShare.None
             v20
-        | US2_1 -> (* ShareRead *)
+        | US4_1 -> (* ShareRead *)
             let v21 : System.IO.FileShare = System.IO.FileShare.Read
             v21
-        | US2_3 -> (* ShareReadWrite *)
+        | US4_3 -> (* ShareReadWrite *)
             let v23 : System.IO.FileShare = System.IO.FileShare.ReadWrite
             v23
-        | US2_2 -> (* ShareWrite *)
+        | US4_2 -> (* ShareWrite *)
             let v22 : System.IO.FileShare = System.IO.FileShare.Write
             v22
     let v30 : System.IO.FileStream = new System.IO.FileStream (v0, v13, v19, v29)
@@ -408,7 +477,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
         #endif
         |> fun x -> _v40 <- Some x
         let v47 : string = _v40.Value
-        let v48 : (unit -> string) = closure6(v0, v3, v47)
+        let v48 : (unit -> string) = closure7(v0, v3, v47)
         let v49 : string = $"wait_for_file_access / {v48 ()}"
         System.Console.WriteLine v49
         ()
@@ -443,7 +512,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
     let v58 : Async<unit> = _v50.Value
     do! v58 
     let v59 : int64 = v3 + 1L
-    let v60 : Async<int64> = method2(v0, v1, v2, v59)
+    let v60 : Async<int64> = method4(v0, v1, v2, v59)
     return! v60 
     (*
     let v61 : int64 = *)
@@ -463,7 +532,7 @@ and method2 (v0 : string, v1 : US2, v2 : US1, v3 : int64) : Async<int64> =
     |> fun x -> _v4 <- Some x
     let v65 : Async<int64> = _v4.Value
     v65
-and closure5 (v0 : US0) (v1 : string) : Async<int64> =
+and closure6 (v0 : US2) (v1 : string) : Async<int64> =
     let v2 : Async<int64> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -479,16 +548,16 @@ and closure5 (v0 : US0) (v1 : string) : Async<int64> =
     v5 
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let struct (v12 : US1, v13 : US2) =
+    let struct (v12 : US3, v13 : US4) =
         match v0 with
-        | US0_1 -> (* None *)
-            let v8 : US1 = US1_2
-            let v9 : US2 = US2_1
+        | US2_1 -> (* None *)
+            let v8 : US3 = US3_2
+            let v9 : US4 = US4_1
             struct (v8, v9)
-        | US0_0(v6, v7) -> (* Some *)
+        | US2_0(v6, v7) -> (* Some *)
             struct (v6, v7)
     let v14 : int64 = 0L
-    let v15 : Async<int64> = method2(v1, v13, v12, v14)
+    let v15 : Async<int64> = method4(v1, v13, v12, v14)
     v15 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -502,9 +571,9 @@ and closure5 (v0 : US0) (v1 : string) : Async<int64> =
     |> fun x -> _v2 <- Some x
     let v18 : Async<int64> = _v2.Value
     v18
-and closure4 () (v0 : US0) : (string -> Async<int64>) =
-    closure5(v0)
-and method4 (v0 : string, v1 : int64) : Async<int64> =
+and closure5 () (v0 : US2) : (string -> Async<int64>) =
+    closure6(v0)
+and method6 (v0 : string, v1 : int64) : Async<int64> =
     let v2 : Async<int64> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -597,7 +666,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
         #endif
         |> fun x -> _v24 <- Some x
         let v31 : string = _v24.Value
-        let v32 : (unit -> string) = closure6(v0, v1, v31)
+        let v32 : (unit -> string) = closure7(v0, v1, v31)
         let v33 : string = $"wait_for_file_access / {v32 ()}"
         System.Console.WriteLine v33
         ()
@@ -632,7 +701,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
     let v42 : Async<unit> = _v34.Value
     do! v42 
     let v43 : int64 = v1 + 1L
-    let v44 : Async<int64> = method4(v0, v43)
+    let v44 : Async<int64> = method6(v0, v43)
     return! v44 
     (*
     let v45 : int64 = *)
@@ -652,7 +721,7 @@ and method4 (v0 : string, v1 : int64) : Async<int64> =
     |> fun x -> _v2 <- Some x
     let v49 : Async<int64> = _v2.Value
     v49
-and closure7 () (v0 : string) : Async<int64> =
+and closure8 () (v0 : string) : Async<int64> =
     let v1 : Async<int64> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -669,7 +738,7 @@ and closure7 () (v0 : string) : Async<int64> =
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v5 : int64 = 0L
-    let v6 : Async<int64> = method4(v0, v5)
+    let v6 : Async<int64> = method6(v0, v5)
     v6 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -683,7 +752,7 @@ and closure7 () (v0 : string) : Async<int64> =
     |> fun x -> _v1 <- Some x
     let v9 : Async<int64> = _v1.Value
     v9
-and closure8 () (v0 : string) : Async<string> =
+and closure9 () (v0 : string) : Async<string> =
     let v1 : Async<string> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -743,9 +812,9 @@ and closure8 () (v0 : string) : Async<string> =
     |> fun x -> _v1 <- Some x
     let v18 : Async<string> = _v1.Value
     v18
-and method5 (v0 : string) : string =
+and method7 (v0 : string) : string =
     v0
-and closure10 (v0 : string) (v1 : string) : Async<bool> =
+and closure11 (v0 : string) (v1 : string) : Async<bool> =
     let v2 : Async<bool> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -782,7 +851,7 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
     let v11 : bool option = None
     let mutable _v11 = v11
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v12 : string = method5(v0)
+    let v12 : string = method7(v0)
     let v13 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v14 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v12 v13
     let v15 : string = "String::from($0)"
@@ -926,9 +995,9 @@ and closure10 (v0 : string) (v1 : string) : Async<bool> =
     |> fun x -> _v2 <- Some x
     let v61 : Async<bool> = _v2.Value
     v61
-and closure9 () (v0 : string) : (string -> Async<bool>) =
-    closure10(v0)
-and closure12 (v0 : string) (v1 : string) : Async<unit> =
+and closure10 () (v0 : string) : (string -> Async<bool>) =
+    closure11(v0)
+and closure13 (v0 : string) (v1 : string) : Async<unit> =
     let v2 : Async<unit> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -987,9 +1056,9 @@ and closure12 (v0 : string) (v1 : string) : Async<unit> =
     |> fun x -> _v2 <- Some x
     let v18 : Async<unit> = _v2.Value
     v18
-and closure11 () (v0 : string) : (string -> Async<unit>) =
-    closure12(v0)
-and closure14 (v0 : string) (v1 : string) : Async<unit> =
+and closure12 () (v0 : string) : (string -> Async<unit>) =
+    closure13(v0)
+and closure15 (v0 : string) (v1 : string) : Async<unit> =
     let v2 : Async<unit> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1044,7 +1113,7 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
     let v16 : bool option = None
     let mutable _v16 = v16
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v17 : string = method5(v0)
+    let v17 : string = method7(v0)
     let v18 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v19 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v17 v18
     let v20 : string = "String::from($0)"
@@ -1266,80 +1335,11 @@ and closure14 (v0 : string) (v1 : string) : Async<unit> =
     |> fun x -> _v2 <- Some x
     let v89 : Async<unit> = _v2.Value
     v89
-and closure13 () (v0 : string) : (string -> Async<unit>) =
-    closure14(v0)
-and closure16 () () : string =
+and closure14 () (v0 : string) : (string -> Async<unit>) =
+    closure15(v0)
+and closure17 () () : string =
     let v0 : string = "delete_file_async"
     v0
-and method8 (v0 : int64 option) : int64 option =
-    v0
-and method9 (v0 : int64 option) : int64 option =
-    v0
-and closure17 () () : struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option) =
-    let v0 : Mut1 = {l0 = true} : Mut1
-    let v1 : Mut0 = {l0 = 0L} : Mut0
-    let v2 : US3 = US3_0
-    let v3 : Mut2 = {l0 = v2} : Mut2
-    let v4 : Mut1 = {l0 = false} : Mut1
-    let v5 : int64 option option = None
-    let mutable _v5 = v5
-    #if INTERACTIVE || !FABLE_COMPILER
-    let v6 : string option = None
-    let mutable _v6 = v6
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v7 : string = null |> unbox<string>
-    v7 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v8 : string = null |> unbox<string>
-    v8 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
-    let v9 : string = null |> unbox<string>
-    v9 
-    #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v10 : string = System.Reflection.Assembly.GetEntryAssembly().GetName().Name
-    v10 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v11 : string = null |> unbox<string>
-    v11 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v12 : string = Unchecked.defaultof<string>
-    v12 
-    #endif
-    |> fun x -> _v6 <- Some x
-    let v13 : string = _v6.Value
-    let v15 : bool = v13 = "Microsoft.DotNet.Interactive.App"
-    let v16 : bool = v15 <> true
-    let v22 : US4 =
-        if v16 then
-            let v17 : System.DateTime = System.DateTime.Now
-            let v18 : (System.DateTime -> int64) = _.Ticks
-            let v19 : int64 = v18 v17
-            US4_0(v19)
-        else
-            US4_1
-    let v27 : int64 option =
-        match v22 with
-        | US4_1 -> (* None *)
-            let v25 : int64 option = None
-            v25
-        | US4_0(v23) -> (* Some *)
-            let v24 : int64 option = Some v23 
-            v24
-    let v28 : int64 option = method8(v27)
-    v28 
-    #else
-    let v29 : int64 option = None
-    let v30 : int64 option = method9(v29)
-    v30 
-    #endif
-    |> fun x -> _v5 <- Some x
-    let v31 : int64 option = _v5.Value
-    struct (v1, v4, v0, v3, v31)
 and closure19 () (v0 : int64) : US5 =
     US5_0(v0)
 and method10 () : (int64 -> US5) =
@@ -1347,8 +1347,8 @@ and method10 () : (int64 -> US5) =
 and method11 () : string =
     let v0 : string = ""
     v0
-and closure18 (v0 : US3, v1 : (unit -> string), v2 : (unit -> string)) () : string =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure17()
+and closure18 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) () : string =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
     if State.trace_state = None then State.trace_state <- v3 () |> Some
     let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
     let v9 : string option = None
@@ -1432,35 +1432,151 @@ and closure18 (v0 : US3, v1 : (unit -> string), v2 : (unit -> string)) () : stri
     let v61 : int64 = v4.l0
     let v71 : string =
         match v0 with
-        | US3_4 -> (* Critical *)
+        | US0_4 -> (* Critical *)
             let v66 : string = "Critical"
             v66
-        | US3_1 -> (* Debug *)
+        | US0_1 -> (* Debug *)
             let v63 : string = "Debug"
             v63
-        | US3_2 -> (* Info *)
+        | US0_2 -> (* Info *)
             let v64 : string = "Info"
             v64
-        | US3_0 -> (* Verbose *)
+        | US0_0 -> (* Verbose *)
             let v62 : string = "Verbose"
             v62
-        | US3_3 -> (* Warning *)
+        | US0_3 -> (* Warning *)
             let v65 : string = "Warning"
             v65
     let v72 : string = v71.ToLower ()
-    let v73 : string = $"{v60} #{v61} [{v72}] %s{v1 ()} / %s{v2 ()}"
-    let v74 : (char []) = [||]
-    let v75 : string = v73.TrimStart v74
-    let v76 : (char []) = [|' '; '/'|]
-    let v77 : string = v75.TrimEnd v76
-    v77
-and method7 (v0 : US3, v1 : (unit -> string), v2 : (unit -> string)) : unit =
-    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure17()
+    let v73 : string option = None
+    let mutable _v73 = v73
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v88 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v82 : string = "inline_colorization::color_bright_red"
+            let v83 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v82
+            v83
+        | US0_1 -> (* Debug *)
+            let v76 : string = "inline_colorization::color_bright_blue"
+            let v77 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v76
+            v77
+        | US0_2 -> (* Info *)
+            let v78 : string = "inline_colorization::color_bright_green"
+            let v79 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v78
+            v79
+        | US0_0 -> (* Verbose *)
+            let v74 : string = "inline_colorization::color_bright_black"
+            let v75 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v74
+            v75
+        | US0_3 -> (* Warning *)
+            let v80 : string = "inline_colorization::color_bright_yellow"
+            let v81 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v80
+            v81
+    let v89 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v90 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v72 v89
+    let v91 : string = "inline_colorization::color_reset"
+    let v92 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v91
+    let v93 : string = "\"{v88}{v90}{v92}\""
+    let v94 : string = @$"format!(" + v93 + ")"
+    let v95 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v94
+    let v96 : string = "fable_library_rust::String_::fromString($0)"
+    let v97 : string = Fable.Core.RustInterop.emitRustExpr v95 v96
+    v97 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v112 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v106 : string = "inline_colorization::color_bright_red"
+            let v107 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v106
+            v107
+        | US0_1 -> (* Debug *)
+            let v100 : string = "inline_colorization::color_bright_blue"
+            let v101 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v100
+            v101
+        | US0_2 -> (* Info *)
+            let v102 : string = "inline_colorization::color_bright_green"
+            let v103 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v102
+            v103
+        | US0_0 -> (* Verbose *)
+            let v98 : string = "inline_colorization::color_bright_black"
+            let v99 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v98
+            v99
+        | US0_3 -> (* Warning *)
+            let v104 : string = "inline_colorization::color_bright_yellow"
+            let v105 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v104
+            v105
+    let v113 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v114 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v72 v113
+    let v115 : string = "inline_colorization::color_reset"
+    let v116 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v115
+    let v117 : string = "\"{v112}{v114}{v116}\""
+    let v118 : string = @$"format!(" + v117 + ")"
+    let v119 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v118
+    let v120 : string = "fable_library_rust::String_::fromString($0)"
+    let v121 : string = Fable.Core.RustInterop.emitRustExpr v119 v120
+    v121 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v136 : Ref<Str> =
+        match v0 with
+        | US0_4 -> (* Critical *)
+            let v130 : string = "inline_colorization::color_bright_red"
+            let v131 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v130
+            v131
+        | US0_1 -> (* Debug *)
+            let v124 : string = "inline_colorization::color_bright_blue"
+            let v125 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v124
+            v125
+        | US0_2 -> (* Info *)
+            let v126 : string = "inline_colorization::color_bright_green"
+            let v127 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v126
+            v127
+        | US0_0 -> (* Verbose *)
+            let v122 : string = "inline_colorization::color_bright_black"
+            let v123 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v122
+            v123
+        | US0_3 -> (* Warning *)
+            let v128 : string = "inline_colorization::color_bright_yellow"
+            let v129 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v128
+            v129
+    let v137 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v138 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v72 v137
+    let v139 : string = "inline_colorization::color_reset"
+    let v140 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr () v139
+    let v141 : string = "\"{v136}{v138}{v140}\""
+    let v142 : string = @$"format!(" + v141 + ")"
+    let v143 : std_string_String = Fable.Core.RustInterop.emitRustExpr () v142
+    let v144 : string = "fable_library_rust::String_::fromString($0)"
+    let v145 : string = Fable.Core.RustInterop.emitRustExpr v143 v144
+    v145 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    v72 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    v72 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v146 : string = Unchecked.defaultof<string>
+    v146 
+    #endif
+    |> fun x -> _v73 <- Some x
+    let v147 : string = _v73.Value
+    let v148 : string = $"{v60} {v147} #{v61} %s{v1 ()} / %s{v2 ()}"
+    let v149 : (char []) = [||]
+    let v150 : string = v148.TrimStart v149
+    let v151 : (char []) = [|' '; '/'|]
+    let v152 : string = v150.TrimEnd v151
+    v152
+and method9 (v0 : US0, v1 : (unit -> string), v2 : (unit -> string)) : unit =
+    let v3 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
     if State.trace_state = None then State.trace_state <- v3 () |> Some
     let struct (v4 : Mut0, v5 : Mut1, v6 : Mut1, v7 : Mut2, v8 : int64 option) = State.trace_state.Value
     if State.trace_state = None then State.trace_state <- v3 () |> Some
     let struct (v9 : Mut0, v10 : Mut1, v11 : Mut1, v12 : Mut2, v13 : int64 option) = State.trace_state.Value
-    let v14 : US3 = v12.l0
+    let v14 : US0 = v12.l0
     let v15 : bool = v11.l0
     let v17 : bool =
         if v15 then
@@ -1506,7 +1622,7 @@ and method7 (v0 : US3, v1 : (unit -> string), v2 : (unit -> string)) : unit =
         |> fun x -> _v22 <- Some x
         _v22.Value
         ()
-and method6 (v0 : string, v1 : int64) : Async<int64> =
+and method8 (v0 : string, v1 : int64) : Async<int64> =
     let v2 : Async<int64> option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1589,10 +1705,10 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
         #endif
         |> fun x -> _v12 <- Some x
         let v19 : string = _v12.Value
-        let v20 : US3 = US3_3
-        let v21 : (unit -> string) = closure16()
-        let v22 : (unit -> string) = closure3()
-        method7(v20, v21, v22)
+        let v20 : US0 = US0_3
+        let v21 : (unit -> string) = closure17()
+        let v22 : (unit -> string) = closure4()
+        method9(v20, v21, v22)
     let v23 : Async<unit> option = None
     let mutable _v23 = v23
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1624,7 +1740,7 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
     let v31 : Async<unit> = _v23.Value
     do! v31 
     let v32 : int64 = v1 + 1L
-    let v33 : Async<int64> = method6(v0, v32)
+    let v33 : Async<int64> = method8(v0, v32)
     return! v33 
     (*
     let v34 : int64 = *)
@@ -1644,7 +1760,7 @@ and method6 (v0 : string, v1 : int64) : Async<int64> =
     |> fun x -> _v2 <- Some x
     let v38 : Async<int64> = _v2.Value
     v38
-and closure15 () (v0 : string) : Async<int64> =
+and closure16 () (v0 : string) : Async<int64> =
     let v1 : Async<int64> option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1661,7 +1777,7 @@ and closure15 () (v0 : string) : Async<int64> =
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v5 : int64 = 0L
-    let v6 : Async<int64> = method6(v0, v5)
+    let v6 : Async<int64> = method8(v0, v5)
     v6 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -1707,8 +1823,8 @@ and method13 (v0 : string, v1 : string, v2 : exn) : string =
     #endif
     |> fun x -> _v3 <- Some x
     let v10 : string = _v3.Value
-    let v11 : (string -> string) = closure2()
-    let v12 : (unit -> string) = closure3()
+    let v11 : (string -> string) = closure3()
+    let v12 : (unit -> string) = closure4()
     let v13 : string = $"old_path: {v1 |> v11} / new_path: {v0 |> v11} / ex: {v10} / {v12 ()}"
     v13
 and closure23 (v0 : string, v1 : string, v2 : exn) () : string =
@@ -1767,10 +1883,10 @@ and method12 (v0 : string, v1 : string, v2 : int64) : Async<int64> =
     let v10 : int64 = v2 % 100L
     let v11 : bool = v10 = 0L
     if v11 then
-        let v12 : US3 = US3_3
+        let v12 : US0 = US0_3
         let v13 : (unit -> string) = closure22()
         let v14 : (unit -> string) = closure23(v0, v1, v9)
-        method7(v12, v13, v14)
+        method9(v12, v13, v14)
     let v15 : Async<unit> option = None
     let mutable _v15 = v15
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
@@ -1863,7 +1979,7 @@ and closure27 () () : string =
     let v0 : string = "run_with_timeout_async"
     v0
 and closure28 () () : string =
-    let v0 : (unit -> string) = closure3()
+    let v0 : (unit -> string) = closure4()
     let v1 : string = $"timeout: {1000} / {v0 ()}"
     v1
 and closure29 (v0 : string) () : string =
@@ -1873,7 +1989,7 @@ and closure30 () () : string =
     let v0 : string = "read_all_text_retry_async"
     v0
 and method15 (v0 : int64, v1 : string) : string =
-    let v2 : (unit -> string) = closure3()
+    let v2 : (unit -> string) = closure4()
     let v3 : string = $"retry: {v0} / ex: {v1} / {v2 ()}"
     v3
 and closure31 (v0 : int64, v1 : string) () : string =
@@ -1916,7 +2032,7 @@ and method14 (v0 : string, v1 : int64) : Async<string option> =
         #endif
         #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
         let v12 : int64 = 0L
-        let v13 : Async<int64> = method4(v0, v12)
+        let v13 : Async<int64> = method6(v0, v12)
         v13 
         #endif
         #if FABLE_COMPILER_TYPESCRIPT
@@ -2156,10 +2272,10 @@ and method14 (v0 : string, v1 : int64) : Async<string option> =
                 let v90 : string = "System.TimeoutException"
                 let v91 : bool = v89.Contains v90
                 if v91 then
-                    let v92 : US3 = US3_1
+                    let v92 : US0 = US0_1
                     let v93 : (unit -> string) = closure27()
                     let v94 : (unit -> string) = closure28()
-                    method7(v92, v93, v94)
+                    method9(v92, v93, v94)
                     US5_1
                 else
                     let v96 : string option = None
@@ -2190,10 +2306,10 @@ and method14 (v0 : string, v1 : int64) : Async<string option> =
                     #endif
                     |> fun x -> _v96 <- Some x
                     let v103 : string = _v96.Value
-                    let v104 : US3 = US3_4
+                    let v104 : US0 = US0_4
                     let v105 : (unit -> string) = closure29(v103)
                     let v106 : (unit -> string) = closure28()
-                    method7(v104, v105, v106)
+                    method9(v104, v105, v106)
                     US5_1
             | US7_0(v86) -> (* Ok *)
                 US5_0(v86)
@@ -2401,10 +2517,10 @@ and method14 (v0 : string, v1 : int64) : Async<string option> =
         #endif
         |> fun x -> _v163 <- Some x
         let v170 : string = _v163.Value
-        let v171 : US3 = US3_1
+        let v171 : US0 = US0_1
         let v172 : (unit -> string) = closure30()
         let v173 : (unit -> string) = closure31(v1, v170)
-        method7(v171, v172, v173)
+        method9(v171, v172, v173)
         let v174 : string option = None
         return v174 
         (*
@@ -2496,6 +2612,10 @@ and closure33 () () : string =
     |> fun x -> _v0 <- Some x
     let v7 : string = _v0.Value
     v7
+and method16 (v0 : string) : string =
+    v0
+and method17 (v0 : string) : string =
+    v0
 and closure32 () () : string =
     let v0 : string option = None
     let mutable _v0 = v0
@@ -2519,14 +2639,14 @@ and closure32 () () : string =
     let v8 : string option = None
     let mutable _v8 = v8
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v9 : string = method5(v5)
+    let v9 : string = method7(v5)
     let v10 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v11 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v9 v10
     let v12 : string = "String::from($0)"
     let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v11 v12
     let v14 : string = "std::path::PathBuf::from($0)"
     let v15 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v13 v14
-    let v16 : string = method5(v7)
+    let v16 : string = method7(v7)
     let v17 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v18 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v16 v17
     let v19 : string = "String::from($0)"
@@ -2554,86 +2674,90 @@ and closure32 () () : string =
     #if FABLE_COMPILER_TYPESCRIPT
     let v30 : string = "path"
     let v31 : IPathJoin = Fable.Core.JsInterop.importAll v30
-    let v32 : string = "v31.join($0, $1)"
-    let v33 : string = Fable.Core.JsInterop.emitJsExpr struct (v5, v7) v32
-    v33 
+    let v32 : string = method16(v5)
+    let v33 : string = method17(v7)
+    let v34 : string = "v31.join(v32, v33)"
+    let v35 : string = Fable.Core.JsInterop.emitJsExpr () v34
+    v35 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v34 : string = Unchecked.defaultof<string>
-    v34 
+    let v36 : string = Unchecked.defaultof<string>
+    v36 
     #endif
     |> fun x -> _v8 <- Some x
-    let v35 : string = _v8.Value
-    let v36 : System.DateTime = System.DateTime.Now
-    let v37 : System.Guid = System.Guid.NewGuid ()
-    let v38 : (System.Guid -> string) = _.ToString()
-    let v39 : string = v38 v37
-    let v40 : string = v36.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v41 : System.Guid = System.Guid $"{v40}{v39.[v40.Length..]}"
-    let v42 : (System.Guid -> string) = _.ToString()
-    let v43 : string = v42 v41
-    let v44 : string option = None
-    let mutable _v44 = v44
+    let v37 : string = _v8.Value
+    let v38 : System.DateTime = System.DateTime.Now
+    let v39 : System.Guid = System.Guid.NewGuid ()
+    let v40 : (System.Guid -> string) = _.ToString()
+    let v41 : string = v40 v39
+    let v42 : string = v38.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v43 : System.Guid = System.Guid $"{v42}{v41.[v42.Length..]}"
+    let v44 : (System.Guid -> string) = _.ToString()
+    let v45 : string = v44 v43
+    let v46 : string option = None
+    let mutable _v46 = v46
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v45 : string = method5(v35)
-    let v46 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v47 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v45 v46
-    let v48 : string = "String::from($0)"
-    let v49 : std_string_String = Fable.Core.RustInterop.emitRustExpr v47 v48
-    let v50 : string = "std::path::PathBuf::from($0)"
-    let v51 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v49 v50
-    let v52 : string = method5(v43)
-    let v53 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v54 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v52 v53
-    let v55 : string = "String::from($0)"
-    let v56 : std_string_String = Fable.Core.RustInterop.emitRustExpr v54 v55
-    let v57 : string = "$0.join($1)"
-    let v58 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v51, v56) v57
-    let v59 : string = "$0.display().to_string()"
-    let v60 : std_string_String = Fable.Core.RustInterop.emitRustExpr v58 v59
-    let v61 : string = "fable_library_rust::String_::fromString($0)"
-    let v62 : string = Fable.Core.RustInterop.emitRustExpr v60 v61
-    v62 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v63 : string = null |> unbox<string>
-    v63 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
-    let v64 : string = null |> unbox<string>
+    let v47 : string = method7(v37)
+    let v48 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v49 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v47 v48
+    let v50 : string = "String::from($0)"
+    let v51 : std_string_String = Fable.Core.RustInterop.emitRustExpr v49 v50
+    let v52 : string = "std::path::PathBuf::from($0)"
+    let v53 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v51 v52
+    let v54 : string = method7(v45)
+    let v55 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v56 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v54 v55
+    let v57 : string = "String::from($0)"
+    let v58 : std_string_String = Fable.Core.RustInterop.emitRustExpr v56 v57
+    let v59 : string = "$0.join($1)"
+    let v60 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v53, v58) v59
+    let v61 : string = "$0.display().to_string()"
+    let v62 : std_string_String = Fable.Core.RustInterop.emitRustExpr v60 v61
+    let v63 : string = "fable_library_rust::String_::fromString($0)"
+    let v64 : string = Fable.Core.RustInterop.emitRustExpr v62 v63
     v64 
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v65 : string = System.IO.Path.Combine (v35, v43)
+    #if FABLE_COMPILER_RUST && WASM
+    let v65 : string = null |> unbox<string>
     v65 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v66 : IPathJoin = Fable.Core.JsInterop.importAll v30
-    let v67 : string = "v66.join($0, $1)"
-    let v68 : string = Fable.Core.JsInterop.emitJsExpr struct (v35, v43) v67
-    v68 
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v66 : string = null |> unbox<string>
+    v66 
     #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v69 : string = Unchecked.defaultof<string>
-    v69 
-    #endif
-    |> fun x -> _v44 <- Some x
-    let v70 : string = _v44.Value
-    v70 
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v67 : string = System.IO.Path.Combine (v37, v45)
+    v67 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let v71 : string = null |> unbox<string>
-    v71 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v72 : string = Unchecked.defaultof<string>
+    let v68 : IPathJoin = Fable.Core.JsInterop.importAll v30
+    let v69 : string = method16(v37)
+    let v70 : string = method17(v45)
+    let v71 : string = "v68.join(v69, v70)"
+    let v72 : string = Fable.Core.JsInterop.emitJsExpr () v71
     v72 
     #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v73 : string = Unchecked.defaultof<string>
+    v73 
+    #endif
+    |> fun x -> _v46 <- Some x
+    let v74 : string = _v46.Value
+    v74 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v75 : string = null |> unbox<string>
+    v75 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v76 : string = Unchecked.defaultof<string>
+    v76 
+    #endif
     |> fun x -> _v0 <- Some x
-    let v73 : string = _v0.Value
-    v73
+    let v77 : string = _v0.Value
+    v77
 and closure35 (v0 : string, v1 : string) () : string =
-    let v2 : (unit -> string) = closure3()
+    let v2 : (unit -> string) = closure4()
     let v3 : string = $"temp_folder: {v0} / result: {v1} {v2 ()}"
     v3
 and closure36 (v0 : string) () : unit =
@@ -2653,7 +2777,7 @@ and closure36 (v0 : string) () : unit =
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
     let v5 : int64 = 0L
-    let v6 : Async<int64> = method0(v0, v5)
+    let v6 : Async<int64> = method2(v0, v5)
     v6 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
@@ -2763,14 +2887,14 @@ and closure34 () () : struct (string * System.IDisposable) =
     let v15 : string option = None
     let mutable _v15 = v15
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v16 : string = method5(v12)
+    let v16 : string = method7(v12)
     let v17 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v18 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v16 v17
     let v19 : string = "String::from($0)"
     let v20 : std_string_String = Fable.Core.RustInterop.emitRustExpr v18 v19
     let v21 : string = "std::path::PathBuf::from($0)"
     let v22 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v20 v21
-    let v23 : string = method5(v14)
+    let v23 : string = method7(v14)
     let v24 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v25 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v23 v24
     let v26 : string = "String::from($0)"
@@ -2798,218 +2922,222 @@ and closure34 () () : struct (string * System.IDisposable) =
     #if FABLE_COMPILER_TYPESCRIPT
     let v37 : string = "path"
     let v38 : IPathJoin = Fable.Core.JsInterop.importAll v37
-    let v39 : string = "v38.join($0, $1)"
-    let v40 : string = Fable.Core.JsInterop.emitJsExpr struct (v12, v14) v39
-    v40 
+    let v39 : string = method16(v12)
+    let v40 : string = method17(v14)
+    let v41 : string = "v38.join(v39, v40)"
+    let v42 : string = Fable.Core.JsInterop.emitJsExpr () v41
+    v42 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v41 : string = Unchecked.defaultof<string>
-    v41 
+    let v43 : string = Unchecked.defaultof<string>
+    v43 
     #endif
     |> fun x -> _v15 <- Some x
-    let v42 : string = _v15.Value
-    let v43 : System.DateTime = System.DateTime.Now
-    let v44 : System.Guid = System.Guid.NewGuid ()
-    let v45 : (System.Guid -> string) = _.ToString()
-    let v46 : string = v45 v44
-    let v47 : string = v43.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
-    let v48 : System.Guid = System.Guid $"{v47}{v46.[v47.Length..]}"
-    let v49 : (System.Guid -> string) = _.ToString()
-    let v50 : string = v49 v48
-    let v51 : string option = None
-    let mutable _v51 = v51
+    let v44 : string = _v15.Value
+    let v45 : System.DateTime = System.DateTime.Now
+    let v46 : System.Guid = System.Guid.NewGuid ()
+    let v47 : (System.Guid -> string) = _.ToString()
+    let v48 : string = v47 v46
+    let v49 : string = v45.ToString "yyyyMMdd-HHmm-ssff-ffff-f"
+    let v50 : System.Guid = System.Guid $"{v49}{v48.[v49.Length..]}"
+    let v51 : (System.Guid -> string) = _.ToString()
+    let v52 : string = v51 v50
+    let v53 : string option = None
+    let mutable _v53 = v53
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v52 : string = method5(v42)
-    let v53 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v54 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v52 v53
-    let v55 : string = "String::from($0)"
-    let v56 : std_string_String = Fable.Core.RustInterop.emitRustExpr v54 v55
-    let v57 : string = "std::path::PathBuf::from($0)"
-    let v58 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v56 v57
-    let v59 : string = method5(v50)
-    let v60 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
-    let v61 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v59 v60
-    let v62 : string = "String::from($0)"
-    let v63 : std_string_String = Fable.Core.RustInterop.emitRustExpr v61 v62
-    let v64 : string = "$0.join($1)"
-    let v65 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v58, v63) v64
-    let v66 : string = "$0.display().to_string()"
-    let v67 : std_string_String = Fable.Core.RustInterop.emitRustExpr v65 v66
-    let v68 : string = "fable_library_rust::String_::fromString($0)"
-    let v69 : string = Fable.Core.RustInterop.emitRustExpr v67 v68
-    v69 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v70 : string = null |> unbox<string>
-    v70 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
-    let v71 : string = null |> unbox<string>
+    let v54 : string = method7(v44)
+    let v55 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v56 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v54 v55
+    let v57 : string = "String::from($0)"
+    let v58 : std_string_String = Fable.Core.RustInterop.emitRustExpr v56 v57
+    let v59 : string = "std::path::PathBuf::from($0)"
+    let v60 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v58 v59
+    let v61 : string = method7(v52)
+    let v62 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v63 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v61 v62
+    let v64 : string = "String::from($0)"
+    let v65 : std_string_String = Fable.Core.RustInterop.emitRustExpr v63 v64
+    let v66 : string = "$0.join($1)"
+    let v67 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v60, v65) v66
+    let v68 : string = "$0.display().to_string()"
+    let v69 : std_string_String = Fable.Core.RustInterop.emitRustExpr v67 v68
+    let v70 : string = "fable_library_rust::String_::fromString($0)"
+    let v71 : string = Fable.Core.RustInterop.emitRustExpr v69 v70
     v71 
     #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v72 : string = System.IO.Path.Combine (v42, v50)
+    #if FABLE_COMPILER_RUST && WASM
+    let v72 : string = null |> unbox<string>
     v72 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v73 : IPathJoin = Fable.Core.JsInterop.importAll v37
-    let v74 : string = "v73.join($0, $1)"
-    let v75 : string = Fable.Core.JsInterop.emitJsExpr struct (v42, v50) v74
-    v75 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v76 : string = Unchecked.defaultof<string>
-    v76 
-    #endif
-    |> fun x -> _v51 <- Some x
-    let v77 : string = _v51.Value
-    v77 
-    #endif
-    #if FABLE_COMPILER_TYPESCRIPT
-    let v78 : string = null |> unbox<string>
-    v78 
-    #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v79 : string = Unchecked.defaultof<string>
-    v79 
-    #endif
-    |> fun x -> _v7 <- Some x
-    let v80 : string = _v7.Value
-    let v81 : System.IO.DirectoryInfo option = None
-    let mutable _v81 = v81
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v82 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v82 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v83 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v83 
-    #endif
     #if FABLE_COMPILER_RUST && CONTRACT
-    let v84 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
-    v84 
+    let v73 : string = null |> unbox<string>
+    v73 
     #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v85 : (string -> System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
-    let v86 : System.IO.DirectoryInfo = v85 v80
-    v86 
+    let v74 : string = System.IO.Path.Combine (v44, v52)
+    v74 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
+    let v75 : IPathJoin = Fable.Core.JsInterop.importAll v37
+    let v76 : string = method16(v44)
+    let v77 : string = method17(v52)
+    let v78 : string = "v75.join(v76, v77)"
+    let v79 : string = Fable.Core.JsInterop.emitJsExpr () v78
+    v79 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v80 : string = Unchecked.defaultof<string>
+    v80 
+    #endif
+    |> fun x -> _v53 <- Some x
+    let v81 : string = _v53.Value
+    v81 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v82 : string = null |> unbox<string>
+    v82 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v83 : string = Unchecked.defaultof<string>
+    v83 
+    #endif
+    |> fun x -> _v7 <- Some x
+    let v84 : string = _v7.Value
+    let v85 : System.IO.DirectoryInfo option = None
+    let mutable _v85 = v85
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v86 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v86 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
     let v87 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
     v87 
     #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v88 : System.IO.DirectoryInfo = Unchecked.defaultof<System.IO.DirectoryInfo>
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v88 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
     v88 
     #endif
-    |> fun x -> _v81 <- Some x
-    let v89 : System.IO.DirectoryInfo = _v81.Value
-    let v90 : bool option = None
-    let mutable _v90 = v90
-    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v91 : bool = null |> unbox<bool>
-    v91 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v92 : bool = null |> unbox<bool>
-    v92 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
-    let v93 : bool = null |> unbox<bool>
-    v93 
-    #endif
     #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v94 : bool = v89.Exists
-    v94 
+    let v89 : (string -> System.IO.DirectoryInfo) = System.IO.Directory.CreateDirectory
+    let v90 : System.IO.DirectoryInfo = v89 v84
+    v90 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
+    let v91 : System.IO.DirectoryInfo = null |> unbox<System.IO.DirectoryInfo>
+    v91 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v92 : System.IO.DirectoryInfo = Unchecked.defaultof<System.IO.DirectoryInfo>
+    v92 
+    #endif
+    |> fun x -> _v85 <- Some x
+    let v93 : System.IO.DirectoryInfo = _v85.Value
+    let v94 : bool option = None
+    let mutable _v94 = v94
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
     let v95 : bool = null |> unbox<bool>
     v95 
     #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v96 : bool = Unchecked.defaultof<bool>
+    #if FABLE_COMPILER_RUST && WASM
+    let v96 : bool = null |> unbox<bool>
     v96 
     #endif
-    |> fun x -> _v90 <- Some x
-    let v97 : bool = _v90.Value
-    let v98 : bool = v97 = false
-    if v98 then
-        let v99 : System.DateTime option = None
-        let mutable _v99 = v99
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v97 : bool = null |> unbox<bool>
+    v97 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v98 : bool = v93.Exists
+    v98 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v99 : bool = null |> unbox<bool>
+    v99 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v100 : bool = Unchecked.defaultof<bool>
+    v100 
+    #endif
+    |> fun x -> _v94 <- Some x
+    let v101 : bool = _v94.Value
+    let v102 : bool = v101 = false
+    if v102 then
+        let v103 : System.DateTime option = None
+        let mutable _v103 = v103
         #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-        let v100 : System.DateTime = null |> unbox<System.DateTime>
-        v100 
-        #endif
-        #if FABLE_COMPILER_RUST && WASM
-        let v101 : System.DateTime = null |> unbox<System.DateTime>
-        v101 
-        #endif
-        #if FABLE_COMPILER_RUST && CONTRACT
-        let v102 : System.DateTime = null |> unbox<System.DateTime>
-        v102 
-        #endif
-        #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-        let v103 : System.DateTime = v89.CreationTime
-        v103 
-        #endif
-        #if FABLE_COMPILER_TYPESCRIPT
         let v104 : System.DateTime = null |> unbox<System.DateTime>
         v104 
         #endif
-        #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-        let v105 : System.DateTime = Unchecked.defaultof<System.DateTime>
+        #if FABLE_COMPILER_RUST && WASM
+        let v105 : System.DateTime = null |> unbox<System.DateTime>
         v105 
         #endif
-        |> fun x -> _v99 <- Some x
-        let v106 : System.DateTime = _v99.Value
-        let v107 : obj = {| Exists = v97; CreationTime = v106 |}
-        let v108 : string = $"%A{v107}"
-        let v109 : (unit -> string) = closure35(v80, v108)
-        let v110 : string = $"create_temp_directory / {v109 ()}"
-        System.Console.WriteLine v110
+        #if FABLE_COMPILER_RUST && CONTRACT
+        let v106 : System.DateTime = null |> unbox<System.DateTime>
+        v106 
+        #endif
+        #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+        let v107 : System.DateTime = v93.CreationTime
+        v107 
+        #endif
+        #if FABLE_COMPILER_TYPESCRIPT
+        let v108 : System.DateTime = null |> unbox<System.DateTime>
+        v108 
+        #endif
+        #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+        let v109 : System.DateTime = Unchecked.defaultof<System.DateTime>
+        v109 
+        #endif
+        |> fun x -> _v103 <- Some x
+        let v110 : System.DateTime = _v103.Value
+        let v111 : obj = {| Exists = v101; CreationTime = v110 |}
+        let v112 : string = $"%A{v111}"
+        let v113 : (unit -> string) = closure35(v84, v112)
+        let v114 : string = $"create_temp_directory / {v113 ()}"
+        System.Console.WriteLine v114
         ()
-    let v111 : System.IDisposable option = None
-    let mutable _v111 = v111
+    let v115 : System.IDisposable option = None
+    let mutable _v115 = v115
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v112 : System.IDisposable = null |> unbox<System.IDisposable>
-    v112 
-    #endif
-    #if FABLE_COMPILER_RUST && WASM
-    let v113 : System.IDisposable = null |> unbox<System.IDisposable>
-    v113 
-    #endif
-    #if FABLE_COMPILER_RUST && CONTRACT
-    let v114 : System.IDisposable = null |> unbox<System.IDisposable>
-    v114 
-    #endif
-    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-    let v115 : (unit -> unit) = closure36(v80)
-    let v116 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v115 () }
+    let v116 : System.IDisposable = null |> unbox<System.IDisposable>
     v116 
     #endif
-    #if FABLE_COMPILER_TYPESCRIPT
+    #if FABLE_COMPILER_RUST && WASM
     let v117 : System.IDisposable = null |> unbox<System.IDisposable>
     v117 
     #endif
-    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v118 : System.IDisposable = Unchecked.defaultof<System.IDisposable>
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v118 : System.IDisposable = null |> unbox<System.IDisposable>
     v118 
     #endif
-    |> fun x -> _v111 <- Some x
-    let v119 : System.IDisposable = _v111.Value
-    struct (v80, v119) 
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v119 : (unit -> unit) = closure36(v84)
+    let v120 : System.IDisposable = { new System.IDisposable with member _.Dispose () = v119 () }
+    v120 
     #endif
     #if FABLE_COMPILER_TYPESCRIPT
-    let struct (v120 : string, v121 : System.IDisposable) = null |> unbox<struct (string * System.IDisposable)>
-    struct (v120, v121) 
+    let v121 : System.IDisposable = null |> unbox<System.IDisposable>
+    v121 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let struct (v122 : string, v123 : System.IDisposable) = Unchecked.defaultof<struct (string * System.IDisposable)>
-    struct (v122, v123) 
+    let v122 : System.IDisposable = Unchecked.defaultof<System.IDisposable>
+    v122 
+    #endif
+    |> fun x -> _v115 <- Some x
+    let v123 : System.IDisposable = _v115.Value
+    struct (v84, v123) 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let struct (v124 : string, v125 : System.IDisposable) = null |> unbox<struct (string * System.IDisposable)>
+    struct (v124, v125) 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let struct (v126 : string, v127 : System.IDisposable) = Unchecked.defaultof<struct (string * System.IDisposable)>
+    struct (v126, v127) 
     #endif
     |> fun x -> _v0 <- Some x
-    let struct (v124 : string, v125 : System.IDisposable) = _v0.Value
-    struct (v124, v125)
+    let struct (v128 : string, v129 : System.IDisposable) = _v0.Value
+    struct (v128, v129)
 and closure37 () () : string =
     let v0 : string = __SOURCE_DIRECTORY__
     v0
@@ -3017,7 +3145,7 @@ and closure41 () (v0 : string) : bool =
     let v1 : bool option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : string = method5(v0)
+    let v2 : string = method7(v0)
     let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v4 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v2 v3
     let v5 : string = "String::from($0)"
@@ -3066,7 +3194,7 @@ and closure42 () (v0 : string) : bool =
     let v1 : bool option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : string = method5(v0)
+    let v2 : string = method7(v0)
     let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v4 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v2 v3
     let v5 : string = "String::from($0)"
@@ -3115,7 +3243,7 @@ and closure43 () (v0 : string) : string option =
     let v1 : US8 option = None
     let mutable _v1 = v1
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v2 : string = method5(v0)
+    let v2 : string = method7(v0)
     let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v4 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v2 v3
     let v5 : string = "String::from($0)"
@@ -3202,24 +3330,24 @@ and closure43 () (v0 : string) : string option =
     | US8_0(v42) -> (* Some *)
         let v43 : string option = Some v42 
         v43
-and method17 () : (string -> string option) =
+and method19 () : (string -> string option) =
     closure43()
 and closure44 () (v0 : string) : US8 =
     US8_0(v0)
-and method18 () : (string -> US8) =
+and method20 () : (string -> US8) =
     closure44()
-and method19 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
+and method21 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
     let v4 : string option = None
     let mutable _v4 = v4
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v5 : string = method5(v3)
+    let v5 : string = method7(v3)
     let v6 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v7 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v5 v6
     let v8 : string = "String::from($0)"
     let v9 : std_string_String = Fable.Core.RustInterop.emitRustExpr v7 v8
     let v10 : string = "std::path::PathBuf::from($0)"
     let v11 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v9 v10
-    let v12 : string = method5(v0)
+    let v12 : string = method7(v0)
     let v13 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v14 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v12 v13
     let v15 : string = "String::from($0)"
@@ -3247,48 +3375,50 @@ and method19 (v0 : string, v1 : bool, v2 : string, v3 : string) : string =
     #if FABLE_COMPILER_TYPESCRIPT
     let v26 : string = "path"
     let v27 : IPathJoin = Fable.Core.JsInterop.importAll v26
-    let v28 : string = "v27.join($0, $1)"
-    let v29 : string = Fable.Core.JsInterop.emitJsExpr struct (v3, v0) v28
-    v29 
+    let v28 : string = method16(v3)
+    let v29 : string = method17(v0)
+    let v30 : string = "v27.join(v28, v29)"
+    let v31 : string = Fable.Core.JsInterop.emitJsExpr () v30
+    v31 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v30 : string = Unchecked.defaultof<string>
-    v30 
+    let v32 : string = Unchecked.defaultof<string>
+    v32 
     #endif
     |> fun x -> _v4 <- Some x
-    let v31 : string = _v4.Value
-    let v34 : (string -> bool) =
+    let v33 : string = _v4.Value
+    let v36 : (string -> bool) =
         if v1 then
             closure41()
         else
             closure42()
-    let v35 : bool = v34 v31
-    if v35 then
+    let v37 : bool = v36 v33
+    if v37 then
         v3
     else
-        let v36 : (string -> string option) = method17()
-        let v37 : string option = v36 v3
-        let v38 : (string -> US8) = method18()
-        let v39 : US8 = US8_1
-        let v40 : US8 = v37 |> Option.map v38 |> Option.defaultValue v39 
-        match v40 with
+        let v38 : (string -> string option) = method19()
+        let v39 : string option = v38 v3
+        let v40 : (string -> US8) = method20()
+        let v41 : US8 = US8_1
+        let v42 : US8 = v39 |> Option.map v40 |> Option.defaultValue v41 
+        match v42 with
         | US8_1 -> (* None *)
-            let v43 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v3}')"""
-            failwith<string> v43
-        | US8_0(v41) -> (* Some *)
-            method19(v0, v1, v2, v41)
-and method16 (v0 : string, v1 : bool, v2 : string) : string =
+            let v45 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v3}')"""
+            failwith<string> v45
+        | US8_0(v43) -> (* Some *)
+            method21(v0, v1, v2, v43)
+and method18 (v0 : string, v1 : bool, v2 : string) : string =
     let v3 : string option = None
     let mutable _v3 = v3
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v4 : string = method5(v2)
+    let v4 : string = method7(v2)
     let v5 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v6 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v4 v5
     let v7 : string = "String::from($0)"
     let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v7
     let v9 : string = "std::path::PathBuf::from($0)"
     let v10 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v8 v9
-    let v11 : string = method5(v0)
+    let v11 : string = method7(v0)
     let v12 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v13 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v11 v12
     let v14 : string = "String::from($0)"
@@ -3316,54 +3446,400 @@ and method16 (v0 : string, v1 : bool, v2 : string) : string =
     #if FABLE_COMPILER_TYPESCRIPT
     let v25 : string = "path"
     let v26 : IPathJoin = Fable.Core.JsInterop.importAll v25
-    let v27 : string = "v26.join($0, $1)"
-    let v28 : string = Fable.Core.JsInterop.emitJsExpr struct (v2, v0) v27
-    v28 
+    let v27 : string = method16(v2)
+    let v28 : string = method17(v0)
+    let v29 : string = "v26.join(v27, v28)"
+    let v30 : string = Fable.Core.JsInterop.emitJsExpr () v29
+    v30 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v29 : string = Unchecked.defaultof<string>
-    v29 
+    let v31 : string = Unchecked.defaultof<string>
+    v31 
     #endif
     |> fun x -> _v3 <- Some x
-    let v30 : string = _v3.Value
-    let v33 : (string -> bool) =
+    let v32 : string = _v3.Value
+    let v35 : (string -> bool) =
         if v1 then
             closure41()
         else
             closure42()
-    let v34 : bool = v33 v30
-    if v34 then
+    let v36 : bool = v35 v32
+    if v36 then
         v2
     else
-        let v35 : (string -> string option) = method17()
-        let v36 : string option = v35 v2
-        let v37 : (string -> US8) = method18()
-        let v38 : US8 = US8_1
-        let v39 : US8 = v36 |> Option.map v37 |> Option.defaultValue v38 
-        match v39 with
+        let v37 : (string -> string option) = method19()
+        let v38 : string option = v37 v2
+        let v39 : (string -> US8) = method20()
+        let v40 : US8 = US8_1
+        let v41 : US8 = v38 |> Option.map v39 |> Option.defaultValue v40 
+        match v41 with
         | US8_1 -> (* None *)
-            let v42 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v2}')"""
-            failwith<string> v42
-        | US8_0(v40) -> (* Some *)
-            method19(v0, v1, v2, v40)
+            let v44 : string = $"""No parent for {if v1 then "file" else "dir"} '{v0}' at '{v2}' (until '{v2}')"""
+            failwith<string> v44
+        | US8_0(v42) -> (* Some *)
+            method21(v0, v1, v2, v42)
 and closure40 (v0 : string, v1 : bool) (v2 : string) : string =
-    method16(v0, v1, v2)
+    method18(v0, v1, v2)
 and closure39 (v0 : string) (v1 : bool) : (string -> string) =
     closure40(v0, v1)
 and closure38 () (v0 : string) : (bool -> (string -> string)) =
     closure39(v0)
-and closure46 (v0 : string) (v1 : string) : string =
+and method22 () : string =
+    let v0 : string = "polyglot"
+    v0
+and method23 () : string =
+    let v0 : string = ".paket"
+    v0
+and method24 () : string =
+    let v0 : string = "polyglot"
+    v0
+and method25 () : string =
+    let v0 : string = ".paket"
+    v0
+and method27 (v0 : string, v1 : string, v2 : string) : string =
+    let v3 : string option = None
+    let mutable _v3 = v3
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v4 : string = method7(v2)
+    let v5 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v6 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v7 : string = "String::from($0)"
+    let v8 : std_string_String = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = "std::path::PathBuf::from($0)"
+    let v10 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v8 v9
+    let v11 : string = method7(v0)
+    let v12 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v13 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v11 v12
+    let v14 : string = "String::from($0)"
+    let v15 : std_string_String = Fable.Core.RustInterop.emitRustExpr v13 v14
+    let v16 : string = "$0.join($1)"
+    let v17 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v10, v15) v16
+    let v18 : string = "$0.display().to_string()"
+    let v19 : std_string_String = Fable.Core.RustInterop.emitRustExpr v17 v18
+    let v20 : string = "fable_library_rust::String_::fromString($0)"
+    let v21 : string = Fable.Core.RustInterop.emitRustExpr v19 v20
+    v21 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v22 : string = null |> unbox<string>
+    v22 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v23 : string = null |> unbox<string>
+    v23 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v24 : string = System.IO.Path.Combine (v2, v0)
+    v24 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v25 : string = "path"
+    let v26 : IPathJoin = Fable.Core.JsInterop.importAll v25
+    let v27 : string = method16(v2)
+    let v28 : string = method17(v0)
+    let v29 : string = "v26.join(v27, v28)"
+    let v30 : string = Fable.Core.JsInterop.emitJsExpr () v29
+    v30 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v31 : string = Unchecked.defaultof<string>
+    v31 
+    #endif
+    |> fun x -> _v3 <- Some x
+    let v32 : string = _v3.Value
+    let v33 : bool option = None
+    let mutable _v33 = v33
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v34 : string = method7(v32)
+    let v35 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v36 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v34 v35
+    let v37 : string = "String::from($0)"
+    let v38 : std_string_String = Fable.Core.RustInterop.emitRustExpr v36 v37
+    let v39 : string = "std::path::PathBuf::from($0)"
+    let v40 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v38 v39
+    let v41 : string = "$0.exists()"
+    let v42 : bool = Fable.Core.RustInterop.emitRustExpr v40 v41
+    let v45 : bool =
+        if v42 then
+            let v43 : string = "$0.is_dir()"
+            let v44 : bool = Fable.Core.RustInterop.emitRustExpr v40 v43
+            v44
+        else
+            false
+    v45 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v46 : bool = null |> unbox<bool>
+    v46 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v47 : bool = null |> unbox<bool>
+    v47 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v48 : (string -> bool) = System.IO.Directory.Exists
+    let v49 : bool = v48 v32
+    v49 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v50 : string = "fs"
+    let v51 : IFsExistsSync = Fable.Core.JsInterop.importAll v50
+    let v52 : string = "v51.existsSync($0)"
+    let v53 : bool = Fable.Core.JsInterop.emitJsExpr v32 v52
+    v53 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v54 : bool = Unchecked.defaultof<bool>
+    v54 
+    #endif
+    |> fun x -> _v33 <- Some x
+    let v55 : bool = _v33.Value
+    if v55 then
+        v2
+    else
+        let v56 : (string -> string option) = method19()
+        let v57 : string option = v56 v2
+        let v58 : (string -> US8) = method20()
+        let v59 : US8 = US8_1
+        let v60 : US8 = v57 |> Option.map v58 |> Option.defaultValue v59 
+        match v60 with
+        | US8_1 -> (* None *)
+            let v63 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v2}')"""
+            failwith<string> v63
+        | US8_0(v61) -> (* Some *)
+            method27(v0, v1, v61)
+and method26 (v0 : string, v1 : string) : string =
     let v2 : string option = None
     let mutable _v2 = v2
     #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-    let v3 : string = method5(v0)
+    let v3 : string = method7(v1)
     let v4 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v5 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v4
     let v6 : string = "String::from($0)"
     let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr v5 v6
     let v8 : string = "std::path::PathBuf::from($0)"
     let v9 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v7 v8
-    let v10 : string = method5(v1)
+    let v10 : string = method7(v0)
+    let v11 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v12 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v10 v11
+    let v13 : string = "String::from($0)"
+    let v14 : std_string_String = Fable.Core.RustInterop.emitRustExpr v12 v13
+    let v15 : string = "$0.join($1)"
+    let v16 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v9, v14) v15
+    let v17 : string = "$0.display().to_string()"
+    let v18 : std_string_String = Fable.Core.RustInterop.emitRustExpr v16 v17
+    let v19 : string = "fable_library_rust::String_::fromString($0)"
+    let v20 : string = Fable.Core.RustInterop.emitRustExpr v18 v19
+    v20 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v21 : string = null |> unbox<string>
+    v21 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v22 : string = null |> unbox<string>
+    v22 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v23 : string = System.IO.Path.Combine (v1, v0)
+    v23 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v24 : string = "path"
+    let v25 : IPathJoin = Fable.Core.JsInterop.importAll v24
+    let v26 : string = method16(v1)
+    let v27 : string = method17(v0)
+    let v28 : string = "v25.join(v26, v27)"
+    let v29 : string = Fable.Core.JsInterop.emitJsExpr () v28
+    v29 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v30 : string = Unchecked.defaultof<string>
+    v30 
+    #endif
+    |> fun x -> _v2 <- Some x
+    let v31 : string = _v2.Value
+    let v32 : bool option = None
+    let mutable _v32 = v32
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v33 : string = method7(v31)
+    let v34 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v35 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v33 v34
+    let v36 : string = "String::from($0)"
+    let v37 : std_string_String = Fable.Core.RustInterop.emitRustExpr v35 v36
+    let v38 : string = "std::path::PathBuf::from($0)"
+    let v39 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v37 v38
+    let v40 : string = "$0.exists()"
+    let v41 : bool = Fable.Core.RustInterop.emitRustExpr v39 v40
+    let v44 : bool =
+        if v41 then
+            let v42 : string = "$0.is_dir()"
+            let v43 : bool = Fable.Core.RustInterop.emitRustExpr v39 v42
+            v43
+        else
+            false
+    v44 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v45 : bool = null |> unbox<bool>
+    v45 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v46 : bool = null |> unbox<bool>
+    v46 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v47 : (string -> bool) = System.IO.Directory.Exists
+    let v48 : bool = v47 v31
+    v48 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v49 : string = "fs"
+    let v50 : IFsExistsSync = Fable.Core.JsInterop.importAll v49
+    let v51 : string = "v50.existsSync($0)"
+    let v52 : bool = Fable.Core.JsInterop.emitJsExpr v31 v51
+    v52 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v53 : bool = Unchecked.defaultof<bool>
+    v53 
+    #endif
+    |> fun x -> _v32 <- Some x
+    let v54 : bool = _v32.Value
+    if v54 then
+        v1
+    else
+        let v55 : (string -> string option) = method19()
+        let v56 : string option = v55 v1
+        let v57 : (string -> US8) = method20()
+        let v58 : US8 = US8_1
+        let v59 : US8 = v56 |> Option.map v57 |> Option.defaultValue v58 
+        match v59 with
+        | US8_1 -> (* None *)
+            let v62 : string = $"""No parent for {if false then "file" else "dir"} '{v0}' at '{v1}' (until '{v1}')"""
+            failwith<string> v62
+        | US8_0(v60) -> (* Some *)
+            method27(v0, v1, v60)
+and method28 () : string =
+    let v0 : string = "polyglot"
+    v0
+and closure45 () () : string =
+    let v0 : string = __SOURCE_DIRECTORY__
+    let v1 : string option = None
+    let mutable _v1 = v1
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v2 : string = method22()
+    let v3 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v4 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v2 v3
+    let v5 : string = "String::from($0)"
+    let v6 : std_string_String = Fable.Core.RustInterop.emitRustExpr v4 v5
+    let v7 : string = "std::path::PathBuf::from($0)"
+    let v8 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v6 v7
+    let v9 : string = method23()
+    let v10 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v11 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v9 v10
+    let v12 : string = "String::from($0)"
+    let v13 : std_string_String = Fable.Core.RustInterop.emitRustExpr v11 v12
+    let v14 : string = "$0.join($1)"
+    let v15 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v8, v13) v14
+    let v16 : string = "$0.display().to_string()"
+    let v17 : std_string_String = Fable.Core.RustInterop.emitRustExpr v15 v16
+    let v18 : string = "fable_library_rust::String_::fromString($0)"
+    let v19 : string = Fable.Core.RustInterop.emitRustExpr v17 v18
+    v19 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v20 : string = null |> unbox<string>
+    v20 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v21 : string = null |> unbox<string>
+    v21 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v22 : string = "polyglot"
+    let v23 : string = ".paket"
+    let v24 : string = System.IO.Path.Combine (v22, v23)
+    v24 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v25 : string = "path"
+    let v26 : IPathJoin = Fable.Core.JsInterop.importAll v25
+    let v27 : string = method24()
+    let v28 : string = method25()
+    let v29 : string = "v26.join(v27, v28)"
+    let v30 : string = Fable.Core.JsInterop.emitJsExpr () v29
+    v30 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v31 : string = Unchecked.defaultof<string>
+    v31 
+    #endif
+    |> fun x -> _v1 <- Some x
+    let v32 : string = _v1.Value
+    let v33 : string = method26(v32, v0)
+    let v34 : string option = None
+    let mutable _v34 = v34
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v35 : string = method7(v33)
+    let v36 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v37 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v35 v36
+    let v38 : string = "String::from($0)"
+    let v39 : std_string_String = Fable.Core.RustInterop.emitRustExpr v37 v38
+    let v40 : string = "std::path::PathBuf::from($0)"
+    let v41 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v39 v40
+    let v42 : string = method22()
+    let v43 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v44 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v42 v43
+    let v45 : string = "String::from($0)"
+    let v46 : std_string_String = Fable.Core.RustInterop.emitRustExpr v44 v45
+    let v47 : string = "$0.join($1)"
+    let v48 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr struct (v41, v46) v47
+    let v49 : string = "$0.display().to_string()"
+    let v50 : std_string_String = Fable.Core.RustInterop.emitRustExpr v48 v49
+    let v51 : string = "fable_library_rust::String_::fromString($0)"
+    let v52 : string = Fable.Core.RustInterop.emitRustExpr v50 v51
+    v52 
+    #endif
+    #if FABLE_COMPILER_RUST && WASM
+    let v53 : string = null |> unbox<string>
+    v53 
+    #endif
+    #if FABLE_COMPILER_RUST && CONTRACT
+    let v54 : string = null |> unbox<string>
+    v54 
+    #endif
+    #if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
+    let v55 : string = System.IO.Path.Combine (v33, v22)
+    v55 
+    #endif
+    #if FABLE_COMPILER_TYPESCRIPT
+    let v56 : IPathJoin = Fable.Core.JsInterop.importAll v25
+    let v57 : string = method16(v33)
+    let v58 : string = method28()
+    let v59 : string = "v56.join(v57, v58)"
+    let v60 : string = Fable.Core.JsInterop.emitJsExpr () v59
+    v60 
+    #endif
+    #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
+    let v61 : string = Unchecked.defaultof<string>
+    v61 
+    #endif
+    |> fun x -> _v34 <- Some x
+    let v62 : string = _v34.Value
+    v62
+and closure47 (v0 : string) (v1 : string) : string =
+    let v2 : string option = None
+    let mutable _v2 = v2
+    #if FABLE_COMPILER_RUST && !WASM && !CONTRACT
+    let v3 : string = method7(v0)
+    let v4 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
+    let v5 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v3 v4
+    let v6 : string = "String::from($0)"
+    let v7 : std_string_String = Fable.Core.RustInterop.emitRustExpr v5 v6
+    let v8 : string = "std::path::PathBuf::from($0)"
+    let v9 : std_path_PathBuf = Fable.Core.RustInterop.emitRustExpr v7 v8
+    let v10 : string = method7(v1)
     let v11 : string = "fable_library_rust::String_::LrcStr::as_str(&$0)"
     let v12 : Ref<Str> = Fable.Core.RustInterop.emitRustExpr v10 v11
     let v13 : string = "String::from($0)"
@@ -3391,62 +3867,43 @@ and closure46 (v0 : string) (v1 : string) : string =
     #if FABLE_COMPILER_TYPESCRIPT
     let v24 : string = "path"
     let v25 : IPathJoin = Fable.Core.JsInterop.importAll v24
-    let v26 : string = "v25.join($0, $1)"
-    let v27 : string = Fable.Core.JsInterop.emitJsExpr struct (v0, v1) v26
-    v27 
+    let v26 : string = method16(v0)
+    let v27 : string = method17(v1)
+    let v28 : string = "v25.join(v26, v27)"
+    let v29 : string = Fable.Core.JsInterop.emitJsExpr () v28
+    v29 
     #endif
     #if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-    let v28 : string = Unchecked.defaultof<string>
-    v28 
+    let v30 : string = Unchecked.defaultof<string>
+    v30 
     #endif
     |> fun x -> _v2 <- Some x
-    let v29 : string = _v2.Value
-    v29
-and closure45 () (v0 : string) : (string -> string) =
-    closure46(v0)
-let v0 : unit option = None
-let mutable _v0 = v0
-#if FABLE_COMPILER_RUST && !WASM && !CONTRACT
-() 
-#endif
-#if FABLE_COMPILER_RUST && WASM
-() 
-#endif
-#if FABLE_COMPILER_RUST && CONTRACT
-() 
-#endif
-#if !FABLE_COMPILER && !FABLE_COMPILER_RUST && !FABLE_COMPILER_TYPESCRIPT && !WASM && !CONTRACT
-let v1 : (string -> Async<int64>) = closure0()
+    let v31 : string = _v2.Value
+    v31
+and closure46 () (v0 : string) : (string -> string) =
+    closure47(v0)
+let v0 : (unit -> struct (Mut0 * Mut1 * Mut1 * Mut2 * int64 option)) = closure0()
+if State.trace_state = None then State.trace_state <- v0 () |> Some
+let v1 : (string -> Async<int64>) = closure1()
 let delete_directory_async x = v1 x
-let v2 : (US0 -> (string -> Async<int64>)) = closure4()
+let v2 : (US2 -> (string -> Async<int64>)) = closure5()
 let wait_for_file_access x = v2 x
-let v3 : (string -> Async<int64>) = closure7()
+let v3 : (string -> Async<int64>) = closure8()
 let wait_for_file_access_read x = v3 x
-let v4 : (string -> Async<string>) = closure8()
+let v4 : (string -> Async<string>) = closure9()
 let read_all_text_async x = v4 x
-let v5 : (string -> (string -> Async<bool>)) = closure9()
+let v5 : (string -> (string -> Async<bool>)) = closure10()
 let file_exists_content x = v5 x
-let v6 : (string -> (string -> Async<unit>)) = closure11()
+let v6 : (string -> (string -> Async<unit>)) = closure12()
 let write_all_text_async x = v6 x
-let v7 : (string -> (string -> Async<unit>)) = closure13()
+let v7 : (string -> (string -> Async<unit>)) = closure14()
 let write_all_text_exists x = v7 x
-let v8 : (string -> Async<int64>) = closure15()
+let v8 : (string -> Async<int64>) = closure16()
 let delete_file_async x = v8 x
 let v9 : (string -> (string -> Async<int64>)) = closure20()
 let move_file_async x = v9 x
 let v10 : (string -> Async<string option>) = closure24()
 let read_all_text_retry_async x = v10 x
-() 
-#endif
-#if FABLE_COMPILER_TYPESCRIPT
-() 
-#endif
-#if FABLE_COMPILER_PYTHON || FABLE_COMPILER_PHP || FABLE_COMPILER_DART
-Unchecked.defaultof<unit>
-() 
-#endif
-|> fun x -> _v0 <- Some x
-_v0.Value
 let v11 : (unit -> string) = closure32()
 let create_temp_directory_name () = v11 ()
 let v12 : (unit -> struct (string * System.IDisposable)) = closure34()
@@ -3455,6 +3912,8 @@ let v13 : (unit -> string) = closure37()
 let get_source_directory () = v13 ()
 let v14 : (string -> (bool -> (string -> string))) = closure38()
 let find_parent x = v14 x
-let v15 : (string -> (string -> string)) = closure45()
-let (</>) x = v15 x
+let v15 : (unit -> string) = closure45()
+let get_repository_root () = v15 ()
+let v16 : (string -> (string -> string)) = closure46()
+let (</>) x = v16 x
 ()

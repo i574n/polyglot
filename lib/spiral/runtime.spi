@@ -1,6 +1,22 @@
 // // # runtime
 
+open rust_operators
 open file_system_operators
+open sm'_operators
+
+// // ## types
+
+inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Arg\")>] type clap_Arg = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::Command\")>] type clap_Command = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"clap::ArgMatches\")>] type clap_ArgMatches = class end"
+
+inl types () =
+    global "#if FABLE_COMPILER // runtime.types"
+    rust.types ()
+    sm'.types ()
+    types ()
+    global "#endif // runtime.types"
 
 // // ## os_platform
 
@@ -118,7 +134,6 @@ type execution_options =
         working_directory : optionm'.option' string
         cancellation_token : optionm'.option' threading.cancellation_token
         on_line : optionm'.option' (execution_line -> async.async ())
-        trace_level : optionm'.option' trace_level
     }
 
 inl execute_with_options_async (options : execution_options) : _ (i32 * string) =
@@ -209,10 +224,6 @@ inl execute_with_options_async (options : execution_options) : _ (i32 * string) 
 
                 (exit_code, output) |> return
             |> async.new_async_unit
-            |> fun fn =>
-                match options.trace_level |> optionm'.unbox with
-                | Some trace_level => fn |> async.with_trace_level trace_level
-                | None => fn
         | _ => fun () =>
             global "#if FABLE_COMPILER\n[<CompilationRepresentation (CompilationRepresentationFlags.ModuleSuffix)>]\nmodule System =\n module Diagnostics =\n  type Process = unit\n  type DataReceivedEventArgs = unit\n#endif"
             null ()
@@ -224,7 +235,6 @@ inl execute_async command =
             cancellation_token = None |> optionm'.box
             on_line = None |> optionm'.box
             working_directory = None |> optionm'.box
-            trace_level = None |> optionm'.box
         }
 
 inl execution_options (fn : execution_options -> execution_options) : execution_options =
@@ -233,15 +243,65 @@ inl execution_options (fn : execution_options -> execution_options) : execution_
         cancellation_token = None |> optionm'.box
         on_line = None |> optionm'.box
         working_directory = None |> optionm'.box
-        trace_level = None |> optionm'.box
     }
     |> fn
+
+nominal command = $'clap_Command'
+
+// // ## new_command
+
+inl new_command (s : rust.static_ref' sm'.str) : command =
+    !\\(s, $'"clap::Command::new($0)"')
+
+// // ## arg
+
+nominal arg = $'clap_Arg'
+
+// // ## new_arg
+
+inl new_arg (s : rust.static_ref' sm'.str) : arg =
+    !\\(s, $'"clap::Arg::new($0)"')
+
+// // ## command_arg
+
+inl command_arg (arg : arg) (command : command) : command =
+    !\\((command, arg), $'"clap::Command::arg($0, $1)"')
+
+// // ## arg_required
+
+inl arg_required (value : bool) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.required($1)"')
+
+// // ## arg_index
+
+inl arg_index (value : i32) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.index($1)"')
+
+// // ## arg_index
+
+inl arg_index (value : i32) (arg : arg) : arg =
+    !\\((arg, value), $'"$0.index($1)"')
+
+// // ## arg_matches
+
+nominal arg_matches = $'clap_ArgMatches'
+
+// // ## command_get_matches
+
+inl command_get_matches (command : command) : arg_matches =
+    !\\(command, $'"clap::Command::get_matches($0)"')
+
+// // ## command_debug_assert
+
+inl command_debug_assert (command : command) : () =
+    !\\(command, $'"clap::Command::debug_assert($0)"')
 
 // // ## main
 
 inl main () =
+    types ()
+    init_trace_state ()
     $"let is_windows () = !is_windows ()" : ()
     $"let get_executable_suffix () = !get_executable_suffix ()" : ()
     $"let execute_async x = !execute_async x" : ()
     $"let execute_with_options_async x = !execute_with_options_async x" : ()
-    $"type RuntimeTraceLevel = `trace_level " : ()

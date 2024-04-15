@@ -53,6 +53,8 @@ module Supervisor =
         | ParserErrors of {| uri : string; errors : RString list |}
         | TypeErrors of {| uri : string; errors : RString list |}
 
+    let repositoryRoot = SpiralFileSystem.get_repository_root ()
+
     let inline awaitCompiler port cancellationToken = async {
         let struct (ct, disposable) = cancellationToken |> SpiralThreading.new_disposable_token
         let! ct = ct |> SpiralAsync.merge_cancellation_token_with_default_async
@@ -62,8 +64,6 @@ module Supervisor =
             if availablePort <> port then
                 inbox.Post (port, false)
             else
-                let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
-
                 let compilerPath =
                     repositoryRoot </> "deps/The-Spiral-Language/The Spiral Language 2/artifacts/bin/The Spiral Language 2/release"
                     |> System.IO.Path.GetFullPath
@@ -91,7 +91,7 @@ module Supervisor =
                 }
 
                 let! exitCode, result =
-                    SpiralRuntime.execute_with_options_async struct (Some ct, command, Some onLine, None, None)
+                    SpiralRuntime.execute_with_options_async struct (Some ct, command, Some onLine, Some repositoryRoot)
 
                 trace Debug (fun () -> $"awaitCompiler / exitCode: {exitCode} / result: {result}") getLocals
                 disposable.Dispose ()
@@ -284,7 +284,6 @@ module Supervisor =
     /// ## persistCode
 
     let inline persistCode code = async {
-        let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
         let targetDir = repositoryRoot </> "target/polyglot/spiral_eval"
 
         let packagesDir = targetDir </> "packages"
@@ -473,7 +472,7 @@ modules:
                 executeCommandActions
                 |> List.map (fun command -> async {
                     let! exitCode, result =
-                        SpiralRuntime.execute_with_options_async struct (Some compilerToken, command, None, None, None)
+                        SpiralRuntime.execute_with_options_async struct (Some compilerToken, command, None, None)
 
                     trace Debug (fun () -> $"main / executeCommand / exitCode: {exitCode}") getLocals
 

@@ -1,5 +1,13 @@
 // // # trace
 
+// // ## types
+
+inl types () =
+    global "#if FABLE_COMPILER // trace.types"
+    rust.types ()
+    sm'.types ()
+    global "#endif // trace.types"
+
 // // ## trace_level
 
 union trace_level =
@@ -152,8 +160,25 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
                         $'!date_time.ToString !format '
                 | _ => fun () => join ""
         inl count = *trace_state.count
-        inl level = level |> to_string |> sm'.to_lower
-        $'$"{!time} #{!count} [{!level}] %s{!fn ()} / %s{!get_locals ()}"'
+        inl level_str = level |> to_string |> sm'.to_lower
+        inl level_str =
+            run_target function
+            | Rust _ => fun () =>
+                open rust_operators
+                inl color : rust.ref' sm'.str =
+                    match level with
+                    | Verbose => !\($'"inline_colorization::color_bright_black"')
+                    | Debug => !\($'"inline_colorization::color_bright_blue"')
+                    | Info => !\($'"inline_colorization::color_bright_green"')
+                    | Warning => !\($'"inline_colorization::color_bright_yellow"')
+                    | Critical => !\($'"inline_colorization::color_bright_red"')
+                inl level_str = level_str |> sm'.as_str
+                inl color_reset : rust.ref' sm'.str = !\($'"inline_colorization::color_reset"')
+                $'"\\\"{!color}{!level_str}{!color_reset}\\\""'
+                |> sm'.format''
+                |> sm'.from_std_string
+            | _ => fun () => level_str
+        $'$"{!time} {!level_str} #{!count} %s{!fn ()} / %s{!get_locals ()}"'
         |> sm'.trim_start ;[]
         |> sm'.trim_end ;[ ' '; '/' ]
     |> trace_raw level
@@ -161,5 +186,6 @@ let trace (level : trace_level) (fn : () -> string) (get_locals : () -> string) 
 // // ## main
 
 inl main () =
+    types ()
+    init_trace_state ()
     $"let trace x = !trace x" : ()
-    $"let get_trace_state () = !get_trace_state ()" : ()

@@ -37,7 +37,7 @@ open SpiralFileSystem.Operators
 
 #!fsharp
 
-let repositoryRoot = SpiralFileSystem.get_source_directory () |> SpiralFileSystem.find_parent ".paket" false
+let repositoryRoot = SpiralFileSystem.get_repository_root ()
 let tmpSpiralPath = repositoryRoot </> "target/polyglot/plotting"
 let linePlotsDataPath = tmpSpiralPath </> "line-data"
 let linePlotsSvgPath = tmpSpiralPath </> "line-svg"
@@ -60,7 +60,7 @@ Formatter.Register<struct (string * string * string * struct (string * float arr
                 let plotExePath = repositoryRoot </> $"target/release/plot{SpiralRuntime.get_executable_suffix ()}"
                 let! exitCode, result =
                     SpiralRuntime.execute_with_options_async struct (
-                        Some ct, plotExePath, None, Some SpiralRuntime.TraceLevel.US0_2, None
+                        Some ct, plotExePath, None, Some repositoryRoot
                     )
                 if exitCode <> 0 then
                     return failwith $"plot failed with exit code {exitCode} and output {result}"

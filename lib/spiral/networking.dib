@@ -27,6 +27,15 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::RequestBuilder\")>] type reqwest_RequestBuilder = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"reqwest_wasm::Response\")>] type reqwest_Response = class end"
 
+#!spiral
+
+inl types () =
+    global "#if FABLE_COMPILER // networking.types"
+    rust.types ()
+    sm'.types ()
+    types ()
+    global "#endif // networking.types"
+
 #!markdown
 
 ## reqwest_response
@@ -532,6 +541,8 @@ fun () =>
 #!spiral
 
 inl main () =
+    types ()
+    init_trace_state ()
     $"let test_port_open x = !test_port_open x" : ()
     $"let test_port_open_timeout x = !test_port_open_timeout x" : ()
     $"let wait_for_port_access x = !wait_for_port_access x" : ()

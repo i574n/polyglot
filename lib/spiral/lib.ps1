@@ -58,6 +58,11 @@ function CopyTarget {
                     -replace "defaultOf\(\)", "defaultOf::<std::rc::Rc<dyn IDisposable>>()" `
                     | Set-Content $to
             }
+            if ($name -eq "lib") {
+                (Get-Content $to) `
+                    -replace "trace_state\(\)", "trace_state().get().clone()" `
+                    | Set-Content $to
+            }
         }
     }
 

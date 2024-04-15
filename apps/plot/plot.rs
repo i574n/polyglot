@@ -80,9 +80,9 @@ fn draw_line_plot(
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let repository_root =
-        plot::SpiralFileSystem::find_parent(".paket".into())(false)(plot::SpiralFileSystem::get_source_directory());
-    let tmp_spiral_dir = std::path::PathBuf::from(repository_root.to_string()).join("target/polyglot/plotting");
+    let repository_root = plot::SpiralFileSystem::get_repository_root();
+    let repository_root = std::path::PathBuf::from(repository_root.to_string());
+    let tmp_spiral_dir = repository_root.join("target/polyglot/plotting");
     let line_plots_data_dir = tmp_spiral_dir.join("line-data");
     let line_plots_svg_dir = tmp_spiral_dir.join("line-svg");
 

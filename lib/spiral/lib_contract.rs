@@ -1,25 +1,34 @@
 pub mod Lib {
     use super::*;
+    use crate::File_system::Mut0;
+    use crate::File_system::Mut1;
+    use crate::File_system::Mut2;
+    use crate::File_system::State;
+    use crate::File_system::US0 as US0_1;
+    use crate::Networking::Mut0 as Mut0_1;
+    use crate::Networking::Mut1 as Mut1_1;
+    use crate::Networking::Mut2 as Mut2_1;
+    use crate::Networking::State as State_1;
+    use crate::Networking::US0 as US0_2;
+    use crate::Runtime::Mut0 as Mut0_2;
+    use crate::Runtime::Mut1 as Mut1_2;
+    use crate::Runtime::Mut2 as Mut2_2;
+    use crate::Runtime::State as State_2;
+    use crate::Runtime::US0 as US0_3;
+    use crate::Trace::Mut0 as Mut0_3;
+    use crate::Trace::Mut1 as Mut1_3;
+    use crate::Trace::Mut2 as Mut2_3;
+    use crate::Trace::State as State_3;
+    use crate::Trace::US0;
+    use fable_library_rust::Native_::LrcPtr;
+    use fable_library_rust::Option_::getValue;
+    use fable_library_rust::String_::printfn;
     pub mod SpiralTrace {
         use super::*;
         use crate::Trace;
-        use crate::Trace::Mut0;
-        use crate::Trace::Mut1;
-        use crate::Trace::Mut2;
-        use crate::Trace::US0;
         use fable_library_rust::Native_::Func0;
         use fable_library_rust::Native_::Func1;
-        use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::String_::string;
-        pub fn get_trace_state() -> (
-            LrcPtr<Mut0>,
-            LrcPtr<Mut1>,
-            LrcPtr<Mut1>,
-            LrcPtr<Mut2>,
-            Option<i64>,
-        ) {
-            Trace::get_trace_state()
-        }
         pub fn trace(x: US0) -> Func1<Func0<string>, Func1<Func0<string>, ()>> {
             Trace::trace(x)
         }
@@ -30,7 +39,6 @@ pub mod Lib {
         use fable_library_rust::Interfaces_::System::Collections::Generic::IEnumerable_1;
         use fable_library_rust::NativeArray_::Array;
         use fable_library_rust::Native_::Func1;
-        use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::String_::string;
         use fable_library_rust::System::Exception;
         pub fn concat(x: string) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
@@ -87,8 +95,10 @@ pub mod Lib {
         use crate::File_system;
         use fable_library_rust::Interfaces_::System::IDisposable;
         use fable_library_rust::Native_::Func1;
-        use fable_library_rust::Native_::LrcPtr;
         use fable_library_rust::String_::string;
+        pub fn get_repository_root() -> string {
+            File_system::get_repository_root()
+        }
         pub fn get_source_directory() -> string {
             File_system::get_source_directory()
         }
@@ -100,6 +110,129 @@ pub mod Lib {
         }
         pub fn create_temp_directory_name() -> string {
             File_system::create_temp_directory_name()
+        }
+    }
+    pub fn set_trace_level(new_level: US0) {
+        if State::trace_state().get().clone()
+            == None::<(
+                LrcPtr<Mut0>,
+                LrcPtr<Mut1>,
+                LrcPtr<Mut1>,
+                LrcPtr<Mut2>,
+                Option<i64>,
+            )>
+        {
+            printfn!("@1")
+        } else {
+            let patternInput: (
+                LrcPtr<Mut0>,
+                LrcPtr<Mut1>,
+                LrcPtr<Mut1>,
+                LrcPtr<Mut2>,
+                Option<i64>,
+            ) = getValue(State::trace_state().get().clone());
+            (patternInput.3.clone()).l0.set(match &new_level {
+                US0::US0_1 => US0_1::US0_1,
+                US0::US0_2 => US0_1::US0_2,
+                US0::US0_3 => US0_1::US0_3,
+                US0::US0_4 => US0_1::US0_4,
+                _ => US0_1::US0_0,
+            })
+        }
+        if State_1::trace_state().get().clone()
+            == None::<(
+                LrcPtr<Mut0_1>,
+                LrcPtr<Mut1_1>,
+                LrcPtr<Mut1_1>,
+                LrcPtr<Mut2_1>,
+                Option<i64>,
+            )>
+        {
+            printfn!("@2")
+        } else {
+            let patternInput_1: (
+                LrcPtr<Mut0_1>,
+                LrcPtr<Mut1_1>,
+                LrcPtr<Mut1_1>,
+                LrcPtr<Mut2_1>,
+                Option<i64>,
+            ) = getValue(State_1::trace_state().get().clone());
+            (patternInput_1.3.clone()).l0.set(match &new_level {
+                US0::US0_1 => US0_2::US0_1,
+                US0::US0_2 => US0_2::US0_2,
+                US0::US0_3 => US0_2::US0_3,
+                US0::US0_4 => US0_2::US0_4,
+                _ => US0_2::US0_0,
+            })
+        }
+        if State_2::trace_state().get().clone()
+            == None::<(
+                LrcPtr<Mut0_2>,
+                LrcPtr<Mut1_2>,
+                LrcPtr<Mut1_2>,
+                LrcPtr<Mut2_2>,
+                Option<i64>,
+            )>
+        {
+            printfn!("@3")
+        } else {
+            let patternInput_2: (
+                LrcPtr<Mut0_2>,
+                LrcPtr<Mut1_2>,
+                LrcPtr<Mut1_2>,
+                LrcPtr<Mut2_2>,
+                Option<i64>,
+            ) = getValue(State_2::trace_state().get().clone());
+            (patternInput_2.3.clone()).l0.set(match &new_level {
+                US0::US0_1 => US0_3::US0_1,
+                US0::US0_2 => US0_3::US0_2,
+                US0::US0_3 => US0_3::US0_3,
+                US0::US0_4 => US0_3::US0_4,
+                _ => US0_3::US0_0,
+            })
+        }
+        if State_3::trace_state().get().clone()
+            == None::<(
+                LrcPtr<Mut0_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut2_3>,
+                Option<i64>,
+            )>
+        {
+            printfn!("@4")
+        } else {
+            let patternInput_3: (
+                LrcPtr<Mut0_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut2_3>,
+                Option<i64>,
+            ) = getValue(State_3::trace_state().get().clone());
+            (patternInput_3.3.clone()).l0.set(new_level.clone())
+        }
+    }
+    pub fn get_trace_level() -> US0 {
+        if State_3::trace_state().get().clone()
+            == None::<(
+                LrcPtr<Mut0_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut2_3>,
+                Option<i64>,
+            )>
+        {
+            printfn!("@6");
+            US0::US0_0
+        } else {
+            let patternInput: (
+                LrcPtr<Mut0_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut1_3>,
+                LrcPtr<Mut2_3>,
+                Option<i64>,
+            ) = getValue(State_3::trace_state().get().clone());
+            (patternInput.3.clone()).l0.get().clone()
         }
     }
 }
