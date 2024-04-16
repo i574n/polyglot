@@ -19,6 +19,7 @@ function CopyTarget {
         $to = "$root/lib/$lib/$name$_runtime.$Language"
         Copy-Item $from $to -Force
 
+
         if ($Language -eq "ts") {
             (Get-Content $to) `
                 -replace "../../fable_modules/fable-library-ts.4.14.0/", "../../deps/Fable/src/fable-library-ts/" `
@@ -27,6 +28,12 @@ function CopyTarget {
                 | Set-Content $to
         }
         if ($Language -eq "rs") {
+            (Get-Content $to) `
+                -replace [regex]::Escape("),);"), "));" `
+                -replace [regex]::Escape("},);"), "});" `
+                -replace "get_or_insert_with", "get_or_init" `
+                | Set-Content $to
+
             if ($name -in @("async_", "runtime", "threading", "networking", "file_system")) {
                 (Get-Content $to) `
                     -replace "use fable_library_rust::Async_::Async;", "type Async<T> = T;" `
@@ -53,7 +60,12 @@ function CopyTarget {
                     -replace "use fable_library_rust::System::Collections::Concurrent::ConcurrentStack_1;", "type ConcurrentStack_1<T> = T;" `
                     | Set-Content $to
             }
-            if ($name -eq "common") {
+            if ($name -eq "common" -and !$Runtime) {
+                (Get-Content $to) `
+                    -replace "defaultOf\(\)", "defaultOf::<std::sync::Arc<dyn IDisposable>>()" `
+                    | Set-Content $to
+            }
+            if ($name -eq "common" -and ($Runtime -eq "wasm" -or $Runtime -eq "contract")) {
                 (Get-Content $to) `
                     -replace "defaultOf\(\)", "defaultOf::<std::rc::Rc<dyn IDisposable>>()" `
                     | Set-Content $to

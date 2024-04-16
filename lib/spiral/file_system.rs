@@ -53,7 +53,7 @@ pub mod File_system {
                 >,
             > = OnceInit::new();
             trace_state
-                .get_or_insert_with(|| {
+                .get_or_init(|| {
                     LrcPtr::new(MutCell::new(
                         None::<(
                             LrcPtr<File_system::Mut0>,
@@ -1354,7 +1354,7 @@ pub mod File_system {
                 Option<i64>,
             )>,
         > = OnceInit::new();
-        v0.get_or_insert_with(|| Func0::new(move || File_system::closure0((), ())))
+        v0.get_or_init(|| Func0::new(move || File_system::closure0((), ())))
             .clone()
     }
     on_startup!(if File_system::State::trace_state().get().clone()
@@ -1366,10 +1366,10 @@ pub mod File_system {
             Option<i64>
         )> {
         File_system::State::trace_state().set(Some((File_system::v0())()));
-    },);
+    });
     pub fn v1() -> Func1<string, Arc<Async<i64>>> {
         static v1: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
-        v1.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure1((), v)))
+        v1.get_or_init(|| Func1::new(move |v: string| File_system::closure1((), v)))
             .clone()
     }
     pub fn delete_directory_async(x: string) -> Arc<Async<i64>> {
@@ -1378,17 +1378,15 @@ pub mod File_system {
     pub fn v2() -> Func1<File_system::US2, Func1<string, Arc<Async<i64>>>> {
         static v2: OnceInit<Func1<File_system::US2, Func1<string, Arc<Async<i64>>>>> =
             OnceInit::new();
-        v2.get_or_insert_with(|| {
-            Func1::new(move |v: File_system::US2| File_system::closure5((), v))
-        })
-        .clone()
+        v2.get_or_init(|| Func1::new(move |v: File_system::US2| File_system::closure5((), v)))
+            .clone()
     }
     pub fn wait_for_file_access(x: File_system::US2) -> Func1<string, Arc<Async<i64>>> {
         (File_system::v2())(x)
     }
     pub fn v3() -> Func1<string, Arc<Async<i64>>> {
         static v3: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
-        v3.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure8((), v)))
+        v3.get_or_init(|| Func1::new(move |v: string| File_system::closure8((), v)))
             .clone()
     }
     pub fn wait_for_file_access_read(x: string) -> Arc<Async<i64>> {
@@ -1396,7 +1394,7 @@ pub mod File_system {
     }
     pub fn v4() -> Func1<string, Arc<Async<string>>> {
         static v4: OnceInit<Func1<string, Arc<Async<string>>>> = OnceInit::new();
-        v4.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure9((), v)))
+        v4.get_or_init(|| Func1::new(move |v: string| File_system::closure9((), v)))
             .clone()
     }
     pub fn read_all_text_async(x: string) -> Arc<Async<string>> {
@@ -1404,7 +1402,7 @@ pub mod File_system {
     }
     pub fn v5() -> Func1<string, Func1<string, Arc<Async<bool>>>> {
         static v5: OnceInit<Func1<string, Func1<string, Arc<Async<bool>>>>> = OnceInit::new();
-        v5.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure10((), v)))
+        v5.get_or_init(|| Func1::new(move |v: string| File_system::closure10((), v)))
             .clone()
     }
     pub fn file_exists_content(x: string) -> Func1<string, Arc<Async<bool>>> {
@@ -1412,7 +1410,7 @@ pub mod File_system {
     }
     pub fn v6() -> Func1<string, Func1<string, Arc<Async<()>>>> {
         static v6: OnceInit<Func1<string, Func1<string, Arc<Async<()>>>>> = OnceInit::new();
-        v6.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure12((), v)))
+        v6.get_or_init(|| Func1::new(move |v: string| File_system::closure12((), v)))
             .clone()
     }
     pub fn write_all_text_async(x: string) -> Func1<string, Arc<Async<()>>> {
@@ -1420,7 +1418,7 @@ pub mod File_system {
     }
     pub fn v7() -> Func1<string, Func1<string, Arc<Async<()>>>> {
         static v7: OnceInit<Func1<string, Func1<string, Arc<Async<()>>>>> = OnceInit::new();
-        v7.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure14((), v)))
+        v7.get_or_init(|| Func1::new(move |v: string| File_system::closure14((), v)))
             .clone()
     }
     pub fn write_all_text_exists(x: string) -> Func1<string, Arc<Async<()>>> {
@@ -1428,7 +1426,7 @@ pub mod File_system {
     }
     pub fn v8() -> Func1<string, Arc<Async<i64>>> {
         static v8: OnceInit<Func1<string, Arc<Async<i64>>>> = OnceInit::new();
-        v8.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure16((), v)))
+        v8.get_or_init(|| Func1::new(move |v: string| File_system::closure16((), v)))
             .clone()
     }
     pub fn delete_file_async(x: string) -> Arc<Async<i64>> {
@@ -1436,7 +1434,7 @@ pub mod File_system {
     }
     pub fn v9() -> Func1<string, Func1<string, Arc<Async<i64>>>> {
         static v9: OnceInit<Func1<string, Func1<string, Arc<Async<i64>>>>> = OnceInit::new();
-        v9.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure20((), v)))
+        v9.get_or_init(|| Func1::new(move |v: string| File_system::closure20((), v)))
             .clone()
     }
     pub fn move_file_async(x: string) -> Func1<string, Arc<Async<i64>>> {
@@ -1444,7 +1442,7 @@ pub mod File_system {
     }
     pub fn v10() -> Func1<string, Arc<Async<Option<string>>>> {
         static v10: OnceInit<Func1<string, Arc<Async<Option<string>>>>> = OnceInit::new();
-        v10.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure24((), v)))
+        v10.get_or_init(|| Func1::new(move |v: string| File_system::closure24((), v)))
             .clone()
     }
     pub fn read_all_text_retry_async(x: string) -> Arc<Async<Option<string>>> {
@@ -1452,7 +1450,7 @@ pub mod File_system {
     }
     pub fn v11() -> Func0<string> {
         static v11: OnceInit<Func0<string>> = OnceInit::new();
-        v11.get_or_insert_with(|| Func0::new(move || File_system::closure32((), ())))
+        v11.get_or_init(|| Func0::new(move || File_system::closure32((), ())))
             .clone()
     }
     pub fn create_temp_directory_name() -> string {
@@ -1460,7 +1458,7 @@ pub mod File_system {
     }
     pub fn v12() -> Func0<(string, LrcPtr<dyn IDisposable>)> {
         static v12: OnceInit<Func0<(string, LrcPtr<dyn IDisposable>)>> = OnceInit::new();
-        v12.get_or_insert_with(|| Func0::new(move || File_system::closure34((), ())))
+        v12.get_or_init(|| Func0::new(move || File_system::closure34((), ())))
             .clone()
     }
     pub fn create_temp_directory() -> (string, LrcPtr<dyn IDisposable>) {
@@ -1468,7 +1466,7 @@ pub mod File_system {
     }
     pub fn v13() -> Func0<string> {
         static v13: OnceInit<Func0<string>> = OnceInit::new();
-        v13.get_or_insert_with(|| Func0::new(move || File_system::closure37((), ())))
+        v13.get_or_init(|| Func0::new(move || File_system::closure37((), ())))
             .clone()
     }
     pub fn get_source_directory() -> string {
@@ -1476,7 +1474,7 @@ pub mod File_system {
     }
     pub fn v14() -> Func1<string, Func1<bool, Func1<string, string>>> {
         static v14: OnceInit<Func1<string, Func1<bool, Func1<string, string>>>> = OnceInit::new();
-        v14.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure38((), v)))
+        v14.get_or_init(|| Func1::new(move |v: string| File_system::closure38((), v)))
             .clone()
     }
     pub fn find_parent(x: string) -> Func1<bool, Func1<string, string>> {
@@ -1484,7 +1482,7 @@ pub mod File_system {
     }
     pub fn v15() -> Func0<string> {
         static v15: OnceInit<Func0<string>> = OnceInit::new();
-        v15.get_or_insert_with(|| Func0::new(move || File_system::closure45((), ())))
+        v15.get_or_init(|| Func0::new(move || File_system::closure45((), ())))
             .clone()
     }
     pub fn get_repository_root() -> string {
@@ -1492,11 +1490,11 @@ pub mod File_system {
     }
     pub fn v16() -> Func1<string, Func1<string, string>> {
         static v16: OnceInit<Func1<string, Func1<string, string>>> = OnceInit::new();
-        v16.get_or_insert_with(|| Func1::new(move |v: string| File_system::closure46((), v)))
+        v16.get_or_init(|| Func1::new(move |v: string| File_system::closure46((), v)))
             .clone()
     }
     pub fn op_LessDivideGreater(x: string) -> Func1<string, string> {
         (File_system::v16())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

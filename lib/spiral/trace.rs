@@ -46,7 +46,7 @@ pub mod Trace {
                 >,
             > = OnceInit::new();
             trace_state
-                .get_or_insert_with(|| {
+                .get_or_init(|| {
                     LrcPtr::new(MutCell::new(
                         None::<(
                             LrcPtr<Trace::Mut0>,
@@ -424,7 +424,7 @@ pub mod Trace {
                 Option<i64>,
             )>,
         > = OnceInit::new();
-        v0.get_or_insert_with(|| Func0::new(move || Trace::closure0((), ())))
+        v0.get_or_init(|| Func0::new(move || Trace::closure0((), ())))
             .clone()
     }
     on_startup!(if Trace::State::trace_state().get().clone()
@@ -436,15 +436,15 @@ pub mod Trace {
             Option<i64>
         )> {
         Trace::State::trace_state().set(Some((Trace::v0())()));
-    },);
+    });
     pub fn v1() -> Func1<Trace::US0, Func1<Func0<string>, Func1<Func0<string>, ()>>> {
         static v1: OnceInit<Func1<Trace::US0, Func1<Func0<string>, Func1<Func0<string>, ()>>>> =
             OnceInit::new();
-        v1.get_or_insert_with(|| Func1::new(move |v: Trace::US0| Trace::closure1((), v)))
+        v1.get_or_init(|| Func1::new(move |v: Trace::US0| Trace::closure1((), v)))
             .clone()
     }
     pub fn trace(x: Trace::US0) -> Func1<Func0<string>, Func1<Func0<string>, ()>> {
         (Trace::v1())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

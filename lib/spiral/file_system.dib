@@ -23,8 +23,11 @@ open testing
 #!spiral
 
 inl types () =
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::io::Error\")>] type std_io_Error = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::Path\")>] type std_path_Path = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::path::PathBuf\")>] type std_path_PathBuf = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::DirEntry\")>] type async_walkdir_DirEntry = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"async_walkdir::WalkDir\")>] type async_walkdir_WalkDir = class end"
 
 #!spiral
 
@@ -34,6 +37,16 @@ inl types () =
     rust.types ()
     types ()
     global "#endif // file_system.types"
+
+#!markdown
+
+## walk_dir
+
+#!spiral
+
+nominal dir_entry = $'async_walkdir_DirEntry'
+nominal walk_dir = $'async_walkdir_WalkDir'
+nominal io_error = $"std_io_Error"
 
 #!markdown
 
@@ -285,7 +298,17 @@ inl get_file_name (path : string) : string =
 #!spiral
 
 inl get_current_directory () : string =
-    $'System.IO.Directory.GetCurrentDirectory' ()
+    run_target function
+        | Fsharp (Native) => fun () =>
+            $'System.IO.Directory.GetCurrentDirectory' ()
+        | Rust (Native) => fun () =>
+            open rust_operators
+            inl current_dir = !\($'"std::env::current_dir()"') : resultm.result' path_buf io_error
+            current_dir
+            |> resultm.unwrap'
+            |> path_buf_display
+            |> sm'.from_std_string
+        | _ => fun () => null ()
 
 #!spiral
 

@@ -3,6 +3,7 @@
 [<Fable.Core.Erase; Fable.Core.Emit("Func1<$0, $1>")>] type Func0<'T, 'U> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Box<$0>")>] type Box<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("dyn $0")>] type Dyn<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("$0 + Send")>] type Send<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn() -> $0")>] type Fn<'T> = class end
 [<Fable.Core.Erase; Fable.Core.Emit("Fn()")>] type FnUnit = class end
 [<Fable.Core.Erase; Fable.Core.Emit("FnOnce() -> $0")>] type FnOnce<'T> = class end

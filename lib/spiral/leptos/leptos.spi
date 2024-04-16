@@ -120,16 +120,16 @@ prototype signal_update signal t : (t -> t) -> signal t -> ()
 prototype signal_set signal t : t -> signal t -> ()
 
 inl log_string (text : string) =
-    !\($'@@"leptos::logging::log\!(""" + !text + @@""")"') : ()
+    (!\($'@@"true; leptos::logging::log\!(""" + !text + @@""");"') : bool) |> ignore
 
 inl log (text : string) =
-    (!\\(text, $'@@$"leptos::logging::log\!(""{{}}"", $0)"') : ())
+    (!\\(text, $'@@$"true; leptos::logging::log\!(""{{}}"", $0)"') : bool) |> ignore
 
 inl log_debug (text : string) =
-    !\\(text, $'@@$"leptos::logging::log\!(""{{:?}}"", $0)"') : ()
+    (!\\(text, $'@@$"true; leptos::logging::log\!(""{{:?}}"", $0)"') : bool) |> ignore
 
 inl log_pretty (text : string) =
-    !\\(text, $'@@$"leptos::logging::log\!(""{{:#?}}"", $0)"') : ()
+    (!\\(text, $'@@$"true; leptos::logging::log\!(""{{:#?}}"", $0)"') : bool) |> ignore
 
 inl log_format fn obj =
     inl obj_log = obj |> sm'.format_debug
@@ -137,8 +137,8 @@ inl log_format fn obj =
     log text
     obj
 
-inl mount_to_body (view_fn : () -> rust.impl into_view) =
-    !\\(view_fn, $'"leptos::mount_to_body(|| $0())"') : ()
+inl mount_to_body (view_fn : () -> rust.impl into_view) : () =
+    (!\\(view_fn, $'"true; leptos::mount_to_body(|| $0());"') : bool) |> ignore
 
 inl view_vec_to_fragment (view : am'.vec view) : fragment =
     !\\(view, $'"leptos::Fragment::new($0)"')
@@ -212,7 +212,7 @@ inl closure_to_view (closure : rust.func0 view) : view =
     !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
 
 inl batch (fn : () -> ()) : () =
-    !\\(fn, $'"leptos::batch(move || $0())"')
+    (!\\(fn, $'"true; leptos::batch(move || $0());"') : bool) |> ignore
 
 inl closure_to_fragment (closure : rust.func0 fragment) : fragment =
     !\\(closure, $'"leptos::IntoView::into_view(move || $0())"')
@@ -272,10 +272,10 @@ inl text_fragment (text : string) : fragment =
     |> view_to_fragment
 
 inl provide_meta_context () =
-    !\($'"leptos_meta::provide_meta_context()"') : ()
+    (!\($'"true; leptos_meta::provide_meta_context()"') : bool) |> ignore
 
 inl provide_context forall t. (x : t) =
-    !\\(x, $'$"leptos::provide_context::<std::rc::Rc<`t>>($0)"') : ()
+    (!\\(x, $'$"true; leptos::provide_context::<std::rc::Rc<`t>>($0)"') : bool) |> ignore
 
 inl create_signal forall t. (value : t) : read_signal t * write_signal t =
     !\\(value, $'$"leptos::create_signal($0)"')
@@ -311,9 +311,9 @@ instance signal_get rw_signal = signal_get'
 instance signal_get read_signal = signal_get'
 instance signal_get memo = memo_get'
 
-inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) =
+inl signal_update' forall (t : * -> *) u. (fn : u -> u) (signal : t u) : () =
     signal |> typecheck_signal
-    !\\((signal, fn), $'"leptos::SignalUpdate::update(&$0, |x| { *x = $1(x.clone()) })"') : ()
+    (!\\((signal, fn), $'"true; leptos::SignalUpdate::update(&$0, |x| { *x = $1(x.clone()) });"') : bool) |> ignore
 
 instance signal_update rw_signal = signal_update'
 instance signal_update write_signal = signal_update'
@@ -328,7 +328,7 @@ instance signal_get_untracked memo = signal_get_untracked'
 
 inl signal_set' forall (t : * -> *) u. (value : u) (signal : t u) =
     signal |> typecheck_signal
-    !\\((signal, value), $'$"leptos::SignalSet::set(&$0, $1)"') : ()
+    (!\\((signal, value), $'$"true; leptos::SignalSet::set(&$0, $1);"') : bool) |> ignore
 
 instance signal_set rw_signal = signal_set'
 instance signal_set write_signal = signal_set'
@@ -343,6 +343,15 @@ inl create_local_resource forall t u.
     //    fetcher x
     // inl fetcher = join fetcher
     // !\($'"leptos::create_local_resource(move || !source(), move |x| async move { !fetcher(x)().await })"')
+
+    // ---
+
+    // inl fn x = async.new_future fun () =>
+    //     inl x' = fetcher x
+    //     x' |> async.await
+
+    // !\\((source, fn), $'"leptos::create_local_resource(move || $0(), |x| async move { $1(x).await })"')
+
 
     join
         !\\(source, $'"let __result = leptos::create_local_resource(move || $0(), |x| async move { //"')
@@ -364,7 +373,7 @@ inl create_action forall t u. (action_fn : t -> async.future_pin u) : action t u
     !\\(action_fn, $'"leptos::create_action(move |value: &std::rc::Rc<`t>| $0(value.clone()))"')
 
 inl action_dispatch forall t u. (value : heap t) (action : action (heap t) u) : () =
-    !\\((action, value), $'"leptos::Action::dispatch(&$0, $1.clone())"')
+    (!\\((action, value), $'"true; leptos::Action::dispatch(&$0, $1.clone())"') : bool) |> ignore
 
 inl action_input forall t u. (action : action (heap t) u) : rw_signal (optionm'.option' t) =
     !\\(action, $'"leptos::Action::input(&$0)"')
@@ -389,13 +398,13 @@ inl resource_with forall t u v. (resource : resource t u) (fn : optionm'.option'
 
 inl create_effect (fn : () -> ()) : () =
     inl fn = fn |> rust.emit
-    !\($'"leptos::create_effect(move |_| { !fn(()) })"')
+    (!\($'"true; leptos::create_effect(move |_| { !fn(()) })"') : bool) |> ignore
 
 inl create_effect' forall t. (fn : optionm'.option' t -> t) : () =
-    !\\(fn, $'"leptos::create_effect(move |x| { $0(x) })"')
+    (!\\(fn, $'"true; leptos::create_effect(move |x| { $0(x) })"') : bool) |> ignore
 
 inl interval_handle_clear (interval_handle : interval_handle) =
-    !\\(interval_handle, $'$"leptos::leptos_dom::helpers::IntervalHandle::clear(&$0)"') : ()
+    (!\\(interval_handle, $'$"true; leptos::leptos_dom::helpers::IntervalHandle::clear(&$0)"') : bool) |> ignore
 
 inl set_interval_with_handle
     (fn : () -> ())

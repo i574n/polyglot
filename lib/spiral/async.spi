@@ -5,16 +5,14 @@ open rust_operators
 // // ## types
 
 inl types () =
+    global "#if FABLE_COMPILER // async.types"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"std::future::Future<Output = $0>\")>] type Future<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"futures::future::TryJoinAll<$0>\")>] type TryJoinAll<'T> = class end"
+    global "#endif // async.types"
 
 // // ## async
 
 nominal async t = $"Async<`t>"
-
-// // ## future
-
-nominal future t = $"Future<`t>"
 
 // // ## task
 
@@ -25,28 +23,31 @@ nominal task t =
         | _ => $'' : $"System.Threading.Tasks.Task<`t>"
     )
 
+// // ## future
+
+nominal future t = $"Future<`t>"
+
 // // ## future_pin
 
 type future_pin t = rust.pin (rust.box (rust.dyn' (future t)))
 
+// // ## future_pin_send
+
+type future_pin_send t = rust.pin (rust.box (rust.send (rust.dyn' (future t))))
+
+// // ## block_on
+
+inl block_on forall t. (fn : future_pin t) : () =
+    !\($'"futures_lite::future::block_on(!fn)"')
+
+// // ## spawn
+
+inl spawn forall t. (fn : future_pin t) : () =
+    !\($'"async_std::task::spawn(!fn)"')
+
 // // ## try_join_all
 
 nominal try_join_all t = $"TryJoinAll<`t>"
-
-// // ## future_init
-
-inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
-    join
-        if flag = 1
-        then !\($'"let __result = Box::pin(async move { //"')
-        else !\($'"let __result = Box::pin(async { //"')
-
-        let x' = x ()
-        inl x' = join x'
-
-        x' |> rust.fix_closure depth
-
-        !\($'"__result"')
 
 // // ## try_join_all
 
@@ -63,6 +64,41 @@ inl await' forall t. (x : try_join_all (future_pin (resultm.result' t sm'.std_st
 
 inl await forall t. (x : future_pin t) : t =
     !\($'"!x.await"')
+
+// // ## new_future
+
+inl new_future forall t. (x : () -> t) : future_pin t =
+    join
+        !\($'"{Box::pin(async { //"')
+        x () |> fun x => join $'!x '
+        !\($'"}}) //"')
+
+// // ## new_future_move
+
+inl new_future_move forall t. (x : () -> t) : future_pin t =
+    join
+        !\($'"{Box::pin(async move { //"')
+        x () |> fun x => join $'!x '
+        !\($'"}}) //"')
+
+// // ## future_init
+
+inl future_init forall t. (depth : (u8 * u8)) (flag : u8) (x : () -> t) : future_pin t =
+    // join
+    //     if flag = 1
+    //     then new_future_move x
+    //     else new_future x
+    join
+        if flag = 1
+        then !\($'"let __result = Box::pin(async move { //"')
+        else !\($'"let __result = Box::pin(async { //"')
+
+        let x' = x ()
+        inl x' = join x'
+
+        x' |> rust.fix_closure depth
+
+        !\($'"__result"')
 
 // // ## new_async_unit
 
@@ -316,4 +352,5 @@ inl await_value_task_unit (task : value_task) : async () =
 // // ## main
 
 inl main () =
+    types ()
     $"let merge_cancellation_token_with_default_async x = !merge_cancellation_token_with_default_async x" : ()

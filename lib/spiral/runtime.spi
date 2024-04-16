@@ -291,6 +291,13 @@ nominal arg_matches = $'clap_ArgMatches'
 inl command_get_matches (command : command) : arg_matches =
     !\\(command, $'"clap::Command::get_matches($0)"')
 
+// // ## matches_get_one
+
+inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.std_string =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
+
 // // ## command_debug_assert
 
 inl command_debug_assert (command : command) : () =

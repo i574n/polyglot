@@ -340,7 +340,7 @@ pub mod Sm {
     }
     pub fn v0() -> Func1<string, Func1<string, bool>> {
         static v0: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
-        v0.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure0((), v)))
+        v0.get_or_init(|| Func1::new(move |v: string| Sm::closure0((), v)))
             .clone()
     }
     pub fn contains(x: string) -> Func1<string, bool> {
@@ -348,7 +348,7 @@ pub mod Sm {
     }
     pub fn v1() -> Func1<string, Func1<string, bool>> {
         static v1: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
-        v1.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure2((), v)))
+        v1.get_or_init(|| Func1::new(move |v: string| Sm::closure2((), v)))
             .clone()
     }
     pub fn ends_with(x: string) -> Func1<string, bool> {
@@ -356,7 +356,7 @@ pub mod Sm {
     }
     pub fn v2() -> Func1<i32, Func1<char, Func1<string, string>>> {
         static v2: OnceInit<Func1<i32, Func1<char, Func1<string, string>>>> = OnceInit::new();
-        v2.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure4((), v)))
+        v2.get_or_init(|| Func1::new(move |v: i32| Sm::closure4((), v)))
             .clone()
     }
     pub fn pad_left(x: i32) -> Func1<char, Func1<string, string>> {
@@ -364,7 +364,7 @@ pub mod Sm {
     }
     pub fn v3() -> Func1<i32, Func1<string, string>> {
         static v3: OnceInit<Func1<i32, Func1<string, string>>> = OnceInit::new();
-        v3.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure7((), v)))
+        v3.get_or_init(|| Func1::new(move |v: i32| Sm::closure7((), v)))
             .clone()
     }
     pub fn pad_right(x: i32) -> Func1<string, string> {
@@ -372,7 +372,7 @@ pub mod Sm {
     }
     pub fn v4() -> Func1<string, Func1<string, Func1<string, string>>> {
         static v4: OnceInit<Func1<string, Func1<string, Func1<string, string>>>> = OnceInit::new();
-        v4.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure9((), v)))
+        v4.get_or_init(|| Func1::new(move |v: string| Sm::closure9((), v)))
             .clone()
     }
     pub fn replace(x: string) -> Func1<string, Func1<string, string>> {
@@ -380,7 +380,7 @@ pub mod Sm {
     }
     pub fn v5() -> Func1<i32, Func1<i32, Func1<string, string>>> {
         static v5: OnceInit<Func1<i32, Func1<i32, Func1<string, string>>>> = OnceInit::new();
-        v5.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure12((), v)))
+        v5.get_or_init(|| Func1::new(move |v: i32| Sm::closure12((), v)))
             .clone()
     }
     pub fn slice(x: i32) -> Func1<i32, Func1<string, string>> {
@@ -388,7 +388,7 @@ pub mod Sm {
     }
     pub fn v6() -> Func1<string, Func1<string, Array<string>>> {
         static v6: OnceInit<Func1<string, Func1<string, Array<string>>>> = OnceInit::new();
-        v6.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure15((), v)))
+        v6.get_or_init(|| Func1::new(move |v: string| Sm::closure15((), v)))
             .clone()
     }
     pub fn split(x: string) -> Func1<string, Array<string>> {
@@ -396,7 +396,7 @@ pub mod Sm {
     }
     pub fn v7() -> Func1<Array<string>, Func1<string, Array<string>>> {
         static v7: OnceInit<Func1<Array<string>, Func1<string, Array<string>>>> = OnceInit::new();
-        v7.get_or_insert_with(|| Func1::new(move |v: Array<string>| Sm::closure17((), v)))
+        v7.get_or_init(|| Func1::new(move |v: Array<string>| Sm::closure17((), v)))
             .clone()
     }
     pub fn split_string(x: Array<string>) -> Func1<string, Array<string>> {
@@ -404,7 +404,7 @@ pub mod Sm {
     }
     pub fn v8() -> Func1<string, Func1<string, bool>> {
         static v8: OnceInit<Func1<string, Func1<string, bool>>> = OnceInit::new();
-        v8.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure19((), v)))
+        v8.get_or_init(|| Func1::new(move |v: string| Sm::closure19((), v)))
             .clone()
     }
     pub fn starts_with(x: string) -> Func1<string, bool> {
@@ -412,7 +412,7 @@ pub mod Sm {
     }
     pub fn v9() -> Func1<i32, Func1<i32, Func1<string, string>>> {
         static v9: OnceInit<Func1<i32, Func1<i32, Func1<string, string>>>> = OnceInit::new();
-        v9.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure21((), v)))
+        v9.get_or_init(|| Func1::new(move |v: i32| Sm::closure21((), v)))
             .clone()
     }
     pub fn substring(x: i32) -> Func1<i32, Func1<string, string>> {
@@ -420,7 +420,7 @@ pub mod Sm {
     }
     pub fn v10() -> Func1<string, string> {
         static v10: OnceInit<Func1<string, string>> = OnceInit::new();
-        v10.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure24((), v)))
+        v10.get_or_init(|| Func1::new(move |v: string| Sm::closure24((), v)))
             .clone()
     }
     pub fn to_lower(x: string) -> string {
@@ -428,7 +428,7 @@ pub mod Sm {
     }
     pub fn v11() -> Func1<string, string> {
         static v11: OnceInit<Func1<string, string>> = OnceInit::new();
-        v11.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure25((), v)))
+        v11.get_or_init(|| Func1::new(move |v: string| Sm::closure25((), v)))
             .clone()
     }
     pub fn to_upper(x: string) -> string {
@@ -436,7 +436,7 @@ pub mod Sm {
     }
     pub fn v12() -> Func1<string, string> {
         static v12: OnceInit<Func1<string, string>> = OnceInit::new();
-        v12.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure26((), v)))
+        v12.get_or_init(|| Func1::new(move |v: string| Sm::closure26((), v)))
             .clone()
     }
     pub fn trim(x: string) -> string {
@@ -444,7 +444,7 @@ pub mod Sm {
     }
     pub fn v13() -> Func1<Array<char>, Func1<string, string>> {
         static v13: OnceInit<Func1<Array<char>, Func1<string, string>>> = OnceInit::new();
-        v13.get_or_insert_with(|| Func1::new(move |v: Array<char>| Sm::closure27((), v)))
+        v13.get_or_init(|| Func1::new(move |v: Array<char>| Sm::closure27((), v)))
             .clone()
     }
     pub fn trim_end(x: Array<char>) -> Func1<string, string> {
@@ -452,7 +452,7 @@ pub mod Sm {
     }
     pub fn v14() -> Func1<Array<char>, Func1<string, string>> {
         static v14: OnceInit<Func1<Array<char>, Func1<string, string>>> = OnceInit::new();
-        v14.get_or_insert_with(|| Func1::new(move |v: Array<char>| Sm::closure29((), v)))
+        v14.get_or_init(|| Func1::new(move |v: Array<char>| Sm::closure29((), v)))
             .clone()
     }
     pub fn trim_start(x: Array<char>) -> Func1<string, string> {
@@ -460,7 +460,7 @@ pub mod Sm {
     }
     pub fn v15() -> Func1<i32, Func1<string, string>> {
         static v15: OnceInit<Func1<i32, Func1<string, string>>> = OnceInit::new();
-        v15.get_or_insert_with(|| Func1::new(move |v: i32| Sm::closure31((), v)))
+        v15.get_or_init(|| Func1::new(move |v: i32| Sm::closure31((), v)))
             .clone()
     }
     pub fn ellipsis(x: i32) -> Func1<string, string> {
@@ -468,7 +468,7 @@ pub mod Sm {
     }
     pub fn v16() -> Func1<i64, Func1<string, string>> {
         static v16: OnceInit<Func1<i64, Func1<string, string>>> = OnceInit::new();
-        v16.get_or_insert_with(|| Func1::new(move |v: i64| Sm::closure33((), v)))
+        v16.get_or_init(|| Func1::new(move |v: i64| Sm::closure33((), v)))
             .clone()
     }
     pub fn ellipsis_end(x: i64) -> Func1<string, string> {
@@ -476,7 +476,7 @@ pub mod Sm {
     }
     pub fn v17() -> Func1<LrcPtr<Exception>, string> {
         static v17: OnceInit<Func1<LrcPtr<Exception>, string>> = OnceInit::new();
-        v17.get_or_insert_with(|| Func1::new(move |v: LrcPtr<Exception>| Sm::closure35((), v)))
+        v17.get_or_init(|| Func1::new(move |v: LrcPtr<Exception>| Sm::closure35((), v)))
             .clone()
     }
     pub fn format_exception(x: LrcPtr<Exception>) -> string {
@@ -484,7 +484,7 @@ pub mod Sm {
     }
     pub fn v18() -> Func1<string, Func1<Array<string>, string>> {
         static v18: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
-        v18.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure36((), v)))
+        v18.get_or_init(|| Func1::new(move |v: string| Sm::closure36((), v)))
             .clone()
     }
     pub fn concat_array_trailing(x: string) -> Func1<Array<string>, string> {
@@ -493,7 +493,7 @@ pub mod Sm {
     pub fn v19() -> Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>> {
         static v19: OnceInit<Func1<string, Func1<LrcPtr<dyn IEnumerable_1<string>>, string>>> =
             OnceInit::new();
-        v19.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure38((), v)))
+        v19.get_or_init(|| Func1::new(move |v: string| Sm::closure38((), v)))
             .clone()
     }
     pub fn concat(x: string) -> Func1<LrcPtr<dyn IEnumerable_1<string>>, string> {
@@ -501,7 +501,7 @@ pub mod Sm {
     }
     pub fn v20() -> Func1<string, Func1<Array<string>, string>> {
         static v20: OnceInit<Func1<string, Func1<Array<string>, string>>> = OnceInit::new();
-        v20.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure40((), v)))
+        v20.get_or_init(|| Func1::new(move |v: string| Sm::closure40((), v)))
             .clone()
     }
     pub fn join_(x: string) -> Func1<Array<string>, string> {
@@ -509,11 +509,11 @@ pub mod Sm {
     }
     pub fn v21() -> Func1<string, Array<char>> {
         static v21: OnceInit<Func1<string, Array<char>>> = OnceInit::new();
-        v21.get_or_insert_with(|| Func1::new(move |v: string| Sm::closure42((), v)))
+        v21.get_or_init(|| Func1::new(move |v: string| Sm::closure42((), v)))
             .clone()
     }
     pub fn to_char_array(x: string) -> Array<char> {
         (Sm::v21())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

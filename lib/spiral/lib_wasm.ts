@@ -1,4 +1,5 @@
 import { US0_US0_0 as US0_US0_0_3, Mut2 as Mut2_3, Mut1 as Mut1_3, Mut0 as Mut0_3, State_trace_state as State_trace_state_3, US0_$union, trace } from "../../lib/spiral/trace.fsx";
+import { hash_text } from "../../lib/spiral/crypto.fsx";
 import { trim_end, trim_start, trim, to_lower, substring, starts_with, split_string, split, slice, replace, format_exception, ends_with, ellipsis_end, ellipsis, contains, concat } from "../../lib/spiral/sm.fsx";
 import { int32 } from "../../deps/Fable/src/fable-library-ts/Int32.js";
 import { int64 } from "../../deps/Fable/src/fable-library-ts/BigInt.js";
@@ -11,6 +12,10 @@ import { US0_US0_0 as US0_US0_0_2, US0_US0_4 as US0_US0_4_2, US0_US0_3 as US0_US
 
 export function SpiralTrace_trace(x: US0_$union): ((arg0: (() => string)) => ((arg0: (() => string)) => void)) {
     return trace(x);
+}
+
+export function SpiralCrypto_hash_text(x: string): string {
+    return hash_text(x);
 }
 
 export function SpiralSm_concat(x: string): ((arg0: Iterable<string>) => string) {

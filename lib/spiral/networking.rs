@@ -50,7 +50,7 @@ pub mod Networking {
                 >,
             > = OnceInit::new();
             trace_state
-                .get_or_insert_with(|| {
+                .get_or_init(|| {
                     LrcPtr::new(MutCell::new(
                         None::<(
                             LrcPtr<Networking::Mut0>,
@@ -616,7 +616,7 @@ pub mod Networking {
                 Option<i64>,
             )>,
         > = OnceInit::new();
-        v0.get_or_insert_with(|| Func0::new(move || Networking::closure0((), ())))
+        v0.get_or_init(|| Func0::new(move || Networking::closure0((), ())))
             .clone()
     }
     on_startup!(if Networking::State::trace_state().get().clone()
@@ -628,10 +628,10 @@ pub mod Networking {
             Option<i64>
         )> {
         Networking::State::trace_state().set(Some((Networking::v0())()));
-    },);
+    });
     pub fn v1() -> Func1<i32, Arc<Async<bool>>> {
         static v1: OnceInit<Func1<i32, Arc<Async<bool>>>> = OnceInit::new();
-        v1.get_or_insert_with(|| Func1::new(move |v: i32| Networking::closure1((), v)))
+        v1.get_or_init(|| Func1::new(move |v: i32| Networking::closure1((), v)))
             .clone()
     }
     pub fn test_port_open(x: i32) -> Arc<Async<bool>> {
@@ -639,7 +639,7 @@ pub mod Networking {
     }
     pub fn v2() -> Func1<i32, Func1<i32, Arc<Async<bool>>>> {
         static v2: OnceInit<Func1<i32, Func1<i32, Arc<Async<bool>>>>> = OnceInit::new();
-        v2.get_or_insert_with(|| Func1::new(move |v: i32| Networking::closure6((), v)))
+        v2.get_or_init(|| Func1::new(move |v: i32| Networking::closure6((), v)))
             .clone()
     }
     pub fn test_port_open_timeout(x: i32) -> Func1<i32, Arc<Async<bool>>> {
@@ -648,7 +648,7 @@ pub mod Networking {
     pub fn v3() -> Func1<Option<i32>, Func1<bool, Func1<i32, Arc<Async<i64>>>>> {
         static v3: OnceInit<Func1<Option<i32>, Func1<bool, Func1<i32, Arc<Async<i64>>>>>> =
             OnceInit::new();
-        v3.get_or_insert_with(|| Func1::new(move |v: Option<i32>| Networking::closure13((), v)))
+        v3.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure13((), v)))
             .clone()
     }
     pub fn wait_for_port_access(x: Option<i32>) -> Func1<bool, Func1<i32, Arc<Async<i64>>>> {
@@ -656,11 +656,11 @@ pub mod Networking {
     }
     pub fn v4() -> Func1<Option<i32>, Func1<i32, Arc<Async<i32>>>> {
         static v4: OnceInit<Func1<Option<i32>, Func1<i32, Arc<Async<i32>>>>> = OnceInit::new();
-        v4.get_or_insert_with(|| Func1::new(move |v: Option<i32>| Networking::closure19((), v)))
+        v4.get_or_init(|| Func1::new(move |v: Option<i32>| Networking::closure19((), v)))
             .clone()
     }
     pub fn get_available_port(x: Option<i32>) -> Func1<i32, Arc<Async<i32>>> {
         (Networking::v4())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

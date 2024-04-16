@@ -1,3 +1,7 @@
+#if FABLE_COMPILER // async.types
+[<Fable.Core.Erase; Fable.Core.Emit("std::future::Future<Output = $0>")>] type Future<'T> = class end
+[<Fable.Core.Erase; Fable.Core.Emit("futures::future::TryJoinAll<$0>")>] type TryJoinAll<'T> = class end
+#endif // async.types
 let rec closure0 () (v0 : System.Threading.CancellationToken) : Async<System.Threading.CancellationToken> =
     let v1 : Async<System.Threading.CancellationToken> option = None
     let mutable _v1 = v1

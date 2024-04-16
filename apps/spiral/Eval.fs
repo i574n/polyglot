@@ -108,6 +108,18 @@ module Eval =
         let dateTimeStr = DateTime.Now |> SpiralDateTime.new_guid_from_date_time
         text |> traceFile $"{assemblyName}_{dateTimeStr}_{Random().Next()}.txt"
 
+    /// ## getParentProcessId
+
+    let getParentProcessId () =
+        let pid = System.Diagnostics.Process.GetCurrentProcess().Id
+        let query = $"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = {pid}"
+        use searcher = new System.Management.ManagementObjectSearcher (query)
+        use results = searcher.Get ()
+        let data = results |> Seq.cast<System.Management.ManagementObject>
+        if data |> Seq.isEmpty
+        then 0u
+        else data |> Seq.head |> (fun mo -> mo.["ParentProcessId"] :?> uint32)
+
     /// ## startTokenRangeWatcher
 
     let inline startTokenRangeWatcher () =
@@ -180,10 +192,27 @@ module Eval =
                             log $"Eval.startTokenRangeWatcher / iterAsyncParallel / ex: {ex |> SpiralSm.format_exception} / {getLocals ()}"
                     })
 
+                let parentAsyncChild = async {
+                    let parentProcessId = getParentProcessId ()
+                    trace Verbose
+                        (fun () -> "Eval.parentAsyncChild")
+                        (fun () -> $"parentProcessId: {parentProcessId} / {getLocals ()}")
+
+                    if parentProcessId > 0u then
+                        let parentProcess = parentProcessId |> int |> System.Diagnostics.Process.GetProcessById
+                        do! parentProcess.WaitForExitAsync () |> Async.AwaitTask
+                        trace Verbose
+                            (fun () -> "Eval.parentAsyncChild / Parent process has exited. Performing cleanup...")
+                            (fun () -> $"{getLocals ()}")
+                        System.Threading.Thread.Sleep 1000
+                        System.Environment.Exit 1
+                }
+
                 async {
                     do! Async.Sleep 3000
                     existingFilesChild |> Async.StartImmediate
                     streamAsyncChild |> Async.Start
+                    parentAsyncChild |> Async.Start
                 }
                 |> Async.Start
             with ex ->
@@ -407,7 +436,7 @@ module Eval =
                                 else fn () |> System.Console.WriteLine
 
                             if printCode
-                            then _trace (fun () -> if rustArgs |> Option.isSome then $".fsx:\n{code}" else code)
+                            then _trace (fun () -> if rustArgs |> Option.isSome then $".fsx:\n{code}\n" else code)
 
                             let! rustResult =
                                 if rustArgs |> Option.isNone || lastTopLevelIndex = None
@@ -493,6 +522,9 @@ clap = "~4.5"
 inline_colorization = "~0.1"
 num-complex = "~0.4"
 pyo3 = "~0.21"
+async-std = "~1.12"
+futures-lite = "~2.3"
+async-walkdir = "~1.0"
 
 [features]
 default = ["fable_library_rust/default", "fable_library_rust/static_do_bindings"]

@@ -65,18 +65,18 @@ inl set_data forall t. (id : string) (data : t) (rexie : wasm.rexie) : async.fut
         inl transaction : wasm.rexie_transaction = !\\(rexie, $'"$0.transaction(&[\\\"store\\\"], rexie::TransactionMode::ReadWrite)?"')
         inl store : wasm.rexie_store = !\($'"!transaction.store(\\\"store\\\")?"')
 
-        !\($'"let mut data = Vec::new()"')
-        !\\(data, $'"borsh::BorshSerialize::serialize(&$0, &mut data).unwrap()"')
+        (!\($'"true; let mut data = Vec::new()"') : bool) |> ignore
+        (!\\(data, $'"true; borsh::BorshSerialize::serialize(&$0, &mut data).unwrap()"') : bool) |> ignore
         inl data : am'.vec u8 = !\($'"data"')
 
         inl data_js_value : wasm.js_value = !\($'"serde_wasm_bindgen::to_value(&!data).unwrap()"')
         inl id = join id
         inl id = id |> sm'.as_str
-        !\($'"!store.put(&!data_js_value, Some(&!id.into())).await?"')
-        !\($'"!transaction.done().await?"')
+        (!\($'"true; !store.put(&!data_js_value, Some(&!id.into())).await?"') : bool) |> ignore
+        (!\($'"true; !transaction.done().await?"') : bool) |> ignore
 
         Ok () |> resultm.box
-    |> async.future_init (4, 3) 1
+    |> async.future_init (2, 1) 1
 
 type core_state core_state_data =
     heap {
@@ -134,7 +134,7 @@ inl use_core_database forall core_state_data.
                     | None => None
                     |> optionm.map optionm'.unbox
                     |> optionm'.flatten
-                |> async.future_init (3, 2) 0
+                |> async.future_init (2, 1) 0
 
     leptos.create_effect fun () =>
         leptos.log $'"state_core.use_core_database (4) / effect core_state_heap / ##1"'
@@ -278,7 +278,7 @@ inl use_database () =
                     |> async.await
                     |> resultm.get
                     |> leptos.log_format fun log => $'"state_core.use_database (3) / database create_local_resource / result: " + string !log + ""'
-                |> async.future_init (3, 2) 1
+                |> async.future_init (2, 1) 1
 
     database
 
@@ -335,7 +335,7 @@ inl use_requests forall t u.
                     |> Ok
                     |> resultm.box
                     |> leptos.log_format fun log => $'"state_core.use_requests (4) / state_data_resource create_local_resource / result: " + string !log + ""'
-                |> async.future_init (4, 3) 1
+                |> async.future_init (2, 1) 1
 
     inl state_data_memo : leptos.memo (optionm'.option' (resultm.result' (a i32 (optionm'.option' (heap sm'.std_string))) sm'.std_string)) =
         leptos.create_memo fun () =>
@@ -357,7 +357,7 @@ inl use_requests forall t u.
             (resultm.result' (a i32 (optionm'.option' string)) sm'.std_string)
         =
         leptos.create_local_resource
-            (3u8, 2u8)
+            (2u8, 1u8)
             fun () => requests |> leptos.signal_get, state_data_memo |> leptos.signal_get
             fun (a requests, state_data) =>
                 inl requests_log = requests |> sm'.format_ellipsis
@@ -428,7 +428,7 @@ inl use_requests forall t u.
                                 |> optionm'.box
                                 |> Ok
                             |> resultm.box : _ _ sm'.std_string
-                        |> async.future_init (3, 2) 1
+                        |> async.future_init (2, 1) 1
                     |> async.try_join_all
                     |> async.await'
                     |> resultm.try'
@@ -436,7 +436,7 @@ inl use_requests forall t u.
                     |> fun x => x : _ i32 _
                     |> Ok
                     |> resultm.box
-                |> async.future_init (3, 2) 1
+                |> async.future_init (2, 1) 1
 
     inl set_state_data_action = leptos.create_action fun (value : heap sm'.std_string) =>
         inl value_len : i64 = value |> sm'.format_debug |> sm.length

@@ -4,6 +4,7 @@ namespace Lib;
 require_once(__FABLE_LIBRARY__.'/Option.php');
 require_once(__FABLE_LIBRARY__.'/String.php');
 require_once(__FABLE_LIBRARY__.'/Util.php');
+require_once(__ROOT__.'/../../../../../lib/spiral/crypto.fs.phpx');
 require_once(__ROOT__.'/../../../../../lib/spiral/file_system.fs.phpx');
 require_once(__ROOT__.'/../../../../../lib/spiral/networking.fs.phpx');
 require_once(__ROOT__.'/../../../../../lib/spiral/runtime.fs.phpx');
@@ -16,111 +17,116 @@ function SpiralTrace_trace($x) {
 }
 
 #1
+function SpiralCrypto_hash_text($x) {
+    return \crypto\hash_text($x);
+}
+
+#2
 function SpiralSm_concat($x) {
     return \sm\concat($x);
 }
 
-#2
+#3
 function SpiralSm_contains($x) {
     return \sm\contains($x);
 }
 
-#3
+#4
 function SpiralSm_ellipsis($x) {
     return \sm\ellipsis($x);
 }
 
-#4
+#5
 function SpiralSm_ellipsis_end($x) {
     return \sm\ellipsis_end($x);
 }
 
-#5
+#6
 function SpiralSm_ends_with($x) {
     return \sm\ends_with($x);
 }
 
-#6
+#7
 function SpiralSm_format_exception($x) {
     return \sm\format_exception($x);
 }
 
-#7
+#8
 function SpiralSm_replace($x) {
     return \sm\replace($x);
 }
 
-#8
+#9
 function SpiralSm_slice($x) {
     return \sm\slice($x);
 }
 
-#9
+#10
 function SpiralSm_split($x) {
     return \sm\split($x);
 }
 
-#10
+#11
 function SpiralSm_split_string($x) {
     return \sm\split_string($x);
 }
 
-#11
+#12
 function SpiralSm_starts_with($x) {
     return \sm\starts_with($x);
 }
 
-#12
+#13
 function SpiralSm_substring($x) {
     return \sm\substring($x);
 }
 
-#13
+#14
 function SpiralSm_to_lower($x) {
     return \sm\to_lower($x);
 }
 
-#14
+#15
 function SpiralSm_trim($x) {
     return \sm\trim($x);
 }
 
-#15
+#16
 function SpiralSm_trim_start($x) {
     return \sm\trim_start($x);
 }
 
-#16
+#17
 function SpiralSm_trim_end($x) {
     return \sm\trim_end($x);
 }
 
-#17
+#18
 function SpiralFileSystem_get_repository_root($unitVar) {
     return \file_system\get_repository_root(NULL);
 }
 
-#18
+#19
 function SpiralFileSystem_get_source_directory($unitVar) {
     return \file_system\get_source_directory(NULL);
 }
 
-#19
+#20
 function SpiralFileSystem_find_parent($x) {
     return \file_system\find_parent($x);
 }
 
-#20
+#21
 function SpiralFileSystem_create_temp_directory($unitVar) {
     return \file_system\create_temp_directory(NULL);
 }
 
-#21
+#22
 function SpiralFileSystem_create_temp_directory_name($unitVar) {
     return \file_system\create_temp_directory_name(NULL);
 }
 
-#22
+#23
 function set_trace_level($new_level) {
     if (\Util\equals(\file_system\State_trace_state, NULL)) {
         \String\toConsole(\String\printf('@1'));
@@ -148,7 +154,7 @@ function set_trace_level($new_level) {
     }
 }
 
-#23
+#24
 function get_trace_level($unitVar) {
     if (\Util\equals(\trace\State_trace_state, NULL)) {
         \String\toConsole(\String\printf('@6'));

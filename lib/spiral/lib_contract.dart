@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, constant_identifier_names, non_constant_identifier_names, unnecessary_this
 import '../../fable_modules/fable_library/String.dart' as string;
 import '../../fable_modules/fable_library/Types.dart' as types;
+import '../../../../../../../../lib/spiral/crypto.fsx' as crypto;
 import '../../../../../../../../lib/spiral/file_system.fsx' as file_system;
 import '../../../../../../../../lib/spiral/networking.fsx' as networking;
 import '../../../../../../../../lib/spiral/runtime.fsx' as runtime;
@@ -8,6 +9,8 @@ import '../../../../../../../../lib/spiral/sm.fsx' as sm;
 import '../../../../../../../../lib/spiral/trace.fsx' as trace;
 
 void Function(String Function()) Function(String Function()) SpiralTrace_trace(trace.US0 x) => trace.trace(x);
+
+String SpiralCrypto_hash_text(String x) => crypto.hash_text(x);
 
 String Function(Iterable<String>) SpiralSm_concat(String x) => sm.concat(x);
 

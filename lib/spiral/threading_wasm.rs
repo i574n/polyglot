@@ -69,7 +69,7 @@ pub mod Threading {
         static v0: OnceInit<
             Func1<Option<CancellationToken>, (CancellationToken, LrcPtr<dyn IDisposable>)>,
         > = OnceInit::new();
-        v0.get_or_insert_with(|| {
+        v0.get_or_init(|| {
             Func1::new(move |v: Option<CancellationToken>| Threading::closure0((), v))
         })
         .clone()
@@ -79,5 +79,5 @@ pub mod Threading {
     ) -> (CancellationToken, LrcPtr<dyn IDisposable>) {
         (Threading::v0())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

@@ -517,6 +517,17 @@ inl command_get_matches (command : command) : arg_matches =
 
 #!markdown
 
+## matches_get_one
+
+#!spiral
+
+inl matches_get_one (x : string) (matches : arg_matches) : optionm'.option' sm'.std_string =
+    inl x = join x
+    inl x = x |> sm'.as_str
+    !\($'"clap::ArgMatches::get_one(&!matches, !x).cloned()"')
+
+#!markdown
+
 ## command_debug_assert
 
 #!spiral

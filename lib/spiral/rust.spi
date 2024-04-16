@@ -5,6 +5,7 @@ inl types () =
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Func1<$0, $1>\")>] type Func0<'T, 'U> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Box<$0>\")>] type Box<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"dyn $0\")>] type Dyn<'T> = class end"
+    global "[<Fable.Core.Erase; Fable.Core.Emit(\"$0 + Send\")>] type Send<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn() -> $0\")>] type Fn<'T> = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"Fn()\")>] type FnUnit = class end"
     global "[<Fable.Core.Erase; Fable.Core.Emit(\"FnOnce() -> $0\")>] type FnOnce<'T> = class end"
@@ -34,10 +35,16 @@ nominal action_fn2 t u = $"ActionFn2<`t, `u>"
 nominal fn_once t = $"FnOnce<`t>"
 nominal fn_unit = $"FnUnit"
 nominal func0 t = $"Func0<`t>"
-nominal func1 t u = $"Func0<`t, `u>"
+nominal func1 t u =
+    `(
+        typecase t with
+        | () => `func0 `u
+        | _ => $'' : $"Func0<`t, `u>"
+    )
 nominal impl t = $"Impl<`t>"
 nominal mut' t = $"Mut<`t>"
 nominal ref' t = $"Ref<`t>"
+nominal send t = $"Send<`t>"
 nominal static_ref' t = $"StaticRef<`t>"
 
 // // ## emit_expr
@@ -46,99 +53,161 @@ inl emit_expr forall a t. (args : a) (code : string) : t =
     real
         $"Fable.Core.RustInterop.emitRustExpr !args !code" : t
 
+// // ## (~!\)
+
 inl (~!\) forall t. (code : string) : t =
     emit_expr () code
+
+// // ## (~!\\)
 
 inl (~!\\) forall t u. ((args : t), (code : string)) : u =
     emit_expr args code
 
+// // ## emit
+
 inl emit forall t. (x : t) : t =
     !\\(x, $'"$0"')
+
+// // ## emit'
 
 inl emit' forall t. (x : t) : t =
     !\\(x, $'"let !x = $0"')
     x
 
+// // ## new_box
+
 inl new_box forall t. (x : t) : box t =
     inl x = join x
     !\($'"Box::new(!x)"')
+
+// // ## new_rc
 
 inl new_rc forall t. (x : t) : rc t =
     inl x = join x
     !\($'"std::rc::Rc::new(!x)"')
 
+// // ## rc_clone
+
 inl rc_clone forall t. (x : rc t) : rc t =
     inl x = join x
     !\($'"std::rc::Rc::clone(&!x)"')
+
+// // ## rc_unwrap_or_clone
+
+inl rc_unwrap_or_clone forall t. (x : rc t) : t =
+    inl x = join x
+    !\($'"std::rc::Rc::unwrap_or_clone(!x)"')
+
+// // ## rc_downgrade
 
 inl rc_downgrade forall t. (x : rc t) : weak_rc t =
     inl x = join x
     !\($'"std::rc::Rc::downgrade(&!x)"')
 
+// // ## new_ref_cell
+
 inl new_ref_cell forall t. (x : t) : ref_cell t =
     inl x = join x
     !\($'"std::cell::RefCell::new(!x)"')
+
+// // ## ref_cell_borrow
 
 inl ref_cell_borrow forall t. (x : rc (ref_cell t)) : t =
     inl x = join x
     !\($'"*std::cell::RefCell::borrow(&std::rc::Rc::clone(&!x))"')
 
+// // ## ref_cell_borrow_mut
+
 inl ref_cell_borrow_mut forall t. (x : rc (ref_cell t)) : mut' t =
     inl x = join x
     !\($'"*std::cell::RefCell::borrow_mut(&std::rc::Rc::clone(&!x))"')
 
-inl to_mut forall t. (x : t) : mut' t =
-    // !\($'"let mut !x = !x"')
-    // !\($'"!x"')
-    emit_expr () $"\"let mut !x = !x\""
-    emit_expr () $"\"!x\""
+// // ## to_mut
+
+inl to_mut forall t. (x : t) : t =
+    (!\($'"true; // 1"') : bool) |> ignore
+    (!\($'"true; let mut !x = !x"') : bool) |> ignore
+    (!\($'"true; !x"') : bool) |> ignore
+    !\($'"!x"')
+    // inl result = !\($'"!x"') : mut' t
+    // !\($'"!result"')
+    // inl result = !\($'"*/ // a"') : mut' t
+    // inl result = !\($'"!x"') : mut' t
+    // result |> fun x => $'!x |> unbox // b'
+
+// // ## ref_map
 
 inl ref_map forall t u. (fn : t -> u) (x : ref' t) : ref' u =
     !\($'"!fn(!x)"')
 
+// // ## from_mut
+
 inl from_mut forall t. (x : mut' t) : t =
     !\($'"!x"')
+
+// // ## new_arc
 
 inl new_arc forall t. (x : t) : arc t =
     inl x = join x
     !\($'"std::sync::Arc::new(!x)"')
 
+// // ## box_fn
+
 inl box_fn forall t. (x : () -> ()) : box t =
     inl x = join x
     !\($'"Box::new(move || !x())"')
+
+// // ## new_pin
 
 inl new_pin forall t. (x : t) : pin (box t) =
     inl x = join x
     !\($'"Box::pin(!x)"')
 
+// // ## deref
+
 inl deref forall t. (ref : ref' t) : t =
     inl ref = join ref
     !\($'"*!ref"')
+
+// // ## ops_deref
 
 inl ops_deref forall t. (ref : t) : t =
     inl ref = join ref
     !\($'"core::ops::Deref::deref(&!ref)"')
 
+// // ## func0_get
+
 inl func0_get forall t. (x : func0 t) : t =
     inl x = join x
     !\($'"!x()"')
+
+// // ## func0_move
 
 inl func0_move forall t. (fn : func0 t) : t =
     inl fn = join fn
     !\($'"(move || !fn())()"')
 
+// // ## move
+
 inl move forall t. (fn : () -> t) : func0 t =
     !\\(fn, $'"Func0::new(move || $0())"')
+
+// // ## to_static_ref_unbox
 
 inl to_static_ref_unbox forall t. (x : ref' t) : static_ref' t =
     $"!x |> unbox"
 
+// // ## from_static_ref_unbox
+
 inl from_static_ref_unbox forall t. (x : static_ref' t) : ref' t =
     $"!x |> unbox"
+
+// // ## box_leak
 
 inl box_leak forall t. (x : box t) : static_ref' (mut' t) =
     emit_expr () $"\"Box::leak(!x)\""
 
+// // ## fix_closure
 
 inl fix_closure depth' x' =
     inl depth = depth' |> fst

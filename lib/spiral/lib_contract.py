@@ -4,6 +4,7 @@ from fable_modules.fable_library.option import value
 from fable_modules.fable_library.string_ import (to_console, printf)
 from fable_modules.fable_library.types import (int64, Array)
 from fable_modules.fable_library.util import (IEnumerable_1, IDisposable, equals)
+from ......lib.spiral.crypto import hash_text
 from ......lib.spiral.file_system import (get_repository_root, get_source_directory, find_parent, create_temp_directory, create_temp_directory_name, State_trace_state, Mut0, Mut1, Mut2, US0 as US0_1)
 from ......lib.spiral.networking import (State_trace_state as State_trace_state_1, Mut0 as Mut0_1, Mut1 as Mut1_1, Mut2 as Mut2_1, US0 as US0_2)
 from ......lib.spiral.runtime import (State_trace_state as State_trace_state_2, Mut0 as Mut0_2, Mut1 as Mut1_2, Mut2 as Mut2_2, US0 as US0_3)
@@ -12,6 +13,10 @@ from ......lib.spiral.trace import (trace, US0, State_trace_state as State_trace
 
 def SpiralTrace_trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return trace(x)
+
+
+def SpiralCrypto_hash_text(x: str) -> str:
+    return hash_text(x)
 
 
 def SpiralSm_concat(x: str) -> Callable[[IEnumerable_1[str]], str]:

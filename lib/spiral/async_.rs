@@ -21,7 +21,7 @@ pub mod Async_ {
     pub fn v0() -> Func1<CancellationToken, Arc<Async<CancellationToken>>> {
         static v0: OnceInit<Func1<CancellationToken, Arc<Async<CancellationToken>>>> =
             OnceInit::new();
-        v0.get_or_insert_with(|| Func1::new(move |v: CancellationToken| Async_::closure0((), v)))
+        v0.get_or_init(|| Func1::new(move |v: CancellationToken| Async_::closure0((), v)))
             .clone()
     }
     pub fn merge_cancellation_token_with_default_async(
@@ -29,5 +29,5 @@ pub mod Async_ {
     ) -> Arc<Async<CancellationToken>> {
         (Async_::v0())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

@@ -10,11 +10,11 @@ pub mod Polyglot {
         use fable_library_rust::String_::string;
         pub fn nl() -> string {
             static nl: OnceInit<string> = OnceInit::new();
-            nl.get_or_insert_with(|| string("\n")).clone()
+            nl.get_or_init(|| string("\n")).clone()
         }
         pub fn q() -> string {
             static q: OnceInit<string> = OnceInit::new();
-            q.get_or_insert_with(|| string("\"")).clone()
+            q.get_or_init(|| string("\"")).clone()
         }
         #[derive(Clone, Debug, PartialEq, PartialOrd, Hash, Eq)]
         pub enum TraceLevel {

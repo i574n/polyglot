@@ -254,35 +254,35 @@ def closure3(v0_1: US0, v1_1: Callable[[], str], v2: Callable[[], str]) -> None:
 
 
 def closure2(v0_1: US0, v1_1: Callable[[], str]) -> Callable[[Callable[[], str]], None]:
-    def _arrow122(v: Callable[[], str], v0_1: Any=v0_1, v1_1: Any=v1_1) -> None:
+    def _arrow123(v: Callable[[], str], v0_1: Any=v0_1, v1_1: Any=v1_1) -> None:
         closure3(v0_1, v1_1, v)
-
-    return _arrow122
-
-
-def closure1(unit_var: None, v0_1: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
-    def _arrow123(v: Callable[[], str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[Callable[[], str]], None]:
-        return closure2(v0_1, v)
 
     return _arrow123
 
 
-def _arrow124(__unit: None=None) -> tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]:
+def closure1(unit_var: None, v0_1: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
+    def _arrow124(v: Callable[[], str], unit_var: Any=unit_var, v0_1: Any=v0_1) -> Callable[[Callable[[], str]], None]:
+        return closure2(v0_1, v)
+
+    return _arrow124
+
+
+def _arrow125(__unit: None=None) -> tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]:
     return closure0(None, None)
 
 
-v0: Callable[[], tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]] = _arrow124
+v0: Callable[[], tuple[Mut0, Mut1, Mut1, Mut2, int64 | None]] = _arrow125
 
 
 if equals(State_trace_state(), None):
     State_trace_state(v0(None))
 
 
-def _arrow125(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
+def _arrow126(v: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return closure1(None, v)
 
 
-v1: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow125
+v1: Callable[[US0, Callable[[], str], Callable[[], str]], None] = _arrow126
 
 def trace(x: US0) -> Callable[[Callable[[], str], Callable[[], str]], None]:
     return v1(x)

@@ -44,11 +44,11 @@ pub mod Crypto {
     }
     pub fn v0() -> Func1<string, string> {
         static v0: OnceInit<Func1<string, string>> = OnceInit::new();
-        v0.get_or_insert_with(|| Func1::new(move |v: string| Crypto::closure0((), v)))
+        v0.get_or_init(|| Func1::new(move |v: string| Crypto::closure0((), v)))
             .clone()
     }
     pub fn hash_text(x: string) -> string {
         (Crypto::v0())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

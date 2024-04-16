@@ -51,7 +51,7 @@ pub mod Runtime {
                 >,
             > = OnceInit::new();
             trace_state
-                .get_or_insert_with(|| {
+                .get_or_init(|| {
                     LrcPtr::new(MutCell::new(
                         None::<(
                             LrcPtr<Runtime::Mut0>,
@@ -1042,7 +1042,7 @@ pub mod Runtime {
                 Option<i64>,
             )>,
         > = OnceInit::new();
-        v0.get_or_insert_with(|| Func0::new(move || Runtime::closure0((), ())))
+        v0.get_or_init(|| Func0::new(move || Runtime::closure0((), ())))
             .clone()
     }
     on_startup!(if Runtime::State::trace_state().get().clone()
@@ -1054,10 +1054,10 @@ pub mod Runtime {
             Option<i64>
         )> {
         Runtime::State::trace_state().set(Some((Runtime::v0())()));
-    },);
+    });
     pub fn v1() -> Func0<bool> {
         static v1: OnceInit<Func0<bool>> = OnceInit::new();
-        v1.get_or_insert_with(|| Func0::new(move || Runtime::closure1((), ())))
+        v1.get_or_init(|| Func0::new(move || Runtime::closure1((), ())))
             .clone()
     }
     pub fn is_windows() -> bool {
@@ -1065,7 +1065,7 @@ pub mod Runtime {
     }
     pub fn v2() -> Func0<string> {
         static v2: OnceInit<Func0<string>> = OnceInit::new();
-        v2.get_or_insert_with(|| Func0::new(move || Runtime::closure2((), ())))
+        v2.get_or_init(|| Func0::new(move || Runtime::closure2((), ())))
             .clone()
     }
     pub fn get_executable_suffix() -> string {
@@ -1073,7 +1073,7 @@ pub mod Runtime {
     }
     pub fn v3() -> Func1<string, Arc<Async<(i32, string)>>> {
         static v3: OnceInit<Func1<string, Arc<Async<(i32, string)>>>> = OnceInit::new();
-        v3.get_or_insert_with(|| Func1::new(move |v: string| Runtime::closure3((), v)))
+        v3.get_or_init(|| Func1::new(move |v: string| Runtime::closure3((), v)))
             .clone()
     }
     pub fn execute_async(x: string) -> Arc<Async<(i32, string)>> {
@@ -1099,7 +1099,7 @@ pub mod Runtime {
                 Arc<Async<(i32, string)>>,
             >,
         > = OnceInit::new();
-        v4.get_or_insert_with(|| {
+        v4.get_or_init(|| {
             Func1::new(
                 move |arg10_0040: (
                     Option<CancellationToken>,
@@ -1121,5 +1121,5 @@ pub mod Runtime {
     ) -> Arc<Async<(i32, string)>> {
         (Runtime::v4())(x)
     }
-    on_startup!((),);
+    on_startup!(());
 }

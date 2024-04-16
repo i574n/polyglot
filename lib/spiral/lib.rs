@@ -33,6 +33,14 @@ pub mod Lib {
             Trace::trace(x)
         }
     }
+    pub mod SpiralCrypto {
+        use super::*;
+        use crate::Crypto;
+        use fable_library_rust::String_::string;
+        pub fn hash_text(x: string) -> string {
+            Crypto::hash_text(x)
+        }
+    }
     pub mod SpiralSm {
         use super::*;
         use crate::Sm;

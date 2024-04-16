@@ -98,7 +98,11 @@ inl unwrap_or forall t. (def : t) (x : option' t) : t =
 
 // // ## rc_upgrade
 
-inl rc_upgrade forall t. (x : rust.weak_rc t) : option (rust.rc t) =
+inl rc_upgrade forall t. (x : rust.weak_rc t) : option' (rust.rc t) =
     inl x = join x
     !\($'"std::rc::Weak::upgrade(&!x)"')
-    |> unbox
+
+// // ## rc_into_inner
+
+inl rc_into_inner forall t. (x : rust.rc t) : option' t =
+    !\($'"std::rc::Rc::into_inner(!x)"')
